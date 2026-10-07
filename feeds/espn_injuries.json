@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-10-07T20:04:42+00:00",
+ "pulled_utc": "2026-10-07T20:39:45+00:00",
  "players": [
   {
    "team": "Arizona Cardinals",
@@ -507,7 +507,7 @@
    "espn_id": "",
    "pos": "WR",
    "status": "Questionable",
-   "date": "2026-10-07T19:55Z",
+   "date": "2026-10-07T20:28Z",
    "detail": "questionable",
    "type": "Ankle"
   },
@@ -1253,22 +1253,12 @@
   },
   {
    "team": "Chicago Bears",
-   "name": "D'Andre Swift",
-   "espn_id": "",
-   "pos": "RB",
-   "status": "Questionable",
-   "date": "2026-10-07T19:58Z",
-   "detail": "Swift didn't practice Thursday due to hip and knee injuries.",
-   "type": "Hip"
-  },
-  {
-   "team": "Chicago Bears",
    "name": "Anthony Johnson Jr.",
    "espn_id": "",
    "pos": "S",
-   "status": "Injured Reserve",
-   "date": "2026-10-07T19:55Z",
-   "detail": "ir",
+   "status": "Out",
+   "date": "2026-10-07T20:28Z",
+   "detail": "out",
    "type": "Undisclosed"
   },
   {
@@ -1277,9 +1267,19 @@
    "espn_id": "",
    "pos": "RB",
    "status": "Questionable",
-   "date": "2026-10-07T17:33Z",
-   "detail": "Head coach Ben Johnson said Wednesday that Monangai's thumb injury is not an issue, Courtney Cronin of ESPN.com reports.",
+   "date": "2026-10-07T20:00Z",
+   "detail": "Monangai (toe/thumb) did not practice Wednesday.",
    "type": "Thumb"
+  },
+  {
+   "team": "Chicago Bears",
+   "name": "D'Andre Swift",
+   "espn_id": "",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-10-07T19:58Z",
+   "detail": "Swift didn't practice Thursday due to hip and knee injuries.",
+   "type": "Hip"
   },
   {
    "team": "Chicago Bears",
@@ -1536,10 +1536,10 @@
    "name": "Barrett Carter",
    "espn_id": "",
    "pos": "LB",
-   "status": "Active",
+   "status": "Questionable",
    "date": "2026-10-07T02:18Z",
    "detail": "Carter posted 11 tackles (five solo) and one pass defense during Sunday's 22-17 loss to the Jaguars.",
-   "type": null
+   "type": "Ankle"
   },
   {
    "team": "Cincinnati Bengals",
@@ -1579,7 +1579,7 @@
    "status": "Questionable",
    "date": "2026-10-06T18:21Z",
    "detail": "questionable",
-   "type": "Achilles"
+   "type": null
   },
   {
    "team": "Cincinnati Bengals",
@@ -1689,7 +1689,7 @@
    "status": "Active",
    "date": "2026-10-04T15:38Z",
    "detail": "",
-   "type": null
+   "type": "Knee"
   },
   {
    "team": "Cincinnati Bengals",
@@ -1709,7 +1709,7 @@
    "status": "Active",
    "date": "2026-10-02T20:17Z",
    "detail": "",
-   "type": null
+   "type": "Hamstring"
   },
   {
    "team": "Cincinnati Bengals",
@@ -1719,7 +1719,7 @@
    "status": "Active",
    "date": "2026-10-01T02:21Z",
    "detail": "Lawrence logged four tackles (three solo), including 2.0 sacks, in the Bengals' 30-27 loss to the Steelers on Sunday.",
-   "type": null
+   "type": "Wrist"
   },
   {
    "team": "Cincinnati Bengals",
@@ -3253,6 +3253,26 @@
   },
   {
    "team": "Indianapolis Colts",
+   "name": "Ashton Dulin",
+   "espn_id": "",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-10-07T20:25Z",
+   "detail": "questionable",
+   "type": "Hamstring"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "name": "Tanor Bortolini",
+   "espn_id": "",
+   "pos": "C",
+   "status": "Questionable",
+   "date": "2026-10-07T20:24Z",
+   "detail": "questionable",
+   "type": "Ankle"
+  },
+  {
+   "team": "Indianapolis Colts",
    "name": "Will Mallory",
    "espn_id": "",
    "pos": "TE",
@@ -3276,10 +3296,10 @@
    "name": "Akeem Davis-Gaither",
    "espn_id": "",
    "pos": "LB",
-   "status": "Active",
+   "status": "Questionable",
    "date": "2026-10-07T02:50Z",
    "detail": "Davis-Gaither tallied eight tackles (five solo) during the Colts' 30-13 win over the Commanders on Sunday in London.",
-   "type": null
+   "type": "Knee"
   },
   {
    "team": "Indianapolis Colts",
@@ -3289,7 +3309,7 @@
    "status": "Questionable",
    "date": "2026-10-07T02:45Z",
    "detail": "questionable",
-   "type": "Undisclosed"
+   "type": "Ribs"
   },
   {
    "team": "Indianapolis Colts",
@@ -3443,16 +3463,6 @@
   },
   {
    "team": "Indianapolis Colts",
-   "name": "Ashton Dulin",
-   "espn_id": "",
-   "pos": "WR",
-   "status": "Active",
-   "date": "2026-10-04T12:10Z",
-   "detail": "Dulin (ankle) is active for Sunday's game against the Commanders in London.",
-   "type": null
-  },
-  {
-   "team": "Indianapolis Colts",
    "name": "Mo Alie-Cox",
    "espn_id": "",
    "pos": "TE",
@@ -3489,16 +3499,6 @@
    "status": "Active",
    "date": "2026-09-27T19:01Z",
    "detail": "Latu (chest) has returned to Sunday's game against the Texans, Kevin Bowen of 107.5 The Fan Indianapolis reports.",
-   "type": null
-  },
-  {
-   "team": "Indianapolis Colts",
-   "name": "Charvarius Ward",
-   "espn_id": "",
-   "pos": "CB",
-   "status": "Active",
-   "date": "2026-09-27T15:49Z",
-   "detail": "Ward (groin) is active for Sunday's game against the Texans.",
    "type": null
   },
   {
@@ -4939,7 +4939,7 @@
    "status": "Active",
    "date": "2026-10-02T20:10Z",
    "detail": "Bell (knee) doesn't have an injury designation for Sunday's game against the Vikings, David Furones of the South Florida Sun Sentinel reports.",
-   "type": null
+   "type": "Knee"
   },
   {
    "team": "Miami Dolphins",
@@ -5503,6 +5503,16 @@
   },
   {
    "team": "New Orleans Saints",
+   "name": "Chris Olave",
+   "espn_id": "",
+   "pos": "WR",
+   "status": "Active",
+   "date": "2026-10-07T20:22Z",
+   "detail": "Olave had a rest day at Wednesday's practice, Katherine Terrell of ESPN.com reports.",
+   "type": null
+  },
+  {
+   "team": "New Orleans Saints",
    "name": "Barion Brown",
    "espn_id": "",
    "pos": "WR",
@@ -5619,7 +5629,7 @@
    "status": "Active",
    "date": "2026-10-06T04:15Z",
    "detail": "Kamara rushed seven times for 23 yards and two touchdowns and brought in five of seven targets for 35 yards in the Saints' 45-24 loss to the Falcons on Monday night.",
-   "type": null
+   "type": "Back"
   },
   {
    "team": "New Orleans Saints",
@@ -5639,16 +5649,6 @@
    "status": "Active",
    "date": "2026-10-06T03:55Z",
    "detail": "Shough completed 30 of 48 passes for 286 yards with a touchdown and no interceptions and rushed twice for five yards in the Saints' 45-24 loss to the Falcons on Monday night.",
-   "type": null
-  },
-  {
-   "team": "New Orleans Saints",
-   "name": "Chris Olave",
-   "espn_id": "",
-   "pos": "WR",
-   "status": "Active",
-   "date": "2026-10-06T03:49Z",
-   "detail": "Olave secured eight of 12 targets for 116 yards in the Saints' 45-24 loss to the Falcons on Monday night.",
    "type": null
   },
   {
@@ -5759,7 +5759,7 @@
    "status": "Questionable",
    "date": "2026-10-07T19:26Z",
    "detail": "Nabers said he took on \"as much as I could\" at Wednesday's practice, after which he noted he's dealing with undisclosed soreness, Connor Hughes of SNY.tv reports.",
-   "type": "Undisclosed"
+   "type": "Knee"
   },
   {
    "team": "New York Giants",
@@ -5939,7 +5939,7 @@
    "status": "Active",
    "date": "2026-10-05T00:11Z",
    "detail": "Likely caught seven of 12 targets for 66 yards in Sunday's 36-24 win over Arizona.",
-   "type": null
+   "type": "Knee"
   },
   {
    "team": "New York Giants",
@@ -6028,7 +6028,7 @@
    "pos": "WR",
    "status": "Injured Reserve",
    "date": "2026-10-07T18:17Z",
-   "detail": "The Jets designated Patrick (groin) to return from injured reserve Wednesday.",
+   "detail": "The Jets designated Patrick (groin) for return from injured reserve Wednesday, John Pullano of the team's official site reports.",
    "type": "Groin"
   },
   {
@@ -6507,9 +6507,19 @@
    "espn_id": "",
    "pos": "WR",
    "status": "Questionable",
-   "date": "2026-10-07T18:54Z",
-   "detail": "Pittman (foot) was seen using a scooter with his foot propped up in the Steelers' locker room Wednesday, Nick Farabaugh of PennLive.com reports.",
+   "date": "2026-10-07T20:16Z",
+   "detail": "Pittman (foot) was a limited participant in Wednesday's practice, Brooke Pryor of ESPN.com reports.",
    "type": "Foot"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "name": "Jalen Ramsey",
+   "espn_id": "",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-10-07T20:10Z",
+   "detail": "questionable",
+   "type": "Wrist"
   },
   {
    "team": "Pittsburgh Steelers",
@@ -6517,8 +6527,8 @@
    "espn_id": "",
    "pos": "RB",
    "status": "Questionable",
-   "date": "2026-10-07T16:01Z",
-   "detail": "Steelers head coach Mike McCarthy said that Dowdle (toe) will remain in the rehab group for Wednesday's practice, but the running back is expected to do more on-field work later in the week, Ray Fittipaldo of the Pittsburgh Post-Gazette reports.",
+   "date": "2026-10-07T20:06Z",
+   "detail": "Dowdle (toe) was listed as a limited participant in Wednesday's practice, Alan Saunders of SteelersNow.com reports.",
    "type": "Toe"
   },
   {
@@ -6739,16 +6749,6 @@
    "status": "Active",
    "date": "2026-10-02T04:42Z",
    "detail": "Metcalf brought in five of nine targets for 115 yards in the Steelers' 27-24 loss to the Browns on Thursday.",
-   "type": null
-  },
-  {
-   "team": "Pittsburgh Steelers",
-   "name": "Jaylen Warren",
-   "espn_id": "",
-   "pos": "RB",
-   "status": "Active",
-   "date": "2026-10-02T04:33Z",
-   "detail": "Warren rushed 17 times for 93 yards and secured three of six targets for 33 yards in the Steelers' 27-24 loss to the Browns on Thursday.",
    "type": null
   },
   {
@@ -7753,23 +7753,63 @@
   },
   {
    "team": "Washington Commanders",
-   "name": "Jayden Daniels",
-   "espn_id": "",
-   "pos": "QB",
-   "status": "Questionable",
-   "date": "2026-10-07T17:36Z",
-   "detail": "Daniels (elbow) was spotted throwing during the open portion of Wednesday's practice, John Keim of ESPN.com reports.",
-   "type": "Elbow"
-  },
-  {
-   "team": "Washington Commanders",
    "name": "Stefon Diggs",
    "espn_id": "",
    "pos": "WR",
    "status": "Questionable",
-   "date": "2026-10-07T17:36Z",
-   "detail": "Diggs (undisclosed) was not on the practice field during the portion of Wednesday's practice open to the media, John Keim of ESPN.com reports.",
-   "type": "Undisclosed"
+   "date": "2026-10-07T20:20Z",
+   "detail": "Diggs was a non-participant at Wednesday's practice due to a hamstring injury.",
+   "type": "Hamstring"
+  },
+  {
+   "team": "Washington Commanders",
+   "name": "Rachaad White",
+   "espn_id": "",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-10-07T20:16Z",
+   "detail": "White (shoulder) was limited in practice Wednesday, Ralph Vacchiano of FoxSports.com reports.",
+   "type": "Shoulder"
+  },
+  {
+   "team": "Washington Commanders",
+   "name": "Jayden Daniels",
+   "espn_id": "",
+   "pos": "QB",
+   "status": "Active",
+   "date": "2026-10-07T20:13Z",
+   "detail": "Daniels (left elbow) practiced fully Wednesday.",
+   "type": null
+  },
+  {
+   "team": "Washington Commanders",
+   "name": "Jacory Croskey-Merritt",
+   "espn_id": "",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-10-07T20:12Z",
+   "detail": "Croskey-Merritt (groin) was limited in Wednesday's practice session,Ralph Vacchiano of FoxSports.com",
+   "type": "Groin"
+  },
+  {
+   "team": "Washington Commanders",
+   "name": "Ben Sinnott",
+   "espn_id": "",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-10-07T20:05Z",
+   "detail": "questionable",
+   "type": "Ribs"
+  },
+  {
+   "team": "Washington Commanders",
+   "name": "Chig Okonkwo",
+   "espn_id": "",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-10-07T20:05Z",
+   "detail": "questionable",
+   "type": "Hamstring"
   },
   {
    "team": "Washington Commanders",
@@ -7813,16 +7853,6 @@
   },
   {
    "team": "Washington Commanders",
-   "name": "Rachaad White",
-   "espn_id": "",
-   "pos": "RB",
-   "status": "Questionable",
-   "date": "2026-10-06T18:21Z",
-   "detail": "questionable",
-   "type": "Shoulder"
-  },
-  {
-   "team": "Washington Commanders",
    "name": "Sam Cosmi",
    "espn_id": "",
    "pos": "G",
@@ -7859,16 +7889,6 @@
    "status": "Active",
    "date": "2026-10-06T01:17Z",
    "detail": "Allen turned three carries into one yard during the Commanders' 30-13 loss to the Colts on Sunday in London.",
-   "type": null
-  },
-  {
-   "team": "Washington Commanders",
-   "name": "Chig Okonkwo",
-   "espn_id": "",
-   "pos": "TE",
-   "status": "Active",
-   "date": "2026-10-06T00:46Z",
-   "detail": "Okonkwo caught two of four targets for five yards in Sunday's loss to the Colts.",
    "type": null
   },
   {
@@ -7919,16 +7939,6 @@
    "status": "Active",
    "date": "2026-10-04T19:49Z",
    "detail": "Williams caught three of eight targets for 21 yards in Sunday's 30-13 loss to the Colts.",
-   "type": null
-  },
-  {
-   "team": "Washington Commanders",
-   "name": "Jacory Croskey-Merritt",
-   "espn_id": "",
-   "pos": "RB",
-   "status": "Active",
-   "date": "2026-10-04T19:37Z",
-   "detail": "Croskey-Merritt carried the ball nine times for a season-low 15 yards and caught two of four targets for 35 yards in Sunday's 30-13 loss to the Colts.",
    "type": null
   },
   {
@@ -7989,16 +7999,6 @@
    "status": "Active",
    "date": "2026-10-02T19:32Z",
    "detail": "Luvu has no injury designation heading into Sunday's game against the Colts.",
-   "type": null
-  },
-  {
-   "team": "Washington Commanders",
-   "name": "Ben Sinnott",
-   "espn_id": "",
-   "pos": "TE",
-   "status": "Active",
-   "date": "2026-10-02T17:42Z",
-   "detail": "Sinnott (ribs) doesn't have an injury designation for Sunday's game against the Colts.",
    "type": null
   }
  ]
