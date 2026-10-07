@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """DK FEED JOB — runs on GitHub on a timer, hands-off.
-Pulls what the build machine can't reach: RotoWire news, ESPN news, Sleeper trending + injury tags, weather.\nv3 Oct 7: adds ESPN news, Sleeper injury tags, and a probe of candidate news sources (counts only).
+Pulls what the build machine can't reach: RotoWire news, ESPN news, Sleeper trending + injury tags, weather.\nv4 Oct 7: one retry on timeouts; merges ProFootballTalk, RotoBaller, ESPN injury list.\nv3 Oct 7: adds ESPN news, Sleeper injury tags, and a probe of candidate news sources (counts only).
 RULE: assume nothing. Every source writes a status line — ok/failed, how many items, newest item,
 and the exact error. A failed source NEVER leaves an empty file that looks like 'quiet'."""
 from zoneinfo import ZoneInfo
-import json, os, sys, time, csv, io, datetime as dt, urllib.request, urllib.parse, xml.etree.ElementTree as ET
+import json, os, sys, time, csv, io, datetime as dt, urllib.request, urllib.error, urllib.parse, xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'feeds')
@@ -13,10 +13,18 @@ NOW = dt.datetime.now(dt.timezone.utc)
 UA = {'User-Agent': 'DK-feed-job/1.0 (personal fantasy research, non-commercial)'}
 STATUS = {'run_utc': NOW.isoformat(timespec='seconds'), 'sources': {}}
 
-def get(url, timeout=30):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read()
+def get(url, timeout=30, tries=2):
+    # v4: one retry on a timeout / connection drop. A real refusal (403, 404) is not retried.
+    for n in range(tries):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read()
+        except urllib.error.HTTPError:
+            raise
+        except Exception:
+            if n == tries - 1: raise
+            time.sleep(3)
 
 def mark(name, ok, **kw):
     kw.update(ok=ok, checked_utc=NOW.isoformat(timespec='seconds'))
@@ -191,9 +199,7 @@ PROBES = {
  'espn_fantasy_player_news': 'https://site.api.espn.com/apis/fantasy/v2/games/ffl/news/players?limit=50',
  'cbs_nfl_rss': 'https://www.cbssports.com/rss/headlines/nfl/',
  'yahoo_nfl_rss': 'https://sports.yahoo.com/nfl/rss/',
- 'pft_rss': 'https://www.nbcsports.com/profootballtalk.rss',
  'pft_rss_old': 'https://profootballtalk.nbcsports.com/feed/',
- 'rotoballer_nfl_rss': 'https://www.rotoballer.com/category/nfl/feed',
  'fantasypros_news_rss': 'https://www.fantasypros.com/nfl/news/feed/',
  'google_news_nfl_injury': 'https://news.google.com/rss/search?q=NFL+injury+practice+when:1d&hl=en-US&gl=US&ceid=US:en',
  'rotowire_mirror': 'https://rss-parrot.net/web/feeds/rotowire.com',
@@ -224,8 +230,62 @@ def probe():
     mark('probe', True, answered=[k for k, v in out.items() if v['answered']], failed=[k for k, v in out.items() if not v['answered']])
 
 
+# ---------- 6. Extra news — ProFootballTalk + RotoBaller (both answered GitHub in the Oct 7 probe) ----------
+EXTRA = {'pft': 'https://www.nbcsports.com/profootballtalk.rss',
+         'rotoballer': 'https://www.rotoballer.com/category/nfl/feed'}
+def extra_news():
+    items, per, errs = [], {}, []
+    for src, u in EXTRA.items():
+        try:
+            root = ET.fromstring(get(u, 25)); n = 0
+            for it in root.iter('item'):
+                p = it.findtext('pubDate')
+                try: pu = parsedate_to_datetime(p).astimezone(dt.timezone.utc).isoformat(timespec='seconds')
+                except Exception: pu = None
+                items.append({'source': src, 'title': (it.findtext('title') or '').strip(), 'published_utc': pu,
+                              'text': (it.findtext('description') or '')[:600], 'link': it.findtext('link')}); n += 1
+            per[src] = n
+        except Exception as e:
+            per[src] = 0; errs.append(f'{src}: {type(e).__name__}: {e}'[:150])
+    hp = os.path.join(OUT, 'news_extra_history.jsonl'); seen = set()
+    if os.path.exists(hp):
+        for line in open(hp):
+            try: j = json.loads(line); seen.add((j['source'], j['title'], j['published_utc']))
+            except Exception: pass
+    new = [i for i in items if (i['source'], i['title'], i['published_utc']) not in seen]
+    with open(hp, 'a') as f:
+        for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
+    write('news_extra.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'per_source': per, 'items': items})
+    newest = max((i['published_utc'] for i in items if i['published_utc']), default=None)
+    mark('news_extra', all(per.values()), per_source=per, items=len(items), new_items=len(new),
+         newest_item_utc=newest, errors=errs)
+
+# ---------- 7. ESPN injury list, all teams (one league-wide call; probe said team pages answer) ----------
+def espn_injuries():
+    try:
+        d = json.loads(get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries', 40))
+        rows = []
+        def walk(o, team=None):
+            if isinstance(o, dict):
+                team = o.get('displayName') if 'injuries' in o and o.get('displayName') else team
+                if 'athlete' in o and 'status' in o:
+                    a = o.get('athlete') or {}
+                    rows.append({'team': team, 'name': a.get('displayName'), 'espn_id': str(a.get('id') or ''),
+                                 'pos': (a.get('position') or {}).get('abbreviation'), 'status': o.get('status'),
+                                 'date': o.get('date'), 'detail': (o.get('shortComment') or o.get('longComment') or '')[:300],
+                                 'type': ((o.get('details') or {}).get('type'))})
+                for v in o.values(): walk(v, team)
+            elif isinstance(o, list):
+                for v in o: walk(v, team)
+        walk(d)
+        write('espn_injuries.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'players': rows})
+        mark('espn_injuries', bool(rows), players=len(rows), teams=len({r['team'] for r in rows}),
+             warning=None if rows else 'answered but no injury rows found — format may differ, needs a look')
+    except Exception as e:
+        mark('espn_injuries', False, error=f'{type(e).__name__}: {e}'[:200])
+
 if __name__ == '__main__':
-    for fn in (rotowire, sleeper, weather, espn, probe):
+    for fn in (rotowire, sleeper, weather, espn, extra_news, espn_injuries, probe):
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])
     write('status.json', STATUS)
