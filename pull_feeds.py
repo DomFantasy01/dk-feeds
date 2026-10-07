@@ -3,6 +3,7 @@
 Pulls the three sources the build machine can't reach: RotoWire news, Sleeper trending, weather.
 RULE: assume nothing. Every source writes a status line — ok/failed, how many items, newest item,
 and the exact error. A failed source NEVER leaves an empty file that looks like 'quiet'."""
+from zoneinfo import ZoneInfo
 import json, os, sys, time, csv, io, datetime as dt, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
@@ -32,40 +33,42 @@ ROTO_URLS = ['https://www.rotowire.com/rss/news.php',            # the address t
              'https://www.rotowire.com/rss/news.htm?sport=nfl',
              'https://rss-parrot.net/web/feeds/rotowire.com']
 def rotowire():
-    tried = []
+    # v2 Oct 7: pull EVERY address and merge — RotoWire's own feed returned only 5 items, 7 hr stale;
+    # the mirror carried 100 items up to the minute. Stopping at the first success threw the mirror away.
+    per, tried, allitems = {}, [], {}
     for u in ROTO_URLS:
         try:
-            raw = get(u)
-            root = ET.fromstring(raw)
-            items = []
+            root = ET.fromstring(get(u)); n = 0
             for it in root.iter('item'):
-                t = (it.findtext('title') or '').strip()
-                d = (it.findtext('description') or '').strip()
-                p = it.findtext('pubDate')
-                try: ts = parsedate_to_datetime(p).astimezone(dt.timezone.utc).isoformat(timespec='seconds')
+                t = (it.findtext('title') or '').strip(); d = (it.findtext('description') or '').strip()
+                try: ts = parsedate_to_datetime(it.findtext('pubDate')).astimezone(dt.timezone.utc).isoformat(timespec='seconds')
                 except Exception: ts = None
-                items.append({'title': t, 'text': d, 'published_utc': ts, 'link': it.findtext('link')})
-            if not items:
-                tried.append(f'{u}: answered but 0 items'); continue
-            newest = max((i['published_utc'] for i in items if i['published_utc']), default=None)
-            write('rotowire_latest.json', {'source': u, 'pulled_utc': NOW.isoformat(timespec='seconds'), 'items': items})
-            # history: keep every item ever seen, so a replay test is possible later
-            hp = os.path.join(OUT, 'rotowire_history.jsonl'); seen = set()
-            if os.path.exists(hp):
-                for line in open(hp):
-                    try: j = json.loads(line); seen.add((j['title'], j['published_utc']))
-                    except Exception: pass
-            new = [i for i in items if (i['title'], i['published_utc']) not in seen]
-            with open(hp, 'a') as f:
-                for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
-            age_h = round((NOW - dt.datetime.fromisoformat(newest)).total_seconds() / 3600, 1) if newest else None
-            mark('rotowire', True, source=u, items=len(items), new_items=len(new), newest_item_utc=newest,
-                 newest_age_hours=age_h, fallbacks_failed=tried,
-                 warning=('newest item over 12 hours old — feed may be stale' if age_h and age_h > 12 else None))
-            return
+                n += 1; key = (t, ts)
+                if key not in allitems or (d and not allitems[key]['text']):
+                    allitems[key] = {'title': t, 'text': d, 'published_utc': ts, 'link': it.findtext('link'), 'via': u}
+            per[u] = n
+            if n == 0: tried.append(f'{u}: answered but 0 items')
         except Exception as e:
-            tried.append(f'{u}: {type(e).__name__}: {e}'[:200])
-    mark('rotowire', False, error='every address failed', tried=tried)
+            per[u] = 0; tried.append(f'{u}: {type(e).__name__}: {e}'[:200])
+    items = sorted(allitems.values(), key=lambda i: i['published_utc'] or '', reverse=True)
+    if not items:
+        mark('rotowire', False, error='every address failed', tried=tried, per_source=per); return
+    newest = max((i['published_utc'] for i in items if i['published_utc']), default=None)
+    write('rotowire_latest.json', {'source': 'merged', 'per_source': per, 'pulled_utc': NOW.isoformat(timespec='seconds'), 'items': items})
+    hp = os.path.join(OUT, 'rotowire_history.jsonl'); seen = set()
+    if os.path.exists(hp):
+        for line in open(hp):
+            try: j = json.loads(line); seen.add((j['title'], j['published_utc']))
+            except Exception: pass
+    new = [i for i in items if (i['title'], i['published_utc']) not in seen]
+    with open(hp, 'a') as f:
+        for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
+    age_h = round((NOW - dt.datetime.fromisoformat(newest)).total_seconds() / 3600, 1) if newest else None
+    warn = []
+    if age_h and age_h > 4: warn.append(f'newest item {age_h} hr old — feed may be stale')
+    if len(items) < 20: warn.append(f'only {len(items)} items across all addresses — thin')
+    mark('rotowire', True, source='merged', per_source=per, items=len(items), new_items=len(new), newest_item_utc=newest,
+         newest_age_hours=age_h, fallbacks_failed=tried, warning='; '.join(warn) or None)
 
 # ---------- 2. Sleeper trending adds + drops (official public API) ----------
 def sleeper():
@@ -114,7 +117,7 @@ def weather():
         except Exception: continue
         if not (today <= day <= horizon) or g.get('away_score'): continue
         roof = (g.get('roof') or '').strip() or 'retractable/unknown'
-        row = {'game_id': g['game_id'], 'gameday': g['gameday'], 'kick_local': g['gametime'], 'stadium': g['stadium'], 'roof': roof}
+        row = {'game_id': g['game_id'], 'gameday': g['gameday'], 'kick_et': g['gametime'], 'stadium': g['stadium'], 'roof': roof}
         if roof in ('dome', 'closed'):
             out.append({**row, 'weather': 'indoors — not pulled'}); continue
         q = PLACE.get(g['stadium'])
@@ -123,18 +126,19 @@ def weather():
             out.append({**row, 'weather': 'NO LOCATION — not pulled'}); continue
         try:
             geo = json.loads(get('https://geocoding-api.open-meteo.com/v1/search?count=1&name=' + urllib.parse.quote(q)))['results'][0]
-            p = urllib.parse.urlencode({'latitude': geo['latitude'], 'longitude': geo['longitude'], 'timezone': 'auto',
+            p = urllib.parse.urlencode({'latitude': geo['latitude'], 'longitude': geo['longitude'], 'timezone': 'UTC',
                  'hourly': 'temperature_2m,precipitation_probability,precipitation,wind_speed_10m,wind_gusts_10m',
-                 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'start_date': g['gameday'], 'end_date': g['gameday']})
+                 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'start_date': g['gameday'], 'end_date': (dt.date.fromisoformat(g['gameday']) + dt.timedelta(days=1)).isoformat()})
             w = json.loads(get('https://api.open-meteo.com/v1/forecast?' + p))
-            h = w['hourly']; hr = int(g['gametime'][:2])
-            idx = [i for i, t in enumerate(h['time']) if hr <= int(t[11:13]) <= hr + 3]
+            h = w['hourly']
+            kick = dt.datetime.fromisoformat(g['gameday'] + 'T' + g['gametime']).replace(tzinfo=ZoneInfo('America/New_York')).astimezone(dt.timezone.utc)
+            idx = [i for i, t in enumerate(h['time']) if kick <= dt.datetime.fromisoformat(t).replace(tzinfo=dt.timezone.utc) <= kick + dt.timedelta(hours=3)]
             pick = lambda k, f: round(f(h[k][i] for i in idx if h[k][i] is not None), 1) if idx else None
             out.append({**row, 'roof_note': ('retractable — roof may be closed' if roof=='retractable/unknown' else None), 'resolved_place': f"{geo['name']}, {geo.get('admin1','')}, {geo.get('country_code','')}",
                         'temp_f_min': pick('temperature_2m', min), 'wind_mph_max': pick('wind_speed_10m', max),
                         'gust_mph_max': pick('wind_gusts_10m', max), 'rain_chance_max': pick('precipitation_probability', max),
                         'precip_in_total_mm': pick('precipitation', sum),
-                        'note': 'kick time is local to the stadium per nflverse; window = kickoff to +3h'})
+                        'kickoff_utc': kick.isoformat(timespec='minutes'), 'note': 'nflverse kick time is US Eastern; converted to UTC; window = kickoff to +3h'})
         except Exception as e:
             problems.append(f"{g['game_id']}: {type(e).__name__}: {e}"[:200])
             out.append({**row, 'weather': 'PULL FAILED'})
