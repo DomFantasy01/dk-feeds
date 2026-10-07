@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """DK FEED JOB — runs on GitHub on a timer, hands-off.
-Pulls the three sources the build machine can't reach: RotoWire news, Sleeper trending, weather.
+Pulls what the build machine can't reach: RotoWire news, ESPN news, Sleeper trending + injury tags, weather.\nv3 Oct 7: adds ESPN news, Sleeper injury tags, and a probe of candidate news sources (counts only).
 RULE: assume nothing. Every source writes a status line — ok/failed, how many items, newest item,
 and the exact error. A failed source NEVER leaves an empty file that looks like 'quiet'."""
 from zoneinfo import ZoneInfo
@@ -74,21 +74,32 @@ def rotowire():
 def sleeper():
     try:
         pdb_path = os.path.join(OUT, 'sleeper_players_min.json')
-        pdb = json.load(open(pdb_path)) if os.path.exists(pdb_path) else {}
-        stale_db = (not pdb) or (time.time() - os.path.getmtime(pdb_path) > 86400 * 3)
-        if stale_db:   # big file (~5 MB), refresh every 3 days only
+        # v3: the pull time is stored INSIDE the file. GitHub resets file timestamps on every checkout,
+        # so v1/v2 thought the file was always fresh and never refreshed it after the first run.
+        blob = json.load(open(pdb_path)) if os.path.exists(pdb_path) else {}
+        pulled = blob.get('_pulled_utc') if isinstance(blob.get('_pulled_utc'), str) else None
+        pdb = blob.get('players', {}) if pulled else {}
+        stale_db = (not pdb) or (NOW - dt.datetime.fromisoformat(pulled) > dt.timedelta(hours=23, minutes=30))
+        if stale_db:   # big file (~5 MB) — Sleeper asks for no more than once a day
             full = json.loads(get('https://api.sleeper.app/v1/players/nfl', timeout=90))
             pdb = {k: {'name': v.get('full_name') or f"{v.get('first_name','')} {v.get('last_name','')}".strip(),
-                       'pos': v.get('position'), 'team': v.get('team'), 'inj': v.get('injury_status')}
-                   for k, v in full.items()}
-            write('sleeper_players_min.json', pdb)
+                       'pos': v.get('position'), 'team': v.get('team'), 'inj': v.get('injury_status'),
+                       'inj_body': v.get('injury_body_part'), 'inj_notes': v.get('injury_notes'),
+                       'practice': v.get('practice_participation'), 'practice_note': v.get('practice_description'),
+                       'news_updated': v.get('news_updated'), 'espn_id': v.get('espn_id'), 'rotowire_id': v.get('rotowire_id')}
+                   for k, v in full.items() if v.get('position') in ('QB', 'RB', 'WR', 'TE', 'K', 'DEF') or k.isalpha()}
+            pulled = NOW.isoformat(timespec='seconds')
+            write('sleeper_players_min.json', {'_pulled_utc': pulled, 'players': pdb})
         res = {}
         for kind in ('add', 'drop'):
             rows = json.loads(get(f'https://api.sleeper.app/v1/players/nfl/trending/{kind}?lookback_hours=24&limit=50'))
             res[kind] = [{'rank': n + 1, 'player_id': r['player_id'], 'count': r.get('count'), **pdb.get(r['player_id'], {'name': r['player_id']})}
                          for n, r in enumerate(rows)]
+        inj = {k: v for k, v in pdb.items() if v.get('inj') and v.get('team')}
+        write('sleeper_injuries.json', {'db_pulled_utc': pulled,
+                                        'note': 'every rostered player with an injury tag; refreshed once a day', 'players': inj})
         write('sleeper_trending.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'lookback_hours': 24, **res})
-        mark('sleeper', True, adds=len(res['add']), drops=len(res['drop']), player_db_refreshed=stale_db,
+        mark('sleeper', True, player_db_pulled_utc=pulled, injured_tagged=len(inj), adds=len(res['add']), drops=len(res['drop']), player_db_refreshed=stale_db,
              note='trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window')
     except Exception as e:
         mark('sleeper', False, error=f'{type(e).__name__}: {e}'[:200])
@@ -148,8 +159,73 @@ def weather():
     mark('weather', pulled == need and need > 0 or (need == 0 and len(out) > 0),
          games_in_window=len(out), outdoor_needed=need, outdoor_pulled=pulled, problems=problems)
 
+# ---------- 4. ESPN NFL news (free JSON; items carry ESPN athlete ids, matched to nflverse espn_id) ----------
+def espn():
+    try:
+        d = json.loads(get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/news?limit=100'))
+        items = []
+        for a in d.get('articles', []):
+            ath = [str(c.get('athleteId') or (c.get('athlete') or {}).get('id')) for c in a.get('categories', []) if c.get('type') == 'athlete']
+            items.append({'title': a.get('headline'), 'text': a.get('description'), 'published_utc': a.get('published'),
+                          'type': a.get('type'), 'espn_athletes': [x for x in ath if x and x != 'None'],
+                          'link': ((a.get('links') or {}).get('web') or {}).get('href')})
+        hp = os.path.join(OUT, 'espn_news_history.jsonl'); seen = set()
+        if os.path.exists(hp):
+            for line in open(hp):
+                try: j = json.loads(line); seen.add((j['title'], j['published_utc']))
+                except Exception: pass
+        new = [i for i in items if (i['title'], i['published_utc']) not in seen]
+        with open(hp, 'a') as f:
+            for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
+        write('espn_news.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'items': items})
+        newest = max((i['published_utc'] for i in items if i['published_utc']), default=None)
+        mark('espn_news', bool(items), items=len(items), new_items=len(new), newest_item_utc=newest,
+             with_player_tag=sum(1 for i in items if i['espn_athletes']))
+    except Exception as e:
+        mark('espn_news', False, error=f'{type(e).__name__}: {e}'[:200])
+
+# ---------- 5. PROBE — candidate news sources. Counts only, nothing merged. One run tells us which answer GitHub. ----------
+PROBES = {
+ 'espn_injuries_team1': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/1/injuries',
+ 'espn_core_injuries_team1': 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams/1/injuries',
+ 'espn_fantasy_player_news': 'https://site.api.espn.com/apis/fantasy/v2/games/ffl/news/players?limit=50',
+ 'cbs_nfl_rss': 'https://www.cbssports.com/rss/headlines/nfl/',
+ 'yahoo_nfl_rss': 'https://sports.yahoo.com/nfl/rss/',
+ 'pft_rss': 'https://www.nbcsports.com/profootballtalk.rss',
+ 'pft_rss_old': 'https://profootballtalk.nbcsports.com/feed/',
+ 'rotoballer_nfl_rss': 'https://www.rotoballer.com/category/nfl/feed',
+ 'fantasypros_news_rss': 'https://www.fantasypros.com/nfl/news/feed/',
+ 'google_news_nfl_injury': 'https://news.google.com/rss/search?q=NFL+injury+practice+when:1d&hl=en-US&gl=US&ceid=US:en',
+ 'rotowire_mirror': 'https://rss-parrot.net/web/feeds/rotowire.com',
+}
+def probe():
+    out = {}
+    for k, u in PROBES.items():
+        try:
+            raw = get(u, 20); n, newest = None, None
+            try:
+                root = ET.fromstring(raw); its = list(root.iter('item')) or list(root.iter('{http://www.w3.org/2005/Atom}entry'))
+                n = len(its); ds = []
+                for it in its:
+                    p = it.findtext('pubDate') or it.findtext('{http://www.w3.org/2005/Atom}updated')
+                    try: ds.append(parsedate_to_datetime(p).astimezone(dt.timezone.utc))
+                    except Exception:
+                        try: ds.append(dt.datetime.fromisoformat(p.replace('Z', '+00:00')))
+                        except Exception: pass
+                newest = max(ds).isoformat(timespec='minutes') if ds else None
+                kind = 'rss'
+            except ET.ParseError:
+                j = json.loads(raw); kind = 'json'
+                n = len(j.get('items') or j.get('articles') or j.get('feed') or j.get('injuries') or j.get('athletes') or j) if isinstance(j, dict) else len(j)
+            out[k] = {'answered': True, 'kind': kind, 'items': n, 'newest_utc': newest, 'bytes': len(raw)}
+        except Exception as e:
+            out[k] = {'answered': False, 'error': f'{type(e).__name__}: {e}'[:150]}
+    write('probe.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'probes': out})
+    mark('probe', True, answered=[k for k, v in out.items() if v['answered']], failed=[k for k, v in out.items() if not v['answered']])
+
+
 if __name__ == '__main__':
-    for fn in (rotowire, sleeper, weather):
+    for fn in (rotowire, sleeper, weather, espn, probe):
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])
     write('status.json', STATUS)
