@@ -1,32 +1,43 @@
 {
- "run_utc": "2026-10-07T17:27:45+00:00",
+ "run_utc": "2026-10-07T18:09:06+00:00",
  "sources": {
   "rotowire": {
-   "source": "https://www.rotowire.com/rss/news.php",
-   "items": 5,
-   "new_items": 5,
-   "newest_item_utc": "2026-10-07T10:21:00+00:00",
-   "newest_age_hours": 7.1,
-   "fallbacks_failed": [],
-   "warning": null,
+   "source": "merged",
+   "per_source": {
+    "https://www.rotowire.com/rss/news.php": 5,
+    "https://www.rotowire.com/rss/news.php?sport=NFL": 5,
+    "https://www.rotowire.com/rss/news.htm?sport=nfl": 0,
+    "https://rss-parrot.net/web/feeds/rotowire.com": 0
+   },
+   "items": 6,
+   "new_items": 6,
+   "newest_item_utc": "2026-10-07T11:07:00+00:00",
+   "newest_age_hours": 7.0,
+   "fallbacks_failed": [
+    "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
+    "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
+   ],
+   "warning": "newest item 7.0 hr old \u2014 feed may be stale; only 6 items across all addresses \u2014 thin",
    "ok": true,
-   "checked_utc": "2026-10-07T17:27:45+00:00"
+   "checked_utc": "2026-10-07T18:09:06+00:00"
   },
   "sleeper": {
    "adds": 50,
    "drops": 50,
-   "player_db_refreshed": true,
+   "player_db_refreshed": false,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-10-07T17:27:45+00:00"
+   "checked_utc": "2026-10-07T18:09:06+00:00"
   },
   "weather": {
    "games_in_window": 16,
    "outdoor_needed": 13,
-   "outdoor_pulled": 13,
-   "problems": [],
-   "ok": true,
-   "checked_utc": "2026-10-07T17:27:45+00:00"
+   "outdoor_pulled": 12,
+   "problems": [
+    "2026_05_NYG_WAS: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
+   ],
+   "ok": false,
+   "checked_utc": "2026-10-07T18:09:06+00:00"
   }
  }
 }
