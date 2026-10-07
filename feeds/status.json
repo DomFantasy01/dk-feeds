@@ -1,5 +1,5 @@
 {
- "run_utc": "2026-10-07T18:09:06+00:00",
+ "run_utc": "2026-10-07T18:28:32+00:00",
  "sources": {
   "rotowire": {
    "source": "merged",
@@ -9,25 +9,27 @@
     "https://www.rotowire.com/rss/news.htm?sport=nfl": 0,
     "https://rss-parrot.net/web/feeds/rotowire.com": 0
    },
-   "items": 6,
-   "new_items": 6,
+   "items": 5,
+   "new_items": 0,
    "newest_item_utc": "2026-10-07T11:07:00+00:00",
-   "newest_age_hours": 7.0,
+   "newest_age_hours": 7.4,
    "fallbacks_failed": [
     "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
     "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
    ],
-   "warning": "newest item 7.0 hr old \u2014 feed may be stale; only 6 items across all addresses \u2014 thin",
+   "warning": "newest item 7.4 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "ok": true,
-   "checked_utc": "2026-10-07T18:09:06+00:00"
+   "checked_utc": "2026-10-07T18:28:32+00:00"
   },
   "sleeper": {
+   "player_db_pulled_utc": "2026-10-07T18:28:32+00:00",
+   "injured_tagged": 150,
    "adds": 50,
    "drops": 50,
-   "player_db_refreshed": false,
+   "player_db_refreshed": true,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-10-07T18:09:06+00:00"
+   "checked_utc": "2026-10-07T18:28:32+00:00"
   },
   "weather": {
    "games_in_window": 16,
@@ -37,7 +39,34 @@
     "2026_05_NYG_WAS: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
    ],
    "ok": false,
-   "checked_utc": "2026-10-07T18:09:06+00:00"
+   "checked_utc": "2026-10-07T18:28:32+00:00"
+  },
+  "espn_news": {
+   "items": 50,
+   "new_items": 50,
+   "newest_item_utc": "2026-10-07T18:25:05Z",
+   "with_player_tag": 38,
+   "ok": true,
+   "checked_utc": "2026-10-07T18:28:32+00:00"
+  },
+  "probe": {
+   "answered": [
+    "espn_injuries_team1",
+    "espn_core_injuries_team1",
+    "cbs_nfl_rss",
+    "yahoo_nfl_rss",
+    "pft_rss",
+    "pft_rss_old",
+    "rotoballer_nfl_rss",
+    "google_news_nfl_injury"
+   ],
+   "failed": [
+    "espn_fantasy_player_news",
+    "fantasypros_news_rss",
+    "rotowire_mirror"
+   ],
+   "ok": true,
+   "checked_utc": "2026-10-07T18:28:32+00:00"
   }
  }
 }
