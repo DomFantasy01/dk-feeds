@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - run: pip install pandas numpy lxml html5lib
+      - run: pip install pandas numpy lxml html5lib beautifulsoup4
       - run: python pull_proj.py
       - run: python grade_job.py
       - name: save results back to the repo
