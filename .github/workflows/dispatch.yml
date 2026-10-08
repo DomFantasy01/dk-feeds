@@ -1,0 +1,35 @@
+name: DK Dispatch build
+# Builds the Dark Knight Dispatch front page three times a day, AFTER the feed and projection jobs have refreshed.
+# Times are UTC. Pacific = UTC-7 until Nov 1 (7:45 AM, 12:45 PM, 5:45 PM PT), then UTC-8 (6:45 AM, 11:45 AM, 4:45 PM PT).
+# If any step fails, the run goes red and GitHub emails you - that is the alarm. Stale or short data does not fail the run:
+# it prints in red on the page and is listed in dispatch_out/alarm_wk<W>.json.
+on:
+  schedule:
+    - cron: '45 14,19 * * *'
+    - cron: '45 0 * * *'
+  workflow_dispatch: {}            # 'Run workflow' button for an on-demand build
+permissions:
+  contents: write
+concurrency:
+  group: dk-feeds                  # same group as the other two jobs: never two writers at once
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pandas numpy reportlab
+      - run: bash dispatch_run.sh
+      - name: save the page back to the repo
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add dispatch_out
+          git commit -m "dispatch $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 5
+          done
+          echo "save failed after 3 tries"; exit 1
