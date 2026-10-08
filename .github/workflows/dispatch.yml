@@ -1,12 +1,16 @@
 name: DK Dispatch build
 # Builds the Dark Knight Dispatch front page three times a day, AFTER the feed and projection jobs have refreshed.
 # Times are UTC. Pacific = UTC-7 until Nov 1 (7:45 AM, 12:45 PM, 5:45 PM PT), then UTC-8 (6:45 AM, 11:45 AM, 4:45 PM PT).
+# Plus a build an hour before each kickoff slate (added Oct 8), so Gotham and Sleeper are fresh at kickoff:
+#   Thu and Mon 5:00 PM PT (night games 5:15), Sun 5:30 AM PT (London 6:30), Sun 4:30 PM PT (Sunday night 5:20).
 # If any step fails, the run goes red and GitHub emails you - that is the alarm. Stale or short data does not fail the run:
 # it prints in red on the page and is listed in dispatch_out/alarm_wk<W>.json.
 on:
   schedule:
     - cron: '45 14,19 * * *'
     - cron: '45 0 * * *'
+    - cron: '0 0 * * 2,5'            # Thu + Mon 5:00 PM PT (00:00 UTC Fri / Tue)
+    - cron: '30 12,23 * * 0'         # Sun 5:30 AM + 4:30 PM PT
   workflow_dispatch: {}            # 'Run workflow' button for an on-demand build
 permissions:
   contents: write
