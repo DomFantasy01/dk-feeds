@@ -43,10 +43,11 @@ def espn(w):
         pl = e.get('player', {}); pos = ESPN_POS.get(pl.get('defaultPositionId'))
         if not pos: continue
         for s in pl.get('stats', []):
-            if s.get('statSourceId') == 1 and s.get('scoringPeriodId') == w and s.get('statSplitTypeId') == 1:
+            if s.get('statSourceId') == 1 and s.get('scoringPeriodId') == w and s.get('statSplitTypeId') == 1 and s.get('seasonId', SEASON) == SEASON:
                 st = s.get('stats', {})
                 rows.append(dict(name=pl.get('fullName'), pos=pos, team=pl.get('proTeamId'), pts_ppr=s.get('appliedTotal'),
                                  **{v: st.get(k) for k, v in ESPN_STAT.items()}))
+                break   # one row per player (Oct 7: duplicates found; first row verified correct)
     return pd.DataFrame(rows)
 def fftoday(w):
     out = []
@@ -69,9 +70,13 @@ def fantasypros(w):
     out = []
     for pos in ['qb', 'rb', 'wr', 'te']:
         html = get(f'https://www.fantasypros.com/nfl/projections/{pos}.php?week={w}&scoring=PPR')
-        t = [x for x in pd.read_html(io.StringIO(html)) if x.shape[0] > 10]
+        try: t = [x for x in pd.read_html(io.StringIO(html)) if x.shape[0] > 10]
+        except ValueError: t = []
         if t:
             df = t[0]; df.columns = [' '.join(map(str, c)) if isinstance(c, tuple) else str(c) for c in df.columns]; df['pos'] = pos.upper(); out.append(df)
+        else:
+            import re as _re; ttl = _re.search(r'<title>(.*?)</title>', html, _re.S)
+            raise RuntimeError(f'no table on {pos} page ({len(html)} bytes, title: {ttl.group(1).strip()[:80] if ttl else "none"})')
     return pd.concat(out, ignore_index=True) if out else None
 def cbs(w):
     out = []
@@ -81,7 +86,16 @@ def cbs(w):
         if t:
             df = t[0]; df.columns = [' '.join(map(str, c)) if isinstance(c, tuple) else str(c) for c in df.columns]; df['pos'] = pos; out.append(df)
     return pd.concat(out, ignore_index=True) if out else None
-SOURCES = {'sleeper': sleeper, 'espn': espn, 'fftoday': fftoday, 'nflcom': nflcom, 'fantasypros': fantasypros, 'cbs': cbs}
+def sleeper_kdef(w):
+    """Oct 7: kickers + defenses. Saves EVERY stat Sleeper sends (raw JSON column) - field names not yet seen, priced later."""
+    rows = []
+    for p in ['K', 'DEF']:
+        for r in json.loads(get(f'https://api.sleeper.app/projections/nfl/{SEASON}/{w}?season_type=regular&position[]={p}')):
+            pl = r.get('player') or {}; st = r.get('stats') or {}
+            rows.append(dict(name=f"{pl.get('first_name','')} {pl.get('last_name','')}".strip(), pos=p,
+                team=r.get('team') or pl.get('team'), pts_ppr=st.get('pts_ppr'), stats=json.dumps(st, sort_keys=True)))
+    return pd.DataFrame(rows)
+SOURCES = {'sleeper': sleeper, 'sleeper_kdef': sleeper_kdef, 'espn': espn, 'fftoday': fftoday, 'nflcom': nflcom, 'cbs': cbs}   # Oct 8: fantasypros removed - free page shows top 10 only; graded as a Yahoo twin (corr .987), K/DEF no help
 def run(src, fn, w):
     try:
         res, n = save(src, w, fn(w)); STATUS['sources'].setdefault(src, {})[f'wk{w}'] = f'{res} {n} rows'
@@ -92,11 +106,12 @@ if __name__ == '__main__':
     try: W = current_week()
     except Exception as e: W = int(os.environ.get('DK_WEEK', '6')); STATUS['week_note'] = 'Sleeper state failed, used DK_WEEK: ' + repr(e)[:100]
     STATUS['current_week'] = W
-    weeks = [W]
-    if os.environ.get('BACKFILL') == '1' or not os.path.exists(f'{OUT}/.backfilled'):
-        weeks = list(range(2, W + 1)); open(f'{OUT}/.backfilled', 'w').write(NOW)
-    for w in weeks:
-        for src, fn in SOURCES.items(): run(src, fn, w)
+    LIVE_ONLY = {'cbs'}   # Oct 7: CBS returns the CURRENT week's numbers for any past week asked for -> never backfill
+    for src, fn in SOURCES.items():
+        have_past = any(f.startswith('wk2_') and f.endswith('.csv') for f in (os.listdir(f'{OUT}/{src}') if os.path.isdir(f'{OUT}/{src}') else []))
+        weeks = [W] if (src in LIVE_ONLY or (have_past and os.environ.get('BACKFILL') != '1')) else list(range(2, W + 1))
+        for w in weeks: run(src, fn, w)
+    open(f'{OUT}/.backfilled', 'w').write(NOW)
     hist = f'{OUT}/status_log.jsonl'
     open(hist, 'a').write(json.dumps(STATUS) + '\n'); json.dump(STATUS, open(f'{OUT}/status.json', 'w'), indent=1)
     print(json.dumps(STATUS, indent=1))
