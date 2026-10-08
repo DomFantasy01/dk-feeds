@@ -1,6 +1,6 @@
 {
  "week": 5,
- "built_pt": "Thu Oct 08 2026 01:14 PM PT",
+ "built_pt": "Thu Oct 08 2026 03:18 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Thu Oct 08 01:14 PM PT",
+   "pulled_pt": "Thu Oct 08 03:18 PM PT",
    "age_h": 0.0,
    "rows": 15,
    "need": 15,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_thu1218.txt",
    "pulled_pt": "Thu Oct 08 12:17 PM PT",
-   "age_h": 0.9,
+   "age_h": 3.0,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_thu1050.txt",
    "pulled_pt": "Thu Oct 08 10:51 AM PT",
-   "age_h": 2.4,
+   "age_h": 4.4,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_thu1218.txt",
    "pulled_pt": "Thu Oct 08 12:17 PM PT",
-   "age_h": 0.9,
+   "age_h": 3.0,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,29 +50,38 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Thu Oct 08 01:14 PM PT",
+   "pulled_pt": "Thu Oct 08 03:18 PM PT",
    "age_h": 0.0,
    "rows": 5,
    "need": 5,
-   "note": "Gotham run Thu Oct 08 2026 01:14 PM PT for week 5"
+   "note": "Gotham run Thu Oct 08 2026 03:18 PM PT for week 5"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk5_2026-10-08T1830Z.csv",
-   "pulled_pt": "Thu Oct 08 11:30 AM PT",
-   "age_h": 1.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk5_2026-10-08T2029Z.csv",
+   "pulled_pt": "Thu Oct 08 01:29 PM PT",
+   "age_h": 1.8,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job run Thu 11:30 AM PT"
+   "note": "GitHub job run Thu 01:29 PM PT"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk5_2026-10-08T1830Z.csv",
-   "pulled_pt": "Thu Oct 08 11:30 AM PT",
-   "age_h": 1.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk5_2026-10-08T2029Z.csv",
+   "pulled_pt": "Thu Oct 08 01:29 PM PT",
+   "age_h": 1.8,
    "rows": 187,
    "need": 60,
-   "note": "GitHub job run Thu 11:30 AM PT"
+   "note": "GitHub job run Thu 01:29 PM PT"
+  },
+  "yahoo_rosters": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_rosters.json",
+   "pulled_pt": "Thu Oct 08 12:04 PM PT",
+   "age_h": 3.2,
+   "rows": 66,
+   "need": null,
+   "note": "Dom's four rosters"
   }
  },
  "alarms": [],
@@ -106,11 +115,11 @@
      131.54
     ],
     "gotham": [
-     148.01,
-     131.19
+     147.98,
+     131.21
     ],
     "sleeper": [
-     145.71,
+     146.14,
      128.23
     ]
    },
@@ -171,9 +180,9 @@
       "yahoo": 22.46,
       "actual": null,
       "pos": "QB",
-      "gotham": 20.36,
+      "gotham": 20.31,
       "gotham_src": "gotham",
-      "sleeper": 20.29,
+      "sleeper": 20.59,
       "window": 2
      },
      {
@@ -215,7 +224,7 @@
       "pos": "WR",
       "gotham": 13.77,
       "gotham_src": "gotham",
-      "sleeper": 13.7,
+      "sleeper": 13.83,
       "window": 0
      },
      {
@@ -241,7 +250,7 @@
       "yahoo": 9.17,
       "actual": null,
       "pos": "TE",
-      "gotham": 10.9,
+      "gotham": 10.91,
       "gotham_src": "gotham",
       "sleeper": 9.6,
       "window": 1
@@ -269,7 +278,7 @@
       "yahoo": 11.85,
       "actual": null,
       "pos": "RB",
-      "gotham": 14.93,
+      "gotham": 14.94,
       "gotham_src": "gotham",
       "sleeper": 13.93,
       "window": 2
@@ -327,7 +336,7 @@
       "yahoo": 15.89,
       "actual": null,
       "pos": "RB",
-      "gotham": 12.43,
+      "gotham": 12.44,
       "gotham_src": "gotham",
       "sleeper": 16.1,
       "window": 3
@@ -397,7 +406,7 @@
       "yahoo": 15.41,
       "actual": null,
       "pos": "TE",
-      "gotham": 16.6,
+      "gotham": 16.61,
       "gotham_src": "gotham",
       "sleeper": 15.61,
       "window": 2
@@ -445,7 +454,81 @@
       "window": 3
      }
     ]
-   }
+   },
+   "bench": [
+    {
+     "slot": "BN",
+     "player": "Stefon Diggs",
+     "team": "WAS",
+     "status": "Q",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 13.22,
+     "sleeper": 11.23,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Kenyon Sadiq",
+     "team": "NYJ",
+     "status": "",
+     "pos": "TE",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 10.65,
+     "sleeper": 9.07,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Tyler Shough",
+     "team": "NO",
+     "status": "Q",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 23.23,
+     "sleeper": 17.71,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Travis Kelce",
+     "team": "KC",
+     "status": "",
+     "pos": "TE",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "Kaelon Black",
+     "team": "SF",
+     "status": "Q",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 5.13,
+     "sleeper": 3.86,
+     "window": 3
+    },
+    {
+     "slot": "IR",
+     "player": "Travis Etienne Jr.",
+     "team": "NO",
+     "status": "IR",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 0.0,
+     "sleeper": 0.0,
+     "window": 2
+    }
+   ]
   },
   "DK II": {
    "league": "Winners and Sinners",
@@ -472,12 +555,12 @@
      137.22
     ],
     "gotham": [
-     146.02,
-     137.71
+     145.94,
+     137.77
     ],
     "sleeper": [
-     158.3,
-     130.63
+     158.56,
+     130.65
     ]
    },
    "windows": {
@@ -537,9 +620,9 @@
       "yahoo": 22.51,
       "actual": null,
       "pos": "QB",
-      "gotham": 20.36,
+      "gotham": 20.31,
       "gotham_src": "gotham",
-      "sleeper": 20.29,
+      "sleeper": 20.59,
       "window": 2
      },
      {
@@ -551,9 +634,9 @@
       "yahoo": 15.87,
       "actual": null,
       "pos": "RB",
-      "gotham": 13.14,
+      "gotham": 13.09,
       "gotham_src": "gotham",
-      "sleeper": 16.64,
+      "sleeper": 16.65,
       "window": 2
      },
      {
@@ -565,7 +648,7 @@
       "yahoo": 11.92,
       "actual": null,
       "pos": "RB",
-      "gotham": 14.93,
+      "gotham": 14.94,
       "gotham_src": "gotham",
       "sleeper": 13.93,
       "window": 2
@@ -579,9 +662,9 @@
       "yahoo": 20.7,
       "actual": null,
       "pos": "WR",
-      "gotham": 15.91,
+      "gotham": 15.92,
       "gotham_src": "gotham",
-      "sleeper": 17.5,
+      "sleeper": 17.46,
       "window": 2
      },
      {
@@ -637,7 +720,7 @@
       "pos": "RB",
       "gotham": 13.54,
       "gotham_src": "gotham",
-      "sleeper": 19.77,
+      "sleeper": 19.76,
       "window": 2
      },
      {
@@ -693,7 +776,7 @@
       "yahoo": 21.21,
       "actual": null,
       "pos": "QB",
-      "gotham": 20.53,
+      "gotham": 20.54,
       "gotham_src": "gotham",
       "sleeper": 20.26,
       "window": 3
@@ -707,7 +790,7 @@
       "yahoo": 22.53,
       "actual": null,
       "pos": "RB",
-      "gotham": 25.87,
+      "gotham": 25.88,
       "gotham_src": "gotham",
       "sleeper": 24.0,
       "window": 2
@@ -749,7 +832,7 @@
       "yahoo": 9.99,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.18,
+      "gotham": 9.19,
       "gotham_src": "gotham",
       "sleeper": 8.5,
       "window": 2
@@ -805,7 +888,7 @@
       "yahoo": 21.43,
       "actual": null,
       "pos": "QB",
-      "gotham": 23.22,
+      "gotham": 23.23,
       "gotham_src": "gotham",
       "sleeper": 17.71,
       "window": 2
@@ -819,9 +902,9 @@
       "yahoo": 9.31,
       "actual": null,
       "pos": "K",
-      "gotham": 9.53,
+      "gotham": 9.55,
       "gotham_src": "sleeper",
-      "sleeper": 9.53,
+      "sleeper": 9.55,
       "window": 0
      },
      {
@@ -839,7 +922,81 @@
       "window": 3
      }
     ]
-   }
+   },
+   "bench": [
+    {
+     "slot": "BN",
+     "player": "Aaron Rodgers",
+     "team": "PIT",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 19.84,
+     "sleeper": 20.49,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Sam Darnold",
+     "team": "SEA",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 15.78,
+     "sleeper": 19.53,
+     "window": 3
+    },
+    {
+     "slot": "BN",
+     "player": "Travis Kelce",
+     "team": "KC",
+     "status": "",
+     "pos": "TE",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "MarShawn Lloyd",
+     "team": "GB",
+     "status": "",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 9.49,
+     "sleeper": 10.7,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Tre' Harris",
+     "team": "LAC",
+     "status": "",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 7.31,
+     "sleeper": 8.45,
+     "window": 3
+    },
+    {
+     "slot": "IR",
+     "player": "Travis Etienne Jr.",
+     "team": "NO",
+     "status": "IR",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 0.0,
+     "sleeper": 0.0,
+     "window": 2
+    }
+   ]
   },
   "DK III": {
    "league": "Hers and His Version 2.0",
@@ -866,12 +1023,12 @@
      112.75
     ],
     "gotham": [
-     113.68,
-     110.01
+     113.63,
+     110.0
     ],
     "sleeper": [
-     105.97,
-     103.91
+     106.26,
+     103.98
     ]
    },
    "windows": {
@@ -931,7 +1088,7 @@
       "yahoo": 21.4,
       "actual": null,
       "pos": "QB",
-      "gotham": 23.22,
+      "gotham": 23.23,
       "gotham_src": "gotham",
       "sleeper": 17.71,
       "window": 2
@@ -945,9 +1102,9 @@
       "yahoo": 15.76,
       "actual": null,
       "pos": "RB",
-      "gotham": 13.14,
+      "gotham": 13.09,
       "gotham_src": "gotham",
-      "sleeper": 16.64,
+      "sleeper": 16.65,
       "window": 2
      },
      {
@@ -959,9 +1116,9 @@
       "yahoo": 8.95,
       "actual": null,
       "pos": "RB",
-      "gotham": 11.06,
+      "gotham": 11.03,
       "gotham_src": "gotham",
-      "sleeper": 7.6,
+      "sleeper": 7.73,
       "window": 2
      },
      {
@@ -975,7 +1132,7 @@
       "pos": "WR",
       "gotham": 13.77,
       "gotham_src": "gotham",
-      "sleeper": 13.7,
+      "sleeper": 13.83,
       "window": 0
      },
      {
@@ -987,7 +1144,7 @@
       "yahoo": 13.78,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.43,
+      "gotham": 12.44,
       "gotham_src": "gotham",
       "sleeper": 12.21,
       "window": 3
@@ -1003,7 +1160,7 @@
       "pos": "TE",
       "gotham": 11.06,
       "gotham_src": "gotham",
-      "sleeper": 10.87,
+      "sleeper": 10.89,
       "window": 2
      },
      {
@@ -1029,7 +1186,7 @@
       "yahoo": 9.99,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.63,
+      "gotham": 11.64,
       "gotham_src": "gotham",
       "sleeper": 9.67,
       "window": 2
@@ -1087,7 +1244,7 @@
       "yahoo": 17.56,
       "actual": null,
       "pos": "RB",
-      "gotham": 16.39,
+      "gotham": 16.4,
       "gotham_src": "gotham",
       "sleeper": 15.86,
       "window": 3
@@ -1101,9 +1258,9 @@
       "yahoo": 20.62,
       "actual": null,
       "pos": "WR",
-      "gotham": 15.91,
+      "gotham": 15.92,
       "gotham_src": "gotham",
-      "sleeper": 17.5,
+      "sleeper": 17.46,
       "window": 2
      },
      {
@@ -1117,7 +1274,7 @@
       "pos": "WR",
       "gotham": 10.35,
       "gotham_src": "gotham",
-      "sleeper": 10.35,
+      "sleeper": 10.36,
       "window": 0
      },
      {
@@ -1129,7 +1286,7 @@
       "yahoo": 15.41,
       "actual": null,
       "pos": "TE",
-      "gotham": 16.6,
+      "gotham": 16.61,
       "gotham_src": "gotham",
       "sleeper": 15.61,
       "window": 2
@@ -1157,9 +1314,9 @@
       "yahoo": 11.0,
       "actual": null,
       "pos": "WR",
-      "gotham": 13.26,
+      "gotham": 13.22,
       "gotham_src": "gotham",
-      "sleeper": 11.13,
+      "sleeper": 11.23,
       "window": 2
      },
      {
@@ -1177,7 +1334,69 @@
       "window": 5
      }
     ]
-   }
+   },
+   "bench": [
+    {
+     "slot": "BN",
+     "player": "George Holani",
+     "team": "SEA",
+     "status": "Q",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 5.47,
+     "sleeper": 8.54,
+     "window": 3
+    },
+    {
+     "slot": "BN",
+     "player": "Michael Pittman Jr.",
+     "team": "PIT",
+     "status": "O",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 0.0,
+     "sleeper": 0.0,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Aaron Rodgers",
+     "team": "PIT",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 19.84,
+     "sleeper": 20.49,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "T.J. Hockenson",
+     "team": "MIN",
+     "status": "",
+     "pos": "TE",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 10.53,
+     "sleeper": 9.77,
+     "window": 2
+    },
+    {
+     "slot": "IR",
+     "player": "Jayden Daniels",
+     "team": "WAS",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 20.31,
+     "sleeper": 20.59,
+     "window": 2
+    }
+   ]
   },
   "DK IV": {
    "league": "Murrieta NextDoor",
@@ -1204,11 +1423,11 @@
      150.76
     ],
     "gotham": [
-     162.39,
-     149.24
+     162.38,
+     149.26
     ],
     "sleeper": [
-     166.87,
+     167.29,
      147.4
     ]
    },
@@ -1283,7 +1502,7 @@
       "yahoo": 23.0,
       "actual": null,
       "pos": "RB",
-      "gotham": 24.1,
+      "gotham": 24.11,
       "gotham_src": "gotham",
       "sleeper": 24.15,
       "window": 4
@@ -1297,7 +1516,7 @@
       "yahoo": 13.17,
       "actual": null,
       "pos": "RB",
-      "gotham": 15.5,
+      "gotham": 15.51,
       "gotham_src": "gotham",
       "sleeper": 14.43,
       "window": 2
@@ -1311,7 +1530,7 @@
       "yahoo": 12.16,
       "actual": null,
       "pos": "WR",
-      "gotham": 10.22,
+      "gotham": 10.23,
       "gotham_src": "gotham",
       "sleeper": 10.42,
       "window": 2
@@ -1325,9 +1544,9 @@
       "yahoo": 11.41,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.68,
+      "gotham": 11.64,
       "gotham_src": "gotham",
-      "sleeper": 10.07,
+      "sleeper": 10.11,
       "window": 2
      },
      {
@@ -1383,7 +1602,7 @@
       "pos": "QB",
       "gotham": 23.99,
       "gotham_src": "gotham",
-      "sleeper": 24.44,
+      "sleeper": 24.82,
       "window": 0
      },
      {
@@ -1481,7 +1700,7 @@
       "yahoo": 13.65,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.93,
+      "gotham": 11.94,
       "gotham_src": "gotham",
       "sleeper": 12.73,
       "window": 2
@@ -1537,7 +1756,7 @@
       "yahoo": 20.5,
       "actual": null,
       "pos": "QB",
-      "gotham": 23.69,
+      "gotham": 23.7,
       "gotham_src": "gotham",
       "sleeper": 20.07,
       "window": 3
@@ -1571,7 +1790,105 @@
       "window": 2
      }
     ]
-   }
+   },
+   "bench": [
+    {
+     "slot": "BN",
+     "player": "Malik Washington",
+     "team": "MIA",
+     "status": "",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 9.0,
+     "sleeper": 11.08,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Wan'Dale Robinson",
+     "team": "TEN",
+     "status": "",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 14.05,
+     "sleeper": 9.45,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "Travis Kelce",
+     "team": "KC",
+     "status": "",
+     "pos": "TE",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "C.J. Stroud",
+     "team": "HOU",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 20.18,
+     "sleeper": 17.25,
+     "window": 2
+    },
+    {
+     "slot": "BN",
+     "player": "RJ Harvey",
+     "team": "DEN",
+     "status": "",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 12.27,
+     "sleeper": 11.6,
+     "window": 3
+    },
+    {
+     "slot": "IR",
+     "player": "James Conner",
+     "team": "ARI",
+     "status": "IR-R",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": 3
+    },
+    {
+     "slot": "IR",
+     "player": "Isiah Pacheco",
+     "team": "DET",
+     "status": "IR",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": 3
+    },
+    {
+     "slot": "IR",
+     "player": "Tank Dell",
+     "team": "HOU",
+     "status": "IR-R",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": 0.0,
+     "window": 2
+    }
+   ]
   }
  }
 }
