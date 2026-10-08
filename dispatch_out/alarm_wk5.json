@@ -1,0 +1,74 @@
+{
+ "week": 5,
+ "built_pt": "Thu Oct 08 2026 01:14 PM PT",
+ "alarms": [],
+ "notes": [
+  "DK II: Gotham 13.5 vs Yahoo 19.5 / Sleeper 19.8 on Braelon Allen - check role/news",
+  "DK II: opponent starter Kenneth Walker III (KC) has no game this week"
+ ],
+ "sources": {
+  "nfl_schedule": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/games.csv",
+   "pulled_pt": "Thu Oct 08 01:14 PM PT",
+   "age_h": 0.0,
+   "rows": 15,
+   "need": 15,
+   "note": "week 5: 15 games"
+  },
+  "yahoo_matchups": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_thu1218.txt",
+   "pulled_pt": "Thu Oct 08 12:17 PM PT",
+   "age_h": 0.9,
+   "rows": 41,
+   "need": 41,
+   "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
+  },
+  "yahoo_all_teams": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_thu1050.txt",
+   "pulled_pt": "Thu Oct 08 10:51 AM PT",
+   "age_h": 2.4,
+   "rows": 48,
+   "need": 48,
+   "note": "every team in all four leagues: Yahoo win %, record"
+  },
+  "yahoo_standings": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_thu1218.txt",
+   "pulled_pt": "Thu Oct 08 12:17 PM PT",
+   "age_h": 0.9,
+   "rows": 48,
+   "need": 48,
+   "note": "rank, division rank, points for"
+  },
+  "gotham": {
+   "status": "OK",
+   "path": "/home/claude/dksys/engine/gotham_status.json",
+   "pulled_pt": "Thu Oct 08 01:14 PM PT",
+   "age_h": 0.0,
+   "rows": 5,
+   "need": 5,
+   "note": "Gotham run Thu Oct 08 2026 01:14 PM PT for week 5"
+  },
+  "sleeper_skill": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk5_2026-10-08T1830Z.csv",
+   "pulled_pt": "Thu Oct 08 11:30 AM PT",
+   "age_h": 1.7,
+   "rows": 3117,
+   "need": 400,
+   "note": "GitHub job run Thu 11:30 AM PT"
+  },
+  "sleeper_kdef": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk5_2026-10-08T1830Z.csv",
+   "pulled_pt": "Thu Oct 08 11:30 AM PT",
+   "age_h": 1.7,
+   "rows": 187,
+   "need": 60,
+   "note": "GitHub job run Thu 11:30 AM PT"
+  }
+ }
+}
