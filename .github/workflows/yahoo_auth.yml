@@ -1,0 +1,38 @@
+name: Yahoo one-time approval
+# Run ONCE after approving the DK Feeds Reader app on Yahoo. Paste the whole address-bar link Yahoo sent you to
+# (it starts https://localhost/?code=...) into the box. It trades that one-time code for a lasting key, stores the key
+# ENCRYPTED in yahoo_auth/token.enc, then does a first full Yahoo read. After this, every Dispatch run reads Yahoo itself.
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'Paste the whole link from the address bar after approving on Yahoo (https://localhost/?code=...)'
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: dk-feeds
+  cancel-in-progress: false
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: trade the code for a lasting key, then read Yahoo
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          RAW: ${{ inputs.code }}
+        run: |
+          CODE=$(python3 -c "import os,re,urllib.parse as u;r=os.environ['RAW'].strip();m=re.search(r'[?&]code=([^&#\s]+)',r);print(u.unquote(m.group(1)) if m else r)")
+          echo "::add-mask::$CODE"
+          python3 yahoo_api/yahoo_api_pull.py auth "$CODE" "$GITHUB_WORKSPACE"
+      - name: save
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add yahoo_auth yahoo_api yahoo_drop
+          git commit -m "Yahoo API approved + first read $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && exit 0; sleep 5; done; exit 1
