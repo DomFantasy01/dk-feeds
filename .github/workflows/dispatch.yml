@@ -7,10 +7,14 @@ name: DK Dispatch build
 # it prints in red on the page and is listed in dispatch_out/alarm_wk<W>.json.
 on:
   schedule:
-    - cron: '45 14,19 * * *'
-    - cron: '45 0 * * *'
-    - cron: '0 0 * * 2,5'            # Thu + Mon 5:00 PM PT (00:00 UTC Fri / Tue)
-    - cron: '30 12,23 * * 0'         # Sun 5:30 AM + 4:30 PM PT
+    # Oct 9 (Dom): every build reads Yahoo first through Yahoo's own API, so the build runs on a drumbeat:
+    # every 2 hours, 7 AM to 11 PM PT, every day ...
+    - cron: '40 0,2,4,6,14,16,18,20,22 * * *'
+    # ... and every 30 minutes through the game windows: Thu and Mon 5-9 PM PT, Sun 6 AM-9 PM PT
+    - cron: '10,40 0-4 * * 2,5'
+    - cron: '10,40 13-23 * * 0'
+    - cron: '10,40 0-4 * * 1'
+    # Times are UTC on PDT (UTC-7). After Nov 1 (PST) every time lands one hour earlier in Pacific.
   workflow_dispatch: {}            # 'Run workflow' button for an on-demand build
 permissions:
   contents: write
@@ -26,11 +30,14 @@ jobs:
         with: { python-version: '3.12' }
       - run: pip install pandas numpy reportlab
       - run: bash dispatch_run.sh
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
       - name: save the page back to the repo
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add dispatch_out
+          git add dispatch_out yahoo_auth yahoo_api yahoo_drop
           git commit -m "dispatch $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
             git pull --rebase -X theirs origin main && git push && exit 0
