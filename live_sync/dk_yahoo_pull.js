@@ -128,29 +128,36 @@ const DK={
   if(!S.queue.length)return 'done - run DK.handoff()';
   const q=S.queue[0]; const want=`/f1/${q.lg}/matchup`;
   if(!location.pathname.startsWith(want)||new URLSearchParams(location.search).get('mid1')!=String(q.mid)||new URLSearchParams(location.search).get('week')!=String(q.w)){location.href=this._url(q);return 'navigating to '+this._url(q);}
-  let M=null; for(let i=0;i<40;i++){M=readMatchup(S.names);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;await sleep(500);}
-  if(!M||M.me.length<8){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid}`);}
+  let M=null, bye=false;
+  for(let i=0;i<40;i++){M=readMatchup(S.names);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;
+    if(/Week \d+:[^]{0,40}?BYE vs\./.test(cl(document.body.innerText).slice(0,1500))){bye=true;break;}await sleep(500);}
+  const body0=cl(document.body.innerText); const med=(body0.match(/Median (\d+\.\d+)/)||[])[1];
+  if(bye){S.log.push(`${LAB[q.lg]} team ${q.mid}: BYE this week (empty team slot) - nothing to read`);}
+  else if(!M||M.me.length<8){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid}`);}
   else{
     const st=M.me.filter(r=>!/^(BN|IR)/.test(r.slot)).length, so=M.op.filter(r=>!/^(BN|IR)/.test(r.slot)).length;
-    if(q.k==='pm'||+q.mid===DOM[q.lg]) (q.k==='pm'?(S.pmDom=S.pmDom||{}):S.dom)[q.lg]=q.lg+'#'+side(M.me)+'##'+side(M.op);
+    if(q.k==='pm'||+q.mid===DOM[q.lg]){(q.k==='pm'?(S.pmDom=S.pmDom||{}):S.dom)[q.lg]=q.lg+'#'+side(M.me)+'##'+side(M.op);
+      if(med){S.med=S.med||{};S.med[q.k+q.lg]=med;}}
     if(q.k==='all'){
-      S.win[q.lg]=S.win[q.lg]||[]; S.seen[q.lg]=S.seen[q.lg]||[];
+      S.win[q.lg]=S.win[q.lg]||[];
       S.win[q.lg].push(winLine(q.lg,M.mine,M.recs[0]||'',M.fav[0],M.me),winLine(q.lg,M.opp,M.recs[1]||'',M.fav[1],M.op));
-      S.seen[q.lg].push(+q.mid); if(M.oppId)S.seen[q.lg].push(+M.oppId); else S.log.push(`no opponent id on ${q.lg}/${q.mid}`);
-      for(let t=1;t<=LGN[q.lg];t++) if(!S.seen[q.lg].includes(t)&&!S.queue.some(x=>x.lg===q.lg&&x.mid===t&&x.k==='all')){S.queue.splice(1,0,{k:'all',lg:q.lg,w:q.w,mid:t});S.total++;break;}}
+      if(M.oppId)(S.seen[q.lg]=S.seen[q.lg]||[]).push(+M.oppId); else S.log.push(`no opponent id on ${q.lg}/${q.mid}`);}
     S.log.push(`${LAB[q.lg]} wk${q.w} ${M.mine} vs ${M.opp}: ${st}+${so} starters`);}
+  if(q.k==='all'){S.seen[q.lg]=S.seen[q.lg]||[]; S.seen[q.lg].push(+q.mid);          // the sweep carries on even after a failed or bye page
+    for(let t=1;t<=LGN[q.lg];t++) if(!S.seen[q.lg].includes(t)&&!S.queue.some(x=>x.lg===q.lg&&x.mid===t&&x.k==='all')){S.queue.splice(1,0,{k:'all',lg:q.lg,w:q.w,mid:t});S.total++;break;}}
   S.queue.shift(); S.done++; save(S);
   if(S.queue.length){location.href=this._url(S.queue[0]);return `read ${S.done} of ${S.total} so far - next page loading`;}
   return 'done - run DK.handoff()';},
  files(){
   const S=load(), T=S.t, F={};
   const hdrM=w=>`# Yahoo Week ${w} matchup pages for Dom's four teams, ${T.stamp}. lg#ME starters ## OPP starters ; slot^player^team^status^kickoff(PT)^yahoo proj^points (scheduled Yahoo read)`;
-  if(S.pmDom&&Object.keys(S.pmDom).length) F[`wk${S.pmW}/dom_matchups_${T.tag}.txt`]=hdrM(S.pmW)+'\n'+Object.keys(DOM).filter(l=>S.pmDom[l]).map(l=>S.pmDom[l]).join('\n')+'\n';
+  const medL=k=>(S.med&&S.med[k+'864215'])?`# DK IV league median (Yahoo, same read): ${S.med[k+'864215']}\n`:'';
+  if(S.pmDom&&Object.keys(S.pmDom).length) F[`wk${S.pmW}/dom_matchups_${T.tag}.txt`]=hdrM(S.pmW)+'\n'+medL('pm')+Object.keys(DOM).filter(l=>S.pmDom[l]).map(l=>S.pmDom[l]).join('\n')+'\n';
   if(S.fullW){
     const w=S.fullW;
-    if(Object.keys(S.dom).length) F[`wk${w}/dom_matchups_${T.tag}.txt`]=hdrM(w)+'\n'+Object.keys(DOM).filter(l=>S.dom[l]).map(l=>S.dom[l]).join('\n')+'\n';
-    const n=Object.values(S.win).reduce((a,v)=>a+v.length,0);
-    F[`wk${w}/league_windows_${T.tag}.txt`]=`# Yahoo Week ${w} matchup pages, every team's SET lineup, ${T.stamp}. lg~team~record~yahoo win%~6 windows (THU, SUN early, SUN 10a, SUN 1p, SUN night, MON)~counts~total~starters w/o game\n# ${n} of 48 teams pulled. Pairs listed consecutively. (scheduled Yahoo read)\n`+Object.keys(DOM).map(l=>(S.win[l]||[]).join('\n')).filter(Boolean).join('\n')+'\n';
+    if(Object.keys(S.dom).length) F[`wk${w}/dom_matchups_${T.tag}.txt`]=hdrM(w)+'\n'+medL('all')+Object.keys(DOM).filter(l=>S.dom[l]).map(l=>S.dom[l]).join('\n')+'\n';
+    const n=Object.values(S.win).reduce((a,v)=>a+v.length,0), byes=S.log.filter(l=>/BYE this week/.test(l)).length;
+    F[`wk${w}/league_windows_${T.tag}.txt`]=`# Yahoo Week ${w} matchup pages, every team's SET lineup, ${T.stamp}. lg~team~record~yahoo win%~6 windows (THU, SUN early, SUN 10a, SUN 1p, SUN night, MON)~counts~total~starters w/o game\n# ${n} of 48 teams pulled${byes?` (${byes} empty team slot${byes>1?'s':''} on a bye)`:''}. Pairs listed consecutively. (scheduled Yahoo read)\n`+Object.keys(DOM).map(l=>(S.win[l]||[]).join('\n')).filter(Boolean).join('\n')+'\n';
     if(S.standings) F[`wk${w}/standings_${T.tag}.txt`]=`# Yahoo league home standings tables, ${T.stamp}. Rows: rank^team^W-L-T^div rec^PF^PA^streak^FAAB^waiver^moves ; NEXTDOOR has no divisions/FAAB: rank^team^W-L-T^PF^PA^streak^waiver^moves. Bare words = division headers.\n`+S.standings+'\n';
     F[`wk${w}/dom_rosters.json`]=JSON.stringify(S.dr,null,1)+'\n';
     F[`wk${w}/all_rosters_${T.tag}.txt`]=`# Yahoo team pages, every team in all four leagues, ${T.stamp}. league(1=DK I 269381, 2=DK II 1519795, 3=DK III 1507991, 4=DK IV 864215)~team id~players (DEF listed by nickname). (scheduled Yahoo read)\n`+S.allR.join('\n')+'\n';}
