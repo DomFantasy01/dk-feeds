@@ -13,12 +13,29 @@ import sys; p=sys.argv[1]; s=open(p).read(); a="YWIN[(x[0], x[1])] = int(x[3])"
 if a in s: open(p,"w").write(s.replace(a,"YWIN[(x[0], x[1])] = (int(x[3]) if x[3].strip() else None)")); print("   meter: blank Yahoo win % allowed")
 PYFIX
 if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; echo "   code updates from overlay/ applied"; fi   # newer scripts committed as text, no zip needed
+python3 - "$ROOT/dksys/scout/scout_engine.py" <<'PYSC'
+# Oct 9: the Scout prints the real time of its Yahoo roster read and of the NFL stats pull (safe to run twice)
+import sys; p=sys.argv[1]; s=open(p).read()
+if "_ststamp" in s: print("   scout stamps: already in")
+else:
+    a='R=[l.rstrip("\\n").split("|") for l in open(f"{H}/dk{CF[\'n\']}_rosters_live.txt") if l.strip() and not l.startswith("#")]'
+    b=a+'\n# Oct 9: the roster read\'s own time goes on the page (the API reader writes it in the file\'s first line)\n_rh=[l for l in open(f"{H}/dk{CF[\'n\']}_rosters_live.txt") if l.startswith("#")]\n_rm=re.search(r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\\w{3}) (\\d{1,2})\\D*?(?:\\d{4} )?~?(\\d{1,2}:\\d{2} [AP]M) PT",_rh[0]) if _rh else None\nif _rm: CF["rost_at"]=f"Yahoo {_rm.group(1)} {_rm.group(2)} {_rm.group(3)}, {_rm.group(4)} PT"+(" (API)" if "API" in _rh[0] else "")'
+    c='BOARD=dict(league=CF["lab"]'
+    d='_stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))\n_ststamp=f"{_stt:%a} {_stt.hour%12 or 12}:{_stt:%M} {\'AM\' if _stt.hour<12 else \'PM\'} PT"\n'+c
+    e='· stats nflverse 7:40 AM PT"'
+    assert s.count(a)==1 and s.count(c)==1 and s.count(e)==1, "scout stamps: anchors not found"
+    s=s.replace(a,b,1).replace(c,d,1).replace(e,'· stats nflverse "+_ststamp',1); open(p,"w").write(s); print("   scout stamps: Yahoo read time + stats pull time")
+PYSC
 [ -f "$ROOT/cand/redesign/_cal_patch.py" ] && python3 "$ROOT/cand/redesign/_cal_patch.py"   # the Dispatch calendar (Oct 8)
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
 mkdir -p "$ROOT/dksys/data/latest/pbp" "$ROOT/dksys/data/latest/meter" "$ROOT/dksys/data/archive" "$ROOT/cand/global/out" "$ROOT/cand/fonts" "$ROOT/domfantasy01"
 ln -sfn "$REPO" "$ROOT/domfantasy01/dk-feeds"                   # the feed job's own files (Sleeper, injuries) live in this repo
+echo "== 0b Yahoo through the Yahoo API (no Chrome) - a failed read keeps the last good one and says so"
+if [ -n "${YAHOO_CLIENT_ID:-}" ] && [ -f "$REPO/yahoo_auth/token.enc" ] && [ -f "$REPO/yahoo_api/yahoo_api_pull.py" ]; then
+  python3 "$REPO/yahoo_api/yahoo_api_pull.py" read "$REPO" || echo "!! Yahoo API read FAILED - using the last good Yahoo read"
+else echo "   Yahoo API not approved yet - using the last Yahoo read in the repo"; fi
 if [ -d "$REPO/yahoo_drop" ]; then cp -r "$REPO/yahoo_drop/." "$ROOT/dksys/data/latest/yahoo/"; echo "   newer Yahoo pulls from yahoo_drop/ applied"; fi
 if [ -d "$REPO/yahoo_drop/scout" ]; then cp -r "$REPO/yahoo_drop/scout/." "$ROOT/dksys/scout/"; echo "   newer Yahoo rosters/waivers for the Scout applied"; fi
 if [ -d "$REPO/dispatch_out/scout_state" ]; then cp -r "$REPO/dispatch_out/scout_state/." "$ROOT/dksys/scout/"; echo "   Scout memory restored (life cycle + archive)"; fi
