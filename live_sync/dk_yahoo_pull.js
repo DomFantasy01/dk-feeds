@@ -78,7 +78,7 @@ function readMatchup(names){
         out.push({slot,...f,proj:pr[0]||'',projLive:pr[1]||pr[0]||'',pts:ptv[0]||''});}}}
   const body=cl(document.body.innerText);
   const recs=[...body.matchAll(/(\d+) ?- ?(\d+) ?- ?(\d+) \| (\d+(?:st|nd|rd|th))/g)].map(m=>`${m[1]}-${m[2]}-${m[3]}/${m[4]}`);
-  const fav=body.match(/(Favorite|Underdog) (\d+)%[^%]{0,80}?(\d+)% (Favorite|Underdog)/);
+  const fav=body.match(/(Favorite|Underdog|Chance to win) (\d+)%[^%]{0,80}?(\d+)% (Favorite|Underdog|Chance to win)/);   // 'Chance to win' = Yahoo's wording at an even 50/50
   const lg=(location.pathname.match(/f1\/(\d+)/)||[])[1], mid=new URLSearchParams(location.search).get('mid1');
   const tl=[...document.querySelectorAll('a')].map(a=>[(a.getAttribute('href')||'').match(new RegExp('/f1/'+lg+'/(\\d+)$')),cl(a.textContent)]).filter(x=>x[0]&&x[1]&&!/^My Team$/i.test(x[1])).map(x=>[x[0][1],x[1]]);
   let mine=tl.find(x=>x[0]===mid), opp=mine?tl.slice(tl.indexOf(mine)+1).find(x=>x[0]!==mid):null;
