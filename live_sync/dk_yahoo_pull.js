@@ -88,6 +88,7 @@ function readMatchup(names){
 
 // kickoff windows: 0 THU/FRI/SAT · 1 SUN before 9am · 2 SUN 9-12 · 3 SUN 12-4pm · 4 SUN night · 5 MON/TUE (same as the method of record)
 function win(p){const m=(p.ko||'').match(/(Thu|Fri|Sat|Sun|Mon|Tue) (\d+):(\d+) (am|pm)/i);
+  if(!m&&(p.game==='final'||p.game==='live')&&!p.gdate&&['thu','fri','sat'].includes(pt().day))return 0;
   if(!m){if(p.gdate){const d=new Date(Date.UTC(+p.gdate.slice(0,4),+p.gdate.slice(4,6)-1,+p.gdate.slice(6,8))).getUTCDay();if(d>=4&&d<=6)return 0;if(d===1||d===2)return 5;}return -1;}
   const h=+m[2]%12+(m[4].toLowerCase()==='pm'?12:0),d=m[1];if(d=='Thu'||d=='Fri'||d=='Sat')return 0;if(d=='Mon'||d=='Tue')return 5;if(h<9)return 1;if(h<12)return 2;if(h<16)return 3;return 4;}
 function winLine(lg,team,rec,pct,S){const w=[0,0,0,0,0,0],c=[0,0,0,0,0,0];let tot=0,nog=0;
@@ -132,7 +133,9 @@ const DK={
   for(let i=0;i<40;i++){M=readMatchup(S.names);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;
     if(/Week \d+:[^]{0,40}?BYE vs\./.test(cl(document.body.innerText).slice(0,1500))){bye=true;break;}await sleep(500);}
   const body0=cl(document.body.innerText); const med=(body0.match(/Median (\d+\.\d+)/)||[])[1];
+  if(!bye&&M&&!M.mine&&/BYE/.test(body0.slice(0,1500)))bye=true;
   if(bye){S.log.push(`${LAB[q.lg]} team ${q.mid}: BYE this week (empty team slot) - nothing to read`);}
+  else if(M&&!M.mine){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid} (no team name on the page)`);}
   else if(!M||M.me.length<8){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid}`);}
   else{
     const st=M.me.filter(r=>!/^(BN|IR)/.test(r.slot)).length, so=M.op.filter(r=>!/^(BN|IR)/.test(r.slot)).length;
