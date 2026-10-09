@@ -104,8 +104,11 @@ const DK={
   S.pmW=pmW; S.fullW=(day==='mon')?null:fullW;
   // team pages for every team in all four leagues: full names, Dom's rosters, every roster (Radar)
   const allR=[], dr={source:"Yahoo team pages (Dom's four teams), read in Chrome by the scheduled Yahoo read",pulled_pt:T.pulled,week:S.fullW||pmW,leagues:{}};
-  let bad=0;
-  for(const lg of Object.keys(LGN)) for(let t=1;t<=LGN[lg];t++){
+  let bad=0; S.teams={};
+  for(const lg of Object.keys(LGN)){   // the league's real team numbers (DK IV skips 7 and uses 11) - read from the league page, never assumed
+    let ids=[]; try{const d=await doc(`/f1/${lg}`);ids=[...new Set([...d.querySelectorAll('a')].map(a=>((a.getAttribute('href')||'').match(new RegExp('/f1/'+lg+'/(\\d+)$'))||[])[1]).filter(Boolean).map(Number))].sort((a,b)=>a-b);}catch(e){}
+    S.teams[lg]=ids.length>=LGN[lg]?ids:Array.from({length:LGN[lg]},(_,i)=>i+1); if(ids.length<LGN[lg])S.log.push(`team numbers for ${lg} not found - assumed 1-${LGN[lg]}`);}
+  for(const lg of Object.keys(LGN)) for(const t of S.teams[lg]){
     let tp; try{tp=teamPage(await doc(`/f1/${lg}/${t}`));}catch(e){bad++;S.log.push('team page failed '+lg+'/'+t);continue;}
     Object.assign(S.names,tp.ids);
     if(!tp.names.length){S.log.push(`team ${lg}/${t}: no rows`);}
@@ -147,7 +150,7 @@ const DK={
       if(M.oppId)(S.seen[q.lg]=S.seen[q.lg]||[]).push(+M.oppId); else S.log.push(`no opponent id on ${q.lg}/${q.mid}`);}
     S.log.push(`${LAB[q.lg]} wk${q.w} ${M.mine} vs ${M.opp}: ${st}+${so} starters`);}
   if(q.k==='all'){S.seen[q.lg]=S.seen[q.lg]||[]; S.seen[q.lg].push(+q.mid);          // the sweep carries on even after a failed or bye page
-    for(let t=1;t<=LGN[q.lg];t++) if(!S.seen[q.lg].includes(t)&&!S.queue.some(x=>x.lg===q.lg&&x.mid===t&&x.k==='all')){S.queue.splice(1,0,{k:'all',lg:q.lg,w:q.w,mid:t});S.total++;break;}}
+    for(const t of S.teams[q.lg]) if(!S.seen[q.lg].includes(t)&&!S.queue.some(x=>x.lg===q.lg&&x.mid===t&&x.k==='all')){S.queue.splice(1,0,{k:'all',lg:q.lg,w:q.w,mid:t});S.total++;break;}}
   S.queue.shift(); S.done++; save(S);
   if(S.queue.length){location.href=this._url(S.queue[0]);return `read ${S.done} of ${S.total} so far - next page loading`;}
   return 'done - run DK.handoff()';},
