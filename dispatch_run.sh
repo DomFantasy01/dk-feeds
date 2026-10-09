@@ -12,6 +12,7 @@ import sys; p=sys.argv[1]; s=open(p).read(); a="YWIN[(x[0], x[1])] = int(x[3])"
 if a in s: open(p,"w").write(s.replace(a,"YWIN[(x[0], x[1])] = (int(x[3]) if x[3].strip() else None)")); print("   meter: blank Yahoo win % allowed")
 PYFIX
 if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; echo "   code updates from overlay/ applied"; fi   # newer scripts committed as text, no zip needed
+[ -f "$ROOT/cand/redesign/_cal_patch.py" ] && python3 "$ROOT/cand/redesign/_cal_patch.py"   # the Dispatch calendar (Oct 8)
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
@@ -30,7 +31,7 @@ echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
 echo "== 5 front page";  (cd "$ROOT/cand/global" && python3 global33.py | grep "V33 DATA")
 echo "== 6 the other pages"; W0=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
-(cd "$ROOT/cand/redesign" && python3 fieldpos23.py "$ROOT/cand/global/out/DK_Dispatch_wk${W0}_pages.pdf" | grep -E "^=====|V23 LIVE" | cut -c1-120)
+(cd "$ROOT/cand/redesign" && python3 fieldpos23.py "$ROOT/cand/global/out/DK_Dispatch_wk${W0}_pages.pdf" | grep -E "^=====|V23 LIVE|^CALENDAR|^POST-MORTEM|^OUTLOOK" | cut -c1-120)
 python3 -m pip install -q pypdf 2>/dev/null || pip install -q pypdf
 python3 - "$ROOT" "$W0" <<'PYEOF'
 import sys; from pypdf import PdfReader, PdfWriter
