@@ -19,6 +19,17 @@ OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 mkdir -p "$ROOT/dksys/data/latest/pbp" "$ROOT/dksys/data/latest/meter" "$ROOT/dksys/data/archive" "$ROOT/cand/global/out" "$ROOT/cand/fonts" "$ROOT/domfantasy01"
 ln -sfn "$REPO" "$ROOT/domfantasy01/dk-feeds"                   # the feed job's own files (Sleeper, injuries) live in this repo
 if [ -d "$REPO/yahoo_drop" ]; then cp -r "$REPO/yahoo_drop/." "$ROOT/dksys/data/latest/yahoo/"; echo "   newer Yahoo pulls from yahoo_drop/ applied"; fi
+python3 - "$REPO" "$ROOT" <<'PYIN'
+# the scheduled Yahoo read (Oct 8) commits one bundle per read to yahoo_drop/_inbox/ - unpack them oldest first so the newest wins
+import sys, json, glob, os
+R, ROOT = sys.argv[1], sys.argv[2]; fs = sorted(glob.glob(R + "/yahoo_drop/_inbox/pull_*.json"))
+for f in fs:
+    d = json.load(open(f))
+    for p, c in d["files"].items():
+        if ".." in p or p.startswith("/"): continue
+        o = os.path.join(ROOT, "dksys/data/latest/yahoo", p); os.makedirs(os.path.dirname(o), exist_ok=True); open(o, "w").write(c)
+if fs: print("   scheduled Yahoo reads unpacked:", len(fs), "| newest", os.path.basename(fs[-1]), "read", json.load(open(fs[-1])).get("read_pt"))
+PYIN
 echo "== 1 fonts"
 F=https://raw.githubusercontent.com/google/fonts/main/ofl
 curl -sfL -o "$ROOT/cand/fonts/BebasNeue-Regular.ttf" $F/bebasneue/BebasNeue-Regular.ttf
