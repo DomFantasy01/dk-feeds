@@ -7,6 +7,11 @@ ROOT=${DK_ROOT:-/home/claude}; REPO=${GITHUB_WORKSPACE:-$(pwd)}; GF=${DK_GFONTS:
 echo "== 0 unpack code + saved data into $ROOT"
 if [ ! -d "$ROOT" ]; then sudo mkdir -p "$ROOT" && sudo chown "$(id -u)" "$ROOT"; fi
 unzip -oq "$REPO/dispatch_bundle.zip" -d "$ROOT"
+python3 - "$ROOT/dksys/meter/meter_data.py" <<'PYFIX'
+import sys; p=sys.argv[1]; s=open(p).read(); a="YWIN[(x[0], x[1])] = int(x[3])"
+if a in s: open(p,"w").write(s.replace(a,"YWIN[(x[0], x[1])] = (int(x[3]) if x[3].strip() else None)")); print("   meter: blank Yahoo win % allowed")
+PYFIX
+if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; echo "   code updates from overlay/ applied"; fi   # newer scripts committed as text, no zip needed
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
@@ -39,4 +44,10 @@ mkdir -p "$REPO/dispatch_out"
 cp "$ROOT/cand/global/out/DK_Mountains_wk$W.pdf" "$REPO/dispatch_out/DK_Mountains_Wk${W}_latest.pdf"
 cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_Wk${W}_latest.pdf"
 cp "$ROOT/dksys/data/latest/meter/meter_wk$W.json" "$ROOT/dksys/data/latest/meter/alarm_wk$W.json" "$REPO/dispatch_out/"
+echo "== 7 the Radar (live news, per league)"
+if (cd "$ROOT/dksys/radar" && python3 radar_data.py && python3 radar_pages.py "$REPO/dispatch_out/DK_Radar_Wk${W}_latest.pdf"); then
+  cp "$ROOT/dksys/data/latest/radar/radar_wk$W.json" "$REPO/dispatch_out/"; rm -f "$REPO/dispatch_out/RADAR_FAILED.txt"
+else
+  echo "Radar build FAILED at $(date -u +%FT%TZ) - the Dispatch above still saved; see the run log" > "$REPO/dispatch_out/RADAR_FAILED.txt"; echo "!! RADAR FAILED"
+fi
 echo "DONE week $W"
