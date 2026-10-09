@@ -1,5 +1,5 @@
 {
- "run_utc": "2026-10-09T17:39:41+00:00",
+ "run_utc": "2026-10-09T18:05:56+00:00",
  "sources": {
   "rotowire": {
    "source": "merged",
@@ -9,27 +9,27 @@
     "https://www.rotowire.com/rss/news.htm?sport=nfl": 0,
     "https://rss-parrot.net/web/feeds/rotowire.com": 0
    },
-   "items": 6,
-   "new_items": 6,
-   "newest_item_utc": "2026-10-09T10:35:00+00:00",
+   "items": 7,
+   "new_items": 4,
+   "newest_item_utc": "2026-10-09T11:02:00+00:00",
    "newest_age_hours": 7.1,
    "fallbacks_failed": [
     "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
     "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
    ],
-   "warning": "newest item 7.1 hr old \u2014 feed may be stale; only 6 items across all addresses \u2014 thin",
+   "warning": "newest item 7.1 hr old \u2014 feed may be stale; only 7 items across all addresses \u2014 thin",
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "sleeper": {
    "player_db_pulled_utc": "2026-10-09T17:39:41+00:00",
    "injured_tagged": 172,
    "adds": 50,
    "drops": 50,
-   "player_db_refreshed": true,
+   "player_db_refreshed": false,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "weather": {
    "games_in_window": 15,
@@ -37,15 +37,15 @@
    "outdoor_pulled": 12,
    "problems": [],
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "espn_news": {
    "items": 50,
    "new_items": 5,
-   "newest_item_utc": "2026-10-09T17:38:02Z",
-   "with_player_tag": 27,
+   "newest_item_utc": "2026-10-09T18:04:23Z",
+   "with_player_tag": 28,
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "news_extra": {
    "per_source": {
@@ -53,18 +53,18 @@
     "rotoballer": 15
    },
    "items": 45,
-   "new_items": 8,
-   "newest_item_utc": "2026-10-09T17:37:08+00:00",
+   "new_items": 6,
+   "newest_item_utc": "2026-10-09T18:00:18+00:00",
    "errors": [],
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "espn_injuries": {
    "players": 800,
    "teams": 32,
    "warning": null,
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   },
   "probe": {
    "answered": [
@@ -81,7 +81,7 @@
     "rotowire_mirror"
    ],
    "ok": true,
-   "checked_utc": "2026-10-09T17:39:41+00:00"
+   "checked_utc": "2026-10-09T18:05:56+00:00"
   }
  }
 }
