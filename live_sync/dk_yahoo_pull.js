@@ -133,7 +133,7 @@ const DK={
   for(let i=0;i<40;i++){M=readMatchup(S.names);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;
     if(/Week \d+:[^]{0,40}?BYE vs\./.test(cl(document.body.innerText).slice(0,1500))){bye=true;break;}await sleep(500);}
   const body0=cl(document.body.innerText); const med=(body0.match(/Median (\d+\.\d+)/)||[])[1];
-  if(!bye&&M&&!M.mine&&/BYE/.test(body0.slice(0,1500)))bye=true;
+  if(!bye&&(!M||!M.mine)&&(/BYE/.test(body0.slice(0,1500))||S.allR.includes(`${IDX[q.lg]}~${q.mid}~`)))bye=true;   // an empty team slot (no roster) is a bye, not a failure
   if(bye){S.log.push(`${LAB[q.lg]} team ${q.mid}: BYE this week (empty team slot) - nothing to read`);}
   else if(M&&!M.mine){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid} (no team name on the page)`);}
   else if(!M||M.me.length<8){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid}`);}
