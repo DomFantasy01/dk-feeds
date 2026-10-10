@@ -30,6 +30,7 @@ jobs:
           echo "::add-mask::$CODE"
           python3 yahoo_api/yahoo_api_pull.py auth "$CODE" "$GITHUB_WORKSPACE"
       - name: save
+        if: always()                 # keep the lasting key even if the first read fails
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
