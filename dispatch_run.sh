@@ -27,6 +27,7 @@ else:
     s=s.replace(a,b,1).replace(c,d,1).replace(e,'· stats nflverse "+_ststamp',1); open(p,"w").write(s); print("   scout stamps: Yahoo read time + stats pull time")
 PYSC
 [ -f "$ROOT/cand/redesign/_cal_patch.py" ] && python3 "$ROOT/cand/redesign/_cal_patch.py"   # the Dispatch calendar (Oct 8)
+if [ -f "$ROOT/cand/_patch_oct10.py" ]; then python3 "$ROOT/cand/_patch_oct10.py"; fi   # the Oct 10 page fixes (Dom)
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
