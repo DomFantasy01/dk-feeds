@@ -106,3 +106,34 @@ patch(f"{R}/dksys/scout/scout_engine.py",[
   '        rows=sorted({n_ for n_ in ([FULL[nd["lab"]][0]] if nd["kind"]=="season-long" and nd["lab"] in FULL else [])+\n'
   '                     [(h["fullname"] if h["kind"]=="empty" else h["who"]) for h in nd["holes"] if h["week"]<=NOW+1] if n_})))   # Oct 10: the men a live need is about',1),
 ],"OCT10 scout rows")
+
+# ---------- 11 (Dom, Sat Oct 10 11:36 AM) the chart foot line, second pass ----------
+# Left: one date stamp for everything in the block ("All data as of ..."), not "Week 5 · Meters read".
+# Right: no echo of what the chart already shows (agree/split). It says what to do or what decides the game:
+#   red   a starter with no game or ruled out - fix the lineup
+#   gold  a questionable starter - check before kickoff, then the biggest edge
+#   grey  the biggest edge and the biggest gap of the one-on-one matchups (Yahoo now, actual once played)
+patch(f"{R}/cand/global/global33.py",[
+ ('f"Week {MW}  ·  Meters read "+_DSL(','"All data as of "+_DSL(',1),
+ ('STAND_LAB=f"STANDINGS  ·  AFTER WEEK {MW-1}"\n',
+  '''def _ln11(n):
+    w=[x for x in str(n).split() if x.rstrip(".") not in ("Jr","Sr","II","III","IV","V")]
+    return w[-1] if w else str(n)
+def _v11(p): return p["actual"] if p.get("actual") is not None else (p.get("yahoo") or 0.0)
+for lab,L in MTR["leagues"].items():
+    if lab in YMISS: continue
+    me=L["starters"]["me"]; op=L["starters"]["op"]
+    bad=[_ln11(p["player"]) for p in me if p["window"] is None or p.get("status") in ("O","IR","IR-R","PUP-R","NA")]
+    q=[_ln11(p["player"])+" ("+p["status"]+")" for p in me if p.get("status") in ("Q","D")]
+    ds=[(_v11(a)-_v11(b),a,b) for a,b in zip(me,op) if a.get("player") and b.get("player")]
+    edge=gap=""
+    if ds:
+        hi=max(ds,key=lambda t:t[0]); lo=min(ds,key=lambda t:t[0])
+        if hi[0]>0: edge=f"Edge: {_ln11(hi[1]['player'])} over {_ln11(hi[2]['player'])}, +{hi[0]:.1f}"
+        if lo[0]<0: gap=f"Gap: {_ln11(lo[2]['player'])} over {_ln11(lo[1]['player'])}, −{abs(lo[0]):.1f}"
+    if bad: PROSE[lab]="Fix the lineup: "+", ".join(bad)+(" has" if len(bad)==1 else " have")+" no game or is out."; URG[lab]="act"
+    elif q: PROSE[lab]="Check before kickoff: "+", ".join(q)+"."+(f"  ·  {edge}" if edge else ""); URG[lab]="watch"
+    else: PROSE[lab]="  ·  ".join(x for x in (edge,gap) if x) or "Even matchup, slot for slot."; URG[lab]="info"
+STAND_LAB=f"STANDINGS  ·  AFTER WEEK {MW-1}"
+''',1),
+],"OCT10b front feet")
