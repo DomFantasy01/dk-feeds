@@ -1,48 +1,48 @@
 {
  "week": 5,
- "built": "Fri Oct 9 6:47 PM PT",
- "built_utc": "2026-10-10T01:47:19.093499+00:00",
+ "built": "Fri Oct 9 7:22 PM PT",
+ "built_utc": "2026-10-10T02:22:13.736761+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Fri Oct 9 6:42 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Oct 9 7:07 PM PT",
+   "pulled_ago": "14 min ago",
    "items": 146,
-   "newest": "13.7 h ago",
-   "warn": "newest item 20.6 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "newest": "14.3 h ago",
+   "warn": "newest item 21.0 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Fri Oct 9 6:42 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Oct 9 7:07 PM PT",
+   "pulled_ago": "14 min ago",
    "items": 336,
-   "newest": "1.4 h ago",
+   "newest": "2.0 h ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Fri Oct 9 6:42 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Oct 9 7:07 PM PT",
+   "pulled_ago": "14 min ago",
    "items": 355,
-   "newest": "22 min ago",
+   "newest": "57 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Fri Oct 9 6:42 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 365,
-   "newest": "35 min ago",
+   "pulled": "Fri Oct 9 7:07 PM PT",
+   "pulled_ago": "14 min ago",
+   "items": 364,
+   "newest": "1.2 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Fri Oct 9 6:42 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Oct 9 7:07 PM PT",
+   "pulled_ago": "14 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,16 +50,16 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Fri Oct 9 6:46 PM PT",
+   "pulled": "Fri Oct 9 7:21 PM PT",
    "pulled_ago": "1 min ago",
-   "items": 743,
+   "items": 765,
    "newest": null,
-   "warn": "unread team pages: DK IV team 7",
+   "warn": null,
    "failed": null
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Fri Oct 09 2026 06:46 PM PT",
+   "pulled": "Fri Oct 09 2026 07:21 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Fri Oct 9 5:38 PM PT",
-   "pulled_ago": "1.2 h ago",
+   "pulled_ago": "1.7 h ago",
    "items": 3100,
    "newest": null,
    "warn": null,
@@ -77,8 +77,7 @@
   }
  },
  "alarms": [
-  "RotoWire news: newest item 20.6 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
-  "Yahoo rosters, all 48 teams: unread team pages: DK IV team 7"
+  "RotoWire news: newest item 21.0 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
  ],
  "leagues": {
   "DK I": {
@@ -123,8 +122,8 @@
        "grade": "bad"
       }
      ],
-     "gotham": 13.2,
-     "gotham_ros": 13.2,
+     "gotham": 0.0,
+     "gotham_ros": 13.6,
      "sleeper": 0.0,
      "workload": "10/8/7/9",
      "trend": -0.02
@@ -298,7 +297,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #17 (67,492 in 24 h)"
+      "Sleeper adds #18 (67,992 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -373,7 +372,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #1 (576,873 in 24 h)"
+      "Sleeper adds #1 (581,436 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -443,11 +442,40 @@
      "acq": "unverified"
     },
     {
+     "name": "Antonio Williams",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Drake London",
+      "gotham": 15.9
+     },
+     "beats_floor": false,
+     "gotham": 11.4,
+     "gotham_ros": 8.1,
+     "sleeper": 8.8,
+     "workload": "6/3/4/8",
+     "trend": 0.53,
+     "yahoo": 5.73,
+     "acq": "free agent"
+    },
+    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #6 (150,831 in 24 h)"
+      "Sleeper adds #6 (152,190 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -480,50 +508,12 @@
      "acq": "free agent"
     },
     {
-     "name": "Keon Coleman",
-     "pos": "WR",
-     "team": "BUF",
-     "why": [
-      "opening: DJ Moore \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #13 (85,518 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 9 10:28 AM PT",
-       "src": "rotoballer",
-       "title": "Who Should I Start for Fantasy Football Week 5? Keon Coleman, Ollie Gordon, Deebo Samuel, Omarion Hampton, Jaylen Waddle, Roman Wilson, Jameson Williams, Parker Washington",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Omarion-Hampton-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 5? Ke",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 15.9
-     },
-     "beats_floor": false,
-     "gotham": 8.5,
-     "gotham_ros": 8.3,
-     "sleeper": 9.7,
-     "workload": "1/7/2/8",
-     "trend": 0.68,
-     "yahoo": 8.32,
-     "acq": "free agent"
-    },
-    {
      "name": "Darius Cooper",
      "pos": "WR",
      "team": "PHI",
      "why": [
       "opening: DeVonta Smith \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #5 (165,697 in 24 h)"
+      "Sleeper adds #5 (167,776 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -562,7 +552,7 @@
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
       "opening: Quentin Johnston \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #22 (58,148 in 24 h)"
+      "Sleeper adds #22 (59,556 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -633,41 +623,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Antonio Williams",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)",
-      "opening: Stefon Diggs \u2014 bad news (ESPN news)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 15.9
-     },
-     "beats_floor": false,
-     "gotham": 8.2,
-     "gotham_ros": 8.1,
-     "sleeper": 8.8,
-     "workload": "6/3/4/8",
-     "trend": 0.53,
-     "yahoo": 5.73,
-     "acq": "free agent"
-    },
-    {
      "name": "Michael Mayer",
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #15 (72,378 in 24 h)"
+      "Sleeper adds #15 (73,080 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -735,6 +695,43 @@
      "trend": -0.36,
      "yahoo": 9.87,
      "acq": "waivers"
+    },
+    {
+     "name": "Mike Gesicki",
+     "pos": "TE",
+     "team": "CIN",
+     "why": [
+      "Sleeper adds #24 (57,120 in 24 h)"
+     ],
+     "marker": {
+      "count": 0,
+      "recency": null,
+      "color": "gold",
+      "grades": [
+       "trend"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Oct 7 11:55 AM PT",
+       "src": "rotoballer",
+       "title": "Who Should I Start for Fantasy Football Week 5? Mike Gesicki, Dalton Kincaid, T.J. Hockenson, Colston Loveland, Juwan Johnson, Isaiah Likely, Mark Andrews, Tucker Kraft, Brenton Strange",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/Brenton-Strange-Fantasy-Football-NFL-DFS-TE-Streamers-Waiver-Wire-Icon_edited-1220x813.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 5? Mike ",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Brenton Strange",
+      "gotham": 10.9
+     },
+     "beats_floor": false,
+     "gotham": 7.5,
+     "gotham_ros": 7.4,
+     "sleeper": 8.2,
+     "workload": "9/3/6",
+     "trend": -0.19,
+     "yahoo": 8.09,
+     "acq": "free agent"
     }
    ],
    "opp": [
@@ -1022,11 +1019,40 @@
    ],
    "in": [
     {
+     "name": "Antonio Williams",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Courtland Sutton",
+      "gotham": 9.8
+     },
+     "beats_floor": true,
+     "gotham": 11.4,
+     "gotham_ros": 8.1,
+     "sleeper": 8.8,
+     "workload": "6/3/4/8",
+     "trend": 0.53,
+     "yahoo": 5.76,
+     "acq": "free agent"
+    },
+    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #6 (150,831 in 24 h)"
+      "Sleeper adds #6 (152,190 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1102,7 +1128,7 @@
      "team": "PHI",
      "why": [
       "opening: DeVonta Smith \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #5 (165,697 in 24 h)"
+      "Sleeper adds #5 (167,776 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1141,7 +1167,7 @@
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
       "opening: Quentin Johnston \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #22 (58,148 in 24 h)"
+      "Sleeper adds #22 (59,556 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1174,41 +1200,11 @@
      "acq": "waivers"
     },
     {
-     "name": "Antonio Williams",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)",
-      "opening: Stefon Diggs \u2014 bad news (ESPN news)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 9.8
-     },
-     "beats_floor": false,
-     "gotham": 8.2,
-     "gotham_ros": 8.1,
-     "sleeper": 8.8,
-     "workload": "6/3/4/8",
-     "trend": 0.53,
-     "yahoo": 5.76,
-     "acq": "free agent"
-    },
-    {
      "name": "Michael Mayer",
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #15 (72,378 in 24 h)"
+      "Sleeper adds #15 (73,080 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1282,7 +1278,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #24 (56,580 in 24 h)"
+      "Sleeper adds #24 (57,120 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1448,41 +1444,6 @@
     }
    ],
    "opp": [
-    {
-     "name": "Jordan Addison",
-     "pos": "WR",
-     "team": "MIN",
-     "marker": {
-      "count": 5,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 9 12:50 PM PT",
-       "src": "ESPN news",
-       "title": "Vikings list WRs Justin Jefferson, Jordan Addison as questionable",
-       "text": "Vikings receivers Justin Jefferson (ankle) and Jordan Addison (hamstring) were both listed as questionable for Sunday's game against the New Orleans Saints.",
-       "grade": "caution"
-      },
-      {
-       "t": "Fri Oct 9 11:15 AM PT",
-       "src": "ESPN injury report",
-       "title": "Jordan Addison: Questionable (Hamstring)",
-       "text": "Addison (hamstring) is listed as questionable for Sunday's game in New Orleans, Alec Lewis of The Athletic reports.",
-       "grade": "caution"
-      }
-     ],
-     "gotham": 9.2,
-     "gotham_ros": 9.2,
-     "sleeper": 8.4,
-     "workload": "3/5/9/6",
-     "trend": 0.29
-    },
     {
      "name": "Bo Nix",
      "pos": "QB",
@@ -1890,7 +1851,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #1 (576,873 in 24 h)"
+      "Sleeper adds #1 (581,436 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1928,7 +1889,7 @@
      "team": "CIN",
      "why": [
       "opening: Ja'Marr Chase \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #4 (167,463 in 24 h)"
+      "Sleeper adds #4 (168,831 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1958,6 +1919,35 @@
      "workload": "1/1/5/9",
      "trend": 2.17,
      "yahoo": 7.65,
+     "acq": "free agent"
+    },
+    {
+     "name": "Antonio Williams",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 10.2
+     },
+     "beats_floor": true,
+     "gotham": 11.4,
+     "gotham_ros": 8.1,
+     "sleeper": 8.8,
+     "workload": "6/3/4/8",
+     "trend": 0.53,
+     "yahoo": 5.73,
      "acq": "free agent"
     },
     {
@@ -2003,7 +1993,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #6 (150,831 in 24 h)"
+      "Sleeper adds #6 (152,190 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2041,7 +2031,7 @@
      "team": "PHI",
      "why": [
       "opening: DeVonta Smith \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #5 (165,697 in 24 h)"
+      "Sleeper adds #5 (167,776 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2080,7 +2070,7 @@
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
       "opening: Quentin Johnston \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #22 (58,148 in 24 h)"
+      "Sleeper adds #22 (59,556 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2113,41 +2103,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Antonio Williams",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)",
-      "opening: Stefon Diggs \u2014 bad news (ESPN news)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 10.2
-     },
-     "beats_floor": false,
-     "gotham": 8.2,
-     "gotham_ros": 8.1,
-     "sleeper": 8.8,
-     "workload": "6/3/4/8",
-     "trend": 0.53,
-     "yahoo": 5.73,
-     "acq": "free agent"
-    },
-    {
      "name": "Michael Mayer",
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #15 (72,378 in 24 h)"
+      "Sleeper adds #15 (73,080 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2213,7 +2173,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #14 (83,562 in 24 h)"
+      "Sleeper adds #14 (84,318 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2342,8 +2302,8 @@
        "grade": "bad"
       }
      ],
-     "gotham": 13.2,
-     "gotham_ros": 13.2,
+     "gotham": 0.0,
+     "gotham_ros": 13.6,
      "sleeper": 0.0,
      "workload": "10/8/7/9",
      "trend": -0.02
@@ -2423,9 +2383,7 @@
   "DK IV": {
    "key": "NEXTDOOR",
    "opponent": "Mr. Irrelevant",
-   "unread": [
-    7
-   ],
+   "unread": [],
    "own": [
     {
      "name": "Tank Dell",
@@ -2470,6 +2428,49 @@
      "trend": null
     },
     {
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "team": "WAS",
+     "slot": "BN",
+     "marker": {
+      "count": 3,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Oct 9 5:04 PM PT",
+       "src": "ESPN injury report",
+       "title": "Terry McLaurin: Questionable (Hamstring)",
+       "text": "McLaurin (hamstring), who is officially questionable for Sunday's game against the Giants, will be a game-time decision, as Jeremy Fowler of ESPN highlighted Friday in a Week 5 injury update on SportsCenter.",
+       "grade": "caution"
+      },
+      {
+       "t": "Fri Oct 9 2:58 AM PT",
+       "src": "RotoWire news",
+       "title": "Terry McLaurin: Trending upward for Week 5",
+       "text": "Head coach Dan Quinn said McLaurin (hamstring) looked good in his return to practice Friday, but his status remains in question for Sunday's game against the Giants, Zach Selby of the Commanders' official site reports.\n\n        Visit RotoWire.com for more anal",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 9 1:25 AM PT",
+       "src": "RotoWire news",
+       "title": "Terry McLaurin: Present for practice Friday",
+       "text": "McLaurin (hamstring) was present for Friday's practice, Tashan Reed of The Washington Post reports.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 16.5,
+     "gotham_ros": 11.8,
+     "sleeper": 11.8,
+     "workload": "5/10/9",
+     "trend": 0.28
+    },
+    {
      "name": "Zay Flowers",
      "pos": "WR",
      "team": "BAL",
@@ -2506,7 +2507,7 @@
        "grade": "caution"
       }
      ],
-     "gotham": 15.7,
+     "gotham": 15.6,
      "gotham_ros": 15.9,
      "sleeper": 14.1,
      "workload": "6/8/12",
@@ -2554,49 +2555,6 @@
      "sleeper": 16.2,
      "workload": "11/7/2",
      "trend": -0.55
-    },
-    {
-     "name": "Terry McLaurin",
-     "pos": "WR",
-     "team": "WAS",
-     "slot": "BN",
-     "marker": {
-      "count": 3,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 9 5:04 PM PT",
-       "src": "ESPN injury report",
-       "title": "Terry McLaurin: Questionable (Hamstring)",
-       "text": "McLaurin (hamstring), who is officially questionable for Sunday's game against the Giants, will be a game-time decision, as Jeremy Fowler of ESPN highlighted Friday in a Week 5 injury update on SportsCenter.",
-       "grade": "caution"
-      },
-      {
-       "t": "Fri Oct 9 2:58 AM PT",
-       "src": "RotoWire news",
-       "title": "Terry McLaurin: Trending upward for Week 5",
-       "text": "Head coach Dan Quinn said McLaurin (hamstring) looked good in his return to practice Friday, but his status remains in question for Sunday's game against the Giants, Zach Selby of the Commanders' official site reports.\n\n        Visit RotoWire.com for more anal",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 9 1:25 AM PT",
-       "src": "RotoWire news",
-       "title": "Terry McLaurin: Present for practice Friday",
-       "text": "McLaurin (hamstring) was present for Friday's practice, Tashan Reed of The Washington Post reports.\n\n        Visit RotoWire.com for more analysis on this update.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 11.6,
-     "gotham_ros": 11.6,
-     "sleeper": 11.8,
-     "workload": "5/10/9",
-     "trend": 0.28
     },
     {
      "name": "D'Andre Swift",
@@ -2774,7 +2732,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 24.2,
+     "gotham": 24.1,
      "gotham_ros": 23.9,
      "sleeper": 24.2,
      "workload": "48/27/52/36",
@@ -2802,7 +2760,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 20.1,
+     "gotham": 20.2,
      "gotham_ros": 20.1,
      "sleeper": 17.2,
      "workload": "41/59/30/34",
@@ -2909,7 +2867,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "Sleeper adds #11 (91,128 in 24 h)"
+      "Sleeper adds #11 (92,480 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2946,7 +2904,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #1 (576,873 in 24 h)"
+      "Sleeper adds #1 (581,436 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3016,12 +2974,41 @@
      "acq": "unverified"
     },
     {
+     "name": "Antonio Williams",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 10.2
+     },
+     "beats_floor": true,
+     "gotham": 11.4,
+     "gotham_ros": 8.1,
+     "sleeper": 8.8,
+     "workload": "6/3/4/8",
+     "trend": 0.53,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Malik Washington",
      "pos": "WR",
      "team": "MIA",
      "why": [
       "opening: Caleb Douglas \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #9 (117,096 in 24 h)"
+      "Sleeper adds #9 (118,104 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3059,7 +3046,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #19 (65,484 in 24 h)"
+      "Sleeper adds #19 (66,240 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3096,7 +3083,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #6 (150,831 in 24 h)"
+      "Sleeper adds #6 (152,190 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3134,7 +3121,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #13 (85,518 in 24 h)"
+      "Sleeper adds #13 (86,580 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3172,7 +3159,7 @@
      "team": "PHI",
      "why": [
       "opening: DeVonta Smith \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #5 (165,697 in 24 h)"
+      "Sleeper adds #5 (167,776 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3211,7 +3198,7 @@
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
       "opening: Quentin Johnston \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #22 (58,148 in 24 h)"
+      "Sleeper adds #22 (59,556 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3244,41 +3231,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Antonio Williams",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "opening: Terry McLaurin \u2014 questionable/limited (ESPN injury report)",
-      "opening: Stefon Diggs \u2014 bad news (ESPN news)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 10.2
-     },
-     "beats_floor": false,
-     "gotham": 8.1,
-     "gotham_ros": 8.1,
-     "sleeper": 8.8,
-     "workload": "6/3/4/8",
-     "trend": 0.53,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Michael Mayer",
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #15 (72,378 in 24 h)"
+      "Sleeper adds #15 (73,080 in 24 h)"
      ],
      "marker": {
       "count": 0,
