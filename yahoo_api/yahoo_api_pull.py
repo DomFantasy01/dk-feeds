@@ -75,7 +75,8 @@ class Y:
                 with urllib.request.urlopen(req, timeout=40) as r: s.calls += 1; return ET.fromstring(r.read())
             except urllib.error.HTTPError as e:
                 if e.code in (429, 500, 502, 503) and attempt < 2: time.sleep(4 * (attempt + 1)); continue
-                raise RuntimeError(f"{path}: HTTP {e.code} {e.read().decode(errors='ignore')[:200]}")
+                body = e.read().decode(errors='ignore'); import re as _re; m = _re.search(r"<description>(.*?)</description>", body, _re.S)
+                raise RuntimeError(f"{path}: HTTP {e.code} " + (m.group(1).strip() if m else body[:600]))
             except Exception as e:
                 if attempt < 2: time.sleep(4); continue
                 raise RuntimeError(f"{path}: {e}")
@@ -149,7 +150,10 @@ def main():
         repo = a[1] if len(a) > 1 else os.getcwd(); T = now_pt(); when = stamp(T); tag = f"{T:%a}".lower() + f"{T:%H%M}"
         log, out = [], {}
         y = Y(access_token(repo))
-        gk = t(y.get("game/nfl").find("y:game", NS), "y:game_key")
+        try: gk = t(y.get("game/nfl").find("y:game", NS), "y:game_key")
+        except Exception as e:                       # some accounts are refused the bare game call; ask through the signed-in user
+            log.append(f"game/nfl refused, asking through the user: {str(e)[:300]}")
+            gk = t(y.get("users;use_login=1/games;game_codes=nfl").find(".//y:game", NS), "y:game_key")
         for lab, n, lid, me in LEAGUES:
             try: out[lab] = read_league(y, gk, lab, lid, me, log); write_scout(repo, lab, n, out[lab], when)
             except Exception as e: log.append(f"FAILED {lab}: {str(e)[:200]}")
