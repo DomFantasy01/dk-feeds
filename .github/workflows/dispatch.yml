@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add dispatch_out yahoo_auth yahoo_api yahoo_drop
+          git add dispatch_out yahoo_drop $(ls -d yahoo_auth yahoo_api 2>/dev/null)   # only folders that exist (Oct 9 fix)
           git commit -m "dispatch $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
             git pull --rebase -X theirs origin main && git push && exit 0
