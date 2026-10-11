@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-10-10T21:52:54.549126-07:00",
- "run_str": "Sat Oct 10, 9:52 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 8:54 PM PT \u00b7 stats nflverse Sat 9:52 PM PT",
+ "run": "2026-10-10T22:21:53.952996-07:00",
+ "run_str": "Sat Oct 10, 10:21 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 8:54 PM PT \u00b7 stats nflverse Sat 10:21 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -19,6 +19,7 @@
     {
      "name": "LV DEF",
      "team": "LV",
+     "pos": "DEF",
      "scores": "13, 12, 10, 1",
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
@@ -30,6 +31,7 @@
     {
      "name": "LAC DEF",
      "team": "LAC",
+     "pos": "DEF",
      "scores": "1, 4, 14, 6",
      "acq": "Free agent",
      "why": "Current level ~8.5 a game",
@@ -61,6 +63,7 @@
     {
      "name": "Mike Gesicki",
      "team": "CIN",
+     "pos": "TE",
      "scores": "18.8, 12.7, 13.0",
      "acq": "Free agent",
      "why": "Current level ~10.3 a game",
@@ -72,6 +75,7 @@
     {
      "name": "Kenyon Sadiq",
      "team": "NYJ",
+     "pos": "TE",
      "scores": "11.4, 3.7, 23.5, 0.0",
      "acq": "Free agent",
      "why": "Workload up from 5.2 to 8.8 expected a game",
@@ -103,6 +107,7 @@
     {
      "name": "Kalif Raymond",
      "team": "CHI",
+     "pos": "WR",
      "scores": "16.4, 9.0, 21.0, 2.6",
      "acq": "Free agent",
      "why": "Current level ~12.0 a game",
@@ -114,6 +119,7 @@
     {
      "name": "Jakobi Meyers",
      "team": "JAX",
+     "pos": "WR",
      "scores": "12.2, 3.8, 19.4, 6.3",
      "acq": "Free agent",
      "why": "Workload up from 2.4 to 10.4 expected a game",
@@ -198,6 +204,7 @@
     {
      "name": "Adonai Mitchell",
      "team": "NYJ",
+     "pos": "WR",
      "scores": "9.0, 12.3",
      "acq": "Free agent",
      "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
@@ -227,6 +234,7 @@
     {
      "name": "CHI DEF",
      "team": "CHI",
+     "pos": "DEF",
      "scores": "2, 7, 12, 7",
      "acq": "Free agent",
      "why": "Current level ~8.9 a game",
@@ -238,6 +246,7 @@
     {
      "name": "LV DEF",
      "team": "LV",
+     "pos": "DEF",
      "scores": "13, 12, 10, 1",
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
@@ -267,6 +276,7 @@
     {
      "name": "Andre Szmyt",
      "team": "CLE",
+     "pos": "K",
      "scores": "4, 13, 9, 12",
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
@@ -278,6 +288,7 @@
     {
      "name": "Dominic Zvada",
      "team": "NYG",
+     "pos": "K",
      "scores": "4, 8, 12, 14",
      "acq": "Free agent",
      "why": "Current level ~11.8 a game",
@@ -303,6 +314,7 @@
    "pick": {
     "name": "Jaxson Dart",
     "team": "NYG",
+    "pos": "QB",
     "scores": "32.6, 0.8",
     "acq": "Free agent",
     "why": "Due back Wk 7 (IR minimum)",
@@ -316,7 +328,11 @@
  ],
  "gate3": [],
  "checked": [
-  "Downs ~11.4 to ~8.0 from Wk 7 \u2014 Alec Pierce checked: rostered by Alan's Team (IR)"
+  "Downs ~11.4 to ~8.0 from Wk 7 \u2014 Alec Pierce checked: rostered by Alan's Team (IR)",
+  "Roman Wilson (PIT WR) is on the Positions chart (teammate out: Michael Pittman Jr.) \u2014 adds ~4 pts through Wk 17, real level ~11.5 a game; ranks below the picks above",
+  "Case Keenum (CHI QB) is on the Positions chart (covers Wk6 Jared Goff) \u2014 adds nothing to the best lineup through Wk 17, real level ~27.4 a game; ranks below the picks above",
+  "Darius Cooper (PHI WR) is on the Positions chart (teammate down this week: DeVonta Smith Out) \u2014 adds nothing to the best lineup through Wk 17, real level ~7.1 a game; ranks below the picks above",
+  "Keenan Allen (IND WR) is on the Positions chart (workload 5.9->10.5) \u2014 adds nothing to the best lineup through Wk 17, real level ~10.6 a game; ranks below the picks above"
  ],
  "footer": "Protected (Dom's call): Travis Kelce \u00b7 Killed: Higbee (soft, two games)",
  "open": {
@@ -372,6 +388,94 @@
    "acq": "Free agent",
    "gain": 21.0,
    "pgain": 0.1
+  }
+ ],
+ "qcont": [
+  {
+   "name": "Justin Jefferson",
+   "slot": "WR",
+   "tag": "Q",
+   "val": 10.5,
+   "loss": 0.0,
+   "fills": [],
+   "ir": false,
+   "bench": false
+  },
+  {
+   "name": "Zay Flowers",
+   "slot": "WR1",
+   "tag": "Q",
+   "val": 18.4,
+   "loss": 7.8,
+   "fills": [
+    {
+     "name": "Kalif Raymond",
+     "team": "CHI",
+     "pos": "WR",
+     "now": 1.5,
+     "nxt": 2.1,
+     "fwd": 12.0,
+     "acq": "Free agent"
+    },
+    {
+     "name": "Jakobi Meyers",
+     "team": "JAX",
+     "pos": "WR",
+     "now": 1.2,
+     "nxt": 2.0,
+     "fwd": 11.0,
+     "acq": "Free agent"
+    },
+    {
+     "name": "Roman Wilson",
+     "team": "PIT",
+     "pos": "WR",
+     "now": 1.4,
+     "nxt": 0.0,
+     "fwd": 11.5,
+     "acq": "Free agent"
+    }
+   ],
+   "ir": false,
+   "bench": false
+  },
+  {
+   "name": "Terry McLaurin",
+   "slot": "WR3",
+   "tag": "Q",
+   "val": 12.0,
+   "loss": 1.5,
+   "fills": [
+    {
+     "name": "Kalif Raymond",
+     "team": "CHI",
+     "pos": "WR",
+     "now": 1.5,
+     "nxt": 2.1,
+     "fwd": 12.0,
+     "acq": "Free agent"
+    },
+    {
+     "name": "Jakobi Meyers",
+     "team": "JAX",
+     "pos": "WR",
+     "now": 1.2,
+     "nxt": 2.0,
+     "fwd": 11.0,
+     "acq": "Free agent"
+    },
+    {
+     "name": "Roman Wilson",
+     "team": "PIT",
+     "pos": "WR",
+     "now": 1.4,
+     "nxt": 0.0,
+     "fwd": 11.5,
+     "acq": "Free agent"
+    }
+   ],
+   "ir": false,
+   "bench": false
   }
  ]
 }
