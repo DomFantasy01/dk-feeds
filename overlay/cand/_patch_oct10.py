@@ -137,3 +137,59 @@ for lab,L in MTR["leagues"].items():
 STAND_LAB=f"STANDINGS  ·  AFTER WEEK {MW-1}"
 ''',1),
 ],"OCT10b front feet")
+
+# ---------- 12 (Dom, Sat Oct 10 evening) one masthead and one footer for the whole Dispatch; open seats shown ----------
+#  - every masthead: section title, then one subhead line: Week N · page detail · As of <build time> · stoplight
+#    (stoplight: green while the oldest of Yahoo / Gotham / Sleeper is under 3 hours old, amber to 6, red past 6)
+#  - Overview reads OVERVIEW · FANTASY FOOTBALL; the Scout page reads SCOUT · DK I (was FIELD — SCOUT)
+#  - the footer is redrawn on every page after assembly (_footer_pass.py): same words, page N of M
+#  - Field Report: every roster slot prints; an empty bench, IR or starting slot reads OPEN; the card's Watch line says so
+#  - the Scout: each pick shows the points it adds through Week 17; open seats lead the page with the best uses ranked
+patch(f"{R}/cand/redesign/_masthead_field.py",[
+ ('    txt(c,M+c.stringWidth(section,"Bebas",15)+10,Ht-73.5,sub,"PopM",7.6,H("#E4E8F0"))',
+  '    _sx=M+c.stringWidth(section,"Bebas",15)+10; _wk=globals().get("WEEKN")\n'
+  '    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub\n'
+  '    if "asof_line" not in globals(): exec(open("/home/claude/cand/redesign/_asof.py").read(),globals())\n'
+  '    asof_line(c,_sx,Ht-73.5,sub,W-M-9-108-10)   # Oct 10: As of + stoplight on every page',1),
+],"OCT10b masthead asof")
+patch(f"{R}/cand/global/_mast33.py",[
+ ('    txt(c,M+P+c.stringWidth(section,"Bebas",15)+10,Ht-71.5,sub,"PopM",7.6,H("#E4E8F0"))',
+  '    if "asof_line" not in N: exec(open("/home/claude/cand/redesign/_asof.py").read(),N)\n'
+  '    N["asof_line"](c,M+P+c.stringWidth(section,"Bebas",15)+10,Ht-71.5,sub,W-M-9-108-10-P)   # Oct 10: As of + stoplight',1),
+],"OCT10b front asof")
+patch(f"{R}/cand/global/global33.py",[
+ ('MASTSUB=f"Week {MW}  ·  All Four Leagues"','MASTSUB=f"Week {MW}"',1),
+ ('_mast33.draw(c,"OVERVIEW",MASTSUB)','_mast33.draw(c,"OVERVIEW  ·  FANTASY FOOTBALL",MASTSUB)',1),
+],"OCT10c front title")
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('    S,Bn,Ir=rows17(L_)\n','    S,Bn,Ir=rows17(L_)\n    Bn,Ir,_OPN=open_rows(L_,Bn,Ir)   # Oct 10: empty slots print as OPEN\n',1),
+ ('    out.append(("Watch",(','    out.append(("Watch",_open_note(lab)+(',1),
+ ('           irsub={0:"No IR slot used",1:"One slot in this league",2:"Two slots in this league",3:"Three slots in this league — all full"}.get(nIR,f"{nIR} slots"),',
+  '           irsub=_irsub(L_,Ir),',1),
+],"OCT10c field open")
+patch(f"{R}/cand/redesign/_scout_page.py",[
+ ('masthead(c,f"FIELD — SCOUT  ·  {lab}",','masthead(c,f"SCOUT  ·  {lab}",',1),
+ ('exec(open("/home/claude/cand/redesign/_scout_mark.py").read())\n',
+  'exec(open("/home/claude/cand/redesign/_scout_mark.py").read())\nexec(open("/home/claude/cand/redesign/_oct10_scout.py").read())   # Oct 10: points added, open seats first\n',1),
+ ('{_esc(_sent(p["why"]+"; helps "+p["when"]))}\'','{_esc(_sent(p["why"]+"; helps "+p["when"]))}\'+_gain(p)',2),
+ ('    room=TOP-BOT-HEAD-g2h-g3h-chh-6-(_ph(_SUMMARY,_SCI,W-2*M)+12)','    room=TOP-BOT-HEAD-g2h-g3h-chh-6-(_ph(_SUMMARY,_SCI,W-2*M)+12)-_open_h(B)',1),
+ ('    y-=_para(c,_SUMMARY,_SCI,M,y,W-2*M)+20 ','    y-=_para(c,_SUMMARY,_SCI,M,y,W-2*M)+20; y=_open_box(c,y,B) ',1),
+],"OCT10c scout page")
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('                why=why[0].upper()+why[1:],when=wk(fw).replace("Week","Wk").replace("Weeks","Wks"),urg=urg)',
+  '                why=why[0].upper()+why[1:],when=wk(fw).replace("Week","Wk").replace("Weeks","Wks"),urg=urg,\n'
+  '                gain=round(sum(max(0.0,v) for v in e["g"].values()),1),pgain=round(sum(max(0.0,e["g"].get(x,0.0)) for x in PLAYOFF),1))   # Oct 10: points added through Wk 17',1),
+ ('json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',
+  '# Oct 10 (Dom): open seats lead the page - empty starting slots, open bench seats, open IR slots - and the best uses of them,\n'
+  '# ranked by points the player adds to the best lineup through Week 17 (playoffs included). Caps from each league\'s Yahoo settings.\n'
+  '_CAP={"DKI":(5,1),"DKII":(5,2),"DKIII":(5,1),"DKIV":(5,3)}[LGK]; _me=ROS[ROS.tid==ME]\n'
+  '_nst=int((~_me.slot.isin(["BN","IR"])).sum())\n'
+  'BOARD["open"]=dict(start=max(0,len(SLOTS)-_nst),bench=max(0,_CAP[0]-int((_me.slot=="BN").sum())),ir=max(0,_CAP[1]-int((_me.slot=="IR").sum())))\n'
+  'BOARD["adds"]=[dict(name=e["p"]["name"].replace(" defense"," DEF"),team=e["p"]["team"],pos=e["p"]["pos"],acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),\n'
+  '                    gain=round(sum(max(0.0,v) for v in e["g"].values()),1),pgain=round(sum(max(0.0,e["g"].get(x,0.0)) for x in PLAYOFF),1))\n'
+  '               for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"])],key=lambda e:-sum(max(0.0,v) for v in e["g"].values()))[:6]]\n'
+  'json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',1),
+],"OCT10c scout open")
+patch(f"{R}/cand/redesign/_fr_positions18.py",[
+ ('"What each man is for — the roster, and the free agents who came through a door"','"What each man is for, and the free agents worth a look"',1),
+],"OCT10c positions sub")
