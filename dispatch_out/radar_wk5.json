@@ -1,48 +1,48 @@
 {
  "week": 5,
- "built": "Sun Oct 11 1:27 PM PT",
- "built_utc": "2026-10-11T20:27:52.274769+00:00",
+ "built": "Sun Oct 11 1:52 PM PT",
+ "built_utc": "2026-10-11T20:52:29.120713+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Oct 11 1:03 PM PT",
-   "pulled_ago": "24 min ago",
-   "items": 198,
-   "newest": "7.7 h ago",
-   "warn": "newest item 7.3 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "pulled": "Sun Oct 11 1:40 PM PT",
+   "pulled_ago": "12 min ago",
+   "items": 201,
+   "newest": "8.1 h ago",
+   "warn": "newest item 7.9 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Oct 11 1:03 PM PT",
-   "pulled_ago": "24 min ago",
-   "items": 526,
-   "newest": "26 min ago",
+   "pulled": "Sun Oct 11 1:40 PM PT",
+   "pulled_ago": "12 min ago",
+   "items": 533,
+   "newest": "20 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Oct 11 1:03 PM PT",
-   "pulled_ago": "24 min ago",
-   "items": 481,
-   "newest": "30 min ago",
+   "pulled": "Sun Oct 11 1:40 PM PT",
+   "pulled_ago": "12 min ago",
+   "items": 495,
+   "newest": "14 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Oct 11 1:03 PM PT",
-   "pulled_ago": "24 min ago",
+   "pulled": "Sun Oct 11 1:40 PM PT",
+   "pulled_ago": "12 min ago",
    "items": 347,
-   "newest": "32 min ago",
+   "newest": "19 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Oct 11 1:03 PM PT",
-   "pulled_ago": "24 min ago",
+   "pulled": "Sun Oct 11 1:40 PM PT",
+   "pulled_ago": "12 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Oct 11 1:26 PM PT",
+   "pulled": "Sun Oct 11 1:51 PM PT",
    "pulled_ago": "1 min ago",
    "items": 768,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Oct 11 2026 01:26 PM PT",
+   "pulled": "Sun Oct 11 2026 01:51 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,8 +68,8 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Sun Oct 11 11:28 AM PT",
-   "pulled_ago": "2.0 h ago",
+   "pulled": "Sun Oct 11 1:25 PM PT",
+   "pulled_ago": "27 min ago",
    "items": 3100,
    "newest": null,
    "warn": null,
@@ -77,7 +77,7 @@
   }
  },
  "alarms": [
-  "RotoWire news: newest item 7.3 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
+  "RotoWire news: newest item 7.9 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
  ],
  "leagues": {
   "DK I": {
@@ -133,7 +133,7 @@
      "team": "NE",
      "slot": "W/R/T",
      "marker": {
-      "count": 6,
+      "count": 7,
       "recency": 0,
       "color": "red",
       "grades": [
@@ -143,6 +143,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 11 1:32 PM PT",
+       "src": "ESPN news",
+       "title": "Patriots lose TreVeyon Henderson, Will Campbell in big win",
+       "text": "Patriots RB TreVeyon Henderson (ankle) and LT Will Campbell (knee) left Sunday's win vs. the Raiders with injuries and did not return.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 11 12:34 PM PT",
        "src": "ESPN news",
@@ -155,13 +162,6 @@
        "src": "rotoballer",
        "title": "TreVeyon Henderson Ruled Out With Ankle Injury",
        "text": "New England Patriots running back TreVeyon Henderson (ankle) has been ruled out for the remainder of Sunday's Week 5 game [&#8230;]",
-       "grade": "bad"
-      },
-      {
-       "t": "Sun Oct 11 12:12 PM PT",
-       "src": "ESPN injury report",
-       "title": "TreVeyon Henderson: Out (Ankle)",
-       "text": "The Patriots ruled out Henderson (ankle) for the remainder of Sunday's game against the Raiders, Evan Lazar of the team's official site reports.",
        "grade": "bad"
       }
      ],
@@ -182,6 +182,7 @@
       "color": "red",
       "grades": [
        "bad",
+       "caution",
        "note"
       ]
      },
@@ -189,9 +190,9 @@
       {
        "t": "Sun Oct 11 12:45 PM PT",
        "src": "ESPN injury report",
-       "title": "Kenyon Sadiq: Out (Concussion)",
+       "title": "Kenyon Sadiq: Questionable (Concussion)",
        "text": "Sadiq won't return to Sunday's game versus the Browns due to a concussion.",
-       "grade": "bad"
+       "grade": "caution"
       },
       {
        "t": "Sun Oct 11 12:42 PM PT",
@@ -305,7 +306,7 @@
      "team": "PIT",
      "slot": "RB",
      "marker": {
-      "count": 1,
+      "count": 3,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -313,6 +314,20 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 11 1:35 PM PT",
+       "src": "ESPN news",
+       "title": "Jaylen Warren's brilliance leads the Steelers past the Colts 34-22",
+       "text": "\u2014 Jaylen Warren piled up 188 total yards and two long touchdowns \u2014 one rushing and one receiving \u2014 to lead the Pittsburgh Steelers past the Indianapolis Colts 34-22 on Sunday.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Oct 11 1:20 PM PT",
+       "src": "pft",
+       "title": "Jaylen Warren runs over Colts as Steelers win 34-22",
+       "text": "The running back finished with 101 rushing yards and a TD on 15 carries and six catches for 87 yards and a TD.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 11 1:57 AM PT",
        "src": "RotoWire news",
@@ -440,7 +455,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #21 (69,044 in 24 h)"
+      "Sleeper adds #21 (70,180 in 24 h)"
      ],
      "marker": {
       "count": 4,
@@ -477,7 +492,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (304,283 in 24 h)"
+      "Sleeper adds #3 (300,993 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -733,48 +748,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Kendrick Bourne",
-     "pos": "WR",
-     "team": "ARI",
-     "why": [
-      "Sleeper adds #4 (246,570 in 24 h)"
-     ],
-     "marker": {
-      "count": 0,
-      "recency": null,
-      "color": "gold",
-      "grades": [
-       "trend"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 10 12:12 PM PT",
-       "src": "rotoballer",
-       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 15.8
-     },
-     "beats_floor": false,
-     "gotham": 9.9,
-     "gotham_ros": 8.2,
-     "sleeper": 8.6,
-     "workload": "9/3/4",
-     "trend": -0.41,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #5 (239,301 in 24 h)"
+      "Sleeper adds #5 (243,378 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -848,7 +826,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #22 (64,638 in 24 h)"
+      "Sleeper adds #24 (61,605 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -879,6 +857,43 @@
      "trend": 0.45,
      "yahoo": 7.22,
      "acq": "free agent"
+    },
+    {
+     "name": "Kendrick Bourne",
+     "pos": "WR",
+     "team": "ARI",
+     "why": [
+      "Sleeper adds #4 (245,994 in 24 h)"
+     ],
+     "marker": {
+      "count": 0,
+      "recency": null,
+      "color": "gold",
+      "grades": [
+       "trend"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 12:12 PM PT",
+       "src": "rotoballer",
+       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Drake London",
+      "gotham": 15.8
+     },
+     "beats_floor": false,
+     "gotham": 7.7,
+     "gotham_ros": 7.6,
+     "sleeper": 8.6,
+     "workload": "9/3/4",
+     "trend": -0.41,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -914,7 +929,7 @@
      ],
      "gotham": 15.8,
      "gotham_ros": 16.0,
-     "sleeper": 14.1,
+     "sleeper": 14.2,
      "workload": "6/8/12",
      "trend": 0.47
     },
@@ -949,7 +964,7 @@
      ],
      "gotham": 13.3,
      "gotham_ros": 13.4,
-     "sleeper": 12.5,
+     "sleeper": 12.6,
      "workload": "6/6/9/6",
      "trend": 0.06
     }
@@ -971,23 +986,24 @@
       "color": "red",
       "grades": [
        "bad",
+       "caution",
        "note"
       ]
      },
      "news": [
       {
-       "t": "Sun Oct 11 12:14 PM PT",
+       "t": "Sun Oct 11 1:13 PM PT",
        "src": "ESPN news",
        "title": "Texans RB David Montgomery ruled out with groin injury",
        "text": "Texans running back David Montgomery suffered a groin injury against the Titans and was ruled out.",
        "grade": "bad"
       },
       {
-       "t": "Sun Oct 11 11:06 AM PT",
+       "t": "Sun Oct 11 11:45 AM PT",
        "src": "ESPN injury report",
-       "title": "David Montgomery: Out (Groin)",
-       "text": "Montgomery suffered a groin injury during Sunday's game at Tennessee.",
-       "grade": "bad"
+       "title": "David Montgomery: Questionable (Groin)",
+       "text": "The Texans ruled out Montgomery (groin) for the remainder of Sunday's game against the Titans.",
+       "grade": "caution"
       },
       {
        "t": "Sun Oct 11 4:45 AM PT",
@@ -1203,7 +1219,7 @@
      ],
      "gotham": 15.8,
      "gotham_ros": 15.6,
-     "sleeper": 19.5,
+     "sleeper": 19.7,
      "workload": "2/47/27",
      "trend": 0.44
     },
@@ -1213,7 +1229,7 @@
      "team": "GB",
      "slot": "BN",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -1221,6 +1237,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 11 1:22 PM PT",
+       "src": "ESPN news",
+       "title": "Love-Watson connection helps Packers take some revenge on Bears with a 31-7 rout",
+       "text": "\u2014 Christian Watson caught two long touchdown passes from Jordan Love, MarShawn Lloyd also scored twice and the Green Bay Packers exacted a measure of revenge against the Chicago Bears by trouncing them 31-7 on Sunday.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 11 10:40 AM PT",
        "src": "pft",
@@ -1273,7 +1296,7 @@
      ],
      "gotham": 21.4,
      "gotham_ros": 21.0,
-     "sleeper": 21.9,
+     "sleeper": 22.1,
      "workload": "48/30/59/42",
      "trend": 0.07
     },
@@ -1312,7 +1335,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (304,283 in 24 h)"
+      "Sleeper adds #3 (300,993 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1349,7 +1372,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "Sleeper adds #8 (172,260 in 24 h)"
+      "Sleeper adds #8 (166,736 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1423,7 +1446,7 @@
      "pos": "TE",
      "team": "JAX",
      "why": [
-      "Sleeper adds #20 (69,057 in 24 h)"
+      "Sleeper adds #20 (75,546 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1456,48 +1479,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Kendrick Bourne",
-     "pos": "WR",
-     "team": "ARI",
-     "why": [
-      "Sleeper adds #4 (246,570 in 24 h)"
-     ],
-     "marker": {
-      "count": 0,
-      "recency": null,
-      "color": "gold",
-      "grades": [
-       "trend"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 10 12:12 PM PT",
-       "src": "rotoballer",
-       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 9.4
-     },
-     "beats_floor": true,
-     "gotham": 9.9,
-     "gotham_ros": 8.2,
-     "sleeper": 8.6,
-     "workload": "9/3/4",
-     "trend": -0.41,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #5 (239,301 in 24 h)"
+      "Sleeper adds #5 (243,378 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1646,7 +1632,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #22 (64,638 in 24 h)"
+      "Sleeper adds #24 (61,605 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1677,6 +1663,43 @@
      "trend": 0.45,
      "yahoo": 7.24,
      "acq": "free agent"
+    },
+    {
+     "name": "Kendrick Bourne",
+     "pos": "WR",
+     "team": "ARI",
+     "why": [
+      "Sleeper adds #4 (245,994 in 24 h)"
+     ],
+     "marker": {
+      "count": 0,
+      "recency": null,
+      "color": "gold",
+      "grades": [
+       "trend"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 12:12 PM PT",
+       "src": "rotoballer",
+       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Courtland Sutton",
+      "gotham": 9.4
+     },
+     "beats_floor": false,
+     "gotham": 7.7,
+     "gotham_ros": 7.6,
+     "sleeper": 8.6,
+     "workload": "9/3/4",
+     "trend": -0.41,
+     "yahoo": null,
+     "acq": "unverified"
     },
     {
      "name": "Jauan Jennings",
@@ -1755,41 +1778,6 @@
    ],
    "opp": [
     {
-     "name": "Marvin Harrison Jr.",
-     "pos": "WR",
-     "team": "ARI",
-     "marker": {
-      "count": 4,
-      "recency": 0,
-      "color": "red",
-      "grades": [
-       "bad",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 11 11:57 AM PT",
-       "src": "ESPN injury report",
-       "title": "Marvin Harrison Jr.: Out (Coach's Decision)",
-       "text": "inactive",
-       "grade": "bad"
-      },
-      {
-       "t": "Sun Oct 11 10:48 AM PT",
-       "src": "pft",
-       "title": "Marvin Harrison Jr. trade is past the point of no return",
-       "text": "All that's left to decide is when, and where?",
-       "grade": "note"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 5.7,
-     "sleeper": 0.0,
-     "workload": "3/1/5/6",
-     "trend": 0.77
-    },
-    {
      "name": "T.J. Hockenson",
      "pos": "TE",
      "team": "MIN",
@@ -1799,12 +1787,13 @@
       "color": "red",
       "grades": [
        "bad",
+       "caution",
        "note"
       ]
      },
      "news": [
       {
-       "t": "Sun Oct 11 11:30 AM PT",
+       "t": "Sun Oct 11 1:10 PM PT",
        "src": "ESPN news",
        "title": "Vikings TE T.J. Hockenson suffers concussion against Saints",
        "text": "The Vikings' injury-ravaged offense absorbed another blow when tight end T.J. Hockenson suffered a concussion on the second play of their game against the Saints.",
@@ -1842,12 +1831,13 @@
       "color": "red",
       "grades": [
        "bad",
+       "caution",
        "note"
       ]
      },
      "news": [
       {
-       "t": "Sun Oct 11 11:30 AM PT",
+       "t": "Sun Oct 11 1:10 PM PT",
        "src": "ESPN news",
        "title": "Vikings TE T.J. Hockenson suffers concussion against Saints",
        "text": "The Vikings' injury-ravaged offense absorbed another blow when tight end T.J. Hockenson suffered a concussion on the second play of their game against the Saints.",
@@ -1863,9 +1853,9 @@
       {
        "t": "Sun Oct 11 10:42 AM PT",
        "src": "ESPN injury report",
-       "title": "T.J. Hockenson: Out (Concussion)",
+       "title": "T.J. Hockenson: Questionable (Concussion)",
        "text": "The Vikings downgraded Hockenson to out for Sunday's game against the Saints due to a concussion.",
-       "grade": "bad"
+       "grade": "caution"
       }
      ],
      "gotham": 0.0,
@@ -1873,49 +1863,6 @@
      "sleeper": 10.4,
      "workload": "7/4/4/15",
      "trend": 1.23
-    },
-    {
-     "name": "Roman Wilson",
-     "pos": "WR",
-     "team": "PIT",
-     "slot": "BN",
-     "marker": {
-      "count": 4,
-      "recency": 0,
-      "color": "red",
-      "grades": [
-       "bad",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 11 12:01 PM PT",
-       "src": "pft",
-       "title": "Steelers rule out WRs Roman Wilson, Ben Skowronek",
-       "text": "The Steelers have ruled out two wide receivers for the rest of today's game.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 11 11:47 AM PT",
-       "src": "ESPN injury report",
-       "title": "Roman Wilson: Out (Finger)",
-       "text": "The Steelers ruled out Wilson (finger) for the rest of Sunday's game against the Colts, Brooke Pryor of ESPN.com reports.",
-       "grade": "bad"
-      },
-      {
-       "t": "Sun Oct 11 4:47 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Won't return Sunday",
-       "text": "The Steelers ruled out Wilson (finger) for the rest of Sunday's game against the Colts, Brooke Pryor of ESPN.com reports.\n\n        Visit RotoWire.com for more analysis on this update.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 10.7,
-     "sleeper": 9.0,
-     "workload": "6/6/6/8",
-     "trend": 0.15
     },
     {
      "name": "David Montgomery",
@@ -1928,23 +1875,24 @@
       "color": "red",
       "grades": [
        "bad",
+       "caution",
        "note"
       ]
      },
      "news": [
       {
-       "t": "Sun Oct 11 12:14 PM PT",
+       "t": "Sun Oct 11 1:13 PM PT",
        "src": "ESPN news",
        "title": "Texans RB David Montgomery ruled out with groin injury",
        "text": "Texans running back David Montgomery suffered a groin injury against the Titans and was ruled out.",
        "grade": "bad"
       },
       {
-       "t": "Sun Oct 11 11:06 AM PT",
+       "t": "Sun Oct 11 11:45 AM PT",
        "src": "ESPN injury report",
-       "title": "David Montgomery: Out (Groin)",
-       "text": "Montgomery suffered a groin injury during Sunday's game at Tennessee.",
-       "grade": "bad"
+       "title": "David Montgomery: Questionable (Groin)",
+       "text": "The Texans ruled out Montgomery (groin) for the remainder of Sunday's game against the Titans.",
+       "grade": "caution"
       },
       {
        "t": "Sun Oct 11 4:45 AM PT",
@@ -2002,6 +1950,49 @@
      "sleeper": 0.0,
      "workload": "3/5/4",
      "trend": 0.1
+    },
+    {
+     "name": "Roman Wilson",
+     "pos": "WR",
+     "team": "PIT",
+     "slot": "BN",
+     "marker": {
+      "count": 4,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 11 12:01 PM PT",
+       "src": "pft",
+       "title": "Steelers rule out WRs Roman Wilson, Ben Skowronek",
+       "text": "The Steelers have ruled out two wide receivers for the rest of today's game.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Oct 11 11:47 AM PT",
+       "src": "ESPN injury report",
+       "title": "Roman Wilson: Questionable (Finger)",
+       "text": "The Steelers ruled out Wilson (finger) for the rest of Sunday's game against the Colts, Brooke Pryor of ESPN.com reports.",
+       "grade": "caution"
+      },
+      {
+       "t": "Sun Oct 11 4:47 AM PT",
+       "src": "RotoWire news",
+       "title": "Roman Wilson: Won't return Sunday",
+       "text": "The Steelers ruled out Wilson (finger) for the rest of Sunday's game against the Colts, Brooke Pryor of ESPN.com reports.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 0.0,
+     "gotham_ros": 10.7,
+     "sleeper": 9.0,
+     "workload": "6/6/6/8",
+     "trend": 0.15
     },
     {
      "name": "Josh Downs",
@@ -2305,7 +2296,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (304,283 in 24 h)"
+      "Sleeper adds #3 (300,993 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2487,48 +2478,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Kendrick Bourne",
-     "pos": "WR",
-     "team": "ARI",
-     "why": [
-      "Sleeper adds #4 (246,570 in 24 h)"
-     ],
-     "marker": {
-      "count": 0,
-      "recency": null,
-      "color": "gold",
-      "grades": [
-       "trend"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 10 12:12 PM PT",
-       "src": "rotoballer",
-       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Devaughn Vele",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 9.9,
-     "gotham_ros": 8.2,
-     "sleeper": 8.6,
-     "workload": "9/3/4",
-     "trend": -0.41,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #5 (239,301 in 24 h)"
+      "Sleeper adds #5 (243,378 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2565,7 +2519,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #22 (64,638 in 24 h)"
+      "Sleeper adds #24 (61,605 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2596,6 +2550,43 @@
      "trend": 0.45,
      "yahoo": 7.22,
      "acq": "free agent"
+    },
+    {
+     "name": "Kendrick Bourne",
+     "pos": "WR",
+     "team": "ARI",
+     "why": [
+      "Sleeper adds #4 (245,994 in 24 h)"
+     ],
+     "marker": {
+      "count": 0,
+      "recency": null,
+      "color": "gold",
+      "grades": [
+       "trend"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 12:12 PM PT",
+       "src": "rotoballer",
+       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Devaughn Vele",
+      "gotham": 11.6
+     },
+     "beats_floor": false,
+     "gotham": 7.7,
+     "gotham_ros": 7.6,
+     "sleeper": 8.6,
+     "workload": "9/3/4",
+     "trend": -0.41,
+     "yahoo": null,
+     "acq": "unverified"
     },
     {
      "name": "Jauan Jennings",
@@ -2872,7 +2863,7 @@
      "team": "MIN",
      "slot": "WR",
      "marker": {
-      "count": 3,
+      "count": 4,
       "recency": 0,
       "color": "green",
       "grades": [
@@ -2881,6 +2872,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 11 1:23 PM PT",
+       "src": "ESPN news",
+       "title": "Jefferson, Jones and Murray all produce to help the unbeaten Vikings top the slumping Saints 23-13",
+       "text": "\u2014 Justin Jefferson highlighted his return to Minnesota's lineup with a leaping touchdown catch, Aaron Jones made up for an early fumble with a pivotal, fourth-quarter touchdown and the Vikings remained unbeaten with a 23-13 victory over the slumping...",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 11 11:44 AM PT",
        "src": "pft",
@@ -2893,13 +2891,6 @@
        "src": "pft",
        "title": "Justin Jefferson will play for Vikings, Jordan Addison and Odell Beckham Jr. will not",
        "text": "All of Sunday's 1 p.m. ET inactives have been announced.",
-       "grade": "good"
-      },
-      {
-       "t": "Sun Oct 11 7:21 AM PT",
-       "src": "rotoballer",
-       "title": "Justin Jefferson Expected to Play Against the Saints in Week 5",
-       "text": "Minnesota Vikings wide receiver Justin Jefferson (ankle) is expected to play in Sunday's Week 5 contest against the New Orleans [&#8230;]",
        "grade": "good"
       }
      ],
@@ -2943,6 +2934,41 @@
      "sleeper": 10.3,
      "workload": "4/11/13/4",
      "trend": -0.18
+    },
+    {
+     "name": "C.J. Stroud",
+     "pos": "QB",
+     "team": "HOU",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 11 1:05 PM PT",
+       "src": "ESPN news",
+       "title": "Stroud runs for a TD, throws for another as Houston beats Titans for 1st win of season",
+       "text": "\u2014 C.J. Stroud threw for 261 yards and a touchdown and ran for another score and the Houston Texans snapped their winless start to the season by...",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Oct 8 7:58 AM PT",
+       "src": "ESPN news",
+       "title": "Why fantasy managers should steer clear of C.J. Stroud in Week 5",
+       "text": "Why fantasy managers should steer clear of C.J. Stroud in Week 5",
+       "grade": "note"
+      }
+     ],
+     "gotham": 20.1,
+     "gotham_ros": 20.1,
+     "sleeper": 17.1,
+     "workload": "41/59/30/34",
+     "trend": -0.26
     },
     {
      "name": "Ollie Gordon II",
@@ -3129,37 +3155,9 @@
      ],
      "gotham": 24.1,
      "gotham_ros": 23.9,
-     "sleeper": 24.2,
+     "sleeper": 24.1,
      "workload": "48/27/52/36",
      "trend": 0.0
-    },
-    {
-     "name": "C.J. Stroud",
-     "pos": "QB",
-     "team": "HOU",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 8 7:58 AM PT",
-       "src": "ESPN news",
-       "title": "Why fantasy managers should steer clear of C.J. Stroud in Week 5",
-       "text": "Why fantasy managers should steer clear of C.J. Stroud in Week 5",
-       "grade": "note"
-      }
-     ],
-     "gotham": 20.1,
-     "gotham_ros": 20.1,
-     "sleeper": 17.1,
-     "workload": "41/59/30/34",
-     "trend": -0.26
     },
     {
      "name": "Tucker Kraft",
@@ -3213,7 +3211,7 @@
      ],
      "gotham": 24.6,
      "gotham_ros": 23.6,
-     "sleeper": 26.3,
+     "sleeper": 26.5,
      "workload": "42/42/37/52",
      "trend": 0.14
     }
@@ -3224,7 +3222,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (304,283 in 24 h)"
+      "Sleeper adds #3 (300,993 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3336,7 +3334,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "Sleeper adds #8 (172,260 in 24 h)"
+      "Sleeper adds #8 (166,736 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3411,7 +3409,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (ESPN news)",
-      "Sleeper adds #16 (107,370 in 24 h)"
+      "Sleeper adds #16 (107,082 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3448,7 +3446,7 @@
      "pos": "TE",
      "team": "JAX",
      "why": [
-      "Sleeper adds #20 (69,057 in 24 h)"
+      "Sleeper adds #20 (75,546 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3486,7 +3484,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (ESPN news)",
-      "Sleeper adds #10 (151,911 in 24 h)"
+      "Sleeper adds #10 (151,551 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3519,48 +3517,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Kendrick Bourne",
-     "pos": "WR",
-     "team": "ARI",
-     "why": [
-      "Sleeper adds #4 (246,570 in 24 h)"
-     ],
-     "marker": {
-      "count": 0,
-      "recency": null,
-      "color": "gold",
-      "grades": [
-       "trend"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 10 12:12 PM PT",
-       "src": "rotoballer",
-       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Justin Jefferson",
-      "gotham": 11.9
-     },
-     "beats_floor": false,
-     "gotham": 9.9,
-     "gotham_ros": 8.2,
-     "sleeper": 8.6,
-     "workload": "9/3/4",
-     "trend": -0.41,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Higbee",
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #5 (239,301 in 24 h)"
+      "Sleeper adds #5 (243,378 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3597,14 +3558,14 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (388,782 in 24 h)"
+      "Sleeper adds #2 (359,253 in 24 h)"
      ],
      "marker": {
       "count": 4,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "bad",
+       "caution",
        "note"
       ]
      },
@@ -3635,7 +3596,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #22 (64,638 in 24 h)"
+      "Sleeper adds #24 (61,605 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3666,6 +3627,43 @@
      "trend": 0.45,
      "yahoo": null,
      "acq": "unverified"
+    },
+    {
+     "name": "Kendrick Bourne",
+     "pos": "WR",
+     "team": "ARI",
+     "why": [
+      "Sleeper adds #4 (245,994 in 24 h)"
+     ],
+     "marker": {
+      "count": 0,
+      "recency": null,
+      "color": "gold",
+      "grades": [
+       "trend"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 12:12 PM PT",
+       "src": "rotoballer",
+       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Justin Jefferson",
+      "gotham": 11.9
+     },
+     "beats_floor": false,
+     "gotham": 7.7,
+     "gotham_ros": 7.5,
+     "sleeper": 8.6,
+     "workload": "9/3/4",
+     "trend": -0.41,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -3674,7 +3672,7 @@
      "pos": "RB",
      "team": "NE",
      "marker": {
-      "count": 6,
+      "count": 7,
       "recency": 0,
       "color": "red",
       "grades": [
@@ -3685,18 +3683,18 @@
      },
      "news": [
       {
+       "t": "Sun Oct 11 1:32 PM PT",
+       "src": "ESPN news",
+       "title": "Patriots lose TreVeyon Henderson, Will Campbell in big win",
+       "text": "Patriots RB TreVeyon Henderson (ankle) and LT Will Campbell (knee) left Sunday's win vs. the Raiders with injuries and did not return.",
+       "grade": "note"
+      },
+      {
        "t": "Sun Oct 11 12:34 PM PT",
        "src": "ESPN news",
        "title": "Patriots rule out TreVeyon Henderson, Will Campbell",
        "text": "Patriots RB TreVeyon Henderson (ankle) and LT Will Campbell (knee) left Sunday's game vs. the Raiders with injuries and did not return.",
        "grade": "note"
-      },
-      {
-       "t": "Sun Oct 11 12:15 PM PT",
-       "src": "rotoballer",
-       "title": "TreVeyon Henderson Ruled Out With Ankle Injury",
-       "text": "New England Patriots running back TreVeyon Henderson (ankle) has been ruled out for the remainder of Sunday's Week 5 game [&#8230;]",
-       "grade": "bad"
       }
      ],
      "gotham": 0.0,
