@@ -1,28 +1,9 @@
 {
  "league": "DK I",
- "run": "2026-10-11T12:53:18.532592-07:00",
- "run_str": "Sun Oct 11, 12:53 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 7:25 AM PT \u00b7 stats nflverse Sun 12:53 PM PT",
+ "run": "2026-10-11T12:59:10.316911-07:00",
+ "run_str": "Sun Oct 11, 12:59 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 12:56 PM PT \u00b7 stats nflverse Sun 12:59 PM PT",
  "gate1": [
-  {
-   "mark": "red",
-   "first": "2026-10-09",
-   "key": "need:RB2:season-long:short",
-   "age": 2,
-   "gap": null,
-   "head": "The Backfield Won't Hold",
-   "title": "RB2, Season-Long",
-   "target": "Target 16.3 pts",
-   "why": "Replacing a ~19: Jaylen Warren becomes ~16 once Rico Dowdle is back (missed his last game (Toe), practicing this week (limited)). Worst weeks: Wk 8 Henderson ~13.4, Wk 9 Etienne ~14.2.",
-   "across": "",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off When Filled",
-   "rows": [
-    "Jaylen Warren"
-   ],
-   "rep": 0
-  },
   {
    "mark": "red",
    "first": "2026-10-09",
@@ -40,7 +21,7 @@
      "team": "GB",
      "pos": "QB",
      "scores": "23.7, 17.8, 22.7, 18.1",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Workload up from 20.0 to 25.2 expected a game",
      "when": "Wk 7",
      "urg": "gold",
@@ -70,6 +51,50 @@
   {
    "mark": "red",
    "first": "2026-10-09",
+   "key": "need:RB2:season-long:short",
+   "age": 2,
+   "gap": null,
+   "head": "The Backfield Won't Hold",
+   "title": "RB2, Season-Long",
+   "target": "Target 16.3 pts",
+   "why": "Replacing a ~19: Jaylen Warren becomes ~16 once Rico Dowdle is back (listed Out (Toe)). Worst weeks: Wk 8 Henderson ~13.4, Wk 9 Etienne ~14.2.",
+   "across": "",
+   "picks": [
+    {
+     "name": "Kimani Vidal",
+     "team": "LAC",
+     "pos": "RB",
+     "scores": "0.0, 3.2, 12.8",
+     "acq": "Free agent",
+     "why": "Workload up from 0.0 to 7.2 expected a game",
+     "when": "Wk 5",
+     "urg": "red",
+     "gain": 4.9,
+     "pgain": 0.0
+    },
+    {
+     "name": "George Holani",
+     "team": "SEA",
+     "pos": "RB",
+     "scores": "4.9, 3.5, 11.6, 4.8",
+     "acq": "Free agent",
+     "why": "Current level ~8.5 a game",
+     "when": "Wk 5",
+     "urg": "red",
+     "gain": 4.0,
+     "pgain": 0.0
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off When Filled",
+   "rows": [
+    "Jaylen Warren"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
    "key": "need:DEF2:fill:empty",
    "age": 2,
    "gap": null,
@@ -77,7 +102,7 @@
    "title": "DEF2, Week 6 Fill",
    "target": "Target 18.2 pts",
    "why": "Vikings on bye; ideally ~18 (Vikings' level) \u2014 anything beats zero.",
-   "across": "Wk 6 Bears ~20.1 vs Vikings ~0.0",
+   "across": "Wk 6 Chicago ~20.1 vs Vikings ~0.0",
    "picks": [
     {
      "name": "KC DEF",
@@ -110,6 +135,94 @@
     "Vikings"
    ],
    "rep": 2
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:FLEX2:fill:short",
+   "age": 2,
+   "gap": null,
+   "head": "Byes Hit the Flex",
+   "title": "FLEX2, Weeks 5, 11 Fill",
+   "target": "Target 7.9 pts",
+   "why": "Full strength ~12.0 (Henderson). Wk 5 Black ~5.2 (Henderson out, Black slides in) \u00b7 Wk 11 Strange ~10.6 (Henderson on bye, Strange slides in).",
+   "across": "Wk 5 Meyers ~11.8 vs Black ~5.2 \u00b7 Wk 11 Gordon ~15.2 vs Strange ~10.6",
+   "picks": [
+    {
+     "name": "Mike Gesicki",
+     "team": "CIN",
+     "pos": "TE",
+     "scores": "18.8, 12.7, 13.0",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Current level ~10.3 a game",
+     "when": "Wk 5, Wk 11",
+     "urg": "red",
+     "gain": 13.7,
+     "pgain": 0.3
+    },
+    {
+     "name": "Kalif Raymond",
+     "team": "CHI",
+     "pos": "WR",
+     "scores": "16.4, 9.0, 21.0, 2.6",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Current level ~12.0 a game",
+     "when": "Wk 5",
+     "urg": "red",
+     "gain": 11.6,
+     "pgain": 1.4
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 11",
+   "rows": [
+    "Kaelon Black"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:TE:fill:short",
+   "age": 2,
+   "gap": null,
+   "head": "Byes Hit the Tight End Spot",
+   "title": "TE, Weeks 5, 13 Fill",
+   "target": "Target 8.3 pts",
+   "why": "Full strength ~11.6 (Kelce). Wk 5 Strange ~8.0 (Kelce on bye, Strange slides in) \u00b7 Wk 13 Kelce ~8.7 (hard matchup vs LA).",
+   "across": "Wk 5 Kittle ~14.8 vs Strange ~8.0 \u00b7 Wk 13 Fannin ~15.8 vs Kelce ~8.7",
+   "picks": [
+    {
+     "name": "Mike Gesicki",
+     "team": "CIN",
+     "pos": "TE",
+     "scores": "18.8, 12.7, 13.0",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Current level ~10.3 a game",
+     "when": "Wk 5, Wk 13",
+     "urg": "red",
+     "gain": 13.7,
+     "pgain": 0.3
+    },
+    {
+     "name": "Pat Freiermuth",
+     "team": "PIT",
+     "pos": "TE",
+     "scores": "15.6, 7.7, 5.3, 10.7",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Current level ~9.3 a game",
+     "when": "Wk 5",
+     "urg": "red",
+     "gain": 4.8,
+     "pgain": 0.3
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 13",
+   "rows": [
+    "Brenton Strange"
+   ],
+   "rep": 0
   },
   {
    "mark": "gold",
@@ -180,30 +293,18 @@
    "title": "WR2, Weeks 10-11, 13-14 Fill",
    "target": "Target 13.4 pts",
    "why": "Full strength ~16.7 (Pickens). Wk 10 London ~14.0 (Pickens moves up to WR1, London slides in) \u00b7 Wk 11 Diggs ~11.4 (Pickens moves up to WR1, Diggs slides in) \u00b7 Wk 13 Pickens ~13.9 (hard matchup vs SEA) \u00b7 Wk 14 Diggs ~14.2 (Pickens on bye, Diggs slides in).",
-   "across": "Wk 10 Metcalf ~12.3 vs London ~14.0 \u00b7 Wk 11 Pittman ~9.1 vs Diggs ~11.4 \u00b7 Wk 13 Adams ~13.7 vs Pickens ~13.9 \u00b7 Wk 14 Wilson ~15.3 vs Diggs ~14.2",
+   "across": "Wk 10 Metcalf ~10.7 vs London ~14.0 \u00b7 Wk 11 Pittman ~9.1 vs Diggs ~11.4 \u00b7 Wk 13 Adams ~13.7 vs Pickens ~13.9 \u00b7 Wk 14 Wilson ~15.3 vs Diggs ~14.2",
    "picks": [
     {
      "name": "Keenan Allen",
      "team": "IND",
      "pos": "WR",
      "scores": "9.2, 1.5, 18.3",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.6 a game",
      "when": "Wk 11",
      "urg": "gold",
-     "gain": 2.2,
-     "pgain": 0.0
-    },
-    {
-     "name": "Roman Wilson",
-     "team": "PIT",
-     "pos": "WR",
-     "scores": "5.6, 7.8, 15.0, 16.4",
-     "acq": "Free agent",
-     "why": "Current level ~11.5 a game",
-     "when": "Wk 11",
-     "urg": "gold",
-     "gain": 3.8,
+     "gain": 7.1,
      "pgain": 0.0
     }
    ],
@@ -246,7 +347,7 @@
      "team": "CHI",
      "pos": "K",
      "scores": "11, 4, 9, 11",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.0 a game",
      "when": "Wk 9",
      "urg": "gold",
@@ -274,90 +375,6 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:TE:fill:short",
-   "age": 2,
-   "gap": null,
-   "head": "A Tough Draw for the Tight End Spot",
-   "title": "TE, Week 13 Fill",
-   "target": "Target 8.7 pts",
-   "why": "Full strength ~11.6 (Kelce). Wk 13 Kelce ~8.7 (hard matchup vs LA).",
-   "across": "Wk 13 Fannin ~15.8 vs Kelce ~8.7",
-   "picks": [
-    {
-     "name": "Mike Gesicki",
-     "team": "CIN",
-     "pos": "TE",
-     "scores": "18.8, 12.7, 13.0",
-     "acq": "Free agent",
-     "why": "Current level ~10.3 a game",
-     "when": "Wk 13",
-     "urg": "gold",
-     "gain": 8.0,
-     "pgain": 0.3
-    },
-    {
-     "name": "Terrance Ferguson",
-     "team": "LA",
-     "pos": "TE",
-     "scores": "0.0, 17.4, 1.9",
-     "acq": "Free agent",
-     "why": "Due back Wk 8 (IR minimum); workload up from 1.2 to 9.9 expected a game",
-     "when": "Wk 13",
-     "urg": "gold",
-     "gain": 2.5,
-     "pgain": 0.0
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 13",
-   "rows": [],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:FLEX2:fill:short",
-   "age": 2,
-   "gap": null,
-   "head": "A Bye Hits the Flex",
-   "title": "FLEX2, Week 11 Fill",
-   "target": "Target 10.6 pts",
-   "why": "Full strength ~12.0 (Henderson). Wk 11 Strange ~10.6 (Henderson on bye, Strange slides in).",
-   "across": "Wk 11 Gordon ~15.2 vs Strange ~10.6",
-   "picks": [
-    {
-     "name": "Michael Mayer",
-     "team": "LV",
-     "pos": "TE",
-     "scores": "9.2, 5.3, 12.2, 16.2",
-     "acq": "Free agent",
-     "why": "Current level ~11.7 a game",
-     "when": "Wk 11",
-     "urg": "gold",
-     "gain": 7.8,
-     "pgain": 3.5
-    },
-    {
-     "name": "Keenan Allen",
-     "team": "IND",
-     "pos": "WR",
-     "scores": "9.2, 1.5, 18.3",
-     "acq": "Free agent",
-     "why": "Current level ~10.6 a game",
-     "when": "Wk 11",
-     "urg": "gold",
-     "gain": 2.2,
-     "pgain": 0.0
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 11",
-   "rows": [],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:K:fill:short",
    "age": 2,
    "gap": null,
@@ -372,7 +389,7 @@
      "team": "CHI",
      "pos": "K",
      "scores": "11, 4, 9, 11",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.0 a game",
      "when": "Wk 14",
      "urg": "gold",
@@ -401,40 +418,80 @@
  "gate2": [
   {
    "mark": "gold",
-   "first": "2026-10-09",
-   "age": 2,
+   "first": "2026-10-11",
+   "age": 0,
    "gap": null,
-   "title": "QB, Week 5",
+   "title": "FLEX2, Week 5",
    "pick": {
-    "name": "Aaron Rodgers",
-    "team": "PIT",
-    "pos": "QB",
-    "scores": "15.3, 4.2, 29.4, 28.0",
+    "name": "Isaac TeSlaa",
+    "team": "DET",
+    "pos": "WR",
+    "scores": "0.0, 4.6, 9.6, 13.5",
     "acq": "Free agent",
-    "why": "Workload up from 18.0 to 22.8 expected a game",
+    "why": "Workload up from 5.0 to 10.4 expected a game",
     "when": "Wk 5",
     "urg": "gold",
-    "gain": 3.8,
+    "gain": 5.5,
     "pgain": 0.0
    },
    "act": true
   },
   {
    "mark": "gold",
-   "first": "2026-10-09",
-   "age": 2,
+   "first": "2026-10-11",
+   "age": 0,
    "gap": null,
-   "title": "QB, Week 11",
+   "title": "FLEX2, Week 5",
    "pick": {
-    "name": "Baker Mayfield",
-    "team": "TB",
-    "pos": "QB",
-    "scores": "12.9, 15.2, 13.8",
-    "acq": "Waivers, clears Oct 14",
-    "why": "Due back Wk 6 (listed Out); getting 19.2 expected but scoring 14.0",
-    "when": "Wk 11",
+    "name": "Xavier Hutchinson",
+    "team": "HOU",
+    "pos": "WR",
+    "scores": "6.2, 6.7, 9.0, 7.6",
+    "acq": "Free agent",
+    "why": "Getting 11.4 expected but scoring 7.4",
+    "when": "Wk 5",
     "urg": "gold",
-    "gain": 1.8,
+    "gain": 4.9,
+    "pgain": 0.0
+   },
+   "act": true
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-11",
+   "age": 0,
+   "gap": null,
+   "title": "FLEX2, Week 5",
+   "pick": {
+    "name": "Konata Mumpfield",
+    "team": "LA",
+    "pos": "WR",
+    "scores": "0.0, 2.2, 19.3, 1.7",
+    "acq": "Free agent",
+    "why": "Workload up from 2.6 to 9.4 expected a game",
+    "when": "Wk 5",
+    "urg": "gold",
+    "gain": 3.9,
+    "pgain": 0.0
+   },
+   "act": true
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-11",
+   "age": 0,
+   "gap": null,
+   "title": "TE, Week 5",
+   "pick": {
+    "name": "Oronde Gadsden II",
+    "team": "LAC",
+    "pos": "TE",
+    "scores": "5.2, 9.8, 0.0, 9.0",
+    "acq": "Free agent",
+    "why": "Door open: David Njoku out; workload up from 3.6 to 8.6 expected a game",
+    "when": "Wk 5",
+    "urg": "gold",
+    "gain": 3.9,
     "pgain": 0.0
    },
    "act": true
@@ -442,7 +499,7 @@
  ],
  "gate3": [],
  "checked": [
-  "Warren ~18.9 to ~16.3 from Wk 5 \u2014 Rico Dowdle checked: rostered by Rolling With Romo (IR)",
+  "Warren ~18.9 to ~16.3 from Wk 6 \u2014 Rico Dowdle checked: rostered by Rolling With Romo (IR)",
   "Kamara ~22.9 to ~11.1 from Wk 8 \u2014 Travis Etienne checked: rostered by Dark Knight I (IR)"
  ],
  "footer": "Protected (Dom's call): Travis Kelce, Kaelon Black \u00b7 Killed: Higbee (soft, two games)",
@@ -480,7 +537,7 @@
    "name": "Cairo Santos",
    "team": "CHI",
    "pos": "K",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 24.6,
    "pgain": 2.6
   },
@@ -512,7 +569,7 @@
   },
   "raheimsanders": {
    "fwd": 6.1,
-   "gain": 0.0
+   "gain": 1.6
   },
   "samajeperine": {
    "fwd": 4.7,
@@ -532,10 +589,18 @@
   },
   "kimanividal": {
    "fwd": 9.3,
-   "gain": 0.0
+   "gain": 4.9
   },
   "georgeholani": {
    "fwd": 8.5,
+   "gain": 4.0
+  },
+  "najeeharris": {
+   "fwd": 6.2,
+   "gain": 0.0
+  },
+  "austinekeler": {
+   "fwd": 5.8,
    "gain": 0.0
   },
   "tyjohnson": {
@@ -568,7 +633,7 @@
   },
   "tylerhigbee": {
    "fwd": 13.1,
-   "gain": 11.2
+   "gain": 16.9
   },
   "darrenwaller": {
    "fwd": 9.7,
@@ -576,11 +641,11 @@
   },
   "michaelmayer": {
    "fwd": 11.7,
-   "gain": 7.8
+   "gain": 11.1
   },
   "orondegadsden": {
    "fwd": 7.9,
-   "gain": 0.0
+   "gain": 3.9
   },
   "noahfant": {
    "fwd": 7.9,
@@ -588,7 +653,7 @@
   },
   "dariuscooper": {
    "fwd": 7.1,
-   "gain": 0.0
+   "gain": 2.4
   },
   "adonaimitchell": {
    "fwd": 11.6,
@@ -596,47 +661,8 @@
   },
   "keenanallen": {
    "fwd": 10.6,
-   "gain": 2.2
+   "gain": 7.1
   }
  },
- "qcont": [
-  {
-   "name": "Alvin Kamara",
-   "slot": "FLEX2",
-   "tag": "Q",
-   "val": 11.4,
-   "loss": 3.4,
-   "fills": [
-    {
-     "name": "Mike Gesicki",
-     "team": "CIN",
-     "pos": "TE",
-     "now": 4.3,
-     "nxt": 0.0,
-     "fwd": 10.3,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Kalif Raymond",
-     "team": "CHI",
-     "pos": "WR",
-     "now": 4.0,
-     "nxt": 0.0,
-     "fwd": 12.0,
-     "acq": "Waivers, clears Oct 14"
-    },
-    {
-     "name": "Roman Wilson",
-     "team": "PIT",
-     "pos": "WR",
-     "now": 3.9,
-     "nxt": 0.0,
-     "fwd": 11.5,
-     "acq": "Free agent"
-    }
-   ],
-   "ir": false,
-   "bench": false
-  }
- ]
+ "qcont": []
 }

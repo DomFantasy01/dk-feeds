@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-10-11T12:53:35.081415-07:00",
- "run_str": "Sun Oct 11, 12:53 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 7:25 AM PT \u00b7 stats nflverse Sun 12:53 PM PT",
+ "run": "2026-10-11T12:59:22.523234-07:00",
+ "run_str": "Sun Oct 11, 12:59 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 12:56 PM PT \u00b7 stats nflverse Sun 12:59 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -54,7 +54,7 @@
    "key": "need:TE:fill:short",
    "age": 2,
    "gap": null,
-   "head": "Tough Draws for the Tight End Spot",
+   "head": "The Tight End Spot Runs Thin",
    "title": "TE, Weeks 5, 9, 12, 16 Fill",
    "target": "Target 10.0 pts",
    "why": "Full strength ~12.9 (Kraft). Wk 5 Kraft ~9.7 (hard matchup vs CHI) \u00b7 Wk 9 Kelce ~10.0 (Kraft has a worse matchup) \u00b7 Wk 12 Kelce ~10.7 (Kraft has a worse matchup) \u00b7 Wk 16 Kraft ~9.7 (hard matchup vs CHI).",
@@ -65,7 +65,7 @@
      "team": "CIN",
      "pos": "TE",
      "scores": "18.8, 12.7, 13.0",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.3 a game",
      "when": "Wk 5",
      "urg": "red",
@@ -77,7 +77,7 @@
      "team": "NYJ",
      "pos": "TE",
      "scores": "11.4, 3.7, 23.5, 0.0",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Workload up from 5.2 to 8.8 expected a game",
      "when": "Wk 9",
      "urg": "gold",
@@ -109,7 +109,7 @@
      "team": "CHI",
      "pos": "WR",
      "scores": "16.4, 9.0, 21.0, 2.6",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~12.0 a game",
      "when": "Wk 6",
      "urg": "red",
@@ -235,7 +235,7 @@
    "title": "DEF2, Week 11 Fill",
    "target": "Target 9.4 pts",
    "why": "Seahawks on bye; ideally ~9 (Seahawks' level) \u2014 anything beats zero.",
-   "across": "Wk 11 Jaguars ~12.3 vs Seahawks ~0.0",
+   "across": "Wk 11 Jacksonville ~12.3 vs Seahawks ~0.0",
    "picks": [
     {
      "name": "CHI DEF",
@@ -284,7 +284,7 @@
      "team": "CLE",
      "pos": "K",
      "scores": "4, 13, 9, 12",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.6 a game",
      "when": "Wk 13",
      "urg": "gold",
@@ -296,7 +296,7 @@
      "team": "NYG",
      "pos": "K",
      "scores": "4, 8, 12, 14",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~11.8 a game",
      "when": "Wk 13",
      "urg": "gold",
@@ -363,7 +363,7 @@
    "name": "Dominic Zvada",
    "team": "NYG",
    "pos": "K",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 28.3,
    "pgain": 3.1
   },
@@ -387,7 +387,7 @@
    "name": "Andre Szmyt",
    "team": "CLE",
    "pos": "K",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 21.0,
    "pgain": 0.1
   }
@@ -395,7 +395,11 @@
  "priced": {
   "casekeenum": {
    "fwd": 27.4,
-   "gain": 0.0
+   "gain": 5.7
+  },
+  "brianrobinson": {
+   "fwd": 11.4,
+   "gain": 1.7
   },
   "tylerhigbee": {
    "fwd": 13.1,
@@ -421,10 +425,6 @@
    "fwd": 10.0,
    "gain": 0.0
   },
-  "malikwashington": {
-   "fwd": 12.3,
-   "gain": 0.0
-  },
   "tyquanthornton": {
    "fwd": 11.0,
    "gain": 0.0
@@ -444,31 +444,11 @@
  },
  "qcont": [
   {
-   "name": "Justin Jefferson",
-   "slot": "WR3",
-   "tag": "Q",
-   "val": 13.6,
-   "loss": 1.7,
-   "fills": [],
-   "ir": false,
-   "bench": false
-  },
-  {
    "name": "Zay Flowers",
    "slot": "WR1",
    "tag": "Q",
    "val": 18.4,
    "loss": 6.4,
-   "fills": [],
-   "ir": false,
-   "bench": false
-  },
-  {
-   "name": "Terry McLaurin",
-   "slot": "WR",
-   "tag": "Q",
-   "val": 12.0,
-   "loss": 0.0,
    "fills": [],
    "ir": false,
    "bench": false

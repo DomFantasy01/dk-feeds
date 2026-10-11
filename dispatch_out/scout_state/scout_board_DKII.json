@@ -1,8 +1,8 @@
 {
  "league": "DK II",
- "run": "2026-10-11T12:53:24.109790-07:00",
- "run_str": "Sun Oct 11, 12:53 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 7:25 AM PT \u00b7 stats nflverse Sun 12:53 PM PT",
+ "run": "2026-10-11T12:59:14.395526-07:00",
+ "run_str": "Sun Oct 11, 12:59 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Oct 11, 12:56 PM PT \u00b7 stats nflverse Sun 12:59 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -12,9 +12,9 @@
    "gap": null,
    "head": "The Backfield Runs Thin",
    "title": "RB1, Weeks 5, 8, 10, 12, 14 Fill",
-   "target": "Target 14.8 pts",
-   "why": "Full strength ~13.4 (Kamara). Wk 5 Montgomery ~11.9 (Kamara moves up to RB2, Montgomery slides in) \u00b7 Wk 8 Lloyd ~12.4 (Kamara on bye, Lloyd slides in) \u00b7 Wk 10 Etienne ~17.5 (Kamara moves up to RB2, Etienne slides in) \u00b7 Wk 12 Etienne ~14.6 (Kamara moves up to FLEX, Etienne slides in) \u00b7 Wk 14 Etienne ~17.5 (Kamara moves up to RB2, Etienne slides in).",
-   "across": "Wk 5 Taylor ~28.5 vs Montgomery ~11.9 \u00b7 Wk 8 Williams ~20.4 vs Lloyd ~12.4 \u00b7 Wk 10 McCaffrey ~27.8 vs Etienne ~17.5 \u00b7 Wk 12 Williams ~28.5 vs Etienne ~14.6 \u00b7 Wk",
+   "target": "Target 14.7 pts",
+   "why": "Full strength ~13.4 (Kamara). Wk 5 Kamara ~11.4 (hard matchup vs MIN) \u00b7 Wk 8 Lloyd ~12.4 (Kamara on bye, Lloyd slides in) \u00b7 Wk 10 Etienne ~17.5 (Kamara moves up to RB2, Etienne slides in) \u00b7 Wk 12 Etienne ~14.6 (Kamara moves up to FLEX, Etienne slides in) \u00b7 Wk 14 Etienne ~17.5 (Kamara moves up to RB2, Etienne slides in).",
+   "across": "Wk 5 Taylor ~28.5 vs Kamara ~11.4 \u00b7 Wk 8 Williams ~20.4 vs Lloyd ~12.4 \u00b7 Wk 10 McCaffrey ~27.8 vs Etienne ~17.5 \u00b7 Wk 12 Williams ~28.5 vs Etienne ~14.6 \u00b7 Wk 14 ",
    "picks": [
     {
      "name": "Chris Rodriguez Jr.",
@@ -25,14 +25,14 @@
      "why": "Current level ~9.1 a game",
      "when": "Wk 8",
      "urg": "gold",
-     "gain": 1.5,
+     "gain": 2.0,
      "pgain": 0.0
     }
    ],
    "none": null,
    "kill": "Drops Off After Wk 14",
    "rows": [
-    "David Montgomery"
+    "Alvin Kamara"
    ],
    "rep": 0
   },
@@ -57,7 +57,7 @@
      "why": "Current level ~9.1 a game",
      "when": "Wk 8",
      "urg": "gold",
-     "gain": 1.5,
+     "gain": 2.0,
      "pgain": 0.0
     }
    ],
@@ -65,6 +65,50 @@
    "kill": "Drops Off After Wk 14",
    "rows": [
     "MarShawn Lloyd"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:FLEX:fill:short",
+   "age": 2,
+   "gap": null,
+   "head": "The Flex Runs Thin",
+   "title": "FLEX, Weeks 5, 8-10, 12, 14 Fill",
+   "target": "Target 10.3 pts",
+   "why": "Full strength ~11.1 (Lloyd). Wk 5 Allen ~9.0 (Lloyd moves up to RB2, Allen slides in) \u00b7 Wk 8 Andrews ~10.0 (Lloyd moves up to RB1, Andrews slides in) \u00b7 Wk 9 Kamara ~10.1 (Lloyd has a worse matchup) \u00b7 Wk 10 Montgomery ~10.7 (Lloyd has a worse matchup) \u00b7 Wk 12 Kamara ~10.4 (Lloyd has a worse matchup) \u00b7 Wk 14 Andrews ~11.8 (Lloyd has a worse matchup).",
+   "across": "Wk 5 Shaheed ~6.9 vs Allen ~9.0 \u00b7 Wk 8 Warren ~14.7 vs Andrews ~10.0 \u00b7 Wk 9 Hall ~16.4 vs Kamara ~10.1 \u00b7 Wk 10 Skattebo ~15.5 vs Montgomery ~10.7 \u00b7 Wk 12 Monang",
+   "picks": [
+    {
+     "name": "Tre Harris",
+     "team": "LAC",
+     "pos": "WR",
+     "scores": "5.0, 6.3, 13.6, 9.0",
+     "acq": "Free agent",
+     "why": "Door open: Quentin Johnston out; workload up from 7.7 to 11.6 expected a game",
+     "when": "Wks 8-10, Wk 12",
+     "urg": "gold",
+     "gain": 43.9,
+     "pgain": 1.2
+    },
+    {
+     "name": "Adonai Mitchell",
+     "team": "NYJ",
+     "pos": "WR",
+     "scores": "9.0, 12.3",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
+     "when": "Wk 8, Wk 10, Wk 14",
+     "urg": "gold",
+     "gain": 50.3,
+     "pgain": 7.4
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 14",
+   "rows": [
+    "Braelon Allen"
    ],
    "rep": 0
   },
@@ -89,7 +133,7 @@
      "why": "Door open: Quentin Johnston out; workload up from 7.7 to 11.6 expected a game",
      "when": "Wk 6, Wks 9-11",
      "urg": "red",
-     "gain": 43.2,
+     "gain": 43.9,
      "pgain": 1.2
     },
     {
@@ -97,7 +141,7 @@
      "team": "NYJ",
      "pos": "WR",
      "scores": "9.0, 12.3",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
      "when": "Wk 6, Wks 10-11",
      "urg": "red",
@@ -129,11 +173,11 @@
      "team": "CIN",
      "pos": "TE",
      "scores": "18.8, 12.7, 13.0",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.3 a game",
      "when": "Wk 13, Wk 15",
      "urg": "gold",
-     "gain": 12.6,
+     "gain": 13.5,
      "pgain": 2.5
     },
     {
@@ -141,11 +185,11 @@
      "team": "NYJ",
      "pos": "TE",
      "scores": "11.6, 3.7, 23.5, 0.0",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Workload up from 5.4 to 8.8 expected a game",
      "when": "Wk 9, Wk 15",
      "urg": "gold",
-     "gain": 8.7,
+     "gain": 9.6,
      "pgain": 2.1
     }
    ],
@@ -173,7 +217,7 @@
      "team": "NYJ",
      "pos": "WR",
      "scores": "9.0, 12.3",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
      "when": "Wk 6",
      "urg": "red",
@@ -217,48 +261,6 @@
    "rows": [
     "Courtland Sutton"
    ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:FLEX:fill:short",
-   "age": 2,
-   "gap": null,
-   "head": "The Flex Runs Thin",
-   "title": "FLEX, Weeks 8-10, 12, 14 Fill",
-   "target": "Target 10.6 pts",
-   "why": "Full strength ~11.1 (Lloyd). Wk 8 Andrews ~10.0 (Lloyd moves up to RB1, Andrews slides in) \u00b7 Wk 9 Kamara ~10.1 (Lloyd has a worse matchup) \u00b7 Wk 10 Montgomery ~10.7 (Lloyd has a worse matchup) \u00b7 Wk 12 Kamara ~10.4 (Lloyd has a worse matchup) \u00b7 Wk 14 Andrews ~11.8 (Lloyd has a worse matchup).",
-   "across": "Wk 8 Warren ~14.7 vs Andrews ~10.0 \u00b7 Wk 9 Hall ~16.4 vs Kamara ~10.1 \u00b7 Wk 10 Skattebo ~15.5 vs Montgomery ~10.7 \u00b7 Wk 12 Monangai ~16.9 vs Kamara ~10.4 \u00b7 Wk 14 J",
-   "picks": [
-    {
-     "name": "Tre Harris",
-     "team": "LAC",
-     "pos": "WR",
-     "scores": "5.0, 6.3, 13.6, 9.0",
-     "acq": "Free agent",
-     "why": "Door open: Quentin Johnston out; workload up from 7.7 to 11.6 expected a game",
-     "when": "Wks 8-10, Wk 12",
-     "urg": "gold",
-     "gain": 43.2,
-     "pgain": 1.2
-    },
-    {
-     "name": "Adonai Mitchell",
-     "team": "NYJ",
-     "pos": "WR",
-     "scores": "9.0, 12.3",
-     "acq": "Free agent",
-     "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
-     "when": "Wk 8, Wk 10, Wk 14",
-     "urg": "gold",
-     "gain": 50.3,
-     "pgain": 7.4
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 14",
-   "rows": [],
    "rep": 0
   },
   {
@@ -320,7 +322,7 @@
      "team": "NYG",
      "pos": "K",
      "scores": "4, 8, 12, 14",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~11.8 a game",
      "when": "Wk 7, Wk 10",
      "urg": "gold",
@@ -332,7 +334,7 @@
      "team": "CLE",
      "pos": "K",
      "scores": "4, 13, 9, 12",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~10.6 a game",
      "when": "Wk 7, Wk 10",
      "urg": "gold",
@@ -421,7 +423,7 @@
      "team": "LV",
      "pos": "K",
      "scores": "10, 8, 12, 16",
-     "acq": "Free agent",
+     "acq": "Waivers, clears Oct 14",
      "why": "Current level ~13.0 a game",
      "when": "Wk 11",
      "urg": "gold",
@@ -463,7 +465,7 @@
     "why": "Getting 11.4 expected but scoring 7.4",
     "when": "Wk 6, Wks 10-12, Wks 14-15",
     "urg": "gold",
-    "gain": 40.4,
+    "gain": 41.1,
     "pgain": 2.5
    },
    "act": true
@@ -479,7 +481,7 @@
     "team": "MIA",
     "pos": "WR",
     "scores": "14.4, 3.9",
-    "acq": "Free agent",
+    "acq": "Waivers, clears Oct 14",
     "why": "Due back Wk 6 (listed Out)",
     "when": "Wks 9-11",
     "urg": "gold",
@@ -555,7 +557,7 @@
    "name": "Matt Gay",
    "team": "LV",
    "pos": "K",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 51.7,
    "pgain": 9.6
   },
@@ -563,7 +565,7 @@
    "name": "Adonai Mitchell",
    "team": "NYJ",
    "pos": "WR",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 50.3,
    "pgain": 7.4
   },
@@ -587,7 +589,7 @@
    "name": "Dominic Zvada",
    "team": "NYG",
    "pos": "K",
-   "acq": "Free agent",
+   "acq": "Waivers, clears Oct 14",
    "gain": 44.2,
    "pgain": 5.4
   }
@@ -595,11 +597,11 @@
  "priced": {
   "casekeenum": {
    "fwd": 27.7,
-   "gain": 0.0
+   "gain": 3.4
   },
   "tylerhigbee": {
    "fwd": 13.1,
-   "gain": 11.3
+   "gain": 12.2
   },
   "brentonstrange": {
    "fwd": 10.0,
@@ -631,7 +633,7 @@
   },
   "treharris": {
    "fwd": 10.7,
-   "gain": 43.2
+   "gain": 43.9
   },
   "antoniowilliams": {
    "fwd": 7.7,
@@ -703,7 +705,7 @@
   },
   "xavierhutchinson": {
    "fwd": 9.9,
-   "gain": 40.4
+   "gain": 41.1
   },
   "jakobilane": {
    "fwd": 5.8,
@@ -758,64 +760,5 @@
    "gain": 6.8
   }
  },
- "qcont": [
-  {
-   "name": "Alvin Kamara",
-   "slot": "RB2",
-   "tag": "Q",
-   "val": 11.4,
-   "loss": 2.4,
-   "fills": [
-    {
-     "name": "Kimani Vidal",
-     "team": "LAC",
-     "pos": "RB",
-     "now": 1.1,
-     "nxt": 0.0,
-     "fwd": 9.3,
-     "acq": "Free agent"
-    }
-   ],
-   "ir": true,
-   "bench": false
-  },
-  {
-   "name": "Ja'Marr Chase",
-   "slot": "WR2",
-   "tag": "Q",
-   "val": 16.8,
-   "loss": 16.8,
-   "fills": [
-    {
-     "name": "Xavier Hutchinson",
-     "team": "HOU",
-     "pos": "WR",
-     "now": 10.1,
-     "nxt": 10.5,
-     "fwd": 9.9,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Tre Harris",
-     "team": "LAC",
-     "pos": "WR",
-     "now": 10.0,
-     "nxt": 8.9,
-     "fwd": 10.7,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Konata Mumpfield",
-     "team": "LA",
-     "pos": "WR",
-     "now": 9.1,
-     "nxt": 8.8,
-     "fwd": 8.1,
-     "acq": "Free agent"
-    }
-   ],
-   "ir": true,
-   "bench": false
-  }
- ]
+ "qcont": []
 }
