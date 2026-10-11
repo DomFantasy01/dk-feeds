@@ -52,7 +52,7 @@ def _wx_load(week):
         WX_PULLED=now
     except Exception as ex: WX_NOTE="forecast not reached this build ("+str(ex)[:50]+")"; fc={}
     for x in games:
-        w=dict(roof=x["roof"],ko=x["ko"].isoformat(),sky=None,flag=False,why=[])
+        w=dict(roof=x["roof"],ko=x["ko"].isoformat(),game=f"{x['away']} @ {x['home']}",sky=None,flag=False,why=[])
         H=fc.get(x["home"])
         if x["roof"]!="dome" and H:
             k=x["ko"].strftime("%Y-%m-%dT%H:00"); i=H["time"].index(k) if k in H["time"] else None
@@ -74,6 +74,10 @@ def _wx_load(week):
         bad=sorted({f"{x['away']} at {x['home']}" for x in games if WX[x['home']].get("flag")})
         WX_NOTE=(f"the picture beside each opponent is the sky at kickoff, Open-Meteo {pt:%a} {pt.hour%12 or 12}:{pt:%M} {'AM' if pt.hour<12 else 'PM'} PT. "
                  "Red = it can move the game"+(" ("+", ".join(bad)+")" if bad else " (none this week)")+". Dome = indoors.")
+    try:                                                                  # the same read for Dark Knight Live (Oct 11): dispatch_run.sh copies it to dispatch_out
+        _wj.dump({"week":int(week),"pulled":WX_PULLED.isoformat() if WX_PULLED else None,"teams":WX},
+                 open(f"/home/claude/dksys/data/latest/weather_wk{int(week)}.json","w"))
+    except Exception: pass
 # ---- the pictures (about the size of a lowercase letter; centered at cx, cy)
 def wx_icon(c,cx,cy,w,s=7.0):
     from reportlab.lib.colors import HexColor as _H
