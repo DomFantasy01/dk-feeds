@@ -355,3 +355,49 @@ patch(f"{R}/cand/redesign/fr17c.py",[
  ('note(c,NX,ny-20,"Numbers"','note(c,NX,ny-2*_ns,"Numbers"',1),
  ('note(c,NX,ny-30,"Weather"','note(c,NX,ny-3*_ns,"Weather"',1),
 ],"OCT11 fr weather")
+# ---------- 19 (Dom, Sun Oct 11) the Dispatch matches Dark Knight Live: his icon right after the title on every page
+# (no ring), and the short one-line league names he chose - Most Important, Winners Sinners, Hers His Ver 2.0, Murrieta NXTDR
+patch(f"{R}/cand/redesign/_masthead_field.py",[
+ ('txt(c,M,Ht-44,PZ_TITLE,"Bebas",34,PAPER)',
+  'txt(c,M,Ht-44,PZ_TITLE,"Bebas",34,PAPER)\n'
+  '    if "dk_icon" not in globals(): exec(open("/home/claude/cand/redesign/_dkicon.py").read(),globals())\n'
+  '    dk_icon(c,M+c.stringWidth(PZ_TITLE,"Bebas",34)+9,Ht-47,29)   # Oct 11 (Dom): the icon after the title',1),
+],"OCT11 icon pages")
+patch(f"{R}/cand/global/_mast33.py",[
+ ('txt(c,M+P,Ht-44,N["PZ_TITLE"],"Bebas",34,PAPER)',
+  'txt(c,M+P,Ht-44,N["PZ_TITLE"],"Bebas",34,PAPER)\n'
+  '    if "dk_icon" not in N: exec(open("/home/claude/cand/redesign/_dkicon.py").read(),N)\n'
+  '    N["dk_icon"](c,M+P+c.stringWidth(N["PZ_TITLE"],"Bebas",34)+9,Ht-47,29)   # Oct 11 (Dom): the icon after the title',1),
+],"OCT11 icon front")
+_SHORT='{"DK I":"Most Important","DK II":"Winners Sinners","DK III":"Hers His Ver 2.0","DK IV":"Murrieta NXTDR"}'
+patch(f"{R}/cand/global/global33.py",[
+ ('FULL={"DK I":"TheMostImportantThingInLife","DK II":"Winners and Sinners","DK III":"Hers and His Version 2.0","DK IV":"Murrieta NextDoor"}',
+  'FULL='+_SHORT+'   # Oct 11 (Dom): short one-line names, same as Dark Knight Live',1),
+],"OCT11 short names front")
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('_TEAMS={"DK I":"TheMostImportantThingInLife","DK II":"Winners and Sinners","DK III":"Hers and His Version 2.0","DK IV":"Murrieta NextDoor"}',
+  '_TEAMS='+_SHORT+'   # Oct 11 (Dom): short one-line names, same as Dark Knight Live',1),
+],"OCT11 short names pages")
+# ---------- 20 (Dom, Sun Oct 11) front page, two fixes matching Dark Knight Live:
+#  a. the flagpole (the white now edge) stops just above the higher of the two flags, wherever the ridges are now -
+#     it no longer climbs to the tallest mountain at that hour and stays up there.
+#  b. a meter says WON or LOST (FINAL) as soon as the matchup is decided: every starter on both sides has a final game,
+#     even if Monday night still has games for other teams. Same gauge, same room as the end-of-week result.
+patch(f"{R}/cand/global/global33.py",[
+ ('yt=min(CEIL,max(max(tops),max(ridge_at(P,bx) for P in PS.values())+2))',
+  'yt=min(CEIL,max(tops)+2)   # Oct 11 (Dom): the pole ends just above the flags, not at the tallest ridge',3),
+ ('    ACT[lab]=dict(me=_bank(sm),op=_bank(so))',
+  '    ACT[lab]=dict(me=_bank(sm),op=_bank(so))\n'
+  '    DEC[lab]=all(p["window"] is None or p["window"]<DONE for p in sm+so)   # Oct 11 (Dom): nobody left to play on either side',1),
+ ('YL,YAH,MOD,EFF,COMP,ACT={},{},{},{},{},{}','YL,YAH,MOD,EFF,COMP,ACT,DEC={},{},{},{},{},{},{}',1),
+ ('    FIN=done>=NW\n','    FIN=done>=NW or DEC.get(D["lab"],False)   # Oct 11 (Dom): WON / LOST once decided\n',1),
+],"OCT11 pole and decided")
+# ---------- 21 (Dom, Sun Oct 11) one masthead on every page: the inner pages get the front page's band -
+# inside the margins, rounded corners, the same height, the same gold rule under it.
+patch(f"{R}/cand/redesign/_masthead_field.py",[
+ ('def masthead(c,section,sub):\n    c.setFillColor(PAPER);c.rect(0,0,W,Ht,stroke=0,fill=1)\n    c.setFillColor(INKN);c.rect(0,Ht-MH,W,MH,stroke=0,fill=1)\n    txt(c,M,Ht-44,PZ_TITLE,"Bebas",34,PAPER)\n    if "dk_icon" not in globals(): exec(open("/home/claude/cand/redesign/_dkicon.py").read(),globals())\n    dk_icon(c,M+c.stringWidth(PZ_TITLE,"Bebas",34)+9,Ht-47,29)   # Oct 11 (Dom): the icon after the title\n    c.setFillColor(SUN[1]);c.rect(M,Ht-56,c.stringWidth(section,"Bebas",15),1.6,stroke=0,fill=1)   # Oct 10: the bar spans the section name\n    txt(c,M,Ht-74,section,"Bebas",15,SUN[1])\n    _sx=M+c.stringWidth(section,"Bebas",15)+10; _wk=globals().get("WEEKN")\n    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub\n    if "asof_line" not in globals(): exec(open("/home/claude/cand/redesign/_asof.py").read(),globals())\n    asof_line(c,_sx,Ht-73.5,sub,W-M-9-108-10)   # Oct 10: As of + stoplight on every page\n    i=_pz_idx(section);lg=_pz_league(section);col=LG[lg] if lg else SUN[1]\n    puzzle(c,i,col)                                   # Last Updated retired from the masthead - freshness moves to each block\n    c.setFillColor(SUN[1]);c.rect(0,Ht-MH-3,W,3,stroke=0,fill=1)',
+  'def masthead(c,section,sub):\n    # Oct 11 (Dom): every page carries the front page\'s masthead - inside the margins, rounded, the same size\n    c.setFillColor(PAPER);c.rect(0,0,W,Ht,stroke=0,fill=1)\n    P=12;top=Ht-8;bot=top-MH+8\n    c.setFillColor(INKN);c.roundRect(M,bot,W-2*M,top-bot,5,stroke=0,fill=1)\n    txt(c,M+P,Ht-44,PZ_TITLE,"Bebas",34,PAPER)\n    if "dk_icon" not in globals(): exec(open("/home/claude/cand/redesign/_dkicon.py").read(),globals())\n    dk_icon(c,M+P+c.stringWidth(PZ_TITLE,"Bebas",34)+9,Ht-47,29)\n    c.setFillColor(SUN[1]);c.rect(M+P,Ht-56,c.stringWidth(section,"Bebas",15),1.6,stroke=0,fill=1)\n    txt(c,M+P,Ht-72,section,"Bebas",15,SUN[1])\n    _sx=M+P+c.stringWidth(section,"Bebas",15)+10; _wk=globals().get("WEEKN")\n    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub\n    if "asof_line" not in globals(): exec(open("/home/claude/cand/redesign/_asof.py").read(),globals())\n    asof_line(c,_sx,Ht-71.5,sub,W-M-9-108-(M+4)-12)   # stops short of the puzzle where it really sits\n    i=_pz_idx(section);lg=_pz_league(section);col=LG[lg] if lg else SUN[1]\n    c.saveState();p=c.beginPath();p.roundRect(M,bot,W-2*M,top-bot,5);c.clipPath(p,stroke=0)\n    c.translate(-(M+4),-4);puzzle(c,i,col);c.restoreState()\n    c.setFillColor(SUN[1]);c.rect(M,bot-3,W-2*M,2.2,stroke=0,fill=1)',1),
+],"OCT11 inset masthead")
+patch(f"{R}/cand/global/_mast33.py",[
+ ('sub,W-M-9-108-10-P)','sub,W-M-9-108-(M+4)-12)   # Oct 11: stops short of the puzzle where it really sits',1),
+],"OCT11 front asof room")
