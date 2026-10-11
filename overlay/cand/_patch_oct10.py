@@ -193,3 +193,123 @@ patch(f"{R}/dksys/scout/scout_engine.py",[
 patch(f"{R}/cand/redesign/_fr_positions18.py",[
  ('"What each man is for — the roster, and the free agents who came through a door"','"What each man is for, and the free agents worth a look"',1),
 ],"OCT10c positions sub")
+
+# ---------- 13 (Dom, Sat Oct 10 night) the Positions chart and the Scout must agree on who is available ----------
+#  - the Positions engine took ownership from the Oct 1 blend (plus an Oct 2 spot check): a man rostered since then
+#    (Roman Wilson and Marvin Harrison Jr. in DK II) still showed as a free agent on the chart. Ownership now comes from
+#    the newest Yahoo read of every team in the league (the Scout's roster read), waivers from the same read.
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ("OF=json.load(open('/home/claude/dksys/engine/own_fresh_oct2.json')); OFCHK={norm(n) for n in OF['_checked']}\n",
+  "OF=json.load(open('/home/claude/dksys/engine/own_fresh_oct2.json')); OFCHK={norm(n) for n in OF['_checked']}\n"
+  "# Oct 10 night (Dom): who owns whom = the newest Yahoo read of every team in the league, not the Oct 1 blend\n"
+  "_LIVE={};_WV={}\n"
+  "for _n,_lb in ((1,'DK I'),(2,'DK II'),(3,'DK III'),(4,'DK IV')):\n"
+  "    _f=f'/home/claude/dksys/scout/dk{_n}_rosters_live.txt'\n"
+  "    if os.path.exists(_f): _LIVE[_lb]={norm(l.split('|')[2]):l.split('|')[0] for l in open(_f) if l.strip() and not l.startswith('#') and l.count('|')>=4}\n"
+  "    _w=f'/home/claude/dksys/scout/dk{_n}_waivers.txt'\n"
+  "    if os.path.exists(_w): _WV[_lb]={norm(x.split('/')[0]) for l in open(_w) if not l.startswith('#') for x in l.strip().split('|') if x}\n",1),
+ ("        rows.append(dict(player=r.player,k=r.k,pos=r.pos,team=team,own=own,",
+  "        if _LIVE.get(lab) and r.k not in mine: own=('T'+_LIVE[lab][r.k]) if r.k in _LIVE[lab] else ('W' if r.k in _WV.get(lab,()) else 'FA')   # Oct 10 night: live Yahoo read wins\n"
+  "        rows.append(dict(player=r.player,k=r.k,pos=r.pos,team=team,own=own,",1),
+],"OCT10d live ownership")
+#  - the Scout now prices every free agent the Positions chart shows (its "doors" list), even below its own 6-a-game
+#    floor, so a man on the chart is never missing from the Scout's board without a stated reason. Anyone on the chart
+#    the Scout does not recommend is named under "Checked, Not Assumed" with his points added and real level.
+#  - every Scout pick carries its position.
+#  - a Questionable (or Doubtful) starter gets a contingency: what the lineup loses if he sits, whether the open IR slot
+#    can hold him, and the best free-agent fills for this week and next, by points added.
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('cands=[k for k in PL if k not in taken and PL[k]["fwd"]>=(5 if PL[k]["pos"] in ("K","DEF") else 6) and norm(PL[k]["name"]) not in SEASON_OUT]\n',
+  'cands=[k for k in PL if k not in taken and PL[k]["fwd"]>=(5 if PL[k]["pos"] in ("K","DEF") else 6) and norm(PL[k]["name"]) not in SEASON_OUT]\n'
+  '# Oct 10 night (Dom): the Positions chart\'s free agents (its doors list) are priced here too, floor or not\n'
+  'DOORS={}\n'
+  'try:\n'
+  '    import io as _io, contextlib as _cl\n'
+  '    sys.path.insert(0,"/home/claude/dksys/engine"); _av=sys.argv[:]; sys.argv=["engine3v.py",str(NOW)]; _cwd=os.getcwd(); os.chdir("/home/claude/dksys/engine")\n'
+  '    with _cl.redirect_stdout(_io.StringIO()):\n'
+  '        import engine3v as _E3\n'
+  '        _R3,_O3,_=_E3.run(CF["lab"])\n'
+  '    os.chdir(_cwd); sys.argv=_av\n'
+  '    for _o in _O3.itertuples():\n'
+  '        _k=find(_o.player,_o.team,_o.pos)\n'
+  '        if _k and _k not in taken: DOORS[_k]=dict(why=_o.why.split(" (")[0],doors=_o.doors)\n'
+  '    cands=list(dict.fromkeys(cands+[k for k in DOORS if norm(PL[k]["name"]) not in SEASON_OUT]))\n'
+  'except Exception as _ex: print("   scout: Positions doors not read -",_ex)\n',1),
+ ('    return dict(name=p["name"].replace(" defense"," DEF"),team=p["team"],scores=sc,',
+  '    return dict(name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,',1),
+ ('json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',
+  '_named={p["name"] for it in BOARD["gate1"] for p in it["picks"]}|{it["pick"]["name"] for it in BOARD["gate2"]}\n'
+  '_chk=[]\n'
+  'for _k,_d in DOORS.items():\n'
+  '    _p=PL[_k]\n'
+  '    if _p["name"] in _named or killed(_p["name"]): continue\n'
+  '    _e=next((e for e in G2 if e["k"]==_k),None); _gn=round(sum(max(0.0,v) for v in _e["g"].values()),1) if _e else 0.0\n'
+  '    _chk.append((-_gn,f"{_p[\'name\']} ({_p[\'team\']} {_p[\'pos\']}) is on the Positions chart ({_d[\'why\'].rstrip(\'; \')}) — "+\n'
+  '        (f"adds ~{_gn:.0f} pts through Wk 17" if _gn>=1 else "adds nothing to the best lineup through Wk 17")+f", real level ~{_p[\'fwd\']:.1f} a game; ranks below the picks above"))\n'
+  'BOARD["checked"]+=[t for _,t in sorted(_chk)[:4]]   # the four with the most points added; the rest are on the chart\n'
+  '# Oct 10 night (Dom): a Questionable starter gets his contingency named - if he sits, what it costs and who fills it\n'
+  'BOARD["qcont"]=[]\n'
+  'for _i,_m in enumerate(MINE):                       # every man Yahoo has STARTING (the lineup as set) with a Q or D tag\n'
+  '    if _m["slot"] in ("BN","IR") or _m["ytag"] not in ("Q","D"): continue\n'
+  '    _v=vals(_m,NOW); _lab=next((l for l,j,v in LU[NOW] if j==_i),_m["pos"])\n'
+  '    _rest=[m for j,m in enumerate(MINE) if j!=_i]; _base=total(_rest,NOW); _loss=my[NOW]-_base; _fl=[]\n'
+  '    _okp=okfor(re.sub(r"\\d+$","",_lab))\n'
+  '    for _k in [k for k in cands if PL[k]["pos"] in _okp and not killed(PL[k]["name"])]:\n'
+  '        _nm=dict(key=_k,name=PL[_k]["name"],pos=PL[_k]["pos"],ytag="",slot="BN")\n'
+  '        _g0=total(_rest+[_nm],NOW)-_base; _g1=(total(MINE+[_nm],NOW+1)-my[NOW+1]) if NOW+1 in my else 0.0\n'
+  '        if _g0>=1: _fl.append(dict(name=PL[_k]["name"],team=PL[_k]["team"],pos=PL[_k]["pos"],now=round(_g0,1),nxt=round(_g1,1),fwd=round(PL[_k]["fwd"],1),\n'
+  '                                   acq=("Waivers, clears "+WAIV[_k[0]]) if _k[0] in WAIV else "Free agent"))\n'
+  '    _fl.sort(key=lambda d:-(d["now"]+d["nxt"]))\n'
+  '    BOARD["qcont"].append(dict(name=MINE[_i]["name"],slot=_lab,tag=MINE[_i]["ytag"],val=round(_v,1),loss=round(_loss,1),fills=_fl[:3],\n'
+  '                               ir=BOARD["open"]["ir"]>0,bench=BOARD["open"]["bench"]>0))\n'
+  'json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',1),
+],"OCT10d scout doors qcont")
+#  - the Scout page: name, team and position on every pick; the contingency box rides under Open Seats; the page
+#    measures exactly what it draws (item spacing, the Also on the Board line), so Checked, Not Assumed can never be
+#    pushed up into Gate 3 (the DK II overlap Dom found).
+patch(f"{R}/cand/redesign/_scout_page.py",[
+ ("""picks.append((p.get("urg","gold") if j==0 else None,f'<font name="PopB">{_esc(p["name"])}</font>, {_esc(p["team"])}  ·  Scored""",
+  """picks.append((p.get("urg","gold") if j==0 else None,f'{_pt(p)}  ·  Scored""",1),
+ ("""t=(f'<font name="PopB">{_esc(it["title"])}  ·  {_esc(p["name"])}</font>, {_esc(p["team"])}  ·  Scored""",
+  """t=(f'<font name="PopB">{_esc(it["title"])}</font>  ·  {_pt(p)}  ·  Scored""",1),
+ ("sum(_ph(t,_SCP,IW) for _,t in picks)+9","sum(_ph(t,_SCP,IW) for _,t in picks)+11",1),
+ ("-_open_h(B)\n","-_open_h(B)-(30 if len(B['gate1'])>3 else 0)   # Oct 10 night: room for the Also on the Board line\n",1),
+ ("    _para(c,chk,_SCS,M,max(y,BOT+chh),W-2*M)",
+  "    if y-chh<BOT: import sys as _sy; print('   SCOUT PAGE OVERFLOW',lab,round(BOT-(y-chh),1),'pt',file=_sy.stderr)   # never silently: the build log says so\n"
+  "    _para(c,chk,_SCS,M,max(y,BOT+chh),W-2*M)",1),
+],"OCT10d scout page fit")
+#  - the Positions page: full names on every ball; the Scout's picks plotted beside the doors' men; plates in words;
+#    the legend spells out the color scale (pale = a little, deep = a lot) and every plate word.
+patch(f"{R}/cand/redesign/_fr_positions18.py",[
+ ("PROT17={}\n","PROT17={}\nexec(open('/home/claude/cand/redesign/_oct11_pos.py').read())   # Oct 10 night: full names, Scout picks, plates in words\n",1),
+ ("        Op=O[O.pos==pos] if len(O) else O\n","        Op=_with_scout(O[O.pos==pos] if len(O) else O,R,pos,lab)\n",1),
+ ('            lb=last(p["nm"]) if lastc[last(p["nm"])]==1 else p["nm"].split()[0][0]+". "+last(p["nm"])\n','            lb=_fullnm(p["nm"])\n',1),
+ ('(TGRN,"rising — pale to deep by how hard")','(TGRN,"rising (pale = a little, deep = a lot)")',1),
+ ('(TRED,"falling")','(TRED,"falling (pink = a little, red = a lot)")',1),
+ ('"Movement = his last two games, the latest counting most, against his own earlier average.   How long:  ROS = rest of season · 3 WK = weeks · ? WK = unclear · BYE / INJ = cover"',
+  '"Movement = his last two games, the latest counting most, against his own earlier average.        SCOUT PICK = recommended on the Scout page"',1),
+ ('ph=(top-88)/2','ph=(top-98)/2',1),
+ ('LX=PM+19;ky=78;x=LX;f6=6.0','LX=PM+19;ky=88;x=LX;f6=6.0',1),
+ ('    _blot(x+5,ky+2,3.4,CARD,alpha(INKN,.55),.6);c.saveState();c.setStrokeColor(DOMV)',
+  '    ky-=10;x=LX+c.stringWidth("Legend:  ","PopB",6.2)   # Oct 10 night: the rings get their own line\n    _blot(x+5,ky+2,3.4,CARD,alpha(INKN,.55),.6);c.saveState();c.setStrokeColor(DOMV)',1),
+ ('"violet ring = yours"','"violet ring = on this roster"',2),
+ ('"gold ring = best at the position"','"gold ring = best at the position        BYE FILL / INJURY FILL = covers a bye or an injury on this roster"',1),
+ ('"What each man is for, and the free agents worth a look"','"Roles, and the free agents worth a look"',1),
+ ('    txt(c,x4,ky,"Why he\'s here:","Pop",f6,GR);x4+=c.stringWidth("Why he\'s here:  ","Pop",f6)\n    for g_,lb in (("USAGE","usage up"),("EVENT","role opened"),("EVENT?","role may open"),("COVER","fills a hole"),("MARKET","market rising")):\n        dglyph(x4+GS/2,ky+2,g_);txt(c,x4+GS+3,ky,lb,"Pop",f6,GR);x4+=GS+11+c.stringWidth(lb,"Pop",f6)\n',
+  '    txt(c,x4,ky,"Plate words:  USAGE UP = workload jumped  ·  ROLE OPENED = a teammate ahead of him is out (MAY OPEN = unconfirmed)  ·  MARKET UP = sources well above Gotham","Pop",f6,GR)\n',1),
+],"OCT10d positions words")
+#  - the Field Report: "F" is spelled out - the note is labeled Final and the banked number says FINAL.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('fn="NOW = Yahoo\'s projection for the lineup as set (F = final). Sleeper and Gotham are pre-game reads of the same men."',
+  'fn="a gold number marked FINAL is a game already played. NOW = Yahoo\'s projection for the lineup as set. Sleeper and Gotham are pre-game reads of the same men."',1),
+],"OCT10d field final")
+patch(f"{R}/cand/redesign/fr17c.py",[
+ ('note(c,NX,ny,"F",D["fnote"],6.2)','note(c,NX,ny,"Final",D["fnote"],6.2)',1),
+],"OCT10d fr final")
+#  - The Marks page: WHY HE'S HERE lists the plate words (the glyphs are gone from the plates); the Scout's spyglass gets
+#    its own rows - splat on the first day, then the day count, the Signal's rule.
+patch(f"{R}/cand/redesign/_fr_legend4.py",[
+ ('lhd(y,"WHY HE\'S HERE","Positions page  ·  how a free agent got onto your page  ·  one fact, one door");y-=19\nfor code,lab,mean in (("USAGE","USAGE UP","His playing time last game ran well above his earlier games."),\n                      ("EVENT","ROLE OPENED","The man ahead of him is out or moved, confirmed."),\n                      ("EVENT?","ROLE MAY OPEN","Same, but only a missed practice so far, no designation. Watch it."),\n                      ("COVER","FILLS A HOLE","He beats your best cover for a starter on bye or out, Weeks 4-7."),\n                      ("MARKET","MARKET RISING","The forecasters rate him well above what his usage says.")):\n    lrow_(y,lambda m,code=code:dglyph(GX+2,m,code,GS*1.6),lab,mean,"Positions page, on his plate");y-=RH\nnote(c,SX,y+3,"How long","ROS = rest of season; 2 WK = about two weeks; ? WK = unclear. BYE or INJ = what hole he covers.",6.2);y-=RH\n',
+  'lhd(y,"WHY HE\'S HERE","Positions page  ·  the words on a free agent\'s plate  ·  why he is on the chart, what he is for, how long");y-=19\nfor lab,mean in (("USAGE UP","His workload last game ran well above his earlier games."),\n                 ("ROLE OPENED","A teammate ahead of him is out or moved, confirmed."),\n                 ("ROLE MAY OPEN","Same, but only a missed practice so far, no designation. Watch it."),\n                 ("MARKET UP","The forecasters rate him well above what Gotham says."),\n                 ("BYE / INJURY FILL","He beats this roster\'s best cover for a starter on bye or out, Weeks 4-7."),\n                 ("ALL SEASON · 3 WEEKS","How long he should help. HOW LONG UNCLEAR when the opening has no end date."),\n                 ("SCOUT PICK","Recommended on the Scout page, plotted beside the men here.")):\n    lrow_(y,lambda m:None,lab,mean,"Positions page, on his plate");y-=RH\ny-=6\nlhd(y,"THE SCOUT\'S SPYGLASS","On the man a live Scout need is about  ·  color = how urgent the need is  ·  the Signal\'s life cycle: splat, then a day count");y-=19\ntry:\n    lrow_(y,lambda m:(scout_mark(c,GX-3,m+2.5,"red",0,7.2),scout_mark(c,GX+9,m+2.5,"gold",3,7.2)),"RED · GOLD","Red = act now, gold = watch. Splat = new today; 03 = three days on.","Field Report, Scout page");y-=RH+3\nexcept Exception as _ex: print("legend spyglass rows skipped:",_ex)\n',1),
+ ("RH=17\n","RH=15.4\n",1),
+],"OCT10d marks words")
