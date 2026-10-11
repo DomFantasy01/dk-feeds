@@ -2,7 +2,7 @@ name: DK projection test pull
 on:
   schedule:
     # every 2 hours, all day (UTC). Pacific = UTC-7 until Nov 1.
-    - cron: '15 */2 * * *'
+    - cron: '15 * * * *'   # Oct 11 (Dom): hourly - every 2 h left Sleeper 90 min stale on game days
   workflow_dispatch: {}
 permissions:
   contents: write
