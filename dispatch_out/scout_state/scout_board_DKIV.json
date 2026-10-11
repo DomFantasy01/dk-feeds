@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-10-10T19:52:05.415360-07:00",
- "run_str": "Sat Oct 10, 7:52 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 7:41 PM PT \u00b7 stats nflverse Sat 7:51 PM PT",
+ "run": "2026-10-10T20:46:14.850585-07:00",
+ "run_str": "Sat Oct 10, 8:46 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 7:41 PM PT \u00b7 stats nflverse Sat 8:46 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -23,7 +23,9 @@
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
      "when": "Wk 5, Wk 7, Wk 10, Wk 12, Wk 17",
-     "urg": "red"
+     "urg": "red",
+     "gain": 46.7,
+     "pgain": 4.8
     },
     {
      "name": "LAC DEF",
@@ -32,7 +34,9 @@
      "acq": "Free agent",
      "why": "Current level ~8.5 a game",
      "when": "Wk 5, Wks 12-13",
-     "urg": "red"
+     "urg": "red",
+     "gain": 24.0,
+     "pgain": 0.1
     }
    ],
    "none": null,
@@ -61,7 +65,9 @@
      "acq": "Free agent",
      "why": "Current level ~10.3 a game",
      "when": "Wk 5",
-     "urg": "red"
+     "urg": "red",
+     "gain": 6.1,
+     "pgain": 0.7
     },
     {
      "name": "Kenyon Sadiq",
@@ -70,7 +76,9 @@
      "acq": "Free agent",
      "why": "Workload up from 5.2 to 8.8 expected a game",
      "when": "Wk 9",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 4.8,
+     "pgain": 0.0
     }
    ],
    "none": null,
@@ -99,7 +107,9 @@
      "acq": "Free agent",
      "why": "Current level ~12.0 a game",
      "when": "Wk 6",
-     "urg": "red"
+     "urg": "red",
+     "gain": 8.6,
+     "pgain": 1.9
     },
     {
      "name": "Jakobi Meyers",
@@ -108,7 +118,9 @@
      "acq": "Free agent",
      "why": "Workload up from 2.4 to 10.4 expected a game",
      "when": "Wk 6",
-     "urg": "red"
+     "urg": "red",
+     "gain": 2.6,
+     "pgain": 0.0
     }
    ],
    "none": null,
@@ -190,7 +202,9 @@
      "acq": "Free agent",
      "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
      "when": "Wk 10",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 3.6,
+     "pgain": 0.0
     }
    ],
    "none": null,
@@ -217,7 +231,9 @@
      "acq": "Free agent",
      "why": "Current level ~8.9 a game",
      "when": "Wk 11",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 30.2,
+     "pgain": 0.0
     },
     {
      "name": "LV DEF",
@@ -226,7 +242,9 @@
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
      "when": "Wk 11",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 46.7,
+     "pgain": 4.8
     }
    ],
    "none": null,
@@ -253,7 +271,9 @@
      "acq": "Free agent",
      "why": "Current level ~10.6 a game",
      "when": "Wk 13",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 21.0,
+     "pgain": 0.1
     },
     {
      "name": "Dominic Zvada",
@@ -262,7 +282,9 @@
      "acq": "Free agent",
      "why": "Current level ~11.8 a game",
      "when": "Wk 13",
-     "urg": "gold"
+     "urg": "gold",
+     "gain": 28.3,
+     "pgain": 3.1
     }
    ],
    "none": null,
@@ -285,7 +307,9 @@
     "acq": "Free agent",
     "why": "Due back Wk 7 (IR minimum)",
     "when": "Wk 16",
-    "urg": "gold"
+    "urg": "gold",
+    "gain": 3.8,
+    "pgain": 3.5
    },
    "act": true
   }
@@ -294,5 +318,60 @@
  "checked": [
   "Downs ~11.4 to ~8.0 from Wk 7 \u2014 Alec Pierce checked: rostered by Alan's Team (IR)"
  ],
- "footer": "Protected (Dom's call): Travis Kelce \u00b7 Killed: Higbee (soft, two games)"
+ "footer": "Protected (Dom's call): Travis Kelce \u00b7 Killed: Higbee (soft, two games)",
+ "open": {
+  "start": 0,
+  "bench": 0,
+  "ir": 0
+ },
+ "adds": [
+  {
+   "name": "LV DEF",
+   "team": "LV",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 46.7,
+   "pgain": 4.8
+  },
+  {
+   "name": "CHI DEF",
+   "team": "CHI",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 30.2,
+   "pgain": 0.0
+  },
+  {
+   "name": "Dominic Zvada",
+   "team": "NYG",
+   "pos": "K",
+   "acq": "Free agent",
+   "gain": 28.3,
+   "pgain": 3.1
+  },
+  {
+   "name": "LAC DEF",
+   "team": "LAC",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 24.0,
+   "pgain": 0.1
+  },
+  {
+   "name": "Cam Little",
+   "team": "JAX",
+   "pos": "K",
+   "acq": "Free agent",
+   "gain": 21.3,
+   "pgain": 3.3
+  },
+  {
+   "name": "Andre Szmyt",
+   "team": "CLE",
+   "pos": "K",
+   "acq": "Free agent",
+   "gain": 21.0,
+   "pgain": 0.1
+  }
+ ]
 }
