@@ -80,6 +80,7 @@ w.add_page(PdfReader(f"{R}/cand/global/out/DK_Mountains_wk{W}.pdf").pages[0])
 for p in PdfReader(f"{R}/cand/global/out/DK_Dispatch_wk{W}_pages.pdf").pages: w.add_page(p)
 w.write(f"{R}/cand/global/out/Dark_Knight_Dispatch_Wk{W}.pdf"); print("assembled",len(w.pages),"pages")
 PYEOF
+if [ -f "$ROOT/cand/_footer_pass.py" ]; then python3 "$ROOT/cand/_footer_pass.py" "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk${W0}.pdf"; fi   # one footer on every page, Page N of M (Dom, Oct 10)
 W=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 mkdir -p "$REPO/dispatch_out"
 cp "$ROOT/cand/global/out/DK_Mountains_wk$W.pdf" "$REPO/dispatch_out/DK_Mountains_Wk${W}_latest.pdf"
