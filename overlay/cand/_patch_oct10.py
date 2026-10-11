@@ -418,3 +418,10 @@ patch(f"{R}/cand/redesign/_masthead_field.py",[
   '    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub\n'
   '    if "FIELD REPORT" in section.upper(): sub=f"Week {_wk}" if _wk else sub.split("  ·  ")[0]   # Oct 11 (Dom): too much up here',1),
 ],"OCT11 field report mast")
+# ---------- 24 (Sun Oct 11) a last-name fallback must also match the first initial: bench man Wan'Dale Robinson was
+# picking up starter Bijan Robinson's Yahoo number (22.9) on the Field Report. A bench man not in the live read stays blank.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('        if len(hit)>1 and team: hit=[d for d in hit if d["team"]==team] or hit',
+  '        _fi=norm(key)[:1]; hit=[d for d in hit if norm(d["name"])[:1]==_fi]   # Oct 11: same first initial, or no match\n'
+  '        if len(hit)>1 and team: hit=[d for d in hit if d["team"]==team] or hit',1),
+],"OCT11 lastname initial")
