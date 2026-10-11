@@ -1,7 +1,7 @@
 # ONE FOOTER ON EVERY PAGE (Dom, Sat Oct 10 2026). Runs on the assembled Dispatch after every build.
 # Each page generator drew its own footer (some none, some without a page number, all worded differently). This pass
 # covers the bottom band of every page and draws one identical footer: the report name, the week, the section the page
-# belongs to, when the Dispatch was built, and "Page N of M" - numbered across the whole assembled document.
+# belongs to, a centered Dark Knight Live button, and "Page N of M" - numbered across the whole assembled document.
 import sys, re, io, glob, json, datetime as dt
 from pypdf import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
@@ -33,15 +33,15 @@ for i,pg in enumerate(R.pages):
     W_=float(pg.mediabox.width); buf=io.BytesIO(); c=canvas.Canvas(buf,pagesize=(W_,float(pg.mediabox.height))); M=30
     c.setFillColor(PAPER); c.rect(0,0,W_,25.5,stroke=0,fill=1)                     # the old footer, whatever it was, goes under
     c.setStrokeColor(LINE); c.setLineWidth(.6); c.line(M,20,W_-M,20)
-    c.setFont("PopB",6.4); c.setFillColor(INKN); c.drawString(M,11,"DARK KNIGHT DISPATCH")
+    c.setFont("PopB",6.4); c.setFillColor(INKN); c.drawString(M,10.4,"DARK KNIGHT DISPATCH")
     x=M+c.stringWidth("DARK KNIGHT DISPATCH","PopB",6.4)+8
-    sec=section(pg); mid=f"Week {week}  ·  "+(sec+"  ·  " if sec else "")+built
-    c.setFont("Pop",5.8); c.setFillColor(GR); c.drawString(x,11,mid)
-    # a tappable button to Dark Knight Live, bottom right of every page (Dom, Oct 11)
-    lt="DARK KNIGHT LIVE  \u203a"; lw=c.stringWidth(lt,"PopB",6.0)+12; lx=W_-M-lw
-    c.setFillColor(INKN); c.roundRect(lx,6.6,lw,10.4,3,stroke=0,fill=1)
-    c.setFillColor(H("#EFD23E")); c.setFont("PopB",6.0); c.drawCentredString(lx+lw/2,9.6,lt)
-    c.linkURL(LIVE_URL,(lx,6.6,lx+lw,17.0),relative=0,thickness=0)
-    c.setFont("Pop",5.8); c.setFillColor(GR); c.drawRightString(lx-8,11,f"Page {i+1} of {N}")
+    sec=section(pg); mid=f"Week {week}"+("  ·  "+sec if sec else "")      # Oct 11 (Dom): no date stamp down here - each page carries its own where it belongs
+    c.setFont("Pop",5.8); c.setFillColor(GR); c.drawString(x,10.4,mid)
+    # the button to Dark Knight Live, centered, in the footer's own type size (Dom, Oct 11)
+    lt="DARK KNIGHT LIVE  \u203a"; lw=c.stringWidth(lt,"PopB",6.4)+14; lx=W_/2-lw/2
+    c.setFillColor(INKN); c.roundRect(lx,6.8,lw,11.2,3,stroke=0,fill=1)
+    c.setFillColor(H("#EFD23E")); c.setFont("PopB",6.4); c.drawCentredString(W_/2,10.4,lt)
+    c.linkURL(LIVE_URL,(lx,6.8,lx+lw,18.0),relative=0,thickness=0)
+    c.setFont("Pop",5.8); c.setFillColor(GR); c.drawRightString(W_-M,10.4,f"Page {i+1} of {N}")
     c.save(); buf.seek(0); pg.merge_page(PdfReader(buf).pages[0]); w.add_page(pg)
 w.write(src); print("   footers: one footer on all",N,"pages, numbered 1 to",N)
