@@ -345,3 +345,13 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
  ('_SLOTN={"W/R/T":"FLX","Q/W/R/T":"SFLX"}','_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
  ('\'(OPP,"OPP","NOW")\'','\'(OPP,"THEIR MAN","NOW")\'',1),
 ],"OCT10f slot words")
+# ---------- 18 (Dom, Sun Oct 11) game weather on the Field Report: a picture beside each opponent, and one note line
+patch(f"{R}/cand/redesign/fr17c.py",[
+ ('    print(LG_,"FR1 lowest",ny-20)','    note(c,NX,ny-30,"Weather",WX_NOTE,6.2)   # Oct 11 (Dom): the game weather\n    print(LG_,"FR1 lowest",ny-30)',1),
+ ('    note(c,NX,ny,"Final",D["fnote"],6.2)\n','    _ns=10 if ny-40>=29 else max(7.2,(ny-29)/4.0)   # Oct 11: all five notes fit above the footer\n    note(c,NX,ny,"Final",D["fnote"],6.2)\n',1),
+ ('note(c,NX,ny-10,"Opponent"','note(c,NX,ny-_ns,"Opponent"',1),
+ (',6.2);ny-=10\n',',6.2);ny-=_ns\n',1),
+ ('note(c,NX,ny-10,"Bye"','note(c,NX,ny-_ns,"Bye"',1),
+ ('note(c,NX,ny-20,"Numbers"','note(c,NX,ny-2*_ns,"Numbers"',1),
+ ('note(c,NX,ny-30,"Weather"','note(c,NX,ny-3*_ns,"Weather"',1),
+],"OCT11 fr weather")
