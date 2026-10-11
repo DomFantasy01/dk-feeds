@@ -160,3 +160,14 @@ def slotchip(c,x,y,s):
     w=c.stringWidth("SFLX","PopB",5.8)+8; sz=min(5.8,5.8*(w-3)/max(1,c.stringWidth(s,"PopB",5.8)))
     c.setFillColor(alpha(LG["I"],.16));c.roundRect(x,y-2.6,w,9.4,2.5,stroke=0,fill=1)
     txt(c,x+w/2,y+(5.8-sz)*.35,s,"PopB",sz,H("#1B4F9C"),"c")
+# ---- Oct 11 (Dom): game weather - a picture beside each opponent on the Field Report (dome, open roof, sun, cloud, rain,
+# snow, wind), red when it can move the game. Pulled fresh from Open-Meteo on every build; see _weather.py.
+exec(open("/home/claude/cand/redesign/_weather.py").read())
+try: _wx_load(WEEKN)
+except Exception as _wxe: WX_NOTE="forecast not read this build ("+str(_wxe)[:50]+")"
+BY=NX+253                                             # the BYE column steps right to give the weather picture room
+_tier10=tier
+def tier(c,x,y,ab,sz=7.5,col=GR):
+    w_=_tier10(c,x,y,ab,sz,col)
+    if abs(x-globals().get("VS",-99))<.6 and ab in WX: wx_icon(c,x+w_+5.4,y+sz*.30,WX[ab],6.0)
+    return w_
