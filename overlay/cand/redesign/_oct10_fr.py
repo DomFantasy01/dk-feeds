@@ -115,3 +115,39 @@ def byes_note(men): return _byes_note0([m for m in men if m[1]])   # an OPEN row
 def band_groups(men,key):                                 # every table bands the same way: plain alternating rows
     return [i%2==0 for i in range(len(men))]
 LG["III"]=H("#7B5CE0")                                    # DK III wears the same purple as on the Overview, on every page
+# ---- Oct 10 night (Dom): the spyglass keeps the Radar's convention everywhere it appears - the glass, and under it the
+# splat on its first day or the zero-padded day count after (the same count the Scout page prints for that need).
+def scout_rows(lab):
+    """{normalized name: (color, age, gap)} for every man a live Scout need names; red wins, then the longest-running"""
+    f=f"/home/claude/dksys/scout/scout_board_{lab.replace(' ','')}.json"
+    if not _o10.path.exists(f): return {}
+    out={}
+    for it in _j10.load(open(f)).get("gate1",[]):
+        v=(it.get("mark","gold"),int(it.get("age") or 0),it.get("gap"))
+        for n in it.get("rows") or []:
+            k=_n10(n); o=out.get(k)
+            if o is None or (v[0]=="red" and o[0]!="red") or (v[0]==o[0] and v[1]>o[1]): out[k]=v
+    return out
+def markers(c,x,mid,cl=None,sg=None,tr=None,dm=None):
+    """ONE MARKER column, fixed order: cluster, Radar signal, D, Trend (D replaces Trend), the Scout's spyglass."""
+    if dm is not None and DREPLACE: tr=None
+    sc=_scout_for(_CURNM[0])
+    n=sum(1 for v in (cl,sg,dm,tr,sc) if v is not None and v is not False and v!="")
+    P=MK_P if n<=3 else 11.0
+    x=x-2; i=0
+    if cl: tight(c,x+i*P,mid,MK_S,cl,True);i+=1
+    if sg: sig7(c,x+i*P,mid-.26*9,9,sg[0],sg[1]);i+=1
+    if dm is not None: dmark(c,x+i*P,mid,MK_S,dm);i+=1
+    if tr: trend(c,x+i*P,mid,MK_S*.95,tr);i+=1
+    if sc:
+        col,age,gap=sc if isinstance(sc,tuple) else (sc,0,None)
+        scout_mark(c,x+i*P,mid+2.3,col,age,6.6);i+=1        # glass above, splat or day count under it - the Radar's way
+# ---- Oct 10 night (Dom): a banked score says FINAL in words, like every other label on the page - never a lone "F"
+def fdec(c,xd,y,v,fin=False,font="PopB",sz=7.4,col=INKN):
+    """bare number on its decimal; a banked score gets the soft wash and the word FINAL, small, right behind it"""
+    if fin and v not in (None,""):
+        c.setFillColor(alpha(SUN[1],.22));c.roundRect(xd-17,y-3,36,10.5,2.5,stroke=0,fill=1)
+    dec(c,xd,y,v,font,sz,col,5.4,"")
+    if fin and v not in (None,""):
+        b=str(v).split(".")[1] if "." in str(v) else ""
+        txt(c,xd+c.stringWidth("."+b,font,sz)+1.2,y+.6,"FINAL","PopB",3.6,INKN)
