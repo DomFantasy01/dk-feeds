@@ -64,3 +64,19 @@ def _open_box(c,y,B):
         c.roundRect(M,y-h-8,W-2*M,h+8,4,stroke=1,fill=1); c.restoreState()
         p.drawOn(c,M+8,y-h-4); y=y-h-8-6
     return y-6 if bx else y
+def _chart_lines(lab,B):
+    """Oct 10 late (Dom): every man the Positions chart draws that the Scout does not recommend, named with his numbers -
+    read from the same engine run the chart uses, so the two pages can never disagree about who is on the chart"""
+    try: O=_E10.run(lab)[1]
+    except Exception: return []
+    nk=lambda n: _re.sub(r"[^a-z]","",_re.sub(r"\b(jr|sr|ii|iii|iv|v)\b","",str(n).lower().replace(" defense","").replace(" def","")))
+    named={nk(p["name"]) for it in B.get("gate1",[]) for p in it.get("picks",[])}|{nk(it["pick"]["name"]) for it in B.get("gate2",[])}
+    pr=B.get("priced") or {}; out=[]
+    for o in O.itertuples():
+        k=nk(o.player)
+        if k in named or k not in pr or (str(o.player).split()[-1]+" (") in B.get("footer",""): continue   # a killed name stays killed
+        p=pr[k]; why=str(o.why).split(" (")[0].rstrip("; ")
+        out.append((-p["gain"],f'{o.player} ({o.team} {o.pos}) is on the Positions chart ({why}): '+
+                    (f'adds ~{p["gain"]:.0f} pts through Wk 17' if p["gain"]>=1 else 'adds nothing to the best lineup through Wk 17')+
+                    f', real level ~{p["fwd"]:.1f} a game; ranks below the picks above'))
+    return [t_ for _,t_ in sorted(out)[:4]]
