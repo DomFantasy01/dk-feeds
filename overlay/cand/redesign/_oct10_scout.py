@@ -14,10 +14,15 @@ def _open_txt(B):
     if not parts: return None
     head='<font name="PopB" color="#B32020">Open Seats</font>  —  '+_esc(", ".join(parts)).replace("—","&#8212;")
     adds=B.get("adds") or []
+    _d=[a for a in adds if a["pos"] in ("DEF","K")][:1]                     # one defense at most: a second D's number is not a weekly stream
+    adds=sorted([a for a in adds if a["pos"] not in ("DEF","K")],key=lambda a:-a["gain"])[:3]+_d   # the defense goes last: its total is overstated
+    def _one(a):
+        nm=f'<font name="PopB">{_esc(a["name"])}</font>'+("" if a["pos"] in ("DEF","K") else f', {_esc(a["team"])} {_esc(a["pos"])}')
+        pg=f'; {a["pgain"]:.0f} in the playoffs' if a.get("pgain") else ""
+        sd=" as a second defense (overstated: counted against no add, not a weekly stream)" if a["pos"]=="DEF" else ""
+        return f'{nm}{sd} +{a["gain"]:.0f} pts{pg} ({_esc(_tc(a["acq"]).lower() if a["acq"].lower().startswith("free agent") else _tc(a["acq"]))})'
     if (o.get("start") or o.get("bench")) and adds:
-        head+=('. An add here costs no drop. <font name="PopB">Best uses, by points added through Week 17:</font> '+
-               "  ·  ".join((f'<font name="PopB">{_esc(a["name"])}</font> +{a["gain"]:.0f}' if a["pos"] in ("DEF","K") and a["name"].endswith(("DEF",)) else f'<font name="PopB">{_esc(a["name"])}</font>, {_esc(a["team"])} {_esc(a["pos"])} +{a["gain"]:.0f}')
-                            +(f' ({a["pgain"]:.0f} in the playoffs)' if a.get("pgain") else "")+f' — {_esc(_tc(a["acq"]))}' for a in adds[:4])+".")
+        head+=('. An add here costs no drop. <font name="PopB">Best uses, by points added through Week 17:</font> '+"  ·  ".join(_one(a) for a in adds[:4])+".")
     return head
 def _open_h(B):
     t=_open_txt(B); return 0 if not t else _ph(t,_OPS,W-2*M-16)+14
