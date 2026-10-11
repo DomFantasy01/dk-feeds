@@ -17,6 +17,7 @@ try:
     mf=sorted(glob.glob("/home/claude/dksys/data/latest/meter/meter_wk*.json"),key=lambda p:int(p.split("_wk")[1].split(".")[0]))[-1]
     week=json.load(open(mf))["week"]
 except Exception: week="?"
+LIVE_URL="https://claude.ai/artifact/5MYR1N6N64JTdERe7zRZJh"
 PAPER,INKN,GR,LINE=H("#FBF7EF"),H("#14213D"),H("#7A7F8C"),H("#DDD5C4")
 SEC=re.compile(r"(OVERVIEW|FIELD REPORT|SCOUT|POSITIONS|THE MARKS|POST-MORTEM|OUTLOOK)(?:\s*·\s*(DK I{1,3}V?|DK IV|FANTASY FOOTBALL))?")
 def section(page):
@@ -36,6 +37,11 @@ for i,pg in enumerate(R.pages):
     x=M+c.stringWidth("DARK KNIGHT DISPATCH","PopB",6.4)+8
     sec=section(pg); mid=f"Week {week}  ·  "+(sec+"  ·  " if sec else "")+built
     c.setFont("Pop",5.8); c.setFillColor(GR); c.drawString(x,11,mid)
-    c.drawRightString(W_-M,11,f"Page {i+1} of {N}")
+    # a tappable button to Dark Knight Live, bottom right of every page (Dom, Oct 11)
+    lt="DARK KNIGHT LIVE  \u203a"; lw=c.stringWidth(lt,"PopB",6.0)+12; lx=W_-M-lw
+    c.setFillColor(INKN); c.roundRect(lx,6.6,lw,10.4,3,stroke=0,fill=1)
+    c.setFillColor(H("#EFD23E")); c.setFont("PopB",6.0); c.drawCentredString(lx+lw/2,9.6,lt)
+    c.linkURL(LIVE_URL,(lx,6.6,lx+lw,17.0),relative=0,thickness=0)
+    c.setFont("Pop",5.8); c.setFillColor(GR); c.drawRightString(lx-8,11,f"Page {i+1} of {N}")
     c.save(); buf.seek(0); pg.merge_page(PdfReader(buf).pages[0]); w.add_page(pg)
 w.write(src); print("   footers: one footer on all",N,"pages, numbered 1 to",N)
