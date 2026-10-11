@@ -1,48 +1,48 @@
 {
  "week": 5,
- "built": "Sat Oct 10 3:50 PM PT",
- "built_utc": "2026-10-10T22:50:45.161442+00:00",
+ "built": "Sat Oct 10 5:59 PM PT",
+ "built_utc": "2026-10-11T00:59:58.058820+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sat Oct 10 3:38 PM PT",
-   "pulled_ago": "12 min ago",
-   "items": 156,
-   "newest": "10.0 h ago",
-   "warn": "newest item 9.8 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "pulled": "Sat Oct 10 5:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 157,
+   "newest": "12.1 h ago",
+   "warn": "newest item 12.0 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sat Oct 10 3:38 PM PT",
-   "pulled_ago": "12 min ago",
-   "items": 443,
-   "newest": "29 min ago",
+   "pulled": "Sat Oct 10 5:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 445,
+   "newest": "13 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sat Oct 10 3:38 PM PT",
-   "pulled_ago": "12 min ago",
-   "items": 394,
-   "newest": "32 min ago",
+   "pulled": "Sat Oct 10 5:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 397,
+   "newest": "47 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sat Oct 10 3:38 PM PT",
-   "pulled_ago": "12 min ago",
-   "items": 365,
-   "newest": "2.2 h ago",
+   "pulled": "Sat Oct 10 5:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 366,
+   "newest": "22 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sat Oct 10 3:38 PM PT",
-   "pulled_ago": "12 min ago",
+   "pulled": "Sat Oct 10 5:50 PM PT",
+   "pulled_ago": "10 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sat Oct 10 3:49 PM PT",
+   "pulled": "Sat Oct 10 5:59 PM PT",
    "pulled_ago": "1 min ago",
    "items": 766,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sat Oct 10 2026 03:50 PM PT",
+   "pulled": "Sat Oct 10 2026 05:59 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sat Oct 10 3:25 PM PT",
-   "pulled_ago": "26 min ago",
+   "pulled_ago": "2.6 h ago",
    "items": 3100,
    "newest": null,
    "warn": null,
@@ -77,7 +77,7 @@
   }
  },
  "alarms": [
-  "RotoWire news: newest item 9.8 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
+  "RotoWire news: newest item 12.0 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
  ],
  "leagues": {
   "DK I": {
@@ -207,6 +207,34 @@
      "trend": -0.19
     },
     {
+     "name": "Christian McCaffrey",
+     "pos": "RB",
+     "team": "SF",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 4:02 PM PT",
+       "src": "ESPN news",
+       "title": "Christian McCaffrey, Olivia Culpo announce birth of second child",
+       "text": "McCaffrey and his wife, Olivia Culpo, announced the news of the birth of their second child in a joint post on Instagram on Saturday.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 23.6,
+     "gotham_ros": 23.7,
+     "sleeper": 21.9,
+     "workload": "27/25/28/29",
+     "trend": 0.07
+    },
+    {
      "name": "Alvin Kamara",
      "pos": "RB",
      "team": "NO",
@@ -293,11 +321,48 @@
    ],
    "in": [
     {
+     "name": "Aaron Rodgers",
+     "pos": "QB",
+     "team": "PIT",
+     "why": [
+      "Sleeper adds #25 (31,988 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 1:38 AM PT",
+       "src": "pft",
+       "title": "Aaron Rodgers set to move ahead of Peyton Manning on the all-time touchdown pass list",
+       "text": "With his next touchdown pass, Aaron Rodgers will have more than Peyton Manning, counting the playoffs.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 20.3
+     },
+     "beats_floor": true,
+     "gotham": 19.8,
+     "gotham_ros": 19.6,
+     "sleeper": 19.6,
+     "workload": "45/41/39/40",
+     "trend": -0.05,
+     "yahoo": 21.1,
+     "acq": "free agent"
+    },
+    {
      "name": "Darius Cooper",
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #4 (145,187 in 24 h)"
+      "Sleeper adds #4 (147,420 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -372,7 +437,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (272,772 in 24 h)"
+      "Sleeper adds #2 (264,618 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -447,7 +512,7 @@
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #7 (86,092 in 24 h)"
+      "Sleeper adds #7 (82,608 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -488,7 +553,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -521,7 +586,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #8 (78,075 in 24 h)"
+      "Sleeper adds #8 (77,724 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -558,7 +623,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #15 (60,777 in 24 h)"
+      "Sleeper adds #11 (68,601 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -632,7 +697,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (44,055 in 24 h)"
+      "Sleeper adds #20 (42,669 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -669,7 +734,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #21 (39,522 in 24 h)"
+      "Sleeper adds #21 (37,296 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -690,35 +755,6 @@
      "sleeper": 7.8,
      "workload": "1/7/2/3",
      "trend": -0.2,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Elic Ayomanor",
-     "pos": "WR",
-     "team": "TEN",
-     "why": [
-      "opening: Carnell Tate \u2014 questionable/limited (pft)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 15.8
-     },
-     "beats_floor": false,
-     "gotham": 6.0,
-     "gotham_ros": 6.2,
-     "sleeper": 5.3,
-     "workload": "5/4/5/1",
-     "trend": -0.44,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1039,7 +1075,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #4 (145,187 in 24 h)"
+      "Sleeper adds #4 (147,420 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1077,7 +1113,7 @@
      "team": "CIN",
      "why": [
       "opening: Tee Higgins \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #11 (70,542 in 24 h)"
+      "Sleeper adds #13 (64,053 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1115,7 +1151,7 @@
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #7 (86,092 in 24 h)"
+      "Sleeper adds #7 (82,608 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1156,7 +1192,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -1189,7 +1225,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #8 (78,075 in 24 h)"
+      "Sleeper adds #8 (77,724 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1226,7 +1262,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #15 (60,777 in 24 h)"
+      "Sleeper adds #11 (68,601 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1301,7 +1337,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (44,055 in 24 h)"
+      "Sleeper adds #20 (42,669 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1924,7 +1960,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #4 (145,187 in 24 h)"
+      "Sleeper adds #4 (147,420 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1961,7 +1997,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (272,772 in 24 h)"
+      "Sleeper adds #2 (264,618 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1999,7 +2035,7 @@
      "team": "CIN",
      "why": [
       "opening: Tee Higgins \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #11 (70,542 in 24 h)"
+      "Sleeper adds #13 (64,053 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2037,7 +2073,7 @@
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #7 (86,092 in 24 h)"
+      "Sleeper adds #7 (82,608 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2116,7 +2152,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -2149,7 +2185,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #8 (78,075 in 24 h)"
+      "Sleeper adds #8 (77,724 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2186,7 +2222,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #15 (60,777 in 24 h)"
+      "Sleeper adds #11 (68,601 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2223,7 +2259,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (44,055 in 24 h)"
+      "Sleeper adds #20 (42,669 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2260,7 +2296,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #21 (39,522 in 24 h)"
+      "Sleeper adds #21 (37,296 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2485,34 +2521,33 @@
      "team": "WAS",
      "slot": "W/R/T",
      "marker": {
-      "count": 3,
-      "recency": 1,
+      "count": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
-       "caution",
-       "note"
+       "caution"
       ]
      },
      "news": [
       {
-       "t": "Fri Oct 9 5:04 PM PT",
+       "t": "Sat Oct 10 5:32 PM PT",
        "src": "ESPN injury report",
        "title": "Terry McLaurin: Questionable (Hamstring)",
-       "text": "McLaurin (hamstring), who officially is listed as questionable for Sunday's contest against the Giants, will be a game-time decision, as Jeremy Fowler of ESPN highlighted Friday in a Week 5 injury update on SportsCenter.",
+       "text": "McLaurin (hamstring) remains a game-time decision for Sunday's game against the Giants, with a \"slight lean\" toward him playing, John Keim of ESPN.com reports.",
        "grade": "caution"
+      },
+      {
+       "t": "Fri Oct 9 10:33 PM PT",
+       "src": "RotoWire news",
+       "title": "Terry McLaurin: Trending toward playing Sunday",
+       "text": "McLaurin (hamstring) remains a game-time decision for Sunday's game against the Giants, with a \"slight lean\" toward him playing, John Keim of ESPN.com reports.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
       },
       {
        "t": "Fri Oct 9 2:58 AM PT",
        "src": "RotoWire news",
        "title": "Terry McLaurin: Trending upward for Week 5",
        "text": "Head coach Dan Quinn said McLaurin (hamstring) looked good in his return to practice Friday, but his status remains in question for Sunday's game against the Giants, Zach Selby of the Commanders' official site reports.\n\n        Visit RotoWire.com for more anal",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 9 1:25 AM PT",
-       "src": "RotoWire news",
-       "title": "Terry McLaurin: Present for practice Friday",
-       "text": "McLaurin (hamstring) was present for Friday's practice, Tashan Reed of The Washington Post reports.\n\n        Visit RotoWire.com for more analysis on this update.",
        "grade": "note"
       }
      ],
@@ -2888,7 +2923,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #4 (145,187 in 24 h)"
+      "Sleeper adds #4 (147,420 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2963,7 +2998,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (272,772 in 24 h)"
+      "Sleeper adds #2 (264,618 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3038,7 +3073,7 @@
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #7 (86,092 in 24 h)"
+      "Sleeper adds #7 (82,608 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3079,7 +3114,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -3112,7 +3147,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #9 (75,520 in 24 h)"
+      "Sleeper adds #9 (74,616 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3150,7 +3185,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (pft)",
-      "Sleeper adds #18 (45,837 in 24 h)"
+      "Sleeper adds #18 (45,828 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3187,7 +3222,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #8 (78,075 in 24 h)"
+      "Sleeper adds #8 (77,724 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3224,7 +3259,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #15 (60,777 in 24 h)"
+      "Sleeper adds #11 (68,601 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3262,7 +3297,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (pft)",
-      "Sleeper adds #16 (60,552 in 24 h)"
+      "Sleeper adds #17 (59,634 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3299,7 +3334,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (44,055 in 24 h)"
+      "Sleeper adds #20 (42,669 in 24 h)"
      ],
      "marker": {
       "count": 0,
