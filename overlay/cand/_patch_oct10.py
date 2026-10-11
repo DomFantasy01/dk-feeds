@@ -329,3 +329,19 @@ patch(f"{R}/cand/redesign/_scout_page.py",[
  ("""    chk=('<font name="PopB">Checked, Not Assumed</font>  '+"  ·  ".join(_esc(s) for s in B["checked"])+""",
   """    chk=('<font name="PopB">Checked, Not Assumed</font>  '+"  ·  ".join(_esc(s) for s in B["checked"]+_chart_lines(lab,B))+""",1),
 ],"OCT10e scout chart lines")
+# ---------- 16 (Oct 10 late) a game a man left hurt is not his level: the Scout drops any week he played under 35% of the
+# snaps when he normally plays 60% or more (Jefferson Wk 3 at 12%, Chase Wk 4 at 20%) - those games were dragging his
+# number down and the Scout's best lineup was benching him for it. Gotham (the meters) has the same flaw - left for Dom's call.
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('    g=g.sort_values("week"); name=g.player_display_name.iloc[-1]; team=g.team.iloc[-1]; pos=g.position.iloc[-1]\n',
+  '    g=g.sort_values("week"); name=g.player_display_name.iloc[-1]; team=g.team.iloc[-1]; pos=g.position.iloc[-1]\n'
+  '    _sp=sn[(sn.player==name)&(sn.team==team)].set_index("week").offense_pct   # Oct 10 late: drop a game he left hurt\n'
+  '    if len(_sp)>=2 and _sp.median()>=.6:\n'
+  '        _ex=[w for w in g.week if _sp.get(w,1)<.35]\n'
+  '        if _ex and len(g)>len(_ex): g=g[~g.week.isin(_ex)]\n',1),
+],"OCT10f scout exit games")
+# ---------- 17 (Oct 10 late) the slot chip reads FLEX and S-FLEX (superflex), not FLX / SFLX
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('_SLOTN={"W/R/T":"FLX","Q/W/R/T":"SFLX"}','_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
+ ('\'(OPP,"OPP","NOW")\'','\'(OPP,"THEIR MAN","NOW")\'',1),
+],"OCT10f slot words")
