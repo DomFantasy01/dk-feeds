@@ -28,5 +28,15 @@ t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
 cur['stamp'] = (t + timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')
 cur['source'] = f"Week {M['week']}: GOTHAM and SLEEPER per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
 cur['pm_note'] = "Per-player numbers: [GOTHAM, SLEEPER priced in this league's scoring], keyed by norm(name). K and DEF use Sleeper in both."
+# game weather (Oct 11): the Dispatch build's kickoff forecast, passed through for the Live page's sky pictures.
+# A failed fetch or another week's file leaves the last good weather in place.
+try:
+    import subprocess
+    r = subprocess.run(['curl', '-sfL', f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/weather_wk{M['week']}.json"],
+                       capture_output=True, timeout=25)
+    Wx = json.loads(r.stdout) if r.returncode == 0 else None
+    if Wx and int(Wx.get('week', -1)) == int(M['week']): cur['wx'] = Wx
+    else: print('weather not synced (no file for week', M['week'], ')')
+except Exception as ex: print('weather not synced:', str(ex)[:60])
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'])
