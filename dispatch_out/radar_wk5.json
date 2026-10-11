@@ -1,48 +1,48 @@
 {
  "week": 5,
- "built": "Sun Oct 11 8:54 AM PT",
- "built_utc": "2026-10-11T15:54:41.740231+00:00",
+ "built": "Sun Oct 11 9:13 AM PT",
+ "built_utc": "2026-10-11T16:13:01.385161+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Oct 11 8:40 AM PT",
-   "pulled_ago": "15 min ago",
-   "items": 171,
-   "newest": "7.5 h ago",
-   "warn": "newest item 7.3 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "pulled": "Sun Oct 11 9:04 AM PT",
+   "pulled_ago": "9 min ago",
+   "items": 176,
+   "newest": "7.3 h ago",
+   "warn": "newest item 7.1 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Oct 11 8:40 AM PT",
-   "pulled_ago": "15 min ago",
-   "items": 481,
-   "newest": "18 min ago",
+   "pulled": "Sun Oct 11 9:04 AM PT",
+   "pulled_ago": "9 min ago",
+   "items": 482,
+   "newest": "21 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Oct 11 8:40 AM PT",
-   "pulled_ago": "15 min ago",
-   "items": 439,
-   "newest": "19 min ago",
+   "pulled": "Sun Oct 11 9:04 AM PT",
+   "pulled_ago": "9 min ago",
+   "items": 441,
+   "newest": "20 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Oct 11 8:40 AM PT",
-   "pulled_ago": "15 min ago",
-   "items": 365,
-   "newest": "20 min ago",
+   "pulled": "Sun Oct 11 9:04 AM PT",
+   "pulled_ago": "9 min ago",
+   "items": 359,
+   "newest": "16 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Oct 11 8:40 AM PT",
-   "pulled_ago": "15 min ago",
+   "pulled": "Sun Oct 11 9:04 AM PT",
+   "pulled_ago": "9 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Oct 11 8:54 AM PT",
+   "pulled": "Sun Oct 11 9:11 AM PT",
    "pulled_ago": "1 min ago",
    "items": 768,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Oct 11 2026 08:54 AM PT",
+   "pulled": "Sun Oct 11 2026 09:11 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Oct 11 7:26 AM PT",
-   "pulled_ago": "1.5 h ago",
+   "pulled_ago": "1.8 h ago",
    "items": 3100,
    "newest": null,
    "warn": null,
@@ -77,7 +77,7 @@
   }
  },
  "alarms": [
-  "RotoWire news: newest item 7.3 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
+  "RotoWire news: newest item 7.1 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin"
  ],
  "leagues": {
   "DK I": {
@@ -91,15 +91,21 @@
      "team": "WAS",
      "slot": "BN",
      "marker": {
-      "count": 6,
-      "recency": 2,
+      "count": 1,
+      "recency": 0,
       "color": "red",
       "grades": [
-       "bad",
-       "note"
+       "bad"
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 11 8:47 AM PT",
+       "src": "ESPN injury report",
+       "title": "Stefon Diggs: Out (Hamstring)",
+       "text": "inactive",
+       "grade": "bad"
+      },
       {
        "t": "Fri Oct 9 10:32 AM PT",
        "src": "ESPN news",
@@ -113,13 +119,6 @@
        "title": "Stefon Diggs Ruled Out for Week 5",
        "text": "Washington Commanders wide receiver Stefon Diggs (hamstring), who has been unable to practice this week while dealing with a hamstring [&#8230;]",
        "grade": "bad"
-      },
-      {
-       "t": "Fri Oct 9 9:51 AM PT",
-       "src": "pft",
-       "title": "Jayden Daniels will start Sunday, Stefon Diggs out",
-       "text": "Jayden Daniels is officially back.",
-       "grade": "note"
       }
      ],
      "gotham": 0.0,
@@ -136,10 +135,10 @@
      "marker": {
       "count": 2,
       "recency": 0,
-      "color": "gold",
+      "color": "green",
       "grades": [
-       "caution",
-       "good"
+       "good",
+       "note"
       ]
      },
      "news": [
@@ -151,11 +150,11 @@
        "grade": "good"
       },
       {
-       "t": "Sun Oct 11 4:28 AM PT",
-       "src": "ESPN injury report",
-       "title": "Alvin Kamara: Questionable (Back)",
-       "text": "Kamara (back) is expected to play in Sunday's contest against the Vikings, Ian Rapoport of NFL Network reports.",
-       "grade": "caution"
+       "t": "Sun Oct 11 1:51 AM PT",
+       "src": "RotoWire news",
+       "title": "Alvin Kamara: Active Sunday",
+       "text": "Kamara (back) is listed as active Sunday against the Vikings.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
       },
       {
        "t": "Sat Oct 10 3:52 AM PT",
@@ -212,6 +211,34 @@
      "sleeper": 20.5,
      "workload": "43/30",
      "trend": -0.19
+    },
+    {
+     "name": "Jaylen Warren",
+     "pos": "RB",
+     "team": "PIT",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 11 1:57 AM PT",
+       "src": "RotoWire news",
+       "title": "Jaylen Warren: Full control of backfield again Sunday",
+       "text": "Warren will remain the Steelers' unquestioned lead back in Sunday's Week 5 matchup against the Colts due to Rico Dowdle (toe) having been declared inactive for the contest.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 19.3,
+     "gotham_ros": 19.3,
+     "sleeper": 18.6,
+     "workload": "24/19/28/31",
+     "trend": 0.26
     },
     {
      "name": "Christian McCaffrey",
@@ -326,7 +353,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #22 (53,308 in 24 h)"
+      "Sleeper adds #21 (57,404 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -363,7 +390,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (250,817 in 24 h)"
+      "Sleeper adds #3 (261,429 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -400,7 +427,8 @@
      "pos": "QB",
      "team": "CHI",
      "why": [
-      "good news"
+      "good news",
+      "opening: Caleb Williams \u2014 bad news (pft)"
      ],
      "marker": {
       "count": 1,
@@ -437,7 +465,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (351,495 in 24 h)"
+      "Sleeper adds #2 (379,935 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -548,7 +576,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #7 (153,315 in 24 h)"
+      "Sleeper adds #7 (168,471 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -585,7 +613,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #5 (189,417 in 24 h)"
+      "Sleeper adds #5 (206,487 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -659,7 +687,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (56,610 in 24 h)"
+      "Sleeper adds #20 (61,002 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -692,11 +720,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Laquon Treadwell",
+     "name": "Jauan Jennings",
      "pos": "WR",
-     "team": "IND",
+     "team": "MIN",
      "why": [
-      "opening: Keenan Allen \u2014 questionable/limited (ESPN injury report)"
+      "opening: Jordan Addison \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
@@ -708,11 +736,11 @@
      },
      "news": [
       {
-       "t": "Sat Oct 10 10:19 AM PT",
+       "t": "Sat Oct 10 7:16 AM PT",
        "src": "rotoballer",
-       "title": "Laquon Treadwell Carries Deep League Flex Appeal For Week 5",
-       "text": "The Indianapolis Colts will face the Pittsburgh Steelers' middling pass defense in Week 5, and WR Laquon Treadwell is set [&#8230;]",
-       "grade": "note"
+       "title": "Who Should I Start for Fantasy Football Week 5? Tre Tucker, Malik Nabers, Keenan Allen, Garrett Wilson, Jeremiyah Love, Marshawn Lloyd, Jaylen Wright, Jauan Jennings, Chase Brown",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/08/MarShawn-Lloyd-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 5? Tre ",
+       "grade": "mention"
       }
      ],
      "floor": {
@@ -720,11 +748,11 @@
       "gotham": 15.8
      },
      "beats_floor": false,
-     "gotham": 5.6,
-     "gotham_ros": 5.2,
-     "sleeper": 6.0,
-     "workload": "1/3/1/8",
-     "trend": 1.95,
+     "gotham": 5.9,
+     "gotham_ros": 5.9,
+     "sleeper": 3.3,
+     "workload": "1/2/1",
+     "trend": -0.07,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -734,7 +762,7 @@
      "team": "WAS",
      "why": [
       "opening: Terry McLaurin \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (48,699 in 24 h)"
+      "Sleeper adds #24 (51,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -811,49 +839,6 @@
    "unread": [],
    "own": [
     {
-     "name": "Ja'Marr Chase",
-     "pos": "WR",
-     "team": "CIN",
-     "slot": "WR",
-     "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 11 7:41 AM PT",
-       "src": "ESPN injury report",
-       "title": "Ja'Marr Chase: Questionable (Concussion)",
-       "text": "Chase (concussion) is slated to play Sunday at Miami, Adam Schefter of ESPN reports.",
-       "grade": "caution"
-      },
-      {
-       "t": "Sun Oct 11 12:41 AM PT",
-       "src": "RotoWire news",
-       "title": "Ja'Marr Chase: In line to play in Week 5",
-       "text": "Chase (concussion) is slated to play Sunday at Miami, Adam Schefter of ESPN reports.\n\n        Visit RotoWire.com for more analysis on this update.",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Oct 10 1:57 PM PT",
-       "src": "rotoballer",
-       "title": "Bengals Add No Receivers with Ja'Marr Chase, Tee Higgins Questionable",
-       "text": "The Cincinnati Bengals did not elevate any wide receivers from the practice squad to the 53-man roster ahead of Sunday's [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 16.0,
-     "gotham_ros": 15.7,
-     "sleeper": 20.0,
-     "workload": "5/10/14/3",
-     "trend": -0.23
-    },
-    {
      "name": "Alvin Kamara",
      "pos": "RB",
      "team": "NO",
@@ -861,10 +846,10 @@
      "marker": {
       "count": 2,
       "recency": 0,
-      "color": "gold",
+      "color": "green",
       "grades": [
-       "caution",
-       "good"
+       "good",
+       "note"
       ]
      },
      "news": [
@@ -876,11 +861,11 @@
        "grade": "good"
       },
       {
-       "t": "Sun Oct 11 4:28 AM PT",
-       "src": "ESPN injury report",
-       "title": "Alvin Kamara: Questionable (Back)",
-       "text": "Kamara (back) is expected to play in Sunday's contest against the Vikings, Ian Rapoport of NFL Network reports.",
-       "grade": "caution"
+       "t": "Sun Oct 11 1:51 AM PT",
+       "src": "RotoWire news",
+       "title": "Alvin Kamara: Active Sunday",
+       "text": "Kamara (back) is listed as active Sunday against the Vikings.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
       },
       {
        "t": "Sat Oct 10 3:52 AM PT",
@@ -937,6 +922,48 @@
      "sleeper": 20.5,
      "workload": "43/30",
      "trend": -0.19
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "pos": "WR",
+     "team": "CIN",
+     "slot": "WR",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 11 12:41 AM PT",
+       "src": "RotoWire news",
+       "title": "Ja'Marr Chase: In line to play in Week 5",
+       "text": "Chase (concussion) is slated to play Sunday at Miami, Adam Schefter of ESPN reports.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Oct 10 1:57 PM PT",
+       "src": "rotoballer",
+       "title": "Bengals Add No Receivers with Ja'Marr Chase, Tee Higgins Questionable",
+       "text": "The Cincinnati Bengals did not elevate any wide receivers from the practice squad to the 53-man roster ahead of Sunday's [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 9 9:23 AM PT",
+       "src": "pft",
+       "title": "Bengals to list Ja'Marr Chase, Tee Higgins as questionable",
+       "text": "Bengals wide receivers Ja'Marr Chase and Tee Higgins both took part in practice on Friday, but the team isn't saying if either of them will play against the Dolphins this weekend.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 16.0,
+     "gotham_ros": 15.7,
+     "sleeper": 20.0,
+     "workload": "5/10/14/3",
+     "trend": -0.23
     },
     {
      "name": "Jacoby Brissett",
@@ -1085,7 +1112,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (250,817 in 24 h)"
+      "Sleeper adds #3 (261,429 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1118,51 +1145,12 @@
      "acq": "free agent"
     },
     {
-     "name": "Dohnte Meyers",
-     "pos": "WR",
-     "team": "CIN",
-     "why": [
-      "opening: Tee Higgins \u2014 questionable/limited (ESPN injury report)",
-      "opening: Ja'Marr Chase \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #21 (53,469 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 10 12:12 PM PT",
-       "src": "rotoballer",
-       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 9.4
-     },
-     "beats_floor": true,
-     "gotham": 11.7,
-     "gotham_ros": 11.3,
-     "sleeper": 3.2,
-     "workload": "1/1/5/9",
-     "trend": 2.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tre' Harris",
      "pos": "WR",
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #9 (122,544 in 24 h)"
+      "Sleeper adds #8 (135,940 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1193,6 +1181,43 @@
      "trend": 0.1,
      "yahoo": 8.75,
      "acq": "waivers"
+    },
+    {
+     "name": "Dohnte Meyers",
+     "pos": "WR",
+     "team": "CIN",
+     "why": [
+      "Sleeper adds #22 (54,999 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 5,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 10 12:12 PM PT",
+       "src": "rotoballer",
+       "title": "Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre Tucker, Dohnte Meyers",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Week 5 Waiver Wire Pickups - Kendrick Bourne, Tre T",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Courtland Sutton",
+      "gotham": 9.4
+     },
+     "beats_floor": true,
+     "gotham": 11.7,
+     "gotham_ros": 11.3,
+     "sleeper": 3.2,
+     "workload": "1/1/5/9",
+     "trend": 2.17,
+     "yahoo": null,
+     "acq": "unverified"
     },
     {
      "name": "Antonio Williams",
@@ -1236,7 +1261,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #7 (153,315 in 24 h)"
+      "Sleeper adds #7 (168,471 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1273,7 +1298,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #5 (189,417 in 24 h)"
+      "Sleeper adds #5 (206,487 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1310,7 +1335,8 @@
      "pos": "QB",
      "team": "CHI",
      "why": [
-      "good news"
+      "good news",
+      "opening: Caleb Williams \u2014 bad news (pft)"
      ],
      "marker": {
       "count": 1,
@@ -1347,7 +1373,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (56,610 in 24 h)"
+      "Sleeper adds #20 (61,002 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -1417,11 +1443,11 @@
      "acq": "free agent"
     },
     {
-     "name": "Laquon Treadwell",
+     "name": "Jauan Jennings",
      "pos": "WR",
-     "team": "IND",
+     "team": "MIN",
      "why": [
-      "opening: Keenan Allen \u2014 questionable/limited (ESPN injury report)"
+      "opening: Jordan Addison \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
@@ -1433,11 +1459,11 @@
      },
      "news": [
       {
-       "t": "Sat Oct 10 10:19 AM PT",
+       "t": "Sat Oct 10 7:16 AM PT",
        "src": "rotoballer",
-       "title": "Laquon Treadwell Carries Deep League Flex Appeal For Week 5",
-       "text": "The Indianapolis Colts will face the Pittsburgh Steelers' middling pass defense in Week 5, and WR Laquon Treadwell is set [&#8230;]",
-       "grade": "note"
+       "title": "Who Should I Start for Fantasy Football Week 5? Tre Tucker, Malik Nabers, Keenan Allen, Garrett Wilson, Jeremiyah Love, Marshawn Lloyd, Jaylen Wright, Jauan Jennings, Chase Brown",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/08/MarShawn-Lloyd-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 5? Tre ",
+       "grade": "mention"
       }
      ],
      "floor": {
@@ -1445,11 +1471,11 @@
       "gotham": 9.4
      },
      "beats_floor": false,
-     "gotham": 5.6,
-     "gotham_ros": 5.2,
-     "sleeper": 6.0,
-     "workload": "1/3/1/8",
-     "trend": 1.95,
+     "gotham": 5.9,
+     "gotham_ros": 5.9,
+     "sleeper": 3.3,
+     "workload": "1/2/1",
+     "trend": -0.07,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1459,7 +1485,7 @@
      "team": "WAS",
      "why": [
       "opening: Terry McLaurin \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (48,699 in 24 h)"
+      "Sleeper adds #24 (51,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1901,7 +1927,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (250,817 in 24 h)"
+      "Sleeper adds #3 (261,429 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1938,16 +1964,14 @@
      "pos": "WR",
      "team": "CIN",
      "why": [
-      "opening: Tee Higgins \u2014 questionable/limited (ESPN injury report)",
-      "opening: Ja'Marr Chase \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #21 (53,469 in 24 h)"
+      "Sleeper adds #22 (54,999 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
-      "color": "gold",
+      "recency": 5,
+      "color": "grey",
       "grades": [
-       "opening"
+       "note"
       ]
      },
      "news": [
@@ -1977,7 +2001,8 @@
      "pos": "QB",
      "team": "CHI",
      "why": [
-      "good news"
+      "good news",
+      "opening: Caleb Williams \u2014 bad news (pft)"
      ],
      "marker": {
       "count": 1,
@@ -2051,7 +2076,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #7 (153,315 in 24 h)"
+      "Sleeper adds #7 (168,471 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2088,7 +2113,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #5 (189,417 in 24 h)"
+      "Sleeper adds #5 (206,487 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2125,7 +2150,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (56,610 in 24 h)"
+      "Sleeper adds #20 (61,002 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2195,11 +2220,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Laquon Treadwell",
+     "name": "Jauan Jennings",
      "pos": "WR",
-     "team": "IND",
+     "team": "MIN",
      "why": [
-      "opening: Keenan Allen \u2014 questionable/limited (ESPN injury report)"
+      "opening: Jordan Addison \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
@@ -2211,11 +2236,11 @@
      },
      "news": [
       {
-       "t": "Sat Oct 10 10:19 AM PT",
+       "t": "Sat Oct 10 7:16 AM PT",
        "src": "rotoballer",
-       "title": "Laquon Treadwell Carries Deep League Flex Appeal For Week 5",
-       "text": "The Indianapolis Colts will face the Pittsburgh Steelers' middling pass defense in Week 5, and WR Laquon Treadwell is set [&#8230;]",
-       "grade": "note"
+       "title": "Who Should I Start for Fantasy Football Week 5? Tre Tucker, Malik Nabers, Keenan Allen, Garrett Wilson, Jeremiyah Love, Marshawn Lloyd, Jaylen Wright, Jauan Jennings, Chase Brown",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/08/MarShawn-Lloyd-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 5? Tre ",
+       "grade": "mention"
       }
      ],
      "floor": {
@@ -2223,11 +2248,11 @@
       "gotham": 11.6
      },
      "beats_floor": false,
-     "gotham": 5.6,
-     "gotham_ros": 5.2,
-     "sleeper": 6.0,
-     "workload": "1/3/1/8",
-     "trend": 1.95,
+     "gotham": 5.9,
+     "gotham_ros": 5.9,
+     "sleeper": 3.3,
+     "workload": "1/2/1",
+     "trend": -0.07,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2237,7 +2262,7 @@
      "team": "WAS",
      "why": [
       "opening: Terry McLaurin \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (48,699 in 24 h)"
+      "Sleeper adds #24 (51,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2299,80 +2324,36 @@
      "acq": "unverified"
     },
     {
-     "name": "Kaytron Allen",
-     "pos": "RB",
-     "team": "WAS",
+     "name": "Tai Felton",
+     "pos": "WR",
+     "team": "MIN",
      "why": [
-      "opening: Rachaad White \u2014 questionable/limited (RotoWire news)"
+      "opening: Jordan Addison \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
       ]
      },
-     "news": [
-      {
-       "t": "Fri Oct 9 2:28 PM PT",
-       "src": "rotoballer",
-       "title": "Kaytron Allen Claimed by Miami, Could be Waiver-Worthy for RB Depth",
-       "text": "Former Washington Commanders running back Kaytron Allen was claimed off waivers by the Miami Dolphins on Friday, a source told [&#8230;]",
-       "grade": "note"
-      }
-     ],
+     "news": [],
      "floor": {
-      "name": "Rachaad White",
-      "gotham": 11.0
+      "name": "Devaughn Vele",
+      "gotham": 11.6
      },
      "beats_floor": false,
-     "gotham": 3.4,
-     "gotham_ros": 3.4,
-     "sleeper": 0.0,
-     "workload": "7/5/4",
-     "trend": -0.27,
+     "gotham": 1.5,
+     "gotham_ros": 1.5,
+     "sleeper": 1.0,
+     "workload": "2/1",
+     "trend": -0.3,
      "yahoo": null,
      "acq": "unverified"
     }
    ],
-   "opp": [
-    {
-     "name": "Ja'Marr Chase",
-     "pos": "WR",
-     "team": "CIN",
-     "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 11 7:41 AM PT",
-       "src": "ESPN injury report",
-       "title": "Ja'Marr Chase: Questionable (Concussion)",
-       "text": "Chase (concussion) is slated to play Sunday at Miami, Adam Schefter of ESPN reports.",
-       "grade": "caution"
-      },
-      {
-       "t": "Sun Oct 11 12:41 AM PT",
-       "src": "RotoWire news",
-       "title": "Ja'Marr Chase: In line to play in Week 5",
-       "text": "Chase (concussion) is slated to play Sunday at Miami, Adam Schefter of ESPN reports.\n\n        Visit RotoWire.com for more analysis on this update.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 16.0,
-     "gotham_ros": 15.7,
-     "sleeper": 20.0,
-     "workload": "5/10/14/3",
-     "trend": -0.23
-    }
-   ]
+   "opp": []
   },
   "DK IV": {
    "key": "NEXTDOOR",
@@ -2444,11 +2425,11 @@
        "grade": "caution"
       },
       {
-       "t": "Sun Oct 11 8:24 AM PT",
-       "src": "ESPN injury report",
-       "title": "Terry McLaurin: Questionable (Hamstring)",
-       "text": "McLaurin (hamstring), who is listed as questionable for Sunday's game against the Giants, will be active but is expected to face some restrictions with his workload, Mike Garafolo of NFL Network reports.",
-       "grade": "caution"
+       "t": "Sun Oct 11 1:56 AM PT",
+       "src": "RotoWire news",
+       "title": "Terry McLaurin: Good to go Week 5",
+       "text": "McLaurin (hamstring) is officially active for Sunday's game against the Giants.\n\n        Visit RotoWire.com for more analysis on this update.",
+       "grade": "note"
       },
       {
        "t": "Sun Oct 11 1:25 AM PT",
@@ -2513,11 +2494,10 @@
      "team": "MIN",
      "slot": "WR",
      "marker": {
-      "count": 3,
+      "count": 2,
       "recency": 0,
-      "color": "gold",
+      "color": "green",
       "grades": [
-       "caution",
        "good"
       ]
      },
@@ -2537,10 +2517,10 @@
        "grade": "good"
       },
       {
-       "t": "Sun Oct 11 4:49 AM PT",
-       "src": "ESPN injury report",
-       "title": "Justin Jefferson: Questionable (Ankle)",
-       "text": "Jefferson (ankle) will go through a pregame workout before the Vikings make a decision on his availability for Sunday's contest at New Orleans, Ian Rapoport of NFL Network reports.",
+       "t": "Sat Oct 10 9:50 PM PT",
+       "src": "RotoWire news",
+       "title": "Justin Jefferson: Listed questionable for Sunday",
+       "text": "Jefferson (ankle) will go through a pregame workout before the Vikings make a decision on his availability for Sunday's contest at New Orleans, Ian Rapoport of NFL Network reports.\n\n        Visit RotoWire.com for more analysis on this update.",
        "grade": "caution"
       }
      ],
@@ -2830,7 +2810,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (250,817 in 24 h)"
+      "Sleeper adds #3 (261,429 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2867,7 +2847,8 @@
      "pos": "QB",
      "team": "CHI",
      "why": [
-      "good news"
+      "good news",
+      "opening: Caleb Williams \u2014 bad news (pft)"
      ],
      "marker": {
       "count": 1,
@@ -2904,7 +2885,7 @@
      "pos": "WR",
      "team": "PIT",
      "why": [
-      "Sleeper adds #2 (351,495 in 24 h)"
+      "Sleeper adds #2 (379,935 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -2979,7 +2960,7 @@
      "team": "LAC",
      "why": [
       "opening: Ladd McConkey \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #9 (122,544 in 24 h)"
+      "Sleeper adds #8 (135,940 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3054,7 +3035,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (pft)",
-      "Sleeper adds #19 (75,555 in 24 h)"
+      "Sleeper adds #19 (83,592 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3091,7 +3072,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #10 (116,560 in 24 h)"
+      "Sleeper adds #9 (128,024 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3129,7 +3110,7 @@
      "team": "BUF",
      "why": [
       "opening: DJ Moore \u2014 questionable/limited (pft)",
-      "Sleeper adds #12 (104,013 in 24 h)"
+      "Sleeper adds #13 (114,228 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3166,7 +3147,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #7 (153,315 in 24 h)"
+      "Sleeper adds #7 (168,471 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3203,7 +3184,7 @@
      "pos": "WR",
      "team": "ARI",
      "why": [
-      "Sleeper adds #5 (189,417 in 24 h)"
+      "Sleeper adds #5 (206,487 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3240,7 +3221,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (56,610 in 24 h)"
+      "Sleeper adds #20 (61,002 in 24 h)"
      ],
      "marker": {
       "count": 0,
