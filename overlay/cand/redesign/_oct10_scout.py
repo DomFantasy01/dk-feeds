@@ -17,19 +17,50 @@ def _open_txt(B):
     _d=[a for a in adds if a["pos"] in ("DEF","K")][:1]                     # one defense at most: a second D's number is not a weekly stream
     adds=sorted([a for a in adds if a["pos"] not in ("DEF","K")],key=lambda a:-a["gain"])[:3]+_d   # the defense goes last: its total is overstated
     def _one(a):
-        nm=f'<font name="PopB">{_esc(a["name"])}</font>'+("" if a["pos"] in ("DEF","K") else f', {_esc(a["team"])} {_esc(a["pos"])}')
+        nm=_pt(a)
         pg=f'; {a["pgain"]:.0f} in the playoffs' if a.get("pgain") else ""
         sd=" as a second defense (overstated: counted against no add, not a weekly stream)" if a["pos"]=="DEF" else ""
         return f'{nm}{sd} +{a["gain"]:.0f} pts{pg} ({_esc(_tc(a["acq"]).lower() if a["acq"].lower().startswith("free agent") else _tc(a["acq"]))})'
     if (o.get("start") or o.get("bench")) and adds:
         head+=('. An add here costs no drop. <font name="PopB">Best uses, by points added through Week 17:</font> '+"  ·  ".join(_one(a) for a in adds[:4])+".")
     return head
-def _open_h(B):
-    t=_open_txt(B); return 0 if not t else _ph(t,_OPS,W-2*M-16)+14
-def _open_box(c,y,B):
+def _pt(a):
+    """name, team and position, the same everywhere a player is named"""
+    if a.get("pos") in ("DEF","K") and str(a.get("name","")).endswith(("DEF","defense")): return f'<font name="PopB">{_esc(a["name"])}</font>'
+    return f'<font name="PopB">{_esc(a["name"])}</font>, {_esc(a["team"])}'+(f' {_esc(a["pos"])}' if a.get("pos") else "")
+_TAGW={"Q":"Questionable","D":"Doubtful"}
+def _q_txt(B):
+    """Oct 10 night (Dom): a Questionable starter's contingency, named on the page - what sitting costs and who fills it"""
+    out=[]
+    for q in B.get("qcont") or []:
+        nm=_esc(q["name"]); tw=_TAGW.get(q["tag"],q["tag"])
+        t=(f'<font name="PopB" color="#9A6A00">If {nm} Sits</font>  —  {tw}, starting at {_esc(q["slot"])} (~{q["val"]:.1f} this week). ')
+        if q["loss"]<.5:
+            out.append((t+'The Scout\'s best lineup already starts someone else over him this week, so sitting him costs nothing.').strip()); continue
+        if q["loss"]<3: t+=f'The bench covers it: the best lineup without him is only ~{q["loss"]:.1f} pts lower. '
+        else: t+=f'The best lineup without him is ~{q["loss"]:.1f} pts lower. '
+        if q.get("ir"): t+='If Yahoo lists him Out, the open IR slot can hold him and the add costs no drop. '
+        elif q.get("bench"): t+='An open bench seat takes the add with no drop. '
+        else: t+='An add here needs a drop (Dom\'s call). '
+        fl=[f for f in q.get("fills") or [] if f["now"]>=1]
+        if fl and q["loss"]>=3:
+            t+=('<font name="PopB">Best fills, points added this week and next:</font> '+"  ·  ".join(
+                f'{_pt(f)} +{f["now"]:.0f} now, +{f["nxt"]:.0f} next week ({_esc(_tc(f["acq"]).lower() if f["acq"].lower().startswith("free agent") else _tc(f["acq"]))})' for f in fl)+".")
+        out.append(t.strip())
+    return out
+def _boxes(B):
+    b=[]
     t=_open_txt(B)
-    if not t: return y
-    p=Paragraph(t,_OPS); _,h=p.wrap(W-2*M-16,999)
-    c.saveState(); c.setFillColor(H("#FBEDEA")); c.setStrokeColor(H("#B32020")); c.setLineWidth(.8)
-    c.roundRect(M,y-h-8,W-2*M,h+8,4,stroke=1,fill=1); c.restoreState()
-    p.drawOn(c,M+8,y-h-4); return y-h-8-12
+    if t: b.append((t,"#FBEDEA","#B32020"))
+    for t in _q_txt(B): b.append((t,"#FFF6E0","#C9A227"))
+    return b
+def _open_h(B):
+    return sum(_ph(t,_OPS,W-2*M-16)+8+6 for t,_,_ in _boxes(B))+(6 if _boxes(B) else 0)
+def _open_box(c,y,B):
+    bx=_boxes(B)
+    for t,fill,line in bx:
+        p=Paragraph(t,_OPS); _,h=p.wrap(W-2*M-16,999)
+        c.saveState(); c.setFillColor(H(fill)); c.setStrokeColor(H(line)); c.setLineWidth(.8)
+        c.roundRect(M,y-h-8,W-2*M,h+8,4,stroke=1,fill=1); c.restoreState()
+        p.drawOn(c,M+8,y-h-4); y=y-h-8-6
+    return y-6 if bx else y
