@@ -313,3 +313,19 @@ patch(f"{R}/cand/redesign/_fr_legend4.py",[
   'lhd(y,"WHY HE\'S HERE","Positions page  ·  the words on a free agent\'s plate  ·  why he is on the chart, what he is for, how long");y-=19\nfor lab,mean in (("USAGE UP","His workload last game ran well above his earlier games."),\n                 ("ROLE OPENED","A teammate ahead of him is out or moved, confirmed."),\n                 ("ROLE MAY OPEN","Same, but only a missed practice so far, no designation. Watch it."),\n                 ("MARKET UP","The forecasters rate him well above what Gotham says."),\n                 ("BYE / INJURY FILL","He beats this roster\'s best cover for a starter on bye or out, Weeks 4-7."),\n                 ("ALL SEASON · 3 WEEKS","How long he should help. HOW LONG UNCLEAR when the opening has no end date."),\n                 ("SCOUT PICK","Recommended on the Scout page, plotted beside the men here.")):\n    lrow_(y,lambda m:None,lab,mean,"Positions page, on his plate");y-=RH\ny-=6\nlhd(y,"THE SCOUT\'S SPYGLASS","On the man a live Scout need is about  ·  color = how urgent the need is  ·  the Signal\'s life cycle: splat, then a day count");y-=19\ntry:\n    lrow_(y,lambda m:(scout_mark(c,GX-3,m+2.5,"red",0,7.2),scout_mark(c,GX+9,m+2.5,"gold",3,7.2)),"RED · GOLD","Red = act now, gold = watch. Splat = new today; 03 = three days on.","Field Report, Scout page");y-=RH+3\nexcept Exception as _ex: print("legend spyglass rows skipped:",_ex)\n',1),
  ("RH=17\n","RH=15.4\n",1),
 ],"OCT10d marks words")
+# ---------- 15 (Oct 10 late) the chart and the Scout list the same men: the Scout prices the WHOLE doors list (no cap)
+# and hands every price to the page; the Scout page then names, from the very list the Positions chart draws, each man on
+# the chart it does not recommend - so a man on the chart is never missing from the Scout without his numbers. The chart
+# shows up to eight door men a position (was six) before the Scout's own picks.
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ("groupby('pos').head(6)","groupby('pos').head(int(os.environ.get('DK_DOORCAP','8')))",1),
+],"OCT10e doorcap")
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('        _R3,_O3,_=_E3.run(CF["lab"])\n','        os.environ["DK_DOORCAP"]="99"; _R3,_O3,_=_E3.run(CF["lab"]); os.environ.pop("DK_DOORCAP",None)\n',1),
+ ('BOARD["checked"]+=[t for _,t in sorted(_chk)[:4]]   # the four with the most points added; the rest are on the chart\n',
+  'BOARD["priced"]={re.sub(r"[^a-z]","",re.sub(r"\\b(jr|sr|ii|iii|iv|v)\\b","",PL[_k]["name"].lower())):dict(fwd=round(PL[_k]["fwd"],1),gain=next((round(sum(max(0.0,v) for v in e["g"].values()),1) for e in G2 if e["k"]==_k),0.0)) for _k in DOORS}   # the page names the chart men\n',1),
+],"OCT10e scout prices doors")
+patch(f"{R}/cand/redesign/_scout_page.py",[
+ ("""    chk=('<font name="PopB">Checked, Not Assumed</font>  '+"  ·  ".join(_esc(s) for s in B["checked"])+""",
+  """    chk=('<font name="PopB">Checked, Not Assumed</font>  '+"  ·  ".join(_esc(s) for s in B["checked"]+_chart_lines(lab,B))+""",1),
+],"OCT10e scout chart lines")
