@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-10-10T22:34:56.608061-07:00",
- "run_str": "Sat Oct 10, 10:34 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 8:54 PM PT \u00b7 stats nflverse Sat 10:34 PM PT",
+ "run": "2026-10-10T23:00:55.538715-07:00",
+ "run_str": "Sat Oct 10, 11:00 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 10, 8:54 PM PT \u00b7 stats nflverse Sat 11:00 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -58,7 +58,7 @@
    "title": "TE, Weeks 5, 9, 12, 16 Fill",
    "target": "Target 10.0 pts",
    "why": "Full strength ~12.9 (Kraft). Wk 5 Kraft ~9.7 (hard matchup vs CHI) \u00b7 Wk 9 Kelce ~10.0 (Kraft has a worse matchup) \u00b7 Wk 12 Kelce ~10.7 (Kraft has a worse matchup) \u00b7 Wk 16 Kraft ~9.7 (hard matchup vs CHI).",
-   "across": "Wk 5 Pitts ~6.7 vs Kraft ~9.7 \u00b7 Wk 9 Likely ~12.5 vs Kelce ~10.0 \u00b7 Wk 12 Goedert ~11.7 vs Kelce ~10.7",
+   "across": "Wk 5 Pitts ~6.7 vs Kraft ~9.7 \u00b7 Wk 9 Likely ~12.5 vs Kelce ~10.0 \u00b7 Wk 12 Goedert ~14.2 vs Kelce ~10.7",
    "picks": [
     {
      "name": "Mike Gesicki",
@@ -102,7 +102,7 @@
    "title": "SUPERFLEX, Week 6 Fill",
    "target": "Target 18.1 pts",
    "why": "Full strength ~22.2 (Prescott). Wk 6 Stroud ~18.1 (Prescott moves up to QB, Stroud slides in).",
-   "across": "Wk 6 Darnold ~20.0 vs Stroud ~18.1",
+   "across": "Wk 6 Darnold ~21.3 vs Stroud ~18.1",
    "picks": [
     {
      "name": "Kalif Raymond",
@@ -113,8 +113,8 @@
      "why": "Current level ~12.0 a game",
      "when": "Wk 6",
      "urg": "red",
-     "gain": 8.6,
-     "pgain": 1.9
+     "gain": 4.5,
+     "pgain": 1.8
     },
     {
      "name": "Jakobi Meyers",
@@ -125,7 +125,7 @@
      "why": "Workload up from 2.4 to 10.4 expected a game",
      "when": "Wk 6",
      "urg": "red",
-     "gain": 2.6,
+     "gain": 2.4,
      "pgain": 0.0
     }
    ],
@@ -191,30 +191,36 @@
   },
   {
    "mark": "gold",
+   "first": "2026-10-10",
+   "key": "need:WR3:fill:short",
+   "age": 0,
+   "gap": null,
+   "head": "Byes Hit WR3",
+   "title": "WR3, Weeks 6, 9 Fill",
+   "target": "Target 11.2 pts",
+   "why": "Full strength ~13.6 (Robinson). Wk 6 McLaurin ~10.9 (Robinson moves up to WR2, McLaurin slides in) \u00b7 Wk 9 McLaurin ~11.5 (Robinson on bye, McLaurin slides in).",
+   "across": "Wk 6 Metcalf ~12.3 vs McLaurin ~10.9 \u00b7 Wk 9 Doubs ~12.1 vs McLaurin ~11.5",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off After Wk 9",
+   "rows": [
+    "Terry McLaurin"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
    "first": "2026-10-09",
    "key": "need:FLEX:fill:short",
    "age": 1,
    "gap": null,
-   "head": "Byes Hit the Flex",
-   "title": "FLEX, Weeks 10-11 Fill",
-   "target": "Target 11.6 pts",
-   "why": "Full strength ~13.2 (Harvey). Wk 10 Jefferson ~11.1 (Harvey on bye, Jefferson slides in) \u00b7 Wk 11 Gordon ~12.2 (Harvey moves up to RB2, Gordon slides in).",
-   "across": "Wk 10 London ~13.9 vs Jefferson ~11.1 \u00b7 Wk 11 Irving ~16.3 vs Gordon ~12.2",
-   "picks": [
-    {
-     "name": "Adonai Mitchell",
-     "team": "NYJ",
-     "pos": "WR",
-     "scores": "9.0, 12.3",
-     "acq": "Free agent",
-     "why": "Due back Wk 6 (listed Out); door open: Arian Smith out",
-     "when": "Wk 10",
-     "urg": "gold",
-     "gain": 3.6,
-     "pgain": 0.0
-    }
-   ],
-   "none": null,
+   "head": "The Flex Runs Thin",
+   "title": "FLEX, Week 11 Fill",
+   "target": "Target 12.2 pts",
+   "why": "Full strength ~13.2 (Harvey). Wk 11 Gordon ~12.2 (Harvey moves up to RB2, Gordon slides in).",
+   "across": "Wk 11 Irving ~16.3 vs Gordon ~12.2",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
    "kill": "Drops Off After Wk 11",
    "rows": [],
    "rep": 0
@@ -401,7 +407,7 @@
   },
   "adonaimitchell": {
    "fwd": 11.6,
-   "gain": 3.6
+   "gain": 0.0
   },
   "keenanallen": {
    "fwd": 10.6,
@@ -409,7 +415,7 @@
   },
   "romanwilson": {
    "fwd": 11.5,
-   "gain": 4.2
+   "gain": 0.0
   },
   "tretucker": {
    "fwd": 10.0,
@@ -439,10 +445,10 @@
  "qcont": [
   {
    "name": "Justin Jefferson",
-   "slot": "WR",
+   "slot": "WR3",
    "tag": "Q",
-   "val": 10.5,
-   "loss": 0.0,
+   "val": 13.6,
+   "loss": 1.7,
    "fills": [],
    "ir": false,
    "bench": false
@@ -452,74 +458,18 @@
    "slot": "WR1",
    "tag": "Q",
    "val": 18.4,
-   "loss": 7.8,
-   "fills": [
-    {
-     "name": "Kalif Raymond",
-     "team": "CHI",
-     "pos": "WR",
-     "now": 1.5,
-     "nxt": 2.1,
-     "fwd": 12.0,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Jakobi Meyers",
-     "team": "JAX",
-     "pos": "WR",
-     "now": 1.2,
-     "nxt": 2.0,
-     "fwd": 11.0,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Roman Wilson",
-     "team": "PIT",
-     "pos": "WR",
-     "now": 1.4,
-     "nxt": 0.0,
-     "fwd": 11.5,
-     "acq": "Free agent"
-    }
-   ],
+   "loss": 6.4,
+   "fills": [],
    "ir": false,
    "bench": false
   },
   {
    "name": "Terry McLaurin",
-   "slot": "WR3",
+   "slot": "WR",
    "tag": "Q",
    "val": 12.0,
-   "loss": 1.5,
-   "fills": [
-    {
-     "name": "Kalif Raymond",
-     "team": "CHI",
-     "pos": "WR",
-     "now": 1.5,
-     "nxt": 2.1,
-     "fwd": 12.0,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Jakobi Meyers",
-     "team": "JAX",
-     "pos": "WR",
-     "now": 1.2,
-     "nxt": 2.0,
-     "fwd": 11.0,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Roman Wilson",
-     "team": "PIT",
-     "pos": "WR",
-     "now": 1.4,
-     "nxt": 0.0,
-     "fwd": 11.5,
-     "acq": "Free agent"
-    }
-   ],
+   "loss": 0.0,
+   "fills": [],
    "ir": false,
    "bench": false
   }
