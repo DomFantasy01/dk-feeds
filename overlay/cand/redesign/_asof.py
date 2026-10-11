@@ -25,7 +25,12 @@ def asof_state():
             ages.append(((now-t).total_seconds()/3600 if t else 99.0,lab))
         h,lab=max(ages)
     except Exception: h,lab=99.0,"sources"
-    light="green" if h<3 else ("amber" if h<6 else "red")
+    # Oct 11 (Dom): while games are on (Sun 9:30 AM-9 PM, Mon/Thu 5-9 PM PT) the light is strict - green under 1 hour,
+    # amber to 2, red past 2 - so a 2-hour-old Yahoo read on a Sunday afternoon can never show green
+    _m=now.hour*60+now.minute; _wd=now.weekday()
+    live=(_wd==6 and 570<=_m<=1260) or (_wd in (0,3) and 1020<=_m<=1260)
+    g,a_=(1,2) if live else (3,6)
+    light="green" if h<g else ("amber" if h<a_ else "red")
     return "As of "+_ao_fmt(now),light,lab,h
 _AO_INK={"green":_AOH("#3FB36A"),"amber":_AOH("#F2B33D"),"red":_AOH("#E5484D")}
 def stoplight(c,x,ymid,light,h=7.4):
