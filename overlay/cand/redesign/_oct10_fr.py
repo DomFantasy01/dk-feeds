@@ -151,3 +151,12 @@ def fdec(c,xd,y,v,fin=False,font="PopB",sz=7.4,col=INKN):
     if fin and v not in (None,""):
         b=str(v).split(".")[1] if "." in str(v) else ""
         txt(c,xd+c.stringWidth("."+b,font,sz)+1.2,y+.6,"FINAL","PopB",3.6,INKN)
+# ---- Oct 10 late (Dom): no lone abbreviations in the column furniture - STA reads TAG (Yahoo's injury tag), the
+# opponent's number column reads THEIR MAN, and the slot chip says FLEX / S-FLEX (the chip's type shrinks to fit).
+_hdr10=hdr
+_HDRW={"STA":"TAG"}
+def hdr(c,x,y,s,align="l"): return _hdr10(c,x,y,_HDRW.get(s,s),align)
+def slotchip(c,x,y,s):
+    w=c.stringWidth("SFLX","PopB",5.8)+8; sz=min(5.8,5.8*(w-3)/max(1,c.stringWidth(s,"PopB",5.8)))
+    c.setFillColor(alpha(LG["I"],.16));c.roundRect(x,y-2.6,w,9.4,2.5,stroke=0,fill=1)
+    txt(c,x+w/2,y+(5.8-sz)*.35,s,"PopB",sz,H("#1B4F9C"),"c")
