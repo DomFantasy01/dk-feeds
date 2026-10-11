@@ -401,3 +401,20 @@ patch(f"{R}/cand/redesign/_masthead_field.py",[
 patch(f"{R}/cand/global/_mast33.py",[
  ('sub,W-M-9-108-10-P)','sub,W-M-9-108-(M+4)-12)   # Oct 11: stops short of the puzzle where it really sits',1),
 ],"OCT11 front asof room")
+# ---------- 22 (Sun Oct 11) "Fix the lineup" only for a man who can still hurt you: a starter tagged Out whose game is
+# already final with points on the board (Henderson, Week 5: O tag, 5.8 final) is not a lineup problem.
+patch(f"{R}/cand/global/global33.py",[
+ ('bad=[_ln11(p["player"]) for p in me if p["window"] is None or p.get("status") in ("O","IR","IR-R","PUP-R","NA")]',
+  'bad=[_ln11(p["player"]) for p in me if p["window"] is None or (p.get("status") in ("O","IR","IR-R","PUP-R","NA") and p.get("actual") is None)]',1),
+],"OCT11 alarm played front")
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('out_=[r[1] for r in S if r[1] and r[2] in ("O","IR")]',
+  'out_=[r[1] for r in S if r[1] and r[2] in ("O","IR") and not any(p["player"]==r[1] and p.get("actual") is not None for p in L["starters"]["me"])]',1),
+],"OCT11 alarm played pages")
+# ---------- 23 (Dom, Sun Oct 11) the Field Report masthead says only the week and the As of - the league and the
+# opponent are already on the card right under it.
+patch(f"{R}/cand/redesign/_masthead_field.py",[
+ ('    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub',
+  '    if _wk and not sub.startswith("Week"): sub=f"Week {_wk}  ·  "+sub\n'
+  '    if "FIELD REPORT" in section.upper(): sub=f"Week {_wk}" if _wk else sub.split("  ·  ")[0]   # Oct 11 (Dom): too much up here',1),
+],"OCT11 field report mast")
