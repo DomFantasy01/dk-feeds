@@ -1,6 +1,6 @@
 {
  "week": 5,
- "built_pt": "Sun Oct 11 2026 06:56 PM PT",
+ "built_pt": "Sun Oct 11 2026 06:59 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 11 06:55 PM PT",
+   "pulled_pt": "Sun Oct 11 06:59 PM PT",
    "age_h": 0.0,
    "rows": 15,
    "need": 15,
@@ -22,27 +22,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_sun1657.txt",
-   "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 2.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_sun1851.txt",
+   "pulled_pt": "Sun Oct 11 06:51 PM PT",
+   "age_h": 0.1,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_sun1657.txt",
-   "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 2.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_sun1851.txt",
+   "pulled_pt": "Sun Oct 11 06:51 PM PT",
+   "age_h": 0.1,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_sun1657.txt",
-   "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 2.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_sun1851.txt",
+   "pulled_pt": "Sun Oct 11 06:51 PM PT",
+   "age_h": 0.1,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,11 +50,11 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 11 06:56 PM PT",
+   "pulled_pt": "Sun Oct 11 06:59 PM PT",
    "age_h": 0.0,
    "rows": 5,
    "need": 5,
-   "note": "Gotham run Sun Oct 11 2026 06:56 PM PT for week 5"
+   "note": "Gotham run Sun Oct 11 2026 06:59 PM PT for week 5"
   },
   "sleeper_skill": {
    "status": "OK",
@@ -77,8 +77,8 @@
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_rosters.json",
-   "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 2.0,
+   "pulled_pt": "Sun Oct 11 06:51 PM PT",
+   "age_h": 0.1,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -140,16 +140,16 @@
    },
    "totals": {
     "yahoo": [
-     192.47,
-     137.05
+     178.56,
+     123.08
     ],
     "gotham": [
-     190.92,
-     138.79
+     178.56,
+     123.08
     ],
     "sleeper": [
-     192.31,
-     135.27
+     178.56,
+     123.08
     ]
    },
    "windows": {
@@ -159,7 +159,7 @@
       13.8,
       113.21,
       20.05,
-      17.41,
+      3.5,
       0.0
      ],
      [
@@ -177,7 +177,7 @@
       12.7,
       25.6,
       74.38,
-      24.37,
+      10.4,
       0.0
      ],
      [
@@ -191,8 +191,8 @@
     ]
    },
    "played": {
-    "me": 9,
-    "op": 8,
+    "me": 10,
+    "op": 10,
     "of": [
      10,
      10
@@ -261,9 +261,9 @@
       "player": "Drake London",
       "team": "ATL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 17.41,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 17.39,
+      "actual": 3.5,
       "pos": "WR",
       "gotham": 15.86,
       "gotham_src": "gotham",
@@ -375,9 +375,9 @@
       "player": "Brian Robinson",
       "team": "ATL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 7.88,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 7.9,
+      "actual": 1.25,
       "pos": "RB",
       "gotham": 10.4,
       "gotham_src": "gotham",
@@ -389,9 +389,9 @@
       "player": "Zay Flowers",
       "team": "BAL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
+      "kickoff": "",
       "yahoo": 16.49,
-      "actual": null,
+      "actual": 9.15,
       "pos": "WR",
       "gotham": 15.71,
       "gotham_src": "gotham",
@@ -580,15 +580,15 @@
    },
    "totals": {
     "yahoo": [
-     167.15,
+     143.56,
      102.18
     ],
     "gotham": [
-     164.82,
+     143.18,
      103.62
     ],
     "sleeper": [
-     167.22,
+     143.18,
      102.18
     ]
    },
@@ -599,7 +599,7 @@
       0.0,
       85.51,
       41.58,
-      27.19,
+      3.6,
       12.87
      ],
      [
@@ -631,7 +631,7 @@
     ]
    },
    "played": {
-    "me": 7,
+    "me": 9,
     "op": 10,
     "of": [
      11,
@@ -701,9 +701,9 @@
       "player": "Drake London",
       "team": "ATL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 17.56,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 17.55,
+      "actual": 3.5,
       "pos": "WR",
       "gotham": 15.86,
       "gotham_src": "gotham",
@@ -729,9 +729,9 @@
       "player": "Mark Andrews",
       "team": "BAL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 9.63,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 9.61,
+      "actual": 0.1,
       "pos": "TE",
       "gotham": 9.38,
       "gotham_src": "gotham",
@@ -1453,23 +1453,23 @@
    "teams": 10,
    "opp_rank": 3,
    "needles": {
-    "gotham": 81,
-    "yahoo": 70,
-    "sleeper": 82,
-    "yahoo_from_spread": 82
+    "gotham": 13,
+    "yahoo": 71,
+    "sleeper": 18,
+    "yahoo_from_spread": 22
    },
    "totals": {
     "yahoo": [
-     163.46,
-     147.19
+     142.78,
+     149.03
     ],
     "gotham": [
-     164.13,
-     148.44
+     142.78,
+     151.69
     ],
     "sleeper": [
-     164.23,
-     148.16
+     142.78,
+     150.22
     ]
    },
    "windows": {
@@ -1479,7 +1479,7 @@
       0.0,
       55.4,
       44.64,
-      46.78,
+      26.1,
       0.0
      ],
      [
@@ -1497,7 +1497,7 @@
       15.0,
       26.1,
       80.56,
-      7.96,
+      9.8,
       17.57
      ],
      [
@@ -1511,8 +1511,8 @@
     ]
    },
    "played": {
-    "me": 8,
-    "op": 9,
+    "me": 11,
+    "op": 10,
     "of": [
      11,
      11
@@ -1539,9 +1539,9 @@
       "player": "Bijan Robinson",
       "team": "ATL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 22.9,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 22.91,
+      "actual": 4.2,
       "pos": "RB",
       "gotham": 24.22,
       "gotham_src": "gotham",
@@ -1595,9 +1595,9 @@
       "player": "Zay Flowers",
       "team": "BAL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 16.37,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 16.36,
+      "actual": 8.9,
       "pos": "WR",
       "gotham": 15.62,
       "gotham_src": "gotham",
@@ -1651,9 +1651,9 @@
       "player": "Tyler Loop",
       "team": "BAL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 7.51,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 7.49,
+      "actual": 13.0,
       "pos": "K",
       "gotham": 7.61,
       "gotham_src": "sleeper",
@@ -1765,9 +1765,9 @@
       "player": "Kyle Pitts Sr.",
       "team": "ATL",
       "status": "",
-      "kickoff": "Sun 5:20 pm",
-      "yahoo": 7.96,
-      "actual": null,
+      "kickoff": "",
+      "yahoo": 7.97,
+      "actual": 9.8,
       "pos": "TE",
       "gotham": 6.55,
       "gotham_src": "gotham",
