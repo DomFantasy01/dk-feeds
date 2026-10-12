@@ -586,3 +586,61 @@ patch(f"{R}/dksys/engine/engine3v.py",[
   "    print('WEEK-TO-WEEK -> Doubtful:',len(_wtw),'|',', '.join(_wtw[:20]))\n"
   "except Exception as _e: print('week-to-week rule skipped:',_e)\n",1),
 ],"OCT11 selfout and week-to-week")
+# ---------- 32 (Dom, Mon Oct 12): three Gotham changes from the morning's tests, each on its own switch so any one can come out.
+# Baseline = all four switches off (DK_HANDOFF=off DK_VEGHALF=off DK_ELITEVEG=off DK_PRACTRIM=off) reproduces Gotham as of Oct 11.
+# (1) HALF HANDOFF: a ruled-out man's work goes to his position-mates at no more than half (was RB/WR .88, TE .37 stays).
+#     Replay Wks 2-5: role-opens men miss 6.84 -> 6.38 (Yahoo 6.50). Live Wk5 overshoot: Swift 23.9 (scored 17.3), McLaurin 16.5 (12.2).
+# (2) VEGAS AT HALF STRENGTH: with the matchup factor off, this week's Vegas factor was square-rooted again (quarter strength);
+#     it now enters at its own strength, (implied / mean)^.5 held .88-1.12. Replay: quarter vs half within .01 pts - tiny.
+# (3a) ELITE LOW-VEGAS CUT: a top-20% man at his position (points a game, 2+ games) whose team's implied total is under the
+#     week's mean loses half the gap in points (implied 18.5 vs mean 22.5 -> -2.0). Never raises anyone.
+# (3b) PRACTICE TRIM: missed or limited practice this week with no game designation -> his number x .95.
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ("            g_=VACATE[p]*frac*wl_*WL[k2][0]/tot\n",
+  "            g_=(VACATE[p] if os.environ.get('DK_HANDOFF','0.5')=='off' else min(VACATE[p],float(os.environ.get('DK_HANDOFF','0.5'))))*frac*wl_*WL[k2][0]/tot   # Oct 12 (Dom): half handoff\n",1),
+ ("            if wk_==WEEK and vfac(team) is not None: m=(m*vfac(team))**.5      # v4: Vegas blended in for this week\n",
+  "            if wk_==WEEK and vfac(team) is not None: m=vfac(team) if (os.environ.get('DK_NOMATCH') and os.environ.get('DK_VEGHALF','on')!='off') else (m*vfac(team))**.5      # v4 Vegas; Oct 12 (Dom): matchup off -> Vegas at half strength, not a quarter\n",1),
+],"OCT12 handoff and vegas")
+patch(f"{R}/dksys/engine/gotham.py",[
+ ("    E['eng_fwd']=[bl(v,r_) for v,r_ in zip(E.eng_fwd,E.itertuples())]\n",
+  "    E['eng_fwd']=[bl(v,r_) for v,r_ in zip(E.eng_fwd,E.itertuples())]\n"
+  "    E['oct12']=''\n"
+  "    try:   # Oct 12 (Dom): elite low-Vegas cut + practice trim, this week's number only, each on its own switch\n"
+  "        _g=pd.read_csv(D+'games.csv'); _g=_g[(_g.season==2026)&(_g.week==WEEK)&_g.total_line.notna()&_g.spread_line.notna()]\n"
+  "        _TF={'LAR':'LA','WSH':'WAS','JAC':'JAX'}; _t=lambda x:_TF.get(str(x).upper(),str(x).upper())\n"
+  "        _IMP={**{_t(a):(t_+s_)/2 for a,t_,s_ in zip(_g.home_team,_g.total_line,_g.spread_line)},**{_t(a):(t_-s_)/2 for a,t_,s_ in zip(_g.away_team,_g.total_line,_g.spread_line)}}\n"
+  "        _M=float(np.mean(list(_IMP.values()))) if _IMP else None\n"
+  "        _pp=S[S.position.isin(['QB','RB','WR','TE'])].groupby(['k','position']).fantasy_points_ppr.agg(['mean','size']).reset_index(); _pp=_pp[_pp['size']>=2]\n"
+  "        _pp['pr']=_pp.groupby('position')['mean'].rank(ascending=False,pct=True); _EL={(a,b) for a,b,c in zip(_pp.k,_pp.position,_pp.pr) if c<=.20}\n"
+  "        _I=pd.read_csv(D+'injuries.csv'); _I=_I[_I.week==WEEK]\n"
+  "        _PR={norm(str(a)) for a,b,c in zip(_I.full_name,_I.practice_status,_I.report_status) if ('Did Not' in str(b) or 'Limited' in str(b)) and str(c)=='nan'}\n"
+  "        _ne=_np=0\n"
+  "        for i_,r_ in E.iterrows():\n"
+  "            v=r_.eng_wk\n"
+  "            if pd.isna(v) or v<=0 or bool(r_.played_wk): continue\n"
+  "            tm=_t(r_.team); tag=[]\n"
+  "            if os.environ.get('DK_ELITEVEG','on')!='off' and _M and (r_.k,r_.pos) in _EL and tm in _IMP and _IMP[tm]<_M:\n"
+  "                v=max(0.0,v+.5*(_IMP[tm]-_M)); tag.append(f'elite low-Vegas {.5*(_IMP[tm]-_M):+.1f}'); _ne+=1\n"
+  "            if os.environ.get('DK_PRACTRIM','on')!='off' and r_.k in _PR:\n"
+  "                v=v*.95; tag.append('practice x.95'); _np+=1\n"
+  "            if tag: E.at[i_,'eng_wk']=round(v,2); E.at[i_,'oct12']='; '.join(tag)\n"
+  "        _msg=f'OCT12 {lab}: elite low-Vegas cuts {_ne} | practice trims {_np} | handoff {os.environ.get(\"DK_HANDOFF\",\"0.5\")} | vegas half {os.environ.get(\"DK_VEGHALF\",\"on\")}'\n"
+  "    except Exception as _e: _msg=f'OCT12 {lab}: adjustments skipped: {_e}'\n"
+  "    open(os.path.join(HERE,'gotham_oct12.txt'),'a' if lab!='DKI' else 'w').write(_msg+'\\n')   # no print: the build reads only gotham's first two lines\n",1),
+],"OCT12 elite vegas and practice")
+# ---------- 33 (Mon Oct 12): two false flags on the Dispatch
+# (1) Sleeper "STALE" fired because Sleeper's file only changes when Sleeper changes its numbers (it stops after games);
+#     the age now comes from the feed job's last successful check (proj/status.json), not the file's name.
+# (2) the "Gotham vs Yahoo - check role/news" note compared a FINAL score to projections once a game was over; played men skip it.
+patch(f"{R}/dksys/meter/meter_data.py",[
+ ("        if age > 6: sources[key]['status'] = 'STALE'; alarms.append(f'{key}: STALE - GitHub job file is {age} h old (limit 6 h; the job runs every 2 h)')\n",
+  "        try:   # Oct 12: the job's last good check counts, not the file name (the file only changes when Sleeper does)\n"
+  "            _js = json.load(open(FEEDS + 'proj/status.json')); _ok = str(_js['sources'][{'sleeper_skill':'sleeper','sleeper_kdef':'sleeper_kdef'}[key]].get(f'wk{WEEK}','')); _m = re.match(r'(\\d{4}-\\d{2}-\\d{2})T(\\d{4})Z', _js['run_utc'])\n"
+  "            if _m and not _ok.startswith('FAILED'):\n"
+  "                age = round((NOW - dt.datetime.strptime(_m.group(1)+_m.group(2), '%Y-%m-%d%H%M').replace(tzinfo=dt.timezone.utc).astimezone(PT)).total_seconds() / 3600, 1)\n"
+  "                sources[key]['note'] = f\"GitHub job checked {age} h ago ({_ok})\"\n"
+  "        except Exception: pass\n"
+  "        if age > 6: sources[key]['status'] = 'STALE'; alarms.append(f'{key}: STALE - GitHub job last checked {age} h ago (limit 6 h; the job runs every 2 h)')\n",1),
+ ("            if p['gotham'] is not None and p['sleeper'] is not None and p['yahoo'] is not None and p['pos'] not in ('K','DEF'):\n",
+  "            if p['gotham'] is not None and p['sleeper'] is not None and p['yahoo'] is not None and p['pos'] not in ('K','DEF') and p.get('actual') is None:   # Oct 12: a played man's Gotham number is his final score\n",1),
+],"OCT12 meter false flags")
