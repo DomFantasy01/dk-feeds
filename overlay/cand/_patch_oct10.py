@@ -531,3 +531,33 @@ patch(f"{R}/cand/global/global33.py",[
   '    return n\n'
   'def pips22(x0,y,D,col):',1),
 ],"OCT11 played squares glow")
+# ---------- 29 (Dom, Sun Oct 11) GOTHAM DROPS A GAME A MAN LEFT HURT - the same rule the Scout has used since Oct 10 (#16):
+# a game where he played under 35% of the offense's snaps, when he normally plays 60% or more, is not his level (Jefferson
+# Wk 3 at 12%, Chase Wk 4 at 20%, Achane Wk 3 at 5%). It no longer drags his workload down. Past weeks only; the game being
+# played this week still counts as his actual. Every dropped game is printed in the build log.
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ('def run(lab):\n',
+  'def _drop_exits(F):\n'
+  '    """Oct 11 (Dom): remove past games a man left hurt - under 35% of snaps when his usual (median) is 60%+; keeps at least one game"""\n'
+  '    try: sn=pd.read_csv("/home/claude/dksys/gate/fresh/snap_counts_2026.csv",low_memory=False)\n'
+  '    except Exception as ex: print("INJURY-EXIT: no snap counts, nothing dropped -",ex); return F\n'
+  '    sn=sn[(sn.game_type=="REG")&(sn.week<WEEK)&sn.position.isin(POS)].copy(); sn["k"]=sn.player.astype(str).map(FM.norm)\n'
+  '    drop=set(); seen=[]\n'
+  '    for (k_,p_),g_ in sn.groupby(["k","position"]):\n'
+  '        if len(g_)<2 or g_.offense_pct.median()<.6: continue\n'
+  '        ex=[int(w) for w,v in zip(g_.week,g_.offense_pct) if v<.35]\n'
+  '        if ex and len(ex)<len(g_):\n'
+  '            drop.update((k_,w) for w in ex); seen.append(f"{g_.player.iloc[0]} Wk "+",".join(map(str,ex)))\n'
+  '    if not drop: return F\n'
+  '    m=[(k_,int(w)) in drop and w<WEEK for k_,w in zip(F.key,F.week)]\n'
+  '    if "_EXITSHOWN" not in globals(): print("INJURY-EXIT games dropped:",len(drop),"|","; ".join(sorted(seen))); globals()["_EXITSHOWN"]=1\n'
+  '    return F[~pd.Series(m,index=F.index)]\n'
+  'def run(lab):\n',1),
+ ("    F['team']=F.team.map(T)\n","    F['team']=F.team.map(T)\n    F=_drop_exits(F)   # Oct 11 (Dom): a game he left hurt is not his level\n",1),
+],"OCT11 gotham injury exits")
+# ---------- 30 (Dom, Sun Oct 11) THE SCOREBOARD gets its own page, the last one, after The Marks: this week, the running
+# total from Week 2, the trend by week, by position, the disagreement test, and the week's biggest misses.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('   # THE MARKS travels as the last page\n',
+  '   # THE MARKS travels as the last page\nexec(open("/home/claude/cand/redesign/_scoreboard_page.py").read())   # Oct 11 (Dom): THE SCOREBOARD, the final page\n',1),
+],"OCT11 scoreboard page")
