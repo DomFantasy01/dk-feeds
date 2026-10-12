@@ -1,6 +1,6 @@
 {
  "week": 5,
- "built_pt": "Sun Oct 11 2026 05:04 PM PT",
+ "built_pt": "Sun Oct 11 2026 05:16 PM PT",
  "alarms": [],
  "notes": [
   "DK I: Gotham 34.5 vs Yahoo 22.2 / Sleeper 20.5 on Jayden Daniels - check role/news",
@@ -8,11 +8,14 @@
   "DK I: Gotham 28.0 vs Yahoo 14.8 / Sleeper 13.8 on George Pickens - check role/news",
   "DK I: Gotham 5.8 vs Yahoo 13.3 / Sleeper 13.4 on TreVeyon Henderson - check role/news",
   "DK I: Gotham 3.4 vs Yahoo 13.3 / Sleeper 14.0 on Alvin Kamara - check role/news",
+  "DK I: Gotham 31.8 vs Yahoo 23.5 / Sleeper 22.1 on Jacoby Brissett - check role/news",
   "DK I: Gotham 2.6 vs Yahoo 13.0 / Sleeper 12.9 on Romeo Doubs - check role/news",
   "DK I: Gotham 23.0 vs Yahoo 16.2 / Sleeper 15.9 on Brock Bowers - check role/news",
   "DK II: Gotham 34.5 vs Yahoo 22.2 / Sleeper 20.5 on Jayden Daniels - check role/news",
   "DK II: Gotham 2.4 vs Yahoo 15.8 / Sleeper 16.4 on David Montgomery - check role/news",
   "DK II: Gotham 3.4 vs Yahoo 13.4 / Sleeper 14.0 on Alvin Kamara - check role/news",
+  "DK II: Gotham 31.8 vs Yahoo 23.5 / Sleeper 22.1 on Jacoby Brissett - check role/news",
+  "DK II: Gotham 10.9 vs Yahoo 21.2 / Sleeper 20.6 on Bo Nix - check role/news",
   "DK II: Gotham 14.9 vs Yahoo 23.0 / Sleeper 24.3 on Jonathan Taylor - check role/news",
   "DK II: Gotham 32.3 vs Yahoo 15.5 / Sleeper 15.5 on Christian Watson - check role/news",
   "DK II: Gotham 1.7 vs Yahoo 10.2 / Sleeper 10.3 on T.J. Hockenson - check role/news",
@@ -21,17 +24,22 @@
   "DK III: Gotham 34.5 vs Yahoo 22.2 / Sleeper 20.5 on Jayden Daniels - check role/news",
   "DK III: Gotham 2.4 vs Yahoo 15.7 / Sleeper 16.4 on David Montgomery - check role/news",
   "DK III: Gotham 28.0 vs Yahoo 14.8 / Sleeper 13.8 on George Pickens - check role/news",
+  "DK III: Gotham 5.0 vs Yahoo 13.5 / Sleeper 12.1 on Jaylen Waddle - check role/news",
   "DK III: Gotham 1.4 vs Yahoo 10.6 / Sleeper 10.9 on Harold Fannin Jr. - check role/news",
   "DK III: Gotham 40.5 vs Yahoo 24.4 / Sleeper 24.6 on Jaylen Warren - check role/news",
+  "DK III: Gotham 5.2 vs Yahoo 17.4 / Sleeper 16.0 on Jeremiyah Love - check role/news",
   "DK III: Gotham 23.0 vs Yahoo 16.2 / Sleeper 15.9 on Brock Bowers - check role/news",
+  "DK IV: Gotham 34.9 vs Yahoo 26.2 / Sleeper 26.5 on Jared Goff - check role/news",
+  "DK IV: Gotham 0.7 vs Yahoo 11.4 / Sleeper 11.6 on RJ Harvey - check role/news",
   "DK IV: Gotham 16.6 vs Yahoo 25.1 / Sleeper 24.8 on Dak Prescott - check role/news",
-  "DK IV: Gotham 20.3 vs Yahoo 13.4 / Sleeper 12.8 on Matthew Golden - check role/news"
+  "DK IV: Gotham 20.3 vs Yahoo 13.4 / Sleeper 12.8 on Matthew Golden - check role/news",
+  "DK IV: Gotham 26.3 vs Yahoo 12.6 / Sleeper 13.4 on Mike Evans - check role/news"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 11 05:03 PM PT",
+   "pulled_pt": "Sun Oct 11 05:16 PM PT",
    "age_h": 0.0,
    "rows": 15,
    "need": 15,
@@ -41,7 +49,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_sun1657.txt",
    "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.3,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -50,7 +58,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_sun1657.txt",
    "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.3,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -59,7 +67,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_sun1657.txt",
    "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.3,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -67,17 +75,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 11 05:04 PM PT",
+   "pulled_pt": "Sun Oct 11 05:16 PM PT",
    "age_h": 0.0,
    "rows": 5,
    "need": 5,
-   "note": "Gotham run Sun Oct 11 2026 05:04 PM PT for week 5"
+   "note": "Gotham run Sun Oct 11 2026 05:16 PM PT for week 5"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk5_2026-10-11T2330Z.csv",
    "pulled_pt": "Sun Oct 11 04:30 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 3117,
    "need": 400,
    "note": "GitHub job run Sun 04:30 PM PT"
@@ -86,7 +94,7 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk5_2026-10-11T2330Z.csv",
    "pulled_pt": "Sun Oct 11 04:30 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 187,
    "need": 60,
    "note": "GitHub job run Sun 04:30 PM PT"
@@ -95,7 +103,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_rosters.json",
    "pulled_pt": "Sun Oct 11 04:57 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.3,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
