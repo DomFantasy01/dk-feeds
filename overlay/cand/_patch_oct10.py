@@ -755,3 +755,38 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
  ("    q_=[last(r[1]) for r in S if r[1] and r[2] in (\"Q\",\"D\")]\n",
   "    q_=[last(r[1]) for r in S if r[1] and r[2] in (\"Q\",\"D\") and not any(p[\"player\"]==r[1] and p.get(\"actual\") is not None for p in L[\"starters\"][\"me\"])]   # Oct 12: played men need no kickoff check\n",1),
 ],"OCT12 field q played")
+# ---------- 35 (Mon Oct 12): the DK IV median on the Post-Mortem
+# Yahoo's matchup page shows the league median only while the week is being played (it is gone from Monday's page), so a
+# Monday or Tuesday read carries none. The Post-Mortem now uses the newest read of that week that has it and says which read.
+patch(f"{R}/cand/redesign/_pm_auto.py",[
+ ("    D[\"median\"]=MED\n",
+  "    D[\"median\"]=MED; D[\"median_at\"]=None\n"
+  "    if MED is None:   # Oct 12: the newest read of this week that carries Yahoo's median\n"
+  "        _mf=[]\n"
+  "        for _f in _gp.glob(_YD+f\"wk{W_}/dom_matchups_*.txt\"):\n"
+  "            for _l in open(_f):\n"
+  "                _mm=_rp.match(r\"# DK IV league median \\(Yahoo, same read\\): (\\d+\\.\\d+)\",_l)\n"
+  "                if _mm and _hdr_time(_f): _mf.append((_hdr_time(_f),float(_mm.group(1))))\n"
+  "        if _mf: _t,_v=max(_mf); D[\"median\"]=_v; D[\"median_at\"]=_fmt_t(_t)\n",1),
+ ("                if md is None: st+=\"  Median game: not in this read.\"\n",
+  "                if md is None: st+=\"  Median game: no Yahoo read this week carried it.\"\n"
+  "                elif D.get(\"median_at\"): st+=f\"  League median {md:.1f} as of the {D['median_at']} read (Yahoo stops showing it once the week ends).\"\n",1),
+],"OCT12 pm median")
+# ---------- 36 (Mon Oct 12): bench and IR tags on the Field Report come from the newest Yahoo read
+# Monday's and Tuesday's reads save only the matchup pages, so the bench tags were Sunday's (Shipley showed Q after Yahoo moved
+# him to D; Roman Wilson the same). When the Scout's roster read (every team page) is newer, its tags win.
+patch(f"{R}/dksys/meter/meter_data.py",[
+ ("        LEAGUE_OUT[lab]['bench'] = out\n",
+  "        try:   # Oct 12: a newer Scout roster read wins for bench and IR tags\n"
+  "            _n = {'DK I': 1, 'DK II': 2, 'DK III': 3, 'DK IV': 4}[lab]; _me = {'DK I': '2', 'DK II': '7', 'DK III': '2', 'DK IV': '6'}[lab]\n"
+  "            _f = f'/home/claude/dksys/scout/dk{_n}_rosters_live.txt'\n"
+  "            _pt = lambda s: dt.datetime.strptime(s, '%a %b %d %Y %I:%M %p') if s else None\n"
+  "            _sm = re.search(r'read live (\\w{3} \\w{3} \\d{1,2} \\d{4} \\d{1,2}:\\d{2} [AP]M) PT', open(_f).readline()) if os.path.exists(_f) else None\n"
+  "            _rm = re.search(r'(\\w{3} \\w{3} \\d{1,2} \\d{4} \\d{1,2}:\\d{2} [AP]M) PT', str(RJ.get('pulled_pt', '')))\n"
+  "            if _sm and (not _rm or _pt(_sm.group(1)) > _pt(_rm.group(1))):\n"
+  "                _tg = {norm(l.split('|')[2]): l.rstrip('\\n').split('|')[5] for l in open(_f) if l.startswith(_me + '|') and l.count('|') >= 5}\n"
+  "                for o in out:\n"
+  "                    if norm(o['player']) in _tg: o['status'] = _tg[norm(o['player'])]\n"
+  "        except Exception as _e: notes.append(f'{lab}: bench tags from the Scout read skipped ({_e})')\n"
+  "        LEAGUE_OUT[lab]['bench'] = out\n",1),
+],"OCT12 bench tags fresh")
