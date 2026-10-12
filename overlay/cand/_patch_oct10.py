@@ -1525,3 +1525,14 @@ patch(f"{R}/cand/redesign/_fr_v8.py",[
  ('t8(x + 14, y - 22, word, "Bebas", bsz, col)','t8(x + 14, y - (22 if bsz == 56 else 14), word, "Bebas", bsz, col)',1),
  ('t8(x + 14, y - 22, word, "Bebas", 40, col)','t8(x + 14, y - 14, word, "Bebas", 40, col)',1),
 ],"OCT12 scorecard word up")
+# ---------- 39 (Mon Oct 12, Dom): league names print "DK I, DK II, DK III, DK IV" everywhere (replaces DK1-DK4 from patch 37)
+patch(f"{R}/cand/redesign/_mast_v8.py",[
+ ('def dkname(s): return _DKRX.sub(lambda m: "DK" + _DKN[m.group(1)], s) if isinstance(s, str) else s',
+  'def dkname(s): return _re8.sub(r"\\bDK ?([1-4])\\b", lambda m: "DK " + {"1": "I", "2": "II", "3": "III", "4": "IV"}[m.group(1)], s) if isinstance(s, str) else s',1),
+ ('    m = _re8.search(r"\\bDK ?([1-4])\\b", s)\n    if m: lg = {"1": "DK I", "2": "DK II", "3": "DK III", "4": "DK IV"}[m.group(1)]\n',
+  '    m = _re8.search(r"\\bDK (IV|III|II|I)\\b", s)\n    if m: lg = "DK " + m.group(1)\n',1),
+ ('_re8.fullmatch(r"DK ?[1-4]|FANTASY FOOTBALL", p.strip())','_re8.fullmatch(r"DK (IV|III|II|I)|FANTASY FOOTBALL", p.strip())',1),
+],"OCT12 roman league names")
+patch(f"{R}/cand/_footer_pass.py",[
+ ('lambda q:"DK"+{"I":"1","II":"2","III":"3","IV":"4"}.get(q.group(1),q.group(1))','lambda q:"DK "+{"1":"I","2":"II","3":"III","4":"IV"}.get(q.group(1),q.group(1))',1),
+],"OCT12 footer roman names")
