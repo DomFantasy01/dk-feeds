@@ -52,15 +52,18 @@ function readMatchup(names,D=document,LOC=location){
     const idEl=cell.querySelector('[data-ys-playerid]'); let id=idEl?idEl.getAttribute('data-ys-playerid'):null;
     const a=cell.querySelector('a[href*="/nfl/players/"]'); if(!id&&a){const m=a.getAttribute('href').match(/players\/(\d+)/);id=m&&m[1];}
     const t=cl(cell.textContent); if(!t)return null;
-    const tp=t.match(/([A-Za-z]{2,3}) - (QB|RB|WR|TE|K|DEF)/);
-    let short=cl((idEl&&idEl.querySelector('div'))?.textContent)||(a?cl(a.textContent):'')||(tp?t.slice(0,t.indexOf(tp[0])):t);
+    // Oct 11: the rendered page can drop the space between name and team ("J. DanielsWas - QB"), so the team is read from
+    // the cell's text pieces joined with spaces - otherwise the last letter of the name sticks to the team ("aNO", "YSF")
+    const _tw=cell.ownerDocument.createTreeWalker(cell,4); const _pc=[]; while(_tw.nextNode()) _pc.push(_tw.currentNode.nodeValue); const tsp=cl(_pc.join(' '));
+    const tp=tsp.match(/([A-Za-z]{2,3}) - (QB|RB|WR|TE|K|DEF)/);
+    let short=cl((idEl&&idEl.querySelector('div'))?.textContent)||(a?cl(a.textContent):'')||(tp?tsp.slice(0,tsp.indexOf(tp[0])):t);
     short=short.replace(/(Video Forecast|No new player Notes|New Player Note|Player Notes?).*$/,'').trim();
     let name=(id&&names[id])||short;
-    const after=t.split(/No new player Notes|New Player Notes?|Player Notes?/).slice(-1)[0]||'';
+    const after=tsp.split(/No new player Notes|New Player Notes?|Player Notes?/).slice(-1)[0]||'';
     const sm=after.match(/^\s*(IR-R|IR|SUSP|PUP|NA|Q|D|O)(?=\s*(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Final|No Game|1st|2nd|3rd|4th|OT|Half|End|$))/);
     let st=sm?sm[1]:'';
     if(!st){const om=t.match(new RegExp(short.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(IR-R|IR|SUSP|PUP|Q|D|O)(?=Video|Player|No new|New)'));if(om)st=om[1];}
-    const ko=(t.match(/(Thu|Fri|Sat|Sun|Mon|Tue) (\d{1,2}:\d{2}) ([AP]M)/i)||[]);
+    const ko=(tsp.match(/(Thu|Fri|Sat|Sun|Mon|Tue) (\d{1,2}:\d{2}) ([AP]M)/i)||[]);
     const game=/Final/.test(after)?'final':(/(1st|2nd|3rd|4th|OT|Half|End)/.test(after)?'live':(ko[0]?'pre':(/No Game|Bye/i.test(after)?'none':'')));
     const gid=(cell.querySelector('a[href*="gid="]')?.getAttribute('href')||'').match(/gid=(\d{8})/);
     return {id,name,team:tp?tp[1]:'',pos:tp?tp[2]:'',status:st,ko:ko[0]?`${ko[1]} ${ko[2]} ${ko[3].toLowerCase()}`:'',game,gdate:gid?gid[1]:''};};
