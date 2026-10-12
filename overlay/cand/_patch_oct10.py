@@ -644,3 +644,114 @@ patch(f"{R}/dksys/meter/meter_data.py",[
  ("            if p['gotham'] is not None and p['sleeper'] is not None and p['yahoo'] is not None and p['pos'] not in ('K','DEF'):\n",
   "            if p['gotham'] is not None and p['sleeper'] is not None and p['yahoo'] is not None and p['pos'] not in ('K','DEF') and p.get('actual') is None:   # Oct 12: a played man's Gotham number is his final score\n",1),
 ],"OCT12 meter false flags")
+# ---------- 34 (Dom, Mon Oct 12): the Scout knows what is true NOW
+# (1) The Scout's week is read from the schedule (first week with a game still to play), never typed in - it was fixed at 5.
+# (2) News that says a man will miss time (ESPN injuries, RotoWire, PFT/Rotoballer: "may miss some time", "multiple weeks",
+#     "week-to-week", "miss N weeks") written AFTER his last game keeps him out: 2 games for open-ended wording, N when a number
+#     is given, counted from the week after his last game. Montgomery (groin, Wk 5) and Shipley (plantar fascia) were being
+#     planned as healthy from Week 6.
+# (3) ROSTER MOVES lead the Scout page: a man out 2+ weeks goes to an open IR slot (best player first), with Yahoo's rule
+#     stated (IR only once Yahoo lists him Out); when no IR slot is left he is named a drop candidate - Dom's call, never an order.
+# (4) A Questionable man whose game this week is already over gets no "if he sits" box, and the front page / Field Report
+#     stop saying "check before kickoff" about him.
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ("NOW,LAST=5,17; PLAYOFF={15,16,17}\n",
+  "try:   # Oct 12 (Dom): the week comes from the schedule, never typed in\n"
+  "    _gm=pd.read_csv(L+'/games.csv',low_memory=False); _gm=_gm[(_gm.season==2026)&(_gm.game_type=='REG')]; NOW=int(_gm[_gm.result.isna()].week.min())\n"
+  "except Exception: NOW=5\n"
+  "LAST=17; PLAYOFF={15,16,17}\n",1),
+ ("def back(p,ytag=\"\"):\n",
+  "_NEWSRE=re.compile(r\"week-to-week|week to week|(?:could|may|will|expected to) miss (?:some |significant |extended )?time|miss some time|multiple weeks|several weeks|(?:miss|sidelined|out)(?: for)?(?: about| roughly| at least| the next)? (?:\\w+|\\d+)(?:-to-| to |-)?(?:\\w+|\\d+)? weeks\",re.I)\n"
+  "_NUMW={\"one\":1,\"two\":2,\"three\":3,\"four\":4,\"five\":5,\"six\":6,\"seven\":7,\"eight\":8,\"a\":1,\"couple\":2}\n"
+  "def _nweeks(t):\n"
+  "    m=re.search(r\"(?:miss|sidelined|out)(?: for)?(?: about| roughly| at least| the next)? (\\w+|\\d+)(?:-to-| to |-)?(?:\\w+|\\d+)? weeks\",t,re.I)\n"
+  "    if m and \"multiple\" not in m.group(1).lower() and \"several\" not in m.group(1).lower():\n"
+  "        w=m.group(1).lower(); return int(w) if w.isdigit() else _NUMW.get(w,2)\n"
+  "    return 2\n"
+  "NEWSOUT={}\n"
+  "try:   # Oct 12 (Dom): news that he will miss time keeps him out - only news written after his last game counts\n"
+  "    _FD='/home/claude/domfantasy01/dk-feeds/feeds/'; _IT=[]\n"
+  "    try:\n"
+  "        for _x in json.load(open(_FD+'espn_injuries.json')).get('players',[]): _IT.append((_x.get('name',''),_x.get('detail',''),_x.get('date',''),'ESPN'))\n"
+  "    except Exception: pass\n"
+  "    for _fn,_src in (('rotowire_history.jsonl','RotoWire'),('news_extra_history.jsonl','news')):\n"
+  "        try:\n"
+  "            for _l in open(_FD+_fn):\n"
+  "                try: _j=json.loads(_l)\n"
+  "                except Exception: continue\n"
+  "                _t=str(_j.get('title') or ''); _ts=_j.get('published_utc') or _j.get('first_seen_utc') or ''\n"
+  "                if _t.count(',')>=2: continue                                 # a list article names many men - not news about one\n"
+  "                _IT.append((_t.split(':')[0] if _src=='RotoWire' else _t,_t+' '+re.sub(r'<[^>]+>',' ',str(_j.get('text') or '')),_ts,_j.get('source',_src)))\n"
+  "        except Exception: pass\n"
+  "    _GD={}\n"
+  "    for _r in _gm.itertuples(): _GD[(tm(_r.home_team),int(_r.week))]=str(_r.gameday); _GD[(tm(_r.away_team),int(_r.week))]=str(_r.gameday)\n"
+  "    _NAMES={norm(p['name']):p for p in PL.values() if p.get('pos') in ('QB','RB','WR','TE')}\n"
+  "    for _nm,_tx,_ts,_src in _IT:\n"
+  "        if not _ts or not _NEWSRE.search(_tx): continue\n"
+  "        _when=dt.datetime.fromisoformat(str(_ts).replace('Z','+00:00')) if 'T' in str(_ts) else None\n"
+  "        if _when is None or _when.tzinfo is None or (NOWPT-_when).days>10: continue\n"
+  "        for _k,_p in _NAMES.items():\n"
+  "            if not _p['name'] or _p['name'] not in _nm: continue\n"
+  "            _gday=_GD.get((_p['team'],int(_p['last'])),'')\n"
+  "            if _gday and _when.strftime('%Y-%m-%d')<_gday: continue           # written before his last game - he has played since\n"
+  "            _n=_nweeks(_tx); _ph=_NEWSRE.search(_tx).group(0)\n"
+  "            if _k not in NEWSOUT or _n>NEWSOUT[_k][0]: NEWSOUT[_k]=(_n,f'{_src}: \"{_ph}\" ({_when.astimezone(NOWPT.tzinfo).strftime(\"%b %d\")})')\n"
+  "except Exception as _e: print('Scout news check skipped:',_e)\n"
+  "def _newsback(p):\n"
+  "    n=NEWSOUT.get(norm(p['name']))\n"
+  "    return int(p['last'])+1+n[0] if n else 0\n"
+  "def back(p,ytag=\"\"):\n",1),
+ ("    if ytag==\"O\" or p.get(\"rep\") in (\"Out\",\"Doubtful\"): return NOW+1\n    return NOW\n",
+  "    if ytag==\"O\" or p.get(\"rep\") in (\"Out\",\"Doubtful\"): return max(NOW+1,_newsback(p))\n    return max(NOW,_newsback(p))   # Oct 12: news that he will miss time\n",1),
+ ("    if _m[\"slot\"] in (\"BN\",\"IR\") or _m[\"ytag\"] not in (\"Q\",\"D\"): continue\n",
+  "    if _m[\"slot\"] in (\"BN\",\"IR\") or _m[\"ytag\"] not in (\"Q\",\"D\"): continue\n"
+  "    if int(PL[_m[\"key\"]][\"last\"])>=NOW: continue      # Oct 12: his game this week is already over\n",1),
+ ("json.dump(BOARD,open(f\"{H}/scout_board_{LGK}.json\",\"w\"),indent=1)\n",
+  "BOARD[\"moves\"]=[]\n"
+  "try:   # Oct 12 (Dom): roster moves - IR first, then drop candidates - stated plainly, Dom decides\n"
+  "    _irs=BOARD[\"open\"][\"ir\"]; _hurt=[]\n"
+  "    for _m in MINE:\n"
+  "        if _m[\"slot\"]==\"IR\" or _m[\"pos\"] in (\"K\",\"DEF\"): continue\n"
+  "        _p=PL[_m[\"key\"]]; _b=back(_p,_m[\"ytag\"]); _s=max(NOW,int(_p[\"last\"])+1)\n"
+  "        if _b==99 or _b-_s>=2:\n"
+  "            _nw=NEWSOUT.get(norm(_p[\"name\"]))\n"
+  "            _why=(_nw[1] if _nw else {\"O\":\"Yahoo lists him Out\",\"IR\":\"Yahoo lists him on IR\",\"IR-R\":\"Yahoo lists him on IR\",\"PUP-R\":\"Yahoo lists him on PUP\",\"NA\":\"Yahoo lists him not active\"}.get(_m[\"ytag\"],\"listed out\"))\n"
+  "            _hurt.append((_p[\"fwd\"],_m,_p,_b,_why,_s))\n"
+  "    _hurt.sort(key=lambda t:-t[0])\n"
+  "    for _f,_m,_p,_b,_why,_s in _hurt:\n"
+  "        _ret=\"out for the season\" if _b==99 else (f\"out Weeks {_s}-{_b-1}, back about Week {_b}\" if _b-1>_s else f\"out Week {_s}, back about Week {_b}\")\n"
+  "        _bw=[w for w in range(_s,(_b if _b!=99 else _s))] ; _by=[w for w in byes.get(_p[\"team\"],[]) if _b!=99 and _s<=w<=_b]\n"
+  "        while _b!=99 and _b in byes.get(_p[\"team\"],[]): _b+=1\n"
+  "        _ret=\"out for the season\" if _b==99 else (f\"out Weeks {_s}-{_b-1}, back about Week {_b}\" if _b-1>_s else f\"out Week {_s}, back about Week {_b}\")\n"
+  "        if _by: _ret+=f\" (Week {_by[0]} is his bye)\"\n"
+  "        _elig=_m[\"ytag\"] in (\"O\",\"IR\",\"IR-R\",\"PUP-R\",\"NA\")\n"
+  "        _lvl=f\"~{_f:.1f} a game when healthy\"\n"
+  "        if _irs>0:\n"
+  "            _irs-=1\n"
+  "            _t=(f\"Move {_m['name']} ({_p['team']} {_m['pos']}) to IR - {_why}; {_ret}; {_lvl}. \"+(\"Yahoo already allows it.\" if _elig else f\"Yahoo tags him {_m['ytag'] or 'healthy'} today, and IR takes only a player Yahoo lists as Out or IR - move him the day Yahoo flips him; until then he sits on the bench.\"))\n"
+  "            BOARD[\"moves\"].append(dict(kind=\"ir\",name=_m[\"name\"],text=_t))\n"
+  "        else:\n"
+  "            _hk={id(h[1]) for h in _hurt}; _cost=[]\n"
+  "            for _j,_o in enumerate(MINE):\n"
+  "                if _o[\"slot\"]!=\"BN\" or id(_o) in _hk or _o[\"pos\"] in (\"K\",\"DEF\"): continue\n"
+  "                _rest=[x for i,x in enumerate(MINE) if i!=_j]; _cost.append((sum(my[x]-total(_rest,x) for x in WEEKS if x>=_s and x in my),_o))\n"
+  "            _cost.sort(key=lambda t:t[0]); _alt=(f\" The cheapest other bench seat to free instead: {_cost[0][1]['name']} ({PL[_cost[0][1]['key']]['team']} {_cost[0][1]['pos']}), worth ~{_cost[0][0]:.0f} pts to the best lineup through Week {LAST}.\" if _cost else \"\")\n"
+  "            _t=(f\"Drop candidate: {_m['name']} ({_p['team']} {_m['pos']}) - {_why}; {_ret}; {_lvl}. No IR slot is left\"+(\" after the move above\" if any(x['kind']=='ir' for x in BOARD['moves']) else \"\")+\", so holding him costs a roster seat while he is out.\"+_alt+\" Dom's call - never an order.\")\n"
+  "            BOARD[\"moves\"].append(dict(kind=\"drop\",name=_m[\"name\"],text=_t))\n"
+  "except Exception as _e: BOARD[\"moves\"]=[dict(kind=\"note\",name=\"\",text=f\"Roster-move check failed: {_e}\")]\n"
+  "json.dump(BOARD,open(f\"{H}/scout_board_{LGK}.json\",\"w\"),indent=1)\n",1),
+],"OCT12 scout now")
+patch(f"{R}/cand/redesign/_oct10_scout.py",[
+ ("    for t in _q_txt(B): b.append((t,\"#FFF6E0\",\"#C9A227\"))\n",
+  "    for t in _q_txt(B): b.append((t,\"#FFF6E0\",\"#C9A227\"))\n"
+  "    _mv=[('<font name=\"PopB\" color=\"#B32020\">'+('Roster Move - IR' if m['kind']=='ir' else 'Roster Move - Drop Candidate' if m['kind']=='drop' else 'Roster Moves')+'</font>  &#8212;  '+_esc(m['text']).replace(' - ',' &#8212; '),\"#FBEDEA\",\"#B32020\") for m in (B.get('moves') or [])]   # Oct 12 (Dom): moves lead the page\n"
+  "    b=_mv+b\n",1),
+],"OCT12 scout moves box")
+patch(f"{R}/cand/global/global33.py",[
+ ("    q=[_ln11(p[\"player\"])+\" (\"+p[\"status\"]+\")\" for p in me if p.get(\"status\") in (\"Q\",\"D\")]\n",
+  "    q=[_ln11(p[\"player\"])+\" (\"+p[\"status\"]+\")\" for p in me if p.get(\"status\") in (\"Q\",\"D\") and p.get(\"actual\") is None]   # Oct 12: a played man needs no kickoff check\n",1),
+],"OCT12 front q played")
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ("    q_=[last(r[1]) for r in S if r[1] and r[2] in (\"Q\",\"D\")]\n",
+  "    q_=[last(r[1]) for r in S if r[1] and r[2] in (\"Q\",\"D\") and not any(p[\"player\"]==r[1] and p.get(\"actual\") is not None for p in L[\"starters\"][\"me\"])]   # Oct 12: played men need no kickoff check\n",1),
+],"OCT12 field q played")
