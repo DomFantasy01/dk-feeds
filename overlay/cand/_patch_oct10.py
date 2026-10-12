@@ -1520,3 +1520,8 @@ patch(f"{R}/cand/global/global33.py",[
 patch(f"{R}/cand/redesign/_outlook.py",[
  ("        txt(c,x,hy,d[\"full\"],\"PopB\",8.8,PAPER);x+=c.stringWidth(d[\"full\"],\"PopB\",8.8)+6\n","        pass   # Oct 12 (Dom): no league nicknames - the chip says DK1-DK4\n",1),
 ],"OCT12 outlook no nicknames")
+# ---------- 38 (Mon Oct 12): Scorecard - LEADING / TRAILING / FAVORED / UNDERDOG (40 pt) sat a line low; centered on the score now (Dom)
+patch(f"{R}/cand/redesign/_fr_v8.py",[
+ ('t8(x + 14, y - 22, word, "Bebas", bsz, col)','t8(x + 14, y - (22 if bsz == 56 else 14), word, "Bebas", bsz, col)',1),
+ ('t8(x + 14, y - 22, word, "Bebas", 40, col)','t8(x + 14, y - 14, word, "Bebas", 40, col)',1),
+],"OCT12 scorecard word up")
