@@ -450,3 +450,24 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
   '_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
  ('Actual = his average, Weeks 1–{WEEKN-1}."','Actual = his average, Weeks 1–{WEEKN-1}. Red box = Gotham, Yahoo 4+ apart."',1),
 ],"OCT11 disagreement flag")
+# ---------- 26 (Dom, Sun Oct 11) the GOTHAM WEEK column stays a projection all week: once a man's game is played, Gotham's
+# row turns into his actual points (the Yahoo NOW column already shows those, marked FINAL). It now keeps showing what
+# Gotham said BEFORE his kickoff - the number the Scoreboard grades - so the row reads: Gotham said X, he scored Y.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('    return None if m.empty or _pd.isna(m.eng_wk.iloc[0]) else f"{float(m.eng_wk.iloc[0]):.1f}"',
+  '    if not m.empty and bool(m.played_wk.iloc[0]):          # Oct 11: game played - show Gotham\'s pregame number, not the actual\n'
+  '        pv=_pregame_g(nm,lab); return None if pv is None else f"{pv:.1f}"\n'
+  '    return None if m.empty or _pd.isna(m.eng_wk.iloc[0]) else f"{float(m.eng_wk.iloc[0]):.1f}"\n'
+  '_PREG={}\n'
+  'def _pregame_g(nm,lab):\n'
+  '    import os as _po, json as _pj\n'
+  '    if "d" not in _PREG:\n'
+  '        f=_po.path.join(_po.environ.get("GITHUB_WORKSPACE","/nonexistent"),"dispatch_out","scoreboard",f"pregame_wk{WEEKN}.json")\n'
+  '        try: _PREG["d"]=_pj.load(open(f))\n'
+  '        except Exception: _PREG["d"]={}\n'
+  '    for v in _PREG["d"].values():\n'
+  '        if v.get("league")==lab and norm(v.get("player",""))==norm(nm) and v.get("gotham") is not None: return float(v["gotham"])\n'
+  '    return None',1),
+ ('NUMBERS_NOTE=f"Sleeper = Sleeper, league scoring. Yahoo = Yahoo now. Gotham = our engine, this week and a game over his next three. Actual = his average, Weeks 1–{WEEKN-1}. Red box = Gotham, Yahoo 4+ apart."',
+  'NUMBERS_NOTE=f"Gotham = ours: this week (pregame once played), next 3. Yahoo = now. Sleeper = league scoring. Actual = avg Wks 1–{WEEKN-1}. Red box: Gotham, Yahoo 4+ apart."',1),
+],"OCT11 gotham pregame")
