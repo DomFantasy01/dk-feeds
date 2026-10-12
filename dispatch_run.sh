@@ -91,6 +91,7 @@ cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null
 rm -f "$REPO"/dispatch_out/DK_League_Pages_Wk*_latest.pdf                     # the Oct 9 v2 test file: the Scout now lives inside the Dispatch
 mkdir -p "$REPO/dispatch_out/scout_state"                                       # the Scout's memory rides back to the repo with the pages
 cp "$ROOT"/dksys/scout/scout_state_DK*.json "$ROOT"/dksys/scout/scout_archive_DK*.jsonl "$ROOT"/dksys/scout/scout_board_DK*.json "$REPO/dispatch_out/scout_state/"
+if [ -f "$ROOT/cand/scoreboard.py" ]; then python3 "$ROOT/cand/scoreboard.py" "$REPO" || echo "!! SCOREBOARD FAILED - the Dispatch above still saved"; fi   # the checks-and-balances engine (Dom, Oct 11)
 echo "== 7 the Radar (live news, per league)"
 if (cd "$ROOT/dksys/radar" && python3 radar_data.py && python3 radar_pages.py "$REPO/dispatch_out/DK_Radar_Wk${W}_latest.pdf"); then
   cp "$ROOT/dksys/data/latest/radar/radar_wk$W.json" "$REPO/dispatch_out/"; rm -f "$REPO/dispatch_out/RADAR_FAILED.txt"
