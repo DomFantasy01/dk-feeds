@@ -500,3 +500,34 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
   '_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
  ('Red box: Gotham, Yahoo 4+ apart."','Red box: Gotham, Yahoo 4+ apart. Green glow: game on now."',1),
 ],"OCT11 live glow")
+# ---------- 28 (Dom, Sun Oct 11) the PLAYED squares on the front page: a starter whose game is on right now gets a glowing
+# green square between the solid (played) and the empty (still to go) ones - played, playing, to go, at a glance.
+patch(f"{R}/cand/global/global33.py",[
+ ('''        for k in range(tot):
+            x=x0+k*(pw+pg)
+            if k<pl: c.setFillColor(cc); c.roundRect(x,yy,pw,ph,.8,fill=1,stroke=0)
+            else: c.setStrokeColor(mix(cc,BG2,.35)); c.setLineWidth(.6); c.roundRect(x+.3,yy+.3,pw-.6,ph-.6,.7,fill=0,stroke=1)''',
+  '''        lv=_livecount(Y["me" if j==0 else "op"])   # Oct 11 (Dom): men playing right now
+        for k in range(tot):
+            x=x0+k*(pw+pg)
+            if k<pl: c.setFillColor(cc); c.roundRect(x,yy,pw,ph,.8,fill=1,stroke=0)
+            elif k<pl+lv:
+                c.saveState(); c.setFillColor(H("#3FB36A"))
+                for e_,a_ in ((1.6,.18),(.8,.32)): c.setFillAlpha(a_); c.roundRect(x-e_,yy-e_,pw+2*e_,ph+2*e_,.8+e_,fill=1,stroke=0)
+                c.setFillAlpha(1); c.setFillColor(H("#4FD08A")); c.roundRect(x,yy,pw,ph,.8,fill=1,stroke=0); c.restoreState()
+            else: c.setStrokeColor(mix(cc,BG2,.35)); c.setLineWidth(.6); c.roundRect(x+.3,yy+.3,pw-.6,ph-.6,.7,fill=0,stroke=1)''',2),
+ ('def pips22(x0,y,D,col):',
+  'def _livecount(rows):\n'
+  '    """starters whose game has kicked off and is not final (NFL schedule), not yet banked"""\n'
+  '    import datetime as _ld; from zoneinfo import ZoneInfo as _lz\n'
+  '    now=_ld.datetime.now(_ld.timezone.utc); n=0\n'
+  '    for r in rows:\n'
+  '        if r[4] is not None or not r[1]: continue\n'
+  '        t={"LAR":"LA","JAC":"JAX","WSH":"WAS"}.get(r[1],r[1]); g=G[(G.home_team==t)|(G.away_team==t)]\n'
+  '        if g.empty or g.result.notna().iloc[0]: continue\n'
+  '        try: ko=_ld.datetime.strptime(f"{g.gameday.iloc[0]} {g.gametime.iloc[0]}","%Y-%m-%d %H:%M").replace(tzinfo=_lz("America/New_York"))\n'
+  '        except Exception: continue\n'
+  '        if ko<=now<=ko+_ld.timedelta(hours=4): n+=1\n'
+  '    return n\n'
+  'def pips22(x0,y,D,col):',1),
+],"OCT11 played squares glow")
