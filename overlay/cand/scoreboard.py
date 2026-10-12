@@ -1,0 +1,91 @@
+# THE SCOREBOARD (Dom, Sun Oct 11 2026) - the checks-and-balances engine. Runs at the end of every Dispatch build.
+# 1. FREEZE: every starter in Dom's four matchups keeps the last Yahoo / Gotham / Sleeper number seen BEFORE his game
+#    kicks off (dispatch_out/scoreboard/pregame_wk<N>.json). Once his game starts, his entry never changes again.
+# 2. GRADE: once a game is final, each frozen number is graded against what the man actually scored, priced in that
+#    league's own scoring from the nflverse stat line - reality is the judge, not Yahoo and not Gotham.
+# 3. REPORT: dispatch_out/scoreboard/graded.csv (every man, every week) and scoreboard.txt (the table):
+#    average miss in points, and "start/sit calls right" = of every pair of same-position men in the same week,
+#    how often the source put the better scorer first. Plus the disagreement test: when the three sources split
+#    by 4+ points, how big the misses get and who was closer.
+# Weeks 2-4 were graded by hand on Oct 8 (seed file below); from Week 5 on everything is automatic.
+import sys, os, json, glob, itertools, datetime as dt
+import pandas as pd
+sys.path.insert(0, '/home/claude/dksys/gather'); from names import norm
+sys.path.insert(0, '/home/claude/src/forecast'); import fc_model as FM
+from zoneinfo import ZoneInfo
+REPO = sys.argv[1]; OUT = f"{REPO}/dispatch_out/scoreboard"; os.makedirs(OUT, exist_ok=True)
+D = '/home/claude/dksys/data/latest'; LGK = {'DK I': 1, 'DK II': 2, 'DK III': 3, 'DK IV': 4}
+now = dt.datetime.fromisoformat(os.environ['DK_SB_NOW']) if os.environ.get('DK_SB_NOW') else dt.datetime.now(dt.timezone.utc)   # override only for seeding
+G = pd.read_csv(f'{D}/games.csv', low_memory=False); G = G[G.season == G.season.max()]
+def kick(r):
+    try: return dt.datetime.strptime(f"{r.gameday} {r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=ZoneInfo("America/New_York"))
+    except Exception: return None
+G['ko'] = G.apply(kick, axis=1)
+TEAMFIX = {'LAR': 'LA', 'JAC': 'JAX', 'WSH': 'WAS'}
+def game_of(team, week):
+    t = TEAMFIX.get(team, team); g = G[(G.week == week) & ((G.home_team == t) | (G.away_team == t))]
+    return g.iloc[0] if len(g) else None
+# ---- 1. freeze pregame numbers from this build's meter
+mf = [os.environ['DK_SB_METER']] if os.environ.get('DK_SB_METER') else sorted(glob.glob(f'{D}/meter/meter_wk*.json'), key=lambda p: int(p.split('_wk')[1].split('.')[0]))
+if mf:
+    M = json.load(open(mf[-1])); W = int(M['week']); pf = f"{OUT}/pregame_wk{W}.json"
+    P = json.load(open(pf)) if os.path.exists(pf) else {}
+    n = 0
+    for lab, L in M['leagues'].items():
+        for side in ('me', 'op'):
+            for s in L['starters'][side]:
+                if s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
+                g = game_of(s.get('team'), W)
+                if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
+                P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
+                n += 1
+    json.dump(P, open(pf, 'w'), indent=0); print(f"   scoreboard: week {W} pregame numbers held for {len(P)} men ({n} refreshed this build)")
+# ---- 2. grade every week that has finished games
+S = pd.read_csv(f'{D}/stats_week.csv', low_memory=False); S = S[(S.season == G.season.max()) & (S.season_type == 'REG')].fillna(0)
+S['k'] = S.player_display_name.astype(str).map(norm)
+fin = set(G[G.result.notna()].game_id)
+rows = []
+seed = f"{REPO}/backtest/history_wk2to4.csv"
+if os.path.exists(seed):
+    for r in pd.read_csv(seed).itertuples(): rows.append(dict(week=int(r.W), league='seed', pos=r.pos, player=r.k, yahoo=r.yahoo, gotham=r.gotham_rec, sleeper=r.sleeper, actual=r.act))
+for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
+    W = int(pf.split('_wk')[1].split('.')[0]); P = json.load(open(pf))
+    if W <= 4: continue
+    SW = S[S.week == W]
+    for key, v in P.items():
+        if v.get('game') not in fin: continue
+        x = SW[SW.k == norm(v['player'])]
+        act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
+        rows.append(dict(week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham=v['gotham'], sleeper=v['sleeper'], actual=round(act, 2)))
+R = pd.DataFrame(rows)
+if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
+R.to_csv(f"{OUT}/graded.csv", index=False)
+SRC = ['yahoo', 'gotham', 'sleeper']
+def pairs(df, c):
+    ok = n = 0
+    for _, g in df.dropna(subset=[c]).groupby(['week', 'pos']):
+        v = g[c].values; t = g.actual.values
+        for i, j in itertools.combinations(range(len(g)), 2):
+            if t[i] == t[j] or v[i] == v[j]: continue
+            n += 1; ok += (v[i] > v[j]) == (t[i] > t[j])
+    return ok / n if n else float('nan')
+def line(df, label):
+    cells = []
+    for c in SRC:
+        x = df.dropna(subset=[c]); cells.append(f"{c.title()} {(x[c]-x.actual).abs().mean():.1f} pts, {pairs(df, c):.0%}" if len(x) else f"{c.title()} -")
+    return f"{label:<14} {len(df):>4} men   " + "   ".join(cells)
+pt = dt.datetime.now(ZoneInfo("America/Los_Angeles"))
+out = [f"THE SCOREBOARD - graded {pt:%a %b %d %Y %I:%M %p} PT. Average miss in points (lower is better) and start/sit calls right (higher is better).",
+       "Reality is the judge: each man's final stat line priced in his league's scoring. Weeks 2-4 graded Oct 8; Week 5 on is automatic.", ""]
+out.append(line(R, "ALL WEEKS"))
+for w, g in R.groupby('week'): out.append(line(g, f"Week {w}"))
+for p, g in R.groupby('pos'): out.append(line(g, f"  {p}"))
+R['spread'] = R[SRC].max(axis=1) - R[SRC].min(axis=1)
+hi = R[R.spread >= 4]; lo = R[R.spread < 4]
+if len(hi):
+    closer = {c: ((hi[c] - hi.actual).abs() == hi[SRC].sub(hi.actual, axis=0).abs().min(axis=1)).mean() for c in SRC}
+    out += ["", f"DISAGREEMENT: when the three split by 4+ points ({len(hi)} men), the average Yahoo miss is {(hi.yahoo-hi.actual).abs().mean():.1f} pts "
+            f"(vs {(lo.yahoo-lo.actual).abs().mean():.1f} when they agree). Closest of the three on those men: "
+            + ", ".join(f"{c.title()} {v:.0%}" for c, v in closer.items()) + "."]
+open(f"{OUT}/scoreboard.txt", "w").write("\n".join(out) + "\n"); print("   " + "\n   ".join(out[:5]))
