@@ -1536,3 +1536,14 @@ patch(f"{R}/cand/redesign/_mast_v8.py",[
 patch(f"{R}/cand/_footer_pass.py",[
  ('lambda q:"DK"+{"I":"1","II":"2","III":"3","IV":"4"}.get(q.group(1),q.group(1))','lambda q:"DK "+{"1":"I","2":"II","3":"III","4":"IV"}.get(q.group(1),q.group(1))',1),
 ],"OCT12 footer roman names")
+# ---------- 40 (Mon Oct 12, Dom): the same 12 pt of air under the masthead on every page
+# Measured on the 4:27 PM build: Field Report 8, Scout 10, Positions 22, Calibration 23, The Marks 22, Outlook 5, front 12.
+# The masthead now shifts the rest of the page by the difference (the shift lasts until the page ends).
+patch(f"{R}/cand/redesign/_mast_v8.py",[
+ ('    c.setFillColor(TEAMC8[lg] if lg else _H8("#F7B32B")); c.rect(x0b, yb - 5, x1b - x0b, 2.2, stroke=0, fill=1)\n',
+  '    c.setFillColor(TEAMC8[lg] if lg else _H8("#F7B32B")); c.rect(x0b, yb - 5, x1b - x0b, 2.2, stroke=0, fill=1)\n'
+  '    _u = dkname(section).upper()\n'
+  '    _dy = (-4 if "FIELD REPORT" in _u else -2 if _u.startswith("SCOUT") else 10 if _u.startswith("POSITIONS") else 11 if "CALIBRATION" in _u\n'
+  '           else 10 if "THE MARKS" in _u else -7 if _u.startswith("OUTLOOK") else 0)\n'
+  '    if _dy: c.translate(0, _dy)   # Oct 12: every page starts 12 pt under the masthead\n',1),
+],"OCT12 even masthead gap")
