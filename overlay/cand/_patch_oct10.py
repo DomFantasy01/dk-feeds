@@ -561,3 +561,28 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
  ('   # THE MARKS travels as the last page\n',
   '   # THE MARKS travels as the last page\nexec(open("/home/claude/cand/redesign/_scoreboard_page.py").read())   # Oct 11 (Dom): THE SCOREBOARD, the final page\n',1),
 ],"OCT11 scoreboard page")
+# ---------- 31 (Dom, Sun Oct 11, his call on the Oct 7 engine questions - yes to both):
+# (1) A MAN RULED OUT ZEROES HIMSELF on one source: ESPN or Sleeper alone saying Out now makes his own number 0 (it was
+#     cut to a quarter as if Doubtful). Moving his work to teammates still needs both sources or the NFL report.
+# (2) WEEK-TO-WEEK = DOUBTFUL: no feed carries "week-to-week" as a status - it lives in ESPN's news line ("expected to miss
+#     three to four weeks", "week-to-week", "sidelined about eight weeks"). A man with such a line in the last 10 days and
+#     no Out/Doubtful/Questionable on the NFL report is treated as Doubtful (a quarter of his number).
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ("            if src5 in ('ESPN only','Sleeper only','ESPN+Sleeper DISAGREE') and st5=='Out': st5='Doubtful'   # one source saying Out = treat as Doubtful until confirmed",
+  "            if src5=='ESPN+Sleeper DISAGREE' and st5=='Out': st5='Doubtful'   # Oct 11 (Dom): one source alone saying Out now zeroes him; a real disagreement still softens",1),
+ ("for k,v in _IRS.items():\n    if v in ('Out','Doubtful','Questionable'): STATUS[k]=(v,'NFL report')\n",
+  "for k,v in _IRS.items():\n    if v in ('Out','Doubtful','Questionable'): STATUS[k]=(v,'NFL report')\n"
+  "try:   # Oct 11 (Dom): week-to-week = Doubtful, read from ESPN's news line\n"
+  "    import re as _wre, datetime as dt\n"
+  "    _WTW=_wre.compile(r'week-to-week|week to week|(expected to|will|could|set to|slated to) miss (about |roughly |at least |the next )?(\\w+|\\d+)(-to-| to |-)?(\\w+|\\d+)? weeks|sidelined (for )?(about |roughly |at least )?(\\w+|\\d+)(-to-| to |-)?(\\w+|\\d+)? weeks',_wre.I)\n"
+  "    _now=dt.datetime.now(dt.timezone.utc); _wtw=[]\n"
+  "    for it in (_EJ.values() if isinstance(_EJ,dict) else _EJ):\n"
+  "        if not isinstance(it,dict) or not it.get('name') or not _WTW.search(str(it.get('detail',''))): continue\n"
+  "        try: _age=(_now-dt.datetime.strptime(str(it.get('date',''))[:16],'%Y-%m-%dT%H:%M').replace(tzinfo=dt.timezone.utc)).days\n"
+  "        except Exception: continue\n"
+  "        k=norm(it['name'])\n"
+  "        if _age<=10 and _IRS.get(k) not in ('Out','Doubtful','Questionable') and STATUS.get(k,('',''))[0] not in ('Out','Doubtful'):\n"
+  "            STATUS[k]=('Doubtful','week-to-week (ESPN news)'); _wtw.append(it['name'])\n"
+  "    print('WEEK-TO-WEEK -> Doubtful:',len(_wtw),'|',', '.join(_wtw[:20]))\n"
+  "except Exception as _e: print('week-to-week rule skipped:',_e)\n",1),
+],"OCT11 selfout and week-to-week")
