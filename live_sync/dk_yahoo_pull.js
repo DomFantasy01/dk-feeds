@@ -42,8 +42,8 @@ function teamPage(d){
   return {ids,rows:R,names:[...new Set(names)]};}
 
 // ---------- matchup page (rendered tab): both layouts, columns found by their header names
-function readMatchup(names){
-  const tables=[...document.querySelectorAll('table')].filter(t=>{const h=t.querySelector('tr');return h&&/Player/.test(h.textContent)&&/Pos/.test(h.textContent);});
+function readMatchup(names,D=document,LOC=location){
+  const tables=[...D.querySelectorAll('table')].filter(t=>{const h=t.querySelector('tr');return h&&/Player/.test(h.textContent)&&/Pos/.test(h.textContent);});
   if(!tables.length)return null;
   const me=[],op=[];
   const num=s=>{const m=(s||'').match(/\d+\.\d{2}/g);return m?m:[];};
@@ -76,13 +76,13 @@ function readMatchup(names){
         const f=info(c[ix.pl]); if(!f)continue;
         const pr=num(c[ix.pr]?.textContent), ptv=num(c[ix.pt]?.textContent);
         out.push({slot,...f,proj:pr[0]||'',projLive:pr[1]||pr[0]||'',pts:ptv[0]||''});}}}
-  const body=cl(document.body.innerText);
+  const body=cl(D.body.innerText);
   const recs=[...body.matchAll(/(\d+) ?- ?(\d+) ?- ?(\d+) \| (\d+(?:st|nd|rd|th))/g)].map(m=>`${m[1]}-${m[2]}-${m[3]}/${m[4]}`);
   const fav=body.match(/(Favorite|Underdog|Chance to win) (\d+)%[^%]{0,80}?(\d+)% (Favorite|Underdog|Chance to win)/);   // 'Chance to win' = Yahoo's wording at an even 50/50
-  const lg=(location.pathname.match(/f1\/(\d+)/)||[])[1], mid=new URLSearchParams(location.search).get('mid1');
-  const tl=[...document.querySelectorAll('a')].map(a=>[(a.getAttribute('href')||'').match(new RegExp('/f1/'+lg+'/(\\d+)$')),cl(a.textContent)]).filter(x=>x[0]&&x[1]&&!/^My Team$/i.test(x[1])).map(x=>[x[0][1],x[1]]);
+  const lg=(LOC.pathname.match(/f1\/(\d+)/)||[])[1], mid=new URLSearchParams(LOC.search).get('mid1');
+  const tl=[...D.querySelectorAll('a')].map(a=>[(a.getAttribute('href')||'').match(new RegExp('/f1/'+lg+'/(\\d+)$')),cl(a.textContent)]).filter(x=>x[0]&&x[1]&&!/^My Team$/i.test(x[1])).map(x=>[x[0][1],x[1]]);
   let mine=tl.find(x=>x[0]===mid), opp=mine?tl.slice(tl.indexOf(mine)+1).find(x=>x[0]!==mid):null;
-  const big=[...document.querySelectorAll('.Fz-xxl.Ell')].map(e=>cl(e.textContent));
+  const big=[...D.querySelectorAll('.Fz-xxl.Ell')].map(e=>cl(e.textContent));
   return {me,op,recs,fav:fav?[fav[2],fav[3]]:['',''],mine:mine?mine[1]:(big[0]||''),opp:opp?opp[1]:(big[1]||''),oppId:opp?opp[0]:null,
           week:(body.match(/Week (\d+):/)||[])[1]};}
 
@@ -124,18 +124,22 @@ const DK={
   if(day==='mon') for(const lg of Object.keys(DOM)) S.queue.push({k:'pm',lg,w:pmW,mid:DOM[lg]});
   if(S.fullW) for(const lg of Object.keys(DOM)) S.queue.push({k:'all',lg,w:S.fullW,mid:DOM[lg]});
   S.total=S.queue.length; save(S);
-  location.href=this._url(S.queue[0]);
-  return `started ${day} (PT ${T.stamp}) | look-back week ${pmW||'-'} | week ahead ${S.fullW||'-'} | team pages read ${allR.length}/48${bad?' ('+bad+' failed)':''} | first page loading`;},
+  if(!this.frame) location.href=this._url(S.queue[0]);   // Oct 11: frame mode keeps this tab (and DK) where it is
+  return `started ${day} (PT ${T.stamp}) | look-back week ${pmW||'-'} | week ahead ${S.fullW||'-'} | team pages read ${allR.length}/48${bad?' ('+bad+' failed)':''} | `+(this.frame?'frame mode - run DK.stepFrame()':'first page loading');},
  _url(q){return `https://football.fantasysports.yahoo.com/f1/${q.lg}/matchup?week=${q.w}&mid1=${q.mid}`;},
  async step(){
   const S=load(); if(!S)return 'no pull in progress - run DK.start() first';
   if(!S.queue.length)return 'done - run DK.handoff()';
   const q=S.queue[0]; const want=`/f1/${q.lg}/matchup`;
   if(!location.pathname.startsWith(want)||new URLSearchParams(location.search).get('mid1')!=String(q.mid)||new URLSearchParams(location.search).get('week')!=String(q.w)){location.href=this._url(q);return 'navigating to '+this._url(q);}
+  await this._read(S,q,document,location);
+  if(S.queue.length){location.href=this._url(S.queue[0]);return `read ${S.done} of ${S.total} so far - next page loading`;}
+  return 'done - run DK.handoff()';},
+ async _read(S,q,D,LOC){
   let M=null, bye=false;
-  for(let i=0;i<40;i++){M=readMatchup(S.names);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;
-    if(/Week \d+:[^]{0,40}?BYE vs\./.test(cl(document.body.innerText).slice(0,1500))){bye=true;break;}await sleep(500);}
-  const body0=cl(document.body.innerText); const med=(body0.match(/Median (\d+\.\d+)/)||[])[1];
+  for(let i=0;i<40;i++){M=readMatchup(S.names,D,LOC);if(M&&M.me.length>=8&&M.op.length>=8&&M.mine)break;
+    if(/Week \d+:[^]{0,40}?BYE vs\./.test(cl(D.body.innerText).slice(0,1500))){bye=true;break;}await sleep(500);}
+  const body0=cl(D.body.innerText); const med=(body0.match(/Median (\d+\.\d+)/)||[])[1];
   if(!bye&&(!M||!M.mine)&&(/BYE/.test(body0.slice(0,1500))||S.allR.includes(`${IDX[q.lg]}~${q.mid}~`)))bye=true;   // an empty team slot (no roster) is a bye, not a failure
   if(bye){S.log.push(`${LAB[q.lg]} team ${q.mid}: BYE this week (empty team slot) - nothing to read`);}
   else if(M&&!M.mine){S.log.push(`FAILED to read ${q.lg} week ${q.w} mid ${q.mid} (no team name on the page)`);}
@@ -151,9 +155,20 @@ const DK={
     S.log.push(`${LAB[q.lg]} wk${q.w} ${M.mine} vs ${M.opp}: ${st}+${so} starters`);}
   if(q.k==='all'){S.seen[q.lg]=S.seen[q.lg]||[]; S.seen[q.lg].push(+q.mid);          // the sweep carries on even after a failed or bye page
     for(const t of S.teams[q.lg]) if(!S.seen[q.lg].includes(t)&&!S.queue.some(x=>x.lg===q.lg&&x.mid===t&&x.k==='all')){S.queue.splice(1,0,{k:'all',lg:q.lg,w:q.w,mid:t});S.total++;break;}}
-  S.queue.shift(); S.done++; save(S);
-  if(S.queue.length){location.href=this._url(S.queue[0]);return `read ${S.done} of ${S.total} so far - next page loading`;}
-  return 'done - run DK.handoff()';},
+  S.queue.shift(); S.done++; save(S);},
+ // Oct 11 (Dom): FRAME MODE - each matchup page loads in a hidden frame inside this same Yahoo tab, so the tab never
+ // navigates, DK stays loaded, and the script is fetched once per run instead of once per page.
+ async stepFrame(n=3){
+  const S=load(); if(!S)return 'no pull in progress - run DK.start() first';
+  let f=document.getElementById('dkframe');
+  if(!f){f=document.createElement('iframe');f.id='dkframe';f.style.cssText='position:fixed;left:-3000px;top:0;width:1280px;height:2400px;border:0';document.body.appendChild(f);}
+  for(let k=0;k<n&&S.queue.length;k++){
+    const q=S.queue[0];
+    await new Promise(r=>{let done=false;const fin=()=>{if(!done){done=true;r();}};f.onload=fin;setTimeout(fin,20000);f.src=this._url(q);});
+    let D=null;for(let i=0;i<20;i++){try{D=f.contentDocument;if(D&&D.body&&D.readyState!=='loading')break;}catch(e){}await sleep(500);}
+    if(!D||!D.body){S.log.push(`FAILED to open ${q.lg} week ${q.w} mid ${q.mid} in the frame`);S.queue.shift();S.done++;save(S);continue;}
+    await this._read(S,q,D,f.contentWindow.location);}
+  return S.queue.length?`read ${S.done} of ${S.total} so far - run DK.stepFrame() again`:'done - run DK.handoff()';},
  files(){
   const S=load(), T=S.t, F={};
   const hdrM=w=>`# Yahoo Week ${w} matchup pages for Dom's four teams, ${T.stamp}. lg#ME starters ## OPP starters ; slot^player^team^status^kickoff(PT)^yahoo proj^points (scheduled Yahoo read)`;
