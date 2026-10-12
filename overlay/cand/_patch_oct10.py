@@ -471,3 +471,32 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
  ('NUMBERS_NOTE=f"Sleeper = Sleeper, league scoring. Yahoo = Yahoo now. Gotham = our engine, this week and a game over his next three. Actual = his average, Weeks 1–{WEEKN-1}. Red box = Gotham, Yahoo 4+ apart."',
   'NUMBERS_NOTE=f"Gotham = ours: this week (pregame once played), next 3. Yahoo = now. Sleeper = league scoring. Actual = avg Wks 1–{WEEKN-1}. Red box: Gotham, Yahoo 4+ apart."',1),
 ],"OCT11 gotham pregame")
+# ---------- 27 (Dom, Sun Oct 11) A MAN WHOSE GAME IS ON GLOWS: on the Field Report, the NOW number of any starter (his or
+# the man across from him) whose game has kicked off and is not final sits in a soft green glow with a small LIVE tag -
+# the same idea as the gold FINAL wash, one step earlier. Kickoff and final come from the NFL schedule each build.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('if _n: fdec(c,YH,ry,f"{_n[0]:.1f}",_n[1],"PopB",7.2,INKN)','if _n: _nowcell(c,YH,ry,_n,(_mrow(nm,LAB17) or {}).get("team"),"PopB")',1),
+ ('fdec(c,OPP,ry,(f"{_b[0]:.1f}" if _b else None),bool(_b and _b[1]),"PopM",7.2)',
+  '(_nowcell(c,OPP,ry,_b,(OPMAP.get(om) or {}).get("team"),"PopM") if _b else fdec(c,OPP,ry,None,False,"PopM",7.2))',1),
+ ('_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',
+  'def _team_live(t):\n'
+  '    import datetime as _ld; from zoneinfo import ZoneInfo as _lz\n'
+  '    if not t: return False\n'
+  '    if "g" not in _PREG: _PREG["g"]=_pd.read_csv("/home/claude/dksys/data/latest/games.csv",low_memory=False)\n'
+  '    g=_PREG["g"]; t={"LAR":"LA","JAC":"JAX","WSH":"WAS"}.get(t,t)\n'
+  '    g=g[(g.season==g.season.max())&(g.week==WEEKN)&((g.home_team==t)|(g.away_team==t))]\n'
+  '    if g.empty or g.result.notna().iloc[0]: return False\n'
+  '    ko=_ld.datetime.strptime(f"{g.gameday.iloc[0]} {g.gametime.iloc[0]}","%Y-%m-%d %H:%M").replace(tzinfo=_lz("America/New_York"))\n'
+  '    now=_ld.datetime.now(_ld.timezone.utc); return ko<=now<=ko+_ld.timedelta(hours=4)\n'
+  'def _nowcell(c,x,y,n,team,font):\n'
+  '    from reportlab.lib.colors import HexColor as _HX\n'
+  '    if n and not n[1] and _team_live(team):\n'
+  '        G=_HX("#3FB36A"); c.saveState()\n'
+  '        for k,a in ((2.4,.10),(1.5,.16),(.7,.24)): c.setFillColor(G); c.setFillAlpha(a); c.roundRect(x-17-k,y-3-k,34+2*k,10.5+2*k,2.5+k,stroke=0,fill=1)\n'
+  '        c.restoreState()\n'
+  '        fdec(c,x,y,f"{n[0]:.1f}",False,font,7.2,INKN)\n'
+  '        b=f"{n[0]:.1f}".split(".")[1]; txt(c,x+c.stringWidth("."+b,font,7.2)+1.6,y,"LIVE","PopB",4.6,_HX("#1E7A45"))\n'
+  '    else: fdec(c,x,y,(f"{n[0]:.1f}" if n else None),bool(n and n[1]),font,7.2,INKN)\n'
+  '_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
+ ('Red box: Gotham, Yahoo 4+ apart."','Red box: Gotham, Yahoo 4+ apart. Green glow: game on now."',1),
+],"OCT11 live glow")
