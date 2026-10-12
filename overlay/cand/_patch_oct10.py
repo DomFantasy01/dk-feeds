@@ -425,3 +425,28 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
   '        _fi=norm(key)[:1]; hit=[d for d in hit if norm(d["name"])[:1]==_fi]   # Oct 11: same first initial, or no match\n'
   '        if len(hit)>1 and team: hit=[d for d in hit if d["team"]==team] or hit',1),
 ],"OCT11 lastname initial")
+# ---------- 25 (Dom, Sun Oct 11) THE DISAGREEMENT FLAG: on the Field Report, a starter whose Gotham number and Yahoo's
+# part by 4 points or more gets his Gotham cell boxed in red. The Scoreboard showed those are the hard calls (misses run
+# bigger) - the box does not say who is right, it says look at this man.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('fdec(c,GW,ry,wkm17(nm,LAB17) if stt not in ("O","IR") else None,False,"PopM",7.2)','_gwcell(c,GW,ry,nm,stt)',1),
+ ('_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',
+  'def _gw_started(nm):\n'
+  '    import datetime as _gd; from zoneinfo import ZoneInfo as _gz\n'
+  '    p=_mrow(nm,LAB17); t=(p or {}).get("team")\n'
+  '    if not t: return True\n'
+  '    g=_pd.read_csv("/home/claude/dksys/data/latest/games.csv",low_memory=False); t={"LAR":"LA","JAC":"JAX","WSH":"WAS"}.get(t,t)\n'
+  '    g=g[(g.season==g.season.max())&(g.week==WEEKN)&((g.home_team==t)|(g.away_team==t))]\n'
+  '    if g.empty: return True\n'
+  '    ko=_gd.datetime.strptime(f"{g.gameday.iloc[0]} {g.gametime.iloc[0]}","%Y-%m-%d %H:%M").replace(tzinfo=_gz("America/New_York"))\n'
+  '    return _gd.datetime.now(_gd.timezone.utc)>=ko\n'
+  'def _gwcell(c,x,y,nm,stt):\n'
+  '    from reportlab.lib.colors import HexColor as _HX\n'
+  '    v=wkm17(nm,LAB17) if stt not in ("O","IR") else None\n'
+  '    n=_NOWME(nm) if v is not None else None\n'
+  '    flag=bool(n) and not n[1] and abs(float(v)-float(n[0]))>=4 and not _gw_started(nm)   # pregame only: after kickoff the numbers mean other things\n'
+  '    if flag: c.setStrokeColor(_HX("#C62828")); c.setLineWidth(.8); c.roundRect(x-17,y-3,34,10.5,2.5,stroke=1,fill=0)\n'
+  '    fdec(c,x,y,v,False,"PopB" if flag else "PopM",7.2,_HX("#C62828") if flag else INKN)\n'
+  '_SLOTN={"W/R/T":"FLEX","Q/W/R/T":"S-FLEX"}',1),
+ ('Actual = his average, Weeks 1–{WEEKN-1}."','Actual = his average, Weeks 1–{WEEKN-1}. Red box = Gotham, Yahoo 4+ apart."',1),
+],"OCT11 disagreement flag")
