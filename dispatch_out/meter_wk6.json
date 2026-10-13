@@ -1,6 +1,6 @@
 {
  "week": 6,
- "built_pt": "Tue Oct 13 2026 06:15 AM PT",
+ "built_pt": "Tue Oct 13 2026 07:33 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Oct 13 06:15 AM PT",
+   "pulled_pt": "Tue Oct 13 07:33 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_tue0544.txt",
    "pulled_pt": "Tue Oct 13 05:44 AM PT",
-   "age_h": 0.5,
+   "age_h": 1.8,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_tue0544.txt",
    "pulled_pt": "Tue Oct 13 05:44 AM PT",
-   "age_h": 0.5,
+   "age_h": 1.8,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_tue0544.txt",
    "pulled_pt": "Tue Oct 13 05:44 AM PT",
-   "age_h": 0.5,
+   "age_h": 1.8,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Oct 13 06:15 AM PT",
+   "pulled_pt": "Tue Oct 13 07:33 AM PT",
    "age_h": 0.0,
    "rows": 6,
    "need": 6,
-   "note": "Gotham run Tue Oct 13 2026 06:15 AM PT for week 6"
+   "note": "Gotham run Tue Oct 13 2026 07:33 AM PT for week 6"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-13T1136Z.csv",
-   "pulled_pt": "Tue Oct 13 04:36 AM PT",
-   "age_h": 1.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-13T1342Z.csv",
+   "pulled_pt": "Tue Oct 13 06:42 AM PT",
+   "age_h": 0.9,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.5 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-13T1136Z.csv",
-   "pulled_pt": "Tue Oct 13 04:36 AM PT",
-   "age_h": 1.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-13T1342Z.csv",
+   "pulled_pt": "Tue Oct 13 06:42 AM PT",
+   "age_h": 0.9,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.5 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_rosters.json",
    "pulled_pt": "Tue Oct 13 05:44 AM PT",
-   "age_h": 0.5,
+   "age_h": 1.8,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -121,7 +121,7 @@
    "needles": {
     "gotham": 91,
     "yahoo": 92,
-    "sleeper": 90,
+    "sleeper": 91,
     "yahoo_from_spread": 91
    },
    "totals": {
@@ -134,7 +134,7 @@
      68.16
     ],
     "sleeper": [
-     132.94,
+     134.16,
      67.13
     ]
    },
@@ -197,8 +197,9 @@
       "pos": "QB",
       "gotham": 20.2,
       "gotham_src": "gotham",
-      "sleeper": 20.24,
-      "window": 5
+      "sleeper": 20.3,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -211,8 +212,9 @@
       "pos": "RB",
       "gotham": 19.03,
       "gotham_src": "gotham",
-      "sleeper": 18.5,
-      "window": 2
+      "sleeper": 19.38,
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -225,8 +227,9 @@
       "pos": "RB",
       "gotham": 24.77,
       "gotham_src": "gotham",
-      "sleeper": 25.0,
-      "window": 5
+      "sleeper": 24.99,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -239,8 +242,9 @@
       "pos": "WR",
       "gotham": 15.53,
       "gotham_src": "gotham",
-      "sleeper": 13.18,
-      "window": 4
+      "sleeper": 13.47,
+      "window": 4,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -254,7 +258,8 @@
       "gotham": 14.48,
       "gotham_src": "gotham",
       "sleeper": 18.33,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -268,7 +273,8 @@
       "gotham": 12.94,
       "gotham_src": "gotham",
       "sleeper": 10.31,
-      "window": 1
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -282,7 +288,8 @@
       "gotham": 11.51,
       "gotham_src": "gotham",
       "sleeper": 8.05,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -296,7 +303,8 @@
       "gotham": 11.46,
       "gotham_src": "gotham",
       "sleeper": 12.09,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -310,7 +318,8 @@
       "gotham": 7.24,
       "gotham_src": "sleeper",
       "sleeper": 7.24,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -324,7 +333,8 @@
       "gotham": null,
       "gotham_src": "sleeper",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      }
     ],
     "op": [
@@ -340,7 +350,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "RB",
@@ -354,7 +365,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "RB",
@@ -368,7 +380,8 @@
       "gotham": 17.9,
       "gotham_src": "gotham",
       "sleeper": 18.31,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -382,7 +395,8 @@
       "gotham": 10.22,
       "gotham_src": "gotham",
       "sleeper": 11.28,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -396,7 +410,8 @@
       "gotham": 1.61,
       "gotham_src": "gotham",
       "sleeper": 0.0,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -410,7 +425,8 @@
       "gotham": 11.22,
       "gotham_src": "gotham",
       "sleeper": 10.3,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -424,7 +440,8 @@
       "gotham": 0.74,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -438,7 +455,8 @@
       "gotham": 12.61,
       "gotham_src": "gotham",
       "sleeper": 13.38,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -452,7 +470,8 @@
       "gotham": 7.04,
       "gotham_src": "sleeper",
       "sleeper": 7.04,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -466,7 +485,8 @@
       "gotham": 6.82,
       "gotham_src": "sleeper",
       "sleeper": 6.82,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      }
     ]
    },
@@ -516,7 +536,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.51,
-     "sleeper": 12.15,
+     "sleeper": 12.16,
      "window": 3
     },
     {
@@ -543,7 +563,9 @@
      "sleeper": 0.0,
      "window": 2
     }
-   ]
+   ],
+   "state": "UPCOMING",
+   "state_note": "3 of 20 starters done, 0 games kicked off"
   },
   "DK II": {
    "league": "Winners and Sinners",
@@ -570,12 +592,12 @@
      139.1
     ],
     "gotham": [
-     115.4,
+     115.34,
      139.85
     ],
     "sleeper": [
-     109.0,
-     144.48
+     109.32,
+     145.3
     ]
    },
    "windows": {
@@ -637,8 +659,9 @@
       "pos": "QB",
       "gotham": 20.2,
       "gotham_src": "gotham",
-      "sleeper": 20.24,
-      "window": 5
+      "sleeper": 20.3,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -652,7 +675,8 @@
       "gotham": 2.77,
       "gotham_src": "gotham",
       "sleeper": 0.0,
-      "window": 1
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -666,7 +690,8 @@
       "gotham": 11.46,
       "gotham_src": "gotham",
       "sleeper": 12.09,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -680,7 +705,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "WR",
@@ -694,7 +720,8 @@
       "gotham": 14.48,
       "gotham_src": "gotham",
       "sleeper": 18.33,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -708,7 +735,8 @@
       "gotham": 8.78,
       "gotham_src": "gotham",
       "sleeper": 7.66,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -722,7 +750,8 @@
       "gotham": 9.34,
       "gotham_src": "gotham",
       "sleeper": 9.58,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -736,7 +765,8 @@
       "gotham": 12.79,
       "gotham_src": "gotham",
       "sleeper": 9.0,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
@@ -749,8 +779,9 @@
       "pos": "QB",
       "gotham": 20.83,
       "gotham_src": "gotham",
-      "sleeper": 17.35,
-      "window": 3
+      "sleeper": 17.67,
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -761,10 +792,11 @@
       "yahoo": 9.43,
       "actual": null,
       "pos": "K",
-      "gotham": 8.92,
+      "gotham": 8.86,
       "gotham_src": "sleeper",
-      "sleeper": 8.92,
-      "window": 3
+      "sleeper": 8.86,
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -778,7 +810,8 @@
       "gotham": 5.83,
       "gotham_src": "sleeper",
       "sleeper": 5.83,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      }
     ],
     "op": [
@@ -793,8 +826,9 @@
       "pos": "QB",
       "gotham": 26.38,
       "gotham_src": "gotham",
-      "sleeper": 26.25,
-      "window": 5
+      "sleeper": 26.26,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -808,7 +842,8 @@
       "gotham": 27.96,
       "gotham_src": "gotham",
       "sleeper": 30.13,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -821,8 +856,9 @@
       "pos": "RB",
       "gotham": 15.68,
       "gotham_src": "gotham",
-      "sleeper": 18.54,
-      "window": 2
+      "sleeper": 19.42,
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -835,8 +871,9 @@
       "pos": "WR",
       "gotham": 14.11,
       "gotham_src": "gotham",
-      "sleeper": 17.94,
-      "window": 1
+      "sleeper": 17.86,
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -849,8 +886,9 @@
       "pos": "WR",
       "gotham": 23.7,
       "gotham_src": "gotham",
-      "sleeper": 16.03,
-      "window": 5
+      "sleeper": 16.04,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -864,7 +902,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "TE",
@@ -878,7 +917,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "W/R/T",
@@ -892,7 +932,8 @@
       "gotham": 15.94,
       "gotham_src": "gotham",
       "sleeper": 17.39,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
@@ -906,7 +947,8 @@
       "gotham": 8.12,
       "gotham_src": "gotham",
       "sleeper": 10.24,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -920,7 +962,8 @@
       "gotham": 7.96,
       "gotham_src": "sleeper",
       "sleeper": 7.96,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -934,7 +977,8 @@
       "gotham": null,
       "gotham_src": "sleeper",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      }
     ]
    },
@@ -948,7 +992,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.62,
-     "sleeper": 21.44,
+     "sleeper": 20.25,
      "window": 2
     },
     {
@@ -972,7 +1016,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.51,
-     "sleeper": 12.15,
+     "sleeper": 12.16,
      "window": 3
     },
     {
@@ -984,7 +1028,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.8,
-     "sleeper": 15.38,
+     "sleeper": 15.05,
      "window": 4
     },
     {
@@ -1011,7 +1055,9 @@
      "sleeper": 0.0,
      "window": 2
     }
-   ]
+   ],
+   "state": "UPCOMING",
+   "state_note": "4 of 22 starters done, 0 games kicked off"
   },
   "DK III": {
    "league": "Hers and His Version 2.0",
@@ -1042,7 +1088,7 @@
      72.3
     ],
     "sleeper": [
-     95.58,
+     95.93,
      71.59
     ]
    },
@@ -1105,8 +1151,9 @@
       "pos": "QB",
       "gotham": 20.2,
       "gotham_src": "gotham",
-      "sleeper": 20.24,
-      "window": 5
+      "sleeper": 20.3,
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1120,7 +1167,8 @@
       "gotham": 2.77,
       "gotham_src": "gotham",
       "sleeper": 0.0,
-      "window": 1
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1134,7 +1182,8 @@
       "gotham": 9.9,
       "gotham_src": "gotham",
       "sleeper": 7.31,
-      "window": 5
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1147,8 +1196,9 @@
       "pos": "WR",
       "gotham": 15.53,
       "gotham_src": "gotham",
-      "sleeper": 13.18,
-      "window": 4
+      "sleeper": 13.47,
+      "window": 4,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1162,7 +1212,8 @@
       "gotham": 10.22,
       "gotham_src": "gotham",
       "sleeper": 11.28,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -1176,7 +1227,8 @@
       "gotham": 7.22,
       "gotham_src": "gotham",
       "sleeper": 10.48,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -1190,7 +1242,8 @@
       "gotham": 7.9,
       "gotham_src": "gotham",
       "sleeper": 12.15,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -1204,7 +1257,8 @@
       "gotham": 10.74,
       "gotham_src": "gotham",
       "sleeper": 10.4,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -1218,7 +1272,8 @@
       "gotham": 10.54,
       "gotham_src": "sleeper",
       "sleeper": 10.54,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      }
     ],
     "op": [
@@ -1234,7 +1289,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "RB",
@@ -1248,7 +1304,8 @@
       "gotham": 23.94,
       "gotham_src": "gotham",
       "sleeper": 21.52,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1262,7 +1319,8 @@
       "gotham": 18.19,
       "gotham_src": "gotham",
       "sleeper": 16.9,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1276,7 +1334,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "WR",
@@ -1290,7 +1349,8 @@
       "gotham": 12.4,
       "gotham_src": "gotham",
       "sleeper": 15.24,
-      "window": 1
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -1304,7 +1364,8 @@
       "gotham": 7.48,
       "gotham_src": "gotham",
       "sleeper": 7.64,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -1318,7 +1379,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "W/R/T",
@@ -1332,7 +1394,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "DEF",
@@ -1346,7 +1409,8 @@
       "gotham": 10.29,
       "gotham_src": "sleeper",
       "sleeper": 10.29,
-      "window": 1
+      "window": 1,
+      "gs": "pre"
      }
     ]
    },
@@ -1360,7 +1424,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.62,
-     "sleeper": 21.44,
+     "sleeper": 20.25,
      "window": 2
     },
     {
@@ -1423,7 +1487,9 @@
      "sleeper": 0.0,
      "window": 2
     }
-   ]
+   ],
+   "state": "UPCOMING",
+   "state_note": "4 of 18 starters done, 0 games kicked off"
   },
   "DK IV": {
    "league": "Murrieta NextDoor",
@@ -1441,7 +1507,7 @@
    "needles": {
     "gotham": 24,
     "yahoo": 24,
-    "sleeper": 27,
+    "sleeper": 28,
     "yahoo_from_spread": 24
    },
    "totals": {
@@ -1454,8 +1520,8 @@
      161.4
     ],
     "sleeper": [
-     129.02,
-     162.9
+     129.72,
+     161.72
     ]
    },
    "windows": {
@@ -1518,7 +1584,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "RB",
@@ -1532,7 +1599,8 @@
       "gotham": 23.16,
       "gotham_src": "gotham",
       "sleeper": 25.38,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1546,7 +1614,8 @@
       "gotham": 14.6,
       "gotham_src": "gotham",
       "sleeper": 15.09,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1560,7 +1629,8 @@
       "gotham": 7.88,
       "gotham_src": "gotham",
       "sleeper": 12.12,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1574,7 +1644,8 @@
       "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
-      "window": null
+      "window": null,
+      "gs": "nogame"
      },
      {
       "slot": "WR",
@@ -1588,7 +1659,8 @@
       "gotham": 15.83,
       "gotham_src": "gotham",
       "sleeper": 17.34,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -1601,8 +1673,9 @@
       "pos": "TE",
       "gotham": 12.1,
       "gotham_src": "gotham",
-      "sleeper": 12.53,
-      "window": 4
+      "sleeper": 12.84,
+      "window": 4,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -1616,7 +1689,8 @@
       "gotham": 9.93,
       "gotham_src": "gotham",
       "sleeper": 10.01,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
@@ -1629,8 +1703,9 @@
       "pos": "QB",
       "gotham": 23.67,
       "gotham_src": "gotham",
-      "sleeper": 21.32,
-      "window": 4
+      "sleeper": 21.71,
+      "window": 4,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -1644,7 +1719,8 @@
       "gotham": 7.86,
       "gotham_src": "sleeper",
       "sleeper": 7.86,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -1658,7 +1734,8 @@
       "gotham": 7.37,
       "gotham_src": "sleeper",
       "sleeper": 7.37,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      }
     ],
     "op": [
@@ -1674,7 +1751,8 @@
       "gotham": 28.38,
       "gotham_src": "gotham",
       "sleeper": 29.46,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1688,7 +1766,8 @@
       "gotham": 19.77,
       "gotham_src": "gotham",
       "sleeper": 16.23,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -1702,7 +1781,8 @@
       "gotham": 12.56,
       "gotham_src": "gotham",
       "sleeper": 16.19,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1716,7 +1796,8 @@
       "gotham": 17.89,
       "gotham_src": "gotham",
       "sleeper": 17.12,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1730,7 +1811,8 @@
       "gotham": 9.95,
       "gotham_src": "gotham",
       "sleeper": 13.76,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -1743,8 +1825,9 @@
       "pos": "WR",
       "gotham": 12.67,
       "gotham_src": "gotham",
-      "sleeper": 13.18,
-      "window": 2
+      "sleeper": 12.0,
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "TE",
@@ -1758,7 +1841,8 @@
       "gotham": 14.04,
       "gotham_src": "gotham",
       "sleeper": 14.63,
-      "window": 5
+      "window": 5,
+      "gs": "pre"
      },
      {
       "slot": "W/R/T",
@@ -1772,7 +1856,8 @@
       "gotham": 11.22,
       "gotham_src": "gotham",
       "sleeper": 9.85,
-      "window": 3
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
@@ -1786,7 +1871,8 @@
       "gotham": 18.71,
       "gotham_src": "gotham",
       "sleeper": 16.27,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -1800,7 +1886,8 @@
       "gotham": 10.46,
       "gotham_src": "sleeper",
       "sleeper": 10.46,
-      "window": 2
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
@@ -1814,7 +1901,8 @@
       "gotham": 5.75,
       "gotham_src": "sleeper",
       "sleeper": 5.75,
-      "window": 0
+      "window": 0,
+      "gs": "pre"
      }
     ]
    },
@@ -1828,7 +1916,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 10.27,
-     "sleeper": 10.74,
+     "sleeper": 10.75,
      "window": 5
     },
     {
@@ -1852,7 +1940,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.49,
-     "sleeper": 12.15,
+     "sleeper": 12.16,
      "window": 3
     },
     {
@@ -1864,7 +1952,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.4,
-     "sleeper": 16.93,
+     "sleeper": 16.92,
      "window": 1
     },
     {
@@ -1915,7 +2003,9 @@
      "sleeper": 0.0,
      "window": 1
     }
-   ]
+   ],
+   "state": "UPCOMING",
+   "state_note": "2 of 22 starters done, 0 games kicked off"
   }
  }
 }
