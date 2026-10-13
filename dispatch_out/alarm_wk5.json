@@ -1,15 +1,15 @@
 {
  "week": 5,
- "built_pt": "Mon Oct 12 2026 09:12 PM PT",
+ "built_pt": "Mon Oct 12 2026 09:25 PM PT",
  "alarms": [
-  "yahoo_all_teams: STALE - 26.3 h old (limit 26 h)"
+  "yahoo_all_teams: STALE - 26.5 h old (limit 26 h)"
  ],
  "notes": [],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Oct 12 09:11 PM PT",
+   "pulled_pt": "Mon Oct 12 09:25 PM PT",
    "age_h": 0.0,
    "rows": 15,
    "need": 15,
@@ -19,7 +19,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_matchups_mon1652.txt",
    "pulled_pt": "Mon Oct 12 04:52 PM PT",
-   "age_h": 4.3,
+   "age_h": 4.6,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -28,7 +28,7 @@
    "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/league_windows_sun1855.txt",
    "pulled_pt": "Sun Oct 11 06:55 PM PT",
-   "age_h": 26.3,
+   "age_h": 26.5,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -37,7 +37,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/standings_sun1855.txt",
    "pulled_pt": "Sun Oct 11 06:55 PM PT",
-   "age_h": 26.3,
+   "age_h": 26.5,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -45,35 +45,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Oct 12 09:12 PM PT",
+   "pulled_pt": "Mon Oct 12 09:25 PM PT",
    "age_h": 0.0,
    "rows": 5,
    "need": 5,
-   "note": "Gotham run Mon Oct 12 2026 09:12 PM PT for week 5"
+   "note": "Gotham run Mon Oct 12 2026 09:25 PM PT for week 5"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk5_2026-10-13T0048Z.csv",
    "pulled_pt": "Mon Oct 12 05:48 PM PT",
-   "age_h": 3.4,
+   "age_h": 3.6,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.6 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.8 h ago (unchanged 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk5_2026-10-13T0048Z.csv",
    "pulled_pt": "Mon Oct 12 05:48 PM PT",
-   "age_h": 3.4,
+   "age_h": 3.6,
    "rows": 187,
    "need": 60,
-   "note": "GitHub job checked 0.6 h ago (unchanged 187 rows)"
+   "note": "GitHub job checked 0.8 h ago (unchanged 187 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk5/dom_rosters.json",
    "pulled_pt": "Sun Oct 11 06:55 PM PT",
-   "age_h": 26.3,
+   "age_h": 26.5,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
