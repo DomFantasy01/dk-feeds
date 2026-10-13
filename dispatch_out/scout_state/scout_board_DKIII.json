@@ -1,8 +1,8 @@
 {
  "league": "DK III",
- "run": "2026-10-13T12:07:06.440406-07:00",
- "run_str": "Tue Oct 13, 12:07 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 8:04 AM PT \u00b7 stats nflverse Tue 12:06 PM PT",
+ "run": "2026-10-13T12:59:38.458488-07:00",
+ "run_str": "Tue Oct 13, 12:59 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 12:55 PM PT \u00b7 stats nflverse Tue 12:59 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -287,14 +287,33 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
+   "key": "need:QB:fill:short",
+   "age": 4,
+   "gap": null,
+   "head": "A Bye Hits the Quarterback Spot",
+   "title": "QB, Week 7 Fill",
+   "target": "Target 21.5 pts",
+   "why": "Full strength ~22.7 (Daniels). Wk 7 Rodgers ~21.5 (Daniels on bye, Rodgers slides in).",
+   "across": "Wk 7 Love ~27.9 vs Rodgers ~21.5",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off After Wk 7",
+   "rows": [
+    "Aaron Rodgers"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
    "key": "need:DEF:fill:short",
    "age": 4,
    "gap": null,
    "head": "Tough Draws for the Defense",
-   "title": "DEF, Weeks 10, 14, 16 Fill",
-   "target": "Target 6.2 pts",
-   "why": "Full strength ~7.8 (Steelers). Wk 10 Steelers ~6.8 (hard matchup vs CIN) \u00b7 Wk 14 Steelers ~6.3 (hard matchup vs JAX) \u00b7 Wk 16 Steelers ~5.5 (hard matchup vs CAR).",
-   "across": "Wk 10 Bengals ~11.0 vs Steelers ~6.8 \u00b7 Wk 14 Vikings ~20.2 vs Steelers ~6.3",
+   "title": "DEF, Weeks 14, 16 Fill",
+   "target": "Target 5.9 pts",
+   "why": "Full strength ~7.8 (Steelers). Wk 14 Steelers ~6.3 (hard matchup vs JAX) \u00b7 Wk 16 Steelers ~5.5 (hard matchup vs CAR).",
+   "across": "Wk 14 Vikings ~20.2 vs Steelers ~6.3",
    "picks": [
     {
      "name": "GB DEF",
@@ -303,7 +322,7 @@
      "scores": "-1, 9, -4, 12, 27",
      "acq": "Free agent",
      "why": "Current level ~14.3 a game",
-     "when": "Wk 10, Wk 14, Wk 16",
+     "when": "Wk 14, Wk 16",
      "urg": "gold",
      "gain": 75.5,
      "pgain": 31.3
@@ -325,25 +344,6 @@
    "kill": "Drops Off After Wk 16",
    "rows": [],
    "rep": 2
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:QB:fill:short",
-   "age": 4,
-   "gap": null,
-   "head": "A Bye Hits the Quarterback Spot",
-   "title": "QB, Week 7 Fill",
-   "target": "Target 21.5 pts",
-   "why": "Full strength ~22.7 (Daniels). Wk 7 Rodgers ~21.5 (Daniels on bye, Rodgers slides in).",
-   "across": "Wk 7 Love ~27.9 vs Rodgers ~21.5",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 7",
-   "rows": [
-    "Aaron Rodgers"
-   ],
-   "rep": 0
   },
   {
    "mark": "gold",
@@ -548,6 +548,14 @@
    "pgain": 5.6
   },
   {
+   "name": "CIN DEF",
+   "team": "CIN",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 32.5,
+   "pgain": 3.9
+  },
+  {
    "name": "NYG DEF",
    "team": "NYG",
    "pos": "DEF",
@@ -562,14 +570,6 @@
    "acq": "Waivers, clears Oct 14",
    "gain": 27.0,
    "pgain": 5.5
-  },
-  {
-   "name": "TB DEF",
-   "team": "TB",
-   "pos": "DEF",
-   "acq": "Waivers, clears Oct 14",
-   "gain": 24.0,
-   "pgain": 8.3
   }
  ],
  "priced": {
@@ -641,10 +641,6 @@
    "fwd": 6.8,
    "gain": 0.0
   },
-  "antoniowilliams": {
-   "fwd": 7.5,
-   "gain": 0.0
-  },
   "dariuscooper": {
    "fwd": 9.6,
    "gain": 0.0
@@ -659,6 +655,10 @@
   },
   "chrisgodwin": {
    "fwd": 8.5,
+   "gain": 0.0
+  },
+  "antoniowilliams": {
+   "fwd": 7.5,
    "gain": 0.0
   },
   "darnellmooney": {
