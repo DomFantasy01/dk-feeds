@@ -95,7 +95,7 @@ def sleeper_kdef(w):
             rows.append(dict(name=f"{pl.get('first_name','')} {pl.get('last_name','')}".strip(), pos=p,
                 team=r.get('team') or pl.get('team'), pts_ppr=st.get('pts_ppr'), stats=json.dumps(st, sort_keys=True)))
     return pd.DataFrame(rows)
-SOURCES = {'sleeper': sleeper, 'sleeper_kdef': sleeper_kdef, 'espn': espn, 'fftoday': fftoday, 'nflcom': nflcom, 'cbs': cbs}   # Oct 8: fantasypros removed - free page shows top 10 only; graded as a Yahoo twin (corr .987), K/DEF no help
+SOURCES = {'sleeper': sleeper, 'sleeper_kdef': sleeper_kdef, 'espn': espn, 'fftoday': fftoday, 'cbs': cbs}   # Oct 8: fantasypros removed - free page shows top 10 only; graded as a Yahoo twin (corr .987), K/DEF no help   # Oct 12 (Dom): nflcom removed - its page has returned no tables since Week 2, and the Dispatch never used it
 def run(src, fn, w):
     try:
         res, n = save(src, w, fn(w)); STATUS['sources'].setdefault(src, {})[f'wk{w}'] = f'{res} {n} rows'
