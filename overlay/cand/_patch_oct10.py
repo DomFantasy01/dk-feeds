@@ -1547,3 +1547,26 @@ patch(f"{R}/cand/redesign/_mast_v8.py",[
   '           else 10 if "THE MARKS" in _u else -7 if _u.startswith("OUTLOOK") else 0)\n'
   '    if _dy: c.translate(0, _dy)   # Oct 12: every page starts 12 pt under the masthead\n',1),
 ],"OCT12 even masthead gap")
+# ---------- 41 (Mon Oct 12 night): the week rolls over only when Yahoo's first read of the new week is in
+# Monday night after the last game, the NFL schedule says Week 6 but Yahoo has not been read for Week 6 yet (the Tuesday
+# 7:50 AM read brings it). Gotham and the meter jumped to Week 6 with no Yahoo data, and the front page crashed
+# (build #125, 8:55 PM). Now both hold the week just played until a Week-6 Yahoo matchup read exists.
+patch(f"{R}/dksys/engine/gotham.py",[
+ ("    return int(g[g.result.isna()].week.min())\n",
+  "    w=int(g[g.result.isna()].week.min())\n"
+  "    import glob as _gw   # Oct 12: hold the week until Yahoo's first read of the new one is in\n"
+  "    return w if (w<=1 or _gw.glob(D+f'yahoo/wk{w}/dom_matchups_*.txt')) else w-1\n",1),
+],"OCT12 week holds gotham")
+patch(f"{R}/dksys/meter/meter_data.py",[
+ ("WEEK = int(sys.argv[1]) if len(sys.argv) > 1 else int(G[G.result.isna()].week.min())\n",
+  "WEEK = int(sys.argv[1]) if len(sys.argv) > 1 else int(G[G.result.isna()].week.min())\n"
+  "if len(sys.argv) <= 1 and WEEK > 1 and not glob.glob(ROOT + f'yahoo/wk{WEEK}/dom_matchups_*.txt'): WEEK -= 1   # Oct 12: hold the week until Yahoo's first read of it\n",1),
+],"OCT12 week holds meter")
+# The front page's footnote stopped the whole build when stale-source notes made it run to a 5th line (also seen tonight):
+# it now tightens the type a little, and past that keeps the first four lines, instead of crashing.
+patch(f"{R}/cand/global/global33.py",[
+ ("    foot=FOOT; FFS=4.7; FLD=6.2; FL=simpleSplit(foot,\"Pop\",FFS,W-2*M)\n    assert len(FL)<=4,len(FL)\n",
+  "    foot=FOOT; FFS=4.7; FLD=6.2; FL=simpleSplit(foot,\"Pop\",FFS,W-2*M)\n"
+  "    while len(FL)>4 and FFS>4.2: FFS-=.1; FL=simpleSplit(foot,\"Pop\",FFS,W-2*M)   # Oct 12: never crash on a long footnote\n"
+  "    if len(FL)>4: FL=FL[:3]+[FL[3].rstrip(' .,;')+' \\u2026']\n",1),
+],"OCT12 front footnote fits")
