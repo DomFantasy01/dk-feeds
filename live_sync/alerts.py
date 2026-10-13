@@ -2,7 +2,7 @@
 # One alert per player per event. Raw feed hits make the alert; Gotham only adds the numbers, it never gates.
 # Colors: red = act now, gold = monitor, grey = noted. Green is never an input color: an alert the latest build
 # no longer raises is marked resolved and the page shows it green in history.
-# Usage: python3 alerts.py radar.json actions.json meter.json alarm.json prev_alerts.json(or -) out.json
+# Usage: python3 alerts.py radar.json actions.json meter.json alarm.json prev_alerts.json(or -) out.json [--feeds DIR]
 import json, re, sys, datetime as dt
 
 radar_f, act_f, meter_f, alarm_f, prev_f, out_f = sys.argv[1:7]
@@ -164,6 +164,83 @@ for n in AL.get("notes", []):
             title=f"Opponent's {who} has no game this week", what=n, tie=f"Your {lg} opponent must replace him.",
             fix="Nothing for you to do.", ba=None, receipts=[], by=None, feed="")
 
+# ---------- raw feed hits (Dom, Oct 13 afternoon): the 30-minute fast lane ----------
+# With --feeds DIR, every news item from the last 48 hours in the raw feeds (RotoWire, ESPN news, PFT, RotoBaller,
+# ESPN injury list) that names one of YOUR players (starters and bench, all four leagues) or an opponent's starter
+# becomes an alert by itself - the feed hit triggers it; Gotham only adds numbers. Starter + bad news = red,
+# starter + caution = gold, everything else = noted. Items the Dispatch already raised are not repeated.
+FEEDS = sys.argv[sys.argv.index("--feeds") + 1] if "--feeds" in sys.argv else None
+BAD = re.compile(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from|ruled out|out for|will not play|won't play|placed on (?:injured reserve|ir)|injured reserve|\bIR\b|season-ending|torn|tear|fracture|broken|surgery|concussion protocol|carted|suspended|expected to miss|will miss|out (?:multiple|several|indefinitely)|doubtful|high[- ]ankle)", re.I)
+CAUTION = re.compile(r"\b(questionable|limited|did not practice|DNP|game-time|day-to-day|week-to-week|uncertain|injur|hamstring|ankle|knee|groin|calf|shoulder|illness|back|quad|foot)\b", re.I)
+def _norm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
+if FEEDS:
+    import os
+    cut = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=48)
+    news = []
+    def _ld(f):
+        try: return json.load(open(os.path.join(FEEDS, f)))
+        except Exception: return {}
+    for f, label in (("rotowire_latest.json", "RotoWire"), ("espn_news.json", "ESPN news"), ("news_extra.json", None)):
+        for it in _ld(f).get("items", []):
+            news.append({"t": it.get("published_utc"), "src": label or it.get("source") or it.get("src") or "PFT/RotoBaller",
+                         "title": (it.get("title") or "").strip(), "text": re.sub(r"<[^>]+>", " ", it.get("text") or "").strip()})
+    for p in _ld("espn_injuries.json").get("players", []):
+        if (p.get("status") or "").strip().lower() in ("active", ""): continue   # "Active" is not news
+        news.append({"t": (p.get("date") or "").replace("Z", ":00Z") if len(p.get("date") or "") == 17 else p.get("date"),
+                     "src": "ESPN injury list", "title": f"{p.get('name')}: {p.get('status')} ({p.get('type') or 'injury'})",
+                     "text": p.get("detail") or "", "who": p.get("name")})
+    def _when(s):
+        try: return dt.datetime.fromisoformat((s or "").replace("Z", "+00:00"))
+        except Exception: return None
+    def _pt(d):
+        return d.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %b %-d %-I:%M %p PT")
+    people = []   # (league, name, role, slot, gotham)
+    for lg, L in M["leagues"].items():
+        for p in L.get("starters", {}).get("me", []): people.append((lg, p["player"], "starter", p["slot"], g(p)))
+        for p in L.get("bench", []): people.append((lg, p["player"], "bench", p.get("slot"), g(p)))
+        for p in L.get("starters", {}).get("op", []): people.append((lg, p["player"], "opp", p["slot"], g(p)))
+    seen_titles, _best = {}, {}
+    _built = _when(R.get("built_utc")) or cut
+    for x in ITEMS: seen_titles.setdefault((x["lg"], x["who"]), []).append((x.get("feed") or "") + " " + (x.get("title") or ""))
+    for n in news:
+        d = _when(n["t"])
+        if not d or d < cut or not n["title"]: continue
+        blob = n["title"] + " " + n["text"]
+        nb = " " + _norm(blob) + " "
+        for lg, name, role, slot, gp in people:
+            nn = _norm(name)
+            if len(nn.split()) < 2: continue                        # team defenses: a team name matches every story about the team
+            if not nn or (" " + nn + " ") not in " " + _norm(n["title"]) + " ": continue   # the player must be in the headline
+            if n.get("who") and _norm(n["who"]) != nn: continue
+            if any(n["title"][:60] in s for s in seen_titles.get((lg, name), [])): continue
+            bad, caut = bool(BAD.search(blob)), bool(CAUTION.search(blob))
+            if role != "starter" and not (bad or caut): continue     # bench and opponents: only injury or status news
+            sev = 2 if bad else 1 if caut else 0
+            k = (lg, name)
+            if k in _best and (_best[k][0], _best[k][1]) >= (sev, d): continue
+            _best[k] = (sev, d, len(ITEMS))
+            if role == "starter": color = "red" if bad else ("gold" if caut else "grey")
+            else: color = "grey"
+            tie = {"starter": f"Your {slot} starter in {lg}.", "bench": f"On your {lg} {'IR' if slot == 'IR' else 'bench'}.",
+                   "opp": f"Starts for your {lg} opponent."}[role]
+            gone = bool(re.search(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from)\b", blob, re.I))
+            fix = (f"His team has let him go, so he scores 0 unless someone signs him. Bench him and pick up another {slot}."
+                   if role == "starter" and gone else
+                   "Check his status before kickoff and line up a bench fill; the next Dispatch build re-scores the lineup."
+                   if role == "starter" and (bad or caut) else "Nothing to do now." if role != "starter" else "Worth knowing; no action yet.")
+            add(id=slug("w", W, lg, "feed", name, n["t"]), color=color, lg=lg, who=name, kind="feed",
+                title=n["title"] if nn in _norm(n["title"]) else f"{name}: {n['title']}",
+                what=(n["text"] or n["title"])[:400], tie=tie, fix=fix,
+                ba={"label": "his Gotham points", "before": gp, "after": None} if role == "starter" and gp is not None else None,
+                receipts=["Raw feed hit: the next Dispatch build confirms it against ESPN and Sleeper and re-scores your lineup"],
+                by=None, feed=f"{n['src']}, {_pt(d)}: {n['title']}", news_t=d.isoformat(),
+                src=f"{n['src']} (raw feed, pulled every 30 minutes)")
+            seen_titles.setdefault((lg, name), []).append(n["title"])
+    _keep = {v[2] for v in _best.values()}
+    _cov = {(x["lg"], x["who"]) for x in ITEMS if x["kind"] != "feed"}
+    ITEMS[:] = [x for i, x in enumerate(ITEMS) if x["kind"] != "feed" or
+                (i in _keep and not ((x["lg"], x["who"]) in _cov and _when(x["news_t"]) <= _built))]
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -178,12 +255,14 @@ for x in ITEMS:
 cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=30)).isoformat()
 for i, o in old.items():
     if i in seen: continue
-    if o.get("active"):
+    if o.get("kind") == "feed" and not FEEDS and o.get("active"):
+        pass                                          # a run without the feeds can't judge feed alerts; leave them as they are
+    elif o.get("active"):
         o = dict(o, active=False, resolved_at=NOW)   # the latest build no longer raises it
     if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "source": SRC, "items": out[:300]}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300]}
 json.dump(doc, open(out_f, "w"), indent=1)
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
