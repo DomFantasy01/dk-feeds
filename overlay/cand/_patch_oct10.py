@@ -1974,3 +1974,9 @@ y-=12
  ('y=_sb_tiles(y-12,stc,f"Week {wkn}")-20','y=_sb_tiles(y-12,stc,f"Week {wkn}")-14',1),
  ('y=_sb_tiles(y-12,sta,f"Weeks {wks[0]}–{wks[-1]}")-20','y=_sb_tiles(y-12,sta,f"Weeks {wks[0]}–{wks[-1]}")-14',1),
 ],"OCT13 calls and calibration")
+# ---------- 45 (Tue Oct 13): the brief counts only lineup holes as "score zero if left alone" (claims and IR moves are not)
+patch(f"{R}/cand/_actions.py",[
+ ('_n1 = [a for a in ACTIONS if a["rank"] <= 3]','_n1 = [a for a in ACTIONS if a["rank"] == 1]',1),
+ ('(f", {len(_n1)} that cost points if left alone." if _n1 else ".")',
+  '(f", {len(_n1)} of them lineup holes that score zero if left alone." if _n1 else ".")',1),
+],"OCT13 brief count")
