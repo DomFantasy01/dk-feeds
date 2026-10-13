@@ -1570,3 +1570,38 @@ patch(f"{R}/cand/global/global33.py",[
   "    while len(FL)>4 and FFS>4.2: FFS-=.1; FL=simpleSplit(foot,\"Pop\",FFS,W-2*M)   # Oct 12: never crash on a long footnote\n"
   "    if len(FL)>4: FL=FL[:3]+[FL[3].rstrip(' .,;')+' \\u2026']\n",1),
 ],"OCT12 front footnote fits")
+# ---------- 42 (Mon Oct 12 night, Dom's list)
+# (a) The Scout's drop rule: an injured man worth more to the best lineup after he is back than the cheapest other bench seat
+#     is now a HOLD ("hold him; if a seat is needed, free X instead"), not a drop candidate (Montgomery, DK III).
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ("            _t=(f\"Drop candidate: {_m['name']} ({_p['team']} {_m['pos']}) - {_why}; {_ret}; {_lvl}. No IR slot is left\"+(\" after the move above\" if any(x['kind']=='ir' for x in BOARD['moves']) else \"\")+\", so holding him costs a roster seat while he is out.\"+_alt+\" Dom's call - never an order.\")\n            BOARD[\"moves\"].append(dict(kind=\"drop\",name=_m[\"name\"],text=_t))\n",
+  "            _hi=next(i for i,x in enumerate(MINE) if x is _m); _rh=[x for i,x in enumerate(MINE) if i!=_hi]   # Oct 12: what he is worth once back\n"
+  "            _hv=sum(my[x]-total(_rh,x) for x in WEEKS if _b!=99 and x>=_b and x in my)\n"
+  "            if _cost and _hv>_cost[0][0]+3:\n"
+  "                _t=(f\"Hold {_m['name']} ({_p['team']} {_m['pos']}) - {_why}; {_ret}; {_lvl}. Once back he is worth ~{_hv:.0f} pts to the best lineup through Week {LAST}, more than the cheapest other bench seat, {_cost[0][1]['name']} ({PL[_cost[0][1]['key']]['team']} {_cost[0][1]['pos']}, ~{_cost[0][0]:.0f} pts). If a roster seat is needed while he is out, free that one instead. Dom's call - never an order.\")\n"
+  "                BOARD[\"moves\"].append(dict(kind=\"hold\",name=_m[\"name\"],free=_cost[0][1][\"name\"],text=_t))\n"
+  "            else:\n"
+  "                _t=(f\"Drop candidate: {_m['name']} ({_p['team']} {_m['pos']}) - {_why}; {_ret}; {_lvl}. No IR slot is left\"+(\" after the move above\" if any(x['kind']=='ir' for x in BOARD['moves']) else \"\")+\", so holding him costs a roster seat while he is out.\"+_alt+\" Dom's call - never an order.\")\n"
+  "                BOARD[\"moves\"].append(dict(kind=\"drop\",name=_m[\"name\"],text=_t))\n",1),
+],"OCT12 scout hold rule")
+patch(f"{R}/cand/redesign/_oct10_scout.py",[
+ ("('Roster Move - IR' if m['kind']=='ir' else 'Roster Move - Drop Candidate' if m['kind']=='drop' else 'Roster Moves')",
+  "('Roster Move - IR' if m['kind']=='ir' else 'Roster Move - Drop Candidate' if m['kind']=='drop' else 'Roster Move - Hold' if m['kind']=='hold' else 'Roster Moves')",1),
+],"OCT12 scout hold box")
+# (b) Field Report: the hold shows on the card and the bench note; the Outlook card runs Wednesday and Thursday on (Post-Mortem
+#     Monday and Tuesday only); a long opponent name is shortened, never the record or rank.
+patch(f"{R}/cand/redesign/_fr_v8.py",[
+ ("    mv = [m_[\"name\"] + (\" to IR once Yahoo lists him Out\" if m_[\"kind\"] == \"ir\" else \" is a drop candidate\") for m_ in moves][:2]",
+  "    mv = [m_[\"name\"] + (\" to IR once Yahoo lists him Out\" if m_[\"kind\"] == \"ir\" else \" - hold him\" + (f\"; free {m_['free']} if a seat is needed\" if m_.get('free') else \"\") if m_[\"kind\"] == \"hold\" else \" is a drop candidate\") for m_ in moves][:2]",1),
+ ("            return \"Scout: IR once tagged Out\" if m_[\"kind\"] == \"ir\" else \"Scout: drop candidate\"",
+  "            return \"Scout: IR once tagged Out\" if m_[\"kind\"] == \"ir\" else \"Scout: hold him\" if m_[\"kind\"] == \"hold\" else \"Scout: drop candidate\"",1),
+ ("    if D[\"started\"] or CAL_DOW not in (0, 1, 2): return D","    if D[\"started\"] or CAL_DOW not in (0, 1): return D   # Oct 12 (Dom): Outlook from Wednesday",1),
+ ("    if CAL_DOW in (0, 1, 2) and CD[\"started\"]:","    if CAL_DOW in (0, 1) and CD[\"started\"]:",1),
+ ("    if w8(orr, \"PopM\", 6.8) > x + gw - 12 - rx: orr = f\"{fit8(oppn, 'PopM', 6.8, x + gw - 12 - rx - w8('  ·  ' + rec8(L.get('opp_record', '')), 'PopM', 6.8))}  ·  {rec8(L.get('opp_record', ''))}\"",
+  "    _tail = orr[len(oppn):]   # Oct 12 (Dom): a long name gives way, the record and rank stay\n"
+  "    if w8(orr, \"PopM\", 6.8) > x + gw - 12 - rx: orr = fit8(oppn, 'PopM', 6.8, x + gw - 12 - rx - w8(_tail, 'PopM', 6.8)) + _tail",1),
+],"OCT12 field hold outlook names")
+# (c) The separate Outlook page retires - each Field Report carries the Outlook card from Wednesday on.
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ("elif OUTLOOK_ON:\n","elif False:   # Oct 12 (Dom): the Outlook lives on each Field Report's card now\n",1),
+],"OCT12 outlook page retires")
