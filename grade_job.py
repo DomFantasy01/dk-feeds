@@ -6,7 +6,7 @@ when each source first had numbers for each week and how many times it changed."
 import glob, os, re, json, datetime as dt
 import pandas as pd, numpy as np
 from actuals import actuals, norm
-OUT = 'feeds/proj'; SRC = ['sleeper', 'espn', 'nflcom', 'fftoday', 'cbs']   # sleeper_kdef collected only; K/DEF graded outside the job vs Yahoo K/DEF
+OUT = 'feeds/proj'; SRC = ['sleeper', 'espn', 'fftoday', 'cbs']   # sleeper_kdef collected only; K/DEF graded outside the job vs Yahoo K/DEF
 def price(df):
     c = lambda k: pd.to_numeric(df[k], errors='coerce').fillna(0) if k in df else 0
     if 'rush_yd' in df.columns and pd.to_numeric(df['rush_yd'], errors='coerce').notna().any():
