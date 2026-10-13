@@ -4,6 +4,10 @@
 # than what Live already shows, so a game-night Live read is never replaced by an older one. It prints STATE WRITE or STATE SKIP.
 # Every run also adds `health` to the models document: the Dispatch's last Yahoo read, its last build, and a failed build if
 # one happened since - Live's status light reads it.
+# Oct 13 (Dom): THE CHAIN CHECK. With --runlog <folder of the artifact's runlog documents> it also checks the chain by
+# success, not by the clock: did the scheduled Yahoo read that should have landed by now actually finish (the read writes
+# its runlog), and has a build used it? It prints one line: CHAIN OK / CHAIN WAIT (read done, build not caught up yet) /
+# CHAIN REFIRE (the read failed or stalled - start it again, once per slot) / CHAIN BROKEN (it already got its second try).
 import json, sys, re, unicodedata
 cur = json.load(open(sys.argv[1])); cur = cur.get('data', cur)
 M = json.load(open(sys.argv[2]))
@@ -61,6 +65,55 @@ bf = _raw('dispatch_out/build_failed.json')
 try: H['build_failed'] = json.loads(bf) if bf else None
 except Exception: H['build_failed'] = None
 rf = _raw('dispatch_out/RADAR_FAILED.txt'); H['radar_failed'] = rf.strip()[:160] if rf else None
+# ---- THE CHAIN CHECK (Oct 13)
+import glob as _g, os as _os
+from zoneinfo import ZoneInfo as _ZI
+_PTZ = _ZI('America/Los_Angeles'); _now = datetime.now(timezone.utc)
+_prev = (cur.get('health') or {}) if isinstance(cur.get('health'), dict) else {}
+H['refired'] = {k: v for k, v in (_prev.get('refired') or {}).items() if k[:10] >= (_now - timedelta(days=2)).strftime('%Y-%m-%d')}
+def _slots(day):   # the scheduled Yahoo reads for the Dispatch, Pacific: Mon-Sat 7:50 AM, 12:50 PM, 4:50 PM; Sunday 4:50 AM then hourly 8:50 AM-8:50 PM
+    hm = [(4, 50)] + [(h, 50) for h in range(8, 21)] if day.weekday() == 6 else [(7, 50), (12, 50), (16, 50)]
+    return [datetime(day.year, day.month, day.day, h, m, tzinfo=_PTZ) for h, m in hm]
+def _iso(t): return t.astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+def _p(s):
+    try: return datetime.strptime(s, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
+    except Exception: return None
+_lp = _now.astimezone(_PTZ)
+_all = sorted(_slots(_lp - timedelta(days=1)) + _slots(_lp))
+_due = [t for t in _all if t + timedelta(minutes=20) <= _now]          # a read needs ~15 minutes to read Yahoo and save
+_slot = _due[-1] if _due else None
+_nxt = [t for t in _all if t > (_slot or _now)]
+CH = dict(state='ok', msg='', slot=_iso(_slot) if _slot else None,
+          trigger=('trig_01WgYXc4XEj9XbbVThwSAwDV' if _slot and _slot.weekday() == 6 else 'trig_015hLaehaGcf27tiUKipvF9C'))   # which scheduled read to start again
+if '--runlog' in sys.argv and _slot:
+    _runs = []
+    for f in _g.glob(_os.path.join(sys.argv[sys.argv.index('--runlog') + 1], '**', '*.json'), recursive=True):
+        try:
+            d = json.load(open(f)); d = d.get('data', d)
+            if 'Yahoo read' in d.get('task', '') and _p(d.get('started', '')): _runs.append(d)
+        except Exception: pass
+    _end = _nxt[0] - timedelta(minutes=5) if _nxt else _now
+    mine = sorted([r for r in _runs if _slot - timedelta(minutes=5) <= _p(r['started']) < _end], key=lambda r: r['started'])
+    lab = _slot.strftime('%-I:%M %p').replace(':00', '') ; key = _iso(_slot)
+    last = mine[-1] if mine else None
+    rd = _p(H.get('read') or ''); bt = _p(H.get('build') or '')
+    if last and last.get('status') == 'ok':
+        if rd and rd >= _slot - timedelta(minutes=5): CH.update(state='ok', msg=f'{lab} read in and built')
+        elif _now - (_p(last.get('finished', '')) or _now) > timedelta(minutes=45):
+            CH.update(state='broken', msg=f'{lab} read saved, but no build has used it in 45 minutes')
+        else: CH.update(state='wait', msg=f'{lab} read saved, waiting for the build')
+    else:
+        why = ('never started' if not last else
+               f"failed at {last.get('step', '?')}: {last.get('error', '')[:120]}" if last.get('status') == 'failed' else
+               'stalled (started, never finished)' if _now - _p(last['started']) > timedelta(minutes=35) else None)
+        if why is None: CH.update(state='wait', msg=f'{lab} read still running')
+        elif key in H['refired']: CH.update(state='broken', msg=f'{lab} read {why}, after a second try at {H["refired"][key]}')
+        else: CH.update(state='refire', msg=f'{lab} read {why}'); H['refired'][key] = _iso(_now)   # the task starts the read again now - once per slot
+H['chain'] = CH
+bf_at = _p(((H.get('build_failed') or {}).get('at')) or '')
+if bf_at and (not _p(H['build']) or bf_at > _p(H['build'])) and CH['state'] in ('ok', 'wait'):
+    CH.update(state='broken', msg='the last Dispatch build failed at ' + _iso(bf_at))
+print('CHAIN', CH['state'].upper(), '-', CH['msg'] or 'no read due yet', ('| start scheduled task ' + CH['trigger']) if CH['state'] == 'refire' else '')
 cur['health'] = H
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
