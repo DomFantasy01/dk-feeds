@@ -1605,3 +1605,24 @@ patch(f"{R}/cand/redesign/_fr_v8.py",[
 patch(f"{R}/cand/redesign/fieldpos24.py",[
  ("elif OUTLOOK_ON:\n","elif False:   # Oct 12 (Dom): the Outlook lives on each Field Report's card now\n",1),
 ],"OCT12 outlook page retires")
+# ---------- 43 (Tue Oct 13, the Gotham before/after test, Week 5 final): keep what won, switch off what did not
+# Graded Weeks 2-5, 560 player-weeks from Dom's matchups, plus the full Week 5 slate (177 men, Sunday and Monday games):
+# handoff, Vegas at half strength and the elite low-Vegas cut each helped and together cut Gotham's miss 6.93 -> 6.69 pts a man.
+# The practice trim made no difference (+/-0.01) - it is switched off. The injury-exit rule stays on (a hair better).
+patch(f"{R}/dksys/engine/gotham.py",[
+ ("os.environ.get('DK_PRACTRIM','on')","os.environ.get('DK_PRACTRIM','off')",1),
+],"OCT13 practice trim off")
+patch(f"{R}/dksys/engine/engine3v.py",[
+ ('    """Oct 11 (Dom): remove past games a man left hurt - under 35% of snaps when his usual (median) is 60%+; keeps at least one game"""\n',
+  '    """Oct 11 (Dom): remove past games a man left hurt - under 35% of snaps when his usual (median) is 60%+; keeps at least one game"""\n'
+  '    if os.environ.get("DK_INJEXIT","on")=="off": return F   # Oct 13: a switch for future before/after tests (on by default)\n',1),
+],"OCT13 injury exit switch")
+patch(f"{R}/cand/redesign/_scoreboard_page.py",[
+ ('    txt(c,M,max(y,40),"Gotham\'s rule since Oct 11: a game a man left hurt (under 35% of snaps when he usually plays 60% or more) no longer counts against his number.","Pop",5.8,GR)',
+  '    txt(c,M,max(y,48),"Gotham\'s rule since Oct 11: a game a man left hurt (under 35% of snaps when he usually plays 60% or more) no longer counts against his number.","Pop",5.8,GR)\n'
+  '    txt(c,M,max(y,48)-8,"Oct 13 test (Weeks 2-5): handoff, half-strength Vegas and the elite low-Vegas cut kept, Gotham 6.93 to 6.69 pts a man; the practice trim is off.","Pop",5.8,GR)',1),
+],"OCT13 scoreboard footnote")
+# Patch 40's page shift lifted Calibration's own old footer above the footer band; the footer pass draws the real one.
+patch(f"{R}/cand/redesign/_scoreboard_page.py",[
+ ('footer(c,SB_PAGE,"Calibration")','pass   # Oct 13: the footer pass draws this page\'s footer',1),
+],"OCT13 calibration no double footer")
