@@ -37,10 +37,26 @@ jobs:
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add dispatch_out yahoo_drop $(ls -d yahoo_auth yahoo_api 2>/dev/null)   # only folders that exist (Oct 9 fix)
+          rm -f dispatch_out/build_failed.json   # Oct 13: a good build clears the failure flag Dark Knight Live's status light reads
+          git add -A dispatch_out yahoo_drop $(ls -d yahoo_auth yahoo_api 2>/dev/null)   # only folders that exist (Oct 9 fix)
           git commit -m "dispatch $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
             git pull --rebase -X theirs origin main && git push && exit 0
             sleep 5
           done
           echo "save failed after 3 tries"; exit 1
+      - name: record a failed build for Dark Knight Live's status light (Oct 13)
+        if: failure()
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git stash --include-untracked >/dev/null 2>&1 || true
+          mkdir -p dispatch_out
+          for i in 1 2 3; do
+            git pull --rebase origin main >/dev/null 2>&1 || true
+            echo "{\"at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"run\": \"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" > dispatch_out/build_failed.json
+            git add dispatch_out/build_failed.json && git commit -m "build failed $(date -u +%Y-%m-%dT%H:%MZ)" >/dev/null 2>&1
+            git push && exit 0
+            sleep 5
+          done
+          echo "could not record the failure"
