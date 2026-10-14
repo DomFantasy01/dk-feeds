@@ -60,7 +60,7 @@ for it in sorted(A.get("items", []), key=lambda x: x["rank"]):
             cands.sort(key=lambda c: -c[0])
             wire = [p for p in RL.get("in", []) if ok(p.get("pos"), slot) and g(p) is not None]
             wire.sort(key=lambda p: -g(p))
-            tot = (L.get("totals", {}).get("gotham") or [None])[0]
+            tot = ((L.get("totals_set") or L.get("totals") or {}).get("gotham") or [None])[0]   # as set: the meter's totals now assume the best lineup
             if cands:
                 gb, b, f = cands[0]
                 used.setdefault(lg, set()).add(b["player"])
