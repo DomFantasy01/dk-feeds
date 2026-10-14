@@ -135,3 +135,114 @@ patch(f"{R}/cand/redesign/_fr_v8.py",[
   '    t8(x, y, "Markers", "PopB", 5.8, K8["INK"]); x += w8("Markers", "PopB", 5.8) + 4\n'
   '    x += g_alert8(x, y, K8["RED"]) + 1; t8(x, y, "alert", "Pop", 5.8, K8["GR"]); x += w8("alert", "Pop", 5.8) + 6\n', 1),
 ],"OCT14 alert mark")
+
+# ======================= Oct 14 afternoon (Dom): THE THIS-WEEK GUARD + THE DEFENSE FIX =======================
+#  5  DEFENSE / KICKER THIS WEEK: the Scout valued a defense this week from its own past games x a mild matchup factor.
+#     The Colts' last five (-1, -1, 8, 17, -2 in DK I scoring) gave ~4.3 vs Tennessee while Yahoo had 10.1 and Sleeper
+#     11.1, so it pushed the Browns (Yahoo 7.2) over a better defense Dom already had. This week's number for a defense
+#     or kicker now comes from Sleeper's projection for this week in the league's own scoring (the same math the meter
+#     uses). Later weeks are unchanged.
+#  6  THE THIS-WEEK GUARD: the Scout ranks pickups by rest of season (Dom's rule, unchanged). Every pick now also
+#     carries this week's numbers next to the starter he'd replace - Gotham, Sleeper and Yahoo side by side - and says
+#     plainly when he's worse this week, so a downgrade can never reach Dom unflagged (Hutchinson 4.5 vs Sutton 8.6).
+#     The line goes on the Scout card, the open-seat adds, the action list, the morning brief and Live's alerts.
+_GUARD_DEFS = r'''
+# Oct 14 afternoon (Dom): this week's Sleeper numbers + the this-week guard
+import glob as _glb
+_FDG = globals().get("_FD", "/home/claude/domfantasy01/dk-feeds/feeds/")
+def _lastcsv(sub):
+    fs = sorted(_glb.glob(os.path.join(_FDG, "proj", sub, f"wk{NOW}_*.csv")))
+    return pd.read_csv(fs[-1]) if fs else None
+_SLKD, _SLPPR = {}, {}
+try:
+    _kd = _lastcsv("sleeper_kdef")
+    if _kd is not None:
+        for _r in _kd.itertuples():
+            _s = json.loads(_r.stats) if isinstance(_r.stats, str) else {}
+            if _r.pos == "DEF":
+                _v = (_s.get("sack", 0) + 2 * (_s.get("int", 0) + _s.get("fum_rec", 0) + _s.get("safe", 0) + _s.get("blk_kick", 0))
+                      + 6 * _s.get("def_td", 0) + pa_pts(_s.get("pts_allow", 20)))
+                _SLKD[("DEF", tm(str(_r.team)))] = round(_v, 2)
+            elif _r.pos == "K" and CF["kick"]:
+                f40, f50 = (3, 4) if CF["kick"] == "flat" else (4, 5)
+                _v = (3 * (_s.get("fgm_0_19", 0) + _s.get("fgm_20_29", 0) + _s.get("fgm_30_39", 0)) + f40 * _s.get("fgm_40_49", 0)
+                      + f50 * _s.get("fgm_50p", 0) + _s.get("xpm", 0) - _s.get("xpmiss", 0))
+                _SLKD[("K", norm(_r.name))] = round(_v, 2)
+    _pp = _lastcsv("sleeper")
+    if _pp is not None:
+        for _r in _pp.itertuples():
+            if pd.notna(_r.pts_ppr): _SLPPR[norm(_r.name)] = float(_r.pts_ppr)
+except Exception as _e: print("Scout: Sleeper this-week numbers skipped:", _e)
+def _kdkey(p): return ("DEF", p["team"]) if p["pos"] == "DEF" else ("K", norm(p["name"]))
+'''
+try:
+  patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('def weekly(p,x,ytag=""):\n    if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0\n',
+  _GUARD_DEFS + 'def weekly(p,x,ytag=""):\n    if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0\n'
+  '    if x==NOW and p["pos"] in ("DEF","K") and _SLKD.get(_kdkey(p)) is not None: return _SLKD[_kdkey(p)]   # Oct 14: this week = Sleeper, league scoring\n', 1),
+ ('def _pick(e,need_red,w):\n',
+  r'''# Oct 14 afternoon (Dom): THE THIS-WEEK GUARD - this week's numbers for a pickup next to the starter he'd replace
+_MET = {}
+try:
+    for _m in json.load(open(f"{L}/meter/meter_wk{NOW}.json"))["leagues"][CF["lab"]]["starters"]["me"]:
+        _MET[("DEF", tm(_m.get("team") or "")) if _m.get("pos") == "DEF" else (_m.get("pos"), norm(_m["player"]))] = _m
+except Exception as _e: print("Scout: meter numbers for the this-week guard skipped:", _e)
+_GOT = {}
+try:
+    _gc = pd.read_csv(os.path.join(os.path.dirname(H), "engine", f"gotham_{LGK}.csv"))
+    if "week" in _gc and int(_gc.week.iloc[0]) == NOW:          # only a Gotham run for THIS week counts
+        for _r in _gc.itertuples():
+            if pd.notna(_r.eng_wk): _GOT[norm(_r.player)] = float(_r.eng_wk)
+    else: print("Scout: Gotham file is not for Week", NOW, "- the guard shows Gotham as not read")
+except Exception as _e: print("Scout: Gotham numbers for the this-week guard skipped:", _e)
+def _f(v): return "not read" if v is None else f"{v:.1f}"
+def thisweek(p):
+    try:
+        if NOW not in LU: return ""
+        el = [(lab, i, v) for lab, i, v in LU[NOW] if i is not None and p["pos"] in okfor(re.sub(r"\d+$", "", lab))]
+        if not el: return ""
+        lab, i, v = min(el, key=lambda t: t[2]); st = MINE[i]; sp = PL[st["key"]]
+        kd = p["pos"] in ("DEF", "K")
+        if v <= 0:                                            # nobody playing in that seat this week (bye / out)
+            return f"This week: your {lab} seat has nobody playing ({st['name']} {'on bye' if NOW in byes.get(sp['team'], []) else 'out'}), so any healthy {p['pos']} who plays helps this week"
+        mk = ("DEF", sp["team"]) if sp["pos"] == "DEF" else (sp["pos"], norm(st["name"]))
+        sm = _MET.get(mk, {})
+        if x_bye := (NOW in byes.get(p["team"], [])): return f"This week: {p['name'].replace(' defense',' DEF')} has a bye - no help this week"
+        if NOW < back(p): return f"This week: {p['name']} is out (due back Wk {back(p)}) - no help this week"
+        a = dict(Gotham=(None if kd else _GOT.get(norm(p["name"]))),
+                 Sleeper=(_SLKD.get(_kdkey(p)) if kd else _SLPPR.get(norm(p["name"]))), Yahoo=None)
+        b = dict(Gotham=(sm.get("gotham") if not kd else None) if sm else (None if kd else _GOT.get(norm(st["name"]))),
+                 Sleeper=(_SLKD.get(_kdkey(sp)) if kd else _SLPPR.get(norm(st["name"]))), Yahoo=sm.get("yahoo"))
+        pairs = [(k, a[k], b[k]) for k in ("Gotham", "Sleeper", "Yahoo") if not (kd and k == "Gotham")]
+        both = [(x, y) for _, x, y in pairs if x is not None and y is not None]
+        verdict = ("WORSE this week" if both and all(x < y for x, y in both) else "better this week" if both and all(x > y for x, y in both)
+                   else "mixed this week" if both else "this week unknown")
+        nm = st["name"] if sp["pos"] != "DEF" else st["name"] + " DEF"
+        return (f"This week vs your {lab} {nm}: " + " · ".join(f"{k} {_f(x)} vs {_f(y)}" for k, x, y in pairs)
+                + (" (Sleeper PPR)" if not kd else "") + f" - {verdict}")
+    except Exception as _e:
+        return ""
+def _pick(e,need_red,w):
+''', 1),
+ ('urg=urg,', 'urg=urg,now=thisweek(p),', 1),
+ ('gain=round(sum(max(0.0,v) for v in e["g"].values()),1),pgain=round(sum(max(0.0,e["g"].get(x,0.0)) for x in PLAYOFF),1))\n               for e in sorted(',
+  'gain=round(sum(max(0.0,v) for v in e["g"].values()),1),pgain=round(sum(max(0.0,e["g"].get(x,0.0)) for x in PLAYOFF),1),now=thisweek(e["p"]))\n               for e in sorted(', 1),
+],"OCT14b this-week guard + defense this week")
+except AssertionError as _e: print("!! OCT14b Scout guard NOT applied:", _e)
+try:
+  patch(f"{R}/cand/_actions.py",[
+ ('Scout pick, your call",', 'Scout pick, your call" + ((". " + _pk["now"]) if _pk.get("now") else ""),', 2),
+],"OCT14b actions carry the this-week line")
+except AssertionError as _e: print("!! OCT14b page patch NOT applied:", _e)
+_NOWTXT = """('  ·  <font name="PopB" color="#B32020">'+_esc(p["now"])+'</font>' if "WORSE" in p.get("now","") else ('  ·  <font name="PopB">'+_esc(p["now"])+'</font>' if p.get("now") else ''))"""
+try:
+  patch(f"{R}/cand/redesign/_scout_page.py",[
+ ('+_gain(p)))', '+_gain(p)+' + _NOWTXT + '))', 1),
+ ('+_gain(p))\n        if not it.get("act",True)', '+_gain(p)+' + _NOWTXT + ')\n        if not it.get("act",True)', 1),
+],"OCT14b the this-week guard on every Scout pick")
+except AssertionError as _e: print("!! OCT14b page patch NOT applied:", _e)
+try:
+  patch(f"{R}/cand/redesign/_oct10_scout.py",[
+ ('''_tc(a["acq"]))})\'''', '''_tc(a["acq"]))})\'+(f\' - {a["now"].rsplit(" - ",1)[-1]}\' if a.get("now") else "")''', 1),
+],"OCT14b open-seat adds say better / worse this week")
+except AssertionError as _e: print("!! OCT14b page patch NOT applied:", _e)
