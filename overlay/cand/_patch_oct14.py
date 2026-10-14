@@ -89,3 +89,49 @@ patch(f"{R}/cand/redesign/fieldpos24.py",[
  ('    r_=position_page10(L_,T_,S_,"Positions · "+L_);pg+=1',
   '    c.bookmarkPage("dk_pos_"+L_.replace(" ",""))   # Oct 14: where the drift and trend marks land\n    r_=position_page10(L_,T_,S_,"Positions · "+L_);pg+=1', 1),
 ],"OCT14 mark link targets")
+
+# ---------- 6  THE ALERT MARK (Dom, Oct 14) ----------
+# A bell in the marker column on a man with a live alert, in the alert's color right now: red act now, gold monitor,
+# grey noted, green resolved. It rides the alert's week: it shows for 7 days from when the alert first landed (a resolved
+# alert shows green for 7 days from resolving), then it is gone - no counts, nothing to manage. Tapping it opens
+# Dark Knight Live, where the alert lives. The build computes the alerts itself (dispatch_out/alerts_build.json, kept
+# build to build) from the same feeds and code the Live page's alerts come from.
+_ALERT_FN = '''
+_ALURL8 = "https://claude.ai/code/artifact/2342ca1f-956b-4342-b3d0-f801496c1ed2"
+_AL8 = None
+def _alerts8(lab):
+    global _AL8
+    if _AL8 is None:
+        _AL8 = {}
+        try:
+            _now = _d8.datetime.now(_d8.timezone.utc)
+            for _x in _j8.load(open(_os8.path.join(_REPO8, "dispatch_out", "alerts_build.json"))).get("items", []):
+                _t = _x.get("first_seen") if _x.get("active") else (_x.get("resolved_at") or _x.get("last_seen"))
+                if not _t or (_now - _d8.datetime.fromisoformat(str(_t).replace("Z", "+00:00"))).days >= 7: continue
+                _c = _x.get("color", "grey") if _x.get("active") else "green"
+                _k = (_x.get("lg"), norm(_x.get("who") or ""))
+                _r = {"red": 4, "gold": 3, "grey": 1, "green": 2}
+                if _r.get(_c, 0) > _r.get(_AL8.get(_k), 0): _AL8[_k] = _c
+        except Exception as _e: print("alert marks skipped:", _e)
+    return {k[1]: v for k, v in _AL8.items() if k[0] == lab}
+def g_alert8(x, y, col):
+    c.setFillColor(col); p_ = c.beginPath()
+    p_.moveTo(x + .4, y - .4); p_.lineTo(x + 6.6, y - .4); p_.lineTo(x + 5.7, y + .9); p_.lineTo(x + 5.7, y + 3.4)
+    p_.curveTo(x + 5.7, y + 6.9, x + 1.3, y + 6.9, x + 1.3, y + 3.4); p_.lineTo(x + 1.3, y + .9); p_.close()
+    c.drawPath(p_, stroke=0, fill=1); c.circle(x + 3.5, y - 1.5, .95, stroke=0, fill=1); return 8
+'''
+patch(f"{R}/cand/redesign/_fr_v8.py",[
+ ('def marks8(x, y, nm, MK):\n', _ALERT_FN + 'def marks8(x, y, nm, MK):\n', 1),
+ ('    k = norm(nm); RAD, SCO, EN_ = MK; out = []\n',
+  '    k = norm(nm); RAD, SCO, EN_ = MK; out = []\n'
+  '    _ac = _alerts8(globals().get("_MKLAB8", "")).get(k)   # Oct 14 (Dom): the alert mark leads the column\n'
+  '    if _ac: out.append(lambda xx: g_alert8(xx, y, {"red": K8["RED"], "gold": K8["GOLD"], "green": K8["GREEN"]}.get(_ac, K8["GR2"])))\n', 1),
+ ('        if nm_ and lab_:\n',
+  '        if nm_ is None and "g_alert8" in f_.__code__.co_names:\n'
+  '            try: c.linkURL(_ALURL8, (x - 1, y - 3, x + w_ + 1, y + 8), relative=0, thickness=0)\n'
+  '            except Exception: pass\n'
+  '        if nm_ and lab_:\n', 1),
+ ('    t8(x, y, "Markers", "PopB", 5.8, K8["INK"]); x += w8("Markers", "PopB", 5.8) + 4\n',
+  '    t8(x, y, "Markers", "PopB", 5.8, K8["INK"]); x += w8("Markers", "PopB", 5.8) + 4\n'
+  '    x += g_alert8(x, y, K8["RED"]) + 1; t8(x, y, "alert", "Pop", 5.8, K8["GR"]); x += w8("alert", "Pop", 5.8) + 6\n', 1),
+],"OCT14 alert mark")
