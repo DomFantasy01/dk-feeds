@@ -118,6 +118,11 @@ for it in sorted(A.get("items", []), key=lambda x: x["rank"]):
 
 covered = {(x["lg"], x["who"]) for x in ITEMS}
 
+def _when(s):
+    try: return dt.datetime.fromisoformat((s or "").replace("Z", "+00:00"))
+    except Exception: return None
+def _pt(d):
+    return d.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %b %-d %-I:%M %p PT")
 # ---------- Yahoo's live roster read (the Scout's files): who's taken, who's on waivers ----------
 SCOUT = sys.argv[sys.argv.index("--scout") + 1] if "--scout" in sys.argv else None
 LGN = {"DK I": 1, "DK II": 2, "DK III": 3, "DK IV": 4}
@@ -337,6 +342,123 @@ if FEEDS:
     ITEMS[:] = [x for i, x in enumerate(ITEMS) if x["kind"] != "feed" or
                 (i in _keep and not ((x["lg"], x["who"]) in _cov and _when(x["news_t"]) <= _built))]
 
+# ---------- COMING ONLINE (Dom, Oct 14 noon): players Gotham can't rate yet ----------
+# A man who hasn't played this season, hasn't played in 3+ weeks, or just changed teams has no recent games, so Gotham
+# has no number for him and the wire alerts above never see him. This section catches him from the forward side:
+# Sleeper's projection for this week (it moves the moment a team activates or signs someone) + nflverse's game log
+# (who has actually played) + Yahoo's live roster read (is he available). Runs on every alert pass, fetching what it needs.
+ONLINE_NOTE = ""
+def _raw(rel, binary=False):
+    import os, urllib.request, time
+    for d in ([FEEDS] if FEEDS else []) + [os.path.join(os.path.dirname(os.path.abspath(radar_f)), "..", "feeds")]:
+        p = os.path.join(d, rel)
+        if os.path.exists(p): return open(p, "rb").read() if binary else open(p).read()
+    u = f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/feeds/{rel}?t={int(time.time())}"
+    b = urllib.request.urlopen(u, timeout=40).read()
+    return b if binary else b.decode()
+def _sleeper_proj(week):
+    import csv, io, glob, os
+    for d in ([FEEDS] if FEEDS else []) + [os.path.join(os.path.dirname(os.path.abspath(radar_f)), "..", "feeds")]:
+        fs = sorted(glob.glob(os.path.join(d, "proj", "sleeper", f"wk{week}_*.csv")))
+        if fs: return fs[-1].rsplit("_", 1)[1][:-4], list(csv.DictReader(open(fs[-1])))
+    runs = [json.loads(l) for l in _raw("proj/status_log.jsonl").splitlines() if l.strip()]
+    for r in reversed(runs):
+        if str((r.get("sources", {}).get("sleeper", {}) or {}).get(f"wk{week}", "")).startswith("saved"):
+            try: return r["run_utc"], list(csv.DictReader(io.StringIO(_raw(f"proj/sleeper/wk{week}_{r['run_utc']}.csv"))))
+            except Exception: continue
+    return None, []
+try:
+    import csv, io, urllib.request
+    W_ = int(W)
+    _stamp, _rows = _sleeper_proj(W_)
+    if not _rows: raise RuntimeError(f"no Sleeper projection file for Week {W_}")
+    _raw_g = urllib.request.urlopen(urllib.request.Request(
+        "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+        headers={"User-Agent": "dk"}), timeout=90).read().decode()
+    GP, LASTTM = {}, {}
+    for r in csv.DictReader(io.StringIO(_raw_g)):
+        if r.get("season_type") != "REG": continue
+        k = _nm(r.get("player_display_name")); wk = int(r["week"])
+        GP.setdefault(k, set()).add(wk)
+        if wk >= max(GP[k]): LASTTM[k] = r.get("team")
+    GMAX = max((max(v) for v in GP.values()), default=0)
+    SP = {}
+    try:
+        for v in json.loads(_raw("sleeper_players_min.json")).get("players", {}).values():
+            if v.get("name"): SP[_nm(v["name"])] = v
+    except Exception: pass
+    NEWS = []
+    for f in ("rotowire_latest.json", "espn_news.json", "news_extra.json"):
+        try:
+            for it in json.loads(_raw(f)).get("items", []):
+                NEWS.append((it.get("published_utc") or "", it.get("source") or it.get("src") or {"rotowire_latest.json": "RotoWire", "espn_news.json": "ESPN news"}.get(f, "PFT/RotoBaller"), clean(it.get("title"))))
+        except Exception: pass
+    NEWS.sort(reverse=True)
+    PROJ = {_nm(r["name"]): r for r in _rows}
+    def _pp(name):
+        r = PROJ.get(_nm(name))
+        try: return float(r["pts_ppr"]) if r and r.get("pts_ppr") not in ("", None) else None
+        except Exception: return None
+    _t = dt.datetime.strptime(_stamp, "%Y-%m-%dT%H%MZ").replace(tzinfo=dt.timezone.utc)
+    _stamp_pt = _t.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %-I:%M %p PT")
+    CAND = []
+    for r in _rows:
+        if r.get("pos") not in ("QB", "RB", "WR", "TE"): continue
+        p = _pp(r["name"])
+        if p is None or p < 3: continue
+        k = _nm(r["name"]); g = GP.get(k, set())
+        _tm = lambda t: {"LA": "LAR", "JAC": "JAX", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}.get(t or "", t or "")
+        why = ("hasn't played a game this season" if not g else
+               f"no game since Week {max(g)}" if max(g) <= GMAX - 2 else
+               f"only one game this season (Week {max(g)}), just back" if len(g) == 1 else
+               f"new team: played for {_tm(LASTTM.get(k))}, now {r.get('team')}" if LASTTM.get(k) and r.get("team") and _tm(LASTTM[k]) != _tm(r.get("team")) else None)
+        if why: CAND.append((r, p, k, g, why))
+    nonline = 0
+    for lg, L in M["leagues"].items():
+        mine_ = {_nm(x["player"]): x for x in L.get("starters", {}).get("me", []) + L.get("bench", [])}
+        for r, p, k, g, why in CAND:
+            name, pos, team = r["name"], r["pos"], r.get("team") or ""
+            sp = SP.get(k, {}); inj = sp.get("inj") or ""
+            news = next(((t, src, ttl) for t, src, ttl in NEWS if (" " + k + " ") in (" " + _nm(ttl) + " ")), None)
+            starters = [x for x in L.get("starters", {}).get("me", []) if x.get("pos") == pos and x.get("slot") == pos and x.get("gs") in ("pre", None)]
+            weak = min(((x, _pp(x["player"])) for x in starters if _pp(x["player"]) is not None), key=lambda t: t[1], default=(None, None))
+            gl = ("Games this season: none" if not g else "Games this season: Week " + ", ".join(str(w) for w in sorted(g))) + f" (nflverse game log, through Week {GMAX})"
+            st_line = f"Sleeper injury status: {inj}" if inj else "Sleeper injury status: none listed"
+            if k in mine_:
+                me = mine_[k]
+                if me.get("slot") not in ("BN", "IR") and me in L.get("starters", {}).get("me", []): continue
+                where = "IR" if me.get("slot") == "IR" or (me.get("status") or "").startswith("IR") else "bench"
+                add(id=slug("w", W, lg, "online", name), color="gold", lg=lg, who=name, kind="online",
+                    title=f"Coming back: your {where} player {name} ({pos}, {team}), {why}",
+                    what=(news[2] if news else f"Sleeper now projects him {p:.1f} this week."),
+                    tie=f"On your {lg} {where}.",
+                    fix=(f"Sleeper projects {p:.1f} (PPR) this week" + (f", vs your weakest {pos} starter {weak[0]['player']} at {weak[1]:.1f}" if weak[0] else "") +
+                         ". Gotham can't rate him yet (no recent games). " + ("If he's been activated, move him off IR and into a starting spot if he's the better play." if where == "IR" else "Consider starting him if his role is confirmed.")),
+                    ba=None, receipts=[gl, st_line, f"Sleeper projection pulled {_stamp_pt}"], by="before kickoff",
+                    feed=(f"{srcname(news[1])}, {_pt(_when(news[0]))}" if news and _when(news[0]) else ""), feed_title=(news[2] if news else None),
+                    src="Sleeper projection + nflverse game log (Gotham can't rate him yet)")
+                nonline += 1; continue
+            own_st = ownership(lg, name)
+            if not own_st or own_st[0] == "taken": continue
+            beats = weak[0] is not None and p > weak[1]
+            if not beats and p < 5: continue
+            kind_l = "On waivers" if own_st[0] == "waivers" else "Free agent"
+            add(id=slug("w", W, lg, "online", name), color="gold" if beats else "grey", lg=lg, who=name, kind="online",
+                title=f"Coming online: {name} ({pos}, {team}), {why}. {kind_l}" + (f", clears {own_st[1]}" if own_st[0] == "waivers" else ""),
+                what=(news[2] if news else f"Sleeper now projects him {p:.1f} this week; Gotham has no recent games to rate him."),
+                tie=(f"Would beat your weakest {pos} starter in {lg}, {weak[0]['player']} ({weak[1]:.1f})." if beats else
+                     f"Not ahead of your {pos} starters yet" + (f" (weakest: {weak[0]['player']}, {weak[1]:.1f})" if weak[0] else "") + "; worth watching."),
+                fix=(f"Your call: {'claim' if own_st[0] == 'waivers' else 'add'} {name} - Sleeper projects {p:.1f} (PPR). Confirm his role in the news first; Gotham can't rate him until he plays. Adding him means dropping someone."
+                     if beats else "Nothing to do yet - watch his first game back."),
+                ba=None, receipts=[gl, st_line, f"Sleeper projection pulled {_stamp_pt}", f"Yahoo roster read: {own_st[2]}"],
+                by=(("before waivers clear " + own_st[1]) if own_st[0] == "waivers" else "before kickoff") if beats else None,
+                feed=(f"{srcname(news[1])}, {_pt(_when(news[0]))}" if news and _when(news[0]) else ""), feed_title=(news[2] if news else None),
+                src="Sleeper projection + nflverse game log (Gotham can't rate him yet)")
+            nonline += 1
+    ONLINE_NOTE = f"coming online: {len(CAND)} players checked, {nonline} alerts (Sleeper {_stamp_pt}, games through Week {GMAX})"
+except Exception as e:
+    ONLINE_NOTE = f"coming online check skipped: {type(e).__name__}: {e}"
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -359,8 +481,8 @@ for i, o in old.items():
     if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300]}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE}
 json.dump(doc, open(out_f, "w"), indent=1)
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW))
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE)
