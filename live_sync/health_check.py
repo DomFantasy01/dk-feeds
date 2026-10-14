@@ -84,10 +84,10 @@ else:
     t = iso(st.get("run_utc")); lim = 50 if day_hours else 8 * 60
     ok = t and (NOW - t).total_seconds() / 60 <= lim
     row("Feeds", "News feed pull", "green" if ok else "red", "runs every 30 min, 5 AM-11:30 PM" + ("" if ok else " - LATE"), t)
-    S = st.get("sources", {})
+    S = st.get("sources", {}); _fs = {}
     for k, lab in (("espn_injuries", "ESPN injury report"), ("espn_news", "ESPN news"), ("news_extra", "PFT + RotoBaller news"), ("rotowire", "RotoWire news"), ("weather", "Game weather")):
         s = S.get(k) or {}
-        if not s: row("Feeds", lab, "red", "missing from the feed pull"); continue
+        if not s: row("Feeds", lab, "red", "missing from the feed pull"); _fs[k] = "red"; continue
         warn = s.get("warning") or (s.get("problems") and str(s["problems"])) or (s.get("errors") and str(s["errors"]))
         newest = s.get("newest_age_hours")
         if newest is None and s.get("newest_item_utc"):
@@ -96,7 +96,11 @@ else:
         stale = newest is not None and newest > 12
         stt = "red" if bad else "yellow" if (warn or stale) else "green"
         d = warn if warn else (f"newest item {newest:.0f} h old" if newest is not None else "")
-        if k == "rotowire" and stt != "green": d += " (ESPN and PFT/RotoBaller still cover injuries)"
+        if k == "rotowire" and stt != "green":   # Oct 14 (Dom): RotoWire is a backup; while the three main news feeds are green it's information, not a warning
+            covered = all(_fs.get(x) == "green" for x in ("espn_injuries", "espn_news", "news_extra"))
+            d += " (ESPN and PFT/RotoBaller still cover injuries)"
+            if covered and stt == "yellow": stt = "grey"
+        _fs[k] = stt
         row("Feeds", lab, stt, d.strip(" -") or "ok")
     sl = S.get("sleeper") or {}
     row("Feeds", "Sleeper trending + injuries", "green" if sl.get("adds") else "yellow", f"{sl.get('adds', 0)} adds, {sl.get('injured_tagged', 0)} injured tagged")
