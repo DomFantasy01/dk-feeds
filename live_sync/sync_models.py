@@ -71,6 +71,27 @@ try:
     if Wx and int(Wx.get('week', -1)) == int(M['week']): cur['wx'] = Wx
     else: print('weather not synced (no file for week', M['week'], ')')
 except Exception as ex: print('weather not synced:', str(ex)[:60])
+# ---- Oct 14 (Dom): THE MOUNTAIN'S CLOCK. The kickoff windows and which team plays in which window come from this week's
+# meter, so the now-pole and the two triangles sit at the real point in the week (before Thursday 5:15 they stand at the
+# left edge, ahead of the first window). Before this they came from an older weekly sweep and stayed on last week's dates,
+# which put the pole past every window - at the far right.
+try:
+    _wins = M.get('windows') or []
+    _built = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
+    _tue = (_built - timedelta(days=(_built.weekday() - 1) % 7)).date()          # the NFL week runs Tuesday to Monday
+    _DOFF = {'TUE': 0, 'WED': 1, 'THU': 2, 'FRI': 3, 'SAT': 4, 'SUN': 5, 'MON': 6}
+    _kicks = []
+    for _w in _wins:
+        _d, _hm, _ap = _w.split()[0].upper(), _w.split()[1], _w.split()[2].upper()
+        _t = datetime.strptime(f"{_tue + timedelta(days=_DOFF[_d])} {_hm} {_ap}", '%Y-%m-%d %I:%M %p')
+        _kicks.append([(_t + timedelta(hours=7 if 3 <= _t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')])
+    _tw = {}
+    for _L in M['leagues'].values():
+        for _p in (_L['starters']['me'] + _L['starters']['op'] + (_L.get('bench') or [])):
+            if _p.get('team') and isinstance(_p.get('window'), int): _tw[_p['team'].upper()] = _p['window']
+    if _kicks and _tw: cur['kicks'] = _kicks; cur['tw'] = _tw; cur['windows'] = _wins
+    print('mountain clock:', len(_kicks), 'windows from', _kicks[0][0] if _kicks else '-', '|', len(_tw), 'teams placed')
+except Exception as ex: print('mountain clock not synced:', str(ex)[:80])
 # ---- the status light (Oct 13): last good Yahoo read, last build, last failed build
 def _raw(path):
     try:
