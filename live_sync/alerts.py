@@ -2,7 +2,12 @@
 # One alert per player per event. Raw feed hits make the alert; Gotham only adds the numbers, it never gates.
 # Colors: red = act now, gold = monitor, grey = noted. Green is never an input color: an alert the latest build
 # no longer raises is marked resolved and the page shows it green in history.
-# Usage: python3 alerts.py radar.json actions.json meter.json alarm.json prev_alerts.json(or -) out.json [--feeds DIR]
+# Usage: python3 alerts.py radar.json actions.json meter.json alarm.json prev_alerts.json(or -) out.json [--feeds DIR] [--scout DIR]
+# Oct 14 11:40 (Dom): GOTHAM DRIVES the wire alerts (it's the only forward-looking source); Yahoo and Sleeper are shown
+# beside it, never vote, and the alert is labeled 'all three agree' / 'Gotham + one' / 'Gotham only'. Your own bench is
+# checked first (no alert for a free agent your bench already beats). Waiver players are flagged too, labeled as a claim.
+# Cards: no raw feed markup, no before/after row without a real after-value, source = where the tip came from,
+# and no 'worth knowing, no action' feed cards (a name in a start/sit list is not news).
 import json, re, sys, datetime as dt
 
 radar_f, act_f, meter_f, alarm_f, prev_f, out_f = sys.argv[1:7]
@@ -26,10 +31,19 @@ ELIG = {"QB": {"QB"}, "RB": {"RB"}, "WR": {"WR"}, "TE": {"TE"}, "K": {"K"}, "DEF
 def ok(pos, slot): return pos in ELIG.get(slot, {slot})
 def g(p): v = p.get("gotham"); return v if isinstance(v, (int, float)) else None
 def healthy(p): return (p.get("status") or "").upper() not in ("O", "IR", "IR-R", "NA", "SUSP", "PUP", "D")
+import html as _html
+def clean(t):   # Oct 14 (Dom): raw feed markup ("<img width=135 ...") never reaches a card, even when the feed cut the tag off
+    t = re.sub(r"<[^>]*(?:>|$)", " ", t or "")
+    return re.sub(r"\s+", " ", _html.unescape(t)).strip()
+SRCN = {"rotoballer": "RotoBaller", "pft": "PFT", "rotowire": "RotoWire", "espn": "ESPN", "espn news": "ESPN news"}
+def srcname(x): return SRCN.get((x or "").strip().lower(), x or "")
+def feedline(n0): return f"{srcname(n0.get('src'))}, {n0.get('t')}" if n0 else ""
 
 ITEMS = []
 def add(**k):
     k.setdefault("src", SRC); k.setdefault("built", BUILT)
+    if k.get("ba") and k["ba"].get("after") is None: k["ba"] = None     # Oct 14 (Dom): "before -> unknown" tells him nothing
+    k["what"] = clean(k.get("what"))
     ITEMS.append(k)
 
 # ---------- lineup holes and other ranked actions (from the Dispatch's Action Items) ----------
@@ -96,13 +110,56 @@ for it in sorted(A.get("items", []), key=lambda x: x["rank"]):
         add(id=slug("w", W, lg, kind, who), color=color, lg=lg, who=who, kind=kind,
             title=it["what"].split(". ")[0] + ".",
             what=it["what"], tie=tie, fix=fix, ba=ba, receipts=receipts + ([ba_win] if ba_win else []),
-            by=it.get("by"), feed=(f"{n0.get('src')}, {n0.get('t')}: {n0.get('title')}" if n0 else ""))
+            by=it.get("by"), feed=feedline(n0), feed_title=(n0 or {}).get("title"))
     else:
         add(id=slug("w", W, lg, kind, who), color=color, lg=lg, who=who, kind=kind,
             title=it["what"].split(". ")[0] + ".", what=it["what"],
             tie=f"{lg} roster move.", fix=it["what"], ba=None, receipts=[], by=it.get("by"), feed="")
 
 covered = {(x["lg"], x["who"]) for x in ITEMS}
+
+# ---------- Yahoo's live roster read (the Scout's files): who's taken, who's on waivers ----------
+SCOUT = sys.argv[sys.argv.index("--scout") + 1] if "--scout" in sys.argv else None
+LGN = {"DK I": 1, "DK II": 2, "DK III": 3, "DK IV": 4}
+def _rd(n, kind):
+    import os, urllib.request, time
+    for d in [SCOUT, os.path.join(os.path.dirname(os.path.abspath(radar_f)), "..", "yahoo_drop", "scout")]:
+        if d and os.path.exists(os.path.join(d, f"dk{n}_{kind}.txt")): return open(os.path.join(d, f"dk{n}_{kind}.txt")).read()
+    try:
+        u = f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/yahoo_drop/scout/dk{n}_{kind}.txt?t={int(time.time())}"
+        return urllib.request.urlopen(u, timeout=20).read().decode()
+    except Exception: return ""
+def _nm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
+OWN = {}
+for lg_, n_ in LGN.items():
+    ro, wv = _rd(n_, "rosters_live"), _rd(n_, "waivers")
+    if not ro: continue
+    stamp = (re.search(r"read live (.+? PT)", ro) or [None, "time unknown"])[1]
+    taken = {_nm(l.split("|")[2]) for l in ro.splitlines() if l and not l.startswith("#") and l.count("|") >= 4}
+    wl_ = {}
+    for l in wv.splitlines():
+        if l.startswith("#"): continue
+        for e in l.split("|"):
+            if "/" in e: nm_, dte = e.rsplit("/", 1); wl_[_nm(nm_)] = dte.strip()
+    OWN[lg_] = (taken, wl_, stamp)
+def ownership(lg, name):
+    if lg not in OWN: return None
+    taken, wl_, stamp = OWN[lg]; k = _nm(name)
+    if k in taken: return ("taken", "", f"rostered by another team, read {stamp}")
+    if k in wl_: return ("waivers", wl_[k], f"on waivers until {wl_[k]}, read {stamp}")
+    return ("free", "", f"not rostered and not on the waiver list (it shows the top 15), read {stamp}")
+def agree(ws, fs, wy, fy):   # wire/bench man vs your starter on the two sources that only show, never vote
+    parts, votes = [], 0
+    for lab, a, b in (("Sleeper", ws, fs), ("Yahoo", wy, fy)):
+        if a is None or b is None:
+            parts.append(f"{lab} {'not read' if a is None else f'{a:.1f}'} vs {'not read' if b is None else f'{b:.1f}'}"); continue
+        parts.append(f"{lab} {a:.1f} vs {b:.1f}"); votes += a > b
+    return votes, " \u00b7 ".join(parts)
+def wl(lg, name):
+    for p in R.get("leagues", {}).get(lg, {}).get("own", []):
+        if p.get("name") == name and isinstance(p.get("workload"), str): return p["workload"]
+    return "unknown"
+BENCH_BEATS = {}
 
 # ---------- the Radar: your roster, the wire, your opponent ----------
 for lg, RL in R.get("leagues", {}).items():
@@ -126,27 +183,67 @@ for lg, RL in R.get("leagues", {}).items():
                  else ("Nothing to do now. Consider IR or a drop if the seat is needed." if "bad" in grades else "Nothing to do now.")),
             ba={"label": f"his Gotham points", "before": g(p), "after": None} if starter else None,
             receipts=[f"Workload last 5: {p.get('workload') or 'unknown'}"], by=None,
-            feed=f"{n0.get('src')}, {n0.get('t')}: {n0.get('title')}")
+            feed=feedline(n0), feed_title=n0.get("title"))
     hole_fill = {}
     for x in ITEMS:
         if x["lg"] == lg and x.get("ba") and x["kind"] in ("out", "bye"):
             hole_fill[x["who"]] = (x["ba"]["after"] or 0) - (x["ba"]["before"] or 0)
+    # Oct 14 (Dom): Gotham drives; Yahoo and Sleeper are shown, not counted as votes. Bench first. Waivers flagged as a claim.
+    mine = {x["player"]: x for x in L.get("starters", {}).get("me", []) + L.get("bench", [])}
+    bench = [x for x in L.get("bench", []) if x.get("slot") != "IR" and healthy(x) and g(x) is not None]
     for p in RL.get("in", []):
         fl = p.get("floor") or {}
         if not p.get("beats_floor") or g(p) is None: continue
         if fl.get("name") in hole_fill: continue   # that hole's alert already weighs the wire against the bench fill
+        own_st = ownership(lg, p["name"])
+        if own_st and own_st[0] == "taken": continue           # Yahoo's live read: someone already rosters him
+        better = max((x for x in bench if x.get("pos") == p.get("pos") and g(x) >= g(p)), key=g, default=None)
+        if better:                                             # your bench already beats him: no pickup alert
+            BENCH_BEATS.setdefault(lg, []).append((p["name"], better["player"])); continue
         base = fl.get("gotham") or 0
         gain = g(p) - base
         if gain <= 0: continue
         n0 = p["news"][0] if p.get("news") else {}
+        fp = mine.get(fl.get("name"), {})
+        votes, cmp_ = agree(p.get("sleeper"), fp.get("sleeper"), p.get("yahoo"), fp.get("yahoo"))
+        tag = {2: "all three agree", 1: "Gotham + one", 0: "Gotham only"}.get(votes, "Gotham only")
+        if own_st and own_st[0] == "waivers":
+            kind_l, how = "On waivers", f"Waiver claim: he clears {own_st[1]}, so you have to win the claim, and adding him means dropping someone."
+        elif own_st:
+            kind_l, how = "Free agent", "Not on Yahoo's waiver list, so an instant add, but adding him means dropping someone."
+        else:
+            kind_l, how = "Free agent?", "Yahoo's roster read wasn't available, so it isn't confirmed he's still out there."
+        why = [re.sub(r"^opening: (.+?) \u2014 (.+)$", r"Opening: \1 is \2, which frees up work", w) for w in (p.get("why") or [])]
         add(id=slug("w", W, lg, "in", p["name"]), color="gold" if gain >= FLOOR else "grey", lg=lg, who=p["name"],
-            kind="wire", title=f"Free agent {p['name']} ({p['pos']}, {p.get('team','')}) beats your {fl.get('name')} by {gain:.1f}",
-            what="; ".join(p.get("why") or []) or (n0.get("title") or "On the Scout's list."),
-            tie=f"Your weakest {p['pos']} option in {lg} is {fl.get('name')} at Gotham {f1(base)}.",
-            fix=f"Your call: claim {p['name']} and start him over {fl.get('name')}." + (" Gain is under 2 points, inside the noise." if gain < FLOOR else ""),
-            ba={"label": f"that lineup spot, Gotham points", "before": round(base, 1), "after": round(g(p), 1)},
-            receipts=[f"Workload last 5: {p.get('workload') or 'unknown'}", f"Yahoo ownership check: {p.get('acq') or 'unknown'}"],
-            by="before waivers clear", feed=(f"{n0.get('src')}, {n0.get('t')}: {n0.get('title')}" if n0 else ""))
+            kind="wire", title=f"{kind_l}: {p['name']} ({p['pos']}, {p.get('team','')}) beats your {fl.get('name')} by {gain:.1f} ({tag})",
+            what="; ".join(why) or "On the Scout's list.",
+            tie=f"Your weakest {p['pos']} option in {lg} is {fl.get('name')}.",
+            fix=f"Your call: {'claim' if kind_l == 'On waivers' else 'add'} {p['name']} and start him over {fl.get('name')}. {how}" + (" Gain is under 2 points, inside the noise." if gain < FLOOR else ""),
+            ba={"label": "that lineup spot, Gotham points", "before": round(base, 1), "after": round(g(p), 1)},
+            receipts=[f"This week: Gotham {f1(g(p))} vs {f1(base)} \u00b7 {cmp_}",
+                      f"Workload last 5 (the work Gotham's number is built on): {p.get('workload') or 'unknown'}",
+                      f"Yahoo roster read: {own_st[2] if own_st else 'not available'}"],
+            by=("before waivers clear " + own_st[1]) if own_st and own_st[0] == "waivers" else None,
+            feed=feedline(n0), feed_title=n0.get("title"), src="Gotham, with Yahoo and Sleeper shown")
+    # your own bench vs your own starters, Gotham-driven like the wire (Oct 14: the bench check's other half)
+    used_b = set()
+    for st in L.get("starters", {}).get("me", []):
+        if st.get("gs") != "pre" or g(st) is None or st.get("slot") in ("QB", "K", "DEF", "Q/W/R/T"): continue
+        c = max((x for x in bench if x["player"] not in used_b and ok(x.get("pos"), st["slot"])), key=g, default=None)
+        if not c or g(c) - g(st) < FLOOR: continue
+        used_b.add(c["player"])
+        votes, cmp_ = agree(c.get("sleeper"), st.get("sleeper"), c.get("yahoo"), st.get("yahoo"))
+        tag = {2: "all three agree", 1: "Gotham + one", 0: "Gotham only"}.get(votes, "Gotham only")
+        gain = g(c) - g(st)
+        add(id=slug("w", W, lg, "bench", c["player"], st["player"]), color="gold", lg=lg, who=c["player"], kind="bench",
+            title=f"Your bench's {c['player']} beats your {st['slot']} {st['player']} by {gain:.1f} ({tag})",
+            what=f"Gotham has {c['player']} at {f1(g(c))} and {st['player']} at {f1(g(st))} this week.",
+            tie=f"Both are already on your {lg} roster: no pickup, no drop.",
+            fix=f"Your call: start {c['player']} over {st['player']}." + ("" if votes == 2 else " Yahoo and Sleeper don't both see it yet, so this is Gotham's early read."),
+            ba={"label": "that lineup spot, Gotham points", "before": round(g(st), 1), "after": round(g(c), 1)},
+            receipts=[f"This week: Gotham {f1(g(c))} vs {f1(g(st))} \u00b7 {cmp_}",
+                      "Workload last 5: " + ", ".join(f"{q['player']} {q.get('workload') or wl(lg, q['player'])}" for q in (c, st)).replace(" unknown", " not in this build")],
+            by="before kickoff", feed="", src="Gotham, with Yahoo and Sleeper shown")
     for p in RL.get("opp", []):
         mk = p.get("marker", {})
         if mk.get("color") != "red" or not p.get("news"): continue
@@ -154,8 +251,7 @@ for lg, RL in R.get("leagues", {}).items():
         add(id=slug("w", W, lg, "opp", p["name"], n0.get("t")), color="grey", lg=lg, who=p["name"], kind="opp",
             title=f"Opponent's {p['pos']} " + (n0.get('title') if p['name'] in (n0.get('title') or '') else f"{p['name']}: {n0.get('title')}"), what=n0.get("text") or "",
             tie=f"Starts for {RL.get('opponent')}, your {lg} opponent.", fix="Nothing for you to do.",
-            ba={"label": "his Gotham points", "before": g(p), "after": None}, receipts=[], by=None,
-            feed=f"{n0.get('src')}, {n0.get('t')}: {n0.get('title')}")
+            ba=None, receipts=[], by=None, feed=feedline(n0), feed_title=n0.get("title"))
 for n in AL.get("notes", []):
     m = re.match(r"(DK [IV]+): opponent starter (.+?) \((\w+)\) has no game", n)
     if m:
@@ -183,7 +279,7 @@ if FEEDS:
     for f, label in (("rotowire_latest.json", "RotoWire"), ("espn_news.json", "ESPN news"), ("news_extra.json", None)):
         for it in _ld(f).get("items", []):
             news.append({"t": it.get("published_utc"), "src": label or it.get("source") or it.get("src") or "PFT/RotoBaller",
-                         "title": (it.get("title") or "").strip(), "text": re.sub(r"<[^>]+>", " ", it.get("text") or "").strip()})
+                         "title": clean(it.get("title")), "text": clean(it.get("text"))})
     for p in _ld("espn_injuries.json").get("players", []):
         if (p.get("status") or "").strip().lower() in ("active", ""): continue   # "Active" is not news
         news.append({"t": (p.get("date") or "").replace("Z", ":00Z") if len(p.get("date") or "") == 17 else p.get("date"),
@@ -201,7 +297,7 @@ if FEEDS:
         for p in L.get("starters", {}).get("op", []): people.append((lg, p["player"], "opp", p["slot"], g(p)))
     seen_titles, _best = {}, {}
     _built = _when(R.get("built_utc")) or cut
-    for x in ITEMS: seen_titles.setdefault((x["lg"], x["who"]), []).append((x.get("feed") or "") + " " + (x.get("title") or ""))
+    for x in ITEMS: seen_titles.setdefault((x["lg"], x["who"]), []).append((x.get("feed_title") or "") + " " + (x.get("title") or ""))
     for n in news:
         d = _when(n["t"])
         if not d or d < cut or not n["title"]: continue
@@ -214,7 +310,7 @@ if FEEDS:
             if n.get("who") and _norm(n["who"]) != nn: continue
             if any(n["title"][:60] in s for s in seen_titles.get((lg, name), [])): continue
             bad, caut = bool(BAD.search(blob)), bool(CAUTION.search(blob))
-            if role != "starter" and not (bad or caut): continue     # bench and opponents: only injury or status news
+            if not (bad or caut): continue     # Oct 14 (Dom): a name in a start/sit list is not news - no 'worth knowing' cards
             sev = 2 if bad else 1 if caut else 0
             k = (lg, name)
             if k in _best and (_best[k][0], _best[k][1]) >= (sev, d): continue
@@ -227,14 +323,14 @@ if FEEDS:
             fix = (f"His team has let him go, so he scores 0 unless someone signs him. Bench him and pick up another {slot}."
                    if role == "starter" and gone else
                    "Check his status before kickoff and line up a bench fill; the next Dispatch build re-scores the lineup."
-                   if role == "starter" and (bad or caut) else "Nothing to do now." if role != "starter" else "Worth knowing; no action yet.")
+                   if role == "starter" else "Nothing to do now.")
             add(id=slug("w", W, lg, "feed", name, n["t"]), color=color, lg=lg, who=name, kind="feed",
                 title=n["title"] if nn in _norm(n["title"]) else f"{name}: {n['title']}",
                 what=(n["text"] or n["title"])[:400], tie=tie, fix=fix,
-                ba={"label": "his Gotham points", "before": gp, "after": None} if role == "starter" and gp is not None else None,
+                ba=None,
                 receipts=["Raw feed hit: the next Dispatch build confirms it against ESPN and Sleeper and re-scores your lineup"],
-                by=None, feed=f"{n['src']}, {_pt(d)}: {n['title']}", news_t=d.isoformat(),
-                src=f"{n['src']} (raw feed, pulled every 30 minutes)")
+                by=None, feed=f"{srcname(n['src'])}, {_pt(d)}", feed_title=n["title"], news_t=d.isoformat(),
+                src=f"{srcname(n['src'])} (raw feed, pulled every 30 minutes)")
             seen_titles.setdefault((lg, name), []).append(n["title"])
     _keep = {v[2] for v in _best.values()}
     _cov = {(x["lg"], x["who"]) for x in ITEMS if x["kind"] != "feed"}
@@ -255,6 +351,7 @@ for x in ITEMS:
 cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=30)).isoformat()
 for i, o in old.items():
     if i in seen: continue
+    if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
     if o.get("kind") == "feed" and not FEEDS and o.get("active"):
         pass                                          # a run without the feeds can't judge feed alerts; leave them as they are
     elif o.get("active"):
