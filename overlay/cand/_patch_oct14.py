@@ -246,3 +246,50 @@ try:
  ('''_tc(a["acq"]))})\'''', '''_tc(a["acq"]))})\'+(f\' - {a["now"].rsplit(" - ",1)[-1]}\' if a.get("now") else "")''', 1),
 ],"OCT14b open-seat adds say better / worse this week")
 except AssertionError as _e: print("!! OCT14b page patch NOT applied:", _e)
+
+# ======================= Oct 14 2 PM (Dom): YAHOO'S WEEKLY PROJECTIONS INSIDE THE SCOUT =======================
+#  7  The Scout valued every week from a player's own past games x a mild matchup factor, and never saw Yahoo's number
+#     for a free agent - so a pick could rank high on season level while Yahoo had him far below the man he'd replace.
+#     A Chrome read (DKP, in the scheduled projections task) now saves Yahoo's weekly projections - this week, the next
+#     two and the playoff weeks 15-17 - for Dom's roster and the top available players in all four leagues
+#     (yahoo_drop/scout/yproj_dkN.txt). For any week Yahoo has a number, the Scout's value is half its own model, half
+#     Yahoo (this week's defense/kicker: half Sleeper, half Yahoo). Yahoo never decides alone (Dom's rule), the
+#     ranking is still points added through Week 17, and the this-week guard now shows Yahoo for the pickup too.
+#     A file older than 36 hours is ignored and the Scout says so.
+_YP_DEFS = r'''
+# Oct 14 2 PM (Dom): Yahoo's weekly projections (Chrome read) - blended half and half into the Scout's weekly values
+_YP = {}
+def _ypk(p): return ("DEF", tm(p["team"])) if p["pos"] == "DEF" else (p["pos"], norm(p["name"]))
+try:
+    _yf = f"{H}/yproj_dk{CF['n']}.txt"
+    if os.path.exists(_yf):
+        _yl = open(_yf).read().splitlines()
+        _ym = re.search(r"read live (\w{3} \w{3} \d{1,2} \d{4} \d{1,2}:\d{2} [AP]M) PT", _yl[0] if _yl else "")
+        _yt = dt.datetime.strptime(_ym.group(1), "%a %b %d %Y %I:%M %p").replace(tzinfo=NOWPT.tzinfo) if _ym else None
+        if _yt and (NOWPT - _yt).total_seconds() <= 36 * 3600:
+            for _l in _yl[1:]:
+                _x = _l.split("|")
+                if len(_x) < 5: continue
+                try: _YP[((("DEF", tm(_x[2])) if _x[3] == "DEF" else (_x[3], norm(_x[1]))), int(_x[0]))] = float(_x[4])
+                except Exception: pass
+            print(f"Scout: Yahoo weekly projections in ({len(_YP)} player-weeks, read {_ym.group(1)} PT)")
+        else: print("Scout: Yahoo projections file is older than 36 hours - not used")
+    else: print("Scout: no Yahoo projections file - the Scout runs on its own model")
+except Exception as _e: print("Scout: Yahoo projections skipped:", _e)
+'''
+try:
+  patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('def _kdkey(p): return ("DEF", p["team"]) if p["pos"] == "DEF" else ("K", norm(p["name"]))\n',
+  'def _kdkey(p): return ("DEF", p["team"]) if p["pos"] == "DEF" else ("K", norm(p["name"]))\n' + _YP_DEFS, 1),
+ ('    if x==NOW and p["pos"] in ("DEF","K") and _SLKD.get(_kdkey(p)) is not None: return _SLKD[_kdkey(p)]   # Oct 14: this week = Sleeper, league scoring\n',
+  '    _y=_YP.get((_ypk(p),x))\n'
+  '    if x==NOW and p["pos"] in ("DEF","K") and _SLKD.get(_kdkey(p)) is not None: return _SLKD[_kdkey(p)] if _y is None else (_SLKD[_kdkey(p)]+_y)/2   # Oct 14: this week = Sleeper (+ Yahoo), league scoring\n', 1),
+ ('    return v*RATIO.get((sched[p["team"]].get(x),p["pos"]),1.0)\n',
+  '    _mv=v*RATIO.get((sched[p["team"]].get(x),p["pos"]),1.0)\n'
+  '    return _mv if _y is None else (_mv+_y)/2   # Oct 14 2 PM (Dom): half the Scout\'s model, half Yahoo\'s projection for that week\n', 1),
+ ('Sleeper=(_SLKD.get(_kdkey(p)) if kd else _SLPPR.get(norm(p["name"]))), Yahoo=None)',
+  'Sleeper=(_SLKD.get(_kdkey(p)) if kd else _SLPPR.get(norm(p["name"]))), Yahoo=_YP.get((_ypk(p), NOW)))', 1),
+ ('Yahoo=sm.get("yahoo"))',
+  'Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)))', 1),
+],"OCT14c Yahoo weekly projections in the Scout")
+except AssertionError as _e: print("!! OCT14c Yahoo projections NOT applied:", _e)
