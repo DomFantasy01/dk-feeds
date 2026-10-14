@@ -31,6 +31,30 @@ for lab, k in KEY.items():
     lg['std'] = ([["DIVISION", o(L['div_rank'])], ["LEAGUE", o(L['rank'])]] if L.get('div_rank')
                  else [["POINTS FOR", o(L['pf_rank'])], ["LEAGUE", o(L['rank'])]])
 cur['pm'] = pm
+# Oct 13 5 PM (Dom): BEST LINEUP, BOTH SIDES - the meter now sets each team's best legal lineup from its whole roster.
+# Live gets the swaps (out man -> in man, per model) so its Gotham and Sleeper needles count the same best lineups.
+best = {}
+for lab, k in KEY.items():
+    L = M['leagues'][lab]; bm = L.get('best_moves') or {}
+    if not bm: continue
+    ent = {}
+    for col, tag in (('gotham', 'g'), ('sleeper', 's')):
+        ent[tag] = {side: {norm(mv['out']): mv['in_v'] for mv in (bm.get(col) or {}).get(side, []) if mv.get('out')}
+                    for side in ('me', 'op')}
+    def _lines(side):
+        mv = (bm.get('gotham') or {}).get(side, [])
+        ins = [f"{m['into']} ({m['in_v']:.1f})" for m in mv if m.get('into') and m['into'] != '(nobody eligible)']
+        outs = [f"{m['out']} ({(m['out_v'] or 0):.1f})" for m in mv if m.get('out') and not m['out'].startswith('(Empty')]
+        holes = sum(1 for m in mv if m.get('into') == '(nobody eligible)')
+        t = []
+        if ins: t.append("start " + ", ".join(ins))
+        if outs: t.append("sit " + ", ".join(outs))
+        if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
+        return t
+    ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
+    ent['set'] = {'gotham': (L.get('needles_set') or {}).get('gotham'), 'sleeper': (L.get('needles_set') or {}).get('sleeper')}
+    best[k] = ent
+cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
 from datetime import datetime, timedelta, timezone
 t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
