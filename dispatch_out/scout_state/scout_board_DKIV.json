@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-10-14T06:56:06.636949-07:00",
- "run_str": "Wed Oct 14, 6:56 AM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 4:56 PM PT \u00b7 stats nflverse Wed 6:55 AM PT",
+ "run": "2026-10-14T08:01:56.143748-07:00",
+ "run_str": "Wed Oct 14, 8:01 AM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 14, 7:57 AM PT \u00b7 stats nflverse Wed 8:01 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -14,8 +14,20 @@
    "title": "DEF, Weeks 7, 12, 17 Fill",
    "target": "Target 5.2 pts",
    "why": "Full strength ~8.0 (Seahawks). Wk 7 Seahawks ~5.2 (hard matchup vs KC) \u00b7 Wk 12 Seahawks ~4.6 (hard matchup vs SF) \u00b7 Wk 17 Seahawks ~5.9 (hard matchup vs CAR).",
-   "across": "Wk 7 Browns ~9.8 vs Seahawks ~5.2 \u00b7 Wk 12 Texans ~6.2 vs Seahawks ~4.6",
+   "across": "Wk 7 Giants ~5.6 vs Seahawks ~5.2 \u00b7 Wk 12 Texans ~6.2 vs Seahawks ~4.6",
    "picks": [
+    {
+     "name": "DEN DEF",
+     "team": "DEN",
+     "pos": "DEF",
+     "scores": "3, 8, 14, 4, 12",
+     "acq": "Free agent",
+     "why": "Current level ~8.0 a game",
+     "when": "Wk 7, Wk 12, Wk 17",
+     "urg": "red",
+     "gain": 26.2,
+     "pgain": 3.7
+    },
     {
      "name": "NYJ DEF",
      "team": "NYJ",
@@ -27,18 +39,6 @@
      "urg": "red",
      "gain": 20.0,
      "pgain": 1.1
-    },
-    {
-     "name": "KC DEF",
-     "team": "KC",
-     "pos": "DEF",
-     "scores": "12, 1, 8, 4",
-     "acq": "Free agent",
-     "why": "Current level ~6.0 a game",
-     "when": "Wk 7, Wk 17",
-     "urg": "red",
-     "gain": 13.6,
-     "pgain": 2.2
     }
    ],
    "none": null,
@@ -65,7 +65,7 @@
      "team": "NYJ",
      "pos": "WR",
      "scores": "9.0, 12.3",
-     "acq": "Waivers, clears Oct 14",
+     "acq": "Free agent",
      "why": "Due back Wk 7 (listed Out); door open: Arian Smith out",
      "when": "Wk 10",
      "urg": "gold",
@@ -146,28 +146,28 @@
    "across": "Wk 9 Likely ~16.6 vs Kraft ~10.3",
    "picks": [
     {
-     "name": "Brenton Strange",
-     "team": "JAX",
-     "pos": "TE",
-     "scores": "10.3, 3.7, 6.2, 16.5, 13.8",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Workload up from 5.9 to 13.2 expected a game",
-     "when": "Wks 16-17",
-     "urg": "gold",
-     "gain": 6.1,
-     "pgain": 6.0
-    },
-    {
      "name": "Pat Freiermuth",
      "team": "PIT",
      "pos": "TE",
      "scores": "15.6, 7.4, 5.1, 10.7, 21.5",
-     "acq": "Waivers, clears Oct 14",
+     "acq": "Free agent",
      "why": "Workload up from 8.2 to 12.3 expected a game",
      "when": "Wk 16",
      "urg": "gold",
      "gain": 4.2,
      "pgain": 2.3
+    },
+    {
+     "name": "Greg Dulcich",
+     "team": "MIA",
+     "pos": "TE",
+     "scores": "3.8, 3.7, 10.5, 9.7",
+     "acq": "Free agent",
+     "why": "Workload up from 4.1 to 9.8 expected a game",
+     "when": "Wk 9",
+     "urg": "gold",
+     "gain": 2.1,
+     "pgain": 0.0
     }
    ],
    "none": null,
@@ -221,7 +221,7 @@
      "team": "NYG",
      "pos": "K",
      "scores": "4, 8, 12, 14, 13",
-     "acq": "Waivers, clears Oct 14",
+     "acq": "Free agent",
      "why": "Current level ~11.9 a game",
      "when": "Wk 13",
      "urg": "gold",
@@ -259,16 +259,16 @@
      "pgain": 1.1
     },
     {
-     "name": "KC DEF",
-     "team": "KC",
+     "name": "DEN DEF",
+     "team": "DEN",
      "pos": "DEF",
-     "scores": "12, 1, 8, 4",
+     "scores": "3, 8, 14, 4, 12",
      "acq": "Free agent",
-     "why": "Current level ~6.0 a game",
+     "why": "Current level ~8.0 a game",
      "when": "Wk 11",
      "urg": "gold",
-     "gain": 13.6,
-     "pgain": 2.2
+     "gain": 26.2,
+     "pgain": 3.7
     }
    ],
    "none": null,
@@ -297,26 +297,6 @@
     "pgain": 3.0
    },
    "act": true
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-11",
-   "age": 3,
-   "gap": null,
-   "title": "TE, Week 9",
-   "pick": {
-    "name": "Greg Dulcich",
-    "team": "MIA",
-    "pos": "TE",
-    "scores": "3.8, 3.7, 10.5, 9.7",
-    "acq": "Waivers, clears Oct 14",
-    "why": "Workload up from 4.1 to 9.8 expected a game",
-    "when": "Wk 9",
-    "urg": "gold",
-    "gain": 2.1,
-    "pgain": 0.0
-   },
-   "act": true
   }
  ],
  "gate3": [],
@@ -340,10 +320,18 @@
    "pgain": 7.2
   },
   {
+   "name": "DEN DEF",
+   "team": "DEN",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 26.2,
+   "pgain": 3.7
+  },
+  {
    "name": "Dominic Zvada",
    "team": "NYG",
    "pos": "K",
-   "acq": "Waivers, clears Oct 14",
+   "acq": "Free agent",
    "gain": 21.9,
    "pgain": 0.8
   },
@@ -356,65 +344,49 @@
    "pgain": 1.1
   },
   {
-   "name": "KC DEF",
-   "team": "KC",
+   "name": "CIN DEF",
+   "team": "CIN",
+   "pos": "DEF",
+   "acq": "Free agent",
+   "gain": 18.7,
+   "pgain": 0.5
+  },
+  {
+   "name": "CLE DEF",
+   "team": "CLE",
    "pos": "DEF",
    "acq": "Free agent",
    "gain": 13.6,
    "pgain": 2.2
-  },
-  {
-   "name": "Andre Szmyt",
-   "team": "CLE",
-   "pos": "K",
-   "acq": "Waivers, clears Oct 14",
-   "gain": 11.0,
-   "pgain": 0.0
-  },
-  {
-   "name": "SF DEF",
-   "team": "SF",
-   "pos": "DEF",
-   "acq": "Free agent",
-   "gain": 10.8,
-   "pgain": 0.0
   }
  ],
  "priced": {
-  "jkdobbins": {
-   "fwd": 9.2,
-   "gain": 0.0
-  },
-  "brentonstrange": {
-   "fwd": 11.0,
-   "gain": 6.1
-  },
   "patfreiermuth": {
    "fwd": 10.6,
    "gain": 4.2
+  },
+  "darrenwaller": {
+   "fwd": 9.2,
+   "gain": 0.0
   },
   "tylerhigbee": {
    "fwd": 12.4,
    "gain": 5.9
   },
+  "michaelpittman": {
+   "fwd": 8.5,
+   "gain": 0.0
+  },
   "adonaimitchell": {
    "fwd": 11.6,
    "gain": 3.9
-  },
-  "keenanallen": {
-   "fwd": 10.9,
-   "gain": 0.0
   },
   "laquontreadwell": {
    "fwd": 7.6,
    "gain": 0.0
   },
-  "michaelpittman": {
-   "fwd": 8.5,
-   "gain": 0.0
-  },
-  "dariuscooper": {
-   "fwd": 7.7,
+  "dontayvionwicks": {
+   "fwd": 9.5,
    "gain": 0.0
   },
   "tyquanthornton": {

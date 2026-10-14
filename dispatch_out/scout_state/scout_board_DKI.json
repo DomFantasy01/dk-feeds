@@ -1,9 +1,53 @@
 {
  "league": "DK I",
- "run": "2026-10-14T06:55:48.913920-07:00",
- "run_str": "Wed Oct 14, 6:55 AM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 4:56 PM PT \u00b7 stats nflverse Wed 6:55 AM PT",
+ "run": "2026-10-14T08:01:46.056116-07:00",
+ "run_str": "Wed Oct 14, 8:01 AM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 14, 7:57 AM PT \u00b7 stats nflverse Wed 8:01 AM PT",
  "gate1": [
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:DEF:fill:short",
+   "age": 5,
+   "gap": null,
+   "head": "Tough Draws for the Defense",
+   "title": "DEF, Weeks 6, 8-9, 11, 13, 15 Fill",
+   "target": "Target 9.1 pts",
+   "why": "Full strength ~17.0 (Vikings). Wk 6 Colts ~4.3 (Vikings on bye, Colts slides in) \u00b7 Wk 8 Vikings ~8.9 (hard matchup vs DET) \u00b7 Wk 9 Vikings ~11.4 (hard matchup vs BUF) \u00b7 Wk 11 Vikings ~8.7 (hard matchup vs SF) \u00b7 Wk 13 Vikings ~12.1 (hard matchup vs CAR) \u00b7 Wk 15 Vikings ~8.9 (hard matchup vs DET).",
+   "across": "Wk 6 Bears ~9.2 vs Colts ~4.3 \u00b7 Wk 8 City ~10.7 vs Vikings ~8.9 \u00b7 Wk 9 49ers ~8.9 vs Vikings ~11.4 \u00b7 Wk 11 Jets ~15.1 vs Vikings ~8.7 \u00b7 Wk 13 Texans ~9.1 vs Vik",
+   "picks": [
+    {
+     "name": "NYG DEF",
+     "team": "NYG",
+     "pos": "DEF",
+     "scores": "6, 2, 15, 16, 6",
+     "acq": "Free agent",
+     "why": "Current level ~10.1 a game",
+     "when": "Wk 6, Wk 15",
+     "urg": "red",
+     "gain": 11.3,
+     "pgain": 4.1
+    },
+    {
+     "name": "NE DEF",
+     "team": "NE",
+     "pos": "DEF",
+     "scores": "12, 27, -3, 6, 11",
+     "acq": "Free agent",
+     "why": "Current level ~8.9 a game",
+     "when": "Wk 6, Wk 8",
+     "urg": "red",
+     "gain": 9.6,
+     "pgain": 0.0
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 15",
+   "rows": [
+    "Colts"
+   ],
+   "rep": 0
+  },
   {
    "mark": "red",
    "first": "2026-10-09",
@@ -17,18 +61,6 @@
    "across": "Wk 6 Stafford ~28.8 vs Shough ~22.2 \u00b7 Wk 7 Purdy ~26.7 vs Shough ~18.0 \u00b7 Wk 13 Allen ~25.7 vs Daniels ~21.2",
    "picks": [
     {
-     "name": "Jordan Love",
-     "team": "GB",
-     "pos": "QB",
-     "scores": "23.7, 17.8, 22.7, 18.1, 29.5",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Current level ~20.3 a game",
-     "when": "Wk 7",
-     "urg": "red",
-     "gain": 11.4,
-     "pgain": 0.0
-    },
-    {
      "name": "Aaron Rodgers",
      "team": "PIT",
      "pos": "QB",
@@ -38,6 +70,18 @@
      "when": "Wk 7",
      "urg": "red",
      "gain": 3.4,
+     "pgain": 0.0
+    },
+    {
+     "name": "Bo Nix",
+     "team": "DEN",
+     "pos": "QB",
+     "scores": "8.2, 17.4, 29.1, 16.1, 10.9",
+     "acq": "Waivers, clears Oct 17",
+     "why": "Getting 19.4 expected but scoring 16.3",
+     "when": "Wk 7",
+     "urg": "red",
+     "gain": 2.7,
      "pgain": 0.0
     }
    ],
@@ -69,19 +113,19 @@
      "why": "Due back Wk 7 (listed Out)",
      "when": "Wk 7",
      "urg": "red",
-     "gain": 2.4,
+     "gain": 3.5,
      "pgain": 0.0
     },
     {
-     "name": "Jonah Coleman",
-     "team": "DEN",
+     "name": "George Holani",
+     "team": "SEA",
      "pos": "RB",
-     "scores": "0.0, 17.3",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Due back Wk 7 (IR minimum)",
+     "scores": "4.9, 3.5, 11.6, 4.8, 6.1",
+     "acq": "Free agent",
+     "why": "Current level ~7.3 a game",
      "when": "Wk 7",
      "urg": "red",
-     "gain": 2.4,
+     "gain": 3.0,
      "pgain": 0.0
     }
    ],
@@ -95,69 +139,25 @@
   {
    "mark": "red",
    "first": "2026-10-09",
-   "key": "need:DEF2:fill:empty",
-   "age": 5,
-   "gap": null,
-   "head": "The Defense Goes Dark",
-   "title": "DEF2, Week 6 Fill",
-   "target": "Target 17.0 pts",
-   "why": "Vikings on bye; ideally ~17 (Vikings' level) \u2014 anything beats zero.",
-   "across": "Wk 6 Bears ~9.2 vs Vikings ~0.0",
-   "picks": [
-    {
-     "name": "KC DEF",
-     "team": "KC",
-     "pos": "DEF",
-     "scores": "19, -1, 17, 6",
-     "acq": "Free agent",
-     "why": "Current level ~11.5 a game",
-     "when": "Wk 6",
-     "urg": "red",
-     "gain": 26.4,
-     "pgain": 4.6
-    },
-    {
-     "name": "NYJ DEF",
-     "team": "NYJ",
-     "pos": "DEF",
-     "scores": "15, 10, 0, 7, 24",
-     "acq": "Free agent",
-     "why": "Current level ~10.9 a game",
-     "when": "Wk 6",
-     "urg": "red",
-     "gain": 23.5,
-     "pgain": 2.5
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 6",
-   "rows": [
-    "Vikings"
-   ],
-   "rep": 2
-  },
-  {
-   "mark": "red",
-   "first": "2026-10-09",
    "key": "need:FLEX2:fill:short",
    "age": 5,
    "gap": null,
    "head": "The Flex Runs Thin",
    "title": "FLEX2, Weeks 7, 11 Fill",
-   "target": "Target 8.1 pts",
-   "why": "Full strength ~10.8 (Kelce). Wk 7 Sadiq ~5.1 (Kelce moves up to TE, Sadiq slides in) \u00b7 Wk 11 Strange ~11.1 (Kelce moves up to TE, Strange slides in).",
-   "across": "Wk 7 Robinson ~12.5 vs Sadiq ~5.1 \u00b7 Wk 11 Tuten ~16.5 vs Strange ~11.1",
+   "target": "Target 7.5 pts",
+   "why": "Full strength ~10.8 (Kelce). Wk 7 Black ~4.0 (Kelce moves up to TE, Black slides in) \u00b7 Wk 11 Strange ~11.1 (Kelce moves up to TE, Strange slides in).",
+   "across": "Wk 7 Robinson ~12.5 vs Black ~4.0 \u00b7 Wk 11 Tuten ~16.5 vs Strange ~11.1",
    "picks": [
     {
      "name": "Pat Freiermuth",
      "team": "PIT",
      "pos": "TE",
      "scores": "15.6, 7.7, 5.3, 10.7, 21.8",
-     "acq": "Waivers, clears Oct 14",
+     "acq": "Free agent",
      "why": "Workload up from 8.3 to 12.4 expected a game",
      "when": "Wk 7",
      "urg": "red",
-     "gain": 11.5,
+     "gain": 12.6,
      "pgain": 1.3
     },
     {
@@ -165,19 +165,49 @@
      "team": "IND",
      "pos": "WR",
      "scores": "9.2, 1.5, 18.3, 9.5",
-     "acq": "Waivers, clears Oct 14",
+     "acq": "Free agent",
      "why": "Door open: Ashton Dulin out; workload up from 9.1 to 16.8 expected a game; getting 13.0 expected but scoring 9.6",
      "when": "Wk 7",
      "urg": "red",
-     "gain": 8.6,
+     "gain": 9.7,
      "pgain": 0.0
     }
    ],
    "none": null,
    "kill": "Drops Off After Wk 11",
    "rows": [
-    "Kenyon Sadiq"
+    "Kaelon Black"
    ],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
+   "key": "need:TE:fill:short",
+   "age": 5,
+   "gap": null,
+   "head": "The Tight End Spot Runs Thin",
+   "title": "TE, Weeks 10, 13 Fill",
+   "target": "Target 9.8 pts",
+   "why": "Full strength ~11.0 (Strange). Wk 10 Kelce ~11.1 (Strange has a worse matchup) \u00b7 Wk 13 Strange ~8.6 (hard matchup vs CHI).",
+   "across": "Wk 10 Likely ~25.2 vs Kelce ~11.1 \u00b7 Wk 13 Fannin ~10.5 vs Strange ~8.6",
+   "picks": [
+    {
+     "name": "Terrance Ferguson",
+     "team": "LA",
+     "pos": "TE",
+     "scores": "0.0, 17.4, 1.9",
+     "acq": "Free agent",
+     "why": "Due back Wk 8 (IR minimum); workload up from 1.2 to 9.9 expected a game",
+     "when": "Wk 13",
+     "urg": "gold",
+     "gain": 3.0,
+     "pgain": 0.0
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 13",
+   "rows": [],
    "rep": 0
   },
   {
@@ -200,78 +230,6 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:TE:fill:short",
-   "age": 5,
-   "gap": null,
-   "head": "The Tight End Spot Runs Thin",
-   "title": "TE, Weeks 10, 13 Fill",
-   "target": "Target 9.8 pts",
-   "why": "Full strength ~11.0 (Strange). Wk 10 Kelce ~11.1 (Strange has a worse matchup) \u00b7 Wk 13 Strange ~8.6 (hard matchup vs CHI).",
-   "across": "Wk 10 Likely ~25.2 vs Kelce ~11.1 \u00b7 Wk 13 Fannin ~10.5 vs Strange ~8.6",
-   "picks": [
-    {
-     "name": "Terrance Ferguson",
-     "team": "LA",
-     "pos": "TE",
-     "scores": "0.0, 17.4, 1.9",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Due back Wk 8 (IR minimum); workload up from 1.2 to 9.9 expected a game",
-     "when": "Wk 13",
-     "urg": "gold",
-     "gain": 3.0,
-     "pgain": 0.0
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 13",
-   "rows": [],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:DEF:fill:short",
-   "age": 5,
-   "gap": null,
-   "head": "Tough Draws for the Defense",
-   "title": "DEF, Weeks 8-9, 11, 13, 15 Fill",
-   "target": "Target 10.0 pts",
-   "why": "Full strength ~17.0 (Vikings). Wk 8 Vikings ~8.9 (hard matchup vs DET) \u00b7 Wk 9 Vikings ~11.4 (hard matchup vs BUF) \u00b7 Wk 11 Vikings ~8.7 (hard matchup vs SF) \u00b7 Wk 13 Vikings ~12.1 (hard matchup vs CAR) \u00b7 Wk 15 Vikings ~8.9 (hard matchup vs DET).",
-   "across": "Wk 8 Cowboys ~1.0 vs Vikings ~8.9 \u00b7 Wk 9 49ers ~8.9 vs Vikings ~11.4 \u00b7 Wk 11 Orleans ~5.8 vs Vikings ~8.7 \u00b7 Wk 13 Texans ~9.1 vs Vikings ~12.1",
-   "picks": [
-    {
-     "name": "KC DEF",
-     "team": "KC",
-     "pos": "DEF",
-     "scores": "19, -1, 17, 6",
-     "acq": "Free agent",
-     "why": "Current level ~11.5 a game",
-     "when": "Wk 8, Wk 11, Wk 15",
-     "urg": "gold",
-     "gain": 26.4,
-     "pgain": 4.6
-    },
-    {
-     "name": "NYJ DEF",
-     "team": "NYJ",
-     "pos": "DEF",
-     "scores": "15, 10, 0, 7, 24",
-     "acq": "Free agent",
-     "why": "Current level ~10.9 a game",
-     "when": "Wk 11, Wk 15",
-     "urg": "gold",
-     "gain": 23.5,
-     "pgain": 2.5
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 15",
-   "rows": [],
-   "rep": 2
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:WR1:fill:short",
    "age": 5,
    "gap": null,
@@ -289,36 +247,6 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:K:fill:short",
-   "age": 5,
-   "gap": null,
-   "head": "A Tough Draw for the Kicker Spot",
-   "title": "K, Week 11 Fill",
-   "target": "Target 7.1 pts",
-   "why": "Full strength ~7.5 (Boswell). Wk 11 Boswell ~7.1 (hard matchup vs PHI).",
-   "across": "Wk 11 Fairbairn ~13.5 vs Boswell ~7.1",
-   "picks": [
-    {
-     "name": "Tyler Bass",
-     "team": "BUF",
-     "pos": "K",
-     "scores": "12, 4, 6, 8, 10",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Current level ~8.5 a game",
-     "when": "Wk 11",
-     "urg": "gold",
-     "gain": 11.9,
-     "pgain": 0.4
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 11",
-   "rows": [],
-   "rep": 2
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:K2:fill:empty",
    "age": 5,
    "gap": null,
@@ -329,28 +257,28 @@
    "across": "Wk 9 Zvada ~10.0 vs Boswell ~0.0",
    "picks": [
     {
-     "name": "Nick Folk",
-     "team": "ATL",
+     "name": "Will Reichard",
+     "team": "MIN",
      "pos": "K",
-     "scores": "8, 3, 9, 9, 11",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Current level ~8.8 a game",
+     "scores": "7, 9, 13, 16, 13",
+     "acq": "Waivers, clears Oct 17",
+     "why": "Current level ~12.2 a game",
      "when": "Wk 9",
      "urg": "gold",
-     "gain": 22.2,
-     "pgain": 5.1
+     "gain": 50.1,
+     "pgain": 10.6
     },
     {
-     "name": "Cairo Santos",
-     "team": "CHI",
+     "name": "Matt Gay",
+     "team": "LV",
      "pos": "K",
-     "scores": "11, 4, 9, 11, 1",
-     "acq": "Waivers, clears Oct 14",
-     "why": "Current level ~7.7 a game",
+     "scores": "9, 7, 11, 13, 5",
+     "acq": "Waivers, clears Oct 17",
+     "why": "Current level ~9.0 a game",
      "when": "Wk 9",
      "urg": "gold",
-     "gain": 11.7,
-     "pgain": 0.0
+     "gain": 22.1,
+     "pgain": 3.8
     }
    ],
    "none": null,
@@ -374,6 +302,48 @@
    "kill": "Drops Off After Wk 11",
    "rows": [],
    "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
+   "key": "need:K:fill:short",
+   "age": 5,
+   "gap": null,
+   "head": "A Tough Draw for the Kicker Spot",
+   "title": "K, Week 11 Fill",
+   "target": "Target 7.1 pts",
+   "why": "Full strength ~7.5 (Boswell). Wk 11 Boswell ~7.1 (hard matchup vs PHI).",
+   "across": "Wk 11 Fairbairn ~13.5 vs Boswell ~7.1",
+   "picks": [
+    {
+     "name": "Will Reichard",
+     "team": "MIN",
+     "pos": "K",
+     "scores": "7, 9, 13, 16, 13",
+     "acq": "Waivers, clears Oct 17",
+     "why": "Current level ~12.2 a game",
+     "when": "Wk 11",
+     "urg": "gold",
+     "gain": 50.1,
+     "pgain": 10.6
+    },
+    {
+     "name": "Matt Gay",
+     "team": "LV",
+     "pos": "K",
+     "scores": "9, 7, 11, 13, 5",
+     "acq": "Waivers, clears Oct 17",
+     "why": "Current level ~9.0 a game",
+     "when": "Wk 11",
+     "urg": "gold",
+     "gain": 22.1,
+     "pgain": 3.8
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 11",
+   "rows": [],
+   "rep": 2
   }
  ],
  "gate2": [
@@ -388,11 +358,11 @@
     "team": "NYJ",
     "pos": "WR",
     "scores": "9.0, 12.3",
-    "acq": "Waivers, clears Oct 14",
+    "acq": "Free agent",
     "why": "Due back Wk 7 (listed Out); door open: Arian Smith out",
     "when": "Wk 7, Wk 10",
     "urg": "gold",
-    "gain": 7.8,
+    "gain": 8.9,
     "pgain": 0.1
    },
    "act": true
@@ -408,11 +378,11 @@
     "team": "CAR",
     "pos": "TE",
     "scores": "4.8, 18.3, 10.1, 6.6",
-    "acq": "Waivers, clears Oct 14",
+    "acq": "Free agent",
     "why": "Workload up from 4.4 to 11.6 expected a game",
     "when": "Wk 7",
     "urg": "gold",
-    "gain": 5.6,
+    "gain": 6.7,
     "pgain": 0.9
    },
    "act": true
@@ -428,11 +398,11 @@
     "team": "MIA",
     "pos": "WR",
     "scores": "14.4, 3.9",
-    "acq": "Waivers, clears Oct 14",
+    "acq": "Free agent",
     "why": "Due back Wk 7 (listed Out)",
     "when": "Wk 7",
     "urg": "gold",
-    "gain": 3.5,
+    "gain": 4.6,
     "pgain": 0.0
    },
    "act": true
@@ -448,11 +418,11 @@
     "team": "HOU",
     "pos": "WR",
     "scores": "7.3, 5.6, 4.8, 12.2, 15.4",
-    "acq": "Waivers, clears Oct 14",
+    "acq": "Free agent",
     "why": "Workload up from 5.5 to 8.6 expected a game",
     "when": "Wk 7",
     "urg": "gold",
-    "gain": 3.2,
+    "gain": 4.3,
     "pgain": 0.0
    },
    "act": true
@@ -465,58 +435,58 @@
  ],
  "footer": "Protected (Dom's call): Travis Kelce, Kaelon Black \u00b7 Killed: Higbee (soft, two games)",
  "open": {
-  "start": 1,
+  "start": 0,
   "bench": 0,
   "ir": 0
  },
  "adds": [
   {
-   "name": "KC DEF",
-   "team": "KC",
-   "pos": "DEF",
-   "acq": "Free agent",
-   "gain": 26.4,
-   "pgain": 4.6
-  },
-  {
-   "name": "NYJ DEF",
-   "team": "NYJ",
-   "pos": "DEF",
-   "acq": "Free agent",
-   "gain": 23.5,
-   "pgain": 2.5
+   "name": "Will Reichard",
+   "team": "MIN",
+   "pos": "K",
+   "acq": "Waivers, clears Oct 17",
+   "gain": 50.1,
+   "pgain": 10.6
   },
   {
    "name": "Nick Folk",
    "team": "ATL",
    "pos": "K",
-   "acq": "Waivers, clears Oct 14",
+   "acq": "Free agent",
    "gain": 22.2,
    "pgain": 5.1
+  },
+  {
+   "name": "Matt Gay",
+   "team": "LV",
+   "pos": "K",
+   "acq": "Waivers, clears Oct 17",
+   "gain": 22.1,
+   "pgain": 3.8
   },
   {
    "name": "Ryan Fitzgerald",
    "team": "CAR",
    "pos": "K",
-   "acq": "Waivers, clears Oct 14",
+   "acq": "Free agent",
    "gain": 17.1,
    "pgain": 2.0
   },
   {
-   "name": "CLE DEF",
-   "team": "CLE",
-   "pos": "DEF",
+   "name": "Pat Freiermuth",
+   "team": "PIT",
+   "pos": "TE",
    "acq": "Free agent",
-   "gain": 15.8,
-   "pgain": 2.6
+   "gain": 12.6,
+   "pgain": 1.3
   },
   {
-   "name": "NYG DEF",
-   "team": "NYG",
-   "pos": "DEF",
+   "name": "Tyler Bass",
+   "team": "BUF",
+   "pos": "K",
    "acq": "Free agent",
-   "gain": 15.6,
-   "pgain": 4.1
+   "gain": 11.9,
+   "pgain": 0.4
   }
  ],
  "priced": {
@@ -528,9 +498,9 @@
    "fwd": 22.0,
    "gain": 7.1
   },
-  "jordanlove": {
-   "fwd": 20.3,
-   "gain": 11.4
+  "deshaunwatson": {
+   "fwd": 19.4,
+   "gain": 0.0
   },
   "aaronrodgers": {
    "fwd": 21.3,
@@ -540,41 +510,33 @@
    "fwd": 17.3,
    "gain": 0.0
   },
-  "jonahcoleman": {
-   "fwd": 7.6,
-   "gain": 2.4
-  },
-  "kimanividal": {
-   "fwd": 10.7,
-   "gain": 0.0
-  },
   "samajeperine": {
    "fwd": 5.9,
-   "gain": 0.0
+   "gain": 1.6
   },
   "patfreiermuth": {
    "fwd": 10.6,
-   "gain": 11.5
+   "gain": 12.6
   },
   "darrenwaller": {
    "fwd": 9.2,
-   "gain": 5.6
+   "gain": 6.7
   },
   "tylerhigbee": {
    "fwd": 12.4,
-   "gain": 15.9
+   "gain": 17.0
   },
   "gregdulcich": {
    "fwd": 7.5,
-   "gain": 3.1
+   "gain": 4.1
   },
   "adonaimitchell": {
    "fwd": 11.6,
-   "gain": 7.8
+   "gain": 8.9
   },
   "keenanallen": {
    "fwd": 10.9,
-   "gain": 8.6
+   "gain": 9.7
   },
   "laquontreadwell": {
    "fwd": 7.6,
@@ -582,7 +544,7 @@
   },
   "dontayvionwicks": {
    "fwd": 9.5,
-   "gain": 4.9
+   "gain": 6.0
   },
   "tyquanthornton": {
    "fwd": 6.2,
@@ -590,11 +552,11 @@
   },
   "kendrickbourne": {
    "fwd": 8.9,
-   "gain": 1.6
+   "gain": 2.7
   },
   "germiebernard": {
    "fwd": 7.5,
-   "gain": 2.1
+   "gain": 3.2
   },
   "mackhollins": {
    "fwd": 8.3,
@@ -602,10 +564,14 @@
   },
   "jaylinnoel": {
    "fwd": 8.4,
-   "gain": 3.2
+   "gain": 4.3
   },
   "demariodouglas": {
    "fwd": 6.1,
+   "gain": 2.1
+  },
+  "romanwilson": {
+   "fwd": 9.6,
    "gain": 0.0
   },
   "darnellmooney": {
@@ -614,11 +580,11 @@
   },
   "jerryjeudy": {
    "fwd": 5.4,
-   "gain": 0.0
+   "gain": 1.7
   },
   "kalifraymond": {
    "fwd": 7.4,
-   "gain": 2.2
+   "gain": 3.3
   },
   "patbryant": {
    "fwd": 6.2,
@@ -654,15 +620,15 @@
   },
   "calebdouglas": {
    "fwd": 9.0,
-   "gain": 3.5
+   "gain": 4.6
   },
   "ryanflournoy": {
    "fwd": 7.4,
-   "gain": 3.0
+   "gain": 4.1
   },
   "xavierhutchinson": {
    "fwd": 9.0,
-   "gain": 3.8
+   "gain": 4.9
   },
   "jakobilane": {
    "fwd": 5.7,
@@ -670,15 +636,15 @@
   },
   "kayshonboutte": {
    "fwd": 7.4,
-   "gain": 2.2
+   "gain": 3.3
   },
   "codywhite": {
    "fwd": 6.2,
-   "gain": 0.0
+   "gain": 1.8
   },
   "isaacteslaa": {
    "fwd": 5.7,
-   "gain": 0.0
+   "gain": 1.6
   },
   "tedhurst": {
    "fwd": 5.7,
@@ -686,11 +652,11 @@
   },
   "jahandotson": {
    "fwd": 6.0,
-   "gain": 0.0
+   "gain": 1.6
   },
   "rashidshaheed": {
    "fwd": 6.6,
-   "gain": 0.0
+   "gain": 1.5
   },
   "cooperkupp": {
    "fwd": 4.4,
@@ -754,26 +720,17 @@
      "team": "PIT",
      "pos": "TE",
      "now": 2.3,
-     "nxt": 6.7,
+     "nxt": 7.7,
      "fwd": 10.6,
-     "acq": "Waivers, clears Oct 14"
+     "acq": "Free agent"
     },
     {
      "name": "Keenan Allen",
      "team": "IND",
      "pos": "WR",
      "now": 2.5,
-     "nxt": 5.0,
+     "nxt": 6.1,
      "fwd": 10.9,
-     "acq": "Waivers, clears Oct 14"
-    },
-    {
-     "name": "Kimani Vidal",
-     "team": "LAC",
-     "pos": "RB",
-     "now": 1.1,
-     "nxt": 0.0,
-     "fwd": 10.7,
      "acq": "Free agent"
     }
    ],
@@ -786,7 +743,7 @@
    "kind": "hold",
    "name": "TreVeyon Henderson",
    "free": "Kaelon Black",
-   "text": "Hold TreVeyon Henderson (NE RB) - ESPN: \"miss multiple weeks\" (Oct 13); out Weeks 6-7, back about Week 8; ~10.7 a game when healthy. Once back he is worth ~15 pts to the best lineup through Week 17, more than the cheapest other bench seat, Kaelon Black (SF RB, ~0 pts). If a roster seat is needed while he is out, free that one instead. Dom's call - never an order."
+   "text": "Hold TreVeyon Henderson (NE RB) - ESPN: \"miss multiple weeks\" (Oct 13); out Weeks 6-7, back about Week 8; ~10.7 a game when healthy. Once back he is worth ~15 pts to the best lineup through Week 17, more than the cheapest other bench seat, Kaelon Black (SF RB, ~4 pts). If a roster seat is needed while he is out, free that one instead. Dom's call - never an order."
   }
  ]
 }
