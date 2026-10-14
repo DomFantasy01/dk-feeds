@@ -71,6 +71,9 @@ echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^D
 echo "== 5 front page";  (cd "$ROOT/cand/global" && python3 global33.py | grep "V33 DATA")
 echo "== 5b THE SCOUT, all four leagues"
 for L in DKI DKII DKIII DKIV; do (cd "$ROOT/dksys/scout" && python3 scout_engine.py $L --quiet) && echo "   Scout $L ok"; done
+echo "== 5c alerts for the Field Report's alert mark (Oct 14, Dom): same code and feeds as Live's alerts, kept build to build"
+WA=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+python3 "$REPO/live_sync/alerts.py" "$REPO/dispatch_out/radar_wk$WA.json" "$REPO/dispatch_out/actions_latest.json" "$ROOT/dksys/data/latest/meter/meter_wk$WA.json" "$ROOT/dksys/data/latest/meter/alarm_wk$WA.json" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/alerts_build.json" --feeds "$REPO/feeds" || echo "!! alert marks skipped this build - the Field Report prints without them"
 echo "== 6 the other pages"; W0=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 (cd "$ROOT/cand/redesign" && python3 fieldpos24.py "$ROOT/cand/global/out/DK_Dispatch_wk${W0}_pages.pdf" | grep -E "^=====|V23 LIVE|^CALENDAR|^POST-MORTEM|^OUTLOOK" | cut -c1-120)
 python3 -m pip install -q pypdf 2>/dev/null || pip install -q pypdf
