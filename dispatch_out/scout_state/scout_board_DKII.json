@@ -1,19 +1,19 @@
 {
  "league": "DK II",
- "run": "2026-10-13T22:06:26.633492-07:00",
- "run_str": "Tue Oct 13, 10:06 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 4:56 PM PT \u00b7 stats nflverse Tue 10:06 PM PT",
+ "run": "2026-10-14T00:19:04.437743-07:00",
+ "run_str": "Wed Oct 14, 12:19 AM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Tue Oct 13, 4:56 PM PT \u00b7 stats nflverse Wed 12:18 AM PT",
  "gate1": [
   {
    "mark": "red",
    "first": "2026-10-11",
    "key": "need:RB1:season-long:short",
-   "age": 2,
+   "age": 3,
    "gap": null,
    "head": "The Backfield Won't Hold",
    "title": "RB1, Season-Long",
    "target": "Target 8.1 pts",
-   "why": "Replacing a ~19: Braelon Allen becomes ~8 once Breece Hall is back (listed Out (Quadricep)). Worst weeks: Wk 7 Kamara ~13.3, Wk 12 Etienne ~14.5.",
+   "why": "Replacing a ~19: Braelon Allen becomes ~8 once Breece Hall is back (missed his last game (Quadricep), practicing this week (no report)). Worst weeks: Wk 7 Kamara ~13.3, Wk 6 Lloyd ~14.3.",
    "across": "",
    "picks": [
     {
@@ -25,7 +25,7 @@
      "why": "Workload up from 2.4 to 9.1 expected a game",
      "when": "Wk 8, Wk 15",
      "urg": "gold",
-     "gain": 5.6,
+     "gain": 6.2,
      "pgain": 2.7
     }
    ],
@@ -40,7 +40,7 @@
    "mark": "red",
    "first": "2026-10-13",
    "key": "need:K2:season-long:empty",
-   "age": 0,
+   "age": 1,
    "gap": null,
    "head": "The Kicker Spot Won't Hold",
    "title": "K2, Season-Long",
@@ -83,14 +83,46 @@
   {
    "mark": "red",
    "first": "2026-10-09",
-   "key": "need:FLEX:fill:short",
-   "age": 4,
+   "key": "need:RB2:fill:short",
+   "age": 5,
    "gap": null,
-   "head": "The Flex Fades",
-   "title": "FLEX, Weeks 7-9, 12, 14-16 Fill",
-   "target": "Target 10.7 pts",
-   "why": "Full strength ~13.1 (Kamara). Wk 7 Kelce ~10.0 (Kamara moves up to RB1, Kelce slides in) \u00b7 Wk 8 Andrews ~10.3 (Kamara on bye, Andrews slides in) \u00b7 Wk 9 Montgomery ~10.9 (Kamara has a worse matchup) \u00b7 Wk 12 Kamara ~10.3 (Kamara fades to ~11 once Etienne is back) \u00b7 Wk 14 Kamara ~12.4 (Kamara fades to ~11 once Etienne is back) \u00b7 Wk 15 Kelce ~10.0 (Kamara has a worse matchup) \u00b7 Wk 16 Kamara ~11.0 (Kamara fades to ~11 once Etienne is back).",
-   "across": "Wk 7 Pollard ~13.4 vs Kelce ~10.0 \u00b7 Wk 8 Gordon ~16.9 vs Andrews ~10.3 \u00b7 Wk 9 Harvey ~15.6 vs Montgomery ~10.9 \u00b7 Wk 12 Monangai ~15.9 vs Kamara ~10.3 \u00b7 Wk 14 Je",
+   "head": "The Backfield Runs Thin",
+   "title": "RB2, Weeks 6, 8, 10 Fill",
+   "target": "Target 11.2 pts",
+   "why": "Full strength ~13.2 (Lloyd). Wk 6 Kamara ~12.8 (Lloyd moves up to RB1, Kamara slides in) \u00b7 Wk 8 Allen ~8.3 (Lloyd moves up to RB1, Allen slides in) \u00b7 Wk 10 Kamara ~12.4 (Lloyd moves up to FLEX, Kamara slides in).",
+   "across": "Wk 6 Irving ~20.7 vs Kamara ~12.8 \u00b7 Wk 8 Brown ~18.5 vs Allen ~8.3 \u00b7 Wk 10 Jones ~21.3 vs Kamara ~12.4",
+   "picks": [
+    {
+     "name": "Kimani Vidal",
+     "team": "LAC",
+     "pos": "RB",
+     "scores": "0.0, 3.2, 12.8, 14.6",
+     "acq": "Free agent",
+     "why": "Workload up from 2.4 to 9.1 expected a game",
+     "when": "Wk 8",
+     "urg": "gold",
+     "gain": 6.2,
+     "pgain": 2.7
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 10",
+   "rows": [
+    "Alvin Kamara"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:FLEX:season-long:short",
+   "age": 0,
+   "gap": 2,
+   "head": "The Flex Won't Hold",
+   "title": "FLEX, Season-Long",
+   "target": "Target 10.6 pts",
+   "why": "Full strength ~13.1 (Kamara). Wk 6 Kelce ~9.9 (Kamara moves up to RB2, Kelce slides in) \u00b7 Wk 7 Kelce ~10.0 (Kamara moves up to RB1, Kelce slides in) \u00b7 Wk 8 Andrews ~10.3 (Kamara on bye, Andrews slides in) \u00b7 Wk 9 Montgomery ~10.9 (Kamara has a worse matchup) \u00b7 Wk 12 Kamara ~10.3 (Kamara fades to ~11 once Etienne is back) \u00b7 Wk 14 Kamara ~12.4 (Kamara fades to ~11 once Etienne is back) \u00b7 Wk 15 Kelce ~10.0 (Kamara has a worse matchup) \u00b7 Wk 16 Kamara ~11.0 (Kamara fades to ~11 once Etienne is back).",
+   "across": "Wk 6 McMillan ~13.1 vs Kelce ~9.9 \u00b7 Wk 7 Pollard ~13.4 vs Kelce ~10.0 \u00b7 Wk 8 Gordon ~16.9 vs Andrews ~10.3 \u00b7 Wk 9 Harvey ~15.6 vs Montgomery ~10.9 \u00b7 Wk 12 Monan",
    "picks": [
     {
      "name": "Adonai Mitchell",
@@ -98,10 +130,10 @@
      "pos": "WR",
      "scores": "9.0, 12.3",
      "acq": "Waivers, clears Oct 14",
-     "why": "Due back Wk 7 (listed Out); door open: Arian Smith out",
-     "when": "Wk 8, Wks 14-15",
-     "urg": "gold",
-     "gain": 38.9,
+     "why": "Door open: Arian Smith out",
+     "when": "Wk 6, Wk 8, Wks 14-15",
+     "urg": "red",
+     "gain": 50.4,
      "pgain": 5.4
     },
     {
@@ -110,16 +142,17 @@
      "pos": "WR",
      "scores": "0.0, 12.6, 4.2, 28.1",
      "acq": "Free agent",
-     "why": "Workload up from 4.1 to 10.1 expected a game",
-     "when": "Wks 8-9, Wk 12, Wks 14-15",
+     "why": "Due back Wk 9 (IR minimum); workload up from 4.1 to 10.1 expected a game",
+     "when": "Wk 9, Wk 12, Wks 14-15",
      "urg": "gold",
-     "gain": 50.1,
+     "gain": 37.3,
      "pgain": 3.4
     }
    ],
    "none": null,
-   "kill": "Drops Off After Wk 16",
+   "kill": "Drops Off When Filled",
    "rows": [
+    "Alvin Kamara",
     "Travis Kelce"
    ],
    "rep": 0
@@ -128,7 +161,7 @@
    "mark": "red",
    "first": "2026-10-09",
    "key": "need:DEF2:fill:empty",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "The Defense Goes Dark",
    "title": "DEF2, Week 7 Fill",
@@ -172,12 +205,12 @@
    "mark": "red",
    "first": "2026-10-09",
    "key": "need:TE:fill:short",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "Tough Draws for the Tight End Spot",
    "title": "TE, Weeks 6, 9, 13 Fill",
    "target": "Target 9.5 pts",
-   "why": "Full strength ~11.6 (Kelce). Wk 6 Andrews ~11.0 (Kelce has a worse matchup) \u00b7 Wk 9 Kelce ~9.2 (hard matchup vs NYJ) \u00b7 Wk 13 Kelce ~8.5 (hard matchup vs LA).",
+   "why": "Full strength ~11.6 (Kelce). Wk 6 Andrews ~11.0 (Kelce moves up to FLEX, Andrews slides in) \u00b7 Wk 9 Kelce ~9.2 (hard matchup vs NYJ) \u00b7 Wk 13 Kelce ~8.5 (hard matchup vs LA).",
    "across": "Wk 6 Likely ~22.4 vs Andrews ~11.0 \u00b7 Wk 9 Johnson ~12.0 vs Kelce ~9.2 \u00b7 Wk 13 Freiermuth ~10.4 vs Kelce ~8.5",
    "picks": [
     {
@@ -216,7 +249,7 @@
    "mark": "red",
    "first": "2026-10-09",
    "key": "need:WR2:fill:short",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "Tough Draws for the Receiving Corps",
    "title": "WR2, Weeks 6, 9-11 Fill",
@@ -230,10 +263,10 @@
      "pos": "WR",
      "scores": "9.0, 12.3",
      "acq": "Waivers, clears Oct 14",
-     "why": "Due back Wk 7 (listed Out); door open: Arian Smith out",
-     "when": "Wks 10-11",
-     "urg": "gold",
-     "gain": 38.9,
+     "why": "Door open: Arian Smith out",
+     "when": "Wk 6, Wks 10-11",
+     "urg": "red",
+     "gain": 50.4,
      "pgain": 5.4
     },
     {
@@ -242,10 +275,10 @@
      "pos": "WR",
      "scores": "0.0, 12.6, 4.2, 28.1",
      "acq": "Free agent",
-     "why": "Workload up from 4.1 to 10.1 expected a game",
-     "when": "Wk 6, Wks 9-11",
-     "urg": "red",
-     "gain": 50.1,
+     "why": "Due back Wk 9 (IR minimum); workload up from 4.1 to 10.1 expected a game",
+     "when": "Wks 9-11",
+     "urg": "gold",
+     "gain": 37.3,
      "pgain": 3.4
     }
    ],
@@ -260,7 +293,7 @@
    "mark": "red",
    "first": "2026-10-09",
    "key": "need:WR1:fill:short",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "Tough Draws for the Receiving Corps",
    "title": "WR1, Weeks 6, 14 Fill",
@@ -281,16 +314,16 @@
      "pgain": 1.1
     },
     {
-     "name": "Tyquan Thornton",
-     "team": "KC",
+     "name": "Adonai Mitchell",
+     "team": "NYJ",
      "pos": "WR",
-     "scores": "0.0, 12.6, 4.2, 28.1",
-     "acq": "Free agent",
-     "why": "Workload up from 4.1 to 10.1 expected a game",
+     "scores": "9.0, 12.3",
+     "acq": "Waivers, clears Oct 14",
+     "why": "Door open: Arian Smith out",
      "when": "Wk 6, Wk 14",
      "urg": "red",
-     "gain": 50.1,
-     "pgain": 3.4
+     "gain": 50.4,
+     "pgain": 5.4
     }
    ],
    "none": null,
@@ -304,7 +337,7 @@
    "mark": "gold",
    "first": "2026-10-09",
    "key": "need:WR3:fill:empty",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "The WR3 Slot Goes Empty",
    "title": "WR3, Weeks 6, 10-11 Fill",
@@ -322,38 +355,8 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:RB2:fill:short",
-   "age": 4,
-   "gap": null,
-   "head": "The Backfield Runs Thin",
-   "title": "RB2, Weeks 8, 10 Fill",
-   "target": "Target 10.4 pts",
-   "why": "Full strength ~13.2 (Lloyd). Wk 8 Allen ~8.3 (Lloyd moves up to RB1, Allen slides in) \u00b7 Wk 10 Kamara ~12.4 (Lloyd moves up to FLEX, Kamara slides in).",
-   "across": "Wk 8 Brown ~18.5 vs Allen ~8.3 \u00b7 Wk 10 Jones ~21.3 vs Kamara ~12.4",
-   "picks": [
-    {
-     "name": "Kimani Vidal",
-     "team": "LAC",
-     "pos": "RB",
-     "scores": "0.0, 3.2, 12.8, 14.6",
-     "acq": "Free agent",
-     "why": "Workload up from 2.4 to 9.1 expected a game",
-     "when": "Wk 8",
-     "urg": "gold",
-     "gain": 5.6,
-     "pgain": 2.7
-    }
-   ],
-   "none": null,
-   "kill": "Drops Off After Wk 10",
-   "rows": [],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:QB:fill:short",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "The Quarterback Spot Runs Thin",
    "title": "QB, Week 11 Fill",
@@ -370,7 +373,7 @@
    "mark": "gold",
    "first": "2026-10-12",
    "key": "need:SUPERFLEX:fill:short",
-   "age": 1,
+   "age": 2,
    "gap": null,
    "head": "The Superflex Runs Thin",
    "title": "SUPERFLEX, Week 14 Fill",
@@ -396,10 +399,10 @@
      "pos": "WR",
      "scores": "0.0, 12.6, 4.2, 28.1",
      "acq": "Free agent",
-     "why": "Workload up from 4.1 to 10.1 expected a game",
+     "why": "Due back Wk 9 (IR minimum); workload up from 4.1 to 10.1 expected a game",
      "when": "Wk 14",
      "urg": "gold",
-     "gain": 50.1,
+     "gain": 37.3,
      "pgain": 3.4
     }
    ],
@@ -412,7 +415,7 @@
    "mark": "gold",
    "first": "2026-10-11",
    "key": "need:WR3:fill:short",
-   "age": 2,
+   "age": 3,
    "gap": null,
    "head": "A Tough Draw for WR3",
    "title": "WR3, Week 12 Fill",
@@ -429,7 +432,7 @@
    "mark": "gold",
    "first": "2026-10-09",
    "key": "need:DEF:fill:short",
-   "age": 4,
+   "age": 5,
    "gap": null,
    "head": "A Tough Draw for the Defense",
    "title": "DEF, Week 12 Fill",
@@ -472,7 +475,7 @@
   {
    "mark": "gold",
    "first": "2026-10-11",
-   "age": 2,
+   "age": 3,
    "gap": null,
    "title": "WR2, Weeks 6, 10-11, 14",
    "pick": {
@@ -491,28 +494,8 @@
   },
   {
    "mark": "gold",
-   "first": "2026-10-09",
-   "age": 4,
-   "gap": null,
-   "title": "WR3, Weeks 10-11, 17",
-   "pick": {
-    "name": "Caleb Douglas",
-    "team": "MIA",
-    "pos": "WR",
-    "scores": "14.4, 3.9",
-    "acq": "Waivers, clears Oct 14",
-    "why": "Due back Wk 7 (listed Out)",
-    "when": "Wks 10-11, Wk 17",
-    "urg": "gold",
-    "gain": 24.2,
-    "pgain": 1.7
-   },
-   "act": true
-  },
-  {
-   "mark": "gold",
    "first": "2026-10-11",
-   "age": 2,
+   "age": 3,
    "gap": null,
    "title": "SUPERFLEX, Weeks 6, 10, 16-17",
    "pick": {
@@ -532,7 +515,7 @@
   {
    "mark": "gold",
    "first": "2026-10-10",
-   "age": 0,
+   "age": 1,
    "gap": 2,
    "title": "WR3, Weeks 10-11",
    "pick": {
@@ -548,13 +531,33 @@
     "pgain": 0.0
    },
    "act": true
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-11",
+   "age": 3,
+   "gap": null,
+   "title": "WR2, Weeks 6, 10",
+   "pick": {
+    "name": "Konata Mumpfield",
+    "team": "LA",
+    "pos": "WR",
+    "scores": "0.0, 2.2, 19.3, 1.7",
+    "acq": "Free agent",
+    "why": "Workload up from 2.6 to 9.4 expected a game",
+    "when": "Wk 6, Wk 10",
+    "urg": "gold",
+    "gain": 17.9,
+    "pgain": 0.0
+   },
+   "act": true
   }
  ],
  "gate3": [],
  "checked": [
-  "Shipley ~7.8 to ~2.7 from Wk 7 \u2014 Saquon Barkley checked: rostered by Rams house",
+  "Shipley ~7.8 to ~2.7 from Wk 6 \u2014 Saquon Barkley checked: rostered by Rams house",
   "Kamara ~13.3 to ~11.1 from Wk 8 \u2014 Travis Etienne checked: rostered by Dark Knight II (IR)",
-  "Allen ~18.5 to ~8.1 from Wk 7 \u2014 Breece Hall checked: rostered by Hector Football"
+  "Allen ~18.5 to ~8.1 from Wk 6 \u2014 Breece Hall checked: rostered by Hector Football"
  ],
  "footer": "Protected (Dom's call): Travis Kelce \u00b7 Killed: Higbee (soft, two games)",
  "open": {
@@ -631,11 +634,11 @@
   },
   "tylerhigbee": {
    "fwd": 12.4,
-   "gain": 9.4
+   "gain": 10.4
   },
   "adonaimitchell": {
    "fwd": 11.6,
-   "gain": 38.9
+   "gain": 50.4
   },
   "laquontreadwell": {
    "fwd": 8.1,
@@ -643,7 +646,7 @@
   },
   "tyquanthornton": {
    "fwd": 10.9,
-   "gain": 50.1
+   "gain": 37.3
   },
   "kendrickbourne": {
    "fwd": 9.6,
@@ -667,7 +670,7 @@
   },
   "treylonburks": {
    "fwd": 6.8,
-   "gain": 15.5
+   "gain": 13.5
   },
   "darnellmooney": {
    "fwd": 5.6,
@@ -711,7 +714,7 @@
   },
   "dariuscooper": {
    "fwd": 9.6,
-   "gain": 11.7
+   "gain": 5.4
   },
   "kevincoleman": {
    "fwd": 7.7,
