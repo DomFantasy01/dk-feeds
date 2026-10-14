@@ -66,3 +66,26 @@ patch(f"{R}/cand/redesign/_fr_v8.py",[
  ('    if not D["started"]:\n        ym, yo = D["tot"]; nd = D["nd"]\n',
   '    if not D["started"]:\n        return _outlook14(D, moves)   # Oct 14 (Dom): paragraphs, not a few lines\n        ym, yo = D["tot"]; nd = D["nd"]\n', 1),
 ],"OCT14 outlook paragraphs")
+
+# ---------- 5  EVERY MARK LINKS TO ITS SOURCE (Dom, Oct 14) ----------
+# Tap a mark on a Field Report row and the PDF jumps to where it comes from: the Radar signal and the Scout's spyglass
+# to that league's Scout page (the Radar lives there), the D (drift) and the trend arrow to that league's Positions page.
+# A mark exists only while its source does, so a link always lands on something real.
+patch(f"{R}/cand/redesign/_fr_v8.py",[
+ ('    RAD = _radar8(WEEKN).get(lab, {}); SCO, moves = _scout8(lab); MK = (RAD, SCO, eng8(lab))',
+  '    RAD = _radar8(WEEKN).get(lab, {}); SCO, moves = _scout8(lab); MK = (RAD, SCO, eng8(lab)); globals()["_MKLAB8"] = lab   # Oct 14: marks link to this league\'s pages', 1),
+ ('    for f_ in out[:4]: x += f_(x) + 2',
+  '    _dest = {"g_radar8": "scout", "g_scout8": "scout", "g_drift8": "pos", "g_trend8": "pos"}   # Oct 14 (Dom): every mark links to its source\n'
+  '    for f_ in out[:4]:\n'
+  '        w_ = f_(x); nm_ = next((n for n in f_.__code__.co_names if n in _dest), None); lab_ = globals().get("_MKLAB8")\n'
+  '        if nm_ and lab_:\n'
+  '            try: c.linkRect("", "dk_" + _dest[nm_] + "_" + lab_.replace(" ", ""), (x - 1, y - 3, x + w_ + 1, y + 8), relative=0, thickness=0)\n'
+  '            except Exception: pass\n'
+  '        x += w_ + 2', 1),
+],"OCT14 marks link to their source")
+patch(f"{R}/cand/redesign/fieldpos24.py",[
+ ('    pg+=scout_page(c,pg,L_,_KK[L_])',
+  '    c.bookmarkPage("dk_scout_"+L_.replace(" ",""))   # Oct 14: where the Radar and Scout marks land\n    pg+=scout_page(c,pg,L_,_KK[L_])', 1),
+ ('    r_=position_page10(L_,T_,S_,"Positions · "+L_);pg+=1',
+  '    c.bookmarkPage("dk_pos_"+L_.replace(" ",""))   # Oct 14: where the drift and trend marks land\n    r_=position_page10(L_,T_,S_,"Positions · "+L_);pg+=1', 1),
+],"OCT14 mark link targets")
