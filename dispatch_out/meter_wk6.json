@@ -1,6 +1,6 @@
 {
  "week": 6,
- "built_pt": "Fri Oct 16 2026 12:17 AM PT",
+ "built_pt": "Fri Oct 16 2026 08:07 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 16 12:17 AM PT",
+   "pulled_pt": "Fri Oct 16 08:06 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_thu0853.txt",
    "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 15.4,
+   "age_h": 23.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_thu0853.txt",
    "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 15.4,
+   "age_h": 23.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_thu0853.txt",
    "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 15.4,
+   "age_h": 23.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 16 12:17 AM PT",
+   "pulled_pt": "Fri Oct 16 08:07 AM PT",
    "age_h": 0.0,
    "rows": 6,
    "need": 6,
-   "note": "Gotham run Fri Oct 16 2026 12:17 AM PT for week 6"
+   "note": "Gotham run Fri Oct 16 2026 08:07 AM PT for week 6"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-16T0546Z.csv",
-   "pulled_pt": "Thu Oct 15 10:46 PM PT",
-   "age_h": 1.5,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-16T1449Z.csv",
+   "pulled_pt": "Fri Oct 16 07:49 AM PT",
+   "age_h": 0.3,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.3 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-16T0546Z.csv",
-   "pulled_pt": "Thu Oct 15 10:46 PM PT",
-   "age_h": 1.5,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-16T1449Z.csv",
+   "pulled_pt": "Fri Oct 16 07:49 AM PT",
+   "age_h": 0.3,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.3 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_rosters.json",
    "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 15.4,
+   "age_h": 23.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -107,7 +107,7 @@
    "opp_rank": 10,
    "needles": {
     "gotham": 73,
-    "sleeper": 77,
+    "sleeper": 76,
     "yahoo": 68,
     "yahoo_best": false,
     "yahoo_posted": 68,
@@ -116,11 +116,11 @@
    "totals": {
     "gotham": [
      150.57,
-     119.33
+     119.32
     ],
     "sleeper": [
-     148.94,
-     112.02
+     147.85,
+     111.97
     ],
     "yahoo": [
      151.7,
@@ -201,7 +201,7 @@
       "pos": "RB",
       "gotham": 18.46,
       "gotham_src": "gotham",
-      "sleeper": 20.24,
+      "sleeper": 19.25,
       "window": 2,
       "gs": "pre"
      },
@@ -216,7 +216,7 @@
       "pos": "RB",
       "gotham": 24.77,
       "gotham_src": "gotham",
-      "sleeper": 24.52,
+      "sleeper": 24.51,
       "window": 5,
       "gs": "pre"
      },
@@ -231,7 +231,7 @@
       "pos": "WR",
       "gotham": 15.63,
       "gotham_src": "gotham",
-      "sleeper": 13.21,
+      "sleeper": 13.12,
       "window": 4,
       "gs": "pre"
      },
@@ -428,7 +428,7 @@
       "pos": "TE",
       "gotham": 9.26,
       "gotham_src": "gotham",
-      "sleeper": 9.56,
+      "sleeper": 9.52,
       "window": 2,
       "gs": "pre"
      },
@@ -456,9 +456,9 @@
       "yahoo": 7.35,
       "actual": null,
       "pos": "K",
-      "gotham": 7.0,
+      "gotham": 6.99,
       "gotham_src": "sleeper",
-      "sleeper": 7.0,
+      "sleeper": 6.99,
       "window": 2,
       "gs": "pre"
      },
@@ -489,7 +489,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 12.79,
-     "sleeper": 10.18,
+     "sleeper": 10.14,
      "window": 1
     },
     {
@@ -501,7 +501,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.51,
-     "sleeper": 7.29,
+     "sleeper": 7.38,
      "window": 2
     },
     {
@@ -568,11 +568,11 @@
     ],
     "gotham": [
      148.12,
-     119.33
+     119.32
     ],
     "sleeper": [
-     148.94,
-     109.62
+     147.85,
+     109.57
     ]
    },
    "best_moves": {
@@ -626,7 +626,7 @@
    "opp_rank": 1,
    "needles": {
     "gotham": 18,
-    "sleeper": 27,
+    "sleeper": 29,
     "yahoo": 32,
     "yahoo_best": false,
     "yahoo_posted": 32,
@@ -638,8 +638,8 @@
      183.92
     ],
     "sleeper": [
-     147.61,
-     182.24
+     149.94,
+     181.3
     ],
     "yahoo": [
      152.29,
@@ -735,7 +735,7 @@
       "pos": "RB",
       "gotham": 11.94,
       "gotham_src": "gotham",
-      "sleeper": 15.42,
+      "sleeper": 15.43,
       "window": 4,
       "gs": "pre"
      },
@@ -780,7 +780,7 @@
       "pos": "WR",
       "gotham": 9.5,
       "gotham_src": "gotham",
-      "sleeper": 9.18,
+      "sleeper": 10.12,
       "window": 2,
       "gs": "pre"
      },
@@ -810,7 +810,7 @@
       "pos": "RB",
       "gotham": 12.79,
       "gotham_src": "gotham",
-      "sleeper": 17.73,
+      "sleeper": 17.91,
       "window": 2,
       "gs": "pre"
      },
@@ -825,7 +825,7 @@
       "pos": "QB",
       "gotham": 19.31,
       "gotham_src": "gotham",
-      "sleeper": 19.7,
+      "sleeper": 20.9,
       "window": 2,
       "gs": "pre"
      },
@@ -902,7 +902,7 @@
       "pos": "RB",
       "gotham": 15.53,
       "gotham_src": "gotham",
-      "sleeper": 19.52,
+      "sleeper": 18.69,
       "window": 2,
       "gs": "pre"
      },
@@ -917,7 +917,7 @@
       "pos": "WR",
       "gotham": 14.32,
       "gotham_src": "gotham",
-      "sleeper": 17.76,
+      "sleeper": 17.71,
       "window": 1,
       "gs": "pre"
      },
@@ -947,7 +947,7 @@
       "pos": "WR",
       "gotham": 15.6,
       "gotham_src": "gotham",
-      "sleeper": 17.27,
+      "sleeper": 17.2,
       "window": 2,
       "gs": "pre"
      },
@@ -977,7 +977,7 @@
       "pos": "WR",
       "gotham": 14.88,
       "gotham_src": "gotham",
-      "sleeper": 13.11,
+      "sleeper": 13.12,
       "window": 2,
       "gs": "pre"
      },
@@ -1062,7 +1062,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 9.26,
-     "sleeper": 9.56,
+     "sleeper": 9.52,
      "window": 2
     },
     {
@@ -1107,7 +1107,7 @@
    "needles_set": {
     "gotham": 17,
     "yahoo": 32,
-    "sleeper": 27,
+    "sleeper": 29,
     "yahoo_from_spread": 31
    },
    "totals_set": {
@@ -1120,8 +1120,8 @@
      183.92
     ],
     "sleeper": [
-     147.61,
-     182.24
+     149.94,
+     181.3
     ]
    },
    "best_moves": {
@@ -1162,7 +1162,7 @@
    "opp_rank": 11,
    "needles": {
     "gotham": 50,
-    "sleeper": 55,
+    "sleeper": 54,
     "yahoo": 57,
     "yahoo_best": false,
     "yahoo_posted": 57,
@@ -1174,8 +1174,8 @@
      97.49
     ],
     "sleeper": [
-     105.57,
-     99.62
+     105.96,
+     100.64
     ],
     "yahoo": [
      110.54,
@@ -1286,7 +1286,7 @@
       "pos": "WR",
       "gotham": 15.63,
       "gotham_src": "gotham",
-      "sleeper": 13.21,
+      "sleeper": 13.12,
       "window": 4,
       "gs": "pre"
      },
@@ -1316,7 +1316,7 @@
       "pos": "TE",
       "gotham": 7.6,
       "gotham_src": "gotham",
-      "sleeper": 10.46,
+      "sleeper": 10.38,
       "window": 2,
       "gs": "pre"
      },
@@ -1331,7 +1331,7 @@
       "pos": "WR",
       "gotham": 7.89,
       "gotham_src": "gotham",
-      "sleeper": 12.1,
+      "sleeper": 12.16,
       "window": 2,
       "gs": "pre"
      },
@@ -1423,7 +1423,7 @@
       "pos": "WR",
       "gotham": 12.26,
       "gotham_src": "gotham",
-      "sleeper": 15.13,
+      "sleeper": 15.02,
       "window": 1,
       "gs": "pre"
      },
@@ -1438,7 +1438,7 @@
       "pos": "WR",
       "gotham": 7.36,
       "gotham_src": "gotham",
-      "sleeper": 8.29,
+      "sleeper": 9.42,
       "window": 2,
       "gs": "pre"
      },
@@ -1538,7 +1538,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.31,
-     "sleeper": 19.7,
+     "sleeper": 20.9,
      "window": 2
     },
     {
@@ -1583,7 +1583,7 @@
    "needles_set": {
     "gotham": 50,
     "yahoo": 57,
-    "sleeper": 55,
+    "sleeper": 54,
     "yahoo_from_spread": 57
    },
    "totals_set": {
@@ -1596,8 +1596,8 @@
      97.49
     ],
     "sleeper": [
-     105.57,
-     99.62
+     105.46,
+     100.64
     ]
    },
    "best_moves": {
@@ -1619,7 +1619,14 @@
      ]
     },
     "sleeper": {
-     "me": [],
+     "me": [
+      {
+       "out": "Jayden Daniels",
+       "out_v": 20.4,
+       "into": "Aaron Rodgers",
+       "in_v": 20.9
+      }
+     ],
      "op": [
       {
        "out": "Jameson Williams",
@@ -1665,12 +1672,12 @@
    },
    "totals": {
     "gotham": [
-     157.2,
+     157.19,
      163.49
     ],
     "sleeper": [
-     156.68,
-     167.67
+     156.47,
+     168.01
     ],
     "yahoo": [
      158.99,
@@ -1736,7 +1743,7 @@
       "pos": "QB",
       "gotham": 19.44,
       "gotham_src": "gotham",
-      "sleeper": 16.92,
+      "sleeper": 16.89,
       "window": 1,
       "gs": "pre"
      },
@@ -1781,7 +1788,7 @@
       "pos": "WR",
       "gotham": 7.87,
       "gotham_src": "gotham",
-      "sleeper": 12.07,
+      "sleeper": 12.13,
       "window": 2,
       "gs": "pre"
      },
@@ -1796,7 +1803,7 @@
       "pos": "WR",
       "gotham": 15.49,
       "gotham_src": "gotham",
-      "sleeper": 17.22,
+      "sleeper": 17.15,
       "window": 2,
       "gs": "pre"
      },
@@ -1826,7 +1833,7 @@
       "pos": "TE",
       "gotham": 12.18,
       "gotham_src": "gotham",
-      "sleeper": 12.21,
+      "sleeper": 12.19,
       "window": 4,
       "gs": "pre"
      },
@@ -1856,7 +1863,7 @@
       "pos": "QB",
       "gotham": 23.77,
       "gotham_src": "gotham",
-      "sleeper": 21.4,
+      "sleeper": 21.26,
       "window": 4,
       "gs": "pre"
      },
@@ -1869,9 +1876,9 @@
       "yahoo": 8.19,
       "actual": null,
       "pos": "K",
-      "gotham": 7.82,
+      "gotham": 7.81,
       "gotham_src": "sleeper",
-      "sleeper": 7.82,
+      "sleeper": 7.81,
       "window": 2,
       "gs": "pre"
      },
@@ -1918,7 +1925,7 @@
       "pos": "RB",
       "gotham": 19.43,
       "gotham_src": "gotham",
-      "sleeper": 15.83,
+      "sleeper": 15.75,
       "window": 2,
       "gs": "pre"
      },
@@ -1963,7 +1970,7 @@
       "pos": "WR",
       "gotham": 12.66,
       "gotham_src": "gotham",
-      "sleeper": 11.82,
+      "sleeper": 13.02,
       "window": 2,
       "gs": "pre"
      },
@@ -2162,7 +2169,7 @@
    "needles_set": {
     "gotham": 44,
     "yahoo": 45,
-    "sleeper": 47,
+    "sleeper": 46,
     "yahoo_from_spread": 45
    },
    "totals_set": {
@@ -2171,12 +2178,12 @@
      166.24
     ],
     "gotham": [
-     154.39,
+     154.38,
      162.12
     ],
     "sleeper": [
-     156.24,
-     160.7
+     156.03,
+     161.82
     ]
    },
    "best_moves": {
@@ -2209,14 +2216,14 @@
      ],
      "op": [
       {
-       "out": "DK Metcalf",
-       "out_v": 11.8,
+       "out": "Xavier Worthy",
+       "out_v": 9.6,
        "into": "DJ Moore",
        "in_v": 14.6
       },
       {
-       "out": "Xavier Worthy",
-       "out_v": 9.6,
+       "out": "Tyler Warren",
+       "out_v": 12.6,
        "into": "Carnell Tate",
        "in_v": 13.8
       }
