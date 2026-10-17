@@ -470,6 +470,44 @@ try:
 except Exception as e:
     ONLINE_NOTE = f"coming online check skipped: {type(e).__name__}: {e}"
 
+# ---------- THE PRE-KICKOFF CHECK (Dom, Oct 17) ----------
+# The Scout puts each starter whose game hasn't started against the best healthy free agent, on this week's numbers,
+# defenses and kickers included (the wire alert above never saw them - the Broncos over Seattle went unflagged Oct 15).
+# Each flag becomes an alert that stands until its deadline (the earlier of the two kickoffs), then drops off.
+PREKICK_NOTE = ""
+try:
+    import os, urllib.request, time
+    _now = dt.datetime.now(dt.timezone.utc)
+    _dirs = [os.path.join(os.environ.get("DK_ROOT", "/home/claude"), "dksys", "scout"),
+             os.path.join(os.path.dirname(os.path.abspath(act_f)), "scout_state")]
+    _n = 0
+    for _lk, _lab in (("DKI", "DK I"), ("DKII", "DK II"), ("DKIII", "DK III"), ("DKIV", "DK IV")):
+        _b = None
+        for _d in _dirs:
+            _f = os.path.join(_d, f"scout_board_{_lk}.json")
+            if os.path.exists(_f): _b = json.load(open(_f)); break
+        if _b is None:
+            _b = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/scout_state/scout_board_{_lk}.json?t={int(time.time())}", timeout=40).read())
+        for _x in _b.get("prekick", []) or []:
+            try: _dl = dt.datetime.fromisoformat(_x["deadline_utc"])
+            except Exception: continue
+            if _dl <= _now: continue                      # kickoff passed: nothing left to do
+            _sn, _cn = _x.get("starter_nums") or {}, _x.get("nums") or {}
+            _vs = " \u00b7 ".join(f"{k.capitalize()} {f1(_cn.get(k))} vs {f1(_sn.get(k))}" for k in ("sleeper", "yahoo", "gotham") if _cn.get(k) is not None or _sn.get(k) is not None)
+            add(id=slug("pk", W, _lab, _x["slot"], _x["name"], _x["starter"]), color=_x.get("color", "gold"), lg=_lab, who=_x["name"], kind="prekick",
+                title=(f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) fills your empty {_x['slot']} seat" if _x.get("empty")
+                       else f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) beats your {_x['slot']} {_x['starter']} by {_x['gain']:.1f} this week"),
+                what=f"Free agent, on this week's numbers ({_x['basis']})." + (f" Rest of season he adds ~{_x['ros_gain']:.0f} points." if _x.get("ros_gain") else ""),
+                tie=f"Your {_x['slot']} starter in {_lab} is {_x['starter']}.",
+                fix=f"Your call, before {_x['deadline_pt']}: add {_x['name']} and start him over {_x['starter']}. Adding him means dropping someone - pick the drop with the full workup.",
+                ba={"label": "that lineup spot this week, Sleeper points", "before": _sn.get("sleeper"), "after": _cn.get("sleeper")},
+                receipts=[f"This week: {_vs}", f"Scout check: {_x.get('checked','')}", _x.get("news") or "news: not checked"],
+                by="before " + _x["deadline_pt"], src="the Scout's pre-kickoff check (Sleeper, Yahoo, Gotham)")
+            _n += 1
+    PREKICK_NOTE = f"pre-kickoff check: {_n} upgrade(s)"
+except Exception as e:
+    PREKICK_NOTE = f"pre-kickoff check skipped: {type(e).__name__}: {e}"
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -496,4 +534,4 @@ doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEED
 json.dump(doc, open(out_f, "w"), indent=1)
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE)

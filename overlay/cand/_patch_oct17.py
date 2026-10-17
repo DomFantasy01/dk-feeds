@@ -142,3 +142,87 @@ patch(f"{R}/dksys/scout/scout_engine.py",[
   '    if _nn in WAIV: WAIV["def "+_aa.lower()]=WAIV[_nn]\n'
   'pbp=pd.read_csv(f"{D}/play_by_play_2026.csv.gz"',1),
 ],"OCT17 defenses on waivers")
+
+# ---------- 4  THE PRE-KICKOFF CHECK (Dom, Oct 17) ----------
+# Before every kickoff the Scout puts each of Dom's starters whose game hasn't started against the best healthy free
+# agent at a spot he's eligible for, using THIS WEEK's numbers (Sleeper and Yahoo, plus Gotham for skill players).
+# It flags a clear upgrade - better by 2+ points (Dom's noise line) on both Sleeper and Yahoo, or on Sleeper and Gotham
+# when Yahoo has no number - and an empty seat (bye / out / nobody playing) that any healthy player would beat.
+# Waiver players can't be added in time to start this week, so only free agents count; a free agent whose own game has
+# already kicked off can't be started either. Defenses and kickers are in (the wire alert never saw them - that's how
+# the Broncos over Seattle went unflagged on Thursday Oct 15). The flags ride the Scout board (prekick) to the alerts.
+_PREKICK = r'''
+# ---- Oct 17 (Dom): THE PRE-KICKOFF CHECK ----
+PREKICK=[]
+try:
+    from zoneinfo import ZoneInfo as _ZI
+    _NOWU=dt.datetime.now(dt.timezone.utc); _ET=_ZI("America/New_York"); _PT=_ZI("America/Los_Angeles")
+    _KO={}
+    for _r in games[games.week==NOW].itertuples():
+        try:
+            _k=dt.datetime.strptime(f"{_r.gameday} {_r.gametime}","%Y-%m-%d %H:%M").replace(tzinfo=_ET).astimezone(dt.timezone.utc)
+            _KO[tm(_r.home_team)]=_k; _KO[tm(_r.away_team)]=_k
+        except Exception: pass
+    _LID={"DKI":"269381","DKII":"1519795","DKIII":"1507991","DKIV":"864215"}[LGK]
+    _M=json.load(open(f"{L}/meter/meter_wk{NOW}.json")); _ML=_M["leagues"]; _ML=_ML if isinstance(_ML,list) else list(_ML.values())
+    _LG=[x for x in _ML if str(x.get("league_id"))==_LID][0]
+    _EL={"QB":("QB",),"RB":("RB",),"WR":("WR",),"TE":("TE",),"W/R/T":("RB","WR","TE"),"Q/W/R/T":("QB","RB","WR","TE"),"K":("K",),"DEF":("DEF",)}
+    _pool=[]
+    for _k,_p in PL.items():
+        if _k in taken or _k[0] in WAIV or norm(_p["name"]) in SEASON_OUT or killed(_p["name"]): continue
+        if NOW in byes.get(_p["team"],[]) or NOW<back(_p): continue
+        _ko=_KO.get(_p["team"])
+        if not _ko or _ko<=_NOWU: continue                       # no game, or his game already started
+        _kd=_p["pos"] in ("K","DEF")
+        _s=_SLKD.get(_kdkey(_p)) if _kd else _SLPPR.get(norm(_p["name"]))
+        if _s is None: continue
+        _pool.append(dict(k=_k,p=_p,sl=_s,ya=_YP.get((_ypk(_p),NOW)),go=None if _kd else _GOT.get(norm(_p["name"])),ko=_ko))
+    _used=set()
+    for _st in _LG["starters"]["me"]:
+        _slot=_st.get("slot"); _ok=_EL.get(_slot)
+        if not _ok or _st.get("gs") not in (None,"pre"): continue        # his game started: locked
+        _empty=(not _st.get("player")) or (_st.get("status") or "").upper() in ("O","IR","IR-R","NA","SUSP","PUP") or ((_st.get("sleeper") or 0)<=0 and (_st.get("yahoo") or 0)<=0)
+        _best=None
+        for _c in _pool:
+            if _c["p"]["pos"] not in _ok or _c["k"] in _used: continue
+            if _empty:
+                _m=_c["sl"]; _why="empty seat"
+                if _m<3: continue
+            else:
+                _ms=_c["sl"]-(_st.get("sleeper") or 0)
+                _my=None if (_c["ya"] is None or _st.get("yahoo") is None) else _c["ya"]-_st["yahoo"]
+                _mg=None if (_c["go"] is None or _st.get("gotham") is None) else _c["go"]-_st["gotham"]
+                if _ms<2: continue
+                if _my is not None:
+                    if _my<2: continue
+                    _why="Sleeper and Yahoo agree"
+                elif _mg is not None:
+                    if _mg<2: continue
+                    _why="Sleeper and Gotham agree (no Yahoo number)"
+                else:
+                    _why="Sleeper only (no Yahoo or Gotham number)"
+                _m=_ms
+            if not _best or _m>_best[0]: _best=(_m,_c,_why)
+        if not _best: continue
+        _m,_c,_why=_best; _used.add(_c["k"]); _p=_c["p"]
+        _sko=_KO.get(tm(_st.get("team") or ""))
+        _dl=min([x for x in (_c["ko"],_sko) if x] or [_c["ko"]])
+        _g2=next((e for e in G2 if e["k"]==_c["k"]),None)
+        _nl,_nb=newscheck(_p)
+        PREKICK.append(dict(slot=_slot,starter=_st.get("player") or "(empty)",starter_team=_st.get("team"),
+            starter_nums=dict(sleeper=_st.get("sleeper"),yahoo=_st.get("yahoo"),gotham=_st.get("gotham")),
+            name=_p["name"].replace(" defense"," DEF"),team=_p["team"],pos=_p["pos"],
+            nums=dict(sleeper=round(_c["sl"],1),yahoo=None if _c["ya"] is None else round(_c["ya"],1),gotham=None if _c["go"] is None else round(_c["go"],1)),
+            gain=round(_m,1),basis=_why,empty=bool(_empty),
+            color=("gold" if (_nb or _why.startswith("Sleeper only")) else "red"),
+            deadline_utc=_dl.isoformat(),deadline_pt=f"{_dl.astimezone(_PT):%a} {_dl.astimezone(_PT).hour%12 or 12}:{_dl.astimezone(_PT):%M} {'AM' if _dl.astimezone(_PT).hour<12 else 'PM'} PT",
+            ros_gain=round(sum(max(0.0,v) for v in _g2["g"].values()),1) if _g2 else None,
+            news=_nl or "",checked=NOWPT.strftime('%a %b %d, %I:%M %p PT').replace(' 0',' ')))
+    if not QUIET: print(f"Pre-kickoff check: {len(PREKICK)} upgrade(s) - " + "; ".join(f"{x['name']} over {x['starter']} (+{x['gain']}, {x['basis']}, by {x['deadline_pt']})" for x in PREKICK))
+except Exception as _e: print("Pre-kickoff check skipped:",type(_e).__name__,_e)
+BOARD["prekick"]=PREKICK
+'''
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',
+  _PREKICK + 'json.dump(BOARD,open(f"{H}/scout_board_{LGK}.json","w"),indent=1)',1),
+],"OCT17 pre-kickoff check")
