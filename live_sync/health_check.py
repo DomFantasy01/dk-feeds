@@ -178,13 +178,18 @@ if sb and gc:
     for line in gc.splitlines()[1:]:
         w = line.split(",")[0]
         if w.isdigit(): counts[int(w)] = counts.get(int(w), 0) + 1
-    lw = max(counts) if counts else None
+    # Oct 16 (Dom): judge the last COMPLETED week, not a week still being played. Mid-week (after Thursday night)
+    # the current week holds only the men whose games are final - that is expected, not a partial grade.
+    cw = (wk or 0) - 1
+    lw = cw if cw in counts else (max((w for w in counts if w <= cw), default=None) if counts else None)
     full = counts.get(lw, 0) >= (120 if lw and lw <= 4 else 50)   # Weeks 2-4: a 500-man seed; Week 5 on: every starter in Dom's four matchups
-    stt = "green" if lw == (wk or 0) - 1 and full else "yellow"
+    stt = "green" if lw == cw and full else "yellow"
+    live_n = counts.get(wk or 0, 0)
     row("Checks", "Scoreboard (Yahoo vs Gotham vs Sleeper)", stt,
-        f"graded through Week {lw} ({counts.get(lw, 0)} starters from your four matchups)" + ("" if full else " - fewer than expected, a partial grade"), ptstr(sb.splitlines()[0]))
+        f"graded through Week {lw} ({counts.get(lw, 0)} starters from your four matchups)" + ("" if full else " - fewer than expected, a partial grade")
+        + (f"; Week {wk} in progress, {live_n} graded so far from finished games" if live_n else ""), ptstr(sb.splitlines()[0]))
 else: row("Checks", "Scoreboard", "red", "scoreboard missing from the build")
-if res: row("Checks", "Projection grading", "green" if res.get("actuals_through_week") == (wk or 0) - 1 else "yellow", f"actual results through Week {res.get('actuals_through_week')}", iso(res.get("graded_utc")))
+if res: row("Checks", "Projection grading", "green" if (res.get("actuals_through_week") or 0) >= (wk or 0) - 1 else "yellow", f"actual results through Week {res.get('actuals_through_week')}", iso(res.get("graded_utc")))
 
 # ---------- 7. the Scout (runs inside every Dispatch build, all four leagues) ----------
 sc_ok = 0

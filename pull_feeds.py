@@ -20,8 +20,10 @@ def get(url, timeout=30, tries=2):
             req = urllib.request.Request(url, headers=UA)
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read()
-        except urllib.error.HTTPError:
-            raise
+        except urllib.error.HTTPError as e:
+            # Oct 16: a busy server (429, 5xx - Open-Meteo returned 503s) is worth another try; a refusal is not
+            if e.code < 500 and e.code != 429 or n == tries - 1: raise
+            time.sleep(5 * (n + 1))
         except Exception:
             if n == tries - 1: raise
             time.sleep(3)
@@ -123,7 +125,9 @@ PLACE = {'Lambeau Field':'Green Bay','Gillette Stadium':'Foxborough','MetLife St
  'Paycor Stadium':'Cincinnati','EverBank Stadium':'Jacksonville','Bank of America Stadium':'Charlotte',
  'AT&T Stadium':'Arlington, Texas','State Farm Stadium':'Glendale, Arizona',
  'Mercedes-Benz Stadium':'Atlanta','Lucas Oil Stadium':'Indianapolis','NRG Stadium':'Houston',
- 'Tottenham Hotspur Stadium':'London','Wembley Stadium':'London'}
+ 'Tottenham Hotspur Stadium':'London','Wembley Stadium':'London',
+ # Oct 16 (Dom): nflverse still files some games under old or short names
+ 'Reliant Stadium':'Houston','Bernabeu':'Madrid','Estadio Banorte':'Mexico City','Maracana Stadium':'Rio de Janeiro'}
 def weather():
     try:
         games = list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv', 60).decode())))
@@ -144,11 +148,11 @@ def weather():
             problems.append(f"{g['game_id']}: no location on file for {g['stadium']}")
             out.append({**row, 'weather': 'NO LOCATION — not pulled'}); continue
         try:
-            geo = json.loads(get('https://geocoding-api.open-meteo.com/v1/search?count=1&name=' + urllib.parse.quote(q)))['results'][0]
+            geo = json.loads(get('https://geocoding-api.open-meteo.com/v1/search?count=1&name=' + urllib.parse.quote(q), tries=3))['results'][0]
             p = urllib.parse.urlencode({'latitude': geo['latitude'], 'longitude': geo['longitude'], 'timezone': 'UTC',
                  'hourly': 'temperature_2m,precipitation_probability,precipitation,wind_speed_10m,wind_gusts_10m',
                  'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'start_date': g['gameday'], 'end_date': (dt.date.fromisoformat(g['gameday']) + dt.timedelta(days=1)).isoformat()})
-            w = json.loads(get('https://api.open-meteo.com/v1/forecast?' + p))
+            w = json.loads(get('https://api.open-meteo.com/v1/forecast?' + p, tries=3))
             h = w['hourly']
             kick = dt.datetime.fromisoformat(g['gameday'] + 'T' + g['gametime']).replace(tzinfo=ZoneInfo('America/New_York')).astimezone(dt.timezone.utc)
             idx = [i for i, t in enumerate(h['time']) if kick <= dt.datetime.fromisoformat(t).replace(tzinfo=dt.timezone.utc) <= kick + dt.timedelta(hours=3)]

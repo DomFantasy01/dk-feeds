@@ -273,6 +273,7 @@ for n in AL.get("notes", []):
 FEEDS = sys.argv[sys.argv.index("--feeds") + 1] if "--feeds" in sys.argv else None
 BAD = re.compile(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from|ruled out|out for|will not play|won't play|placed on (?:injured reserve|ir)|injured reserve|\bIR\b|season-ending|torn|tear|fracture|broken|surgery|concussion protocol|carted|suspended|expected to miss|will miss|out (?:multiple|several|indefinitely)|doubtful|high[- ]ankle)", re.I)
 CAUTION = re.compile(r"\b(questionable|limited|did not practice|DNP|game-time|day-to-day|week-to-week|uncertain|injur|hamstring|ankle|knee|groin|calf|shoulder|illness|back|quad|foot)\b", re.I)
+GOOD = re.compile(r"\b(bigger|heavier|larger|expanded|increased|more) (?:workload|role|work|snaps|touches|usage|opportunit\w*)|\b(lead role|lead back|starting role|in line for|line for more|step into|steps into|takes over|take over|promoted|elevated|activated|returns? to practice|cleared|full practice|no injury designation|expected to play|will start|set to start|draws start)\b", re.I)
 def _norm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
 if FEEDS:
     import os
@@ -315,17 +316,24 @@ if FEEDS:
             if n.get("who") and _norm(n["who"]) != nn: continue
             if any(n["title"][:60] in s for s in seen_titles.get((lg, name), [])): continue
             bad, caut = bool(BAD.search(blob)), bool(CAUTION.search(blob))
-            if not (bad or caut): continue     # Oct 14 (Dom): a name in a start/sit list is not news - no 'worth knowing' cards
+            # Oct 16 (Dom): "Swift: Bigger workload sans Monangai" came out red because the story says MONANGAI was
+            # ruled out. The headline is written about its subject: when it carries opportunity language and no bad or
+            # caution words of its own, the bad words belong to someone else and this is good news for our man.
+            good = bool(GOOD.search(n["title"])) and not BAD.search(n["title"]) and not CAUTION.search(n["title"])
+            if good: bad = caut = False
+            if not (bad or caut or (good and role != "opp")): continue     # Oct 14 (Dom): a name in a start/sit list is not news - no 'worth knowing' cards
             sev = 2 if bad else 1 if caut else 0
             k = (lg, name)
             if k in _best and (_best[k][0], _best[k][1]) >= (sev, d): continue
             _best[k] = (sev, d, len(ITEMS))
-            if role == "starter": color = "red" if bad else ("gold" if caut else "grey")
+            if good: color = "grey"   # noted, nothing to do - green stays reserved for a resolved alert
+            elif role == "starter": color = "red" if bad else ("gold" if caut else "grey")
             else: color = "grey"
             tie = {"starter": f"Your {slot} starter in {lg}.", "bench": f"On your {lg} {'IR' if slot == 'IR' else 'bench'}.",
                    "opp": f"Starts for your {lg} opponent."}[role]
             gone = bool(re.search(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from)\b", blob, re.I))
-            fix = (f"His team has let him go, so he scores 0 unless someone signs him. Bench him and pick up another {slot}."
+            fix = ("Good news, nothing to do: more work for him." if good else
+                   f"His team has let him go, so he scores 0 unless someone signs him. Bench him and pick up another {slot}."
                    if role == "starter" and gone else
                    "Check his status before kickoff and line up a bench fill; the next Dispatch build re-scores the lineup."
                    if role == "starter" else "Nothing to do now.")
