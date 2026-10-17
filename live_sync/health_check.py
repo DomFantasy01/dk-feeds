@@ -204,6 +204,20 @@ ros = text("yahoo_drop/scout/dk1_rosters_live.txt")
 rt = ptstr(ros.splitlines()[0]) if ros else None
 row("Scout", "Scout rosters + waiver lists", "green" if rt and read_t and abs((rt - read_t).total_seconds()) <= 1800 else "yellow",
     "read with the Yahoo read" if rt else "missing", rt)
+# Oct 16 (Dom): the Yahoo weekly projections read (its own scheduled task) had silently not saved since Wed Oct 14 -
+# the task "succeeded" without reaching Chrome - and nothing flagged it. The Scout only uses a file under 36 hours old.
+yp = text("yahoo_drop/scout/yproj_dk1.txt")
+if not yp:
+    try:
+        import urllib.request as _ur
+        yp = _ur.urlopen("https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/yahoo_drop/scout/yproj_dk1.txt", timeout=20).read().decode()
+    except Exception: yp = None
+ypt = ptstr(yp.splitlines()[0]) if yp else None
+yph = (NOW - ypt).total_seconds() / 3600 if ypt else None
+row("Scout", "Yahoo weekly projections (Scout's Yahoo half)",
+    "green" if yph is not None and yph <= 12 else ("yellow" if yph is not None and yph <= 36 else "red"),
+    ("file missing" if yph is None else f"read {yph:.0f} h ago")
+    + ("" if yph is not None and yph <= 36 else " - the Scout is running on its own model only; the projections task isn't saving (it needs Dom's computer)"), ypt)
 
 # ---------- 8. the Radar ----------
 ra = load("dispatch_out/radar_wk%s.json" % wk)
