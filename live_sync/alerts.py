@@ -210,6 +210,9 @@ for lg, RL in R.get("leagues", {}).items():
         if gain <= 0: continue
         n0 = p["news"][0] if p.get("news") else {}
         fp = mine.get(fl.get("name"), {})
+        # Oct 16 (Dom): never weigh a pickup against a starter whose game has already started - his score is locked
+        # (Sutton's final 3.9 on Thursday read as "Antonio Williams beats him by 3.5").
+        if fp.get("gs") not in (None, "pre"): continue
         votes, cmp_ = agree(p.get("sleeper"), fp.get("sleeper"), p.get("yahoo"), fp.get("yahoo"))
         tag = {2: "all three agree", 1: "Gotham + one", 0: "Gotham only"}.get(votes, "Gotham only")
         if own_st and own_st[0] == "waivers":
@@ -273,7 +276,7 @@ for n in AL.get("notes", []):
 FEEDS = sys.argv[sys.argv.index("--feeds") + 1] if "--feeds" in sys.argv else None
 BAD = re.compile(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from|ruled out|out for|will not play|won't play|placed on (?:injured reserve|ir)|injured reserve|\bIR\b|season-ending|torn|tear|fracture|broken|surgery|concussion protocol|carted|suspended|expected to miss|will miss|out (?:multiple|several|indefinitely)|doubtful|high[- ]ankle)", re.I)
 CAUTION = re.compile(r"\b(questionable|limited|did not practice|DNP|game-time|day-to-day|week-to-week|uncertain|injur|hamstring|ankle|knee|groin|calf|shoulder|illness|back|quad|foot)\b", re.I)
-GOOD = re.compile(r"\b(bigger|heavier|larger|expanded|increased|more) (?:workload|role|work|snaps|touches|usage|opportunit\w*)|\b(lead role|lead back|starting role|in line for|line for more|step into|steps into|takes over|take over|promoted|elevated|activated|returns? to practice|cleared|full practice|no injury designation|expected to play|will start|set to start|draws start)\b", re.I)
+GOOD = re.compile(r"\b(bigger|heavier|larger|expanded|increased|more) (?:workload|role|work|snaps|touches|usage|opportunit\w*)|\b(lead role|lead back|starting role|in line for|line for more|step into|steps into|takes over|take over|promoted|elevated|activated|returns? to practice|cleared|full practice|no injury designation|expected to play|will start|set to start|draws start|starting job|workhorse|operating as|remains (?:the |his team's |\w+'s )?(?:RB1|WR1|TE1|QB1|starter|lead|top|featured|No\. 1))\b", re.I)
 def _norm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
 if FEEDS:
     import os
