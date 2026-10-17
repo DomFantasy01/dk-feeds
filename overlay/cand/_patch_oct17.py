@@ -16,6 +16,7 @@
 #     (source, date, headline) or says plainly that no news was found. News of injury, surgery, IR, a trade, a release,
 #     a benching or a suspension in the last 7 days raises a NEWS FLAG on the line, and a flagged pick is never red
 #     (act now) - it drops to gold so Dom checks it before acting.
+#  3  DEFENSES ON WAIVERS: a defense on Yahoo's waiver list now prints its waiver date instead of "Free agent".
 import os
 R=os.environ.get("DK_ROOT","/home/claude")
 def patch(path,pairs,mark):
@@ -125,3 +126,19 @@ patch(f"{R}/dksys/scout/scout_engine.py",[
   '    if _nl: why=why+"; "+_nl\n'
   '    return f"{p[\'name\']}, {p[\'team\']} — scored {sc} — {e[\'acq\']} — {why}; helps {when}"\n',1),
 ],"OCT17 trade check + news check")
+
+# ---------- 3  DEFENSES ON WAIVERS (Dom, Oct 17) ----------
+# Yahoo lists a defense on waivers by nickname ("Broncos/Oct 21") but the Scout keys defenses as "def den", so a defense
+# on waivers printed as a free agent - the Broncos showed "Free agent" in DK IV while Yahoo had them on waivers until
+# Tuesday (their game had kicked off). Nicknames now map to the Scout's key, so a defense's waiver date prints.
+_NICK = ('{"cardinals":"ARI","falcons":"ATL","ravens":"BAL","bills":"BUF","panthers":"CAR","bears":"CHI","bengals":"CIN",'
+         '"browns":"CLE","cowboys":"DAL","broncos":"DEN","lions":"DET","packers":"GB","texans":"HOU","colts":"IND",'
+         '"jaguars":"JAX","chiefs":"KC","raiders":"LV","chargers":"LAC","rams":"LA","dolphins":"MIA","vikings":"MIN",'
+         '"patriots":"NE","saints":"NO","giants":"NYG","jets":"NYJ","eagles":"PHI","steelers":"PIT","49ers":"SF",'
+         '"seahawks":"SEA","buccaneers":"TB","titans":"TEN","commanders":"WAS"}')
+patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('pbp=pd.read_csv(f"{D}/play_by_play_2026.csv.gz"',
+  'for _nn,_aa in ' + _NICK + '.items():   # Oct 17 (Dom): a defense on waivers is found by its nickname\n'
+  '    if _nn in WAIV: WAIV["def "+_aa.lower()]=WAIV[_nn]\n'
+  'pbp=pd.read_csv(f"{D}/play_by_play_2026.csv.gz"',1),
+],"OCT17 defenses on waivers")
