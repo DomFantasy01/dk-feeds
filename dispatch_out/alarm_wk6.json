@@ -1,14 +1,9 @@
 {
  "week": 6,
- "built_pt": "Fri Oct 16 2026 04:00 PM PT",
- "alarms": [
-  "yahoo_matchups: STALE - 31.1 h old (limit 26 h)",
-  "yahoo_all_teams: STALE - 31.1 h old (limit 26 h)",
-  "yahoo_standings: STALE - 31.1 h old (limit 30 h)",
-  "yahoo_rosters: STALE - 31.1 h old (limit 30 h)"
- ],
+ "built_pt": "Fri Oct 16 2026 05:54 PM PT",
+ "alarms": [],
  "notes": [
-  "DK II: Gotham 24.3 vs Yahoo 15.9 / Sleeper 16.5 on Mike Evans - check role/news",
+  "DK II: Gotham 24.3 vs Yahoo 16.0 / Sleeper 16.5 on Mike Evans - check role/news",
   "DK III: opponent starter Jameson Williams (DET) has no game this week",
   "DK III: opponent starter Ollie Gordon II (MIA) has no game this week",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
@@ -17,35 +12,35 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 16 04:00 PM PT",
+   "pulled_pt": "Fri Oct 16 05:54 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
    "note": "week 6: 14 games"
   },
   "yahoo_matchups": {
-   "status": "STALE",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_thu0853.txt",
-   "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 31.1,
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_fri1747.txt",
+   "pulled_pt": "Fri Oct 16 05:47 PM PT",
+   "age_h": 0.1,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
-   "status": "STALE",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_thu0853.txt",
-   "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 31.1,
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_fri1747.txt",
+   "pulled_pt": "Fri Oct 16 05:47 PM PT",
+   "age_h": 0.1,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
-   "status": "STALE",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_thu0853.txt",
-   "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 31.1,
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_fri1747.txt",
+   "pulled_pt": "Fri Oct 16 05:47 PM PT",
+   "age_h": 0.1,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -53,35 +48,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 16 04:00 PM PT",
+   "pulled_pt": "Fri Oct 16 05:54 PM PT",
    "age_h": 0.0,
    "rows": 6,
    "need": 6,
-   "note": "Gotham run Fri Oct 16 2026 04:00 PM PT for week 6"
+   "note": "Gotham run Fri Oct 16 2026 05:54 PM PT for week 6"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-16T2245Z.csv",
-   "pulled_pt": "Fri Oct 16 03:45 PM PT",
-   "age_h": 0.3,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-16T2340Z.csv",
+   "pulled_pt": "Fri Oct 16 04:40 PM PT",
+   "age_h": 1.2,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 1.2 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-16T2245Z.csv",
-   "pulled_pt": "Fri Oct 16 03:45 PM PT",
-   "age_h": 0.3,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-16T2340Z.csv",
+   "pulled_pt": "Fri Oct 16 04:40 PM PT",
+   "age_h": 1.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
+   "note": "GitHub job checked 1.2 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
-   "status": "STALE",
+   "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_rosters.json",
-   "pulled_pt": "Thu Oct 15 08:53 AM PT",
-   "age_h": 31.1,
+   "pulled_pt": "Fri Oct 16 05:47 PM PT",
+   "age_h": 0.1,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
