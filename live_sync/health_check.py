@@ -247,7 +247,11 @@ sd = load("live/state.json", D); md = load("live/models.json", D)
 if sd:
     lt = iso(sd.get("stamp"))
     same = lt and read_t and lt >= read_t - dt.timedelta(minutes=10)
-    row("Live", "Live shows the latest Yahoo read", "green" if same else "red", "" if same else f"Live is on {at(lt)}, the latest read is {at(read_t)}", lt)
+    # Oct 18 (Dom): a read that landed less than 90 minutes ago hasn't had its Live sync yet (the Sunday 4:52 AM read
+    # waits for the 6:04 AM Live run) - that's waiting, not broken. Red only once a sync has had time to run.
+    _fresh = read_t and (dt.datetime.now(dt.timezone.utc) - read_t) < dt.timedelta(minutes=90)
+    row("Live", "Live shows the latest Yahoo read", "green" if same else "yellow" if _fresh else "red",
+        "" if same else f"Live is on {at(lt)}, the latest read is {at(read_t)}" + (" - the next Live sync picks it up" if _fresh else ""), lt)
     if sd.get("alert"): row("Live", "Live read alert", "red", str(sd["alert"])[:160])
 if md:
     H = md.get("health") or {}
