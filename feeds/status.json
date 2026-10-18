@@ -1,5 +1,5 @@
 {
- "run_utc": "2026-10-18T14:49:37+00:00",
+ "run_utc": "2026-10-18T15:12:19+00:00",
  "sources": {
   "rotowire": {
    "source": "merged",
@@ -12,14 +12,14 @@
    "items": 5,
    "new_items": 0,
    "newest_item_utc": "2026-10-18T07:09:00+00:00",
-   "newest_age_hours": 7.7,
+   "newest_age_hours": 8.1,
    "fallbacks_failed": [
     "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
     "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
    ],
-   "warning": "newest item 7.7 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "warning": "newest item 8.1 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "sleeper": {
    "player_db_pulled_utc": "2026-10-17T16:50:24+00:00",
@@ -29,23 +29,33 @@
    "player_db_refreshed": false,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "weather": {
    "games_in_window": 27,
    "outdoor_needed": 21,
-   "outdoor_pulled": 21,
-   "problems": [],
-   "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "outdoor_pulled": 12,
+   "problems": [
+    "2026_06_HOU_JAX: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_CHI_ATL: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_BAL_CLE: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_TEN_IND: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_NYJ_NE: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_NO_NYG: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_CAR_PHI: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_PIT_TB: URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "2026_06_LAC_KC: URLError: <urlopen error [Errno 101] Network is unreachable>"
+   ],
+   "ok": false,
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "espn_news": {
    "items": 50,
-   "new_items": 2,
-   "newest_item_utc": "2026-10-18T14:46:52Z",
+   "new_items": 1,
+   "newest_item_utc": "2026-10-18T14:58:03Z",
    "with_player_tag": 27,
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "news_extra": {
    "per_source": {
@@ -53,18 +63,18 @@
     "rotoballer": 15
    },
    "items": 45,
-   "new_items": 17,
-   "newest_item_utc": "2026-10-18T14:33:00+00:00",
+   "new_items": 7,
+   "newest_item_utc": "2026-10-18T15:21:51+00:00",
    "errors": [],
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "espn_injuries": {
    "players": 800,
    "teams": 32,
    "warning": null,
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   },
   "probe": {
    "answered": [
@@ -81,7 +91,7 @@
     "rotowire_mirror"
    ],
    "ok": true,
-   "checked_utc": "2026-10-18T14:49:37+00:00"
+   "checked_utc": "2026-10-18T15:12:19+00:00"
   }
  }
 }
