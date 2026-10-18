@@ -1,6 +1,6 @@
 {
  "week": 6,
- "built_pt": "Sun Oct 18 2026 04:58 AM PT",
+ "built_pt": "Sun Oct 18 2026 06:36 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 18 04:58 AM PT",
+   "pulled_pt": "Sun Oct 18 06:36 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_sun0452.txt",
    "pulled_pt": "Sun Oct 18 04:52 AM PT",
-   "age_h": 0.1,
+   "age_h": 1.7,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_sun0452.txt",
    "pulled_pt": "Sun Oct 18 04:52 AM PT",
-   "age_h": 0.1,
+   "age_h": 1.7,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_sun0452.txt",
    "pulled_pt": "Sun Oct 18 04:52 AM PT",
-   "age_h": 0.1,
+   "age_h": 1.7,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 18 04:58 AM PT",
+   "pulled_pt": "Sun Oct 18 06:36 AM PT",
    "age_h": 0.0,
    "rows": 6,
    "need": 6,
-   "note": "Gotham run Sun Oct 18 2026 04:58 AM PT for week 6"
+   "note": "Gotham run Sun Oct 18 2026 06:36 AM PT for week 6"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-18T1141Z.csv",
-   "pulled_pt": "Sun Oct 18 04:41 AM PT",
-   "age_h": 0.3,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-18T1251Z.csv",
+   "pulled_pt": "Sun Oct 18 05:51 AM PT",
+   "age_h": 0.8,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.8 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-18T1141Z.csv",
-   "pulled_pt": "Sun Oct 18 04:41 AM PT",
-   "age_h": 0.3,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-18T1251Z.csv",
+   "pulled_pt": "Sun Oct 18 05:51 AM PT",
+   "age_h": 0.8,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.8 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_rosters.json",
    "pulled_pt": "Sun Oct 18 04:52 AM PT",
-   "age_h": 0.1,
+   "age_h": 1.7,
    "rows": 68,
    "need": null,
    "note": "Dom's four rosters"
@@ -106,7 +106,7 @@
    "teams": 12,
    "opp_rank": 10,
    "needles": {
-    "gotham": 74,
+    "gotham": 73,
     "sleeper": 76,
     "yahoo": 71,
     "yahoo_best": false,
@@ -115,11 +115,11 @@
    },
    "totals": {
     "gotham": [
-     150.58,
+     149.18,
      120.1
     ],
     "sleeper": [
-     151.22,
+     150.51,
      117.44
     ],
     "yahoo": [
@@ -489,7 +489,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 12.74,
-     "sleeper": 10.18,
+     "sleeper": 10.26,
      "window": 1
     },
     {
@@ -583,25 +583,12 @@
        "out_v": 20.9,
        "into": "Tyler Shough",
        "in_v": 21.7
-      },
-      {
-       "out": "Travis Kelce",
-       "out_v": 11.3,
-       "into": "Brenton Strange",
-       "in_v": 12.7
       }
      ],
      "op": []
     },
     "sleeper": {
-     "me": [
-      {
-       "out": "Stefon Diggs",
-       "out_v": 9.5,
-       "into": "Brenton Strange",
-       "in_v": 10.2
-      }
-     ],
+     "me": [],
      "op": []
     },
     "yahoo": {
@@ -638,8 +625,8 @@
      188.49
     ],
     "sleeper": [
-     147.77,
-     182.3
+     147.65,
+     182.39
     ],
     "yahoo": [
      150.23,
@@ -735,7 +722,7 @@
       "pos": "RB",
       "gotham": 11.92,
       "gotham_src": "gotham",
-      "sleeper": 15.02,
+      "sleeper": 14.9,
       "window": 4,
       "gs": "pre"
      },
@@ -917,9 +904,9 @@
       "pos": "WR",
       "gotham": 14.27,
       "gotham_src": "gotham",
-      "sleeper": 18.31,
+      "sleeper": 18.4,
       "window": 1,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "WR",
@@ -1115,7 +1102,7 @@
     }
    ],
    "state": "LIVE",
-   "state_note": "2 of 22 starters done, 2 games kicked off",
+   "state_note": "2 of 22 starters done, 3 games kicked off",
    "needles_set": {
     "gotham": 14,
     "yahoo": 31,
@@ -1132,8 +1119,8 @@
      188.49
     ],
     "sleeper": [
-     147.77,
-     182.3
+     147.65,
+     182.39
     ]
    },
    "best_moves": {
@@ -1183,11 +1170,11 @@
    "totals": {
     "gotham": [
      97.18,
-     97.34
+     97.35
     ],
     "sleeper": [
      107.24,
-     99.04
+     99.14
     ],
     "yahoo": [
      111.34,
@@ -1435,9 +1422,9 @@
       "pos": "WR",
       "gotham": 12.2,
       "gotham_src": "gotham",
-      "sleeper": 15.07,
+      "sleeper": 15.16,
       "window": 1,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "WR",
@@ -1508,11 +1495,11 @@
       "yahoo": 8.88,
       "actual": null,
       "pos": "DEF",
-      "gotham": 10.28,
+      "gotham": 10.29,
       "gotham_src": "sleeper",
-      "sleeper": 10.28,
+      "sleeper": 10.29,
       "window": 1,
-      "gs": "pre"
+      "gs": "playing"
      }
     ]
    },
@@ -1591,7 +1578,7 @@
     }
    ],
    "state": "LIVE",
-   "state_note": "4 of 18 starters done, 2 games kicked off",
+   "state_note": "4 of 18 starters done, 4 games kicked off",
    "needles_set": {
     "gotham": 50,
     "yahoo": 60,
@@ -1605,11 +1592,11 @@
     ],
     "gotham": [
      97.18,
-     97.34
+     97.35
     ],
     "sleeper": [
      107.24,
-     99.04
+     99.14
     ]
    },
    "best_moves": {
@@ -1681,7 +1668,7 @@
      167.62
     ],
     "sleeper": [
-     156.08,
+     156.22,
      163.63
     ],
     "yahoo": [
@@ -1748,9 +1735,9 @@
       "pos": "QB",
       "gotham": 19.42,
       "gotham_src": "gotham",
-      "sleeper": 17.23,
+      "sleeper": 17.37,
       "window": 1,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "RB",
@@ -2170,7 +2157,7 @@
     }
    ],
    "state": "LIVE",
-   "state_note": "2 of 22 starters done, 2 games kicked off",
+   "state_note": "2 of 22 starters done, 3 games kicked off",
    "needles_set": {
     "gotham": 37,
     "yahoo": 46,
@@ -2187,7 +2174,7 @@
      166.26
     ],
     "sleeper": [
-     156.08,
+     156.22,
      161.33
     ]
    },
