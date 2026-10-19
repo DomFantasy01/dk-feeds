@@ -1,0 +1,4370 @@
+{
+ "what": "Dark Knight state file - read this before answering anything about Dom's four teams",
+ "built_utc": "2026-10-19T17:34:50+00:00",
+ "built_pt": "Mon Oct 19, 10:34 AM PT",
+ "week": 6,
+ "dispatch_built_pt": "Mon Oct 19 2026 10:33 AM PT",
+ "leagues": [
+  {
+   "dk": "DK I",
+   "league": "TheMostImportantThingInLife",
+   "league_id": "269381",
+   "team_no": "2",
+   "team": "Dark Knight I",
+   "record": "2-3-0",
+   "rank": 7,
+   "teams": 12,
+   "division": "Marriage",
+   "div_rank": 3,
+   "opponent": "World Of Pain",
+   "opp_record": "1-4-0",
+   "opp_rank": 10,
+   "game_state": "LIVE",
+   "state_note": "17 of 20 starters done, 17 games kicked off",
+   "score": {
+    "me": 83.75,
+    "opp": 130.23
+   },
+   "totals_projected": {
+    "gotham": [
+     141.5,
+     130.23
+    ],
+    "sleeper": [
+     138.45,
+     130.23
+    ],
+    "yahoo": [
+     142.08,
+     130.23
+    ]
+   },
+   "win_pct": {
+    "gotham": 76,
+    "sleeper": 70,
+    "yahoo": 68,
+    "yahoo_best": false,
+    "yahoo_posted": 68,
+    "yahoo_from_spread": 77
+   },
+   "points_needed_to_pass_yahoo": 46.5,
+   "remaining": {
+    "yahoo": {
+     "my_remaining": 58.3,
+     "their_remaining": 0,
+     "projected_margin": 11.8
+    },
+    "gotham": {
+     "my_remaining": 57.7,
+     "their_remaining": 0,
+     "projected_margin": 11.2
+    },
+    "sleeper": {
+     "my_remaining": 54.7,
+     "their_remaining": 0,
+     "projected_margin": 8.2
+    }
+   },
+   "late_swap_risks": [
+    {
+     "starter": "Stefon Diggs",
+     "slot": "W/R/T",
+     "why": "questionable",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "inactives_list_at": "Mon Oct 19, 3:45 PM PT",
+     "proj": {
+      "yahoo": 10.8,
+      "gotham": 12.5,
+      "sleeper": 9.4
+     },
+     "bench_options": [
+      {
+       "name": "Kaelon Black",
+       "pos": "RB",
+       "nfl": "SF",
+       "kickoff": "Mon Oct 19, 5:15 PM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 7.5,
+        "gotham": 6.5,
+        "sleeper": 7.3,
+        "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+       },
+       "decide_by": "Mon Oct 19, 5:15 PM PT"
+      }
+     ],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "plan": "If Stefon Diggs is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 3.3 pts. Decision due when the inactives post, about 3:45 PM PT."
+    }
+   ],
+   "still_to_play": {
+    "me": [
+     {
+      "slot": "QB",
+      "name": "Jayden Daniels",
+      "pos": "QB",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 23.2,
+       "gotham": 20.5,
+       "sleeper": 20.8
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 23.0,
+       "wk15": 22.8,
+       "wk16": 20.6,
+       "wk17": 21.4
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 10:52 AM PT",
+        "age": "47.7 hr ago",
+        "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "unknown time",
+        "age": "age unknown",
+        "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+       }
+      ]
+     },
+     {
+      "slot": "RB",
+      "name": "Christian McCaffrey",
+      "pos": "RB",
+      "nfl": "SF",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 24.3,
+       "gotham": 24.7,
+       "sleeper": 24.5
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": 22.6,
+       "wk8": "bye",
+       "wk15": 22.0,
+       "wk16": 21.6,
+       "wk17": 22.3
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "unknown time",
+        "age": "age unknown",
+        "line": "Christian McCaffrey Could See More Receiving Work Amid WR Injuries"
+       }
+      ]
+     },
+     {
+      "slot": "W/R/T",
+      "name": "Stefon Diggs",
+      "pos": "WR",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "questionable",
+      "actual": null,
+      "proj": {
+       "yahoo": 10.8,
+       "gotham": 12.5,
+       "sleeper": 9.4
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 11.1,
+       "wk15": 11.0,
+       "wk16": 10.5,
+       "wk17": 11.1
+      },
+      "injury_feeds": {
+       "ESPN": "Questionable (Hamstring), posted 46.2 hr ago",
+       "Sleeper": "Questionable (Hamstring)"
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 1:00 PM PT",
+        "age": "45.6 hr ago",
+        "line": "Stefon Diggs Questionable in Week 6"
+       },
+       {
+        "src": "ProFootballTalk",
+        "at": "Sat Oct 17, 12:35 PM PT",
+        "age": "46.0 hr ago",
+        "line": "Commanders list Stefon Diggs, eight others as questionable"
+       }
+      ]
+     }
+    ],
+    "opp": []
+   },
+   "starters": [
+    {
+     "slot": "QB",
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 23.2,
+      "gotham": 20.5,
+      "sleeper": 20.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 23.0,
+      "wk15": 22.8,
+      "wk16": 20.6,
+      "wk17": 21.4
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 10:52 AM PT",
+       "age": "47.7 hr ago",
+       "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Jaylen Warren",
+     "pos": "RB",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 13.3,
+     "proj": {
+      "yahoo": 20.2,
+      "gotham": 13.3,
+      "sleeper": 19.3
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 20.4,
+      "wk8": 20.2,
+      "wk15": 19.9,
+      "wk16": 21.5,
+      "wk17": 20.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 15.5 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 12:07 AM PT",
+       "age": "34.5 hr ago",
+       "line": "Jaylen Warren: Workload shrinks in Dowdle's return"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jaylen Warren has Earned a Bigger Role in Pittsburgh"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Christian McCaffrey",
+     "pos": "RB",
+     "nfl": "SF",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 24.3,
+      "gotham": 24.7,
+      "sleeper": 24.5
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 22.6,
+      "wk8": "bye",
+      "wk15": 22.0,
+      "wk16": 21.6,
+      "wk17": 22.3
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Christian McCaffrey Could See More Receiving Work Amid WR Injuries"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "George Pickens",
+     "pos": "WR",
+     "nfl": "DAL",
+     "kickoff": "Sun Oct 18, 5:20 PM PT",
+     "ko_utc": "2026-10-19T00:20:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 13.3,
+     "proj": {
+      "yahoo": 15.0,
+      "gotham": 13.3,
+      "sleeper": 13.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 13.7,
+      "wk8": 15.4,
+      "wk15": 14.0,
+      "wk16": 14.9,
+      "wk17": 15.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 13.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 2:21 AM PT",
+       "age": "32.2 hr ago",
+       "line": "George Pickens: Team-high 73 receiving yards in loss"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "George Pickens Returning to Elite Level of Play From Last Year"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Drake London",
+     "pos": "WR",
+     "nfl": "ATL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.2,
+     "proj": {
+      "yahoo": 18.7,
+      "gotham": 12.2,
+      "sleeper": 18.1
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 17.9,
+      "wk8": 17.2,
+      "wk15": 17.6,
+      "wk16": 17.9,
+      "wk17": 18.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 10.4 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 7:20 AM PT",
+       "age": "27.2 hr ago",
+       "line": "Wide Receiver Matchups to Target For Week 6 - Drake London, Malik Nabers, Jalen Coker, more"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 9:02 AM PT",
+       "age": "2 days ago",
+       "line": "Drake London a Mid-Range WR1 Versus Banged-Up Bears Defense"
+      }
+     ]
+    },
+    {
+     "slot": "TE",
+     "name": "Travis Kelce",
+     "pos": "TE",
+     "nfl": "KC",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.3,
+     "proj": {
+      "yahoo": 13.2,
+      "gotham": 9.3,
+      "sleeper": 13.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.5,
+      "wk8": 11.1,
+      "wk15": 11.6,
+      "wk16": 11.5,
+      "wk17": 11.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.1 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 5:10 PM PT",
+       "age": "17.4 hr ago",
+       "line": "Travis Kelce Plays Through Ankle Injury vs. Chargers, Remains Productive"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 11:30 PM PT",
+       "age": "35.1 hr ago",
+       "line": "Travis Kelce: Four catches in victory"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Alvin Kamara",
+     "pos": "RB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 16.6,
+     "proj": {
+      "yahoo": 11.8,
+      "gotham": 16.6,
+      "sleeper": 12.2
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.3,
+      "wk8": "bye",
+      "wk15": 8.8,
+      "wk16": 9.5,
+      "wk17": 8.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.8 hr ago",
+      "Sleeper": "Questionable (Undisclosed)"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 1:38 PM PT",
+       "age": "20.9 hr ago",
+       "line": "Tyler Shough and Saints score 34 consecutive points, hold on to beat Giants 34-27 and end skid"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Sun Oct 18, 11:54 AM PT",
+       "age": "22.7 hr ago",
+       "line": "Alvin Kamara reaches 5,000 career receiving yards, puts Saints up 17-10"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Stefon Diggs",
+     "pos": "WR",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "questionable",
+     "actual": null,
+     "proj": {
+      "yahoo": 10.8,
+      "gotham": 12.5,
+      "sleeper": 9.4
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 11.1,
+      "wk15": 11.0,
+      "wk16": 10.5,
+      "wk17": 11.1
+     },
+     "injury_feeds": {
+      "ESPN": "Questionable (Hamstring), posted 46.2 hr ago",
+      "Sleeper": "Questionable (Hamstring)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 1:00 PM PT",
+       "age": "45.6 hr ago",
+       "line": "Stefon Diggs Questionable in Week 6"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Sat Oct 17, 12:35 PM PT",
+       "age": "46.0 hr ago",
+       "line": "Commanders list Stefon Diggs, eight others as questionable"
+      }
+     ]
+    },
+    {
+     "slot": "K",
+     "name": "Chris Boswell",
+     "pos": "K",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 16.0,
+     "proj": {
+      "yahoo": 7.0,
+      "gotham": 7.0,
+      "sleeper": 7.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 7.4,
+      "wk8": 7.3,
+      "wk15": 7.0,
+      "wk16": 7.2,
+      "wk17": 7.2
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 7 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Chris Boswell A Strong Fantasy Option Against Buccaneers"
+      }
+     ]
+    },
+    {
+     "slot": "DEF",
+     "name": "Colts",
+     "pos": "DEF",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 3.0,
+     "proj": {
+      "yahoo": 10.1,
+      "gotham": 11.1,
+      "sleeper": 11.1
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 7.7,
+      "wk8": 6.2,
+      "wk15": 8.2,
+      "wk16": 5.0,
+      "wk17": 9.1
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Mon Oct 19, 10:04 AM PT",
+       "age": "31 min ago",
+       "line": "Colts fire GM Chris Ballard after home loss to Titans, cite 'necessary' change"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Mon Oct 19, 10:01 AM PT",
+       "age": "34 min ago",
+       "line": "Report: Sauce Gardner week-to-week with mild calf strain"
+      }
+     ]
+    }
+   ],
+   "bench_and_ir": [
+    {
+     "slot": "BN",
+     "name": "Brenton Strange",
+     "pos": "TE",
+     "nfl": "JAX",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 10.0,
+      "gotham": 9.4,
+      "sleeper": 10.2,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 11.2,
+      "wk15": 10.8,
+      "wk16": 11.7,
+      "wk17": 11.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 15.0 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 3:00 AM PT",
+       "age": "31.6 hr ago",
+       "line": "Who Should I Start for Fantasy Football Week 6? Pat Freiermuth, Brenton Strange, Tyler Higbee, Juwan Johnson, Dalton Kincaid, Darren Waller, Colston Loveland, Dalton Schultz"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Brenton Strange Emerging as a Strong Week 6 Waiver-Wire Add"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "TreVeyon Henderson",
+     "pos": "RB",
+     "nfl": "NE",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 7.9,
+      "gotham": 4.8,
+      "sleeper": 7.3,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 8.0,
+      "wk8": 10.2,
+      "wk15": 10.9,
+      "wk16": 11.5,
+      "wk17": 11.5
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 9.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 6:26 AM PT",
+       "age": "28.1 hr ago",
+       "line": "TreVeyon Henderson Likely to Play Against Jets in Week 6"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 2:49 AM PT",
+       "age": "31.8 hr ago",
+       "line": "Rhamondre Stevenson: Henderson available in Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Tyler Shough",
+     "pos": "QB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 21.4,
+      "gotham": 34.2,
+      "sleeper": 20.1,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.4,
+      "wk8": "bye",
+      "wk15": 20.9,
+      "wk16": 24.0,
+      "wk17": 19.4
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 17.0 hr ago"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 4:11 PM PT",
+       "age": "18.4 hr ago",
+       "line": "Week 6 winners and losers: Lawrence, Nabers impress; Robinson, Henry disappoint"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 2:57 PM PT",
+       "age": "19.6 hr ago",
+       "line": "Tyler Shough and Saints score 34 consecutive points, hold on to beat Giants 34-27 and end skid"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Kaelon Black",
+     "pos": "RB",
+     "nfl": "SF",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 7.5,
+      "gotham": 6.5,
+      "sleeper": 7.3,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 6.8,
+      "wk8": "bye",
+      "wk15": 5.8,
+      "wk16": 5.7,
+      "wk17": 5.9
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 43.7 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 2:24 PM PT",
+       "age": "44.2 hr ago",
+       "line": "Kaelon Black Could See More Work In Mismatch"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Kaelon Black Potentially in Line for an Expanded Role"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "Travis Etienne Jr.",
+     "pos": "RB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 0.0,
+      "wk8": "bye",
+      "wk15": 12.7,
+      "wk16": 13.8,
+      "wk17": 12.7
+     },
+     "injury_feeds": {
+      "Sleeper": "IR (Hamstring)"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "Vikings",
+     "pos": "DEF",
+     "nfl": "",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": null
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.6,
+      "wk8": 7.7,
+      "wk15": 7.2,
+      "wk16": 8.0,
+      "wk17": 10.8
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jauan Jennings is Worth Stashing Amidst Trade Rumors"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Aaron Jones Sr. has Become a Workhorse in Vikings Offense"
+      }
+     ]
+    }
+   ],
+   "opp_starters": [
+    {
+     "slot": "QB",
+     "name": "Matthew Stafford",
+     "pos": "QB",
+     "nfl": "LAR",
+     "kickoff": "Sun Oct 18, 1:05 PM PT",
+     "ko_utc": "2026-10-18T20:05:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 20.9,
+     "proj": {
+      "yahoo": 25.2,
+      "gotham": 20.9,
+      "sleeper": 25.9
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "D'Andre Swift",
+     "pos": "RB",
+     "nfl": "CHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 27.0,
+     "proj": {
+      "yahoo": 19.1,
+      "gotham": 27.0,
+      "sleeper": 18.6
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "nfl": "TEN",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.3,
+     "proj": {
+      "yahoo": 15.2,
+      "gotham": 12.3,
+      "sleeper": 14.4
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Jaylen Waddle",
+     "pos": "WR",
+     "nfl": "DEN",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 6.4,
+     "proj": {
+      "yahoo": 11.5,
+      "gotham": 6.4,
+      "sleeper": 11.4
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Keenan Allen",
+     "pos": "WR",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 16.2,
+     "proj": {
+      "yahoo": 11.9,
+      "gotham": 16.2,
+      "sleeper": 9.3
+     }
+    },
+    {
+     "slot": "TE",
+     "name": "Colston Loveland",
+     "pos": "TE",
+     "nfl": "CHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 18.5,
+     "proj": {
+      "yahoo": 9.8,
+      "gotham": 18.5,
+      "sleeper": 9.4
+     }
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Mark Andrews",
+     "pos": "TE",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 1.4,
+     "proj": {
+      "yahoo": 8.9,
+      "gotham": 1.4,
+      "sleeper": 9.6
+     }
+    },
+    {
+     "slot": "W/R/T",
+     "name": "DeVonta Smith",
+     "pos": "WR",
+     "nfl": "PHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 20.5,
+     "proj": {
+      "yahoo": 13.7,
+      "gotham": 20.5,
+      "sleeper": 11.9
+     }
+    },
+    {
+     "slot": "K",
+     "name": "Tyler Loop",
+     "pos": "K",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 4.0,
+     "proj": {
+      "yahoo": 7.0,
+      "gotham": 6.9,
+      "sleeper": 6.9
+     }
+    },
+    {
+     "slot": "DEF",
+     "name": "Eagles",
+     "pos": "DEF",
+     "nfl": "PHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 3.0,
+     "proj": {
+      "yahoo": 7.2,
+      "gotham": 6.9,
+      "sleeper": 6.9
+     }
+    }
+   ],
+   "actions": [
+    {
+     "what": "Stefon Diggs is questionable. Check his status",
+     "by": "before his Mon 5:15 PM kickoff",
+     "kind": "check"
+    }
+   ],
+   "alerts": [
+    {
+     "color": "grey",
+     "title": "Coming online: Audric Estime (RB, CLE), hasn't played a game this season. Free agent",
+     "who": "Audric Estime",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Joshua Palmer (WR, BUF), hasn't played a game this season. Free agent",
+     "who": "Joshua Palmer",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Stefon Diggs is questionable.",
+     "who": "Stefon Diggs",
+     "kind": "check",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Tanner McKee (QB, PHI), only one game this season (Week 6), just back. Free agent",
+     "who": "Tanner McKee",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Will Mallory (TE, IND), only one game this season (Week 6), just back. Free agent",
+     "who": "Will Mallory",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    }
+   ],
+   "roster_read_pt": "Mon Oct 19, 8:59 AM PT"
+  },
+  {
+   "dk": "DK II",
+   "league": "Winners and Sinners",
+   "league_id": "1519795",
+   "team_no": "7",
+   "team": "Dark Knight II",
+   "record": "3-2-0",
+   "rank": 7,
+   "teams": 12,
+   "division": "Division 1",
+   "div_rank": 2,
+   "opponent": "RFFR",
+   "opp_record": "4-1-0",
+   "opp_rank": 1,
+   "game_state": "LIVE",
+   "state_note": "19 of 22 starters done, 19 games kicked off",
+   "score": {
+    "me": 130.67,
+    "opp": 115.03
+   },
+   "totals_projected": {
+    "gotham": [
+     151.17,
+     165.29
+    ],
+    "sleeper": [
+     151.49,
+     157.84
+    ],
+    "yahoo": [
+     153.95,
+     156.47
+    ]
+   },
+   "win_pct": {
+    "gotham": 17,
+    "sleeper": 33,
+    "yahoo": 45,
+    "yahoo_best": false,
+    "yahoo_posted": 45,
+    "yahoo_from_spread": 43
+   },
+   "points_needed_to_pass_yahoo": 25.9,
+   "remaining": {
+    "yahoo": {
+     "my_remaining": 23.3,
+     "their_remaining": 41.5,
+     "projected_margin": -2.6
+    },
+    "gotham": {
+     "my_remaining": 20.5,
+     "their_remaining": 50.3,
+     "projected_margin": -14.2
+    },
+    "sleeper": {
+     "my_remaining": 20.8,
+     "their_remaining": 42.8,
+     "projected_margin": -6.4
+    }
+   },
+   "late_swap_risks": [],
+   "still_to_play": {
+    "me": [
+     {
+      "slot": "QB",
+      "name": "Jayden Daniels",
+      "pos": "QB",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 23.3,
+       "gotham": 20.5,
+       "sleeper": 20.8
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 23.1,
+       "wk15": 22.9,
+       "wk16": 20.6,
+       "wk17": 21.4
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 10:52 AM PT",
+        "age": "47.7 hr ago",
+        "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "unknown time",
+        "age": "age unknown",
+        "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+       }
+      ]
+     }
+    ],
+    "opp": [
+     {
+      "slot": "QB",
+      "name": "Brock Purdy",
+      "pos": "QB",
+      "nfl": "SF",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 25.7,
+       "gotham": 26.2,
+       "sleeper": 26.6
+      },
+      "news": [
+       {
+        "src": "ESPN",
+        "at": "Mon Oct 19, 10:19 AM PT",
+        "age": "15 min ago",
+        "line": "How 49ers QB Brock Purdy mastered the art of layering passes over defenders"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "unknown time",
+        "age": "age unknown",
+        "line": "Brock Purdy's Week 6 Outlook Still Rosy Despite WR Injuries"
+       }
+      ]
+     },
+     {
+      "slot": "WR",
+      "name": "Mike Evans",
+      "pos": "WR",
+      "nfl": "SF",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "questionable",
+      "actual": null,
+      "proj": {
+       "yahoo": 15.8,
+       "gotham": 24.1,
+       "sleeper": 16.2
+      },
+      "injury_feeds": {
+       "ESPN": "Questionable (Ribs), posted 2.2 hr ago",
+       "Sleeper": "Questionable (Ribs)"
+      },
+      "news": [
+       {
+        "src": "RotoWire",
+        "at": "Mon Oct 19, 1:22 AM PT",
+        "age": "9.2 hr ago",
+        "line": "Mike Evans: Shaping up as game-time call Monday"
+       },
+       {
+        "src": "ESPN",
+        "at": "Sun Oct 18, 9:09 AM PT",
+        "age": "25.4 hr ago",
+        "line": "49ers rule out Bosa, still hopeful for Evans; Juszczyk will play"
+       }
+      ]
+     }
+    ]
+   },
+   "starters": [
+    {
+     "slot": "QB",
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 23.3,
+      "gotham": 20.5,
+      "sleeper": 20.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 23.1,
+      "wk15": 22.9,
+      "wk16": 20.6,
+      "wk17": 21.4
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 10:52 AM PT",
+       "age": "47.7 hr ago",
+       "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Alvin Kamara",
+     "pos": "RB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 16.6,
+     "proj": {
+      "yahoo": 11.8,
+      "gotham": 16.6,
+      "sleeper": 12.2
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.4,
+      "wk8": "bye",
+      "wk15": 8.8,
+      "wk16": 9.6,
+      "wk17": 8.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.8 hr ago",
+      "Sleeper": "Questionable (Undisclosed)"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 1:38 PM PT",
+       "age": "20.9 hr ago",
+       "line": "Tyler Shough and Saints score 34 consecutive points, hold on to beat Giants 34-27 and end skid"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Sun Oct 18, 11:54 AM PT",
+       "age": "22.7 hr ago",
+       "line": "Alvin Kamara reaches 5,000 career receiving yards, puts Saints up 17-10"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "MarShawn Lloyd",
+     "pos": "RB",
+     "nfl": "GB",
+     "kickoff": "Sun Oct 18, 5:20 PM PT",
+     "ko_utc": "2026-10-19T00:20:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 3.0,
+     "proj": {
+      "yahoo": 14.8,
+      "gotham": 3.0,
+      "sleeper": 14.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 11.8,
+      "wk8": 12.5,
+      "wk15": 12.4,
+      "wk16": 11.3,
+      "wk17": 11.1
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 13.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 11:41 PM PT",
+       "age": "10.9 hr ago",
+       "line": "MarShawn Lloyd Falls Flat in Stellar Spot"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "MarShawn Lloyd Remains a Priority Week 6 Waiver-Wire Add"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Drake London",
+     "pos": "WR",
+     "nfl": "ATL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.2,
+     "proj": {
+      "yahoo": 18.9,
+      "gotham": 12.2,
+      "sleeper": 18.1
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 18.1,
+      "wk8": 17.3,
+      "wk15": 17.8,
+      "wk16": 18.1,
+      "wk17": 18.1
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 10.4 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 7:20 AM PT",
+       "age": "27.2 hr ago",
+       "line": "Wide Receiver Matchups to Target For Week 6 - Drake London, Malik Nabers, Jalen Coker, more"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 9:02 AM PT",
+       "age": "2 days ago",
+       "line": "Drake London a Mid-Range WR1 Versus Banged-Up Bears Defense"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Courtland Sutton",
+     "pos": "WR",
+     "nfl": "DEN",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 3.9,
+     "proj": {
+      "yahoo": 8.7,
+      "gotham": 3.9,
+      "sleeper": 7.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.8,
+      "wk8": 9.1,
+      "wk15": 9.9,
+      "wk16": 9.4,
+      "wk17": 9.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 4 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Courtland Sutton Hopes to Find End Zone for Second Straight Week"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Germie Bernard",
+     "pos": "WR",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 25.7,
+     "proj": {
+      "yahoo": 10.7,
+      "gotham": 25.7,
+      "sleeper": 10.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 11.0,
+      "wk8": 9.3,
+      "wk15": 8.1,
+      "wk16": 8.0,
+      "wk17": 8.5
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 17.1 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 10:00 AM PT",
+       "age": "35 min ago",
+       "line": "Unexpected Boom Performances of Week 6: Fantasy Football Risers Include Germie Bernard, Blake Corum, and Omar Cooper Jr."
+      },
+      {
+       "src": "ESPN",
+       "at": "Mon Oct 19, 8:19 AM PT",
+       "age": "2.3 hr ago",
+       "line": "Daniel Dopp implores fantasy managers to pay attention to Germie Bernard"
+      }
+     ]
+    },
+    {
+     "slot": "TE",
+     "name": "Travis Kelce",
+     "pos": "TE",
+     "nfl": "KC",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.3,
+     "proj": {
+      "yahoo": 13.2,
+      "gotham": 9.3,
+      "sleeper": 13.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.6,
+      "wk8": 11.1,
+      "wk15": 11.7,
+      "wk16": 11.5,
+      "wk17": 11.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.1 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 5:10 PM PT",
+       "age": "17.4 hr ago",
+       "line": "Travis Kelce Plays Through Ankle Injury vs. Chargers, Remains Productive"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 11:30 PM PT",
+       "age": "35.1 hr ago",
+       "line": "Travis Kelce: Four catches in victory"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Braelon Allen",
+     "pos": "RB",
+     "nfl": "NYJ",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 16.6,
+     "proj": {
+      "yahoo": 18.6,
+      "gotham": 16.6,
+      "sleeper": 17.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.3,
+      "wk8": 9.6,
+      "wk15": 8.8,
+      "wk16": 8.6,
+      "wk17": 7.9
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 9.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 8:50 AM PT",
+       "age": "2 days ago",
+       "line": "Braelon Allen Set for Another Heavy Workload With Teammate Out"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Braelon Allen's Heavy Workload Keeps Him in RB2 Conversation"
+      }
+     ]
+    },
+    {
+     "slot": "Q/W/R/T",
+     "name": "Aaron Rodgers",
+     "pos": "QB",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 20.3,
+     "proj": {
+      "yahoo": 20.0,
+      "gotham": 20.3,
+      "sleeper": 19.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.8,
+      "wk8": 19.3,
+      "wk15": 20.4,
+      "wk16": 20.3,
+      "wk17": 20.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 15.6 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 4:30 AM PT",
+       "age": "6.1 hr ago",
+       "line": "Quarterback Fantasy Football Waiver Wire Pickups - Top QB Adds for Week 7 Include Kyler Murray, Michael Penix Jr., Aaron Rodgers and more"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 8:43 PM PT",
+       "age": "13.9 hr ago",
+       "line": "Aaron Rodgers' 2026 NFL season: Tracking records, milestones"
+      }
+     ]
+    },
+    {
+     "slot": "K",
+     "name": "Dominic Zvada",
+     "pos": "K",
+     "nfl": "NYG",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 8.0,
+     "proj": {
+      "yahoo": 7.8,
+      "gotham": 7.6,
+      "sleeper": 7.6
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 7.2,
+      "wk8": "bye",
+      "wk15": 8.2,
+      "wk16": 8.2,
+      "wk17": 8.2
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Dominic Zvada Looks to Bounce Back Against Saints"
+      }
+     ]
+    },
+    {
+     "slot": "DEF",
+     "name": "Chiefs",
+     "pos": "DEF",
+     "nfl": "KC",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 15.0,
+     "proj": {
+      "yahoo": 7.8,
+      "gotham": 8.1,
+      "sleeper": 8.1
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 5.4,
+      "wk8": 5.1,
+      "wk15": 6.0,
+      "wk16": 5.4,
+      "wk17": 6.2
+     },
+     "news": [
+      {
+       "src": "ProFootballTalk",
+       "at": "Mon Oct 19, 5:28 AM PT",
+       "age": "5.1 hr ago",
+       "line": "Kenneth Walker on pace to break NFL records for rushing yards, yards from scrimmage"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 8:47 PM PT",
+       "age": "13.8 hr ago",
+       "line": "Harbaugh mum on McDaniel, says Chargers need 'to address everything'"
+      }
+     ]
+    }
+   ],
+   "bench_and_ir": [
+    {
+     "slot": "BN",
+     "name": "Ja'Marr Chase",
+     "pos": "WR",
+     "nfl": "CIN",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 20.4,
+      "wk8": 21.6,
+      "wk15": 19.8,
+      "wk16": 20.5,
+      "wk17": 20.3
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "Mark Andrews",
+     "pos": "TE",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 8.9,
+      "gotham": 1.4,
+      "sleeper": 9.6,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.3,
+      "wk8": 10.0,
+      "wk15": 10.2,
+      "wk16": 9.4,
+      "wk17": 10.2
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Mark Andrews Battling Declining Efficiency So Far in 2026"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Mark Andrews' Declining Production Continues in Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Jacoby Brissett",
+     "pos": "QB",
+     "nfl": "ARI",
+     "kickoff": "Sun Oct 18, 1:05 PM PT",
+     "ko_utc": "2026-10-18T20:05:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 19.0,
+      "gotham": 7.4,
+      "sleeper": 16.8,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 19.8,
+      "wk8": 22.3,
+      "wk15": 21.2,
+      "wk16": 20.4,
+      "wk17": 22.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 17.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jacoby Brissett Still a Great Target on Waivers Despite Wide Receiver Trade"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jacoby Brissett Could Face Benching Later This Season"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Will Shipley",
+     "pos": "RB",
+     "nfl": "PHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": null,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 0.0,
+      "wk8": 2.0,
+      "wk15": 1.2,
+      "wk16": 1.3,
+      "wk17": 1.3
+     },
+     "injury_feeds": {
+      "Sleeper": "IR (Foot)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Eagles Place Will Shipley on Injured Reserve on Friday"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Carson Steele Could Be Involved Versus Panthers in Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Kendre Miller",
+     "pos": "RB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 10.7,
+      "gotham": 14.0,
+      "sleeper": 11.6,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.5,
+      "wk8": "bye",
+      "wk15": 2.6,
+      "wk16": 2.8,
+      "wk17": 2.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.9 hr ago"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Mon Oct 19, 9:25 AM PT",
+       "age": "69 min ago",
+       "line": "Fantasy football free agent pickups: C.J. Stroud, Kendre Miller lead top options"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 5:25 AM PT",
+       "age": "5.2 hr ago",
+       "line": "Running Back Fantasy Football Waiver Wire Pickups for Week 7 - Zach Charbonnet, Dameon Pierce, Kendre Miller, Roschon Johnson"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "David Montgomery",
+     "pos": "RB",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "out",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 13.3,
+      "wk8": "bye",
+      "wk15": 12.5,
+      "wk16": 12.6,
+      "wk17": 13.2
+     },
+     "injury_feeds": {
+      "ESPN": "Out (Groin), posted 55 min ago",
+      "Sleeper": "Out (Groin)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "David Montgomery Considered \"Week-to-Week\""
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "David Montgomery Could be Losing Grip on Starting Gig"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "Travis Etienne Jr.",
+     "pos": "RB",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 0.0,
+      "wk8": "bye",
+      "wk15": 12.8,
+      "wk16": 13.8,
+      "wk17": 12.8
+     },
+     "injury_feeds": {
+      "Sleeper": "IR (Hamstring)"
+     }
+    }
+   ],
+   "opp_starters": [
+    {
+     "slot": "QB",
+     "name": "Brock Purdy",
+     "pos": "QB",
+     "nfl": "SF",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 25.7,
+      "gotham": 26.2,
+      "sleeper": 26.6
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Mon Oct 19, 10:19 AM PT",
+       "age": "15 min ago",
+       "line": "How 49ers QB Brock Purdy mastered the art of layering passes over defenders"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Brock Purdy's Week 6 Outlook Still Rosy Despite WR Injuries"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Bijan Robinson",
+     "pos": "RB",
+     "nfl": "ATL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.6,
+     "proj": {
+      "yahoo": 27.7,
+      "gotham": 9.6,
+      "sleeper": 30.1
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "Bucky Irving",
+     "pos": "RB",
+     "nfl": "TB",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 11.7,
+     "proj": {
+      "yahoo": 18.7,
+      "gotham": 11.7,
+      "sleeper": 18.7
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Nico Collins",
+     "pos": "WR",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.2,
+     "proj": {
+      "yahoo": 17.3,
+      "gotham": 11.2,
+      "sleeper": 18.4
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Mike Evans",
+     "pos": "WR",
+     "nfl": "SF",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "questionable",
+     "actual": null,
+     "proj": {
+      "yahoo": 15.8,
+      "gotham": 24.1,
+      "sleeper": 16.2
+     },
+     "injury_feeds": {
+      "ESPN": "Questionable (Ribs), posted 2.2 hr ago",
+      "Sleeper": "Questionable (Ribs)"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Mon Oct 19, 1:22 AM PT",
+       "age": "9.2 hr ago",
+       "line": "Mike Evans: Shaping up as game-time call Monday"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 9:09 AM PT",
+       "age": "25.4 hr ago",
+       "line": "49ers rule out Bosa, still hopeful for Evans; Juszczyk will play"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Zay Flowers",
+     "pos": "WR",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.9,
+     "proj": {
+      "yahoo": 16.3,
+      "gotham": 12.9,
+      "sleeper": 17.3
+     }
+    },
+    {
+     "slot": "TE",
+     "name": "Isaiah Likely",
+     "pos": "TE",
+     "nfl": "NYG",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 23.9,
+     "proj": {
+      "yahoo": 14.1,
+      "gotham": 23.9,
+      "sleeper": 13.7
+     }
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Tetairoa McMillan",
+     "pos": "WR",
+     "nfl": "CAR",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 14.6,
+     "proj": {
+      "yahoo": 14.2,
+      "gotham": 14.6,
+      "sleeper": 13.2
+     }
+    },
+    {
+     "slot": "Q/W/R/T",
+     "name": "Jameis Winston",
+     "pos": "QB",
+     "nfl": "NYG",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.2,
+     "proj": {
+      "yahoo": 17.4,
+      "gotham": 9.2,
+      "sleeper": 15.8
+     }
+    },
+    {
+     "slot": "K",
+     "name": "Jason Myers",
+     "pos": "K",
+     "nfl": "SEA",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 8.0,
+     "proj": {
+      "yahoo": 8.0,
+      "gotham": 7.9,
+      "sleeper": 7.9
+     }
+    },
+    {
+     "slot": "DEF",
+     "name": "Saints",
+     "pos": "DEF",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 13.0,
+     "proj": {
+      "yahoo": 6.2,
+      "gotham": 5.6,
+      "sleeper": 5.6
+     }
+    }
+   ],
+   "actions": [
+    {
+     "what": "Will Shipley is a drop candidate (hurt, no IR seat). Your call",
+     "by": "any time",
+     "kind": "drop"
+    }
+   ],
+   "alerts": [
+    {
+     "color": "gold",
+     "title": "Will Shipley is a drop candidate (hurt, no IR seat).",
+     "who": "Will Shipley",
+     "kind": "drop",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Audric Estime (RB, CLE), hasn't played a game this season. Free agent",
+     "who": "Audric Estime",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "David Montgomery: Out (Groin)",
+     "who": "David Montgomery",
+     "kind": "news",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Joshua Palmer (WR, BUF), hasn't played a game this season. Free agent",
+     "who": "Joshua Palmer",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Mike Evans: Questionable (Ribs)",
+     "who": "Mike Evans",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Tanner McKee (QB, PHI), only one game this season (Week 6), just back. Free agent",
+     "who": "Tanner McKee",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Will Mallory (TE, IND), only one game this season (Week 6), just back. Free agent",
+     "who": "Will Mallory",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    }
+   ],
+   "roster_read_pt": "Mon Oct 19, 8:59 AM PT"
+  },
+  {
+   "dk": "DK III",
+   "league": "Hers and His Version 2.0",
+   "league_id": "1507991",
+   "team_no": "2",
+   "team": "Dark Knight III",
+   "record": "1-4-0",
+   "rank": 13,
+   "teams": 14,
+   "division": "The His",
+   "div_rank": 7,
+   "opponent": "Maly’s Better Half",
+   "opp_record": "1-4-0",
+   "opp_rank": 11,
+   "game_state": "LIVE",
+   "state_note": "16 of 18 starters done, 14 games kicked off",
+   "score": {
+    "me": 53.8,
+    "opp": 96.39
+   },
+   "totals_projected": {
+    "gotham": [
+     84.28,
+     96.39
+    ],
+    "sleeper": [
+     88.43,
+     96.39
+    ],
+    "yahoo": [
+     90.99,
+     96.39
+    ]
+   },
+   "win_pct": {
+    "gotham": 24,
+    "sleeper": 32,
+    "yahoo": 42,
+    "yahoo_best": false,
+    "yahoo_posted": 42,
+    "yahoo_from_spread": 38
+   },
+   "points_needed_to_pass_yahoo": 42.6,
+   "remaining": {
+    "yahoo": {
+     "my_remaining": 37.2,
+     "their_remaining": 0,
+     "projected_margin": -5.4
+    },
+    "gotham": {
+     "my_remaining": 30.5,
+     "their_remaining": 0,
+     "projected_margin": -12.1
+    },
+    "sleeper": {
+     "my_remaining": 34.6,
+     "their_remaining": 0,
+     "projected_margin": -8.0
+    }
+   },
+   "late_swap_risks": [],
+   "still_to_play": {
+    "me": [
+     {
+      "slot": "QB",
+      "name": "Jayden Daniels",
+      "pos": "QB",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 23.2,
+       "gotham": 20.5,
+       "sleeper": 20.8
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 23.0,
+       "wk15": 22.8,
+       "wk16": 20.6,
+       "wk17": 21.4
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 10:52 AM PT",
+        "age": "47.7 hr ago",
+        "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "unknown time",
+        "age": "age unknown",
+        "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+       }
+      ]
+     },
+     {
+      "slot": "RB",
+      "name": "Rachaad White",
+      "pos": "RB",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 14.0,
+       "gotham": 10.0,
+       "sleeper": 13.8
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 8.7,
+       "wk15": 8.9,
+       "wk16": 8.0,
+       "wk17": 8.3
+      },
+      "injury_feeds": {
+       "ESPN": "Active, posted 46.1 hr ago"
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sun Oct 18, 9:28 AM PT",
+        "age": "25.1 hr ago",
+        "line": "Rachaad White Should Handle Larger Workload on Monday"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 1:36 PM PT",
+        "age": "45.0 hr ago",
+        "line": "Should I Pickup Rachaad White or Austin Ekeler? Fantasy Football Waiver Wire Pickups for Week 6"
+       }
+      ]
+     }
+    ],
+    "opp": []
+   },
+   "starters": [
+    {
+     "slot": "QB",
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 23.2,
+      "gotham": 20.5,
+      "sleeper": 20.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 23.0,
+      "wk15": 22.8,
+      "wk16": 20.6,
+      "wk17": 21.4
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 10:52 AM PT",
+       "age": "47.7 hr ago",
+       "line": "Jayden Daniels A Strong Start on Monday Night vs. 49ers"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jayden Daniels Proves he's Back With Strong Week 5 Performance"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Rachaad White",
+     "pos": "RB",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 14.0,
+      "gotham": 10.0,
+      "sleeper": 13.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 8.7,
+      "wk15": 8.9,
+      "wk16": 8.0,
+      "wk17": 8.3
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 46.1 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 9:28 AM PT",
+       "age": "25.1 hr ago",
+       "line": "Rachaad White Should Handle Larger Workload on Monday"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 1:36 PM PT",
+       "age": "45.0 hr ago",
+       "line": "Should I Pickup Rachaad White or Austin Ekeler? Fantasy Football Waiver Wire Pickups for Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "nfl": "TEN",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 2.0,
+     "proj": {
+      "yahoo": 9.1,
+      "gotham": 2.0,
+      "sleeper": 10.2
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 8.1,
+      "wk8": 8.8,
+      "wk15": 8.9,
+      "wk16": 8.9,
+      "wk17": 8.7
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 14.4 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tyjae Spears Downgraded to DNP on Thursday With Knee Injury"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tyjae Spears Active for Week 6 Against Colts"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "George Pickens",
+     "pos": "WR",
+     "nfl": "DAL",
+     "kickoff": "Sun Oct 18, 5:20 PM PT",
+     "ko_utc": "2026-10-19T00:20:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 13.3,
+     "proj": {
+      "yahoo": 15.0,
+      "gotham": 13.3,
+      "sleeper": 13.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 13.7,
+      "wk8": 15.4,
+      "wk15": 14.0,
+      "wk16": 14.9,
+      "wk17": 15.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 13.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 2:21 AM PT",
+       "age": "32.2 hr ago",
+       "line": "George Pickens: Team-high 73 receiving yards in loss"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "George Pickens Returning to Elite Level of Play From Last Year"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Jaylen Waddle",
+     "pos": "WR",
+     "nfl": "DEN",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 6.4,
+     "proj": {
+      "yahoo": 11.5,
+      "gotham": 6.4,
+      "sleeper": 11.4
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 13.0,
+      "wk8": 12.1,
+      "wk15": 13.0,
+      "wk16": 12.5,
+      "wk17": 12.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 4 days ago",
+      "Sleeper": "Questionable (Shoulder)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Jaylen Waddle Struggling to Get Going"
+      }
+     ]
+    },
+    {
+     "slot": "TE",
+     "name": "Harold Fannin Jr.",
+     "pos": "TE",
+     "nfl": "CLE",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 1.9,
+     "proj": {
+      "yahoo": 10.9,
+      "gotham": 1.9,
+      "sleeper": 11.2
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.6,
+      "wk8": 10.2,
+      "wk15": 9.8,
+      "wk16": 10.0,
+      "wk17": 10.4
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 9.4 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Harold Fannin Jr. has Been Inconsistent to Start Sophomore Season"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Harold Fannin Jr. Turns in a Second Consecutive Bust Performance"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Josh Downs",
+     "pos": "WR",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 8.9,
+     "proj": {
+      "yahoo": 14.0,
+      "gotham": 8.9,
+      "sleeper": 11.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.9,
+      "wk8": 10.6,
+      "wk15": 10.9,
+      "wk16": 10.9,
+      "wk17": 9.3
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 17.7 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 9:51 PM PT",
+       "age": "36.7 hr ago",
+       "line": "Josh Downs: Four grabs in Week 6 loss"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Josh Downs Failing to Capitalize During Pierce's Absence"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Devaughn Vele",
+     "pos": "WR",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 7.2,
+     "proj": {
+      "yahoo": 10.7,
+      "gotham": 7.2,
+      "sleeper": 10.6
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 11.2,
+      "wk8": "bye",
+      "wk15": 7.2,
+      "wk16": 7.7,
+      "wk17": 7.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 7:46 PM PT",
+       "age": "38.8 hr ago",
+       "line": "Devaughn Vele Continues to Occupy a Very Significant Role"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Devaughn Vele Could Be in Line for Bigger Role in Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "DEF",
+     "name": "Steelers",
+     "pos": "DEF",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 14.0,
+     "proj": {
+      "yahoo": 10.1,
+      "gotham": 10.3,
+      "sleeper": 10.3
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 8.0,
+      "wk8": 10.0,
+      "wk15": 7.0,
+      "wk16": 7.0,
+      "wk17": 8.5
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 11:19 PM PT",
+       "age": "11.3 hr ago",
+       "line": "Jordyn Tyson: Makes trip to Paris"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 11:19 PM PT",
+       "age": "11.3 hr ago",
+       "line": "Jordyn Tyson: Makes trip to Paris for Week 7"
+      }
+     ]
+    }
+   ],
+   "bench_and_ir": [
+    {
+     "slot": "BN",
+     "name": "George Holani",
+     "pos": "RB",
+     "nfl": "SEA",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 8.2,
+      "gotham": 9.2,
+      "sleeper": 7.5,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 6.2,
+      "wk8": 6.1,
+      "wk15": 4.4,
+      "wk16": 4.5,
+      "wk17": 4.9
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 4 days ago"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "David Montgomery",
+     "pos": "RB",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "out",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 13.2,
+      "wk8": "bye",
+      "wk15": 12.4,
+      "wk16": 12.5,
+      "wk17": 13.1
+     },
+     "injury_feeds": {
+      "ESPN": "Out (Groin), posted 55 min ago",
+      "Sleeper": "Out (Groin)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "David Montgomery Considered \"Week-to-Week\""
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "David Montgomery Could be Losing Grip on Starting Gig"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Aaron Rodgers",
+     "pos": "QB",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 20.0,
+      "gotham": 20.3,
+      "sleeper": 19.8,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.8,
+      "wk8": 19.3,
+      "wk15": 20.4,
+      "wk16": 20.3,
+      "wk17": 20.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 15.6 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 4:30 AM PT",
+       "age": "6.1 hr ago",
+       "line": "Quarterback Fantasy Football Waiver Wire Pickups - Top QB Adds for Week 7 Include Kyler Murray, Michael Penix Jr., Aaron Rodgers and more"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 8:43 PM PT",
+       "age": "13.9 hr ago",
+       "line": "Aaron Rodgers' 2026 NFL season: Tracking records, milestones"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "T.J. Hockenson",
+     "pos": "TE",
+     "nfl": "MIN",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "questionable",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.4,
+      "wk8": 9.6,
+      "wk15": 9.8,
+      "wk16": 9.8,
+      "wk17": 8.6
+     },
+     "injury_feeds": {
+      "ESPN": "Questionable (Concussion), posted 8 days ago",
+      "Sleeper": "Out (Concussion)"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "Roman Wilson",
+     "pos": "WR",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 5.1,
+      "wk8": 5.7,
+      "wk15": 7.2,
+      "wk16": 7.2,
+      "wk17": 7.6
+     },
+     "injury_feeds": {
+      "ESPN": "Injured Reserve (Finger), posted 46.1 hr ago",
+      "Sleeper": "IR (Finger)"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sat Oct 17, 1:00 PM PT",
+       "age": "45.6 hr ago",
+       "line": "Steelers place Wilson on IR with finger injury"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Sat Oct 17, 12:19 PM PT",
+       "age": "46.2 hr ago",
+       "line": "Steelers put Roman Wilson on injured reserve"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "Michael Pittman Jr.",
+     "pos": "WR",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": 0.0,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 0.0,
+      "wk8": 0.0,
+      "wk15": 6.2,
+      "wk16": 6.1,
+      "wk17": 6.5
+     },
+     "injury_feeds": {
+      "ESPN": "Injured Reserve (Foot), posted 9 days ago",
+      "Sleeper": "IR (Foot)"
+     }
+    }
+   ],
+   "opp_starters": [
+    {
+     "slot": "QB",
+     "name": "Bryce Young",
+     "pos": "QB",
+     "nfl": "CAR",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 24.6,
+     "proj": {
+      "yahoo": 20.1,
+      "gotham": 24.6,
+      "sleeper": 19.9
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "James Cook III",
+     "pos": "RB",
+     "nfl": "BUF",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 29.8,
+     "proj": {
+      "yahoo": 22.0,
+      "gotham": 29.8,
+      "sleeper": 21.1
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "Ashton Jeanty",
+     "pos": "RB",
+     "nfl": "LV",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 18.3,
+     "proj": {
+      "yahoo": 20.7,
+      "gotham": 18.3,
+      "sleeper": 19.4
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Parker Washington",
+     "pos": "WR",
+     "nfl": "JAX",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 10.4,
+     "proj": {
+      "yahoo": 15.0,
+      "gotham": 10.4,
+      "sleeper": 15.1
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Chris Godwin Jr.",
+     "pos": "WR",
+     "nfl": "TB",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 7.7,
+     "proj": {
+      "yahoo": 8.9,
+      "gotham": 7.7,
+      "sleeper": 9.2
+     }
+    },
+    {
+     "slot": "TE",
+     "name": "AJ Barner",
+     "pos": "TE",
+     "nfl": "SEA",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 4.6,
+     "proj": {
+      "yahoo": 8.0,
+      "gotham": 4.6,
+      "sleeper": 7.7
+     }
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Jameson Williams",
+     "pos": "WR",
+     "nfl": "DET",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     }
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Ollie Gordon II",
+     "pos": "RB",
+     "nfl": "MIA",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     }
+    },
+    {
+     "slot": "DEF",
+     "name": "Jaguars",
+     "pos": "DEF",
+     "nfl": "JAX",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 1.0,
+     "proj": {
+      "yahoo": 8.9,
+      "gotham": 10.3,
+      "sleeper": 10.3
+     }
+    }
+   ],
+   "actions": [
+    {
+     "what": "Roman Wilson is a drop candidate (hurt, no IR seat). Your call",
+     "by": "any time",
+     "kind": "drop"
+    }
+   ],
+   "alerts": [
+    {
+     "color": "gold",
+     "title": "On waivers: Michael Penix Jr. (QB, ATL) beats your Jayden Daniels by 8.9 (Gotham only)",
+     "who": "Michael Penix Jr.",
+     "kind": "wire",
+     "src": "Gotham, with Yahoo and Sleeper shown"
+    },
+    {
+     "color": "gold",
+     "title": "Roman Wilson is a drop candidate (hurt, no IR seat).",
+     "who": "Roman Wilson",
+     "kind": "drop",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Audric Estime (RB, CLE), hasn't played a game this season. Free agent",
+     "who": "Audric Estime",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "David Montgomery: Out (Groin)",
+     "who": "David Montgomery",
+     "kind": "news",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Opponent's Jameson Williams has no game this week",
+     "who": "Jameson Williams",
+     "kind": "opp",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Joshua Palmer (WR, BUF), hasn't played a game this season. Free agent",
+     "who": "Joshua Palmer",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Opponent's Ollie Gordon II has no game this week",
+     "who": "Ollie Gordon II",
+     "kind": "opp",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Tanner McKee (QB, PHI), only one game this season (Week 6), just back. Free agent",
+     "who": "Tanner McKee",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    }
+   ],
+   "roster_read_pt": "Mon Oct 19, 8:59 AM PT"
+  },
+  {
+   "dk": "DK IV",
+   "league": "Murrieta NextDoor",
+   "league_id": "864215",
+   "team_no": "6",
+   "team": "Dark Knight IV",
+   "record": "6-4-0",
+   "rank": 4,
+   "teams": 10,
+   "division": null,
+   "div_rank": null,
+   "opponent": "Fly Eagles Fly",
+   "opp_record": "5-5-0",
+   "opp_rank": 6,
+   "game_state": "LIVE",
+   "state_note": "20 of 22 starters done, 20 games kicked off",
+   "score": {
+    "me": 121.7,
+    "opp": 150.02
+   },
+   "totals_projected": {
+    "gotham": [
+     132.27,
+     163.99
+    ],
+    "sleeper": [
+     133.4,
+     164.82
+    ],
+    "yahoo": [
+     133.97,
+     164.71
+    ]
+   },
+   "win_pct": {
+    "gotham": 0,
+    "sleeper": 0,
+    "yahoo": 5,
+    "yahoo_best": false,
+    "yahoo_posted": 5,
+    "yahoo_from_spread": 0
+   },
+   "points_needed_to_pass_yahoo": 43.0,
+   "remaining": {
+    "yahoo": {
+     "my_remaining": 12.3,
+     "their_remaining": 14.7,
+     "projected_margin": -30.7
+    },
+    "gotham": {
+     "my_remaining": 10.6,
+     "their_remaining": 14.0,
+     "projected_margin": -31.7
+    },
+    "sleeper": {
+     "my_remaining": 11.7,
+     "their_remaining": 14.8,
+     "projected_margin": -31.4
+    }
+   },
+   "late_swap_risks": [],
+   "still_to_play": {
+    "me": [
+     {
+      "slot": "WR",
+      "name": "Terry McLaurin",
+      "pos": "WR",
+      "nfl": "WAS",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 12.3,
+       "gotham": 10.6,
+       "sleeper": 11.7
+      },
+      "yahoo_weeks_ahead": {
+       "wk7": "bye",
+       "wk8": 11.6,
+       "wk15": 11.5,
+       "wk16": 11.0,
+       "wk17": 11.7
+      },
+      "injury_feeds": {
+       "ESPN": "Active, posted 46.3 hr ago"
+      },
+      "news": [
+       {
+        "src": "RotoWire",
+        "at": "Sat Oct 17, 5:19 AM PT",
+        "age": "2 days ago",
+        "line": "Terry McLaurin: Good to go against San Francisco"
+       },
+       {
+        "src": "RotoWire",
+        "at": "Sat Oct 17, 1:34 AM PT",
+        "age": "2 days ago",
+        "line": "Terry McLaurin: Practicing Saturday"
+       }
+      ]
+     }
+    ],
+    "opp": [
+     {
+      "slot": "TE",
+      "name": "George Kittle",
+      "pos": "TE",
+      "nfl": "SF",
+      "kickoff": "Mon Oct 19, 5:15 PM PT",
+      "ko_utc": "2026-10-20T00:15:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 14.7,
+       "gotham": 14.0,
+       "sleeper": 14.8
+      },
+      "injury_feeds": {
+       "ESPN": "Active, posted 8 days ago"
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Sat Oct 17, 2:51 PM PT",
+        "age": "43.7 hr ago",
+        "line": "George Kittle In Smash Spot In Week 6"
+       },
+       {
+        "src": "ProFootballTalk",
+        "at": "Fri Oct 16, 1:59 PM PT",
+        "age": "3 days ago",
+        "line": "John Lynch: George Kittle asked me if we're trying to trade for Khalil Mack"
+       }
+      ]
+     }
+    ]
+   },
+   "starters": [
+    {
+     "slot": "QB",
+     "name": "C.J. Stroud",
+     "pos": "QB",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 30.0,
+     "proj": {
+      "yahoo": 19.3,
+      "gotham": 30.0,
+      "sleeper": 17.4
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.9,
+      "wk8": "bye",
+      "wk15": 20.4,
+      "wk16": 18.7,
+      "wk17": 19.9
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 24.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Mon Oct 19, 9:25 AM PT",
+       "age": "69 min ago",
+       "line": "Fantasy football free agent pickups: C.J. Stroud, Kendre Miller lead top options"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 11:52 AM PT",
+       "age": "22.7 hr ago",
+       "line": "Fairbairn's last-second 49-yard FG gives Texans 34-31 win over Jaguars at Wembley Stadium"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Bijan Robinson",
+     "pos": "RB",
+     "nfl": "ATL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 7.3,
+     "proj": {
+      "yahoo": 22.9,
+      "gotham": 7.3,
+      "sleeper": 25.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.9,
+      "wk8": 20.6,
+      "wk15": 21.9,
+      "wk16": 21.2,
+      "wk17": 22.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 11.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 3:20 AM PT",
+       "age": "7.2 hr ago",
+       "line": "Biggest Fantasy Football Busts of the Week - Fantasy Outlooks for Bijan Robinson, Bo Nix, Derrick Henry, Cam Skattebo, A.J. Brown"
+      },
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 5:38 PM PT",
+       "age": "16.9 hr ago",
+       "line": "Week 6 winners and losers: Lawrence, Walker III impress; Robinson, Henry disappoint"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "D'Andre Swift",
+     "pos": "RB",
+     "nfl": "CHI",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 23.0,
+     "proj": {
+      "yahoo": 15.1,
+      "gotham": 23.0,
+      "sleeper": 15.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 14.1,
+      "wk8": 12.2,
+      "wk15": 14.1,
+      "wk16": 14.3,
+      "wk17": 15.2
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 11.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 1:31 PM PT",
+       "age": "21.1 hr ago",
+       "line": "Caleb Williams completes first 12 passes in return after missing 3 games as Bears top Falcons 31-23"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 4:25 AM PT",
+       "age": "30.2 hr ago",
+       "line": "D'Andre Swift: Offsets inefficiency with two TDs"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Josh Downs",
+     "pos": "WR",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 8.7,
+     "proj": {
+      "yahoo": 14.0,
+      "gotham": 8.7,
+      "sleeper": 11.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.8,
+      "wk8": 10.5,
+      "wk15": 10.9,
+      "wk16": 10.8,
+      "wk17": 9.3
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 17.7 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 9:51 PM PT",
+       "age": "36.7 hr ago",
+       "line": "Josh Downs: Four grabs in Week 6 loss"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Josh Downs Failing to Capitalize During Pierce's Absence"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Zay Flowers",
+     "pos": "WR",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 12.7,
+     "proj": {
+      "yahoo": 16.1,
+      "gotham": 12.7,
+      "sleeper": 17.3
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 17.7,
+      "wk8": 17.4,
+      "wk15": 17.5,
+      "wk16": 16.4,
+      "wk17": 17.5
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 11.9 hr ago"
+     },
+     "news": [
+      {
+       "src": "ESPN",
+       "at": "Sun Oct 18, 9:21 AM PT",
+       "age": "25.2 hr ago",
+       "line": "'Sunny Strong': How one young Ravens fan with cancer inspires the team"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 3:39 AM PT",
+       "age": "30.9 hr ago",
+       "line": "Zay Flowers: Six catches in Week 6 loss"
+      }
+     ]
+    },
+    {
+     "slot": "WR",
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "nfl": "WAS",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 12.3,
+      "gotham": 10.6,
+      "sleeper": 11.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": "bye",
+      "wk8": 11.6,
+      "wk15": 11.5,
+      "wk16": 11.0,
+      "wk17": 11.7
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 46.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 5:19 AM PT",
+       "age": "2 days ago",
+       "line": "Terry McLaurin: Good to go against San Francisco"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 1:34 AM PT",
+       "age": "2 days ago",
+       "line": "Terry McLaurin: Practicing Saturday"
+      }
+     ]
+    },
+    {
+     "slot": "TE",
+     "name": "Tucker Kraft",
+     "pos": "TE",
+     "nfl": "GB",
+     "kickoff": "Sun Oct 18, 5:20 PM PT",
+     "ko_utc": "2026-10-19T00:20:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 8.7,
+     "proj": {
+      "yahoo": 12.7,
+      "gotham": 8.7,
+      "sleeper": 13.1
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 12.5,
+      "wk8": 11.7,
+      "wk15": 12.6,
+      "wk16": 11.4,
+      "wk17": 11.4
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 13.4 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tucker Kraft's Reception Share Showing Crucial Growth"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tucker Kraft Is A Strong TE1 In Week 6"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Travis Kelce",
+     "pos": "TE",
+     "nfl": "KC",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.3,
+     "proj": {
+      "yahoo": 13.2,
+      "gotham": 9.3,
+      "sleeper": 13.8
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.5,
+      "wk8": 11.1,
+      "wk15": 11.6,
+      "wk16": 11.5,
+      "wk17": 11.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 16.1 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sun Oct 18, 5:10 PM PT",
+       "age": "17.4 hr ago",
+       "line": "Travis Kelce Plays Through Ankle Injury vs. Chargers, Remains Productive"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Sat Oct 17, 11:30 PM PT",
+       "age": "35.1 hr ago",
+       "line": "Travis Kelce: Four catches in victory"
+      }
+     ]
+    },
+    {
+     "slot": "Q/W/R/T",
+     "name": "Dak Prescott",
+     "pos": "QB",
+     "nfl": "DAL",
+     "kickoff": "Sun Oct 18, 5:20 PM PT",
+     "ko_utc": "2026-10-19T00:20:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 15.0,
+     "proj": {
+      "yahoo": 23.0,
+      "gotham": 15.0,
+      "sleeper": 22.6
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 21.4,
+      "wk8": 26.0,
+      "wk15": 21.6,
+      "wk16": 23.0,
+      "wk17": 24.3
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 13.2 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoWire",
+       "at": "Sun Oct 18, 2:22 AM PT",
+       "age": "32.2 hr ago",
+       "line": "Dak Prescott: Late TD not enough in Week 6 loss"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Dak Prescott Remains a High-Floor QB1 With High-End Volume"
+      }
+     ]
+    },
+    {
+     "slot": "K",
+     "name": "Tyler Loop",
+     "pos": "K",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 4.0,
+     "proj": {
+      "yahoo": 7.8,
+      "gotham": 7.7,
+      "sleeper": 7.7
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 8.7,
+      "wk8": 7.9,
+      "wk15": 8.2,
+      "wk16": 8.6,
+      "wk17": 8.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 7 days ago"
+     }
+    },
+    {
+     "slot": "DEF",
+     "name": "Seahawks",
+     "pos": "DEF",
+     "nfl": "SEA",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 3.0,
+     "proj": {
+      "yahoo": 6.3,
+      "gotham": 7.3,
+      "sleeper": 7.3
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 6.3,
+      "wk8": 6.2,
+      "wk15": 6.3,
+      "wk16": 5.7,
+      "wk17": 6.8
+     },
+     "news": [
+      {
+       "src": "ProFootballTalk",
+       "at": "Mon Oct 19, 5:28 AM PT",
+       "age": "5.1 hr ago",
+       "line": "Kenneth Walker on pace to break NFL records for rushing yards, yards from scrimmage"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Sun Oct 18, 11:26 AM PT",
+       "age": "23.1 hr ago",
+       "line": "Ryan Fitzpatrick responds to Aqib Talib, sort of"
+      }
+     ]
+    }
+   ],
+   "bench_and_ir": [
+    {
+     "slot": "BN",
+     "name": "Jared Goff",
+     "pos": "QB",
+     "nfl": "DET",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 24.1,
+      "wk8": 21.4,
+      "wk15": 20.5,
+      "wk16": 24.8,
+      "wk17": 23.2
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "Justin Jefferson",
+     "pos": "WR",
+     "nfl": "MIN",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 17.5,
+      "wk8": 18.1,
+      "wk15": 18.5,
+      "wk16": 18.5,
+      "wk17": 16.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago"
+     }
+    },
+    {
+     "slot": "BN",
+     "name": "RJ Harvey",
+     "pos": "RB",
+     "nfl": "DEN",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 9.8,
+      "gotham": 14.6,
+      "sleeper": 10.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.2,
+      "wk8": 9.6,
+      "wk15": 10.3,
+      "wk16": 10.1,
+      "wk17": 9.6
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 4 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "RJ Harvey Back to Irrelevance in Week 5"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Wan'Dale Robinson",
+     "pos": "WR",
+     "nfl": "TEN",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 10.2,
+      "gotham": 5.2,
+      "sleeper": 11.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 9.3,
+      "wk8": 10.4,
+      "wk15": 10.5,
+      "wk16": 10.7,
+      "wk17": 10.7
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 15.3 hr ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Wan'Dale Robinson an Excellent Play Off Waivers"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Ollie Gordon II",
+     "pos": "RB",
+     "nfl": "MIA",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 10.5,
+      "wk8": 10.7,
+      "wk15": 10.6,
+      "wk16": 10.6,
+      "wk17": 11.0
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago",
+      "Sleeper": "Questionable (Undisclosed)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Ollie Gordon II Looks to be the Leader of Miami's Backfield"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "James Conner",
+     "pos": "RB",
+     "nfl": "ARI",
+     "kickoff": "Sun Oct 18, 1:05 PM PT",
+     "ko_utc": "2026-10-18T20:05:00+00:00",
+     "game": "played",
+     "status": "IR-R",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": null,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 1.1,
+      "wk8": 1.2,
+      "wk15": 3.8,
+      "wk16": 3.8,
+      "wk17": 4.1
+     },
+     "injury_feeds": {
+      "ESPN": "Injured Reserve (Foot), posted 6 days ago",
+      "Sleeper": "IR (Foot)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "James Conner Getting Close to a Return"
+      }
+     ]
+    },
+    {
+     "slot": "IR",
+     "name": "Isiah Pacheco",
+     "pos": "RB",
+     "nfl": "DET",
+     "kickoff": "no game this week",
+     "ko_utc": null,
+     "game": "no game",
+     "status": "injured reserve",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": 0.0
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 0.0,
+      "wk8": 0.0,
+      "wk15": 0.0,
+      "wk16": 0.0,
+      "wk17": 0.0
+     },
+     "injury_feeds": {
+      "Sleeper": "IR (Back)"
+     }
+    },
+    {
+     "slot": "IR",
+     "name": "Tank Dell",
+     "pos": "WR",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 18, 6:30 AM PT",
+     "ko_utc": "2026-10-18T13:30:00+00:00",
+     "game": "played",
+     "status": "IR-R",
+     "actual": null,
+     "proj": {
+      "yahoo": 0.0,
+      "gotham": null,
+      "sleeper": 0.0,
+      "yahoo_from": "Yahoo projections read Mon Oct 19, 7:40 AM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk7": 2.7,
+      "wk8": "bye",
+      "wk15": 2.7,
+      "wk16": 2.6,
+      "wk17": 2.7
+     },
+     "injury_feeds": {
+      "ESPN": "Injured Reserve (Knee - ACL + MCL), posted 4 days ago",
+      "Sleeper": "IR (Knee - ACL + MCL)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tank Dell Worth an IR Stash in Deeper Fantasy Leagues"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "unknown time",
+       "age": "age unknown",
+       "line": "Tank Dell Now Practicing in Full as Season Debut Nears"
+      }
+     ]
+    }
+   ],
+   "opp_starters": [
+    {
+     "slot": "QB",
+     "name": "Josh Allen",
+     "pos": "QB",
+     "nfl": "BUF",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 22.3,
+     "proj": {
+      "yahoo": 29.8,
+      "gotham": 22.3,
+      "sleeper": 28.0
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "Derrick Henry",
+     "pos": "RB",
+     "nfl": "BAL",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 5.0,
+     "proj": {
+      "yahoo": 17.6,
+      "gotham": 5.0,
+      "sleeper": 17.7
+     }
+    },
+    {
+     "slot": "RB",
+     "name": "Chuba Hubbard",
+     "pos": "RB",
+     "nfl": "CAR",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 19.1,
+     "proj": {
+      "yahoo": 15.9,
+      "gotham": 19.1,
+      "sleeper": 15.9
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Chris Olave",
+     "pos": "WR",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 14.3,
+     "proj": {
+      "yahoo": 17.0,
+      "gotham": 14.3,
+      "sleeper": 17.5
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "DK Metcalf",
+     "pos": "WR",
+     "nfl": "PIT",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 20.3,
+     "proj": {
+      "yahoo": 12.5,
+      "gotham": 20.3,
+      "sleeper": 12.8
+     }
+    },
+    {
+     "slot": "WR",
+     "name": "Xavier Worthy",
+     "pos": "WR",
+     "nfl": "KC",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 14.3,
+     "proj": {
+      "yahoo": 11.8,
+      "gotham": 14.3,
+      "sleeper": 10.6
+     }
+    },
+    {
+     "slot": "TE",
+     "name": "George Kittle",
+     "pos": "TE",
+     "nfl": "SF",
+     "kickoff": "Mon Oct 19, 5:15 PM PT",
+     "ko_utc": "2026-10-20T00:15:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 14.7,
+      "gotham": 14.0,
+      "sleeper": 14.8
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 8 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Sat Oct 17, 2:51 PM PT",
+       "age": "43.7 hr ago",
+       "line": "George Kittle In Smash Spot In Week 6"
+      },
+      {
+       "src": "ProFootballTalk",
+       "at": "Fri Oct 16, 1:59 PM PT",
+       "age": "3 days ago",
+       "line": "John Lynch: George Kittle asked me if we're trying to trade for Khalil Mack"
+      }
+     ]
+    },
+    {
+     "slot": "W/R/T",
+     "name": "Tre Tucker",
+     "pos": "WR",
+     "nfl": "LV",
+     "kickoff": "Sun Oct 18, 1:25 PM PT",
+     "ko_utc": "2026-10-18T20:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 26.7,
+     "proj": {
+      "yahoo": 9.9,
+      "gotham": 26.7,
+      "sleeper": 9.1
+     }
+    },
+    {
+     "slot": "Q/W/R/T",
+     "name": "Sam Darnold",
+     "pos": "QB",
+     "nfl": "SEA",
+     "kickoff": "Thu Oct 15, 5:15 PM PT",
+     "ko_utc": "2026-10-16T00:15:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 13.0,
+     "proj": {
+      "yahoo": 17.5,
+      "gotham": 13.0,
+      "sleeper": 16.3
+     }
+    },
+    {
+     "slot": "K",
+     "name": "Spencer Shrader",
+     "pos": "K",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 9.0,
+     "proj": {
+      "yahoo": 9.5,
+      "gotham": 10.4,
+      "sleeper": 10.4
+     }
+    },
+    {
+     "slot": "DEF",
+     "name": "Patriots",
+     "pos": "DEF",
+     "nfl": "NE",
+     "kickoff": "Sun Oct 18, 10:00 AM PT",
+     "ko_utc": "2026-10-18T17:00:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": 6.0,
+     "proj": {
+      "yahoo": 8.0,
+      "gotham": 7.6,
+      "sleeper": 7.6
+     }
+    }
+   ],
+   "actions": [],
+   "alerts": [
+    {
+     "color": "gold",
+     "title": "Bijan Robinson: Efficient with limited opportunity",
+     "who": "Bijan Robinson",
+     "kind": "news",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Audric Estime (RB, CLE), hasn't played a game this season. Free agent",
+     "who": "Audric Estime",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Joshua Palmer (WR, BUF), hasn't played a game this season. Free agent",
+     "who": "Joshua Palmer",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Justin Jefferson: Questionable (Hip)",
+     "who": "Justin Jefferson",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Tanner McKee (QB, PHI), only one game this season (Week 6), just back. Free agent",
+     "who": "Tanner McKee",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Will Mallory (TE, IND), only one game this season (Week 6), just back. Free agent",
+     "who": "Will Mallory",
+     "kind": "online",
+     "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    }
+   ],
+   "roster_read_pt": "Mon Oct 19, 8:59 AM PT"
+  }
+ ],
+ "health": [
+  {
+   "level": "gold",
+   "piece": "RotoWire news",
+   "what": "newest item 7.8 hr old — feed may be stale; only 5 items across all addresses — thin"
+  },
+  {
+   "level": "gold",
+   "piece": "DK I",
+   "what": "Stefon Diggs (W/R/T) questionable, kickoff Mon Oct 19, 5:15 PM PT - If Stefon Diggs is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 3.3 pts. Decision due when the inactives post, about 3:45 PM PT."
+  },
+  {
+   "level": "grey",
+   "piece": "Yahoo rosters (all teams)",
+   "what": "as of Sun Oct 18, 8:52 PM PT (13.7 hr ago) - Dom's four rosters; older than its 6-hour schedule - but the newer live roster read matches it in all four leagues, so nothing is missing"
+  },
+  {
+   "level": "grey",
+   "piece": "Meter note",
+   "what": "DK II: Gotham 24.1 vs Yahoo 15.8 / Sleeper 16.2 on Mike Evans - check role/news"
+  },
+  {
+   "level": "grey",
+   "piece": "Meter note",
+   "what": "DK III: opponent starter Jameson Williams (DET) has no game this week"
+  },
+  {
+   "level": "grey",
+   "piece": "Meter note",
+   "what": "DK III: opponent starter Ollie Gordon II (MIA) has no game this week"
+  },
+  {
+   "level": "grey",
+   "piece": "Meter note",
+   "what": "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
+  },
+  {
+   "level": "grey",
+   "piece": "Known issue: Yahoo needle - best lineup",
+   "what": "The Yahoo read doesn't capture bench projections, so the Yahoo needle uses the lineup as set; Gotham and Sleeper use best lineups."
+  },
+  {
+   "level": "grey",
+   "piece": "Known issue: Chain check timing",
+   "what": "The Live chain check runs 4:45 AM, 12:45 PM, 4:45 PM (moved this morning; Claude is blocked from moving it back). The 12:45 and 4:45 PM runs start 5 minutes before their reads and wait up to 15 minutes for them; the gauntlet at 11:51 AM and 2:51 PM also syncs Live. Dom can set it back to 8:25 AM, 1:25 PM, 5:25 PM in the task's settings."
+  },
+  {
+   "level": "grey",
+   "piece": "DK I meter",
+   "what": "Vikings tagged WR in the meter, DEF on Yahoo - using Yahoo"
+  }
+ ],
+ "sources": [
+  {
+   "source": "NFL schedule",
+   "as_of": "Mon Oct 19, 10:33 AM PT",
+   "age": "2 min ago",
+   "level": "green",
+   "note": "week 6: 14 games"
+  },
+  {
+   "source": "Yahoo matchups (scores, starters)",
+   "as_of": "Mon Oct 19, 8:55 AM PT",
+   "age": "1.7 hr ago",
+   "level": "green",
+   "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
+  },
+  {
+   "source": "Yahoo win % (all teams)",
+   "as_of": "Sun Oct 18, 8:52 PM PT",
+   "age": "13.7 hr ago",
+   "level": "green",
+   "note": "every team in all four leagues: Yahoo win %, record"
+  },
+  {
+   "source": "Yahoo standings",
+   "as_of": "Sun Oct 18, 8:52 PM PT",
+   "age": "13.7 hr ago",
+   "level": "green",
+   "note": "rank, division rank, points for"
+  },
+  {
+   "source": "Gotham projections",
+   "as_of": "Mon Oct 19, 10:33 AM PT",
+   "age": "2 min ago",
+   "level": "green",
+   "note": "Gotham run Mon Oct 19 2026 10:33 AM PT for week 6"
+  },
+  {
+   "source": "Sleeper projections",
+   "as_of": "Mon Oct 19, 9:51 AM PT",
+   "age": "44 min ago",
+   "level": "green",
+   "note": "GitHub job checked 0.7 h ago (saved 3117 rows)"
+  },
+  {
+   "source": "Sleeper K/DEF projections",
+   "as_of": "Mon Oct 19, 9:51 AM PT",
+   "age": "44 min ago",
+   "level": "green",
+   "note": "GitHub job checked 0.7 h ago (saved 185 rows)"
+  },
+  {
+   "source": "Yahoo rosters (all teams)",
+   "as_of": "Sun Oct 18, 8:52 PM PT",
+   "age": "13.7 hr ago",
+   "level": "grey",
+   "note": "Dom's four rosters; older than its 6-hour schedule; the newer live roster read matches it"
+  },
+  {
+   "source": "RotoWire news",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": "newest item 7.8 hr old"
+  },
+  {
+   "source": "Sleeper injuries/trending",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": ""
+  },
+  {
+   "source": "Game weather",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": ""
+  },
+  {
+   "source": "ESPN news",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": ""
+  },
+  {
+   "source": "PFT + RotoBaller news",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": ""
+  },
+  {
+   "source": "ESPN injury report",
+   "as_of": "Mon Oct 19, 10:26 AM PT",
+   "age": "9 min ago",
+   "level": "green",
+   "note": ""
+  }
+ ],
+ "exposure": [
+  {
+   "name": "Jayden Daniels",
+   "starts": [
+    "DK I",
+    "DK II",
+    "DK III"
+   ],
+   "bench": []
+  },
+  {
+   "name": "Travis Kelce",
+   "starts": [
+    "DK I",
+    "DK II",
+    "DK IV"
+   ],
+   "bench": []
+  },
+  {
+   "name": "George Pickens",
+   "starts": [
+    "DK I",
+    "DK III"
+   ],
+   "bench": []
+  },
+  {
+   "name": "Drake London",
+   "starts": [
+    "DK I",
+    "DK II"
+   ],
+   "bench": []
+  },
+  {
+   "name": "Alvin Kamara",
+   "starts": [
+    "DK I",
+    "DK II"
+   ],
+   "bench": []
+  },
+  {
+   "name": "Travis Etienne Jr.",
+   "starts": [],
+   "bench": [
+    "DK I",
+    "DK II"
+   ]
+  },
+  {
+   "name": "Aaron Rodgers",
+   "starts": [
+    "DK II"
+   ],
+   "bench": [
+    "DK III"
+   ]
+  },
+  {
+   "name": "David Montgomery",
+   "starts": [],
+   "bench": [
+    "DK II",
+    "DK III"
+   ]
+  },
+  {
+   "name": "Josh Downs",
+   "starts": [
+    "DK III",
+    "DK IV"
+   ],
+   "bench": []
+  }
+ ],
+ "verdict": "GO"
+}
