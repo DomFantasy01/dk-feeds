@@ -209,7 +209,7 @@ for k, v in (FS.get("sources") or {}).items():
     note = v.get("warning") or ""
     if not v.get("ok", True): HEALTH.append(("red", nice, "feed FAILED on its last pull" + (f": {note}" if note else "")))
     elif note: HEALTH.append(("gold", nice, note))
-    source(nice, iso(v.get("checked_utc")) or run, 1.5, f"newest item {v['newest_age_hours']} hr old" if "newest_age_hours" in v else "")
+    source(nice, iso(v.get("checked_utc")) or run, 1.5, f"newest item {v['newest_age_hours']} hr old" if "newest_age_hours" in v and not v.get("rss_note") else "")
 for f, what in (("build_failed.json", "the last Dispatch build FAILED"), ("RADAR_FAILED.txt", "the last Radar build FAILED")):
     if os.path.exists(os.path.join(OUT, f)): HEALTH.append(("red", "Build", what + " - the pages may be older than they look"))
 for a in (M.get("alarms") or []): HEALTH.append(("red", "Meter alarm", str(a)))
