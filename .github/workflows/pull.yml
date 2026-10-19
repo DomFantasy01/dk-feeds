@@ -6,6 +6,8 @@ on:
     # items at a time, so news that scrolls off between runs is lost forever. Public repo = no cost.
     - cron: '*/30 12-23 * * *'
     - cron: '*/30 0-6 * * *'
+    # Oct 19 (Dom): hourly overnight too (midnight-5 AM PT) - news that broke overnight was never seen
+    - cron: '5 7-11 * * *'
   workflow_dispatch: {}            # a manual 'Run now' button
 permissions:
   contents: write

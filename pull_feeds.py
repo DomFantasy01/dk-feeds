@@ -80,6 +80,115 @@ def rotowire():
     mark('rotowire', True, source='merged', per_source=per, items=len(items), new_items=len(new), newest_item_utc=newest,
          newest_age_hours=age_h, fallbacks_failed=tried, warning='; '.join(warn) or None)
 
+# ---------- 1b. RotoWire's own news pages (Oct 19, Dom: "improve the roto feed") ----------
+# The RSS holds only ~5 items, so news that arrives between pulls (and all night) was lost. Two fixes:
+#  (a) the main news page and the injury view carry 25 items each - five times the RSS;
+#  (b) EVERY player Dom rosters, every opponent starter this week and the Scout's targets get their own
+#      RotoWire player page read (latest ~7 items each), so news on the men that matter can never scroll off.
+# Player pages are found through Sleeper's rotowire_id. Items are merged into rotowire_history.jsonl, keyed
+# by RotoWire's headline id, so nothing is written twice. Pages show a date only, not a time: an item first
+# seen today is stamped with the time this job first saw it.
+import re as _re, html as _html, glob as _glob
+RW = 'https://www.rotowire.com'
+def _strip(x): return _re.sub(r'\s+', ' ', _html.unescape(_re.sub(r'<[^>]+>', ' ', x or ''))).strip()
+def rw_blocks(page, player=None):
+    out = []
+    starts = [m.start() for m in _re.finditer(r'<div class="news-update(?: [^"]*)?">', page)]
+    for i, a in enumerate(starts):
+        b = page[a: starts[i + 1] if i + 1 < len(starts) else a + 8000]
+        h = _re.search(r'href="(/football/headlines/[^"]*?-(\d+))"[^>]*>(.*?)</a>', b, _re.S)
+        if not h: continue
+        who = _re.search(r'news-update__player-link"[^>]*>(.*?)</a>', b, _re.S)
+        day = _re.search(r'news-update__timestamp">(.*?)<', b, _re.S)
+        txt = _re.search(r'news-update__news">(.*?)</div>', b, _re.S)
+        inj = _re.search(r'news-update__inj">(.*?)<', b, _re.S)
+        out.append({'id': h.group(2), 'player': _strip(who.group(1)) if who else player, 'headline': _strip(h.group(3)),
+                    'date': _strip(day.group(1)) if day else None, 'text': _strip(txt.group(1)) if txt else '',
+                    'injury': _strip(inj.group(1)) if inj else None, 'link': RW + h.group(1)})
+    return out
+def _watch_list():
+    """Dom's four rosters + this week's opponent starters + the Scout's targets -> {name: rotowire_id}"""
+    R = os.path.dirname(OUT); names, why = [], {}
+    for n, team in ((1, '2'), (2, '7'), (3, '2'), (4, '6')):
+        try:
+            for ln in open(os.path.join(R, f'yahoo_drop/scout/dk{n}_rosters_live.txt')):
+                x = ln.rstrip('\n').split('|')
+                if len(x) >= 6 and x[0] == team and x[4] not in ('DEF', 'K'): names.append(x[2]); why.setdefault(x[2], 'mine')
+        except FileNotFoundError: pass
+    try:
+        st = json.load(open(os.path.join(R, 'dispatch_out/dk_state_latest.json')))
+        for lg in st.get('leagues', []):
+            for p in lg.get('opp_starters', []):
+                if p.get('pos') not in ('DEF', 'K') and not str(p.get('name', '')).endswith(' DEF'): names.append(p['name']); why.setdefault(p['name'], 'opponent')
+    except Exception: pass
+    for f in _glob.glob(os.path.join(R, 'dispatch_out/scout_state/scout_board_DK*.json')):
+        try:
+            for a in (json.load(open(f)).get('adds') or [])[:10]:
+                nm = a.get('name') or a.get('player') or a.get('who') if isinstance(a, dict) else None
+                if nm: names.append(nm); why.setdefault(nm, 'scout target')
+        except Exception: pass
+    try: db = json.load(open(os.path.join(OUT, 'sleeper_players_min.json')))
+    except Exception: db = {}
+    db = db.get('players', db) if isinstance(db, dict) else {}
+    def key(x): return ' '.join(_re.sub(r'\b(jr|sr|ii|iii|iv|v)\b', '', _re.sub(r'[^a-z ]', '', x.lower().replace('.', ' ').replace('-', ' '))).split())
+    ids = {}
+    for v in db.values():
+        if isinstance(v, dict) and v.get('rotowire_id'): ids.setdefault(key(v.get('name', '')), v['rotowire_id'])
+    out, missing = {}, []
+    for nm in dict.fromkeys(names):
+        rid = ids.get(key(nm))
+        if rid: out[nm] = (rid, why[nm])
+        else: missing.append(nm)
+    return out, missing
+def rotowire_pages():
+    hp = os.path.join(OUT, 'rotowire_history.jsonl'); seen_id, seen_title = set(), set()
+    if os.path.exists(hp):
+        for line in open(hp):
+            try:
+                j = json.loads(line); seen_title.add(j.get('title'))
+                if j.get('rw_id'): seen_id.add(j['rw_id'])
+            except Exception: pass
+    today_pt = NOW.astimezone(ZoneInfo('America/Los_Angeles')).date()
+    def stamp(day):
+        try: d = dt.datetime.strptime(day, '%B %d, %Y').date()
+        except Exception: return None
+        if d >= today_pt: return NOW.isoformat(timespec='seconds')        # first seen today: our own clock
+        return dt.datetime(d.year, d.month, d.day, 23, 59, tzinfo=ZoneInfo('America/Los_Angeles')).astimezone(dt.timezone.utc).isoformat(timespec='seconds')
+    got, fails, new, per_player = [], [], [], {}
+    for u in (RW + '/football/news.php', RW + '/football/news.php?view=injuries'):
+        try: got += [(b, 'news page') for b in rw_blocks(get(u).decode('utf-8', 'replace'))]
+        except Exception as e: fails.append(f'{u}: {type(e).__name__}: {e}'[:160])
+    watch, missing = _watch_list()
+    ok_pages = 0
+    for nm, (rid, why) in watch.items():
+        u = f"{RW}/football/player/{_re.sub(r'[^a-z0-9]+', '-', nm.lower()).strip('-')}-{rid}"
+        try:
+            bl = rw_blocks(get(u, timeout=20, tries=1).decode('utf-8', 'replace'), nm); ok_pages += 1
+            per_player[nm] = {'rotowire_id': rid, 'why': why, 'url': u,
+                              'items': [{k: b[k] for k in ('date', 'headline', 'text', 'injury', 'link')} for b in bl[:5]]}
+            got += [(b, 'player page') for b in bl]
+        except Exception as e: fails.append(f'{nm}: {type(e).__name__}: {e}'[:120])
+        time.sleep(0.4)                                                    # be polite to RotoWire
+    with open(hp, 'a') as f:
+        for b, via in got:
+            title = f"{b['player']}: {b['headline']}"
+            if b['id'] in seen_id or title in seen_title: continue
+            seen_id.add(b['id']); seen_title.add(title)
+            row = {'title': title, 'text': b['text'], 'published_utc': stamp(b['date']), 'date_only': b['date'], 'link': b['link'],
+                   'via': 'rotowire ' + via, 'rw_id': b['id'], 'injury': b['injury'], 'first_seen_utc': NOW.isoformat(timespec='seconds')}
+            f.write(json.dumps(row) + '\n'); new.append(row)
+    write('rotowire_players.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'players': per_player, 'no_rotowire_id': missing})
+    page_ok = ok_pages > 0 or any(v == 'news page' for _, v in got)
+    warn = []
+    if fails: warn.append(f'{len(fails)} page reads failed')
+    if missing: warn.append(f'{len(missing)} watched players have no RotoWire id: ' + ', '.join(missing[:8]))
+    mark('rotowire_pages', page_ok, news_page_items=sum(1 for _, v in got if v == 'news page'), players_watched=len(watch),
+         player_pages_read=ok_pages, new_items=len(new), failures=fails[:10], warning='; '.join(warn) or None)
+    r = STATUS['sources'].get('rotowire')
+    if page_ok and r and r.get('warning'):   # the thin RSS no longer matters once the pages are read
+        r['rss_note'] = r.pop('warning'); r['warning'] = None
+        r['note'] = 'RSS is thin by design (5 items); RotoWire news now comes from the news pages and player pages - see rotowire_pages'
+
 # ---------- 2. Sleeper trending adds + drops (official public API) ----------
 def sleeper():
     try:
@@ -289,7 +398,7 @@ def espn_injuries():
         mark('espn_injuries', False, error=f'{type(e).__name__}: {e}'[:200])
 
 if __name__ == '__main__':
-    for fn in (rotowire, sleeper, weather, espn, extra_news, espn_injuries, probe):
+    for fn in (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, probe):   # pages after Sleeper: it needs the id table
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])
     write('status.json', STATUS)
