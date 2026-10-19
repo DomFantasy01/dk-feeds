@@ -7,7 +7,12 @@ from zoneinfo import ZoneInfo
 import json, os, sys, time, csv, io, datetime as dt, urllib.request, urllib.error, urllib.parse, xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'feeds')
+MAIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'feeds')
+# Oct 19 (Dom): FAST mode = the inactives watch (inactives.yml) - a 5-minute loop around each inactives list.
+# It writes into feeds/fast/ so it never edits the same file as the regular 30-minute job (no merge fights);
+# the state file takes whichever copy of each feed is newer.
+FAST = os.environ.get('DK_FEEDS_FAST') == '1'
+OUT = os.path.join(MAIN, 'fast') if FAST else MAIN
 os.makedirs(OUT, exist_ok=True)
 NOW = dt.datetime.now(dt.timezone.utc)
 UA = {'User-Agent': 'DK-feed-job/1.0 (personal fantasy research, non-commercial)'}
@@ -108,7 +113,7 @@ def rw_blocks(page, player=None):
     return out
 def _watch_list():
     """Dom's four rosters + this week's opponent starters + the Scout's targets -> {name: rotowire_id}"""
-    R = os.path.dirname(OUT); names, why = [], {}
+    R = os.path.dirname(MAIN); names, why = [], {}
     for n, team in ((1, '2'), (2, '7'), (3, '2'), (4, '6')):
         try:
             for ln in open(os.path.join(R, f'yahoo_drop/scout/dk{n}_rosters_live.txt')):
@@ -130,7 +135,7 @@ def _watch_list():
     # Oct 19 (Dom: "fix what is still wrong"): the wire too - Sleeper's top trending adds and the most-rostered
     # free agents/waiver men in each of his four leagues, so a pickup's news is caught before the claim
     try:
-        for a in (json.load(open(os.path.join(OUT, 'sleeper_trending.json'))).get('add') or [])[:25]:
+        for a in (json.load(open(os.path.join(MAIN, 'sleeper_trending.json'))).get('add') or [])[:25]:
             if a.get('pos') not in ('DEF',): names.append(a['name']); why.setdefault(a['name'], 'trending add')
     except Exception: pass
     for n in (1, 2, 3, 4):
@@ -140,7 +145,7 @@ def _watch_list():
                 nm = nm.split('/')[0].strip()
                 if nm: names.append(nm); why.setdefault(nm, 'wire')
         except FileNotFoundError: pass
-    try: db = json.load(open(os.path.join(OUT, 'sleeper_players_min.json')))
+    try: db = json.load(open(os.path.join(MAIN, 'sleeper_players_min.json')))
     except Exception: db = {}
     db = db.get('players', db) if isinstance(db, dict) else {}
     def key(x): return ' '.join(_re.sub(r'\b(jr|sr|ii|iii|iv|v)\b', '', _re.sub(r'[^a-z ]', '', x.lower().replace('.', ' ').replace('-', ' '))).split())
@@ -155,8 +160,9 @@ def _watch_list():
     return out, missing
 def rotowire_pages():
     hp = os.path.join(OUT, 'rotowire_history.jsonl'); seen_id, seen_title = set(), set()
-    if os.path.exists(hp):
-        for line in open(hp):
+    for hist in dict.fromkeys([os.path.join(MAIN, 'rotowire_history.jsonl'), hp]):   # the watch skips what the main job already has
+        if not os.path.exists(hist): continue
+        for line in open(hist):
             try:
                 j = json.loads(line); seen_title.add(j.get('title'))
                 if j.get('rw_id'): seen_id.add(j['rw_id'])
@@ -173,7 +179,7 @@ def rotowire_pages():
         except Exception as e: fails.append(f'{u}: {type(e).__name__}: {e}'[:160])
     watch, missing = _watch_list()
     ok_pages = 0
-    hourly = NOW.minute < 30                      # the :00 and overnight :05 runs read the wire too
+    hourly = NOW.minute < 30 and not FAST         # the first run each hour reads the wire too; the watch reads only his men and opponents
     skipped = 0
     for nm, (rid, why) in watch.items():
         if why not in ('mine', 'opponent') and not hourly: skipped += 1; continue
@@ -437,7 +443,8 @@ def espn_injuries():
         mark('espn_injuries', False, error=f'{type(e).__name__}: {e}'[:200])
 
 if __name__ == '__main__':
-    for fn in (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, probe):   # pages after Sleeper: it needs the id table
+    jobs = (rotowire, rotowire_pages, espn, extra_news, espn_injuries) if FAST else (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, probe)
+    for fn in jobs:   # pages after Sleeper: it needs the id table
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])
     write('status.json', STATUS)

@@ -119,7 +119,17 @@ def add_news(name, t, src, line):
     if t and (NOW - t).total_seconds() > 72 * 3600: return
     NEWS.setdefault(norm(name), []).append((t, src, re.sub(r"\s+", " ", line).strip()[:220]))
 FEEDS = os.path.join(REPO, "feeds")
-espn_inj = load(os.path.join(FEEDS, "espn_injuries.json"), {}) or {}
+FAST = os.path.join(FEEDS, "fast")   # Oct 19: the inactives watch writes here every 5 minutes around each inactives list
+def feed(name):
+    """the newer of feeds/<name> and feeds/fast/<name>, judged by the file's own pull time"""
+    best, bt = None, None
+    for d in (FEEDS, FAST):
+        j = load(os.path.join(d, name))
+        if not isinstance(j, dict): continue
+        t = iso(j.get("pulled_utc") or j.get("run_utc") or j.get("db_pulled_utc"))
+        if best is None or (t and (bt is None or t > bt)): best, bt = j, t
+    return best or {}
+espn_inj = feed("espn_injuries.json")
 for r in espn_inj.get("players", []):
     INJ.setdefault(norm(r.get("name")), {})["ESPN"] = f"{r.get('status')}" + (f" ({r.get('type')})" if r.get("type") else "") + (f", posted {age(iso(r.get('date')))}" if r.get("date") else "")
 slp = load(os.path.join(FEEDS, "sleeper_injuries.json"), {}) or {}
@@ -142,16 +152,18 @@ def scan_items(items, src, title="title", text="text", when="published_utc"):
             if n and n in blob:
                 add_news(n, iso(it.get(when)), src, it.get(title) or it.get(text))
 for f, src in (("rotowire_latest.json", "RotoWire"), ("espn_news.json", "ESPN"), ("news_extra.json", None)):
-    d = load(os.path.join(FEEDS, f), {}) or {}
+    d = feed(f)
     if src: scan_items(d.get("items"), src)
     else:
         for it in d.get("items") or []: scan_items([it], {"pft": "ProFootballTalk", "rotoballer": "RotoBaller"}.get(it.get("source"), it.get("source", "news")))
 # the history files keep items that scrolled off the live feeds (RotoWire only holds ~5 at a time)
 for f, src in (("rotowire_history.jsonl", "RotoWire"), ("news_extra_history.jsonl", None), ("espn_news_history.jsonl", "ESPN")):
-    p = os.path.join(FEEDS, f)
-    if not os.path.exists(p): continue
-    try: lines = open(p).read().splitlines()[-1500:]
-    except Exception: continue
+    lines = []
+    for d in (FEEDS, FAST):
+        p = os.path.join(d, f)
+        if not os.path.exists(p): continue
+        try: lines += open(p).read().splitlines()[-1500:]
+        except Exception: pass
     for ln in lines:
         try: it = json.loads(ln)
         except Exception: continue
@@ -184,6 +196,12 @@ for k, v in (M.get("sources") or {}).items():
     if st not in ("OK", ""): HEALTH.append(("red", k, f"build marked it {st}: {v.get('note', '')}"))
 FS = load(os.path.join(FEEDS, "status.json"), {}) or {}
 run = iso(FS.get("run_utc"))
+_fs = load(os.path.join(FAST, "status.json"), {}) or {}
+for _k, _v in (_fs.get("sources") or {}).items():          # a newer reading from the inactives watch wins, source by source
+    _old = (FS.get("sources") or {}).get(_k)
+    _t0 = dt.datetime.min.replace(tzinfo=UTC)
+    if not _old or (iso(_v.get("checked_utc")) or _t0) > (iso(_old.get("checked_utc")) or run or _t0):
+        FS.setdefault("sources", {})[_k] = dict(_v, via="inactives watch")
 for k, v in (FS.get("sources") or {}).items():
     if k == "probe": continue
     nice = {"rotowire": "RotoWire news", "sleeper": "Sleeper injuries/trending", "weather": "Game weather",

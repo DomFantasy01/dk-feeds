@@ -1,0 +1,69 @@
+name: DK inactives watch
+# Oct 19 (Dom): GitHub starts scheduled jobs late (often 5-15 minutes), and the one moment that can't be late is
+# the inactives list, 90 minutes before each kickoff. This job starts ~25 minutes ahead and then keeps its OWN
+# clock: every 5 minutes it re-reads the injury news (ESPN injuries, RotoWire news pages and the player pages of
+# Dom's men and this week's opponents, PFT, RotoBaller, ESPN news) and rebuilds the state file. A late start still
+# lands inside the window because the loop runs to a fixed Pacific end time, not a fixed count.
+# Inactives (Pacific): Thu and Mon 3:45 PM; Sun 5:00 AM (London weeks), 8:30 AM, 11:35 and 11:55 AM, 3:50 PM.
+# Times below are UTC for BOTH clock settings (PDT until Nov 1, PST after); the script exits at once when
+# no inactives list is due in the next 45 minutes, so the wrong-season copy of each time costs nothing.
+on:
+  schedule:
+    - cron: '25 22,23 * * 1,4'      # Mon + Thu 3:25 PM PT
+    - cron: '40 11,12 * * 0'        # Sun 4:40 AM PT (London)
+    - cron: '10 15,16 * * 0'        # Sun 8:10 AM PT
+    - cron: '15 18,19 * * 0'        # Sun 11:15 AM PT (covers 11:35 and 11:55)
+    - cron: '30 22,23 * * 0'        # Sun 3:30 PM PT
+  workflow_dispatch:
+    inputs:
+      minutes: { description: 'Run for this many minutes regardless of the schedule (0 = follow the inactives times)', required: false, default: '0' }
+permissions:
+  contents: write
+concurrency:
+  group: dk-inactives                # its own lane: it never writes a file the other jobs write, except the state file (see below)
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: watch until the inactives are out
+        env: { DK_FEEDS_FAST: '1', FORCE_MIN: '${{ inputs.minutes }}' }
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          END=$(python3 - <<'PY'
+          import os, datetime as dt
+          from zoneinfo import ZoneInfo
+          PT = ZoneInfo("America/Los_Angeles"); now = dt.datetime.now(PT)
+          f = int(os.environ.get("FORCE_MIN") or 0)
+          if f: print(int((now + dt.timedelta(minutes=f)).timestamp())); raise SystemExit
+          LISTS = {3: ["15:45"], 0: ["15:45"], 6: ["05:00", "08:30", "11:35", "11:55", "15:50"]}   # Mon=0 Thu=3 Sun=6
+          due = []
+          for hm in LISTS.get(now.weekday(), []):
+              h, m = map(int, hm.split(":")); t = now.replace(hour=h, minute=m, second=0, microsecond=0)
+              if dt.timedelta(minutes=-10) <= t - now <= dt.timedelta(minutes=45): due.append(t)
+          print(int((max(due) + dt.timedelta(minutes=25)).timestamp()) if due else 0)
+          PY
+          )
+          if [ "$END" = "0" ]; then echo "no inactives list due in the next 45 minutes (other clock season) - nothing to do"; exit 0; fi
+          echo "watching until $(TZ=America/Los_Angeles date -d @$END '+%a %l:%M %p PT')"
+          while [ "$(date +%s)" -lt "$END" ]; do
+            T0=$(date +%s)
+            # start every pass from GitHub's latest copy - no merges, ever (a lost race just redoes the pass)
+            for i in 1 2 3; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              python3 pull_feeds.py | grep -E "^(OK|FAIL) " | cut -c1-160 || true
+              python3 state/build_state.py . || echo "!! state file failed this pass"
+              git add feeds/fast dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt
+              git commit -qm "inactives watch $(date -u +%H:%MZ)" || { echo "nothing new"; break; }
+              git push -q origin HEAD:main && { echo "saved $(TZ=America/Los_Angeles date '+%l:%M %p PT')"; break; }
+              echo "lost a race with another job - redoing this pass"; sleep 5
+            done
+            WAIT=$(( 300 - ($(date +%s) - T0) )); [ $WAIT -gt 0 ] && sleep $WAIT
+          done
+          echo "inactives window over"

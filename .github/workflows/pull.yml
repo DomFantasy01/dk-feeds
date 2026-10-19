@@ -4,10 +4,10 @@ on:
     # times are UTC. Pacific = UTC-7 until Nov 1, then UTC-8.
     # v2 Oct 7: every 30 minutes, ~5 AM to ~11 PM Pacific. RotoWire's feed only holds a handful of
     # items at a time, so news that scrolls off between runs is lost forever. Public repo = no cost.
-    - cron: '*/30 12-23 * * *'
-    - cron: '*/30 0-6 * * *'
+    - cron: '7,37 12-23 * * *'   # Oct 19: off the :00/:30 rush - GitHub starts top-of-hour jobs late
+    - cron: '7,37 0-6 * * *'
     # Oct 19 (Dom): hourly overnight too (midnight-5 AM PT) - news that broke overnight was never seen
-    - cron: '5 7-11 * * *'
+    - cron: '13 7-11 * * *'
   workflow_dispatch: {}            # a manual 'Run now' button
 permissions:
   contents: write
