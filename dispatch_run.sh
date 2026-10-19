@@ -103,4 +103,6 @@ if (cd "$ROOT/dksys/radar" && python3 radar_data.py && python3 radar_pages.py "$
 else
   echo "Radar build FAILED at $(date -u +%FT%TZ) - the Dispatch above still saved; see the run log" > "$REPO/dispatch_out/RADAR_FAILED.txt"; echo "!! RADAR FAILED"
 fi
+echo "== 8 the state file (Oct 19, Dom): one file Claude reads instead of scraping Yahoo"
+python3 "$REPO/state/build_state.py" "$REPO" "$ROOT" || echo "!! STATE FILE FAILED - the Dispatch above still saved"
 echo "DONE week $W"
