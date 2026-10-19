@@ -127,6 +127,19 @@ def _watch_list():
                 nm = a.get('name') or a.get('player') or a.get('who') if isinstance(a, dict) else None
                 if nm and not str(nm).endswith(' DEF'): names.append(nm); why.setdefault(nm, 'scout target')   # defenses have no player page
         except Exception: pass
+    # Oct 19 (Dom: "fix what is still wrong"): the wire too - Sleeper's top trending adds and the most-rostered
+    # free agents/waiver men in each of his four leagues, so a pickup's news is caught before the claim
+    try:
+        for a in (json.load(open(os.path.join(OUT, 'sleeper_trending.json'))).get('add') or [])[:25]:
+            if a.get('pos') not in ('DEF',): names.append(a['name']); why.setdefault(a['name'], 'trending add')
+    except Exception: pass
+    for n in (1, 2, 3, 4):
+        try:
+            body = [l for l in open(os.path.join(R, f'yahoo_drop/scout/dk{n}_waivers.txt')) if not l.startswith('#')]
+            for nm in '|'.join(body).replace('\n', '|').split('|')[:30]:
+                nm = nm.split('/')[0].strip()
+                if nm: names.append(nm); why.setdefault(nm, 'wire')
+        except FileNotFoundError: pass
     try: db = json.load(open(os.path.join(OUT, 'sleeper_players_min.json')))
     except Exception: db = {}
     db = db.get('players', db) if isinstance(db, dict) else {}
@@ -138,7 +151,7 @@ def _watch_list():
     for nm in dict.fromkeys(names):
         rid = ids.get(key(nm))
         if rid: out[nm] = (rid, why[nm])
-        else: missing.append(nm)
+        elif why[nm] in ('mine', 'opponent') or ' ' in nm: missing.append(nm)   # one-word wire names are defenses
     return out, missing
 def rotowire_pages():
     hp = os.path.join(OUT, 'rotowire_history.jsonl'); seen_id, seen_title = set(), set()
@@ -160,7 +173,10 @@ def rotowire_pages():
         except Exception as e: fails.append(f'{u}: {type(e).__name__}: {e}'[:160])
     watch, missing = _watch_list()
     ok_pages = 0
+    hourly = NOW.minute < 30                      # the :00 and overnight :05 runs read the wire too
+    skipped = 0
     for nm, (rid, why) in watch.items():
+        if why not in ('mine', 'opponent') and not hourly: skipped += 1; continue
         u = f"{RW}/football/player/{_re.sub(r'[^a-z0-9]+', '-', nm.lower()).strip('-')}-{rid}"
         try:
             bl = rw_blocks(get(u, timeout=20, tries=1).decode('utf-8', 'replace'), nm); ok_pages += 1
@@ -177,13 +193,36 @@ def rotowire_pages():
             row = {'title': title, 'text': b['text'], 'published_utc': stamp(b['date']), 'date_only': b['date'], 'link': b['link'],
                    'via': 'rotowire ' + via, 'rw_id': b['id'], 'injury': b['injury'], 'first_seen_utc': NOW.isoformat(timespec='seconds')}
             f.write(json.dumps(row) + '\n'); new.append(row)
+    exact, tfail = 0, 0
+    try:
+        rows = [json.loads(l) for l in open(hp)]
+        todo = [r for r in rows if r.get('rw_id') and not r.get('exact_time')]
+        todo.sort(key=lambda r: r.get('first_seen_utc', ''), reverse=True)        # newest first
+        for r in todo[:60]:
+            try:
+                pg = get(r['link'], timeout=20, tries=1).decode('utf-8', 'replace')
+                m = _re.search(r'"datePublished"\s*:\s*"([^"]+)"', pg)
+                if m:
+                    r['published_utc'] = dt.datetime.fromisoformat(m.group(1)).astimezone(dt.timezone.utc).isoformat(timespec='seconds')
+                    r['exact_time'] = True; exact += 1
+            except Exception: tfail += 1
+            time.sleep(0.3)
+        if exact:
+            tmp = hp + '.tmp'
+            with open(tmp, 'w') as f:
+                for r in rows: f.write(json.dumps(r) + '\n')
+            os.replace(tmp, hp)
+        left = len(todo) - exact
+    except Exception as e:
+        left = None; fails.append(f'exact times: {type(e).__name__}: {e}'[:160])
     write('rotowire_players.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'players': per_player, 'no_rotowire_id': missing})
     page_ok = ok_pages > 0 or any(v == 'news page' for _, v in got)
     warn = []
     if fails: warn.append(f'{len(fails)} page reads failed')
     if missing: warn.append(f'{len(missing)} watched players have no RotoWire id: ' + ', '.join(missing[:8]))
     mark('rotowire_pages', page_ok, news_page_items=sum(1 for _, v in got if v == 'news page'), players_watched=len(watch),
-         player_pages_read=ok_pages, new_items=len(new), failures=fails[:10], warning='; '.join(warn) or None)
+         player_pages_read=ok_pages, wire_pages_skipped_this_run=skipped, new_items=len(new),
+         exact_times_set=exact, exact_times_still_missing=left, exact_time_failures=tfail, failures=fails[:10], warning='; '.join(warn) or None)
     r = STATUS['sources'].get('rotowire')
     if page_ok and r and r.get('warning'):   # the thin RSS no longer matters once the pages are read
         r['rss_note'] = r.pop('warning'); r['warning'] = None
