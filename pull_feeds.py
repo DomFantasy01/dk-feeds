@@ -125,7 +125,7 @@ def _watch_list():
         try:
             for a in (json.load(open(f)).get('adds') or [])[:10]:
                 nm = a.get('name') or a.get('player') or a.get('who') if isinstance(a, dict) else None
-                if nm: names.append(nm); why.setdefault(nm, 'scout target')
+                if nm and not str(nm).endswith(' DEF'): names.append(nm); why.setdefault(nm, 'scout target')   # defenses have no player page
         except Exception: pass
     try: db = json.load(open(os.path.join(OUT, 'sleeper_players_min.json')))
     except Exception: db = {}
