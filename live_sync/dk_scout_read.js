@@ -1,4 +1,4 @@
-// THE SCOUT'S YAHOO READ (Oct 10 2026). Run in any Yahoo Fantasy tab of Dom's Chrome. READ-ONLY on Yahoo.
+// THE SCOUT'S YAHOO READ (Oct 10 2026; Oct 20 waiver-list fixes). Run in any Yahoo Fantasy tab of Dom's Chrome. READ-ONLY on Yahoo.
 // Reads every team page in all four leagues (slot, player, NFL team, position, injury tag) and each league's waiver list,
 // writes the eight files the Scout reads (dkN_rosters_live.txt, dkN_waivers.txt), then carries them to GitHub's upload
 // page for yahoo_drop/scout/ inside the link. The Dispatch build copies yahoo_drop/scout/ into the Scout before it runs.
@@ -32,12 +32,12 @@ window.DKS = {
       }
       F[`dk${n}_rosters_live.txt`]=`# ${lab} (${id}) all ${teams} rosters, Yahoo team pages read live ${at} (Chrome read). team|slot|name|team|pos|status\n`+out.join('\n')+'\n';
       const W=new Map();
-      for(const pos of ['O','K','DEF']) for(const cnt of [0,25]){
-        const d=await this.page(`https://football.fantasysports.yahoo.com/f1/${id}/players?status=W&pos=${pos}&cut_type=33&stat1=S_S_2026&myteam=0&sort=OR&sdir=1&count=${cnt}`); if(!d) continue;
+      for(const pos of ['O','K','DEF']) for(const cnt of (pos==='O'?[0,25,50,75,100]:[0,25])){   // Oct 20 (Dom): top 125 offensive waiver players, not 50
+        await new Promise(r=>setTimeout(r,600)); const d=await this.page(`https://football.fantasysports.yahoo.com/f1/${id}/players?status=W&pos=${pos}&cut_type=33&stat1=S_S_2026&myteam=0&sort=OR&sdir=1&count=${cnt}`); if(!d) continue;
         const tb=[...d.querySelectorAll('table')].find(x=>/Fan Pts/.test(x.textContent)); if(!tb) continue;
         tb.querySelectorAll('tbody tr').forEach(tr=>{
           const a=[...tr.querySelectorAll('a')].find(x=>/\/players\/\d+/.test(x.getAttribute('href')||'')&&x.textContent.trim().length>1&&!/Note|Video/.test(x.textContent));
-          const nm=a?a.textContent.trim():(tr.textContent.replace(/\s+/g,' ').match(/([A-Za-z0-9]+)\s*(?:No new player Notes|New Player Note|Player Note)?\s*[A-Z][a-z]{1,2} - DEF/)||[])[1];
+          const nm=a?a.textContent.trim():(tr.textContent.replace(/\s+/g,' ').match(/([A-Za-z0-9]+)\s*(?:No new player Notes|New Player Note|Player Note)?\s*[A-Z][A-Za-z]{1,2} - DEF/)||[])[1];   // Oct 20 (Dom): GB, KC, NO, SF, TB, LV, NE, NYJ... were missed
           const m=tr.textContent.match(/W \((\w{3} \d{1,2})\)/); if(nm&&m) W.set(nm,m[1]);
         });
       }
