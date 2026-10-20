@@ -1,6 +1,6 @@
 {
  "week": 6,
- "built_pt": "Mon Oct 19 2026 06:38 PM PT",
+ "built_pt": "Mon Oct 19 2026 06:45 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Oct 19 06:38 PM PT",
+   "pulled_pt": "Mon Oct 19 06:45 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,9 +22,9 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_mon1652.txt",
-   "pulled_pt": "Mon Oct 19 04:52 PM PT",
-   "age_h": 1.8,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_matchups_mon1840.txt",
+   "pulled_pt": "Mon Oct 19 06:40 PM PT",
+   "age_h": 0.1,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/league_windows_sun2052.txt",
    "pulled_pt": "Sun Oct 18 08:52 PM PT",
-   "age_h": 21.8,
+   "age_h": 21.9,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/standings_sun2052.txt",
    "pulled_pt": "Sun Oct 18 08:52 PM PT",
-   "age_h": 21.8,
+   "age_h": 21.9,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Oct 19 06:38 PM PT",
+   "pulled_pt": "Mon Oct 19 06:45 PM PT",
    "age_h": 0.0,
    "rows": 6,
    "need": 6,
-   "note": "Gotham run Mon Oct 19 2026 06:38 PM PT for week 6"
+   "note": "Gotham run Mon Oct 19 2026 06:45 PM PT for week 6"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk6_2026-10-20T0101Z.csv",
    "pulled_pt": "Mon Oct 19 06:01 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.7,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.6 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.7 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk6_2026-10-20T0101Z.csv",
    "pulled_pt": "Mon Oct 19 06:01 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.7,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.6 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.7 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk6/dom_rosters.json",
    "pulled_pt": "Sun Oct 18 08:52 PM PT",
-   "age_h": 21.8,
+   "age_h": 21.9,
    "rows": 68,
    "need": null,
    "note": "Dom's four rosters"
@@ -86,7 +86,6 @@
  },
  "alarms": [],
  "notes": [
-  "DK II: Gotham 24.1 vs Yahoo 16.4 / Sleeper 16.5 on Mike Evans - check role/news",
   "DK III: opponent starter Jameson Williams (DET) has no game this week",
   "DK III: opponent starter Ollie Gordon II (MIA) has no game this week",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
@@ -106,24 +105,24 @@
    "teams": 12,
    "opp_rank": 10,
    "needles": {
-    "gotham": 76,
-    "sleeper": 70,
+    "gotham": 0,
+    "sleeper": 0,
     "yahoo": 68,
     "yahoo_best": false,
     "yahoo_posted": 68,
-    "yahoo_from_spread": 76
+    "yahoo_from_spread": 0
    },
    "totals": {
     "gotham": [
-     141.5,
+     119.02,
      130.23
     ],
     "sleeper": [
-     138.54,
+     119.02,
      130.23
     ],
     "yahoo": [
-     141.69,
+     119.02,
      130.23
     ]
    },
@@ -135,7 +134,7 @@
       61.15,
       9.3,
       13.3,
-      57.94
+      35.27
      ],
      [
       0,
@@ -166,7 +165,7 @@
     ]
    },
    "played": {
-    "me": 7,
+    "me": 10,
     "op": 10,
     "of": [
      10,
@@ -180,9 +179,9 @@
       "player": "Jayden Daniels",
       "team": "WAS",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 22.98,
-      "actual": null,
+      "actual": 4.87,
       "pos": "QB",
       "gotham": 20.5,
       "gotham_src": "gotham",
@@ -210,9 +209,9 @@
       "player": "Christian McCaffrey",
       "team": "SF",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 24.36,
-      "actual": null,
+      "actual": 26.7,
       "pos": "RB",
       "gotham": 24.74,
       "gotham_src": "gotham",
@@ -285,9 +284,9 @@
       "player": "Stefon Diggs",
       "team": "WAS",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 10.6,
-      "actual": null,
+      "actual": 3.7,
       "pos": "WR",
       "gotham": 12.51,
       "gotham_src": "gotham",
@@ -556,22 +555,22 @@
    "state": "LIVE",
    "state_note": "17 of 20 starters done, 20 games kicked off",
    "needles_set": {
-    "gotham": 76,
+    "gotham": 0,
     "yahoo": 68,
-    "sleeper": 70,
-    "yahoo_from_spread": 76
+    "sleeper": 0,
+    "yahoo_from_spread": 0
    },
    "totals_set": {
     "yahoo": [
-     141.69,
+     119.02,
      130.23
     ],
     "gotham": [
-     141.5,
+     119.02,
      130.23
     ],
     "sleeper": [
-     138.54,
+     119.02,
      130.23
     ]
    },
@@ -605,25 +604,25 @@
    "teams": 12,
    "opp_rank": 1,
    "needles": {
-    "gotham": 17,
-    "sleeper": 34,
+    "gotham": 0,
+    "sleeper": 0,
     "yahoo": 45,
     "yahoo_best": false,
     "yahoo_posted": 45,
-    "yahoo_from_spread": 41
+    "yahoo_from_spread": 0
    },
    "totals": {
     "gotham": [
-     151.17,
-     165.29
+     135.54,
+     145.74
     ],
     "sleeper": [
-     151.79,
-     157.91
+     135.54,
+     145.74
     ],
     "yahoo": [
-     153.7,
-     157.07
+     135.54,
+     145.74
     ]
    },
    "windows": {
@@ -634,7 +633,7 @@
       99.47,
       24.3,
       3.0,
-      23.03
+      4.87
      ],
      [
       1,
@@ -652,7 +651,7 @@
       94.88,
       0.0,
       0.0,
-      42.04
+      30.71
      ],
      [
       1,
@@ -665,8 +664,8 @@
     ]
    },
    "played": {
-    "me": 10,
-    "op": 9,
+    "me": 11,
+    "op": 11,
     "of": [
      11,
      11
@@ -679,9 +678,9 @@
       "player": "Jayden Daniels",
       "team": "WAS",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 23.03,
-      "actual": null,
+      "actual": 4.87,
       "pos": "QB",
       "gotham": 20.5,
       "gotham_src": "gotham",
@@ -846,9 +845,9 @@
       "player": "Brock Purdy",
       "team": "SF",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 25.62,
-      "actual": null,
+      "actual": 17.31,
       "pos": "QB",
       "gotham": 26.18,
       "gotham_src": "gotham",
@@ -905,10 +904,10 @@
       "slot": "WR",
       "player": "Mike Evans",
       "team": "SF",
-      "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "status": "Q",
+      "kickoff": "",
       "yahoo": 16.42,
-      "actual": null,
+      "actual": 13.4,
       "pos": "WR",
       "gotham": 24.08,
       "gotham_src": "gotham",
@@ -1097,23 +1096,23 @@
    "state": "LIVE",
    "state_note": "19 of 22 starters done, 22 games kicked off",
    "needles_set": {
-    "gotham": 17,
+    "gotham": 0,
     "yahoo": 45,
-    "sleeper": 34,
-    "yahoo_from_spread": 41
+    "sleeper": 0,
+    "yahoo_from_spread": 0
    },
    "totals_set": {
     "yahoo": [
-     153.7,
-     157.07
+     135.54,
+     145.74
     ],
     "gotham": [
-     151.17,
-     165.29
+     135.54,
+     145.74
     ],
     "sleeper": [
-     151.79,
-     157.91
+     135.54,
+     145.74
     ]
    },
    "best_moves": {
@@ -1146,24 +1145,24 @@
    "teams": 14,
    "opp_rank": 11,
    "needles": {
-    "gotham": 24,
-    "sleeper": 33,
+    "gotham": 0,
+    "sleeper": 0,
     "yahoo": 42,
     "yahoo_best": false,
     "yahoo_posted": 42,
-    "yahoo_from_spread": 36
+    "yahoo_from_spread": 0
    },
    "totals": {
     "gotham": [
-     84.28,
+     60.62,
      96.39
     ],
     "sleeper": [
-     88.69,
+     60.62,
      96.39
     ],
     "yahoo": [
-     90.21,
+     60.62,
      96.39
     ]
    },
@@ -1175,7 +1174,7 @@
       34.1,
       0.0,
       13.3,
-      36.41
+      6.82
      ],
      [
       1,
@@ -1206,7 +1205,7 @@
     ]
    },
    "played": {
-    "me": 7,
+    "me": 9,
     "op": 7,
     "of": [
      9,
@@ -1220,9 +1219,9 @@
       "player": "Jayden Daniels",
       "team": "WAS",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 22.98,
-      "actual": null,
+      "actual": 4.87,
       "pos": "QB",
       "gotham": 20.5,
       "gotham_src": "gotham",
@@ -1235,9 +1234,9 @@
       "player": "Rachaad White",
       "team": "WAS",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 13.43,
-      "actual": null,
+      "actual": 1.95,
       "pos": "RB",
       "gotham": 9.98,
       "gotham_src": "gotham",
@@ -1448,10 +1447,10 @@
       "team": "DET",
       "status": "",
       "kickoff": "",
-      "yahoo": null,
+      "yahoo": 0.0,
       "actual": null,
       "pos": "WR",
-      "gotham": null,
+      "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
       "window": null,
@@ -1463,10 +1462,10 @@
       "team": "MIA",
       "status": "",
       "kickoff": "",
-      "yahoo": null,
+      "yahoo": 0.0,
       "actual": null,
       "pos": "RB",
-      "gotham": null,
+      "gotham": 0.0,
       "gotham_src": "yahoo-fallback",
       "sleeper": 0.0,
       "window": null,
@@ -1566,22 +1565,22 @@
    "state": "LIVE",
    "state_note": "16 of 18 starters done, 16 games kicked off",
    "needles_set": {
-    "gotham": 24,
+    "gotham": 0,
     "yahoo": 42,
-    "sleeper": 33,
-    "yahoo_from_spread": 36
+    "sleeper": 0,
+    "yahoo_from_spread": 0
    },
    "totals_set": {
     "yahoo": [
-     90.21,
+     60.62,
      96.39
     ],
     "gotham": [
-     84.28,
+     60.62,
      96.39
     ],
     "sleeper": [
-     88.69,
+     60.62,
      96.39
     ]
    },
@@ -1650,16 +1649,16 @@
    },
    "totals": {
     "gotham": [
-     132.27,
-     163.99
+     125.4,
+     163.42
     ],
     "sleeper": [
-     133.26,
-     164.72
+     125.4,
+     163.42
     ],
     "yahoo": [
-     133.71,
-     165.18
+     125.4,
+     163.42
     ]
    },
    "windows": {
@@ -1670,7 +1669,7 @@
       55.7,
       9.3,
       23.72,
-      12.01
+      3.7
      ],
      [
       1,
@@ -1688,7 +1687,7 @@
       73.7,
       63.3,
       0.0,
-      15.16
+      13.4
      ],
      [
       1,
@@ -1701,8 +1700,8 @@
     ]
    },
    "played": {
-    "me": 10,
-    "op": 10,
+    "me": 11,
+    "op": 11,
     "of": [
      11,
      11
@@ -1789,12 +1788,12 @@
       "slot": "WR",
       "player": "Terry McLaurin",
       "team": "WAS",
-      "status": "",
-      "kickoff": "Mon 5:15 pm",
-      "yahoo": 12.01,
-      "actual": null,
+      "status": "O",
+      "kickoff": "",
+      "yahoo": 0.0,
+      "actual": 3.7,
       "pos": "WR",
-      "gotham": 10.57,
+      "gotham": 0.0,
       "gotham_src": "gotham",
       "sleeper": 11.56,
       "window": 5,
@@ -1972,9 +1971,9 @@
       "player": "George Kittle",
       "team": "SF",
       "status": "",
-      "kickoff": "Mon 5:15 pm",
+      "kickoff": "",
       "yahoo": 15.16,
-      "actual": null,
+      "actual": 13.4,
       "pos": "TE",
       "gotham": 13.97,
       "gotham_src": "gotham",
@@ -2152,16 +2151,16 @@
    },
    "totals_set": {
     "yahoo": [
-     133.71,
-     165.18
+     125.4,
+     163.42
     ],
     "gotham": [
-     132.27,
-     163.99
+     125.4,
+     163.42
     ],
     "sleeper": [
-     133.26,
-     164.72
+     125.4,
+     163.42
     ]
    },
    "best_moves": {
