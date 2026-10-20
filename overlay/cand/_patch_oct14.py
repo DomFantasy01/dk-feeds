@@ -293,3 +293,17 @@ try:
   'Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)))', 1),
 ],"OCT14c Yahoo weekly projections in the Scout")
 except AssertionError as _e: print("!! OCT14c Yahoo projections NOT applied:", _e)
+
+# ======================= Oct 20 (Dom): HYPHENATED NAMES WERE INVISIBLE TO GOTHAM =======================
+#  8  The forecast frame keyed every player with role_watch's name cleaner, which squeezes "Smith-Njigba" into
+#     "smithnjigba"; Gotham and the meter join with dksys names.norm, which reads "smith njigba". The join missed, so every
+#     hyphenated name (Jaxon Smith-Njigba, Amon-Ra St. Brown, Jacory Croskey-Merritt, JuJu Smith-Schuster...) showed
+#     0 games and Gotham couldn't price him - the meter quietly used Yahoo's number instead. The frame now keys with the
+#     same names.norm everything else uses.
+try:
+  patch(f"{R}/src/forecast/fc_model.py",[
+ ('    s["key"] = s.player_display_name.map(norm)\n',
+  '    sys.path.insert(0, "/home/claude/dksys/gather"); from names import norm as _dknorm   # Oct 20 (Dom): same key as Gotham and the meter\n'
+  '    s["key"] = s.player_display_name.map(_dknorm)\n', 1),
+],"OCT20a hyphenated names join Gotham")
+except AssertionError as _e: print("!! OCT20a hyphen fix NOT applied:", _e)
