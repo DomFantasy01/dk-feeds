@@ -307,3 +307,11 @@ try:
   '    s["key"] = s.player_display_name.map(_dknorm)\n', 1),
 ],"OCT20a hyphenated names join Gotham")
 except AssertionError as _e: print("!! OCT20a hyphen fix NOT applied:", _e)
+#  9  ...and the role_watch name cleaner itself now reads a hyphen as a space, so every page that still matches names with
+#     it (the Positions page crashed on a hyphenated name at 3:01 PM) agrees with Gotham and the meter.
+try:
+  patch(f"{R}/src/role_watch/rw_core.py",[
+ ('def norm(n):\n    n = n.lower()',
+  'def norm(n):\n    n = n.replace("-", " ")   # Oct 20 (Dom): hyphen = space, same as names.norm\n    n = n.lower()', 1),
+],"OCT20b role_watch names read hyphens as spaces")
+except AssertionError as _e: print("!! OCT20b rw_core hyphen fix NOT applied:", _e)
