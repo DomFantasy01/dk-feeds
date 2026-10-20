@@ -315,3 +315,18 @@ try:
   'def norm(n):\n    n = n.replace("-", " ")   # Oct 20 (Dom): hyphen = space, same as names.norm\n    n = n.lower()', 1),
 ],"OCT20b role_watch names read hyphens as spaces")
 except AssertionError as _e: print("!! OCT20b rw_core hyphen fix NOT applied:", _e)
+# 10  Oct 20 (Dom): ABBREVIATED NAMES ON YAHOO TEAM PAGES. Yahoo prints long names short ("J. Croskey-Merritt"), so the
+#     Scout couldn't match him to a rostered player and called him a free agent in DK III while another team had him.
+#     A roster name of the form "X. Last" now matches the one player with that first initial, last name and team.
+try:
+  patch(f"{R}/dksys/scout/scout_engine.py",[
+ ('    c=[key for key in PL if key[0]==k]; return c[0] if c else None\n',
+  '    c=[key for key in PL if key[0]==k]\n'
+  '    if not c:   # Oct 20 (Dom): "J. Croskey-Merritt" -> the one J... Croskey-Merritt (same team first)\n'
+  '        _m=re.match(r"^([a-z]) (.+)$",k)\n'
+  '        if _m:\n'
+  '            c=[key for key in PL if key[1]==team and key[0].startswith(_m.group(1)) and key[0].endswith(" "+_m.group(2))] or \\\n'
+  '              [key for key in PL if key[0].startswith(_m.group(1)) and key[0].endswith(" "+_m.group(2))]\n'
+  '    return c[0] if c else None\n', 1),
+],"OCT20c abbreviated roster names match")
+except AssertionError as _e: print("!! OCT20c abbreviated-name fix NOT applied:", _e)
