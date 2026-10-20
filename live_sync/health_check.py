@@ -160,8 +160,13 @@ if me:
     gt = ptstr(g.get("pulled_pt")) or ptstr(g.get("note"))
     ok = g.get("status") == "OK" and gt and build_t and abs((gt - build_t).total_seconds()) <= 1800
     row("Gotham", "Gotham projections", "green" if ok else "red", (g.get("note") or g.get("status") or "missing")[:140], gt)
-    fb = me.get("gotham_fallbacks") or 0
-    row("Gotham", "Players Gotham couldn't price", "green" if fb <= 8 else "yellow", f"{fb} starters fell back to Yahoo's number (empty seats, kickers, defenses count here)")
+    # Oct 20 (Dom): count only starters who actually play this week - a bye / empty seat at 0 is correct, not a miss
+    _fbl = [f"{lg_} {'yours' if sd_=='me' else 'opp'}: {p_['player']}" for lg_, L_ in (me.get("leagues") or {}).items()
+            for sd_ in ("me", "op") for p_ in (L_.get("starters") or {}).get(sd_, [])
+            if p_.get("gotham_src") == "yahoo-fallback" and p_.get("gs") != "nogame"]
+    fb = len(_fbl)
+    row("Gotham", "Players Gotham couldn't price", "green" if fb == 0 else "yellow",
+        (f"{fb} playing starter(s) on Yahoo's number: " + "; ".join(_fbl))[:200] if fb else "every playing starter priced by Gotham (bye-week seats at 0 not counted)")
     row("Gotham", "Role drift (inside Gotham)", "green" if ok else "red", "the climbing-role read runs inside every Gotham run" + ("" if ok else " - Gotham did not run, so neither did drift"))
     for k in ("sleeper_skill", "sleeper_kdef", "nfl_schedule"):
         s = me.get("sources", {}).get(k, {})
