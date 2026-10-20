@@ -520,6 +520,7 @@ for x in ITEMS:
     x["active"] = True
     out.append(x)
 cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=30)).isoformat()
+cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=7)).isoformat()   # Oct 20 (Dom): archived cards clear 7 days after archiving, as the page says
 for i, o in old.items():
     if i in seen: continue
     if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
@@ -527,11 +528,24 @@ for i, o in old.items():
         pass                                          # a run without the feeds can't judge feed alerts; leave them as they are
     elif o.get("active"):
         o = dict(o, active=False, resolved_at=NOW)   # the latest build no longer raises it
-    if (o.get("last_seen") or "") >= cut: out.append(o)
+    if o.get("active") or not o.get("resolved_at") or o["resolved_at"] >= cut7:
+        if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
 doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE}
-json.dump(doc, open(out_f, "w"), indent=1)
+# Oct 20 (Dom): SIZE GUARD - the Live database refuses a document over 262,144 bytes, and every hourly run with the
+# news feeds came out ~274 KB, so its write was refused and the page sat on the 7:13 AM feeds. Drop the oldest archived
+# cards (never an active one) until the document fits with room to spare, and write it compact.
+LIMIT = 240000
+def _sz(d): return len(json.dumps({"id": "alerts", "data": d}, separators=(",", ":")).encode())
+_dropped = 0
+while _sz(doc) > LIMIT:
+    _old = [i for i, x in enumerate(doc["items"]) if not x.get("active")]
+    if not _old: break
+    _i = min(_old, key=lambda i: doc["items"][i].get("resolved_at") or doc["items"][i].get("last_seen") or "")
+    doc["items"].pop(_i); _dropped += 1
+json.dump(doc, open(out_f, "w"), separators=(",", ":"))
+SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", SIZE_NOTE)
