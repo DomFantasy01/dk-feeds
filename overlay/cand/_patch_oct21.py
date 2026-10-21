@@ -371,6 +371,18 @@ try: patch(f"{R}/cand/_actions.py",[
   '    except Exception: return ""\n'
   '    if (_ad.datetime.now(_ad.timezone.utc) - d).days > 5: return ""   # an old note says nothing about this week\n'
   '    s = _ar.split(r"(?<=[.!?])\\s+", str(x["detail"]).strip())[0]\n'
+  '    if len(s.split()) < 4:   # ESPN sometimes posts only the tag - use the newest RotoWire note on him instead\n'
+  '        try:\n'
+  '            best = None\n'
+  '            for _l in open("/home/claude/domfantasy01/dk-feeds/feeds/rotowire_history.jsonl"):\n'
+  '                _j = _aj.loads(_l); _t = str(_j.get("title") or "")\n'
+  '                if not _t.startswith(nm + ":"): continue\n'
+  '                _w = _ad.datetime.fromisoformat(str(_j.get("published_utc")).replace("Z", "+00:00"))\n'
+  '                if (_ad.datetime.now(_ad.timezone.utc) - _w).days <= 5 and (best is None or _w > best[0]): best = (_w, _t.split(":", 1)[1].strip(), str(_j.get("text") or ""))\n'
+  '            if not best: return ""\n'
+  '            d, s = best[0], best[1] + " - " + _ar.split(r"(?<=[.!?])\\s+", best[2].strip())[0]\n'
+  '            return f" - latest (RotoWire, {d:%b} {d.day}): {s.rstrip(\'.\')}"\n'
+  '        except Exception: return ""\n'
   '    return f" - latest ({\'ESPN\'}{\', \' + ds if ds else \'\'}): {s.rstrip(\'.\')}"\n'
   '# ---------------------------------------------------------------- ACTIONS\n',1),
 ],"OCT21m brief: no watch to-dos, injury notes")
