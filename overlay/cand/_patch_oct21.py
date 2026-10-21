@@ -387,3 +387,8 @@ try: patch(f"{R}/cand/_actions.py",[
   '# ---------------------------------------------------------------- ACTIONS\n',1),
 ],"OCT21m brief: no watch to-dos, injury notes")
 except AssertionError as _e: print("!! OCT21m NOT applied:",_e)
+
+# ---- 11 STALE WAIVER DATE (Oct 21): Tampa Bay and Dallas men were all marked "waivers, clears Oct 14" (a one-week rule from
+#      Week 6) - long past, so they are free agents unless Yahoo's waiver list says otherwise.
+try: patch(SE,[('("waivers, clears Oct 14" if PL[k]["team"] in ("TB","DAL") else "free agent")','"free agent"',1)],"OCT21n stale Oct 14 waiver rule off")
+except AssertionError as _e: print("!! OCT21n NOT applied:",_e)
