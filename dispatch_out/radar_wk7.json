@@ -1,48 +1,48 @@
 {
  "week": 7,
- "built": "Tue Oct 20 4:07 PM PT",
- "built_utc": "2026-10-20T23:07:18.322370+00:00",
+ "built": "Tue Oct 20 5:01 PM PT",
+ "built_utc": "2026-10-21T00:01:13.749344+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Tue Oct 20 3:33 PM PT",
-   "pulled_ago": "34 min ago",
-   "items": 810,
-   "newest": "37 min ago",
+   "pulled": "Tue Oct 20 4:56 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 818,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Tue Oct 20 3:33 PM PT",
-   "pulled_ago": "34 min ago",
-   "items": 1768,
-   "newest": "38 min ago",
+   "pulled": "Tue Oct 20 4:56 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 1770,
+   "newest": "25 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Tue Oct 20 3:33 PM PT",
-   "pulled_ago": "34 min ago",
-   "items": 1748,
-   "newest": "45 min ago",
+   "pulled": "Tue Oct 20 4:56 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 1753,
+   "newest": "17 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Tue Oct 20 3:33 PM PT",
-   "pulled_ago": "34 min ago",
-   "items": 377,
-   "newest": "50 min ago",
+   "pulled": "Tue Oct 20 4:56 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 379,
+   "newest": "29 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Tue Oct 20 3:33 PM PT",
-   "pulled_ago": "34 min ago",
+   "pulled": "Tue Oct 20 4:56 PM PT",
+   "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,16 +50,16 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Tue Oct 20 4:05 PM PT",
+   "pulled": "Tue Oct 20 4:59 PM PT",
    "pulled_ago": "2 min ago",
-   "items": 767,
+   "items": 763,
    "newest": null,
    "warn": null,
    "failed": null
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Tue Oct 20 2026 04:05 PM PT",
+   "pulled": "Tue Oct 20 2026 04:59 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Tue Oct 20 3:45 PM PT",
-   "pulled_ago": "22 min ago",
+   "pulled_ago": "1.3 h ago",
    "items": 3100,
    "newest": null,
    "warn": null,
@@ -129,7 +129,7 @@
      "name": "Stefon Diggs",
      "pos": "WR",
      "team": "WAS",
-     "slot": "W/R/T",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -171,7 +171,7 @@
      "name": "Jayden Daniels",
      "pos": "QB",
      "team": "WAS",
-     "slot": "QB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -297,7 +297,7 @@
      "name": "TreVeyon Henderson",
      "pos": "RB",
      "team": "NE",
-     "slot": "BN",
+     "slot": "W/R/T",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -339,7 +339,7 @@
      "name": "Tyler Shough",
      "pos": "QB",
      "team": "NO",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 6,
       "recency": 2,
@@ -597,6 +597,43 @@
    ],
    "in": [
     {
+     "name": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "team": "NYG",
+     "why": [
+      "Sleeper adds #11 (430,310 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 19 7:30 AM PT",
+       "src": "rotoballer",
+       "title": "Who Should I Pickup for Fantasy Football Week 7? Germie Bernard, Roschon Johnson, Tyrone Tracy Jr., Keenan Allen, Jordyn Tyson, Samaje Perine, Bam Knight, Jonah Coleman, Omar Cooper",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Jonah-Coleman-Fantasy-Football-Rankings-Waiver-Wire-Rankings-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Pickup for Fantasy Football Week 7? Germie Bernard",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "TreVeyon Henderson",
+      "gotham": 8.3
+     },
+     "beats_floor": true,
+     "gotham": null,
+     "gotham_ros": null,
+     "sleeper": 9.5,
+     "workload": null,
+     "trend": null,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Deshaun Watson",
      "pos": "QB",
      "team": "CLE",
@@ -620,7 +657,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 19.0,
      "gotham_ros": 20.4,
@@ -654,7 +694,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 18.2,
      "gotham_ros": 18.8,
@@ -688,7 +731,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 16.8,
      "gotham_ros": 16.7,
@@ -729,7 +775,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 16.4,
      "gotham_ros": 17.9,
@@ -763,7 +812,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 15.4,
      "gotham_ros": 16.9,
@@ -798,7 +850,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 21.1
+     },
      "beats_floor": false,
      "gotham": 0.0,
      "gotham_ros": 20.0,
@@ -814,7 +869,7 @@
      "team": "NYJ",
      "why": [
       "good news",
-      "Sleeper adds #1 (3,868,720 in 24 h)"
+      "Sleeper adds #1 (4,025,912 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -858,7 +913,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #23 (159,080 in 24 h)"
+      "Sleeper adds #22 (170,792 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -891,48 +946,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Tyrone Tracy Jr.",
-     "pos": "RB",
-     "team": "NYG",
-     "why": [
-      "Sleeper adds #11 (404,490 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Oct 19 7:30 AM PT",
-       "src": "rotoballer",
-       "title": "Who Should I Pickup for Fantasy Football Week 7? Germie Bernard, Roschon Johnson, Tyrone Tracy Jr., Keenan Allen, Jordyn Tyson, Samaje Perine, Bam Knight, Jonah Coleman, Omar Cooper",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Jonah-Coleman-Fantasy-Football-Rankings-Waiver-Wire-Rankings-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Pickup for Fantasy Football Week 7? Germie Bernard",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Alvin Kamara",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": 9.5,
-     "workload": null,
-     "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Ryan Flournoy",
      "pos": "WR",
      "team": "DAL",
      "why": [
-      "Sleeper adds #20 (185,616 in 24 h)"
+      "Sleeper adds #20 (186,704 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1197,7 +1215,7 @@
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
-     "slot": "IR",
+     "slot": "RB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -1281,7 +1299,7 @@
      "name": "Jacoby Brissett",
      "pos": "QB",
      "team": "ARI",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -1323,7 +1341,7 @@
      "name": "Jayden Daniels",
      "pos": "QB",
      "team": "WAS",
-     "slot": "QB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -1491,7 +1509,7 @@
      "name": "Kendre Miller",
      "pos": "RB",
      "team": "NO",
-     "slot": "BN",
+     "slot": "RB",
      "marker": {
       "count": 2,
       "recency": 1,
@@ -1575,7 +1593,7 @@
      "name": "Alvin Kamara",
      "pos": "RB",
      "team": "NO",
-     "slot": "RB",
+     "slot": "BN",
      "marker": {
       "count": 9,
       "recency": 2,
@@ -1617,7 +1635,7 @@
      "name": "MarShawn Lloyd",
      "pos": "RB",
      "team": "GB",
-     "slot": "RB",
+     "slot": "BN",
      "marker": {
       "count": 2,
       "recency": 2,
@@ -1687,7 +1705,7 @@
      "name": "Courtland Sutton",
      "pos": "WR",
      "team": "DEN",
-     "slot": "WR",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 5,
@@ -1764,7 +1782,7 @@
      "name": "Ja'Marr Chase",
      "pos": "WR",
      "team": "CIN",
-     "slot": "BN",
+     "slot": "WR",
      "marker": {
       "count": 2,
       "recency": 7,
@@ -1809,7 +1827,7 @@
      "pos": "TE",
      "team": "ATL",
      "why": [
-      "Sleeper adds #15 (326,669 in 24 h)"
+      "Sleeper adds #16 (330,085 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1847,7 +1865,7 @@
      "team": "NYJ",
      "why": [
       "good news",
-      "Sleeper adds #1 (3,868,720 in 24 h)"
+      "Sleeper adds #1 (4,025,912 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1874,10 +1892,10 @@
       }
      ],
      "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 8.7
+      "name": "Drake London",
+      "gotham": 14.7
      },
-     "beats_floor": true,
+     "beats_floor": false,
      "gotham": 10.4,
      "gotham_ros": 11.2,
      "sleeper": 10.7,
@@ -1891,7 +1909,7 @@
      "pos": "RB",
      "team": "NYG",
      "why": [
-      "Sleeper adds #11 (404,490 in 24 h)"
+      "Sleeper adds #11 (430,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1911,8 +1929,8 @@
       }
      ],
      "floor": {
-      "name": "MarShawn Lloyd",
-      "gotham": 10.3
+      "name": "Kendre Miller",
+      "gotham": 10.9
      },
      "beats_floor": false,
      "gotham": null,
@@ -1955,8 +1973,8 @@
       }
      ],
      "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 8.7
+      "name": "Drake London",
+      "gotham": 14.7
      },
      "beats_floor": false,
      "gotham": 8.6,
@@ -1972,7 +1990,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #6 (567,729 in 24 h)"
+      "Sleeper adds #6 (587,826 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2029,8 +2047,8 @@
       }
      ],
      "floor": {
-      "name": "MarShawn Lloyd",
-      "gotham": 10.3
+      "name": "Kendre Miller",
+      "gotham": 10.9
      },
      "beats_floor": false,
      "gotham": null,
@@ -2066,8 +2084,8 @@
       }
      ],
      "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 8.7
+      "name": "Drake London",
+      "gotham": 14.7
      },
      "beats_floor": false,
      "gotham": 3.9,
@@ -2084,7 +2102,7 @@
      "team": "HOU",
      "why": [
       "good news",
-      "Sleeper adds #7 (562,632 in 24 h)"
+      "Sleeper adds #7 (536,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2104,8 +2122,8 @@
       }
      ],
      "floor": {
-      "name": "Courtland Sutton",
-      "gotham": 8.7
+      "name": "Drake London",
+      "gotham": 14.7
      },
      "beats_floor": false,
      "gotham": null,
@@ -2141,8 +2159,8 @@
       }
      ],
      "floor": {
-      "name": "MarShawn Lloyd",
-      "gotham": 10.3
+      "name": "Kendre Miller",
+      "gotham": 10.9
      },
      "beats_floor": false,
      "gotham": null,
@@ -2178,8 +2196,8 @@
       }
      ],
      "floor": {
-      "name": "Aaron Rodgers",
-      "gotham": 20.7
+      "name": "Jacoby Brissett",
+      "gotham": 19.7
      },
      "beats_floor": false,
      "gotham": 0.0,
@@ -2215,8 +2233,8 @@
       }
      ],
      "floor": {
-      "name": "MarShawn Lloyd",
-      "gotham": 10.3
+      "name": "Kendre Miller",
+      "gotham": 10.9
      },
      "beats_floor": false,
      "gotham": 0.0,
@@ -2252,8 +2270,8 @@
       }
      ],
      "floor": {
-      "name": "MarShawn Lloyd",
-      "gotham": 10.3
+      "name": "Kendre Miller",
+      "gotham": 10.9
      },
      "beats_floor": false,
      "gotham": null,
@@ -2312,7 +2330,7 @@
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
-     "slot": "BN",
+     "slot": "RB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -2354,7 +2372,7 @@
      "name": "Rachaad White",
      "pos": "RB",
      "team": "WAS",
-     "slot": "RB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -2396,7 +2414,7 @@
      "name": "Aaron Rodgers",
      "pos": "QB",
      "team": "PIT",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -2480,7 +2498,7 @@
      "name": "Jayden Daniels",
      "pos": "QB",
      "team": "WAS",
-     "slot": "QB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -2533,10 +2551,10 @@
      },
      "news": [
       {
-       "t": "Tue Oct 20 3:22 PM PT",
+       "t": "Tue Oct 20 3:49 PM PT",
        "src": "ESPN news",
        "title": "Steelers bring back veteran Marquez Valdes-Scantling amid receiver injury woes",
-       "text": "The Steelers, in need of help at wide receiver with Michael Pittman Jr. and Roman Wilson out with injuries, signed veteran Marquez Valdes-Scantling on Tuesday.",
+       "text": "The Steelers, in need of help at wide receiver with Michael Pittman Jr. and Roman Wilson out because of injuries, signed veteran Marquez Valdes-Scantling on Tuesday.",
        "grade": "note"
       },
       {
@@ -2575,10 +2593,10 @@
      },
      "news": [
       {
-       "t": "Tue Oct 20 3:22 PM PT",
+       "t": "Tue Oct 20 3:49 PM PT",
        "src": "ESPN news",
        "title": "Steelers bring back veteran Marquez Valdes-Scantling amid receiver injury woes",
-       "text": "The Steelers, in need of help at wide receiver with Michael Pittman Jr. and Roman Wilson out with injuries, signed veteran Marquez Valdes-Scantling on Tuesday.",
+       "text": "The Steelers, in need of help at wide receiver with Michael Pittman Jr. and Roman Wilson out because of injuries, signed veteran Marquez Valdes-Scantling on Tuesday.",
        "grade": "note"
       },
       {
@@ -2606,7 +2624,7 @@
      "name": "Devaughn Vele",
      "pos": "WR",
      "team": "NO",
-     "slot": "W/R/T",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -2848,7 +2866,7 @@
      "team": "NYJ",
      "why": [
       "good news",
-      "Sleeper adds #1 (3,868,720 in 24 h)"
+      "Sleeper adds #1 (4,025,912 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2892,7 +2910,7 @@
      "pos": "RB",
      "team": "NYG",
      "why": [
-      "Sleeper adds #11 (404,490 in 24 h)"
+      "Sleeper adds #11 (430,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2929,7 +2947,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #6 (567,729 in 24 h)"
+      "Sleeper adds #6 (587,826 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2985,7 +3003,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Aaron Rodgers",
+      "gotham": 20.7
+     },
      "beats_floor": false,
      "gotham": 16.8,
      "gotham_ros": 16.7,
@@ -3019,7 +3040,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Aaron Rodgers",
+      "gotham": 20.7
+     },
      "beats_floor": false,
      "gotham": 15.4,
      "gotham_ros": 16.9,
@@ -3054,7 +3078,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Aaron Rodgers",
+      "gotham": 20.7
+     },
      "beats_floor": false,
      "gotham": 0.0,
      "gotham_ros": 20.0,
@@ -3144,7 +3171,7 @@
      "team": "HOU",
      "why": [
       "good news",
-      "Sleeper adds #7 (562,632 in 24 h)"
+      "Sleeper adds #7 (536,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3295,49 +3322,6 @@
    "opponent": "Brad's Ballers",
    "unread": [],
    "own": [
-    {
-     "name": "Terry McLaurin",
-     "pos": "WR",
-     "team": "WAS",
-     "slot": "WR",
-     "marker": {
-      "count": 7,
-      "recency": 0,
-      "color": "red",
-      "grades": [
-       "bad",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Oct 20 2:50 PM PT",
-       "src": "ESPN news",
-       "title": "Commanders WR Terry McLaurin has torn patellar tendon, ending his season",
-       "text": "Commanders wide receiver Terry McLaurin suffered a torn patellar tendon, an injury that will end his season, coach Dan Quinn announced Tuesday.",
-       "grade": "bad"
-      },
-      {
-       "t": "Tue Oct 20 12:18 PM PT",
-       "src": "ESPN injury report",
-       "title": "Terry McLaurin: Out (Knee)",
-       "text": "McLaurin tore his left patellar tendon during Monday's loss to the 49ers, according to John Keim of ESPN.com.",
-       "grade": "bad"
-      },
-      {
-       "t": "Tue Oct 20 12:12 PM PT",
-       "src": "pft",
-       "title": "Terry McLaurin out for year with torn patellar tendon",
-       "text": "McLaurin was injured in Monday night's loss to the 49ers.",
-       "grade": "bad"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 10.9,
-     "sleeper": 0.0,
-     "workload": "5/10/9/5",
-     "trend": -0.18
-    },
     {
      "name": "Tank Dell",
      "pos": "WR",
@@ -3907,7 +3891,7 @@
      "team": "NYJ",
      "why": [
       "good news",
-      "Sleeper adds #1 (3,868,720 in 24 h)"
+      "Sleeper adds #1 (4,025,912 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3988,7 +3972,7 @@
      "pos": "WR",
      "team": "DAL",
      "why": [
-      "Sleeper adds #20 (185,616 in 24 h)"
+      "Sleeper adds #20 (186,704 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4144,7 +4128,7 @@
      "pos": "RB",
      "team": "LA",
      "why": [
-      "Sleeper adds #24 (152,760 in 24 h)"
+      "Sleeper adds #24 (158,472 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4225,7 +4209,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #6 (567,729 in 24 h)"
+      "Sleeper adds #6 (587,826 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -4262,7 +4246,7 @@
      "pos": "RB",
      "team": "NYG",
      "why": [
-      "Sleeper adds #11 (404,490 in 24 h)"
+      "Sleeper adds #11 (430,310 in 24 h)"
      ],
      "marker": {
       "count": 1,
