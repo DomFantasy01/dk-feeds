@@ -274,3 +274,104 @@ _FADE = r'''    try:   # Oct 21 (Dom): fading starters and who is taking their w
 '''
 try: patch(SE,[("    if not QUIET: print(f\"Scout watch list: {len(BOARD['watch'])} lines\")\n",_FADE,1)],"OCT21i fading starters")
 except AssertionError as _e: print("!! OCT21i NOT applied:",_e)
+
+# ---- 8 GOTHAM: AN INHERITED JOB (Dom, Oct 21). Gotham blends in last season's per-game number (worth two games). When a man
+#      took over for a starter who is out for the season (Ollie Gordon for Achane), last season was a backup's year and says
+#      nothing about the job he has now - so for him the 2025 number is left out, the same way Gotham already leaves it out
+#      for a role change this week. Tested this week: only men behind a season-ending injury are touched.
+try: patch(f"{R}/dksys/engine/engine3v.py",[("except Exception as _e3: print('ENGINE3 season-ending check skipped:', _e3)\n",
+  "except Exception as _e3: print('ENGINE3 season-ending check skipped:', _e3)\n"
+  "try: json.dump(sorted(OUTSEASON),open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'outseason.json'),'w'))   # Oct 21: Gotham reads it (inherited jobs)\n"
+  "except Exception: pass\n",1)],"OCT21j engine3 writes the season-ending list")
+except AssertionError as _e: print("!! OCT21j NOT applied:",_e)
+try: patch(f"{R}/dksys/engine/gotham.py",[
+ ("LGK={'DKI':1,'DKII':2,'DKIII':3,'DKIV':4}; summary={}\n",
+  "LGK={'DKI':1,'DKII':2,'DKIII':3,'DKIV':4}; summary={}\n"
+  "try:   # Oct 21 (Dom): jobs inherited from a man out for the season - last season's number is left out for whoever took the job\n"
+  "    OUTS=set(json.load(open(os.path.join(HERE,'outseason.json'))))\n"
+  "    _l=S.sort_values('week').groupby('k').last()\n"
+  "    INH={(str(_l.loc[k_].team),str(_l.loc[k_].position)) for k_ in OUTS if k_ in _l.index}\n"
+  "except Exception as _e: OUTS,INH=set(),set(); print('GOTHAM inherited-job check skipped:',_e)\n"
+  "",1),
+ ("        if (row.role_add or 0)>0: return v           # his role changed this week - last season says nothing about the new one\n",
+  "        if (row.role_add or 0)>0: return v           # his role changed this week - last season says nothing about the new one\n"
+  "        if (str(row.team),str(row.pos)) in INH and row.k not in OUTS and row.n_games>=2 and v>=1.5*row.prior: return v   # Oct 21: he inherited the job of a man out for the season\n",1),
+],"OCT21k Gotham inherited jobs")
+except AssertionError as _e: print("!! OCT21k NOT applied:",_e)
+
+# ---- 9 RETURNING MEN WITH NO GAMES THIS SEASON (Dom, Oct 21): Josh Jacobs missed six games on the exempt list and is back
+#      at practice - the Scout had no 2026 games for him, so it never cut MarShawn Lloyd's role. A proven back/TE/QB from last
+#      season (Sleeper has him on a team, no injury tag) with fresh news that he is practicing or returning now counts as
+#      coming back: his position-mates on that team fall to half their level from his return week (the Scout's own rule
+#      for a returning man it has no shared games with).
+_RET = r'''
+RETURNERS={}
+try:   # Oct 21 (Dom): proven men coming back with no 2026 games (Josh Jacobs off the exempt list)
+    _FDR=globals().get("_FD","/home/claude/domfantasy01/dk-feeds/feeds/")
+    _spr=json.load(open(_FDR+"sleeper_players_min.json")).get("players",{}); _spr=_spr.values() if isinstance(_spr,dict) else _spr
+    _have={norm(p["name"]) for p in PL.values()}
+    _RX=re.compile(r"(practic\w*|return\w*|debut|activated|reinstated|off (?:the )?(?:commissioner'?s )?exempt|cleared|back on the field|could play|will play|expected to play|set to play)",re.I)
+    _NOWX=re.compile(r"(debut|could play|will play|expected to play|set to play|chance to play|might play|may play)",re.I)
+    _hl=[]
+    for _fn in ("rotowire_history.jsonl","espn_news_history.jsonl","news_extra_history.jsonl"):
+        try:
+            for _l in open(_FDR+_fn):
+                try: _j=json.loads(_l)
+                except Exception: continue
+                _t=str(_j.get("title") or ""); _ts=str(_j.get("published_utc") or "")
+                if not _t or "?" in _t or _t.count(",")>=2: continue
+                try: _w=dt.datetime.fromisoformat(_ts.replace("Z","+00:00"))
+                except Exception: continue
+                if _w.tzinfo is None or (dt.datetime.now(dt.timezone.utc)-_w).days>7: continue
+                _hl.append((_w,_t,_t+" "+re.sub(r"<[^>]+>"," ",str(_j.get("text") or ""))))
+        except Exception: pass
+    for _x in _spr:
+        _nm=_x.get("name") or ""; _ps=_x.get("pos"); _tm=_x.get("team")
+        if _ps not in ("QB","RB","TE") or not _tm or _x.get("inj"): continue
+        _nk=norm(_nm); _pr=P25.get(_nk)
+        if _nk in _have or _nk in SEASON_OUT or _pr is None or _pr<(15 if _ps=="QB" else 10): continue
+        _hit=[h for h in _hl if _nm in h[1] and _RX.search(h[2])]
+        if not _hit: continue
+        _h=max(_hit); _wk=NOW if _NOWX.search(_h[2]) else NOW+1
+        RETURNERS[_nk]=dict(name=_nm,team=tm(_tm),pos=_ps,prior=_pr,week=_wk,news=f"{_h[1]} ({_h[0]:%b} {_h[0].day})")
+        for _k2,_m in skill.items():
+            if _m["team"]!=tm(_tm) or _m["pos"]!=_ps or _m["fwd"]>_pr*1.25: continue           # a teammate clearly better than him keeps his job
+            if _k2 not in CLOSE or CLOSE[_k2]["week"]>_wk:
+                CLOSE[_k2]=dict(week=_wk,who=_nm,whokey=(_nk,tm(_tm)),after=.5*_m["fwd"],before=_m["fwd"],why=f"back with no games yet this season - {_h[1]}")
+    if not QUIET: print(f"Scout returners: {len(RETURNERS)} - "+", ".join(f"{v['name']} ({v['team']} {v['pos']}, Wk {v['week']})" for v in RETURNERS.values()))
+except Exception as _e: print("Scout returners check skipped:",_e)
+
+# Oct 14 afternoon (Dom): this week's Sleeper numbers + the this-week guard
+'''
+try: patch(SE,[
+ ("\n\n# Oct 14 afternoon (Dom): this week's Sleeper numbers + the this-week guard\n",_RET,1),
+ ('    pr=PL[c["whokey"]]\n','    pr=PL.get(c["whokey"],{"prac":""})   # Oct 21: a returner with no 2026 games is not in PL\n',1),
+],"OCT21l returners with no games this season")
+except AssertionError as _e: print("!! OCT21l NOT applied:",_e)
+
+# ---- 10 THE MORNING BRIEF (Dom, Oct 21): (a) a Scout "watch" (injured, or no outside backing) is never a to-do - the brief told
+#      Dom to add Pierre Strong after the Scout had moved him to watch; (b) a questionable or doubtful starter now carries the
+#      latest injury note (ESPN's injury report, dated) so the brief says what is known, not just "check his status".
+try: patch(f"{R}/cand/_actions.py",[
+ ('        if _g.get("mark") != "red" or not _pk.get("name"): continue\n',
+  '        if _g.get("mark") != "red" or not _pk.get("name") or _g.get("act") is False: continue   # Oct 21: a Scout watch is not a to-do\n',1),
+ ('            ACTIONS.append(dict(lg=_lab, rank=4, kind="check", who=_nm, what=f"{_who} is {_AWORD[_st]}. Check his status", by=f"before his {_a_ko(_p.get(\'kickoff\'))} kickoff"))\n',
+  '            ACTIONS.append(dict(lg=_lab, rank=4, kind="check", who=_nm, what=f"{_who} is {_AWORD[_st]}"+_a_inj(_nm)+". Check his status", by=f"before his {_a_ko(_p.get(\'kickoff\'))} kickoff"))\n',1),
+ ('# ---------------------------------------------------------------- ACTIONS\n',
+  '# Oct 21 (Dom): the latest injury note for a tagged starter, from ESPN\'s injury report (dated, first sentence)\n'
+  '_AINJ = {}\n'
+  'try:\n'
+  '    for _x in _aj.load(open("/home/claude/domfantasy01/dk-feeds/feeds/espn_injuries.json")).get("players", []):\n'
+  '        _AINJ[_x.get("name", "")] = _x\n'
+  'except Exception: pass\n'
+  'def _a_inj(nm):\n'
+  '    x = _AINJ.get(nm) or next((v for k, v in _AINJ.items() if k.replace(" Jr.", "").replace(" II", "") == nm.replace(" Jr.", "").replace(" II", "")), None)\n'
+  '    if not x or not x.get("detail"): return ""\n'
+  '    try: d = _ad.datetime.fromisoformat(str(x.get("date", "")).replace("Z", "+00:00")); ds = f"{d:%b} {d.day}"\n'
+  '    except Exception: return ""\n'
+  '    if (_ad.datetime.now(_ad.timezone.utc) - d).days > 5: return ""   # an old note says nothing about this week\n'
+  '    s = _ar.split(r"(?<=[.!?])\\s+", str(x["detail"]).strip())[0]\n'
+  '    return f" - latest ({\'ESPN\'}{\', \' + ds if ds else \'\'}): {s.rstrip(\'.\')}"\n'
+  '# ---------------------------------------------------------------- ACTIONS\n',1),
+],"OCT21m brief: no watch to-dos, injury notes")
+except AssertionError as _e: print("!! OCT21m NOT applied:",_e)
