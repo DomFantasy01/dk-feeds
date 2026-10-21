@@ -41,7 +41,7 @@ def ingest(b):
     for a in b.get('adds') or []:
         if not a.get('name') or a.get('pos') in ('K', 'DEF'): continue
         k = f"{lab}|{norm(a['name'])}"; m = NOWRX.search(a.get('now') or '')
-        rep = m.group(1).strip() if m else rows_of.get(a['name'])
+        rep = a.get('drop') or (m.group(1).strip() if m else rows_of.get(a['name']))   # Oct 21: the Scout now names the drop
         e = LOG.get(k)
         if e is None:
             LOG[k] = e = dict(league=lab, player=a['name'], pos=a.get('pos'), team=a.get('team'), first_week=W, first_seen=str(t),

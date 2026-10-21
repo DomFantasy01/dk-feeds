@@ -30,6 +30,7 @@ PYSC
 if [ -f "$ROOT/cand/_patch_oct10.py" ]; then python3 "$ROOT/cand/_patch_oct10.py"; fi   # the Oct 10 page fixes (Dom)
 if [ -f "$ROOT/cand/_patch_oct14.py" ]; then python3 "$ROOT/cand/_patch_oct14.py"; fi   # the Oct 14 Scout fixes (Dom): injured free agents, one-game spikes, initials
 if [ -f "$ROOT/cand/_patch_oct17.py" ]; then python3 "$ROOT/cand/_patch_oct17.py"; fi   # the Oct 17 Scout fixes (Dom): the trade check + the news check on every pickup
+if [ -f "$ROOT/cand/_patch_oct21.py" ]; then python3 "$ROOT/cand/_patch_oct21.py"; fi   # the Oct 21 Scout fixes (Dom): season-ending news, wait on the injured, outside check, price the drop, stashes, rising workload
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
