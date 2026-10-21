@@ -214,3 +214,60 @@ except Exception as _e3: print('ENGINE3 season-ending check skipped:', _e3)
 '''
 try: patch(f"{R}/dksys/engine/engine3v.py",[("OUTSEASON={norm(n) for n in ['De\\'Von Achane']}   # season-ending, never a candidate\n",_E3SO,1)],"OCT21h Positions doors season-ending")
 except AssertionError as _e: print("!! OCT21h NOT applied:",_e)
+
+# ---- 7 FADING STARTER -> RISING TEAMMATE (Dom, Oct 21 9:40 AM): a starter losing snaps and touches over the last three
+#      games, paired with the teammate at his position picking up that work - an early warning before the backup breaks
+#      out, and a warning when the fading man is on Dom's own roster.
+_FADE = r'''    try:   # Oct 21 (Dom): fading starters and who is taking their work
+        _tw=st.groupby("team").week.apply(lambda s:sorted(set(int(x) for x in s))).to_dict()
+        _ttg=st.groupby(["team","week"]).targets.sum().to_dict()
+        _mine={m["key"] for m in MINE}; _fade=[]
+        for _t,_wks in _tw.items():
+            if len(_wks)<5: continue
+            _last,_prev=_wks[-3:],_wks[:-3][-3:]
+            for _pos in ("RB","WR","TE"):
+                _s=st[(st.team==_t)&(st.position==_pos)]
+                _snp=sn[(sn.team==_t)&(sn.position==_pos)]
+                def _sh(name,wks):
+                    _x=_s[(_s.player_display_name==name)&(_s.week.isin(wks))]
+                    if _pos=="RB":
+                        _all=_s[_s.week.isin(wks)]; _d=float((_all.carries.fillna(0)+_all.targets.fillna(0)).sum())
+                        return float((_x.carries.fillna(0)+_x.targets.fillna(0)).sum())/_d if _d else 0.0
+                    _d=float(sum(_ttg.get((_t,w),0) for w in wks)); return float(_x.targets.fillna(0).sum())/_d if _d else 0.0
+                def _sp(name,wks):
+                    _x=_snp[(_snp._nk==norm(name))&(_snp.week.isin(wks))]
+                    return float(_x.offense_pct.sum())/len(wks)                       # a game he sat counts as 0 snaps (for the man taking work)
+                def _played(name,wks):
+                    _x=_snp[(_snp._nk==norm(name))&(_snp.week.isin(wks))&(_snp.offense_pct>0)]
+                    return sorted(_x.offense_pct.tolist())
+                for _nm in _s.player_display_name.unique():
+                    _k=find(_nm,_t,_pos)
+                    if not _k: continue
+                    _p=PL[_k]
+                    if _p["last"]<_wks[-1] or norm(_nm) in SEASON_OUT: continue       # he missed the last game - an injury, not a fade
+                    _pl1,_pl0=_played(_nm,_last),_played(_nm,_prev)
+                    if len(_pl1)<3 or len(_pl0)<2: continue                          # a fade is lost work while playing - a missed game is an injury
+                    _sp0,_sp1=float(np.median(_pl0)),float(np.median(_pl1)); _sh0,_sh1=_sh(_nm,_prev),_sh(_nm,_last)
+                    if _sp0<(.5 if _pos=="RB" else .6) or _sp0-_sp1<.10 or max(_pl1)>_sp0-.03 or _sh0-_sh1<.05: continue   # every one of the last three games below his old level
+                    _best=None
+                    for _nm2 in _s.player_display_name.unique():
+                        if _nm2==_nm: continue
+                        _a0,_a1=_sp(_nm2,_prev),_sp(_nm2,_last); _b0,_b1=_sh(_nm2,_prev),_sh(_nm2,_last)
+                        if _a1-_a0>=.08 and _b1>_b0 and (_best is None or _b1-_b0>_best[0]): _best=(_b1-_b0,_nm2,_a0,_a1,_b0,_b1)
+                    if not _best: continue
+                    _d,_nm2,_a0,_a1,_b0,_b1=_best; _k2=find(_nm2,_t,_pos)
+                    _avail=bool(_k2) and _k2 not in taken and not killed(_nm2)
+                    _yours=_k in _mine
+                    if not (_avail or _yours): continue
+                    _acq=(("waivers, clears "+WAIV[_k2[0]]) if _k2[0] in WAIV else "free agent") if _avail else ("on your roster" if _k2 in _mine else "rostered")
+                    _wl="touch" if _pos=="RB" else "target"
+                    _fade.append(((2 if _yours else 1)*(_sh0-_sh1+_d),
+                        f"{'Your starter fading' if _yours else 'Early warning'}: {_nm} ({_t} {_pos}) snaps {_sp0:.0%} to {_sp1:.0%} (typical game), {_wl} share {_sh0:.0%} to {_sh1:.0%} the last three games; "
+                        f"{_nm2} ({_acq}) is taking the work - snaps {_a0:.0%} to {_a1:.0%}, {_wl} share {_b0:.0%} to {_b1:.0%}"+(f", level now ~{PL[_k2]['fwd']:.1f}" if _k2 else "")))
+        BOARD["fade"]=[s for _,s in sorted(_fade,reverse=True)[:4]]
+        BOARD["watch"]+=BOARD["fade"][:3]
+    except Exception as _e: print("Scout fade check skipped:",_e)
+    if not QUIET: print(f"Scout watch list: {len(BOARD['watch'])} lines")
+'''
+try: patch(SE,[("    if not QUIET: print(f\"Scout watch list: {len(BOARD['watch'])} lines\")\n",_FADE,1)],"OCT21i fading starters")
+except AssertionError as _e: print("!! OCT21i NOT applied:",_e)
