@@ -330,3 +330,22 @@ try:
   '    return c[0] if c else None\n', 1),
 ],"OCT20c abbreviated roster names match")
 except AssertionError as _e: print("!! OCT20c abbreviated-name fix NOT applied:", _e)
+# 11  Oct 21 (Dom): THE GOTHAM CEILING. Graded Weeks 2-6 (641 men): when Gotham sat 4+ above Yahoo/Sleeper it missed by 9.0
+#     pts (they missed by 5.8); when it sat 4+ below it was the sharp one (5.1 vs 6.6). So on the meter Gotham never goes above
+#     the Yahoo/Sleeper average (only when both have a real number), and keeps every lower call. Graded the same way, Gotham's
+#     miss drops 6.1 -> 5.9, best of the three. His uncapped number rides along as gotham_raw (the Scoreboard grades both),
+#     and the "Gotham vs Yahoo/Sleeper - check role/news" note still reads the uncapped number.
+try:
+  patch(f"{R}/dksys/meter/meter_data.py",[
+ ("                sl = S.get(k); go = gm.get(k); gsrc = 'gotham'\n                if go is None or (isinstance(go, float) and math.isnan(go)):\n                    go, gsrc = p['yahoo'], 'yahoo-fallback'; fallback_total += 1\n",
+  "                sl = S.get(k); go = gm.get(k); gsrc = 'gotham'\n                if go is None or (isinstance(go, float) and math.isnan(go)):\n                    go, gsrc = p['yahoo'], 'yahoo-fallback'; fallback_total += 1\n"
+  "            graw = go\n"
+  "            if gsrc == 'gotham' and sl is not None and p.get('yahoo') is not None and float(sl) > 0 and float(p['yahoo']) > 0:   # Oct 21 (Dom): the Gotham ceiling\n"
+  "                _gc = (float(p['yahoo']) + float(sl)) / 2\n"
+  "                if float(go) > _gc: go, gsrc = _gc, 'gotham-capped'\n", 1),
+ ("            L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_src=gsrc,\n",
+  "            L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_raw=None if graw is None else round(float(graw), 2), gotham_src=gsrc,\n", 1),
+ ("                if abs(p['gotham'] - outside) >= 6:\n                    notes.append(f\"{lab}: Gotham {p['gotham']:.1f} vs Yahoo",
+  "                if abs((p.get('gotham_raw') or p['gotham']) - outside) >= 6:\n                    notes.append(f\"{lab}: Gotham {(p.get('gotham_raw') or p['gotham']):.1f} vs Yahoo", 1),
+],"OCT21a the Gotham ceiling")
+except AssertionError as _e: print("!! OCT21a Gotham ceiling NOT applied:", _e)

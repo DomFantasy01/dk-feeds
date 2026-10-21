@@ -38,7 +38,7 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
                 n += 1
     json.dump(P, open(pf, 'w'), indent=0); print(f"   scoreboard: week {W} pregame numbers held for {len(P)} men ({n} refreshed this build)")
 # ---- 2. grade every week that has finished games
@@ -48,7 +48,7 @@ fin = set(G[G.result.notna()].game_id)
 rows = []
 seed = f"{REPO}/backtest/history_wk2to4.csv"
 if os.path.exists(seed):
-    for r in pd.read_csv(seed).itertuples(): rows.append(dict(week=int(r.W), league='seed', pos=r.pos, player=r.k, yahoo=r.yahoo, gotham=r.gotham_rec, sleeper=r.sleeper, actual=r.act))
+    for r in pd.read_csv(seed).itertuples(): rows.append(dict(week=int(r.W), league='seed', pos=r.pos, player=r.k, yahoo=r.yahoo, gotham_raw=r.gotham_rec, sleeper=r.sleeper, actual=r.act))
 for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
     W = int(pf.split('_wk')[1].split('.')[0]); P = json.load(open(pf))
     if W <= 4: continue
@@ -57,8 +57,14 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham=v['gotham'], sleeper=v['sleeper'], actual=round(act, 2)))
+        rows.append(dict(week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], actual=round(act, 2)))
 R = pd.DataFrame(rows)
+# Oct 21 (Dom): THE GOTHAM CEILING - Gotham never sits above the Yahoo/Sleeper average (its high calls ran 9.0 pts off vs 5.8 for
+# the other two; its low calls were the sharp ones). The meter applies it live from Oct 21; every past week is graded the same
+# way here so the record is one rule, and Gotham's own uncapped number is still graded on its own line.
+_ok = (R.yahoo > 0) & (R.sleeper > 0); _c = (R.yahoo + R.sleeper) / 2
+R['gotham'] = R.gotham_raw.where(~_ok | R.gotham_raw.isna() | (R.gotham_raw <= _c), _c).round(2)
+R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw']]
 if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
 R.to_csv(f"{OUT}/graded.csv", index=False)
 SRC = ['yahoo', 'gotham', 'sleeper']
@@ -88,4 +94,11 @@ if len(hi):
     out += ["", f"DISAGREEMENT: when the three split by 4+ points ({len(hi)} men), the average Yahoo miss is {(hi.yahoo-hi.actual).abs().mean():.1f} pts "
             f"(vs {(lo.yahoo-lo.actual).abs().mean():.1f} when they agree). Closest of the three on those men: "
             + ", ".join(f"{c.title()} {v:.0%}" for c, v in closer.items()) + "."]
+_x = R.dropna(subset=['gotham_raw']); _g = R.rename(columns={'gotham': '_gc', 'gotham_raw': 'gotham'})
+out += ["", f"GOTHAM CEILING (Oct 21): Gotham is shown capped at the Yahoo/Sleeper average. Without the cap it misses by {(_x.gotham_raw-_x.actual).abs().mean():.1f} pts, "
+        f"{pairs(_g, 'gotham'):.0%} start/sit calls right ({len(_x)} men)."]
 open(f"{OUT}/scoreboard.txt", "w").write("\n".join(out) + "\n"); print("   " + "\n   ".join(out[:5]))
+# Oct 21 (Dom): the Scout's report card rides on the Scoreboard - grades every pickup call against the man it would replace
+try:
+    import subprocess; subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scout_card.py'), REPO], check=True)
+except Exception as _e: print('!! SCOUT CARD FAILED -', _e)
