@@ -185,3 +185,32 @@ try: patch(f"{R}/cand/redesign/_scout_page.py",[
  ('"  ·  ".join(_esc(s) for s in B["checked"]+_chart_lines(lab,B))','"  ·  ".join(_esc(s) for s in B["checked"]+B.get("watch",[])+_chart_lines(lab,B))',1),
  ],"OCT21g Scout page flag + watch")
 except AssertionError as _e: print("!! OCT21g NOT applied:",_e)
+
+# ---- 1b the Positions chart (engine3v doors) reads the same season-ending news - McLaurin was still a "bye fill" there
+_E3SO = r'''OUTSEASON={norm(n) for n in ['De\'Von Achane']}   # season-ending, never a candidate
+try:   # Oct 21 (Dom): season-ending news (ESPN injury report + single-man headlines, no question headlines) - same rule as the Scout
+    import re as _re3, datetime as _dt3
+    _SOR3=_re3.compile(r"(season[- ]ending|out for the (?:20\d\d )?(?:season|year)|done for the (?:season|year)|lost for the (?:season|year)|(?:end|ends|ending|ended) (?:his|their) (?:20\d\d )?season|(?:miss|missing|out for|sidelined for|over for)\b[^.]{0,30}?\b(?:rest|remainder) of the (?:20\d\d )?season)",_re3.I)
+    _NEG3=_re3.compile(r"(\bnot\b|n't\b|\bavoid\w*|\bno\b|\bnon\b)[^.]{0,20}$",_re3.I)
+    _nu3=_dt3.datetime.now(_dt3.timezone.utc); _F3='/home/claude/domfantasy01/dk-feeds/feeds/'
+    def _so3(tx):
+        for _mm in _SOR3.finditer(tx):
+            if not _NEG3.search(tx[max(0,_mm.start()-25):_mm.start()]): return True
+        return False
+    def _fresh3(ts):
+        try: w=_dt3.datetime.fromisoformat(str(ts).replace("Z","+00:00")); return w.tzinfo is not None and (_nu3-w).days<=45
+        except Exception: return False
+    for _x in json.load(open(_F3+'espn_injuries.json')).get('players',[]):
+        if _fresh3(_x.get('date')) and _so3(str(_x.get('detail',''))): OUTSEASON.add(norm(_x.get('name','')))
+    for _fn in ('rotowire_history.jsonl','espn_news_history.jsonl'):
+        for _l in open(_F3+_fn):
+            try: _j=json.loads(_l)
+            except Exception: continue
+            _t=str(_j.get('title') or '')
+            if not _t or '?' in _t or _t.count(',')>=2 or not _fresh3(_j.get('published_utc')) or not _so3(_t): continue
+            if _fn.startswith('rotowire') and ':' in _t: OUTSEASON.add(norm(_t.split(':')[0]))      # RotoWire headlines start "Name: ..."
+    print('ENGINE3 season-ending:', len(OUTSEASON), 'men')
+except Exception as _e3: print('ENGINE3 season-ending check skipped:', _e3)
+'''
+try: patch(f"{R}/dksys/engine/engine3v.py",[("OUTSEASON={norm(n) for n in ['De\\'Von Achane']}   # season-ending, never a candidate\n",_E3SO,1)],"OCT21h Positions doors season-ending")
+except AssertionError as _e: print("!! OCT21h NOT applied:",_e)
