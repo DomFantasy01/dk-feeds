@@ -7,11 +7,9 @@ set -euo pipefail
 ROOT=${DK_ROOT:-/home/claude}; REPO=${GITHUB_WORKSPACE:-$(pwd)}; GF=${DK_GFONTS:-/usr/share/fonts/truetype/google-fonts}
 echo "== 0 unpack code + saved data into $ROOT"
 if [ ! -d "$ROOT" ]; then sudo mkdir -p "$ROOT" && sudo chown "$(id -u)" "$ROOT"; fi
-unzip -oq "$REPO/dispatch_bundle.zip" -d "$ROOT"
-# Oct 21 (Dom): ONE SYSTEM, no patch layers. Every code fix that used to be applied at build time (the inline meter and Scout
-# fixes, the calendar patch, and the Oct 10 / 14 / 17 / 21 patch scripts) is now written into the source files in overlay/,
-# which is the single home of the code. The old patch scripts are kept, unused, in overlay/_retired/ for the record.
-if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; rm -rf "$ROOT/_retired"; echo "   code from overlay/ applied (the one source of the code)"; fi
+# Oct 21 (Dom): ONE SYSTEM. All the code and its starting data live as plain files in system/ - no zip bundle, no overlay,
+# no patch scripts run at build time. What is in system/ is exactly what runs. (The old patch scripts sit in retired/, never run.)
+cp -r "$REPO/system/." "$ROOT/"; echo "   code from system/ (the one copy of the code)"
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)

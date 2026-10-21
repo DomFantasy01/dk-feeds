@@ -1,0 +1,33 @@
+{
+ "_doc": "Freshness ledger. path = time read from the file itself; at = hand-entered read time (browser reads leave no file). The force-refresh build will write every entry.",
+ "yahoo": {
+  "label": "YAHOO",
+  "at": "2026-10-03T22:20:00-07:00",
+  "how": "browser read, Saturday night lineup re-pull, all 44 teams, plus the DK IV Robinson swap"
+ },
+ "stats": {
+  "label": "STATS",
+  "path": "/home/claude/dksys/data/latest/stats_week.csv"
+ },
+ "news": {
+  "label": "INJURIES",
+  "path": "/home/claude/dksys/data/latest/injuries.csv"
+ },
+ "schedule": {
+  "label": "SCHEDULE",
+  "path": "/home/claude/dksys/data/latest/games.csv"
+ },
+ "engine": {
+  "label": "ENGINE",
+  "path": "/home/claude/dksys/engine/engine2_DKI.csv"
+ },
+ "market": {
+  "label": "MARKET",
+  "path": "/home/claude/dksys/data/latest/blend.csv"
+ },
+ "live": {
+  "label": "LIVE SCAN",
+  "at": "2026-10-04T14:20:00-07:00",
+  "how": "browser read, one sweep of all 24 Week 4 matchup pages (every team, all four leagues): points, live projections, set lineups, status, Yahoo win %"
+ }
+}

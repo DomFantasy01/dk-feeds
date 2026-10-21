@@ -1,0 +1,119 @@
+{
+ "schema": "dk.winprob.v1",
+ "week": 4,
+ "note": "model = Claude's own (position SIG + RHO .14 over remaining starters); yahoo = Yahoo matchup page headline",
+ "readings": [
+  {
+   "stamp": "2026-10-02T04:40Z",
+   "label": "THU NIGHT",
+   "model": {
+    "DK I": 48,
+    "DK II": 43,
+    "DK III": 48,
+    "DK IV": 72
+   },
+   "yahoo": {
+    "DK I": 48,
+    "DK II": 44,
+    "DK III": 48,
+    "DK IV": 71
+   }
+  },
+  {
+   "stamp": "2026-10-02T15:35Z",
+   "label": "FRI MORNING",
+   "model": {
+    "DK I": 54,
+    "DK II": 43,
+    "DK III": 48,
+    "DK IV": 72
+   },
+   "yahoo": {
+    "DK I": 54,
+    "DK II": 44,
+    "DK III": 48,
+    "DK IV": 71
+   },
+   "live": {
+    "DK I": [
+     150.58,
+     145.49
+    ],
+    "DK II": [
+     161.28,
+     170.05
+    ],
+    "DK III": [
+     122.77,
+     125.04
+    ],
+    "DK IV": [
+     170.95,
+     139.39
+    ]
+   }
+  },
+  {
+   "stamp": "2026-10-04T06:58Z",
+   "label": "SAT NIGHT LOCK",
+   "model": {
+    "DK I": 47,
+    "DK II": 38,
+    "DK III": 39,
+    "DK IV": 73
+   },
+   "yahoo": {
+    "DK I": 48,
+    "DK II": 44,
+    "DK III": 47,
+    "DK IV": 67
+   },
+   "model_kind": "engine2 v4 modeled totals (not the SIG/RHO model of earlier readings)"
+  },
+  {
+   "stamp": "2026-10-04T16:11Z",
+   "label": "SUN AM LOCK v5",
+   "model": {
+    "DK I": 46,
+    "DK II": 43,
+    "DK III": 37,
+    "DK IV": 74
+   },
+   "yahoo": {
+    "DK I": 48,
+    "DK II": 44,
+    "DK III": 47,
+    "DK IV": 67
+   },
+   "model_kind": "engine2 v5"
+  },
+  {
+   "label": "SUN 11:55 LIVE v33",
+   "at": "2026-10-04T11:55:00-07:00",
+   "model": {
+    "DK I": 49,
+    "DK II": 42,
+    "DK III": 22,
+    "DK IV": 88
+   },
+   "yahoo": {
+    "DK I": 51,
+    "DK II": 43,
+    "DK III": 25,
+    "DK IV": 85
+   },
+   "efficiency": {
+    "DK I": 58,
+    "DK II": 35,
+    "DK III": 26,
+    "DK IV": 90
+   },
+   "comp": {
+    "DK I": 37,
+    "DK II": 28,
+    "DK III": 24,
+    "DK IV": 38
+   }
+  }
+ ]
+}

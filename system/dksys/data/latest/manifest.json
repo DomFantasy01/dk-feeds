@@ -1,0 +1,185 @@
+{
+  "games": {
+    "source": "nflverse",
+    "url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+    "status": "ok",
+    "rows": 272,
+    "bytes": 2183213,
+    "freshness": "last played wk 4; lines wk5 15/15, wk6 14/14",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  },
+  "snap_counts": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+    "status": "ok",
+    "rows": 5970,
+    "bytes": 535718,
+    "freshness": "weeks 1-4",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  },
+  "stats_week": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+    "status": "ok",
+    "rows": 4449,
+    "bytes": 1981105,
+    "freshness": "weeks 1-4",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  },
+  "injuries": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+    "status": "ok",
+    "rows": 1274,
+    "bytes": 143977,
+    "freshness": "weeks 1-5",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  },
+  "rosters_nfl": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv",
+    "status": "ok",
+    "rows": 3032,
+    "bytes": 963300,
+    "freshness": "weeks 1-5",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  },
+  "yahoo_roster_DKI": {
+    "source": "Yahoo (browser)",
+    "url": "https://football.fantasysports.yahoo.com/f1/269381/2",
+    "status": "ok",
+    "rows": 16,
+    "freshness": "budget $74, IR 1/1",
+    "pulled_utc": "2026-09-30 19:34 UTC",
+    "pulled_pt": "Wed Sep 30 2026 12:34 PM PDT"
+  },
+  "yahoo_roster_DKII": {
+    "source": "Yahoo (browser)",
+    "url": "https://football.fantasysports.yahoo.com/f1/1519795/7",
+    "status": "ok",
+    "rows": 16,
+    "freshness": "budget $68, IR 1/2",
+    "pulled_utc": "2026-09-30 19:34 UTC",
+    "pulled_pt": "Wed Sep 30 2026 12:34 PM PDT"
+  },
+  "yahoo_roster_DKIII": {
+    "source": "Yahoo (browser)",
+    "url": "https://football.fantasysports.yahoo.com/f1/1507991/2",
+    "status": "ok",
+    "rows": 14,
+    "freshness": "budget $98, IR 1/1",
+    "pulled_utc": "2026-09-30 19:34 UTC",
+    "pulled_pt": "Wed Sep 30 2026 12:34 PM PDT"
+  },
+  "yahoo_roster_DKIV": {
+    "source": "Yahoo (browser)",
+    "url": "https://football.fantasysports.yahoo.com/f1/864215/6",
+    "status": "ok",
+    "rows": 19,
+    "freshness": "budget NOT FOUND, IR 3/3",
+    "pulled_utc": "2026-09-30 19:34 UTC",
+    "pulled_pt": "Wed Sep 30 2026 12:34 PM PDT"
+  },
+  "player_sheet": {
+    "source": "built from yahoo + nflverse",
+    "status": "ok",
+    "rows": 65,
+    "freshness": "next week 4; official wk4 reports in for ['CLE', 'PIT'] only; unmatched 0",
+    "unmatched": [],
+    "pulled_utc": "2026-09-30 19:35 UTC",
+    "pulled_pt": "Wed Sep 30 2026 12:35 PM PDT"
+  },
+  "yahoo_players_DKII": {
+    "source": "Yahoo player list (browser): Yahoo default + Rotowire vendor 102",
+    "url": "https://football.fantasysports.yahoo.com/f1/1519795/players (stat1 S_PSR_2026, S_PW_4, S_PW_5)",
+    "status": "ok",
+    "rows": 351,
+    "freshness": "200 rostered across league, 151 available; checksum verified",
+    "pulled_utc": "2026-10-04 04:31 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:31 PM PDT"
+  },
+  "yahoo_players_DKI": {
+    "source": "Yahoo player list (browser): Yahoo default + Rotowire vendor 102",
+    "url": "https://football.fantasysports.yahoo.com/f1/269381/players (stat1 S_PSR_2026, S_PW_4, S_PW_5)",
+    "status": "ok",
+    "rows": 338,
+    "freshness": "188 rostered across league, 150 available; checksum verified",
+    "pulled_utc": "2026-10-04 04:31 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:31 PM PDT"
+  },
+  "yahoo_players_DKIII": {
+    "source": "Yahoo player list (browser): Yahoo default + Rotowire vendor 102",
+    "url": "https://football.fantasysports.yahoo.com/f1/1507991/players (stat1 S_PSR_2026, S_PW_4, S_PW_5)",
+    "status": "ok",
+    "rows": 320,
+    "freshness": "201 rostered across league, 119 available; checksum verified",
+    "pulled_utc": "2026-10-04 04:31 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:31 PM PDT"
+  },
+  "yahoo_players_DKIV": {
+    "source": "Yahoo player list (browser): Yahoo default + Rotowire vendor 102",
+    "url": "https://football.fantasysports.yahoo.com/f1/864215/players (stat1 S_PSR_2026, S_PW_4, S_PW_5)",
+    "status": "ok",
+    "rows": 321,
+    "freshness": "175 rostered across league, 146 available; checksum verified",
+    "pulled_utc": "2026-10-04 04:31 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:31 PM PDT"
+  },
+  "yahoo_standings": {
+    "source": "Yahoo league home standings table (browser)",
+    "url": "https://football.fantasysports.yahoo.com/f1/<league>",
+    "status": "ok",
+    "rows": 48,
+    "freshness": "through NFL Week 3; includes every team's FAAB left and waiver priority",
+    "pulled_utc": "2026-09-30 20:08 UTC",
+    "pulled_pt": "Wed Sep 30 2026 01:08 PM PDT"
+  },
+  "cbs_ros": {
+    "source": "CBS Sports rest-of-season projections (PPR stat lines)",
+    "url": "https://www.cbssports.com/fantasy/football/stats/<POS>/2026/restofseason/projections/ppr/",
+    "status": "ok",
+    "rows": 367,
+    "freshness": "checksum verified; QB/RB/WR/TE only",
+    "pulled_utc": "2026-10-04 04:43 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:43 PM PDT"
+  },
+  "blend": {
+    "source": "judge/blend.py from Yahoo + Rotowire + CBS + ESPN (skill positions; ESPN K/DEF not gathered)",
+    "status": "partial",
+    "rows": 1330,
+    "freshness": "all four re-pulled Sat Oct 3 night; K and DEF still 2 sources",
+    "pulled_utc": "2026-10-04 04:46 UTC",
+    "pulled_pt": "Sat Oct 03 2026 09:46 PM PDT"
+  },
+  "news_judge": {
+    "source": "judge/news.py: official report (nflverse injuries.csv) + data/state/news.json hand items",
+    "status": "partial",
+    "rows": 1304,
+    "freshness": "week 4; official reports posted for 2 of 32 teams: CLE, PIT",
+    "pulled_utc": "2026-09-30 23:31 UTC",
+    "pulled_pt": "Wed Sep 30 2026 04:31 PM PDT"
+  },
+  "yahoo_players_refresh_thu": {
+    "source": "Yahoo player lists, all four leagues (browser), Thu Oct 1 ~9 a.m. PT",
+    "status": "partial",
+    "rows": 85,
+    "freshness": "FULL pull done in browser; only changed ownership + decision rows written (Dom's rosters, pickups, watch list, wire tops). Other rows keep Wed values; Wed-to-Thu drift checked at ~0.1 pt",
+    "pulled_utc": "2026-10-01 15:47 UTC",
+    "pulled_pt": "Thu Oct 01 2026 08:47 AM PDT"
+  },
+  "depth_charts": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv",
+    "status": "ok",
+    "rows": 622339,
+    "bytes": 59252788,
+    "freshness": "",
+    "pulled_utc": "2026-10-08 19:48 UTC",
+    "pulled_pt": "Thu Oct 08 2026 12:48 PM PDT"
+  }
+}
