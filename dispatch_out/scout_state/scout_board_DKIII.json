@@ -1,8 +1,8 @@
 {
  "league": "DK III",
- "run": "2026-10-21T12:59:54.020348-07:00",
- "run_str": "Wed Oct 21, 12:59 PM PT",
- "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 21, 12:55 PM PT \u00b7 stats nflverse Wed 12:59 PM PT",
+ "run": "2026-10-21T13:12:23.122723-07:00",
+ "run_str": "Wed Oct 21, 1:12 PM PT",
+ "depth": "Built from real points and workload \u2014 four games of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 21, 12:55 PM PT \u00b7 stats nflverse Wed 1:12 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -31,13 +31,14 @@
    "gap": null,
    "head": "The Backfield Won't Hold",
    "title": "RB2, Season-Long",
-   "target": "Target 8.5 pts",
-   "why": "Full strength ~10.9 (White). Wk 7 Perine ~6.4 (White on bye, Perine slides in) \u00b7 Wk 8 Perine ~6.9 (White moves up to RB1, Perine slides in) \u00b7 Wk 9 Montgomery ~10.8 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 10 Montgomery ~8.3 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 11 White ~9.5 (White fades to ~10 once Croskey-Merritt is back) \u00b7 Wk 12 Montgomery ~8.7 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 14 Montgomery ~8.8 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 16 White ~8.5 (White fades to ~10 once Croskey-Merritt is back).",
-   "across": "Wk 7 Dobbins ~15.4 vs Perine ~6.4 \u00b7 Wk 8 Hampton ~13.3 vs Perine ~6.9 \u00b7 Wk 9 Jeanty ~20.1 vs Montgomery ~10.8 \u00b7 Wk 10 Tuten ~17.9 vs Montgomery ~8.3 \u00b7 Wk 11 Jon",
+   "target": "Target 8.6 pts",
+   "why": "Full strength ~10.9 (White). Wk 7 Montgomery ~7.6 (White on bye, Montgomery slides in) \u00b7 Wk 8 Perine ~6.9 (White moves up to RB1, Perine slides in) \u00b7 Wk 9 Montgomery ~10.8 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 10 Montgomery ~8.3 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 11 White ~9.5 (White fades to ~10 once Croskey-Merritt is back) \u00b7 Wk 12 Montgomery ~8.7 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 14 Montgomery ~8.8 (White moves up to RB1, Montgomery slides in) \u00b7 Wk 16 White ~8.5 (White fades to ~10 once Croskey-Merritt is back).",
+   "across": "Wk 7 Dobbins ~15.4 vs Montgomery ~7.6 \u00b7 Wk 8 Hampton ~13.3 vs Perine ~6.9 \u00b7 Wk 9 Jeanty ~20.1 vs Montgomery ~10.8 \u00b7 Wk 10 Tuten ~17.9 vs Montgomery ~8.3 \u00b7 Wk 11",
    "picks": [],
    "none": "No recommendation \u2014 nobody available fits.",
    "kill": "Drops Off When Filled",
    "rows": [
+    "David Montgomery",
     "Rachaad White",
     "Samaje Perine"
    ],
@@ -188,25 +189,6 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:QB:fill:short",
-   "age": 12,
-   "gap": null,
-   "head": "A Bye Hits the Quarterback Spot",
-   "title": "QB, Week 7 Fill",
-   "target": "Target 21.6 pts",
-   "why": "Full strength ~22.9 (Daniels). Wk 7 Rodgers ~21.6 (Daniels on bye, Rodgers slides in).",
-   "across": "Wk 7 Love ~28.0 vs Rodgers ~21.6",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 7",
-   "rows": [
-    "Aaron Rodgers"
-   ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:TE:fill:short",
    "age": 12,
    "gap": null,
@@ -236,6 +218,25 @@
    "none": null,
    "kill": "Drops Off After Wk 10",
    "rows": [],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
+   "key": "need:QB:fill:short",
+   "age": 12,
+   "gap": null,
+   "head": "A Bye Hits the Quarterback Spot",
+   "title": "QB, Week 7 Fill",
+   "target": "Target 21.6 pts",
+   "why": "Full strength ~22.9 (Daniels). Wk 7 Rodgers ~21.6 (Daniels on bye, Rodgers slides in).",
+   "across": "Wk 7 Love ~28.0 vs Rodgers ~21.6",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off After Wk 7",
+   "rows": [
+    "Aaron Rodgers"
+   ],
    "rep": 0
   }
  ],
@@ -459,10 +460,10 @@
  "qcont": [
   {
    "name": "David Montgomery",
-   "slot": "RB",
+   "slot": "RB2",
    "tag": "Q",
-   "val": 0.0,
-   "loss": 0.0,
+   "val": 7.6,
+   "loss": 1.1,
    "fills": [
     {
      "name": "Pierre Strong",
@@ -471,15 +472,6 @@
      "now": 5.8,
      "nxt": 0.1,
      "fwd": 13.0,
-     "acq": "Free agent"
-    },
-    {
-     "name": "Jawhar Jordan",
-     "team": "HOU",
-     "pos": "RB",
-     "now": 2.8,
-     "nxt": 0.0,
-     "fwd": 9.2,
      "acq": "Free agent"
     }
    ],
@@ -507,14 +499,7 @@
    "bench": false
   }
  ],
- "moves": [
-  {
-   "kind": "hold",
-   "name": "David Montgomery",
-   "free": "Samaje Perine",
-   "text": "Hold David Montgomery (HOU RB) - RotoWire: \"week-to-week\" (Oct 12); out Weeks 7-8, back about Week 9 (Week 8 is his bye); ~9.3 a game when healthy. Once back he is worth ~22 pts to the best lineup through Week 17, more than the cheapest other bench seat, Samaje Perine (CIN RB, ~7 pts). If a roster seat is needed while he is out, free that one instead. Dom's call - never an order."
-  }
- ],
+ "moves": [],
  "prekick": [],
  "watch": [
   "Watch: Adonai Mitchell (NYJ WR) - listed out, due back Wk 8 - waits for his return to be confirmed (a full practice).",
