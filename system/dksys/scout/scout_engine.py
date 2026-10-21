@@ -266,12 +266,21 @@ try:   # Oct 12 (Dom): news that he will miss time keeps him out - only news wri
     _GD={}
     for _r in _gm.itertuples(): _GD[(tm(_r.home_team),int(_r.week))]=str(_r.gameday); _GD[(tm(_r.away_team),int(_r.week))]=str(_r.gameday)
     _NAMES={norm(p['name']):p for p in PL.values() if p.get('pos') in ('QB','RB','WR','TE')}
+    # Oct 21 (Dom): a newer official tag beats an older "week-to-week". Montgomery: RotoWire "week-to-week" Oct 12, then ESPN
+    # Questionable Oct 21 - the old note had him out through Week 8 and the alerts told Dom to bench him. When ESPN's injury
+    # entry is newer than the news and does not say Out / IR, that news no longer decides how long he is out.
+    _ESPD={}
+    try:
+        for _x in json.load(open(_FD+'espn_injuries.json')).get('players',[]): _ESPD[norm(_x.get('name',''))]=(str(_x.get('status','')).lower(),str(_x.get('date',''))[:10])
+    except Exception: pass
     for _nm,_tx,_ts,_src in _IT:
         if not _ts or not _NEWSRE.search(_tx): continue
         _when=dt.datetime.fromisoformat(str(_ts).replace('Z','+00:00')) if 'T' in str(_ts) else None
         if _when is None or _when.tzinfo is None or (NOWPT-_when).days>10: continue
         for _k,_p in _NAMES.items():
             if not _p['name'] or _p['name'] not in _nm: continue
+            _es=_ESPD.get(_k)
+            if _es and _es[1]>_when.strftime('%Y-%m-%d') and not any(w in _es[0] for w in ('out','reserve','pup','suspen','doubtful')): continue
             _gday=_GD.get((_p['team'],int(_p['last'])),'')
             if _gday and _when.strftime('%Y-%m-%d')<_gday: continue           # written before his last game - he has played since
             _n=_nweeks(_tx); _ph=_NEWSRE.search(_tx).group(0)

@@ -143,7 +143,7 @@ if '--runlog' in sys.argv and _slot:
     last = mine[-1] if mine else None
     rd = _p(H.get('read') or ''); bt = _p(H.get('build') or '')
     if last and last.get('status') == 'ok':
-        if rd and rd >= _slot - timedelta(minutes=5): CH.update(state='ok', msg=f'{lab} read in and built')
+        if rd and rd >= _slot - timedelta(minutes=5): CH.update(state='ok', msg=f"{rd.astimezone(_PTZ).strftime('%-I:%M %p')} read in and built")   # Oct 21: the read's own time, not the schedule slot it covers
         elif _now - (_p(last.get('finished', '')) or _now) > timedelta(minutes=45):
             CH.update(state='broken', msg=f'{lab} read saved, but no build has used it in 45 minutes')
         else: CH.update(state='wait', msg=f'{lab} read saved, waiting for the build')
