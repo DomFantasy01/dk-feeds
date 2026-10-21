@@ -40,6 +40,13 @@ if mf:
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
                     yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
                 n += 1
+        for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
+            if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
+            g = game_of(s.get('team'), W)
+            if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue
+            P[f"{lab}|bench|{norm(s['player'])}"] = dict(league=lab, side='bench', player=s['player'], pos=s['pos'], team=s.get('team'),
+                yahoo=None, gotham=s.get('gotham'), gotham_raw=s.get('gotham'), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
+            n += 1
     json.dump(P, open(pf, 'w'), indent=0); print(f"   scoreboard: week {W} pregame numbers held for {len(P)} men ({n} refreshed this build)")
 # ---- 2. grade every week that has finished games
 S = pd.read_csv(f'{D}/stats_week.csv', low_memory=False); S = S[(S.season == G.season.max()) & (S.season_type == 'REG')].fillna(0)
@@ -57,8 +64,11 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], actual=round(act, 2)))
+        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], actual=round(act, 2)))
 R = pd.DataFrame(rows)
+if 'side' not in R: R['side'] = None
+R['side'] = R['side'].fillna('seed')
+RB_ = R[R.side == 'bench'].copy(); RS_ = R[R.side == 'me'].copy(); R = R[R.side != 'bench'].copy()   # Oct 21: the bench is graded apart
 # Oct 21 (Dom): THE GOTHAM CEILING - Gotham never sits above the Yahoo/Sleeper average (its high calls ran 9.0 pts off vs 5.8 for
 # the other two; its low calls were the sharp ones). The meter applies it live from Oct 21; every past week is graded the same
 # way here so the record is one rule, and Gotham's own uncapped number is still graded on its own line.
@@ -97,6 +107,23 @@ if len(hi):
 _x = R.dropna(subset=['gotham_raw']); _g = R.rename(columns={'gotham': '_gc', 'gotham_raw': 'gotham'})
 out += ["", f"GOTHAM CEILING (Oct 21): Gotham is shown capped at the Yahoo/Sleeper average. Without the cap it misses by {(_x.gotham_raw-_x.actual).abs().mean():.1f} pts, "
         f"{pairs(_g, 'gotham'):.0%} start/sit calls right ({len(_x)} men)."]
+# Oct 21 (Dom): THE BENCH - points Dom's bench outscored a starter at the same position (same league, same week)
+try:
+    _FLX = {'RB', 'WR', 'TE'}; _lines = []; _tot = 0.0
+    for (lg_, w_), b_ in RB_.groupby(['league', 'week']):
+        st_ = RS_[(RS_.league == lg_) & (RS_.week == w_)]
+        if not len(st_): continue
+        for r_ in b_.itertuples():
+            same = st_[st_.pos == r_.pos]
+            if not len(same): continue
+            lo = same.loc[same.actual.idxmin()]
+            if r_.actual > lo.actual + .5:
+                _tot += r_.actual - lo.actual; _lines.append(f"Wk {w_} {lg_}: {r_.player} {r_.actual:.1f} on the bench, {lo.player} {lo.actual:.1f} started")
+    out += ["", f"THE BENCH (Oct 21): {len(RB_)} bench men graded"
+            + (f"; {len(_lines)} times a bench man beat a starter at his position, {_tot:.1f} pts left on the bench" if _lines else "; no bench man beat a starter at his position")
+            + (" - " + " | ".join(_lines[:6]) if _lines else "") + "."]
+    if len(RB_): RB_.to_csv(f"{OUT}/bench_graded.csv", index=False)
+except Exception as _e: out += ["", f"THE BENCH: not graded - {_e}"]
 open(f"{OUT}/scoreboard.txt", "w").write("\n".join(out) + "\n"); print("   " + "\n   ".join(out[:5]))
 # Oct 21 (Dom): the Scout's report card rides on the Scoreboard - grades every pickup call against the man it would replace
 try:

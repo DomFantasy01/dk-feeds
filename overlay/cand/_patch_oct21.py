@@ -392,3 +392,70 @@ except AssertionError as _e: print("!! OCT21m NOT applied:",_e)
 #      Week 6) - long past, so they are free agents unless Yahoo's waiver list says otherwise.
 try: patch(SE,[('("waivers, clears Oct 14" if PL[k]["team"] in ("TB","DAL") else "free agent")','"free agent"',1)],"OCT21n stale Oct 14 waiver rule off")
 except AssertionError as _e: print("!! OCT21n NOT applied:",_e)
+
+# ---- 12 THE PICKUP GUARD + THE RIVAL CHECK (Dom, Oct 21). Two misses today: Dameon Pierce was recommended without saying his
+#      game is Monday night (the Sunday bench locks first) or that Barkley could return; Kimani Vidal's $1 bid was suggested
+#      without checking which rivals need a running back. Every pick on the board now carries both checks.
+_GUARD = r'''
+def _gd_ko(team):
+    try:
+        g_=games[(games.week==NOW)&((games.home_team==team)|(games.away_team==team))]
+        if not len(g_): return None
+        r_=g_.iloc[0]; t_=dt.datetime.strptime(f"{r_.gameday} {r_.gametime}","%Y-%m-%d %H:%M")-dt.timedelta(hours=3)   # Eastern -> Pacific
+        return t_
+    except Exception: return None
+def guard(e):
+    """Oct 21 (Dom): late kickoff (the Sunday bench locks first) and a starter who could come back and take the work"""
+    p=e["p"]; k=e["k"]; out=[]
+    t_=_gd_ko(p["team"])
+    if t_ is not None and t_.weekday() in (0,3):
+        out.append(f"plays {t_:%A} night ({t_.hour%12 or 12}:{t_:%M} PM PT) - if you start him and he sits, your Sunday players have already locked")
+    if k in CLOSE:
+        c_=CLOSE[k]; out.append(f"his role shrinks to ~{c_['after']:.1f} from Wk {c_['week']} when {c_['who']} is back ({c_['why']})")
+    for r_ in e.get("why") or []:
+        m_=re.match(r"door open: (.+) out",r_)
+        if m_ and k not in CLOSE: out.append(f"his work depends on {m_.group(1)} staying out - check {m_.group(1).split()[-1]}'s status first")
+    return out
+_STAND={}
+try:
+    _sf=sorted(_glb.glob(f"{L}/yahoo/wk{NOW}/standings_*.txt"))
+    if _sf:
+        _lid={"DKI":"269381","DKII":"1519795","DKIII":"1507991","DKIV":"864215"}[LGK]
+        for _ln in open(_sf[-1]):
+            if not _ln.startswith(_lid+"#"): continue
+            for _row in _ln.split("#",1)[1].strip().split("|"):
+                _c=_row.split("^")
+                if len(_c)>=9 and _c[7].startswith("$"): _STAND[re.sub(r"[^a-z0-9]","",_c[1].lower())]=(_c[7],_c[8])
+except Exception as _e: print("Scout rival check: standings not read -",_e)
+def _faab(tid):
+    n_=re.sub(r"[^a-z0-9]","",str(TEAMNAMES.get(tid,"")).lower())
+    for k_,v_ in _STAND.items():
+        if n_ and (n_.startswith(k_) or k_.startswith(n_)): return v_
+    return None
+_NST={"QB":1,"RB":2,"WR":3,"TE":1}
+def rivals(e):
+    """Oct 21 (Dom): which other teams would start him over one of their own, and what each has to spend"""
+    p=e["p"]
+    if p["pos"] not in _NST or "aiver" not in e.get("acq",""): return None
+    need=[]
+    for tid,mem in TEAMS.items():
+        if tid==ME: continue
+        vs=sorted([PL[m["key"]]["fwd"] for m in mem if m["pos"]==p["pos"] and m["slot"]!="IR" and m["ytag"] not in ("NA","IR","O")],reverse=True)
+        top=vs[:_NST[p["pos"]]]
+        if len(top)<_NST[p["pos"]] or (top and p["fwd"]>top[-1]):
+            fb=_faab(tid); need.append((TEAMNAMES.get(tid,str(tid)),fb))
+    if not need: return "rival check: no other team would start him - the minimum bid should do"
+    return f"rival check: {len(need)} team{'s' if len(need)>1 else ''} would start him over one of their own - "+", ".join(f"{n_} ({fb[0]} left, waiver #{fb[1]})" if fb else n_ for n_,fb in need[:6])
+'''
+try: patch(SE,[
+ ('def _pick(e,need_red,w):\n',_GUARD.lstrip("\n")+'def _pick(e,need_red,w):\n',1),
+ ('    if _nb or p.get("moved") or p.get("tradecut"): urg="gold"       # Oct 17 (Dom): check before acting\n',
+  '    if _nb or p.get("moved") or p.get("tradecut"): urg="gold"       # Oct 17 (Dom): check before acting\n'
+  '    _gl=guard(e); _rv=rivals(e)                                     # Oct 21 (Dom): the pickup guard + the rival check\n'
+  '    if _gl: why=why+"; CHECK FIRST: "+"; ".join(_gl); urg="gold"\n'
+  '    if _rv: why=why+"; "+_rv\n',1),
+ ('    return dict(drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,',
+  '    return dict(guard=_gl,rivals=_rv,drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,',1),
+ ('BOARD["adds"]=[dict(drop=e.get("drop"),','BOARD["adds"]=[dict(guard=guard(e),rivals=rivals(e),drop=e.get("drop"),',1),
+],"OCT21o pickup guard + rival check")
+except AssertionError as _e: print("!! OCT21o NOT applied:",_e)
