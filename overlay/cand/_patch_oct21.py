@@ -256,6 +256,9 @@ _FADE = r'''    try:   # Oct 21 (Dom): fading starters and who is taking their w
                         if _a1-_a0>=.08 and _b1>_b0 and (_best is None or _b1-_b0>_best[0]): _best=(_b1-_b0,_nm2,_a0,_a1,_b0,_b1)
                     if not _best: continue
                     _d,_nm2,_a0,_a1,_b0,_b1=_best; _k2=find(_nm2,_t,_pos)
+                    # a third teammate who carried real work before and missed games in the window (Monangai) - the shift is an
+                    # injury fill that ends when he returns, not a starter losing his job
+                    if any(_sh(_o,_prev)>=.2 and len(_played(_o,_last))<3 for _o in _s.player_display_name.unique() if _o not in (_nm,_nm2)): continue
                     _avail=bool(_k2) and _k2 not in taken and not killed(_nm2)
                     _yours=_k in _mine
                     if not (_avail or _yours): continue
