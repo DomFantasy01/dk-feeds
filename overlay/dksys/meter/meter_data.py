@@ -166,9 +166,12 @@ for key, p, need in (('sleeper_skill', SKF, 400), ('sleeper_kdef', SKD, 60)):
                 sources[key]['note'] = f"GitHub job checked {age} h ago ({_ok})"
         except Exception: pass
         if age > 6: sources[key]['status'] = 'STALE'; alarms.append(f'{key}: STALE - GitHub job last checked {age} h ago (limit 6 h; the job runs every 2 h)')
+BLANK = set()
 def sleeper_tables(k):
     sc = FM.SC[k]; key = [s for s in SCORING if s.startswith(['', 'DK I ', 'DK II ', 'DK III ', 'DK IV '][k])][0]; cfg = SCORING[key]
-    sk = pd.read_csv(SKF).fillna(0); sk.columns = [c.lower() for c in sk.columns]
+    sk = pd.read_csv(SKF); sk.columns = [c.lower() for c in sk.columns]
+    _blank = sk.drop(columns=[c for c in ('name', 'pos', 'team') if c in sk]).isna().all(axis=1)   # Oct 21: Sleeper lists him with no projection at all
+    BLANK.update(sk[_blank].name.astype(str).map(norm)); sk = sk[~_blank].fillna(0)   # (it does that for hurt players) - not a 0, no number
     sk['pts'] = (.04 * sk.pass_yd + sc['ptd'] * sk.pass_td + sc['it'] * sk.pass_int + .1 * sk.rush_yd + 6 * sk.rush_td + sc['ra'] * sk.rush_att
                  + sk.rec + .1 * sk.rec_yd + 6 * sk.rec_td - 2 * sk.fum_lost)
     S = dict(zip(sk.name.astype(str).map(norm), sk.pts))
@@ -235,7 +238,8 @@ for lab, cfg in LEAGUES.items():
             win = TEAMWIN.get(p['team'])
             _empty = not p.get('team') or str(p['player']).strip().lower() in ('(empty)', 'empty', '')
             if sl is None and not _empty and win is not None:   # Oct 21: an empty slot or a team on bye has no number to find - that is not a data failure
-                alarms.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Yahoo used on the Sleeper needle")
+                if k in BLANK: notes.append(f"{lab}: Sleeper lists {p['player']} with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle")
+                else: alarms.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Yahoo used on the Sleeper needle")
             L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_raw=None if graw is None else round(float(graw), 2), gotham_src=gsrc,
                           sleeper=round(float(sl if sl is not None else (p['yahoo'] or 0)), 2), window=win))
         sides[side] = L

@@ -38,7 +38,7 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
                 n += 1
         for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
             if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue

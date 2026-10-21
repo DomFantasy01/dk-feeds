@@ -51,7 +51,7 @@ def load_hist(fn, label, key):
         if not os.path.exists(f): continue
         rows = [json.loads(l) for l in open(f) if l.strip()] if f.endswith('.jsonl') else json.load(open(f)).get('items', [])
         for it in rows:
-            k = (it.get('title'), it.get('published_utc'))
+            k = it.get('link') or (it.get('title'), it.get('published_utc'))   # Oct 21: by link - an edited headline is the same story, not a second one
             if k in seen: continue
             seen.add(k); t = ts(it.get('published_utc'))
             if not t: continue

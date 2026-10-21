@@ -332,13 +332,37 @@ try:   # Oct 21 (Dom): SEASON-ENDING NEWS - ESPN's injury report + the news feed
             SEASON_OUT.add(_nk); SEASONOUT_WHY[_nk]=f'{_sr}: "{_m.group(0)}" ({_w:%b} {_w.day})'; break
     if not QUIET: print(f"Scout season-ending check: {len(SEASONOUT_WHY)} men out for the year"+(" - "+", ".join(sorted(SEASONOUT_WHY)) if SEASONOUT_WHY else ""))
 except Exception as _e: print("Scout season-ending check skipped:",_e)
+# Oct 21 (Dom): return dates count the TEAM'S GAMES, not calendar weeks - a bye inside the stretch pushes the return a week
+# (Pittman: IR Oct 10, PIT bye Wk 9 -> back Wk 10, not 9), and IR runs four games from the day he was PLACED on it, which can
+# be later than his last game (Roman Wilson: hurt Wk 5, placed Oct 17 -> back Wk 11, not 10).
+_TGW={}
+try:
+    for (_t_,_w_),_d_ in _GD.items(): _TGW.setdefault(_t_,[]).append(_w_)
+    for _t_ in _TGW: _TGW[_t_]=sorted(set(_TGW[_t_]))
+except Exception: pass
+def _gafter(t,w,n):
+    ws=[x for x in _TGW.get(t,[]) if x>w]
+    return ws[n-1] if len(ws)>=n else 99
+IRPL={}
+try:
+    _IRRE=re.compile(r"(plac\w*|lands?|landed|put|puts|headed|bound|moved|moves|going)\b[^.]{0,40}?\b(injured reserve|IR)\b",re.I)
+    for _nm,_tx,_ts,_src in _IT:
+        if not _ts or _src=='ESPN' or not _IRRE.search(str(_tx)[:300]): continue   # placement stories only; only matters for a man already tagged IR
+        _when=str(_ts)[:10]
+        for _k,_p in _NAMES.items():
+            if not _p['name'] or _p['name'] not in _nm: continue
+            _fw=next((w for w in _TGW.get(_p['team'],[]) if _GD.get((_p['team'],w),'')>=_when),None)
+            if _fw and (_k not in IRPL or _fw>IRPL[_k][0]): IRPL[_k]=(_fw,_when)
+except Exception as _e: print('Scout IR placement read skipped:',_e)
 def _newsback(p):
     n=NEWSOUT.get(norm(p['name']))
-    return int(p['last'])+1+n[0] if n else 0
+    return _gafter(p['team'],int(p['last']),n[0]+1) if n else 0
 def back(p,ytag=""):
     if not ytag: ytag=EXTINJ.get((norm(p["name"]),p.get("pos","")),"")   # Oct 14: no Yahoo tag -> ESPN/Sleeper status
     if ytag in ("NA","CEL") or norm(p["name"]) in SEASON_OUT: return 99
-    if ytag in ("IR","IR-R","PUP-R") or p.get("nflstat")=="RES": return max(p["last"]+5,NOW+1,_newsback(p))
+    if ytag in ("IR","IR-R","PUP-R") or p.get("nflstat")=="RES":
+        _pl=IRPL.get(norm(p["name"]))
+        return max(_gafter(p["team"],int(p["last"]),5),_gafter(p["team"],_pl[0]-1,5) if _pl else 0,NOW+1,_newsback(p))
     if ytag=="O" or p.get("rep") in ("Out","Doubtful"): return max(NOW+1,_newsback(p))
     return max(NOW,_newsback(p))   # Oct 12: news that he will miss time
 

@@ -405,12 +405,19 @@ def extra_news():
             per[src] = n
         except Exception as e:
             per[src] = 0; errs.append(f'{src}: {type(e).__name__}: {e}'[:150])
-    hp = os.path.join(OUT, 'news_extra_history.jsonl'); seen = set()
+    hp = os.path.join(OUT, 'news_extra_history.jsonl'); seen = set(); first = {}
+    def _key(j): return (j.get('source'), j.get('link') or j.get('title'))
     if os.path.exists(hp):
         for line in open(hp):
-            try: j = json.loads(line); seen.add((j['source'], j['title'], j['published_utc']))
+            try: j = json.loads(line); seen.add(_key(j)); first.setdefault(_key(j), j.get('published_utc') or j.get('first_seen_utc'))
             except Exception: pass
-    new = [i for i in items if (i['source'], i['title'], i['published_utc']) not in seen]
+    # Oct 21 (Dom): RotoBaller's player-news items carry no pubDate. Every reader (Scout news check, Radar, alerts, brief) filters
+    # on published_utc, so 1,178 of them were silently thrown away - practice reports included. Stamp them with the time the
+    # feed job first saw them (it runs every 30 min) and say so in time_from.
+    for i in items:
+        if not i['published_utc']:
+            i['published_utc'] = first.get(_key(i)) or NOW.isoformat(timespec='seconds'); i['time_from'] = 'first_seen'
+    new = [i for i in items if _key(i) not in seen]
     with open(hp, 'a') as f:
         for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
     write('news_extra.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'per_source': per, 'items': items})
