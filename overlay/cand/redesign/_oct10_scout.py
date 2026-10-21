@@ -20,7 +20,7 @@ def _open_txt(B):
         nm=_pt(a)
         pg=f'; {a["pgain"]:.0f} in the playoffs' if a.get("pgain") else ""
         sd=" as a second defense (overstated: counted against no add, not a weekly stream)" if a["pos"]=="DEF" else ""
-        return f'{nm}{sd} +{a["gain"]:.0f} pts{pg} ({_esc(_tc(a["acq"]).lower() if a["acq"].lower().startswith("free agent") else _tc(a["acq"]))})'
+        return f'{nm}{sd} +{a["gain"]:.0f} pts{pg} ({_esc(_tc(a["acq"]).lower() if a["acq"].lower().startswith("free agent") else _tc(a["acq"]))})'+(f' - {a["now"].rsplit(" - ",1)[-1]}' if a.get("now") else "")
     if (o.get("start") or o.get("bench")) and adds:
         head+=('. An add here costs no drop. <font name="PopB">Best uses, by points added through Week 17:</font> '+"  ·  ".join(_one(a) for a in adds[:4])+".")
     return head
@@ -53,6 +53,8 @@ def _boxes(B):
     t=_open_txt(B)
     if t: b.append((t,"#FBEDEA","#B32020"))
     for t in _q_txt(B): b.append((t,"#FFF6E0","#C9A227"))
+    _mv=[('<font name="PopB" color="#B32020">'+('Roster Move - IR' if m['kind']=='ir' else 'Roster Move - Drop Candidate' if m['kind']=='drop' else 'Roster Move - Hold' if m['kind']=='hold' else 'Roster Moves')+'</font>  &#8212;  '+_esc(m['text']).replace(' - ',' &#8212; '),"#FBEDEA","#B32020") for m in (B.get('moves') or [])]   # Oct 12 (Dom): moves lead the page
+    b=_mv+b
     return b
 def _open_h(B):
     return sum(_ph(t,_OPS,W-2*M-16)+8+6 for t,_,_ in _boxes(B))+(6 if _boxes(B) else 0)
@@ -80,3 +82,9 @@ def _chart_lines(lab,B):
                     (f'adds ~{p["gain"]:.0f} pts through Wk 17' if p["gain"]>=1 else 'adds nothing to the best lineup through Wk 17')+
                     f', real level ~{p["fwd"]:.1f} a game; ranks below the picks above'))
     return [t_ for _,t_ in sorted(out)[:4]]
+
+# OCT12 scout moves box
+
+# OCT12 scout hold box
+
+# OCT14b open-seat adds say better / worse this week

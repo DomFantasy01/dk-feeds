@@ -94,7 +94,14 @@ def pm_build():
     for L in D["leagues"]: L["oppn"]=OPPN.get(L.get("lg"))
     D["across"]=[(n,v) for n,v in started.items() if len(v)>=2]
     D["pending"]=pend_all
-    D["median"]=MED
+    D["median"]=MED; D["median_at"]=None
+    if MED is None:   # Oct 12: the newest read of this week that carries Yahoo's median
+        _mf=[]
+        for _f in _gp.glob(_YD+f"wk{W_}/dom_matchups_*.txt"):
+            for _l in open(_f):
+                _mm=_rp.match(r"# DK IV league median \(Yahoo, same read\): (\d+\.\d+)",_l)
+                if _mm and _hdr_time(_f): _mf.append((_hdr_time(_f),float(_mm.group(1))))
+        if _mf: _t,_v=max(_mf); D["median"]=_v; D["median_at"]=_fmt_t(_t)
     fin=(PM_MODE=="final" and pend_all==0 and MT>=last+_dp.timedelta(hours=3,minutes=30))
     D["state"]="final" if fin else "provisional"
     return D
@@ -169,7 +176,8 @@ def postmortem_page(c,pg):
             st=(f"Entered the week {_rec(s['me'][2]).replace('-','–')}, {s['me'][0]}{_sfx2(int(s['me'][0]))} of {s['n']}." if s.get("me") else "Record entering the week: no standings read from before kickoff.")
             if k=="IV":
                 md=D.get("median")
-                if md is None: st+="  Median game: not in this read."
+                if md is None: st+="  Median game: no Yahoo read this week carried it."
+                elif D.get("median_at"): st+=f"  League median {md:.1f} as of the {D['median_at']} read (Yahoo stops showing it once the week ends)."
                 elif L["mp"] or L["opn"]: st+=f"  League median so far {md:.1f}."
                 else: st+=f"  Median game: {'won' if L['me']>md else 'lost'} — league median {md:.1f}."
             txt(c,M+12,y-38,st,"PopM",7.6,H("#E6E9EF"))
@@ -204,3 +212,5 @@ def postmortem_page(c,pg):
     txt(c,M,11,"DARK KNIGHT DISPATCH","PopB",6.4,INKN)
     txt(c,M+c.stringWidth("DARK KNIGHT DISPATCH","PopB",6.4)+8,11,f"Week {W_}  ·  Post-Mortem, "+("final" if fin else "provisional")+"  ·  "+built_str(),"Pop",5.8,GR)
     txt(c,W-M,11,"Post-Mortem  ·  page "+str(pg),"Pop",5.8,GR,"r")
+
+# OCT12 pm median

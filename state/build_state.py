@@ -179,9 +179,19 @@ def news_for(name, n=2):
 
 # ---------------------------------------------------------------- SYSTEM HEALTH: every source with its age
 SOURCES = []
-def source(name, t, schedule_hours, note="", level_if_old="gold"):
+def _read_slots(day):   # the scheduled Yahoo reads (Pacific) - the same schedule the system check uses
+    hrs = [4] + list(range(8, 21)) if day.weekday() == 6 else [7, 12, 16]
+    return [dt.datetime(day.year, day.month, day.day, h, 50, tzinfo=PT) for h in hrs]
+def _last_slot(grace_min=25):
+    npt = NOW.astimezone(PT); c = [x for d in range(3) for x in _read_slots((npt - dt.timedelta(days=d)).date()) if x + dt.timedelta(minutes=grace_min) <= npt]
+    return max(c) if c else None
+def source(name, t, schedule_hours, note="", level_if_old="gold", by_read=False):
     a = age(t); lvl = "green"
     if t is None: lvl = "red"; note = (note + "; " if note else "") + "no timestamp - treat as missing"
+    elif by_read:   # Oct 21 (Dom): a Yahoo pull is stale only when a scheduled read has come and gone without replacing it (overnight is not stale)
+        ls_ = _last_slot()
+        if ls_ and t < ls_ - dt.timedelta(minutes=15):
+            lvl = level_if_old; note = (note + "; " if note else "") + f"older than the {ls_.astimezone(PT):%a %-I:%M %p} scheduled read"
     elif (NOW - t).total_seconds() / 3600 > schedule_hours: lvl = level_if_old; note = (note + "; " if note else "") + f"older than its {schedule_hours:g}-hour schedule"
     SOURCES.append({"source": name, "as_of": pt(t), "age": a, "level": lvl, "note": note})
     if lvl in ("red", "gold"): HEALTH.append((lvl, name, f"as of {pt(t)} ({a}) - {note}"))
@@ -192,7 +202,8 @@ for k, v in (M.get("sources") or {}).items():
     source({"yahoo_matchups": "Yahoo matchups (scores, starters)", "yahoo_rosters": "Yahoo rosters (all teams)",
             "yahoo_all_teams": "Yahoo win % (all teams)", "yahoo_standings": "Yahoo standings", "nfl_schedule": "NFL schedule",
             "gotham": "Gotham projections", "sleeper_skill": "Sleeper projections", "sleeper_kdef": "Sleeper K/DEF projections"}.get(k, k),
-           ptstr(v.get("pulled_pt")), hrs, (v.get("note") or "") + ("" if st in ("OK", "") else f"; build says {st}"), lvl_old)
+           ptstr(v.get("pulled_pt")), hrs, (v.get("note") or "") + ("" if st in ("OK", "") else f"; build says {st}"), lvl_old,
+           by_read=k in ("yahoo_matchups", "yahoo_rosters"))
     if st not in ("OK", ""): HEALTH.append(("red", k, f"build marked it {st}: {v.get('note', '')}"))
 FS = load(os.path.join(FEEDS, "status.json"), {}) or {}
 run = iso(FS.get("run_utc"))
@@ -213,6 +224,8 @@ for k, v in (FS.get("sources") or {}).items():
 for f, what in (("build_failed.json", "the last Dispatch build FAILED"), ("RADAR_FAILED.txt", "the last Radar build FAILED")):
     if os.path.exists(os.path.join(OUT, f)): HEALTH.append(("red", "Build", what + " - the pages may be older than they look"))
 for a in (M.get("alarms") or []): HEALTH.append(("red", "Meter alarm", str(a)))
+for a in (M.get("lineup") or []):   # Oct 21 (Dom): a starter on bye or an empty slot is a lineup fix for Dom, not a broken source
+    HEALTH.append(("red", str(a).split(":")[0] + " lineup", str(a)))
 for n in (M.get("notes") or []): HEALTH.append(("grey", "Meter note", str(n)))
 KI = load(os.path.join(REPO, "live_sync/known_issues.json"), {}) or {}
 for it in KI.get("issues", []):
@@ -289,7 +302,10 @@ for dk, key, full, lid, team, n in LEAGUES:
     bench = [row(p, "me") for p in (L.get("bench") or [])]
     # the roster read is the truth for who is on the bench/IR; the meter supplies projections and windows
     known = {norm(x["name"]) for x in me + bench}
+    _TF = {"JAC": "JAX", "WSH": "WAS", "LA": "LAR"}
+    kdef = {_TF.get(str(x.get("nfl") or "").upper(), str(x.get("nfl") or "").upper()) for x in me + bench if x.get("pos") == "DEF" or x.get("slot") == "DEF"}
     for r in rr:
+        if r.get("pos") == "DEF" and _TF.get(r["team"], r["team"]) in kdef: continue   # Oct 21: Yahoo says "Minnesota" on the roster page, "Vikings" in the matchup - same defense
         if norm(r["player"]) not in known:
             bench.append(row({"slot": r["slot"], "player": r["player"], "team": r["team"], "pos": r["pos"], "status": r["status"]}, "me"))
             HEALTH.append(("gold", f"{dk} roster", f"{r['player']} is on the live roster read but not in the meter - added from the roster read"))
@@ -374,7 +390,9 @@ for lvl, piece, what in sorted(HEALTH, key=lambda h: ORDER.get(h[0], 3)):
     if k in seen: continue
     seen.add(k); H.append({"level": lvl, "piece": piece, "what": what})
 STATE["health"] = H
-STATE["verdict"] = "NO-GO" if any(h["level"] == "red" and not h["piece"].startswith(("DK ", "Known issue")) for h in H) else "GO"
+_why = [h for h in H if h["level"] == "red" and not h["piece"].startswith(("DK ", "Known issue"))]
+STATE["verdict"] = "NO-GO" if _why else "GO"
+STATE["verdict_why"] = [f"{h['piece']}: {h['what']}" for h in _why]   # Oct 21 (Dom): a NO-GO always names what tripped it
 
 os.makedirs(OUT, exist_ok=True)
 json.dump(STATE, open(os.path.join(OUT, "dk_state_latest.json"), "w"), ensure_ascii=False, indent=1)
@@ -383,7 +401,8 @@ json.dump(STATE, open(os.path.join(OUT, "dk_state_latest.json"), "w"), ensure_as
 T = []; w = T.append
 def pj(p): return "Y {0} / G {1} / S {2}".format(*[("-" if p[k] is None else p[k]) for k in ("yahoo", "gotham", "sleeper")])
 w(f"DARK KNIGHT STATE - Week {WEEK} - built {pt(NOW)} from the Dispatch build of {M.get('built_pt')}")
-w(f"Data verdict: {STATE['verdict']}  (NO-GO = a data source is broken or stale; fix before deciding)")
+w(f"Data verdict: {STATE['verdict']}  (NO-GO = a data source is broken or stale; fix before deciding)"
+  + (f" - tripped by: {' | '.join(STATE['verdict_why'])[:300]}" if STATE["verdict_why"] else ""))
 w("")
 w("== SYSTEM HEALTH (broken first)")
 for h in H:

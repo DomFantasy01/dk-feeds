@@ -19,13 +19,14 @@ try:
 except Exception: week="?"
 LIVE_URL="https://claude.ai/artifact/5MYR1N6N64JTdERe7zRZJh"
 PAPER,INKN,GR,LINE=H("#FBF7EF"),H("#14213D"),H("#7A7F8C"),H("#DDD5C4")
-SEC=re.compile(r"(OVERVIEW|FIELD REPORT|SCOUT|POSITIONS|THE MARKS|POST-MORTEM|OUTLOOK)(?:\s*·\s*(DK I{1,3}V?|DK IV|FANTASY FOOTBALL))?")
+SEC=re.compile(r"(OVERVIEW|FIELD REPORT|SCOUT|POSITIONS|THE MARKS|POST-MORTEM|OUTLOOK|CALIBRATION)(?:[\s·]*(DK ?[1-4]|DK I{1,3}V?|DK IV|FANTASY FOOTBALL))?",re.I)
 def section(page):
     try: t=page.extract_text() or ""
     except Exception: t=""
     m=SEC.search(t)
     if not m: return ""
     a=m.group(1).title().replace("Post-Mortem","Post-Mortem"); b=m.group(2)
+    if b: b=re.sub(r"DK ?(IV|III|II|I|[1-4])\b",lambda q:"DK "+{"1":"I","2":"II","3":"III","4":"IV"}.get(q.group(1),q.group(1)),b)   # Oct 12: DK1-DK4
     if b and b.startswith("DK"): return f"{a} · {b}"
     return a
 src=sys.argv[1]; R=PdfReader(src); N=len(R.pages); w=PdfWriter()
@@ -45,3 +46,7 @@ for i,pg in enumerate(R.pages):
     c.setFont("Pop",5.8); c.setFillColor(GR); c.drawRightString(W_-M,10.4,f"Page {i+1} of {N}")
     c.save(); buf.seek(0); pg.merge_page(PdfReader(buf).pages[0]); w.add_page(pg)
 w.write(src); print("   footers: one footer on all",N,"pages, numbered 1 to",N)
+
+# OCT12 footer dk names
+
+# OCT12 footer roman names

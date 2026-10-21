@@ -57,8 +57,31 @@ def _sb_verdict(st):
     elif k0=="gotham": s+=f". Gotham ahead by {m1-m0:.1f} points a man."
     return s
 SB_PAGE=c.getPageNumber()
-masthead(c,"OVERVIEW  ·  THE SCOREBOARD","Who called it right")
+masthead(c,"CALLS  ·  CALIBRATION","What needs you, then who called it right")
 y=Ht-122
+# ---- Oct 13 (Dom): ACTION ITEMS on page 2 - what needs you, most urgent first, each with its deadline (the CALLS button's page)
+_ANS={"norm":norm}   # its own namespace, so none of its names can shadow the page code's
+try: exec(open("/home/claude/cand/_actions.py").read(),_ANS); ACTIONS=_ANS["ACTIONS"]; ADVICE_SUM=_ANS["ADVICE_SUM"]
+except Exception as _ex: ACTIONS=None; ADVICE_SUM=None; import traceback as _tb; _tb.print_exc(); print("ACTIONS FAILED -",repr(_ex)[:300])
+_sb_hd(y,f"ACTION ITEMS  ·  WEEK {MTR.get('week','')}","What needs you, most urgent first  ·  the full case is on each league's page  ·  every move is your call")
+y-=17
+_ARC={1:ST["red"],2:ST["gold"],3:ST["gold"]}
+if ACTIONS is None:
+    txt(c,M,y,"Action items could not be built this run. The build log says why.","PopB",7.5,ST["red"]); y-=13
+elif not ACTIONS:
+    txt(c,M,y,"Nothing needs you right now: lineups set, no starter tagged, no claim the Scout rates urgent.","PopM",7.5,INKN); y-=13
+else:
+    for _a in ACTIONS[:6]:
+        _tc=TEAMC8.get(_a["lg"],INKN); c.setFillColor(_tc); c.roundRect(M,y-2.6,30,10.4,3,stroke=0,fill=1)
+        txt(c,M+15,y,_a["lg"],"Bebas",9,CARD,"c")
+        c.setFillColor(_ARC.get(_a["rank"],GR)); c.circle(M+37,y+2.6,2.1,stroke=0,fill=1)
+        _by=_a["by"]; _bw=c.stringWidth(_by,"PopB",6.8); _room=W-M-(M+44)-_bw-14; _wt=_a["what"]
+        while c.stringWidth(_wt,"PopM",7.2)>_room and len(_wt)>8: _wt=_wt[:-2].rstrip()+"…" if not _wt.endswith("…") else _wt[:-3].rstrip()+"…"
+        txt(c,M+44,y,_wt,"PopM",7.2,INKN); txt(c,W-M,y,_by,"PopB",6.8,_ARC.get(_a["rank"],GR),"r")
+        c.setStrokeColor(LINE);c.setLineWidth(.3);c.line(M,y-4.6,W-M,y-4.6); y-=12.5
+    if len(ACTIONS)>6: txt(c,M+44,y,f"+ {len(ACTIONS)-6} more, all in the morning brief","Pop",6,GR); y-=10
+if ADVICE_SUM: txt(c,M,y-1,"THE ADVICE, GRADED:  "+ADVICE_SUM,"Pop",6,GR); y-=10
+y-=12
 try:
     R_=_pd.read_csv(_SBF)
 except Exception as _ex:
@@ -76,9 +99,9 @@ else:
     txt(c,M,y-12,f"Running total, Weeks {wks[0]}–{wks[-1]}, {len(R_)} men. Every number is the one posted before kickoff, graded against the final stat line in that league's scoring.","Pop",6.2,GR)
     y-=32
     _sb_hd(y,f"THIS WEEK  ·  WEEK {wkn}",(f"{fin_g} of {tot_g} games final  ·  grows every build until Monday night" if fin_g is not None else "grows every build until Monday night")+"  ·  one week is noise")
-    y=_sb_tiles(y-12,stc,f"Week {wkn}")-20
+    y=_sb_tiles(y-12,stc,f"Week {wkn}")-14
     _sb_hd(y,f"RUNNING TOTAL  ·  WEEKS {wks[0]}–{wks[-1]}","The real signal  ·  Weeks 2–4 graded by hand Oct 8, Week 5 on automatic")
-    y=_sb_tiles(y-12,sta,f"Weeks {wks[0]}–{wks[-1]}")-20
+    y=_sb_tiles(y-12,sta,f"Weeks {wks[0]}–{wks[-1]}")-14
     # ---- trend: average miss by week, one line per source (left) ... by position (right)
     _sb_hd(y,"THE TREND  ·  BY POSITION","Average points off a man, week by week  ·  and where each source misses most");y-=14
     cx0,cy0,cw,ch=M+22,y-112,250,104
@@ -142,7 +165,7 @@ else:
     if len(nmw):
         bwk=int(nmw.week.max());B_=nmw[nmw.week==bwk].copy()
         B_["avgmiss"]=B_[SRCK].sub(B_.actual,axis=0).abs().mean(axis=1)
-        B_=B_.sort_values("avgmiss",ascending=False).drop_duplicates("player").head(int(max(3,min(9,(y-60)//13))))
+        B_=B_.sort_values("avgmiss",ascending=False).drop_duplicates("player").head(int(max(1,min(9,(y-88)//13+1))))
         _sb_hd(y,f"BIGGEST MISSES  ·  WEEK {bwk}","Where all three were furthest off  ·  green = the closest of the three on that man");y-=16
         cols=[M,M+150,M+200,M+258,M+316,M+374,M+440]
         for x_,h_,a_ in zip(cols,("PLAYER","LEAGUE","YAHOO","GOTHAM","SLEEPER","ACTUAL","WHAT HAPPENED"),("l","l","r","r","r","r","l")):
@@ -160,7 +183,16 @@ else:
             txt(c,cols[6],y,wh,"Pop",6.2,GR)
             c.setStrokeColor(LINE);c.setLineWidth(.3);c.line(M,y-4,W-M,y-4);y-=13
     y-=6
-    txt(c,M,max(y,40),"Gotham's rule since Oct 11: a game a man left hurt (under 35% of snaps when he usually plays 60% or more) no longer counts against his number.","Pop",5.8,GR)
+    txt(c,M,max(y,48),"Gotham's rule since Oct 11: a game a man left hurt (under 35% of snaps when he usually plays 60% or more) no longer counts against his number.","Pop",5.8,GR)
+    txt(c,M,max(y,48)-8,"Oct 13 test (Weeks 2-5, 505 player-weeks): three changes kept, Gotham 6.61 to 6.35 pts a man; practice trim off; middle-starter nudge did not help.","Pop",5.8,GR)
     print("SCOREBOARD page: week",wkn,"| men",len(R_),"| lowest y",round(y))
-footer(c,SB_PAGE,"The Scoreboard")
+pass   # Oct 13: the footer pass draws this page's footer
 c.showPage()
+
+# OCT12 calibration
+
+# OCT13 scoreboard footnote
+
+# OCT13 calibration no double footer
+
+# OCT13 calls and calibration

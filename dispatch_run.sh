@@ -8,29 +8,10 @@ ROOT=${DK_ROOT:-/home/claude}; REPO=${GITHUB_WORKSPACE:-$(pwd)}; GF=${DK_GFONTS:
 echo "== 0 unpack code + saved data into $ROOT"
 if [ ! -d "$ROOT" ]; then sudo mkdir -p "$ROOT" && sudo chown "$(id -u)" "$ROOT"; fi
 unzip -oq "$REPO/dispatch_bundle.zip" -d "$ROOT"
-python3 - "$ROOT/dksys/meter/meter_data.py" <<'PYFIX'
-import sys; p=sys.argv[1]; s=open(p).read(); a="YWIN[(x[0], x[1])] = int(x[3])"
-if a in s: open(p,"w").write(s.replace(a,"YWIN[(x[0], x[1])] = (int(x[3]) if x[3].strip() else None)")); print("   meter: blank Yahoo win % allowed")
-PYFIX
-if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; echo "   code updates from overlay/ applied"; fi   # newer scripts committed as text, no zip needed
-python3 - "$ROOT/dksys/scout/scout_engine.py" <<'PYSC'
-# Oct 9: the Scout prints the real time of its Yahoo roster read and of the NFL stats pull (safe to run twice)
-import sys; p=sys.argv[1]; s=open(p).read()
-if "_ststamp" in s: print("   scout stamps: already in")
-else:
-    a='R=[l.rstrip("\\n").split("|") for l in open(f"{H}/dk{CF[\'n\']}_rosters_live.txt") if l.strip() and not l.startswith("#")]'
-    b=a+'\n# Oct 9: the roster read\'s own time goes on the page (the API reader writes it in the file\'s first line)\n_rh=[l for l in open(f"{H}/dk{CF[\'n\']}_rosters_live.txt") if l.startswith("#")]\n_rm=re.search(r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\\w{3}) (\\d{1,2})\\D*?(?:\\d{4} )?~?(\\d{1,2}:\\d{2} [AP]M) PT",_rh[0]) if _rh else None\nif _rm: CF["rost_at"]=f"Yahoo {_rm.group(1)} {_rm.group(2)} {_rm.group(3)}, {_rm.group(4)} PT"+(" (API)" if "API" in _rh[0] else "")'
-    c='BOARD=dict(league=CF["lab"]'
-    d='_stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))\n_ststamp=f"{_stt:%a} {_stt.hour%12 or 12}:{_stt:%M} {\'AM\' if _stt.hour<12 else \'PM\'} PT"\n'+c
-    e='· stats nflverse 7:40 AM PT"'
-    assert s.count(a)==1 and s.count(c)==1 and s.count(e)==1, "scout stamps: anchors not found"
-    s=s.replace(a,b,1).replace(c,d,1).replace(e,'· stats nflverse "+_ststamp',1); open(p,"w").write(s); print("   scout stamps: Yahoo read time + stats pull time")
-PYSC
-[ -f "$ROOT/cand/redesign/_cal_patch.py" ] && python3 "$ROOT/cand/redesign/_cal_patch.py"   # the Dispatch calendar (Oct 8)
-if [ -f "$ROOT/cand/_patch_oct10.py" ]; then python3 "$ROOT/cand/_patch_oct10.py"; fi   # the Oct 10 page fixes (Dom)
-if [ -f "$ROOT/cand/_patch_oct14.py" ]; then python3 "$ROOT/cand/_patch_oct14.py"; fi   # the Oct 14 Scout fixes (Dom): injured free agents, one-game spikes, initials
-if [ -f "$ROOT/cand/_patch_oct17.py" ]; then python3 "$ROOT/cand/_patch_oct17.py"; fi   # the Oct 17 Scout fixes (Dom): the trade check + the news check on every pickup
-if [ -f "$ROOT/cand/_patch_oct21.py" ]; then python3 "$ROOT/cand/_patch_oct21.py"; fi   # the Oct 21 Scout fixes (Dom): season-ending news, wait on the injured, outside check, price the drop, stashes, rising workload
+# Oct 21 (Dom): ONE SYSTEM, no patch layers. Every code fix that used to be applied at build time (the inline meter and Scout
+# fixes, the calendar patch, and the Oct 10 / 14 / 17 / 21 patch scripts) is now written into the source files in overlay/,
+# which is the single home of the code. The old patch scripts are kept, unused, in overlay/_retired/ for the record.
+if [ -d "$REPO/overlay" ]; then cp -r "$REPO/overlay/." "$ROOT/"; rm -rf "$ROOT/_retired"; echo "   code from overlay/ applied (the one source of the code)"; fi
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)

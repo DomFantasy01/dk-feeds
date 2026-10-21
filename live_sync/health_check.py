@@ -173,9 +173,16 @@ if me:
     _fbl = [f"{lg_} {'yours' if sd_=='me' else 'opp'}: {p_['player']}" for lg_, L_ in (me.get("leagues") or {}).items()
             for sd_ in ("me", "op") for p_ in (L_.get("starters") or {}).get(sd_, [])
             if p_.get("gotham_src") == "yahoo-fallback" and p_.get("gs") != "nogame"]
+    _cfl = [f"{lg_} {'yours' if sd_=='me' else 'opp'}: {p_['player']}" for lg_, L_ in (me.get("leagues") or {}).items()
+            for sd_ in ("me", "op") for p_ in (L_.get("starters") or {}).get(sd_, [])
+            if p_.get("gotham_src") == "consensus-fallback" and p_.get("gs") != "nogame"]
     fb = len(_fbl)
-    row("Gotham", "Players Gotham couldn't price", "green" if fb == 0 else "yellow",
-        (f"{fb} playing starter(s) on Yahoo's number: " + "; ".join(_fbl))[:200] if fb else "every playing starter priced by Gotham (bye-week seats at 0 not counted)")
+    # Oct 21 (Dom): a man with no 2026 snaps (a returner, a backup) has no usage for Gotham to read - by design he is priced at the
+    # Yahoo/Sleeper average (grey, listed). Yellow only when Sleeper had no number either, so Gotham fell back to Yahoo alone.
+    row("Gotham", "Players Gotham couldn't price", "green" if fb == 0 and not _cfl else "grey" if fb == 0 else "yellow",
+        ((f"{fb} playing starter(s) on Yahoo's number alone: " + "; ".join(_fbl) + ". ") if fb else "")
+        + ((f"{len(_cfl)} with no 2026 usage, priced at the Yahoo/Sleeper average: " + "; ".join(_cfl)) if _cfl else "")[:240]
+        if (fb or _cfl) else "every playing starter priced by Gotham (bye-week seats at 0 not counted)")
     row("Gotham", "Role drift (inside Gotham)", "green" if ok else "red", "the climbing-role read runs inside every Gotham run" + ("" if ok else " - Gotham did not run, so neither did drift"))
     for k in ("sleeper_skill", "sleeper_kdef", "nfl_schedule"):
         s = me.get("sources", {}).get(k, {})

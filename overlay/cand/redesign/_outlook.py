@@ -84,7 +84,7 @@ def outlook_page(c,pg):
         c.saveState();p_=c.beginPath();p_.roundRect(M,y-H_,W-2*M,H_,7);c.clipPath(p_,stroke=0)
         c.linearGradient(M,y-BH,M,y,(INKN,_mx(INKN,LG[k],.42)),(0,1),extend=False);c.restoreState()
         hy=y-16;x=M+12;x+=lgchip(c,x,hy,k)+7
-        txt(c,x,hy,d["full"],"PopB",8.8,PAPER);x+=c.stringWidth(d["full"],"PopB",8.8)+6
+        pass   # Oct 12 (Dom): no league nicknames - the chip says DK1-DK4
         txt(c,x,hy,"vs "+(d["opp"] or "?"),"Pop",7.4,H("#C9CFDB"))
         sub=(f"{(d['rec'] or '').replace('-0','',1) if (d['rec'] or '').endswith('-0') else d['rec']}, {d['rank']}{_sfx(d['rank'])} of {d['teams']}" if d.get("rank") else "")
         osub=(f"{d['opp']} {d['orec'][:-2] if (d['orec'] or '').endswith('-0') else d['orec']}"+(f", {d['orank']}{_sfx(d['orank'])}" if d.get("orank") else "")) if d.get("orec") else ""
@@ -119,3 +119,5 @@ def outlook_page(c,pg):
     txt(c,M,11,"DARK KNIGHT DISPATCH","PopB",6.4,INKN)
     txt(c,M+c.stringWidth("DARK KNIGHT DISPATCH","PopB",6.4)+8,11,f"Week {WEEKN}  ·  Outlook  ·  "+built_str(),"Pop",5.8,GR)
     txt(c,W-M,11,"Outlook  ·  page "+str(pg),"Pop",5.8,GR,"r")
+
+# OCT12 outlook no nicknames
