@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Wed Oct 21 2026 08:52 AM PT",
+ "built_pt": "Wed Oct 21 2026 09:05 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -9,12 +9,12 @@
   "SUN 5:20 PM",
   "MON 5:15 PM"
  ],
- "gotham_fallbacks": 2,
+ "gotham_fallbacks": 3,
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Wed Oct 21 08:51 AM PT",
+   "pulled_pt": "Wed Oct 21 09:04 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,27 +22,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_wed0753.txt",
-   "pulled_pt": "Wed Oct 21 07:53 AM PT",
-   "age_h": 1.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_wed0855.txt",
+   "pulled_pt": "Wed Oct 21 08:55 AM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_wed0753.txt",
-   "pulled_pt": "Wed Oct 21 07:53 AM PT",
-   "age_h": 1.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_wed0855.txt",
+   "pulled_pt": "Wed Oct 21 08:55 AM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_wed0753.txt",
-   "pulled_pt": "Wed Oct 21 07:53 AM PT",
-   "age_h": 1.0,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_wed0855.txt",
+   "pulled_pt": "Wed Oct 21 08:55 AM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Wed Oct 21 08:52 AM PT",
+   "pulled_pt": "Wed Oct 21 09:05 AM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Wed Oct 21 2026 08:52 AM PT for week 7"
+   "note": "Gotham run Wed Oct 21 2026 09:05 AM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-21T1354Z.csv",
-   "pulled_pt": "Wed Oct 21 06:54 AM PT",
-   "age_h": 2.0,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-21T1551Z.csv",
+   "pulled_pt": "Wed Oct 21 08:51 AM PT",
+   "age_h": 0.2,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 1.1 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-21T1354Z.csv",
-   "pulled_pt": "Wed Oct 21 06:54 AM PT",
-   "age_h": 2.0,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-21T1551Z.csv",
+   "pulled_pt": "Wed Oct 21 08:51 AM PT",
+   "age_h": 0.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 1.1 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
-   "pulled_pt": "Wed Oct 21 07:53 AM PT",
-   "age_h": 1.0,
+   "pulled_pt": "Wed Oct 21 08:55 AM PT",
+   "age_h": 0.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -697,7 +697,7 @@
      140.13
     ],
     "yahoo": [
-     149.61,
+     149.6,
      137.87
     ]
    },
@@ -708,7 +708,7 @@
       45.75,
       68.34,
       18.74,
-      16.78,
+      16.77,
       0.0
      ],
      [
@@ -851,7 +851,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 5:20 pm",
-      "yahoo": 11.17,
+      "yahoo": 11.16,
       "actual": null,
       "pos": "TE",
       "gotham": 9.1,
@@ -1189,7 +1189,7 @@
    },
    "totals_set": {
     "yahoo": [
-     149.61,
+     149.6,
      137.87
     ],
     "gotham": [
@@ -1252,24 +1252,24 @@
    "teams": 14,
    "opp_rank": 3,
    "needles": {
-    "gotham": 20,
+    "gotham": 23,
     "sleeper": 18,
-    "yahoo": 19,
+    "yahoo": 22,
     "yahoo_best": false,
-    "yahoo_posted": 19,
-    "yahoo_from_spread": 17
+    "yahoo_posted": 22,
+    "yahoo_from_spread": 19
    },
    "totals": {
     "gotham": [
-     100.32,
+     105.98,
      141.74
     ],
     "sleeper": [
-     106.84,
-     150.37
+     106.82,
+     150.35
     ],
     "yahoo": [
-     106.01,
+     110.16,
      152.27
     ]
    },
@@ -1278,18 +1278,18 @@
      [
       0.0,
       29.78,
-      49.86,
+      42.06,
       12.88,
       0.0,
-      13.49
+      25.44
      ],
      [
       0,
       2,
-      5,
+      4,
       1,
       0,
-      1
+      2
      ]
     ],
     "op": [
@@ -1339,22 +1339,6 @@
      },
      {
       "slot": "RB",
-      "player": "Tyjae Spears",
-      "team": "TEN",
-      "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 7.8,
-      "actual": null,
-      "pos": "RB",
-      "gotham": 6.29,
-      "gotham_raw": 6.29,
-      "gotham_src": "gotham",
-      "sleeper": 8.44,
-      "window": 2,
-      "gs": "pre"
-     },
-     {
-      "slot": "RB",
       "player": "David Montgomery",
       "team": "HOU",
       "status": "Q",
@@ -1367,6 +1351,22 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.46,
       "window": 2,
+      "gs": "pre"
+     },
+     {
+      "slot": "RB",
+      "player": "Dameon Pierce",
+      "team": "PHI",
+      "status": "",
+      "kickoff": "Mon 5:15 pm",
+      "yahoo": 11.95,
+      "actual": null,
+      "pos": "RB",
+      "gotham": 11.95,
+      "gotham_raw": 11.95,
+      "gotham_src": "yahoo-fallback",
+      "sleeper": 8.42,
+      "window": 5,
       "gs": "pre"
      },
      {
@@ -1527,7 +1527,7 @@
       "gotham": 23.14,
       "gotham_raw": 23.67,
       "gotham_src": "gotham-capped",
-      "sleeper": 23.55,
+      "sleeper": 23.53,
       "window": 4,
       "gs": "pre"
      },
@@ -1652,15 +1652,15 @@
     },
     {
      "slot": "BN",
-     "player": "George Holani",
-     "team": "SEA",
+     "player": "Samaje Perine",
+     "team": "CIN",
      "status": "",
      "pos": "RB",
      "yahoo": null,
      "actual": null,
-     "gotham": 5.74,
-     "sleeper": 7.58,
-     "window": 4
+     "gotham": 7.45,
+     "sleeper": 6.68,
+     "window": 2
     },
     {
      "slot": "IR",
@@ -1690,23 +1690,23 @@
    "state": "UPCOMING",
    "state_note": "0 of 18 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 18,
-    "yahoo": 19,
+    "gotham": 22,
+    "yahoo": 22,
     "sleeper": 18,
-    "yahoo_from_spread": 17
+    "yahoo_from_spread": 19
    },
    "totals_set": {
     "yahoo": [
-     106.01,
+     110.16,
      152.27
     ],
     "gotham": [
-     98.51,
+     104.17,
      141.74
     ],
     "sleeper": [
-     105.84,
-     150.37
+     105.82,
+     150.35
     ]
    },
    "best_moves": {
@@ -1737,7 +1737,7 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 19%."
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 22%."
   },
   "DK IV": {
    "league": "Murrieta NextDoor",
