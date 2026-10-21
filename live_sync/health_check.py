@@ -135,11 +135,20 @@ runs = [load(os.path.relpath(p, D), D) for p in glob.glob(os.path.join(D, "runlo
 runs = sorted([r for r in runs if r], key=lambda r: r.get("started") or "")
 runs = [r for r in runs if r]
 recent = [r for r in runs if iso(r.get("started")) and (NOW - iso(r["started"])).total_seconds() <= 30 * 3600]
-fails = [r for r in recent if r.get("status") != "ok"]
+# Oct 20 (Dom): a failed run that a LATER successful run of the same task has replaced is fixed, not broken - it stays
+# listed (grey note) but no longer turns the light red. A run still marked "started" counts only once it is 45+ min old.
+def _done_bad(r):
+    if r.get("status") == "ok": return False
+    if r.get("status") == "started" and (NOW - iso(r["started"])).total_seconds() < 45 * 60: return False
+    return True
+fails = [r for r in recent if _done_bad(r)]
+healed = [r for r in fails if any(x.get("task") == r.get("task") and x.get("status") == "ok" and (x.get("started") or "") > (r.get("started") or "") for x in runs)]
+open_f = [r for r in fails if r not in healed]
 if not recent: row("Yahoo", "Read run log", "yellow", "no scheduled read logged in the last 30 h")
 else:
-    row("Yahoo", "Read run log (last 30 h)", "red" if fails else "green",
-        f"{len(recent)} reads, {len(fails)} failed" + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in fails) if fails else ""), iso(recent[-1].get("finished")))
+    row("Yahoo", "Read run log (last 30 h)", "red" if open_f else "green",
+        f"{len(recent)} reads, {len(open_f)} failed and not yet redone" + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in open_f) if open_f else "")
+        + (f" ({len(healed)} earlier failure{'s' if len(healed) > 1 else ''} already fixed by a later good run)" if healed else ""), iso(recent[-1].get("finished")))
 
 # ---------- 4. the Dispatch build (GitHub Actions) ----------
 me = load("dispatch_out/meter_wk%s.json" % (ls or {}).get("week", ""))
