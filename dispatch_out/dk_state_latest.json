@@ -1,9 +1,9 @@
 {
  "what": "Dark Knight state file - read this before answering anything about Dom's four teams",
- "built_utc": "2026-10-22T19:17:02+00:00",
- "built_pt": "Thu Oct 22, 12:17 PM PT",
+ "built_utc": "2026-10-22T19:57:00+00:00",
+ "built_pt": "Thu Oct 22, 12:57 PM PT",
  "week": 7,
- "dispatch_built_pt": "Thu Oct 22 2026 12:15 PM PT",
+ "dispatch_built_pt": "Thu Oct 22 2026 12:56 PM PT",
  "leagues": [
   {
    "dk": "DK I",
@@ -27,45 +27,91 @@
    },
    "totals_projected": {
     "gotham": [
-     136.92,
-     124.81
+     137.09,
+     124.87
     ],
     "sleeper": [
-     140.01,
-     128.4
+     140.25,
+     128.46
     ],
     "yahoo": [
-     143.9,
-     95.85
+     144.3,
+     95.93
     ]
    },
    "win_pct": {
-    "gotham": 59,
+    "gotham": 60,
     "sleeper": 59,
-    "yahoo": 83,
+    "yahoo": 84,
     "yahoo_best": false,
-    "yahoo_posted": 83,
+    "yahoo_posted": 84,
     "yahoo_from_spread": 83
    },
-   "points_needed_to_pass_yahoo": 95.9,
+   "points_needed_to_pass_yahoo": 96.0,
    "remaining": {
     "yahoo": {
-     "my_remaining": 143.8,
-     "their_remaining": 95.9,
-     "projected_margin": 47.9
+     "my_remaining": 144.4,
+     "their_remaining": 96.0,
+     "projected_margin": 48.4
     },
     "gotham": {
-     "my_remaining": 137.0,
+     "my_remaining": 137.1,
      "their_remaining": 101.3,
-     "projected_margin": 35.7
+     "projected_margin": 35.8
     },
     "sleeper": {
-     "my_remaining": 140.0,
-     "their_remaining": 97.0,
-     "projected_margin": 43.0
+     "my_remaining": 140.2,
+     "their_remaining": 96.8,
+     "projected_margin": 43.4
     }
    },
-   "late_swap_risks": [],
+   "late_swap_risks": [
+    {
+     "starter": "Travis Kelce",
+     "slot": "TE",
+     "why": "questionable",
+     "kickoff": "Sun Oct 25, 5:20 PM PT",
+     "inactives_list_at": "Sun Oct 25, 3:50 PM PT",
+     "proj": {
+      "yahoo": 11.1,
+      "gotham": 9.0,
+      "sleeper": 11.6
+     },
+     "bench_options": [],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "warning": "NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
+    },
+    {
+     "starter": "Alvin Kamara",
+     "slot": "W/R/T",
+     "why": "questionable",
+     "kickoff": "Sun Oct 25, 6:30 AM PT",
+     "inactives_list_at": "Sun Oct 25, 5:00 AM PT",
+     "proj": {
+      "yahoo": 10.2,
+      "gotham": 9.7,
+      "sleeper": 9.3
+     },
+     "bench_options": [
+      {
+       "name": "Kaelon Black",
+       "pos": "RB",
+       "nfl": "SF",
+       "kickoff": "Sun Oct 25, 10:00 AM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 7.2,
+        "gotham": 6.4,
+        "sleeper": 7.2,
+        "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
+       },
+       "decide_by": "Sun Oct 25, 10:00 AM PT"
+      }
+     ],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "plan": "If Alvin Kamara is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 3.0 pts. Decision due when the inactives post, about 5:00 AM PT."
+    }
+   ],
    "still_to_play": {
     "me": [
      {
@@ -107,10 +153,10 @@
       "proj": {
        "yahoo": 19.8,
        "gotham": 19.7,
-       "sleeper": 20.5
+       "sleeper": 20.6
       },
       "yahoo_weeks_ahead": {
-       "wk8": 18.7,
+       "wk8": 18.8,
        "wk9": "bye",
        "wk15": 17.6,
        "wk16": 19.6,
@@ -171,7 +217,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 13.5,
+       "yahoo": 13.6,
        "gotham": 12.6,
        "sleeper": 11.6
       },
@@ -197,7 +243,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 17.5,
+       "yahoo": 17.6,
        "gotham": 14.8,
        "sleeper": 16.6
       },
@@ -215,7 +261,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 7:24 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.5 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
        },
        {
@@ -234,12 +280,12 @@
       "kickoff": "Sun Oct 25, 5:20 PM PT",
       "ko_utc": "2026-10-26T00:20:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 11.2,
+       "yahoo": 11.1,
        "gotham": 9.0,
-       "sleeper": 11.5
+       "sleeper": 11.6
       },
       "yahoo_weeks_ahead": {
        "wk8": 11.0,
@@ -249,20 +295,20 @@
        "wk17": 12.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 20.2 hr ago",
+       "ESPN": "Questionable (Ankle), posted 20.8 hr ago",
        "Sleeper": "Questionable (Ankle)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:31 PM PT",
-        "age": "19.8 hr ago",
+        "age": "20.4 hr ago",
         "line": "Travis Kelce Limited on Wednesday With Ankle Issue"
        },
        {
         "src": "RotoWire",
         "at": "Tue Oct 20, 9:09 PM PT",
-        "age": "39.1 hr ago",
+        "age": "39.8 hr ago",
         "line": "Travis Kelce: Limited Wednesday"
        }
       ]
@@ -275,11 +321,11 @@
       "kickoff": "Sun Oct 25, 6:30 AM PT",
       "ko_utc": "2026-10-25T13:30:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 9.8,
-       "gotham": 9.6,
+       "yahoo": 10.2,
+       "gotham": 9.7,
        "sleeper": 9.3
       },
       "yahoo_weeks_ahead": {
@@ -290,20 +336,20 @@
        "wk17": 7.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Back), posted 21.5 hr ago",
+       "ESPN": "Questionable (Back), posted 22.1 hr ago",
        "Sleeper": "Questionable (Back)"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Thu Oct 22, 10:31 AM PT",
-        "age": "1.8 hr ago",
+        "age": "2.4 hr ago",
         "line": "French quarters: Saints feel at home in Paris and face Steelers in historic game"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 3:07 PM PT",
-        "age": "21.2 hr ago",
+        "age": "21.8 hr ago",
         "line": "Alvin Kamara Limited With Back Injury on Wednesday"
        }
       ]
@@ -319,7 +365,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 9.0,
+       "yahoo": 9.1,
        "gotham": 8.3,
        "sleeper": 8.4
       },
@@ -337,13 +383,13 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 5:26 AM PT",
-        "age": "6.8 hr ago",
+        "age": "7.5 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? DeMario Douglas, Rhamondre Stevenson, A.J. Brown, Luther Burden, D'Andre Swift, Rome Odunze, Roschon Johnson, TreVeyon Henderson"
        },
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 12:54 AM PT",
-        "age": "11.4 hr ago",
+        "age": "12.0 hr ago",
         "line": "TreVeyon Henderson's Fantasy Stock Plummeting Ahead of Week 7"
        }
       ]
@@ -390,7 +436,7 @@
        "sleeper": 10.6
       },
       "yahoo_weeks_ahead": {
-       "wk8": "bye",
+       "wk8": 6.5,
        "wk9": 6.9,
        "wk15": 7.2,
        "wk16": 8.1,
@@ -400,13 +446,13 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 11:03 AM PT",
-        "age": "73 min ago",
+        "age": "1.9 hr ago",
         "line": "Aaron Jones Sr. Faces a Drastically Lowered Ceiling with Teammate's Return"
        },
        {
         "src": "ProFootballTalk",
         "at": "Thu Oct 22, 9:57 AM PT",
-        "age": "2.3 hr ago",
+        "age": "3.0 hr ago",
         "line": "DeForest Buckner on trade rumors: I'm just focused on the Vikings"
        }
       ]
@@ -424,7 +470,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 23.3,
+       "yahoo": 23.5,
        "gotham": 23.6,
        "sleeper": 23.8
       },
@@ -435,7 +481,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 8:11 AM PT",
-        "age": "28.1 hr ago",
+        "age": "28.8 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Matthew Stafford, Geno Smith, Patrick Mahomes, Baker Mayfield, JJ Mccarthy, Michael Penix, Brock Purdy, Deshaun Watson, Tanner Mckee"
        },
        {
@@ -467,8 +513,14 @@
       "news": [
        {
         "src": "RotoBaller",
+        "at": "Thu Oct 22, 12:20 PM PT",
+        "age": "37 min ago",
+        "line": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work"
+       },
+       {
+        "src": "RotoBaller",
         "at": "Thu Oct 22, 6:30 AM PT",
-        "age": "5.8 hr ago",
+        "age": "6.4 hr ago",
         "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
        }
       ]
@@ -484,7 +536,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 17.1,
+       "yahoo": 17.3,
        "gotham": 16.2,
        "sleeper": 17.0
       },
@@ -495,7 +547,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 5:17 AM PT",
-        "age": "7.0 hr ago",
+        "age": "7.7 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Omar Cooper Jr., Chris Olave, Marvin Harrison Jr., Rashee Rice, Christian Kirk, Dontayvion Wicks, Ashton Jeanty, Kyren Williams, Ryan Flournoy"
        }
       ]
@@ -522,7 +574,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Oct 20, 12:46 PM PT",
-        "age": "47.5 hr ago",
+        "age": "2 days ago",
         "line": "Week 7 Waiver Wire Pickups - Travis Hunter, Wan'Dale Robinson, Jalen Royals"
        }
       ]
@@ -538,9 +590,9 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 10.0,
+       "yahoo": 10.1,
        "gotham": 9.4,
-       "sleeper": 9.6
+       "sleeper": 9.7
       },
       "injury_feeds": {
        "ESPN": "Active, posted 4 days ago"
@@ -557,25 +609,25 @@
       "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 6.5,
+       "yahoo": 6.2,
        "gotham": 13.3,
-       "sleeper": 6.5
+       "sleeper": 6.2
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Achilles), posted 19.8 hr ago",
+       "ESPN": "Questionable (Achilles), posted 20.5 hr ago",
        "Sleeper": "Questionable (Achilles)"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Wed Oct 21, 4:30 PM PT",
-        "age": "19.8 hr ago",
+        "age": "20.4 hr ago",
         "line": "Mike Evans: Officially DNP on Wednesday"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 1:23 PM PT",
-        "age": "22.9 hr ago",
+        "age": "23.6 hr ago",
         "line": "Mike Evans Not Expected to Practice on Wednesday"
        }
       ]
@@ -591,7 +643,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 9.8,
+       "yahoo": 9.7,
        "gotham": 8.9,
        "sleeper": 9.3
       },
@@ -615,13 +667,13 @@
        "sleeper": 7.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 42.0 hr ago"
+       "ESPN": "Active, posted 42.7 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Tue Oct 20, 6:16 PM PT",
-        "age": "42.0 hr ago",
+        "age": "42.7 hr ago",
         "line": "Eddy Pineiro: Misses PAT in Week 6 win"
        },
        {
@@ -674,10 +726,10 @@
      "proj": {
       "yahoo": 19.8,
       "gotham": 19.7,
-      "sleeper": 20.5
+      "sleeper": 20.6
      },
      "yahoo_weeks_ahead": {
-      "wk8": 18.7,
+      "wk8": 18.8,
       "wk9": "bye",
       "wk15": 17.6,
       "wk16": 19.6,
@@ -738,7 +790,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 13.5,
+      "yahoo": 13.6,
       "gotham": 12.6,
       "sleeper": 11.6
      },
@@ -764,7 +816,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 17.5,
+      "yahoo": 17.6,
       "gotham": 14.8,
       "sleeper": 16.6
      },
@@ -782,7 +834,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 7:24 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.5 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
       },
       {
@@ -801,12 +853,12 @@
      "kickoff": "Sun Oct 25, 5:20 PM PT",
      "ko_utc": "2026-10-26T00:20:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 11.2,
+      "yahoo": 11.1,
       "gotham": 9.0,
-      "sleeper": 11.5
+      "sleeper": 11.6
      },
      "yahoo_weeks_ahead": {
       "wk8": 11.0,
@@ -816,20 +868,20 @@
       "wk17": 12.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 20.2 hr ago",
+      "ESPN": "Questionable (Ankle), posted 20.8 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:31 PM PT",
-       "age": "19.8 hr ago",
+       "age": "20.4 hr ago",
        "line": "Travis Kelce Limited on Wednesday With Ankle Issue"
       },
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 9:09 PM PT",
-       "age": "39.1 hr ago",
+       "age": "39.8 hr ago",
        "line": "Travis Kelce: Limited Wednesday"
       }
      ]
@@ -842,11 +894,11 @@
      "kickoff": "Sun Oct 25, 6:30 AM PT",
      "ko_utc": "2026-10-25T13:30:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 9.8,
-      "gotham": 9.6,
+      "yahoo": 10.2,
+      "gotham": 9.7,
       "sleeper": 9.3
      },
      "yahoo_weeks_ahead": {
@@ -857,20 +909,20 @@
       "wk17": 7.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Back), posted 21.5 hr ago",
+      "ESPN": "Questionable (Back), posted 22.1 hr ago",
       "Sleeper": "Questionable (Back)"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Thu Oct 22, 10:31 AM PT",
-       "age": "1.8 hr ago",
+       "age": "2.4 hr ago",
        "line": "French quarters: Saints feel at home in Paris and face Steelers in historic game"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 3:07 PM PT",
-       "age": "21.2 hr ago",
+       "age": "21.8 hr ago",
        "line": "Alvin Kamara Limited With Back Injury on Wednesday"
       }
      ]
@@ -886,7 +938,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 9.0,
+      "yahoo": 9.1,
       "gotham": 8.3,
       "sleeper": 8.4
      },
@@ -904,13 +956,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 5:26 AM PT",
-       "age": "6.8 hr ago",
+       "age": "7.5 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? DeMario Douglas, Rhamondre Stevenson, A.J. Brown, Luther Burden, D'Andre Swift, Rome Odunze, Roschon Johnson, TreVeyon Henderson"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 12:54 AM PT",
-       "age": "11.4 hr ago",
+       "age": "12.0 hr ago",
        "line": "TreVeyon Henderson's Fantasy Stock Plummeting Ahead of Week 7"
       }
      ]
@@ -957,7 +1009,7 @@
       "sleeper": 10.6
      },
      "yahoo_weeks_ahead": {
-      "wk8": "bye",
+      "wk8": 6.5,
       "wk9": 6.9,
       "wk15": 7.2,
       "wk16": 8.1,
@@ -967,13 +1019,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 11:03 AM PT",
-       "age": "73 min ago",
+       "age": "1.9 hr ago",
        "line": "Aaron Jones Sr. Faces a Drastically Lowered Ceiling with Teammate's Return"
       },
       {
        "src": "ProFootballTalk",
        "at": "Thu Oct 22, 9:57 AM PT",
-       "age": "2.3 hr ago",
+       "age": "3.0 hr ago",
        "line": "DeForest Buckner on trade rumors: I'm just focused on the Vikings"
       }
      ]
@@ -1009,13 +1061,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even when there's a penalty flag on the field"
       }
      ]
@@ -1036,7 +1088,7 @@
       "sleeper": null
      },
      "yahoo_weeks_ahead": {
-      "wk8": 12.2,
+      "wk8": 12.1,
       "wk9": 12.0,
       "wk15": 12.2,
       "wk16": 11.6,
@@ -1073,7 +1125,7 @@
       "sleeper": null
      },
      "yahoo_weeks_ahead": {
-      "wk8": 10.9,
+      "wk8": 11.0,
       "wk9": 10.6,
       "wk15": 10.8,
       "wk16": 11.9,
@@ -1094,10 +1146,10 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 7.1,
+      "yahoo": 7.2,
       "gotham": 6.4,
       "sleeper": 7.2,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
@@ -1138,7 +1190,7 @@
       "yahoo": 0.0,
       "gotham": 0.0,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
@@ -1154,13 +1206,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 4:07 AM PT",
-       "age": "8.2 hr ago",
+       "age": "8.8 hr ago",
        "line": "Is Travis Etienne Jr. The Starting Running Back For The Saints When He Returns? (Week 7 Update)"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 3:56 AM PT",
-       "age": "32.3 hr ago",
+       "age": "33.0 hr ago",
        "line": "When Is Travis Etienne Jr. Coming Back - Week 7 Fantasy Football Injury Return Update (2026)"
       }
      ]
@@ -1168,7 +1220,7 @@
     {
      "slot": "BN",
      "name": "Colts",
-     "pos": "DEF",
+     "pos": "WR",
      "nfl": "",
      "kickoff": "no game this week",
      "ko_utc": null,
@@ -1179,10 +1231,10 @@
       "yahoo": 7.7,
       "gotham": null,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
-      "wk8": "bye",
+      "wk8": 5.3,
       "wk9": 4.9,
       "wk15": 8.0,
       "wk16": 5.9,
@@ -1192,16 +1244,32 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 10:40 AM PT",
-       "age": "1.6 hr ago",
+       "age": "2.3 hr ago",
        "line": "Tyler Warren Still Absent from Practice on Thursday"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 10:06 AM PT",
-       "age": "2.2 hr ago",
+       "age": "2.8 hr ago",
        "line": "Jonathan Taylor Hasn't Considered Possibility of Being Traded"
       }
      ]
+    },
+    {
+     "slot": "BN",
+     "name": "Indianapolis",
+     "pos": "DEF",
+     "nfl": "IND",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": null
+     }
     }
    ],
    "opp_starters": [
@@ -1216,7 +1284,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 23.3,
+      "yahoo": 23.5,
       "gotham": 23.6,
       "sleeper": 23.8
      },
@@ -1227,7 +1295,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 8:11 AM PT",
-       "age": "28.1 hr ago",
+       "age": "28.8 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Matthew Stafford, Geno Smith, Patrick Mahomes, Baker Mayfield, JJ Mccarthy, Michael Penix, Brock Purdy, Deshaun Watson, Tanner Mckee"
       },
       {
@@ -1259,8 +1327,14 @@
      "news": [
       {
        "src": "RotoBaller",
+       "at": "Thu Oct 22, 12:20 PM PT",
+       "age": "37 min ago",
+       "line": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work"
+      },
+      {
+       "src": "RotoBaller",
        "at": "Thu Oct 22, 6:30 AM PT",
-       "age": "5.8 hr ago",
+       "age": "6.4 hr ago",
        "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
       }
      ]
@@ -1292,7 +1366,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 17.1,
+      "yahoo": 17.3,
       "gotham": 16.2,
       "sleeper": 17.0
      },
@@ -1303,7 +1377,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 5:17 AM PT",
-       "age": "7.0 hr ago",
+       "age": "7.7 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Omar Cooper Jr., Chris Olave, Marvin Harrison Jr., Rashee Rice, Christian Kirk, Dontayvion Wicks, Ashton Jeanty, Kyren Williams, Ryan Flournoy"
       }
      ]
@@ -1330,7 +1404,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Oct 20, 12:46 PM PT",
-       "age": "47.5 hr ago",
+       "age": "2 days ago",
        "line": "Week 7 Waiver Wire Pickups - Travis Hunter, Wan'Dale Robinson, Jalen Royals"
       }
      ]
@@ -1346,9 +1420,9 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 10.0,
+      "yahoo": 10.1,
       "gotham": 9.4,
-      "sleeper": 9.6
+      "sleeper": 9.7
      },
      "injury_feeds": {
       "ESPN": "Active, posted 4 days ago"
@@ -1365,25 +1439,25 @@
      "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 6.5,
+      "yahoo": 6.2,
       "gotham": 13.3,
-      "sleeper": 6.5
+      "sleeper": 6.2
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Achilles), posted 19.8 hr ago",
+      "ESPN": "Questionable (Achilles), posted 20.5 hr ago",
       "Sleeper": "Questionable (Achilles)"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Oct 21, 4:30 PM PT",
-       "age": "19.8 hr ago",
+       "age": "20.4 hr ago",
        "line": "Mike Evans: Officially DNP on Wednesday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 1:23 PM PT",
-       "age": "22.9 hr ago",
+       "age": "23.6 hr ago",
        "line": "Mike Evans Not Expected to Practice on Wednesday"
       }
      ]
@@ -1399,7 +1473,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 9.8,
+      "yahoo": 9.7,
       "gotham": 8.9,
       "sleeper": 9.3
      },
@@ -1423,13 +1497,13 @@
       "sleeper": 7.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 42.0 hr ago"
+      "ESPN": "Active, posted 42.7 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 6:16 PM PT",
-       "age": "42.0 hr ago",
+       "age": "42.7 hr ago",
        "line": "Eddy Pineiro: Misses PAT in Week 6 win"
       },
       {
@@ -1457,14 +1531,25 @@
      }
     }
    ],
-   "actions": [],
+   "actions": [
+    {
+     "what": "Travis Kelce is questionable - latest (ESPN, Oct 21): Kelce (ankle) was a limited practice participant Wednesday, Matt Derrick of ChiefsDigest.com reports. Check his status",
+     "by": "before his Sun 5:20 PM kickoff",
+     "kind": "check"
+    },
+    {
+     "what": "Alvin Kamara is questionable - latest (ESPN, Oct 21): Kamara (back) practiced in a limited capacity Wednesday, Katherine Terrell of ESPN reports. Check his status",
+     "by": "before his Sun 6:30 AM kickoff",
+     "kind": "check"
+    }
+   ],
    "alerts": [
     {
      "color": "gold",
-     "title": "Alvin Kamara Limited With Back Injury on Wednesday",
+     "title": "Alvin Kamara: Questionable (Back)",
      "who": "Alvin Kamara",
-     "kind": "news",
-     "src": "Dark Knight Dispatch"
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     },
     {
      "color": "gold",
@@ -1516,7 +1601,7 @@
      "src": "Dark Knight Dispatch"
     }
    ],
-   "roster_read_pt": "Wed Oct 21, 12:55 PM PT"
+   "roster_read_pt": "Thu Oct 22, 12:52 PM PT"
   },
   {
    "dk": "DK II",
@@ -1540,71 +1625,57 @@
    },
    "totals_projected": {
     "gotham": [
-     142.65,
-     135.69
+     138.92,
+     135.61
     ],
     "sleeper": [
-     142.02,
-     139.63
+     142.44,
+     139.69
     ],
     "yahoo": [
-     143.65,
-     137.95
+     147.7,
+     137.57
     ]
    },
    "win_pct": {
-    "gotham": 55,
+    "gotham": 52,
     "sleeper": 52,
-    "yahoo": 55,
+    "yahoo": 58,
     "yahoo_best": false,
-    "yahoo_posted": 55,
-    "yahoo_from_spread": 54
+    "yahoo_posted": 58,
+    "yahoo_from_spread": 57
    },
-   "points_needed_to_pass_yahoo": 138.0,
+   "points_needed_to_pass_yahoo": 137.5,
    "remaining": {
     "yahoo": {
-     "my_remaining": 143.7,
-     "their_remaining": 138.0,
-     "projected_margin": 5.7
+     "my_remaining": 147.8,
+     "their_remaining": 137.5,
+     "projected_margin": 10.3
     },
     "gotham": {
-     "my_remaining": 140.7,
-     "their_remaining": 127.1,
-     "projected_margin": 13.6
+     "my_remaining": 138.2,
+     "their_remaining": 127.0,
+     "projected_margin": 11.2
     },
     "sleeper": {
-     "my_remaining": 138.5,
+     "my_remaining": 142.5,
      "their_remaining": 132.6,
-     "projected_margin": 5.9
+     "projected_margin": 9.9
     }
    },
    "late_swap_risks": [
     {
-     "starter": "David Montgomery",
+     "starter": "Alvin Kamara",
      "slot": "RB",
      "why": "questionable",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "inactives_list_at": "Sun Oct 25, 8:30 AM PT",
+     "kickoff": "Sun Oct 25, 6:30 AM PT",
+     "inactives_list_at": "Sun Oct 25, 5:00 AM PT",
      "proj": {
-      "yahoo": 5.8,
-      "gotham": 12.3,
-      "sleeper": 5.8
+      "yahoo": 10.2,
+      "gotham": 9.7,
+      "sleeper": 9.3
      },
      "bench_options": [
-      {
-       "name": "Alvin Kamara",
-       "pos": "RB",
-       "nfl": "NO",
-       "kickoff": "Sun Oct 25, 6:30 AM PT",
-       "status": "healthy",
-       "proj": {
-        "yahoo": 9.9,
-        "gotham": 11.6,
-        "sleeper": 9.3,
-        "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
-       },
-       "decide_by": "Sun Oct 25, 6:30 AM PT"
-      },
       {
        "name": "MarShawn Lloyd",
        "pos": "RB",
@@ -1612,16 +1683,45 @@
        "kickoff": "Sun Oct 25, 1:25 PM PT",
        "status": "healthy",
        "proj": {
-        "yahoo": 5.5,
+        "yahoo": 5.6,
         "gotham": 10.3,
         "sleeper": 6.3,
-        "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+        "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
        },
        "decide_by": "Sun Oct 25, 1:25 PM PT"
+      },
+      {
+       "name": "David Montgomery",
+       "pos": "RB",
+       "nfl": "HOU",
+       "kickoff": "Sun Oct 25, 10:00 AM PT",
+       "status": "doubtful",
+       "proj": {
+        "yahoo": 5.0,
+        "gotham": 9.7,
+        "sleeper": null,
+        "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
+       },
+       "decide_by": "Sun Oct 25, 10:00 AM PT"
       }
      ],
      "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
-     "plan": "If David Montgomery is ruled out, start Alvin Kamara (RB, NO) - no drop needed. Yahoo gap if he sits: about -4.1 pts. Decision due when the inactives post, about 8:30 AM PT."
+     "plan": "If Alvin Kamara is ruled out, start MarShawn Lloyd (RB, GB) - no drop needed. Yahoo gap if he sits: about 4.6 pts. Decision due when the inactives post, about 5:00 AM PT."
+    },
+    {
+     "starter": "Travis Kelce",
+     "slot": "TE",
+     "why": "questionable",
+     "kickoff": "Sun Oct 25, 5:20 PM PT",
+     "inactives_list_at": "Sun Oct 25, 3:50 PM PT",
+     "proj": {
+      "yahoo": 11.2,
+      "gotham": 9.0,
+      "sleeper": 11.6
+     },
+     "bench_options": [],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "warning": "NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
     }
    ],
    "still_to_play": {
@@ -1638,7 +1738,7 @@
       "actual": null,
       "proj": {
        "yahoo": 18.6,
-       "gotham": 17.6,
+       "gotham": 17.7,
        "sleeper": 16.7
       },
       "yahoo_weeks_ahead": {
@@ -1655,13 +1755,13 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 5:36 AM PT",
-        "age": "6.7 hr ago",
+        "age": "7.3 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Caleb Williams, Drake Maye, Jacoby Brissett, Lamar Jackson, Sam Darnold, Cam Ward, Daniel Jones, Tyler Huntley, Jalon Daniels"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:31 PM PT",
-        "age": "19.8 hr ago",
+        "age": "20.4 hr ago",
         "line": "Week 7 Waiver Wire Pickups - Jacoby Brissett, Deshaun Watson, Michael Penix Jr."
        }
       ]
@@ -1677,7 +1777,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 11.2,
+       "yahoo": 10.9,
        "gotham": 10.9,
        "sleeper": 11.8
       },
@@ -1695,7 +1795,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 9:22 AM PT",
-        "age": "26.9 hr ago",
+        "age": "27.6 hr ago",
         "line": "Mid-Week Waiver Wire Rankings for Week 7 (2026): Fantasy Football Pickups for Kendre Miller, Tyrone Tracy Jr., DeMario Douglas, Ja'Kobi Lane, Konata Mumpfield, more"
        },
        {
@@ -1708,42 +1808,42 @@
      },
      {
       "slot": "RB",
-      "name": "David Montgomery",
+      "name": "Alvin Kamara",
       "pos": "RB",
-      "nfl": "HOU",
-      "kickoff": "Sun Oct 25, 10:00 AM PT",
-      "ko_utc": "2026-10-25T17:00:00+00:00",
+      "nfl": "NO",
+      "kickoff": "Sun Oct 25, 6:30 AM PT",
+      "ko_utc": "2026-10-25T13:30:00+00:00",
       "game": "not started",
       "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 5.8,
-       "gotham": 12.3,
-       "sleeper": 5.8
+       "yahoo": 10.2,
+       "gotham": 9.7,
+       "sleeper": 9.3
       },
       "yahoo_weeks_ahead": {
        "wk8": "bye",
-       "wk9": 11.9,
-       "wk15": 11.7,
-       "wk16": 11.6,
-       "wk17": 12.0
+       "wk9": 7.3,
+       "wk15": 7.1,
+       "wk16": 8.0,
+       "wk17": 7.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Groin), posted 1.5 hr ago",
-       "Sleeper": "Questionable (Groin)"
+       "ESPN": "Questionable (Back), posted 22.1 hr ago",
+       "Sleeper": "Questionable (Back)"
       },
       "news": [
        {
-        "src": "RotoBaller",
-        "at": "Thu Oct 22, 11:03 AM PT",
-        "age": "73 min ago",
-        "line": "David Montgomery Not Expected to Play in Week 7"
+        "src": "ESPN",
+        "at": "Thu Oct 22, 10:31 AM PT",
+        "age": "2.4 hr ago",
+        "line": "French quarters: Saints feel at home in Paris and face Steelers in historic game"
        },
        {
-        "src": "RotoWire",
-        "at": "Thu Oct 22, 3:46 AM PT",
-        "age": "8.5 hr ago",
-        "line": "David Montgomery: Not practicing Thursday"
+        "src": "RotoBaller",
+        "at": "Wed Oct 21, 3:07 PM PT",
+        "age": "21.8 hr ago",
+        "line": "Alvin Kamara Limited With Back Injury on Wednesday"
        }
       ]
      },
@@ -1758,12 +1858,12 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 17.7,
+       "yahoo": 17.8,
        "gotham": 14.8,
        "sleeper": 16.6
       },
       "yahoo_weeks_ahead": {
-       "wk8": 16.5,
+       "wk8": 16.6,
        "wk9": 17.6,
        "wk15": 17.5,
        "wk16": 17.5,
@@ -1776,7 +1876,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 7:24 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.5 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
        },
        {
@@ -1800,7 +1900,7 @@
       "proj": {
        "yahoo": 12.7,
        "gotham": 12.1,
-       "sleeper": 11.5
+       "sleeper": 11.6
       },
       "yahoo_weeks_ahead": {
        "wk8": 10.4,
@@ -1816,7 +1916,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 8:04 PM PT",
-        "age": "16.2 hr ago",
+        "age": "16.9 hr ago",
         "line": "Rookie WR Germie Bernard Poised to Continue Significant Role for Steelers"
        },
        {
@@ -1838,12 +1938,12 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 19.4,
+       "yahoo": 19.2,
        "gotham": 18.1,
        "sleeper": 18.8
       },
       "yahoo_weeks_ahead": {
-       "wk8": 20.7,
+       "wk8": 20.6,
        "wk9": 19.6,
        "wk15": 19.2,
        "wk16": 19.7,
@@ -1861,12 +1961,12 @@
       "kickoff": "Sun Oct 25, 5:20 PM PT",
       "ko_utc": "2026-10-26T00:20:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 11.2,
        "gotham": 9.0,
-       "sleeper": 11.5
+       "sleeper": 11.6
       },
       "yahoo_weeks_ahead": {
        "wk8": 11.1,
@@ -1876,20 +1976,20 @@
        "wk17": 12.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 20.2 hr ago",
+       "ESPN": "Questionable (Ankle), posted 20.8 hr ago",
        "Sleeper": "Questionable (Ankle)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:31 PM PT",
-        "age": "19.8 hr ago",
+        "age": "20.4 hr ago",
         "line": "Travis Kelce Limited on Wednesday With Ankle Issue"
        },
        {
         "src": "RotoWire",
         "at": "Tue Oct 20, 9:09 PM PT",
-        "age": "39.1 hr ago",
+        "age": "39.8 hr ago",
         "line": "Travis Kelce: Limited Wednesday"
        }
       ]
@@ -1923,7 +2023,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 10:07 AM PT",
-        "age": "26.2 hr ago",
+        "age": "26.8 hr ago",
         "line": "Braelon Allen to Continue to See Touches"
        }
       ]
@@ -1939,12 +2039,12 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 21.9,
+       "yahoo": 22.0,
        "gotham": 20.8,
-       "sleeper": 21.2
+       "sleeper": 21.5
       },
       "yahoo_weeks_ahead": {
-       "wk8": 19.1,
+       "wk8": 19.2,
        "wk9": "bye",
        "wk15": 19.9,
        "wk16": 19.9,
@@ -1957,13 +2057,13 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 4:52 PM PT",
-        "age": "19.4 hr ago",
+        "age": "20.1 hr ago",
         "line": "Bucs QB Jalon Daniels swaps jerseys with idol, Steelers QB Aaron Rodgers"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:35 PM PT",
-        "age": "19.7 hr ago",
+        "age": "20.4 hr ago",
         "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
        }
       ]
@@ -2011,7 +2111,7 @@
       },
       "yahoo_weeks_ahead": {
        "wk8": 5.4,
-       "wk9": "bye",
+       "wk9": 7.4,
        "wk15": 6.0,
        "wk16": 5.4,
        "wk17": 6.3
@@ -2019,14 +2119,14 @@
       "news": [
        {
         "src": "ESPN",
-        "at": "Thu Oct 22, 11:30 AM PT",
-        "age": "47 min ago",
+        "at": "Thu Oct 22, 12:00 PM PT",
+        "age": "57 min ago",
         "line": "Chiefs place LT Josh Simmons on IR as rehab process stalls"
        },
        {
         "src": "RotoWire",
         "at": "Thu Oct 22, 11:25 AM PT",
-        "age": "52 min ago",
+        "age": "1.5 hr ago",
         "line": "Josh Simmons: Heads to IR"
        }
       ]
@@ -2044,7 +2144,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 21.1,
+       "yahoo": 21.0,
        "gotham": 19.9,
        "sleeper": 18.7
       },
@@ -2076,20 +2176,20 @@
        "sleeper": 15.1
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 23.2 hr ago",
+       "ESPN": "Questionable (Ankle), posted 23.8 hr ago",
        "Sleeper": "Questionable (Ankle)"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Wed Oct 21, 1:07 PM PT",
-        "age": "23.2 hr ago",
+        "age": "23.8 hr ago",
         "line": "Quinshon Judkins: Limited in Wednesday's practice"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Oct 21, 10:08 AM PT",
-        "age": "26.1 hr ago",
+        "age": "26.8 hr ago",
         "line": "Mason Graham, Quinshon Judkins appear on track to return Week 7"
        }
       ]
@@ -2105,7 +2205,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 16.5,
+       "yahoo": 16.4,
        "gotham": 12.3,
        "sleeper": 15.7
       },
@@ -2135,7 +2235,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 6:44 AM PT",
-        "age": "5.5 hr ago",
+        "age": "6.2 hr ago",
         "line": "Luther Burden III A Borderline WR2 Vs. New England"
        }
       ]
@@ -2198,7 +2298,7 @@
       "actual": null,
       "proj": {
        "yahoo": 7.0,
-       "gotham": 7.3,
+       "gotham": 7.2,
        "sleeper": 7.5
       },
       "injury_feeds": {
@@ -2243,7 +2343,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 24.6,
+       "yahoo": 24.3,
        "gotham": 23.6,
        "sleeper": 24.8
       },
@@ -2254,13 +2354,13 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 5:36 AM PT",
-        "age": "6.7 hr ago",
+        "age": "7.3 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Caleb Williams, Drake Maye, Jacoby Brissett, Lamar Jackson, Sam Darnold, Cam Ward, Daniel Jones, Tyler Huntley, Jalon Daniels"
        },
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 12:54 AM PT",
-        "age": "11.4 hr ago",
+        "age": "12.0 hr ago",
         "line": "Drake Maye Back in Must-Start Territory Against the Bears"
        }
       ]
@@ -2309,16 +2409,16 @@
       },
       "news": [
        {
-        "src": "ESPN",
-        "at": "Thu Oct 22, 10:51 AM PT",
-        "age": "86 min ago",
-        "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
+        "src": "ProFootballTalk",
+        "at": "Thu Oct 22, 12:26 PM PT",
+        "age": "30 min ago",
+        "line": "Steelers rule out CB Brandin Echols, WR Ben Skowronek for Paris trip"
        },
        {
-        "src": "RotoBaller",
-        "at": "Thu Oct 22, 10:50 AM PT",
-        "age": "87 min ago",
-        "line": "Steelers Traveling to Paris on a Red-Eye Flight"
+        "src": "ESPN",
+        "at": "Thu Oct 22, 10:51 AM PT",
+        "age": "2.1 hr ago",
+        "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
        }
       ]
      }
@@ -2337,7 +2437,7 @@
      "actual": null,
      "proj": {
       "yahoo": 18.6,
-      "gotham": 17.6,
+      "gotham": 17.7,
       "sleeper": 16.7
      },
      "yahoo_weeks_ahead": {
@@ -2354,13 +2454,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 5:36 AM PT",
-       "age": "6.7 hr ago",
+       "age": "7.3 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Caleb Williams, Drake Maye, Jacoby Brissett, Lamar Jackson, Sam Darnold, Cam Ward, Daniel Jones, Tyler Huntley, Jalon Daniels"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:31 PM PT",
-       "age": "19.8 hr ago",
+       "age": "20.4 hr ago",
        "line": "Week 7 Waiver Wire Pickups - Jacoby Brissett, Deshaun Watson, Michael Penix Jr."
       }
      ]
@@ -2376,7 +2476,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 11.2,
+      "yahoo": 10.9,
       "gotham": 10.9,
       "sleeper": 11.8
      },
@@ -2394,7 +2494,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 9:22 AM PT",
-       "age": "26.9 hr ago",
+       "age": "27.6 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 7 (2026): Fantasy Football Pickups for Kendre Miller, Tyrone Tracy Jr., DeMario Douglas, Ja'Kobi Lane, Konata Mumpfield, more"
       },
       {
@@ -2407,42 +2507,42 @@
     },
     {
      "slot": "RB",
-     "name": "David Montgomery",
+     "name": "Alvin Kamara",
      "pos": "RB",
-     "nfl": "HOU",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 25, 6:30 AM PT",
+     "ko_utc": "2026-10-25T13:30:00+00:00",
      "game": "not started",
      "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 5.8,
-      "gotham": 12.3,
-      "sleeper": 5.8
+      "yahoo": 10.2,
+      "gotham": 9.7,
+      "sleeper": 9.3
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
-      "wk9": 11.9,
-      "wk15": 11.7,
-      "wk16": 11.6,
-      "wk17": 12.0
+      "wk9": 7.3,
+      "wk15": 7.1,
+      "wk16": 8.0,
+      "wk17": 7.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Groin), posted 1.5 hr ago",
-      "Sleeper": "Questionable (Groin)"
+      "ESPN": "Questionable (Back), posted 22.1 hr ago",
+      "Sleeper": "Questionable (Back)"
      },
      "news": [
       {
-       "src": "RotoBaller",
-       "at": "Thu Oct 22, 11:03 AM PT",
-       "age": "73 min ago",
-       "line": "David Montgomery Not Expected to Play in Week 7"
+       "src": "ESPN",
+       "at": "Thu Oct 22, 10:31 AM PT",
+       "age": "2.4 hr ago",
+       "line": "French quarters: Saints feel at home in Paris and face Steelers in historic game"
       },
       {
-       "src": "RotoWire",
-       "at": "Thu Oct 22, 3:46 AM PT",
-       "age": "8.5 hr ago",
-       "line": "David Montgomery: Not practicing Thursday"
+       "src": "RotoBaller",
+       "at": "Wed Oct 21, 3:07 PM PT",
+       "age": "21.8 hr ago",
+       "line": "Alvin Kamara Limited With Back Injury on Wednesday"
       }
      ]
     },
@@ -2457,12 +2557,12 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 17.7,
+      "yahoo": 17.8,
       "gotham": 14.8,
       "sleeper": 16.6
      },
      "yahoo_weeks_ahead": {
-      "wk8": 16.5,
+      "wk8": 16.6,
       "wk9": 17.6,
       "wk15": 17.5,
       "wk16": 17.5,
@@ -2475,7 +2575,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 7:24 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.5 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
       },
       {
@@ -2499,7 +2599,7 @@
      "proj": {
       "yahoo": 12.7,
       "gotham": 12.1,
-      "sleeper": 11.5
+      "sleeper": 11.6
      },
      "yahoo_weeks_ahead": {
       "wk8": 10.4,
@@ -2515,7 +2615,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 8:04 PM PT",
-       "age": "16.2 hr ago",
+       "age": "16.9 hr ago",
        "line": "Rookie WR Germie Bernard Poised to Continue Significant Role for Steelers"
       },
       {
@@ -2537,12 +2637,12 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 19.4,
+      "yahoo": 19.2,
       "gotham": 18.1,
       "sleeper": 18.8
      },
      "yahoo_weeks_ahead": {
-      "wk8": 20.7,
+      "wk8": 20.6,
       "wk9": 19.6,
       "wk15": 19.2,
       "wk16": 19.7,
@@ -2560,12 +2660,12 @@
      "kickoff": "Sun Oct 25, 5:20 PM PT",
      "ko_utc": "2026-10-26T00:20:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 11.2,
       "gotham": 9.0,
-      "sleeper": 11.5
+      "sleeper": 11.6
      },
      "yahoo_weeks_ahead": {
       "wk8": 11.1,
@@ -2575,20 +2675,20 @@
       "wk17": 12.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 20.2 hr ago",
+      "ESPN": "Questionable (Ankle), posted 20.8 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:31 PM PT",
-       "age": "19.8 hr ago",
+       "age": "20.4 hr ago",
        "line": "Travis Kelce Limited on Wednesday With Ankle Issue"
       },
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 9:09 PM PT",
-       "age": "39.1 hr ago",
+       "age": "39.8 hr ago",
        "line": "Travis Kelce: Limited Wednesday"
       }
      ]
@@ -2622,7 +2722,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 10:07 AM PT",
-       "age": "26.2 hr ago",
+       "age": "26.8 hr ago",
        "line": "Braelon Allen to Continue to See Touches"
       }
      ]
@@ -2638,12 +2738,12 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 21.9,
+      "yahoo": 22.0,
       "gotham": 20.8,
-      "sleeper": 21.2
+      "sleeper": 21.5
      },
      "yahoo_weeks_ahead": {
-      "wk8": 19.1,
+      "wk8": 19.2,
       "wk9": "bye",
       "wk15": 19.9,
       "wk16": 19.9,
@@ -2656,13 +2756,13 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 4:52 PM PT",
-       "age": "19.4 hr ago",
+       "age": "20.1 hr ago",
        "line": "Bucs QB Jalon Daniels swaps jerseys with idol, Steelers QB Aaron Rodgers"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:35 PM PT",
-       "age": "19.7 hr ago",
+       "age": "20.4 hr ago",
        "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
       }
      ]
@@ -2710,7 +2810,7 @@
      },
      "yahoo_weeks_ahead": {
       "wk8": 5.4,
-      "wk9": "bye",
+      "wk9": 7.4,
       "wk15": 6.0,
       "wk16": 5.4,
       "wk17": 6.3
@@ -2718,14 +2818,14 @@
      "news": [
       {
        "src": "ESPN",
-       "at": "Thu Oct 22, 11:30 AM PT",
-       "age": "47 min ago",
+       "at": "Thu Oct 22, 12:00 PM PT",
+       "age": "57 min ago",
        "line": "Chiefs place LT Josh Simmons on IR as rehab process stalls"
       },
       {
        "src": "RotoWire",
        "at": "Thu Oct 22, 11:25 AM PT",
-       "age": "52 min ago",
+       "age": "1.5 hr ago",
        "line": "Josh Simmons: Heads to IR"
       }
      ]
@@ -2734,43 +2834,43 @@
    "bench_and_ir": [
     {
      "slot": "BN",
-     "name": "Alvin Kamara",
+     "name": "David Montgomery",
      "pos": "RB",
-     "nfl": "NO",
-     "kickoff": "Sun Oct 25, 6:30 AM PT",
-     "ko_utc": "2026-10-25T13:30:00+00:00",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "ko_utc": "2026-10-25T17:00:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "doubtful",
      "actual": null,
      "proj": {
-      "yahoo": 9.9,
-      "gotham": 11.6,
-      "sleeper": 9.3,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo": 5.0,
+      "gotham": 9.7,
+      "sleeper": null,
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
-      "wk9": 7.3,
-      "wk15": 7.1,
-      "wk16": 8.0,
-      "wk17": 7.3
+      "wk9": 11.9,
+      "wk15": 11.7,
+      "wk16": 11.6,
+      "wk17": 12.0
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Back), posted 21.5 hr ago",
-      "Sleeper": "Questionable (Back)"
+      "ESPN": "Doubtful (Groin), posted 2.2 hr ago",
+      "Sleeper": "Questionable (Groin)"
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Thu Oct 22, 10:31 AM PT",
-       "age": "1.8 hr ago",
-       "line": "French quarters: Saints feel at home in Paris and face Steelers in historic game"
+       "src": "RotoBaller",
+       "at": "Thu Oct 22, 11:03 AM PT",
+       "age": "1.9 hr ago",
+       "line": "David Montgomery Not Expected to Play in Week 7"
       },
       {
-       "src": "RotoBaller",
-       "at": "Wed Oct 21, 3:07 PM PT",
-       "age": "21.2 hr ago",
-       "line": "Alvin Kamara Limited With Back Injury on Wednesday"
+       "src": "RotoWire",
+       "at": "Thu Oct 22, 3:46 AM PT",
+       "age": "9.2 hr ago",
+       "line": "David Montgomery: Not practicing Thursday"
       }
      ]
     },
@@ -2803,13 +2903,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even when there's a penalty flag on the field"
       }
      ]
@@ -2828,7 +2928,7 @@
       "yahoo": 9.4,
       "gotham": 8.7,
       "sleeper": 9.0,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 8.3,
@@ -2844,7 +2944,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 10:13 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.7 hr ago",
        "line": "Courtland Sutton Continues to Slip in Rest-of-Season Rankings"
       }
      ]
@@ -2860,10 +2960,10 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 5.5,
+      "yahoo": 5.6,
       "gotham": 10.3,
       "sleeper": 6.3,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 5.5,
@@ -2879,7 +2979,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 2:05 PM PT",
-       "age": "22.2 hr ago",
+       "age": "22.9 hr ago",
        "line": "MarShawn Lloyd's Role in Green Bay Could Be Fading Quickly"
       }
      ]
@@ -2895,10 +2995,10 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 8.3,
+      "yahoo": 8.6,
       "gotham": 8.6,
       "sleeper": 7.7,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 9.2,
@@ -2939,7 +3039,7 @@
       "yahoo": 0.0,
       "gotham": 0.0,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
@@ -2955,13 +3055,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 4:07 AM PT",
-       "age": "8.2 hr ago",
+       "age": "8.8 hr ago",
        "line": "Is Travis Etienne Jr. The Starting Running Back For The Saints When He Returns? (Week 7 Update)"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 3:56 AM PT",
-       "age": "32.3 hr ago",
+       "age": "33.0 hr ago",
        "line": "When Is Travis Etienne Jr. Coming Back - Week 7 Fantasy Football Injury Return Update (2026)"
       }
      ]
@@ -2979,7 +3079,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 21.1,
+      "yahoo": 21.0,
       "gotham": 19.9,
       "sleeper": 18.7
      },
@@ -3011,20 +3111,20 @@
       "sleeper": 15.1
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 23.2 hr ago",
+      "ESPN": "Questionable (Ankle), posted 23.8 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Oct 21, 1:07 PM PT",
-       "age": "23.2 hr ago",
+       "age": "23.8 hr ago",
        "line": "Quinshon Judkins: Limited in Wednesday's practice"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 10:08 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.8 hr ago",
        "line": "Mason Graham, Quinshon Judkins appear on track to return Week 7"
       }
      ]
@@ -3040,7 +3140,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 16.5,
+      "yahoo": 16.4,
       "gotham": 12.3,
       "sleeper": 15.7
      },
@@ -3070,7 +3170,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 6:44 AM PT",
-       "age": "5.5 hr ago",
+       "age": "6.2 hr ago",
        "line": "Luther Burden III A Borderline WR2 Vs. New England"
       }
      ]
@@ -3133,7 +3233,7 @@
      "actual": null,
      "proj": {
       "yahoo": 7.0,
-      "gotham": 7.3,
+      "gotham": 7.2,
       "sleeper": 7.5
      },
      "injury_feeds": {
@@ -3178,7 +3278,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 24.6,
+      "yahoo": 24.3,
       "gotham": 23.6,
       "sleeper": 24.8
      },
@@ -3189,13 +3289,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 5:36 AM PT",
-       "age": "6.7 hr ago",
+       "age": "7.3 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Caleb Williams, Drake Maye, Jacoby Brissett, Lamar Jackson, Sam Darnold, Cam Ward, Daniel Jones, Tyler Huntley, Jalon Daniels"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 12:54 AM PT",
-       "age": "11.4 hr ago",
+       "age": "12.0 hr ago",
        "line": "Drake Maye Back in Must-Start Territory Against the Bears"
       }
      ]
@@ -3244,34 +3344,44 @@
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Thu Oct 22, 10:51 AM PT",
-       "age": "86 min ago",
-       "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
+       "src": "ProFootballTalk",
+       "at": "Thu Oct 22, 12:26 PM PT",
+       "age": "30 min ago",
+       "line": "Steelers rule out CB Brandin Echols, WR Ben Skowronek for Paris trip"
       },
       {
-       "src": "RotoBaller",
-       "at": "Thu Oct 22, 10:50 AM PT",
-       "age": "87 min ago",
-       "line": "Steelers Traveling to Paris on a Red-Eye Flight"
+       "src": "ESPN",
+       "at": "Thu Oct 22, 10:51 AM PT",
+       "age": "2.1 hr ago",
+       "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
       }
      ]
     }
    ],
    "actions": [
     {
-     "what": "David Montgomery is questionable - latest (ESPN, Oct 22): Montgomery (groin) isn't practicing Thursday, Aaron Wilson of KPRC 2 Houston reports. Check his status",
-     "by": "before his Sun 10:00 AM kickoff",
+     "what": "Move David Montgomery to IR (out Weeks 7-8 per RotoWire). Frees a bench seat",
+     "by": "any time",
+     "kind": "ir"
+    },
+    {
+     "what": "Alvin Kamara is questionable - latest (ESPN, Oct 21): Kamara (back) practiced in a limited capacity Wednesday, Katherine Terrell of ESPN reports. Check his status",
+     "by": "before his Sun 6:30 AM kickoff",
+     "kind": "check"
+    },
+    {
+     "what": "Travis Kelce is questionable - latest (ESPN, Oct 21): Kelce (ankle) was a limited practice participant Wednesday, Matt Derrick of ChiefsDigest.com reports. Check his status",
+     "by": "before his Sun 5:20 PM kickoff",
      "kind": "check"
     }
    ],
    "alerts": [
     {
-     "color": "red",
-     "title": "Before kickoff: Roschon Johnson (RB, CHI) beats your RB David Montgomery by 4.0 this week",
-     "who": "Roschon Johnson",
-     "kind": "prekick",
-     "src": "the Scout's pre-kickoff check (Sleeper, Yahoo, Gotham)"
+     "color": "gold",
+     "title": "Alvin Kamara: Questionable (Back)",
+     "who": "Alvin Kamara",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     },
     {
      "color": "gold",
@@ -3282,22 +3392,8 @@
     },
     {
      "color": "gold",
-     "title": "David Montgomery: Questionable (Groin)",
-     "who": "David Montgomery",
-     "kind": "feed",
-     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
-    },
-    {
-     "color": "gold",
      "title": "Travis Kelce Limited on Wednesday With Ankle Issue",
      "who": "Travis Kelce",
-     "kind": "news",
-     "src": "Dark Knight Dispatch"
-    },
-    {
-     "color": "grey",
-     "title": "Alvin Kamara Limited With Back Injury on Wednesday",
-     "who": "Alvin Kamara",
      "kind": "news",
      "src": "Dark Knight Dispatch"
     },
@@ -3310,20 +3406,34 @@
     },
     {
      "color": "grey",
-     "title": "Coming online: Christian Kirk (WR, SF), hasn't played a game this season. Free agent",
-     "who": "Christian Kirk",
+     "title": "Coming online: Dare Ogunbowale (RB, HOU), only one game this season (Week 6), just back. Free agent",
+     "who": "Dare Ogunbowale",
      "kind": "online",
      "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
     },
     {
      "color": "grey",
-     "title": "Coming online: Dare Ogunbowale (RB, HOU), only one game this season (Week 6), just back. Free agent",
-     "who": "Dare Ogunbowale",
+     "title": "David Montgomery is questionable - latest (ESPN, Oct 22): Montgomery (groin) isn't practicing Thursday, Aaron Wilson of KPRC 2 Houston reports.",
+     "who": "David Montgomery",
+     "kind": "check",
+     "src": "Dark Knight Dispatch"
+    },
+    {
+     "color": "grey",
+     "title": "Coming online: Dylan Sampson (RB, CLE), no game since Week 1. Free agent",
+     "who": "Dylan Sampson",
      "kind": "online",
      "src": "Sleeper projection + nflverse game log (Gotham can't rate him yet)"
+    },
+    {
+     "color": "grey",
+     "title": "Quinshon Judkins: Questionable (Ankle)",
+     "who": "Quinshon Judkins",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Oct 21, 12:55 PM PT"
+   "roster_read_pt": "Thu Oct 22, 12:52 PM PT"
   },
   {
    "dk": "DK III",
@@ -3347,78 +3457,63 @@
    },
    "totals_projected": {
     "gotham": [
-     105.6,
-     141.03
+     100.31,
+     140.94
     ],
     "sleeper": [
-     102.01,
-     148.69
+     102.25,
+     148.96
     ],
     "yahoo": [
-     105.16,
-     151.9
+     102.58,
+     151.37
     ]
    },
    "win_pct": {
-    "gotham": 23,
+    "gotham": 20,
     "sleeper": 17,
-    "yahoo": 19,
+    "yahoo": 18,
     "yahoo_best": false,
-    "yahoo_posted": 19,
+    "yahoo_posted": 18,
     "yahoo_from_spread": 16
    },
-   "points_needed_to_pass_yahoo": 152.0,
+   "points_needed_to_pass_yahoo": 151.5,
    "remaining": {
     "yahoo": {
-     "my_remaining": 105.3,
-     "their_remaining": 152.0,
-     "projected_margin": -46.7
+     "my_remaining": 102.6,
+     "their_remaining": 151.5,
+     "projected_margin": -48.9
     },
     "gotham": {
-     "my_remaining": 103.9,
-     "their_remaining": 141.0,
-     "projected_margin": -37.1
+     "my_remaining": 97.7,
+     "their_remaining": 140.9,
+     "projected_margin": -43.2
     },
     "sleeper": {
-     "my_remaining": 100.1,
-     "their_remaining": 148.8,
-     "projected_margin": -48.7
+     "my_remaining": 100.4,
+     "their_remaining": 149.0,
+     "projected_margin": -48.6
     }
    },
    "late_swap_risks": [
     {
-     "starter": "David Montgomery",
-     "slot": "RB",
+     "starter": "Jaylen Waddle",
+     "slot": "WR",
      "why": "questionable",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "inactives_list_at": "Sun Oct 25, 8:30 AM PT",
+     "kickoff": "Sun Oct 25, 1:05 PM PT",
+     "inactives_list_at": "Sun Oct 25, 11:35 AM PT",
      "proj": {
-      "yahoo": 5.8,
-      "gotham": 12.3,
-      "sleeper": 5.8
+      "yahoo": 12.9,
+      "gotham": 10.7,
+      "sleeper": 12.9
      },
-     "bench_options": [
-      {
-       "name": "Samaje Perine",
-       "pos": "RB",
-       "nfl": "CIN",
-       "kickoff": "Sun Oct 25, 10:00 AM PT",
-       "status": "healthy",
-       "proj": {
-        "yahoo": 7.3,
-        "gotham": 7.4,
-        "sleeper": 6.6,
-        "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
-       },
-       "decide_by": "Sun Oct 25, 10:00 AM PT"
-      }
-     ],
+     "bench_options": [],
      "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
-     "plan": "If David Montgomery is ruled out, start Samaje Perine (RB, CIN) - no drop needed. Yahoo gap if he sits: about -1.5 pts. Decision due when the inactives post, about 8:30 AM PT."
+     "warning": "NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
     },
     {
      "starter": "T.J. Hockenson",
-     "slot": "W/R/T",
+     "slot": "TE",
      "why": "questionable",
      "kickoff": "Sun Oct 25, 10:00 AM PT",
      "inactives_list_at": "Sun Oct 25, 8:30 AM PT",
@@ -3429,36 +3524,22 @@
      },
      "bench_options": [
       {
-       "name": "Devaughn Vele",
-       "pos": "WR",
-       "nfl": "NO",
-       "kickoff": "Sun Oct 25, 6:30 AM PT",
-       "status": "healthy",
-       "proj": {
-        "yahoo": 10.7,
-        "gotham": 9.4,
-        "sleeper": 10.2,
-        "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
-       },
-       "decide_by": "Sun Oct 25, 6:30 AM PT"
-      },
-      {
-       "name": "Samaje Perine",
-       "pos": "RB",
-       "nfl": "CIN",
+       "name": "Harold Fannin Jr.",
+       "pos": "TE",
+       "nfl": "CLE",
        "kickoff": "Sun Oct 25, 10:00 AM PT",
        "status": "healthy",
        "proj": {
-        "yahoo": 7.3,
-        "gotham": 7.4,
-        "sleeper": 6.6,
-        "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+        "yahoo": 9.9,
+        "gotham": 7.6,
+        "sleeper": 11.0,
+        "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
        },
        "decide_by": "Sun Oct 25, 10:00 AM PT"
       }
      ],
      "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
-     "plan": "If T.J. Hockenson is ruled out, start Devaughn Vele (WR, NO) - no drop needed. Yahoo gap if he sits: about -0.5 pts. Decision due when the inactives post, about 8:30 AM PT."
+     "plan": "If T.J. Hockenson is ruled out, start Harold Fannin Jr. (TE, CLE) - no drop needed. Yahoo gap if he sits: about 0.3 pts. Decision due when the inactives post, about 8:30 AM PT."
     }
    ],
    "still_to_play": {
@@ -3474,9 +3555,9 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 21.9,
+       "yahoo": 22.0,
        "gotham": 20.8,
-       "sleeper": 21.2
+       "sleeper": 21.5
       },
       "yahoo_weeks_ahead": {
        "wk8": 19.1,
@@ -3492,55 +3573,14 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 4:52 PM PT",
-        "age": "19.4 hr ago",
+        "age": "20.1 hr ago",
         "line": "Bucs QB Jalon Daniels swaps jerseys with idol, Steelers QB Aaron Rodgers"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:35 PM PT",
-        "age": "19.7 hr ago",
+        "age": "20.4 hr ago",
         "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
-       }
-      ]
-     },
-     {
-      "slot": "RB",
-      "name": "David Montgomery",
-      "pos": "RB",
-      "nfl": "HOU",
-      "kickoff": "Sun Oct 25, 10:00 AM PT",
-      "ko_utc": "2026-10-25T17:00:00+00:00",
-      "game": "not started",
-      "status": "questionable",
-      "actual": null,
-      "proj": {
-       "yahoo": 5.8,
-       "gotham": 12.3,
-       "sleeper": 5.8
-      },
-      "yahoo_weeks_ahead": {
-       "wk8": "bye",
-       "wk9": 11.8,
-       "wk15": 11.6,
-       "wk16": 11.5,
-       "wk17": 11.9
-      },
-      "injury_feeds": {
-       "ESPN": "Questionable (Groin), posted 1.5 hr ago",
-       "Sleeper": "Questionable (Groin)"
-      },
-      "news": [
-       {
-        "src": "RotoBaller",
-        "at": "Thu Oct 22, 11:03 AM PT",
-        "age": "73 min ago",
-        "line": "David Montgomery Not Expected to Play in Week 7"
-       },
-       {
-        "src": "RotoWire",
-        "at": "Thu Oct 22, 3:46 AM PT",
-        "age": "8.5 hr ago",
-        "line": "David Montgomery: Not practicing Thursday"
        }
       ]
      },
@@ -3555,8 +3595,8 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 12.6,
-       "gotham": 10.5,
+       "yahoo": 7.2,
+       "gotham": 7.8,
        "sleeper": 8.4
       },
       "yahoo_weeks_ahead": {
@@ -3573,14 +3613,54 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 6:02 AM PT",
-        "age": "30.2 hr ago",
+        "age": "30.9 hr ago",
         "line": "Dameon Pierce's Week 7 fantasy outlook"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Oct 20, 12:48 PM PT",
-        "age": "47.5 hr ago",
+        "age": "2 days ago",
         "line": "Week 7 Waiver Wire Pickups - Dameon Pierce, Zach Charbonnet, Bam Knight"
+       }
+      ]
+     },
+     {
+      "slot": "RB",
+      "name": "Samaje Perine",
+      "pos": "RB",
+      "nfl": "CIN",
+      "kickoff": "Sun Oct 25, 10:00 AM PT",
+      "ko_utc": "2026-10-25T17:00:00+00:00",
+      "game": "not started",
+      "status": "",
+      "actual": null,
+      "proj": {
+       "yahoo": 7.4,
+       "gotham": 7.0,
+       "sleeper": 6.6
+      },
+      "yahoo_weeks_ahead": {
+       "wk8": 8.0,
+       "wk9": 7.4,
+       "wk15": 7.8,
+       "wk16": 7.6,
+       "wk17": 7.4
+      },
+      "injury_feeds": {
+       "ESPN": "Active, posted 11 days ago"
+      },
+      "news": [
+       {
+        "src": "RotoBaller",
+        "at": "Wed Oct 21, 10:07 PM PT",
+        "age": "14.8 hr ago",
+        "line": "Samaje Perine Looking to Pick Up Where He Left Off"
+       },
+       {
+        "src": "RotoBaller",
+        "at": "Mon Oct 19, 4:42 PM PT",
+        "age": "3 days ago",
+        "line": "Week 7 Waiver Wire Pickups - Samaje Perine, Kendre Miller, Roschon Johnson"
        }
       ]
      },
@@ -3595,7 +3675,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 13.5,
+       "yahoo": 13.6,
        "gotham": 12.6,
        "sleeper": 11.6
       },
@@ -3618,7 +3698,7 @@
       "kickoff": "Sun Oct 25, 1:05 PM PT",
       "ko_utc": "2026-10-25T20:05:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 12.9,
@@ -3633,61 +3713,62 @@
        "wk17": 11.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Chest), posted 19.9 hr ago",
+       "ESPN": "Questionable (Chest), posted 20.6 hr ago",
        "Sleeper": "Questionable (Chest)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 6:35 PM PT",
-        "age": "17.7 hr ago",
+        "age": "18.4 hr ago",
         "line": "Jaylen Waddle Dealing With Chest Injury, Limited on Wednesday"
        },
        {
         "src": "RotoWire",
         "at": "Tue Oct 20, 9:22 PM PT",
-        "age": "38.9 hr ago",
+        "age": "39.6 hr ago",
         "line": "Jaylen Waddle: Tending to chest injury"
        }
       ]
      },
      {
       "slot": "TE",
-      "name": "Harold Fannin Jr.",
+      "name": "T.J. Hockenson",
       "pos": "TE",
-      "nfl": "CLE",
+      "nfl": "MIN",
       "kickoff": "Sun Oct 25, 10:00 AM PT",
       "ko_utc": "2026-10-25T17:00:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 9.9,
-       "gotham": 7.6,
-       "sleeper": 11.0
+       "yahoo": 10.2,
+       "gotham": 9.9,
+       "sleeper": 9.6
       },
       "yahoo_weeks_ahead": {
-       "wk8": 9.7,
-       "wk9": 10.3,
-       "wk15": 9.2,
-       "wk16": 9.5,
-       "wk17": 9.9
+       "wk8": 11.1,
+       "wk9": 10.8,
+       "wk15": 11.3,
+       "wk16": 11.3,
+       "wk17": 9.8
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
+       "ESPN": "Questionable (Concussion), posted 25.3 hr ago",
+       "Sleeper": "Questionable (Concussion)"
       },
       "news": [
        {
         "src": "RotoBaller",
-        "at": "Thu Oct 22, 6:30 AM PT",
-        "age": "5.8 hr ago",
-        "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
+        "at": "Wed Oct 21, 12:16 PM PT",
+        "age": "24.7 hr ago",
+        "line": "T.J. Hockenson Expected to Practice on Wednesday"
        },
        {
-        "src": "ESPN",
-        "at": "Wed Oct 21, 8:17 AM PT",
-        "age": "28.0 hr ago",
-        "line": "The frustration around Harold Fannin Jr. for fantasy managers"
+        "src": "RotoWire",
+        "at": "Wed Oct 21, 4:40 AM PT",
+        "age": "32.3 hr ago",
+        "line": "T.J. Hockenson: Slated to practice Wednesday"
        }
       ]
      },
@@ -3720,55 +3801,48 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:05 PM PT",
-        "age": "20.2 hr ago",
+        "age": "20.9 hr ago",
         "line": "Josh Downs has Not Taken Advantage of Colts' Injuries"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 7:35 AM PT",
-        "age": "28.7 hr ago",
+        "age": "29.4 hr ago",
         "line": "Josh Downs' Expiring Contract Could Factor Into Colts' Trade Plans"
        }
       ]
      },
      {
       "slot": "W/R/T",
-      "name": "T.J. Hockenson",
-      "pos": "TE",
-      "nfl": "MIN",
-      "kickoff": "Sun Oct 25, 10:00 AM PT",
-      "ko_utc": "2026-10-25T17:00:00+00:00",
+      "name": "Devaughn Vele",
+      "pos": "WR",
+      "nfl": "NO",
+      "kickoff": "Sun Oct 25, 6:30 AM PT",
+      "ko_utc": "2026-10-25T13:30:00+00:00",
       "game": "not started",
-      "status": "questionable",
+      "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 10.2,
-       "gotham": 9.9,
-       "sleeper": 9.6
+       "yahoo": 10.8,
+       "gotham": 9.4,
+       "sleeper": 10.2
       },
       "yahoo_weeks_ahead": {
-       "wk8": 11.1,
-       "wk9": 10.8,
-       "wk15": 11.3,
-       "wk16": 11.3,
-       "wk17": 9.8
+       "wk8": "bye",
+       "wk9": 6.7,
+       "wk15": 6.9,
+       "wk16": 7.8,
+       "wk17": 7.0
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Concussion), posted 24.6 hr ago",
-       "Sleeper": "Questionable (Concussion)"
+       "ESPN": "Active, posted 3 days ago"
       },
       "news": [
        {
-        "src": "RotoBaller",
-        "at": "Wed Oct 21, 12:16 PM PT",
-        "age": "24.0 hr ago",
-        "line": "T.J. Hockenson Expected to Practice on Wednesday"
-       },
-       {
         "src": "RotoWire",
-        "at": "Wed Oct 21, 4:40 AM PT",
-        "age": "31.6 hr ago",
-        "line": "T.J. Hockenson: Slated to practice Wednesday"
+        "at": "Mon Oct 19, 4:56 PM PT",
+        "age": "3 days ago",
+        "line": "Devaughn Vele: Catches three passes in Week 6 win"
        }
       ]
      },
@@ -3796,16 +3870,16 @@
       },
       "news": [
        {
-        "src": "ESPN",
-        "at": "Thu Oct 22, 10:51 AM PT",
-        "age": "86 min ago",
-        "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
+        "src": "ProFootballTalk",
+        "at": "Thu Oct 22, 12:26 PM PT",
+        "age": "30 min ago",
+        "line": "Steelers rule out CB Brandin Echols, WR Ben Skowronek for Paris trip"
        },
        {
-        "src": "RotoBaller",
-        "at": "Thu Oct 22, 10:50 AM PT",
-        "age": "87 min ago",
-        "line": "Steelers Traveling to Paris on a Red-Eye Flight"
+        "src": "ESPN",
+        "at": "Thu Oct 22, 10:51 AM PT",
+        "age": "2.1 hr ago",
+        "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
        }
       ]
      }
@@ -3819,7 +3893,7 @@
       "kickoff": "Sun Oct 25, 1:25 PM PT",
       "ko_utc": "2026-10-25T20:25:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 23.8,
@@ -3827,20 +3901,20 @@
        "sleeper": 23.0
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Back), posted 23.1 hr ago",
+       "ESPN": "Questionable (Back), posted 23.7 hr ago",
        "Sleeper": "Questionable (Back)"
       },
       "news": [
        {
         "src": "ProFootballTalk",
         "at": "Thu Oct 22, 6:47 AM PT",
-        "age": "5.5 hr ago",
+        "age": "6.2 hr ago",
         "line": "Jordan Love dealing with sore back, but expects to play vs. Lions"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 10:07 PM PT",
-        "age": "14.2 hr ago",
+        "age": "14.8 hr ago",
         "line": "Jordan Love Hitting His Stride Through Six Weeks"
        }
       ]
@@ -3867,7 +3941,7 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 8:09 AM PT",
-        "age": "28.1 hr ago",
+        "age": "28.8 hr ago",
         "line": "Is Jonathan Taylor or Javonte Williams a better fantasy play in Week 7?"
        }
       ]
@@ -3883,24 +3957,24 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 15.6,
-       "gotham": 15.2,
+       "yahoo": 15.3,
+       "gotham": 15.0,
        "sleeper": 14.7
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 2.0 hr ago"
+       "ESPN": "Active, posted 2.7 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 11:03 AM PT",
-        "age": "73 min ago",
+        "age": "1.9 hr ago",
         "line": "Josh Jacobs Practicing on Thursday"
        },
        {
         "src": "RotoWire",
         "at": "Thu Oct 22, 3:16 AM PT",
-        "age": "9.0 hr ago",
+        "age": "9.7 hr ago",
         "line": "Josh Jacobs: Practicing Thursday"
        }
       ]
@@ -3916,9 +3990,9 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 22.8,
-       "gotham": 23.2,
-       "sleeper": 23.6
+       "yahoo": 22.9,
+       "gotham": 23.4,
+       "sleeper": 23.8
       }
      },
      {
@@ -3929,7 +4003,7 @@
       "kickoff": "Sun Oct 25, 1:25 PM PT",
       "ko_utc": "2026-10-25T20:25:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 16.4,
@@ -3937,21 +4011,21 @@
        "sleeper": 15.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Shoulder), posted 2.7 hr ago",
+       "ESPN": "Questionable (Shoulder), posted 3.4 hr ago",
        "Sleeper": "Questionable (Shoulder)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 10:06 AM PT",
-        "age": "2.2 hr ago",
+        "age": "2.8 hr ago",
         "line": "Matthew Golden Should be Fine Despite Dealing With Shoulder Injury"
        },
        {
-        "src": "RotoBaller",
-        "at": "Thu Oct 22, 7:35 AM PT",
-        "age": "4.7 hr ago",
-        "line": "Matthew Golden Continues to Play at a League-Winning Level"
+        "src": "RotoWire",
+        "at": "Thu Oct 22, 9:33 AM PT",
+        "age": "3.4 hr ago",
+        "line": "Matthew Golden: Shoulder issue downplayed"
        }
       ]
      },
@@ -3966,7 +4040,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 12.8,
+       "yahoo": 12.7,
        "gotham": 9.9,
        "sleeper": 11.9
       },
@@ -3977,7 +4051,7 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 9:00 AM PT",
-        "age": "27.3 hr ago",
+        "age": "27.9 hr ago",
         "line": "Daniel Dopp: Isaiah Likely can be started with confidence week in and week out"
        },
        {
@@ -4010,7 +4084,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 7:08 PM PT",
-        "age": "17.1 hr ago",
+        "age": "17.8 hr ago",
         "line": "J.K. Dobbins is on the Rise Following Back-to-Back Scoring Games"
        }
       ]
@@ -4026,12 +4100,12 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 15.1,
-       "gotham": 14.6,
+       "yahoo": 14.9,
+       "gotham": 14.5,
        "sleeper": 14.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
+       "ESPN": "Active, posted 4 days ago"
       }
      },
      {
@@ -4053,13 +4127,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Thu Oct 22, 4:22 AM PT",
-        "age": "7.9 hr ago",
+        "age": "8.6 hr ago",
         "line": "Jerry Jeudy: Frustrating not to be involved as much, but I just stay focused"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Oct 21, 1:38 PM PT",
-        "age": "22.6 hr ago",
+        "age": "23.3 hr ago",
         "line": "Rashod Bateman joins Lamar Jackson as limited participant Wednesday; Cam Jurgens fully participates"
        }
       ]
@@ -4078,9 +4152,9 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 21.9,
+      "yahoo": 22.0,
       "gotham": 20.8,
-      "sleeper": 21.2
+      "sleeper": 21.5
      },
      "yahoo_weeks_ahead": {
       "wk8": 19.1,
@@ -4096,55 +4170,14 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 4:52 PM PT",
-       "age": "19.4 hr ago",
+       "age": "20.1 hr ago",
        "line": "Bucs QB Jalon Daniels swaps jerseys with idol, Steelers QB Aaron Rodgers"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:35 PM PT",
-       "age": "19.7 hr ago",
+       "age": "20.4 hr ago",
        "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
-      }
-     ]
-    },
-    {
-     "slot": "RB",
-     "name": "David Montgomery",
-     "pos": "RB",
-     "nfl": "HOU",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "ko_utc": "2026-10-25T17:00:00+00:00",
-     "game": "not started",
-     "status": "questionable",
-     "actual": null,
-     "proj": {
-      "yahoo": 5.8,
-      "gotham": 12.3,
-      "sleeper": 5.8
-     },
-     "yahoo_weeks_ahead": {
-      "wk8": "bye",
-      "wk9": 11.8,
-      "wk15": 11.6,
-      "wk16": 11.5,
-      "wk17": 11.9
-     },
-     "injury_feeds": {
-      "ESPN": "Questionable (Groin), posted 1.5 hr ago",
-      "Sleeper": "Questionable (Groin)"
-     },
-     "news": [
-      {
-       "src": "RotoBaller",
-       "at": "Thu Oct 22, 11:03 AM PT",
-       "age": "73 min ago",
-       "line": "David Montgomery Not Expected to Play in Week 7"
-      },
-      {
-       "src": "RotoWire",
-       "at": "Thu Oct 22, 3:46 AM PT",
-       "age": "8.5 hr ago",
-       "line": "David Montgomery: Not practicing Thursday"
       }
      ]
     },
@@ -4159,8 +4192,8 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 12.6,
-      "gotham": 10.5,
+      "yahoo": 7.2,
+      "gotham": 7.8,
       "sleeper": 8.4
      },
      "yahoo_weeks_ahead": {
@@ -4177,14 +4210,54 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 6:02 AM PT",
-       "age": "30.2 hr ago",
+       "age": "30.9 hr ago",
        "line": "Dameon Pierce's Week 7 fantasy outlook"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Oct 20, 12:48 PM PT",
-       "age": "47.5 hr ago",
+       "age": "2 days ago",
        "line": "Week 7 Waiver Wire Pickups - Dameon Pierce, Zach Charbonnet, Bam Knight"
+      }
+     ]
+    },
+    {
+     "slot": "RB",
+     "name": "Samaje Perine",
+     "pos": "RB",
+     "nfl": "CIN",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 7.4,
+      "gotham": 7.0,
+      "sleeper": 6.6
+     },
+     "yahoo_weeks_ahead": {
+      "wk8": 8.0,
+      "wk9": 7.4,
+      "wk15": 7.8,
+      "wk16": 7.6,
+      "wk17": 7.4
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 11 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Wed Oct 21, 10:07 PM PT",
+       "age": "14.8 hr ago",
+       "line": "Samaje Perine Looking to Pick Up Where He Left Off"
+      },
+      {
+       "src": "RotoBaller",
+       "at": "Mon Oct 19, 4:42 PM PT",
+       "age": "3 days ago",
+       "line": "Week 7 Waiver Wire Pickups - Samaje Perine, Kendre Miller, Roschon Johnson"
       }
      ]
     },
@@ -4199,7 +4272,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 13.5,
+      "yahoo": 13.6,
       "gotham": 12.6,
       "sleeper": 11.6
      },
@@ -4222,7 +4295,7 @@
      "kickoff": "Sun Oct 25, 1:05 PM PT",
      "ko_utc": "2026-10-25T20:05:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 12.9,
@@ -4237,61 +4310,62 @@
       "wk17": 11.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Chest), posted 19.9 hr ago",
+      "ESPN": "Questionable (Chest), posted 20.6 hr ago",
       "Sleeper": "Questionable (Chest)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 6:35 PM PT",
-       "age": "17.7 hr ago",
+       "age": "18.4 hr ago",
        "line": "Jaylen Waddle Dealing With Chest Injury, Limited on Wednesday"
       },
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 9:22 PM PT",
-       "age": "38.9 hr ago",
+       "age": "39.6 hr ago",
        "line": "Jaylen Waddle: Tending to chest injury"
       }
      ]
     },
     {
      "slot": "TE",
-     "name": "Harold Fannin Jr.",
+     "name": "T.J. Hockenson",
      "pos": "TE",
-     "nfl": "CLE",
+     "nfl": "MIN",
      "kickoff": "Sun Oct 25, 10:00 AM PT",
      "ko_utc": "2026-10-25T17:00:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 9.9,
-      "gotham": 7.6,
-      "sleeper": 11.0
+      "yahoo": 10.2,
+      "gotham": 9.9,
+      "sleeper": 9.6
      },
      "yahoo_weeks_ahead": {
-      "wk8": 9.7,
-      "wk9": 10.3,
-      "wk15": 9.2,
-      "wk16": 9.5,
-      "wk17": 9.9
+      "wk8": 11.1,
+      "wk9": 10.8,
+      "wk15": 11.3,
+      "wk16": 11.3,
+      "wk17": 9.8
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
+      "ESPN": "Questionable (Concussion), posted 25.3 hr ago",
+      "Sleeper": "Questionable (Concussion)"
      },
      "news": [
       {
        "src": "RotoBaller",
-       "at": "Thu Oct 22, 6:30 AM PT",
-       "age": "5.8 hr ago",
-       "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
+       "at": "Wed Oct 21, 12:16 PM PT",
+       "age": "24.7 hr ago",
+       "line": "T.J. Hockenson Expected to Practice on Wednesday"
       },
       {
-       "src": "ESPN",
-       "at": "Wed Oct 21, 8:17 AM PT",
-       "age": "28.0 hr ago",
-       "line": "The frustration around Harold Fannin Jr. for fantasy managers"
+       "src": "RotoWire",
+       "at": "Wed Oct 21, 4:40 AM PT",
+       "age": "32.3 hr ago",
+       "line": "T.J. Hockenson: Slated to practice Wednesday"
       }
      ]
     },
@@ -4324,55 +4398,48 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:05 PM PT",
-       "age": "20.2 hr ago",
+       "age": "20.9 hr ago",
        "line": "Josh Downs has Not Taken Advantage of Colts' Injuries"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 7:35 AM PT",
-       "age": "28.7 hr ago",
+       "age": "29.4 hr ago",
        "line": "Josh Downs' Expiring Contract Could Factor Into Colts' Trade Plans"
       }
      ]
     },
     {
      "slot": "W/R/T",
-     "name": "T.J. Hockenson",
-     "pos": "TE",
-     "nfl": "MIN",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "name": "Devaughn Vele",
+     "pos": "WR",
+     "nfl": "NO",
+     "kickoff": "Sun Oct 25, 6:30 AM PT",
+     "ko_utc": "2026-10-25T13:30:00+00:00",
      "game": "not started",
-     "status": "questionable",
+     "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 10.2,
-      "gotham": 9.9,
-      "sleeper": 9.6
+      "yahoo": 10.8,
+      "gotham": 9.4,
+      "sleeper": 10.2
      },
      "yahoo_weeks_ahead": {
-      "wk8": 11.1,
-      "wk9": 10.8,
-      "wk15": 11.3,
-      "wk16": 11.3,
-      "wk17": 9.8
+      "wk8": "bye",
+      "wk9": 6.7,
+      "wk15": 6.9,
+      "wk16": 7.8,
+      "wk17": 7.0
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Concussion), posted 24.6 hr ago",
-      "Sleeper": "Questionable (Concussion)"
+      "ESPN": "Active, posted 3 days ago"
      },
      "news": [
       {
-       "src": "RotoBaller",
-       "at": "Wed Oct 21, 12:16 PM PT",
-       "age": "24.0 hr ago",
-       "line": "T.J. Hockenson Expected to Practice on Wednesday"
-      },
-      {
        "src": "RotoWire",
-       "at": "Wed Oct 21, 4:40 AM PT",
-       "age": "31.6 hr ago",
-       "line": "T.J. Hockenson: Slated to practice Wednesday"
+       "at": "Mon Oct 19, 4:56 PM PT",
+       "age": "3 days ago",
+       "line": "Devaughn Vele: Catches three passes in Week 6 win"
       }
      ]
     },
@@ -4400,21 +4467,104 @@
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Thu Oct 22, 10:51 AM PT",
-       "age": "86 min ago",
-       "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
+       "src": "ProFootballTalk",
+       "at": "Thu Oct 22, 12:26 PM PT",
+       "age": "30 min ago",
+       "line": "Steelers rule out CB Brandin Echols, WR Ben Skowronek for Paris trip"
       },
       {
-       "src": "RotoBaller",
-       "at": "Thu Oct 22, 10:50 AM PT",
-       "age": "87 min ago",
-       "line": "Steelers Traveling to Paris on a Red-Eye Flight"
+       "src": "ESPN",
+       "at": "Thu Oct 22, 10:51 AM PT",
+       "age": "2.1 hr ago",
+       "line": "Steelers fan event in Paris canceled following recent civil unrest in capital"
       }
      ]
     }
    ],
    "bench_and_ir": [
+    {
+     "slot": "BN",
+     "name": "David Montgomery",
+     "pos": "RB",
+     "nfl": "HOU",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "game": "not started",
+     "status": "doubtful",
+     "actual": null,
+     "proj": {
+      "yahoo": 5.0,
+      "gotham": 9.7,
+      "sleeper": null,
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk8": "bye",
+      "wk9": 11.8,
+      "wk15": 11.6,
+      "wk16": 11.5,
+      "wk17": 11.9
+     },
+     "injury_feeds": {
+      "ESPN": "Doubtful (Groin), posted 2.2 hr ago",
+      "Sleeper": "Questionable (Groin)"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Thu Oct 22, 11:03 AM PT",
+       "age": "1.9 hr ago",
+       "line": "David Montgomery Not Expected to Play in Week 7"
+      },
+      {
+       "src": "RotoWire",
+       "at": "Thu Oct 22, 3:46 AM PT",
+       "age": "9.2 hr ago",
+       "line": "David Montgomery: Not practicing Thursday"
+      }
+     ]
+    },
+    {
+     "slot": "BN",
+     "name": "Harold Fannin Jr.",
+     "pos": "TE",
+     "nfl": "CLE",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "ko_utc": "2026-10-25T17:00:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": 9.9,
+      "gotham": 7.6,
+      "sleeper": 11.0,
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
+     },
+     "yahoo_weeks_ahead": {
+      "wk8": 9.6,
+      "wk9": 10.3,
+      "wk15": 9.2,
+      "wk16": 9.5,
+      "wk17": 9.9
+     },
+     "injury_feeds": {
+      "ESPN": "Active, posted 3 days ago"
+     },
+     "news": [
+      {
+       "src": "RotoBaller",
+       "at": "Thu Oct 22, 6:30 AM PT",
+       "age": "6.4 hr ago",
+       "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
+      },
+      {
+       "src": "ESPN",
+       "at": "Wed Oct 21, 8:17 AM PT",
+       "age": "28.7 hr ago",
+       "line": "The frustration around Harold Fannin Jr. for fantasy managers"
+      }
+     ]
+    },
     {
      "slot": "BN",
      "name": "Jayden Daniels",
@@ -4444,13 +4594,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 2:31 AM PT",
-       "age": "33.8 hr ago",
+       "age": "34.4 hr ago",
        "line": "Dan Quinn tells Jayden Daniels to \"take your shot\" even when there's a penalty flag on the field"
       }
      ]
@@ -4490,82 +4640,6 @@
      ]
     },
     {
-     "slot": "BN",
-     "name": "Devaughn Vele",
-     "pos": "WR",
-     "nfl": "NO",
-     "kickoff": "Sun Oct 25, 6:30 AM PT",
-     "ko_utc": "2026-10-25T13:30:00+00:00",
-     "game": "not started",
-     "status": "",
-     "actual": null,
-     "proj": {
-      "yahoo": 10.7,
-      "gotham": 9.4,
-      "sleeper": 10.2,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
-     },
-     "yahoo_weeks_ahead": {
-      "wk8": "bye",
-      "wk9": 6.7,
-      "wk15": 6.9,
-      "wk16": 7.8,
-      "wk17": 7.0
-     },
-     "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
-     },
-     "news": [
-      {
-       "src": "RotoWire",
-       "at": "Mon Oct 19, 4:56 PM PT",
-       "age": "3 days ago",
-       "line": "Devaughn Vele: Catches three passes in Week 6 win"
-      }
-     ]
-    },
-    {
-     "slot": "BN",
-     "name": "Samaje Perine",
-     "pos": "RB",
-     "nfl": "CIN",
-     "kickoff": "Sun Oct 25, 10:00 AM PT",
-     "ko_utc": "2026-10-25T17:00:00+00:00",
-     "game": "not started",
-     "status": "",
-     "actual": null,
-     "proj": {
-      "yahoo": 7.3,
-      "gotham": 7.4,
-      "sleeper": 6.6,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
-     },
-     "yahoo_weeks_ahead": {
-      "wk8": 8.0,
-      "wk9": 7.4,
-      "wk15": 7.8,
-      "wk16": 7.6,
-      "wk17": 7.4
-     },
-     "injury_feeds": {
-      "ESPN": "Active, posted 11 days ago"
-     },
-     "news": [
-      {
-       "src": "RotoBaller",
-       "at": "Wed Oct 21, 10:07 PM PT",
-       "age": "14.2 hr ago",
-       "line": "Samaje Perine Looking to Pick Up Where He Left Off"
-      },
-      {
-       "src": "RotoBaller",
-       "at": "Mon Oct 19, 4:42 PM PT",
-       "age": "3 days ago",
-       "line": "Week 7 Waiver Wire Pickups - Samaje Perine, Kendre Miller, Roschon Johnson"
-      }
-     ]
-    },
-    {
      "slot": "IR",
      "name": "Michael Pittman Jr.",
      "pos": "WR",
@@ -4579,7 +4653,7 @@
       "yahoo": 0.0,
       "gotham": 0.0,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 0.0,
@@ -4595,7 +4669,7 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 3:34 AM PT",
-       "age": "32.7 hr ago",
+       "age": "33.4 hr ago",
        "line": "Steelers bring back veteran Marquez Valdes-Scantling amid receiver injury woes"
       }
      ]
@@ -4603,7 +4677,7 @@
     {
      "slot": "BN",
      "name": "Packers",
-     "pos": "DEF",
+     "pos": "WR",
      "nfl": "",
      "kickoff": "no game this week",
      "ko_utc": null,
@@ -4614,7 +4688,7 @@
       "yahoo": 4.6,
       "gotham": null,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 7.7,
@@ -4627,16 +4701,32 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 11:03 AM PT",
-       "age": "73 min ago",
+       "age": "1.9 hr ago",
        "line": "Josh Jacobs Practicing on Thursday"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 10:06 AM PT",
-       "age": "2.2 hr ago",
+       "age": "2.8 hr ago",
        "line": "Matthew Golden Should be Fine Despite Dealing With Shoulder Injury"
       }
      ]
+    },
+    {
+     "slot": "BN",
+     "name": "Bay",
+     "pos": "DEF",
+     "nfl": "GB",
+     "kickoff": "Sun Oct 25, 1:25 PM PT",
+     "ko_utc": "2026-10-25T20:25:00+00:00",
+     "game": "not started",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": null
+     }
     }
    ],
    "opp_starters": [
@@ -4648,7 +4738,7 @@
      "kickoff": "Sun Oct 25, 1:25 PM PT",
      "ko_utc": "2026-10-25T20:25:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 23.8,
@@ -4656,20 +4746,20 @@
       "sleeper": 23.0
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Back), posted 23.1 hr ago",
+      "ESPN": "Questionable (Back), posted 23.7 hr ago",
       "Sleeper": "Questionable (Back)"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Thu Oct 22, 6:47 AM PT",
-       "age": "5.5 hr ago",
+       "age": "6.2 hr ago",
        "line": "Jordan Love dealing with sore back, but expects to play vs. Lions"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 10:07 PM PT",
-       "age": "14.2 hr ago",
+       "age": "14.8 hr ago",
        "line": "Jordan Love Hitting His Stride Through Six Weeks"
       }
      ]
@@ -4696,7 +4786,7 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 8:09 AM PT",
-       "age": "28.1 hr ago",
+       "age": "28.8 hr ago",
        "line": "Is Jonathan Taylor or Javonte Williams a better fantasy play in Week 7?"
       }
      ]
@@ -4712,24 +4802,24 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 15.6,
-      "gotham": 15.2,
+      "yahoo": 15.3,
+      "gotham": 15.0,
       "sleeper": 14.7
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 2.0 hr ago"
+      "ESPN": "Active, posted 2.7 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 11:03 AM PT",
-       "age": "73 min ago",
+       "age": "1.9 hr ago",
        "line": "Josh Jacobs Practicing on Thursday"
       },
       {
        "src": "RotoWire",
        "at": "Thu Oct 22, 3:16 AM PT",
-       "age": "9.0 hr ago",
+       "age": "9.7 hr ago",
        "line": "Josh Jacobs: Practicing Thursday"
       }
      ]
@@ -4745,9 +4835,9 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 22.8,
-      "gotham": 23.2,
-      "sleeper": 23.6
+      "yahoo": 22.9,
+      "gotham": 23.4,
+      "sleeper": 23.8
      }
     },
     {
@@ -4758,7 +4848,7 @@
      "kickoff": "Sun Oct 25, 1:25 PM PT",
      "ko_utc": "2026-10-25T20:25:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 16.4,
@@ -4766,21 +4856,21 @@
       "sleeper": 15.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Shoulder), posted 2.7 hr ago",
+      "ESPN": "Questionable (Shoulder), posted 3.4 hr ago",
       "Sleeper": "Questionable (Shoulder)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 10:06 AM PT",
-       "age": "2.2 hr ago",
+       "age": "2.8 hr ago",
        "line": "Matthew Golden Should be Fine Despite Dealing With Shoulder Injury"
       },
       {
-       "src": "RotoBaller",
-       "at": "Thu Oct 22, 7:35 AM PT",
-       "age": "4.7 hr ago",
-       "line": "Matthew Golden Continues to Play at a League-Winning Level"
+       "src": "RotoWire",
+       "at": "Thu Oct 22, 9:33 AM PT",
+       "age": "3.4 hr ago",
+       "line": "Matthew Golden: Shoulder issue downplayed"
       }
      ]
     },
@@ -4795,7 +4885,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 12.8,
+      "yahoo": 12.7,
       "gotham": 9.9,
       "sleeper": 11.9
      },
@@ -4806,7 +4896,7 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 9:00 AM PT",
-       "age": "27.3 hr ago",
+       "age": "27.9 hr ago",
        "line": "Daniel Dopp: Isaiah Likely can be started with confidence week in and week out"
       },
       {
@@ -4839,7 +4929,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 7:08 PM PT",
-       "age": "17.1 hr ago",
+       "age": "17.8 hr ago",
        "line": "J.K. Dobbins is on the Rise Following Back-to-Back Scoring Games"
       }
      ]
@@ -4855,12 +4945,12 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 15.1,
-      "gotham": 14.6,
+      "yahoo": 14.9,
+      "gotham": 14.5,
       "sleeper": 14.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
+      "ESPN": "Active, posted 4 days ago"
      }
     },
     {
@@ -4882,13 +4972,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Thu Oct 22, 4:22 AM PT",
-       "age": "7.9 hr ago",
+       "age": "8.6 hr ago",
        "line": "Jerry Jeudy: Frustrating not to be involved as much, but I just stay focused"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 1:38 PM PT",
-       "age": "22.6 hr ago",
+       "age": "23.3 hr ago",
        "line": "Rashod Bateman joins Lamar Jackson as limited participant Wednesday; Cam Jurgens fully participates"
       }
      ]
@@ -4896,8 +4986,8 @@
    ],
    "actions": [
     {
-     "what": "David Montgomery is questionable - latest (ESPN, Oct 22): Montgomery (groin) isn't practicing Thursday, Aaron Wilson of KPRC 2 Houston reports. Check his status",
-     "by": "before his Sun 10:00 AM kickoff",
+     "what": "Jaylen Waddle is questionable - latest (ESPN, Oct 21): Waddle was limited at Wednesday's practice due to a chest injury, Aric DiLalla of the Broncos' official site reports. Check his status",
+     "by": "before his Sun 1:05 PM kickoff",
      "kind": "check"
     },
     {
@@ -4907,13 +4997,6 @@
     }
    ],
    "alerts": [
-    {
-     "color": "gold",
-     "title": "David Montgomery: Questionable (Groin)",
-     "who": "David Montgomery",
-     "kind": "feed",
-     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
-    },
     {
      "color": "gold",
      "title": "Jaylen Waddle Dealing With Chest Injury, Limited on Wednesday",
@@ -4944,7 +5027,7 @@
     },
     {
      "color": "grey",
-     "title": "David Montgomery is questionable - latest (ESPN, Oct 21): Montgomery (groin) isn't practicing Wednesday, Aaron Wilson of KPRC 2 Houston reports.",
+     "title": "David Montgomery is questionable - latest (ESPN, Oct 22): Montgomery (groin) isn't practicing Thursday, Aaron Wilson of KPRC 2 Houston reports.",
      "who": "David Montgomery",
      "kind": "check",
      "src": "Dark Knight Dispatch"
@@ -4962,9 +5045,16 @@
      "who": "Josh Jacobs",
      "kind": "feed",
      "src": "RotoBaller (raw feed, pulled every 30 minutes)"
+    },
+    {
+     "color": "grey",
+     "title": "Matthew Golden: Questionable (Shoulder)",
+     "who": "Matthew Golden",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Oct 21, 12:55 PM PT"
+   "roster_read_pt": "Thu Oct 22, 12:52 PM PT"
   },
   {
    "dk": "DK IV",
@@ -4988,16 +5078,16 @@
    },
    "totals_projected": {
     "gotham": [
-     161.37,
-     154.62
+     161.3,
+     154.59
     ],
     "sleeper": [
-     170.71,
+     170.73,
      158.22
     ],
     "yahoo": [
-     169.89,
-     163.33
+     169.97,
+     163.38
     ]
    },
    "win_pct": {
@@ -5008,12 +5098,12 @@
     "yahoo_posted": 54,
     "yahoo_from_spread": 55
    },
-   "points_needed_to_pass_yahoo": 163.4,
+   "points_needed_to_pass_yahoo": 163.2,
    "remaining": {
     "yahoo": {
-     "my_remaining": 169.8,
-     "their_remaining": 163.4,
-     "projected_margin": 6.4
+     "my_remaining": 170.0,
+     "their_remaining": 163.2,
+     "projected_margin": 6.8
     },
     "gotham": {
      "my_remaining": 155.4,
@@ -5026,7 +5116,38 @@
      "projected_margin": 11.7
     }
    },
-   "late_swap_risks": [],
+   "late_swap_risks": [
+    {
+     "starter": "Justin Jefferson",
+     "slot": "WR",
+     "why": "questionable",
+     "kickoff": "Sun Oct 25, 10:00 AM PT",
+     "inactives_list_at": "Sun Oct 25, 8:30 AM PT",
+     "proj": {
+      "yahoo": 17.9,
+      "gotham": 14.8,
+      "sleeper": 16.8
+     },
+     "bench_options": [
+      {
+       "name": "Wan'Dale Robinson",
+       "pos": "WR",
+       "nfl": "TEN",
+       "kickoff": "Sun Oct 25, 10:00 AM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 9.6,
+        "gotham": 10.2,
+        "sleeper": 10.2,
+        "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
+       },
+       "decide_by": "Sun Oct 25, 10:00 AM PT"
+      }
+     ],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "plan": "If Justin Jefferson is ruled out, start Wan'Dale Robinson (WR, TEN) - no drop needed. Yahoo gap if he sits: about 8.3 pts. Decision due when the inactives post, about 8:30 AM PT."
+    }
+   ],
    "still_to_play": {
     "me": [
      {
@@ -5058,13 +5179,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Oct 21, 9:05 AM PT",
-        "age": "27.2 hr ago",
+        "age": "27.9 hr ago",
         "line": "C.J. Stroud named the AFC offensive player of the week"
        },
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 8:11 AM PT",
-        "age": "28.1 hr ago",
+        "age": "28.8 hr ago",
         "line": "Jared Goff vs. C.J. Stroud: Dopp and Clay debate the QBs for Week 7"
        }
       ]
@@ -5080,12 +5201,12 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 21.2,
+       "yahoo": 21.3,
        "gotham": 17.9,
        "sleeper": 22.7
       },
       "yahoo_weeks_ahead": {
-       "wk8": 20.1,
+       "wk8": 20.3,
        "wk9": 22.9,
        "wk15": 21.5,
        "wk16": 20.5,
@@ -5106,16 +5227,16 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 15.0,
-       "gotham": 15.3,
+       "yahoo": 15.2,
+       "gotham": 15.4,
        "sleeper": 15.5
       },
       "yahoo_weeks_ahead": {
-       "wk8": 12.7,
-       "wk9": 13.8,
-       "wk15": 14.2,
-       "wk16": 14.3,
-       "wk17": 15.5
+       "wk8": 12.6,
+       "wk9": 13.5,
+       "wk15": 14.0,
+       "wk16": 14.1,
+       "wk17": 15.3
       },
       "injury_feeds": {
        "ESPN": "Active, posted 4 days ago"
@@ -5124,13 +5245,13 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 6:44 AM PT",
-        "age": "5.5 hr ago",
+        "age": "6.2 hr ago",
         "line": "D'Andre Swift Primed to Deliver RB1 Value Against Pats?"
        },
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 5:26 AM PT",
-        "age": "6.8 hr ago",
+        "age": "7.5 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? DeMario Douglas, Rhamondre Stevenson, A.J. Brown, Luther Burden, D'Andre Swift, Rome Odunze, Roschon Johnson, TreVeyon Henderson"
        }
       ]
@@ -5146,7 +5267,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 10.4,
+       "yahoo": 10.5,
        "gotham": 9.0,
        "sleeper": 9.2
       },
@@ -5164,13 +5285,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:05 PM PT",
-        "age": "20.2 hr ago",
+        "age": "20.9 hr ago",
         "line": "Josh Downs has Not Taken Advantage of Colts' Injuries"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 7:35 AM PT",
-        "age": "28.7 hr ago",
+        "age": "29.4 hr ago",
         "line": "Josh Downs' Expiring Contract Could Factor Into Colts' Trade Plans"
        }
       ]
@@ -5186,7 +5307,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 17.9,
+       "yahoo": 18.0,
        "gotham": 17.1,
        "sleeper": 19.2
       },
@@ -5204,7 +5325,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 7:35 AM PT",
-        "age": "4.7 hr ago",
+        "age": "5.4 hr ago",
         "line": "Zay Flowers Drawing Plenty of Targets in Baltimore"
        }
       ]
@@ -5217,10 +5338,10 @@
       "kickoff": "Sun Oct 25, 10:00 AM PT",
       "ko_utc": "2026-10-25T17:00:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
-       "yahoo": 17.8,
+       "yahoo": 17.9,
        "gotham": 14.8,
        "sleeper": 16.8
       },
@@ -5232,20 +5353,20 @@
        "wk17": 16.9
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 21.8 hr ago",
+       "ESPN": "Questionable (Ankle), posted 22.4 hr ago",
        "Sleeper": "Questionable (Ankle)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 3:07 PM PT",
-        "age": "21.2 hr ago",
+        "age": "21.8 hr ago",
         "line": "Justin Jefferson Still Dealing With Ankle Injury, Limited on Wednesday"
        },
        {
         "src": "RotoWire",
         "at": "Tue Oct 20, 7:31 PM PT",
-        "age": "40.8 hr ago",
+        "age": "41.4 hr ago",
         "line": "Justin Jefferson: Remains limited by ankle issue"
        }
       ]
@@ -5261,7 +5382,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 12.6,
+       "yahoo": 12.5,
        "gotham": 11.8,
        "sleeper": 11.6
       },
@@ -5305,7 +5426,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 8:34 PM PT",
-        "age": "15.7 hr ago",
+        "age": "16.4 hr ago",
         "line": "Ollie Gordon II Looks to Continue Ascending"
        }
       ]
@@ -5321,8 +5442,8 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 23.4,
-       "gotham": 22.7,
+       "yahoo": 23.1,
+       "gotham": 22.6,
        "sleeper": 22.0
       },
       "yahoo_weeks_ahead": {
@@ -5339,13 +5460,13 @@
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 8:53 AM PT",
-        "age": "27.4 hr ago",
+        "age": "28.1 hr ago",
         "line": "Daniel Dopp: Jared Goff locked in as a top-10 fantasy QB in Week 7"
        },
        {
         "src": "ESPN",
         "at": "Wed Oct 21, 8:11 AM PT",
-        "age": "28.1 hr ago",
+        "age": "28.8 hr ago",
         "line": "Jared Goff vs. C.J. Stroud: Dopp and Clay debate the QBs for Week 7"
        }
       ]
@@ -5400,16 +5521,16 @@
       },
       "news": [
        {
-        "src": "RotoWire",
-        "at": "Thu Oct 22, 1:57 AM PT",
-        "age": "10.3 hr ago",
-        "line": "Jeremiyah Love: Probably sitting again Week 7"
+        "src": "RotoBaller",
+        "at": "Thu Oct 22, 12:20 PM PT",
+        "age": "37 min ago",
+        "line": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work"
        },
        {
-        "src": "RotoBaller",
-        "at": "Wed Oct 21, 7:08 PM PT",
-        "age": "17.1 hr ago",
-        "line": "J.K. Dobbins is on the Rise Following Back-to-Back Scoring Games"
+        "src": "RotoWire",
+        "at": "Thu Oct 22, 1:57 AM PT",
+        "age": "11.0 hr ago",
+        "line": "Jeremiyah Love: Probably sitting again Week 7"
        }
       ]
      }
@@ -5437,13 +5558,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:35 PM PT",
-        "age": "19.7 hr ago",
+        "age": "20.4 hr ago",
         "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 4:56 AM PT",
-        "age": "31.3 hr ago",
+        "age": "32.0 hr ago",
         "line": "Quarterback Fantasy Football Waiver Wire Pickups - Top QB Adds for Week 7 Include Kyler Murray, Michael Penix Jr., Aaron Rodgers and more"
        }
       ]
@@ -5459,8 +5580,8 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 25.3,
-       "gotham": 25.2,
+       "yahoo": 25.1,
+       "gotham": 25.1,
        "sleeper": 25.0
       },
       "injury_feeds": {
@@ -5483,20 +5604,20 @@
        "sleeper": 11.1
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 23.2 hr ago",
+       "ESPN": "Questionable (Ankle), posted 23.8 hr ago",
        "Sleeper": "Questionable (Ankle)"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Wed Oct 21, 1:07 PM PT",
-        "age": "23.2 hr ago",
+        "age": "23.8 hr ago",
         "line": "Quinshon Judkins: Limited in Wednesday's practice"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Oct 21, 10:08 AM PT",
-        "age": "26.1 hr ago",
+        "age": "26.8 hr ago",
         "line": "Mason Graham, Quinshon Judkins appear on track to return Week 7"
        }
       ]
@@ -5520,7 +5641,7 @@
        {
         "src": "RotoBaller",
         "at": "Thu Oct 22, 7:24 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.5 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
        }
       ]
@@ -5536,7 +5657,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 15.0,
+       "yahoo": 14.9,
        "gotham": 13.7,
        "sleeper": 15.6
       },
@@ -5547,7 +5668,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 10:07 PM PT",
-        "age": "14.2 hr ago",
+        "age": "14.8 hr ago",
         "line": "Jalen Coker Continues to Fetch a Ton of Targets in Carolina"
        }
       ]
@@ -5563,7 +5684,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 14.4,
+       "yahoo": 14.3,
        "gotham": 14.7,
        "sleeper": 15.1
       },
@@ -5574,7 +5695,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Oct 21, 8:04 AM PT",
-        "age": "28.2 hr ago",
+        "age": "28.9 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 7? DK Metcalf, Tyrone Tracy Jr., Bucky Irving, Rico Dowdle, Emeka Egbuka, Tee Higgins, Alvin Kamara, Tyler Allgeier, Cam Skattebo"
        }
       ]
@@ -5590,8 +5711,8 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 16.2,
-       "gotham": 15.7,
+       "yahoo": 16.4,
+       "gotham": 15.8,
        "sleeper": 15.3
       },
       "injury_feeds": {
@@ -5609,14 +5730,20 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 15.5,
+       "yahoo": 15.6,
        "gotham": 13.4,
        "sleeper": 13.7
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
+       "ESPN": "Active, posted 4 days ago"
       },
       "news": [
+       {
+        "src": "RotoWire",
+        "at": "Thu Oct 22, 5:33 AM PT",
+        "age": "7.4 hr ago",
+        "line": "DeVonta Smith: Not seen Thursday"
+       },
        {
         "src": "ESPN",
         "at": "Tue Oct 20, 9:09 AM PT",
@@ -5636,7 +5763,7 @@
       "status": "",
       "actual": null,
       "proj": {
-       "yahoo": 18.9,
+       "yahoo": 18.8,
        "gotham": 18.7,
        "sleeper": 18.5
       },
@@ -5647,7 +5774,7 @@
        {
         "src": "ProFootballTalk",
         "at": "Thu Oct 22, 7:49 AM PT",
-        "age": "4.5 hr ago",
+        "age": "5.1 hr ago",
         "line": "Klint Kubiak: Fernando Mendoza's doing more than what he's asked, putting in extra time"
        }
       ]
@@ -5671,13 +5798,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Thu Oct 22, 4:22 AM PT",
-        "age": "7.9 hr ago",
+        "age": "8.6 hr ago",
         "line": "Jerry Jeudy: Frustrating not to be involved as much, but I just stay focused"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Oct 21, 1:38 PM PT",
-        "age": "22.6 hr ago",
+        "age": "23.3 hr ago",
         "line": "Rashod Bateman joins Lamar Jackson as limited participant Wednesday; Cam Jurgens fully participates"
        }
       ]
@@ -5714,13 +5841,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 9:05 AM PT",
-       "age": "27.2 hr ago",
+       "age": "27.9 hr ago",
        "line": "C.J. Stroud named the AFC offensive player of the week"
       },
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 8:11 AM PT",
-       "age": "28.1 hr ago",
+       "age": "28.8 hr ago",
        "line": "Jared Goff vs. C.J. Stroud: Dopp and Clay debate the QBs for Week 7"
       }
      ]
@@ -5736,12 +5863,12 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 21.2,
+      "yahoo": 21.3,
       "gotham": 17.9,
       "sleeper": 22.7
      },
      "yahoo_weeks_ahead": {
-      "wk8": 20.1,
+      "wk8": 20.3,
       "wk9": 22.9,
       "wk15": 21.5,
       "wk16": 20.5,
@@ -5762,16 +5889,16 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 15.0,
-      "gotham": 15.3,
+      "yahoo": 15.2,
+      "gotham": 15.4,
       "sleeper": 15.5
      },
      "yahoo_weeks_ahead": {
-      "wk8": 12.7,
-      "wk9": 13.8,
-      "wk15": 14.2,
-      "wk16": 14.3,
-      "wk17": 15.5
+      "wk8": 12.6,
+      "wk9": 13.5,
+      "wk15": 14.0,
+      "wk16": 14.1,
+      "wk17": 15.3
      },
      "injury_feeds": {
       "ESPN": "Active, posted 4 days ago"
@@ -5780,13 +5907,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 6:44 AM PT",
-       "age": "5.5 hr ago",
+       "age": "6.2 hr ago",
        "line": "D'Andre Swift Primed to Deliver RB1 Value Against Pats?"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 5:26 AM PT",
-       "age": "6.8 hr ago",
+       "age": "7.5 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? DeMario Douglas, Rhamondre Stevenson, A.J. Brown, Luther Burden, D'Andre Swift, Rome Odunze, Roschon Johnson, TreVeyon Henderson"
       }
      ]
@@ -5802,7 +5929,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 10.4,
+      "yahoo": 10.5,
       "gotham": 9.0,
       "sleeper": 9.2
      },
@@ -5820,13 +5947,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:05 PM PT",
-       "age": "20.2 hr ago",
+       "age": "20.9 hr ago",
        "line": "Josh Downs has Not Taken Advantage of Colts' Injuries"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 7:35 AM PT",
-       "age": "28.7 hr ago",
+       "age": "29.4 hr ago",
        "line": "Josh Downs' Expiring Contract Could Factor Into Colts' Trade Plans"
       }
      ]
@@ -5842,7 +5969,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 17.9,
+      "yahoo": 18.0,
       "gotham": 17.1,
       "sleeper": 19.2
      },
@@ -5860,7 +5987,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 7:35 AM PT",
-       "age": "4.7 hr ago",
+       "age": "5.4 hr ago",
        "line": "Zay Flowers Drawing Plenty of Targets in Baltimore"
       }
      ]
@@ -5873,10 +6000,10 @@
      "kickoff": "Sun Oct 25, 10:00 AM PT",
      "ko_utc": "2026-10-25T17:00:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 17.8,
+      "yahoo": 17.9,
       "gotham": 14.8,
       "sleeper": 16.8
      },
@@ -5888,20 +6015,20 @@
       "wk17": 16.9
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 21.8 hr ago",
+      "ESPN": "Questionable (Ankle), posted 22.4 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 3:07 PM PT",
-       "age": "21.2 hr ago",
+       "age": "21.8 hr ago",
        "line": "Justin Jefferson Still Dealing With Ankle Injury, Limited on Wednesday"
       },
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 7:31 PM PT",
-       "age": "40.8 hr ago",
+       "age": "41.4 hr ago",
        "line": "Justin Jefferson: Remains limited by ankle issue"
       }
      ]
@@ -5917,7 +6044,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 12.6,
+      "yahoo": 12.5,
       "gotham": 11.8,
       "sleeper": 11.6
      },
@@ -5961,7 +6088,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 8:34 PM PT",
-       "age": "15.7 hr ago",
+       "age": "16.4 hr ago",
        "line": "Ollie Gordon II Looks to Continue Ascending"
       }
      ]
@@ -5977,8 +6104,8 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 23.4,
-      "gotham": 22.7,
+      "yahoo": 23.1,
+      "gotham": 22.6,
       "sleeper": 22.0
      },
      "yahoo_weeks_ahead": {
@@ -5995,13 +6122,13 @@
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 8:53 AM PT",
-       "age": "27.4 hr ago",
+       "age": "28.1 hr ago",
        "line": "Daniel Dopp: Jared Goff locked in as a top-10 fantasy QB in Week 7"
       },
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 8:11 AM PT",
-       "age": "28.1 hr ago",
+       "age": "28.8 hr ago",
        "line": "Jared Goff vs. C.J. Stroud: Dopp and Clay debate the QBs for Week 7"
       }
      ]
@@ -6056,16 +6183,16 @@
      },
      "news": [
       {
-       "src": "RotoWire",
-       "at": "Thu Oct 22, 1:57 AM PT",
-       "age": "10.3 hr ago",
-       "line": "Jeremiyah Love: Probably sitting again Week 7"
+       "src": "RotoBaller",
+       "at": "Thu Oct 22, 12:20 PM PT",
+       "age": "37 min ago",
+       "line": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work"
       },
       {
-       "src": "RotoBaller",
-       "at": "Wed Oct 21, 7:08 PM PT",
-       "age": "17.1 hr ago",
-       "line": "J.K. Dobbins is on the Rise Following Back-to-Back Scoring Games"
+       "src": "RotoWire",
+       "at": "Thu Oct 22, 1:57 AM PT",
+       "age": "11.0 hr ago",
+       "line": "Jeremiyah Love: Probably sitting again Week 7"
       }
      ]
     }
@@ -6079,13 +6206,13 @@
      "kickoff": "Sun Oct 25, 5:20 PM PT",
      "ko_utc": "2026-10-26T00:20:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
-      "yahoo": 11.2,
+      "yahoo": 11.1,
       "gotham": 9.0,
-      "sleeper": 11.5,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "sleeper": 11.6,
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 11.0,
@@ -6095,20 +6222,20 @@
       "wk17": 12.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 20.2 hr ago",
+      "ESPN": "Questionable (Ankle), posted 20.8 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:31 PM PT",
-       "age": "19.8 hr ago",
+       "age": "20.4 hr ago",
        "line": "Travis Kelce Limited on Wednesday With Ankle Issue"
       },
       {
        "src": "RotoWire",
        "at": "Tue Oct 20, 9:09 PM PT",
-       "age": "39.1 hr ago",
+       "age": "39.8 hr ago",
        "line": "Travis Kelce: Limited Wednesday"
       }
      ]
@@ -6124,10 +6251,10 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 21.0,
+      "yahoo": 20.9,
       "gotham": 23.3,
       "sleeper": 18.4,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 26.8,
@@ -6162,7 +6289,7 @@
       "yahoo": 10.5,
       "gotham": 11.1,
       "sleeper": 11.3,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 9.6,
@@ -6177,8 +6304,14 @@
      "news": [
       {
        "src": "RotoBaller",
+       "at": "Thu Oct 22, 12:20 PM PT",
+       "age": "37 min ago",
+       "line": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work"
+      },
+      {
+       "src": "RotoBaller",
        "at": "Thu Oct 22, 6:30 AM PT",
-       "age": "5.8 hr ago",
+       "age": "6.4 hr ago",
        "line": "Fantasy Football Warning Signals for Week 7? Puka Nacua, RJ Harvey, Harold Fannin Jr."
       }
      ]
@@ -6197,7 +6330,7 @@
       "yahoo": 9.6,
       "gotham": 10.2,
       "sleeper": 10.2,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 10.2,
@@ -6213,7 +6346,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Oct 20, 12:46 PM PT",
-       "age": "47.5 hr ago",
+       "age": "2 days ago",
        "line": "Week 7 Waiver Wire Pickups - Travis Hunter, Wan'Dale Robinson, Jalen Royals"
       }
      ]
@@ -6232,7 +6365,7 @@
       "yahoo": 0.0,
       "gotham": null,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 4.4,
@@ -6248,7 +6381,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Oct 20, 4:28 PM PT",
-       "age": "43.8 hr ago",
+       "age": "44.5 hr ago",
        "line": "James Conner an Injury Stash at RB With Return Looming"
       },
       {
@@ -6273,7 +6406,7 @@
       "yahoo": 0.0,
       "gotham": null,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 0.0,
@@ -6300,7 +6433,7 @@
       "yahoo": 0.0,
       "gotham": null,
       "sleeper": 2.6,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": "bye",
@@ -6317,13 +6450,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 6:36 PM PT",
-       "age": "17.7 hr ago",
+       "age": "18.3 hr ago",
        "line": "After two years rehabbing, Tank Dell overwhelmed, anxious and excited to play again"
       },
       {
        "src": "ESPN",
        "at": "Wed Oct 21, 4:17 PM PT",
-       "age": "20.0 hr ago",
+       "age": "20.7 hr ago",
        "line": "Texans' Tank Dell says he won't fear being hit in return Sunday against Giants"
       }
      ]
@@ -6342,7 +6475,7 @@
       "yahoo": 6.3,
       "gotham": null,
       "sleeper": null,
-      "yahoo_from": "Yahoo projections read Wed Oct 21, 12:39 PM PT"
+      "yahoo_from": "Yahoo projections read Thu Oct 22, 12:39 PM PT"
      },
      "yahoo_weeks_ahead": {
       "wk8": 6.2,
@@ -6355,13 +6488,13 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 11:37 AM PT",
-       "age": "40 min ago",
+       "age": "80 min ago",
        "line": "Elijah Arroyo Having Season-Ending Shoulder Surgery"
       },
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 11:37 AM PT",
-       "age": "40 min ago",
+       "age": "80 min ago",
        "line": "Seahawks Officially Activate Zach Charbonnet From PUP List"
       }
      ]
@@ -6390,13 +6523,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:35 PM PT",
-       "age": "19.7 hr ago",
+       "age": "20.4 hr ago",
        "line": "Week 7 Waiver Wire Pickups - Kyler Murray, Baker Mayfield, Aaron Rodgers"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 4:56 AM PT",
-       "age": "31.3 hr ago",
+       "age": "32.0 hr ago",
        "line": "Quarterback Fantasy Football Waiver Wire Pickups - Top QB Adds for Week 7 Include Kyler Murray, Michael Penix Jr., Aaron Rodgers and more"
       }
      ]
@@ -6412,8 +6545,8 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 25.3,
-      "gotham": 25.2,
+      "yahoo": 25.1,
+      "gotham": 25.1,
       "sleeper": 25.0
      },
      "injury_feeds": {
@@ -6436,20 +6569,20 @@
       "sleeper": 11.1
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 23.2 hr ago",
+      "ESPN": "Questionable (Ankle), posted 23.8 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Oct 21, 1:07 PM PT",
-       "age": "23.2 hr ago",
+       "age": "23.8 hr ago",
        "line": "Quinshon Judkins: Limited in Wednesday's practice"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 10:08 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.8 hr ago",
        "line": "Mason Graham, Quinshon Judkins appear on track to return Week 7"
       }
      ]
@@ -6473,7 +6606,7 @@
       {
        "src": "RotoBaller",
        "at": "Thu Oct 22, 7:24 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.5 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? Carnell Tate, Ja'Kobi Lane, Mike Washington Jr., KC Concepcion Jr., Drake London, Christian Watson, Nico Collins, Garrett Wilson"
       }
      ]
@@ -6489,7 +6622,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 15.0,
+      "yahoo": 14.9,
       "gotham": 13.7,
       "sleeper": 15.6
      },
@@ -6500,7 +6633,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 10:07 PM PT",
-       "age": "14.2 hr ago",
+       "age": "14.8 hr ago",
        "line": "Jalen Coker Continues to Fetch a Ton of Targets in Carolina"
       }
      ]
@@ -6516,7 +6649,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 14.4,
+      "yahoo": 14.3,
       "gotham": 14.7,
       "sleeper": 15.1
      },
@@ -6527,7 +6660,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Oct 21, 8:04 AM PT",
-       "age": "28.2 hr ago",
+       "age": "28.9 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 7? DK Metcalf, Tyrone Tracy Jr., Bucky Irving, Rico Dowdle, Emeka Egbuka, Tee Higgins, Alvin Kamara, Tyler Allgeier, Cam Skattebo"
       }
      ]
@@ -6543,8 +6676,8 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 16.2,
-      "gotham": 15.7,
+      "yahoo": 16.4,
+      "gotham": 15.8,
       "sleeper": 15.3
      },
      "injury_feeds": {
@@ -6562,14 +6695,20 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 15.5,
+      "yahoo": 15.6,
       "gotham": 13.4,
       "sleeper": 13.7
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
+      "ESPN": "Active, posted 4 days ago"
      },
      "news": [
+      {
+       "src": "RotoWire",
+       "at": "Thu Oct 22, 5:33 AM PT",
+       "age": "7.4 hr ago",
+       "line": "DeVonta Smith: Not seen Thursday"
+      },
       {
        "src": "ESPN",
        "at": "Tue Oct 20, 9:09 AM PT",
@@ -6589,7 +6728,7 @@
      "status": "",
      "actual": null,
      "proj": {
-      "yahoo": 18.9,
+      "yahoo": 18.8,
       "gotham": 18.7,
       "sleeper": 18.5
      },
@@ -6600,7 +6739,7 @@
       {
        "src": "ProFootballTalk",
        "at": "Thu Oct 22, 7:49 AM PT",
-       "age": "4.5 hr ago",
+       "age": "5.1 hr ago",
        "line": "Klint Kubiak: Fernando Mendoza's doing more than what he's asked, putting in extra time"
       }
      ]
@@ -6640,19 +6779,25 @@
       {
        "src": "ProFootballTalk",
        "at": "Thu Oct 22, 4:22 AM PT",
-       "age": "7.9 hr ago",
+       "age": "8.6 hr ago",
        "line": "Jerry Jeudy: Frustrating not to be involved as much, but I just stay focused"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Oct 21, 1:38 PM PT",
-       "age": "22.6 hr ago",
+       "age": "23.3 hr ago",
        "line": "Rashod Bateman joins Lamar Jackson as limited participant Wednesday; Cam Jurgens fully participates"
       }
      ]
     }
    ],
-   "actions": [],
+   "actions": [
+    {
+     "what": "Justin Jefferson is questionable - latest (ESPN, Oct 21): Jefferson (ankle) was limited at Wednesday's practice. Check his status",
+     "by": "before his Sun 10:00 AM kickoff",
+     "kind": "check"
+    }
+   ],
    "alerts": [
     {
      "color": "gold",
@@ -6705,60 +6850,60 @@
     },
     {
      "color": "grey",
-     "title": "After two years rehabbing, Tank Dell overwhelmed, anxious and excited to play again",
-     "who": "Tank Dell",
-     "kind": "news",
-     "src": "Dark Knight Dispatch"
+     "title": "RJ Harvey Re-Establishes PPR Appeal With Receiving Work",
+     "who": "RJ Harvey",
+     "kind": "feed",
+     "src": "RotoBaller (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Oct 21, 12:55 PM PT"
+   "roster_read_pt": "Thu Oct 22, 12:52 PM PT"
   }
  ],
  "health": [
   {
    "level": "red",
-   "piece": "Yahoo matchups (scores, starters)",
-   "what": "as of Wed Oct 21, 12:52 PM PT (23.4 hr ago) - Dom's four matchup pages, both sides, Yahoo proj + points; older than the Thu 7:50 AM scheduled read"
+   "piece": "DK I",
+   "what": "Travis Kelce (TE) questionable, kickoff Sun Oct 25, 5:20 PM PT - NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
+  },
+  {
+   "level": "red",
+   "piece": "DK II",
+   "what": "Travis Kelce (TE) questionable, kickoff Sun Oct 25, 5:20 PM PT - NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
+  },
+  {
+   "level": "red",
+   "piece": "DK III",
+   "what": "Jaylen Waddle (WR) questionable, kickoff Sun Oct 25, 1:05 PM PT - NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
   },
   {
    "level": "gold",
-   "piece": "DK I roster read",
-   "what": "from Wed Oct 21, 12:55 PM PT (23.4 hr ago) - a move made since then is not in this file"
+   "piece": "DK I roster",
+   "what": "Indianapolis is on the live roster read but not in the meter - added from the roster read"
   },
   {
    "level": "gold",
-   "piece": "DK II roster read",
-   "what": "from Wed Oct 21, 12:55 PM PT (23.4 hr ago) - a move made since then is not in this file"
+   "piece": "DK I",
+   "what": "Alvin Kamara (W/R/T) questionable, kickoff Sun Oct 25, 6:30 AM PT - If Alvin Kamara is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 3.0 pts. Decision due when the inactives post, about 5:00 AM PT."
   },
   {
    "level": "gold",
    "piece": "DK II",
-   "what": "David Montgomery (RB) questionable, kickoff Sun Oct 25, 10:00 AM PT - If David Montgomery is ruled out, start Alvin Kamara (RB, NO) - no drop needed. Yahoo gap if he sits: about -4.1 pts. Decision due when the inactives post, about 8:30 AM PT."
+   "what": "Alvin Kamara (RB) questionable, kickoff Sun Oct 25, 6:30 AM PT - If Alvin Kamara is ruled out, start MarShawn Lloyd (RB, GB) - no drop needed. Yahoo gap if he sits: about 4.6 pts. Decision due when the inactives post, about 5:00 AM PT."
   },
   {
    "level": "gold",
-   "piece": "DK III roster read",
-   "what": "from Wed Oct 21, 12:55 PM PT (23.4 hr ago) - a move made since then is not in this file"
-  },
-  {
-   "level": "gold",
-   "piece": "DK III",
-   "what": "David Montgomery (RB) questionable, kickoff Sun Oct 25, 10:00 AM PT - If David Montgomery is ruled out, start Samaje Perine (RB, CIN) - no drop needed. Yahoo gap if he sits: about -1.5 pts. Decision due when the inactives post, about 8:30 AM PT."
+   "piece": "DK III roster",
+   "what": "Bay is on the live roster read but not in the meter - added from the roster read"
   },
   {
    "level": "gold",
    "piece": "DK III",
-   "what": "T.J. Hockenson (W/R/T) questionable, kickoff Sun Oct 25, 10:00 AM PT - If T.J. Hockenson is ruled out, start Devaughn Vele (WR, NO) - no drop needed. Yahoo gap if he sits: about -0.5 pts. Decision due when the inactives post, about 8:30 AM PT."
+   "what": "T.J. Hockenson (TE) questionable, kickoff Sun Oct 25, 10:00 AM PT - If T.J. Hockenson is ruled out, start Harold Fannin Jr. (TE, CLE) - no drop needed. Yahoo gap if he sits: about 0.3 pts. Decision due when the inactives post, about 8:30 AM PT."
   },
   {
    "level": "gold",
-   "piece": "DK IV roster read",
-   "what": "from Wed Oct 21, 12:55 PM PT (23.4 hr ago) - a move made since then is not in this file"
-  },
-  {
-   "level": "grey",
-   "piece": "Yahoo rosters (all teams)",
-   "what": "as of Wed Oct 21, 12:52 PM PT (23.4 hr ago) - Dom's four rosters; older than the Thu 7:50 AM scheduled read - but the newer live roster read matches it in all four leagues, so nothing is missing"
+   "piece": "DK IV",
+   "what": "Justin Jefferson (WR) questionable, kickoff Sun Oct 25, 10:00 AM PT - If Justin Jefferson is ruled out, start Wan'Dale Robinson (WR, TEN) - no drop needed. Yahoo gap if he sits: about 8.3 pts. Decision due when the inactives post, about 8:30 AM PT."
   },
   {
    "level": "grey",
@@ -6773,7 +6918,7 @@
   {
    "level": "grey",
    "piece": "Meter note",
-   "what": "DK I: Gotham 13.3 vs Yahoo 6.5 / Sleeper 6.5 on Mike Evans - check role/news"
+   "what": "DK I: Gotham 13.3 vs Yahoo 6.2 / Sleeper 6.2 on Mike Evans - check role/news"
   },
   {
    "level": "grey",
@@ -6783,27 +6928,7 @@
   {
    "level": "grey",
    "piece": "Meter note",
-   "what": "DK II: Sleeper lists David Montgomery with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle"
-  },
-  {
-   "level": "grey",
-   "piece": "Meter note",
-   "what": "DK II: Gotham 12.3 vs Yahoo 5.8 / Sleeper 5.8 on David Montgomery - check role/news"
-  },
-  {
-   "level": "grey",
-   "piece": "Meter note",
-   "what": "DK II: Gotham 18.8 vs Yahoo 12.7 / Sleeper 11.5 on Germie Bernard - check role/news"
-  },
-  {
-   "level": "grey",
-   "piece": "Meter note",
-   "what": "DK III: Sleeper lists David Montgomery with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle"
-  },
-  {
-   "level": "grey",
-   "piece": "Meter note",
-   "what": "DK III: Gotham 12.3 vs Yahoo 5.8 / Sleeper 5.8 on David Montgomery - check role/news"
+   "what": "DK II: Gotham 18.8 vs Yahoo 12.7 / Sleeper 11.6 on Germie Bernard - check role/news"
   },
   {
    "level": "grey",
@@ -6827,16 +6952,6 @@
   },
   {
    "level": "grey",
-   "piece": "DK I meter",
-   "what": "Colts tagged WR in the meter, DEF on Yahoo - using Yahoo"
-  },
-  {
-   "level": "grey",
-   "piece": "DK III meter",
-   "what": "Packers tagged WR in the meter, DEF on Yahoo - using Yahoo"
-  },
-  {
-   "level": "grey",
    "piece": "DK IV meter",
    "what": "Seahawks tagged WR in the meter, DEF on Yahoo - using Yahoo"
   }
@@ -6844,106 +6959,106 @@
  "sources": [
   {
    "source": "NFL schedule",
-   "as_of": "Thu Oct 22, 12:15 PM PT",
+   "as_of": "Thu Oct 22, 12:55 PM PT",
    "age": "2 min ago",
    "level": "green",
    "note": "week 7: 14 games"
   },
   {
    "source": "Yahoo matchups (scores, starters)",
-   "as_of": "Wed Oct 21, 12:52 PM PT",
-   "age": "23.4 hr ago",
-   "level": "red",
-   "note": "Dom's four matchup pages, both sides, Yahoo proj + points; older than the Thu 7:50 AM scheduled read"
+   "as_of": "Thu Oct 22, 12:52 PM PT",
+   "age": "5 min ago",
+   "level": "green",
+   "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   {
    "source": "Yahoo win % (all teams)",
-   "as_of": "Wed Oct 21, 12:52 PM PT",
-   "age": "23.4 hr ago",
+   "as_of": "Thu Oct 22, 12:52 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   {
    "source": "Yahoo standings",
-   "as_of": "Wed Oct 21, 12:52 PM PT",
-   "age": "23.4 hr ago",
+   "as_of": "Thu Oct 22, 12:52 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "rank, division rank, points for"
   },
   {
    "source": "Gotham projections",
-   "as_of": "Thu Oct 22, 12:15 PM PT",
-   "age": "2 min ago",
+   "as_of": "Thu Oct 22, 12:56 PM PT",
+   "age": "1 min ago",
    "level": "green",
-   "note": "Gotham run Thu Oct 22 2026 12:15 PM PT for week 7"
+   "note": "Gotham run Thu Oct 22 2026 12:56 PM PT for week 7"
   },
   {
    "source": "Sleeper projections",
-   "as_of": "Thu Oct 22, 11:56 AM PT",
-   "age": "21 min ago",
+   "as_of": "Thu Oct 22, 12:47 PM PT",
+   "age": "10 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 3117 rows)"
   },
   {
    "source": "Sleeper K/DEF projections",
-   "as_of": "Thu Oct 22, 11:56 AM PT",
-   "age": "21 min ago",
+   "as_of": "Thu Oct 22, 12:47 PM PT",
+   "age": "10 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 185 rows)"
   },
   {
    "source": "Yahoo rosters (all teams)",
-   "as_of": "Wed Oct 21, 12:52 PM PT",
-   "age": "23.4 hr ago",
-   "level": "grey",
-   "note": "Dom's four rosters; older than the Thu 7:50 AM scheduled read; the newer live roster read matches it"
+   "as_of": "Thu Oct 22, 12:52 PM PT",
+   "age": "5 min ago",
+   "level": "green",
+   "note": "Dom's four rosters"
   },
   {
    "source": "RotoWire news",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Sleeper injuries/trending",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "rotowire_pages",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Game weather",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN news",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "PFT + RotoBaller news",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN injury report",
-   "as_of": "Thu Oct 22, 11:37 AM PT",
-   "age": "40 min ago",
+   "as_of": "Thu Oct 22, 12:34 PM PT",
+   "age": "23 min ago",
    "level": "green",
    "note": ""
   }
@@ -6996,11 +7111,10 @@
   {
    "name": "Alvin Kamara",
    "starts": [
-    "DK I"
-   ],
-   "bench": [
+    "DK I",
     "DK II"
-   ]
+   ],
+   "bench": []
   },
   {
    "name": "Travis Etienne Jr.",
@@ -7011,7 +7125,7 @@
    ]
   },
   {
-   "name": "David Montgomery",
+   "name": "Aaron Rodgers",
    "starts": [
     "DK II",
     "DK III"
@@ -7019,12 +7133,12 @@
    "bench": []
   },
   {
-   "name": "Aaron Rodgers",
-   "starts": [
+   "name": "David Montgomery",
+   "starts": [],
+   "bench": [
     "DK II",
     "DK III"
-   ],
-   "bench": []
+   ]
   },
   {
    "name": "Josh Downs",
@@ -7035,8 +7149,6 @@
    "bench": []
   }
  ],
- "verdict": "NO-GO",
- "verdict_why": [
-  "Yahoo matchups (scores, starters): as of Wed Oct 21, 12:52 PM PT (23.4 hr ago) - Dom's four matchup pages, both sides, Yahoo proj + points; older than the Thu 7:50 AM scheduled read"
- ]
+ "verdict": "GO",
+ "verdict_why": []
 }
