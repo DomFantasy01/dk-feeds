@@ -1,5 +1,5 @@
 {
- "run_utc": "2026-10-22T15:13:15+00:00",
+ "run_utc": "2026-10-22T16:07:58+00:00",
  "sources": {
   "rotowire": {
    "source": "merged",
@@ -10,42 +10,42 @@
     "https://rss-parrot.net/web/feeds/rotowire.com": 0
    },
    "items": 5,
-   "new_items": 0,
-   "newest_item_utc": "2026-10-22T06:45:00+00:00",
-   "newest_age_hours": 8.5,
+   "new_items": 2,
+   "newest_item_utc": "2026-10-22T09:01:00+00:00",
+   "newest_age_hours": 7.1,
    "fallbacks_failed": [
     "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
     "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
    ],
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00",
-   "rss_note": "newest item 8.5 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "checked_utc": "2026-10-22T16:07:58+00:00",
+   "rss_note": "newest item 7.1 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "warning": null,
    "note": "RSS is thin by design (5 items); RotoWire news now comes from the news pages and player pages - see rotowire_pages"
   },
   "sleeper": {
-   "player_db_pulled_utc": "2026-10-21T16:09:34+00:00",
-   "injured_tagged": 151,
+   "player_db_pulled_utc": "2026-10-22T16:07:58+00:00",
+   "injured_tagged": 171,
    "adds": 50,
    "drops": 50,
-   "player_db_refreshed": false,
+   "player_db_refreshed": true,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "rotowire_pages": {
    "news_page_items": 50,
-   "players_watched": 129,
-   "player_pages_read": 129,
+   "players_watched": 130,
+   "player_pages_read": 130,
    "wire_pages_skipped_this_run": 0,
-   "new_items": 3,
-   "exact_times_set": 3,
+   "new_items": 2,
+   "exact_times_set": 2,
    "exact_times_still_missing": 2,
    "exact_time_failures": 0,
    "failures": [],
    "warning": null,
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "weather": {
    "games_in_window": 15,
@@ -53,15 +53,15 @@
    "outdoor_pulled": 11,
    "problems": [],
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "espn_news": {
    "items": 50,
-   "new_items": 14,
-   "newest_item_utc": "2026-10-22T15:11:13Z",
-   "with_player_tag": 29,
+   "new_items": 4,
+   "newest_item_utc": "2026-10-22T15:42:23Z",
+   "with_player_tag": 30,
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "news_extra": {
    "per_source": {
@@ -69,18 +69,18 @@
     "rotoballer": 15
    },
    "items": 45,
-   "new_items": 4,
-   "newest_item_utc": "2026-10-22T15:13:15+00:00",
+   "new_items": 12,
+   "newest_item_utc": "2026-10-22T16:07:58+00:00",
    "errors": [],
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "espn_injuries": {
    "players": 800,
    "teams": 32,
    "warning": null,
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   },
   "probe": {
    "answered": [
@@ -97,7 +97,7 @@
     "rotowire_mirror"
    ],
    "ok": true,
-   "checked_utc": "2026-10-22T15:13:15+00:00"
+   "checked_utc": "2026-10-22T16:07:58+00:00"
   }
  }
 }
