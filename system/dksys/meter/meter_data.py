@@ -167,6 +167,7 @@ for key, p, need in (('sleeper_skill', SKF, 400), ('sleeper_kdef', SKD, 60)):
         except Exception: pass
         if age > 6: sources[key]['status'] = 'STALE'; alarms.append(f'{key}: STALE - GitHub job last checked {age} h ago (limit 6 h; the job runs every 2 h)')
 BLANK = set()
+SLAST = {}
 def sleeper_tables(k):
     sc = FM.SC[k]; key = [s for s in SCORING if s.startswith(['', 'DK I ', 'DK II ', 'DK III ', 'DK IV '][k])][0]; cfg = SCORING[key]
     sk = pd.read_csv(SKF); sk.columns = [c.lower() for c in sk.columns]
@@ -175,6 +176,12 @@ def sleeper_tables(k):
     sk['pts'] = (.04 * sk.pass_yd + sc['ptd'] * sk.pass_td + sc['it'] * sk.pass_int + .1 * sk.rush_yd + 6 * sk.rush_td + sc['ra'] * sk.rush_att
                  + sk.rec + .1 * sk.rec_yd + 6 * sk.rec_td - 2 * sk.fum_lost)
     S = dict(zip(sk.name.astype(str).map(norm), sk.pts))
+    # Oct 23 (Dom): Yahoo and Sleeper sometimes use different first names (Yahoo "Bam Knight" = Sleeper "Zonovan Knight").
+    # Second key: last name + team + position, kept only when exactly one Sleeper player fits it.
+    _lk = {}
+    for _n, _t, _p, _v in zip(sk.name.astype(str), sk.team.astype(str), sk.pos.astype(str), sk.pts):
+        _key = (norm(_n).split()[-1] if norm(_n) else '', T(_t), _p.upper()); _lk.setdefault(_key, []).append(_v)
+    SLAST.update({kk: vv[0] for kk, vv in _lk.items() if len(vv) == 1})
     kd = pd.read_csv(SKD); KD = {}
     kc = cfg.get('K', {}); f40 = kc.get('fg40_49', 4); f50 = kc.get('fg50', 5); pm = kc.get('pat_miss', 0)
     pa = cfg.get('DEF_pa', [10, 7, 4, 1, 0, -1, -4])
@@ -225,6 +232,7 @@ for lab, cfg in LEAGUES.items():
                 go, gsrc = sl, 'sleeper'
             else:
                 sl = S.get(k); go = gm.get(k); gsrc = 'gotham'
+                if sl is None and k and k not in BLANK: sl = SLAST.get((k.split()[-1], T(p.get('team') or ''), pos))   # Oct 23: same man, different first name
                 if go is None or (isinstance(go, float) and math.isnan(go)):   # Gotham has no usage rows for him (no 2026 snaps yet: a returner, a backup)
                     if sl is not None and p.get('yahoo') is not None and float(sl) > 0 and float(p['yahoo']) > 0:
                         go, gsrc = (float(p['yahoo']) + float(sl)) / 2, 'consensus-fallback'   # Oct 21: the Yahoo/Sleeper average - the same line as the Gotham ceiling
