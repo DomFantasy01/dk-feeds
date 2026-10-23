@@ -705,9 +705,28 @@ needs.sort(key=lambda n:-n["prio"])
 # ================= print =================
 out=[]
 P=out.append
-P(f"THE SCOUT — {CF['lab']} — run {NOWPT.strftime('%a %b %d, %I:%M %p PT')} — record {CF['record']}")
-P("Inputs: all 12 rosters + waivers (Yahoo, 9:50-9:55 AM) · stats & play-by-play (nflverse 7:40 AM; Weeks 1-4 + Thursday's Week 5) · 2025 season as a prior · no Yahoo projections")
-P("Read depth: 4 games of 2026 data — directional, not settled.\n")
+# Oct 23 (Dom): the header said "Yahoo 9:50 AM", "Weeks 1-4" and an old record no matter when it ran - every
+# stamp here now comes from the files actually read
+_GW=int(st.week.max()) if len(st) else 0
+_st0=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
+_ststamp0=f"{_st0:%a} {_st0.hour%12 or 12}:{_st0:%M} {'AM' if _st0.hour<12 else 'PM'} PT"
+_REC=CF["record"]
+try:
+    import glob as _g0
+    _sf0=sorted(_g0.glob(f"{L}/yahoo/wk{NOW}/standings_*.txt"),key=os.path.getmtime)
+    _lid0={"DKI":"269381","DKII":"1519795","DKIII":"1507991","DKIV":"864215"}[LGK]
+    for _ln0 in (open(_sf0[-1]) if _sf0 else []):
+        if _ln0.startswith(_lid0+"#"):
+            _rows0=[r.split("^") for r in _ln0.split("#",1)[1].strip().split("|")]
+            _rows0=[r for r in _rows0 if len(r)>=5]
+            _w=lambda r: tuple(int(x) for x in r[2].split("-")[:2])
+            _rows0.sort(key=lambda r:(-_w(r)[0],_w(r)[1],-float(r[4] or 0)))
+            for _i0,r in enumerate(_rows0,1):
+                if re.sub(r"[^a-z0-9]","",r[1].lower())==re.sub(r"[^a-z0-9]","",str(TEAMNAMES.get(ME,"")).lower()): _REC=f"{r[2].rsplit('-0',1)[0] if r[2].endswith('-0') else r[2]}, {_i0}{'th' if 10<=_i0%100<=20 else {1:'st',2:'nd',3:'rd'}.get(_i0%10,'th')} of {len(_rows0)} (Yahoo standings {os.path.basename(_sf0[-1])[10:-4]})"
+except Exception as _e0: pass
+P(f"THE SCOUT — {CF['lab']} — run {NOWPT.strftime('%a %b %d, %I:%M %p PT')} — record {_REC}")
+P(f"Inputs: all {len(TEAMNAMES)} rosters + waivers ({CF['rost_at']}) · stats & play-by-play (nflverse {_ststamp0}; Weeks 1-{_GW}) · 2025 season as a prior · Yahoo projections only as a cross-check")
+P(f"Read depth: {_GW} weeks of 2026 data — directional, not settled.\n")
 P("GATE 1 — YOUR NEEDS, IN PRIORITY ORDER")
 for n,nd in enumerate(needs,1):
     w=nd["weeks"]; when="season-long" if nd["kind"]=="season-long" else wk(w)+" fill"
@@ -738,7 +757,7 @@ for e in G2:
 if shown==0: P("   none this run")
 hf=f"{H}/hunches_{LGK}.csv"
 P("\nGATE 3 — HUNCHES"); P(open(hf).read().strip() if os.path.exists(hf) and len(open(hf).read().strip().splitlines())>1 else "   none written yet")
-P("\nCHECKED, NOT ASSUMED — players the math leans on, verified against the live Yahoo rosters (9:50 AM) and the injury report:")
+P(f"\nCHECKED, NOT ASSUMED — players the math leans on, verified against the live Yahoo rosters ({CF['rost_at']}) and the injury report:")
 for k,c in CLOSE.items():
     o=owner(k)
     if not o or o[0]!=ME: continue
@@ -752,7 +771,7 @@ if MISS: P("No 2026 games, not scored: "+", ".join(MISS))
 _stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
 _ststamp=f"{_stt:%a} {_stt.hour%12 or 12}:{_stt:%M} {'AM' if _stt.hour<12 else 'PM'} PT"
 BOARD=dict(league=CF["lab"],run=NOWPT.isoformat(),run_str=NOWPT.strftime('%a %b %d, %I:%M %p PT').replace(' 0',' '),
-           depth=f"Built from real points and workload — four games of 2026 data, so read it as a direction · rosters {CF['rost_at']} · stats nflverse "+_ststamp,
+           depth=f"Built from real points and workload — {_GW} weeks of 2026 data, so read it as a direction · rosters {CF['rost_at']} · stats nflverse "+_ststamp,
            gate1=[],gate2=[],gate3=[],checked=[],
            footer=(("Protected (Dom's call): "+", ".join(CF["protect"])) if CF["protect"] else "Protected: none")+kills_str()+(" · Pending: "+CF["pending"] if CF["pending"] else ""))
 def sn_(n):
