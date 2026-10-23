@@ -104,7 +104,11 @@ for _lab in _ALG:
                                 by="any time"))
     for _mv in _B.get("moves", []):
         if _mv.get("kind") == "ir":
-            ACTIONS.append(dict(lg=_lab, rank=3, kind="ir", who=_mv["name"], what=f"Move {_mv['name']} to IR" + (f" ({_AHURT[(_lab, _mv['name'])]})" if (_lab, _mv["name"]) in _AHURT else "") + ". Frees a bench seat", by="any time"))
+            _ytg = _ar.search(r"Yahoo tags him (\w+) today", _mv.get("text", ""))   # Oct 23 (Dom): Yahoo takes only Out/IR players on IR
+            _wait = _ytg and _ytg.group(1) not in ("O", "IR", "IR-R", "PUP-R", "NA")
+            ACTIONS.append(dict(lg=_lab, rank=3, kind="ir", who=_mv["name"], what=f"Move {_mv['name']} to IR" + (f" ({_AHURT[(_lab, _mv['name'])]})" if (_lab, _mv["name"]) in _AHURT else "")
+                                + (f". Yahoo lists him {_ytg.group(1)} today, and IR takes only a player listed Out or IR - he sits on your bench until Yahoo flips him" if _wait else ". Frees a bench seat"),
+                                by="when Yahoo lists him Out" if _wait else "any time"))
         elif _mv.get("kind") == "drop":
             ACTIONS.append(dict(lg=_lab, rank=3, kind="drop", who=_mv["name"], what=f"{_mv['name']} is a drop candidate (hurt, no IR seat). Your call", by="any time"))
 ACTIONS.sort(key=lambda a: (a["rank"], _ALG.index(a["lg"])))
