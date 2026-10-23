@@ -117,10 +117,12 @@ WEEK = METER['week']
 # ------------------------------------------------------------------ match news to players, grade it
 BAD = r"\bout (\d+ |several |multiple |a few )?weeks?\b|\bout indefinitely\b|\bruled out\b|\bwon't play\b|\bwill not play\b|\bwill miss\b|\bplaced on (injured reserve|ir)\b|\bto ir\b|\bdid not practice\b|\bdidn't practice\b|\bdnp\b|\bdoubtful\b|season-ending|\btorn\b|\bsurgery\b|\breleased\b|\bwaived\b|\bsuspended\b|\bbenched\b|\bnot expected to play\b|\bout for\b|\bset to miss\b|\bunlikely to play\b|\bwon't suit up\b|\binactive\b"
 CAUT = r"\blimited\b|\bquestionable\b|\bday-to-day\b|\bgame-time\b|\buncertain\b|\bmanaging\b|\bnursing\b|\btweaked\b|\bsore\b|\bpopped up\b|\bnew injury\b|\bcommittee\b|\bsplit\b|\bless work\b|\breduced role\b"
-GOOD = r"\bfull practice\b|\bfully practiced\b|\bfull participant\b|\bpracticed fully\b|\bcleared\b|\bactivated\b|\bexpected to play\b|\bwill play\b|\bwill start\b|\bstarting\b|\bpromoted\b|\belevated\b|\bsigned\b|\blead back\b|\bbellcow\b|\bworkhorse\b|\bexpanded role\b|\bbigger role\b|\bincreased role\b|\bmore snaps\b|\btake over\b|\btaking over\b|\bin line for\b|\bno injury designation\b|\bremoved from injury report\b|\bon track to play\b|\bset to return\b|\breturn(ed|s)? to practice\b"
+GOOD = r"\bfull practice\b|\bfully practiced\b|\bfull participant\b|\bpracticed fully\b|\bcleared\b|\bactivated\b|\bexpected to play\b|\bwill play\b|\bwill start\b|\bnamed (the )?starter\b|\bstarting (role|job) (is|to) (his|him)\b|\bpromoted\b|\belevated\b|\bsigned\b|\blead back\b|\bbellcow\b|\bworkhorse\b|\bexpanded role\b|\bbigger role\b|\bincreased role\b|\bmore snaps\b|\btake over\b|\btaking over\b|\bin line for\b|\bno injury designation\b|\bremoved from injury report\b|\bon track to play\b|\bset to return\b|\breturn(ed|s)? to practice\b"
 def grade(text):
     t = text.lower()
     if re.search(BAD, t): return 'bad'
+    # Oct 23 (Dom): "Falling Out of Starting Job" and "Not Worth Starting" were graded good news
+    if re.search(r"\bnot worth\b|\bfalling out\b|\bfall(s|en)? out of\b|\blos(e|es|ing) (his|the) (job|role|starting)\b|\bdemot|\bbenched\b|\bphased out\b|\bdecline\b", t): return 'caution'
     if re.search(GOOD, t) and not re.search(r'\blimited\b', t): return 'good'
     if re.search(CAUT, t): return 'caution'
     return 'note'
@@ -209,7 +211,7 @@ for k, L in LG.items():
     cand = {}
     for key, items in NEWS.items():
         if free(key):
-            good = [d for d in items if d['grade'] == 'good']
+            good = [d for d in items if d['grade'] == 'good' and (NOW - d['t']).total_seconds() <= 4 * 86400]   # Oct 23: good news counts only while it is this week's (last 4 days)
             if good:
                 mk = marker(good, False)
                 if mk: cand.setdefault(key, dict(why=[], news=good[:2], marker=mk))['why'].append('good news')
