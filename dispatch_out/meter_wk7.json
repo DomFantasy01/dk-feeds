@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Fri Oct 23 2026 06:05 PM PT",
+ "built_pt": "Fri Oct 23 2026 06:26 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 23 06:05 PM PT",
+   "pulled_pt": "Fri Oct 23 06:26 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 1.2,
+   "age_h": 1.6,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 1.2,
+   "age_h": 1.6,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 1.2,
+   "age_h": 1.6,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 23 06:05 PM PT",
+   "pulled_pt": "Fri Oct 23 06:26 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Fri Oct 23 2026 06:05 PM PT for week 7"
+   "note": "Gotham run Fri Oct 23 2026 06:26 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-23T2342Z.csv",
-   "pulled_pt": "Fri Oct 23 04:42 PM PT",
-   "age_h": 1.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-24T0106Z.csv",
+   "pulled_pt": "Fri Oct 23 06:06 PM PT",
+   "age_h": 0.3,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 1.4 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-23T2342Z.csv",
-   "pulled_pt": "Fri Oct 23 04:42 PM PT",
-   "age_h": 1.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-24T0106Z.csv",
+   "pulled_pt": "Fri Oct 23 06:06 PM PT",
+   "age_h": 0.3,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 1.4 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 1.2,
+   "age_h": 1.6,
    "rows": 68,
    "need": null,
    "note": "Dom's four rosters"
@@ -108,8 +108,8 @@
    "teams": 12,
    "opp_rank": 12,
    "needles": {
-    "gotham": 58,
-    "sleeper": 51,
+    "gotham": 57,
+    "sleeper": 50,
     "yahoo": 53,
     "yahoo_best": false,
     "yahoo_posted": 53,
@@ -117,12 +117,12 @@
    },
    "totals": {
     "gotham": [
-     133.78,
-     124.4
+     133.81,
+     124.71
     ],
     "sleeper": [
-     137.07,
-     136.2
+     137.13,
+     136.7
     ],
     "yahoo": [
      142.07,
@@ -218,10 +218,10 @@
       "yahoo": 24.42,
       "actual": null,
       "pos": "RB",
-      "gotham": 24.35,
+      "gotham": 24.38,
       "gotham_raw": 25.74,
       "gotham_src": "gotham-capped",
-      "sleeper": 24.28,
+      "sleeper": 24.34,
       "window": 2,
       "gs": "pre"
      },
@@ -348,10 +348,10 @@
       "yahoo": 23.23,
       "actual": null,
       "pos": "QB",
-      "gotham": 23.36,
+      "gotham": 23.39,
       "gotham_raw": 25.31,
       "gotham_src": "gotham-capped",
-      "sleeper": 23.48,
+      "sleeper": 23.54,
       "window": 2,
       "gs": "pre"
      },
@@ -364,10 +364,10 @@
       "yahoo": 11.64,
       "actual": null,
       "pos": "RB",
-      "gotham": 11.99,
+      "gotham": 12.15,
       "gotham_raw": 12.54,
       "gotham_src": "gotham-capped",
-      "sleeper": 12.34,
+      "sleeper": 12.66,
       "window": 3,
       "gs": "pre"
      },
@@ -476,10 +476,10 @@
       "yahoo": 7.59,
       "actual": null,
       "pos": "K",
-      "gotham": 7.49,
-      "gotham_raw": 7.49,
+      "gotham": 7.44,
+      "gotham_raw": 7.44,
       "gotham_src": "sleeper",
-      "sleeper": 7.49,
+      "sleeper": 7.44,
       "window": 2,
       "gs": "pre"
      },
@@ -589,12 +589,12 @@
      137.84
     ],
     "gotham": [
-     133.78,
-     124.37
+     133.81,
+     124.51
     ],
     "sleeper": [
-     137.07,
-     136.17
+     137.13,
+     136.5
     ]
    },
    "best_moves": {
@@ -603,9 +603,9 @@
      "op": [
       {
        "out": "Eddy Pineiro",
-       "out_v": 7.5,
+       "out_v": 7.4,
        "into": "Evan McPherson",
-       "in_v": 7.5
+       "in_v": 7.6
       }
      ]
     },
@@ -614,9 +614,9 @@
      "op": [
       {
        "out": "Eddy Pineiro",
-       "out_v": 7.5,
+       "out_v": 7.4,
        "into": "Evan McPherson",
-       "in_v": 7.5
+       "in_v": 7.6
       }
      ]
     },
@@ -651,11 +651,11 @@
    "totals": {
     "gotham": [
      140.75,
-     155.41
+     155.38
     ],
     "sleeper": [
      144.85,
-     160.03
+     160.0
     ],
     "yahoo": [
      150.72,
@@ -1041,10 +1041,10 @@
       "yahoo": 8.32,
       "actual": null,
       "pos": "K",
-      "gotham": 8.34,
-      "gotham_raw": 8.34,
+      "gotham": 8.31,
+      "gotham_raw": 8.31,
       "gotham_src": "sleeper",
-      "sleeper": 8.34,
+      "sleeper": 8.31,
       "window": 1,
       "gs": "pre"
      },
@@ -1167,11 +1167,11 @@
     ],
     "gotham": [
      140.75,
-     147.73
+     147.7
     ],
     "sleeper": [
      144.85,
-     151.81
+     151.78
     ]
    },
    "best_moves": {
@@ -1219,7 +1219,7 @@
    "opp_rank": 3,
    "needles": {
     "gotham": 20,
-    "sleeper": 19,
+    "sleeper": 18,
     "yahoo": 20,
     "yahoo_best": false,
     "yahoo_posted": 20,
@@ -1228,11 +1228,11 @@
    "totals": {
     "gotham": [
      100.35,
-     140.49
+     140.66
     ],
     "sleeper": [
-     105.43,
-     148.01
+     105.37,
+     149.09
     ],
     "yahoo": [
      105.42,
@@ -1363,7 +1363,7 @@
       "gotham": 10.74,
       "gotham_raw": 10.74,
       "gotham_src": "gotham",
-      "sleeper": 12.76,
+      "sleeper": 12.7,
       "window": 3,
       "gs": "pre"
      },
@@ -1525,7 +1525,7 @@
       "gotham": 9.96,
       "gotham_raw": 9.96,
       "gotham_src": "gotham",
-      "sleeper": 11.86,
+      "sleeper": 12.59,
       "window": 2,
       "gs": "pre"
      },
@@ -1538,10 +1538,10 @@
       "yahoo": 13.68,
       "actual": null,
       "pos": "RB",
-      "gotham": 13.16,
+      "gotham": 13.33,
       "gotham_raw": 16.72,
       "gotham_src": "gotham-capped",
-      "sleeper": 12.63,
+      "sleeper": 12.98,
       "window": 3,
       "gs": "pre"
      },
@@ -1668,11 +1668,11 @@
     ],
     "gotham": [
      100.04,
-     140.49
+     140.66
     ],
     "sleeper": [
-     101.99,
-     148.01
+     101.93,
+     149.09
     ]
    },
    "best_moves": {
@@ -1734,12 +1734,12 @@
    },
    "totals": {
     "gotham": [
-     162.83,
-     155.41
+     162.97,
+     155.5
     ],
     "sleeper": [
-     174.29,
-     158.48
+     174.27,
+     158.66
     ],
     "yahoo": [
      177.37,
@@ -1870,7 +1870,7 @@
       "gotham": 16.7,
       "gotham_raw": 16.7,
       "gotham_src": "gotham",
-      "sleeper": 18.7,
+      "sleeper": 18.68,
       "window": 2,
       "gs": "pre"
      },
@@ -2109,10 +2109,10 @@
       "yahoo": 19.03,
       "actual": null,
       "pos": "QB",
-      "gotham": 18.93,
+      "gotham": 19.02,
       "gotham_raw": 19.93,
       "gotham_src": "gotham-capped",
-      "sleeper": 18.84,
+      "sleeper": 19.02,
       "window": 3,
       "gs": "pre"
      },
@@ -2184,7 +2184,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 11.12,
-     "sleeper": 10.69,
+     "sleeper": 11.01,
      "window": 3
     },
     {
@@ -2263,11 +2263,11 @@
     ],
     "gotham": [
      161.94,
-     155.41
+     155.5
     ],
     "sleeper": [
-     173.01,
-     158.31
+     172.99,
+     158.49
     ]
    },
    "best_moves": {
@@ -2278,6 +2278,12 @@
        "out_v": 9.0,
        "into": "Wan'Dale Robinson",
        "in_v": 9.9
+      },
+      {
+       "out": "Ollie Gordon II",
+       "out_v": 10.5,
+       "into": "RJ Harvey",
+       "in_v": 10.7
       }
      ],
      "op": [
