@@ -309,17 +309,27 @@ def render(rep):
     return "\n".join(out)
 
 def add_to_brief(path, rep):
+    """Oct 24 (Dom): no raw flags in the brief. A pickup name reaches the brief only after the expert panel and the full
+    workup passed it (expert_panel.json). New arrivals that did not pass are listed by name only, as checked."""
     if not os.path.exists(path): return
     s = open(path).read().split("\n\nMorning check")[0].rstrip("\n")
+    try: P = json.load(open(os.path.join(os.path.dirname(path), "expert_panel.json")))
+    except Exception: P = None
     parts = []
+    if rep.get("stale"): parts.append("Warning, the morning read is stale: " + "; ".join(rep["stale"]) + ".")
+    if P is None: parts.append("Warning, the expert panel did not run this build, so no pickup names are listed.")
     for lab, L in rep["leagues"].items():
-        r = L["review"]; bits = []
-        bits += r["yours"][:2] + r["hurts"][:2] + r["missed"][:2] + r["openings"][:2]
-        bits += [e["line"] for e in L["expert"][:2]] + [a["line"] for a in L["arrivals"] if a["beats"]][:2]
+        r = L["review"]; bits = r["yours"][:3] + r["hurts"][:2] + r["missed"][:2]
+        passed = (P or {}).get("leagues", {}).get(lab, {}).get("passed", [])
+        for x in passed:
+            bits.append(f"Panel pick to talk through: {x['name']} ({x['team']} {x['pos']}) over your {x['beats']}, {x['agree']} voices agree, "
+                        + (f"{x['ros_gain']:+.0f} points rest of season" if x.get("ros_gain") is not None else "this week only")
+                        + f", {x['available']}.")
+        checked = [a["name"] for a in L["arrivals"] if a["name"] not in {x["name"] for x in passed}]
+        if checked: bits.append("New arrivals checked, not upgrades for you: " + ", ".join(checked[:6]) + ".")
         if bits: parts.append(f"{lab}: " + " ".join(bits))
-    if rep.get("stale"): parts.insert(0, "Warning, the morning read is stale: " + "; ".join(rep["stale"]) + ".")
-    body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert check touches your teams."
-    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}, expert Justin Boone):\n\n{body}\n")
+    body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert panel touches your teams."
+    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Boone, ESPN, CBS, FFToday, Sleeper, Yahoo):\n\n{body}\n")
 
 if __name__ == "__main__":
     R = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.getcwd()

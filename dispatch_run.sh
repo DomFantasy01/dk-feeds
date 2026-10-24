@@ -87,5 +87,8 @@ echo "== 8 the state file (Oct 19, Dom): one file Claude reads instead of scrapi
 python3 "$REPO/state/build_state.py" "$REPO" "$ROOT" || echo "!! STATE FILE FAILED - the Dispatch above still saved"
 echo "== 9 MORNING CHECK (Oct 24, Dom): expert lane (Justin Boone), new-arrival gate (traded/signed/dropped), transaction review"
 # Its own lane beside the Scout - the Scout's workload filters never touch it. Reads yahoo_drop/morning/ (the 5 AM Chrome read).
+# First the EXPERT PANEL: six named voices (Boone, ESPN, CBS, FFToday, Sleeper, Yahoo) + the full workup; only names it passes reach the brief.
+curl -sfL -o "$ROOT/dksys/gate/fresh/games.csv" https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv || echo "!! schedule download failed - the panel prints without byes and playoff matchups"
+python3 "$ROOT/dksys/scout/expert_panel.py" "$REPO" --stats "$ROOT/dksys/gate/fresh/stats_player_week_2026.csv" --snaps "$ROOT/dksys/gate/fresh/snap_counts_2026.csv" --games "$ROOT/dksys/gate/fresh/games.csv" > "$ROOT/expert_panel.log" 2>&1 && head -2 "$ROOT/expert_panel.log" || { echo "!! EXPERT PANEL FAILED"; tail -5 "$ROOT/expert_panel.log"; rm -f "$REPO/dispatch_out/expert_panel.json"; }
 if python3 "$ROOT/dksys/scout/morning_review.py" "$REPO" > "$ROOT/morning_review.log" 2>&1; then head -2 "$ROOT/morning_review.log"; else echo "!! MORNING CHECK FAILED - the Dispatch above still saved"; tail -5 "$ROOT/morning_review.log"; fi
 echo "DONE week $W"
