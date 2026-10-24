@@ -43,6 +43,7 @@ for lab,k in LGK.items():
     def bl(v,row):
         if pd.isna(v) or pd.isna(row.prior) or bool(row.played_wk): return v
         if (row.role_add or 0)>0: return v           # his role changed this week - last season says nothing about the new one
+        if (getattr(row,'era',0) or 0)>0: return v    # Oct 23: he became the starter this season - last season was a different job
         if (str(row.team),str(row.pos)) in INH and row.k not in OUTS and row.n_games>=2 and v>=1.5*row.prior: return v   # Oct 21: he inherited the job of a man out for the season
         if str(row.status).upper() in ('O','IR','PUP','OUT','NFI','SUS') or v==0: return v   # out = zero, the prior never revives him
         if str(row.status).upper()=='D':            # doubtful: blend the uncut number, then keep the engine's quarter cut

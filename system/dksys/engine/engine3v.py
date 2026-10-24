@@ -305,12 +305,54 @@ def run(lab):
         if late_.wl.min()<=0: continue
         d_=(late_.sh.mean()-early_.sh.mean())*100
         if abs(d_)>=DRIFT_SWING: DRIFT[key_]=(round(d_,1),float(late_.wl.mean()))
+    # v7 NEW STARTER (Oct 23, Dom). Back-test, Weeks 4-6, all four leagues, games before each week only: fired once (Gordon Wk 5:
+    # 12.3 -> 14.2, scored 14.8), changed nobody else; overall miss 5.911 -> 5.907 (DK IV). A looser first try, without the snap
+    # checks, made 18-31 player-weeks worse and was thrown out. Off switch: DK_ERA=off. A backup counts as the
+    # new starter - and only his games since then set his workload - when ALL of these hold:
+    #  1. a teammate at his position who was a real worker (8+ a game) has missed his team's last 2+ games and is on IR/PUP
+    #     (Sleeper), not just Questionable;  2. the backup has 2+ games since that teammate's last game;
+    #  3b. the injured man was the lead: 50%+ of snaps in the games he played;
+    #  3. his snap share jumped and stayed up: every one of those games at 45%+ of snaps, and their average at least
+    #     20 points above his average before the injury.  (Ollie Gordon: 19% before Achane's ACL, then 84 / 56 / 65.)
+    ERA={}
+    if os.environ.get('DK_ERA','on')!='off':   # Oct 23: passed the Weeks 4-6 back-test (see the note above) - on by default
+        try:
+            _SJ2=json.load(open(_FD+'sleeper_injuries.json')); _SJ2=_SJ2.get('players',_SJ2)
+            _SIRALL={norm(i['name']) for i in (_SJ2.values() if isinstance(_SJ2,dict) else _SJ2) if isinstance(i,dict) and i.get('name') and str(i.get('inj') or '') in ('IR','PUP')}
+            _sn=pd.read_csv("/home/claude/dksys/gate/fresh/snap_counts_2026.csv",low_memory=False)
+            _sn=_sn[(_sn.game_type=="REG")&(_sn.week<WEEK)]; _SNP={(FM.norm(str(a)),int(w)):float(v) for a,w,v in zip(_sn.player,_sn.week,_sn.offense_pct)}
+        except Exception as _e: _SIRALL=set(); _SNP={}; print('NEW STARTER rule skipped:',_e)
+        _tw={}
+        for k_,sk_ in ser.items():
+            for w_,v_ in sk_.items():
+                if w_<WEEK: _tw.setdefault(v_[2],set()).add(w_)
+        for k_,sk_ in ser.items():
+            if k_ not in _SIRALL or STATUS.get(k_,('',''))[0]=='Questionable': continue
+            pl_=sorted(w for w,v in sk_.items() if v[0]>0 and w<WEEK)
+            if not pl_: continue
+            tm_,p_=sk_[pl_[-1]][2],sk_[pl_[-1]][3]
+            if p_ not in VACATE or sum(sk_[w][0] for w in pl_)/len(pl_)<8: continue
+            if len([w for w in _tw.get(tm_,()) if w>pl_[-1]])<2: continue
+            for k2,sk2 in ser.items():
+                if k2==k_: continue
+                g2=[w for w,v in sk2.items() if v[0]>0 and w<WEEK and v[2]==tm_ and v[3]==p_]
+                aft=[w for w in g2 if w>pl_[-1]]; bef=[w for w in g2 if w<=pl_[-1]]
+                if len(aft)<2 or not bef: continue
+                if os.environ.get('DK_ERA_TOP','on')!='off':   # 4. the injured man was his team's top worker at the position (the lead back, not a backup)
+                    _si=[_SNP.get((k_,w)) for w in pl_]; _si=[x for x in _si if x is not None]
+                    if not _si or sum(_si)/len(_si)<.50: continue      # snaps decide the lead back, the same in every league's scoring
+                sa=[_SNP.get((k2,w)) for w in aft]; sb=[_SNP.get((k2,w)) for w in bef]
+                if None in sa or not [x for x in sb if x is not None]: continue
+                sb=[x for x in sb if x is not None]
+                if min(sa)>=.45 and sum(sa)/len(sa)>=sum(sb)/len(sb)+.20: ERA[k2]=max(ERA.get(k2,0),pl_[-1]+1)
+        if ERA: print('NEW STARTER (role era):',', '.join(f'{k_} from Wk {w_}' for k_,w_ in ERA.items()))
     b=BL[(BL.league==lab)&(BL.pos.isin(POS))].copy()
     mine={norm(n):s for n,s in ROST[lab]}
     rows=[]
     for _,r in b.iterrows():
         s=ser.get(r.k,{}); wk=sorted(s)
         gw=[w for w in wk if s[w][0]>0 and w<=WEEK]
+        if r.k in ERA: gw=[w for w in gw if w>=ERA[r.k]]   # v7 NEW STARTER: only the games in his current job
         pl=[(DECAY**(len(gw)-1-i),s[w][0],s[w][1]) for i,w in enumerate(gw)]   # v2: latest game 1.0, each older .65 of the next (= .42/.65/1.0 at three games)
         team=r.team
         if pl:
@@ -356,7 +398,7 @@ def run(lab):
             wl_pg=round(opp,1) if opp else None,ppu=round(eff,3) if eff else None,eng_wk=None if ewk is None else round(ewk,2),
             eng_fwd=None if fwd is None else round(fwd,2),blend=r.blend_ppg,nsrc=r.n_sources,pct=r.pct_rostered,
             role_add=round(ROLE.get(r.k,0),1),role_from='|'.join(ROLEWHY.get(r.k,[])),veg=VEG.get(team),
-            drift=dmark,drift_swing=DRIFT[r.k][0] if dmark else None,wl_pre_drift=round(opp_pre,1) if opp_pre else None))
+            drift=dmark,drift_swing=DRIFT[r.k][0] if dmark else None,wl_pre_drift=round(opp_pre,1) if opp_pre else None,era=ERA.get(r.k,0)))
     R=pd.DataFrame(rows)
     # thresholds from rostered men in this league
     rost=R[~R.own.isin(['FA','W'])]
