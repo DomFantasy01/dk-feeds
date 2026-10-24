@@ -487,80 +487,198 @@
   "Early warning: Jonathan Taylor (IND RB) snaps 89% to 73% (typical game), touch share 92% to 79% the last three games; Seth McGowan (free agent) is taking the work - snaps 11% to 26%, touch share 8% to 21%, level now ~2.6"
  ],
  "expert_lane": {
-  "expert": "Justin Boone (Yahoo)",
-  "source": "Justin Boone (Yahoo) weekly rankings, week 7, read live Sat Oct 24 2026 7:54 AM PT (Chrome read). list|rank|player|pos|nflteam|article",
-  "items": [
-   {
-    "name": "Omar Cooper Jr.",
-    "team": "NYJ",
-    "pos": "WR",
-    "boone": 29,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 22,
-    "how": "free agent - add any time",
-    "yahoo_ros": 75.6,
-    "line": "Boone ranks Omar Cooper Jr. (NYJ WR) WR29 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
-   },
+  "experts": [
+   "Boone",
+   "Winks",
+   "Harmon",
+   "Eisenberg"
+  ],
+  "read": [
+   "Yahoo Sat Oct 24 2026 8:54 AM",
+   "CBS Sat Oct 24 2026 8:55 AM"
+  ],
+  "flags": [
    {
     "name": "Jaylin Noel",
+    "pos": "WR",
     "team": "HOU",
-    "pos": "WR",
-    "boone": 40,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 11,
-    "how": "free agent - add any time",
-    "yahoo_ros": 64.1,
-    "line": "Boone ranks Jaylin Noel (HOU WR) WR40 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
+    "beats": "Marvin Harrison Jr.",
+    "agree": "3 of 4",
+    "yes": [
+     "Boone",
+     "Winks",
+     "Harmon"
+    ],
+    "no": [
+     "Eisenberg"
+    ],
+    "votes": {
+     "Boone": "WR40 v WR51",
+     "Winks": "WR46 v WR50",
+     "Harmon": "WR31 v WR51",
+     "Eisenberg": "WR47 v WR44"
+    },
+    "other_experts": {
+     "Smyth": "WR40",
+     "Pianowski": "WR34",
+     "Richard": "WR34",
+     "Cummings": "WR41"
+    },
+    "available": "free agent - instant add",
+    "injury": "",
+    "done": "Wk4 HOU: 1 car 3 tgt, 11.9 pts; Wk5 HOU: 1 car 5 tgt, 15.2 pts; Wk6 HOU: 4 tgt, 20.7 pts | snaps 62%/45%/49% | season 10.8 a game over 6",
+    "trend": "steady",
+    "bye": [
+     8
+    ],
+    "playoffs": [
+     "Wk15 vs JAX (easy)",
+     "Wk16 @ PHI (easy)",
+     "Wk17 @ GB (neutral)"
+    ],
+    "this_week": "Sun 10:00 AM PT vs NYG",
+    "drop_candidate": "Marvin Harrison Jr.",
+    "notes": [
+     "the man he beats, Marvin Harrison Jr., is also your weakest bench player"
+    ],
+    "stops": [],
+    "verdict": "flag - worth analyzing"
    },
    {
-    "name": "Jordan Watkins",
-    "team": "SF",
+    "name": "Kendrick Bourne",
     "pos": "WR",
-    "boone": 44,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 7,
-    "how": "free agent - add any time",
-    "yahoo_ros": 6.8,
-    "line": "Boone ranks Jordan Watkins (SF WR) WR44 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
+    "team": "ARI",
+    "beats": "Marvin Harrison Jr.",
+    "agree": "3 of 4",
+    "yes": [
+     "Winks",
+     "Harmon",
+     "Eisenberg"
+    ],
+    "no": [
+     "Boone"
+    ],
+    "votes": {
+     "Boone": "WR50 v WR51",
+     "Winks": "WR47 v WR50",
+     "Harmon": "WR46 v WR51",
+     "Eisenberg": "WR41 v WR44"
+    },
+    "other_experts": {
+     "Smyth": "WR42",
+     "Pianowski": "WR44",
+     "Richard": "WR38",
+     "Cummings": "WR35"
+    },
+    "available": "free agent - instant add",
+    "injury": "",
+    "done": "Wk3 ARI: 3 tgt, 4.2 pts; Wk5 ARI: 8 tgt, 12.0 pts; Wk6 ARI: 8 tgt, 9.7 pts | snaps 64%/49%/57% | season 8.9 a game over 5",
+    "trend": "rising",
+    "bye": [
+     14
+    ],
+    "playoffs": [
+     "Wk15 vs NYJ (neutral)",
+     "Wk16 @ NO (neutral)",
+     "Wk17 vs LV (neutral)"
+    ],
+    "this_week": "Sun 1:05 PM PT vs DEN",
+    "drop_candidate": "Marvin Harrison Jr.",
+    "notes": [
+     "the man he beats, Marvin Harrison Jr., is also your weakest bench player"
+    ],
+    "stops": [],
+    "verdict": "flag - worth analyzing"
    },
    {
-    "name": "Dontayvion Wicks",
-    "team": "PHI",
+    "name": "Omar Cooper Jr.",
     "pos": "WR",
-    "boone": 46,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 5,
-    "how": "free agent - add any time",
-    "yahoo_ros": 66.1,
-    "line": "Boone ranks Dontayvion Wicks (PHI WR) WR46 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
-   },
+    "team": "NYJ",
+    "beats": "Josh Downs",
+    "agree": "3 of 4",
+    "yes": [
+     "Boone",
+     "Winks",
+     "Harmon"
+    ],
+    "no": [
+     "Eisenberg"
+    ],
+    "votes": {
+     "Boone": "WR29 v WR41",
+     "Winks": "WR29 v WR38",
+     "Harmon": "WR28 v WR36",
+     "Eisenberg": "WR42 v WR43"
+    },
+    "other_experts": {
+     "Smyth": "WR34",
+     "Pianowski": "WR35",
+     "Richard": "WR36"
+    },
+    "available": "free agent - instant add",
+    "injury": "",
+    "done": "Wk1 NYJ: 1 tgt, 4.0 pts; Wk6 NYJ: 7 tgt, 22.3 pts | snaps 7%/82% | season 13.2 a game over 2",
+    "trend": "",
+    "bye": [
+     13
+    ],
+    "playoffs": [
+     "Wk15 @ ARI (easy)",
+     "Wk16 vs NE (neutral)",
+     "Wk17 vs MIN (hard)"
+    ],
+    "this_week": "Sun 10:00 AM PT vs MIA",
+    "drop_candidate": "Marvin Harrison Jr.",
+    "notes": [],
+    "stops": [],
+    "verdict": "flag - worth analyzing"
+   }
+  ],
+  "failed": [
    {
-    "name": "Brandin Cooks",
-    "team": "SF",
-    "pos": "WR",
-    "boone": 47,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 4,
-    "how": "free agent - add any time",
-    "yahoo_ros": 6.9,
-    "line": "Boone ranks Brandin Cooks (SF WR) WR47 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
-   },
-   {
-    "name": "Ryan Flournoy",
-    "team": "DAL",
-    "pos": "WR",
-    "boone": 48,
-    "over": "Marvin Harrison Jr.",
-    "over_rank": 51,
-    "margin": 3,
-    "how": "free agent - add any time",
-    "yahoo_ros": 92.2,
-    "line": "Boone ranks Ryan Flournoy (DAL WR) WR48 this week, ahead of your Marvin Harrison Jr. (WR51). free agent - add any time."
+    "name": "Brian Robinson Jr.",
+    "pos": "RB",
+    "team": "ATL",
+    "beats": "D'Andre Swift",
+    "agree": "4 of 4",
+    "yes": [
+     "Boone",
+     "Winks",
+     "Harmon",
+     "Eisenberg"
+    ],
+    "no": [],
+    "votes": {
+     "Boone": "RB3 v RB7",
+     "Winks": "RB2 v RB5",
+     "Harmon": "RB2 v RB10",
+     "Eisenberg": "RB3 v RB10"
+    },
+    "other_experts": {
+     "Smyth": "RB2",
+     "Pianowski": "RB2",
+     "Richard": "RB2",
+     "Cummings": "RB2"
+    },
+    "available": "free agent - instant add",
+    "injury": "Out",
+    "done": "Wk4 ATL: 14 car 1 tgt, 25.7 pts; Wk5 ATL: 7 car 1 tgt, 1.6 pts; Wk6 ATL: 2 car 2 tgt, 3.0 pts | snaps 42%/22%/18% | season 8.8 a game over 6",
+    "trend": "falling",
+    "bye": [
+     11
+    ],
+    "playoffs": [
+     "Wk15 @ WAS (hard)",
+     "Wk16 vs TB (hard)",
+     "Wk17 vs NO (easy)"
+    ],
+    "this_week": "Sun 10:00 AM PT vs SF",
+    "drop_candidate": "RJ Harvey",
+    "notes": [],
+    "stops": [
+     "tagged Out"
+    ],
+    "verdict": "fails the workup: tagged Out"
    }
   ]
  },
@@ -569,11 +687,11 @@
    "name": "Dameon Pierce",
    "pos": "RB",
    "why": "dropped by Killer Ko-Gees Fri Oct 23 8:14 AM",
-   "boone": 45,
+   "boone": 43,
    "beats": null,
    "how": "on waivers until Oct 26",
    "yahoo_ros": 5.6,
-   "line": "Dameon Pierce (RB) - dropped by Killer Ko-Gees Fri Oct 23 8:14 AM. Boone: RB45. Yahoo rest of season 6. on waivers until Oct 26."
+   "line": "Dameon Pierce (RB) - dropped by Killer Ko-Gees Fri Oct 23 8:14 AM. Experts: panel RB43. Yahoo rest of season 6. on waivers until Oct 26."
   }
  ],
  "txn_review": {
@@ -583,8 +701,8 @@
   ],
   "hurts": [],
   "missed": [
-   "Killer Ko-Gees took Ja'Kobi Lane (Bal WR), Fri Oct 23 10:45 AM (Free Agent). Boone has him WR43, ahead of your Marvin Harrison Jr. (WR51).",
-   "Killer Ko-Gees took Chris Godwin Jr. (TB WR), Fri Oct 23 10:33 AM (Free Agent). Boone has him WR30, ahead of your Marvin Harrison Jr. (WR51)."
+   "Killer Ko-Gees took Ja'Kobi Lane (Bal WR), Fri Oct 23 10:45 AM (Free Agent). the expert panel has him WR43, ahead of your Marvin Harrison Jr. (WR51).",
+   "Killer Ko-Gees took Chris Godwin Jr. (TB WR), Fri Oct 23 10:33 AM (Free Agent). the expert panel has him WR33, ahead of your Marvin Harrison Jr. (WR51)."
   ],
   "openings": [],
   "quiet": 2

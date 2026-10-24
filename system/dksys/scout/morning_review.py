@@ -2,7 +2,7 @@
 workload filters can never throw a name out of them. Built after the Marvin Harrison Jr. miss (DK III, Oct 21-23):
 the Scout only looks for climbing workload, Harrison failed that test, and nothing else was watching.
 
-  1. EXPERT CHECK   - every available player a named expert (Justin Boone, Yahoo) ranks ahead of someone on Dom's roster
+  1. EXPERT CHECK   - every available player the named-expert panel (Boone, Winks, Harmon, Eisenberg; median rank) puts ahead of someone on Dom's roster
                       at the same position. Each flag carries the expert's name and both ranks. No workload test.
   2. NEW-ARRIVAL GATE - every player traded, signed, released or dropped in the last 72 hours who is available in one of
                       Dom's leagues gets a full line the day it happens: expert rank, Yahoo rest-of-season, how he can be had.
@@ -49,17 +49,18 @@ def pt_str(t):
 
 # ------------------------------------------------------------------ loaders
 def load_boone(R):
-    f = f"{R}/yahoo_drop/morning/boone_rankings.txt"
-    B, head = {}, ""
-    if not os.path.exists(f): return B, "Boone rankings file missing"
-    for ln in open(f):
-        if ln.startswith("#"): head = ln.strip("# \n"); continue
-        p = ln.rstrip("\n").split("|")
-        if len(p) < 5 or not p[1].strip().isdigit(): continue
-        lst, rk, nm, pos, tm = p[0], int(p[1]), p[2], p[3], p[4]
-        d = B.setdefault(norm(nm), dict(name=nm, pos=pos if pos in POS else None, team=tm))
-        if lst == "FLEX": d["flex"] = rk
-        elif lst in POS: d["pos"] = lst; d["rank"] = rk
+    """Oct 24 (Dom): named experts only. Was Boone's list alone; now the panel's median rank (Boone, Winks, Harmon,
+    Eisenberg) from expert_panel.resolved_ranks, so one expert never decides a line on his own."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import expert_panel as EP
+    ranks, stamps = EP.resolved_ranks(R); B = {}
+    for k, d in ranks.items():
+        v = [x for e, x in d.items() if e in EP.PANEL]
+        if not v: continue
+        pos = max(set(x[0] for x in v), key=[x[0] for x in v].count)
+        rs = sorted(x[1] for x in v if x[0] == pos)
+        B[norm(d["_name"])] = dict(name=d["_name"], pos=pos, rank=rs[len(rs) // 2], team="")
+    head = "named-expert panel (median of " + ", ".join(EP.SHOW[e] for e in EP.PANEL) + "), read live " + (stamps[0].split(" ", 1)[1] + " PT" if stamps else "?")
     return B, head
 
 def load_txns(R, n):
@@ -182,7 +183,7 @@ def run(R, since, asof, out_dir, write_brief):
         b = B.get(norm(nm)); return b.get("rank") if b else None
     def rtxt(nm):
         b = B.get(norm(nm))
-        return f"{b['pos']}{b['rank']}" if b and b.get("rank") else "not ranked by Boone this week (bye, hurt or deep)"
+        return f"panel {b['pos']}{b['rank']}" if b and b.get("rank") else "not ranked by the expert panel this week (bye, hurt or deep)"
 
     news = news_arrivals(R, since)
     report = dict(built=pt_str(dt.datetime.now(PT)), window=dict(since=pt_str(since.astimezone(PT)), asof=pt_str(asof.astimezone(PT))),
@@ -197,7 +198,7 @@ def run(R, since, asof, out_dir, write_brief):
         slots = my_slots(R, n)
         mine = [p for p in mine_names if slots.get(norm(p), "BN") != "IR"]
         W = waivers(R, n); Y = yahoo_ros(R, n, week or 1)
-        # Dom's worst-ranked man at each position (only men Boone ranks this week - a bye-week player is not 'worst')
+        # Dom's worst-ranked man at each position (only men the panel ranks this week - a bye-week player is not 'worst')
         worst = {}
         for p in mine:
             ps, r = posof(p), rk(p)
@@ -220,7 +221,7 @@ def run(R, since, asof, out_dir, write_brief):
             w = beats(b["name"])
             if w: L["expert"].append(dict(name=b["name"], team=b["team"], pos=b["pos"], boone=b["rank"], over=w[0], over_rank=w[1],
                                           margin=w[1] - b["rank"], how=how(b["name"]), yahoo_ros=round(Y[key], 1) if key in Y else None,
-                                          line=f"Boone ranks {b['name']} ({b['team']} {b['pos']}) {b['pos']}{b['rank']} this week, ahead of your {w[0]} ({b['pos']}{w[1]}). {how(b['name'])}."))
+                                          line=f"The expert panel ranks {b['name']} ({b['team']} {b['pos']}) {b['pos']}{b['rank']} this week, ahead of your {w[0]} ({b['pos']}{w[1]}). {how(b['name'])}."))
         L["expert"].sort(key=lambda x: -x["margin"]); L["expert"] = L["expert"][:8]
         # 2 NEW-ARRIVAL GATE (dropped in a league, or traded/signed/released in the news, in the window, and available here)
         cand = {}
@@ -236,7 +237,7 @@ def run(R, since, asof, out_dir, write_brief):
             if not w and why.startswith("dropped by " + (OPP.get(lid) or ("",))[0]) and (OPP.get(lid) or ("",))[0]: continue   # your own cut that doesn't beat anyone
             L["arrivals"].append(dict(name=nm, pos=ps, why=why, boone=rk(nm), beats=w[0] if w else None, how=how(nm),
                                       yahoo_ros=round(Y[key], 1) if key in Y else None,
-                                      line=f"{nm} ({ps}) - {why}. Boone: {rtxt(nm)}" + (f", ahead of your {w[0]} ({ps}{w[1]})" if w else "")
+                                      line=f"{nm} ({ps}) - {why}. Experts: {rtxt(nm)}" + (f", ahead of your {w[0]} ({ps}{w[1]})" if w else "")
                                            + (f". Yahoo rest of season {Y[key]:.0f}" if key in Y else "") + f". {how(nm)}."))
         L["arrivals"].sort(key=lambda a: (a["beats"] is None, a["boone"] or 999)); L["arrivals"] = L["arrivals"][:10]
         # 3 TRANSACTION REVIEW
@@ -252,13 +253,13 @@ def run(R, since, asof, out_dir, write_brief):
             if x["action"] == "Added" and x["pos"] in POS:
                 w = beats(x["player"])
                 if opp and x["team"] == opp:
-                    L["review"]["hurts"].append(f"Your opponent {opp} added {who}, {pt_str(x['t'])} ({x['detail']}). Boone: {rtxt(x['player'])}.")
+                    L["review"]["hurts"].append(f"Your opponent {opp} added {who}, {pt_str(x['t'])} ({x['detail']}). Experts: {rtxt(x['player'])}.")
                 elif w:
-                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). Boone has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}).")
+                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}).")
                 else: L["review"]["quiet"] += 1
             elif x["action"] == "Dropped" and x["pos"] in POS and norm(x["player"]) not in rostered:
                 w = beats(x["player"])
-                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. Boone has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}.")
+                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}.")
                 else: L["review"]["quiet"] += 1
             else: L["review"]["quiet"] += 1
         report["leagues"][lab] = L
@@ -268,7 +269,7 @@ def run(R, since, asof, out_dir, write_brief):
         a = read_age(load_txns(R, n_)[1], asof)
         if a is None or a > 30: stale.append(f"{lab_} transaction read is " + ("missing" if a is None else f"{a:.0f} hours old")); 
     a = read_age(bhead, asof)
-    if a is None or a > 36: stale.append("Boone rankings are " + ("missing" if a is None else f"{a:.0f} hours old"))
+    if a is None or a > 36: stale.append("expert rankings are " + ("missing" if a is None else f"{a:.0f} hours old"))
     report["stale"] = stale
     os.makedirs(out_dir, exist_ok=True)
     json.dump(report, open(f"{out_dir}/morning_review.json", "w"), indent=1)
@@ -281,7 +282,9 @@ def run(R, since, asof, out_dir, write_brief):
             bf = f"{R}/dispatch_out/scout_state/scout_board_{lab.replace(' ', '')}.json"
             try: b = json.load(open(bf))
             except Exception: continue
-            b["expert_lane"] = dict(expert="Justin Boone (Yahoo)", source=report["sources"]["boone"], items=L["expert"])
+            try: P = json.load(open(f"{R}/dispatch_out/expert_panel.json")); pl = P["leagues"][lab]
+            except Exception: P, pl = None, {"passed": [], "failed": []}
+            b["expert_lane"] = dict(experts=(P or {}).get("panel"), read=(P or {}).get("experts_read"), flags=pl["passed"], failed=pl["failed"])
             b["arrivals"] = L["arrivals"]; b["txn_review"] = L["review"]
             json.dump(b, open(bf, "w"), indent=1)
     print(txt)
@@ -296,14 +299,14 @@ def read_age(head, now):
 def render(rep):
     warn = rep.get("stale") or []
     out = [f"!! STALE: {w}" for w in warn] + [f"MORNING CHECK - built {rep['built']} PT. Moves reviewed {rep['window']['since']} to {rep['window']['asof']} PT.",
-           f"Expert: Justin Boone ({rep['sources']['boone'] or 'no Boone file'}). Rosters: Yahoo read {rep['sources']['yahoo_read']}."]
+           f"Experts: {rep['sources']['boone'] or 'no expert file'}. Rosters: Yahoo read {rep['sources']['yahoo_read']}."]
     for lab, L in rep["leagues"].items():
         out.append(f"\n{lab} (plays {L['opponent'] or '?'})")
         r = L["review"]
         for k, title in (("yours", "Your moves"), ("hurts", "Hurts you"), ("missed", "We missed"), ("openings", "Openings")):
             for ln in r[k]: out.append(f"  {title}: {ln}")
         out.append(f"  {r['quiet']} other move(s) in the window don't touch you.")
-        for e in L["expert"]: out.append(f"  EXPERT (Boone): {e['line']}")
+        for e in L["expert"]: out.append(f"  EXPERT PANEL: {e['line']}")
         for a in L["arrivals"]: out.append(f"  NEW ARRIVAL: {a['line']}")
         if not L["expert"] and not L["arrivals"]: out.append("  Expert check and new-arrival gate: nobody available beats your men.")
     return "\n".join(out)
@@ -322,14 +325,13 @@ def add_to_brief(path, rep):
         r = L["review"]; bits = r["yours"][:3] + r["hurts"][:2] + r["missed"][:2]
         passed = (P or {}).get("leagues", {}).get(lab, {}).get("passed", [])
         for x in passed:
-            bits.append(f"Panel pick to talk through: {x['name']} ({x['team']} {x['pos']}) over your {x['beats']}, {x['agree']} voices agree, "
-                        + (f"{x['ros_gain']:+.0f} points rest of season" if x.get("ros_gain") is not None else "this week only")
-                        + f", {x['available']}.")
+            bits.append(f"Expert flag to analyze: {x['name']} ({x['team']} {x['pos']}) over your {x['beats']} - {', '.join(x['yes'])} rank him higher this week"
+                        + (f" ({', '.join(x['no'])} " + ("doesn't" if len(x['no']) == 1 else "don't") + ")" if x.get("no") else "") + f"; {x['available']}.")
         checked = [a["name"] for a in L["arrivals"] if a["name"] not in {x["name"] for x in passed}]
         if checked: bits.append("New arrivals checked, not upgrades for you: " + ", ".join(checked[:6]) + ".")
         if bits: parts.append(f"{lab}: " + " ".join(bits))
     body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert panel touches your teams."
-    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Boone, ESPN, CBS, FFToday, Sleeper, Yahoo):\n\n{body}\n")
+    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Boone, Winks, Harmon, Eisenberg):\n\n{body}\n")
 
 if __name__ == "__main__":
     R = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.getcwd()
