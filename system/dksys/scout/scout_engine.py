@@ -610,9 +610,9 @@ for k in cands:
         _full=INJWK==NOW and "full" in str(p.get("prac","")).lower()
         if back(p)>NOW: _flag=f"Watch, not a pickup yet: listed out, due back Wk {back(p)} - waits for his return to be confirmed (a full practice)."
         # Oct 24 (Dom, Ladd McConkey in DK II): a returning player on WAIVERS can't wait for a full practice - his claim window
-        # closes first and a rival takes him. If his waivers clear within 2 days and he helps season-long or in the playoffs,
+        # closes first and a rival takes him. If his waivers clear within 2 days and he helps in any week ahead,
         # he goes up as a claim decision now, with the injury written on the card.
-        if _flag and _flag.startswith("Watch, not a pickup yet") and k[0] in WAIV and kind in ("season-long", "playoffs"):
+        if _flag and _flag.startswith("Watch, not a pickup yet") and k[0] in WAIV:   # any kind - a fill he'd cover is still lost if a rival claims him first
             try:
                 _cd = dt.datetime.strptime(WAIV[k[0]] + f" {dt.date.today().year}", "%b %d %Y").date()
                 if (_cd - dt.date.today()).days <= 2:
