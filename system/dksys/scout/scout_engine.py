@@ -707,7 +707,10 @@ out=[]
 P=out.append
 # Oct 23 (Dom): the header said "Yahoo 9:50 AM", "Weeks 1-4" and an old record no matter when it ran - every
 # stamp here now comes from the files actually read
-_GW=int(st.week.max()) if len(st) else 0
+_wt=st.groupby("week").team.nunique() if len(st) else None   # Oct 23: a week counts once most teams have played it (Thursday's lone game is not a week)
+_GW=int(max([w for w,n in _wt.items() if n>=24] or [0])) if _wt is not None else 0
+_GX=int(st.week.max()) if len(st) else 0
+_GWS=f"Weeks 1-{_GW}"+(f" + Week {_GX} games so far" if _GX>_GW else "")
 _st0=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
 _ststamp0=f"{_st0:%a} {_st0.hour%12 or 12}:{_st0:%M} {'AM' if _st0.hour<12 else 'PM'} PT"
 _REC=CF["record"]
@@ -725,8 +728,8 @@ try:
                 if re.sub(r"[^a-z0-9]","",r[1].lower())==re.sub(r"[^a-z0-9]","",str(TEAMNAMES.get(ME,"")).lower()): _REC=f"{r[2].rsplit('-0',1)[0] if r[2].endswith('-0') else r[2]}, {_i0}{'th' if 10<=_i0%100<=20 else {1:'st',2:'nd',3:'rd'}.get(_i0%10,'th')} of {len(_rows0)} (Yahoo standings {os.path.basename(_sf0[-1])[10:-4]})"
 except Exception as _e0: pass
 P(f"THE SCOUT — {CF['lab']} — run {NOWPT.strftime('%a %b %d, %I:%M %p PT')} — record {_REC}")
-P(f"Inputs: all {len(TEAMNAMES)} rosters + waivers ({CF['rost_at']}) · stats & play-by-play (nflverse {_ststamp0}; Weeks 1-{_GW}) · 2025 season as a prior · Yahoo projections only as a cross-check")
-P(f"Read depth: {_GW} weeks of 2026 data — directional, not settled.\n")
+P(f"Inputs: all {len(TEAMNAMES)} rosters + waivers ({CF['rost_at']}) · stats & play-by-play (nflverse {_ststamp0}; {_GWS}) · 2025 season as a prior · Yahoo projections only as a cross-check")
+P(f"Read depth: {_GWS} of 2026 data — directional, not settled.\n")
 P("GATE 1 — YOUR NEEDS, IN PRIORITY ORDER")
 for n,nd in enumerate(needs,1):
     w=nd["weeks"]; when="season-long" if nd["kind"]=="season-long" else wk(w)+" fill"
@@ -771,7 +774,7 @@ if MISS: P("No 2026 games, not scored: "+", ".join(MISS))
 _stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
 _ststamp=f"{_stt:%a} {_stt.hour%12 or 12}:{_stt:%M} {'AM' if _stt.hour<12 else 'PM'} PT"
 BOARD=dict(league=CF["lab"],run=NOWPT.isoformat(),run_str=NOWPT.strftime('%a %b %d, %I:%M %p PT').replace(' 0',' '),
-           depth=f"Built from real points and workload — {_GW} weeks of 2026 data, so read it as a direction · rosters {CF['rost_at']} · stats nflverse "+_ststamp,
+           depth=f"Built from real points and workload — {_GWS} of 2026 data, so read it as a direction · rosters {CF['rost_at']} · stats nflverse "+_ststamp,
            gate1=[],gate2=[],gate3=[],checked=[],
            footer=(("Protected (Dom's call): "+", ".join(CF["protect"])) if CF["protect"] else "Protected: none")+kills_str()+(" · Pending: "+CF["pending"] if CF["pending"] else ""))
 def sn_(n):
