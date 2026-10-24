@@ -30,6 +30,17 @@ if _bf and (not _mf or _bo.path.basename(_bf[-1]).split("_")[-1] == _bo.path.bas
                     "op": {norm(p["player"]): p for p in parse_side(_op) if p["player"]}}
 else:
     notes.append("best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting")
+# Oct 23: Dom's own bench Yahoo numbers for this week, from the weekly projections read (yproj_dk*.txt, MINE rows)
+_YPW = {}
+for _k4 in (1, 2, 3, 4):
+    _yf = ROOT.replace("data/latest/", "") + f"scout/yproj_dk{_k4}.txt"
+    if not _bo.path.exists(_yf): continue
+    for _l in open(_yf):
+        if _l.startswith("#"): continue
+        _x = _l.rstrip("\n").split("|")
+        if len(_x) >= 6 and _x[0] == str(WEEK) and _x[5] == "MINE":
+            try: _YPW[(_k4, _id(dict(player=_x[1], team=T(_x[2]), pos=_x[3], slot=_x[3])))] = float(_x[4])
+            except ValueError: pass
 def _roster_rows(k, team_id):
     f = ROOT.replace("data/latest/", "") + f"scout/dk{k}_rosters_live.txt"
     if not _bo.path.exists(f): return None
@@ -113,7 +124,15 @@ for _lab, _cfg in LEAGUES.items():
                         sl = _S.get(k); go = _gm.get(k)
                         go = None if go is None or (isinstance(go, float) and _bm.isnan(go)) else go
                     yb = _yb.get(k); yv = yb["yahoo"] if yb else None
+                    if yv is None and _side == "me": yv = _YPW.get((_cfg["k"], _id(dict(r, pos=pos))))   # Oct 23: Dom's bench from the weekly Yahoo projections read
+                    _from_gotham = go is not None and pos not in ("K", "DEF")
                     if go is None: go = yv if yv is not None else sl          # a bench man Gotham can't model: Yahoo, then Sleeper
+                    # Oct 23 (Dom): the bench gets the SAME Gotham ceiling the starters get (meter_data.py, Oct 21). Without it a
+                    # bench man's raw Gotham number (Pitts 14.2 on two touchdown games) beat a starter's capped number (Kelce 9.2)
+                    # and the best lineup "started" Pitts over Kelce and Prescott over Stroud against every outside source.
+                    if _from_gotham and sl is not None and float(sl) > 0:
+                        _cap = (float(yv) + float(sl)) / 2 if yv is not None and float(yv) > 0 else float(sl)
+                        if float(go) > _cap: go = _cap
                     vals = dict(gotham=None if go is None else round(float(go), 2), sleeper=None if sl is None else round(float(sl), 2), yahoo=yv)
                     status = r["status"]
                     row = dict(slot="BN", player=r["player"], team=r["team"], status=status, kickoff="", actual=None, pos=pos,
