@@ -131,6 +131,8 @@ for _lab in _ALG:
         _s += f" Yahoo has you at {_y}%, {_t[0]:.0f} to {_t[1]:.0f}" + (" with the game underway." if _st == "LIVE" else ".")
     _mine = [a for a in ACTIONS if a["lg"] == _lab]
     _s += (" To do: " + " ".join(f"{a['what']}, {a['by']}." for a in _mine)) if _mine else " Nothing needs you."
+    _pcs = [p_["piece"].split(" - ")[0] for p_ in (_L.get("pieces") or [])]   # Oct 23 (Dom): Missing Pieces, read aloud
+    if _pcs: _s += (" Missing piece: " if len(_pcs) == 1 else " Missing pieces: ") + "; ".join(_pcs).lower() + "."
     _bl.append(_s)
 _n1 = [a for a in ACTIONS if a["rank"] == 1]
 _bl.append(f"That's {len(ACTIONS)} item{'s' if len(ACTIONS) != 1 else ''}" + (f", {len(_n1)} of them lineup holes that score zero if left alone." if _n1 else ".") +

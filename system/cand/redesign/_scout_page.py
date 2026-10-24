@@ -49,7 +49,13 @@ def scout_page(c,pg,lab,k):
     """one page; returns 1 (0 when this league has no Scout board yet)"""
     f=f"/home/claude/dksys/scout/scout_board_{lab.replace(' ','')}.json"
     if not _os.path.exists(f): return 0
-    B=_js.load(open(f)); today=_dts.datetime.now(_dts.timezone(_dts.timedelta(hours=-7))).date()
+    B=_js.load(open(f))
+    try: _MPL=_js.load(open("/home/claude/cand/missing_pieces.json"))["leagues"].get(lab,[])   # Oct 23 (Dom): Missing Pieces
+    except Exception: _MPL=[]
+    _MPOS={x for m_ in _MPL for x in m_.get("pos",[])}
+    def _fills(p): return ('  ·  <font name="PopB" color="#A8740B">Fills a missing piece</font>' if str(p.get("pos","")).upper() in _MPOS else "")
+    _MPT=('<font name="PopB" color="#A8740B">Missing Pieces</font>  '+"  ·  ".join(f'<font name="PopB">{_esc(m_["piece"])}</font> - {_esc(m_["why"])}' for m_ in _MPL)) if _MPL else ""
+    today=_dts.datetime.now(_dts.timezone(_dts.timedelta(hours=-7))).date()
     def dage(first): return max(0,(today-_dts.date.fromisoformat(first)).days)
     def age(first):
         d=(today-_dts.date.fromisoformat(first)).days
@@ -67,7 +73,7 @@ def scout_page(c,pg,lab,k):
         picks=[]
         for j,p in enumerate(it["picks"]):
             picks.append((p.get("urg","gold") if j==0 else None,f'{_pt(p)}  ·  Scored {_esc(p["scores"])}  ·  '
-                          f'{_esc(_tc(p["acq"]))}  ·  {_esc(_sent(p["why"]+"; helps "+p["when"]))}'+_gain(p)+('  ·  <font name="PopB" color="#B32020">'+_esc(p["now"])+'</font>' if "WORSE" in p.get("now","") else ('  ·  <font name="PopB">'+_esc(p["now"])+'</font>' if p.get("now") else ''))))
+                          f'{_esc(_tc(p["acq"]))}  ·  {_esc(_sent(p["why"]+"; helps "+p["when"]))}'+_gain(p)+('  ·  <font name="PopB" color="#B32020">'+_esc(p["now"])+'</font>' if "WORSE" in p.get("now","") else ('  ·  <font name="PopB">'+_esc(p["now"])+'</font>' if p.get("now") else ''))+_fills(p)))
         if not picks: picks=[(None,f'<font color="#5A6273">{_esc(it["none"])}</font>')]
         return title,why,picks,_esc(it["kill"])
     def g1_h(it):
@@ -76,7 +82,7 @@ def scout_page(c,pg,lab,k):
     def g2_line(it):
         p=it["pick"]
         t=(f'<font name="PopB">{_esc(it["title"])}</font>  ·  {_pt(p)}  ·  Scored {_esc(p["scores"])}  ·  '
-           f'{_esc(_tc(p["acq"]))}  ·  {_esc(_sent(p["why"]+"; helps "+p["when"]))}'+_gain(p)+('  ·  <font name="PopB" color="#B32020">'+_esc(p["now"])+'</font>' if "WORSE" in p.get("now","") else ('  ·  <font name="PopB">'+_esc(p["now"])+'</font>' if p.get("now") else '')))
+           f'{_esc(_tc(p["acq"]))}  ·  {_esc(_sent(p["why"]+"; helps "+p["when"]))}'+_gain(p)+('  ·  <font name="PopB" color="#B32020">'+_esc(p["now"])+'</font>' if "WORSE" in p.get("now","") else ('  ·  <font name="PopB">'+_esc(p["now"])+'</font>' if p.get("now") else '')))+_fills(p)
         if not it.get("act",True): t+=' <font color="#5A6273">'+_esc(it.get("flag") or "One game only — flag, not act.")+'</font>'
         return p.get("urg","gold"),t
     HEAD=20; TW_=IW-118                                     # title width leaves the top-right for the drops-off line
@@ -86,7 +92,7 @@ def scout_page(c,pg,lab,k):
     chk=('<font name="PopB">Checked, Not Assumed</font>  '+"  ·  ".join(_esc(s) for s in B["checked"]+B.get("watch",[])+_chart_lines(lab,B))+
          f'<br/>{_esc(B["footer"])}  ·  {_esc(srcs)}')
     chh=_ph(chk,_SCS,W-2*M)+4
-    room=TOP-BOT-HEAD-g2h-g3h-chh-6-(_ph(_SUMMARY,_SCI,W-2*M)+12)-_open_h(B)-(30 if len(B['gate1'])>3 else 0)   # Oct 10 night: room for the Also on the Board line
+    room=TOP-BOT-HEAD-g2h-g3h-chh-6-(_ph(_SUMMARY,_SCI,W-2*M)+12)-_open_h(B)-((_ph(_MPT,_SCW,W-2*M)+8) if _MPT else 0)-(30 if len(B['gate1'])>3 else 0)   # Oct 10 night: room for the Also on the Board line
     full=[];used=0;rest=[]
     for it in B["gate1"]:
         h=g1_h(it)
@@ -99,6 +105,7 @@ def scout_page(c,pg,lab,k):
         txt(c,M,y,t,"PopB",8,INKN); txt(c,M+c.stringWidth(t,"PopB",8)+8,y+.3,sub,"Pop",6.2,GR); y-=5
         c.setStrokeColor(LG[k]);c.setLineWidth(1.1);c.line(M,y,W-M,y); y-=11
     y-=_para(c,_SUMMARY,_SCI,M,y,W-2*M)+20; y=_open_box(c,y,B)                   # even air: gold line to summary = summary to Gate 1
+    if _MPT: y-=_para(c,_MPT,_SCW,M,y,W-2*M)+8                                  # Oct 23 (Dom): the team's Missing Pieces, right above Gate 1
     gate_head("Gate 1  ·  Needs, in Priority Order","Each slot named on this roster  ·  the target is what the slot will give  ·  measured against the opponent's man that week")
     for i,it in enumerate(full):
         title,why,picks,kill=g1_parts(it)

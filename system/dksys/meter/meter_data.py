@@ -318,6 +318,10 @@ if RF:
         except Exception as _e: notes.append(f'{lab}: bench tags from the Scout read skipped ({_e})')
         LEAGUE_OUT[lab]['bench'] = out
 
+try:   # Oct 23 (Dom): MISSING PIECES - the one or two pieces that would push each team over the top (cand/missing_pieces.json)
+    _MP = json.load(open('/home/claude/cand/missing_pieces.json'))
+    for _lab, _L in LEAGUE_OUT.items(): _L['pieces'] = _MP['leagues'].get(_lab, []); _L['pieces_set'] = _MP.get('set')
+except Exception as _e: notes.append(f'missing pieces not read: {_e}')
 exec(open('/home/claude/cand/_state.py').read())   # Oct 13 (Dom): FINAL / LIVE / UPCOMING, one rule for every page
 exec(open('/home/claude/cand/_best.py').read())   # Oct 13 5 PM (Dom): best legal lineup for both teams before any needle
 os.makedirs(OUT, exist_ok=True)

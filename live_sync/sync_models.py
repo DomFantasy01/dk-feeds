@@ -28,6 +28,7 @@ for lab, k in KEY.items():
     pm[k] = d
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
+    lg['pieces'] = L.get('pieces') or []; lg['pieces_set'] = L.get('pieces_set')   # Oct 23 (Dom): Missing Pieces
     lg['std'] = ([["DIVISION", o(L['div_rank'])], ["LEAGUE", o(L['rank'])]] if L.get('div_rank')
                  else [["POINTS FOR", o(L['pf_rank'])], ["LEAGUE", o(L['rank'])]])
 cur['pm'] = pm
