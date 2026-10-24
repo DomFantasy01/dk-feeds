@@ -2,7 +2,7 @@
 workload filters can never throw a name out of them. Built after the Marvin Harrison Jr. miss (DK III, Oct 21-23):
 the Scout only looks for climbing workload, Harrison failed that test, and nothing else was watching.
 
-  1. EXPERT CHECK   - every available player the named-expert panel (Boone, Winks, Harmon, Eisenberg; median rank) puts ahead of someone on Dom's roster
+  1. EXPERT CHECK   - every available player the named-expert panel (Ciallela, Ratcliffe, Thorman, Koerner; Jahnke backup; median rank) puts ahead of someone on Dom's roster
                       at the same position. Each flag carries the expert's name and both ranks. No workload test.
   2. NEW-ARRIVAL GATE - every player traded, signed, released or dropped in the last 72 hours who is available in one of
                       Dom's leagues gets a full line the day it happens: expert rank, Yahoo rest-of-season, how he can be had.
@@ -49,18 +49,18 @@ def pt_str(t):
 
 # ------------------------------------------------------------------ loaders
 def load_boone(R):
-    """Oct 24 (Dom): named experts only. Was Boone's list alone; now the panel's median rank (Boone, Winks, Harmon,
-    Eisenberg) from expert_panel.resolved_ranks, so one expert never decides a line on his own."""
+    """Oct 24 (Dom): named experts only. Was Boone's list alone; now the panel's median rank (Ciallela, Ratcliffe,
+    Thorman, Koerner) from expert_panel.resolved_ranks, so one expert never decides a line on his own."""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import expert_panel as EP
     ranks, stamps = EP.resolved_ranks(R); B = {}
     for k, d in ranks.items():
-        v = [x for e, x in d.items() if e in EP.PANEL]
+        v = [x for e, x in d.items() if e in EP.active_panel(ranks)]
         if not v: continue
         pos = max(set(x[0] for x in v), key=[x[0] for x in v].count)
         rs = sorted(x[1] for x in v if x[0] == pos)
         B[norm(d["_name"])] = dict(name=d["_name"], pos=pos, rank=rs[len(rs) // 2], team="")
-    head = "named-expert panel (median of " + ", ".join(EP.SHOW[e] for e in EP.PANEL) + "), read live " + (stamps[0].split(" ", 1)[1] + " PT" if stamps else "?")
+    head = "named-expert panel (median of " + ", ".join(EP.SHOW[e] for e in EP.active_panel(ranks)) + "), read live " + (stamps[0].replace("pulled ", "") if stamps else "?")
     return B, head
 
 def load_txns(R, n):
@@ -331,7 +331,7 @@ def add_to_brief(path, rep):
         if checked: bits.append("New arrivals checked, not upgrades for you: " + ", ".join(checked[:6]) + ".")
         if bits: parts.append(f"{lab}: " + " ".join(bits))
     body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert panel touches your teams."
-    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Boone, Winks, Harmon, Eisenberg):\n\n{body}\n")
+    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Ciallela, Ratcliffe, Thorman, Koerner):\n\n{body}\n")
 
 if __name__ == "__main__":
     R = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.getcwd()

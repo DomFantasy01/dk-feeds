@@ -1,0 +1,39 @@
+name: DK expert pull
+# Oct 24 2026 (Dom): the four named experts' own weekly rankings (Ciallela, Ratcliffe, Thorman, Koerner; Jahnke backup) from
+# FantasyPros' public feed, then a Dispatch build so the expert panel and the brief use them. No browser, no Dom's computer.
+# Times are UTC. Pacific (PDT, UTC-7, until Nov 1): Thu 3:07 PM, Sat 9:07 PM, Sun 7:13 AM, Sun 9:13 AM, Mon 3:07 PM.
+# After Nov 1 (PST) each lands one hour earlier in Pacific - move these one hour later then.
+on:
+  schedule:
+    - cron: '7 22 * * 4'     # Thu 3:07 PM PDT - new weekly lists are up; before Thursday night's game
+    - cron: '7 4 * * 0'      # Sat 9:07 PM PDT
+    - cron: '13 14 * * 0'    # Sun 7:13 AM PDT - after the experts' Sunday-morning final pass
+    - cron: '13 16 * * 0'    # Sun 9:13 AM PDT - last check before the 10 AM games
+    - cron: '7 22 * * 1'     # Mon 3:07 PM PDT - before Monday night's game
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: dk-feeds
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: pull the experts' rankings
+        run: python pull_experts.py .
+      - name: save to the repo
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add yahoo_drop/morning/expert_rankings.txt
+          git commit -m "expert rankings $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && exit 0; sleep 5; done
+          echo "save failed"; exit 1
+      - name: start a Dispatch build so the panel uses them
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh workflow run dispatch.yml --ref main

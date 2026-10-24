@@ -2,13 +2,14 @@
 ("you're just going to give me an average crappy team"). The panel's job is flags for analysis: show us what we
 didn't see so we can dig in and learn. It never picks up a player; every add and drop is talked through with Dom.
 
-THE PANEL - each expert's own weekly rankings, kept separate (yahoo_drop/morning/expert_rankings.txt, the 4:52 AM read):
-  Justin Boone (Yahoo)      - FantasyPros in-season accuracy 2026: 16th of 167
-  Hayden Winks (Yahoo)      - FantasyPros in-season accuracy 2026: 11th of 167
-  Matt Harmon (Yahoo)       - FantasyPros in-season accuracy 2026: 126th of 167 (Dom asked for him)
-  Jamey Eisenberg (CBS)     - CBS does not enter the FantasyPros accuracy contest
-Also read and kept on file, not on the panel unless Dom adds them: Joel Smyth, Scott Pianowski (Yahoo), Dave Richard,
-Heath Cummings (CBS). Change PANEL below to swap experts.
+THE PANEL - each expert's own weekly rankings from FantasyPros' public partner feed (pull_experts.py, GitHub, no browser):
+  Mick Ciallela (Fantrax)            - FantasyPros in-season accuracy 2026: 1st of 167
+  Jeff Ratcliffe (FTN)               - 4th
+  Patrick Thorman (Establish the Run)- 5th
+  Sean Koerner (Action Network)      - 7th
+  Nathan Jahnke (PFF)                - 8th, BACKUP: votes only when one of the four has no list this week
+Checked Oct 24: free, full QB/RB/WR/TE lists (110+ WRs each), PPR, a list every week (Weeks 5-7), and each made a final
+update Sunday morning before kickoff in Weeks 5 and 6. Boone, Winks, Harmon, Eisenberg and the rest were removed.
 
 A FLAG needs 3 of the panel (each with a rank on both men) to rank an available player 3+ spots above one of Dom's men
 at the same position. Then the workup, from free data: available (free agent / waivers + clear date), injury tag,
@@ -26,9 +27,9 @@ except Exception:
 
 LEAGUES = [("DK I", 1, "269381", 2), ("DK II", 2, "1519795", 7), ("DK III", 3, "1507991", 2), ("DK IV", 4, "864215", 6)]
 POS = ("QB", "RB", "WR", "TE")
-PANEL = ["Boone", "Winks", "Harmon", "Jamey Eisenberg"]
-SHOW = {"Boone": "Boone", "Winks": "Winks", "Harmon": "Harmon", "Jamey Eisenberg": "Eisenberg", "Smyth": "Smyth",
-        "Pianowski": "Pianowski", "Dave Richard": "Richard", "Heath Cummings": "Cummings"}
+PANEL = ["Mick Ciallela", "Jeff Ratcliffe", "Patrick Thorman", "Sean Koerner"]
+BACKUP = "Nathan Jahnke"
+SHOW = {"Mick Ciallela": "Ciallela", "Jeff Ratcliffe": "Ratcliffe", "Patrick Thorman": "Thorman", "Sean Koerner": "Koerner", "Nathan Jahnke": "Jahnke"}
 NEED = 3          # experts that must agree
 EDGE = 3          # ranks better by at least this many spots
 TEAM_FIX = {"JAC": "JAX", "LA": "LAR", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}
@@ -73,14 +74,15 @@ def resolved_ranks(R):
     """K(full name) -> {expert: (pos, rank), '_name': full name}; plus the read stamps. Shared with morning_review."""
     rows, heads = load_experts(R); idx = name_index(R); out = {}
     for r in rows:
-        if r["site"] == "CBS": full = idx.get(IK(r["name"], r["team"]), r["name"].title())   # CBS gives a url slug
-        else: full = idx.get(IK(r["name"], r["team"]))
+        full = idx.get(IK(r["name"], r["team"]), r["name"])   # FantasyPros gives full names; keep our roster spelling when it matches
         if not full: continue
         d = out.setdefault(K(full), {}); d[r["expert"]] = (r["pos"], r["rank"]); d["_name"] = full
     stamps = []
     for h in heads:
-        m = re.search(r"(Yahoo|CBS) read live (\w{3} \w{3} \d{1,2} \d{4} \d{1,2}:\d{2} [AP]M)", h)
-        if m: stamps.append(f"{m.group(1)} {m.group(2)}")
+        m = re.search(r"read live (\w{3} \w{3} \d{1,2} \d{4} \d{1,2}:\d{2} [AP]M)", h)
+        if m: stamps.append(f"pulled {m.group(1)} PT")
+        m = re.match(r"(.+?): .*last updated (\S+ \S+)", h)
+        if m: stamps.append(f"{m.group(1)} updated {m.group(2)}")
     return out, stamps
 
 # ------------------------------------------------------------------ Yahoo rosters, waivers, positions
@@ -167,8 +169,16 @@ class Facts:
                     monday=bool(tw and str(tw[2]).startswith("Mon")))
 
 # ------------------------------------------------------------------ the panel
+def active_panel(ranks):
+    have = {e for d in ranks.values() for e in d if e != "_name"}
+    act = [e for e in PANEL if e in have]
+    if len(act) < len(PANEL) and BACKUP in have: act.append(BACKUP)
+    return act
+
 def run(R, stats_f, snaps_f, games_f, out_dir):
     ranks, stamps = resolved_ranks(R)
+    global PANEL_NOW
+    PANEL_NOW = active_panel(ranks)
     inbox = newest_inbox(R); ROS = rosters(inbox)
     ef = f"{R}/yahoo_drop/morning/expert_rankings.txt"
     hd = open(ef).readline() if os.path.exists(ef) else ""
@@ -177,7 +187,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
     sl = json.load(open(f"{R}/feeds/sleeper_players_min.json")).get("players", {}) if os.path.exists(f"{R}/feeds/sleeper_players_min.json") else {}
     INJ = {K(p.get("name")): p for p in sl.values() if p.get("name")}
     rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=inbox.get("read_pt"), experts_read=stamps,
-               panel=[SHOW.get(e, e) for e in PANEL], rule=f"{NEED} of {len(PANEL)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
+               panel=[SHOW.get(e, e) for e in PANEL_NOW], rule=f"{NEED} of {len(PANEL_NOW)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
     for lab, n, lid, me in LEAGUES:
         teams = ROS.get(n, {}); rostered = {K(p) for ps in teams.values() for p in ps}
         srows = scout_rows(R, n); W = waivers(R, n)
@@ -189,7 +199,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
             if c in rostered: continue
             for d in mine:
                 dr = ranks.get(d, {}); yes, no, det = [], [], {}
-                for e in PANEL:
+                for e in PANEL_NOW:
                     if e in cr and e in dr and cr[e][0] == dr[e][0]:
                         det[SHOW[e]] = f"{cr[e][0]}{cr[e][1]} v {dr[e][0]}{dr[e][1]}"
                         (yes if dr[e][1] - cr[e][1] >= EDGE else no).append(SHOW[e])
@@ -213,7 +223,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
             if tag in ("Out", "IR", "Doubtful", "Suspended", "PUP"): stops.append(f"tagged {tag}")
             if sch.get("monday"): notes.append("plays Monday night - once Sunday's games lock, nobody on your bench can replace him")
             if drop and f["d"] == drop: notes.append(f"the man he beats, {nm(drop)}, is also your weakest bench player")
-            others = {SHOW.get(e, e): f"{v[0]}{v[1]}" for e, v in ranks[c].items() if e != "_name" and e not in PANEL}
+            others = {SHOW.get(e, e): f"{v[0]}{v[1]}" for e, v in ranks[c].items() if e != "_name" and e not in PANEL_NOW}
             items.append(dict(name=nm(c), pos=pos, team=team, beats=nm(f["d"]), agree=f"{len(f['yes'])} of {len(f['yes'])+len(f['no'])}",
                               yes=f["yes"], no=f["no"], votes=f["det"], other_experts=others,
                               available=f"on waivers until {W[c]} - takes a claim" if c in W else "free agent - instant add",
