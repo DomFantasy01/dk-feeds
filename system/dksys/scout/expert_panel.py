@@ -58,23 +58,35 @@ def load_experts(R):
 
 def name_index(R):
     """IK -> full name, from every Yahoo roster row and the Sleeper player list."""
-    idx = {}
+    # Oct 24 fix: two players can share a key (Bijan and Brian Robinson, both ATL). A shared key is marked
+    # ambiguous (None) so it can never hand one player's rank to the other; exact full names are matched first.
+    idx, seen = {}, {}
+    def put(name, team):
+        k = IK(name, team)
+        seen.setdefault(k, set()).add(K(name))
+        idx[k] = name if len(seen[k]) == 1 else None
     try:
         sl = json.load(open(f"{R}/feeds/sleeper_players_min.json")).get("players", {})
         for p in sl.values():
-            if p.get("name") and p.get("team") and p.get("pos") in POS: idx.setdefault(IK(p["name"], p["team"]), p["name"])
+            if p.get("name") and p.get("team") and p.get("pos") in POS: put(p["name"], p["team"])
     except Exception: pass
     for f in glob.glob(f"{R}/yahoo_drop/scout/dk*_rosters_live.txt"):
         for ln in open(f):
             q = ln.rstrip("\n").split("|")
-            if len(q) >= 5 and not ln.startswith("#"): idx[IK(q[2], q[3])] = q[2]
+            if len(q) >= 5 and not ln.startswith("#"): put(q[2], q[3])
     return idx
+
+def _same(a, b):
+    """same person, spelled differently ('D.J. Moore' / 'DJ Moore', 'Kenneth Walker III' / 'Kenneth Walker')"""
+    return K(a) == K(b) or (K(a.split()[-1] if a.split() else a) == K(b.split()[-1] if b.split() else b) and K(a)[:2] == K(b)[:2])
 
 def resolved_ranks(R):
     """K(full name) -> {expert: (pos, rank), '_name': full name}; plus the read stamps. Shared with morning_review."""
     rows, heads = load_experts(R); idx = name_index(R); out = {}
     for r in rows:
-        full = idx.get(IK(r["name"], r["team"]), r["name"])   # FantasyPros gives full names; keep our roster spelling when it matches
+        k = IK(r["name"], r["team"])   # FantasyPros gives full names; keep our roster spelling when it is the same person
+        full = idx.get(k) if k in idx else r["name"]
+        if not full or K(full) != K(r["name"]) and not _same(full, r["name"]): full = r["name"]   # never another player's name
         if not full: continue
         d = out.setdefault(K(full), {}); d[r["expert"]] = (r["pos"], r["rank"]); d["_name"] = full
     stamps = []
