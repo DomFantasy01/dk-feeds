@@ -85,4 +85,7 @@ else
 fi
 echo "== 8 the state file (Oct 19, Dom): one file Claude reads instead of scraping Yahoo"
 python3 "$REPO/state/build_state.py" "$REPO" "$ROOT" || echo "!! STATE FILE FAILED - the Dispatch above still saved"
+echo "== 9 MORNING CHECK (Oct 24, Dom): expert lane (Justin Boone), new-arrival gate (traded/signed/dropped), transaction review"
+# Its own lane beside the Scout - the Scout's workload filters never touch it. Reads yahoo_drop/morning/ (the 5 AM Chrome read).
+if python3 "$ROOT/dksys/scout/morning_review.py" "$REPO" > "$ROOT/morning_review.log" 2>&1; then head -2 "$ROOT/morning_review.log"; else echo "!! MORNING CHECK FAILED - the Dispatch above still saved"; tail -5 "$ROOT/morning_review.log"; fi
 echo "DONE week $W"

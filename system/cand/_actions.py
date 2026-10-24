@@ -111,6 +111,20 @@ for _lab in _ALG:
                                 by="when Yahoo lists him Out" if _wait else "any time"))
         elif _mv.get("kind") == "drop":
             ACTIONS.append(dict(lg=_lab, rank=3, kind="drop", who=_mv["name"], what=f"{_mv['name']} is a drop candidate (hurt, no IR seat). Your call", by="any time"))
+# Oct 24 (Dom): the brief and the alerts must agree - the Scout's red pre-kickoff upgrades (a free agent who beats a starter
+# this week, Sleeper and Yahoo agreeing) were in the alerts but never reached the brief. They are to-dos now, until their deadline.
+for _lab in _ALG:
+    try: _B = _aj.load(open(f"/home/claude/dksys/scout/scout_board_{_lab.replace(' ', '')}.json"))
+    except Exception: _B = {}
+    for _pk in _B.get("prekick", []) or []:
+        try: _dl = _ad.datetime.fromisoformat(_pk.get("deadline_utc", ""))
+        except Exception: _dl = None
+        if _pk.get("color") != "red" or (_dl and _dl < _ad.datetime.now(_ad.timezone.utc)): continue
+        _nm = _pk.get("nums") or {}; _sn = _pk.get("starter_nums") or {}
+        ACTIONS.append(dict(lg=_lab, rank=2, kind="start", who=_pk.get("name"),
+            what=f"Free agent {_pk.get('name')} ({_pk.get('team','')} {_pk.get('pos','')}) beats your {_pk.get('slot','')} starter {_pk.get('starter')} by about {_pk.get('gain')} points this week"
+                 f" (Sleeper {_nm.get('sleeper')} to {_sn.get('sleeper')}, Yahoo {_nm.get('yahoo')} to {_sn.get('yahoo')}). Your call",
+            by=f"before {_pk.get('deadline_pt','kickoff')}"))
 ACTIONS.sort(key=lambda a: (a["rank"], _ALG.index(a["lg"])))
 _aj.dump(dict(week=_AMW, built_pt=_AM.get("built_pt"), yahoo_read=_AM["sources"].get("yahoo_matchups", {}).get("pulled_pt"), items=ACTIONS),
          open(_ao.path.join(_AOUT, "actions_latest.json"), "w"), indent=1)
@@ -128,7 +142,7 @@ for _lab in _ALG:
         _me = sum(p["actual"] or 0 for p in _L["starters"]["me"]); _op = sum(p["actual"] or 0 for p in _L["starters"]["op"])
         _s += f" Final: {_me:.1f} to {_op:.1f}."
     elif _y is not None:
-        _s += f" Yahoo has you at {_y}%, {_t[0]:.0f} to {_t[1]:.0f}" + (" with the game underway." if _st == "LIVE" else ".")
+        _s += f" Yahoo has you at {_y}%, {_t[0]:.0f} to {_t[1]:.0f}" + (" with this week's first games already played." if _st == "LIVE" else ".")
     _mine = [a for a in ACTIONS if a["lg"] == _lab]
     _s += (" To do: " + " ".join(f"{a['what']}, {a['by']}." for a in _mine)) if _mine else " Nothing needs you."
     _pcs = [p_["piece"].split(" - ")[0] for p_ in (_L.get("pieces") or [])]   # Oct 23 (Dom): Missing Pieces, read aloud
