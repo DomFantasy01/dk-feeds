@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Fri Oct 23 2026 05:22 PM PT",
+ "built_pt": "Fri Oct 23 2026 06:05 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 23 05:21 PM PT",
+   "pulled_pt": "Fri Oct 23 06:05 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_fri1653.txt",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 23 05:22 PM PT",
+   "pulled_pt": "Fri Oct 23 06:05 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Fri Oct 23 2026 05:22 PM PT for week 7"
+   "note": "Gotham run Fri Oct 23 2026 06:05 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-23T2342Z.csv",
    "pulled_pt": "Fri Oct 23 04:42 PM PT",
-   "age_h": 0.7,
+   "age_h": 1.4,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.7 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 1.4 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-23T2342Z.csv",
    "pulled_pt": "Fri Oct 23 04:42 PM PT",
-   "age_h": 0.7,
+   "age_h": 1.4,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.7 h ago (saved 185 rows)"
+   "note": "GitHub job checked 1.4 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Fri Oct 23 04:53 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.2,
    "rows": 68,
    "need": null,
    "note": "Dom's four rosters"
@@ -1734,7 +1734,7 @@
    },
    "totals": {
     "gotham": [
-     162.81,
+     162.83,
      155.41
     ],
     "sleeper": [
@@ -1915,8 +1915,8 @@
       "yahoo": 11.63,
       "actual": null,
       "pos": "RB",
-      "gotham": 7.55,
-      "gotham_raw": 7.55,
+      "gotham": 10.51,
+      "gotham_raw": 10.51,
       "gotham_src": "gotham",
       "sleeper": 13.02,
       "window": 2,
@@ -2251,7 +2251,7 @@
    "state": "LIVE",
    "state_note": "2 of 22 starters done, 1 games kicked off",
    "needles_set": {
-    "gotham": 53,
+    "gotham": 55,
     "yahoo": 59,
     "sleeper": 61,
     "yahoo_from_spread": 60
@@ -2262,7 +2262,7 @@
      164.03
     ],
     "gotham": [
-     158.98,
+     161.94,
      155.41
     ],
     "sleeper": [
@@ -2278,12 +2278,6 @@
        "out_v": 9.0,
        "into": "Wan'Dale Robinson",
        "in_v": 9.9
-      },
-      {
-       "out": "Ollie Gordon II",
-       "out_v": 7.5,
-       "into": "RJ Harvey",
-       "in_v": 10.5
       }
      ],
      "op": [
