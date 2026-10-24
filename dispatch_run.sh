@@ -51,7 +51,13 @@ echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
 echo "== 5 front page";  (cd "$ROOT/cand/global" && python3 global33.py | grep "V33 DATA")
 echo "== 5b THE SCOUT, all four leagues"
-for L in DKI DKII DKIII DKIV; do (cd "$ROOT/dksys/scout" && python3 scout_engine.py $L --quiet) && echo "   Scout $L ok"; done
+# Oct 24: a Scout crash used to pass silently (the old board was copied back as if new). Now it is logged loudly and
+# written to dispatch_out/SCOUT_FAILED.txt, which a good run clears.
+rm -f "$REPO/dispatch_out/SCOUT_FAILED.txt"
+for L in DKI DKII DKIII DKIV; do
+  if (cd "$ROOT/dksys/scout" && python3 scout_engine.py $L --quiet) > "$ROOT/scout_$L.log" 2>&1; then echo "   Scout $L ok"
+  else echo "!! SCOUT $L FAILED - its board is the last good one"; tail -4 "$ROOT/scout_$L.log"; { echo "Scout $L failed at $(date -u +%FT%TZ):"; tail -4 "$ROOT/scout_$L.log"; } >> "$REPO/dispatch_out/SCOUT_FAILED.txt"; fi
+done
 echo "== 5c alerts for the Field Report's alert mark (Oct 14, Dom): same code and feeds as Live's alerts, kept build to build"
 WA=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 python3 "$REPO/live_sync/alerts.py" "$REPO/dispatch_out/radar_wk$WA.json" "$REPO/dispatch_out/actions_latest.json" "$ROOT/dksys/data/latest/meter/meter_wk$WA.json" "$ROOT/dksys/data/latest/meter/alarm_wk$WA.json" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/alerts_build.json" --feeds "$REPO/feeds" || echo "!! alert marks skipped this build - the Field Report prints without them"
