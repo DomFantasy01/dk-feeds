@@ -20,7 +20,7 @@ except Exception: PREV = {}
 W = M.get("week") or A.get("week")
 NOW = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 SRC = "Dark Knight Dispatch"
-BUILT = A.get("built_pt") or M.get("built_pt") or ""
+BUILT = M.get("built_pt") or A.get("built_pt") or ""   # Oct 24: the meter is rebuilt earlier in the same build; the actions file is the previous build's, so it gave a stale second time stamp
 FLOOR = 2.0   # Dom's noise floor: a gain under 2 Gotham points is noted, not flagged
 
 def slug(*p): return re.sub(r"[^a-z0-9]+", "-", "-".join(str(x) for x in p).lower()).strip("-")[:90]
