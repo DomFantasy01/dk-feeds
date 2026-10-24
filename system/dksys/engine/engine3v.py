@@ -235,7 +235,7 @@ def _drop_exits(F):
     if "_EXITSHOWN" not in globals(): print("INJURY-EXIT games dropped:",len(drop),"|","; ".join(sorted(seen))); globals()["_EXITSHOWN"]=1
     return F[~pd.Series(m,index=F.index)]
 def run(lab):
-    k=LG[lab]; F=FM.frame(k); F=F[F.week<=WEEK]
+    k=LG[lab]; F=FM.frame(k); F=F[F.week<=WEEK] if not os.environ.get('DK_BT') else F[F.week<WEEK]   # Oct 23: DK_BT (back-test) - the week being tested is never seen
     F=F.merge(RZ,on=['player_id','week'],how='left'); F[['rzc','rzt']]=F[['rzc','rzt']].fillna(0)
     rw_=FM.WT[k][1]
     F['wl']=F.wl+np.where(F.position=='RB',RZC[k]*F.rzc+rw_*RZT*F.rzt,np.where(F.position.isin(['WR','TE']),RZT*F.rzt,0))   # v4 red zone
