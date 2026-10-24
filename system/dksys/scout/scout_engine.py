@@ -609,12 +609,21 @@ for k in cands:
         _missed=p["last"]<TEAMLAST.get(p["team"],0) and not p.get("moved") and bool(p.get("inj") or EXTINJ.get((norm(p["name"]),p["pos"])))
         _full=INJWK==NOW and "full" in str(p.get("prac","")).lower()
         if back(p)>NOW: _flag=f"Watch, not a pickup yet: listed out, due back Wk {back(p)} - waits for his return to be confirmed (a full practice)."
+        # Oct 24 (Dom, Ladd McConkey in DK II): a returning player on WAIVERS can't wait for a full practice - his claim window
+        # closes first and a rival takes him. If his waivers clear within 2 days and he helps season-long or in the playoffs,
+        # he goes up as a claim decision now, with the injury written on the card.
+        if _flag and _flag.startswith("Watch, not a pickup yet") and k[0] in WAIV and kind in ("season-long", "playoffs"):
+            try:
+                _cd = dt.datetime.strptime(WAIV[k[0]] + f" {dt.date.today().year}", "%b %d %Y").date()
+                if (_cd - dt.date.today()).days <= 2:
+                    _flag = None; p = dict(p); p["claim_note"] = f"Injured now ({p.get('inj') or 'listed out'}), due back Wk {back(p)} - but his waivers clear {WAIV[k[0]]}, before a return can be confirmed. Claim decision now or he goes to whoever claims him."
+            except Exception: pass
         elif _missed and not _full: _flag="Watch, not a pickup yet: missed his last game hurt"+(f" ({p['inj']})" if p.get("inj") else "")+" - waits for a full practice this week."
         elif (_YP or _SLPPR) and _flag is None:
             _ob=[v for v in (YMAX.get(_ypk(p)),_SLPPR.get(norm(p["name"]))) if v is not None]
             if not _ob: _flag="Watch: only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it."
             elif max(_ob)<5: _flag=f"Watch: Yahoo/Sleeper have him at {max(_ob):.1f} at best - the Scout's ~{p['fwd']:.1f} isn't backed up."
-    G2.append(dict(act=_flag is None,flag=_flag,k=k,p=p,g=g,good=good,wins=wins,lvl=lvl,kind=kind,why=gate2_reason(k,p),acq=("waivers, clears "+WAIV[k[0]]) if k[0] in WAIV else "free agent"))
+    G2.append(dict(act=_flag is None,flag=_flag,k=k,p=p,g=g,good=good,wins=wins,lvl=lvl,kind=kind,why=(p.get("claim_note")+" " if p.get("claim_note") else "")+gate2_reason(k,p),acq=("waivers, clears "+WAIV[k[0]]) if k[0] in WAIV else "free agent"))
 G2.sort(key=lambda e:-e["wins"])
 # Oct 21 (Dom): PRICE THE DROP - every pickup is priced against the best man to let go for him (or an open bench seat)
 try:
