@@ -165,7 +165,9 @@ try:
     if os.environ.get('DK_NOFEEDS'): raise RuntimeError('feeds off (back-test)')
     _SJ=json.load(open(_FD+'sleeper_injuries.json')); _SJ=_SJ.get('players',_SJ)
     for it in (_SJ.values() if isinstance(_SJ,dict) else _SJ):
-        if isinstance(it,dict) and it.get('name'): _S[norm(it['name'])]=(_canon(it.get('inj')),T(it.get('team') or ''),it.get('pos'))
+        # Oct 25 (Dom): the feed job now lays ESPN's newer tags over Sleeper's (marked 'overlay'). Gotham's cross-confirm rule
+        # needs two INDEPENDENT sources, so it reads Sleeper's own tag here - an ESPN report must never count twice.
+        if isinstance(it,dict) and it.get('name'): _S[norm(it['name'])]=(_canon(it.get('sleeper_inj') if it.get('overlay') else it.get('inj')),T(it.get('team') or ''),it.get('pos'))
 except Exception as _e: print('Sleeper injury feed not read:',_e)
 FEEDST={}
 for k in set(_E)|set(_S):

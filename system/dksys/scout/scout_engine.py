@@ -896,7 +896,7 @@ def _faab(tid):
     for k_,v_ in _STAND.items():
         if n_ and (n_.startswith(k_) or k_.startswith(n_)): return v_
     return None
-_NST={"QB":1,"RB":2,"WR":3,"TE":1}
+_NST={"QB":1,"RB":2,"WR":3,"TE":1,"K":1,"DEF":1}   # Oct 25 (Dom): defenses and kickers get the rival check too (bids on them were sized blind)
 def rivals(e):
     """Oct 21 (Dom): which other teams would start him over one of their own, and what each has to spend"""
     p=e["p"]
