@@ -75,6 +75,7 @@ def run(R, meter_f=None, brief=False, out_dir=None):
         d, rd, _ = load(s[2])
         if rd != now_read: PULL, pull_read = d, rd; break
     LAST, last_read = (load(prev_wk[-1][2])[:2] if prev_wk else (None, None))
+    if LAST is not None: last_read = f"Week {W - 1} final list"
     panel = panel_of(NOW)
     inbox = EP.newest_inbox(R); ROS = EP.rosters(inbox) if inbox else {}
     rep = dict(built=EP.pt_str(dt.datetime.now(EP.PT)) + " PT", week=W, panel=[SHOW[e] for e in panel], now_read=now_read,
