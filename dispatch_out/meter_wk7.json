@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Sun Oct 25 2026 09:41 AM PT",
+ "built_pt": "Sun Oct 25 2026 09:46 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 25 09:41 AM PT",
+   "pulled_pt": "Sun Oct 25 09:46 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_sun0853.txt",
    "pulled_pt": "Sun Oct 25 08:53 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun0853.txt",
    "pulled_pt": "Sun Oct 25 08:53 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun0853.txt",
    "pulled_pt": "Sun Oct 25 08:53 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 25 09:41 AM PT",
+   "pulled_pt": "Sun Oct 25 09:46 AM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Sun Oct 25 2026 09:41 AM PT for week 7"
+   "note": "Gotham run Sun Oct 25 2026 09:46 AM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-25T1548Z.csv",
    "pulled_pt": "Sun Oct 25 08:48 AM PT",
-   "age_h": 0.9,
+   "age_h": 1.0,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.9 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 1.0 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-25T1548Z.csv",
    "pulled_pt": "Sun Oct 25 08:48 AM PT",
-   "age_h": 0.9,
+   "age_h": 1.0,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.9 h ago (saved 185 rows)"
+   "note": "GitHub job checked 1.0 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 08:53 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -188,7 +188,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 18.19,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -204,7 +204,7 @@
       "gotham_src": "gotham",
       "sleeper": 20.61,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -398,7 +398,7 @@
       "gotham_src": "gotham",
       "sleeper": 16.93,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -410,7 +410,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 9.98,
-      "gotham_raw": 10.1,
+      "gotham_raw": 10.12,
       "gotham_src": "gotham-capped",
       "sleeper": 10.19,
       "window": 2,
@@ -572,19 +572,10 @@
      "window": 1
     }
    ],
-   "pieces": [
-    {
-     "piece": "A third wide receiver you can start every week",
-     "pos": [
-      "WR"
-     ],
-     "term": "long",
-     "why": "Pickens, London and Diggs are the only real receivers, and Diggs is the fill-in when Pickens is off (Week 14)"
-    }
-   ],
-   "pieces_set": "Fri Oct 23",
+   "pieces": [],
+   "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "1 of 20 starters done, 4 games kicked off",
+   "state_note": "4 of 20 starters done, 4 games kicked off",
    "needles_set": {
     "gotham": 62,
     "yahoo": 60,
@@ -655,6 +646,13 @@
     ],
     "wire": [],
     "missing": null
+   },
+   "pieces_check": {
+    "read": "Sun Oct 25 2026 8:02 AM PT",
+    "roster": "Sun Oct 25 2026 8:57 AM PT",
+    "lines": [
+     "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
+    ]
    }
   },
   "DK II": {
@@ -681,7 +679,7 @@
    "totals": {
     "gotham": [
      131.64,
-     150.27
+     149.93
     ],
     "sleeper": [
      141.1,
@@ -770,7 +768,7 @@
       "gotham_src": "gotham",
       "sleeper": 11.77,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -786,7 +784,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.3,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -818,7 +816,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.43,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -882,7 +880,7 @@
       "gotham_src": "gotham",
       "sleeper": 20.8,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "K",
@@ -943,8 +941,8 @@
       "yahoo": 16.27,
       "actual": null,
       "pos": "RB",
-      "gotham": 13.59,
-      "gotham_raw": 13.59,
+      "gotham": 13.22,
+      "gotham_raw": 13.22,
       "gotham_src": "gotham",
       "sleeper": 15.22,
       "window": 2,
@@ -959,8 +957,8 @@
       "yahoo": 16.25,
       "actual": null,
       "pos": "RB",
-      "gotham": 12.21,
-      "gotham_raw": 12.21,
+      "gotham": 12.24,
+      "gotham_raw": 12.24,
       "gotham_src": "gotham",
       "sleeper": 15.51,
       "window": 2,
@@ -1076,7 +1074,7 @@
       "gotham_src": "sleeper",
       "sleeper": 8.17,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "DEF",
@@ -1092,7 +1090,7 @@
       "gotham_src": "sleeper",
       "sleeper": 7.32,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      }
     ]
    },
@@ -1189,7 +1187,11 @@
       "RB"
      ],
      "term": "long",
-     "why": "Braelon Allen drops to about 8 a game once Breece Hall is back, and Etienne's return splits the Saints backs"
+     "why": "Braelon Allen drops to about 9 a game once Breece Hall is back; Etienne (IR, earliest Week 9) and Montgomery are the hope, neither confirmed",
+     "test": {
+      "need": 1,
+      "min": 13
+     }
     },
     {
      "piece": "A wide receiver for Week 10 on",
@@ -1197,12 +1199,17 @@
       "WR"
      ],
      "term": "short",
-     "why": "Germie Bernard's role shrinks when Michael Pittman returns; McConkey is the bet if he clears his concussion"
+     "why": "Germie Bernard's role shrinks when Michael Pittman returns; McConkey (claimed Oct 25) is the bet if he clears his concussion",
+     "test": {
+      "need": 3,
+      "min": 10,
+      "from": 10
+     }
     }
    ],
-   "pieces_set": "Fri Oct 23",
+   "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "2 of 22 starters done, 8 games kicked off",
+   "state_note": "8 of 22 starters done, 8 games kicked off",
    "needles_set": {
     "gotham": 32,
     "yahoo": 46,
@@ -1216,7 +1223,7 @@
     ],
     "gotham": [
      131.64,
-     150.27
+     149.93
     ],
     "sleeper": [
      141.1,
@@ -1263,6 +1270,14 @@
      "Bam Knight (ARI RB) up 20: RB46.5 -> RB26.5, 4 of 4 experts; free agent - flag for analysis, not a move"
     ],
     "missing": null
+   },
+   "pieces_check": {
+    "read": "Sun Oct 25 2026 8:02 AM PT",
+    "roster": "Sun Oct 25 2026 8:57 AM PT",
+    "lines": [
+     "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
+     "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
+    ]
    }
   },
   "DK III": {
@@ -1362,7 +1377,7 @@
       "gotham_src": "gotham",
       "sleeper": 20.8,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -1474,7 +1489,7 @@
       "gotham_src": "gotham",
       "sleeper": 10.14,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "DEF",
@@ -1490,7 +1505,7 @@
       "gotham_src": "sleeper",
       "sleeper": 10.32,
       "window": 1,
-      "gs": "playing"
+      "gs": "final"
      }
     ],
     "op": [
@@ -1661,7 +1676,7 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 7.66,
+     "gotham": 7.33,
      "sleeper": 10.98,
      "window": 2
     },
@@ -1721,12 +1736,16 @@
       "RB"
      ],
      "term": "long",
-     "why": "Every back is a fill-in: Bam Knight until Love returns, Pierce until Barkley does, White until Croskey-Merritt does, Perine in a split"
+     "why": "Every back is a fill-in: Bam Knight until Love returns, White until Croskey-Merritt does, Perine in a split, Montgomery hurt",
+     "test": {
+      "need": 1,
+      "min": 13
+     }
     }
    ],
-   "pieces_set": "Fri Oct 23",
+   "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "0 of 18 starters done, 3 games kicked off",
+   "state_note": "3 of 18 starters done, 3 games kicked off",
    "needles_set": {
     "gotham": 19,
     "yahoo": 24,
@@ -1791,6 +1810,13 @@
     ],
     "wire": [],
     "missing": null
+   },
+   "pieces_check": {
+    "read": "Sun Oct 25 2026 8:02 AM PT",
+    "roster": "Sun Oct 25 2026 8:57 AM PT",
+    "lines": [
+     "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
+    ]
    }
   },
   "DK IV": {
@@ -1817,7 +1843,7 @@
    "totals": {
     "gotham": [
      166.3,
-     160.67
+     160.32
     ],
     "sleeper": [
      173.99,
@@ -2079,8 +2105,8 @@
       "yahoo": 12.2,
       "actual": null,
       "pos": "RB",
-      "gotham": 9.93,
-      "gotham_raw": 9.93,
+      "gotham": 9.58,
+      "gotham_raw": 9.58,
       "gotham_src": "gotham",
       "sleeper": 11.21,
       "window": 2,
@@ -2265,7 +2291,7 @@
      "pos": "WR",
      "yahoo": null,
      "actual": null,
-     "gotham": 10.06,
+     "gotham": 10.08,
      "sleeper": 10.16,
      "window": 2
     },
@@ -2325,10 +2351,14 @@
       "WR"
      ],
      "term": "long",
-     "why": "Jefferson dips once Jordan Addison is back, Downs fades when Alec Pierce returns, and Flowers is off in Week 13"
+     "why": "Jefferson dips once Jordan Addison is back, Downs fades when Alec Pierce returns, and Flowers is off in Week 13",
+     "test": {
+      "need": 2,
+      "min": 12
+     }
     }
    ],
-   "pieces_set": "Fri Oct 23",
+   "pieces_set": "Sun Oct 25",
    "state": "LIVE",
    "state_note": "1 of 22 starters done, 1 games kicked off",
    "needles_set": {
@@ -2344,7 +2374,7 @@
     ],
     "gotham": [
      165.38,
-     160.67
+     160.32
     ],
     "sleeper": [
      172.8,
@@ -2408,6 +2438,13 @@
      "Bam Knight (ARI RB) up 20: RB46.5 -> RB26.5, 4 of 4 experts; free agent - flag for analysis, not a move"
     ],
     "missing": null
+   },
+   "pieces_check": {
+    "read": "Sun Oct 25 2026 8:02 AM PT",
+    "roster": "Sun Oct 25 2026 8:57 AM PT",
+    "lines": [
+     "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
+    ]
    }
   }
  }
