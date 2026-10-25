@@ -134,7 +134,11 @@ def _rd(n, kind):
         u = f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/yahoo_drop/scout/dk{n}_{kind}.txt?t={int(time.time())}"
         return urllib.request.urlopen(u, timeout=20).read().decode()
     except Exception: return ""
-def _nm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
+# Oct 25: Sleeper "Zonovan Knight" = Yahoo/nflverse "Bam Knight" - one man; without this the alerts called Dom's own starter a free agent
+_NICK = {"zonovan knight": "bam knight"}
+def _nm(s):
+    k = re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
+    return _NICK.get(k, k)
 OWN = {}
 for lg_, n_ in LGN.items():
     ro, wv = _rd(n_, "rosters_live"), _rd(n_, "waivers")
