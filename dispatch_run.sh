@@ -33,6 +33,8 @@ for f in fs:
         o = os.path.join(ROOT, "dksys/data/latest/yahoo", p); os.makedirs(os.path.dirname(o), exist_ok=True); open(o, "w").write(c)
 if fs: print("   scheduled Yahoo reads unpacked:", len(fs), "| newest", os.path.basename(fs[-1]), "read", json.load(open(fs[-1])).get("read_pt"))
 PYIN
+echo "== 0c the named experts' rankings (Oct 25, Dom): pulled fresh every build - on game days they update after the inactives"
+python3 "$REPO/pull_experts.py" "$REPO" | head -2 || echo "!! expert pull failed - the panel uses the last saved lists"
 echo "== 1 fonts"
 F=https://raw.githubusercontent.com/google/fonts/main/ofl
 curl -sfL -o "$ROOT/cand/fonts/BebasNeue-Regular.ttf" $F/bebasneue/BebasNeue-Regular.ttf
@@ -103,4 +105,5 @@ python3 "$ROOT/dksys/scout/expert_panel.py" "$REPO" --stats "$ROOT/dksys/gate/fr
 if python3 "$ROOT/dksys/scout/morning_review.py" "$REPO" > "$ROOT/morning_review.log" 2>&1; then head -2 "$ROOT/morning_review.log"; else echo "!! MORNING CHECK FAILED - the Dispatch above still saved"; tail -5 "$ROOT/morning_review.log"; fi
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/expert_moves2.log" 2>&1 && echo "   expert moves added to the brief" || { echo "!! EXPERT MOVES (brief) FAILED"; tail -5 "$ROOT/expert_moves2.log"; }
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/pieces_check.py" "$REPO" --pieces "$ROOT/cand/missing_pieces.json" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/pieces_check2.log" 2>&1 && echo "   missing pieces check added to the brief" || { echo "!! MISSING PIECES CHECK (brief) FAILED"; tail -5 "$ROOT/pieces_check2.log"; }
+python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
 echo "DONE week $W"

@@ -235,8 +235,19 @@ if not yp:
     except Exception: yp = None
 ypt = ptstr(yp.splitlines()[0]) if yp else None
 yph = (NOW - ypt).total_seconds() / 3600 if ypt else None
+# Oct 25 (Dom): the read runs every day at 7:38 AM, 12:38 PM and 4:38 PM - green means it has the newest run that should
+# have finished (30 min after its start); an age bar alone turned the overnight gap yellow every morning.
+def _yp_slot(now):
+    t = now.astimezone(PT) - dt.timedelta(minutes=30)
+    for d in range(0, 3):
+        day = (t - dt.timedelta(days=d)).date()
+        for h, m in ((16, 38), (12, 38), (7, 38)):
+            c = dt.datetime(day.year, day.month, day.day, h, m, tzinfo=PT)
+            if c <= t: return c
+    return None
+_ys = _yp_slot(NOW)
 row("Scout", "Yahoo weekly projections (Scout's Yahoo half)",
-    "green" if yph is not None and yph <= 12 else ("yellow" if yph is not None and yph <= 36 else "red"),
+    "green" if yph is not None and _ys is not None and ypt >= _ys - dt.timedelta(minutes=5) else ("yellow" if yph is not None and yph <= 36 else "red"),
     ("file missing" if yph is None else f"read {yph:.0f} h ago")
     + ("" if yph is not None and yph <= 36 else " - the Scout is running on its own model only; the projections task isn't saving (it needs Dom's computer)"), ypt)
 

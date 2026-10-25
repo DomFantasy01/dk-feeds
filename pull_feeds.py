@@ -449,8 +449,53 @@ def espn_injuries():
     except Exception as e:
         mark('espn_injuries', False, error=f'{type(e).__name__}: {e}'[:200])
 
+# ---------- 8. injury overlay (Oct 25, Dom): Sleeper's player file is pulled once a day, so on game day its injury tags can be
+# almost a day old (Jonah Coleman still read IR on Sunday after Denver activated him Saturday). Every 30-minute run lays the
+# ESPN injury report over it: any ESPN entry newer than the Sleeper pull sets that man's status (Active clears it). ----------
+ESPN_TEAM = {'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL', 'Buffalo Bills': 'BUF', 'Carolina Panthers': 'CAR',
+    'Chicago Bears': 'CHI', 'Cincinnati Bengals': 'CIN', 'Cleveland Browns': 'CLE', 'Dallas Cowboys': 'DAL', 'Denver Broncos': 'DEN',
+    'Detroit Lions': 'DET', 'Green Bay Packers': 'GB', 'Houston Texans': 'HOU', 'Indianapolis Colts': 'IND', 'Jacksonville Jaguars': 'JAX',
+    'Kansas City Chiefs': 'KC', 'Las Vegas Raiders': 'LV', 'Los Angeles Chargers': 'LAC', 'Los Angeles Rams': 'LAR', 'Miami Dolphins': 'MIA',
+    'Minnesota Vikings': 'MIN', 'New England Patriots': 'NE', 'New Orleans Saints': 'NO', 'New York Giants': 'NYG', 'New York Jets': 'NYJ',
+    'Philadelphia Eagles': 'PHI', 'Pittsburgh Steelers': 'PIT', 'San Francisco 49ers': 'SF', 'Seattle Seahawks': 'SEA',
+    'Tampa Bay Buccaneers': 'TB', 'Tennessee Titans': 'TEN', 'Washington Commanders': 'WAS'}
+ESPN_STATUS = {'Out': 'Out', 'Injured Reserve': 'IR', 'Questionable': 'Questionable', 'Doubtful': 'Doubtful',
+               'Suspension': 'Sus', 'Physically Unable to Perform': 'PUP', 'Day-To-Day': 'Questionable'}
+def injury_overlay():
+    try:
+        import re as _re
+        nk = lambda s: _re.sub(r'[^a-z]', '', _re.sub(r'\b(jr|sr|ii|iii|iv|v)\b\.?', '', (s or '').lower()))
+        sj = json.load(open(os.path.join(MAIN, 'sleeper_injuries.json')))
+        db = json.load(open(os.path.join(MAIN, 'sleeper_players_min.json'))).get('players', {})
+        ej = json.load(open(os.path.join(MAIN, 'espn_injuries.json')))
+        pulled = dt.datetime.fromisoformat(sj.get('db_pulled_utc'))
+        idx = {}
+        for pid, v in db.items():
+            if v.get('name') and v.get('team'): idx.setdefault((nk(v['name']), v['team']), []).append(pid)
+        inj = {k: v for k, v in sj.get('players', {}).items() if not v.get('overlay')}   # start from Sleeper's own tags each run
+        for k, v in sj.get('players', {}).items():
+            if v.get('overlay') and v.get('sleeper_inj'): inj[k] = dict(v, inj=v['sleeper_inj'], overlay=None)
+        changed = 0
+        for r in ej.get('players', []):
+            try: t = dt.datetime.fromisoformat((r.get('date') or '').replace('Z', '+00:00'))
+            except Exception: continue
+            if t <= pulled: continue
+            ids = idx.get((nk(r.get('name')), ESPN_TEAM.get(r.get('team') or '', '')), [])
+            if len(ids) != 1: continue
+            pid = ids[0]; st = r.get('status')
+            if st == 'Active':
+                if pid in inj: inj.pop(pid); changed += 1
+            elif st in ESPN_STATUS:
+                base = inj.get(pid) or dict(db[pid])
+                if base.get('inj') != ESPN_STATUS[st]:
+                    inj[pid] = dict(base, sleeper_inj=base.get('inj'), inj=ESPN_STATUS[st], overlay=f"ESPN {t:%Y-%m-%dT%H:%MZ}"); changed += 1
+        write('sleeper_injuries.json', dict(sj, players=inj, espn_overlay_utc=NOW.isoformat(timespec='seconds'), espn_overlay_changes=changed))
+        mark('injury_overlay', True, changes=changed, note='ESPN entries newer than the Sleeper pull override its injury tags')
+    except Exception as e:
+        mark('injury_overlay', False, error=f'{type(e).__name__}: {e}'[:200])
+
 if __name__ == '__main__':
-    jobs = (rotowire, rotowire_pages, espn, extra_news, espn_injuries) if FAST else (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, probe)
+    jobs = (rotowire, rotowire_pages, espn, extra_news, espn_injuries) if FAST else (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, injury_overlay, probe)
     for fn in jobs:   # pages after Sleeper: it needs the id table
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])

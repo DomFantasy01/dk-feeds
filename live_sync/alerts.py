@@ -512,6 +512,60 @@ try:
 except Exception as e:
     PREKICK_NOTE = f"pre-kickoff check skipped: {type(e).__name__}: {e}"
 
+# ---------- BEFORE LOCK: THE RADAR'S PICKUP FLAGS (Dom, Oct 25) ----------
+# "That's why we did this today." The Radar flagged Seth McGowan at 9:47 AM; he was a free agent until the Colts kicked
+# off at 10, and nobody put him in front of Dom. Every Radar "in" flag (trending adds, openings from an injury or a trade
+# rumor, good news) is checked against the latest Yahoo roster + waiver read: if he is a FREE AGENT and his game has not
+# started, he becomes an alert that stands until his kickoff - the window when he can be added free, with no bid.
+RADAR_NOTE = ""
+try:
+    import csv as _csv, io as _io, urllib.request as _ur, os as _os
+    _gf = _os.path.join(_os.environ.get("DK_ROOT", "/home/claude"), "dksys", "data", "latest", "games.csv")
+    _gtxt = open(_gf).read() if _os.path.exists(_gf) else _ur.urlopen("https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv", timeout=60).read().decode()
+    _TM = {"LA": "LAR", "JAC": "JAX", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}
+    _KO = {}
+    for _g in _csv.DictReader(_io.StringIO(_gtxt)):
+        if _g.get("season") != "2026" or str(_g.get("week")) != str(W) or not _g.get("gameday"): continue
+        try: _t = dt.datetime.strptime(f"{_g['gameday']} {_g.get('gametime') or '13:00'}", "%Y-%m-%d %H:%M").replace(tzinfo=dt.timezone(dt.timedelta(hours=-4)))  # nflverse times are US Eastern (EDT until Nov 1)
+        except Exception: continue
+        if dt.date(2026, 11, 1) <= _t.date() < dt.date(2027, 3, 14): _t = _t.replace(tzinfo=dt.timezone(dt.timedelta(hours=-5)))
+        for _k in ("home_team", "away_team"): _KO[_TM.get(_g[_k], _g[_k])] = _t
+    _nowu = dt.datetime.now(dt.timezone.utc); _PT = dt.timezone(dt.timedelta(hours=-7 if _nowu.date() < dt.date(2026, 11, 1) else -8))
+    _pp_ = (lambda n: (lambda r: float(r["pts_ppr"]) if r and r.get("pts_ppr") not in ("", None) else None)(PROJ.get(_nm(n)))) if "PROJ" in globals() else (lambda n: None)
+    _nr = 0
+    for lg, RL in R.get("leagues", {}).items():
+        L = M["leagues"].get(lg, {}); _shown = 0
+        for it in RL.get("in", []) or []:
+            name, pos, team = it.get("name"), it.get("pos"), _TM.get(it.get("team") or "", it.get("team") or "")
+            if pos not in ("QB", "RB", "WR", "TE") or not name: continue
+            own_st = ownership(lg, name)
+            if not own_st or own_st[0] != "free": continue          # rostered or on waivers: no free window to catch
+            ko = _KO.get(team)
+            if not ko or ko <= _nowu: continue                       # bye, or his game has started (he is on waivers now)
+            why = "; ".join(it.get("why") or [])
+            m_ = re.search(r"Sleeper adds #(\d+)", why); rank = int(m_.group(1)) if m_ else 99
+            p = _pp_(name)
+            starters = [x for x in L.get("starters", {}).get("me", []) if x.get("pos") == pos and x.get("slot") == pos]
+            weak = min(((x, _pp_(x["player"])) for x in starters if _pp_(x["player"]) is not None), key=lambda t: t[1], default=(None, None))
+            beats = p is not None and weak[1] is not None and p > weak[1]
+            if not (beats or rank <= 10 or "opening" in why): continue   # noise floor: only real candidates
+            ko_pt = ko.astimezone(_PT); kot = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"
+            n0 = (it.get("news") or [{}])[0]
+            add(id=slug("rk", W, lg, name), color="gold", lg=lg, who=name, kind="radar_prekick",
+                title=f"Before lock ({kot}): {name} ({pos}, {team}) is a FREE AGENT now - Radar: {why}",
+                what=(n0.get("title") or "") + (f" - {n0.get('text')}" if n0.get("text") else ""),
+                tie=(f"Sleeper projects him {p:.1f} this week vs your weakest {pos} starter {weak[0]['player']} at {weak[1]:.1f}." if p is not None and weak[0]
+                     else (f"Sleeper projects him {p:.1f} this week." if p is not None else "No Sleeper projection for him this week.")),
+                fix=f"Free to add, no bid, until his game kicks off {kot}; after that he goes to waivers. Bring him to Dom with the full workup before then - never add without Dom's go.",
+                ba=None, receipts=[own_st[2], f"kickoff {kot} (nflverse schedule)", f"Radar flag: {why}"] + ([f"{srcname(n0.get('src'))}, {n0.get('t')}"] if n0.get("t") else []),
+                by="before " + kot, deadline_utc=ko.isoformat(), feed=feedline(n0) if n0 else "", feed_title=n0.get("title"),
+                src="the Radar + the latest Yahoo roster and waiver read")
+            _nr += 1; _shown += 1
+            if _shown >= 4: break
+    RADAR_NOTE = f"radar before-lock: {_nr} free agent(s)"
+except Exception as e:
+    RADAR_NOTE = f"radar before-lock check skipped: {type(e).__name__}: {e}"
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -552,4 +606,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", SIZE_NOTE)

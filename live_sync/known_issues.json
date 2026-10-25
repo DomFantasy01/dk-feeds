@@ -46,7 +46,8 @@
    "piece": "Chain check timing",
    "level": "grey",
    "since": "2026-10-14",
-   "what": "The Live chain check runs 4:45 AM, 12:45 PM, 4:45 PM (moved this morning; Claude is blocked from moving it back). The 12:45 and 4:45 PM runs start 5 minutes before their reads and wait up to 15 minutes for them; the gauntlet at 11:51 AM and 2:51 PM also syncs Live. Dom can set it back to 8:25 AM, 1:25 PM, 5:25 PM in the task's settings."
+   "what": "The Live chain check runs 4:45 AM, 12:45 PM, 4:45 PM (moved this morning; Claude is blocked from moving it back). The 12:45 and 4:45 PM runs start 5 minutes before their reads and wait up to 15 minutes for them; the gauntlet at 11:51 AM and 2:51 PM also syncs Live. Dom can set it back to 8:25 AM, 1:25 PM, 5:25 PM in the task's settings.",
+   "fixed": "2026-10-25 - checked: the chain check runs Mon-Sat 8:25 AM, 1:25 PM, 5:25 PM again (Sunday chain check 9:25 AM, 12:25, 3:25, 6:25 PM)"
   },
   {
    "piece": "Scheduled tasks on auto-approval",
@@ -68,6 +69,20 @@
    "since": "2026-10-19",
    "what": "50 of the last 80 state files said NO-GO with every source fresh: the meter called an opponent's bye-week defense (Jaguars) and an opponent's empty kicker slot 'no Sleeper number' data alarms, and Dom's own bye-week starters were filed as data alarms too. Lineup problems now print as lineup lines (red, by league) and never set the data verdict; a NO-GO now names what tripped it.",
    "fixed": "2026-10-21 - one-system rebuild (patch layers folded into system/ source, zip bundle retired)"
+  },
+  {
+   "piece": "Sunday tasks could not start other tasks",
+   "level": "red",
+   "since": "2026-10-25",
+   "what": "The Sunday pre-kickoff gauntlet and the Sunday projections starter run in a permission mode that blocks starting another task ('Run Routine Now denied'), so the 8:21 AM gauntlet had no fresh Yahoo read and the 7:38 AM projections read never ran.",
+   "fixed": "2026-10-25 - the gauntlet now runs 8:51 AM and rides the scheduled 8:50 Sunday read; the projections read runs daily at 7:38 AM, 12:38 PM, 4:38 PM itself (GO at 9:15 AM)"
+  },
+  {
+   "piece": "Radar flags not surfaced before lock",
+   "level": "red",
+   "since": "2026-10-25",
+   "what": "The Radar flagged Seth McGowan at 9:47 AM while he was a free agent; the Colts kicked off at 10 and nothing put him in front of Dom.",
+   "fixed": "2026-10-25 - every build and hourly alert check turns each Radar flag that is a free agent with his game not started into a 'Before lock' alert (Live) and the top of the brief; the Sunday gauntlet and the hourly check push them"
   }
  ]
 }

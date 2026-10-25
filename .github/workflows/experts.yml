@@ -9,6 +9,7 @@ on:
     - cron: '7 4 * * 0'      # Sat 9:07 PM PDT
     - cron: '13 14 * * 0'    # Sun 7:13 AM PDT - after the experts' Sunday-morning final pass
     - cron: '13 16 * * 0'    # Sun 9:13 AM PDT - last check before the 10 AM games
+    - cron: '31 16 * * 0'    # Sun 9:31 AM PDT (Oct 25, Dom) - the experts' final pass lands after the inactives (~8:30-9:15)
     - cron: '7 22 * * 1'     # Mon 3:07 PM PDT - before Monday night's game
   workflow_dispatch: {}
 permissions:
