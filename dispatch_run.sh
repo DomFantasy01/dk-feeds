@@ -49,6 +49,9 @@ curl -sfL -o gate/fresh/roster_2026.csv $N/rosters/roster_2026.csv
 curl -sfL -o gate/fresh/snap_counts_2026.csv $N/snap_counts/snap_counts_2026.csv
 echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
+echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"
+WM=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$ROOT/dksys/data/latest/meter/meter_wk$WM.json" > "$ROOT/expert_moves.log" 2>&1 && head -3 "$ROOT/expert_moves.log" || { echo "!! EXPERT MOVES FAILED - the Dispatch prints without them"; tail -5 "$ROOT/expert_moves.log"; }
 echo "== 5 front page";  (cd "$ROOT/cand/global" && python3 global33.py | grep "V33 DATA")
 echo "== 5b THE SCOUT, all four leagues"
 # Oct 24: a Scout crash used to pass silently (the old board was copied back as if new). Now it is logged loudly and
@@ -97,4 +100,5 @@ echo "== 9 MORNING CHECK (Oct 24, Dom): expert lane (Justin Boone), new-arrival 
 curl -sfL -o "$ROOT/dksys/gate/fresh/games.csv" https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv || echo "!! schedule download failed - the panel prints without byes and playoff matchups"
 python3 "$ROOT/dksys/scout/expert_panel.py" "$REPO" --stats "$ROOT/dksys/gate/fresh/stats_player_week_2026.csv" --snaps "$ROOT/dksys/gate/fresh/snap_counts_2026.csv" --games "$ROOT/dksys/gate/fresh/games.csv" > "$ROOT/expert_panel.log" 2>&1 && head -2 "$ROOT/expert_panel.log" || { echo "!! EXPERT PANEL FAILED"; tail -5 "$ROOT/expert_panel.log"; rm -f "$REPO/dispatch_out/expert_panel.json"; }
 if python3 "$ROOT/dksys/scout/morning_review.py" "$REPO" > "$ROOT/morning_review.log" 2>&1; then head -2 "$ROOT/morning_review.log"; else echo "!! MORNING CHECK FAILED - the Dispatch above still saved"; tail -5 "$ROOT/morning_review.log"; fi
+DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/expert_moves2.log" 2>&1 && echo "   expert moves added to the brief" || { echo "!! EXPERT MOVES (brief) FAILED"; tail -5 "$ROOT/expert_moves2.log"; }
 echo "DONE week $W"

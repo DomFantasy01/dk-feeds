@@ -30,7 +30,7 @@ jobs:
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add yahoo_drop/morning/expert_rankings.txt
+          git add yahoo_drop/morning/expert_rankings.txt yahoo_drop/morning/expert_history
           git commit -m "expert rankings $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && exit 0; sleep 5; done
           echo "save failed"; exit 1

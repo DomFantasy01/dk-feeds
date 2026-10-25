@@ -55,6 +55,13 @@ def scout_page(c,pg,lab,k):
     _MPOS={x for m_ in _MPL for x in m_.get("pos",[])}
     def _fills(p): return ('  ·  <font name="PopB" color="#A8740B">Fills a missing piece</font>' if str(p.get("pos","")).upper() in _MPOS else "")
     _MPT=('<font name="PopB" color="#A8740B">Missing Pieces</font>  '+"  ·  ".join(f'<font name="PopB">{_esc(m_["piece"])}</font> - {_esc(m_["why"])}' for m_ in _MPL)) if _MPL else ""
+    try:   # Oct 25 (Dom): EXPERT MOVES - which of his men the named experts moved up or down, right under the Missing Pieces
+        _EM=_js.load(open("/home/claude/dksys/data/latest/expert_moves.json")); _EL=_EM["leagues"].get(lab,{})
+        _cm=lambda x: _esc(x["line"].split(":")[0].split(" (")[0])+" "+_esc(x["line"].split(": ",1)[1].split(" since")[0].split(",")[0])
+        _EB=[("Up: "+_cm(x)) for x in _EL.get("rising",[])[:3]]+[("Down: "+_cm(x)) for x in _EL.get("sliding",[])[:3]]
+        _EMT=(f'<font name="PopB" color="#3E5FA8">Expert Moves</font>  <font size="7">(read {_esc(_EM.get("now_read","?"))})</font>  '+("  ·  ".join(_EB) if _EB else "no big moves on your roster"))
+        _MPT=(_MPT+"<br/>"+_EMT) if _MPT else _EMT
+    except Exception: pass
     today=_dts.datetime.now(_dts.timezone(_dts.timedelta(hours=-7))).date()
     def dage(first): return max(0,(today-_dts.date.fromisoformat(first)).days)
     def age(first):
