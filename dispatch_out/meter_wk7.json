@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Sun Oct 25 2026 01:09 PM PT",
+ "built_pt": "Sun Oct 25 2026 01:37 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 25 01:09 PM PT",
+   "pulled_pt": "Sun Oct 25 01:37 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_sun1252.txt",
    "pulled_pt": "Sun Oct 25 12:52 PM PT",
-   "age_h": 0.3,
+   "age_h": 0.8,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun1252.txt",
    "pulled_pt": "Sun Oct 25 12:52 PM PT",
-   "age_h": 0.3,
+   "age_h": 0.8,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun1252.txt",
    "pulled_pt": "Sun Oct 25 12:52 PM PT",
-   "age_h": 0.3,
+   "age_h": 0.8,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 25 01:09 PM PT",
+   "pulled_pt": "Sun Oct 25 01:37 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Sun Oct 25 2026 01:09 PM PT for week 7"
+   "note": "Gotham run Sun Oct 25 2026 01:37 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-25T1940Z.csv",
    "pulled_pt": "Sun Oct 25 12:40 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.0,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.4 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 1.0 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-25T1940Z.csv",
    "pulled_pt": "Sun Oct 25 12:40 PM PT",
-   "age_h": 0.5,
+   "age_h": 1.0,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.5 h ago (saved 185 rows)"
+   "note": "GitHub job checked 1.0 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 12:52 PM PT",
-   "age_h": 0.3,
+   "age_h": 0.8,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -114,7 +114,7 @@
    },
    "totals": {
     "gotham": [
-     140.02,
+     139.99,
      102.99
     ],
     "sleeper": [
@@ -184,7 +184,7 @@
       "actual": 16.57,
       "pos": "QB",
       "gotham": 18.99,
-      "gotham_raw": 21.09,
+      "gotham_raw": 21.07,
       "gotham_src": "gotham-capped",
       "sleeper": 18.19,
       "window": 1,
@@ -199,8 +199,8 @@
       "yahoo": 20.17,
       "actual": 21.2,
       "pos": "RB",
-      "gotham": 19.52,
-      "gotham_raw": 19.52,
+      "gotham": 19.51,
+      "gotham_raw": 19.51,
       "gotham_src": "gotham",
       "sleeper": 20.61,
       "window": 1,
@@ -216,11 +216,11 @@
       "actual": 22.25,
       "pos": "RB",
       "gotham": 24.94,
-      "gotham_raw": 25.76,
+      "gotham_raw": 25.74,
       "gotham_src": "gotham-capped",
       "sleeper": 24.34,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -232,7 +232,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 12.57,
-      "gotham_raw": 15.27,
+      "gotham_raw": 15.26,
       "gotham_src": "gotham-capped",
       "sleeper": 11.5,
       "window": 5,
@@ -247,12 +247,12 @@
       "yahoo": 17.72,
       "actual": 19.6,
       "pos": "WR",
-      "gotham": 14.78,
-      "gotham_raw": 14.78,
+      "gotham": 14.77,
+      "gotham_raw": 14.77,
       "gotham_src": "gotham",
       "sleeper": 16.64,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "TE",
@@ -263,8 +263,8 @@
       "yahoo": 12.29,
       "actual": null,
       "pos": "TE",
-      "gotham": 9.08,
-      "gotham_raw": 9.08,
+      "gotham": 9.05,
+      "gotham_raw": 9.05,
       "gotham_src": "gotham",
       "sleeper": 11.97,
       "window": 4,
@@ -295,8 +295,8 @@
       "yahoo": 12.39,
       "actual": 6.7,
       "pos": "WR",
-      "gotham": 9.77,
-      "gotham_raw": 9.77,
+      "gotham": 9.76,
+      "gotham_raw": 9.76,
       "gotham_src": "gotham",
       "sleeper": 11.39,
       "window": 2,
@@ -346,11 +346,11 @@
       "actual": 14.11,
       "pos": "QB",
       "gotham": 23.43,
-      "gotham_raw": 25.33,
+      "gotham_raw": 25.31,
       "gotham_src": "gotham-capped",
       "sleeper": 23.6,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -362,7 +362,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 12.22,
-      "gotham_raw": 12.47,
+      "gotham_raw": 12.46,
       "gotham_src": "gotham-capped",
       "sleeper": 12.66,
       "window": 3,
@@ -393,8 +393,8 @@
       "yahoo": 16.6,
       "actual": 11.6,
       "pos": "WR",
-      "gotham": 16.07,
-      "gotham_raw": 16.07,
+      "gotham": 16.05,
+      "gotham_raw": 16.05,
       "gotham_src": "gotham",
       "sleeper": 16.93,
       "window": 1,
@@ -414,7 +414,7 @@
       "gotham_src": "gotham",
       "sleeper": 10.25,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "TE",
@@ -430,7 +430,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 13.36,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "W/R/T",
@@ -457,8 +457,8 @@
       "yahoo": 17.94,
       "actual": 8.4,
       "pos": "WR",
-      "gotham": 14.91,
-      "gotham_raw": 14.91,
+      "gotham": 14.9,
+      "gotham_raw": 14.9,
       "gotham_src": "gotham",
       "sleeper": 16.89,
       "window": 2,
@@ -478,7 +478,7 @@
       "gotham_src": "sleeper",
       "sleeper": 7.44,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "DEF",
@@ -543,7 +543,7 @@
      "pos": "RB",
      "yahoo": null,
      "actual": null,
-     "gotham": 6.42,
+     "gotham": 6.41,
      "sleeper": 7.2,
      "window": 2
     },
@@ -575,7 +575,7 @@
    "pieces": [],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "9 of 20 starters done, 15 games kicked off",
+   "state_note": "14 of 20 starters done, 16 games kicked off",
    "needles_set": {
     "gotham": 96,
     "yahoo": 83,
@@ -588,7 +588,7 @@
      113.74
     ],
     "gotham": [
-     140.02,
+     139.99,
      102.99
     ],
     "sleeper": [
@@ -612,7 +612,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 83%.",
    "experts": {
-    "read": "Sun Oct 25 2026 1:09 PM PT",
+    "read": "Sun Oct 25 2026 1:37 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -664,7 +664,7 @@
    },
    "totals": {
     "gotham": [
-     150.26,
+     150.23,
      193.45
     ],
     "sleeper": [
@@ -734,7 +734,7 @@
       "actual": null,
       "pos": "QB",
       "gotham": 17.7,
-      "gotham_raw": 19.92,
+      "gotham_raw": 19.91,
       "gotham_src": "gotham-capped",
       "sleeper": 16.72,
       "window": 3,
@@ -749,8 +749,8 @@
       "yahoo": 11.25,
       "actual": 7.8,
       "pos": "RB",
-      "gotham": 10.93,
-      "gotham_raw": 10.93,
+      "gotham": 10.92,
+      "gotham_raw": 10.92,
       "gotham_src": "gotham",
       "sleeper": 11.77,
       "window": 1,
@@ -766,7 +766,7 @@
       "actual": 14.7,
       "pos": "RB",
       "gotham": 9.87,
-      "gotham_raw": 11.58,
+      "gotham_raw": 11.57,
       "gotham_src": "gotham-capped",
       "sleeper": 9.3,
       "window": 1,
@@ -781,12 +781,12 @@
       "yahoo": 17.9,
       "actual": 19.6,
       "pos": "WR",
-      "gotham": 14.78,
-      "gotham_raw": 14.78,
+      "gotham": 14.77,
+      "gotham_raw": 14.77,
       "gotham_src": "gotham",
       "sleeper": 16.64,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -798,7 +798,7 @@
       "actual": 5.7,
       "pos": "WR",
       "gotham": 11.92,
-      "gotham_raw": 18.57,
+      "gotham_raw": 18.56,
       "gotham_src": "gotham-capped",
       "sleeper": 11.43,
       "window": 1,
@@ -813,8 +813,8 @@
       "yahoo": 19.32,
       "actual": 17.2,
       "pos": "WR",
-      "gotham": 18.51,
-      "gotham_raw": 18.51,
+      "gotham": 18.49,
+      "gotham_raw": 18.49,
       "gotham_src": "gotham",
       "sleeper": 18.78,
       "window": 2,
@@ -829,8 +829,8 @@
       "yahoo": 12.34,
       "actual": null,
       "pos": "TE",
-      "gotham": 9.08,
-      "gotham_raw": 9.08,
+      "gotham": 9.05,
+      "gotham_raw": 9.05,
       "gotham_src": "gotham",
       "sleeper": 11.97,
       "window": 4,
@@ -845,8 +845,8 @@
       "yahoo": 20.16,
       "actual": 23.65,
       "pos": "RB",
-      "gotham": 14.66,
-      "gotham_raw": 14.66,
+      "gotham": 14.64,
+      "gotham_raw": 14.64,
       "gotham_src": "gotham",
       "sleeper": 20.45,
       "window": 2,
@@ -861,8 +861,8 @@
       "yahoo": 21.29,
       "actual": 15.83,
       "pos": "QB",
-      "gotham": 20.57,
-      "gotham_raw": 20.57,
+      "gotham": 20.56,
+      "gotham_raw": 20.56,
       "gotham_src": "gotham",
       "sleeper": 20.8,
       "window": 1,
@@ -898,7 +898,7 @@
       "gotham_src": "sleeper",
       "sleeper": 7.54,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      }
     ],
     "op": [
@@ -912,7 +912,7 @@
       "actual": null,
       "pos": "QB",
       "gotham": 19.98,
-      "gotham_raw": 23.04,
+      "gotham_raw": 23.02,
       "gotham_src": "gotham-capped",
       "sleeper": 18.78,
       "window": 5,
@@ -927,12 +927,12 @@
       "yahoo": 16.34,
       "actual": 27.65,
       "pos": "RB",
-      "gotham": 13.18,
-      "gotham_raw": 13.18,
+      "gotham": 13.15,
+      "gotham_raw": 13.15,
       "gotham_src": "gotham",
       "sleeper": 15.15,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -943,12 +943,12 @@
       "yahoo": 19.38,
       "actual": 36.4,
       "pos": "RB",
-      "gotham": 12.24,
-      "gotham_raw": 12.24,
+      "gotham": 12.23,
+      "gotham_raw": 12.23,
       "gotham_src": "gotham",
       "sleeper": 18.98,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -980,7 +980,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 2.73,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -992,11 +992,11 @@
       "actual": null,
       "pos": "WR",
       "gotham": 9.53,
-      "gotham_raw": 11.16,
+      "gotham_raw": 11.25,
       "gotham_src": "gotham-capped",
       "sleeper": 9.16,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "TE",
@@ -1101,7 +1101,7 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 14.24,
+     "gotham": 14.23,
      "sleeper": 8.77,
      "window": 2
     },
@@ -1195,7 +1195,7 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "13 of 22 starters done, 19 games kicked off",
+   "state_note": "18 of 22 starters done, 20 games kicked off",
    "needles_set": {
     "gotham": 0,
     "yahoo": 3,
@@ -1208,7 +1208,7 @@
      195.02
     ],
     "gotham": [
-     150.26,
+     150.23,
      193.45
     ],
     "sleeper": [
@@ -1232,7 +1232,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 3%.",
    "experts": {
-    "read": "Sun Oct 25 2026 1:09 PM PT",
+    "read": "Sun Oct 25 2026 1:37 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1290,7 +1290,7 @@
    "totals": {
     "gotham": [
      105.36,
-     126.85
+     126.82
     ],
     "sleeper": [
      106.2,
@@ -1358,8 +1358,8 @@
       "yahoo": 21.28,
       "actual": 15.83,
       "pos": "QB",
-      "gotham": 20.57,
-      "gotham_raw": 20.57,
+      "gotham": 20.56,
+      "gotham_raw": 20.56,
       "gotham_src": "gotham",
       "sleeper": 20.8,
       "window": 1,
@@ -1391,7 +1391,7 @@
       "actual": 8.6,
       "pos": "RB",
       "gotham": 7.19,
-      "gotham_raw": 7.55,
+      "gotham_raw": 7.54,
       "gotham_src": "gotham-capped",
       "sleeper": 6.8,
       "window": 2,
@@ -1407,7 +1407,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 12.57,
-      "gotham_raw": 15.27,
+      "gotham_raw": 15.26,
       "gotham_src": "gotham-capped",
       "sleeper": 11.5,
       "window": 5,
@@ -1454,8 +1454,8 @@
       "yahoo": 11.32,
       "actual": 3.8,
       "pos": "WR",
-      "gotham": 9.06,
-      "gotham_raw": 9.06,
+      "gotham": 9.05,
+      "gotham_raw": 9.05,
       "gotham_src": "gotham",
       "sleeper": 9.23,
       "window": 2,
@@ -1470,8 +1470,8 @@
       "yahoo": 10.41,
       "actual": 16.4,
       "pos": "WR",
-      "gotham": 9.27,
-      "gotham_raw": 9.27,
+      "gotham": 9.26,
+      "gotham_raw": 9.26,
       "gotham_src": "gotham",
       "sleeper": 10.14,
       "window": 1,
@@ -1504,12 +1504,12 @@
       "yahoo": 24.24,
       "actual": null,
       "pos": "QB",
-      "gotham": 22.53,
-      "gotham_raw": 22.53,
+      "gotham": 22.52,
+      "gotham_raw": 22.52,
       "gotham_src": "gotham",
       "sleeper": 23.51,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "RB",
@@ -1541,7 +1541,7 @@
       "gotham_src": "consensus-fallback",
       "sleeper": 14.86,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "WR",
@@ -1553,7 +1553,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 23.6,
-      "gotham_raw": 23.96,
+      "gotham_raw": 23.95,
       "gotham_src": "gotham-capped",
       "sleeper": 24.03,
       "window": 4,
@@ -1568,12 +1568,12 @@
       "yahoo": 16.53,
       "actual": null,
       "pos": "WR",
-      "gotham": 14.97,
-      "gotham_raw": 14.97,
+      "gotham": 14.95,
+      "gotham_raw": 14.95,
       "gotham_src": "gotham",
       "sleeper": 15.57,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "TE",
@@ -1584,12 +1584,12 @@
       "yahoo": 13.14,
       "actual": 3.2,
       "pos": "TE",
-      "gotham": 10.1,
-      "gotham_raw": 10.1,
+      "gotham": 10.09,
+      "gotham_raw": 10.09,
       "gotham_src": "gotham",
       "sleeper": 12.81,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "W/R/T",
@@ -1601,7 +1601,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 12.81,
-      "gotham_raw": 17.86,
+      "gotham_raw": 17.85,
       "gotham_src": "gotham-capped",
       "sleeper": 12.98,
       "window": 3,
@@ -1617,7 +1617,7 @@
       "actual": 8.0,
       "pos": "WR",
       "gotham": 14.83,
-      "gotham_raw": 16.36,
+      "gotham_raw": 16.34,
       "gotham_src": "gotham-capped",
       "sleeper": 14.06,
       "window": 2,
@@ -1637,7 +1637,7 @@
       "gotham_src": "sleeper",
       "sleeper": 10.54,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      }
     ]
    },
@@ -1662,7 +1662,7 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 7.31,
+     "gotham": 7.28,
      "sleeper": 10.98,
      "window": 2
     },
@@ -1731,7 +1731,7 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "7 of 18 starters done, 12 games kicked off",
+   "state_note": "9 of 18 starters done, 15 games kicked off",
    "needles_set": {
     "gotham": 24,
     "yahoo": 28,
@@ -1745,7 +1745,7 @@
     ],
     "gotham": [
      105.36,
-     126.85
+     126.82
     ],
     "sleeper": [
      106.2,
@@ -1768,7 +1768,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 28%.",
    "experts": {
-    "read": "Sun Oct 25 2026 1:09 PM PT",
+    "read": "Sun Oct 25 2026 1:37 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1813,7 +1813,7 @@
    "opp_rank": 2,
    "needles": {
     "gotham": 67,
-    "sleeper": 68,
+    "sleeper": 67,
     "yahoo": 63,
     "yahoo_best": false,
     "yahoo_posted": 63,
@@ -1821,11 +1821,11 @@
    },
    "totals": {
     "gotham": [
-     162.42,
+     162.41,
      153.01
     ],
     "sleeper": [
-     162.27,
+     162.04,
      152.54
     ],
     "yahoo": [
@@ -1890,12 +1890,12 @@
       "yahoo": 23.28,
       "actual": 13.6,
       "pos": "QB",
-      "gotham": 22.11,
-      "gotham_raw": 22.11,
+      "gotham": 22.09,
+      "gotham_raw": 22.09,
       "gotham_src": "gotham",
       "sleeper": 21.32,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -1906,12 +1906,12 @@
       "yahoo": 23.73,
       "actual": 16.6,
       "pos": "RB",
-      "gotham": 20.57,
-      "gotham_raw": 20.57,
+      "gotham": 20.56,
+      "gotham_raw": 20.56,
       "gotham_src": "gotham",
       "sleeper": 23.68,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -1938,8 +1938,8 @@
       "yahoo": 11.29,
       "actual": 3.8,
       "pos": "WR",
-      "gotham": 9.03,
-      "gotham_raw": 9.03,
+      "gotham": 9.02,
+      "gotham_raw": 9.02,
       "gotham_src": "gotham",
       "sleeper": 9.2,
       "window": 2,
@@ -1954,8 +1954,8 @@
       "yahoo": 17.62,
       "actual": 27.7,
       "pos": "WR",
-      "gotham": 15.87,
-      "gotham_raw": 15.87,
+      "gotham": 15.84,
+      "gotham_raw": 15.84,
       "gotham_src": "gotham",
       "sleeper": 18.69,
       "window": 2,
@@ -1970,8 +1970,8 @@
       "yahoo": 17.9,
       "actual": 8.4,
       "pos": "WR",
-      "gotham": 14.86,
-      "gotham_raw": 14.86,
+      "gotham": 14.84,
+      "gotham_raw": 14.84,
       "gotham_src": "gotham",
       "sleeper": 16.85,
       "window": 2,
@@ -1986,12 +1986,12 @@
       "yahoo": 12.7,
       "actual": null,
       "pos": "TE",
-      "gotham": 11.97,
-      "gotham_raw": 11.97,
+      "gotham": 11.96,
+      "gotham_raw": 11.96,
       "gotham_src": "gotham",
       "sleeper": 11.74,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "W/R/T",
@@ -2002,8 +2002,8 @@
       "yahoo": 11.72,
       "actual": 17.3,
       "pos": "RB",
-      "gotham": 10.98,
-      "gotham_raw": 10.98,
+      "gotham": 10.95,
+      "gotham_raw": 10.95,
       "gotham_src": "gotham",
       "sleeper": 13.18,
       "window": 2,
@@ -2023,7 +2023,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 23.51,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "K",
@@ -2068,8 +2068,8 @@
       "yahoo": 21.59,
       "actual": 15.9,
       "pos": "QB",
-      "gotham": 19.51,
-      "gotham_raw": 19.51,
+      "gotham": 19.5,
+      "gotham_raw": 19.5,
       "gotham_src": "gotham",
       "sleeper": 18.23,
       "window": 2,
@@ -2084,12 +2084,12 @@
       "yahoo": 12.26,
       "actual": 23.4,
       "pos": "RB",
-      "gotham": 9.55,
-      "gotham_raw": 9.55,
+      "gotham": 9.52,
+      "gotham_raw": 9.52,
       "gotham_src": "gotham",
       "sleeper": 11.14,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -2116,12 +2116,12 @@
       "yahoo": 17.07,
       "actual": 2.6,
       "pos": "WR",
-      "gotham": 16.26,
-      "gotham_raw": 16.26,
+      "gotham": 16.25,
+      "gotham_raw": 16.25,
       "gotham_src": "gotham",
       "sleeper": 17.04,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -2132,8 +2132,8 @@
       "yahoo": 15.36,
       "actual": 1.9,
       "pos": "WR",
-      "gotham": 13.77,
-      "gotham_raw": 13.77,
+      "gotham": 13.75,
+      "gotham_raw": 13.75,
       "gotham_src": "gotham",
       "sleeper": 15.59,
       "window": 2,
@@ -2149,7 +2149,7 @@
       "actual": 26.8,
       "pos": "WR",
       "gotham": 14.66,
-      "gotham_raw": 14.97,
+      "gotham_raw": 14.96,
       "gotham_src": "gotham-capped",
       "sleeper": 15.0,
       "window": 2,
@@ -2165,7 +2165,7 @@
       "actual": null,
       "pos": "TE",
       "gotham": 15.87,
-      "gotham_raw": 16.32,
+      "gotham_raw": 16.29,
       "gotham_src": "gotham-capped",
       "sleeper": 15.28,
       "window": 3,
@@ -2185,7 +2185,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 26.19,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "Q/W/R/T",
@@ -2197,11 +2197,11 @@
       "actual": null,
       "pos": "QB",
       "gotham": 19.0,
-      "gotham_raw": 19.85,
+      "gotham_raw": 20.02,
       "gotham_src": "gotham-capped",
       "sleeper": 19.02,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "K",
@@ -2217,7 +2217,7 @@
       "gotham_src": "sleeper",
       "sleeper": 8.65,
       "window": 3,
-      "gs": "pre"
+      "gs": "playing"
      },
      {
       "slot": "DEF",
@@ -2233,7 +2233,7 @@
       "gotham_src": "sleeper",
       "sleeper": 7.54,
       "window": 2,
-      "gs": "playing"
+      "gs": "final"
      }
     ]
    },
@@ -2246,7 +2246,7 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 9.06,
+     "gotham": 9.04,
      "sleeper": 11.97,
      "window": 4
     },
@@ -2258,7 +2258,7 @@
      "pos": "QB",
      "yahoo": null,
      "actual": null,
-     "gotham": 23.18,
+     "gotham": 23.17,
      "sleeper": 18.49,
      "window": 5
     },
@@ -2282,7 +2282,7 @@
      "pos": "WR",
      "yahoo": null,
      "actual": null,
-     "gotham": 6.74,
+     "gotham": 6.73,
      "sleeper": 3.53,
      "window": 3
     },
@@ -2339,7 +2339,7 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "10 of 22 starters done, 17 games kicked off",
+   "state_note": "15 of 22 starters done, 22 games kicked off",
    "needles_set": {
     "gotham": 67,
     "yahoo": 63,
@@ -2352,7 +2352,7 @@
      153.62
     ],
     "gotham": [
-     162.42,
+     162.41,
      153.01
     ],
     "sleeper": [
@@ -2366,14 +2366,7 @@
      "op": []
     },
     "sleeper": {
-     "me": [
-      {
-       "out": "Tucker Kraft",
-       "out_v": 11.7,
-       "into": "Travis Kelce",
-       "in_v": 12.0
-      }
-     ],
+     "me": [],
      "op": []
     },
     "yahoo": {
@@ -2383,7 +2376,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 63%.",
    "experts": {
-    "read": "Sun Oct 25 2026 1:09 PM PT",
+    "read": "Sun Oct 25 2026 1:37 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
