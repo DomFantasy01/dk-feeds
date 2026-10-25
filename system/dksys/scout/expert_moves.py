@@ -172,7 +172,7 @@ def add_to_brief(path, rep):
                [f"Climbing on the wire: {x['line']}." for x in L["wire"][:2]]
         parts.append(f"{lab}: " + (" ".join(bits) if bits else "no big moves on your roster."))
     head = (f"Expert movement (panel {', '.join(rep['panel'])}; read {rep['now_read']}, vs the pull of {rep['prev_pull_read'] or 'none'}"
-            f" and last week's list from {rep['last_week_read'] or 'none saved yet'}):")
+            f" and {rep['last_week_read'] or 'no list from last week saved yet'}):")
     open(path, "w").write(s + "\n\n" + head + "\n\n" + "\n\n".join(parts) + "\n")
 
 if __name__ == "__main__":
