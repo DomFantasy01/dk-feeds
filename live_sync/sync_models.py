@@ -29,7 +29,8 @@ for lab, k in KEY.items():
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
     lg['pieces'] = L.get('pieces') or []; lg['pieces_set'] = L.get('pieces_set')   # Oct 23 (Dom): Missing Pieces
-    lg['experts'] = L.get('experts')   # Oct 25 (Dom): who the named experts moved up / down (expert_moves.py)
+    lg['experts'] = L.get('experts')
+    lg['pieces_check'] = L.get('pieces_check')   # Oct 25 (Dom): each piece re-tested against the live roster every build   # Oct 25 (Dom): who the named experts moved up / down (expert_moves.py)
     lg['std'] = ([["DIVISION", o(L['div_rank'])], ["LEAGUE", o(L['rank'])]] if L.get('div_rank')
                  else [["POINTS FOR", o(L['pf_rank'])], ["LEAGUE", o(L['rank'])]])
 cur['pm'] = pm

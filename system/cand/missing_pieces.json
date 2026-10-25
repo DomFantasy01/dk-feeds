@@ -1,24 +1,28 @@
 {
- "_about": "MISSING PIECES (Dom, Oct 23 2026): the one or two pieces that would push each Dark Knight team over the top. Not a filter - the Scout still shows everything it finds; a find at one of these positions gets tagged 'fills a missing piece'. Short on purpose; reviewed each week. pos = the Yahoo positions that would fill it.",
- "set": "Fri Oct 23",
+ "_about": "MISSING PIECES (Dom, Oct 23 2026): the one or two pieces that would push each Dark Knight team over the top. Not a filter - the Scout still shows everything it finds; a find at one of these positions gets tagged 'fills a missing piece'. Short on purpose; reviewed each week. pos = the Yahoo positions that would fill it. test (Oct 25) = how the build checks it every run against the live roster and Yahoo's weekly projections: at least `need` rostered men at `pos` projecting `min`+ points, every week from `from` (or this week) through Week 17. The check only reports - it never changes this file; Dom confirms a change first.",
+ "set": "Sun Oct 25",
  "leagues": {
-  "DK I": [
-   {"piece": "A third wide receiver you can start every week", "pos": ["WR"], "term": "long",
-    "why": "Pickens, London and Diggs are the only real receivers, and Diggs is the fill-in when Pickens is off (Week 14)"}
-  ],
+  "DK I": [],
   "DK II": [
    {"piece": "A lead running back", "pos": ["RB"], "term": "long",
-    "why": "Braelon Allen drops to about 8 a game once Breece Hall is back, and Etienne's return splits the Saints backs"},
+    "why": "Braelon Allen drops to about 9 a game once Breece Hall is back; Etienne (IR, earliest Week 9) and Montgomery are the hope, neither confirmed",
+    "test": {"need": 1, "min": 13}},
    {"piece": "A wide receiver for Week 10 on", "pos": ["WR"], "term": "short",
-    "why": "Germie Bernard's role shrinks when Michael Pittman returns; McConkey is the bet if he clears his concussion"}
+    "why": "Germie Bernard's role shrinks when Michael Pittman returns; McConkey (claimed Oct 25) is the bet if he clears his concussion",
+    "test": {"need": 3, "min": 10, "from": 10}}
   ],
   "DK III": [
    {"piece": "A lead running back - save the $91 for him", "pos": ["RB"], "term": "long",
-    "why": "Every back is a fill-in: Bam Knight until Love returns, Pierce until Barkley does, White until Croskey-Merritt does, Perine in a split"}
+    "why": "Every back is a fill-in: Bam Knight until Love returns, White until Croskey-Merritt does, Perine in a split, Montgomery hurt",
+    "test": {"need": 1, "min": 13}}
   ],
   "DK IV": [
    {"piece": "A steady second wide receiver", "pos": ["WR"], "term": "long",
-    "why": "Jefferson dips once Jordan Addison is back, Downs fades when Alec Pierce returns, and Flowers is off in Week 13"}
+    "why": "Jefferson dips once Jordan Addison is back, Downs fades when Alec Pierce returns, and Flowers is off in Week 13",
+    "test": {"need": 2, "min": 12}}
   ]
- }
+ },
+ "filled": [
+  {"league": "DK I", "piece": "A third wide receiver you can start every week", "filled_by": "Chris Godwin Jr. (added Sat Oct 24); Diggs is the other", "closed": "Sun Oct 25 (Dom)"}
+ ]
 }
