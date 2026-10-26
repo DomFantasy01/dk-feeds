@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Sun Oct 25 2026 04:35 PM PT",
+ "built_pt": "Sun Oct 25 2026 05:02 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Sun Oct 25 04:35 PM PT",
+   "pulled_pt": "Sun Oct 25 05:01 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,27 +22,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_sun1552.txt",
-   "pulled_pt": "Sun Oct 25 03:52 PM PT",
-   "age_h": 0.7,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_sun1652.txt",
+   "pulled_pt": "Sun Oct 25 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun1552.txt",
-   "pulled_pt": "Sun Oct 25 03:52 PM PT",
-   "age_h": 0.7,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun1652.txt",
+   "pulled_pt": "Sun Oct 25 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun1552.txt",
-   "pulled_pt": "Sun Oct 25 03:52 PM PT",
-   "age_h": 0.7,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun1652.txt",
+   "pulled_pt": "Sun Oct 25 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Sun Oct 25 04:35 PM PT",
+   "pulled_pt": "Sun Oct 25 05:02 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Sun Oct 25 2026 04:35 PM PT for week 7"
+   "note": "Gotham run Sun Oct 25 2026 05:02 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-25T2241Z.csv",
    "pulled_pt": "Sun Oct 25 03:41 PM PT",
-   "age_h": 0.9,
+   "age_h": 1.4,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.9 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.4 h ago (unchanged 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-25T2241Z.csv",
    "pulled_pt": "Sun Oct 25 03:41 PM PT",
-   "age_h": 0.9,
+   "age_h": 1.4,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.9 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.4 h ago (unchanged 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
-   "pulled_pt": "Sun Oct 25 03:52 PM PT",
-   "age_h": 0.7,
+   "pulled_pt": "Sun Oct 25 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -107,23 +107,23 @@
    "needles": {
     "gotham": 100,
     "sleeper": 99,
-    "yahoo": 90,
+    "yahoo": 92,
     "yahoo_best": false,
-    "yahoo_posted": 90,
+    "yahoo_posted": 92,
     "yahoo_from_spread": 99
    },
    "totals": {
     "gotham": [
      141.84,
-     93.68
+     96.48
     ],
     "sleeper": [
      143.43,
-     102.35
+     105.15
     ],
     "yahoo": [
-     145.82,
-     105.01
+     145.83,
+     107.82
     ]
    },
    "windows": {
@@ -133,7 +133,7 @@
       37.77,
       77.05,
       0.0,
-      12.31,
+      12.32,
       13.64
      ],
      [
@@ -150,8 +150,8 @@
       0.0,
       11.6,
       46.62,
-      14.75,
-      12.68,
+      17.55,
+      12.69,
       19.36
      ],
      [
@@ -260,7 +260,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 5:20 pm",
-      "yahoo": 12.31,
+      "yahoo": 12.32,
       "actual": null,
       "pos": "TE",
       "gotham": 9.4,
@@ -423,14 +423,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 12.99,
-      "actual": 0.0,
+      "actual": 2.8,
       "pos": "TE",
       "gotham": 13.22,
       "gotham_raw": 15.26,
       "gotham_src": "gotham-capped",
       "sleeper": 13.44,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "W/R/T",
@@ -438,7 +438,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 5:20 pm",
-      "yahoo": 12.68,
+      "yahoo": 12.69,
       "actual": null,
       "pos": "WR",
       "gotham": 8.97,
@@ -575,25 +575,25 @@
    "pieces": [],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "15 of 20 starters done, 16 games kicked off",
+   "state_note": "16 of 20 starters done, 16 games kicked off",
    "needles_set": {
     "gotham": 100,
-    "yahoo": 90,
+    "yahoo": 92,
     "sleeper": 99,
     "yahoo_from_spread": 99
    },
    "totals_set": {
     "yahoo": [
-     145.82,
-     105.01
+     145.83,
+     107.82
     ],
     "gotham": [
      141.84,
-     93.68
+     96.48
     ],
     "sleeper": [
      143.43,
-     102.35
+     105.15
     ]
    },
    "best_moves": {
@@ -610,9 +610,9 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 90%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 92%.",
    "experts": {
-    "read": "Sun Oct 25 2026 4:35 PM PT",
+    "read": "Sun Oct 25 2026 5:01 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -634,8 +634,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 12:39 PM PT",
-    "roster": "Sun Oct 25 2026 3:56 PM PT",
+    "read": "Sun Oct 25 2026 4:39 PM PT",
+    "roster": "Sun Oct 25 2026 4:55 PM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
     ]
@@ -664,15 +664,15 @@
    },
    "totals": {
     "gotham": [
-     146.16,
+     152.11,
      212.57
     ],
     "sleeper": [
-     148.82,
+     154.77,
      211.37
     ],
     "yahoo": [
-     149.12,
+     155.08,
      213.77
     ]
    },
@@ -682,8 +682,8 @@
       0.0,
       44.03,
       78.45,
-      14.28,
-      12.36,
+      20.23,
+      12.37,
       0.0
      ],
      [
@@ -731,7 +731,7 @@
       "status": "",
       "kickoff": "",
       "yahoo": 18.83,
-      "actual": 14.28,
+      "actual": 20.23,
       "pos": "QB",
       "gotham": 17.84,
       "gotham_raw": 19.91,
@@ -826,7 +826,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 5:20 pm",
-      "yahoo": 12.36,
+      "yahoo": 12.37,
       "actual": null,
       "pos": "TE",
       "gotham": 9.4,
@@ -996,7 +996,7 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.17,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "TE",
@@ -1195,7 +1195,7 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "19 of 22 starters done, 20 games kicked off",
+   "state_note": "20 of 22 starters done, 20 games kicked off",
    "needles_set": {
     "gotham": 0,
     "yahoo": 1,
@@ -1204,15 +1204,15 @@
    },
    "totals_set": {
     "yahoo": [
-     149.12,
+     155.08,
      213.77
     ],
     "gotham": [
-     146.16,
+     152.11,
      212.57
     ],
     "sleeper": [
-     148.82,
+     154.77,
      211.37
     ]
    },
@@ -1232,7 +1232,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 1%.",
    "experts": {
-    "read": "Sun Oct 25 2026 4:35 PM PT",
+    "read": "Sun Oct 25 2026 5:01 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1258,8 +1258,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 12:39 PM PT",
-    "roster": "Sun Oct 25 2026 3:56 PM PT",
+    "read": "Sun Oct 25 2026 4:39 PM PT",
+    "roster": "Sun Oct 25 2026 4:55 PM PT",
     "lines": [
      "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
@@ -1280,25 +1280,25 @@
    "teams": 14,
    "opp_rank": 3,
    "needles": {
-    "gotham": 25,
-    "sleeper": 13,
-    "yahoo": 25,
+    "gotham": 12,
+    "sleeper": 5,
+    "yahoo": 27,
     "yahoo_best": false,
-    "yahoo_posted": 25,
-    "yahoo_from_spread": 20
+    "yahoo_posted": 27,
+    "yahoo_from_spread": 9
    },
    "totals": {
     "gotham": [
-     102.6,
-     112.55
+     104.55,
+     122.06
     ],
     "sleeper": [
-     101.53,
-     118.59
+     103.48,
+     128.08
     ],
     "yahoo": [
-     103.67,
-     116.14
+     105.62,
+     125.66
     ]
    },
    "windows": {
@@ -1307,7 +1307,7 @@
       0.0,
       46.23,
       25.9,
-      17.9,
+      19.85,
       0.0,
       13.64
      ],
@@ -1325,8 +1325,8 @@
       0.0,
       0.0,
       18.2,
-      54.02,
-      23.22,
+      63.51,
+      23.25,
       20.7
      ],
      [
@@ -1372,7 +1372,7 @@
       "status": "",
       "kickoff": "",
       "yahoo": 9.82,
-      "actual": 9.1,
+      "actual": 11.05,
       "pos": "RB",
       "gotham": 9.84,
       "gotham_raw": 9.84,
@@ -1417,7 +1417,7 @@
       "slot": "WR",
       "player": "Jaylen Waddle",
       "team": "DEN",
-      "status": "",
+      "status": "Q",
       "kickoff": "",
       "yahoo": 13.19,
       "actual": 8.8,
@@ -1502,14 +1502,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 24.18,
-      "actual": 19.72,
+      "actual": 20.96,
       "pos": "QB",
       "gotham": 22.52,
       "gotham_raw": 22.52,
       "gotham_src": "gotham",
       "sleeper": 23.38,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "RB",
@@ -1534,14 +1534,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 15.43,
-      "actual": 17.4,
+      "actual": 22.85,
       "pos": "RB",
       "gotham": 15.14,
       "gotham_raw": 15.14,
       "gotham_src": "consensus-fallback",
       "sleeper": 14.84,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "WR",
@@ -1549,10 +1549,10 @@
       "team": "SEA",
       "status": "",
       "kickoff": "Sun 5:20 pm",
-      "yahoo": 23.22,
+      "yahoo": 23.25,
       "actual": null,
       "pos": "WR",
-      "gotham": 23.7,
+      "gotham": 23.72,
       "gotham_raw": 24.14,
       "gotham_src": "gotham-capped",
       "sleeper": 24.19,
@@ -1566,14 +1566,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 16.51,
-      "actual": 7.1,
+      "actual": 9.9,
       "pos": "WR",
       "gotham": 14.94,
       "gotham_raw": 14.94,
       "gotham_src": "gotham",
       "sleeper": 15.5,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "TE",
@@ -1731,25 +1731,25 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "LIVE",
-   "state_note": "12 of 18 starters done, 15 games kicked off",
+   "state_note": "15 of 18 starters done, 15 games kicked off",
    "needles_set": {
-    "gotham": 25,
-    "yahoo": 25,
-    "sleeper": 13,
-    "yahoo_from_spread": 20
+    "gotham": 12,
+    "yahoo": 27,
+    "sleeper": 5,
+    "yahoo_from_spread": 9
    },
    "totals_set": {
     "yahoo": [
-     103.67,
-     116.14
+     105.62,
+     125.66
     ],
     "gotham": [
-     102.6,
-     112.55
+     104.55,
+     122.06
     ],
     "sleeper": [
-     101.53,
-     118.59
+     103.48,
+     128.08
     ]
    },
    "best_moves": {
@@ -1766,9 +1766,9 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 25%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 27%.",
    "experts": {
-    "read": "Sun Oct 25 2026 4:35 PM PT",
+    "read": "Sun Oct 25 2026 5:01 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1791,8 +1791,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 12:39 PM PT",
-    "roster": "Sun Oct 25 2026 3:56 PM PT",
+    "read": "Sun Oct 25 2026 4:39 PM PT",
+    "roster": "Sun Oct 25 2026 4:55 PM PT",
     "lines": [
      "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
@@ -1814,23 +1814,23 @@
    "needles": {
     "gotham": 100,
     "sleeper": 100,
-    "yahoo": 95,
+    "yahoo": null,
     "yahoo_best": false,
-    "yahoo_posted": 95,
+    "yahoo_posted": null,
     "yahoo_from_spread": 100
    },
    "totals": {
     "gotham": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ],
     "sleeper": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ],
     "yahoo": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ]
    },
    "windows": {
@@ -1839,7 +1839,7 @@
       19.0,
       0.0,
       107.92,
-      41.84,
+      40.82,
       0.0,
       0.0
      ],
@@ -1857,7 +1857,7 @@
       0.0,
       0.0,
       82.4,
-      53.6,
+      77.8,
       0.0,
       0.0
      ],
@@ -1991,7 +1991,7 @@
       "gotham_src": "gotham",
       "sleeper": 11.73,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "W/R/T",
@@ -2016,14 +2016,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 23.9,
-      "actual": 21.04,
+      "actual": 22.02,
       "pos": "QB",
       "gotham": 23.85,
       "gotham_raw": 25.93,
       "gotham_src": "gotham-capped",
       "sleeper": 23.81,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "K",
@@ -2048,7 +2048,7 @@
       "status": "",
       "kickoff": "",
       "yahoo": 7.09,
-      "actual": 6.0,
+      "actual": 4.0,
       "pos": "DEF",
       "gotham": 7.4,
       "gotham_raw": 7.4,
@@ -2162,7 +2162,7 @@
       "status": "",
       "kickoff": "",
       "yahoo": 16.5,
-      "actual": 21.7,
+      "actual": 27.1,
       "pos": "TE",
       "gotham": 15.94,
       "gotham_raw": 16.3,
@@ -2178,14 +2178,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 26.09,
-      "actual": 10.7,
+      "actual": 17.3,
       "pos": "RB",
       "gotham": 26.27,
       "gotham_raw": 30.11,
       "gotham_src": "gotham-capped",
       "sleeper": 26.46,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "Q/W/R/T",
@@ -2194,14 +2194,14 @@
       "status": "",
       "kickoff": "",
       "yahoo": 19.09,
-      "actual": 15.2,
+      "actual": 24.4,
       "pos": "QB",
       "gotham": 19.11,
       "gotham_raw": 20.01,
       "gotham_src": "gotham-capped",
       "sleeper": 19.14,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "K",
@@ -2209,15 +2209,15 @@
       "team": "DET",
       "status": "",
       "kickoff": "",
-      "yahoo": 8.8,
-      "actual": 6.0,
+      "yahoo": 8.83,
+      "actual": 9.0,
       "pos": "K",
       "gotham": 8.69,
       "gotham_raw": 8.69,
       "gotham_src": "sleeper",
       "sleeper": 8.69,
       "window": 3,
-      "gs": "playing"
+      "gs": "final"
      },
      {
       "slot": "DEF",
@@ -2338,26 +2338,26 @@
     }
    ],
    "pieces_set": "Sun Oct 25",
-   "state": "LIVE",
-   "state_note": "17 of 22 starters done, 22 games kicked off",
+   "state": "FINAL",
+   "state_note": "22 of 22 starters done, 22 games kicked off",
    "needles_set": {
     "gotham": 100,
-    "yahoo": 95,
+    "yahoo": null,
     "sleeper": 100,
     "yahoo_from_spread": 100
    },
    "totals_set": {
     "yahoo": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ],
     "gotham": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ],
     "sleeper": [
-     168.76,
-     136.0
+     167.74,
+     160.2
     ]
    },
    "best_moves": {
@@ -2374,9 +2374,9 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 95%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: None%.",
    "experts": {
-    "read": "Sun Oct 25 2026 4:35 PM PT",
+    "read": "Sun Oct 25 2026 5:01 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -2399,8 +2399,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 12:39 PM PT",
-    "roster": "Sun Oct 25 2026 3:56 PM PT",
+    "read": "Sun Oct 25 2026 4:39 PM PT",
+    "roster": "Sun Oct 25 2026 4:55 PM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
     ]
