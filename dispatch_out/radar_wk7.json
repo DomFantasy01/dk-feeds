@@ -1,47 +1,47 @@
 {
  "week": 7,
- "built": "Sun Oct 25 9:20 PM PT",
- "built_utc": "2026-10-26T04:20:28.964860+00:00",
+ "built": "Sun Oct 25 10:19 PM PT",
+ "built_utc": "2026-10-26T05:19:40.410877+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Oct 25 9:15 PM PT",
+   "pulled": "Sun Oct 25 10:14 PM PT",
    "pulled_ago": "5 min ago",
    "items": 970,
-   "newest": "17 min ago",
+   "newest": "1.3 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Oct 25 9:15 PM PT",
+   "pulled": "Sun Oct 25 10:14 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 3725,
-   "newest": "20 min ago",
+   "items": 3728,
+   "newest": "5 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Oct 25 9:15 PM PT",
+   "pulled": "Sun Oct 25 10:14 PM PT",
    "pulled_ago": "5 min ago",
    "items": 975,
-   "newest": "21 min ago",
+   "newest": "1.3 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Oct 25 9:15 PM PT",
+   "pulled": "Sun Oct 25 10:14 PM PT",
    "pulled_ago": "5 min ago",
    "items": 369,
-   "newest": "21 min ago",
+   "newest": "1.3 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Oct 25 9:15 PM PT",
+   "pulled": "Sun Oct 25 10:14 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Oct 25 9:18 PM PT",
+   "pulled": "Sun Oct 25 10:18 PM PT",
    "pulled_ago": "2 min ago",
    "items": 770,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Oct 25 2026 09:18 PM PT",
+   "pulled": "Sun Oct 25 2026 10:18 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Oct 25 6:11 PM PT",
-   "pulled_ago": "3.2 h ago",
+   "pulled_ago": "4.1 h ago",
    "items": 335,
    "newest": null,
    "warn": null,
@@ -248,7 +248,7 @@
       }
      ],
      "gotham": 16.6,
-     "gotham_ros": 23.0,
+     "gotham_ros": 22.9,
      "sleeper": 18.2,
      "workload": "63/50/44/52/25/39/43",
      "trend": -0.08
@@ -290,7 +290,7 @@
       }
      ],
      "gotham": 13.9,
-     "gotham_ros": 7.1,
+     "gotham_ros": 7.0,
      "sleeper": 7.2,
      "workload": "16/9/8/9/6/12/21",
      "trend": 0.73
@@ -331,11 +331,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.4,
+     "gotham": 8.4,
      "gotham_ros": 10.9,
      "sleeper": 12.1,
-     "workload": "5/12/3/4/6",
-     "trend": -0.14
+     "workload": "5/12/3/4/6/8",
+     "trend": 0.22
     },
     {
      "name": "Chris Godwin Jr.",
@@ -676,12 +676,49 @@
    ],
    "in": [
     {
+     "name": "Kirk Cousins",
+     "pos": "QB",
+     "team": "LV",
+     "why": [
+      "Sleeper adds #24 (72,400 in 24 h)"
+     ],
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 25 7:12 PM PT",
+       "src": "pft",
+       "title": "Kirk Cousins: \"If I'm not the best option, I don't want to be out there\"",
+       "text": "As the Raiders were rattling off three straight wins to start the season, the decision to ride with veteran quarterback Kirk Cousins was looking like the right way to go.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 16.6
+     },
+     "beats_floor": true,
+     "gotham": 25.1,
+     "gotham_ros": 22.6,
+     "sleeper": 18.8,
+     "workload": "39/36/38/52/28/41/49",
+     "trend": 0.18,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Caleb Douglas",
      "pos": "WR",
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #4 (244,240 in 24 h)"
+      "Sleeper adds #3 (252,328 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -706,7 +743,7 @@
      },
      "beats_floor": true,
      "gotham": 21.0,
-     "gotham_ros": 9.1,
+     "gotham_ros": 9.0,
      "sleeper": 7.7,
      "workload": "7/4/4",
      "trend": -0.31,
@@ -792,7 +829,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (141,111 in 24 h)"
+      "Sleeper adds #10 (139,338 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -936,43 +973,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Chris Godwin Jr.",
-      "gotham": 6.7
-     },
-     "beats_floor": true,
-     "gotham": 7.5,
-     "gotham_ros": 7.4,
-     "sleeper": 6.1,
-     "workload": "3/6/3/3/5/8",
-     "trend": 0.69,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Jaylen Wright",
      "pos": "RB",
      "team": "MIA",
@@ -1054,12 +1054,49 @@
      "acq": "unverified"
     },
     {
+     "name": "Rashid Shaheed",
+     "pos": "WR",
+     "team": "SEA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Oct 22 4:42 PM PT",
+       "src": "RotoWire news",
+       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
+       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Chris Godwin Jr.",
+      "gotham": 6.7
+     },
+     "beats_floor": false,
+     "gotham": 2.1,
+     "gotham_ros": 6.7,
+     "sleeper": 6.1,
+     "workload": "3/6/3/3/5/8/4",
+     "trend": 0.17,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Seth McGowan",
      "pos": "RB",
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (559,280 in 24 h)"
+      "Sleeper adds #2 (537,224 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1088,43 +1125,6 @@
      "sleeper": 4.0,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tank Bigsby",
-     "pos": "RB",
-     "team": "PHI",
-     "why": [
-      "opening: Saquon Barkley \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 16 2:52 PM PT",
-       "src": "rotoballer",
-       "title": "Carson Steele Could Be Involved Versus Panthers in Week 6",
-       "text": "The Philadelphia Eagles are down three running backs, as Saquon Barkley (hamstring), Tank Bigsby (abdomen, IR) and Will Shipley (foot, [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "TreVeyon Henderson",
-      "gotham": 5.0
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 6.7,
-     "sleeper": null,
-     "workload": "2/19/2/18",
-     "trend": 0.52,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1502,11 +1502,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.4,
+     "gotham": 8.4,
      "gotham_ros": 10.9,
      "sleeper": 12.1,
-     "workload": "5/12/3/4/6",
-     "trend": -0.14
+     "workload": "5/12/3/4/6/8",
+     "trend": 0.22
     },
     {
      "name": "Germie Bernard",
@@ -1811,7 +1811,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #4 (244,240 in 24 h)"
+      "Sleeper adds #3 (252,328 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1836,7 +1836,7 @@
      },
      "beats_floor": true,
      "gotham": 21.0,
-     "gotham_ros": 9.1,
+     "gotham_ros": 9.0,
      "sleeper": 7.7,
      "workload": "7/4/4",
      "trend": -0.31,
@@ -1885,7 +1885,7 @@
      "pos": "RB",
      "team": "SF",
      "why": [
-      "Sleeper adds #3 (247,002 in 24 h)"
+      "Sleeper adds #4 (249,347 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1910,7 +1910,7 @@
      },
      "beats_floor": true,
      "gotham": 13.9,
-     "gotham_ros": 7.1,
+     "gotham_ros": 7.0,
      "sleeper": 7.2,
      "workload": "16/9/8/9/6/12/21",
      "trend": 0.73,
@@ -1959,7 +1959,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (141,111 in 24 h)"
+      "Sleeper adds #10 (139,338 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2070,7 +2070,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #17 (110,646 in 24 h)"
+      "Sleeper adds #17 (108,099 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2091,7 +2091,7 @@
      ],
      "floor": {
       "name": "Travis Kelce",
-      "gotham": 9.4
+      "gotham": 8.4
      },
      "beats_floor": false,
      "gotham": 6.2,
@@ -2145,7 +2145,7 @@
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (559,280 in 24 h)"
+      "Sleeper adds #2 (537,224 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2772,7 +2772,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #4 (244,240 in 24 h)"
+      "Sleeper adds #3 (252,328 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2797,7 +2797,7 @@
      },
      "beats_floor": true,
      "gotham": 21.0,
-     "gotham_ros": 9.1,
+     "gotham_ros": 9.0,
      "sleeper": 7.7,
      "workload": "7/4/4",
      "trend": -0.31,
@@ -2809,7 +2809,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #1 (880,656 in 24 h)"
+      "Sleeper adds #1 (855,743 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2837,7 +2837,7 @@
      "gotham_ros": 8.4,
      "sleeper": 9.6,
      "workload": "0/4/0/9/3/2",
-     "trend": -0.24,
+     "trend": -0.23,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2890,7 +2890,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #9 (145,548 in 24 h)"
+      "Sleeper adds #9 (141,576 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2915,7 +2915,7 @@
      },
      "beats_floor": true,
      "gotham": 10.5,
-     "gotham_ros": 6.4,
+     "gotham_ros": 6.5,
      "sleeper": 8.9,
      "workload": "4/1/4/6/7/6",
      "trend": 0.46,
@@ -2927,7 +2927,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (141,111 in 24 h)"
+      "Sleeper adds #10 (139,338 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3002,7 +3002,7 @@
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (559,280 in 24 h)"
+      "Sleeper adds #2 (537,224 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3366,6 +3366,48 @@
      "trend": -0.19
     },
     {
+     "name": "Tucker Kraft",
+     "pos": "TE",
+     "team": "GB",
+     "slot": "TE",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Oct 25 10:14 PM PT",
+       "src": "rotoballer",
+       "title": "Tucker Kraft Remains Productive with a Touchdown in Week 7",
+       "text": "Green Bay Packers tight end Tucker Kraft caught four of his six targets for 48 yards and one touchdown during [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 23 2:33 PM PT",
+       "src": "rotoballer",
+       "title": "Tucker Kraft Offers Strong TE1 Value In Week 7 Against Detroit",
+       "text": "Green Bay Packers tight end Tucker Kraft draws one of the NFL's most favorable matchups in Sunday's Week 7 game [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Oct 22 9:05 AM PT",
+       "src": "rotoballer",
+       "title": "Fantasy Football Buy-Lows? Unlucky Star Players (Week 7)",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tucker-Kraft-fantasy-football-rankings-nfl-dfs-picks-icon-rotoballer-edited.jpg\" class=\"wp-post-image\" alt=\"Fantasy Football Buy-Lows? Unlucky Star Players (Week 7)\" style=",
+       "grade": "note"
+      }
+     ],
+     "gotham": 14.8,
+     "gotham_ros": 10.7,
+     "sleeper": 11.7,
+     "workload": "6/3/9/9/6/9/7",
+     "trend": 0.15
+    },
+    {
      "name": "Travis Kelce",
      "pos": "TE",
      "team": "KC",
@@ -3401,11 +3443,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.4,
+     "gotham": 8.4,
      "gotham_ros": 10.9,
      "sleeper": 12.1,
-     "workload": "5/12/3/4/6",
-     "trend": -0.14
+     "workload": "5/12/3/4/6/8",
+     "trend": 0.22
     },
     {
      "name": "Justin Jefferson",
@@ -3444,7 +3486,7 @@
       }
      ],
      "gotham": 8.4,
-     "gotham_ros": 14.6,
+     "gotham_ros": 14.5,
      "sleeper": 16.9,
      "workload": "10/7/8/8",
      "trend": -0.07
@@ -3611,7 +3653,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 23.2,
+     "gotham": 23.1,
      "gotham_ros": 22.6,
      "sleeper": 18.5,
      "workload": "37/36/45/48/42/57",
@@ -3654,7 +3696,7 @@
       }
      ],
      "gotham": 22.0,
-     "gotham_ros": 24.1,
+     "gotham_ros": 24.0,
      "sleeper": 23.8,
      "workload": "42/42/37/52/31/35",
      "trend": -0.18
@@ -3744,48 +3786,6 @@
      "trend": 0.15
     },
     {
-     "name": "Tucker Kraft",
-     "pos": "TE",
-     "team": "GB",
-     "slot": "TE",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 23 2:33 PM PT",
-       "src": "rotoballer",
-       "title": "Tucker Kraft Offers Strong TE1 Value In Week 7 Against Detroit",
-       "text": "Green Bay Packers tight end Tucker Kraft draws one of the NFL's most favorable matchups in Sunday's Week 7 game [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Thu Oct 22 9:05 AM PT",
-       "src": "rotoballer",
-       "title": "Fantasy Football Buy-Lows? Unlucky Star Players (Week 7)",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tucker-Kraft-fantasy-football-rankings-nfl-dfs-picks-icon-rotoballer-edited.jpg\" class=\"wp-post-image\" alt=\"Fantasy Football Buy-Lows? Unlucky Star Players (Week 7)\" style=",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 18 9:10 PM PT",
-       "src": "RotoWire news",
-       "title": "Tucker Kraft: Five more catches in Week 6 win",
-       "text": "Kraft caught five of eight targets for 37 yards in Sunday night's 23-13 win over the Cowboys.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 14.8,
-     "gotham_ros": 10.7,
-     "sleeper": 11.7,
-     "workload": "6/3/9/9/6/9/7",
-     "trend": 0.15
-    },
-    {
      "name": "James Conner",
      "pos": "RB",
      "team": "ARI",
@@ -3834,7 +3834,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #13 (124,600 in 24 h)"
+      "Sleeper adds #11 (127,048 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -3859,7 +3859,7 @@
      },
      "beats_floor": true,
      "gotham": 22.5,
-     "gotham_ros": 9.9,
+     "gotham_ros": 9.8,
      "sleeper": 9.4,
      "workload": "1/8/6",
      "trend": 0.49,
@@ -3872,7 +3872,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #4 (244,240 in 24 h)"
+      "Sleeper adds #3 (252,328 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3909,7 +3909,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #1 (880,656 in 24 h)"
+      "Sleeper adds #1 (855,743 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3937,7 +3937,7 @@
      "gotham_ros": 8.4,
      "sleeper": 9.6,
      "workload": "0/4/0/9/3/2",
-     "trend": -0.24,
+     "trend": -0.23,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3975,43 +3975,6 @@
      "sleeper": 7.9,
      "workload": "3/8/3/3/7/2",
      "trend": -0.23,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 3.8
-     },
-     "beats_floor": true,
-     "gotham": 7.4,
-     "gotham_ros": 7.3,
-     "sleeper": 5.9,
-     "workload": "3/6/3/3/5/8",
-     "trend": 0.69,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -4060,12 +4023,49 @@
      "acq": "unverified"
     },
     {
+     "name": "Rashid Shaheed",
+     "pos": "WR",
+     "team": "SEA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Oct 22 4:42 PM PT",
+       "src": "RotoWire news",
+       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
+       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 3.8
+     },
+     "beats_floor": true,
+     "gotham": 2.1,
+     "gotham_ros": 6.6,
+     "sleeper": 5.9,
+     "workload": "3/6/3/3/5/8/4",
+     "trend": 0.17,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Tyler Allgeier",
      "pos": "RB",
      "team": "ARI",
      "why": [
       "good news",
-      "Sleeper adds #22 (77,040 in 24 h)"
+      "Sleeper adds #23 (74,720 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4171,7 +4171,7 @@
      },
      "beats_floor": false,
      "gotham": 8.9,
-     "gotham_ros": 12.7,
+     "gotham_ros": 12.6,
      "sleeper": 4.7,
      "workload": "0/23/14",
      "trend": 0.56,
@@ -4220,7 +4220,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (141,111 in 24 h)"
+      "Sleeper adds #10 (139,338 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4257,7 +4257,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #17 (110,646 in 24 h)"
+      "Sleeper adds #17 (108,099 in 24 h)"
      ],
      "marker": {
       "count": 1,
