@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Mon Oct 26 2026 05:01 AM PT",
+ "built_pt": "Mon Oct 26 2026 08:02 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Oct 26 05:01 AM PT",
+   "pulled_pt": "Mon Oct 26 08:02 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,9 +22,9 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_sun2052.txt",
-   "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 8.2,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_mon0753.txt",
+   "pulled_pt": "Mon Oct 26 07:53 AM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 8.2,
+   "age_h": 11.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 8.2,
+   "age_h": 11.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Oct 26 05:01 AM PT",
+   "pulled_pt": "Mon Oct 26 08:02 AM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Mon Oct 26 2026 05:01 AM PT for week 7"
+   "note": "Gotham run Mon Oct 26 2026 08:02 AM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-26T0550Z.csv",
-   "pulled_pt": "Sun Oct 25 10:50 PM PT",
-   "age_h": 6.2,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-26T1333Z.csv",
+   "pulled_pt": "Mon Oct 26 06:33 AM PT",
+   "age_h": 1.5,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 1.1 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 1.5 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-26T0550Z.csv",
    "pulled_pt": "Sun Oct 25 10:50 PM PT",
-   "age_h": 6.2,
+   "age_h": 9.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 1.1 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 1.5 h ago (unchanged 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 8.2,
+   "age_h": 11.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -114,7 +114,7 @@
    },
    "totals": {
     "gotham": [
-     140.83,
+     140.81,
      91.61
     ],
     "sleeper": [
@@ -122,7 +122,7 @@
      97.95
     ],
     "yahoo": [
-     141.91,
+     141.87,
      99.23
     ]
    },
@@ -134,7 +134,7 @@
       77.05,
       0.0,
       8.4,
-      13.64
+      13.6
      ],
      [
       1,
@@ -180,7 +180,7 @@
       "team": "NO",
       "status": "",
       "kickoff": "",
-      "yahoo": 19.78,
+      "yahoo": 19.81,
       "actual": 16.57,
       "pos": "QB",
       "gotham": 16.57,
@@ -196,10 +196,10 @@
       "team": "PIT",
       "status": "",
       "kickoff": "",
-      "yahoo": 20.17,
+      "yahoo": 20.15,
       "actual": 21.2,
       "pos": "RB",
-      "gotham": 20.39,
+      "gotham": 20.38,
       "gotham_raw": 21.2,
       "gotham_src": "gotham-capped",
       "sleeper": 20.61,
@@ -212,7 +212,7 @@
       "team": "SF",
       "status": "",
       "kickoff": "",
-      "yahoo": 25.54,
+      "yahoo": 25.55,
       "actual": 23.75,
       "pos": "RB",
       "gotham": 23.75,
@@ -228,10 +228,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 13.64,
+      "yahoo": 13.6,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.56,
+      "gotham": 12.54,
       "gotham_raw": 15.23,
       "gotham_src": "gotham-capped",
       "sleeper": 11.48,
@@ -244,10 +244,10 @@
       "team": "ATL",
       "status": "",
       "kickoff": "",
-      "yahoo": 17.72,
+      "yahoo": 17.71,
       "actual": 19.6,
       "pos": "WR",
-      "gotham": 17.18,
+      "gotham": 17.17,
       "gotham_raw": 19.6,
       "gotham_src": "gotham-capped",
       "sleeper": 16.64,
@@ -260,7 +260,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.33,
+      "yahoo": 12.37,
       "actual": 8.4,
       "pos": "TE",
       "gotham": 8.4,
@@ -276,7 +276,7 @@
       "team": "NE",
       "status": "",
       "kickoff": "",
-      "yahoo": 9.06,
+      "yahoo": 9.08,
       "actual": 5.05,
       "pos": "RB",
       "gotham": 5.05,
@@ -292,7 +292,7 @@
       "team": "TB",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.39,
+      "yahoo": 12.4,
       "actual": 6.7,
       "pos": "WR",
       "gotham": 6.7,
@@ -324,7 +324,7 @@
       "team": "MIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.36,
+      "yahoo": 10.38,
       "actual": 16.0,
       "pos": "DEF",
       "gotham": 10.59,
@@ -342,7 +342,7 @@
       "team": "SF",
       "status": "",
       "kickoff": "",
-      "yahoo": 23.25,
+      "yahoo": 23.21,
       "actual": 14.52,
       "pos": "QB",
       "gotham": 14.52,
@@ -358,10 +358,10 @@
       "team": "DEN",
       "status": "",
       "kickoff": "",
-      "yahoo": 11.8,
+      "yahoo": 11.83,
       "actual": 14.75,
       "pos": "RB",
-      "gotham": 12.24,
+      "gotham": 12.25,
       "gotham_raw": 14.75,
       "gotham_src": "gotham-capped",
       "sleeper": 12.67,
@@ -390,7 +390,7 @@
       "team": "NO",
       "status": "",
       "kickoff": "",
-      "yahoo": 16.6,
+      "yahoo": 16.64,
       "actual": 11.6,
       "pos": "WR",
       "gotham": 11.6,
@@ -406,7 +406,7 @@
       "team": "TEN",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.35,
+      "yahoo": 10.32,
       "actual": 4.7,
       "pos": "WR",
       "gotham": 4.7,
@@ -438,7 +438,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.7,
+      "yahoo": 12.72,
       "actual": 4.1,
       "pos": "WR",
       "gotham": 4.1,
@@ -454,7 +454,7 @@
       "team": "MIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 17.94,
+      "yahoo": 17.89,
       "actual": 8.4,
       "pos": "WR",
       "gotham": 8.4,
@@ -584,11 +584,11 @@
    },
    "totals_set": {
     "yahoo": [
-     141.91,
+     141.87,
      99.23
     ],
     "gotham": [
-     140.83,
+     140.81,
      91.61
     ],
     "sleeper": [
@@ -612,7 +612,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 98%.",
    "experts": {
-    "read": "Mon Oct 26 2026 5:01 AM PT",
+    "read": "Mon Oct 26 2026 8:02 AM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -634,8 +634,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 4:39 PM PT",
-    "roster": "Sun Oct 25 2026 8:55 PM PT",
+    "read": "Mon Oct 26 2026 7:40 AM PT",
+    "roster": "Mon Oct 26 2026 7:55 AM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
     ]
@@ -665,7 +665,7 @@
    "totals": {
     "gotham": [
      151.11,
-     212.5
+     212.48
     ],
     "sleeper": [
      151.11,
@@ -673,7 +673,7 @@
     ],
     "yahoo": [
      151.11,
-     213.77
+     213.72
     ]
    },
    "windows": {
@@ -702,7 +702,7 @@
       93.9,
       22.3,
       0.0,
-      21.18
+      21.13
      ],
      [
       2,
@@ -730,10 +730,10 @@
       "team": "ARI",
       "status": "",
       "kickoff": "",
-      "yahoo": 18.83,
+      "yahoo": 18.82,
       "actual": 20.23,
       "pos": "QB",
-      "gotham": 17.84,
+      "gotham": 17.83,
       "gotham_raw": 20.23,
       "gotham_src": "gotham-capped",
       "sleeper": 16.85,
@@ -746,7 +746,7 @@
       "team": "NO",
       "status": "",
       "kickoff": "",
-      "yahoo": 11.25,
+      "yahoo": 11.23,
       "actual": 7.8,
       "pos": "RB",
       "gotham": 7.8,
@@ -762,10 +762,10 @@
       "team": "NO",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.44,
+      "yahoo": 10.42,
       "actual": 14.7,
       "pos": "RB",
-      "gotham": 9.87,
+      "gotham": 9.86,
       "gotham_raw": 14.7,
       "gotham_src": "gotham-capped",
       "sleeper": 9.3,
@@ -794,7 +794,7 @@
       "team": "PIT",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.41,
+      "yahoo": 12.39,
       "actual": 5.7,
       "pos": "WR",
       "gotham": 5.7,
@@ -810,7 +810,7 @@
       "team": "CIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 19.32,
+      "yahoo": 19.3,
       "actual": 17.2,
       "pos": "WR",
       "gotham": 17.2,
@@ -826,7 +826,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.38,
+      "yahoo": 12.42,
       "actual": 8.4,
       "pos": "TE",
       "gotham": 8.4,
@@ -842,7 +842,7 @@
       "team": "NYJ",
       "status": "",
       "kickoff": "",
-      "yahoo": 20.16,
+      "yahoo": 20.17,
       "actual": 23.65,
       "pos": "RB",
       "gotham": 20.31,
@@ -858,7 +858,7 @@
       "team": "PIT",
       "status": "",
       "kickoff": "",
-      "yahoo": 21.29,
+      "yahoo": 21.3,
       "actual": 15.83,
       "pos": "QB",
       "gotham": 15.83,
@@ -886,11 +886,11 @@
      },
      {
       "slot": "DEF",
-      "player": "Cleveland",
+      "player": "Browns",
       "team": "CLE",
       "status": "",
       "kickoff": "",
-      "yahoo": 7.34,
+      "yahoo": 7.35,
       "actual": 5.0,
       "pos": "DEF",
       "gotham": 7.54,
@@ -908,10 +908,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 21.18,
+      "yahoo": 21.13,
       "actual": null,
       "pos": "QB",
-      "gotham": 19.91,
+      "gotham": 19.89,
       "gotham_raw": 23.0,
       "gotham_src": "gotham-capped",
       "sleeper": 18.64,
@@ -924,10 +924,10 @@
       "team": "CLE",
       "status": "",
       "kickoff": "",
-      "yahoo": 16.34,
+      "yahoo": 16.32,
       "actual": 27.65,
       "pos": "RB",
-      "gotham": 15.74,
+      "gotham": 15.73,
       "gotham_raw": 27.65,
       "gotham_src": "gotham-capped",
       "sleeper": 15.15,
@@ -940,7 +940,7 @@
       "team": "TEN",
       "status": "",
       "kickoff": "",
-      "yahoo": 19.38,
+      "yahoo": 19.39,
       "actual": 42.75,
       "pos": "RB",
       "gotham": 19.18,
@@ -956,7 +956,7 @@
       "team": "CHI",
       "status": "",
       "kickoff": "",
-      "yahoo": 13.66,
+      "yahoo": 13.65,
       "actual": 24.95,
       "pos": "WR",
       "gotham": 13.18,
@@ -972,10 +972,10 @@
       "team": "HOU",
       "status": "",
       "kickoff": "",
-      "yahoo": 3.74,
+      "yahoo": 3.76,
       "actual": 3.5,
       "pos": "WR",
-      "gotham": 3.24,
+      "gotham": 3.25,
       "gotham_raw": 3.5,
       "gotham_src": "gotham-capped",
       "sleeper": 2.73,
@@ -988,10 +988,10 @@
       "team": "LV",
       "status": "",
       "kickoff": "",
-      "yahoo": 9.95,
+      "yahoo": 9.98,
       "actual": 22.3,
       "pos": "WR",
-      "gotham": 9.56,
+      "gotham": 9.57,
       "gotham_raw": 21.3,
       "gotham_src": "gotham-capped",
       "sleeper": 9.17,
@@ -1004,10 +1004,10 @@
       "team": "CAR",
       "status": "",
       "kickoff": "",
-      "yahoo": 7.08,
+      "yahoo": 7.06,
       "actual": 13.0,
       "pos": "TE",
-      "gotham": 7.31,
+      "gotham": 7.3,
       "gotham_raw": 12.0,
       "gotham_src": "gotham-capped",
       "sleeper": 7.54,
@@ -1020,7 +1020,7 @@
       "team": "MIA",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.6,
+      "yahoo": 10.59,
       "actual": 7.0,
       "pos": "WR",
       "gotham": 7.0,
@@ -1036,10 +1036,10 @@
       "team": "NE",
       "status": "",
       "kickoff": "",
-      "yahoo": 24.51,
+      "yahoo": 24.52,
       "actual": 32.44,
       "pos": "QB",
-      "gotham": 24.72,
+      "gotham": 24.73,
       "gotham_raw": 32.44,
       "gotham_src": "gotham-capped",
       "sleeper": 24.93,
@@ -1064,7 +1064,7 @@
      },
      {
       "slot": "DEF",
-      "player": "Pittsburgh",
+      "player": "Steelers",
       "team": "PIT",
       "status": "",
       "kickoff": "",
@@ -1205,11 +1205,11 @@
    "totals_set": {
     "yahoo": [
      151.11,
-     213.77
+     213.72
     ],
     "gotham": [
      151.11,
-     212.5
+     212.48
     ],
     "sleeper": [
      151.11,
@@ -1232,7 +1232,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 1%.",
    "experts": {
-    "read": "Mon Oct 26 2026 5:01 AM PT",
+    "read": "Mon Oct 26 2026 8:02 AM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1258,8 +1258,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 4:39 PM PT",
-    "roster": "Sun Oct 25 2026 8:55 PM PT",
+    "read": "Mon Oct 26 2026 7:40 AM PT",
+    "roster": "Mon Oct 26 2026 7:55 AM PT",
     "lines": [
      "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
@@ -1289,7 +1289,7 @@
    },
    "totals": {
     "gotham": [
-     104.54,
+     104.52,
      130.16
     ],
     "sleeper": [
@@ -1297,8 +1297,8 @@
      135.59
     ],
     "yahoo": [
-     105.62,
-     134.21
+     105.58,
+     134.18
     ]
    },
    "windows": {
@@ -1309,7 +1309,7 @@
       25.9,
       19.85,
       0.0,
-      13.64
+      13.6
      ],
      [
       0,
@@ -1327,7 +1327,7 @@
       18.2,
       63.51,
       31.8,
-      20.7
+      20.67
      ],
      [
       0,
@@ -1355,7 +1355,7 @@
       "team": "PIT",
       "status": "",
       "kickoff": "",
-      "yahoo": 21.28,
+      "yahoo": 21.29,
       "actual": 15.83,
       "pos": "QB",
       "gotham": 15.83,
@@ -1403,10 +1403,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 13.64,
+      "yahoo": 13.6,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.56,
+      "gotham": 12.54,
       "gotham_raw": 15.23,
       "gotham_src": "gotham-capped",
       "sleeper": 11.48,
@@ -1419,7 +1419,7 @@
       "team": "DEN",
       "status": "Q",
       "kickoff": "",
-      "yahoo": 13.19,
+      "yahoo": 13.23,
       "actual": 8.8,
       "pos": "WR",
       "gotham": 8.8,
@@ -1435,10 +1435,10 @@
       "team": "MIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.37,
+      "yahoo": 10.35,
       "actual": 13.5,
       "pos": "TE",
-      "gotham": 10.19,
+      "gotham": 10.18,
       "gotham_raw": 13.5,
       "gotham_src": "gotham-capped",
       "sleeper": 10.0,
@@ -1451,7 +1451,7 @@
       "team": "IND",
       "status": "",
       "kickoff": "",
-      "yahoo": 11.32,
+      "yahoo": 11.31,
       "actual": 3.8,
       "pos": "WR",
       "gotham": 3.8,
@@ -1467,10 +1467,10 @@
       "team": "NO",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.41,
+      "yahoo": 10.47,
       "actual": 16.4,
       "pos": "WR",
-      "gotham": 10.28,
+      "gotham": 10.31,
       "gotham_raw": 16.4,
       "gotham_src": "gotham-capped",
       "sleeper": 10.14,
@@ -1501,7 +1501,7 @@
       "team": "GB",
       "status": "",
       "kickoff": "",
-      "yahoo": 24.18,
+      "yahoo": 24.21,
       "actual": 20.96,
       "pos": "QB",
       "gotham": 20.96,
@@ -1517,7 +1517,7 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 20.7,
+      "yahoo": 20.67,
       "actual": null,
       "pos": "RB",
       "gotham": 16.65,
@@ -1549,10 +1549,10 @@
       "team": "SEA",
       "status": "",
       "kickoff": "",
-      "yahoo": 23.29,
+      "yahoo": 23.35,
       "actual": 31.8,
       "pos": "WR",
-      "gotham": 23.79,
+      "gotham": 23.82,
       "gotham_raw": 31.8,
       "gotham_src": "gotham-capped",
       "sleeper": 24.29,
@@ -1565,7 +1565,7 @@
       "team": "GB",
       "status": "",
       "kickoff": "",
-      "yahoo": 16.51,
+      "yahoo": 16.52,
       "actual": 9.9,
       "pos": "WR",
       "gotham": 9.9,
@@ -1597,7 +1597,7 @@
       "team": "DEN",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.67,
+      "yahoo": 12.7,
       "actual": 9.8,
       "pos": "RB",
       "gotham": 9.8,
@@ -1613,7 +1613,7 @@
       "team": "CAR",
       "status": "",
       "kickoff": "",
-      "yahoo": 15.6,
+      "yahoo": 15.62,
       "actual": 8.0,
       "pos": "WR",
       "gotham": 8.0,
@@ -1629,7 +1629,7 @@
       "team": "CLE",
       "status": "",
       "kickoff": "",
-      "yahoo": 10.87,
+      "yahoo": 10.88,
       "actual": 7.0,
       "pos": "DEF",
       "gotham": 10.54,
@@ -1740,11 +1740,11 @@
    },
    "totals_set": {
     "yahoo": [
-     105.62,
-     134.21
+     105.58,
+     134.18
     ],
     "gotham": [
-     104.54,
+     104.52,
      130.16
     ],
     "sleeper": [
@@ -1768,7 +1768,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 10%.",
    "experts": {
-    "read": "Mon Oct 26 2026 5:01 AM PT",
+    "read": "Mon Oct 26 2026 8:02 AM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1791,8 +1791,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 4:39 PM PT",
-    "roster": "Sun Oct 25 2026 8:55 PM PT",
+    "read": "Mon Oct 26 2026 7:40 AM PT",
+    "roster": "Mon Oct 26 2026 7:55 AM PT",
     "lines": [
      "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
@@ -1887,7 +1887,7 @@
       "team": "HOU",
       "status": "",
       "kickoff": "",
-      "yahoo": 23.28,
+      "yahoo": 23.32,
       "actual": 20.52,
       "pos": "QB",
       "gotham": 20.52,
@@ -1919,10 +1919,10 @@
       "team": "CHI",
       "status": "",
       "kickoff": "",
-      "yahoo": 15.29,
+      "yahoo": 15.27,
       "actual": 19.0,
       "pos": "RB",
-      "gotham": 15.48,
+      "gotham": 15.47,
       "gotham_raw": 19.0,
       "gotham_src": "gotham-capped",
       "sleeper": 15.67,
@@ -1935,7 +1935,7 @@
       "team": "IND",
       "status": "",
       "kickoff": "",
-      "yahoo": 11.29,
+      "yahoo": 11.28,
       "actual": 3.8,
       "pos": "WR",
       "gotham": 3.8,
@@ -1951,10 +1951,10 @@
       "team": "BAL",
       "status": "",
       "kickoff": "",
-      "yahoo": 17.62,
+      "yahoo": 17.57,
       "actual": 27.7,
       "pos": "WR",
-      "gotham": 18.15,
+      "gotham": 18.13,
       "gotham_raw": 27.7,
       "gotham_src": "gotham-capped",
       "sleeper": 18.69,
@@ -1967,7 +1967,7 @@
       "team": "MIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 17.9,
+      "yahoo": 17.85,
       "actual": 8.4,
       "pos": "WR",
       "gotham": 8.4,
@@ -1983,10 +1983,10 @@
       "team": "GB",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.73,
+      "yahoo": 12.71,
       "actual": 14.8,
       "pos": "TE",
-      "gotham": 12.23,
+      "gotham": 12.22,
       "gotham_raw": 14.8,
       "gotham_src": "gotham-capped",
       "sleeper": 11.73,
@@ -1999,10 +1999,10 @@
       "team": "MIA",
       "status": "",
       "kickoff": "",
-      "yahoo": 11.72,
+      "yahoo": 11.74,
       "actual": 17.3,
       "pos": "RB",
-      "gotham": 12.45,
+      "gotham": 12.46,
       "gotham_raw": 17.3,
       "gotham_src": "gotham-capped",
       "sleeper": 13.18,
@@ -2015,7 +2015,7 @@
       "team": "DET",
       "status": "",
       "kickoff": "",
-      "yahoo": 23.9,
+      "yahoo": 23.89,
       "actual": 22.02,
       "pos": "QB",
       "gotham": 22.02,
@@ -2047,7 +2047,7 @@
       "team": "DEN",
       "status": "",
       "kickoff": "",
-      "yahoo": 7.09,
+      "yahoo": 7.08,
       "actual": 4.0,
       "pos": "DEF",
       "gotham": 7.4,
@@ -2065,7 +2065,7 @@
       "team": "MIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 21.59,
+      "yahoo": 21.57,
       "actual": 15.9,
       "pos": "QB",
       "gotham": 15.9,
@@ -2081,7 +2081,7 @@
       "team": "CLE",
       "status": "",
       "kickoff": "",
-      "yahoo": 12.26,
+      "yahoo": 12.25,
       "actual": 23.4,
       "pos": "RB",
       "gotham": 11.7,
@@ -2113,7 +2113,7 @@
       "team": "HOU",
       "status": "",
       "kickoff": "",
-      "yahoo": 17.07,
+      "yahoo": 17.05,
       "actual": 2.6,
       "pos": "WR",
       "gotham": 2.6,
@@ -2129,7 +2129,7 @@
       "team": "CAR",
       "status": "",
       "kickoff": "",
-      "yahoo": 15.36,
+      "yahoo": 15.29,
       "actual": 1.9,
       "pos": "WR",
       "gotham": 1.9,
@@ -2145,7 +2145,7 @@
       "team": "CIN",
       "status": "",
       "kickoff": "",
-      "yahoo": 14.33,
+      "yahoo": 14.32,
       "actual": 26.8,
       "pos": "WR",
       "gotham": 14.66,
@@ -2161,10 +2161,10 @@
       "team": "ARI",
       "status": "",
       "kickoff": "",
-      "yahoo": 16.5,
+      "yahoo": 16.48,
       "actual": 27.1,
       "pos": "TE",
-      "gotham": 15.94,
+      "gotham": 15.93,
       "gotham_raw": 27.1,
       "gotham_src": "gotham-capped",
       "sleeper": 15.37,
@@ -2177,7 +2177,7 @@
       "team": "DET",
       "status": "",
       "kickoff": "",
-      "yahoo": 26.09,
+      "yahoo": 26.06,
       "actual": 17.3,
       "pos": "RB",
       "gotham": 17.3,
@@ -2193,10 +2193,10 @@
       "team": "LV",
       "status": "",
       "kickoff": "",
-      "yahoo": 19.09,
+      "yahoo": 19.14,
       "actual": 24.4,
       "pos": "QB",
-      "gotham": 19.11,
+      "gotham": 19.14,
       "gotham_raw": 24.4,
       "gotham_src": "gotham-capped",
       "sleeper": 19.14,
@@ -2225,7 +2225,7 @@
       "team": "CLE",
       "status": "",
       "kickoff": "",
-      "yahoo": 7.34,
+      "yahoo": 7.35,
       "actual": 5.0,
       "pos": "DEF",
       "gotham": 7.54,
@@ -2376,7 +2376,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: None%.",
    "experts": {
-    "read": "Mon Oct 26 2026 5:01 AM PT",
+    "read": "Mon Oct 26 2026 8:02 AM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -2399,8 +2399,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Sun Oct 25 2026 4:39 PM PT",
-    "roster": "Sun Oct 25 2026 8:55 PM PT",
+    "read": "Mon Oct 26 2026 7:40 AM PT",
+    "roster": "Mon Oct 26 2026 7:55 AM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
     ]
