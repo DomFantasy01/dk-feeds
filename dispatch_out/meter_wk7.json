@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Mon Oct 26 2026 12:26 PM PT",
+ "built_pt": "Mon Oct 26 2026 01:04 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Oct 26 12:25 PM PT",
+   "pulled_pt": "Mon Oct 26 01:04 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,9 +22,9 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_mon1155.txt",
-   "pulled_pt": "Mon Oct 26 11:55 AM PT",
-   "age_h": 0.5,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_mon1253.txt",
+   "pulled_pt": "Mon Oct 26 12:53 PM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 15.6,
+   "age_h": 16.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 15.6,
+   "age_h": 16.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Oct 26 12:26 PM PT",
+   "pulled_pt": "Mon Oct 26 01:04 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Mon Oct 26 2026 12:26 PM PT for week 7"
+   "note": "Gotham run Mon Oct 26 2026 01:04 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-26T1905Z.csv",
    "pulled_pt": "Mon Oct 26 12:05 PM PT",
-   "age_h": 0.4,
+   "age_h": 1.0,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.4 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (unchanged 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-26T1750Z.csv",
    "pulled_pt": "Mon Oct 26 10:50 AM PT",
-   "age_h": 1.6,
+   "age_h": 2.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.4 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (unchanged 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 15.6,
+   "age_h": 16.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -87,7 +87,7 @@
  "alarms": [],
  "lineup": [],
  "notes": [
-  "DK I: Gotham 11.8 vs Yahoo 19.3 / Sleeper 18.1 on Saquon Barkley - check role/news",
+  "DK I: Gotham 11.8 vs Yahoo 19.1 / Sleeper 18.1 on Saquon Barkley - check role/news",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
  ],
  "leagues": {
@@ -114,7 +114,7 @@
    },
    "totals": {
     "gotham": [
-     140.95,
+     140.87,
      91.67
     ],
     "sleeper": [
@@ -122,8 +122,8 @@
      97.98
     ],
     "yahoo": [
-     142.11,
-     99.21
+     141.95,
+     98.95
     ]
    },
    "windows": {
@@ -134,7 +134,7 @@
       77.05,
       0.0,
       8.4,
-      13.84
+      13.68
      ],
      [
       1,
@@ -152,7 +152,7 @@
       46.62,
       17.55,
       4.1,
-      19.34
+      19.08
      ],
      [
       0,
@@ -228,10 +228,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 13.84,
+      "yahoo": 13.68,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.68,
+      "gotham": 12.6,
       "gotham_raw": 15.33,
       "gotham_src": "gotham-capped",
       "sleeper": 11.53,
@@ -374,7 +374,7 @@
       "team": "PHI",
       "status": "Q",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 19.34,
+      "yahoo": 19.08,
       "actual": null,
       "pos": "RB",
       "gotham": 11.8,
@@ -584,11 +584,11 @@
    },
    "totals_set": {
     "yahoo": [
-     142.11,
-     99.21
+     141.95,
+     98.95
     ],
     "gotham": [
-     140.95,
+     140.87,
      91.67
     ],
     "sleeper": [
@@ -612,7 +612,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 98%.",
    "experts": {
-    "read": "Mon Oct 26 2026 12:25 PM PT",
+    "read": "Mon Oct 26 2026 1:04 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -634,8 +634,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 7:40 AM PT",
-    "roster": "Mon Oct 26 2026 11:56 AM PT",
+    "read": "Mon Oct 26 2026 12:40 PM PT",
+    "roster": "Mon Oct 26 2026 12:55 PM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
     ]
@@ -665,7 +665,7 @@
    "totals": {
     "gotham": [
      151.11,
-     212.61
+     212.68
     ],
     "sleeper": [
      151.11,
@@ -673,7 +673,7 @@
     ],
     "yahoo": [
      151.11,
-     213.74
+     213.87
     ]
    },
    "windows": {
@@ -702,7 +702,7 @@
       93.9,
       22.3,
       0.0,
-      21.15
+      21.28
      ],
      [
       2,
@@ -908,10 +908,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 21.15,
+      "yahoo": 21.28,
       "actual": null,
       "pos": "QB",
-      "gotham": 20.02,
+      "gotham": 20.09,
       "gotham_raw": 23.17,
       "gotham_src": "gotham-capped",
       "sleeper": 18.9,
@@ -1205,11 +1205,11 @@
    "totals_set": {
     "yahoo": [
      151.11,
-     213.74
+     213.87
     ],
     "gotham": [
      151.11,
-     212.61
+     212.68
     ],
     "sleeper": [
      151.11,
@@ -1232,7 +1232,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 1%.",
    "experts": {
-    "read": "Mon Oct 26 2026 12:25 PM PT",
+    "read": "Mon Oct 26 2026 1:04 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1258,8 +1258,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 7:40 AM PT",
-    "roster": "Mon Oct 26 2026 11:56 AM PT",
+    "read": "Mon Oct 26 2026 12:40 PM PT",
+    "roster": "Mon Oct 26 2026 12:55 PM PT",
     "lines": [
      "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
@@ -1289,7 +1289,7 @@
    },
    "totals": {
     "gotham": [
-     104.66,
+     104.58,
      130.27
     ],
     "sleeper": [
@@ -1297,8 +1297,8 @@
      135.74
     ],
     "yahoo": [
-     105.82,
-     134.41
+     105.66,
+     134.37
     ]
    },
    "windows": {
@@ -1309,7 +1309,7 @@
       25.9,
       19.85,
       0.0,
-      13.84
+      13.68
      ],
      [
       0,
@@ -1327,7 +1327,7 @@
       18.2,
       63.51,
       31.8,
-      20.9
+      20.86
      ],
      [
       0,
@@ -1403,10 +1403,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 13.84,
+      "yahoo": 13.68,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.68,
+      "gotham": 12.6,
       "gotham_raw": 15.33,
       "gotham_src": "gotham-capped",
       "sleeper": 11.53,
@@ -1517,7 +1517,7 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Mon 5:15 pm",
-      "yahoo": 20.9,
+      "yahoo": 20.86,
       "actual": null,
       "pos": "RB",
       "gotham": 16.76,
@@ -1740,11 +1740,11 @@
    },
    "totals_set": {
     "yahoo": [
-     105.82,
-     134.41
+     105.66,
+     134.37
     ],
     "gotham": [
-     104.66,
+     104.58,
      130.27
     ],
     "sleeper": [
@@ -1768,7 +1768,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 10%.",
    "experts": {
-    "read": "Mon Oct 26 2026 12:25 PM PT",
+    "read": "Mon Oct 26 2026 1:04 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -1791,8 +1791,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 7:40 AM PT",
-    "roster": "Mon Oct 26 2026 11:56 AM PT",
+    "read": "Mon Oct 26 2026 12:40 PM PT",
+    "roster": "Mon Oct 26 2026 12:55 PM PT",
     "lines": [
      "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
@@ -2376,7 +2376,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: None%.",
    "experts": {
-    "read": "Mon Oct 26 2026 12:25 PM PT",
+    "read": "Mon Oct 26 2026 1:04 PM PT",
     "vs_pull": "Sun Oct 25 2026 10:22 AM PT",
     "vs_week": "Week 6 final list",
     "panel": [
@@ -2399,8 +2399,8 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 7:40 AM PT",
-    "roster": "Mon Oct 26 2026 11:56 AM PT",
+    "read": "Mon Oct 26 2026 12:40 PM PT",
+    "roster": "Mon Oct 26 2026 12:55 PM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
     ]
