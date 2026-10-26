@@ -1,47 +1,47 @@
 {
  "week": 7,
- "built": "Sun Oct 25 8:23 PM PT",
- "built_utc": "2026-10-26T03:23:53.030048+00:00",
+ "built": "Sun Oct 25 9:05 PM PT",
+ "built_utc": "2026-10-26T04:05:18.138844+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Oct 25 8:19 PM PT",
+   "pulled": "Sun Oct 25 9:00 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 965,
+   "items": 969,
    "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Oct 25 8:19 PM PT",
+   "pulled": "Sun Oct 25 9:00 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 3719,
+   "items": 3725,
    "newest": "5 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Oct 25 8:19 PM PT",
+   "pulled": "Sun Oct 25 9:00 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 972,
-   "newest": "35 min ago",
+   "items": 975,
+   "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Oct 25 8:19 PM PT",
+   "pulled": "Sun Oct 25 9:00 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 367,
-   "newest": "13 min ago",
+   "items": 368,
+   "newest": "28 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Oct 25 8:19 PM PT",
+   "pulled": "Sun Oct 25 9:00 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Oct 25 8:22 PM PT",
+   "pulled": "Sun Oct 25 9:03 PM PT",
    "pulled_ago": "1 min ago",
    "items": 770,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Oct 25 2026 08:22 PM PT",
+   "pulled": "Sun Oct 25 2026 09:04 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Oct 25 6:11 PM PT",
-   "pulled_ago": "2.2 h ago",
+   "pulled_ago": "2.9 h ago",
    "items": 335,
    "newest": null,
    "warn": null,
@@ -301,7 +301,7 @@
      "team": "KC",
      "slot": "TE",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -309,6 +309,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 25 8:59 PM PT",
+       "src": "RotoWire news",
+       "title": "Travis Kelce: Moves to fifth on all-time catch list",
+       "text": "Kelce caught four of eight targets for 44 yards in Sunday's 20-3 loss to the Seahawks.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 25 7:50 PM PT",
        "src": "pft",
@@ -322,13 +329,6 @@
        "title": "Travis Kelce Should Be Busy In Week 7",
        "text": "Kansas City Chiefs tight end Travis Kelce will likely be a focal point of the offense as the team heads [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Thu Oct 22 4:59 PM PT",
-       "src": "rotoballer",
-       "title": "Travis Kelce Stays Limited in Thursday's Practice",
-       "text": "Kansas City Chiefs tight end Travis Kelce (ankle) was limited in practice on Thursday for the second straight day, according [&#8230;]",
-       "grade": "caution"
       }
      ],
      "gotham": 9.4,
@@ -681,7 +681,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #5 (226,872 in 24 h)"
+      "Sleeper adds #4 (239,648 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -792,7 +792,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (143,073 in 24 h)"
+      "Sleeper adds #10 (141,003 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -936,6 +936,43 @@
      "acq": "unverified"
     },
     {
+     "name": "Rashid Shaheed",
+     "pos": "WR",
+     "team": "SEA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Oct 22 4:42 PM PT",
+       "src": "RotoWire news",
+       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
+       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Chris Godwin Jr.",
+      "gotham": 6.7
+     },
+     "beats_floor": true,
+     "gotham": 7.5,
+     "gotham_ros": 7.4,
+     "sleeper": 6.1,
+     "workload": "3/6/3/3/5/8",
+     "trend": 0.69,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Jaylen Wright",
      "pos": "RB",
      "team": "MIA",
@@ -1017,49 +1054,12 @@
      "acq": "unverified"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Chris Godwin Jr.",
-      "gotham": 6.7
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 7.1,
-     "sleeper": 6.1,
-     "workload": "3/6/3/3/5/8",
-     "trend": 0.69,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Seth McGowan",
      "pos": "RB",
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (577,616 in 24 h)"
+      "Sleeper adds #2 (556,864 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1472,7 +1472,7 @@
      "team": "KC",
      "slot": "TE",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -1480,6 +1480,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 25 8:59 PM PT",
+       "src": "RotoWire news",
+       "title": "Travis Kelce: Moves to fifth on all-time catch list",
+       "text": "Kelce caught four of eight targets for 44 yards in Sunday's 20-3 loss to the Seahawks.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 25 7:50 PM PT",
        "src": "pft",
@@ -1493,13 +1500,6 @@
        "title": "Travis Kelce Should Be Busy In Week 7",
        "text": "Kansas City Chiefs tight end Travis Kelce will likely be a focal point of the offense as the team heads [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Thu Oct 22 4:59 PM PT",
-       "src": "rotoballer",
-       "title": "Travis Kelce Stays Limited in Thursday's Practice",
-       "text": "Kansas City Chiefs tight end Travis Kelce (ankle) was limited in practice on Thursday for the second straight day, according [&#8230;]",
-       "grade": "caution"
       }
      ],
      "gotham": 9.4,
@@ -1811,7 +1811,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #5 (226,872 in 24 h)"
+      "Sleeper adds #4 (239,648 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1885,7 +1885,7 @@
      "pos": "RB",
      "team": "SF",
      "why": [
-      "Sleeper adds #3 (241,248 in 24 h)"
+      "Sleeper adds #3 (245,364 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1959,7 +1959,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (143,073 in 24 h)"
+      "Sleeper adds #10 (141,003 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2070,7 +2070,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #17 (112,779 in 24 h)"
+      "Sleeper adds #17 (110,358 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2145,7 +2145,7 @@
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (577,616 in 24 h)"
+      "Sleeper adds #2 (556,864 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2772,7 +2772,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #5 (226,872 in 24 h)"
+      "Sleeper adds #4 (239,648 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2809,7 +2809,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #1 (899,948 in 24 h)"
+      "Sleeper adds #1 (877,933 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2890,7 +2890,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #9 (148,764 in 24 h)"
+      "Sleeper adds #9 (144,968 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2927,7 +2927,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (143,073 in 24 h)"
+      "Sleeper adds #10 (141,003 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3002,7 +3002,7 @@
      "team": "IND",
      "why": [
       "opening: Jonathan Taylor \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #2 (577,616 in 24 h)"
+      "Sleeper adds #2 (556,864 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3371,7 +3371,7 @@
      "team": "KC",
      "slot": "BN",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -3379,6 +3379,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Oct 25 8:59 PM PT",
+       "src": "RotoWire news",
+       "title": "Travis Kelce: Moves to fifth on all-time catch list",
+       "text": "Kelce caught four of eight targets for 44 yards in Sunday's 20-3 loss to the Seahawks.",
+       "grade": "note"
+      },
       {
        "t": "Sun Oct 25 7:50 PM PT",
        "src": "pft",
@@ -3392,13 +3399,6 @@
        "title": "Travis Kelce Should Be Busy In Week 7",
        "text": "Kansas City Chiefs tight end Travis Kelce will likely be a focal point of the offense as the team heads [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Thu Oct 22 4:59 PM PT",
-       "src": "rotoballer",
-       "title": "Travis Kelce Stays Limited in Thursday's Practice",
-       "text": "Kansas City Chiefs tight end Travis Kelce (ankle) was limited in practice on Thursday for the second straight day, according [&#8230;]",
-       "grade": "caution"
       }
      ],
      "gotham": 9.4,
@@ -3834,7 +3834,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #14 (119,160 in 24 h)"
+      "Sleeper adds #13 (123,104 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -3872,7 +3872,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #5 (226,872 in 24 h)"
+      "Sleeper adds #4 (239,648 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3909,7 +3909,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #1 (899,948 in 24 h)"
+      "Sleeper adds #1 (877,933 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3979,6 +3979,43 @@
      "acq": "unverified"
     },
     {
+     "name": "Rashid Shaheed",
+     "pos": "WR",
+     "team": "SEA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Oct 22 4:42 PM PT",
+       "src": "RotoWire news",
+       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
+       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 3.8
+     },
+     "beats_floor": true,
+     "gotham": 7.4,
+     "gotham_ros": 7.3,
+     "sleeper": 5.9,
+     "workload": "3/6/3/3/5/8",
+     "trend": 0.69,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Adonai Mitchell",
      "pos": "WR",
      "team": "NYJ",
@@ -4023,49 +4060,12 @@
      "acq": "unverified"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 3.8
-     },
-     "beats_floor": true,
-     "gotham": 0.0,
-     "gotham_ros": 7.0,
-     "sleeper": 5.9,
-     "workload": "3/6/3/3/5/8",
-     "trend": 0.69,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Allgeier",
      "pos": "RB",
      "team": "ARI",
      "why": [
       "good news",
-      "Sleeper adds #22 (79,435 in 24 h)"
+      "Sleeper adds #22 (76,990 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4220,7 +4220,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (143,073 in 24 h)"
+      "Sleeper adds #10 (141,003 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4257,7 +4257,7 @@
      "pos": "TE",
      "team": "LV",
      "why": [
-      "Sleeper adds #17 (112,779 in 24 h)"
+      "Sleeper adds #17 (110,358 in 24 h)"
      ],
      "marker": {
       "count": 1,
