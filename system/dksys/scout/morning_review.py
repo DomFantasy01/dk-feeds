@@ -321,6 +321,7 @@ def add_to_brief(path, rep):
     parts = []
     if rep.get("stale"): parts.append("Warning, the morning read is stale: " + "; ".join(rep["stale"]) + ".")
     if P is None: parts.append("Warning, the expert panel did not run this build, so no pickup names are listed.")
+    if P and P.get("experts_stale"): parts.append("Expert panel: " + P["experts_stale"] + ".")
     for lab, L in rep["leagues"].items():
         r = L["review"]; bits = r["yours"][:3] + r["hurts"][:2] + r["missed"][:2]
         passed = (P or {}).get("leagues", {}).get(lab, {}).get("passed", [])

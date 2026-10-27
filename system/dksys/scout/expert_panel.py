@@ -47,13 +47,29 @@ def arg(f, d=None):
 def pt_str(t): return f"{t:%a %b} {t.day} {t.hour % 12 or 12}:{t:%M} {'AM' if t.hour < 12 else 'PM'}"
 
 # ------------------------------------------------------------------ the experts' ranks, resolved to full names
+EXPERT_STALE = ""   # set by load_experts when the saved lists are for an earlier NFL week than this one
+def nfl_week_now():
+    """The NFL week by the calendar: 2026 Week 1 began Tue Sep 8; each week runs Tuesday to Monday (Pacific)."""
+    now = dt.datetime.now(PT)
+    return max(1, (now.date() - dt.date(2026, 9, 8)).days // 7 + 1)
 def load_experts(R):
+    """Oct 27 (Dom): the experts publish each week's lists midweek. Until they do, the saved file still holds LAST
+    week's lists - and those were being compared with this week's rosters as if current (a Week 7 rank calling Adonai
+    Mitchell an upgrade over Tank Dell in Week 8). Now an earlier week's file gives no ranks at all, and every page
+    that uses the panel says the new lists aren't out yet."""
+    global EXPERT_STALE
     f = f"{R}/yahoo_drop/morning/expert_rankings.txt"; rows, heads = [], []
     if not os.path.exists(f): return rows, heads
     for ln in open(f):
         if ln.startswith("#"): heads.append(ln.strip("# \n")); continue
         p = ln.rstrip("\n").split("|")
         if len(p) >= 7 and p[3].isdigit() and p[2] in POS: rows.append(dict(site=p[0], expert=p[1], pos=p[2], rank=int(p[3]), name=p[4], team=p[5]))
+    m = re.search(r"week (\d+)", heads[0]) if heads else None
+    fw, nw = (int(m.group(1)) if m else 0), nfl_week_now()
+    if fw and fw < nw and not os.environ.get("DK_EXPERTS_ANY_WEEK"):
+        EXPERT_STALE = f"the experts' Week {nw} lists aren't out yet (the saved lists are Week {fw}), so no expert flags this build"
+        return [], heads + [f"STALE: {EXPERT_STALE}"]
+    EXPERT_STALE = ""
     return rows, heads
 
 def name_index(R):
@@ -198,7 +214,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
     F = Facts(stats_f, snaps_f, games_f, week)
     sl = json.load(open(f"{R}/feeds/sleeper_players_min.json")).get("players", {}) if os.path.exists(f"{R}/feeds/sleeper_players_min.json") else {}
     INJ = {K(p.get("name")): p for p in sl.values() if p.get("name")}
-    rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=inbox.get("read_pt"), experts_read=stamps,
+    rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=inbox.get("read_pt"), experts_read=stamps, experts_stale=EXPERT_STALE,
                panel=[SHOW.get(e, e) for e in PANEL_NOW], rule=f"{NEED} of {len(PANEL_NOW)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
     for lab, n, lid, me in LEAGUES:
         teams = ROS.get(n, {}); rostered = {K(p) for ps in teams.values() for p in ps}
@@ -262,11 +278,12 @@ def card(x):
 
 def render(rep):
     o = [f"EXPERT PANEL (named experts only) - Week {rep['week']}, built {rep['built']} PT. Rosters: Yahoo read {rep['yahoo_read']}.",
+         *([f"NOT CURRENT: {rep['experts_stale']}."] if rep.get("experts_stale") else []),
          f"Panel: {', '.join(rep['panel'])}. Experts read: {'; '.join(rep['experts_read']) or 'MISSING'}.",
          f"A flag needs {rep['rule']}. Flags are for analysis - nothing here is a pickup order."]
     for lab, L in rep["leagues"].items():
         o.append(f"\n{lab}")
-        if not L["passed"]: o.append("  No flags: the panel doesn't rank anyone available clearly above your men.")
+        if not L["passed"]: o.append("  No flags: " + (rep["experts_stale"] + "." if rep.get("experts_stale") else "the panel doesn't rank anyone available clearly above your men."))
         for x in L["passed"]: o.append(card(x))
         for x in L["failed"]: o.append(f"  (Panel liked {x['name']} over {x['beats']}, but he {x['verdict'].replace('fails the workup: ', 'fails: ')}.)")
     return "\n".join(o)
