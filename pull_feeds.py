@@ -444,6 +444,7 @@ def espn_injuries():
                 for v in o: walk(v, team)
         walk(d)
         write('espn_injuries.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'players': rows})
+        save_inactives(rows)
         mark('espn_injuries', bool(rows), players=len(rows), teams=len({r['team'] for r in rows}),
              warning=None if rows else 'answered but no injury rows found — format may differ, needs a look')
     except Exception as e:
@@ -461,6 +462,26 @@ ESPN_TEAM = {'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ra
     'Tampa Bay Buccaneers': 'TB', 'Tennessee Titans': 'TEN', 'Washington Commanders': 'WAS'}
 ESPN_STATUS = {'Out': 'Out', 'Injured Reserve': 'IR', 'Questionable': 'Questionable', 'Doubtful': 'Doubtful',
                'Suspension': 'Sus', 'Physically Unable to Perform': 'PUP', 'Day-To-Day': 'Questionable'}
+def save_inactives(rows):
+    """Oct 26 (Dom): keep each week's game-day inactives (ESPN: Out + "inactive" in the note, dated this NFL week) in
+    feeds/inactives/wk<W>.json, first-seen time kept, so Gotham can be graded against them after the games."""
+    try:
+        wk = (NOW - dt.datetime(2026, 9, 8, tzinfo=dt.timezone.utc)).days // 7 + 1
+        start = (dt.datetime(2026, 9, 8, tzinfo=dt.timezone.utc) + dt.timedelta(days=7 * (wk - 1))).strftime('%Y-%m-%dT%H:%M')
+        f = os.path.join(MAIN, 'inactives', f'wk{wk}.json')
+        try: cur = json.load(open(f))
+        except Exception: cur = {'week': wk, 'season': 2026, 'source': 'ESPN injuries feed (Out + "inactive"), saved by pull_feeds.py', 'players': []}
+        have = {(r['name'], r.get('team')) for r in cur['players']}
+        for r in rows:
+            if r.get('status') == 'Out' and 'inactive' in str(r.get('detail', '')).lower() and str(r.get('date') or '') >= start:
+                if (r['name'], r.get('team')) not in have:
+                    cur['players'].append(dict(name=r['name'], team=r.get('team'), pos=r.get('pos'), tagged_utc=r.get('date'),
+                                               first_seen_utc=NOW.strftime('%Y-%m-%dT%H:%MZ'), detail=r.get('detail')))
+                    have.add((r['name'], r.get('team')))
+        os.makedirs(os.path.dirname(f), exist_ok=True); json.dump(cur, open(f, 'w'), indent=1)
+    except Exception as e:
+        print('inactives not saved:', e)
+
 def injury_overlay():
     try:
         import re as _re

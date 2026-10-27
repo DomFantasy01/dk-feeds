@@ -83,6 +83,13 @@
    "since": "2026-10-25",
    "what": "The Radar flagged Seth McGowan at 9:47 AM while he was a free agent; the Colts kicked off at 10 and nothing put him in front of Dom.",
    "fixed": "2026-10-25 - every build and hourly alert check turns each Radar flag that is a free agent with his game not started into a 'Before lock' alert (Live) and the top of the brief; the Sunday gauntlet and the hourly check push them"
+  },
+  {
+   "piece": "Gotham ignored game-day inactives",
+   "level": "yellow",
+   "since": "2026-10-25",
+   "what": "A man listed Questionable on Friday and ruled inactive Sunday kept his full Gotham number (Breece Hall, Wk 7: 17.1 projected, 0 scored).",
+   "fixed": "2026-10-26 - the official inactive list (ESPN, matched on name and team, this NFL week only) now sets him Out. Tested on Week 7 (858 player-weeks, Monday night pending): miss 4.76 -> 4.62, 16 numbers better, none worse. Moving his work to teammates was also tested and rejected (helped less, 33 of 61 teammate numbers worse). Inactives are now saved weekly in feeds/inactives/."
   }
  ]
 }

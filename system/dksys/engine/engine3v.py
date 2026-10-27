@@ -196,6 +196,38 @@ for k,(st_,src,tm_,ps_) in FEEDST.items():
     if st_ in ('Out','Doubtful') and STATUS[k][1]=='ESPN+Sleeper' and (k not in DOWN or DOWN[k][2]=='DNP'):   # Dom's rule: injury news moves work only when cross-confirmed
         t0,p0=(DOWN[k][0],DOWN[k][1]) if k in DOWN else (tm_,ps_)
         if t0: DOWN[k]=(t0,p0,st_)                 # a feed-confirmed absence moves his work to teammates, same as the report
+# Oct 26 (Dom): GAME-DAY INACTIVES. The official inactive list (90 minutes before kickoff) beats the Friday report.
+# Before this, a man listed Questionable on Friday and then ruled inactive Sunday kept his full number (Breece Hall, Wk 7:
+# Gotham still gave him 17.1). Source: ESPN's injury feed, Out + "inactive" in the
+# note, dated inside this NFL week (plus feeds/inactives/wk<W>.json, the saved list). Matched on name AND team, so a same-name
+# man on another team (Justin Jefferson, CLE linebacker) never zeroes the wrong player. Switch: DK_INACTIVE=off / on / move.
+_INACT=[]
+if os.environ.get('DK_INACTIVE','on')!='off':
+    try:
+        import datetime as _dti
+        _ETM={'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF','Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE','Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB','Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC','Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LA','Miami Dolphins':'MIA','Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','New York Giants':'NYG','New York Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF','Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'}
+        _RN=pd.read_csv(D+'rosters_nfl.csv',low_memory=False); _RN=_RN[_RN.week==_RN[_RN.week<=WEEK].week.max()]
+        _ONT={(norm(str(a)),T(b)):str(c) for a,b,c in zip(_RN.full_name,_RN.team,_RN.position)}
+        _src=[]
+        _IF=os.environ.get('DK_INACT_FILE') or (_FD+f'inactives/wk{WEEK}.json')
+        if os.path.exists(_IF): _src+=json.load(open(_IF)).get('players',[])
+        if not os.environ.get('DK_INACT_FILE'):
+            _wk0=(_dti.datetime(2026,9,8)+_dti.timedelta(days=7*(WEEK-1))).strftime('%Y-%m-%dT%H:%M')   # NFL weeks start Tuesday (UTC)
+            _wk1=(_dti.datetime(2026,9,8)+_dti.timedelta(days=7*WEEK)).strftime('%Y-%m-%dT%H:%M')
+            for it in (_EJ.values() if isinstance(_EJ,dict) else _EJ):
+                if not isinstance(it,dict) or it.get('status')!='Out' or 'inactive' not in str(it.get('detail','')).lower(): continue
+                if not (_wk0<=str(it.get('date',''))[:16]<_wk1): continue    # this week's games only - Monday's list never carries into next week
+                _src.append(it)
+        for it in _src:
+            k=norm(it.get('name','')); tm=T(_ETM.get(it.get('team',''),it.get('team','')))
+            ps=_ONT.get((k,tm))
+            if ps not in ('QB','RB','WR','TE'): continue          # not on that team this week (or not a skill player)
+            STATUS[k]=('Out','official inactive'); _INACT.append(it.get('name'))
+            # Tested Oct 26 on Week 7 (858 player-weeks): zeroing the inactive man cut the miss 4.76 -> 4.62 and made no one worse.
+            # ALSO moving his work to teammates helped less (4.65) and made 33 of 61 teammate numbers worse - so it stays off.
+            if os.environ.get('DK_INACTIVE','on')=='move': DOWN[k]=(tm,ps,'Out')
+    except Exception as _e: print('inactives rule skipped:',_e)
+print('GAME-DAY INACTIVES -> Out:',len(set(_INACT)),'|',', '.join(sorted(set(_INACT))[:25]))
 print('NEWS WIRING: feed statuses',len(FEEDST),'| DOWN now',len(DOWN))
 # v5 DEPTH CHART (QB): a quarterback who is not first on his team's latest depth chart, while the first is healthy, is a backup -> 0.
 _DC=pd.read_csv(D+'depth_charts.csv',low_memory=False)
