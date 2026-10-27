@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Mon Oct 26 2026 09:45 PM PT",
+ "built_pt": "Mon Oct 26 2026 10:15 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Oct 26 09:44 PM PT",
+   "pulled_pt": "Mon Oct 26 10:15 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_mon1653.txt",
    "pulled_pt": "Mon Oct 26 04:53 PM PT",
-   "age_h": 4.9,
+   "age_h": 5.4,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +33,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 24.9,
+   "age_h": 25.4,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +42,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 24.9,
+   "age_h": 25.4,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,35 +50,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Oct 26 09:45 PM PT",
+   "pulled_pt": "Mon Oct 26 10:15 PM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Mon Oct 26 2026 09:45 PM PT for week 7"
+   "note": "Gotham run Mon Oct 26 2026 10:15 PM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-26T2345Z.csv",
    "pulled_pt": "Mon Oct 26 04:45 PM PT",
-   "age_h": 5.0,
+   "age_h": 5.5,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.9 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.4 h ago ()"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-26T2345Z.csv",
    "pulled_pt": "Mon Oct 26 04:45 PM PT",
-   "age_h": 5.0,
+   "age_h": 5.5,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.9 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.4 h ago ()"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 24.9,
+   "age_h": 25.4,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -87,7 +87,8 @@
  "alarms": [],
  "lineup": [],
  "notes": [
-  "DK I: Gotham 11.7 vs Yahoo 19.2 / Sleeper 18.1 on Saquon Barkley - check role/news",
+  "DK II: Gotham 29.8 vs Yahoo 21.1 / Sleeper 18.5 on Dak Prescott - check role/news",
+  "DK III: Gotham 27.8 vs Yahoo 20.7 / Sleeper 22.0 on Javonte Williams - check role/news",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
  ],
  "leagues": {
@@ -115,7 +116,7 @@
    "totals": {
     "gotham": [
      140.9,
-     91.61
+     96.72
     ],
     "sleeper": [
      139.71,
@@ -232,7 +233,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 12.63,
-      "gotham_raw": 15.23,
+      "gotham_raw": 15.7,
       "gotham_src": "gotham-capped",
       "sleeper": 11.44,
       "window": 5,
@@ -377,8 +378,8 @@
       "yahoo": 19.16,
       "actual": null,
       "pos": "RB",
-      "gotham": 11.74,
-      "gotham_raw": 11.74,
+      "gotham": 16.85,
+      "gotham_raw": 16.85,
       "gotham_src": "gotham",
       "sleeper": 18.1,
       "window": 5,
@@ -589,7 +590,7 @@
     ],
     "gotham": [
      140.9,
-     91.61
+     96.72
     ],
     "sleeper": [
      139.71,
@@ -912,7 +913,7 @@
       "actual": null,
       "pos": "QB",
       "gotham": 19.82,
-      "gotham_raw": 23.0,
+      "gotham_raw": 29.78,
       "gotham_src": "gotham-capped",
       "sleeper": 18.53,
       "window": 5,
@@ -1280,7 +1281,7 @@
    "teams": 14,
    "opp_rank": 3,
    "needles": {
-    "gotham": 1,
+    "gotham": 0,
     "sleeper": 0,
     "yahoo": 10,
     "yahoo_best": false,
@@ -1290,7 +1291,7 @@
    "totals": {
     "gotham": [
      104.61,
-     130.16
+     134.87
     ],
     "sleeper": [
      103.42,
@@ -1407,7 +1408,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 12.63,
-      "gotham_raw": 15.23,
+      "gotham_raw": 15.7,
       "gotham_src": "gotham-capped",
       "sleeper": 11.44,
       "window": 5,
@@ -1520,9 +1521,9 @@
       "yahoo": 20.72,
       "actual": null,
       "pos": "RB",
-      "gotham": 16.65,
-      "gotham_raw": 16.65,
-      "gotham_src": "gotham",
+      "gotham": 21.36,
+      "gotham_raw": 27.75,
+      "gotham_src": "gotham-capped",
       "sleeper": 22.0,
       "window": 5,
       "gs": "final"
@@ -1733,7 +1734,7 @@
    "state": "FINAL",
    "state_note": "18 of 18 starters done, 18 games kicked off",
    "needles_set": {
-    "gotham": 1,
+    "gotham": 0,
     "yahoo": 10,
     "sleeper": 0,
     "yahoo_from_spread": 1
@@ -1745,7 +1746,7 @@
     ],
     "gotham": [
      104.61,
-     130.16
+     134.87
     ],
     "sleeper": [
      103.42,
@@ -2258,7 +2259,7 @@
      "pos": "QB",
      "yahoo": null,
      "actual": null,
-     "gotham": 23.15,
+     "gotham": 29.28,
      "sleeper": 18.25,
      "window": 5
     },
