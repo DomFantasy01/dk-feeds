@@ -1,6 +1,6 @@
 {
  "week": 7,
- "built_pt": "Tue Oct 27 2026 12:30 AM PT",
+ "built_pt": "Tue Oct 27 2026 08:28 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 6:30 AM",
@@ -14,7 +14,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Oct 27 12:30 AM PT",
+   "pulled_pt": "Tue Oct 27 08:28 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +24,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_matchups_mon1653.txt",
    "pulled_pt": "Mon Oct 26 04:53 PM PT",
-   "age_h": 7.6,
+   "age_h": 15.6,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,16 +33,16 @@
    "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/league_windows_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 27.6,
+   "age_h": 35.6,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
-   "status": "OK",
+   "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/standings_sun2052.txt",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 27.6,
+   "age_h": 35.6,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,17 +50,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Oct 27 12:30 AM PT",
+   "pulled_pt": "Tue Oct 27 08:28 AM PT",
    "age_h": 0.0,
    "rows": 7,
    "need": 7,
-   "note": "Gotham run Tue Oct 27 2026 12:30 AM PT for week 7"
+   "note": "Gotham run Tue Oct 27 2026 08:28 AM PT for week 7"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk7_2026-10-26T2345Z.csv",
    "pulled_pt": "Mon Oct 26 04:45 PM PT",
-   "age_h": 7.8,
+   "age_h": 15.7,
    "rows": 3117,
    "need": 400,
    "note": "GitHub job checked 0.5 h ago ()"
@@ -69,23 +69,25 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk7_2026-10-26T2345Z.csv",
    "pulled_pt": "Mon Oct 26 04:45 PM PT",
-   "age_h": 7.8,
+   "age_h": 15.7,
    "rows": 185,
    "need": 60,
    "note": "GitHub job checked 0.5 h ago ()"
   },
   "yahoo_rosters": {
-   "status": "OK",
+   "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk7/dom_rosters.json",
    "pulled_pt": "Sun Oct 25 08:52 PM PT",
-   "age_h": 27.6,
+   "age_h": 35.6,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
   }
  },
  "alarms": [
-  "yahoo_all_teams: STALE - 27.6 h old (limit 26 h)"
+  "yahoo_all_teams: STALE - 35.6 h old (limit 26 h)",
+  "yahoo_standings: STALE - 35.6 h old (limit 30 h)",
+  "yahoo_rosters: STALE - 35.6 h old (limit 30 h)"
  ],
  "lineup": [],
  "notes": [
@@ -637,7 +639,7 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 4:39 PM PT",
+    "read": "Tue Oct 27 2026 8:06 AM PT",
     "roster": "Mon Oct 26 2026 4:54 PM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
@@ -1261,10 +1263,10 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 4:39 PM PT",
+    "read": "Tue Oct 27 2026 8:06 AM PT",
     "roster": "Mon Oct 26 2026 4:54 PM PT",
     "lines": [
-     "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr., Braelon Allen).",
+     "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
     ]
    }
@@ -1794,10 +1796,10 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 4:39 PM PT",
+    "read": "Tue Oct 27 2026 8:06 AM PT",
     "roster": "Mon Oct 26 2026 4:54 PM PT",
     "lines": [
-     "A lead running back - save the $91 for him: still OPEN - short in Weeks 7, 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
+     "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
    }
   },
@@ -2402,7 +2404,7 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Mon Oct 26 2026 4:39 PM PT",
+    "read": "Tue Oct 27 2026 8:06 AM PT",
     "roster": "Mon Oct 26 2026 4:54 PM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
