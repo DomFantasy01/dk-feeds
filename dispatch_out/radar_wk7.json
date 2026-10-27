@@ -1,47 +1,47 @@
 {
  "week": 7,
- "built": "Mon Oct 26 4:13 PM PT",
- "built_utc": "2026-10-26T23:13:22.856826+00:00",
+ "built": "Mon Oct 26 5:03 PM PT",
+ "built_utc": "2026-10-27T00:03:47.299455+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Mon Oct 26 4:08 PM PT",
+   "pulled": "Mon Oct 26 4:58 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 997,
-   "newest": "7 min ago",
+   "items": 1011,
+   "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Mon Oct 26 4:08 PM PT",
+   "pulled": "Mon Oct 26 4:58 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 3851,
-   "newest": "8 min ago",
+   "items": 3856,
+   "newest": "5 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Mon Oct 26 4:08 PM PT",
+   "pulled": "Mon Oct 26 4:58 PM PT",
    "pulled_ago": "5 min ago",
    "items": 1009,
-   "newest": "11 min ago",
+   "newest": "1.0 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Mon Oct 26 4:08 PM PT",
+   "pulled": "Mon Oct 26 4:58 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 370,
-   "newest": "18 min ago",
+   "items": 369,
+   "newest": "9 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Mon Oct 26 4:08 PM PT",
+   "pulled": "Mon Oct 26 4:58 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Mon Oct 26 4:12 PM PT",
+   "pulled": "Mon Oct 26 5:02 PM PT",
    "pulled_ago": "1 min ago",
    "items": 770,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Mon Oct 26 2026 04:12 PM PT",
+   "pulled": "Mon Oct 26 2026 05:02 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,9 +68,9 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Mon Oct 26 3:49 PM PT",
-   "pulled_ago": "24 min ago",
-   "items": 335,
+   "pulled": "Mon Oct 26 4:45 PM PT",
+   "pulled_ago": "19 min ago",
+   "items": 329,
    "newest": null,
    "warn": null,
    "failed": null
@@ -89,7 +89,7 @@
      "team": "SF",
      "slot": "RB",
      "marker": {
-      "count": 4,
+      "count": 5,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -98,6 +98,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Mon Oct 26 4:58 PM PT",
+       "src": "rotoballer",
+       "title": "Christian McCaffrey has Mild Hamstring Strain, Should be Ready for Week 9",
+       "text": "San Francisco 49ers star running back Christian McCaffrey (hamstring) ended up having a mild hamstring strain in Sunday's Week 7 [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Mon Oct 26 3:42 PM PT",
        "src": "pft",
@@ -111,13 +118,6 @@
        "title": "Christian McCaffrey: Questionable (Hamstring)",
        "text": "McCaffrey is dealing with a mild hamstring strain rather than a quadriceps injury, and the 49ers believe he'll be ready following the team's Week 8 bye, David Lombardi of SF Standard reports.",
        "grade": "caution"
-      },
-      {
-       "t": "Mon Oct 26 6:36 AM PT",
-       "src": "rotoballer",
-       "title": "Christian McCaffrey Not Worried About \"Thigh\" Injury",
-       "text": "San Francisco 49ers running back Christian McCaffrey (thigh) is not worried about his injury. McCaffrey suffered a thigh injury on [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 23.8,
@@ -634,11 +634,48 @@
    ],
    "in": [
     {
+     "name": "Mason Taylor",
+     "pos": "TE",
+     "team": "NYJ",
+     "why": [
+      "Sleeper adds #25 (29,650 in 24 h)"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 26 10:49 AM PT",
+       "src": "rotoballer",
+       "title": "Unexpected Boom Performances of Week 7: Fantasy Football Risers Include Tony Pollard, KC Concepcion Jr., Tre Tucker, Mason Taylor",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Unexpected Boom Performances of Week 7: Fantasy Foo",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 8.4
+     },
+     "beats_floor": true,
+     "gotham": 25.2,
+     "gotham_ros": 9.0,
+     "sleeper": 4.4,
+     "workload": "3/3/7/8",
+     "trend": 0.77,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Kirk Cousins",
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #18 (43,624 in 24 h)"
+      "Sleeper adds #17 (43,168 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -676,7 +713,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #1 (339,072 in 24 h)"
+      "Sleeper adds #1 (339,168 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1012,48 +1049,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Chris Godwin Jr.",
-      "gotham": 6.7
-     },
-     "beats_floor": false,
-     "gotham": 2.1,
-     "gotham_ros": 6.7,
-     "sleeper": 6.1,
-     "workload": "3/6/3/3/5/8/4",
-     "trend": 0.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Seth McGowan",
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #4 (156,744 in 24 h)"
+      "Sleeper adds #4 (155,112 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1263,6 +1263,90 @@
      "trend": 0.22
     },
     {
+     "name": "Kendre Miller",
+     "pos": "RB",
+     "team": "NO",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 26 4:45 PM PT",
+       "src": "RotoWire news",
+       "title": "Kendre Miller: Handles eight carries in Paris loss",
+       "text": "Miller rushed eight times for six yards in Sunday's 16-10 loss to the Steelers in Paris.",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Oct 24 11:30 AM PT",
+       "src": "rotoballer",
+       "title": "Kendre Miller a Priority Week 7 Waiver Add as Backfield Role Expands",
+       "text": "New Orleans Saints running back Kendre Miller is a priority waiver add as his share of the backfield grows during [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 23 10:06 PM PT",
+       "src": "rotoballer",
+       "title": "Kendre Miller Looks to Build on Solid Week 6 Performance",
+       "text": "New Orleans Saints running back Kendre Miller rushed 20 times for 70 yards in Week 6's win over the Giants. [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 7.8,
+     "gotham_ros": 12.7,
+     "sleeper": 11.8,
+     "workload": "11/10/13/14/28/20",
+     "trend": 0.51
+    },
+    {
+     "name": "Germie Bernard",
+     "pos": "WR",
+     "team": "PIT",
+     "slot": "WR",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 26 4:49 PM PT",
+       "src": "RotoWire news",
+       "title": "Germie Bernard: Quiet game in win over New Orleans",
+       "text": "Bernard caught three of five targets for 27 yards in Sunday's 16-10 win over the Saints.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Oct 25 10:27 AM PT",
+       "src": "rotoballer",
+       "title": "Germie Bernard Cools Down in Victory over Saints",
+       "text": "Pittsburgh Steelers rookie wide receiver Germie Bernard had a low-production day in a 16-10 Week 7 win over the New [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 23 6:28 PM PT",
+       "src": "rotoballer",
+       "title": "Germie Bernard Emerging as a Fantasy WR2 Against Saints",
+       "text": "Pittsburgh Steelers wide receiver Germie Bernard broke out with 11 catches for 87 yards and a touchdown on 12 targets [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 5.7,
+     "gotham_ros": 17.9,
+     "sleeper": 11.4,
+     "workload": "9/1/3/10/14/5",
+     "trend": 0.19
+    },
+    {
      "name": "Braelon Allen",
      "pos": "RB",
      "team": "NYJ",
@@ -1431,48 +1515,6 @@
      "trend": 0.66
     },
     {
-     "name": "Germie Bernard",
-     "pos": "WR",
-     "team": "PIT",
-     "slot": "WR",
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 25 10:27 AM PT",
-       "src": "rotoballer",
-       "title": "Germie Bernard Cools Down in Victory over Saints",
-       "text": "Pittsburgh Steelers rookie wide receiver Germie Bernard had a low-production day in a 16-10 Week 7 win over the New [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 23 6:28 PM PT",
-       "src": "rotoballer",
-       "title": "Germie Bernard Emerging as a Fantasy WR2 Against Saints",
-       "text": "Pittsburgh Steelers wide receiver Germie Bernard broke out with 11 catches for 87 yards and a touchdown on 12 targets [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Oct 21 8:04 PM PT",
-       "src": "rotoballer",
-       "title": "Rookie WR Germie Bernard Poised to Continue Significant Role for Steelers",
-       "text": "With multiple injuries in the Pittsburgh Steelers' wide receiver room, rookie wide receiver Germie Bernard has stepped up over the [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 5.7,
-     "gotham_ros": 17.9,
-     "sleeper": 11.4,
-     "workload": "9/1/3/10/14/5",
-     "trend": 0.19
-    },
-    {
      "name": "Drake London",
      "pos": "WR",
      "team": "ATL",
@@ -1513,48 +1555,6 @@
      "sleeper": 16.6,
      "workload": "4/5/10/6/11/11/11",
      "trend": 0.44
-    },
-    {
-     "name": "Kendre Miller",
-     "pos": "RB",
-     "team": "NO",
-     "slot": "RB",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 24 11:30 AM PT",
-       "src": "rotoballer",
-       "title": "Kendre Miller a Priority Week 7 Waiver Add as Backfield Role Expands",
-       "text": "New Orleans Saints running back Kendre Miller is a priority waiver add as his share of the backfield grows during [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 23 10:06 PM PT",
-       "src": "rotoballer",
-       "title": "Kendre Miller Looks to Build on Solid Week 6 Performance",
-       "text": "New Orleans Saints running back Kendre Miller rushed 20 times for 70 yards in Week 6's win over the Giants. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Oct 19 11:01 AM PT",
-       "src": "rotoballer",
-       "title": "Kendre Miller Seeing Enough Work to Make Him a Plug-and-Play Option",
-       "text": "In a Week 6 win over the Giants, New Orleans Saints running back Kendre Miller led the team with 70 [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 7.8,
-     "gotham_ros": 12.7,
-     "sleeper": 11.8,
-     "workload": "11/10/13/14/28/20",
-     "trend": 0.51
     },
     {
      "name": "Alvin Kamara",
@@ -1728,12 +1728,49 @@
    ],
    "in": [
     {
+     "name": "Mason Taylor",
+     "pos": "TE",
+     "team": "NYJ",
+     "why": [
+      "Sleeper adds #25 (29,650 in 24 h)"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 26 10:49 AM PT",
+       "src": "rotoballer",
+       "title": "Unexpected Boom Performances of Week 7: Fantasy Football Risers Include Tony Pollard, KC Concepcion Jr., Tre Tucker, Mason Taylor",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Unexpected Boom Performances of Week 7: Fantasy Foo",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 8.4
+     },
+     "beats_floor": true,
+     "gotham": 25.2,
+     "gotham_ros": 9.0,
+     "sleeper": 4.4,
+     "workload": "3/3/7/8",
+     "trend": 0.77,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Caleb Douglas",
      "pos": "WR",
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #1 (339,072 in 24 h)"
+      "Sleeper adds #1 (339,168 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1807,7 +1844,7 @@
      "pos": "RB",
      "team": "SF",
      "why": [
-      "Sleeper adds #6 (104,566 in 24 h)"
+      "Sleeper adds #6 (104,328 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1881,7 +1918,7 @@
      "pos": "WR",
      "team": "DAL",
      "why": [
-      "Sleeper adds #19 (43,392 in 24 h)"
+      "Sleeper adds #18 (42,816 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2066,7 +2103,7 @@
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #4 (156,744 in 24 h)"
+      "Sleeper adds #4 (155,112 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2132,43 +2169,6 @@
      "sleeper": 2.0,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Oct 26 11:45 AM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks in Line for Uptick in Playing Time in Washington",
-       "text": "Washington Commanders wide receiver Treylon Burks should be in line for an uptick in playing time going forward after Terry [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 5.7
-     },
-     "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": 10.4,
-     "sleeper": null,
-     "workload": "1/3/3/6/7",
-     "trend": 1.03,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2688,12 +2688,49 @@
    ],
    "in": [
     {
+     "name": "Mason Taylor",
+     "pos": "TE",
+     "team": "NYJ",
+     "why": [
+      "Sleeper adds #25 (29,650 in 24 h)"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Oct 26 10:49 AM PT",
+       "src": "rotoballer",
+       "title": "Unexpected Boom Performances of Week 7: Fantasy Football Risers Include Tony Pollard, KC Concepcion Jr., Tre Tucker, Mason Taylor",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Unexpected Boom Performances of Week 7: Fantasy Foo",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "T.J. Hockenson",
+      "gotham": 13.5
+     },
+     "beats_floor": true,
+     "gotham": 25.2,
+     "gotham_ros": 9.0,
+     "sleeper": 4.4,
+     "workload": "3/3/7/8",
+     "trend": 0.77,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Caleb Douglas",
      "pos": "WR",
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #1 (339,072 in 24 h)"
+      "Sleeper adds #1 (339,168 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2730,7 +2767,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (186,802 in 24 h)"
+      "Sleeper adds #3 (174,762 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2768,7 +2805,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #21 (37,480 in 24 h)"
+      "Sleeper adds #21 (37,572 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2784,13 +2821,6 @@
        "src": "RotoWire news",
        "title": "Jonah Coleman: Activated from IR",
        "text": "The Broncos activated Coleman (ankle) from injured reserve Saturday, Jeremy Fowler of ESPN.com reports.",
-       "grade": "good"
-      },
-      {
-       "t": "Thu Oct 22 4:46 PM PT",
-       "src": "RotoWire news",
-       "title": "Jonah Coleman: Remains full participant",
-       "text": "Coleman (ankle) was a full participant in Thursday's practice.",
        "grade": "good"
       }
      ],
@@ -2812,7 +2842,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #20 (41,076 in 24 h)"
+      "Sleeper adds #20 (39,720 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2886,7 +2916,7 @@
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #4 (156,744 in 24 h)"
+      "Sleeper adds #4 (155,112 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3107,43 +3137,6 @@
      "sleeper": null,
      "workload": "1/3/3/6/7",
      "trend": 1.03,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Marcus Mariota",
-     "pos": "QB",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Oct 26 11:45 AM PT",
-       "src": "rotoballer",
-       "title": "Marcus Mariota to Return to Practice This Week",
-       "text": "Washington Commanders head coach Dan Quinn said on Monday that veteran quarterback Marcus Mariota (knee) will return to practice as [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Aaron Rodgers",
-      "gotham": 15.8
-     },
-     "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": 13.4,
-     "sleeper": null,
-     "workload": "18/40/6",
-     "trend": -0.33,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3812,7 +3805,7 @@
      ],
      "gotham": 23.1,
      "gotham_ros": 22.6,
-     "sleeper": 18.3,
+     "sleeper": 18.2,
      "workload": "37/36/45/48/42/57",
      "trend": 0.22
     },
@@ -3865,7 +3858,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #5 (112,256 in 24 h)"
+      "Sleeper adds #5 (107,880 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3903,7 +3896,7 @@
      "team": "MIA",
      "why": [
       "good news",
-      "Sleeper adds #1 (339,072 in 24 h)"
+      "Sleeper adds #1 (339,168 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3940,7 +3933,7 @@
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "Sleeper adds #3 (186,802 in 24 h)"
+      "Sleeper adds #3 (174,762 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4091,43 +4084,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 22 4:42 PM PT",
-       "src": "RotoWire news",
-       "title": "Rashid Shaheed: Upgrades to full practice Thursday",
-       "text": "Shaheed (hip) was a full participant in Thursday's practice, John Boyle of the Seahawks' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 3.8
-     },
-     "beats_floor": true,
-     "gotham": 2.1,
-     "gotham_ros": 6.6,
-     "sleeper": 5.9,
-     "workload": "3/6/3/3/5/8/4",
-     "trend": 0.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tyler Allgeier",
      "pos": "RB",
      "team": "ARI",
@@ -4207,7 +4163,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #21 (37,480 in 24 h)"
+      "Sleeper adds #21 (37,572 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4223,13 +4179,6 @@
        "src": "RotoWire news",
        "title": "Jonah Coleman: Activated from IR",
        "text": "The Broncos activated Coleman (ankle) from injured reserve Saturday, Jeremy Fowler of ESPN.com reports.",
-       "grade": "good"
-      },
-      {
-       "t": "Thu Oct 22 4:46 PM PT",
-       "src": "RotoWire news",
-       "title": "Jonah Coleman: Remains full participant",
-       "text": "Coleman (ankle) was a full participant in Thursday's practice.",
        "grade": "good"
       }
      ],
@@ -4317,6 +4266,43 @@
      "sleeper": 6.7,
      "workload": null,
      "trend": null,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Oct 23 8:16 AM PT",
+       "src": "RotoWire news",
+       "title": "Jaylen Wright: Will play Sunday",
+       "text": "Dolphins coach Jeff Hafley said Friday that Wright (foot) will play in Sunday's game against the Jets, Barry Jackson of the Miami Herald reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Bijan Robinson",
+      "gotham": 17.2
+     },
+     "beats_floor": false,
+     "gotham": 0.8,
+     "gotham_ros": 1.9,
+     "sleeper": 4.8,
+     "workload": "1/5/5/6/12",
+     "trend": 1.22,
      "yahoo": null,
      "acq": "unverified"
     }
