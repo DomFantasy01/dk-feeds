@@ -206,7 +206,14 @@ if os.environ.get('DK_INACTIVE','on')!='off':
     try:
         import datetime as _dti
         _ETM={'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF','Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE','Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB','Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC','Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LA','Miami Dolphins':'MIA','Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','New York Giants':'NYG','New York Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF','Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'}
-        _RN=pd.read_csv(D+'rosters_nfl.csv',low_memory=False); _RN=_RN[_RN.week==_RN[_RN.week<=WEEK].week.max()]
+        # each man's latest roster row up to this week (nflverse's weekly roster file is sparse for earlier weeks -
+        # Oct 27: taking only the single latest week matched 8 of 56 Week 7 inactives)
+        # (a man with no row up to this week - the file lists most players only at their newest week - takes his
+        # first row after it)
+        _RN=pd.read_csv(D+'rosters_nfl.csv',low_memory=False); _RN['_k']=_RN.gsis_id.fillna(_RN.full_name)
+        _a=_RN[_RN.week<=WEEK].sort_values('week').groupby('_k').tail(1)
+        _b=_RN[(_RN.week>WEEK)&~_RN._k.isin(_a._k)].sort_values('week').groupby('_k').head(1)
+        _RN=pd.concat([_a,_b])
         _ONT={(norm(str(a)),T(b)):str(c) for a,b,c in zip(_RN.full_name,_RN.team,_RN.position)}
         _src=[]
         _IF=os.environ.get('DK_INACT_FILE') or (_FD+f'inactives/wk{WEEK}.json')

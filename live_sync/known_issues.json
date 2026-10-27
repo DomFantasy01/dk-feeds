@@ -97,6 +97,20 @@
    "since": "2026-10-27",
    "what": "Until the experts publish a new week's lists (midweek), the saved file held last week's ranks, and the brief and Scout compared them with this week's rosters as if current (Week 7 ranks calling Adonai Mitchell an upgrade over Tank Dell in Week 8).",
    "fixed": "2026-10-27 - an earlier week's lists now give no flags; the brief, the Scout's expert lane and the panel page say the new lists aren't out yet. Flags come back on their own the first build after the experts publish."
+  },
+  {
+   "piece": "Inactives rule matched too few players in back-tests",
+   "level": "yellow",
+   "since": "2026-10-27",
+   "what": "nflverse's weekly roster file now lists most players only at their newest week, so matching a past week's inactives by team found 8 of 56 (this week's live rule was unaffected).",
+   "fixed": "2026-10-27 - each man's team comes from his latest roster row up to that week, else his first row after it. Week 7 re-scored with Monday night included (922 player-weeks): miss 4.71 -> 4.58, 16 better, none worse; moving work to teammates still worse (4.61). Rule stays as built."
+  },
+  {
+   "piece": "Scoreboard never reached the brief",
+   "level": "grey",
+   "since": "2026-10-27",
+   "what": "The scoreboard grading Yahoo, Gotham and Sleeper every week ran in every build but only showed on a Dispatch page.",
+   "fixed": "2026-10-27 - its latest week, the season line and how many weeks Gotham beat Yahoo now close every brief."
   }
  ]
 }
