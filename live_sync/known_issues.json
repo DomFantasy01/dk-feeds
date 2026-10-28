@@ -118,6 +118,20 @@
    "since": "2026-10-27",
    "what": "Players back from injury, signed or traded with no 2026 games (Charbonnet, Pearsall, Kirk, Thornton) were missing from the Scout's pool, so it never weighed them. Its IR status read also used only the newest week of nflverse's sparse roster file.",
    "fixed": "2026-10-27 - they're priced on last season's per-game level at 85% (tested on 57 late starters: no bias, 3.1-pt miss), flagged 'no games yet - flag, not act'; status now comes from each man's own latest roster row. Picks and watch lists unchanged in all four leagues. Still unpriced: rookies with no history and unsigned players."
+  },
+  {
+   "piece": "Scout priced a backup as the starter after the starter came back",
+   "level": "yellow",
+   "since": "2026-10-28",
+   "what": "Dameon Pierce (PHI RB) was the Scout's top DK III add at +59 because his value came from games Saquon Barkley missed; Barkley played Week 7 and the Scout didn't notice he was back.",
+   "fixed": "2026-10-28 - in a backfield or QB room, once a starter who missed games has played his team's last game, the backup keeps only what he did alongside him. Tested on all four leagues: only DK III's board changed (Pierce off). Still open: a man hurt in his last game with no injury report yet isn't discounted until the report comes out."
+  },
+  {
+   "piece": "Simulator (new)",
+   "level": "green",
+   "since": "2026-10-28",
+   "what": "Plays every remaining regular-season game 10,000 times in each league: playoff odds, this week's chance and score range, lineup swaps and pickup/drop tests on the same draws. In every build and the brief.",
+   "fixed": "Backtest (dispatch_out/sim/BACKTEST.txt): matches or beats the needles' math and is better calibrated. Limits: rest-of-season odds can't be graded until the season plays out; rivals' values come from the Scout's model (evened out vs Yahoo); playoff tiebreaks use points for."
   }
  ]
 }
