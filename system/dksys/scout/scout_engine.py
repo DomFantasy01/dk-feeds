@@ -407,6 +407,13 @@ for k,p in skill.items():
     if bw==99: continue
     if bw>NOW: why=("on IR" if (yt in ("IR","IR-R","PUP-R") or p["nflstat"]=="RES") else "listed Out")+(f" ({p['inj']})" if p["inj"] else "")
     elif p["last"]<TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES" and p["inj"]: bw=NOW; why=f"missed his last game{' ('+p['inj']+')' if p['inj'] else ''}, practicing this week ({(p['prac'] or 'no report').replace(' Participation in Practice','').lower()})"
+    # Oct 28 (Dom, Pierce): the starter is ALREADY back - he played his team's last game. The backup who filled in while
+    # he was out keeps only what he did alongside him (Pierce was priced as Philadelphia's lead back after Barkley returned)
+    # Only a backfield or a QB room (one man's work is the other's), only a starter who MISSED games in the last four
+    # weeks and then played the last one - a normal healthy starter, or two receivers sharing targets, never trips this.
+    elif (p["pos"] in ("RB","QB") and p["last"]==TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES"
+          and any(w not in p["wks"] for w in range(max(1,p["last"]-4),p["last"]))
+          and len([w for w in p["wks"] if w<p["last"]-4])>=1): bw=NOW; why=f"back - played Week {p['last']} after missing games"
     else: continue
     full=[w for w in p["wks"] if SNAP.get((k[0],p["team"],w),1)>=.35]
     if not full: continue
@@ -752,7 +759,7 @@ for lab,(fn,fv,fi) in FULL.items():
     k=MINE[fi]["key"]
     if k in CLOSE and CLOSE[k]["week"]<=NOW+1:
         c=CLOSE[k]; pos=lab.rstrip("12"); okpos=okfor(pos)
-        add_need(lab,"season-long",WEEKS,c["after"],f"replacing a ~{c['before']:.0f}: {fn} becomes ~{c['after']:.0f} once {c['who']} is back ({c['why']}) — anything over {c['after']:.0f} is an improvement",[],okpos)
+        add_need(lab,"season-long",WEEKS,c["after"],ideal=c["before"],why=f"replacing a ~{c['before']:.0f}: {fn} becomes ~{c['after']:.0f} once {c['who']} is back ({c['why']}) — anything over {c['after']:.0f} is an improvement",lst=[],okpos=okpos)
 needs.sort(key=lambda n:-n["prio"])
 # ================= print =================
 out=[]
