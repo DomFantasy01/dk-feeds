@@ -1,8 +1,8 @@
 {
  "league": "DK I",
- "run": "2026-10-28T05:01:55.526256-07:00",
- "run_str": "Wed Oct 28, 5:01 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-7 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 28, 4:41 AM PT \u00b7 stats nflverse Wed 5:01 AM PT",
+ "run": "2026-10-28T05:14:30.655329-07:00",
+ "run_str": "Wed Oct 28, 5:14 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-7 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 28, 4:41 AM PT \u00b7 stats nflverse Wed 5:14 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -79,6 +79,25 @@
    "rep": 0
   },
   {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:RB2:season-long:short",
+   "age": 0,
+   "gap": 10,
+   "head": "The Backfield Won't Hold",
+   "title": "RB2, Season-Long",
+   "target": "Target 17.2 pts",
+   "why": "Replacing a ~21: Jaylen Warren becomes ~17 once Rico Dowdle is back (back - played Week 7 after missing games). Worst weeks: Wk 8 Henderson ~9.1, Wk 9 Etienne ~13.9.",
+   "across": "",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off When Filled",
+   "rows": [
+    "Jaylen Warren"
+   ],
+   "rep": 0
+  },
+  {
    "mark": "gold",
    "first": "2026-10-09",
    "key": "need:TE:fill:short",
@@ -99,39 +118,21 @@
   },
   {
    "mark": "gold",
-   "first": "2026-10-18",
-   "key": "need:RB2:fill:short",
-   "age": 10,
-   "gap": null,
-   "head": "Byes Hit the Backfield",
-   "title": "RB2, Weeks 8-9 Fill",
-   "target": "Target 11.5 pts",
-   "why": "Full strength ~17.7 (Warren). Wk 8 Henderson ~9.1 (Warren moves up to RB1, Henderson slides in) \u00b7 Wk 9 Etienne ~13.9 (Warren on bye, Etienne slides in).",
-   "across": "Wk 8 Henry ~20.2 vs Henderson ~9.1 \u00b7 Wk 9 Brown ~17.7 vs Etienne ~13.9",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 9",
-   "rows": [
-    "Travis Etienne Jr.",
-    "TreVeyon Henderson"
-   ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:FLEX2:fill:short",
-   "age": 7,
-   "gap": 2,
-   "head": "The Flex Runs Thin",
-   "title": "FLEX2, Week 11 Fill",
-   "target": "Target 10.0 pts",
-   "why": "Full strength ~10.1 (Kelce). Wk 11 Godwin ~10.0 (Kelce moves up to TE, Godwin slides in).",
-   "across": "Wk 11 Tuten ~17.5 vs Godwin ~10.0",
+   "key": "need:RB1:fill:short",
+   "age": 19,
+   "gap": null,
+   "head": "A Bye Hits the Backfield",
+   "title": "RB1, Week 8 Fill",
+   "target": "Target 17.6 pts",
+   "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~17.6 (McCaffrey on bye, Warren slides in).",
+   "across": "Wk 8 Jacobs ~23.2 vs Warren ~17.6",
    "picks": [],
    "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 11",
-   "rows": [],
+   "kill": "Drops Off After Wk 8",
+   "rows": [
+    "Jaylen Warren"
+   ],
    "rep": 0
   },
   {
@@ -151,42 +152,6 @@
    "rows": [
     "George Pickens"
    ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:RB1:fill:short",
-   "age": 19,
-   "gap": null,
-   "head": "A Bye Hits the Backfield",
-   "title": "RB1, Week 8 Fill",
-   "target": "Target 17.9 pts",
-   "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~17.9 (McCaffrey on bye, Warren slides in).",
-   "across": "Wk 8 Jacobs ~23.2 vs Warren ~17.9",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 8",
-   "rows": [
-    "Jaylen Warren"
-   ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-11",
-   "key": "need:FLEX1:fill:short",
-   "age": 10,
-   "gap": 4,
-   "head": "The Flex Runs Thin",
-   "title": "FLEX1, Week 11 Fill",
-   "target": "Target 14.0 pts",
-   "why": "Full strength ~12.6 (Diggs). Wk 11 Etienne ~14.0 (Diggs moves up to WR2, Etienne slides in).",
-   "across": "Wk 11 Jones ~18.3 vs Etienne ~14.0",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 11",
-   "rows": [],
    "rep": 0
   }
  ],
@@ -221,7 +186,9 @@
   }
  ],
  "gate3": [],
- "checked": [],
+ "checked": [
+  "Warren ~21.1 to ~17.2 from Wk 8 \u2014 Rico Dowdle checked: rostered by Rolling With Romo"
+ ],
  "footer": "Protected (Dom's call): Travis Kelce, Kaelon Black",
  "open": {
   "start": 0,
