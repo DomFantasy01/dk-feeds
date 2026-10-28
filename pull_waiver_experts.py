@@ -98,6 +98,8 @@ def english(w, idx):
             (r"deep-league (options|plays)", "deep"), (r"upside stashes", "stash"), (r"injuries to (watch|note)", "injury-watch"),
             (r"top rb handcuffs", "handcuff"), (r"drops", "drop")]
     DIAG["english"] = f"{len(L)} lines, start found: {any(re.search('(?i)^priority targets$', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
+    k0 = max([i for i, l in enumerate(L) if re.fullmatch(r"(?i)priority targets", l)] or [0])
+    L = L[k0 - 1:] if k0 else L
     p = picks_from(L, idx, r"(?i)^priority targets$", r"(?i)^(top streaming defense|kevin english, senior)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
     p = [x for x in p if x[1] not in ("injury-watch",)]
     return dict(expert=by[3:].strip() or "Kevin English", site="Draft Sharks", acc="51 (site: 9, 13)", url=url, posted=t, picks=p,
@@ -108,7 +110,8 @@ def jahnke(w, idx):
     h = get(url); L = text_of(h)
     if not any(re.search(rf"(?i)week {w}\b", l) for l in L[:400]): return None, "PFF's column is not on Week %d yet" % w
     t = re.search(r'datetime="([^"]+)"', h)
-    DIAG["jahnke"] = f"{len(L)} lines, start found: {any(re.search('(?i)^jump to a position group', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
+    k0 = next((i for i, l in enumerate(L) if re.search('(?i)^jump to a position group', l)), 0)
+    DIAG["jahnke"] = f"{len(L)} lines, after start: {' / '.join(L[k0:k0+40])[:1500]}"
     p = picks_from(L, idx, r"(?i)^jump to a position group", r"(?i)(exclusive content|want to keep reading)", None,
                    [(r"quarterback", "QB"), (r"running back", "RB"), (r"wide receiver", "WR"), (r"tight end", "TE")])
     return dict(expert="Nathan Jahnke", site="PFF", acc="8", url=url, posted=t.group(1) if t else "", picks=p,
