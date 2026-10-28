@@ -624,6 +624,28 @@ for k in cands:
                 _flag = None; p = dict(p); p["claim_note"] = f"Injured now ({p.get('inj') or 'listed out'}), due back Wk {back(p)} - but his waivers clear {WAIV[k[0]]}, before a return can be confirmed. Claim decision now or he goes to whoever claims him."
         except Exception: pass
     G2.append(dict(act=_flag is None,flag=_flag,k=k,p=p,g=g,good=good,wins=wins,lvl=lvl,kind=kind,why=([p["claim_note"]] if p.get("claim_note") else [])+list(gate2_reason(k,p)),acq=("waivers, clears "+WAIV[k[0]]) if k[0] in WAIV else "free agent"))
+# Oct 27 (Dom): THE PROBE - run named players through the Scout even when they miss its usual filters (players coming
+# back from injury often do: no recent games, so a low forward number). usage: DK_SCOUT_PROBE="Name One;Name Two"
+if os.environ.get("DK_SCOUT_PROBE"):
+    import json as _pj
+    _out=[]
+    for _nm in [x.strip() for x in os.environ["DK_SCOUT_PROBE"].split(";") if x.strip()]:
+        _ks=[key for key in PL if key[0]==norm(_nm)]
+        if not _ks: _out.append(dict(name=_nm,found=False)); continue
+        _k=_ks[0]; _p=PL[_k]; _nw=dict(key=_k,name=_p["name"],pos=_p["pos"],ytag="",slot="BN")
+        _own=OWN.get(_k); _g0={x:round(total(MINE+[_nw],x)-my[x],1) for x in WEEKS}
+        _best=None
+        for _i,_m in enumerate(MINE):
+            if _m["slot"]=="IR" or _m["name"] in CF["protect"]: continue
+            _t3=[x for j,x in enumerate(MINE) if j!=_i]+[_nw]; _g={x:round(total(_t3,x)-my[x],1) for x in WEEKS}
+            if _best is None or sum(_g.values())>sum(_best[1].values()): _best=(_m["name"],_g)
+        _out.append(dict(name=_p["name"],team=_p["team"],pos=_p["pos"],fwd=round(_p["fwd"],1),back_week=back(_p),
+            owner=(TEAMNAMES.get(_own[0],_own[0]) if _own else ("waivers "+WAIV[_k[0]] if _k[0] in WAIV else "free agent")),
+            games=len(_p.get("fp") or []),gain_if_seat_open=round(sum(_g0.values()),1),
+            playoff_gain_if_seat_open=round(sum(_g0.get(x,0) for x in PLAYOFF),1),
+            best_drop=_best[0] if _best else None,gain_net_of_drop=round(sum(_best[1].values()),1) if _best else None,
+            playoff_net=round(sum(_best[1].get(x,0) for x in PLAYOFF),1) if _best else None,weeks=_g0))
+    print("SCOUT PROBE "+_pj.dumps(_out))
 G2.sort(key=lambda e:-e["wins"])
 # Oct 21 (Dom): PRICE THE DROP - every pickup is priced against the best man to let go for him (or an open bench seat)
 try:
