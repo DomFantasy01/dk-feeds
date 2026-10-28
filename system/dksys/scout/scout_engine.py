@@ -554,6 +554,35 @@ def _lv(m): return math.exp(-.5*(m/SD)**2)/(SD*math.sqrt(2*math.pi))
 MED={x:float(np.median([total(TEAMS[t],x) for t in TEAMS if t!=ME])) for x in WEEKS} if CF["median"] else {}
 LEV={x:URG[x]*(_lv(my[x]-opp[x])+(_lv(my[x]-MED[x]) if CF["median"] else 0)) for x in WEEKS}
 
+# Oct 28 (Dom: "run sims as another test"): hand the simulator every team's weekly player values (the Scout's own
+# numbers - byes, returns, backups losing work, Yahoo blend) plus the best free agents, so it can play out the season.
+try:
+    def _simrow(k,nm,pos,yt,slot):
+        p=PL[k]; return dict(name=nm,pos=pos,nfl=p["team"],ytag=yt or "",slot=slot or "",wk={x:round(weekly(p,x,yt),2) for x in WEEKS},
+                             yb=any((_ypk(p),x) in _YP for x in WEEKS))
+    # Yahoo's numbers only reach Dom's roster and the free agents; rivals' men are the model alone, which runs a little
+    # higher than Yahoo. The simulator evens that out with this factor so Dom isn't graded against inflated rivals.
+    _pm,_py=[],[]
+    for _t,_mm in TEAMS.items():
+        for _m in _mm:
+            _p=PL[_m["key"]]
+            for _x in WEEKS:
+                _y=_YP.get((_ypk(_p),_x))
+                if _y is None: continue
+                _v=weekly(_p,_x,_m["ytag"])
+                if _v>3 and _y>0: _pm.append(2*_v-_y); _py.append(_y)
+    _ybf=round((1+sum(_py)/sum(_pm))/2,4) if len(_pm)>=30 else 1.0
+    _SIM=dict(league=CF["lab"],lgk=LGK,run=NOWPT.isoformat(),now=NOW,last=LAST,me=ME,slots=SLOTS,teams={},pool=[],yb_factor=_ybf,yb_pairs=len(_pm))
+    for _t,_mm in TEAMS.items():
+        _SIM["teams"][str(_t)]=[_simrow(m["key"],m["name"],m["pos"],m["ytag"],m["slot"]) for m in _mm]
+    _fa=[(k,p) for k,p in PL.items() if k not in taken and p["pos"] in ("QB","RB","WR","TE","K","DEF")]
+    _fa.sort(key=lambda kp:-max(weekly(kp[1],x) for x in WEEKS))
+    for k,p in _fa[:80]:
+        if (CF["kick"] is None and p["pos"]=="K"): continue
+        _r=_simrow(k,p["name"],p["pos"],"",""); _r["acq"]=(f"Waivers, clears {WAIV[k[0]]}" if WAIV.get(k[0]) else "Free agent"); _SIM["pool"].append(_r)
+    json.dump(_SIM,open(f"{H}/sim_input_{LGK}.json","w"))
+except Exception as _e: print("Scout: sim input skipped:",_e)
+
 # ================= GATE 1: my holes, slot vs slot =================
 def fullstrength():
     pool=sorted(((PL[m["key"]]["fwd"],m["pos"],i) for i,m in enumerate(MINE) if m["slot"]!="IR" and m["ytag"] not in ("NA","CEL")),reverse=True)

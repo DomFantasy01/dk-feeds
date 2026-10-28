@@ -64,6 +64,9 @@ for L in DKI DKII DKIII DKIV; do
   if (cd "$ROOT/dksys/scout" && python3 scout_engine.py $L --quiet) > "$ROOT/scout_$L.log" 2>&1; then echo "   Scout $L ok"
   else echo "!! SCOUT $L FAILED - its board is the last good one"; tail -4 "$ROOT/scout_$L.log"; { echo "Scout $L failed at $(date -u +%FT%TZ):"; tail -4 "$ROOT/scout_$L.log"; } >> "$REPO/dispatch_out/SCOUT_FAILED.txt"; fi
 done
+echo "== 5b2 THE SIMULATOR (Oct 28, Dom): every remaining game played 10,000 times, lineup swaps and move tests"
+WS=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+DK_REPO="$REPO" DK_SCOUT_DIR="$ROOT/dksys/scout" DK_METER="$ROOT/dksys/data/latest/meter" python3 "$ROOT/dksys/sim/sim.py" > "$ROOT/sim.log" 2>&1 && head -2 "$ROOT/sim.log" || { echo "!! SIMULATOR FAILED - the brief prints without it"; tail -5 "$ROOT/sim.log"; }
 echo "== 5c alerts for the Field Report's alert mark (Oct 14, Dom): same code and feeds as Live's alerts, kept build to build"
 WA=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 python3 "$REPO/live_sync/alerts.py" "$REPO/dispatch_out/radar_wk$WA.json" "$REPO/dispatch_out/actions_latest.json" "$ROOT/dksys/data/latest/meter/meter_wk$WA.json" "$ROOT/dksys/data/latest/meter/alarm_wk$WA.json" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/alerts_build.json" --feeds "$REPO/feeds" || echo "!! alert marks skipped this build - the Field Report prints without them"
@@ -107,5 +110,6 @@ DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$RE
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/pieces_check.py" "$REPO" --pieces "$ROOT/cand/missing_pieces.json" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/pieces_check2.log" 2>&1 && echo "   missing pieces check added to the brief" || { echo "!! MISSING PIECES CHECK (brief) FAILED"; tail -5 "$ROOT/pieces_check2.log"; }
 python3 "$REPO/live_sync/brief_scoreboard.py" "$REPO/dispatch_out/scoreboard/scoreboard.txt" "$REPO/dispatch_out/brief_latest.txt" || echo "!! SCOREBOARD section skipped"   # Oct 27 (Dom): the weekly projection check, heard in the brief
 python3 "$REPO/live_sync/brief_waiver_experts.py" "$REPO" "$REPO/dispatch_out/brief_latest.txt" || echo "!! WAIVER EXPERTS section skipped"   # Oct 27 (Dom): experts before claims
+python3 "$REPO/live_sync/brief_sim.py" "$REPO/dispatch_out/sim/sim_latest.txt" "$REPO/dispatch_out/brief_latest.txt" || echo "!! SIMULATOR section skipped"   # Oct 28 (Dom): sims as another test
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
 echo "DONE week $W"

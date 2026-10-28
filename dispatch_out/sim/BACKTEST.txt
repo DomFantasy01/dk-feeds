@@ -1,0 +1,40 @@
+SIMULATOR BACKTEST (Oct 28 2026). Brier score: lower is better; a coin flip scores 0.250.
+Test A - 1,500 made-up matchups (QB, 2 RB, 3 WR, TE a side) built from real graded player-weeks; the miss model is
+fitted on some weeks and tested on others it never saw. 'Normal' = the math the Dispatch needles use today.
+  Tested on Weeks (6, 7): simulator 0.218, normal math 0.218, coin 0.250
+    simulator  0%-20%: said 14%, won 17% (n=110)
+    simulator  20%-40%: said 31%, won 32% (n=392)
+    simulator  40%-60%: said 50%, won 51% (n=523)
+    simulator  60%-80%: said 68%, won 70% (n=380)
+    simulator  80%-100%: said 86%, won 80% (n=95)
+    normal     0%-20%: said 16%, won 6% (n=34)
+    normal     20%-40%: said 32%, won 29% (n=404)
+    normal     40%-60%: said 50%, won 52% (n=692)
+    normal     60%-80%: said 68%, won 73% (n=337)
+    normal     80%-100%: said 83%, won 85% (n=33)
+  Tested on Weeks (2, 3, 4): simulator 0.208, normal math 0.212, coin 0.250
+    simulator  0%-20%: said 15%, won 14% (n=74)
+    simulator  20%-40%: said 31%, won 29% (n=421)
+    simulator  40%-60%: said 50%, won 50% (n=564)
+    simulator  60%-80%: said 69%, won 73% (n=363)
+    simulator  80%-100%: said 86%, won 91% (n=78)
+    normal     0%-20%: said 17%, won 0% (n=10)
+    normal     20%-40%: said 33%, won 26% (n=387)
+    normal     40%-60%: said 50%, won 49% (n=761)
+    normal     60%-80%: said 67%, won 80% (n=322)
+    normal     80%-100%: said 82%, won 95% (n=20)
+Test B - Dom's 12 real games, Weeks 5-7 (pregame projections, final results):
+  simulator 0.210, normal math 0.209, coin 0.250 - too few games to separate them
+    Wk 5 DK I: projected 156.2-129.4, simulator 78%, normal 70%, won
+    Wk 5 DK II: projected 158.7-139.5, simulator 70%, normal 64%, won
+    Wk 5 DK III: projected 120.3-121.8, simulator 48%, normal 49%, lost
+    Wk 5 DK IV: projected 166.1-147.5, simulator 69%, normal 63%, won
+    Wk 6 DK I: projected 150.3-126.1, simulator 75%, normal 68%, lost
+    Wk 6 DK II: projected 147.5-184.5, simulator 17%, normal 25%, lost
+    Wk 6 DK III: projected 111.1-104.1, simulator 59%, normal 56%, lost
+    Wk 6 DK IV: projected 159.9-164.7, simulator 45%, normal 46%, lost
+    Wk 7 DK I: projected 143.5-134.3, simulator 61%, normal 57%, won
+    Wk 7 DK II: projected 153.6-132.1, simulator 73%, normal 65%, lost
+    Wk 7 DK III: projected 102.4-148.1, simulator 9%, normal 17%, lost
+    Wk 7 DK IV: projected 168.2-163.7, simulator 55%, normal 53%, won
+Not yet testable: the rest-of-season playoff odds (only 7 weeks played); they get graded as the season finishes.
