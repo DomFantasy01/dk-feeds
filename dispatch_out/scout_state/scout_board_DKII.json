@@ -1,8 +1,8 @@
 {
  "league": "DK II",
- "run": "2026-10-28T16:15:17.252042-07:00",
- "run_str": "Wed Oct 28, 4:15 PM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-7 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 28, 3:58 PM PT \u00b7 stats nflverse Wed 4:15 PM PT",
+ "run": "2026-10-28T16:21:48.724189-07:00",
+ "run_str": "Wed Oct 28, 4:21 PM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-7 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Oct 28, 3:58 PM PT \u00b7 stats nflverse Wed 4:21 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -207,21 +207,23 @@
     },
     {
      "rc": "both agree",
-     "rc_why": "Ratcliffe 16.4, engine 16.4 a week",
-     "guard": [],
+     "rc_why": "Ratcliffe 13.5, engine 13.8 a week",
+     "guard": [
+      "his work depends on Jaxson Dart staying out - check Dart's status first"
+     ],
      "rivals": null,
      "drop": "Browns",
-     "name": "Baker Mayfield",
-     "team": "TB",
+     "name": "J.J. McCarthy",
+     "team": "NYG",
      "pos": "QB",
-     "scores": "12.9, 15.2, 13.8, 8.9",
+     "scores": "0.7, 18.8, 10.4",
      "acq": "Free agent",
-     "why": "Getting 17.1 expected but scoring 12.7; NEWS FLAG - check before acting: (ESPN, Oct 23): Baker Mayfield returns for Bucs, but WR Emeka Egbuka, RT Luke Goedeke out; BOTH AGREE (Ratcliffe 16.4, engine 16.4 a week)",
-     "when": "Wk 9",
+     "why": "Door open: Jaxson Dart out; workload up from 1.6 to 12.2 expected a game; NEWS FLAG - check before acting: (RotoBaller, Oct 27): J.J. McCarthy Worth a Speculative Waiver Addition; CHECK FIRST: his work depends on Jaxson Dart staying out - check Dart's status first; BOTH AGREE (Ratcliffe 13.5, engine 13.8 a week)",
+     "when": "Wk 9, Wk 16",
      "urg": "gold",
-     "now": "This week vs your SUPERFLEX Jacoby Brissett: Ratcliffe 18.1 vs 19.9 \u00b7 Yahoo 19.3 vs 23.2 \u00b7 Gotham 17.0 vs 21.4 - WORSE this week",
-     "gain": 7.2,
-     "pgain": 1.4
+     "now": "This week: J.J. McCarthy has a bye - no help this week",
+     "gain": 3.6,
+     "pgain": 1.7
     }
    ],
    "none": null,
@@ -269,6 +271,33 @@
   }
  ],
  "gate2": [
+  {
+   "mark": "gold",
+   "first": "2026-10-21",
+   "age": 7,
+   "gap": null,
+   "title": "QB, Season-Long",
+   "pick": {
+    "rc": "Ratcliffe higher",
+    "rc_why": "Ratcliffe 16.4 a week vs engine 12.8",
+    "guard": [],
+    "rivals": null,
+    "drop": "Browns",
+    "name": "Baker Mayfield",
+    "team": "TB",
+    "pos": "QB",
+    "scores": "12.9, 15.2, 13.8, 8.9",
+    "acq": "Free agent",
+    "why": "Due back Wk 11 (listed Out); getting 17.1 expected but scoring 12.7; NEWS FLAG - check before acting: (ESPN, Oct 23): Baker Mayfield returns for Bucs, but WR Emeka Egbuka, RT Luke Goedeke out; RATCLIFFE HIGHER (Ratcliffe 16.4 a week vs engine 12.8)",
+    "when": "Wks 11-12, Wks 14-17",
+    "urg": "gold",
+    "now": "This week: Baker Mayfield is out (due back Wk 11) - no help this week",
+    "gain": 26.0,
+    "pgain": 13.0
+   },
+   "act": false,
+   "flag": "Watch, not a pickup yet: listed out, due back Wk 11 - waits for his return to be confirmed (a full practice)."
+  },
   {
    "mark": "gold",
    "first": "2026-10-28",
@@ -327,35 +356,6 @@
   },
   {
    "mark": "gold",
-   "first": "2026-10-28",
-   "age": 0,
-   "gap": null,
-   "title": "SUPERFLEX, Weeks 9, 16",
-   "pick": {
-    "rc": "both agree",
-    "rc_why": "Ratcliffe 13.5, engine 13.8 a week",
-    "guard": [
-     "his work depends on Jaxson Dart staying out - check Dart's status first"
-    ],
-    "rivals": null,
-    "drop": "Browns",
-    "name": "J.J. McCarthy",
-    "team": "NYG",
-    "pos": "QB",
-    "scores": "0.7, 18.8, 10.4",
-    "acq": "Free agent",
-    "why": "Door open: Jaxson Dart out; workload up from 1.6 to 12.2 expected a game; NEWS FLAG - check before acting: (RotoBaller, Oct 27): J.J. McCarthy Worth a Speculative Waiver Addition; CHECK FIRST: his work depends on Jaxson Dart staying out - check Dart's status first; BOTH AGREE (Ratcliffe 13.5, engine 13.8 a week)",
-    "when": "Wk 9, Wk 16",
-    "urg": "gold",
-    "now": "This week: J.J. McCarthy has a bye - no help this week",
-    "gain": 3.6,
-    "pgain": 1.7
-   },
-   "act": true,
-   "flag": null
-  },
-  {
-   "mark": "gold",
    "first": "2026-10-25",
    "age": 3,
    "gap": null,
@@ -409,21 +409,6 @@
    "rc": "both agree",
    "rc_why": "Ratcliffe 16.6, engine 16.3 a week",
    "bar_pct": 50.0
-  },
-  {
-   "guard": [],
-   "rivals": null,
-   "drop": "Browns",
-   "name": "Baker Mayfield",
-   "team": "TB",
-   "pos": "QB",
-   "acq": "Free agent",
-   "gain": 7.2,
-   "pgain": 1.4,
-   "now": "This week vs your SUPERFLEX Jacoby Brissett: Ratcliffe 18.1 vs 19.9 \u00b7 Yahoo 19.3 vs 23.2 \u00b7 Gotham 17.0 vs 21.4 - WORSE this week",
-   "rc": "both agree",
-   "rc_why": "Ratcliffe 16.4, engine 16.4 a week",
-   "bar_pct": 38.0
   },
   {
    "guard": [],
@@ -486,6 +471,21 @@
    "rc": "both agree",
    "rc_why": "Ratcliffe 7.8, engine 8.0 a week",
    "bar_pct": 43.0
+  },
+  {
+   "guard": [],
+   "rivals": null,
+   "drop": "Keaton Mitchell",
+   "name": "Chris Rodriguez Jr.",
+   "team": "JAX",
+   "pos": "RB",
+   "acq": "Free agent",
+   "gain": 2.0,
+   "pgain": 0.0,
+   "now": "This week vs your RB2 Keaton Mitchell: Ratcliffe 7.8 vs 5.8 \u00b7 Yahoo 7.7 vs 7.5 \u00b7 Gotham 8.0 vs 6.8 - better this week",
+   "rc": "both agree",
+   "rc_why": "Ratcliffe 7.6, engine 7.2 a week",
+   "bar_pct": 34.0
   }
  ],
  "priced": {
@@ -773,6 +773,7 @@
  "moves": [],
  "prekick": [],
  "watch": [
+  "Watch: Baker Mayfield (TB QB) - listed out, due back Wk 11 - waits for his return to be confirmed (a full practice).",
   "Watch: Terrance Ferguson (LA TE) - listed out, due back Wk 12 - waits for his return to be confirmed (a full practice).",
   "Watch: Tyrone Tracy Jr. (NYG RB) - listed out, due back Wk 13 - waits for his return to be confirmed (a full practice).",
   "Stash: Kaelon Black (SF RB, free agent) - 35% of the SF backfield's touches the last three games behind Christian McCaffrey (~25.1 a game, 63%); the lead job is his if McCaffrey goes down; his own level now ~8.2",
