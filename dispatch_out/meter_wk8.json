@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Wed Oct 28 2026 10:50 AM PT",
+ "built_pt": "Wed Oct 28 2026 10:56 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -13,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Wed Oct 28 10:50 AM PT",
+   "pulled_pt": "Wed Oct 28 10:55 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -23,7 +23,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_wed0855.txt",
    "pulled_pt": "Wed Oct 28 08:55 AM PT",
-   "age_h": 1.9,
+   "age_h": 2.0,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -32,7 +32,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_wed0855.txt",
    "pulled_pt": "Wed Oct 28 08:55 AM PT",
-   "age_h": 1.9,
+   "age_h": 2.0,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -41,7 +41,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_wed0855.txt",
    "pulled_pt": "Wed Oct 28 08:55 AM PT",
-   "age_h": 1.9,
+   "age_h": 2.0,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,51 +49,49 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Wed Oct 28 10:50 AM PT",
+   "pulled_pt": "Wed Oct 28 10:56 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Wed Oct 28 2026 10:50 AM PT for week 8"
+   "note": "Gotham run Wed Oct 28 2026 10:56 AM PT for week 8"
   },
   "ratcliffe": {
-   "status": "MISSING",
-   "path": "/home/claude/dksys/data/latest/ftn_scored.csv"
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
+   "pulled_pt": "Wed Oct 28 2026 10:10 AM PT",
+   "age_h": 0.8,
+   "rows": 2024,
+   "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-28T1703Z.csv",
    "pulled_pt": "Wed Oct 28 10:03 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.8 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-28T1703Z.csv",
    "pulled_pt": "Wed Oct 28 10:03 AM PT",
-   "age_h": 0.8,
+   "age_h": 0.9,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.8 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Wed Oct 28 08:55 AM PT",
-   "age_h": 1.9,
+   "age_h": 2.0,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
   }
  },
- "alarms": [
-  "ratcliffe: MISSING - no FTN read yet (yahoo_drop/ftn/)",
-  "DK I: best-lineup step failed (TypeError: 'NoneType' object is not iterable) - meters show the lineups as set",
-  "DK II: best-lineup step failed (TypeError: 'NoneType' object is not iterable) - meters show the lineups as set",
-  "DK III: best-lineup step failed (TypeError: 'NoneType' object is not iterable) - meters show the lineups as set",
-  "DK IV: best-lineup step failed (TypeError: 'NoneType' object is not iterable) - meters show the lineups as set"
- ],
+ "alarms": [],
  "lineup": [],
  "notes": [
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
@@ -114,25 +112,30 @@
    "opp_rank": 2,
    "needles": {
     "gotham": 29,
-    "yahoo": 30,
     "sleeper": 29,
-    "yahoo_from_spread": 28,
-    "ratcliffe": null
+    "ratcliffe": 29,
+    "yahoo": 30,
+    "yahoo_best": false,
+    "yahoo_posted": 30,
+    "yahoo_from_spread": 28
    },
    "totals": {
+    "gotham": [
+     132.58,
+     161.02
+    ],
+    "sleeper": [
+     133.44,
+     161.76
+    ],
     "yahoo": [
      134.37,
      164.03
     ],
-    "gotham": [
-     129.53,
-     157.55
-    ],
-    "sleeper": [
-     133.44,
-     161.67
-    ],
-    "ratcliffe": null
+    "ratcliffe": [
+     131.9,
+     159.78
+    ]
    },
    "windows": {
     "me": [
@@ -192,8 +195,8 @@
       "gotham_src": "gotham",
       "sleeper": 21.41,
       "window": 3,
-      "ratcliffe": 23.75,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 21.94,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -210,8 +213,8 @@
       "gotham_src": "gotham",
       "sleeper": 18.58,
       "window": 1,
-      "ratcliffe": 18.73,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.48,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -228,8 +231,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.17,
       "window": 2,
-      "ratcliffe": 8.35,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 8.71,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -246,8 +249,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 14.56,
       "window": 1,
-      "ratcliffe": 15.97,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 13.76,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -264,8 +267,8 @@
       "gotham_src": "gotham",
       "sleeper": 16.67,
       "window": 1,
-      "ratcliffe": 16.68,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 15.79,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -282,8 +285,8 @@
       "gotham_src": "gotham",
       "sleeper": 11.39,
       "window": 2,
-      "ratcliffe": 10.71,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.76,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -300,8 +303,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.81,
       "window": 3,
-      "ratcliffe": 12.38,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.6,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -318,8 +321,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.79,
       "window": 1,
-      "ratcliffe": 10.39,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.13,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -331,13 +334,13 @@
       "yahoo": 7.6,
       "actual": null,
       "pos": "K",
-      "gotham": 8.41,
-      "gotham_raw": 8.41,
-      "gotham_src": "sleeper",
+      "gotham": 11.7,
+      "gotham_raw": 11.7,
+      "gotham_src": "ratcliffe",
       "sleeper": 8.41,
       "window": 1,
-      "ratcliffe": 7.6,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.7,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -349,13 +352,13 @@
       "yahoo": 9.81,
       "actual": null,
       "pos": "DEF",
-      "gotham": 10.65,
-      "gotham_raw": 10.65,
-      "gotham_src": "sleeper",
+      "gotham": 10.02,
+      "gotham_raw": 10.02,
+      "gotham_src": "ratcliffe",
       "sleeper": 10.65,
       "window": 3,
-      "ratcliffe": 9.81,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.02,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ],
@@ -374,8 +377,8 @@
       "gotham_src": "gotham",
       "sleeper": 27.25,
       "window": 1,
-      "ratcliffe": 27.15,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 22.78,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -392,8 +395,8 @@
       "gotham_src": "gotham",
       "sleeper": 19.9,
       "window": 1,
-      "ratcliffe": 20.62,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 21.02,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -410,8 +413,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 19.7,
       "window": 0,
-      "ratcliffe": 19.42,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.54,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -428,8 +431,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 16.0,
       "window": 0,
-      "ratcliffe": 15.38,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 16.48,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -446,8 +449,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 17.27,
       "window": 1,
-      "ratcliffe": 18.86,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 17.74,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -464,8 +467,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 19.26,
       "window": 1,
-      "ratcliffe": 19.08,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.27,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -482,8 +485,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.44,
       "window": 1,
-      "ratcliffe": 10.94,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.4,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -500,8 +503,8 @@
       "gotham_src": "gotham",
       "sleeper": 13.76,
       "window": 1,
-      "ratcliffe": 15.05,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.99,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -513,13 +516,13 @@
       "yahoo": 7.22,
       "actual": null,
       "pos": "K",
-      "gotham": 7.26,
-      "gotham_raw": 7.26,
-      "gotham_src": "sleeper",
+      "gotham": 10.4,
+      "gotham_raw": 10.4,
+      "gotham_src": "ratcliffe",
       "sleeper": 7.26,
       "window": 1,
-      "ratcliffe": 7.22,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.4,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -531,13 +534,13 @@
       "yahoo": 10.31,
       "actual": null,
       "pos": "DEF",
-      "gotham": 10.83,
-      "gotham_raw": 10.83,
-      "gotham_src": "sleeper",
+      "gotham": 11.16,
+      "gotham_raw": 11.16,
+      "gotham_src": "ratcliffe",
       "sleeper": 10.83,
       "window": 2,
-      "ratcliffe": 10.31,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.16,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ]
@@ -580,7 +583,7 @@
      "gotham": 10.77,
      "sleeper": 10.24,
      "window": 1,
-     "ratcliffe": null
+     "ratcliffe": 9.14
     },
     {
      "slot": "BN",
@@ -627,12 +630,70 @@
    "state": "UPCOMING",
    "state_note": "0 of 20 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 29,
+    "gotham": 28,
     "yahoo": 30,
     "sleeper": 29,
     "yahoo_from_spread": 28,
-    "ratcliffe": null
+    "ratcliffe": 29
    },
+   "totals_set": {
+    "yahoo": [
+     134.37,
+     164.03
+    ],
+    "gotham": [
+     132.19,
+     161.02
+    ],
+    "sleeper": [
+     133.44,
+     161.67
+    ],
+    "ratcliffe": [
+     131.89,
+     159.78
+    ]
+   },
+   "best_moves": {
+    "gotham": {
+     "me": [
+      {
+       "out": "Travis Kelce",
+       "out_v": 9.7,
+       "into": "Chris Godwin Jr.",
+       "in_v": 10.1
+      }
+     ],
+     "op": []
+    },
+    "sleeper": {
+     "me": [],
+     "op": [
+      {
+       "out": "KC Concepcion Jr.",
+       "out_v": 10.4,
+       "into": "Denzel Boston",
+       "in_v": 10.5
+      }
+     ]
+    },
+    "yahoo": {
+     "me": [],
+     "op": []
+    },
+    "ratcliffe": {
+     "me": [
+      {
+       "out": "Brenton Strange",
+       "out_v": 9.1,
+       "into": "Chris Godwin Jr.",
+       "in_v": 9.1
+      }
+     ],
+     "op": []
+    }
+   },
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 30%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -679,26 +740,31 @@
    "teams": 12,
    "opp_rank": 3,
    "needles": {
-    "gotham": 27,
+    "gotham": 26,
+    "sleeper": 32,
+    "ratcliffe": 35,
     "yahoo": 34,
-    "sleeper": 34,
-    "yahoo_from_spread": 33,
-    "ratcliffe": null
+    "yahoo_best": false,
+    "yahoo_posted": 34,
+    "yahoo_from_spread": 33
    },
    "totals": {
+    "gotham": [
+     143.54,
+     178.65
+    ],
+    "sleeper": [
+     149.51,
+     175.86
+    ],
     "yahoo": [
      151.0,
      174.55
     ],
-    "gotham": [
-     137.56,
-     171.41
-    ],
-    "sleeper": [
-     147.54,
-     169.99
-    ],
-    "ratcliffe": null
+    "ratcliffe": [
+     149.69,
+     170.74
+    ]
    },
    "windows": {
     "me": [
@@ -758,8 +824,8 @@
       "gotham_src": "gotham",
       "sleeper": 22.58,
       "window": 1,
-      "ratcliffe": 23.28,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 19.88,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -776,8 +842,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 12.35,
       "window": 1,
-      "ratcliffe": 11.89,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.54,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -794,8 +860,8 @@
       "gotham_src": "gotham",
       "sleeper": 7.15,
       "window": 2,
-      "ratcliffe": 7.5,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 6.28,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -812,8 +878,8 @@
       "gotham_src": "gotham",
       "sleeper": 16.67,
       "window": 1,
-      "ratcliffe": 16.82,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 15.79,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -830,8 +896,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 10.25,
       "window": 1,
-      "ratcliffe": 10.72,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.87,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -848,8 +914,8 @@
       "gotham_src": "gotham",
       "sleeper": 20.08,
       "window": 1,
-      "ratcliffe": 20.25,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 20.11,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -867,7 +933,7 @@
       "sleeper": 11.39,
       "window": 2,
       "ratcliffe": 10.76,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -884,8 +950,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.95,
       "window": 2,
-      "ratcliffe": 11.26,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.8,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -902,8 +968,8 @@
       "gotham_src": "gotham",
       "sleeper": 21.41,
       "window": 3,
-      "ratcliffe": 23.81,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 21.94,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -915,13 +981,13 @@
       "yahoo": 8.47,
       "actual": null,
       "pos": "K",
-      "gotham": 9.4,
-      "gotham_raw": 9.4,
-      "gotham_src": "sleeper",
+      "gotham": 13.2,
+      "gotham_raw": 13.2,
+      "gotham_src": "ratcliffe",
       "sleeper": 9.4,
       "window": 1,
-      "ratcliffe": 8.47,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 13.2,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -933,13 +999,13 @@
       "yahoo": 6.24,
       "actual": null,
       "pos": "DEF",
-      "gotham": 5.31,
-      "gotham_raw": 5.31,
-      "gotham_src": "sleeper",
+      "gotham": 7.32,
+      "gotham_raw": 7.32,
+      "gotham_src": "ratcliffe",
       "sleeper": 5.31,
       "window": 1,
-      "ratcliffe": 6.24,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 7.32,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ],
@@ -958,8 +1024,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 28.36,
       "window": 1,
-      "ratcliffe": 29.31,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 27.78,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -976,8 +1042,8 @@
       "gotham_src": "gotham",
       "sleeper": 18.58,
       "window": 1,
-      "ratcliffe": 18.87,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.48,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -994,8 +1060,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 22.66,
       "window": 1,
-      "ratcliffe": 21.66,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 19.66,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1012,8 +1078,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.81,
       "window": 3,
-      "ratcliffe": 12.45,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.6,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1030,8 +1096,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.31,
       "window": 1,
-      "ratcliffe": 9.93,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 8.52,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1048,8 +1114,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 8.52,
       "window": 1,
-      "ratcliffe": 9.87,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 8.62,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1066,8 +1132,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 19.26,
       "window": 1,
-      "ratcliffe": 19.13,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.27,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1084,8 +1150,8 @@
       "gotham_src": "gotham",
       "sleeper": 16.07,
       "window": 2,
-      "ratcliffe": 16.06,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 14.0,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1102,8 +1168,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 19.83,
       "window": 0,
-      "ratcliffe": 21.87,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 21.67,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1115,13 +1181,13 @@
       "yahoo": 7.78,
       "actual": null,
       "pos": "K",
-      "gotham": 7.76,
-      "gotham_raw": 7.76,
-      "gotham_src": "sleeper",
+      "gotham": 10.3,
+      "gotham_raw": 10.3,
+      "gotham_src": "ratcliffe",
       "sleeper": 7.76,
       "window": 2,
-      "ratcliffe": 7.78,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.3,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1133,13 +1199,13 @@
       "yahoo": 7.62,
       "actual": null,
       "pos": "DEF",
-      "gotham": 7.83,
-      "gotham_raw": 7.83,
-      "gotham_src": "sleeper",
+      "gotham": 9.12,
+      "gotham_raw": 9.12,
+      "gotham_src": "ratcliffe",
       "sleeper": 7.83,
       "window": 2,
-      "ratcliffe": 7.62,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.12,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ]
@@ -1169,7 +1235,7 @@
      "gotham": 19.42,
      "sleeper": 19.76,
      "window": 1,
-     "ratcliffe": null
+     "ratcliffe": 18.84
     },
     {
      "slot": "BN",
@@ -1182,7 +1248,7 @@
      "gotham": 7.8,
      "sleeper": 8.15,
      "window": 1,
-     "ratcliffe": null
+     "ratcliffe": 9.88
     },
     {
      "slot": "BN",
@@ -1255,12 +1321,91 @@
    "state": "UPCOMING",
    "state_note": "0 of 22 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 27,
+    "gotham": 28,
     "yahoo": 34,
     "sleeper": 34,
     "yahoo_from_spread": 33,
-    "ratcliffe": null
+    "ratcliffe": 36
    },
+   "totals_set": {
+    "yahoo": [
+     151.0,
+     174.55
+    ],
+    "gotham": [
+     143.37,
+     175.24
+    ],
+    "sleeper": [
+     147.54,
+     169.99
+    ],
+    "ratcliffe": [
+     148.49,
+     168.02
+    ]
+   },
+   "best_moves": {
+    "gotham": {
+     "me": [
+      {
+       "out": "Ladd McConkey",
+       "out_v": 7.6,
+       "into": "Kyle Pitts Sr.",
+       "in_v": 7.8
+      }
+     ],
+     "op": [
+      {
+       "out": "Ollie Gordon II",
+       "out_v": 15.5,
+       "into": "Chase Brown",
+       "in_v": 18.9
+      }
+     ]
+    },
+    "sleeper": {
+     "me": [
+      {
+       "out": "Browns",
+       "out_v": 5.3,
+       "into": "Chiefs",
+       "in_v": 7.3
+      }
+     ],
+     "op": [
+      {
+       "out": "Ollie Gordon II",
+       "out_v": 16.1,
+       "into": "Chase Brown",
+       "in_v": 21.9
+      }
+     ]
+    },
+    "yahoo": {
+     "me": [],
+     "op": []
+    },
+    "ratcliffe": {
+     "me": [
+      {
+       "out": "Browns",
+       "out_v": 7.3,
+       "into": "Chiefs",
+       "in_v": 8.5
+      }
+     ],
+     "op": [
+      {
+       "out": "Ollie Gordon II",
+       "out_v": 14.0,
+       "into": "Chase Brown",
+       "in_v": 16.7
+      }
+     ]
+    }
+   },
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 34%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -1308,26 +1453,31 @@
    "teams": 14,
    "opp_rank": 6,
    "needles": {
-    "gotham": 39,
+    "gotham": 38,
+    "sleeper": 40,
+    "ratcliffe": 35,
     "yahoo": 49,
-    "sleeper": 43,
-    "yahoo_from_spread": 49,
-    "ratcliffe": null
+    "yahoo_best": false,
+    "yahoo_posted": 49,
+    "yahoo_from_spread": 49
    },
    "totals": {
+    "gotham": [
+     106.3,
+     121.05
+    ],
+    "sleeper": [
+     116.6,
+     129.27
+    ],
     "yahoo": [
      121.34,
      122.03
     ],
-    "gotham": [
-     106.58,
-     119.71
-    ],
-    "sleeper": [
-     116.6,
-     124.96
-    ],
-    "ratcliffe": null
+    "ratcliffe": [
+     109.11,
+     127.79
+    ]
    },
    "windows": {
     "me": [
@@ -1387,8 +1537,8 @@
       "gotham_src": "gotham",
       "sleeper": 21.41,
       "window": 3,
-      "ratcliffe": 23.75,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 21.94,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1405,8 +1555,8 @@
       "gotham_src": "gotham",
       "sleeper": 13.81,
       "window": 3,
-      "ratcliffe": 15.65,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.5,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1423,8 +1573,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 12.58,
       "window": 2,
-      "ratcliffe": 11.4,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.36,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1441,8 +1591,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 14.56,
       "window": 1,
-      "ratcliffe": 15.97,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 13.76,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1459,8 +1609,8 @@
       "gotham_src": "gotham",
       "sleeper": 11.28,
       "window": 2,
-      "ratcliffe": 11.67,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.96,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1477,8 +1627,8 @@
       "gotham_src": "gotham",
       "sleeper": 11.12,
       "window": 1,
-      "ratcliffe": 11.41,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.33,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1495,8 +1645,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.12,
       "window": 1,
-      "ratcliffe": 10.63,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.09,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1513,8 +1663,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.65,
       "window": 1,
-      "ratcliffe": 10.13,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.38,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1526,13 +1676,13 @@
       "yahoo": 10.73,
       "actual": null,
       "pos": "DEF",
-      "gotham": 11.07,
-      "gotham_raw": 11.07,
-      "gotham_src": "sleeper",
+      "gotham": 10.79,
+      "gotham_raw": 10.79,
+      "gotham_src": "ratcliffe",
       "sleeper": 11.07,
       "window": 1,
-      "ratcliffe": 10.73,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.79,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ],
@@ -1551,8 +1701,8 @@
       "gotham_src": "gotham",
       "sleeper": 22.58,
       "window": 1,
-      "ratcliffe": 23.27,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 19.88,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1569,8 +1719,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 10.02,
       "window": 4,
-      "ratcliffe": 7.97,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.79,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1587,8 +1737,8 @@
       "gotham_src": "gotham",
       "sleeper": 24.84,
       "window": 2,
-      "ratcliffe": 24.89,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 23.91,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1605,8 +1755,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 16.0,
       "window": 0,
-      "ratcliffe": 15.38,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 16.48,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1623,8 +1773,8 @@
       "gotham_src": "gotham",
       "sleeper": 12.48,
       "window": 4,
-      "ratcliffe": 12.75,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 12.69,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1641,8 +1791,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 8.4,
       "window": 2,
-      "ratcliffe": 8.06,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 8.44,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1659,8 +1809,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 12.97,
       "window": 2,
-      "ratcliffe": 12.64,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.02,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1677,8 +1827,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 6.64,
       "window": 2,
-      "ratcliffe": 6.86,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 7.79,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1690,13 +1840,13 @@
       "yahoo": 10.21,
       "actual": null,
       "pos": "DEF",
-      "gotham": 11.03,
-      "gotham_raw": 11.03,
-      "gotham_src": "sleeper",
+      "gotham": 11.49,
+      "gotham_raw": 11.49,
+      "gotham_src": "ratcliffe",
       "sleeper": 11.03,
       "window": 1,
-      "ratcliffe": 10.21,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.49,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ]
@@ -1713,7 +1863,7 @@
      "gotham": 19.42,
      "sleeper": 19.76,
      "window": 1,
-     "ratcliffe": null
+     "ratcliffe": 18.84
     },
     {
      "slot": "BN",
@@ -1752,7 +1902,7 @@
      "gotham": 5.73,
      "sleeper": 6.76,
      "window": 2,
-     "ratcliffe": null
+     "ratcliffe": 8.88
     },
     {
      "slot": "IR",
@@ -1799,12 +1949,76 @@
    "state": "UPCOMING",
    "state_note": "0 of 18 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 39,
+    "gotham": 38,
     "yahoo": 49,
     "sleeper": 43,
     "yahoo_from_spread": 49,
-    "ratcliffe": null
+    "ratcliffe": 38
    },
+   "totals_set": {
+    "yahoo": [
+     121.34,
+     122.03
+    ],
+    "gotham": [
+     106.3,
+     120.17
+    ],
+    "sleeper": [
+     116.6,
+     124.96
+    ],
+    "ratcliffe": [
+     109.11,
+     123.49
+    ]
+   },
+   "best_moves": {
+    "gotham": {
+     "me": [],
+     "op": [
+      {
+       "out": "Colby Parkinson",
+       "out_v": 6.8,
+       "into": "Ladd McConkey",
+       "in_v": 7.6
+      }
+     ]
+    },
+    "sleeper": {
+     "me": [],
+     "op": [
+      {
+       "out": "Colby Parkinson",
+       "out_v": 6.6,
+       "into": "Ladd McConkey",
+       "in_v": 10.9
+      }
+     ]
+    },
+    "yahoo": {
+     "me": [],
+     "op": []
+    },
+    "ratcliffe": {
+     "me": [],
+     "op": [
+      {
+       "out": "Jacoby Brissett",
+       "out_v": 19.9,
+       "into": "Caleb Williams",
+       "in_v": 21.2
+      },
+      {
+       "out": "Colby Parkinson",
+       "out_v": 7.8,
+       "into": "Ladd McConkey",
+       "in_v": 10.8
+      }
+     ]
+    }
+   },
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 49%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -1852,25 +2066,30 @@
    "opp_rank": 8,
    "needles": {
     "gotham": 65,
-    "yahoo": 67,
     "sleeper": 69,
-    "yahoo_from_spread": 66,
-    "ratcliffe": null
+    "ratcliffe": 67,
+    "yahoo": 67,
+    "yahoo_best": false,
+    "yahoo_posted": 67,
+    "yahoo_from_spread": 66
    },
    "totals": {
+    "gotham": [
+     158.23,
+     136.34
+    ],
+    "sleeper": [
+     170.21,
+     142.78
+    ],
     "yahoo": [
      167.04,
      143.95
     ],
-    "gotham": [
-     155.13,
-     133.57
-    ],
-    "sleeper": [
-     168.3,
-     141.61
-    ],
-    "ratcliffe": null
+    "ratcliffe": [
+     165.33,
+     141.43
+    ]
    },
    "windows": {
     "me": [
@@ -1930,8 +2149,8 @@
       "gotham_src": "gotham",
       "sleeper": 27.1,
       "window": 1,
-      "ratcliffe": 27.04,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 22.75,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1948,8 +2167,8 @@
       "gotham_src": "gotham",
       "sleeper": 20.83,
       "window": 1,
-      "ratcliffe": 20.04,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 20.46,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1966,8 +2185,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 12.95,
       "window": 4,
-      "ratcliffe": 12.7,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 13.86,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -1984,8 +2203,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 18.35,
       "window": 1,
-      "ratcliffe": 18.4,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 18.43,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2002,8 +2221,8 @@
       "gotham_src": "gotham",
       "sleeper": 18.3,
       "window": 1,
-      "ratcliffe": 17.83,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 15.19,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2020,8 +2239,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.81,
       "window": 1,
-      "ratcliffe": 10.0,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.93,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2038,8 +2257,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 10.72,
       "window": 0,
-      "ratcliffe": 11.51,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.4,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2056,8 +2275,8 @@
       "gotham_src": "gotham",
       "sleeper": 12.8,
       "window": 2,
-      "ratcliffe": 12.26,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.8,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2074,8 +2293,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 19.12,
       "window": 1,
-      "ratcliffe": 21.07,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 20.09,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2087,13 +2306,13 @@
       "yahoo": 8.47,
       "actual": null,
       "pos": "K",
-      "gotham": 9.4,
-      "gotham_raw": 9.4,
-      "gotham_src": "sleeper",
+      "gotham": 13.2,
+      "gotham_raw": 13.2,
+      "gotham_src": "ratcliffe",
       "sleeper": 9.4,
       "window": 1,
-      "ratcliffe": 8.47,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 13.2,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2105,13 +2324,13 @@
       "yahoo": 7.72,
       "actual": null,
       "pos": "DEF",
-      "gotham": 8.92,
-      "gotham_raw": 8.92,
-      "gotham_src": "sleeper",
+      "gotham": 8.22,
+      "gotham_raw": 8.22,
+      "gotham_src": "ratcliffe",
       "sleeper": 8.92,
       "window": 1,
-      "ratcliffe": 7.72,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 8.22,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ],
@@ -2130,8 +2349,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 25.36,
       "window": 1,
-      "ratcliffe": 25.81,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 25.1,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2148,8 +2367,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 8.79,
       "window": 1,
-      "ratcliffe": 8.85,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.19,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2166,8 +2385,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 9.45,
       "window": 1,
-      "ratcliffe": 9.55,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.41,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2184,8 +2403,8 @@
       "gotham_src": "gotham",
       "sleeper": 16.29,
       "window": 1,
-      "ratcliffe": 15.06,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.77,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2202,8 +2421,8 @@
       "gotham_src": "gotham",
       "sleeper": 10.15,
       "window": 1,
-      "ratcliffe": 10.67,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.1,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2220,8 +2439,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.79,
       "window": 3,
-      "ratcliffe": 12.38,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 11.57,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2238,8 +2457,8 @@
       "gotham_src": "gotham",
       "sleeper": 16.93,
       "window": 1,
-      "ratcliffe": 15.78,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 16.26,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2256,8 +2475,8 @@
       "gotham_src": "gotham-capped",
       "sleeper": 11.56,
       "window": 1,
-      "ratcliffe": 11.76,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 10.65,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2274,8 +2493,8 @@
       "gotham_src": "gotham",
       "sleeper": 14.6,
       "window": 2,
-      "ratcliffe": 17.8,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 17.17,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2287,13 +2506,13 @@
       "yahoo": 8.67,
       "actual": null,
       "pos": "K",
-      "gotham": 8.86,
-      "gotham_raw": 8.86,
-      "gotham_src": "sleeper",
+      "gotham": 9.2,
+      "gotham_raw": 9.2,
+      "gotham_src": "ratcliffe",
       "sleeper": 8.86,
       "window": 0,
-      "ratcliffe": 8.67,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.2,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      },
      {
@@ -2305,13 +2524,13 @@
       "yahoo": 7.62,
       "actual": null,
       "pos": "DEF",
-      "gotham": 7.83,
-      "gotham_raw": 7.83,
-      "gotham_src": "sleeper",
+      "gotham": 9.12,
+      "gotham_raw": 9.12,
+      "gotham_src": "ratcliffe",
       "sleeper": 7.83,
       "window": 2,
-      "ratcliffe": 7.62,
-      "ratcliffe_src": "yahoo-fallback",
+      "ratcliffe": 9.12,
+      "ratcliffe_src": "ftn",
       "gs": "pre"
      }
     ]
@@ -2328,7 +2547,7 @@
      "gotham": 9.75,
      "sleeper": 11.05,
      "window": 1,
-     "ratcliffe": null
+     "ratcliffe": 8.85
     },
     {
      "slot": "BN",
@@ -2354,7 +2573,7 @@
      "gotham": 9.71,
      "sleeper": 11.39,
      "window": 2,
-     "ratcliffe": null
+     "ratcliffe": 10.76
     },
     {
      "slot": "BN",
@@ -2427,12 +2646,83 @@
    "state": "UPCOMING",
    "state_note": "0 of 22 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 65,
+    "gotham": 66,
     "yahoo": 67,
     "sleeper": 69,
     "yahoo_from_spread": 66,
-    "ratcliffe": null
+    "ratcliffe": 67
    },
+   "totals_set": {
+    "yahoo": [
+     167.04,
+     143.95
+    ],
+    "gotham": [
+     158.23,
+     135.2
+    ],
+    "sleeper": [
+     168.3,
+     141.61
+    ],
+    "ratcliffe": [
+     165.33,
+     140.54
+    ]
+   },
+   "best_moves": {
+    "gotham": {
+     "me": [],
+     "op": [
+      {
+       "out": "Rico Dowdle",
+       "out_v": 8.8,
+       "into": "Jonah Coleman",
+       "in_v": 10.0
+      }
+     ]
+    },
+    "sleeper": {
+     "me": [
+      {
+       "out": "Omar Cooper Jr.",
+       "out_v": 9.8,
+       "into": "Wan'Dale Robinson",
+       "in_v": 11.1
+      },
+      {
+       "out": "Tucker Kraft",
+       "out_v": 10.7,
+       "into": "Travis Kelce",
+       "in_v": 11.4
+      }
+     ],
+     "op": [
+      {
+       "out": "Rico Dowdle",
+       "out_v": 8.8,
+       "into": "Jonah Coleman",
+       "in_v": 10.0
+      }
+     ]
+    },
+    "yahoo": {
+     "me": [],
+     "op": []
+    },
+    "ratcliffe": {
+     "me": [],
+     "op": [
+      {
+       "out": "Rico Dowdle",
+       "out_v": 9.2,
+       "into": "Blake Corum",
+       "in_v": 10.1
+      }
+     ]
+    }
+   },
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 67%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
