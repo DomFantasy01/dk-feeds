@@ -33,6 +33,8 @@ def player_index(repo):
     for p in d.values():
         if p.get("team") and p.get("pos") in ("QB", "RB", "WR", "TE", "K") and p.get("name"):
             idx.setdefault(sq(p["name"]), (p["name"], p["pos"], p["team"]))
+    for nick, full in (("Bam Knight", "Zonovan Knight"), ("Chig Okonkwo", "Chigoziem Okonkwo"), ("Andy Borregales", "Andres Borregales")):
+        if sq(full) in idx: idx.setdefault(sq(nick), idx[sq(full)])
     return idx
 
 NAME_RE = re.compile(r"^([A-Z][A-Za-z.'\-]+(?: [A-Z][A-Za-z.'\-]+){1,3})(?=,| at | vs\.? | \(|/|$)")
@@ -41,11 +43,17 @@ def picks_from(lines, idx, start_pat, stop_pat, bid_pat=None, sections=None):
     out, sec, on, seen = [], "", False, set()
     for i, l in enumerate(lines):
         if not on:
-            on = bool(re.search(start_pat, l)); continue
+            on = bool(re.search(start_pat, l))
+            if on and sections:
+                for pat, name in sections:
+                    if re.fullmatch(pat, l, flags=re.I): sec = name
+            continue
         if re.search(stop_pat, l): break
         if sections:
             for pat, name in sections:
                 if re.fullmatch(pat, l, flags=re.I): sec = name
+        if len(l) < 60 and re.search(r"(?i)(stash|stream|flex option|backup|dart-throw|options?$)", l) and not NAME_RE.match(l.split(" at ")[0]):
+            sec = sec.split(":")[0] + ":" + l.lower()
         if re.match(r"(?i)^(quarterbacks|running backs|wide receivers|tight ends):", l):   # drop lists: "Running Backs: A, B"
             for nm in l.split(":", 1)[1].split(","):
                 k = sq(nm)
@@ -89,6 +97,7 @@ def english(w, idx):
     secs = [(r"priority targets", "priority"), (r"immediate help", "immediate"), (r"qb streamers", "QB stream"),
             (r"deep-league (options|plays)", "deep"), (r"upside stashes", "stash"), (r"injuries to (watch|note)", "injury-watch"),
             (r"top rb handcuffs", "handcuff"), (r"drops", "drop")]
+    DIAG["english"] = f"{len(L)} lines, start found: {any(re.search('(?i)^priority targets$', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
     p = picks_from(L, idx, r"(?i)^priority targets$", r"(?i)^(top streaming defense|kevin english, senior)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
     p = [x for x in p if x[1] not in ("injury-watch",)]
     return dict(expert=by[3:].strip() or "Kevin English", site="Draft Sharks", acc="51 (site: 9, 13)", url=url, posted=t, picks=p,
@@ -99,10 +108,13 @@ def jahnke(w, idx):
     h = get(url); L = text_of(h)
     if not any(re.search(rf"(?i)week {w}\b", l) for l in L[:400]): return None, "PFF's column is not on Week %d yet" % w
     t = re.search(r'datetime="([^"]+)"', h)
+    DIAG["jahnke"] = f"{len(L)} lines, start found: {any(re.search('(?i)^jump to a position group', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
     p = picks_from(L, idx, r"(?i)^jump to a position group", r"(?i)(exclusive content|want to keep reading)", None,
                    [(r"quarterback", "QB"), (r"running back", "RB"), (r"wide receiver", "WR"), (r"tight end", "TE")])
     return dict(expert="Nathan Jahnke", site="PFF", acc="8", url=url, posted=t.group(1) if t else "", picks=p,
                 note="free part only (paywall after the QBs)"), ""
+
+DIAG = {}
 
 def main(repo="."):
     w = int(os.environ.get("DK_WEEK") or week())
@@ -116,7 +128,7 @@ def main(repo="."):
         except Exception as e:
             r, why = None, f"fetch failed: {e}"
         if not r or not r["picks"]:
-            log.append(f"{fn.__name__}: NOT READ - {why or 'no players found on the page'}"); continue
+            log.append(f"{fn.__name__}: NOT READ - {why or 'no players found on the page'} {DIAG.get(fn.__name__, '')}"); continue
         got += 1
         log.append(f"{r['expert']} ({r['site']}, accuracy #{r['acc']}): {len(r['picks'])} players, posted {r['posted'] or 'time not shown'} - {r['note']} - {r['url']}")
         for i, ((name, pos, team), sec, bid) in enumerate(r["picks"], 1):
