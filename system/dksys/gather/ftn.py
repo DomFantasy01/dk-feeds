@@ -10,7 +10,7 @@ import os, re, sys, json, math
 import pandas as pd
 sys.path.insert(0, "/home/claude/dksys/gather"); from names import norm
 
-REPO = os.environ.get("DK_REPO", "/home/claude/dk-feeds")
+REPO = os.environ.get("DK_REPO") or os.environ.get("GITHUB_WORKSPACE") or "/home/claude/dk-feeds"   # the build runs in GitHub's workspace
 L = "/home/claude/dksys/data/latest/"
 OUT = L + "ftn_scored.csv"
 LG = {1: "DK I 269381", 2: "DK II 1519795", 3: "DK III 1507991", 4: "DK IV 864215"}

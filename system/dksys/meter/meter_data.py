@@ -150,7 +150,8 @@ for lab in LEAGUES:
 RC = {}   # (league k, key) -> this week's points in that league's scoring; key = norm(name), or ('DEF', team)
 try:
     import subprocess as _sp
-    _sp.run([sys.executable, '/home/claude/dksys/gather/ftn.py'], check=False, capture_output=True, timeout=120)
+    _fr = _sp.run([sys.executable, '/home/claude/dksys/gather/ftn.py'], check=False, capture_output=True, text=True, timeout=120)
+    if _fr.returncode != 0: alarms.append('ratcliffe: scoring failed - ' + (_fr.stderr or _fr.stdout).strip().splitlines()[-1][:160])
     _ftn = ROOT + 'ftn_scored.csv'
     if os.path.exists(_ftn):
         _fd = pd.read_csv(_ftn)

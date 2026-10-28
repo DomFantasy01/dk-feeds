@@ -153,7 +153,7 @@ for _lab, _cfg in LEAGUES.items():
                 _moves.setdefault(col, {})[_side] = mv
             a, b, pct = chance([dict(p, **{col: p["_v"]}) for p in lu["me"]], [dict(p, **{col: p["_v"]}) for p in lu["op"]], col)
             _best[col] = (round(a, 2), round(b, 2), pct)
-        _L["needles_set"] = dict(_L["needles"]); _L["totals_set"] = {k: list(v) for k, v in _L["totals"].items()}
+        _L["needles_set"] = dict(_L["needles"]); _L["totals_set"] = {k: (list(v) if v is not None else None) for k, v in _L["totals"].items()}
         _yb_ok = bool(_BY.get(_cfg["id"]))
         _L["needles"] = dict(gotham=_best["gotham"][2], sleeper=_best["sleeper"][2], ratcliffe=_best["ratcliffe"][2] if "ratcliffe" in _best else None,
                              yahoo=_best["yahoo"][2] if _yb_ok else _L["needles_set"].get("yahoo"), yahoo_best=_yb_ok,
@@ -164,6 +164,6 @@ for _lab, _cfg in LEAGUES.items():
         _L["best_note"] = ("Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has "
                            "started stay put). Yahoo's own posted win % is for the lineups as set: " + str(_L["needles_set"].get("yahoo")) + "%.")
         print(f"BEST {_lab}: gotham {_L['needles_set'].get('gotham')}->{_L['needles']['gotham']}% | sleeper {_L['needles_set'].get('sleeper')}->{_L['needles']['sleeper']}%"
-              f" | yahoo set {_L['needles_set'].get('yahoo')}% -> best {_L['needles']['yahoo']}% | moves me {len(_moves['gotham']['me'])} op {len(_moves['gotham']['op'])}")
+              f" | ratcliffe {_L['needles_set'].get('ratcliffe')}->{_L['needles'].get('ratcliffe')}% | yahoo set {_L['needles_set'].get('yahoo')}% -> best {_L['needles']['yahoo']}% | moves me {len(_moves['gotham']['me'])} op {len(_moves['gotham']['op'])}")
     except Exception as _e:
         alarms.append(f"{_lab}: best-lineup step failed ({type(_e).__name__}: {str(_e)[:120]}) - meters show the lineups as set")
