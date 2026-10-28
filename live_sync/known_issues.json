@@ -111,6 +111,13 @@
    "since": "2026-10-27",
    "what": "The scoreboard grading Yahoo, Gotham and Sleeper every week ran in every build but only showed on a Dispatch page.",
    "fixed": "2026-10-27 - its latest week, the season line and how many weeks Gotham beat Yahoo now close every brief."
+  },
+  {
+   "piece": "Scout couldn't see men with no games this season",
+   "level": "yellow",
+   "since": "2026-10-27",
+   "what": "Players back from injury, signed or traded with no 2026 games (Charbonnet, Pearsall, Kirk, Thornton) were missing from the Scout's pool, so it never weighed them. Its IR status read also used only the newest week of nflverse's sparse roster file.",
+   "fixed": "2026-10-27 - they're priced on last season's per-game level at 85% (tested on 57 late starters: no bias, 3.1-pt miss), flagged 'no games yet - flag, not act'; status now comes from each man's own latest roster row. Picks and watch lists unchanged in all four leagues. Still unpriced: rookies with no history and unsigned players."
   }
  ]
 }

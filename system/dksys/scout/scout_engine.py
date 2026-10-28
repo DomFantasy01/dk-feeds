@@ -127,7 +127,10 @@ def steady(v):
 inj5=inj[inj.week==inj.week.max()]; rep=inj5.set_index("gsis_id").report_status.dropna().to_dict()
 prac=inj5.set_index("gsis_id").practice_status.dropna().to_dict()
 injname=inj.dropna(subset=["report_primary_injury"]).drop_duplicates("gsis_id",keep="last").set_index("gsis_id").report_primary_injury.to_dict()
-rs=ro[ro.week==ro.week.max()].set_index("gsis_id").status.to_dict()
+# Oct 27: nflverse's weekly roster file is sparse - most men appear only at the week their row last changed - so
+# "this week's rows" missed many players (and their IR status). Each man's own latest row is used instead.
+ROL=ro.sort_values("week").drop_duplicates("gsis_id",keep="last")
+rs=ROL.set_index("gsis_id").status.to_dict()
 SEASON_OUT={"de von achane"}
 PL={}
 for pid,g in st[st.position.isin(["QB","RB","WR","TE"])].groupby("player_id"):
@@ -143,6 +146,24 @@ for pid,g in st[st.position.isin(["QB","RB","WR","TE"])].groupby("player_id"):
     val=(len(fp)*v26+3*prior)/(len(fp)+3) if proven else v26          # last season counts like three games
     PL[(norm(name),team)]=dict(name=name,team=team,pos=pos,pid=pid,fwd=val,v26=v26,prior=prior,proven=proven,fp=fp,xv=xv,
         wks=list(g.week),last=int(g.week.max()),nflstat=rs.get(pid,""),rep=rep.get(pid,""),prac=prac.get(pid,""),inj=injname.get(pid,""))
+# Oct 27 (Dom): NO GAMES YET THIS SEASON - a man back from injury (or signed, or traded) with no 2026 games was invisible
+# to the Scout. Now he's priced on last season's per-game level in this league's scoring, at 85%: tested on the 57 men
+# whose first 2026 game came in Week 3 or later, 85% had no bias (miss 3.1 pts a game; 100% of last season ran 0.7 high).
+# His team is his current NFL roster team. No 2025 history (rookies) or no NFL team (unsigned) -> still not priced.
+_P25F=s25.groupby("player_id").agg(g=("week","nunique"),fp=("fp","sum"),pos=("position","last"))
+_P25F=_P25F[(_P25F.g>=4)&_P25F.pos.isin(["QB","RB","WR","TE"])]
+_RO=ROL; _have={v["pid"] for v in PL.values() if v.get("pid")}; _n0=0
+for _r in _RO.itertuples():
+    _pid=getattr(_r,"gsis_id",None)
+    if not isinstance(_pid,str) or _pid in _have or _pid not in _P25F.index: continue
+    if _r.position not in ("QB","RB","WR","TE") or not isinstance(_r.team,str): continue
+    if _r.status not in ("ACT","RES","INA","PUP","DEV"): continue   # cut, retired or traded rows are not a current team
+    _ppg=_P25F.loc[_pid,"fp"]/_P25F.loc[_pid,"g"]; _nm=_r.full_name; _tmm=tm(_r.team)
+    if (norm(_nm),_tmm) in PL: continue
+    PL[(norm(_nm),_tmm)]=dict(name=_nm,team=_tmm,pos=_r.position,pid=_pid,fwd=.85*_ppg,v26=.85*_ppg,prior=_ppg,proven=_ppg>=8,
+        fp=[],xv=[],wks=[],last=0,nflstat=rs.get(_pid,""),rep=rep.get(_pid,""),prac=prac.get(_pid,""),inj=injname.get(_pid,""),prior_only=True)
+    _n0+=1
+if not QUIET: print(f"Scout: {_n0} men with no 2026 games priced on last season (85%)")
 for (pid,team),g in KP.groupby(["kicker_player_id","posteam"]):
     g=g.groupby("week").kp.sum(); n=kname.get(pid,pid)
     PL[(norm(n),team)]=dict(name=n,team=team,pos="K",fwd=steady(list(g.values)),fp=list(g.values),xv=[],wks=list(g.index),last=int(g.index.max()),nflstat="",rep="",prac="",inj="",proven=True,prior=None)
@@ -604,7 +625,7 @@ for k in cands:
     lvl=slots.most_common(1)[0][0] if slots else "?"
     pk=[x for x in good if x in PLAYOFF]
     kind="season-long" if len(good)>=.6*len(WEEKS) else ("playoffs" if pk and len(good)==len(pk) else "fill")
-    _flag=None if len(p["fp"])>=2 else "One game only — flag, not act."
+    _flag=None if len(p["fp"])>=2 else ("No games yet this season - priced on last season at 85%; flag, not act." if p.get("prior_only") else "One game only — flag, not act.")
     if p["pos"] not in ("K","DEF"):
         _missed=p["last"]<TEAMLAST.get(p["team"],0) and not p.get("moved") and bool(p.get("inj") or EXTINJ.get((norm(p["name"]),p["pos"])))
         _full=INJWK==NOW and "full" in str(p.get("prac","")).lower()
