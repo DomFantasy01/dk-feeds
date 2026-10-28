@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Wed Oct 28 2026 12:39 AM PT",
+ "built_pt": "Wed Oct 28 2026 02:22 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -13,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Wed Oct 28 12:39 AM PT",
+   "pulled_pt": "Wed Oct 28 02:22 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -23,7 +23,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_tue1652.txt",
    "pulled_pt": "Tue Oct 27 04:52 PM PT",
-   "age_h": 7.8,
+   "age_h": 9.5,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -32,7 +32,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_tue1652.txt",
    "pulled_pt": "Tue Oct 27 04:52 PM PT",
-   "age_h": 7.8,
+   "age_h": 9.5,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -41,7 +41,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_tue1652.txt",
    "pulled_pt": "Tue Oct 27 04:52 PM PT",
-   "age_h": 7.8,
+   "age_h": 9.5,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,35 +49,35 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Wed Oct 28 12:39 AM PT",
+   "pulled_pt": "Wed Oct 28 02:22 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Wed Oct 28 2026 12:39 AM PT for week 8"
+   "note": "Gotham run Wed Oct 28 2026 02:22 AM PT for week 8"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-28T0714Z.csv",
-   "pulled_pt": "Wed Oct 28 12:14 AM PT",
-   "age_h": 0.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-28T0908Z.csv",
+   "pulled_pt": "Wed Oct 28 02:08 AM PT",
+   "age_h": 0.2,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.4 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-28T0714Z.csv",
-   "pulled_pt": "Wed Oct 28 12:14 AM PT",
-   "age_h": 0.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-28T0908Z.csv",
+   "pulled_pt": "Wed Oct 28 02:08 AM PT",
+   "age_h": 0.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.4 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Tue Oct 27 04:52 PM PT",
-   "age_h": 7.8,
+   "age_h": 9.5,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
@@ -106,8 +106,8 @@
    "teams": 12,
    "opp_rank": 2,
    "needles": {
-    "gotham": 27,
-    "sleeper": 26,
+    "gotham": 29,
+    "sleeper": 29,
     "yahoo": 34,
     "yahoo_best": false,
     "yahoo_posted": 34,
@@ -115,12 +115,12 @@
    },
    "totals": {
     "gotham": [
-     125.69,
-     157.1
+     130.0,
+     157.65
     ],
     "sleeper": [
-     128.94,
-     160.75
+     133.19,
+     161.45
     ],
     "yahoo": [
      131.04,
@@ -183,7 +183,7 @@
       "gotham": 22.01,
       "gotham_raw": 22.01,
       "gotham_src": "gotham",
-      "sleeper": 21.43,
+      "sleeper": 21.36,
       "window": 3,
       "gs": "pre"
      },
@@ -199,7 +199,7 @@
       "gotham": 18.27,
       "gotham_raw": 18.27,
       "gotham_src": "gotham",
-      "sleeper": 18.69,
+      "sleeper": 18.59,
       "window": 1,
       "gs": "pre"
      },
@@ -247,7 +247,7 @@
       "gotham": 13.98,
       "gotham_raw": 13.98,
       "gotham_src": "gotham",
-      "sleeper": 16.83,
+      "sleeper": 16.93,
       "window": 1,
       "gs": "pre"
      },
@@ -263,7 +263,7 @@
       "gotham": 10.02,
       "gotham_raw": 10.02,
       "gotham_src": "gotham",
-      "sleeper": 11.35,
+      "sleeper": 11.39,
       "window": 2,
       "gs": "pre"
      },
@@ -292,10 +292,10 @@
       "yahoo": 10.31,
       "actual": null,
       "pos": "TE",
-      "gotham": 10.41,
+      "gotham": 10.4,
       "gotham_raw": 10.56,
       "gotham_src": "gotham-capped",
-      "sleeper": 10.51,
+      "sleeper": 10.5,
       "window": 1,
       "gs": "pre"
      },
@@ -457,7 +457,7 @@
       "gotham": 10.03,
       "gotham_raw": 10.03,
       "gotham_src": "gotham",
-      "sleeper": 10.07,
+      "sleeper": 10.16,
       "window": 1,
       "gs": "pre"
      },
@@ -486,10 +486,10 @@
       "yahoo": 8.53,
       "actual": null,
       "pos": "DEF",
-      "gotham": 10.28,
-      "gotham_raw": 10.28,
+      "gotham": 10.29,
+      "gotham_raw": 10.29,
       "gotham_src": "sleeper",
-      "sleeper": 10.28,
+      "sleeper": 10.29,
       "window": 2,
       "gs": "pre"
      }
@@ -529,7 +529,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 10.85,
-     "sleeper": 10.34,
+     "sleeper": 10.4,
      "window": 1
     },
     {
@@ -585,12 +585,12 @@
      154.41
     ],
     "gotham": [
-     125.54,
-     151.27
+     125.53,
+     151.28
     ],
     "sleeper": [
-     128.94,
-     153.3
+     128.9,
+     153.4
     ]
    },
    "best_moves": {
@@ -601,6 +601,12 @@
        "out_v": 10.0,
        "into": "Chris Godwin Jr.",
        "in_v": 10.2
+      },
+      {
+       "out": "Vikings",
+       "out_v": 6.4,
+       "into": "Commanders",
+       "in_v": 10.7
       }
      ],
      "op": [
@@ -609,11 +615,24 @@
        "out_v": 6.8,
        "into": "Jordan Mason",
        "in_v": 12.6
+      },
+      {
+       "out": "Chiefs",
+       "out_v": 10.3,
+       "into": "Patriots",
+       "in_v": 10.8
       }
      ]
     },
     "sleeper": {
-     "me": [],
+     "me": [
+      {
+       "out": "Vikings",
+       "out_v": 6.4,
+       "into": "Commanders",
+       "in_v": 10.7
+      }
+     ],
      "op": [
       {
        "out": "Dameon Pierce",
@@ -623,9 +642,15 @@
       },
       {
        "out": "KC Concepcion Jr.",
-       "out_v": 10.1,
+       "out_v": 10.2,
        "into": "Denzel Boston",
-       "in_v": 10.3
+       "in_v": 10.5
+      },
+      {
+       "out": "Chiefs",
+       "out_v": 10.3,
+       "into": "Patriots",
+       "in_v": 10.8
       }
      ]
     },
@@ -659,7 +684,7 @@
    },
    "pieces_check": {
     "read": "Tue Oct 27 2026 4:39 PM PT",
-    "roster": "Tue Oct 27 2026 4:56 PM PT",
+    "roster": "Wed Oct 28 2026 2:16 AM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
     ]
@@ -688,12 +713,12 @@
    },
    "totals": {
     "gotham": [
-     140.36,
-     173.08
+     140.42,
+     173.86
     ],
     "sleeper": [
-     149.48,
-     174.66
+     149.68,
+     175.32
     ],
     "yahoo": [
      150.5,
@@ -804,7 +829,7 @@
       "gotham": 13.98,
       "gotham_raw": 13.98,
       "gotham_src": "gotham",
-      "sleeper": 16.83,
+      "sleeper": 16.93,
       "window": 1,
       "gs": "pre"
      },
@@ -817,10 +842,10 @@
       "yahoo": 10.71,
       "actual": null,
       "pos": "WR",
-      "gotham": 10.43,
+      "gotham": 10.48,
       "gotham_raw": 11.63,
       "gotham_src": "gotham-capped",
-      "sleeper": 10.14,
+      "sleeper": 10.24,
       "window": 1,
       "gs": "pre"
      },
@@ -836,7 +861,7 @@
       "gotham": 18.88,
       "gotham_raw": 18.88,
       "gotham_src": "gotham",
-      "sleeper": 19.91,
+      "sleeper": 19.93,
       "window": 1,
       "gs": "pre"
      },
@@ -852,7 +877,7 @@
       "gotham": 10.02,
       "gotham_raw": 10.02,
       "gotham_src": "gotham",
-      "sleeper": 11.35,
+      "sleeper": 11.39,
       "window": 2,
       "gs": "pre"
      },
@@ -884,7 +909,7 @@
       "gotham": 22.01,
       "gotham_raw": 22.01,
       "gotham_src": "gotham",
-      "sleeper": 21.43,
+      "sleeper": 21.36,
       "window": 3,
       "gs": "pre"
      },
@@ -913,10 +938,10 @@
       "yahoo": 5.9,
       "actual": null,
       "pos": "DEF",
-      "gotham": 7.28,
-      "gotham_raw": 7.28,
+      "gotham": 7.29,
+      "gotham_raw": 7.29,
       "gotham_src": "sleeper",
-      "sleeper": 7.28,
+      "sleeper": 7.29,
       "window": 2,
       "gs": "pre"
      }
@@ -950,7 +975,7 @@
       "gotham": 18.27,
       "gotham_raw": 18.27,
       "gotham_src": "gotham",
-      "sleeper": 18.69,
+      "sleeper": 18.59,
       "window": 1,
       "gs": "pre"
      },
@@ -995,10 +1020,10 @@
       "yahoo": 9.9,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.6,
+      "gotham": 9.61,
       "gotham_raw": 10.53,
       "gotham_src": "gotham-capped",
-      "sleeper": 9.3,
+      "sleeper": 9.31,
       "window": 1,
       "gs": "pre"
      },
@@ -1046,7 +1071,7 @@
       "gotham": 15.43,
       "gotham_raw": 15.43,
       "gotham_src": "gotham",
-      "sleeper": 16.0,
+      "sleeper": 16.01,
       "window": 2,
       "gs": "pre"
      },
@@ -1075,10 +1100,10 @@
       "yahoo": 7.86,
       "actual": null,
       "pos": "K",
-      "gotham": 7.76,
-      "gotham_raw": 7.76,
+      "gotham": 7.77,
+      "gotham_raw": 7.77,
       "gotham_src": "sleeper",
-      "sleeper": 7.76,
+      "sleeper": 7.77,
       "window": 2,
       "gs": "pre"
      },
@@ -1134,7 +1159,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.39,
-     "sleeper": 19.62,
+     "sleeper": 19.76,
      "window": 1
     },
     {
@@ -1146,7 +1171,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 8.06,
-     "sleeper": 8.25,
+     "sleeper": 8.35,
      "window": 1
     },
     {
@@ -1228,12 +1253,12 @@
      171.89
     ],
     "gotham": [
-     139.93,
-     165.35
+     139.99,
+     165.37
     ],
     "sleeper": [
-     149.48,
-     168.35
+     149.68,
+     168.28
     ]
    },
    "best_moves": {
@@ -1256,8 +1281,8 @@
       {
        "out": "Ollie Gordon II",
        "out_v": 15.4,
-       "into": "Keon Coleman",
-       "in_v": 7.7
+       "into": "Ryan Flournoy",
+       "in_v": 8.5
       }
      ]
     },
@@ -1273,8 +1298,8 @@
       {
        "out": "Ollie Gordon II",
        "out_v": 16.0,
-       "into": "Keon Coleman",
-       "in_v": 7.7
+       "into": "Ryan Flournoy",
+       "in_v": 8.5
       }
      ]
     },
@@ -1305,14 +1330,12 @@
      "Drake London (WR, WR) down 4: WR3 -> WR7 since last week, 4 of 4 experts",
      "Braelon Allen (RB, RB) down 3: RB14.5 -> RB17.5 since last week, 2 of 4 experts"
     ],
-    "wire": [
-     "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; on waivers until Oct 28 - flag for analysis, not a move"
-    ],
+    "wire": [],
     "missing": null
    },
    "pieces_check": {
     "read": "Tue Oct 27 2026 4:39 PM PT",
-    "roster": "Tue Oct 27 2026 4:56 PM PT",
+    "roster": "Wed Oct 28 2026 2:16 AM PT",
     "lines": [
      "A lead running back: still OPEN - short in Weeks 8, 9, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
@@ -1333,8 +1356,8 @@
    "teams": 14,
    "opp_rank": 6,
    "needles": {
-    "gotham": 45,
-    "sleeper": 45,
+    "gotham": 40,
+    "sleeper": 39,
     "yahoo": 60,
     "yahoo_best": false,
     "yahoo_posted": 60,
@@ -1342,12 +1365,12 @@
    },
    "totals": {
     "gotham": [
-     104.16,
-     109.94
+     108.29,
+     120.97
     ],
     "sleeper": [
-     112.38,
-     118.33
+     116.22,
+     129.43
     ],
     "yahoo": [
      117.87,
@@ -1410,7 +1433,7 @@
       "gotham": 22.01,
       "gotham_raw": 22.01,
       "gotham_src": "gotham",
-      "sleeper": 21.43,
+      "sleeper": 21.36,
       "window": 3,
       "gs": "pre"
      },
@@ -1442,7 +1465,7 @@
       "gotham": 10.94,
       "gotham_raw": 10.94,
       "gotham_src": "gotham",
-      "sleeper": 13.88,
+      "sleeper": 13.87,
       "window": 3,
       "gs": "pre"
      },
@@ -1474,7 +1497,7 @@
       "gotham": 9.91,
       "gotham_raw": 9.91,
       "gotham_src": "gotham",
-      "sleeper": 11.24,
+      "sleeper": 11.26,
       "window": 2,
       "gs": "pre"
      },
@@ -1506,7 +1529,7 @@
       "gotham": 8.6,
       "gotham_raw": 8.6,
       "gotham_src": "gotham",
-      "sleeper": 9.83,
+      "sleeper": 9.82,
       "window": 1,
       "gs": "pre"
      },
@@ -1522,7 +1545,7 @@
       "gotham": 6.72,
       "gotham_raw": 6.72,
       "gotham_src": "gotham",
-      "sleeper": 10.49,
+      "sleeper": 10.58,
       "window": 1,
       "gs": "pre"
      },
@@ -1588,7 +1611,7 @@
       "gotham": 23.81,
       "gotham_raw": 23.81,
       "gotham_src": "gotham",
-      "sleeper": 24.88,
+      "sleeper": 24.95,
       "window": 2,
       "gs": "pre"
      },
@@ -1700,7 +1723,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 19.39,
-     "sleeper": 19.62,
+     "sleeper": 19.76,
      "window": 1
     },
     {
@@ -1712,7 +1735,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 7.85,
-     "sleeper": 8.35,
+     "sleeper": 8.34,
      "window": 1
     },
     {
@@ -1797,13 +1820,19 @@
      102.31
     ],
     "sleeper": [
-     112.38,
-     107.4
+     112.4,
+     107.47
     ]
    },
    "best_moves": {
     "gotham": {
      "me": [
+      {
+       "out": "Bam Knight",
+       "out_v": 8.5,
+       "into": "Jonah Coleman",
+       "in_v": 12.7
+      },
       {
        "out": "Harold Fannin Jr.",
        "out_v": 6.7,
@@ -1821,13 +1850,20 @@
       {
        "out": "San Francisco",
        "out_v": 0.0,
-       "into": "(nobody eligible)",
-       "in_v": 0.0
+       "into": "Jaguars",
+       "in_v": 11.0
       }
      ]
     },
     "sleeper": {
-     "me": [],
+     "me": [
+      {
+       "out": "Bam Knight",
+       "out_v": 8.8,
+       "into": "Jonah Coleman",
+       "in_v": 12.7
+      }
+     ],
      "op": [
       {
        "out": "Juwan Johnson",
@@ -1838,8 +1874,8 @@
       {
        "out": "San Francisco",
        "out_v": 0.0,
-       "into": "(nobody eligible)",
-       "in_v": 0.0
+       "into": "Jaguars",
+       "in_v": 11.0
       }
      ]
     },
@@ -1860,7 +1896,6 @@
      "Koerner"
     ],
     "rising": [
-     "Bam Knight (RB, RB) up 22: RB46.5 -> RB24.5 since last week, 4 of 4 experts",
      "Aaron Rodgers (QB, BN) up 8.5: QB22 -> QB13.5 since last week, 4 of 4 experts"
     ],
     "sliding": [
@@ -1874,7 +1909,7 @@
    },
    "pieces_check": {
     "read": "Tue Oct 27 2026 4:39 PM PT",
-    "roster": "Tue Oct 27 2026 4:56 PM PT",
+    "roster": "Wed Oct 28 2026 2:16 AM PT",
     "lines": [
      "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
@@ -1894,7 +1929,7 @@
    "teams": 10,
    "opp_rank": 8,
    "needles": {
-    "gotham": 69,
+    "gotham": 68,
     "sleeper": 73,
     "yahoo": 71,
     "yahoo_best": false,
@@ -1903,12 +1938,12 @@
    },
    "totals": {
     "gotham": [
-     153.46,
-     125.97
+     152.52,
+     126.01
     ],
     "sleeper": [
-     168.04,
-     133.47
+     167.07,
+     133.62
     ],
     "yahoo": [
      166.18,
@@ -1987,7 +2022,7 @@
       "gotham": 15.37,
       "gotham_raw": 15.37,
       "gotham_src": "gotham",
-      "sleeper": 20.94,
+      "sleeper": 20.86,
       "window": 1,
       "gs": "pre"
      },
@@ -2032,10 +2067,10 @@
       "yahoo": 18.39,
       "actual": null,
       "pos": "WR",
-      "gotham": 18.36,
+      "gotham": 18.37,
       "gotham_raw": 18.61,
       "gotham_src": "gotham-capped",
-      "sleeper": 18.33,
+      "sleeper": 18.34,
       "window": 1,
       "gs": "pre"
      },
@@ -2083,7 +2118,7 @@
       "gotham": 11.66,
       "gotham_raw": 11.66,
       "gotham_src": "gotham",
-      "sleeper": 12.77,
+      "sleeper": 12.78,
       "window": 2,
       "gs": "pre"
      },
@@ -2128,10 +2163,10 @@
       "yahoo": 5.99,
       "actual": null,
       "pos": "DEF",
-      "gotham": 7.01,
-      "gotham_raw": 7.01,
+      "gotham": 6.04,
+      "gotham_raw": 6.04,
       "gotham_src": "sleeper",
-      "sleeper": 7.01,
+      "sleeper": 6.04,
       "window": 2,
       "gs": "pre"
      }
@@ -2146,7 +2181,7 @@
       "yahoo": 25.85,
       "actual": null,
       "pos": "QB",
-      "gotham": 25.46,
+      "gotham": 25.47,
       "gotham_raw": 25.66,
       "gotham_src": "gotham-capped",
       "sleeper": 25.08,
@@ -2162,10 +2197,10 @@
       "yahoo": 8.91,
       "actual": null,
       "pos": "RB",
-      "gotham": 8.86,
+      "gotham": 8.85,
       "gotham_raw": 10.03,
       "gotham_src": "gotham-capped",
-      "sleeper": 8.8,
+      "sleeper": 8.79,
       "window": 1,
       "gs": "pre"
      },
@@ -2213,7 +2248,7 @@
       "gotham": 9.83,
       "gotham_raw": 9.83,
       "gotham_src": "gotham",
-      "sleeper": 9.8,
+      "sleeper": 9.89,
       "window": 1,
       "gs": "pre"
      },
@@ -2258,10 +2293,10 @@
       "yahoo": 11.81,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.74,
+      "gotham": 11.77,
       "gotham_raw": 12.66,
       "gotham_src": "gotham-capped",
-      "sleeper": 11.67,
+      "sleeper": 11.73,
       "window": 1,
       "gs": "pre"
      },
@@ -2337,7 +2372,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 10.0,
-     "sleeper": 11.35,
+     "sleeper": 11.39,
      "window": 2
     },
     {
@@ -2349,7 +2384,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 9.79,
-     "sleeper": 11.05,
+     "sleeper": 11.07,
      "window": 1
     },
     {
@@ -2430,12 +2465,12 @@
      136.98
     ],
     "gotham": [
-     152.23,
-     125.8
+     151.27,
+     125.83
     ],
     "sleeper": [
-     166.16,
-     133.24
+     165.13,
+     133.38
     ]
    },
    "best_moves": {
@@ -2444,14 +2479,14 @@
       {
        "out": "Josh Downs",
        "out_v": 8.6,
-       "into": "Wan'Dale Robinson",
+       "into": "Omar Cooper Jr.",
        "in_v": 9.8
       }
      ],
      "op": [
       {
        "out": "Rico Dowdle",
-       "out_v": 8.9,
+       "out_v": 8.8,
        "into": "Zach Charbonnet",
        "in_v": 9.0
       },
@@ -2475,7 +2510,7 @@
        "out": "Tucker Kraft",
        "out_v": 10.7,
        "into": "Travis Kelce",
-       "in_v": 11.3
+       "in_v": 11.4
       }
      ],
      "op": [
@@ -2510,6 +2545,7 @@
      "Koerner"
     ],
     "rising": [
+     "Omar Cooper Jr. (WR, BN) up 35.5: WR79.5 -> WR44 since last week, 4 of 4 experts",
      "Marvin Harrison Jr. (WR, BN) up 14: WR63 -> WR49 since last week, 4 of 4 experts",
      "Zay Flowers (WR, WR) up 5.5: WR19 -> WR13.5 since last week, 4 of 4 experts",
      "C.J. Stroud (QB, BN) up 5: QB12 -> QB7 since last week, 4 of 4 experts"
@@ -2518,14 +2554,14 @@
      "Josh Downs (WR, WR) down 11: WR15 -> WR26 since last week, 4 of 4 experts"
     ],
     "wire": [
-     "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; on waivers until Oct 28 - flag for analysis, not a move",
+     "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; free agent - flag for analysis, not a move",
      "Chris Godwin Jr. (TB WR) up 19.5: WR48 -> WR28.5, 4 of 4 experts; on waivers until Oct 30 - flag for analysis, not a move"
     ],
     "missing": null
    },
    "pieces_check": {
     "read": "Tue Oct 27 2026 4:39 PM PT",
-    "roster": "Tue Oct 27 2026 4:56 PM PT",
+    "roster": "Wed Oct 28 2026 2:16 AM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
     ]
