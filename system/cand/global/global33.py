@@ -2797,7 +2797,7 @@ _STW=[""]
 def readout3(GX,gy,vy,vw,ve,CP):
     # each number leads; under it, the needle it belongs to; under that, whose it is
     htxt(GX,gy-22,f"{vy}%","Bebas",23,TXT,"c",hw=2.4); _key(GX,gy-25.6,"y",22); htxt(GX,gy-31.0,"YAHOO","PopB",4.8,TXT,"c",hw=1.3)
-    for x,v,k,lab in ((GX-35,vw,"w","RATCLIFFE"),(GX+35,ve,"e","GOTHAM")):
+    for x,v,k,lab in ((GX-35,vw,"w","FTN"),(GX+35,ve,"e","GOTHAM")):
         htxt(x,gy-18.5,f"{v}%","Bebas",11,mix(BG2,TXT,.80),"c",hw=1.8); _key(x,gy-21.8,k,14)    # v34: equal models, equal type
         htxt(x,gy-26.6,lab,"PopB",4.2,mix(BG2,TXT,.75),"c",hw=1.2)
     htxt(GX,gy-39.0,(_STW[0]+"  ·  " if _STW[0] else "")+"PROJECTED WIN PROBABILITY","PopB",5.2,TXT,"c",hw=1.5)   # Oct 10: more air under YAHOO
@@ -2848,7 +2848,7 @@ def block(D,top,h,VMAX,GX):
     # v39 (Dom): tighten left to right - the numbers no longer hang off the title's width; they sit one short gap
     # past the longest label, and the "vs" closes up
     MD=MOD[D["lab"]]; EF=EFF[D["lab"]]
-    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","RATCLIFFE","GOTHAM"))
+    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","FTN","GOTHAM"))
     NWm=c.stringWidth("000.0","Bebas",FY)   # one column for all four leagues, so the blocks line up down the page
     NC=lx+LW+4+NWm; VW=c.stringWidth("vs","PopM",6.2); OC=NC+3+VW+3
     def _row(yy,name,me,op,fs,cm,co,hw):
@@ -2859,7 +2859,7 @@ def block(D,top,h,VMAX,GX):
         htxt(w_+4,yy,f"({'+' if g_>0 else '-' if g_<0 else ''}{abs(g_)})","Bebas",FP,PC,hw=1.4)
     _row(y2,"YAHOO",D['ym'],D['yo'],FY,col,OPPC,1.8)
     MD=MOD[D["lab"]]; y2m=y2-10.0; mc_=mix(GR,TXT,.45); oc_=mix(GR,TXT,.45)
-    _row(y2m,"RATCLIFFE",MD['me'],MD['op'],FM,mc_,oc_,1.8)
+    _row(y2m,"FTN",MD['me'],MD['op'],FM,mc_,oc_,1.8)
     EF=EFF[D["lab"]]; y2e=y2m-10.0
     _row(y2e,"GOTHAM",EF['me'],EF['op'],FM,mc_,oc_,1.8)
     ks=[k for k,v in reversed(D["bands"]) if k!="you"]; kx=lx; ky=y2e-LS*1.2-0.2
@@ -2940,7 +2940,7 @@ def build(fn):
     idr=M+12+max(idwidth(D) for D in DS); balll=W-M-40-50-26
     # v40 (Dom): with the rows tightened, center the meter between the end of the rows and the standings balls,
     # but never let the top of the dial crowd the widest title line
-    lx_=M+12; rowR=lx_+max(c.stringWidth(t,"PopB",7) for t in ("YAHOO","RATCLIFFE","GOTHAM"))+4+c.stringWidth("000.0","Bebas",11)+6+c.stringWidth("vs","PopM",6.2)+c.stringWidth("000.0","Bebas",11)+4+c.stringWidth("(+00)","Bebas",8)
+    lx_=M+12; rowR=lx_+max(c.stringWidth(t,"PopB",7) for t in ("YAHOO","FTN","GOTHAM"))+4+c.stringWidth("000.0","Bebas",11)+6+c.stringWidth("vs","PopM",6.2)+c.stringWidth("000.0","Bebas",11)+4+c.stringWidth("(+00)","Bebas",8)
     ballL=W-M-40-50-19-2; _gr=38; _ro=_gr+_gr*20/78/2; R_=_ro+GLAB+1; dy_=GLAB+_ro+14-29
     clear=lx_+max(idwidth(D) for D in DS)+math.sqrt(max(R_**2-dy_**2,0))+8
     GX=max((rowR+ballL)/2,clear)
@@ -3143,7 +3143,7 @@ for lab,L in MTR["leagues"].items():
     elif max(g_,y_,s_)-min(g_,y_,s_)>=10:
         import re as _re2
         m_=_re2.search(r"Gotham ([\d.]+) vs Yahoo ([\d.]+) / Sleeper ([\d.]+) on (.+?) -",gaps[0]) if gaps else None
-        PROSE[lab]=f"The three meters split by {max(g_,y_,s_)-min(g_,y_,s_)} points: Ratcliffe {g_}, Yahoo {y_}, Gotham {s_}."; URG[lab]="watch"
+        PROSE[lab]=f"The three meters split by {max(g_,y_,s_)-min(g_,y_,s_)} points: FTN {g_}, Yahoo {y_}, Gotham {s_}."; URG[lab]="watch"
     else:
         PROSE[lab]="All three meters agree."+(f" Thursday: {', '.join(thu)}." if thu else ""); URG[lab]="info"
     for k_ in list(PROSE): PROSE[k_]=PROSE[k_].replace("{","(").replace("}",")")
