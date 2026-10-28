@@ -401,6 +401,21 @@ SNAP={(norm(r.player),r.team,int(r.week)):r.offense_pct for r in sn.itertuples()
 TEAMLAST=st.groupby("team").week.max().to_dict()
 INJWK=int(inj.week.max()) if len(inj) else 0      # Oct 21: the injury report's week - a full practice counts only on this week's report
 CLOSE={}
+# Oct 28 (Dom: why does the engine have Darnold at half of Ratcliffe?) - THE DEPTH CHART CHECK. A returning man only closes
+# a teammate's door if he is listed AHEAD of him on the current depth chart. Drew Lock started Weeks 1-2 while Darnold was
+# hurt, then got hurt himself; when Lock began practicing again the engine read him as the returning starter and cut
+# Darnold (the No. 1 on Seattle's chart) to zero.
+DEPTH={}
+try:
+    _dc=pd.read_csv(f"{L}/depth_charts.csv",low_memory=False,usecols=["dt","team","player_name","pos_abb","pos_rank"])
+    _dc=_dc[_dc.pos_abb.isin(["QB","RB","WR","TE"])]; _dc=_dc[_dc.dt==_dc.dt.max()]
+    for _r in _dc.itertuples(): DEPTH[(norm(_r.player_name),tm(str(_r.team)),_r.pos_abb)]=int(_r.pos_rank)
+    print(f"Scout: depth chart read ({len(DEPTH)} skill players, {_dc.dt.max()})")
+except Exception as _e: print("Scout: depth chart not read -",_e)
+def _ahead(k_ret,k_m,pos):
+    """True unless the depth chart lists the man staying (k_m) ahead of the man returning (k_ret)."""
+    a=DEPTH.get((k_ret[0],k_ret[1],pos)); b=DEPTH.get((k_m[0],k_m[1],pos))
+    return not (a is not None and b is not None and b<a)
 skill={k:p for k,p in PL.items() if p["pos"] in ("QB","RB","WR","TE")}
 for k,p in skill.items():
     o=owner(k); yt=o[2] if o else ""; bw=back(p,yt); why=""
@@ -423,6 +438,7 @@ for k,p in skill.items():
     for k2,m in skill.items():
         if k2==k or m["team"]!=p["team"] or m["pos"]!=p["pos"]: continue
         if p["fwd"]<.5*m["fwd"]: continue
+        if not _ahead(k,k2,p["pos"]): continue            # he's behind this man on the depth chart - no door closes
         def blend(f,x): return (.7*f+.3*x) if m["proven"] else (.4*f+.6*x)
         withv=[blend(f,x) for f,x,w in zip(m["fp"],m["xv"],m["wks"]) if w in full]
         wo=[blend(f,x) for f,x,w in zip(m["fp"],m["xv"],m["wks"]) if w not in full]
@@ -541,8 +557,12 @@ def rc_weekly(p,x,ytag=""):
     k=_ypk(p)
     if x==NOW and k in _RCW: return _RCW[k]
     if k in _RCT:
-        b=max(NOW,back(p,ytag)); n=sum(1 for w in range(b,18) if w not in byes.get(p["team"],[]))
-        return _RCT[k]/n if n else 0.0
+        # Oct 28 (Dom): spread his rest-of-season total across the weeks by matchup - each week weighted by how that
+        # opponent defends the position (the engine's RATIO, ~0.9-1.1), rescaled so the weeks still add to his total
+        b=max(NOW,back(p,ytag)); W_=[w for w in range(b,18) if w not in byes.get(p["team"],[])]
+        if not W_: return 0.0
+        rw=lambda w: RATIO.get((sched[p["team"]].get(w),p["pos"]),1.0)
+        return _RCT[k]*rw(x)/sum(rw(w) for w in W_)
     if k in _RCW: return _RCW[k]   # this week only from him - carry the rate forward
     return None
 def weekly(p,x,ytag=""):
@@ -778,6 +798,17 @@ try:
     G2.sort(key=lambda e:-e["wins"])
     if not QUIET: print(f"Scout drop pricing: {'open bench seat - no drop needed' if _openb>0 else str(len(G2))+' pickups priced against the best drop'}")
 except Exception as _e: print("Scout drop pricing skipped:",_e)
+# Oct 28 (Dom): THE VALUE BAR - a pickup must project at least 15% better than the man he'd replace in the lineup, counting
+# only the weeks he'd actually start (a percentage, so it scales down as the season shortens; replaces the old ~20-point
+# rest-of-season bar). Exceptions stand: a short-term fill (bye/injury hole) and a real Weeks 15-17 playoff edge.
+BAR_PCT=0.15
+for e in G2:
+    _gw=[x for x in e["good"]]; _new=sum(weekly(e["p"],x) for x in _gw); _gain=sum(e["g"][x] for x in _gw)
+    _old=max(_new-_gain,0.1); e["bar_pct"]=round(100*_gain/_old,0) if _gw else 0.0
+    e["bar_ok"]=_gain/_old>=BAR_PCT or e["kind"] in ("fill","playoffs")
+    if not e["bar_ok"] and e["act"]:
+        e["act"]=False; e["flag"]=f"Under the 15% bar: {e['bar_pct']:.0f}% better than the man he'd replace in the weeks he'd start - not worth the move."
+if not QUIET: print("Scout value bar (15%):",sum(1 for e in G2 if e.get("bar_ok")),"of",len(G2),"pass")
 def _gn(e): return round(sum(e["g"].values()) if e.get("drop") else sum(max(0.0,v) for v in e["g"].values()),1)    # net of the drop
 def _pgn(e): return round(sum(e["g"].get(x,0.0) for x in PLAYOFF) if e.get("drop") else sum(max(0.0,e["g"].get(x,0.0)) for x in PLAYOFF),1)
 
@@ -1125,7 +1156,7 @@ _CAP={"DKI":(5,1),"DKII":(5,2),"DKIII":(5,1),"DKIV":(5,3)}[LGK]; _me=ROS[ROS.tid
 _nst=int((~_me.slot.isin(["BN","IR"])).sum())
 BOARD["open"]=dict(start=max(0,len(SLOTS)-_nst),bench=max(0,_CAP[0]-int((_me.slot=="BN").sum())),ir=max(0,_CAP[1]-int((_me.slot=="IR").sum())))
 BOARD["adds"]=[dict(guard=guard(e),rivals=rivals(e),drop=e.get("drop"),name=e["p"]["name"].replace(" defense"," DEF"),team=e["p"]["team"],pos=e["p"]["pos"],acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
-                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1])
+                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1],bar_pct=e.get("bar_pct"))
                for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"])],key=lambda e:-_gn(e))[:6]]
 _named={p["name"] for it in BOARD["gate1"] for p in it["picks"]}|{it["pick"]["name"] for it in BOARD["gate2"]}
 _chk=[]
