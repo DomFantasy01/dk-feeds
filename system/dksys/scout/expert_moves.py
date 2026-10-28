@@ -61,7 +61,7 @@ def move(now, old, panel):
     return dict(now=statistics.median(a), then=statistics.median(b), d=statistics.median(b) - statistics.median(a),
                 up=up, down=dn, per={SHOW[e]: f"{old[e]}->{now[e]}" for e in both})
 
-def fmt_rank(pos, r): return f"{pos}{r:g}"
+def fmt_rank(pos, r): return f"{pos} {int(round(r + 1e-9))}"   # Oct 28 (Dom): position rank, whole number - "WR 15"
 
 def run(R, meter_f=None, brief=False, out_dir=None):
     S = snapshots(R)
@@ -106,11 +106,11 @@ def run(R, meter_f=None, brief=False, out_dir=None):
                 if mv: row[tag] = dict(mv, then_s=fmt_rank(pos, mv["then"]), now_s=fmt_rank(pos, mv["now"]))
             wk, pl = row.get("week"), row.get("pull")
             big = lambda m, t: m and abs(m["d"]) >= t and len(m["up" if m["d"] > 0 else "down"]) >= 2
-            if big(wk, 3) or big(pl, 2):
-                m = wk if big(wk, 3) else pl
-                line = (f"{r['name']} ({pos}, {r['slot']}) {'up' if m['d'] > 0 else 'down'} {abs(m['d']):g}: "
-                        f"{m['then_s']} -> {m['now_s']} {'since last week' if m is wk else 'since the last pull (' + str(pull_read) + ')'}, "
-                        f"{len(m['up'] if m['d'] > 0 else m['down'])} of {len(m['per'])} experts")
+            # Oct 28 (Dom): only moves big enough to matter - 5+ spots at his position - shown as the rank before and after
+            if big(wk, 5) or big(pl, 5):
+                m = wk if big(wk, 5) else pl
+                line = (f"{r['name']} ({r['slot']}): {m['then_s']} \u2192 {m['now_s']}, {'up' if m['d'] > 0 else 'down'} {int(round(abs(m['d'])))} spots "
+                        f"{'since last week' if m is wk else 'since the last pull (' + str(pull_read) + ')'} \u00b7 {len(m['up'] if m['d'] > 0 else m['down'])} of {len(m['per'])} experts")
                 (rising if m["d"] > 0 else sliding).append(dict(name=r["name"], d=m["d"], line=line))
             players.append(row)
         wire = []
@@ -125,7 +125,7 @@ def run(R, meter_f=None, brief=False, out_dir=None):
                 if not mv or mv["d"] < 5 or len(mv["up"]) < 2: continue
                 av = f"on waivers until {W_[k]}" if k in W_ else "free agent"
                 wire.append(dict(name=nw["_name"], team=nw["_team"], pos=pos, d=mv["d"], avail=av,
-                                 line=f"{nw['_name']} ({nw['_team']} {pos}) up {mv['d']:g}: {fmt_rank(pos, mv['then'])} -> {fmt_rank(pos, mv['now'])}, "
+                                 line=f"{nw['_name']} ({nw['_team']}): {fmt_rank(pos, mv['then'])} \u2192 {fmt_rank(pos, mv['now'])}, up {int(round(mv['d']))} spots \u00b7 "
                                       f"{len(mv['up'])} of {len(mv['per'])} experts; {av} - flag for analysis, not a move"))
             wire.sort(key=lambda x: -x["d"]); wire = wire[:3]
         rising.sort(key=lambda x: -x["d"]); sliding.sort(key=lambda x: x["d"])
