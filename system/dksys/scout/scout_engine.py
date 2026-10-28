@@ -563,7 +563,8 @@ def rc_weekly(p,x,ytag=""):
         if not W_: return 0.0
         rw=lambda w: RATIO.get((sched[p["team"]].get(w),p["pos"]),1.0)
         return _RCT[k]*rw(x)/sum(rw(w) for w in W_)
-    if k in _RCW: return _RCW[k]   # this week only from him - carry the rate forward
+    # Oct 28 (Dom, DK I defenses): he gives no rest-of-season line for defenses and kickers - his weekly number is ONE
+    # matchup (Vikings @ Detroit), so it is never carried forward; later weeks fall to the engine's season-long rate x matchup
     return None
 def weekly(p,x,ytag=""):
     r=rc_weekly(p,x,ytag)
@@ -572,6 +573,7 @@ def rc_tag(p,ytag="",wks=None):
     """both agree / Ratcliffe only / engine only, by the rest-of-season sum (within 15% or 1.5 points a week = agree)."""
     wks=wks or WEEKS
     if not rc_has(p): return "engine only", "Ratcliffe doesn't project him"
+    if _ypk(p) not in _RCT: wks=[x for x in wks if x==NOW] or wks[:1]   # this week only from him (defenses, kickers)
     r=sum(rc_weekly(p,x,ytag) or 0 for x in wks); e=sum(engine_weekly(p,x,ytag) for x in wks); n=max(1,len(wks))
     if abs(r-e)<=max(.15*max(r,e),1.5*n): return "both agree", f"Ratcliffe {r/n:.1f}, engine {e/n:.1f} a week"
     return ("Ratcliffe higher" if r>e else "engine higher"), f"Ratcliffe {r/n:.1f} a week vs engine {e/n:.1f}"
@@ -644,7 +646,8 @@ try:
         for _m in _mm:
             _p=PL[_m["key"]]
             if not rc_has(_p): continue
-            _r=sum(rc_weekly(_p,x,_m["ytag"]) or 0 for x in WEEKS); _e=sum(engine_weekly(_p,x,_m["ytag"]) for x in WEEKS)
+            _ww=WEEKS if _ypk(_p) in _RCT else [NOW]   # defenses/kickers: he gives this week only
+            _r=sum(rc_weekly(_p,x,_m["ytag"]) or 0 for x in _ww); _e=sum(engine_weekly(_p,x,_m["ytag"]) for x in _ww)
             if _r>0 and _e>0: _l=_lvl[_p["pos"]]; _l[0]+=_r; _l[1]+=_e; _l[2]+=1
     _SIM["rc_level"]={k:dict(ratio=round(v[0]/v[1],3),n=v[2]) for k,v in _lvl.items()}
     _SIM["rc_cover"]={str(_t):round(sum(1 for m in _mm if rc_has(PL[m["key"]]))/max(1,len(_mm)),2) for _t,_mm in TEAMS.items()}
