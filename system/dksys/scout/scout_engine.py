@@ -1244,14 +1244,17 @@ try:
         _ko=_KO.get(_p["team"])
         if not _ko or _ko<=_NOWU: continue                       # no game, or his game already started
         _kd=_p["pos"] in ("K","DEF")
-        _s=_SLKD.get(_kdkey(_p)) if _kd else _SLPPR.get(norm(_p["name"]))
+        # Oct 28 (Dom): Ratcliffe leads the pre-kickoff check; Sleeper only where FTN has no line
+        _s=_RCW.get(_ypk(_p)); _ls="Ratcliffe"
+        if _s is None: _s=_SLKD.get(_kdkey(_p)) if _kd else _SLPPR.get(norm(_p["name"])); _ls="Sleeper"
         if _s is None: continue
-        _pool.append(dict(k=_k,p=_p,sl=_s,ya=_YP.get((_ypk(_p),NOW)),go=None if _kd else _GOT.get(norm(_p["name"])),ko=_ko))
+        _pool.append(dict(k=_k,p=_p,sl=_s,ls=_ls,ya=_YP.get((_ypk(_p),NOW)),go=None if _kd else _GOT.get(norm(_p["name"])),ko=_ko))
     _used=set()
     for _st in _LG["starters"]["me"]:
         _slot=_st.get("slot"); _ok=_EL.get(_slot)
         if not _ok or _st.get("gs") not in (None,"pre"): continue        # his game started: locked
         _empty=(not _st.get("player")) or (_st.get("status") or "").upper() in ("O","IR","IR-R","NA","SUSP","PUP") or ((_st.get("sleeper") or 0)<=0 and (_st.get("yahoo") or 0)<=0)
+        _stl=lambda c: (_st.get("ratcliffe") if (c["ls"]=="Ratcliffe" and _st.get("ratcliffe_src")=="ftn") else _st.get("sleeper")) or 0
         _best=None
         for _c in _pool:
             if _c["p"]["pos"] not in _ok or _c["k"] in _used: continue
@@ -1259,18 +1262,18 @@ try:
                 _m=_c["sl"]; _why="empty seat"
                 if _m<3: continue
             else:
-                _ms=_c["sl"]-(_st.get("sleeper") or 0)
+                _ms=_c["sl"]-_stl(_c)
                 _my=None if (_c["ya"] is None or _st.get("yahoo") is None) else _c["ya"]-_st["yahoo"]
                 _mg=None if (_c["go"] is None or _st.get("gotham") is None) else _c["go"]-_st["gotham"]
                 if _ms<2: continue
                 if _my is not None:
                     if _my<2: continue
-                    _why="Sleeper and Yahoo agree"
+                    _why=f"{_c['ls']} and Yahoo agree"
                 elif _mg is not None:
                     if _mg<2: continue
-                    _why="Sleeper and Gotham agree (no Yahoo number)"
+                    _why=f"{_c['ls']} and Gotham agree (no Yahoo number)"
                 else:
-                    _why="Sleeper only (no Yahoo or Gotham number)"
+                    _why=f"{_c['ls']} only (no Yahoo or Gotham number)"
                 _m=_ms
             if not _best or _m>_best[0]: _best=(_m,_c,_why)
         if not _best: continue
@@ -1280,11 +1283,11 @@ try:
         _g2=next((e for e in G2 if e["k"]==_c["k"]),None)
         _nl,_nb=newscheck(_p)
         PREKICK.append(dict(slot=_slot,starter=_st.get("player") or "(empty)",starter_team=_st.get("team"),
-            starter_nums=dict(sleeper=_st.get("sleeper"),yahoo=_st.get("yahoo"),gotham=_st.get("gotham")),
+            starter_nums=dict(ratcliffe=_st.get("ratcliffe") if _st.get("ratcliffe_src")=="ftn" else None,sleeper=_st.get("sleeper"),yahoo=_st.get("yahoo"),gotham=_st.get("gotham")),
             name=_p["name"].replace(" defense"," DEF"),team=_p["team"],pos=_p["pos"],
-            nums=dict(sleeper=round(_c["sl"],1),yahoo=None if _c["ya"] is None else round(_c["ya"],1),gotham=None if _c["go"] is None else round(_c["go"],1)),
+            nums=dict(ratcliffe=round(_c["sl"],1) if _c["ls"]=="Ratcliffe" else None,sleeper=round(_c["sl"],1) if _c["ls"]=="Sleeper" else (round(_SLPPR.get(norm(_p["name"])),1) if _SLPPR.get(norm(_p["name"])) is not None else None),yahoo=None if _c["ya"] is None else round(_c["ya"],1),gotham=None if _c["go"] is None else round(_c["go"],1)),
             gain=round(_m,1),basis=_why,empty=bool(_empty),
-            color=("gold" if (_nb or _why.startswith("Sleeper only")) else "red"),
+            color=("gold" if (_nb or " only " in _why) else "red"),
             deadline_utc=_dl.isoformat(),deadline_pt=f"{_dl.astimezone(_PT):%a} {_dl.astimezone(_PT).hour%12 or 12}:{_dl.astimezone(_PT):%M} {'AM' if _dl.astimezone(_PT).hour<12 else 'PM'} PT",
             ros_gain=round(sum(max(0.0,v) for v in _g2["g"].values()),1) if _g2 else None,
             news=_nl or "",checked=NOWPT.strftime('%a %b %d, %I:%M %p PT').replace(' 0',' ')))

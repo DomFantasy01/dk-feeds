@@ -497,16 +497,17 @@ try:
             except Exception: continue
             if _dl <= _now: continue                      # kickoff passed: nothing left to do
             _sn, _cn = _x.get("starter_nums") or {}, _x.get("nums") or {}
-            _vs = " \u00b7 ".join(f"{k.capitalize()} {f1(_cn.get(k))} vs {f1(_sn.get(k))}" for k in ("sleeper", "yahoo", "gotham") if _cn.get(k) is not None or _sn.get(k) is not None)
+            _vs = " \u00b7 ".join(f"{k.capitalize()} {f1(_cn.get(k))} vs {f1(_sn.get(k))}" for k in ("ratcliffe", "yahoo", "gotham", "sleeper") if _cn.get(k) is not None or _sn.get(k) is not None)
             add(id=slug("pk", W, _lab, _x["slot"], _x["name"], _x["starter"]), color=_x.get("color", "gold"), lg=_lab, who=_x["name"], kind="prekick",
                 title=(f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) fills your empty {_x['slot']} seat" if _x.get("empty")
                        else f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) beats your {_x['slot']} {_x['starter']} by {_x['gain']:.1f} this week"),
                 what=f"Free agent, on this week's numbers ({_x['basis']})." + (f" Rest of season he adds ~{_x['ros_gain']:.0f} points." if _x.get("ros_gain") else ""),
                 tie=f"Your {_x['slot']} starter in {_lab} is {_x['starter']}.",
                 fix=f"Your call, before {_x['deadline_pt']}: add {_x['name']} and start him over {_x['starter']}. Adding him means dropping someone - pick the drop with the full workup.",
-                ba={"label": "that lineup spot this week, Sleeper points", "before": _sn.get("sleeper"), "after": _cn.get("sleeper")},
+                ba=({"label": "that lineup spot this week, Ratcliffe points", "before": _sn.get("ratcliffe"), "after": _cn.get("ratcliffe")} if _cn.get("ratcliffe") is not None
+                    else {"label": "that lineup spot this week, Sleeper points", "before": _sn.get("sleeper"), "after": _cn.get("sleeper")}),
                 receipts=[f"This week: {_vs}", f"Scout check: {_x.get('checked','')}", _x.get("news") or "news: not checked"],
-                by="before " + _x["deadline_pt"], src="the Scout's pre-kickoff check (Sleeper, Yahoo, Gotham)")
+                by="before " + _x["deadline_pt"], src="the Scout's pre-kickoff check (Ratcliffe first, then Yahoo, Gotham, Sleeper)")
             _n += 1
     PREKICK_NOTE = f"pre-kickoff check: {_n} upgrade(s)"
 except Exception as e:
@@ -566,6 +567,64 @@ try:
 except Exception as e:
     RADAR_NOTE = f"radar before-lock check skipped: {type(e).__name__}: {e}"
 
+# ---------- Oct 28 (Dom): THE RATCLIFFE ALERTS - "how else do we find out if we don't do that?" ----------
+# 1. every Scout pickup that clears the 15% bar (or fills a hole) becomes an alert, so nobody has to go read the boards
+# 2. your starters: FTN (Ratcliffe) well under Yahoo this week, or a sharp drop since the last FTN read
+# 3. the FTN read itself: stale or missing numbers are an alert, never a silent fallback
+FTN_NOTE = ""; FTN_SEEN = {}
+try:
+    import os, urllib.request, time
+    _src = (M.get("sources") or {}).get("ratcliffe") or {}
+    if _src.get("status") != "OK":
+        add(id=slug("ftn", W, "stale", _src.get("pulled_pt") or "none"), color="red", lg="DK I", who="FTN read", kind="ftn_stale",
+            title=f"Ratcliffe's numbers are {_src.get('status','MISSING').lower()}" + (f" - last FTN read {_src.get('pulled_pt')}" if _src.get("pulled_pt") else ""),
+            what="The meters, the Scout and the lineup calls are running on old FTN numbers (or Yahoo in their place).",
+            tie="Every league (shown under DK I).", fix="Check that your PC is on with Chrome signed in to FTN; the next scheduled read will refresh it.",
+            ba=None, receipts=[f"FTN read age: {_src.get('age_h')} h (limit 36 h)"], by="now", src="the FTN read check")
+    _dirs = [os.path.join(os.environ.get("DK_ROOT", "/home/claude"), "dksys", "scout"), os.path.join(os.path.dirname(os.path.abspath(act_f)), "scout_state")]
+    _np = _ns = 0
+    for _lk, _lab in (("DKI", "DK I"), ("DKII", "DK II"), ("DKIII", "DK III"), ("DKIV", "DK IV")):
+        _b = None
+        for _d in _dirs:
+            _f = os.path.join(_d, f"scout_board_{_lk}.json")
+            if os.path.exists(_f): _b = json.load(open(_f)); break
+        if _b is None:
+            _b = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/scout_state/scout_board_{_lk}.json?t={int(time.time())}", timeout=40).read())
+        for _x in (_b.get("adds") or [])[:4]:
+            _bp = _x.get("bar_pct")
+            add(id=slug("sc", W, _lab, _x["name"]), color="gold", lg=_lab, who=_x["name"], kind="scout_pickup",
+                title=f"Scout pickup: {_x['name']} ({_x['pos']}, {_x['team']}) adds ~{_x['gain']:.0f} pts through Week 17" + (f", {_bp:.0f}% over the man he'd replace" if _bp is not None else ""),
+                what=f"{_x['acq']}. " + (f"Drop to make room: {_x['drop']}. " if _x.get("drop") else "Open bench seat - no drop needed. ")
+                     + f"Ratcliffe vs engine: {_x.get('rc','?')}" + (f" ({_x['rc_why']})" if _x.get("rc_why") else "") + ".",
+                tie=f"{_lab} roster.", fix="Flag for the full workup and a live Yahoo check before any claim - nothing is a move until we've talked it through.",
+                ba=None, receipts=[_x.get("now") or "", "rival check: " + str(_x.get("rivals") or "none")] + [f"check first: {g_}" for g_ in (_x.get("guard") or [])],
+                by="before the claim deadline", src="the Scout (Ratcliffe-led, 15% bar)")
+            _np += 1
+    _prev_seen = PREV.get("ftn_seen") or {}
+    for _lab, _L in (M.get("leagues") or {}).items():
+        for _s in (_L.get("starters") or {}).get("me", []):
+            if _s.get("ratcliffe_src") != "ftn" or _s.get("actual") is not None: continue
+            _r, _y = _s.get("ratcliffe"), _s.get("yahoo"); _key = f"{_lab}|{_s['player']}"; FTN_SEEN[_key] = _r
+            _old = _prev_seen.get(_key)
+            if isinstance(_old, (int, float)) and _r is not None and _old - _r >= 3 and _r <= .75 * _old:
+                add(id=slug("fd", W, _lab, _s["player"], round(_r)), color="red", lg=_lab, who=_s["player"], kind="ftn_drop",
+                    title=f"Ratcliffe cut your {_s['slot']} {_s['player']} from {_old:.1f} to {_r:.1f}",
+                    what="A sharp drop since the last FTN read usually means news - an injury, a role change or a benching.",
+                    tie=f"Your {_s['slot']} starter in {_lab}.", fix="Check the news and your bench before his kickoff.",
+                    ba={"label": "Ratcliffe this week", "before": _old, "after": _r}, receipts=[f"Yahoo has him at {f1(_y)}"],
+                    by="before his kickoff", src="the FTN read")
+                _ns += 1
+            elif _r is not None and isinstance(_y, (int, float)) and _y >= 6 and _r <= .7 * _y:
+                add(id=slug("fy", W, _lab, _s["player"]), color="gold", lg=_lab, who=_s["player"], kind="ftn_low",
+                    title=f"Ratcliffe is well under Yahoo on your {_s['slot']} {_s['player']}: {_r:.1f} vs {_y:.1f}",
+                    what="When the expert and Yahoo split this much on a starter, find out why before lock.",
+                    tie=f"Your {_s['slot']} starter in {_lab}.", fix="Look at the news and your bench options; nothing to do if the reason doesn't hold up.",
+                    ba=None, receipts=[f"Gotham has him at {f1(_s.get('gotham'))}"], by="before his kickoff", src="the FTN read vs Yahoo")
+                _ns += 1
+    FTN_NOTE = f"ratcliffe: {_np} scout pickup(s), {_ns} starter flag(s), read {_src.get('status','MISSING')}"
+except Exception as e:
+    FTN_NOTE = f"ratcliffe alerts skipped: {type(e).__name__}: {e}"
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -590,7 +649,7 @@ for i, o in old.items():
         if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}}
 # Oct 20 (Dom): SIZE GUARD - the Live database refuses a document over 262,144 bytes, and every hourly run with the
 # news feeds came out ~274 KB, so its write was refused and the page sat on the 7:13 AM feeds. Drop the oldest archived
 # cards (never an active one) until the document fits with room to spare, and write it compact.
@@ -606,4 +665,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", SIZE_NOTE)
