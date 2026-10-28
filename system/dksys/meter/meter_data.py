@@ -146,6 +146,32 @@ for lab in LEAGUES:
     if os.path.exists(f):
         d = pd.read_csv(f); GOT[lab] = dict(zip(d.k.astype(str), d.eng_wk))
 
+# ---------------------------------------------------------------- RATCLIFFE (Oct 28, Dom: the expert leads; FTN read in Dom's Chrome)
+RC = {}   # (league k, key) -> this week's points in that league's scoring; key = norm(name), or ('DEF', team)
+try:
+    import subprocess as _sp
+    _sp.run([sys.executable, '/home/claude/dksys/gather/ftn.py'], check=False, capture_output=True, timeout=120)
+    _ftn = ROOT + 'ftn_scored.csv'
+    if os.path.exists(_ftn):
+        _fd = pd.read_csv(_ftn)
+        for _r in _fd.itertuples():
+            if pd.isna(_r.wk): continue
+            RC[(int(_r.lg), ('DEF', T(_r.team)) if _r.pos == 'DST' else ('K', _r.key) if _r.pos == 'K' else _r.key)] = float(_r.wk)
+        _rp = str(_fd.read_pt.dropna().iloc[0]) if _fd.read_pt.notna().any() else ''
+        _rt = None
+        try: _rt = dt.datetime.strptime(_rp.replace(' PT', ''), '%a %b %d %Y %I:%M %p').replace(tzinfo=PT)
+        except Exception: pass
+        _age = round((NOW - _rt).total_seconds() / 3600, 1) if _rt else None
+        sources['ratcliffe'] = dict(status='OK' if _age is not None and _age <= 36 else 'STALE', path=_ftn, pulled_pt=_rp, age_h=_age, rows=len(_fd), note="Jeff Ratcliffe (FTN), scored in each league's rules")
+        if _age is None or _age > 36: alarms.append(f"ratcliffe: STALE - FTN read {_rp or 'unknown'} ({_age} h old, limit 36 h)")
+    else: alarms.append('ratcliffe: MISSING - no FTN read yet (yahoo_drop/ftn/)'); sources['ratcliffe'] = dict(status='MISSING', path=_ftn)
+except Exception as _e: alarms.append(f'ratcliffe: read failed ({_e})')
+def rc_of(k, name, pos, team):
+    if pos == 'DEF': return RC.get((k, ('DEF', T(team))))
+    if pos == 'K': return RC.get((k, ('K', norm(name))))
+    return RC.get((k, norm(name)))
+RC_FALL = {}
+
 # ---------------------------------------------------------------- Sleeper (from Dom's GitHub feed job)
 def newest_by_name(pattern):
     f = sorted(glob.glob(pattern)); return f[-1] if f else None      # job files carry their run time in the name
@@ -248,11 +274,15 @@ for lab, cfg in LEAGUES.items():
             if sl is None and not _empty and win is not None:   # Oct 21: an empty slot or a team on bye has no number to find - that is not a data failure
                 if k in BLANK: notes.append(f"{lab}: Sleeper lists {p['player']} with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle")
                 else: alarms.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Yahoo used on the Sleeper needle")
+            _rc = rc_of(cfg['k'], p['player'], pos, p.get('team'))
+            if _rc is None and not _empty and win is not None and RC: RC_FALL.setdefault(lab, []).append(p['player'])
             L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_raw=None if graw is None else round(float(graw), 2), gotham_src=gsrc,
-                          sleeper=round(float(sl if sl is not None else (p['yahoo'] or 0)), 2), window=win))
+                          sleeper=round(float(sl if sl is not None else (p['yahoo'] or 0)), 2), window=win,
+                          ratcliffe=round(float(_rc if _rc is not None else (p['yahoo'] or 0)), 2), ratcliffe_src='ftn' if _rc is not None else 'yahoo-fallback'))
         sides[side] = L
     me, op = sides['me'], sides['op']
-    yt = chance(me, op, 'yahoo'); gt = chance(me, op, 'gotham'); st_ = chance(me, op, 'sleeper')
+    yt = chance(me, op, 'yahoo'); gt = chance(me, op, 'gotham'); st_ = chance(me, op, 'sleeper'); rt = chance(me, op, 'ratcliffe')
+    if RC_FALL.get(lab): notes.append(f"{lab}: no Ratcliffe number for {', '.join(RC_FALL[lab])} - Yahoo used on the Ratcliffe needle")
     def wins(L, col):
         w = [0.0] * len(WINS); c = [0] * len(WINS)
         for p in L:
@@ -265,8 +295,9 @@ for lab, cfg in LEAGUES.items():
         league=cfg['full'], league_id=cfg['id'], me=cfg['me'], opp=opp,
         record=mine.get('rec'), opp_record=theirs.get('rec'), rank=mine.get('rank'), div=mine.get('div'), div_rank=mine.get('div_rank'),
         pf_rank=mine.get('pf_rank'), teams=len(tb) if tb is not None else None, opp_rank=theirs.get('rank'),
-        needles=dict(gotham=gt[2], yahoo=YWIN.get((cfg['id'], cfg['me'])), sleeper=st_[2], yahoo_from_spread=yt[2]),
-        totals=dict(yahoo=[round(yt[0], 2), round(yt[1], 2)], gotham=[round(gt[0], 2), round(gt[1], 2)], sleeper=[round(st_[0], 2), round(st_[1], 2)]),
+        needles=dict(gotham=gt[2], yahoo=YWIN.get((cfg['id'], cfg['me'])), sleeper=st_[2], yahoo_from_spread=yt[2], ratcliffe=rt[2] if RC else None),
+        totals=dict(yahoo=[round(yt[0], 2), round(yt[1], 2)], gotham=[round(gt[0], 2), round(gt[1], 2)], sleeper=[round(st_[0], 2), round(st_[1], 2)],
+                    ratcliffe=[round(rt[0], 2), round(rt[1], 2)] if RC else None),
         windows=dict(me=wins(me, 'yahoo'), op=wins(op, 'yahoo')),
         played=dict(me=sum(1 for p in me if p['actual'] is not None), op=sum(1 for p in op if p['actual'] is not None), of=[len(me), len(op)]),
         starters=dict(me=me, op=op))
@@ -303,8 +334,10 @@ if RF:
             k = norm(p['player']); pos = POSMAP.get(k, 'WR'); tm = TEAMOF.get(k, '')
             go = gm.get(k); go = None if go is None or (isinstance(go, float) and math.isnan(go)) else round(float(go), 2)
             sl = S.get(k)
+            _rcb = rc_of(cfg['k'], p['player'], pos, tm)
             out.append(dict(slot=p['slot'], player=p['player'], team=tm, status=p['status'], pos=pos, yahoo=None, actual=None,
-                            gotham=go, sleeper=None if sl is None else round(float(sl), 2), window=TEAMWIN.get(tm)))
+                            gotham=go, sleeper=None if sl is None else round(float(sl), 2), window=TEAMWIN.get(tm),
+                            ratcliffe=None if _rcb is None else round(float(_rcb), 2)))
         try:   # Oct 12: a newer Scout roster read wins for bench and IR tags
             _n = {'DK I': 1, 'DK II': 2, 'DK III': 3, 'DK IV': 4}[lab]; _me = {'DK I': '2', 'DK II': '7', 'DK III': '2', 'DK IV': '6'}[lab]
             _f = f'/home/claude/dksys/scout/dk{_n}_rosters_live.txt'

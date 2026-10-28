@@ -84,7 +84,7 @@ def _best_lineup(starters, pool, col):
             used.add(_id(best[1]["row"])); lineup[i] = dict(best[1]["row"], slot=slots[i], _v=best[0], _lock=False)
         else:
             lineup[i] = dict(slot=slots[i], player="(nobody eligible)", team="", pos=slots[i], actual=None, _v=0.0, _lock=False,
-                             yahoo=0.0, gotham=0.0, sleeper=0.0)
+                             yahoo=0.0, gotham=0.0, sleeper=0.0, ratcliffe=0.0)
     # the swaps, net of reshuffles: who sits that Yahoo has starting, who starts that Yahoo has sitting
     sid = {_id(p) for p in starters}; bid = {_id(p) for p in lineup if p["player"] != "(nobody eligible)"}
     outs = [p for p in starters if _id(p) not in bid]
@@ -115,7 +115,7 @@ for _lab, _cfg in LEAGUES.items():
             for r in _rows:
                 k = norm(r["player"]); pos = r["pos"] if r["pos"] in ("K", "DEF") else POSMAP.get(k, r["pos"])
                 if _id(dict(r, pos=pos)) in _stmap:
-                    p = _stmap[_id(dict(r, pos=pos))]; vals = dict(gotham=p.get("gotham"), sleeper=p.get("sleeper"), yahoo=p.get("yahoo"))
+                    p = _stmap[_id(dict(r, pos=pos))]; vals = dict(gotham=p.get("gotham"), sleeper=p.get("sleeper"), yahoo=p.get("yahoo"), ratcliffe=p.get("ratcliffe"))
                     row = p; status = p.get("status") or r["status"]
                 else:
                     if pos == "K": sl = _KD.get(("K", k)); go = sl
@@ -133,15 +133,19 @@ for _lab, _cfg in LEAGUES.items():
                     if _from_gotham and sl is not None and float(sl) > 0:
                         _cap = (float(yv) + float(sl)) / 2 if yv is not None and float(yv) > 0 else float(sl)
                         if float(go) > _cap: go = _cap
-                    vals = dict(gotham=None if go is None else round(float(go), 2), sleeper=None if sl is None else round(float(sl), 2), yahoo=yv)
+                    _rcv = rc_of(_cfg["k"], r["player"], pos, r["team"])
+                    vals = dict(gotham=None if go is None else round(float(go), 2), sleeper=None if sl is None else round(float(sl), 2), yahoo=yv,
+                                ratcliffe=round(float(_rcv), 2) if _rcv is not None else (yv if yv is not None else (None if go is None else round(float(go), 2))))   # no Ratcliffe line: Yahoo, then Gotham
                     status = r["status"]
                     row = dict(slot="BN", player=r["player"], team=r["team"], status=status, kickoff="", actual=None, pos=pos,
                                yahoo=vals["yahoo"], gotham=vals["gotham"], gotham_src="bench", sleeper=vals["sleeper"] if vals["sleeper"] is not None else 0.0,
+                               ratcliffe=vals["ratcliffe"] if vals["ratcliffe"] is not None else (yv if yv is not None else 0.0),
                                window=TEAMWIN.get(r["team"]))
                 _pool.append(dict(player=r["player"], team=r["team"], pos=pos, status=(status or "").upper(), seat=r["slot"], vals=vals, row=row))
             _sides[_side] = _pool
         _best, _moves, _set = {}, {}, {}
-        for col in ("gotham", "sleeper", "yahoo"):
+        _cols = ("gotham", "sleeper", "yahoo") + (("ratcliffe",) if RC else ())
+        for col in _cols:
             lu = {}
             for _side in ("me", "op"):
                 if _sides[_side] is None: lu[_side] = [dict(p, _v=p.get(col) or 0) for p in _L["starters"][_side]]; _moves.setdefault(col, {})[_side] = []; continue
@@ -151,10 +155,10 @@ for _lab, _cfg in LEAGUES.items():
             _best[col] = (round(a, 2), round(b, 2), pct)
         _L["needles_set"] = dict(_L["needles"]); _L["totals_set"] = {k: list(v) for k, v in _L["totals"].items()}
         _yb_ok = bool(_BY.get(_cfg["id"]))
-        _L["needles"] = dict(gotham=_best["gotham"][2], sleeper=_best["sleeper"][2],
+        _L["needles"] = dict(gotham=_best["gotham"][2], sleeper=_best["sleeper"][2], ratcliffe=_best["ratcliffe"][2] if "ratcliffe" in _best else None,
                              yahoo=_best["yahoo"][2] if _yb_ok else _L["needles_set"].get("yahoo"), yahoo_best=_yb_ok,
                              yahoo_posted=_L["needles_set"].get("yahoo"), yahoo_from_spread=_L["needles_set"].get("yahoo_from_spread"))
-        _L["totals"] = {c: [_best[c][0], _best[c][1]] for c in ("gotham", "sleeper", "yahoo")}
+        _L["totals"] = {c: [_best[c][0], _best[c][1]] for c in _cols}
         if not _yb_ok: _L["totals"]["yahoo"] = list(_L["totals_set"]["yahoo"]); _moves["yahoo"] = {"me": [], "op": []}
         _L["best_moves"] = _moves
         _L["best_note"] = ("Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has "
