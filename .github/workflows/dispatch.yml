@@ -24,6 +24,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45            # Oct 28: no build may hold the queue more than 45 minutes
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,7 +32,8 @@ jobs:
       - run: pip install pandas numpy reportlab
       # Oct 22 (Dom): every build pulls the news + injury feeds itself first. GitHub's scheduler skips about a third of the
       # feed job's 30-minute runs, so a gauntlet could land on hour-old feeds and go NO-GO. A failed pull keeps the last feeds.
-      - run: python pull_feeds.py || echo "!! feed pull failed - the build uses the last saved feeds"
+      # Oct 28: a hung feed pull held the whole build (and every queued one) for 30+ minutes - it now gives up after 10
+      - run: timeout 600 python pull_feeds.py || echo "!! feed pull failed or timed out - the build uses the last saved feeds"
       - run: bash dispatch_run.sh
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
