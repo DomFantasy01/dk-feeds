@@ -2797,7 +2797,7 @@ _STW=[""]
 def readout3(GX,gy,vy,vw,ve,CP):
     # each number leads; under it, the needle it belongs to; under that, whose it is
     htxt(GX,gy-22,f"{vy}%","Bebas",23,TXT,"c",hw=2.4); _key(GX,gy-25.6,"y",22); htxt(GX,gy-31.0,"YAHOO","PopB",4.8,TXT,"c",hw=1.3)
-    for x,v,k,lab in ((GX-35,vw,"w","GOTHAM"),(GX+35,ve,"e","SLEEPER")):
+    for x,v,k,lab in ((GX-35,vw,"w","RATCLIFFE"),(GX+35,ve,"e","GOTHAM")):
         htxt(x,gy-18.5,f"{v}%","Bebas",11,mix(BG2,TXT,.80),"c",hw=1.8); _key(x,gy-21.8,k,14)    # v34: equal models, equal type
         htxt(x,gy-26.6,lab,"PopB",4.2,mix(BG2,TXT,.75),"c",hw=1.2)
     htxt(GX,gy-39.0,(_STW[0]+"  ·  " if _STW[0] else "")+"PROJECTED WIN PROBABILITY","PopB",5.2,TXT,"c",hw=1.5)   # Oct 10: more air under YAHOO
@@ -2848,7 +2848,7 @@ def block(D,top,h,VMAX,GX):
     # v39 (Dom): tighten left to right - the numbers no longer hang off the title's width; they sit one short gap
     # past the longest label, and the "vs" closes up
     MD=MOD[D["lab"]]; EF=EFF[D["lab"]]
-    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","GOTHAM","SLEEPER"))
+    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","RATCLIFFE","GOTHAM"))
     NWm=c.stringWidth("000.0","Bebas",FY)   # one column for all four leagues, so the blocks line up down the page
     NC=lx+LW+4+NWm; VW=c.stringWidth("vs","PopM",6.2); OC=NC+3+VW+3
     def _row(yy,name,me,op,fs,cm,co,hw):
@@ -2859,9 +2859,9 @@ def block(D,top,h,VMAX,GX):
         htxt(w_+4,yy,f"({'+' if g_>0 else '-' if g_<0 else ''}{abs(g_)})","Bebas",FP,PC,hw=1.4)
     _row(y2,"YAHOO",D['ym'],D['yo'],FY,col,OPPC,1.8)
     MD=MOD[D["lab"]]; y2m=y2-10.0; mc_=mix(GR,TXT,.45); oc_=mix(GR,TXT,.45)
-    _row(y2m,"GOTHAM",MD['me'],MD['op'],FM,mc_,oc_,1.8)
+    _row(y2m,"RATCLIFFE",MD['me'],MD['op'],FM,mc_,oc_,1.8)
     EF=EFF[D["lab"]]; y2e=y2m-10.0
-    _row(y2e,"SLEEPER",EF['me'],EF['op'],FM,mc_,oc_,1.8)
+    _row(y2e,"GOTHAM",EF['me'],EF['op'],FM,mc_,oc_,1.8)
     ks=[k for k,v in reversed(D["bands"]) if k!="you"]; kx=lx; ky=y2e-LS*1.2-0.2
     for k in ks:
         cc,al,ed=T[k]; c.setFillColor(cc); c.rect(kx,ky+.2,4.2,4.2,fill=1,stroke=0)
@@ -2911,7 +2911,7 @@ def block(D,top,h,VMAX,GX):
         htxt(GX,gy-31,"FINAL","PopB",5.6,TXT,"c",hw=1.6)
         return dvx-br
     MW_,ME_=MOD[D["lab"]]["pct"],EFF[D["lab"]]["pct"]; CP=COMP[D["lab"]]
-    METER_NOW[D["lab"]]=dict(yahoo=D["pct"],gotham=MW_,sleeper=ME_,comp=CP)   # the field cards read these
+    METER_NOW[D["lab"]]=dict(yahoo=D["pct"],ratcliffe=MW_,gotham=ME_,comp=CP)   # the field cards read these
     gauge3(GX,gy,gr,D["pct"],MW_,ME_,col,CP["all_pct"])
     _STW[0]=MTR["leagues"].get(D["lab"],{}).get("state") or ""; readout3(GX,gy,D["pct"],MW_,ME_,CP)
     return dvx-br
@@ -2940,7 +2940,7 @@ def build(fn):
     idr=M+12+max(idwidth(D) for D in DS); balll=W-M-40-50-26
     # v40 (Dom): with the rows tightened, center the meter between the end of the rows and the standings balls,
     # but never let the top of the dial crowd the widest title line
-    lx_=M+12; rowR=lx_+max(c.stringWidth(t,"PopB",7) for t in ("YAHOO","GOTHAM","SLEEPER"))+4+c.stringWidth("000.0","Bebas",11)+6+c.stringWidth("vs","PopM",6.2)+c.stringWidth("000.0","Bebas",11)+4+c.stringWidth("(+00)","Bebas",8)
+    lx_=M+12; rowR=lx_+max(c.stringWidth(t,"PopB",7) for t in ("YAHOO","RATCLIFFE","GOTHAM"))+4+c.stringWidth("000.0","Bebas",11)+6+c.stringWidth("vs","PopM",6.2)+c.stringWidth("000.0","Bebas",11)+4+c.stringWidth("(+00)","Bebas",8)
     ballL=W-M-40-50-19-2; _gr=38; _ro=_gr+_gr*20/78/2; R_=_ro+GLAB+1; dy_=GLAB+_ro+14-29
     clear=lx_+max(idwidth(D) for D in DS)+math.sqrt(max(R_**2-dy_**2,0))+8
     GX=max((rowR+ballL)/2,clear)
@@ -3041,7 +3041,7 @@ def draw_mark(d,mode,x,yr,Tk):
 # ===================== v33 DATA LAYER (Thu Oct 8 2026, Dom: "permanent and automatic, never hand-patched weekly") =====================
 # Everything on this page now comes from ONE file built by /home/claude/dksys/meter/meter_data.py:
 #   /home/claude/dksys/data/latest/meter/meter_wk<W>.json   (the newest week on disk, or DK_WEEK=<n>)
-# Meter: LEFT = GOTHAM, CENTER = YAHOO (Yahoo's own posted win %), RIGHT = SLEEPER (Dom, Oct 8). Efficiency and workload retired.
+# Meter: LEFT = RATCLIFFE (Oct 28; Gotham before), CENTER = YAHOO (Yahoo's own posted win %), RIGHT = GOTHAM (Sleeper retired Oct 28). Efficiency and workload retired.
 # Week, kickoff windows, records, standings, opponents, notes, stamps and the footnote are all read or generated from that file.
 import json as _jm2, glob as _gm2, os as _om2, datetime as _dtm2
 _MFS=sorted(_gm2.glob("/home/claude/dksys/data/latest/meter/meter_wk*.json"),key=lambda p:int(p.split("_wk")[1].split(".")[0]))
@@ -3073,8 +3073,9 @@ for lab,L in MTR["leagues"].items():
     row=lambda p:(p["player"],p["team"],p["slot"],p["yahoo"] or 0.0,p["actual"])
     YL[lab]=dict(me=[row(p) for p in sm],op=[row(p) for p in so],live=tuple(L["totals"]["yahoo"]),ypct=L["needles"]["yahoo"])
     YAH[lab]=YL[lab]["live"]
-    MOD[lab]=dict(me=L["totals"]["gotham"][0],op=L["totals"]["gotham"][1],pct=L["needles"]["gotham"])
-    EFF[lab]=dict(me=L["totals"]["sleeper"][0],op=L["totals"]["sleeper"][1],pct=L["needles"]["sleeper"])
+    _rk="ratcliffe" if L["needles"].get("ratcliffe") is not None and L["totals"].get("ratcliffe") else "gotham"   # Oct 28 (Dom): Ratcliffe leads; Sleeper off the meters
+    MOD[lab]=dict(me=L["totals"][_rk][0],op=L["totals"][_rk][1],pct=L["needles"][_rk])
+    EFF[lab]=dict(me=L["totals"]["gotham"][0],op=L["totals"]["gotham"][1],pct=L["needles"]["gotham"])
     def _bank(S):
         w=[0.0]*NW
         for p in S:
@@ -3131,7 +3132,7 @@ def prep(lab):
 def _short(n): return n.split()[-1] if n else n
 PROSE,URG={},{}
 for lab,L in MTR["leagues"].items():
-    n=L["needles"]; g_,y_,s_=n["gotham"],n["yahoo"],n["sleeper"]
+    n=L["needles"]; g_,y_,s_=(n.get("ratcliffe") if n.get("ratcliffe") is not None else n["gotham"]),n["yahoo"],n["gotham"]
     bye=[p["player"] for p in L["starters"]["me"] if p["window"] is None]
     gaps=[x for x in MTR.get("notes",[]) if x.startswith(lab+":") and "Gotham" in x]
     thu=[_short(p["player"]) for p in L["starters"]["me"] if p["window"]==0 and p["actual"] is None and WLAB and WLAB[0].startswith("THU")]
@@ -3142,7 +3143,7 @@ for lab,L in MTR["leagues"].items():
     elif max(g_,y_,s_)-min(g_,y_,s_)>=10:
         import re as _re2
         m_=_re2.search(r"Gotham ([\d.]+) vs Yahoo ([\d.]+) / Sleeper ([\d.]+) on (.+?) -",gaps[0]) if gaps else None
-        PROSE[lab]=f"The three meters split by {max(g_,y_,s_)-min(g_,y_,s_)} points."+(f" Gotham has {m_.group(4)} at {m_.group(1)}, Yahoo {m_.group(2)}." if m_ else ""); URG[lab]="watch"
+        PROSE[lab]=f"The three meters split by {max(g_,y_,s_)-min(g_,y_,s_)} points: Ratcliffe {g_}, Yahoo {y_}, Gotham {s_}."; URG[lab]="watch"
     else:
         PROSE[lab]="All three meters agree."+(f" Thursday: {', '.join(thu)}." if thu else ""); URG[lab]="info"
     for k_ in list(PROSE): PROSE[k_]=PROSE[k_].replace("{","(").replace("}",")")

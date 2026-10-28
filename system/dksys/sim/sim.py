@@ -119,8 +119,8 @@ def load_league(lgk):
     lid = LG[lgk]; names = SCH["names"][lid]; cfg = SCH["settings"][lid]
     sched = {int(w): [tuple(p.split("-")) for p in s.split()] for w, s in SCH["schedule"][lid].items()}
     rec, divs, stamp = standings(lid, names)
-    # this week, for the two teams in Dom's game: the average of Gotham, Sleeper and Yahoo (the most accurate single
-    # number on the scoreboard so far) replaces the Scout's value where the meter has all of them
+    # this week, for the two teams in Dom's game: Ratcliffe's number leads (Oct 28, Dom) - it is already the Scout's value
+    # for every man he projects. Only a man he doesn't list takes the meter's Gotham/Yahoo average (Sleeper is off).
     now = int(S["now"]); me = str(S["me"]); used = 0
     mf = next((f for f in (os.path.join(os.environ.get("DK_METER", ""), f"meter_wk{now}.json"), f"{REPO}/dispatch_out/meter_wk{now}.json") if f and os.path.exists(f)), None)
     if mf:
@@ -133,11 +133,11 @@ def load_league(lgk):
                 rows = list((M.get("starters") or {}).get(side, [])) + (list(M.get("bench") or []) if side == "me" else [])
                 for p in rows:
                     if True:
-                        v = [p.get(c) for c in ("gotham", "sleeper", "yahoo") if isinstance(p.get(c), (int, float))]
+                        v = [p.get(c) for c in ("gotham", "yahoo") if isinstance(p.get(c), (int, float))]
                         if len(v) >= 2: blend[k_(p["player"])] = sum(v) / len(v)
                 for p in S["teams"][tid]:
                     b = blend.get(k_(p["name"]))
-                    if b is not None and p["wk"].get(str(now), 0) > 0: p["wk"][str(now)] = round(b, 2); used += 1
+                    if b is not None and not p.get("rc") and p["wk"].get(str(now), 0) > 0: p["wk"][str(now)] = round(b, 2); used += 1
     return dict(lgk=lgk, S=S, lid=lid, names=names, cfg=cfg, sched=sched, rec=rec, divs=divs, stamp=stamp, blend_used=used)
 
 # ---------------------------------------------------------------- one league, all remaining games

@@ -256,6 +256,8 @@ for lab, cfg in LEAGUES.items():
             if pos in ('K', 'DEF'):
                 sl = KD.get(('K', k)) if pos == 'K' else KD.get(('DEF', p['team']))
                 go, gsrc = sl, 'sleeper'
+                _rkd = rc_of(cfg['k'], p['player'], pos, p.get('team'))   # Oct 28 (Dom): Sleeper off the meters - kickers and defenses take Ratcliffe's number on the Gotham needle too
+                if _rkd is not None: go, gsrc = _rkd, 'ratcliffe'
             else:
                 sl = S.get(k); go = gm.get(k); gsrc = 'gotham'
                 if sl is None and k and k not in BLANK: sl = SLAST.get((k.split()[-1], T(p.get('team') or ''), pos))   # Oct 23: same man, different first name
@@ -273,7 +275,7 @@ for lab, cfg in LEAGUES.items():
             _empty = not p.get('team') or str(p['player']).strip().lower() in ('(empty)', 'empty', '')
             if sl is None and not _empty and win is not None:   # Oct 21: an empty slot or a team on bye has no number to find - that is not a data failure
                 if k in BLANK: notes.append(f"{lab}: Sleeper lists {p['player']} with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle")
-                else: alarms.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Yahoo used on the Sleeper needle")
+                else: notes.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Sleeper is off the meters (Oct 28), noted only")
             _rc = rc_of(cfg['k'], p['player'], pos, p.get('team'))
             if _rc is None and not _empty and win is not None and RC: RC_FALL.setdefault(lab, []).append(p['player'])
             L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_raw=None if graw is None else round(float(graw), 2), gotham_src=gsrc,

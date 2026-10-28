@@ -21,10 +21,12 @@ pm = {}
 for lab, k in KEY.items():
     L = M['leagues'][lab]; d = {}
     for s in L['starters']['me'] + L['starters']['op']:
-        g = s['gotham'] if s['gotham'] is not None else s['sleeper']; sl = s['sleeper']
-        if s['pos'] in ('K', 'DEF'): g = sl
-        if g is None and sl is None: continue
-        d[norm(s['player'])] = [g, sl]
+        # Oct 28 (Dom): Ratcliffe leads. pm = [RATCLIFFE, GOTHAM] - slot 0 drives the page's lead needle, slot 1 the second.
+        # Sleeper is off the meters. K and DEF use Ratcliffe in both (Gotham has no kicker/defense model).
+        rc = s.get('ratcliffe'); g = s['gotham'] if s['gotham'] is not None else rc
+        if s['pos'] in ('K', 'DEF'): g = rc
+        if rc is None and g is None: continue
+        d[norm(s['player'])] = [rc if rc is not None else g, g]
     pm[k] = d
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
@@ -41,11 +43,11 @@ for lab, k in KEY.items():
     L = M['leagues'][lab]; bm = L.get('best_moves') or {}
     if not bm: continue
     ent = {}
-    for col, tag in (('gotham', 'g'), ('sleeper', 's')):
+    for col, tag in (('ratcliffe' if bm.get('ratcliffe') else 'gotham', 'g'), ('gotham', 's')):   # Oct 28: g = Ratcliffe (lead), s = Gotham
         ent[tag] = {side: {norm(mv['out']): mv['in_v'] for mv in (bm.get(col) or {}).get(side, []) if mv.get('out')}
                     for side in ('me', 'op')}
     def _lines(side):
-        mv = (bm.get('gotham') or {}).get(side, [])
+        mv = (bm.get('ratcliffe') or bm.get('gotham') or {}).get(side, [])
         ins = [f"{m['into']} ({m['in_v']:.1f})" for m in mv if m.get('into') and m['into'] != '(nobody eligible)']
         outs = [f"{m['out']} ({(m['out_v'] or 0):.1f})" for m in mv if m.get('out') and not m['out'].startswith('(Empty')]
         holes = sum(1 for m in mv if m.get('into') == '(nobody eligible)')
@@ -55,15 +57,15 @@ for lab, k in KEY.items():
         if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
         return t
     ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
-    ent['set'] = {'gotham': (L.get('needles_set') or {}).get('gotham'), 'sleeper': (L.get('needles_set') or {}).get('sleeper')}
+    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
 from datetime import datetime, timedelta, timezone
 t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
 cur['stamp'] = (t + timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')
-cur['source'] = f"Week {M['week']}: GOTHAM and SLEEPER per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
-cur['pm_note'] = "Per-player numbers: [GOTHAM, SLEEPER priced in this league's scoring], keyed by norm(name). K and DEF use Sleeper in both."
+cur['source'] = f"Week {M['week']}: RATCLIFFE and GOTHAM per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
+cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), GOTHAM], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
 # game weather (Oct 11): the Dispatch build's kickoff forecast, passed through for the Live page's sky pictures.
 # A failed fetch or another week's file leaves the last good weather in place.
 try:

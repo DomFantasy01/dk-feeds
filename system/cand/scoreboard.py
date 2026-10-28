@@ -1,5 +1,5 @@
 # THE SCOREBOARD (Dom, Sun Oct 11 2026) - the checks-and-balances engine. Runs at the end of every Dispatch build.
-# 1. FREEZE: every starter in Dom's four matchups keeps the last Yahoo / Gotham / Sleeper number seen BEFORE his game
+# 1. FREEZE: every starter in Dom's four matchups keeps the last Yahoo / Gotham / Sleeper / Ratcliffe (Oct 28) number seen BEFORE his game
 #    kicks off (dispatch_out/scoreboard/pregame_wk<N>.json). Once his game starts, his entry never changes again.
 # 2. GRADE: once a game is final, each frozen number is graded against what the man actually scored, priced in that
 #    league's own scoring from the nflverse stat line - reality is the judge, not Yahoo and not Gotham.
@@ -38,14 +38,14 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
                 n += 1
         for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
             if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
             g = game_of(s.get('team'), W)
             if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue
             P[f"{lab}|bench|{norm(s['player'])}"] = dict(league=lab, side='bench', player=s['player'], pos=s['pos'], team=s.get('team'),
-                yahoo=None, gotham=s.get('gotham'), gotham_raw=s.get('gotham'), sleeper=s.get('sleeper'), at=M['built_pt'], game=g.game_id)
+                yahoo=None, gotham=s.get('gotham'), gotham_raw=s.get('gotham'), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe'), at=M['built_pt'], game=g.game_id)
             n += 1
     json.dump(P, open(pf, 'w'), indent=0); print(f"   scoreboard: week {W} pregame numbers held for {len(P)} men ({n} refreshed this build)")
 # ---- 2. grade every week that has finished games
@@ -64,7 +64,7 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], actual=round(act, 2)))
+        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), actual=round(act, 2)))
 R = pd.DataFrame(rows)
 if 'side' not in R: R['side'] = None
 R['side'] = R['side'].fillna('seed')
@@ -74,10 +74,13 @@ RB_ = R[R.side == 'bench'].copy(); RS_ = R[R.side == 'me'].copy(); R = R[R.side 
 # way here so the record is one rule, and Gotham's own uncapped number is still graded on its own line.
 _ok = (R.yahoo > 0) & (R.sleeper > 0); _c = (R.yahoo + R.sleeper) / 2
 R['gotham'] = R.gotham_raw.where(~_ok | R.gotham_raw.isna() | (R.gotham_raw <= _c), _c).round(2)
-R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw']]
+if 'ratcliffe' not in R: R['ratcliffe'] = None
+R['ratcliffe'] = pd.to_numeric(R['ratcliffe'], errors='coerce')
+R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe']]
 if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
 R.to_csv(f"{OUT}/graded.csv", index=False)
 SRC = ['yahoo', 'gotham', 'sleeper']
+SRC4 = ['ratcliffe'] + SRC   # Oct 28 (Dom): Jeff Ratcliffe (FTN) graded from Week 8 on - his frozen pregame number, same rules
 def pairs(df, c):
     ok = n = 0
     for _, g in df.dropna(subset=[c]).groupby(['week', 'pos']):
@@ -88,13 +91,16 @@ def pairs(df, c):
     return ok / n if n else float('nan')
 def line(df, label):
     cells = []
-    for c in SRC:
+    for c in SRC4:
         x = df.dropna(subset=[c]); cells.append(f"{c.title()} {(x[c]-x.actual).abs().mean():.1f} pts, {pairs(df, c):.0%}" if len(x) else f"{c.title()} -")
     return f"{label:<14} {len(df):>4} men   " + "   ".join(cells)
 pt = dt.datetime.now(ZoneInfo("America/Los_Angeles"))
 out = [f"THE SCOREBOARD - graded {pt:%a %b %d %Y %I:%M %p} PT. Average miss in points (lower is better) and start/sit calls right (higher is better).",
        "Reality is the judge: each man's final stat line priced in his league's scoring. Weeks 2-4 graded Oct 8; Week 5 on is automatic.", ""]
 out.append(line(R, "ALL WEEKS"))
+_rc = R.dropna(subset=['ratcliffe'])
+if len(_rc):   # head to head on the same men, so the comparison is fair while Ratcliffe has fewer weeks
+    out.append(line(_rc, "RATCLIFFE MEN") + "   <- only the men Ratcliffe projected, all four sources on the same men")
 for w, g in R.groupby('week'): out.append(line(g, f"Week {w}"))
 for p, g in R.groupby('pos'): out.append(line(g, f"  {p}"))
 R['spread'] = R[SRC].max(axis=1) - R[SRC].min(axis=1)

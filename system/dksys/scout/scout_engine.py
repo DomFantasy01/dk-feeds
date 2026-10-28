@@ -518,7 +518,44 @@ except Exception as _e: print("Scout: Yahoo projections skipped:", _e)
 YMAX={}
 for (_yk,_yw),_yv in _YP.items():
     if _yw>=NOW: YMAX[_yk]=max(YMAX.get(_yk,0.0),_yv)
+# Oct 28 (Dom): JEFF RATCLIFFE (FTN) LEADS. His numbers, scored in this league's own rules (gather/ftn.py -> ftn_scored.csv),
+# are the Scout's value for any man he projects: this week = his weekly number; later weeks = his rest-of-season total spread
+# over the games the man is available for (from the week he's back, byes skipped). A man Ratcliffe doesn't list keeps the
+# engine's number (half model, half Yahoo). Every board pick carries a tag: both agree / Ratcliffe only / engine only.
+_RCW, _RCT = {}, {}
+try:
+    _rf = "/home/claude/dksys/data/latest/ftn_scored.csv"
+    if os.path.exists(_rf):
+        _rd = pd.read_csv(_rf); _rd = _rd[_rd.lg == CF["n"]]
+        for _r in _rd.itertuples():
+            _kk = ("DEF", tm(str(_r.team))) if _r.pos == "DST" else (_r.pos, norm(_r.name))
+            if pd.notna(_r.wk): _RCW[_kk] = float(_r.wk)
+            if pd.notna(_r.ros_total): _RCT[_kk] = float(_r.ros_total)
+        print(f"Scout: Ratcliffe (FTN) leads - {len(_RCW)} weekly and {len(_RCT)} rest-of-season numbers for {CF['lab']}")
+    else: print("Scout: no Ratcliffe file - the engine's numbers stand alone")
+except Exception as _e: print("Scout: Ratcliffe skipped:", _e)
+def rc_has(p): return _ypk(p) in _RCW or _ypk(p) in _RCT
+def rc_weekly(p,x,ytag=""):
+    """Ratcliffe's number for week x, or None when he doesn't project the man."""
+    if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0 if rc_has(p) else None
+    k=_ypk(p)
+    if x==NOW and k in _RCW: return _RCW[k]
+    if k in _RCT:
+        b=max(NOW,back(p,ytag)); n=sum(1 for w in range(b,18) if w not in byes.get(p["team"],[]))
+        return _RCT[k]/n if n else 0.0
+    if k in _RCW: return _RCW[k]   # this week only from him - carry the rate forward
+    return None
 def weekly(p,x,ytag=""):
+    r=rc_weekly(p,x,ytag)
+    return engine_weekly(p,x,ytag) if r is None else r
+def rc_tag(p,ytag="",wks=None):
+    """both agree / Ratcliffe only / engine only, by the rest-of-season sum (within 15% or 1.5 points a week = agree)."""
+    wks=wks or WEEKS
+    if not rc_has(p): return "engine only", "Ratcliffe doesn't project him"
+    r=sum(rc_weekly(p,x,ytag) or 0 for x in wks); e=sum(engine_weekly(p,x,ytag) for x in wks); n=max(1,len(wks))
+    if abs(r-e)<=max(.15*max(r,e),1.5*n): return "both agree", f"Ratcliffe {r/n:.1f}, engine {e/n:.1f} a week"
+    return ("Ratcliffe higher" if r>e else "engine higher"), f"Ratcliffe {r/n:.1f} a week vs engine {e/n:.1f}"
+def engine_weekly(p,x,ytag=""):
     if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0
     _y=_YP.get((_ypk(p),x))
     if x==NOW and p["pos"] in ("DEF","K") and _SLKD.get(_kdkey(p)) is not None: return _SLKD[_kdkey(p)] if _y is None else (_SLKD[_kdkey(p)]+_y)/2   # Oct 14: this week = Sleeper (+ Yahoo), league scoring
@@ -559,7 +596,7 @@ LEV={x:URG[x]*(_lv(my[x]-opp[x])+(_lv(my[x]-MED[x]) if CF["median"] else 0)) for
 try:
     def _simrow(k,nm,pos,yt,slot):
         p=PL[k]; return dict(name=nm,pos=pos,nfl=p["team"],ytag=yt or "",slot=slot or "",wk={x:round(weekly(p,x,yt),2) for x in WEEKS},
-                             yb=any((_ypk(p),x) in _YP for x in WEEKS))
+                             yb=rc_has(p) or any((_ypk(p),x) in _YP for x in WEEKS), rc=rc_has(p))
     # Yahoo's numbers only reach Dom's roster and the free agents; rivals' men are the model alone, which runs a little
     # higher than Yahoo. The simulator evens that out with this factor so Dom isn't graded against inflated rivals.
     _pm,_py=[],[]
@@ -569,7 +606,7 @@ try:
             for _x in WEEKS:
                 _y=_YP.get((_ypk(_p),_x))
                 if _y is None: continue
-                _v=weekly(_p,_x,_m["ytag"])
+                _v=engine_weekly(_p,_x,_m["ytag"])
                 if _v>3 and _y>0: _pm.append(2*_v-_y); _py.append(_y)
     _ybf=round((1+sum(_py)/sum(_pm))/2,4) if len(_pm)>=30 else 1.0
     _SIM=dict(league=CF["lab"],lgk=LGK,run=NOWPT.isoformat(),now=NOW,last=LAST,me=ME,slots=SLOTS,teams={},pool=[],yb_factor=_ybf,yb_pairs=len(_pm))
@@ -580,6 +617,18 @@ try:
     for k,p in _fa[:80]:
         if (CF["kick"] is None and p["pos"]=="K"): continue
         _r=_simrow(k,p["name"],p["pos"],"",""); _r["acq"]=(f"Waivers, clears {WAIV[k[0]]}" if WAIV.get(k[0]) else "Free agent"); _SIM["pool"].append(_r)
+    # Oct 28: how Ratcliffe's level compares with the engine's on rostered men he projects (by position) - a check that
+    # teams aren't helped or hurt just by how many of their men he lists
+    _lvl=collections.defaultdict(lambda:[0.0,0.0,0])
+    for _t,_mm in TEAMS.items():
+        for _m in _mm:
+            _p=PL[_m["key"]]
+            if not rc_has(_p): continue
+            _r=sum(rc_weekly(_p,x,_m["ytag"]) or 0 for x in WEEKS); _e=sum(engine_weekly(_p,x,_m["ytag"]) for x in WEEKS)
+            if _r>0 and _e>0: _l=_lvl[_p["pos"]]; _l[0]+=_r; _l[1]+=_e; _l[2]+=1
+    _SIM["rc_level"]={k:dict(ratio=round(v[0]/v[1],3),n=v[2]) for k,v in _lvl.items()}
+    _SIM["rc_cover"]={str(_t):round(sum(1 for m in _mm if rc_has(PL[m["key"]]))/max(1,len(_mm)),2) for _t,_mm in TEAMS.items()}
+    print("Scout: Ratcliffe level vs engine (rostered, rest of season):",", ".join(f"{k} x{v['ratio']} (n={v['n']})" for k,v in sorted(_SIM["rc_level"].items())))
     json.dump(_SIM,open(f"{H}/sim_input_{LGK}.json","w"))
 except Exception as _e: print("Scout: sim input skipped:",_e)
 
@@ -927,17 +976,17 @@ def thisweek(p):
         sm = _MET.get(mk, {})
         if x_bye := (NOW in byes.get(p["team"], [])): return f"This week: {p['name'].replace(' defense',' DEF')} has a bye - no help this week"
         if NOW < back(p): return f"This week: {p['name']} is out (due back Wk {back(p)}) - no help this week"
-        a = dict(Gotham=(None if kd else _GOT.get(norm(p["name"]))),
-                 Sleeper=(_SLKD.get(_kdkey(p)) if kd else _SLPPR.get(norm(p["name"]))), Yahoo=_YP.get((_ypk(p), NOW)))
-        b = dict(Gotham=(sm.get("gotham") if not kd else None) if sm else (None if kd else _GOT.get(norm(st["name"]))),
-                 Sleeper=(_SLKD.get(_kdkey(sp)) if kd else _SLPPR.get(norm(st["name"]))), Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)))
-        pairs = [(k, a[k], b[k]) for k in ("Gotham", "Sleeper", "Yahoo") if not (kd and k == "Gotham")]
+        # Oct 28 (Dom): Ratcliffe first, then Yahoo and Gotham; Sleeper is off the boards
+        a = dict(Ratcliffe=_RCW.get(_ypk(p)), Yahoo=_YP.get((_ypk(p), NOW)), Gotham=(None if kd else _GOT.get(norm(p["name"]))))
+        b = dict(Ratcliffe=_RCW.get(_ypk(sp)), Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)),
+                 Gotham=(sm.get("gotham") if not kd else None) if sm else (None if kd else _GOT.get(norm(st["name"]))))
+        pairs = [(k, a[k], b[k]) for k in ("Ratcliffe", "Yahoo", "Gotham") if not (kd and k == "Gotham")]
         both = [(x, y) for _, x, y in pairs if x is not None and y is not None]
+        rc = next(((x, y) for k, x, y in pairs if k == "Ratcliffe" and x is not None and y is not None), None)
         verdict = ("WORSE this week" if both and all(x < y for x, y in both) else "better this week" if both and all(x > y for x, y in both)
-                   else "mixed this week" if both else "this week unknown")
+                   else (f"mixed - Ratcliffe says {'better' if rc[0] > rc[1] else 'worse'}" if rc else "mixed this week") if both else "this week unknown")
         nm = st["name"] if sp["pos"] != "DEF" else st["name"] + " DEF"
-        return (f"This week vs your {lab} {nm}: " + " · ".join(f"{k} {_f(x)} vs {_f(y)}" for k, x, y in pairs)
-                + (" (Sleeper PPR)" if not kd else "") + f" - {verdict}")
+        return f"This week vs your {lab} {nm}: " + " · ".join(f"{k} {_f(x)} vs {_f(y)}" for k, x, y in pairs) + f" - {verdict}"
     except Exception as _e:
         return ""
 def _gd_ko(team):
@@ -1000,7 +1049,8 @@ def _pick(e,need_red,w):
     _gl=guard(e); _rv=rivals(e)                                     # Oct 21 (Dom): the pickup guard + the rival check
     if _gl: why=why+"; CHECK FIRST: "+"; ".join(_gl); urg="gold"
     if _rv: why=why+"; "+_rv
-    return dict(guard=_gl,rivals=_rv,drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
+    _rt,_rw=rc_tag(p); why=why+f"; {_rt.upper()} ({_rw})"           # Oct 28 (Dom): Ratcliffe vs engine on every pick
+    return dict(rc=_rt,rc_why=_rw,guard=_gl,rivals=_rv,drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
                 why=why[0].upper()+why[1:],when=wk(fw).replace("Week","Wk").replace("Weeks","Wks"),urg=urg,now=thisweek(p),
                 gain=_gn(e),pgain=_pgn(e))   # Oct 10: points added through Wk 17
 # ---- LIFE CYCLE + ARCHIVE (Dom, Oct 9): the Signal's rule on the spyglass. A need keeps one stable key per slot and
@@ -1075,7 +1125,7 @@ _CAP={"DKI":(5,1),"DKII":(5,2),"DKIII":(5,1),"DKIV":(5,3)}[LGK]; _me=ROS[ROS.tid
 _nst=int((~_me.slot.isin(["BN","IR"])).sum())
 BOARD["open"]=dict(start=max(0,len(SLOTS)-_nst),bench=max(0,_CAP[0]-int((_me.slot=="BN").sum())),ir=max(0,_CAP[1]-int((_me.slot=="IR").sum())))
 BOARD["adds"]=[dict(guard=guard(e),rivals=rivals(e),drop=e.get("drop"),name=e["p"]["name"].replace(" defense"," DEF"),team=e["p"]["team"],pos=e["p"]["pos"],acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
-                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]))
+                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1])
                for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"])],key=lambda e:-_gn(e))[:6]]
 _named={p["name"] for it in BOARD["gate1"] for p in it["picks"]}|{it["pick"]["name"] for it in BOARD["gate2"]}
 _chk=[]
