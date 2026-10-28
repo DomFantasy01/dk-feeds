@@ -106,5 +106,6 @@ if python3 "$ROOT/dksys/scout/morning_review.py" "$REPO" > "$ROOT/morning_review
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/expert_moves2.log" 2>&1 && echo "   expert moves added to the brief" || { echo "!! EXPERT MOVES (brief) FAILED"; tail -5 "$ROOT/expert_moves2.log"; }
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/pieces_check.py" "$REPO" --pieces "$ROOT/cand/missing_pieces.json" --meter "$REPO/dispatch_out/meter_wk$W.json" --brief > "$ROOT/pieces_check2.log" 2>&1 && echo "   missing pieces check added to the brief" || { echo "!! MISSING PIECES CHECK (brief) FAILED"; tail -5 "$ROOT/pieces_check2.log"; }
 python3 "$REPO/live_sync/brief_scoreboard.py" "$REPO/dispatch_out/scoreboard/scoreboard.txt" "$REPO/dispatch_out/brief_latest.txt" || echo "!! SCOREBOARD section skipped"   # Oct 27 (Dom): the weekly projection check, heard in the brief
+python3 "$REPO/live_sync/brief_waiver_experts.py" "$REPO" "$REPO/dispatch_out/brief_latest.txt" || echo "!! WAIVER EXPERTS section skipped"   # Oct 27 (Dom): experts before claims
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
 echo "DONE week $W"

@@ -19,7 +19,8 @@ def text_of(h):
     h = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", h)
     h = re.sub(r"(?i)<br\s*/?>|</?(p|div|h\d|li|tr|td|th|section|article|header|span|strong|figcaption)[^>]*>", "\n", h)
     h = html.unescape(re.sub(r"<[^>]+>", " ", h))
-    return [re.sub(r"\s+", " ", l).strip() for l in h.split("\n") if l.strip()]
+    h = h.replace("\u2019", "'").replace("\u2018", "'")
+    return [re.sub(r"\s+,", ",", re.sub(r"\s+", " ", l)).strip() for l in h.split("\n") if l.strip()]
 
 def week():
     s = json.loads(urllib.request.urlopen(urllib.request.Request("https://api.sleeper.app/v1/state/nfl", headers=UA), timeout=30).read())
@@ -52,7 +53,7 @@ def picks_from(lines, idx, start_pat, stop_pat, bid_pat=None, sections=None):
         if sections:
             for pat, name in sections:
                 if re.fullmatch(pat, l, flags=re.I): sec = name
-        if len(l) < 60 and re.search(r"(?i)(stash|stream|flex option|backup|dart-throw|options?$)", l) and not NAME_RE.match(l.split(" at ")[0]):
+        if len(l) < 45 and "." not in l and re.search(r"(?i)(stash|stream|flex option|backup|dart-throw|options?$)", l) and not NAME_RE.match(l.split(" at ")[0]):
             sec = sec.split(":")[0] + ":" + l.lower()
         if re.match(r"(?i)^(quarterbacks|running backs|wide receivers|tight ends):", l):   # drop lists: "Running Backs: A, B"
             for nm in l.split(":", 1)[1].split(","):
@@ -96,11 +97,11 @@ def english(w, idx):
     t = next((l for l in L if re.match(r"^[A-Z][a-z]{2} \d{1,2}, 20\d\d at", l)), "")
     secs = [(r"priority targets", "priority"), (r"immediate help", "immediate"), (r"qb streamers", "QB stream"),
             (r"deep-league (options|plays)", "deep"), (r"upside stashes", "stash"), (r"injuries to (watch|note)", "injury-watch"),
-            (r"top rb handcuffs", "handcuff"), (r"drops", "drop")]
+            (r"top rb handcuffs", "handcuff"), (r"top streaming kickers?", "K stream"), (r"drops", "drop")]
     DIAG["english"] = f"{len(L)} lines, start found: {any(re.search('(?i)^priority targets$', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
     k0 = max([i for i, l in enumerate(L) if re.fullmatch(r"(?i)priority targets", l)] or [0])
     L = L[k0 - 1:] if k0 else L
-    p = picks_from(L, idx, r"(?i)^priority targets$", r"(?i)^(top streaming defense|kevin english, senior)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
+    p = picks_from(L, idx, r"(?i)^priority targets$", r"(?i)^(kevin english, senior|in this article$)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
     p = [x for x in p if x[1] not in ("injury-watch",)]
     return dict(expert=by[3:].strip() or "Kevin English", site="Draft Sharks", acc="51 (site: 9, 13)", url=url, posted=t, picks=p,
                 note="blind bid as % of budget"), ""
@@ -111,7 +112,7 @@ def jahnke(w, idx):
     if not any(re.search(rf"(?i)week {w}\b", l) for l in L[:400]): return None, "PFF's column is not on Week %d yet" % w
     t = re.search(r'datetime="([^"]+)"', h)
     k0 = next((i for i, l in enumerate(L) if re.search('(?i)^jump to a position group', l)), 0)
-    DIAG["jahnke"] = f"{len(L)} lines, after start: {' / '.join(L[k0:k0+40])[:1500]}"
+    DIAG["jahnke"] = f"({len(L)} lines read)"
     p = picks_from(L, idx, r"(?i)^jump to a position group", r"(?i)(exclusive content|want to keep reading)", None,
                    [(r"quarterback", "QB"), (r"running back", "RB"), (r"wide receiver", "WR"), (r"tight end", "TE")])
     return dict(expert="Nathan Jahnke", site="PFF", acc="8", url=url, posted=t.group(1) if t else "", picks=p,
