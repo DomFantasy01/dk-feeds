@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Tue Oct 27 2026 04:21 PM PT",
+ "built_pt": "Tue Oct 27 2026 05:02 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -8,12 +8,12 @@
   "SUN 5:20 PM",
   "MON 5:15 PM"
  ],
- "gotham_fallbacks": 10,
+ "gotham_fallbacks": 3,
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Oct 27 04:21 PM PT",
+   "pulled_pt": "Tue Oct 27 05:02 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -21,27 +21,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_tue1454.txt",
-   "pulled_pt": "Tue Oct 27 02:54 PM PT",
-   "age_h": 1.5,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_tue1652.txt",
+   "pulled_pt": "Tue Oct 27 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_tue1454.txt",
-   "pulled_pt": "Tue Oct 27 02:54 PM PT",
-   "age_h": 1.5,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_tue1652.txt",
+   "pulled_pt": "Tue Oct 27 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_tue1454.txt",
-   "pulled_pt": "Tue Oct 27 02:54 PM PT",
-   "age_h": 1.5,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_tue1652.txt",
+   "pulled_pt": "Tue Oct 27 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,53 +49,46 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Oct 27 04:21 PM PT",
+   "pulled_pt": "Tue Oct 27 05:02 PM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Tue Oct 27 2026 04:21 PM PT for week 8"
+   "note": "Gotham run Tue Oct 27 2026 05:02 PM PT for week 8"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-27T2249Z.csv",
-   "pulled_pt": "Tue Oct 27 03:49 PM PT",
-   "age_h": 0.5,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-27T2344Z.csv",
+   "pulled_pt": "Tue Oct 27 04:44 PM PT",
+   "age_h": 0.3,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.5 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-27T2249Z.csv",
-   "pulled_pt": "Tue Oct 27 03:49 PM PT",
-   "age_h": 0.5,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-27T2344Z.csv",
+   "pulled_pt": "Tue Oct 27 04:44 PM PT",
+   "age_h": 0.3,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.5 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.3 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
-   "pulled_pt": "Tue Oct 27 02:54 PM PT",
-   "age_h": 1.5,
+   "pulled_pt": "Tue Oct 27 04:52 PM PT",
+   "age_h": 0.2,
    "rows": 67,
    "need": null,
    "note": "Dom's four rosters"
   }
  },
  "alarms": [],
- "lineup": [
-  "DK I: YOUR starter Tyler Shough (NO) has no game this week",
-  "DK I: YOUR starter Christian McCaffrey (SF) has no game this week",
-  "DK II: YOUR starter Kendre Miller (NO) has no game this week",
-  "DK II: YOUR starter Alvin Kamara (NO) has no game this week",
-  "DK III: YOUR starter Devaughn Vele (NO) has no game this week",
-  "DK IV: YOUR starter C.J. Stroud (HOU) has no game this week"
- ],
+ "lineup": [],
  "notes": [
   "DK III: opponent starter Juwan Johnson (NO) has no game this week",
-  "DK III: opponent starter 49ers (SF) has no game this week",
-  "DK IV: opponent starter Tyler Shough (NO) has no game this week",
+  "DK III: opponent starter San Francisco (SF) has no game this week",
+  "DK IV: opponent DEF slot is EMPTY",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
  ],
  "leagues": {
@@ -115,47 +108,47 @@
    "needles": {
     "gotham": 27,
     "sleeper": 26,
-    "yahoo": 14,
+    "yahoo": 34,
     "yahoo_best": false,
-    "yahoo_posted": 14,
-    "yahoo_from_spread": 12
+    "yahoo_posted": 34,
+    "yahoo_from_spread": 32
    },
    "totals": {
     "gotham": [
-     125.52,
-     157.1
+     125.61,
+     157.02
     ],
     "sleeper": [
-     128.99,
-     160.89
+     129.1,
+     160.7
     ],
     "yahoo": [
-     94.79,
-     154.49
+     131.04,
+     154.41
     ]
    },
    "windows": {
     "me": [
      [
       0.0,
-      75.55,
-      19.24,
-      0.0,
+      75.82,
+      19.18,
+      36.04,
       0.0
      ],
      [
       0,
       6,
       2,
-      0,
+      2,
       0
      ]
     ],
     "op": [
      [
-      34.9,
-      104.01,
-      8.54,
+      34.87,
+      103.97,
+      8.53,
       7.04,
       0.0
      ],
@@ -180,19 +173,19 @@
     "me": [
      {
       "slot": "QB",
-      "player": "Tyler Shough",
-      "team": "NO",
+      "player": "Jayden Daniels",
+      "team": "WAS",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 23.63,
       "actual": null,
       "pos": "QB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "gotham": 21.99,
+      "gotham_raw": 21.99,
+      "gotham_src": "gotham",
+      "sleeper": 21.37,
+      "window": 3,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -203,8 +196,8 @@
       "yahoo": 18.77,
       "actual": null,
       "pos": "RB",
-      "gotham": 18.05,
-      "gotham_raw": 18.05,
+      "gotham": 18.24,
+      "gotham_raw": 18.24,
       "gotham_src": "gotham",
       "sleeper": 18.7,
       "window": 1,
@@ -212,70 +205,6 @@
      },
      {
       "slot": "RB",
-      "player": "Christian McCaffrey",
-      "team": "SF",
-      "status": "Q",
-      "kickoff": "",
-      "yahoo": 0.0,
-      "actual": null,
-      "pos": "RB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
-     },
-     {
-      "slot": "WR",
-      "player": "George Pickens",
-      "team": "DAL",
-      "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 15.99,
-      "actual": null,
-      "pos": "WR",
-      "gotham": 15.24,
-      "gotham_raw": 16.05,
-      "gotham_src": "gotham-capped",
-      "sleeper": 14.48,
-      "window": 1,
-      "gs": "pre"
-     },
-     {
-      "slot": "WR",
-      "player": "Drake London",
-      "team": "ATL",
-      "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 16.75,
-      "actual": null,
-      "pos": "WR",
-      "gotham": 13.98,
-      "gotham_raw": 13.98,
-      "gotham_src": "gotham",
-      "sleeper": 16.81,
-      "window": 1,
-      "gs": "pre"
-     },
-     {
-      "slot": "TE",
-      "player": "Travis Kelce",
-      "team": "KC",
-      "status": "",
-      "kickoff": "Sun 1:25 pm",
-      "yahoo": 10.86,
-      "actual": null,
-      "pos": "TE",
-      "gotham": 10.02,
-      "gotham_raw": 10.02,
-      "gotham_src": "gotham",
-      "sleeper": 11.48,
-      "window": 2,
-      "gs": "pre"
-     },
-     {
-      "slot": "W/R/T",
       "player": "TreVeyon Henderson",
       "team": "NE",
       "status": "",
@@ -291,18 +220,82 @@
       "gs": "pre"
      },
      {
-      "slot": "W/R/T",
-      "player": "Chris Godwin Jr.",
-      "team": "TB",
+      "slot": "WR",
+      "player": "George Pickens",
+      "team": "DAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 10.02,
+      "yahoo": 16.0,
       "actual": null,
       "pos": "WR",
-      "gotham": 10.18,
-      "gotham_raw": 10.85,
+      "gotham": 15.24,
+      "gotham_raw": 16.05,
       "gotham_src": "gotham-capped",
-      "sleeper": 10.34,
+      "sleeper": 14.48,
+      "window": 1,
+      "gs": "pre"
+     },
+     {
+      "slot": "WR",
+      "player": "Drake London",
+      "team": "ATL",
+      "status": "",
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 16.72,
+      "actual": null,
+      "pos": "WR",
+      "gotham": 13.95,
+      "gotham_raw": 13.95,
+      "gotham_src": "gotham",
+      "sleeper": 16.81,
+      "window": 1,
+      "gs": "pre"
+     },
+     {
+      "slot": "TE",
+      "player": "Travis Kelce",
+      "team": "KC",
+      "status": "",
+      "kickoff": "Sun 1:25 pm",
+      "yahoo": 10.8,
+      "actual": null,
+      "pos": "TE",
+      "gotham": 9.99,
+      "gotham_raw": 9.99,
+      "gotham_src": "gotham",
+      "sleeper": 11.59,
+      "window": 2,
+      "gs": "pre"
+     },
+     {
+      "slot": "W/R/T",
+      "player": "Stefon Diggs",
+      "team": "WAS",
+      "status": "",
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 12.41,
+      "actual": null,
+      "pos": "WR",
+      "gotham": 12.05,
+      "gotham_raw": 13.16,
+      "gotham_src": "gotham-capped",
+      "sleeper": 11.68,
+      "window": 3,
+      "gs": "pre"
+     },
+     {
+      "slot": "W/R/T",
+      "player": "Brenton Strange",
+      "team": "JAX",
+      "status": "",
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 10.31,
+      "actual": null,
+      "pos": "TE",
+      "gotham": 10.41,
+      "gotham_raw": 10.56,
+      "gotham_src": "gotham-capped",
+      "sleeper": 10.51,
       "window": 1,
       "gs": "pre"
      },
@@ -346,7 +339,7 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 27.05,
+      "yahoo": 27.08,
       "actual": null,
       "pos": "QB",
       "gotham": 24.65,
@@ -362,13 +355,13 @@
       "team": "BAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 20.64,
+      "yahoo": 20.57,
       "actual": null,
       "pos": "RB",
-      "gotham": 19.56,
-      "gotham_raw": 19.56,
+      "gotham": 19.54,
+      "gotham_raw": 19.54,
       "gotham_src": "gotham",
-      "sleeper": 20.02,
+      "sleeper": 19.83,
       "window": 1,
       "gs": "pre"
      },
@@ -382,7 +375,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 19.58,
-      "gotham_raw": 20.41,
+      "gotham_raw": 20.4,
       "gotham_src": "gotham-capped",
       "sleeper": 19.7,
       "window": 0,
@@ -394,11 +387,11 @@
       "team": "GB",
       "status": "",
       "kickoff": "Thu 5:15 pm",
-      "yahoo": 15.44,
+      "yahoo": 15.41,
       "actual": null,
       "pos": "WR",
-      "gotham": 15.72,
-      "gotham_raw": 16.56,
+      "gotham": 15.7,
+      "gotham_raw": 16.55,
       "gotham_src": "gotham-capped",
       "sleeper": 16.0,
       "window": 0,
@@ -414,7 +407,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 18.17,
-      "gotham_raw": 21.39,
+      "gotham_raw": 21.29,
       "gotham_src": "gotham-capped",
       "sleeper": 17.27,
       "window": 1,
@@ -430,7 +423,7 @@
       "actual": null,
       "pos": "TE",
       "gotham": 19.18,
-      "gotham_raw": 19.52,
+      "gotham_raw": 19.51,
       "gotham_src": "gotham-capped",
       "sleeper": 19.28,
       "window": 1,
@@ -461,8 +454,8 @@
       "yahoo": 10.93,
       "actual": null,
       "pos": "WR",
-      "gotham": 10.1,
-      "gotham_raw": 10.1,
+      "gotham": 10.02,
+      "gotham_raw": 10.02,
       "gotham_src": "gotham",
       "sleeper": 10.07,
       "window": 1,
@@ -490,7 +483,7 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 1:25 pm",
-      "yahoo": 8.54,
+      "yahoo": 8.53,
       "actual": null,
       "pos": "DEF",
       "gotham": 10.31,
@@ -505,38 +498,38 @@
    "bench": [
     {
      "slot": "BN",
-     "player": "Jayden Daniels",
-     "team": "WAS",
+     "player": "Tyler Shough",
+     "team": "NO",
      "status": "",
      "pos": "QB",
      "yahoo": null,
      "actual": null,
-     "gotham": 22.01,
-     "sleeper": 21.37,
-     "window": 3
+     "gotham": null,
+     "sleeper": null,
+     "window": null
     },
     {
      "slot": "BN",
-     "player": "Stefon Diggs",
-     "team": "WAS",
+     "player": "Christian McCaffrey",
+     "team": "SF",
+     "status": "Q",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": null,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "Chris Godwin Jr.",
+     "team": "TB",
      "status": "",
      "pos": "WR",
      "yahoo": null,
      "actual": null,
-     "gotham": 13.19,
-     "sleeper": 11.68,
-     "window": 3
-    },
-    {
-     "slot": "BN",
-     "player": "Brenton Strange",
-     "team": "JAX",
-     "status": "",
-     "pos": "TE",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 10.49,
-     "sleeper": 10.51,
+     "gotham": 10.85,
+     "sleeper": 10.34,
      "window": 1
     },
     {
@@ -579,47 +572,35 @@
    "pieces": [],
    "pieces_set": "Sun Oct 25",
    "state": "UPCOMING",
-   "state_note": "2 of 20 starters done, 0 games kicked off",
+   "state_note": "0 of 20 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 12,
-    "yahoo": 14,
-    "sleeper": 13,
-    "yahoo_from_spread": 12
+    "gotham": 30,
+    "yahoo": 34,
+    "sleeper": 32,
+    "yahoo_from_spread": 32
    },
    "totals_set": {
     "yahoo": [
-     94.79,
-     154.49
+     131.04,
+     154.41
     ],
     "gotham": [
-     91.03,
-     151.32
+     125.43,
+     151.2
     ],
     "sleeper": [
-     95.77,
-     153.44
+     129.1,
+     153.25
     ]
    },
    "best_moves": {
     "gotham": {
      "me": [
       {
-       "out": "Tyler Shough",
-       "out_v": 0.0,
-       "into": "Jayden Daniels",
-       "in_v": 22.0
-      },
-      {
-       "out": "Christian McCaffrey",
-       "out_v": 0.0,
-       "into": "Brenton Strange",
-       "in_v": 10.5
-      },
-      {
        "out": "Travis Kelce",
        "out_v": 10.0,
-       "into": "Stefon Diggs",
-       "in_v": 12.0
+       "into": "Chris Godwin Jr.",
+       "in_v": 10.2
       }
      ],
      "op": [
@@ -632,26 +613,7 @@
      ]
     },
     "sleeper": {
-     "me": [
-      {
-       "out": "Tyler Shough",
-       "out_v": 0.0,
-       "into": "Jayden Daniels",
-       "in_v": 21.4
-      },
-      {
-       "out": "Christian McCaffrey",
-       "out_v": 0.0,
-       "into": "Stefon Diggs",
-       "in_v": 11.7
-      },
-      {
-       "out": "Chris Godwin Jr.",
-       "out_v": 10.3,
-       "into": "Brenton Strange",
-       "in_v": 10.5
-      }
-     ],
+     "me": [],
      "op": [
       {
        "out": "Dameon Pierce",
@@ -672,7 +634,7 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 14%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 34%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -684,20 +646,20 @@
      "Koerner"
     ],
     "rising": [
-     "Chris Godwin Jr. (WR, W/R/T) up 19.5: WR48 -> WR28.5 since last week, 4 of 4 experts",
+     "Chris Godwin Jr. (WR, BN) up 19.5: WR48 -> WR28.5 since last week, 4 of 4 experts",
      "Kaelon Black (RB, BN) up 4: RB48 -> RB44 since last week, 4 of 4 experts"
     ],
     "sliding": [
      "George Pickens (WR, WR) down 7: WR12.5 -> WR19.5 since last week, 4 of 4 experts",
-     "Tyler Shough (QB, QB) down 4: QB10.5 -> QB14.5 since last week, 4 of 4 experts",
-     "Drake London (WR, WR) down 4: WR3 -> WR7 since last week, 4 of 4 experts"
+     "Drake London (WR, WR) down 4: WR3 -> WR7 since last week, 4 of 4 experts",
+     "Tyler Shough (QB, BN) down 4: QB10.5 -> QB14.5 since last week, 4 of 4 experts"
     ],
     "wire": [],
     "missing": null
    },
    "pieces_check": {
-    "read": "Tue Oct 27 2026 12:40 PM PT",
-    "roster": "Tue Oct 27 2026 2:58 PM PT",
+    "read": "Tue Oct 27 2026 4:39 PM PT",
+    "roster": "Tue Oct 27 2026 4:56 PM PT",
     "lines": [
      "New gap at RB: Week 8 - fewer than 2 RB projecting 10+ (byes or injuries). Not on the Missing Pieces list."
     ]
@@ -717,48 +679,48 @@
    "teams": 12,
    "opp_rank": 3,
    "needles": {
-    "gotham": 28,
-    "sleeper": 33,
-    "yahoo": 21,
+    "gotham": 27,
+    "sleeper": 32,
+    "yahoo": 35,
     "yahoo_best": false,
-    "yahoo_posted": 21,
-    "yahoo_from_spread": 21
+    "yahoo_posted": 35,
+    "yahoo_from_spread": 35
    },
    "totals": {
     "gotham": [
-     140.38,
-     172.86
+     140.31,
+     173.22
     ],
     "sleeper": [
-     149.73,
-     174.77
+     149.84,
+     175.03
     ],
     "yahoo": [
-     127.36,
-     171.84
+     150.5,
+     171.89
     ]
    },
    "windows": {
     "me": [
      [
       0.0,
-      116.45,
-      10.91,
-      0.0,
+      91.33,
+      35.48,
+      23.69,
       0.0
      ],
      [
       0,
-      8,
+      6,
+      4,
       1,
-      0,
       0
      ]
     ],
     "op": [
      [
-      21.99,
-      98.87,
+      21.95,
+      98.96,
       31.58,
       12.48,
       6.92
@@ -791,8 +753,8 @@
       "yahoo": 23.32,
       "actual": null,
       "pos": "QB",
-      "gotham": 21.51,
-      "gotham_raw": 21.51,
+      "gotham": 21.49,
+      "gotham_raw": 21.49,
       "gotham_src": "gotham",
       "sleeper": 22.71,
       "window": 1,
@@ -800,35 +762,35 @@
      },
      {
       "slot": "RB",
-      "player": "Kendre Miller",
-      "team": "NO",
+      "player": "Braelon Allen",
+      "team": "NYJ",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 11.68,
       "actual": null,
       "pos": "RB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "gotham": 12.02,
+      "gotham_raw": 13.05,
+      "gotham_src": "gotham-capped",
+      "sleeper": 12.35,
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "RB",
-      "player": "Alvin Kamara",
-      "team": "NO",
+      "player": "Keaton Mitchell",
+      "team": "LAC",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 1:05 pm",
+      "yahoo": 7.5,
       "actual": null,
       "pos": "RB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "gotham": 6.77,
+      "gotham_raw": 6.77,
+      "gotham_src": "gotham",
+      "sleeper": 7.15,
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "WR",
@@ -836,11 +798,11 @@
       "team": "ATL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 16.89,
+      "yahoo": 16.86,
       "actual": null,
       "pos": "WR",
-      "gotham": 13.98,
-      "gotham_raw": 13.98,
+      "gotham": 13.95,
+      "gotham_raw": 13.95,
       "gotham_src": "gotham",
       "sleeper": 16.81,
       "window": 1,
@@ -856,7 +818,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 10.42,
-      "gotham_raw": 11.56,
+      "gotham_raw": 11.62,
       "gotham_src": "gotham-capped",
       "sleeper": 10.14,
       "window": 1,
@@ -868,11 +830,11 @@
       "team": "CIN",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 20.28,
+      "yahoo": 20.29,
       "actual": null,
       "pos": "WR",
-      "gotham": 18.95,
-      "gotham_raw": 18.95,
+      "gotham": 18.93,
+      "gotham_raw": 18.93,
       "gotham_src": "gotham",
       "sleeper": 20.08,
       "window": 1,
@@ -884,46 +846,46 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 1:25 pm",
-      "yahoo": 10.91,
+      "yahoo": 10.85,
       "actual": null,
       "pos": "TE",
-      "gotham": 10.02,
-      "gotham_raw": 10.02,
+      "gotham": 9.99,
+      "gotham_raw": 9.99,
       "gotham_src": "gotham",
-      "sleeper": 11.48,
+      "sleeper": 11.59,
       "window": 2,
       "gs": "pre"
      },
      {
       "slot": "W/R/T",
-      "player": "Braelon Allen",
-      "team": "NYJ",
-      "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 11.68,
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "status": "Q",
+      "kickoff": "Sun 1:05 pm",
+      "yahoo": 11.23,
       "actual": null,
-      "pos": "RB",
-      "gotham": 12.02,
-      "gotham_raw": 13.06,
-      "gotham_src": "gotham-capped",
-      "sleeper": 12.35,
-      "window": 1,
+      "pos": "WR",
+      "gotham": 7.62,
+      "gotham_raw": 7.62,
+      "gotham_src": "gotham",
+      "sleeper": 10.93,
+      "window": 2,
       "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
-      "player": "Aaron Rodgers",
-      "team": "PIT",
+      "player": "Jayden Daniels",
+      "team": "WAS",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 18.87,
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 23.69,
       "actual": null,
       "pos": "QB",
-      "gotham": 19.24,
-      "gotham_raw": 19.3,
-      "gotham_src": "gotham-capped",
-      "sleeper": 19.62,
-      "window": 1,
+      "gotham": 21.99,
+      "gotham_raw": 21.99,
+      "gotham_src": "gotham",
+      "sleeper": 21.37,
+      "window": 3,
       "gs": "pre"
      },
      {
@@ -944,18 +906,18 @@
      },
      {
       "slot": "DEF",
-      "player": "Browns",
-      "team": "CLE",
+      "player": "Chiefs",
+      "team": "KC",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 6.23,
+      "kickoff": "Sun 1:25 pm",
+      "yahoo": 5.9,
       "actual": null,
       "pos": "DEF",
-      "gotham": 5.31,
-      "gotham_raw": 5.31,
+      "gotham": 7.31,
+      "gotham_raw": 7.31,
       "gotham_src": "sleeper",
-      "sleeper": 5.31,
-      "window": 1,
+      "sleeper": 7.31,
+      "window": 2,
       "gs": "pre"
      }
     ],
@@ -966,13 +928,13 @@
       "team": "BUF",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 29.31,
+      "yahoo": 29.33,
       "actual": null,
       "pos": "QB",
-      "gotham": 28.85,
+      "gotham": 28.9,
       "gotham_raw": 29.71,
       "gotham_src": "gotham-capped",
-      "sleeper": 28.38,
+      "sleeper": 28.47,
       "window": 1,
       "gs": "pre"
      },
@@ -985,8 +947,8 @@
       "yahoo": 18.91,
       "actual": null,
       "pos": "RB",
-      "gotham": 18.05,
-      "gotham_raw": 18.05,
+      "gotham": 18.24,
+      "gotham_raw": 18.24,
       "gotham_src": "gotham",
       "sleeper": 18.7,
       "window": 1,
@@ -998,10 +960,10 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 21.65,
+      "yahoo": 21.68,
       "actual": null,
       "pos": "RB",
-      "gotham": 22.06,
+      "gotham": 22.08,
       "gotham_raw": 23.42,
       "gotham_src": "gotham-capped",
       "sleeper": 22.47,
@@ -1018,7 +980,7 @@
       "actual": null,
       "pos": "WR",
       "gotham": 12.08,
-      "gotham_raw": 13.19,
+      "gotham_raw": 13.16,
       "gotham_src": "gotham-capped",
       "sleeper": 11.68,
       "window": 3,
@@ -1030,13 +992,13 @@
       "team": "BUF",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 9.86,
+      "yahoo": 9.9,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.53,
+      "gotham": 9.6,
       "gotham_raw": 10.55,
       "gotham_src": "gotham-capped",
-      "sleeper": 9.19,
+      "sleeper": 9.29,
       "window": 1,
       "gs": "pre"
      },
@@ -1066,7 +1028,7 @@
       "actual": null,
       "pos": "TE",
       "gotham": 19.21,
-      "gotham_raw": 19.52,
+      "gotham_raw": 19.51,
       "gotham_src": "gotham-capped",
       "sleeper": 19.28,
       "window": 1,
@@ -1081,8 +1043,8 @@
       "yahoo": 16.06,
       "actual": null,
       "pos": "RB",
-      "gotham": 15.91,
-      "gotham_raw": 15.91,
+      "gotham": 15.89,
+      "gotham_raw": 15.89,
       "gotham_src": "gotham",
       "sleeper": 16.1,
       "window": 2,
@@ -1094,11 +1056,11 @@
       "team": "GB",
       "status": "",
       "kickoff": "Thu 5:15 pm",
-      "yahoo": 21.99,
+      "yahoo": 21.95,
       "actual": null,
       "pos": "QB",
-      "gotham": 20.91,
-      "gotham_raw": 22.32,
+      "gotham": 20.89,
+      "gotham_raw": 22.31,
       "gotham_src": "gotham-capped",
       "sleeper": 19.83,
       "window": 0,
@@ -1141,15 +1103,39 @@
    "bench": [
     {
      "slot": "BN",
-     "player": "Jayden Daniels",
-     "team": "WAS",
+     "player": "Kendre Miller",
+     "team": "NO",
+     "status": "",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": null,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "Alvin Kamara",
+     "team": "NO",
+     "status": "",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": null,
+     "window": null
+    },
+    {
+     "slot": "BN",
+     "player": "Aaron Rodgers",
+     "team": "PIT",
      "status": "",
      "pos": "QB",
      "yahoo": null,
      "actual": null,
-     "gotham": 22.01,
-     "sleeper": 21.37,
-     "window": 3
+     "gotham": 19.38,
+     "sleeper": 19.62,
+     "window": 1
     },
     {
      "slot": "BN",
@@ -1159,33 +1145,9 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 8.06,
+     "gotham": 8.04,
      "sleeper": 8.24,
      "window": 1
-    },
-    {
-     "slot": "BN",
-     "player": "Keaton Mitchell",
-     "team": "LAC",
-     "status": "",
-     "pos": "RB",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 6.7,
-     "sleeper": 7.15,
-     "window": 2
-    },
-    {
-     "slot": "BN",
-     "player": "Ladd McConkey",
-     "team": "LAC",
-     "status": "Q",
-     "pos": "WR",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 7.57,
-     "sleeper": 10.93,
-     "window": 2
     },
     {
      "slot": "IR",
@@ -1213,7 +1175,7 @@
     },
     {
      "slot": "BN",
-     "player": "Chiefs",
+     "player": "Cleveland",
      "team": "",
      "status": "",
      "pos": "WR",
@@ -1253,53 +1215,35 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "UPCOMING",
-   "state_note": "2 of 22 starters done, 0 games kicked off",
+   "state_note": "0 of 22 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 21,
-    "yahoo": 21,
-    "sleeper": 23,
-    "yahoo_from_spread": 21
+    "gotham": 32,
+    "yahoo": 35,
+    "sleeper": 37,
+    "yahoo_from_spread": 35
    },
    "totals_set": {
     "yahoo": [
-     127.36,
-     171.84
+     150.5,
+     171.89
     ],
     "gotham": [
-     120.85,
-     165.63
+     139.89,
+     165.92
     ],
     "sleeper": [
-     127.9,
-     168.46
+     149.84,
+     168.65
     ]
    },
    "best_moves": {
     "gotham": {
      "me": [
       {
-       "out": "Kendre Miller",
-       "out_v": 0.0,
-       "into": "Jayden Daniels",
-       "in_v": 22.0
-      },
-      {
-       "out": "Alvin Kamara",
-       "out_v": 0.0,
-       "into": "Keaton Mitchell",
-       "in_v": 6.7
-      },
-      {
-       "out": "Aaron Rodgers",
-       "out_v": 19.2,
+       "out": "Ladd McConkey",
+       "out_v": 7.6,
        "into": "Kyle Pitts Sr.",
-       "in_v": 8.1
-      },
-      {
-       "out": "Browns",
-       "out_v": 5.3,
-       "into": "Chiefs",
-       "in_v": 7.3
+       "in_v": 8.0
       }
      ],
      "op": [
@@ -1313,37 +1257,12 @@
        "out": "Ollie Gordon II",
        "out_v": 15.9,
        "into": "Keon Coleman",
-       "in_v": 7.6
+       "in_v": 7.7
       }
      ]
     },
     "sleeper": {
-     "me": [
-      {
-       "out": "Kendre Miller",
-       "out_v": 0.0,
-       "into": "Keaton Mitchell",
-       "in_v": 7.2
-      },
-      {
-       "out": "Alvin Kamara",
-       "out_v": 0.0,
-       "into": "Ladd McConkey",
-       "in_v": 10.9
-      },
-      {
-       "out": "Aaron Rodgers",
-       "out_v": 19.6,
-       "into": "Jayden Daniels",
-       "in_v": 21.4
-      },
-      {
-       "out": "Browns",
-       "out_v": 5.3,
-       "into": "Chiefs",
-       "in_v": 7.3
-      }
-     ],
+     "me": [],
      "op": [
       {
        "out": "Kalif Raymond",
@@ -1355,7 +1274,7 @@
        "out": "Ollie Gordon II",
        "out_v": 16.1,
        "into": "Keon Coleman",
-       "in_v": 7.6
+       "in_v": 7.7
       }
      ]
     },
@@ -1364,7 +1283,7 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 21%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 35%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -1377,14 +1296,14 @@
     ],
     "rising": [
      "Germie Bernard (WR, WR) up 16: WR35.5 -> WR19.5 since last week, 4 of 4 experts",
-     "Aaron Rodgers (QB, Q/W/R/T) up 8.5: QB22 -> QB13.5 since last week, 4 of 4 experts",
+     "Aaron Rodgers (QB, BN) up 8.5: QB22 -> QB13.5 since last week, 4 of 4 experts",
      "Kyle Pitts Sr. (TE, BN) up 7.5: TE17.5 -> TE10 since last week, 4 of 4 experts"
     ],
     "sliding": [
      "Jacoby Brissett (QB, QB) down 6.5: QB16 -> QB22.5 since last week, 4 of 4 experts",
-     "Alvin Kamara (RB, RB) down 5.5: RB24.5 -> RB30 since last week, 4 of 4 experts",
+     "Alvin Kamara (RB, BN) down 5.5: RB24.5 -> RB30 since last week, 4 of 4 experts",
      "Drake London (WR, WR) down 4: WR3 -> WR7 since last week, 4 of 4 experts",
-     "Braelon Allen (RB, W/R/T) down 3: RB14.5 -> RB17.5 since last week, 2 of 4 experts"
+     "Braelon Allen (RB, RB) down 3: RB14.5 -> RB17.5 since last week, 2 of 4 experts"
     ],
     "wire": [
      "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; on waivers until Oct 28 - flag for analysis, not a move"
@@ -1392,10 +1311,10 @@
     "missing": null
    },
    "pieces_check": {
-    "read": "Tue Oct 27 2026 12:40 PM PT",
-    "roster": "Tue Oct 27 2026 2:58 PM PT",
+    "read": "Tue Oct 27 2026 4:39 PM PT",
+    "roster": "Tue Oct 27 2026 4:56 PM PT",
     "lines": [
-     "A lead running back: still OPEN - short in Weeks 8, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
+     "A lead running back: still OPEN - short in Weeks 8, 9, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr.).",
      "A wide receiver for Week 10 on: still OPEN - short in Week 11 (needs 3 WR at 10+; covering the other weeks: Ja'Marr Chase, Ladd McConkey, Drake London)."
     ]
    }
@@ -1416,47 +1335,47 @@
    "needles": {
     "gotham": 45,
     "sleeper": 45,
-    "yahoo": 41,
+    "yahoo": 60,
     "yahoo_best": false,
-    "yahoo_posted": 41,
-    "yahoo_from_spread": 42
+    "yahoo_posted": 60,
+    "yahoo_from_spread": 61
    },
    "totals": {
     "gotham": [
-     104.1,
-     109.9
+     104.11,
+     109.86
     ],
     "sleeper": [
-     112.36,
-     118.46
+     112.53,
+     118.27
     ],
     "yahoo": [
-     95.42,
-     105.26
+     117.87,
+     105.12
     ]
    },
    "windows": {
     "me": [
      [
       0.0,
-      83.78,
-      11.64,
-      0.0,
+      66.97,
+      11.65,
+      39.25,
       0.0
      ],
      [
       0,
-      7,
+      6,
       1,
-      0,
+      2,
       0
      ]
     ],
     "op": [
      [
-      15.44,
+      15.41,
       23.31,
-      45.79,
+      45.68,
       0.0,
       20.72
      ],
@@ -1481,18 +1400,18 @@
     "me": [
      {
       "slot": "QB",
-      "player": "Aaron Rodgers",
-      "team": "PIT",
+      "player": "Jayden Daniels",
+      "team": "WAS",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 18.86,
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 23.63,
       "actual": null,
       "pos": "QB",
-      "gotham": 19.24,
-      "gotham_raw": 19.3,
-      "gotham_src": "gotham-capped",
-      "sleeper": 19.62,
-      "window": 1,
+      "gotham": 21.99,
+      "gotham_raw": 21.99,
+      "gotham_src": "gotham",
+      "sleeper": 21.37,
+      "window": 3,
       "gs": "pre"
      },
      {
@@ -1513,18 +1432,18 @@
      },
      {
       "slot": "RB",
-      "player": "Samaje Perine",
-      "team": "CIN",
+      "player": "Rachaad White",
+      "team": "WAS",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 8.02,
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 15.62,
       "actual": null,
       "pos": "RB",
-      "gotham": 7.88,
-      "gotham_raw": 7.88,
+      "gotham": 10.94,
+      "gotham_raw": 10.94,
       "gotham_src": "gotham",
-      "sleeper": 8.4,
-      "window": 1,
+      "sleeper": 13.87,
+      "window": 3,
       "gs": "pre"
      },
      {
@@ -1533,7 +1452,7 @@
       "team": "DAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 15.99,
+      "yahoo": 16.0,
       "actual": null,
       "pos": "WR",
       "gotham": 15.24,
@@ -1549,13 +1468,13 @@
       "team": "DEN",
       "status": "Q",
       "kickoff": "Sun 1:25 pm",
-      "yahoo": 11.64,
+      "yahoo": 11.65,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.91,
-      "gotham_raw": 9.91,
+      "gotham": 9.9,
+      "gotham_raw": 9.9,
       "gotham_src": "gotham",
-      "sleeper": 11.3,
+      "sleeper": 11.47,
       "window": 2,
       "gs": "pre"
      },
@@ -1568,8 +1487,8 @@
       "yahoo": 11.42,
       "actual": null,
       "pos": "TE",
-      "gotham": 9.83,
-      "gotham_raw": 9.83,
+      "gotham": 9.98,
+      "gotham_raw": 9.98,
       "gotham_src": "gotham",
       "sleeper": 11.12,
       "window": 1,
@@ -1584,8 +1503,8 @@
       "yahoo": 10.54,
       "actual": null,
       "pos": "WR",
-      "gotham": 8.69,
-      "gotham_raw": 8.69,
+      "gotham": 8.59,
+      "gotham_raw": 8.59,
       "gotham_src": "gotham",
       "sleeper": 9.83,
       "window": 1,
@@ -1593,23 +1512,23 @@
      },
      {
       "slot": "W/R/T",
-      "player": "Devaughn Vele",
-      "team": "NO",
+      "player": "Harold Fannin Jr.",
+      "team": "CLE",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 10.06,
       "actual": null,
-      "pos": "WR",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "pos": "TE",
+      "gotham": 6.7,
+      "gotham_raw": 6.7,
+      "gotham_src": "gotham",
+      "sleeper": 10.48,
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "DEF",
-      "player": "Steelers",
+      "player": "Pittsburgh",
       "team": "PIT",
       "status": "",
       "kickoff": "Sun 10:00 am",
@@ -1634,8 +1553,8 @@
       "yahoo": 23.31,
       "actual": null,
       "pos": "QB",
-      "gotham": 21.51,
-      "gotham_raw": 21.51,
+      "gotham": 21.49,
+      "gotham_raw": 21.49,
       "gotham_src": "gotham",
       "sleeper": 22.71,
       "window": 1,
@@ -1651,7 +1570,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 8.98,
-      "gotham_raw": 13.56,
+      "gotham_raw": 13.54,
       "gotham_src": "gotham-capped",
       "sleeper": 10.01,
       "window": 4,
@@ -1663,13 +1582,13 @@
       "team": "KC",
       "status": "",
       "kickoff": "Sun 1:25 pm",
-      "yahoo": 25.11,
+      "yahoo": 25.0,
       "actual": null,
       "pos": "RB",
-      "gotham": 23.81,
-      "gotham_raw": 23.81,
+      "gotham": 23.78,
+      "gotham_raw": 23.78,
       "gotham_src": "gotham",
-      "sleeper": 25.01,
+      "sleeper": 24.82,
       "window": 2,
       "gs": "pre"
      },
@@ -1679,11 +1598,11 @@
       "team": "GB",
       "status": "",
       "kickoff": "Thu 5:15 pm",
-      "yahoo": 15.44,
+      "yahoo": 15.41,
       "actual": null,
       "pos": "WR",
-      "gotham": 15.72,
-      "gotham_raw": 16.56,
+      "gotham": 15.7,
+      "gotham_raw": 16.55,
       "gotham_src": "gotham-capped",
       "sleeper": 16.0,
       "window": 0,
@@ -1698,8 +1617,8 @@
       "yahoo": 12.77,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.31,
-      "gotham_raw": 11.31,
+      "gotham": 11.29,
+      "gotham_raw": 11.29,
       "gotham_src": "gotham",
       "sleeper": 12.5,
       "window": 4,
@@ -1715,7 +1634,7 @@
       "actual": null,
       "pos": "TE",
       "gotham": 8.22,
-      "gotham_raw": 10.02,
+      "gotham_raw": 10.09,
       "gotham_src": "gotham-capped",
       "sleeper": 8.38,
       "window": 2,
@@ -1747,7 +1666,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 12.78,
-      "gotham_raw": 13.57,
+      "gotham_raw": 13.68,
       "gotham_src": "gotham-capped",
       "sleeper": 12.92,
       "window": 2,
@@ -1755,7 +1674,7 @@
      },
      {
       "slot": "DEF",
-      "player": "49ers",
+      "player": "San Francisco",
       "team": "SF",
       "status": "",
       "kickoff": "",
@@ -1774,6 +1693,42 @@
    "bench": [
     {
      "slot": "BN",
+     "player": "Aaron Rodgers",
+     "team": "PIT",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 19.38,
+     "sleeper": 19.62,
+     "window": 1
+    },
+    {
+     "slot": "BN",
+     "player": "Samaje Perine",
+     "team": "CIN",
+     "status": "",
+     "pos": "RB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": 7.87,
+     "sleeper": 8.4,
+     "window": 1
+    },
+    {
+     "slot": "BN",
+     "player": "Devaughn Vele",
+     "team": "NO",
+     "status": "",
+     "pos": "WR",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": null,
+     "window": null
+    },
+    {
+     "slot": "BN",
      "player": "David Montgomery",
      "team": "HOU",
      "status": "Q",
@@ -1783,42 +1738,6 @@
      "gotham": null,
      "sleeper": null,
      "window": null
-    },
-    {
-     "slot": "BN",
-     "player": "Harold Fannin Jr.",
-     "team": "CLE",
-     "status": "",
-     "pos": "TE",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 6.88,
-     "sleeper": 10.48,
-     "window": 1
-    },
-    {
-     "slot": "BN",
-     "player": "Jayden Daniels",
-     "team": "WAS",
-     "status": "",
-     "pos": "QB",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 22.01,
-     "sleeper": 21.37,
-     "window": 3
-    },
-    {
-     "slot": "BN",
-     "player": "Rachaad White",
-     "team": "WAS",
-     "status": "",
-     "pos": "RB",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 10.94,
-     "sleeper": 13.87,
-     "window": 3
     },
     {
      "slot": "IR",
@@ -1861,41 +1780,35 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "UPCOMING",
-   "state_note": "3 of 18 starters done, 0 games kicked off",
+   "state_note": "2 of 18 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 40,
-    "yahoo": 41,
-    "sleeper": 39,
-    "yahoo_from_spread": 42
+    "gotham": 51,
+    "yahoo": 60,
+    "sleeper": 54,
+    "yahoo_from_spread": 61
    },
    "totals_set": {
     "yahoo": [
-     95.42,
-     105.26
+     117.87,
+     105.12
     ],
     "gotham": [
-     90.39,
-     102.33
+     102.94,
+     102.24
     ],
     "sleeper": [
-     94.66,
-     107.53
+     112.53,
+     107.34
     ]
    },
    "best_moves": {
     "gotham": {
      "me": [
       {
-       "out": "Aaron Rodgers",
-       "out_v": 19.2,
-       "into": "Jayden Daniels",
-       "in_v": 22.0
-      },
-      {
-       "out": "Devaughn Vele",
-       "out_v": 0.0,
-       "into": "Rachaad White",
-       "in_v": 10.9
+       "out": "Harold Fannin Jr.",
+       "out_v": 6.7,
+       "into": "Samaje Perine",
+       "in_v": 7.9
       }
      ],
      "op": [
@@ -1906,7 +1819,7 @@
        "in_v": 7.6
       },
       {
-       "out": "49ers",
+       "out": "San Francisco",
        "out_v": 0.0,
        "into": "(nobody eligible)",
        "in_v": 0.0
@@ -1914,26 +1827,7 @@
      ]
     },
     "sleeper": {
-     "me": [
-      {
-       "out": "Aaron Rodgers",
-       "out_v": 19.6,
-       "into": "Jayden Daniels",
-       "in_v": 21.4
-      },
-      {
-       "out": "Samaje Perine",
-       "out_v": 8.4,
-       "into": "Rachaad White",
-       "in_v": 13.9
-      },
-      {
-       "out": "Devaughn Vele",
-       "out_v": 0.0,
-       "into": "Harold Fannin Jr.",
-       "in_v": 10.5
-      }
-     ],
+     "me": [],
      "op": [
       {
        "out": "Juwan Johnson",
@@ -1942,7 +1836,7 @@
        "in_v": 10.9
       },
       {
-       "out": "49ers",
+       "out": "San Francisco",
        "out_v": 0.0,
        "into": "(nobody eligible)",
        "in_v": 0.0
@@ -1954,7 +1848,7 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 41%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 60%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -1967,20 +1861,20 @@
     ],
     "rising": [
      "Bam Knight (RB, RB) up 22: RB46.5 -> RB24.5 since last week, 4 of 4 experts",
-     "Aaron Rodgers (QB, QB) up 8.5: QB22 -> QB13.5 since last week, 4 of 4 experts"
+     "Aaron Rodgers (QB, BN) up 8.5: QB22 -> QB13.5 since last week, 4 of 4 experts"
     ],
     "sliding": [
      "Josh Downs (WR, W/R/T) down 11: WR15 -> WR26 since last week, 4 of 4 experts",
      "George Pickens (WR, WR) down 7: WR12.5 -> WR19.5 since last week, 4 of 4 experts",
-     "Devaughn Vele (WR, W/R/T) down 6: WR29.5 -> WR35.5 since last week, 4 of 4 experts",
-     "Harold Fannin Jr. (TE, BN) down 5: TE9 -> TE14 since last week, 4 of 4 experts"
+     "Devaughn Vele (WR, BN) down 6: WR29.5 -> WR35.5 since last week, 4 of 4 experts",
+     "Harold Fannin Jr. (TE, W/R/T) down 5: TE9 -> TE14 since last week, 4 of 4 experts"
     ],
     "wire": [],
     "missing": null
    },
    "pieces_check": {
-    "read": "Tue Oct 27 2026 12:40 PM PT",
-    "roster": "Tue Oct 27 2026 2:58 PM PT",
+    "read": "Tue Oct 27 2026 4:39 PM PT",
+    "roster": "Tue Oct 27 2026 4:56 PM PT",
     "lines": [
      "A lead running back - save the $91 for him: still OPEN - short in Weeks 11, 12, 13, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Rachaad White)."
     ]
@@ -2000,39 +1894,39 @@
    "teams": 10,
    "opp_rank": 8,
    "needles": {
-    "gotham": 67,
-    "sleeper": 70,
-    "yahoo": 69,
+    "gotham": 68,
+    "sleeper": 73,
+    "yahoo": 71,
     "yahoo_best": false,
-    "yahoo_posted": 69,
-    "yahoo_from_spread": 67
+    "yahoo_posted": 71,
+    "yahoo_from_spread": 70
    },
    "totals": {
     "gotham": [
-     152.53,
-     128.87
+     152.78,
+     126.23
     ],
     "sleeper": [
-     167.02,
-     137.59
+     167.37,
+     133.96
     ],
     "yahoo": [
-     139.15,
-     114.86
+     166.18,
+     136.98
     ]
    },
    "windows": {
     "me": [
      [
-      11.56,
-      96.59,
-      18.27,
+      11.54,
+      123.63,
+      18.28,
       0.0,
       12.73
      ],
      [
       1,
-      6,
+      7,
       2,
       0,
       1
@@ -2040,17 +1934,17 @@
     ],
     "op": [
      [
-      8.7,
-      98.17,
-      7.99,
-      0.0,
+      8.68,
+      97.94,
+      17.96,
+      12.4,
       0.0
      ],
      [
       1,
-      8,
+      7,
       1,
-      0,
+      1,
       0
      ]
     ]
@@ -2067,19 +1961,19 @@
     "me": [
      {
       "slot": "QB",
-      "player": "C.J. Stroud",
-      "team": "HOU",
+      "player": "Dak Prescott",
+      "team": "DAL",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 26.99,
       "actual": null,
       "pos": "QB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "gotham": 24.75,
+      "gotham_raw": 24.75,
+      "gotham_src": "gotham",
+      "sleeper": 26.82,
+      "window": 1,
+      "gs": "pre"
      },
      {
       "slot": "RB",
@@ -2087,11 +1981,11 @@
       "team": "ATL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 20.18,
+      "yahoo": 20.16,
       "actual": null,
       "pos": "RB",
-      "gotham": 15.37,
-      "gotham_raw": 15.37,
+      "gotham": 15.35,
+      "gotham_raw": 15.35,
       "gotham_src": "gotham",
       "sleeper": 20.94,
       "window": 1,
@@ -2107,7 +2001,7 @@
       "actual": null,
       "pos": "RB",
       "gotham": 12.84,
-      "gotham_raw": 17.48,
+      "gotham_raw": 17.45,
       "gotham_src": "gotham-capped",
       "sleeper": 12.95,
       "window": 4,
@@ -2122,8 +2016,8 @@
       "yahoo": 10.52,
       "actual": null,
       "pos": "WR",
-      "gotham": 8.65,
-      "gotham_raw": 8.65,
+      "gotham": 8.56,
+      "gotham_raw": 8.56,
       "gotham_src": "gotham",
       "sleeper": 9.8,
       "window": 1,
@@ -2135,13 +2029,13 @@
       "team": "BAL",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 18.32,
+      "yahoo": 18.39,
       "actual": null,
       "pos": "WR",
-      "gotham": 18.2,
-      "gotham_raw": 18.53,
+      "gotham": 18.36,
+      "gotham_raw": 18.52,
       "gotham_src": "gotham-capped",
-      "sleeper": 18.08,
+      "sleeper": 18.32,
       "window": 1,
       "gs": "pre"
      },
@@ -2154,8 +2048,8 @@
       "yahoo": 17.83,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.77,
-      "gotham_raw": 12.77,
+      "gotham": 12.93,
+      "gotham_raw": 12.93,
       "gotham_src": "gotham",
       "sleeper": 18.3,
       "window": 1,
@@ -2167,11 +2061,11 @@
       "team": "GB",
       "status": "",
       "kickoff": "Thu 5:15 pm",
-      "yahoo": 11.56,
+      "yahoo": 11.54,
       "actual": null,
       "pos": "TE",
-      "gotham": 11.14,
-      "gotham_raw": 12.04,
+      "gotham": 11.13,
+      "gotham_raw": 12.03,
       "gotham_src": "gotham-capped",
       "sleeper": 10.72,
       "window": 0,
@@ -2186,8 +2080,8 @@
       "yahoo": 12.29,
       "actual": null,
       "pos": "RB",
-      "gotham": 12.11,
-      "gotham_raw": 12.11,
+      "gotham": 12.08,
+      "gotham_raw": 12.08,
       "gotham_src": "gotham",
       "sleeper": 12.88,
       "window": 2,
@@ -2203,7 +2097,7 @@
       "actual": null,
       "pos": "QB",
       "gotham": 20.19,
-      "gotham_raw": 24.28,
+      "gotham_raw": 24.18,
       "gotham_src": "gotham-capped",
       "sleeper": 19.12,
       "window": 1,
@@ -2227,11 +2121,11 @@
      },
      {
       "slot": "DEF",
-      "player": "Broncos",
+      "player": "Denver",
       "team": "DEN",
       "status": "",
       "kickoff": "Sun 1:25 pm",
-      "yahoo": 5.98,
+      "yahoo": 5.99,
       "actual": null,
       "pos": "DEF",
       "gotham": 6.01,
@@ -2249,30 +2143,14 @@
       "team": "CIN",
       "status": "",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 25.81,
+      "yahoo": 25.85,
       "actual": null,
       "pos": "QB",
-      "gotham": 25.59,
-      "gotham_raw": 25.75,
+      "gotham": 25.61,
+      "gotham_raw": 25.72,
       "gotham_src": "gotham-capped",
       "sleeper": 25.37,
       "window": 1,
-      "gs": "pre"
-     },
-     {
-      "slot": "RB",
-      "player": "Blake Corum",
-      "team": "LAR",
-      "status": "",
-      "kickoff": "Sun 1:05 pm",
-      "yahoo": 7.99,
-      "actual": null,
-      "pos": "RB",
-      "gotham": 7.69,
-      "gotham_raw": 9.43,
-      "gotham_src": "gotham-capped",
-      "sleeper": 7.38,
-      "window": 2,
       "gs": "pre"
      },
      {
@@ -2285,9 +2163,25 @@
       "actual": null,
       "pos": "RB",
       "gotham": 8.86,
-      "gotham_raw": 9.99,
+      "gotham_raw": 10.03,
       "gotham_src": "gotham-capped",
       "sleeper": 8.81,
+      "window": 1,
+      "gs": "pre"
+     },
+     {
+      "slot": "RB",
+      "player": "Jeremiyah Love",
+      "team": "ARI",
+      "status": "Q",
+      "kickoff": "Sun 10:00 am",
+      "yahoo": 9.99,
+      "actual": null,
+      "pos": "RB",
+      "gotham": 9.73,
+      "gotham_raw": 10.97,
+      "gotham_src": "gotham-capped",
+      "sleeper": 9.46,
       "window": 1,
       "gs": "pre"
      },
@@ -2300,8 +2194,8 @@
       "yahoo": 14.97,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.81,
-      "gotham_raw": 9.81,
+      "gotham": 9.8,
+      "gotham_raw": 9.8,
       "gotham_src": "gotham",
       "sleeper": 16.29,
       "window": 1,
@@ -2316,8 +2210,8 @@
       "yahoo": 10.66,
       "actual": null,
       "pos": "WR",
-      "gotham": 9.9,
-      "gotham_raw": 9.9,
+      "gotham": 9.82,
+      "gotham_raw": 9.82,
       "gotham_src": "gotham",
       "sleeper": 9.79,
       "window": 1,
@@ -2325,18 +2219,18 @@
      },
      {
       "slot": "WR",
-      "player": "Chris Godwin Jr.",
-      "team": "TB",
+      "player": "Stefon Diggs",
+      "team": "WAS",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 9.94,
+      "kickoff": "Sun 5:20 pm",
+      "yahoo": 12.4,
       "actual": null,
       "pos": "WR",
-      "gotham": 10.13,
-      "gotham_raw": 10.78,
+      "gotham": 12.03,
+      "gotham_raw": 13.14,
       "gotham_src": "gotham-capped",
-      "sleeper": 10.32,
-      "window": 1,
+      "sleeper": 11.66,
+      "window": 3,
       "gs": "pre"
      },
      {
@@ -2348,8 +2242,8 @@
       "yahoo": 15.75,
       "actual": null,
       "pos": "TE",
-      "gotham": 14.5,
-      "gotham_raw": 14.5,
+      "gotham": 14.47,
+      "gotham_raw": 14.47,
       "gotham_src": "gotham",
       "sleeper": 16.93,
       "window": 1,
@@ -2357,35 +2251,35 @@
      },
      {
       "slot": "W/R/T",
-      "player": "Ja'Kobi Lane",
-      "team": "BAL",
-      "status": "",
+      "player": "Emeka Egbuka",
+      "team": "TB",
+      "status": "Q",
       "kickoff": "Sun 10:00 am",
-      "yahoo": 6.45,
+      "yahoo": 11.81,
       "actual": null,
       "pos": "WR",
-      "gotham": 6.12,
-      "gotham_raw": 8.04,
+      "gotham": 11.74,
+      "gotham_raw": 12.65,
       "gotham_src": "gotham-capped",
-      "sleeper": 5.79,
+      "sleeper": 11.66,
       "window": 1,
       "gs": "pre"
      },
      {
       "slot": "Q/W/R/T",
-      "player": "Tyler Shough",
-      "team": "NO",
+      "player": "Malik Willis",
+      "team": "MIA",
       "status": "",
-      "kickoff": "",
-      "yahoo": 0.0,
+      "kickoff": "Sun 1:25 pm",
+      "yahoo": 17.96,
       "actual": null,
       "pos": "QB",
-      "gotham": 0.0,
-      "gotham_raw": 0.0,
-      "gotham_src": "yahoo-fallback",
-      "sleeper": 0.0,
-      "window": null,
-      "gs": "nogame"
+      "gotham": 15.14,
+      "gotham_raw": 15.14,
+      "gotham_src": "gotham",
+      "sleeper": 14.91,
+      "window": 2,
+      "gs": "pre"
      },
      {
       "slot": "K",
@@ -2393,7 +2287,7 @@
       "team": "GB",
       "status": "",
       "kickoff": "Thu 5:15 pm",
-      "yahoo": 8.7,
+      "yahoo": 8.68,
       "actual": null,
       "pos": "K",
       "gotham": 8.86,
@@ -2405,23 +2299,35 @@
      },
      {
       "slot": "DEF",
-      "player": "Jets",
-      "team": "NYJ",
+      "player": "(Empty)",
+      "team": "",
       "status": "",
-      "kickoff": "Sun 10:00 am",
-      "yahoo": 5.68,
+      "kickoff": "",
+      "yahoo": 0.0,
       "actual": null,
       "pos": "DEF",
-      "gotham": 5.62,
-      "gotham_raw": 5.62,
+      "gotham": null,
+      "gotham_raw": null,
       "gotham_src": "sleeper",
-      "sleeper": 5.62,
-      "window": 1,
-      "gs": "pre"
+      "sleeper": 0.0,
+      "window": null,
+      "gs": "nogame"
      }
     ]
    },
    "bench": [
+    {
+     "slot": "BN",
+     "player": "C.J. Stroud",
+     "team": "HOU",
+     "status": "",
+     "pos": "QB",
+     "yahoo": null,
+     "actual": null,
+     "gotham": null,
+     "sleeper": null,
+     "window": null
+    },
     {
      "slot": "BN",
      "player": "Travis Kelce",
@@ -2430,21 +2336,9 @@
      "pos": "TE",
      "yahoo": null,
      "actual": null,
-     "gotham": 10.0,
-     "sleeper": 11.48,
+     "gotham": 9.97,
+     "sleeper": 11.59,
      "window": 2
-    },
-    {
-     "slot": "BN",
-     "player": "Dak Prescott",
-     "team": "DAL",
-     "status": "",
-     "pos": "QB",
-     "yahoo": null,
-     "actual": null,
-     "gotham": 24.75,
-     "sleeper": 26.82,
-     "window": 1
     },
     {
      "slot": "BN",
@@ -2454,7 +2348,7 @@
      "pos": "WR",
      "yahoo": null,
      "actual": null,
-     "gotham": 9.75,
+     "gotham": 9.74,
      "sleeper": 11.04,
      "window": 1
     },
@@ -2523,72 +2417,54 @@
    ],
    "pieces_set": "Sun Oct 25",
    "state": "UPCOMING",
-   "state_note": "2 of 22 starters done, 0 games kicked off",
+   "state_note": "1 of 22 starters done, 0 games kicked off",
    "needles_set": {
-    "gotham": 64,
-    "yahoo": 69,
-    "sleeper": 66,
-    "yahoo_from_spread": 67
+    "gotham": 68,
+    "yahoo": 71,
+    "sleeper": 72,
+    "yahoo_from_spread": 70
    },
    "totals_set": {
     "yahoo": [
-     139.15,
-     114.86
+     166.18,
+     136.98
     ],
     "gotham": [
-     126.68,
-     107.08
+     151.6,
+     126.06
     ],
     "sleeper": [
-     138.2,
-     115.16
+     165.26,
+     133.74
     ]
    },
    "best_moves": {
     "gotham": {
      "me": [
       {
-       "out": "C.J. Stroud",
-       "out_v": 0.0,
-       "into": "Dak Prescott",
-       "in_v": 24.8
-      },
-      {
        "out": "Josh Downs",
-       "out_v": 8.7,
+       "out_v": 8.6,
        "into": "Wan'Dale Robinson",
-       "in_v": 9.8
+       "in_v": 9.7
       }
      ],
      "op": [
       {
-       "out": "Blake Corum",
-       "out_v": 7.7,
+       "out": "Rico Dowdle",
+       "out_v": 8.9,
        "into": "Zach Charbonnet",
        "in_v": 9.0
       },
       {
-       "out": "Ja'Kobi Lane",
-       "out_v": 6.1,
-       "into": "Stefon Diggs",
-       "in_v": 11.7
-      },
-      {
-       "out": "Tyler Shough",
+       "out": "(Empty)",
        "out_v": 0.0,
-       "into": "Malik Willis",
-       "in_v": 14.9
+       "into": "(nobody eligible)",
+       "in_v": 0.0
       }
      ]
     },
     "sleeper": {
      "me": [
-      {
-       "out": "C.J. Stroud",
-       "out_v": 0.0,
-       "into": "Dak Prescott",
-       "in_v": 26.8
-      },
       {
        "out": "Josh Downs",
        "out_v": 9.8,
@@ -2599,27 +2475,21 @@
        "out": "Tucker Kraft",
        "out_v": 10.7,
        "into": "Travis Kelce",
-       "in_v": 11.5
+       "in_v": 11.6
       }
      ],
      "op": [
       {
-       "out": "Blake Corum",
-       "out_v": 7.4,
+       "out": "Rico Dowdle",
+       "out_v": 8.8,
        "into": "Zach Charbonnet",
        "in_v": 9.0
       },
       {
-       "out": "Ja'Kobi Lane",
-       "out_v": 5.8,
-       "into": "Stefon Diggs",
-       "in_v": 11.7
-      },
-      {
-       "out": "Tyler Shough",
+       "out": "(Empty)",
        "out_v": 0.0,
-       "into": "Malik Willis",
-       "in_v": 14.9
+       "into": "(nobody eligible)",
+       "in_v": 0.0
       }
      ]
     },
@@ -2628,7 +2498,7 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 69%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 71%.",
    "experts": {
     "read": "Mon Oct 26 2026 8:41 PM PT",
     "vs_pull": "Mon Oct 26 2026 3:04 PM PT",
@@ -2642,19 +2512,20 @@
     "rising": [
      "Marvin Harrison Jr. (WR, BN) up 14: WR63 -> WR49 since last week, 4 of 4 experts",
      "Zay Flowers (WR, WR) up 5.5: WR19 -> WR13.5 since last week, 4 of 4 experts",
-     "C.J. Stroud (QB, QB) up 5: QB12 -> QB7 since last week, 4 of 4 experts"
+     "C.J. Stroud (QB, BN) up 5: QB12 -> QB7 since last week, 4 of 4 experts"
     ],
     "sliding": [
      "Josh Downs (WR, WR) down 11: WR15 -> WR26 since last week, 4 of 4 experts"
     ],
     "wire": [
-     "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; on waivers until Oct 28 - flag for analysis, not a move"
+     "Bam Knight (ARI RB) up 22: RB46.5 -> RB24.5, 4 of 4 experts; on waivers until Oct 28 - flag for analysis, not a move",
+     "Chris Godwin Jr. (TB WR) up 19.5: WR48 -> WR28.5, 4 of 4 experts; on waivers until Oct 30 - flag for analysis, not a move"
     ],
     "missing": null
    },
    "pieces_check": {
-    "read": "Tue Oct 27 2026 12:40 PM PT",
-    "roster": "Tue Oct 27 2026 2:58 PM PT",
+    "read": "Tue Oct 27 2026 4:39 PM PT",
+    "roster": "Tue Oct 27 2026 4:56 PM PT",
     "lines": [
      "A steady second wide receiver: still OPEN - short in Week 13 (needs 2 WR at 12+; covering the other weeks: Justin Jefferson, Zay Flowers)."
     ]
