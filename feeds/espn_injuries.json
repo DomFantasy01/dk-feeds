@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-10-29T21:17:48+00:00",
+ "pulled_utc": "2026-10-29T21:40:15+00:00",
  "players": [
   {
    "team": "Arizona Cardinals",
@@ -757,7 +757,7 @@
    "espn_id": "",
    "pos": "S",
    "status": "Suspension",
-   "date": "2026-10-29T21:10Z",
+   "date": "2026-10-29T21:25Z",
    "detail": "reserve-sus",
    "type": "Suspension"
   },
@@ -1256,9 +1256,9 @@
    "name": "Anthony Johnson Jr.",
    "espn_id": "",
    "pos": "S",
-   "status": "Injured Reserve",
-   "date": "2026-10-29T21:09Z",
-   "detail": "ir",
+   "status": "Out",
+   "date": "2026-10-29T21:34Z",
+   "detail": "out",
    "type": "Undisclosed"
   },
   {
@@ -2003,6 +2003,16 @@
   },
   {
    "team": "Dallas Cowboys",
+   "name": "George Pickens",
+   "espn_id": "",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-10-29T21:15Z",
+   "detail": "Pickens (shoulder/hamstring) was a limited participant at Thursday's practice, Jon Machota of The Athletic reports.",
+   "type": "Shoulder"
+  },
+  {
+   "team": "Dallas Cowboys",
    "name": "Luke Schoonmaker",
    "espn_id": "",
    "pos": "TE",
@@ -2060,16 +2070,6 @@
    "date": "2026-10-29T01:07Z",
    "detail": "Turpin (ribs) was estimated to be a nonparticipant in Wednesday's walkthrough, Jon Machota of The Athletic reports.",
    "type": "Ribs"
-  },
-  {
-   "team": "Dallas Cowboys",
-   "name": "George Pickens",
-   "espn_id": "",
-   "pos": "WR",
-   "status": "Questionable",
-   "date": "2026-10-28T22:20Z",
-   "detail": "Pickens (shoulder/hamstring) was limited at Wednesday's practice, Jon Machota of The Athletic reports.",
-   "type": "Shoulder"
   },
   {
    "team": "Dallas Cowboys",
@@ -2253,6 +2253,26 @@
   },
   {
    "team": "Denver Broncos",
+   "name": "Brandon Jones",
+   "espn_id": "",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-10-29T21:25Z",
+   "detail": "questionable",
+   "type": "Hamstring"
+  },
+  {
+   "team": "Denver Broncos",
+   "name": "RJ Harvey",
+   "espn_id": "",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-10-29T21:24Z",
+   "detail": "questionable",
+   "type": "Knee"
+  },
+  {
+   "team": "Denver Broncos",
    "name": "Jaylen Waddle",
    "espn_id": "",
    "pos": "WR",
@@ -2266,10 +2286,10 @@
    "name": "Marvin Mims Jr.",
    "espn_id": "",
    "pos": "WR",
-   "status": "Questionable",
+   "status": "Active",
    "date": "2026-10-29T01:05Z",
    "detail": "Mims (ankle) was a limited participant in Denver's practice Wednesday, Aric DiLalla of the team's official site reports.",
-   "type": "Ankle"
+   "type": null
   },
   {
    "team": "Denver Broncos",
@@ -2290,16 +2310,6 @@
    "date": "2026-10-28T21:53Z",
    "detail": "questionable",
    "type": "Hip"
-  },
-  {
-   "team": "Denver Broncos",
-   "name": "Brandon Jones",
-   "espn_id": "",
-   "pos": "S",
-   "status": "Active",
-   "date": "2026-10-28T00:45Z",
-   "detail": "Jones recorded nine tackles (five solo) and a pass defensed during Sunday's 30-16 win at Arizona.",
-   "type": null
   },
   {
    "team": "Denver Broncos",
@@ -2409,16 +2419,6 @@
    "status": "Active",
    "date": "2026-10-26T00:32Z",
    "detail": "Dobbins rushed six times for 23 yards and a touchdown and wasn't targeted in Sunday's 30-16 win over the Cardinals.",
-   "type": null
-  },
-  {
-   "team": "Denver Broncos",
-   "name": "RJ Harvey",
-   "espn_id": "",
-   "pos": "RB",
-   "status": "Active",
-   "date": "2026-10-26T00:31Z",
-   "detail": "Harvey rushed three times for six yards while catching both of his targets for 54 yards and a touchdown in Sunday's 30-16 win over the Cardinals.",
    "type": null
   },
   {
@@ -4003,6 +4003,16 @@
   },
   {
    "team": "Las Vegas Raiders",
+   "name": "Brock Bowers",
+   "espn_id": "",
+   "pos": "TE",
+   "status": "Active",
+   "date": "2026-10-29T21:10Z",
+   "detail": "Bowers (calf) was a full practice participant Thursday.",
+   "type": null
+  },
+  {
+   "team": "Las Vegas Raiders",
    "name": "Jackson Powers-Johnson",
    "espn_id": "",
    "pos": "G",
@@ -4040,16 +4050,6 @@
    "date": "2026-10-29T00:43Z",
    "detail": "Thomas (shoulder) was a limited participant in Wednesday's practice, Anthony Galaviz of The Fresno Bee reports.",
    "type": "Shoulder"
-  },
-  {
-   "team": "Las Vegas Raiders",
-   "name": "Brock Bowers",
-   "espn_id": "",
-   "pos": "TE",
-   "status": "Active",
-   "date": "2026-10-28T21:28Z",
-   "detail": "Bowers (calf) was listed as a limited participant in Wednesday's practice, Paul Gutierrez of the Raiders' official site reports.",
-   "type": null
   },
   {
    "team": "Las Vegas Raiders",
@@ -5007,29 +5007,39 @@
    "espn_id": "",
    "pos": "RB",
    "status": "Questionable",
-   "date": "2026-10-29T19:56Z",
-   "detail": "Jones (knee) is participating in Thursday's practice, Kevin Seifert of ESPN.com reports.",
+   "date": "2026-10-29T21:28Z",
+   "detail": "Jones (knee) was limited at Thursday's practice.",
    "type": "Knee"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "name": "Gavin Bartholomew",
+   "espn_id": "",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-10-29T21:22Z",
+   "detail": "questionable",
+   "type": "Ankle"
   },
   {
    "team": "Minnesota Vikings",
    "name": "Brian O'Neill",
    "espn_id": "",
    "pos": "OT",
-   "status": "Questionable",
-   "date": "2026-10-28T21:36Z",
-   "detail": "questionable",
-   "type": "Knee"
+   "status": "Active",
+   "date": "2026-10-29T21:22Z",
+   "detail": "",
+   "type": null
   },
   {
    "team": "Minnesota Vikings",
    "name": "Joe Huber",
    "espn_id": "",
    "pos": "G",
-   "status": "Questionable",
-   "date": "2026-10-28T21:36Z",
-   "detail": "questionable",
-   "type": "Knee"
+   "status": "Active",
+   "date": "2026-10-29T21:22Z",
+   "detail": "",
+   "type": null
   },
   {
    "team": "Minnesota Vikings",
@@ -5240,16 +5250,6 @@
    "date": "2026-10-09T01:10Z",
    "detail": "Thorson (hamstring) was a full participant in practice Wednesday and Thursday.",
    "type": null
-  },
-  {
-   "team": "Minnesota Vikings",
-   "name": "Donovan Jackson",
-   "espn_id": "",
-   "pos": "G",
-   "status": "Injured Reserve",
-   "date": "2026-10-07T00:34Z",
-   "detail": "Jackson (knee) was placed on injured reserve by the Vikings on Tuesday.",
-   "type": "Knee - Meniscus"
   },
   {
    "team": "New England Patriots",
@@ -7753,6 +7753,16 @@
   },
   {
    "team": "Washington Commanders",
+   "name": "Nick Allegretti",
+   "espn_id": "",
+   "pos": "G",
+   "status": "Questionable",
+   "date": "2026-10-29T21:34Z",
+   "detail": "questionable",
+   "type": "Back"
+  },
+  {
+   "team": "Washington Commanders",
    "name": "John Bates",
    "espn_id": "",
    "pos": "TE",
@@ -7826,10 +7836,10 @@
    "name": "Stefon Diggs",
    "espn_id": "",
    "pos": "WR",
-   "status": "Questionable",
+   "status": "Active",
    "date": "2026-10-28T22:53Z",
    "detail": "Diggs (hand/hamstring/rest) was a non-participant at Wednesday's practice.",
-   "type": "Hand"
+   "type": null
   },
   {
    "team": "Washington Commanders",
@@ -7989,16 +7999,6 @@
    "status": "Active",
    "date": "2026-10-20T04:00Z",
    "detail": "Daniels completed 29 of 40 passes for 300 yards with two touchdowns and no interceptions while adding four rushes for 10 yards in the Commanders' 23-17 loss to the 49ers on Monday night.",
-   "type": null
-  },
-  {
-   "team": "Washington Commanders",
-   "name": "Tyler Owens",
-   "espn_id": "",
-   "pos": "S",
-   "status": "Active",
-   "date": "2026-10-19T23:23Z",
-   "detail": "Owens (hamstring) is active for Monday night's game against the 49ers.",
    "type": null
   }
  ]
