@@ -1,5 +1,5 @@
 {
- "run": "Thu Oct 29, 1:02 PM PT",
+ "run": "Thu Oct 29, 1:11 PM PT",
  "sims": 10000,
  "noise": {
   "QB": {
@@ -495,8 +495,8 @@
    "week": 8,
    "standings_read": "Thu Oct 29 12:52 PM PT",
    "week_win": 0.3519,
-   "playoff": 0.0011,
-   "wins": 3.8727,
+   "playoff": 0.0005,
+   "wins": 3.8807,
    "first": 0.0,
    "opp": "Benchdad's Beach",
    "scores": {
@@ -513,34 +513,44 @@
    },
    "weeks": {
     "8": 0.3519,
-    "9": 0.2659,
-    "10": 0.0737,
-    "11": 0.2296,
-    "12": 0.2801,
-    "13": 0.573,
-    "14": 0.0985
+    "9": 0.2773,
+    "10": 0.0775,
+    "11": 0.231,
+    "12": 0.2845,
+    "13": 0.5611,
+    "14": 0.0974
    },
    "swaps": [],
    "tests": [
-    {
-     "add": "Michael Penix Jr.",
-     "pos": "QB",
-     "nfl": "ATL",
-     "acq": "Free agent",
-     "drop": "Aaron Rodgers",
-     "playoff": 0.0015,
-     "d_playoff": 0.00039999999999999996,
-     "d_week": 0.0
-    },
     {
      "add": "Xavier Worthy",
      "pos": "WR",
      "nfl": "KC",
      "acq": "Waivers, clears Oct 31",
      "drop": "Devaughn Vele",
-     "playoff": 0.0015,
-     "d_playoff": 0.00039999999999999996,
+     "playoff": 0.001,
+     "d_playoff": 0.0005,
      "d_week": 0.012300000000000033
+    },
+    {
+     "add": "Michael Penix Jr.",
+     "pos": "QB",
+     "nfl": "ATL",
+     "acq": "Free agent",
+     "drop": "Aaron Rodgers",
+     "playoff": 0.0006,
+     "d_playoff": 9.999999999999994e-05,
+     "d_week": 0.0
+    },
+    {
+     "add": "DET defense",
+     "pos": "DEF",
+     "nfl": "DET",
+     "acq": "Free agent",
+     "drop": "Steelers",
+     "playoff": 0.0006,
+     "d_playoff": 9.999999999999994e-05,
+     "d_week": -0.018500000000000016
     },
     {
      "add": "Sam Darnold",
@@ -548,7 +558,7 @@
      "nfl": "SEA",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0011,
+     "playoff": 0.0005,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -558,7 +568,7 @@
      "nfl": "NYG",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0011,
+     "playoff": 0.0005,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -568,7 +578,7 @@
      "nfl": "TEN",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0011,
+     "playoff": 0.0005,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -578,7 +588,7 @@
      "nfl": "PHI",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0011,
+     "playoff": 0.0005,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -588,7 +598,7 @@
      "nfl": "LAC",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0011,
+     "playoff": 0.0005,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -598,19 +608,9 @@
      "nfl": "KC",
      "acq": "Free agent",
      "drop": "Jonah Coleman",
-     "playoff": 0.0011,
-     "d_playoff": 0.0,
+     "playoff": 0.0003,
+     "d_playoff": -0.00020000000000000004,
      "d_week": -0.0665
-    },
-    {
-     "add": "DET defense",
-     "pos": "DEF",
-     "nfl": "DET",
-     "acq": "Free agent",
-     "drop": "Steelers",
-     "playoff": 0.0011,
-     "d_playoff": 0.0,
-     "d_week": -0.018500000000000016
     },
     {
      "add": "Kimani Vidal",
@@ -618,8 +618,8 @@
      "nfl": "LAC",
      "acq": "Free agent",
      "drop": "Jonah Coleman",
-     "playoff": 0.0011,
-     "d_playoff": 0.0,
+     "playoff": 0.0003,
+     "d_playoff": -0.00020000000000000004,
      "d_week": -0.055300000000000016
     },
     {
@@ -628,8 +628,8 @@
      "nfl": "JAX",
      "acq": "Free agent",
      "drop": "Jonah Coleman",
-     "playoff": 0.0009,
-     "d_playoff": -0.0002000000000000001,
+     "playoff": 0.0003,
+     "d_playoff": -0.00020000000000000004,
      "d_week": -0.0343
     },
     {
@@ -638,94 +638,94 @@
      "nfl": "MIA",
      "acq": "Free agent",
      "drop": "Jonah Coleman",
-     "playoff": 0.0009,
-     "d_playoff": -0.0002000000000000001,
+     "playoff": 0.0002,
+     "d_playoff": -0.00030000000000000003,
      "d_week": -0.07889999999999997
     }
    ],
    "table": [
     {
      "name": "Dominique by 6",
-     "playoff": 0.9958,
-     "wins": 10.9772,
-     "first": 0.6171
+     "playoff": 0.9953,
+     "wins": 10.9758,
+     "first": 0.6139
     },
     {
      "name": "Mr. Bobo",
-     "playoff": 0.9739,
-     "wins": 9.5351,
-     "first": 0.1935
+     "playoff": 0.9727,
+     "wins": 9.5333,
+     "first": 0.1946
     },
     {
      "name": "The Deer Hunter Part Deux",
-     "playoff": 0.9339,
-     "wins": 9.054,
-     "first": 0.1283
+     "playoff": 0.9292,
+     "wins": 9.0518,
+     "first": 0.133
     },
     {
      "name": "Derek\u2019s Better Half",
-     "playoff": 0.8115,
-     "wins": 8.0743,
-     "first": 0.0464
+     "playoff": 0.8128,
+     "wins": 8.0786,
+     "first": 0.0466
     },
     {
      "name": "Dawg Pound Eric",
-     "playoff": 0.5478,
-     "wins": 7.4566,
-     "first": 0.0058
+     "playoff": 0.5573,
+     "wins": 7.4825,
+     "first": 0.004
     },
     {
      "name": "Rushin Roulette \ud83c\udfc8",
-     "playoff": 0.4439,
-     "wins": 7.2302,
-     "first": 0.0034
+     "playoff": 0.4315,
+     "wins": 7.218,
+     "first": 0.0023
     },
     {
      "name": "Beachmom's Bench",
-     "playoff": 0.4137,
-     "wins": 6.9689,
-     "first": 0.0021
+     "playoff": 0.4147,
+     "wins": 6.9589,
+     "first": 0.0022
     },
     {
      "name": "Bad and Bougie 2.0",
-     "playoff": 0.3108,
-     "wins": 7.0215,
-     "first": 0.0016
+     "playoff": 0.3026,
+     "wins": 7.0187,
+     "first": 0.0024
     },
     {
      "name": "Benchdad's Beach",
-     "playoff": 0.1922,
-     "wins": 6.0327,
-     "first": 0.001
+     "playoff": 0.2043,
+     "wins": 6.047,
+     "first": 0.0005
     },
     {
      "name": "Maly\u2019s Better Half",
-     "playoff": 0.1692,
-     "wins": 5.8898,
-     "first": 0.0002
+     "playoff": 0.1764,
+     "wins": 5.8878,
+     "first": 0.0001
     },
     {
      "name": "Press Coverage steph",
-     "playoff": 0.1409,
-     "wins": 6.1288,
+     "playoff": 0.1393,
+     "wins": 6.144,
      "first": 0.0004
     },
     {
      "name": "And A Goedert To You Sir",
-     "playoff": 0.0649,
-     "wins": 5.7159,
-     "first": 0.0002
-    },
-    {
-     "name": "Dark Knight III",
-     "playoff": 0.0011,
-     "wins": 3.8727,
+     "playoff": 0.0624,
+     "wins": 5.6928,
      "first": 0.0
     },
     {
      "name": "Mrs. Bobo",
-     "playoff": 0.0004,
-     "wins": 4.0423,
+     "playoff": 0.001,
+     "wins": 4.0301,
+     "first": 0.0
+    },
+    {
+     "name": "Dark Knight III",
+     "playoff": 0.0005,
+     "wins": 3.8807,
      "first": 0.0
     }
    ]
