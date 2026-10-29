@@ -198,18 +198,18 @@ def scorecard8(x, gw, D, tc):
     if D["started"]:
         word = D["result"] or ("LEADING" if me > op else "TRAILING" if me < op else "TIED")
         col = (K8["GREEN"] if word in ("WON", "LEADING") else K8["RED"] if word in ("LOST", "TRAILING") else K8["GOLD"])
-        bsz = 56 if D["result"] else 40
-        t8(x + 14, y - (22 if bsz == 56 else 14), word, "Bebas", bsz, col); rx = x + 22 + w8(word, "Bebas", bsz)
+        bsz = 44 if D["result"] else 32   # Oct 28 (Dom): smaller (was 56 / 40)
+        t8(x + 14, y - (18 if bsz == 44 else 12), word, "Bebas", bsz, col); rx = x + 22 + w8(word, "Bebas", bsz)
         a, b = me, op
     else:
         ym, yo = D["tot"][0] or 0, D["tot"][1] or 0; yp = D["nd"].get("yahoo")
         word = "FAVORED" if (yp or 50) > 55 else "UNDERDOG" if (yp or 50) < 45 else "TOSS-UP"
         col = K8["GREEN"] if word == "FAVORED" else K8["RED"] if word == "UNDERDOG" else K8["GOLD"]
-        t8(x + 14, y - 14, word, "Bebas", 40, col); rx = x + 22 + w8(word, "Bebas", 40)
+        t8(x + 14, y - 12, word, "Bebas", 32, col); rx = x + 20 + w8(word, "Bebas", 32)   # Oct 28 (Dom): 40 -> 32
         a, b = ym, yo
-    _NS = 21   # Oct 28 (Dom): the two scores were too big next to the word - 30 -> 21
-    t8(rx, y - 6, f"{a:.1f}", "Bebas", _NS, K8["INK"]); w1 = w8(f"{a:.1f}", "Bebas", _NS)
-    t8(rx + w1 + 5, y - 6, "to", "PopM", 7, K8["GR"]); t8(rx + w1 + 17, y - 6, f"{b:.1f}", "Bebas", _NS, K8["GR"])
+    _NS = 16   # Oct 28 (Dom): the two scores were too big next to the word - 30 -> 21 -> 16 ("still too big")
+    t8(rx, y - 3, f"{a:.1f}", "Bebas", _NS, K8["INK"]); w1 = w8(f"{a:.1f}", "Bebas", _NS)
+    t8(rx + w1 + 5, y - 3, "to", "PopM", 7, K8["GR"]); t8(rx + w1 + 17, y - 3, f"{b:.1f}", "Bebas", _NS, K8["GR"])
     orr = f"{oppn}  ·  {rec8(L.get('opp_record', ''))}" + (f", {L['opp_rank']}{sfx8(L['opp_rank'])} of {L['teams']}" if L.get("opp_rank") else "")
     _tail = orr[len(oppn):]   # Oct 12 (Dom): a long name gives way, the record and rank stay
     if w8(orr, "PopM", 6.8) > x + gw - 12 - rx: orr = fit8(oppn, 'PopM', 6.8, x + gw - 12 - rx - w8(_tail, 'PopM', 6.8)) + _tail
