@@ -143,7 +143,7 @@ OWN = {}
 for lg_, n_ in LGN.items():
     ro, wv = _rd(n_, "rosters_live"), _rd(n_, "waivers")
     if not ro: continue
-    stamp = (re.search(r"read live (.+? PT)", ro) or [None, "time unknown"])[1]
+    stamp = (re.search(r"read(?: live)? (\w{3} \w{3} \d+.*? PT)", ro) or [None, "time unknown"])[1]   # Oct 29: the API read says "Yahoo API read Thu ..."
     taken = {_nm(l.split("|")[2]) for l in ro.splitlines() if l and not l.startswith("#") and l.count("|") >= 4}
     wl_ = {}
     for l in wv.splitlines():
@@ -168,6 +168,94 @@ def wl(lg, name):
     for p in R.get("leagues", {}).get(lg, {}).get("own", []):
         if p.get("name") == name and isinstance(p.get("workload"), str): return p["workload"]
     return "unknown"
+# ---------- Oct 29 (Dom): THE ALERT BAR, WHOSE PLAYER, ALL FOUR NUMBERS ----------
+# "If just one alerts to that, it's probably adequate." A pickup/start alert fires when ANY ONE source - Ratcliffe (FTN),
+# Koerner (FantasyLabs), Yahoo or Gotham - has the man at least 15% AND at least 2 points a week better than the starter
+# he'd replace (2 points is Dom's noise line, measured per week he'd start, never a rest-of-season total), or when he
+# fills a real hole (bye, out). All four numbers are shown, Ratcliffe first. Under the bar it does not reach Dom -
+# a riser with a real reason (a starter ahead of him out, a bigger role, work climbing) gets a separate RISING card.
+import os as _o2, csv as _c2
+BAR_PCT, BAR_PTS = 0.15, 2.0
+_ROOT = _o2.environ.get("DK_ROOT", "/home/claude")
+_LGN = {"DK I": "1", "DK II": "2", "DK III": "3", "DK IV": "4"}
+def _ldcsv(f):
+    for d in (_ROOT + "/dksys/data/latest/",):
+        if _o2.path.exists(d + f): return list(_c2.DictReader(open(d + f)))
+    return []
+def _fl(v):
+    try: return float(v) if v not in ("", None, "nan") else None
+    except Exception: return None
+RAT, KOR, YPJ, RAT_AT, KOR_AT = {}, {}, {}, "", ""
+for r in _ldcsv("ftn_scored.csv"):
+    RAT[(str(r.get("lg")), _nm(r.get("name")))] = (_fl(r.get("wk")), _fl(r.get("ros_pg"))); RAT_AT = r.get("read_pt") or RAT_AT
+for r in _ldcsv("koerner_scored.csv"):
+    KOR[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); KOR_AT = r.get("read_pt") or KOR_AT
+YP_AT = ""
+for _n2 in "1234":
+    _t2 = ""
+    for _d2 in [SCOUT, _o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_drop", "scout")]:
+        _p2 = _o2.path.join(_d2 or "", f"yproj_dk{_n2}.txt")
+        if _d2 and _o2.path.exists(_p2): _t2 = open(_p2).read(); break
+    for l in _t2.splitlines():
+        if l.startswith("#"): YP_AT = (re.search(r"read live (.+? PT)", l) or [None, YP_AT])[1]; continue
+        x = l.split("|")
+        if len(x) >= 5 and str(x[0]) == str(W): YPJ[(_n2, _nm(x[1]))] = _fl(x[4])
+GOT = {}
+for _lg2, _RL2 in R.get("leagues", {}).items():
+    for p in (_RL2.get("in") or []) + (_RL2.get("own") or []):
+        if isinstance(p.get("gotham"), (int, float)): GOT[(_LGN.get(_lg2), _nm(p.get("name")))] = p["gotham"]
+for _lg2, _L2 in M.get("leagues", {}).items():
+    for p in (_L2.get("starters") or {}).get("me", []) + (_L2.get("bench") or []) + (_L2.get("starters") or {}).get("op", []):
+        if isinstance(p.get("gotham"), (int, float)): GOT[(_LGN.get(_lg2), _nm(p.get("player")))] = p["gotham"]
+def nums(lg, name, p=None):
+    """This week's four numbers for a man in one league: Ratcliffe, Koerner, Yahoo, Gotham (None = that source has no number)."""
+    n, k, p = _LGN.get(lg), _nm(name), p or {}
+    pick = lambda a, b: a if isinstance(a, (int, float)) else b
+    return {"ratcliffe": pick(p.get("ratcliffe"), (RAT.get((n, k)) or (None, None))[0]),
+            "koerner": pick(p.get("koerner"), KOR.get((n, k))),
+            "yahoo": pick(p.get("yahoo"), YPJ.get((n, k))),
+            "gotham": pick(p.get("gotham"), GOT.get((n, k)))}
+NAMES = {"ratcliffe": "Ratcliffe", "koerner": "Koerner", "yahoo": "Yahoo", "gotham": "Gotham"}
+def bar(cn, sn):
+    """Sources where the candidate clears 15% AND 2 points a week over the starter. [] = he doesn't reach Dom."""
+    out = []
+    for s in NAMES:
+        a, b = cn.get(s), sn.get(s)
+        if isinstance(a, (int, float)) and isinstance(b, (int, float)) and a - b >= BAR_PTS and a >= b * (1 + BAR_PCT): out.append(s)
+    return out
+def numline(cn, sn, sname="your starter"):
+    return "This week, him vs " + sname + ": " + " · ".join(
+        f"{NAMES[s]} {f1(cn.get(s)) if cn.get(s) is not None else 'no number'} vs {f1(sn.get(s)) if sn.get(s) is not None else 'no number'}" for s in NAMES)
+def barline(ok_):
+    return ("Clears the bar (15% and 2+ points this week) on " + ", ".join(NAMES[s] for s in ok_) + ("" if len(ok_) > 1 else " only - one source is enough to talk it through") + ".") if ok_ else ""
+def srcages():
+    return f"Numbers: Ratcliffe read {RAT_AT or 'unknown'} · Koerner read {KOR_AT or 'unknown'} · Yahoo read {YP_AT or 'unknown'} · Gotham built {BUILT or 'unknown'}"
+# whose player: Yahoo's API read (yahoo_api/latest.json) names every team in every league
+YA = {}
+for _d2 in [_o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_api", "latest.json")]:
+    try: YA = json.load(open(_d2))
+    except Exception: YA = {}
+YA_AT = YA.get("read_pt") or ""
+_TEAMOF = {}
+for _lk2, _YL in (YA.get("leagues") or {}).items():
+    _lab2 = {"DKI": "DK I", "DKII": "DK II", "DKIII": "DK III", "DKIV": "DK IV"}.get(_lk2)
+    for _tm in _YL.get("teams") or []:
+        for _pl in _tm.get("players") or []:
+            _TEAMOF[(_lab2, _nm(_pl.get("name")))] = (_tm.get("id"), _tm.get("name"), _pl.get("slot"), _YL.get("me"))
+    for _wv in _YL.get("waivers") or []:
+        _TEAMOF.setdefault((_lab2, _nm(_wv.get("name"))), ("W", _wv.get("clears"), None, _YL.get("me")))
+def own_tag(lg, name, hint=None):
+    """Whose man he is, said first on every card: YOUR PLAYER / OPPONENT / ANOTHER TEAM / FREE AGENT / ON WAIVERS (+ back from IR, new signing)."""
+    t = _TEAMOF.get((lg, _nm(name)))
+    opp = (M.get("leagues", {}).get(lg) or {}).get("opp") or ""
+    if t and t[0] == "W": base = f"On waivers until {t[1]}"
+    elif t and t[0] == t[3]: base = "Your player" + (" (IR)" if t[2] == "IR" else " (bench)" if t[2] == "BN" else "")
+    elif t and opp and t[1] == opp: base = f"Opponent this week: {opp}"
+    elif t: base = f"Another team's player: {t[1]}"
+    elif YA: base = "Free agent"
+    else: base = "Owner unknown (no Yahoo read)"
+    return base + (f" · {hint}" if hint else "")
+RISERS = []    # (lg, radar item, his numbers, starter's numbers, starter) - under the bar this week; the RISING check weighs them
 BENCH_BEATS = {}
 
 # ---------- the Radar: your roster, the wire, your opponent ----------
@@ -202,23 +290,25 @@ for lg, RL in R.get("leagues", {}).items():
     bench = [x for x in L.get("bench", []) if x.get("slot") != "IR" and healthy(x) and g(x) is not None]
     for p in RL.get("in", []):
         fl = p.get("floor") or {}
-        if not p.get("beats_floor") or g(p) is None: continue
+        if not fl.get("name"): continue                        # Oct 29: no Gotham gate any more - the bar below asks all four sources
         if fl.get("name") in hole_fill: continue   # that hole's alert already weighs the wire against the bench fill
         own_st = ownership(lg, p["name"])
         if own_st and own_st[0] == "taken": continue           # Yahoo's live read: someone already rosters him
-        better = max((x for x in bench if x.get("pos") == p.get("pos") and g(x) >= g(p)), key=g, default=None)
+        better = max((x for x in bench if x.get("pos") == p.get("pos") and g(p) is not None and g(x) >= g(p)), key=g, default=None)
         if better:                                             # your bench already beats him: no pickup alert
             BENCH_BEATS.setdefault(lg, []).append((p["name"], better["player"])); continue
         base = fl.get("gotham") or 0
-        gain = g(p) - base
-        if gain <= 0: continue
+        gain = (g(p) or 0) - base
         n0 = p["news"][0] if p.get("news") else {}
         fp = mine.get(fl.get("name"), {})
         # Oct 16 (Dom): never weigh a pickup against a starter whose game has already started - his score is locked
         # (Sutton's final 3.9 on Thursday read as "Antonio Williams beats him by 3.5").
         if fp.get("gs") not in (None, "pre"): continue
-        votes, cmp_ = agree(p.get("sleeper"), fp.get("sleeper"), p.get("yahoo"), fp.get("yahoo"))
-        tag = {2: "all three agree", 1: "Gotham + one", 0: "Gotham only"}.get(votes, "Gotham only")
+        cn_, sn_ = nums(lg, p["name"], p), nums(lg, fl.get("name"), fp)
+        ok_ = bar(cn_, sn_)
+        if not ok_: continue                                   # Oct 29 (Dom): under 15% / 2 points on every source - don't tell him
+        tag = "clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_)
+        cmp_ = numline(cn_, sn_, fl.get("name"))
         if own_st and own_st[0] == "waivers":
             kind_l, how = "On waivers", f"Waiver claim: he clears {own_st[1]}, so you have to win the claim, and adding him means dropping someone."
         elif own_st:
@@ -226,36 +316,39 @@ for lg, RL in R.get("leagues", {}).items():
         else:
             kind_l, how = "Free agent?", "Yahoo's roster read wasn't available, so it isn't confirmed he's still out there."
         why = [re.sub(r"^opening: (.+?) \u2014 (.+)$", r"Opening: \1 is \2, which frees up work", w) for w in (p.get("why") or [])]
-        add(id=slug("w", W, lg, "in", p["name"]), color="gold" if gain >= FLOOR else "grey", lg=lg, who=p["name"],
-            kind="wire", title=f"{kind_l}: {p['name']} ({p['pos']}, {p.get('team','')}) beats your {fl.get('name')} by {gain:.1f} ({tag})",
+        add(id=slug("w", W, lg, "in", p["name"]), color="gold", lg=lg, who=p["name"],
+            kind="wire", title=f"{kind_l}: {p['name']} ({p['pos']}, {p.get('team','')}) over your {fl.get('name')} this week ({tag})",
             what="; ".join(why) or "On the Scout's list.",
             tie=f"Your weakest {p['pos']} option in {lg} is {fl.get('name')}.",
-            fix=f"Your call: {'claim' if kind_l == 'On waivers' else 'add'} {p['name']} and start him over {fl.get('name')}. {how}" + (" Gain is under 2 points, inside the noise." if gain < FLOOR else ""),
-            ba={"label": "that lineup spot, Gotham points", "before": round(base, 1), "after": round(g(p), 1)},
-            receipts=[f"This week: Gotham {f1(g(p))} vs {f1(base)} \u00b7 {cmp_}",
+            fix=f"Talk it through: {'claim' if kind_l == 'On waivers' else 'add'} {p['name']} and start him over {fl.get('name')}? {how} Full workup and a live Yahoo check first.",
+            ba=None,
+            receipts=[cmp_, barline(ok_),
                       f"Workload last 5 (the work Gotham's number is built on): {p.get('workload') or 'unknown'}",
                       f"Yahoo roster read: {own_st[2] if own_st else 'not available'}"],
             by=("before waivers clear " + own_st[1]) if own_st and own_st[0] == "waivers" else None,
-            feed=feedline(n0), feed_title=n0.get("title"), src="Gotham, with Yahoo and Sleeper shown")
+            feed=feedline(n0), feed_title=n0.get("title"), src="the Radar's wire list, with Ratcliffe, Koerner, Yahoo and Gotham")
     # your own bench vs your own starters, Gotham-driven like the wire (Oct 14: the bench check's other half)
     used_b = set()
     for st in L.get("starters", {}).get("me", []):
         if st.get("gs") != "pre" or g(st) is None or st.get("slot") in ("QB", "K", "DEF", "Q/W/R/T"): continue
-        c = max((x for x in bench if x["player"] not in used_b and ok(x.get("pos"), st["slot"])), key=g, default=None)
-        if not c or g(c) - g(st) < FLOOR: continue
+        c, ok_ = None, []
+        for x_ in sorted((x for x in bench if x["player"] not in used_b and ok(x.get("pos"), st["slot"])), key=lambda x: -(x.get("ratcliffe") or g(x) or 0)):
+            ok_ = bar(nums(lg, x_["player"], x_), nums(lg, st["player"], st))
+            if ok_: c = x_; break
+        if not c: continue
         used_b.add(c["player"])
-        votes, cmp_ = agree(c.get("sleeper"), st.get("sleeper"), c.get("yahoo"), st.get("yahoo"))
-        tag = {2: "all three agree", 1: "Gotham + one", 0: "Gotham only"}.get(votes, "Gotham only")
-        gain = g(c) - g(st)
+        cmp_ = numline(nums(lg, c["player"], c), nums(lg, st["player"], st), st["player"])
+        tag = "clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_)
+        gain = (c.get("ratcliffe") or g(c) or 0) - (st.get("ratcliffe") or g(st) or 0)
         add(id=slug("w", W, lg, "bench", c["player"], st["player"]), color="gold", lg=lg, who=c["player"], kind="bench",
-            title=f"Your bench's {c['player']} beats your {st['slot']} {st['player']} by {gain:.1f} ({tag})",
-            what=f"Gotham has {c['player']} at {f1(g(c))} and {st['player']} at {f1(g(st))} this week.",
+            title=f"Your bench's {c['player']} over your {st['slot']} {st['player']} this week ({tag})",
+            what=f"Ratcliffe has {c['player']} at {f1(c.get('ratcliffe'))} and {st['player']} at {f1(st.get('ratcliffe'))} this week.",
             tie=f"Both are already on your {lg} roster: no pickup, no drop.",
-            fix=f"Your call: start {c['player']} over {st['player']}." + ("" if votes == 2 else " Yahoo and Sleeper don't both see it yet, so this is Gotham's early read."),
-            ba={"label": "that lineup spot, Gotham points", "before": round(g(st), 1), "after": round(g(c), 1)},
-            receipts=[f"This week: Gotham {f1(g(c))} vs {f1(g(st))} \u00b7 {cmp_}",
+            fix=f"Your call: start {c['player']} over {st['player']}?" + ("" if "ratcliffe" in ok_ else " Ratcliffe doesn't see it - find out why first."),
+            ba=None,
+            receipts=[cmp_, barline(ok_),
                       "Workload last 5: " + ", ".join(f"{q['player']} {q.get('workload') or wl(lg, q['player'])}" for q in (c, st)).replace(" unknown", " not in this build")],
-            by="before kickoff", feed="", src="Gotham, with Yahoo and Sleeper shown")
+            by="before kickoff", feed="", src="your bench vs your starters, Ratcliffe, Koerner, Yahoo and Gotham")
     for p in RL.get("opp", []):
         mk = p.get("marker", {})
         if mk.get("color") != "red" or not p.get("news"): continue
@@ -455,8 +548,15 @@ try:
                 nonline += 1; continue
             own_st = ownership(lg, name)
             if not own_st or own_st[0] == "taken": continue
-            beats = weak[0] is not None and p > weak[1]
-            if not beats and p < 5: continue
+            _st = [x for x in L.get("starters", {}).get("me", []) if ok(pos, x.get("slot")) and x.get("gs") in ("pre", None) and x.get("slot") != "Q/W/R/T"]
+            _st = min(_st, key=lambda x: nums(lg, x["player"], x).get("ratcliffe") or 99, default=None)
+            cn_ = nums(lg, name); sn_ = nums(lg, _st["player"], _st) if _st else {}
+            ok_ = bar(cn_, sn_)
+            if not ok_ and not any(v is not None for v in cn_.values()) and weak[0] is not None:   # nobody but Sleeper rates him yet
+                ok_ = ["sleeper"] if (p - weak[1] >= BAR_PTS and p >= weak[1] * (1 + BAR_PCT)) else []
+            beats = bool(ok_)
+            if not beats:
+                RISERS.append((lg, {"name": name, "pos": pos, "team": team, "why": [why], "online": True}, cn_, sn_, _st)); continue
             kind_l = "On waivers" if own_st[0] == "waivers" else "Free agent"
             add(id=slug("w", W, lg, "online", name), color="gold" if beats else "grey", lg=lg, who=name, kind="online",
                 title=f"Coming online: {name} ({pos}, {team}), {why}. {kind_l}" + (f", clears {own_st[1]}" if own_st[0] == "waivers" else ""),
@@ -465,7 +565,7 @@ try:
                      f"Not ahead of your {pos} starters yet" + (f" (weakest: {weak[0]['player']}, {weak[1]:.1f})" if weak[0] else "") + "; worth watching."),
                 fix=(f"Your call: {'claim' if own_st[0] == 'waivers' else 'add'} {name} - Sleeper projects {p:.1f} (PPR). Confirm his role in the news first; Gotham can't rate him until he plays. Adding him means dropping someone."
                      if beats else "Nothing to do yet - watch his first game back."),
-                ba=None, receipts=[gl, st_line, f"Sleeper projection pulled {_stamp_pt}", f"Yahoo roster read: {own_st[2]}"],
+                ba=None, receipts=[numline(cn_, sn_, _st["player"]) if _st else "", ("Only Sleeper rates him so far" if ok_ == ["sleeper"] else barline(ok_)), gl, st_line, f"Sleeper projection pulled {_stamp_pt}", f"Yahoo roster read: {own_st[2]}"],
                 by=(("before waivers clear " + own_st[1]) if own_st[0] == "waivers" else "before kickoff") if beats else None,
                 feed=(f"{srcname(news[1])}, {_pt(_when(news[0]))}" if news and _when(news[0]) else ""), feed_title=(news[2] if news else None),
                 src="Sleeper projection + nflverse game log (Gotham can't rate him yet)")
@@ -497,7 +597,10 @@ try:
             except Exception: continue
             if _dl <= _now: continue                      # kickoff passed: nothing left to do
             _sn, _cn = _x.get("starter_nums") or {}, _x.get("nums") or {}
-            _vs = " \u00b7 ".join(f"{k.capitalize()} {f1(_cn.get(k))} vs {f1(_sn.get(k))}" for k in ("ratcliffe", "yahoo", "gotham", "sleeper") if _cn.get(k) is not None or _sn.get(k) is not None)
+            _sn = dict(nums(_lab, _x.get("starter") or "", _sn) if _x.get("starter") else {}, **{k_: v_ for k_, v_ in _sn.items() if v_ is not None})
+            _cn = dict(nums(_lab, _x["name"]), **{k_: v_ for k_, v_ in _cn.items() if v_ is not None})
+            if not _x.get("empty") and not bar(_cn, _sn): continue   # Oct 29 (Dom): 15% and 2 points on at least one source
+            _vs = " \u00b7 ".join(f"{NAMES[k]} {f1(_cn.get(k))} vs {f1(_sn.get(k))}" for k in NAMES if _cn.get(k) is not None or _sn.get(k) is not None)
             add(id=slug("pk", W, _lab, _x["slot"], _x["name"], _x["starter"]), color=_x.get("color", "gold"), lg=_lab, who=_x["name"], kind="prekick",
                 title=(f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) fills your empty {_x['slot']} seat" if _x.get("empty")
                        else f"Before kickoff: {_x['name']} ({_x['pos']}, {_x['team']}) beats your {_x['slot']} {_x['starter']} by {_x['gain']:.1f} this week"),
@@ -545,22 +648,26 @@ try:
             if not ko or ko <= _nowu: continue                       # bye, or his game has started (he is on waivers now)
             why = "; ".join(it.get("why") or [])
             m_ = re.search(r"Sleeper adds #(\d+)", why); rank = int(m_.group(1)) if m_ else 99
-            p = _pp_(name)
-            starters = [x for x in L.get("starters", {}).get("me", []) if x.get("pos") == pos and x.get("slot") == pos]
-            weak = min(((x, _pp_(x["player"])) for x in starters if _pp_(x["player"]) is not None), key=lambda t: t[1], default=(None, None))
-            beats = p is not None and weak[1] is not None and p > weak[1]
-            if not (beats or rank <= 10 or "opening" in why): continue   # noise floor: only real candidates
+            # Oct 29 (Dom): Ratcliffe, Koerner, Yahoo and Gotham - never Sleeper - against the starter he'd replace
+            # (the weakest starter who could hold his seat, flex included, whose game hasn't started)
+            starters = [x for x in L.get("starters", {}).get("me", []) if ok(pos, x.get("slot")) and x.get("gs") in ("pre", None) and x.get("slot") not in ("Q/W/R/T",)]
+            def _rk(x): v = nums(lg, x["player"], x); return next((v[s_] for s_ in NAMES if v.get(s_) is not None), 99)
+            st_ = min(starters, key=_rk, default=None)
+            if st_ is None: continue
+            cn_, sn_ = nums(lg, name, it), nums(lg, st_["player"], st_)
+            ok_ = bar(cn_, sn_)
+            if not ok_:
+                RISERS.append((lg, it, cn_, sn_, st_)); continue      # under the bar this week: the rising check decides
             ko_pt = ko.astimezone(_PT); kot = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"
             n0 = (it.get("news") or [{}])[0]
             add(id=slug("rk", W, lg, name), color="gold", lg=lg, who=name, kind="radar_prekick",
-                title=f"Before lock ({kot}): {name} ({pos}, {team}) is a FREE AGENT now - Radar: {why}",
-                what=(n0.get("title") or "") + (f" - {n0.get('text')}" if n0.get("text") else ""),
-                tie=(f"Sleeper projects him {p:.1f} this week vs your weakest {pos} starter {weak[0]['player']} at {weak[1]:.1f}." if p is not None and weak[0]
-                     else (f"Sleeper projects him {p:.1f} this week." if p is not None else "No Sleeper projection for him this week.")),
+                title=f"Before lock ({kot}): {name} ({pos}, {team}) over your {st_['slot']} {st_['player']} this week - clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_),
+                what=(n0.get("title") or "") + (f" - {n0.get('text')}" if n0.get("text") else "") + (f" Radar: {why}." if why else ""),
+                tie=f"Would start over your {st_['slot']} {st_['player']} in {lg} this week, and he's free to add with no bid until {kot}.",
                 fix=f"Free to add, no bid, until his game kicks off {kot}; after that he goes to waivers. Bring him to Dom with the full workup before then - never add without Dom's go.",
-                ba=None, receipts=[own_st[2], f"kickoff {kot} (nflverse schedule)", f"Radar flag: {why}"] + ([f"{srcname(n0.get('src'))}, {n0.get('t')}"] if n0.get("t") else []),
+                ba=None, receipts=[numline(cn_, sn_, st_["player"]), barline(ok_), own_st[2], f"kickoff {kot} (nflverse schedule)", f"Radar flag: {why}"] + ([f"{srcname(n0.get('src'))}, {n0.get('t')}"] if n0.get("t") else []),
                 by="before " + kot, deadline_utc=ko.isoformat(), feed=feedline(n0) if n0 else "", feed_title=n0.get("title"),
-                src="the Radar + the latest Yahoo roster and waiver read")
+                src="the Radar, checked on Ratcliffe, Koerner, Yahoo and Gotham")
             _nr += 1; _shown += 1
             if _shown >= 4: break
     RADAR_NOTE = f"radar before-lock: {_nr} free agent(s)"
@@ -590,10 +697,12 @@ try:
             if os.path.exists(_f): _b = json.load(open(_f)); break
         if _b is None:
             _b = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/scout_state/scout_board_{_lk}.json?t={int(time.time())}", timeout=40).read())
+        _wl = max(1, 17 - int(W) + 1)
         for _x in (_b.get("adds") or [])[:4]:
             _bp = _x.get("bar_pct")
+            if (_x.get("gain") or 0) / _wl < BAR_PTS or (_bp is not None and _bp < 15): continue   # Oct 29 (Dom): Tampa's '2 points through Week 17' is 0.2 a week - noise
             add(id=slug("sc", W, _lab, _x["name"]), color="gold", lg=_lab, who=_x["name"], kind="scout_pickup",
-                title=f"Scout pickup: {_x['name']} ({_x['pos']}, {_x['team']}) adds ~{_x['gain']:.0f} pts through Week 17" + (f", {_bp:.0f}% over the man he'd replace" if _bp is not None else ""),
+                title=f"Scout pickup: {_x['name']} ({_x['pos']}, {_x['team']}) adds ~{_x['gain'] / _wl:.1f} pts a week (~{_x['gain']:.0f} through Week 17)" + (f", {_bp:.0f}% over the man he'd replace" if _bp is not None else ""),
                 what=f"{_x['acq']}. " + (f"Drop to make room: {_x['drop']}. " if _x.get("drop") else "Open bench seat - no drop needed. ")
                      + f"Ratcliffe vs engine: {_x.get('rc','?')}" + (f" ({_x['rc_why']})" if _x.get("rc_why") else "") + ".",
                 tie=f"{_lab} roster.", fix="Flag for the full workup and a live Yahoo check before any claim - nothing is a move until we've talked it through.",
@@ -625,6 +734,86 @@ try:
 except Exception as e:
     FTN_NOTE = f"ratcliffe alerts skipped: {type(e).__name__}: {e}"
 
+# ---------- Oct 29 (Dom): RISING PLAYERS - "I don't want to miss people that are up and coming" ----------
+# Men under this week's bar still reach Dom when something real is pushing their work up: a starter ahead of him OUT
+# (not merely questionable/limited), news of a bigger role, his snaps/targets climbing, Ratcliffe's rest-of-season number
+# clearing the bar over the starter he'd replace, or he's just come back / changed teams and an expert already rates him.
+# One card per man per league, at most 3 per league, free agents and waiver men only. It's a heads-up to talk through.
+RISE_NOTE = ""
+try:
+    # a ROLE change, not a practice report ("full practice" / "returns to practice" are health news, not more work)
+    ROLE = re.compile(r"\b((bigger|heavier|larger|expanded|increased|more|elevated) (workload|role|work|snaps?|snap count|touches|usage|playing time|opportunit\w*)|uptick|lead role|lead back|starting role|takes? over|step(s)? into|in line for|promoted|starting job|will start|set to start|draws start|workhorse|inherits)\b", re.I)
+    _OUTRX = re.compile(r"opening: (.+?) — (out|doubtful|ir\b|injured reserve|placed on|traded|released|waived|suspended|season)", re.I)
+    def _wlup(w):
+        try: v = [float(x) for x in str(w or "").split("/") if x.strip() not in ("", "-")]
+        except Exception: return None
+        if len(v) < 4: return None
+        a, b = sum(v[-2:]) / 2, sum(v[:-2]) / len(v[:-2])
+        return (a, b) if a >= 6 and a >= 1.5 * max(b, 1) else None
+    _rk2, _seen2 = {}, {(x["lg"], _nm(x["who"])) for x in ITEMS}
+    for lg, it, cn_, sn_, st_ in RISERS:
+        name = it.get("name"); k = (lg, _nm(name))
+        if k in _seen2: continue
+        o_ = ownership(lg, name)
+        if o_ and o_[0] == "taken": continue
+        why_ = "; ".join(it.get("why") or []); rs = []
+        m_ = _OUTRX.search(why_)
+        if m_: rs.append(f"{m_.group(1)} is {m_.group(2).lower()}, so his work goes up")
+        if re.search(r"good news", why_) and ROLE.search((it.get("news") or [{}])[0].get("title") or ""):
+            rs.append("news of a bigger role: " + it["news"][0]["title"])
+        w_ = _wlup(it.get("workload"))
+        if w_: rs.append(f"his work is climbing: {w_[0]:.0f} a game the last two vs {w_[1]:.0f} before (snaps/targets/touches, last games {it.get('workload')})")
+        rp = (RAT.get((_LGN.get(lg), _nm(name))) or (None, None))[1]
+        sp = (RAT.get((_LGN.get(lg), _nm(st_["player"]))) or (None, None))[1] if st_ else None
+        if isinstance(rp, (int, float)) and isinstance(sp, (int, float)) and rp - sp >= BAR_PTS and rp >= sp * (1 + BAR_PCT):
+            rs.append(f"Ratcliffe's rest of season has him at {rp:.1f} a game vs {sp:.1f} for {st_['player']}")
+        if it.get("online") and any(isinstance(v, (int, float)) and v >= 6 for v in cn_.values()):
+            rs.append(why_ + " - and an expert already projects him for real work")
+        if not rs: continue
+        best = max([v for v in cn_.values() if isinstance(v, (int, float))] or [0])
+        _rk2.setdefault(lg, []).append((len(rs), best, lg, it, cn_, sn_, st_, rs, o_))
+    _nr2 = 0
+    for lg, L_ in _rk2.items():
+        for n_, best, lg, it, cn_, sn_, st_, rs, o_ in sorted(L_, key=lambda t: (-t[0], -t[1]))[:3]:
+            name, pos, team = it.get("name"), it.get("pos"), it.get("team") or ""
+            add(id=slug("rise", W, lg, name), color="gold", lg=lg, who=name, kind="rising",
+                title=f"Rising: {name} ({pos}, {team}) - " + rs[0],
+                what="; ".join(rs[1:]) or rs[0],
+                tie=(f"Not ahead of your {st_['slot']} {st_['player']} this week, but if this holds he could be in a few weeks - and he's cheapest now." if st_
+                     else "Not a starter for you this week; worth catching while he's cheap."),
+                fix="Nothing to do yet: talk it through, and give him the full workup if the reason holds.",
+                ba=None, receipts=[numline(cn_, sn_, st_["player"]) if st_ else "", "Why he's flagged: " + "; ".join(rs),
+                                   ("Yahoo: " + o_[2]) if o_ else ""],
+                by=None, src="the rising-player check (Radar, workload, Ratcliffe rest of season)")
+            _nr2 += 1
+    RISE_NOTE = f"rising: {_nr2} of {len(RISERS)} under-the-bar men"
+except Exception as e:
+    RISE_NOTE = f"rising check skipped: {type(e).__name__}: {e}"
+
+_rpk = {(x["lg"], x["who"]) for x in ITEMS if x.get("kind") == "radar_prekick"}
+ITEMS[:] = [x for x in ITEMS if not (x.get("kind") == "wire" and (x["lg"], x["who"]) in _rpk)]
+# ---------- Oct 29 (Dom): every card says whose man he is, what it means for him, and where the numbers came from ----------
+for x in ITEMS:
+    hint = None
+    if x.get("kind") == "online":
+        t_ = (x.get("title") or "").lower()
+        hint = "new team" if "new team" in t_ else "back from injury" if ("no game since" in t_ or "just back" in t_ or "coming back" in t_) else "hasn't played yet" if "hasn't played" in t_ else None
+    if x.get("kind") in ("ftn_stale",): x["own"] = "System"; continue
+    x["own"] = own_tag(x["lg"], x["who"].replace(" defense", ""), hint)
+    if x.get("kind") == "feed":
+        role = "starter" if (x.get("tie") or "").startswith("Your ") else "opp" if "opponent" in (x.get("tie") or "") else "bench"
+        good = (x.get("fix") or "").startswith("Good news")
+        bad = x.get("color") == "red"
+        opp = (M.get("leagues", {}).get(x["lg"]) or {}).get("opp") or "your opponent"
+        x["tie"] = {("starter", True): x.get("tie", "") + " Good sign: he looks set to play, so no fill needed.",
+                    ("starter", False): x.get("tie", "") + (" If he sits, you need a fill in that seat before his kickoff." if not bad else " He likely scores little or nothing: line up a fill now."),
+                    ("bench", True): x.get("tie", "") + " Good for him; it changes nothing this week unless you start him.",
+                    ("bench", False): x.get("tie", "") + " He isn't in your lineup, so this week's score doesn't change.",
+                    ("opp", True): f"Starts for {opp}, your {x['lg']} opponent this week: he looks set to play.",
+                    ("opp", False): f"Starts for {opp}, your {x['lg']} opponent this week: if he sits, their score drops."}[(role, good)]
+    if x.get("kind") in ("wire", "bench", "radar_prekick", "prekick", "online", "rising") and srcages() not in (x.get("receipts") or []):
+        x["receipts"] = [r for r in (x.get("receipts") or []) if r] + [srcages()]
+
 # ---------- merge with what Live already holds ----------
 old = {x["id"]: x for x in PREV.get("items", [])}
 seen, out = set(), []
@@ -638,13 +827,20 @@ for x in ITEMS:
     out.append(x)
 cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=30)).isoformat()
 cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=7)).isoformat()   # Oct 20 (Dom): archived cards clear 7 days after archiving, as the page says
+cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=1)).isoformat()   # Oct 29 (Dom): resolved cards are kept one day, then dropped
 for i, o in old.items():
     if i in seen: continue
     if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
     if o.get("kind") == "feed" and not FEEDS and o.get("active"):
         pass                                          # a run without the feeds can't judge feed alerts; leave them as they are
     elif o.get("active"):
-        o = dict(o, active=False, resolved_at=NOW)   # the latest build no longer raises it
+        o = dict(o, active=False, resolved_at=NOW,   # the latest build no longer raises it - say why (Oct 29, Dom)
+                 resolved_why={"feed": "the news is over 48 hours old, or newer news on him replaced it",
+                               "radar_prekick": "his game kicked off, someone added him, or he fell under the bar",
+                               "prekick": "the kickoff passed or he fell under the bar",
+                               "wire": "he fell under the bar or someone added him", "rising": "the reason went away or he was added",
+                               "scout_pickup": "the Scout no longer ranks him", "out": "the lineup hole is filled", "bye": "the lineup hole is filled"
+                               }.get(o.get("kind"), "the latest build no longer raises it"))
     if o.get("active") or not o.get("resolved_at") or o["resolved_at"] >= cut7:
         if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
@@ -665,4 +861,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", SIZE_NOTE)
