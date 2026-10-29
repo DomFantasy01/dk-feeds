@@ -126,7 +126,7 @@ def league8(lab, MT):
         rows.append(dict(name=p["player"], slot=_SLOT8.get(p["slot"], p["slot"]), pos=p["pos"], team=_T8(p["team"]), tag=_tag8(p.get("status")),
                          final=fin, live=live8(p["team"], w) if w == WEEKN else False, score=p.get("actual"),
                          ypre=pr.get("yahoo") if pr.get("yahoo") is not None else p.get("yahoo"),
-                         spre=pr.get("sleeper") if pr.get("sleeper") is not None else p.get("sleeper"),
+                         spre=pr.get("ratcliffe") if pr.get("ratcliffe") is not None else p.get("ratcliffe"),   # Oct 28: the middle column is FTN (Ratcliffe), Sleeper off
                          gpre=None if kd else gp, nxt=None if kd or e is None or _p8.isna(e.eng_fwd) else float(e.eng_fwd),
                          av=None if kd else avg8(lab, p["player"], w), vs=vs8(p["team"], w), bye=bye8(p["team"]),
                          opn=_short8(o) if o.get("player") else "—", opsc=o.get("actual"),
@@ -138,7 +138,7 @@ def league8(lab, MT):
         a = None if kd else act8(lab, p["player"], w)
         d = dict(name=p["player"], slot=p["slot"], pos=p["pos"], team=_T8(p["team"]), tag=_tag8(p.get("status")),
                  final=a is not None and done8(p["team"], w), live=live8(p["team"], w) if w == WEEKN else False, score=a, ypre=None,
-                 spre=p.get("sleeper"), gpre=None if kd or e is None or _p8.isna(e.eng_wk) else ((PRE.get(f"{lab}|me|{k}") or {}).get("gotham") if bool(getattr(e, "played_wk", False)) else float(e.eng_wk)),
+                 spre=p.get("ratcliffe"), gpre=None if kd or e is None or _p8.isna(e.eng_wk) else ((PRE.get(f"{lab}|me|{k}") or {}).get("gotham") if bool(getattr(e, "played_wk", False)) else float(e.eng_wk)),
                  nxt=None if kd or e is None or _p8.isna(e.eng_fwd) else float(e.eng_fwd), av=None if kd else avg8(lab, p["player"], w),
                  vs=vs8(p["team"], w), bye=bye8(p["team"]))
         (irs if p["slot"] == "IR" else bench).append(d)
@@ -207,8 +207,9 @@ def scorecard8(x, gw, D, tc):
         col = K8["GREEN"] if word == "FAVORED" else K8["RED"] if word == "UNDERDOG" else K8["GOLD"]
         t8(x + 14, y - 14, word, "Bebas", 40, col); rx = x + 22 + w8(word, "Bebas", 40)
         a, b = ym, yo
-    t8(rx, y - 4, f"{a:.1f}", "Bebas", 30, K8["INK"]); w1 = w8(f"{a:.1f}", "Bebas", 30)
-    t8(rx + w1 + 6, y - 4, "to", "PopM", 8, K8["GR"]); t8(rx + w1 + 20, y - 4, f"{b:.1f}", "Bebas", 30, K8["GR"])
+    _NS = 21   # Oct 28 (Dom): the two scores were too big next to the word - 30 -> 21
+    t8(rx, y - 6, f"{a:.1f}", "Bebas", _NS, K8["INK"]); w1 = w8(f"{a:.1f}", "Bebas", _NS)
+    t8(rx + w1 + 5, y - 6, "to", "PopM", 7, K8["GR"]); t8(rx + w1 + 17, y - 6, f"{b:.1f}", "Bebas", _NS, K8["GR"])
     orr = f"{oppn}  ·  {rec8(L.get('opp_record', ''))}" + (f", {L['opp_rank']}{sfx8(L['opp_rank'])} of {L['teams']}" if L.get("opp_rank") else "")
     _tail = orr[len(oppn):]   # Oct 12 (Dom): a long name gives way, the record and rank stay
     if w8(orr, "PopM", 6.8) > x + gw - 12 - rx: orr = fit8(oppn, 'PopM', 6.8, x + gw - 12 - rx - w8(_tail, 'PopM', 6.8)) + _tail
@@ -228,10 +229,10 @@ def scorecard8(x, gw, D, tc):
         s = f"Projected margin {sgn8(a - b)}  ·  Yahoo, lineups as set"
     t8(bx0 + bwid, y - 22, fit8(s, "Pop", 6, bwid), "Pop", 6, K8["GR"], "r")
     y -= 60; nd = D["nd"]
-    _gauge8(x + gw * .22, y, 15, nd.get("gotham"), "GOTHAM"); _gauge8(x + gw * .5, y, 24, nd.get("yahoo"), "YAHOO", True)
-    _gauge8(x + gw * .78, y, 15, nd.get("sleeper"), "SLEEPER")
-    cap = ("Win chance at the last read" if D["settled"] else "Win chance now — Yahoo center, Gotham left, Sleeper right" if D["started"]
-           else "Win chance before kickoff — Yahoo center, Gotham left, Sleeper right")
+    _gauge8(x + gw * .22, y, 15, nd.get("ratcliffe"), "FTN"); _gauge8(x + gw * .5, y, 24, nd.get("yahoo"), "YAHOO", True)
+    _gauge8(x + gw * .78, y, 15, nd.get("gotham"), "GOTHAM")
+    cap = ("Win chance at the last read" if D["settled"] else "Win chance now — Yahoo center, FTN left, Gotham right" if D["started"]
+           else "Win chance before kickoff — Yahoo center, FTN left, Gotham right")
     t8(x + gw / 2, y - 29, cap, "PopM", 6, K8["GR"], "c")
     # facts
     y -= 46; c.setStrokeColor(K8["LINE"]); c.setLineWidth(.5); c.line(x + 12, y + 12, x + gw - 12, y + 12)
@@ -279,17 +280,17 @@ def _outlook14(D, moves):
     L = D["L"]; lab = D["lab"]; rows = [r for r in D["rows"] if r["name"]]; nd = D["nd"]
     oppn = _tct(L["opp"]) if "_tct" in globals() else L["opp"]
     ym, yo = D["tot"]; ym = ym or 0; yo = yo or 0; mg = ym - yo
-    g_, y_, s_ = nd.get("gotham"), nd.get("yahoo"), nd.get("sleeper")
+    g_, y_, s_ = nd.get("gotham"), nd.get("yahoo"), nd.get("ratcliffe")
     word = "as the favorite" if (y_ or 50) > 55 else "as the underdog" if (y_ or 50) < 45 else "in a toss-up"
     orr = rec8(L.get("opp_record", "")) + (f", {L['opp_rank']}{sfx8(L['opp_rank'])} of {L['teams']}" if L.get("opp_rank") else "")
     lead = (f"{lab} goes in {word}. Yahoo projects {ym:.1f} to {yo:.1f} against {oppn} ({orr}), a {abs(mg):.1f}-point "
-            f"{'edge' if mg >= 0 else 'gap'}. Win chance: Yahoo {num8(y_, 0)}%, Gotham {num8(g_, 0)}%, Sleeper {num8(s_, 0)}%.")
+            f"{'edge' if mg >= 0 else 'gap'}. Win chance: Yahoo {num8(y_, 0)}%, FTN {num8(s_, 0)}%, Gotham {num8(g_, 0)}%.")
     vals = [v for v in (y_, g_, s_) if v is not None]
     BM = L.get("best_moves") or {}
     opbest = (BM.get("gotham") or {}).get("op") or []
     opbest = [m for m in opbest if m.get("into") and not m["into"].startswith("(") and (m.get("in_v") or 0) - (m.get("out_v") or 0) >= 1]
     if len(vals) > 1 and max(vals) - min(vals) >= 10:
-        lead += (f" The engines split by {max(vals) - min(vals):.0f}: Yahoo uses the lineups as set, Gotham and Sleeper the best ones"
+        lead += (f" The engines split by {max(vals) - min(vals):.0f}: Yahoo uses the lineups as set, FTN and Gotham the best ones"
                  + (f" - and {oppn}'s best adds {'; '.join(m['into'] + (' in an empty seat' if str(m['out']).startswith('(') else ' for ' + ln8(m['out'])) + ' (' + sgn8(m['in_v'] - m['out_v']) + ')' for m in opbest[:2])}." if opbest else "."))
     elif len(vals) > 1: lead += " The three engines agree."
     rk = L.get("rank"); tm_ = L.get("teams") or 12
@@ -314,7 +315,7 @@ def _outlook14(D, moves):
     if emp: todo.append(f"{emp} starting slot{'s' if emp > 1 else ''} empty")
     p3 = ("; ".join(todo) + ". ") if todo else "Lineup set, no starter tagged. "
     mine = {}
-    for eng in ("gotham", "sleeper"):
+    for eng in ("ratcliffe", "gotham"):
         for m in (BM.get(eng) or {}).get("me") or []:
             if m.get("into") and not m["into"].startswith("(") and (m.get("in_v") or 0) - (m.get("out_v") or 0) >= .5:
                 mine.setdefault((m["out"], m["into"]), []).append((eng, m["in_v"] - m["out_v"]))
@@ -322,7 +323,7 @@ def _outlook14(D, moves):
     if mine:
         calls = []
         for (o, i), v in sorted(mine.items(), key=lambda kv: -max(x[1] for x in kv[1]))[:2]:
-            who = "Gotham and Sleeper both" if len(v) > 1 else v[0][0].capitalize()
+            who = "FTN and Gotham both" if len(v) > 1 else {"ratcliffe": "FTN"}.get(v[0][0], v[0][0].capitalize())
             calls.append(f"{who} would start {ln8(i)} over {ln8(o)} ({sgn8(max(x[1] for x in v))})"); lift += max(x[1] for x in v)
         p3 += "; ".join(calls) + ". "
     if mg < 0:
@@ -343,8 +344,8 @@ def story8(D, moves):
         ym, yo = D["tot"]; nd = D["nd"]
         lead = (f"Yahoo has {lab} at {num8(ym)} against {num8(yo)} for {oppn} ({rec8(L.get('opp_record', ''))}"
                 + (f", {L['opp_rank']}{sfx8(L['opp_rank'])}" if L.get("opp_rank") else "") + f"). Win chance: Yahoo {num8(nd.get('yahoo'), 0)}%, "
-                f"Gotham {num8(nd.get('gotham'), 0)}%, Sleeper {num8(nd.get('sleeper'), 0)}%.")
-        vals = [v for v in (nd.get("yahoo"), nd.get("gotham"), nd.get("sleeper")) if v is not None]
+                f"FTN {num8(nd.get('ratcliffe'), 0)}%, Gotham {num8(nd.get('gotham'), 0)}%.")
+        vals = [v for v in (nd.get("yahoo"), nd.get("gotham"), nd.get("ratcliffe")) if v is not None]
         if len(vals) > 1: lead += " The three agree." if max(vals) - min(vals) < 10 else f" They split by {max(vals) - min(vals):.0f} points — read the tags below."
         car = sorted([r for r in rows if r["ypre"]], key=lambda r: -r["ypre"])[:3]
         out = [("Carrying the load", "; ".join(f"{ln8(r['name'])} {r['ypre']:.1f}" for r in car) + ".")] if car else []
@@ -475,7 +476,7 @@ def marks8(x, y, nm, MK):
 # ================================================================ THE TABLES
 def _cols8():
     return [("PLAYER", M + 4, "l"), ("MARKERS", M + 126, "l"), ("POS", M + 180, "l"), ("TEAM", M + 198, "l"), ("SLOT", M + 220, "l"), ("VS", M + 246, "l"),
-            ("BYE", M + 282, "r"), ("YAHOO", M + 308, "r"), ("SLEEPER", M + 338, "r"), ("GOTHAM", M + 366, "r"), ("SCORE", M + 396, "r"), ("NEXT 3", M + 422, "r"),
+            ("BYE", M + 282, "r"), ("YAHOO", M + 308, "r"), ("FTN", M + 338, "r"), ("GOTHAM", M + 366, "r"), ("SCORE", M + 396, "r"), ("NEXT 3", M + 422, "r"),
             ("AVG", M + 444, "r"), ("OPPONENT", M + 454, "l"), ("SCORE", M + 510, "r"), ("DELTA", W - M - 4, "r")]
 RH8 = 12.8
 def head8(y, title, sub, tc, opp=True, right=None):
@@ -514,7 +515,7 @@ def row8(y, r, i, tc, MK, opp=True, why=None):
     for k in ("POS", "TEAM", "SLOT", "VS"):
         v = str(r[k.lower()] if k != "SLOT" else r["slot"]); t8(CX[k], y, v, "Pop", 6.8, K8["RED"] if v == "BYE" else K8["INK"])
     t8(CX["BYE"], y, str(r["bye"] or ""), "Pop", 6.8, K8["GR"], "r")
-    for k, v in (("YAHOO", r["ypre"]), ("SLEEPER", r["spre"]), ("GOTHAM", r["gpre"])):
+    for k, v in (("YAHOO", r["ypre"]), ("FTN", r["spre"]), ("GOTHAM", r["gpre"])):
         t8(CX[k], y, num8(v), "Pop", 6.9, K8["INK"] if k == "YAHOO" else K8["GR"], "r")
     sc = r["score"]; good = sc is not None and r["final"] and r.get("ypre") and sc - r["ypre"] >= 3; bad = sc is not None and r["final"] and r.get("ypre") and sc - r["ypre"] <= -4
     t8(s9, y, num8(sc), "PopB", 7.4, K8["GREEN"] if good else (K8["RED"] if bad else K8["INK"]), "r")
