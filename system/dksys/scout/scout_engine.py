@@ -579,6 +579,26 @@ try:
     else: print("Scout: no Ratcliffe file - the engine's numbers stand alone")
 except Exception as _e: print("Scout: Ratcliffe skipped:", _e)
 def rc_has(p): return _ypk(p) in _RCW or _ypk(p) in _RCT
+# Oct 29 (Dom): SEAN KOERNER (FantasyLabs) beside Ratcliffe - this week only (FantasyLabs has no rest-of-season numbers).
+# A second opinion: it never sets a value or makes a pick; it is shown on every pick and every this-week comparison,
+# and a split between the two experts is called out.
+_KOW = {}
+try:
+    _kf = "/home/claude/dksys/data/latest/koerner_scored.csv"
+    if os.path.exists(_kf) and os.path.getsize(_kf) > 50:
+        _kd = pd.read_csv(_kf); _kd = _kd[_kd.lg == CF["n"]]
+        for _r in _kd.itertuples():
+            if pd.notna(_r.wk): _KOW[("DEF", tm(str(_r.team))) if _r.pos == "DST" else (_r.pos, norm(_r.name))] = float(_r.wk)
+        print(f"Scout: Koerner (FantasyLabs) beside Ratcliffe - {len(_KOW)} weekly numbers for {CF['lab']}")
+    else: print("Scout: no Koerner file this week")
+except Exception as _e: print("Scout: Koerner skipped:", _e)
+def ko_note(p):
+    """Koerner vs Ratcliffe this week on one man: '' when Koerner has no line."""
+    k=_ypk(p); kv=_KOW.get(k); rv=_RCW.get(k)
+    if kv is None: return ""
+    if rv is None: return f"Koerner {kv:.1f} this week (Ratcliffe has no line)"
+    split=abs(kv-rv)>=max(3.0,.25*max(kv,rv))
+    return f"Koerner {kv:.1f} vs Ratcliffe {rv:.1f} this week" + (" - THE EXPERTS SPLIT, check why" if split else " - experts agree")
 def rc_weekly(p,x,ytag=""):
     """Ratcliffe's number for week x, or None when he doesn't project the man."""
     if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0 if rc_has(p) else None
@@ -1051,10 +1071,10 @@ def thisweek(p):
         if x_bye := (NOW in byes.get(p["team"], [])): return f"This week: {p['name'].replace(' defense',' DEF')} has a bye - no help this week"
         if NOW < back(p): return f"This week: {p['name']} is out (due back Wk {back(p)}) - no help this week"
         # Oct 28 (Dom): Ratcliffe first, then Yahoo and Gotham; Sleeper is off the boards
-        a = dict(Ratcliffe=_RCW.get(_ypk(p)), Yahoo=_YP.get((_ypk(p), NOW)), Gotham=(None if kd else _GOT.get(norm(p["name"]))))
-        b = dict(Ratcliffe=_RCW.get(_ypk(sp)), Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)),
+        a = dict(Ratcliffe=_RCW.get(_ypk(p)), Koerner=_KOW.get(_ypk(p)), Yahoo=_YP.get((_ypk(p), NOW)), Gotham=(None if kd else _GOT.get(norm(p["name"]))))
+        b = dict(Ratcliffe=_RCW.get(_ypk(sp)), Koerner=_KOW.get(_ypk(sp)), Yahoo=sm.get("yahoo") if sm.get("yahoo") is not None else _YP.get((_ypk(sp), NOW)),
                  Gotham=(sm.get("gotham") if not kd else None) if sm else (None if kd else _GOT.get(norm(st["name"]))))
-        pairs = [(k, a[k], b[k]) for k in ("Ratcliffe", "Yahoo", "Gotham") if not (kd and k == "Gotham")]
+        pairs = [(k, a[k], b[k]) for k in ("Ratcliffe", "Koerner", "Yahoo", "Gotham") if not (kd and k == "Gotham") and not (k == "Koerner" and (a[k] is None or b[k] is None))]
         both = [(x, y) for _, x, y in pairs if x is not None and y is not None]
         rc = next(((x, y) for k, x, y in pairs if k == "Ratcliffe" and x is not None and y is not None), None)
         verdict = ("WORSE this week" if both and all(x < y for x, y in both) else "better this week" if both and all(x > y for x, y in both)
@@ -1124,7 +1144,9 @@ def _pick(e,need_red,w):
     if _gl: why=why+"; CHECK FIRST: "+"; ".join(_gl); urg="gold"
     if _rv: why=why+"; "+_rv
     _rt,_rw=rc_tag(p); why=why+f"; {_rt.upper()} ({_rw})"           # Oct 28 (Dom): Ratcliffe vs engine on every pick
-    return dict(rc=_rt,rc_why=_rw,guard=_gl,rivals=_rv,drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
+    _kn=ko_note(p)
+    if _kn: why=why+"; "+_kn                                        # Oct 29 (Dom): Koerner beside Ratcliffe on every pick
+    return dict(rc=_rt,rc_why=_rw,ko=_kn,guard=_gl,rivals=_rv,drop=e.get("drop"),name=p["name"].replace(" defense"," DEF"),team=p["team"],pos=p["pos"],scores=sc,acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
                 why=why[0].upper()+why[1:],when=wk(fw).replace("Week","Wk").replace("Weeks","Wks"),urg=urg,now=thisweek(p),
                 gain=_gn(e),pgain=_pgn(e))   # Oct 10: points added through Wk 17
 # ---- LIFE CYCLE + ARCHIVE (Dom, Oct 9): the Signal's rule on the spyglass. A need keeps one stable key per slot and
@@ -1199,7 +1221,7 @@ _CAP={"DKI":(5,1),"DKII":(5,2),"DKIII":(5,1),"DKIV":(5,3)}[LGK]; _me=ROS[ROS.tid
 _nst=int((~_me.slot.isin(["BN","IR"])).sum())
 BOARD["open"]=dict(start=max(0,len(SLOTS)-_nst),bench=max(0,_CAP[0]-int((_me.slot=="BN").sum())),ir=max(0,_CAP[1]-int((_me.slot=="IR").sum())))
 BOARD["adds"]=[dict(guard=guard(e),rivals=rivals(e),drop=e.get("drop"),name=e["p"]["name"].replace(" defense"," DEF"),team=e["p"]["team"],pos=e["p"]["pos"],acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
-                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1],bar_pct=e.get("bar_pct"))
+                    gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1],ko=ko_note(e["p"]) or None,bar_pct=e.get("bar_pct"))
                for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"])],key=lambda e:-_gn(e))[:6]]
 _named={p["name"] for it in BOARD["gate1"] for p in it["picks"]}|{it["pick"]["name"] for it in BOARD["gate2"]}
 _chk=[]

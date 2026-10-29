@@ -173,6 +173,32 @@ def rc_of(k, name, pos, team):
     return RC.get((k, norm(name)))
 RC_FALL = {}
 
+# ---------------------------------------------------------------- KOERNER (Oct 29, Dom: Sean Koerner, FantasyLabs, beside Ratcliffe everywhere)
+# A second opinion: his own tick and number on every meter, never the needle and never a decision by himself. Weekly only.
+KO = {}
+try:
+    _fk = _sp.run([sys.executable, '/home/claude/dksys/gather/flabs.py'], check=False, capture_output=True, text=True, timeout=120)
+    if _fk.returncode != 0: alarms.append('koerner: scoring failed - ' + (_fk.stderr or _fk.stdout).strip().splitlines()[-1][:160])
+    _kf = ROOT + 'koerner_scored.csv'
+    if os.path.exists(_kf) and os.path.getsize(_kf) > 50:
+        _kd = pd.read_csv(_kf)
+        for _r in _kd.itertuples():
+            if pd.isna(_r.wk): continue
+            KO[(int(_r.lg), ('DEF', T(_r.team)) if _r.pos == 'DST' else ('K', _r.key) if _r.pos == 'K' else _r.key)] = float(_r.wk)
+        _kp = str(_kd.read_pt.dropna().iloc[0]) if len(_kd) and _kd.read_pt.notna().any() else ''
+        _kt = None
+        try: _kt = dt.datetime.strptime(_kp.replace(' PT', ''), '%a %b %d %Y %I:%M %p').replace(tzinfo=PT)
+        except Exception: pass
+        _ka = round((NOW - _kt).total_seconds() / 3600, 1) if _kt else None
+        sources['koerner'] = dict(status='OK' if _ka is not None and _ka <= 36 else 'STALE', path=_kf, pulled_pt=_kp, age_h=_ka, rows=len(_kd), note="Sean Koerner (FantasyLabs), scored in each league's rules")
+        if _ka is None or _ka > 36: alarms.append(f"koerner: STALE - FantasyLabs read {_kp or 'unknown'} ({_ka} h old, limit 36 h)")
+    else: notes.append('koerner: no FantasyLabs read for this week yet (yahoo_drop/flabs/)'); sources['koerner'] = dict(status='MISSING', path=_kf)
+except Exception as _e: alarms.append(f'koerner: read failed ({_e})')
+def ko_of(k, name, pos, team):
+    if pos == 'DEF': return KO.get((k, ('DEF', T(team))))
+    if pos == 'K': return KO.get((k, ('K', norm(name))))
+    return KO.get((k, norm(name)))
+
 # ---------------------------------------------------------------- Sleeper (from Dom's GitHub feed job)
 def newest_by_name(pattern):
     f = sorted(glob.glob(pattern)); return f[-1] if f else None      # job files carry their run time in the name
@@ -278,13 +304,15 @@ for lab, cfg in LEAGUES.items():
                 if k in BLANK: notes.append(f"{lab}: Sleeper lists {p['player']} with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle")
                 else: notes.append(f"{lab}: no Sleeper number for {p['player']} ({pos}) - Sleeper is off the meters (Oct 28), noted only")
             _rc = rc_of(cfg['k'], p['player'], pos, p.get('team'))
+            _ko = ko_of(cfg['k'], p['player'], pos, p.get('team'))
             if _rc is None and not _empty and win is not None and RC: RC_FALL.setdefault(lab, []).append(p['player'])
             L.append(dict(p, pos=pos, gotham=None if go is None else round(float(go), 2), gotham_raw=None if graw is None else round(float(graw), 2), gotham_src=gsrc,
                           sleeper=round(float(sl if sl is not None else (p['yahoo'] or 0)), 2), window=win,
-                          ratcliffe=round(float(_rc if _rc is not None else (p['yahoo'] or 0)), 2), ratcliffe_src='ftn' if _rc is not None else 'yahoo-fallback'))
+                          ratcliffe=round(float(_rc if _rc is not None else (p['yahoo'] or 0)), 2), ratcliffe_src='ftn' if _rc is not None else 'yahoo-fallback',
+                          koerner=round(float(_ko if _ko is not None else (p['yahoo'] or 0)), 2), koerner_src='flabs' if _ko is not None else 'yahoo-fallback'))
         sides[side] = L
     me, op = sides['me'], sides['op']
-    yt = chance(me, op, 'yahoo'); gt = chance(me, op, 'gotham'); st_ = chance(me, op, 'sleeper'); rt = chance(me, op, 'ratcliffe')
+    yt = chance(me, op, 'yahoo'); gt = chance(me, op, 'gotham'); st_ = chance(me, op, 'sleeper'); rt = chance(me, op, 'ratcliffe'); kt = chance(me, op, 'koerner')
     if RC_FALL.get(lab): notes.append(f"{lab}: no Ratcliffe number for {', '.join(RC_FALL[lab])} - Yahoo used on the Ratcliffe needle")
     def wins(L, col):
         w = [0.0] * len(WINS); c = [0] * len(WINS)
@@ -298,9 +326,10 @@ for lab, cfg in LEAGUES.items():
         league=cfg['full'], league_id=cfg['id'], me=cfg['me'], opp=opp,
         record=mine.get('rec'), opp_record=theirs.get('rec'), rank=mine.get('rank'), div=mine.get('div'), div_rank=mine.get('div_rank'),
         pf_rank=mine.get('pf_rank'), teams=len(tb) if tb is not None else None, opp_rank=theirs.get('rank'),
-        needles=dict(gotham=gt[2], yahoo=YWIN.get((cfg['id'], cfg['me'])), sleeper=st_[2], yahoo_from_spread=yt[2], ratcliffe=rt[2] if RC else None),
+        needles=dict(gotham=gt[2], yahoo=YWIN.get((cfg['id'], cfg['me'])), sleeper=st_[2], yahoo_from_spread=yt[2], ratcliffe=rt[2] if RC else None, koerner=kt[2] if KO else None),
         totals=dict(yahoo=[round(yt[0], 2), round(yt[1], 2)], gotham=[round(gt[0], 2), round(gt[1], 2)], sleeper=[round(st_[0], 2), round(st_[1], 2)],
-                    ratcliffe=[round(rt[0], 2), round(rt[1], 2)] if RC else None),
+                    ratcliffe=[round(rt[0], 2), round(rt[1], 2)] if RC else None,
+                    koerner=[round(kt[0], 2), round(kt[1], 2)] if KO else None),
         windows=dict(me=wins(me, 'yahoo'), op=wins(op, 'yahoo')),
         played=dict(me=sum(1 for p in me if p['actual'] is not None), op=sum(1 for p in op if p['actual'] is not None), of=[len(me), len(op)]),
         starters=dict(me=me, op=op))
@@ -318,6 +347,8 @@ for lab, cfg in LEAGUES.items():
                 outside = (p['yahoo'] + p['sleeper']) / 2
                 if abs((p.get('gotham_raw') or p['gotham']) - outside) >= 6:
                     notes.append(f"{lab}: Gotham {(p.get('gotham_raw') or p['gotham']):.1f} vs Yahoo {p['yahoo']:.1f} / Sleeper {p['sleeper']:.1f} on {p['player']} - check role/news")
+            if side == 'me' and p.get('actual') is None and p.get('ratcliffe_src') == 'ftn' and p.get('koerner_src') == 'flabs' and abs(p['ratcliffe'] - p['koerner']) >= max(4.0, .3 * max(p['ratcliffe'], p['koerner'])):
+                notes.append(f"{lab}: experts split on your {p.get('slot') or p['pos']} {p['player']} - Ratcliffe {p['ratcliffe']:.1f} vs Koerner {p['koerner']:.1f} (Yahoo {p['yahoo'] or 0:.1f})")   # Oct 29 (Dom): always tell him when they disagree
 
 # ---- Dom's bench and IR (Field Report): from the latest Yahoo roster pull, numbers from the same sources as the starters
 RF = latest(YDIR + 'dom_rosters.json')
@@ -340,7 +371,7 @@ if RF:
             _rcb = rc_of(cfg['k'], p['player'], pos, tm)
             out.append(dict(slot=p['slot'], player=p['player'], team=tm, status=p['status'], pos=pos, yahoo=None, actual=None,
                             gotham=go, sleeper=None if sl is None else round(float(sl), 2), window=TEAMWIN.get(tm),
-                            ratcliffe=None if _rcb is None else round(float(_rcb), 2)))
+                            ratcliffe=None if _rcb is None else round(float(_rcb), 2), koerner=(lambda _v: None if _v is None else round(float(_v), 2))(ko_of(cfg['k'], p['player'], pos, tm))))
         try:   # Oct 12: a newer Scout roster read wins for bench and IR tags
             _n = {'DK I': 1, 'DK II': 2, 'DK III': 3, 'DK IV': 4}[lab]; _me = {'DK I': '2', 'DK II': '7', 'DK III': '2', 'DK IV': '6'}[lab]
             _f = f'/home/claude/dksys/scout/dk{_n}_rosters_live.txt'

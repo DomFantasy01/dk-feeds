@@ -38,14 +38,14 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, koerner=s.get('koerner') if s.get('koerner_src') == 'flabs' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
                 n += 1
         for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
             if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
             g = game_of(s.get('team'), W)
             if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue
             P[f"{lab}|bench|{norm(s['player'])}"] = dict(league=lab, side='bench', player=s['player'], pos=s['pos'], team=s.get('team'),
-                yahoo=None, gotham=s.get('gotham'), gotham_raw=s.get('gotham'), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe'), at=M['built_pt'], game=g.game_id)
+                yahoo=None, gotham=s.get('gotham'), gotham_raw=s.get('gotham'), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe'), koerner=s.get('koerner'), at=M['built_pt'], game=g.game_id)
             n += 1
     json.dump(P, open(pf, 'w'), indent=0); print(f"   scoreboard: week {W} pregame numbers held for {len(P)} men ({n} refreshed this build)")
 # ---- 2. grade every week that has finished games
@@ -64,7 +64,7 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), actual=round(act, 2)))
+        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), actual=round(act, 2)))
 R = pd.DataFrame(rows)
 if 'side' not in R: R['side'] = None
 R['side'] = R['side'].fillna('seed')
@@ -76,7 +76,9 @@ _ok = (R.yahoo > 0) & (R.sleeper > 0); _c = (R.yahoo + R.sleeper) / 2
 R['gotham'] = R.gotham_raw.where(~_ok | R.gotham_raw.isna() | (R.gotham_raw <= _c), _c).round(2)
 if 'ratcliffe' not in R: R['ratcliffe'] = None
 R['ratcliffe'] = pd.to_numeric(R['ratcliffe'], errors='coerce')
-R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe']]
+if 'koerner' not in R: R['koerner'] = None   # Oct 29 (Dom): Sean Koerner frozen pregame from Week 8, graded the same way
+R['koerner'] = pd.to_numeric(R['koerner'], errors='coerce')
+R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe', 'koerner']]
 if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
 R.to_csv(f"{OUT}/graded.csv", index=False)
 SRC = ['yahoo', 'gotham', 'sleeper']

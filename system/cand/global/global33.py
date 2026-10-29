@@ -2794,13 +2794,16 @@ def _key(x,y,kind,ln=16):
     elif kind=="e": c.setLineWidth(.7); c.circle(x+ln/2,y,1.5,fill=0,stroke=1)
     c.restoreState()
 _STW=[""]
-def readout3(GX,gy,vy,vw,ve,CP):
-    # each number leads; under it, the needle it belongs to; under that, whose it is
-    htxt(GX,gy-22,f"{vy}%","Bebas",23,TXT,"c",hw=2.4); _key(GX,gy-25.6,"y",22); htxt(GX,gy-31.0,"YAHOO","PopB",4.8,TXT,"c",hw=1.3)
-    for x,v,k,lab in ((GX-35,vw,"w","FTN"),(GX+35,ve,"e","GOTHAM")):
-        htxt(x,gy-18.5,f"{v}%","Bebas",11,mix(BG2,TXT,.80),"c",hw=1.8); _key(x,gy-21.8,k,14)    # v34: equal models, equal type
-        htxt(x,gy-26.6,lab,"PopB",4.2,mix(BG2,TXT,.75),"c",hw=1.2)
-    htxt(GX,gy-39.0,(_STW[0]+"  ·  " if _STW[0] else "")+"PROJECTED WIN PROBABILITY","PopB",5.2,TXT,"c",hw=1.5)   # Oct 10: more air under YAHOO
+KORC=(1.0,.478,.851)   # Oct 29 (Dom): Koerner's pink, the same as Live
+def readout3(GX,gy,vy,vw,ve,CP,vk=None):
+    # Oct 29 (Dom): Yahoo tight under the needle, then one row of three - Ratcliffe (FTN), Koerner (F Labs), Gotham
+    htxt(GX,gy-17.0,f"{vy}%","Bebas",18,TXT,"c",hw=2.4); htxt(GX,gy-21.6,"YAHOO","PopB",4.2,TXT,"c",hw=1.3)
+    for x,v,k,lab in ((GX-38,vw,"w","RATCLIFFE · FTN"),(GX,vk,"k","KOERNER · F LABS"),(GX+38,ve,"e","GOTHAM")):
+        htxt(x,gy-31.0,("–" if v is None else f"{v}%"),"Bebas",9.5,mix(BG2,TXT,.85),"c",hw=1.6)
+        if k=="k": c.saveState(); c.setStrokeColorRGB(*KORC); c.setLineWidth(1.6); c.setLineCap(1); c.line(x-6,gy-33.0,x+5,gy-33.0); c.restoreState()
+        else: _key(x,gy-33.0,k,11)
+        htxt(x,gy-36.8,lab,"PopB",3.6,mix(BG2,TXT,.78),"c",hw=1.1)
+    htxt(GX,gy-41.6,(_STW[0]+"  ·  " if _STW[0] else "")+"PROJECTED WIN PROBABILITY","PopB",4.8,TXT,"c",hw=1.5)
 PROSE={
  "DK I":"DIKFORE are done but for Juwan Johnson Monday and their kicker. Your Vikings defense has 21. McCaffrey and Kelce are playing; Shough, London and Kamara go Monday.",
  "DK II":"Chase finished at 5.7. Raider Fan has Smith-Njigba, Bowers and Jennings playing now, Bates tonight. You have Darnold, Sutton and Kelce on now; Kamara and London Monday.",
@@ -2848,7 +2851,7 @@ def block(D,top,h,VMAX,GX):
     # v39 (Dom): tighten left to right - the numbers no longer hang off the title's width; they sit one short gap
     # past the longest label, and the "vs" closes up
     MD=MOD[D["lab"]]; EF=EFF[D["lab"]]
-    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","FTN","GOTHAM"))
+    LW=max(c.stringWidth(t,"PopB",LS) for t in ("YAHOO","FTN","KOERNER","GOTHAM"))
     NWm=c.stringWidth("000.0","Bebas",FY)   # one column for all four leagues, so the blocks line up down the page
     NC=lx+LW+4+NWm; VW=c.stringWidth("vs","PopM",6.2); OC=NC+3+VW+3
     def _row(yy,name,me,op,fs,cm,co,hw):
@@ -2858,9 +2861,11 @@ def block(D,top,h,VMAX,GX):
         d_=round(round(me,1)-round(op,1),1); g_=int(math.floor(abs(d_)+.5+1e-9))*(1 if d_>=0 else -1)   # v38 (Dom): whole points, half rounds away from zero
         htxt(w_+4,yy,f"({'+' if g_>0 else '-' if g_<0 else ''}{abs(g_)})","Bebas",FP,PC,hw=1.4)
     _row(y2,"YAHOO",D['ym'],D['yo'],FY,col,OPPC,1.8)
-    MD=MOD[D["lab"]]; y2m=y2-10.0; mc_=mix(GR,TXT,.45); oc_=mix(GR,TXT,.45)
+    _sp=7.8 if D["lab"] in KOR else 10.0   # Oct 29 (Dom): with Koerner the four rows close up so nothing below moves much
+    MD=MOD[D["lab"]]; y2m=y2-_sp; mc_=mix(GR,TXT,.45); oc_=mix(GR,TXT,.45)
     _row(y2m,"FTN",MD['me'],MD['op'],FM,mc_,oc_,1.8)
-    EF=EFF[D["lab"]]; y2e=y2m-10.0
+    EF=EFF[D["lab"]]; y2e=y2m-_sp
+    if D["lab"] in KOR: _row(y2e,"KOERNER",KOR[D["lab"]]['me'],KOR[D["lab"]]['op'],FM,mc_,oc_,1.8); y2e-=_sp
     _row(y2e,"GOTHAM",EF['me'],EF['op'],FM,mc_,oc_,1.8)
     ks=[k for k,v in reversed(D["bands"]) if k!="you"]; kx=lx; ky=y2e-LS*1.2-0.2
     for k in ks:
@@ -2892,12 +2897,12 @@ def block(D,top,h,VMAX,GX):
     a=ACT.get(D["lab"]); pm=sum(v_ for v_ in a["me"][:done] if v_) if done else 0.0; po=sum(v_ for v_ in a["op"][:done] if v_) if done else 0.0
     S=[dict(side=-1,k="you",pts=pm,pc=col,marg=round(pm-po,1),fill=col),dict(side=1,k="opp",pts=po,pc=OPP_SQ,marg=None,fill=mix(OPP_SQ,BG2,.25))]   # v32: one margin only, on Dom's triangle (Dom, Sun Oct 4)   # v31: each triangle in its team color, each carries its own signed lead
     for d_ in S: d_.update(stack_dims(f"{d_['pts']:.1f}"))
-    MBOX=(GX-METERBOX[0],gy-31.5-10.5,GX+METERBOX[0],top)   # v47: the marks keep off the meter
+    MBOX=(GX-METERBOX[0],gy-31.5-12.0,GX+METERBOX[0],top)   # v47: the marks keep off the meter (Oct 29: taller for the row of three)
     plan,off=place_marks(S,bx,PS,CEIL,pb,[IDBOX,BALLBOX,MBOX],x0+6,x1-6)
     tops=[_rect(m,x,yr,d_)[3] for d_,(m,x,yr) in zip(S,plan)]
     yt=min(CEIL,max(tops)+2)   # Oct 11 (Dom): the pole ends just above the flags, not at the tallest ridge
     dn=31.5   # v24: meter plates go down BEFORE the now-edge and banked marks, so the marks print over them
-    scrim(_dome(GX,gy,ro+GLAB+1,dn),al=PLATE_A,steps=9,feather=4.5); scrim(_capsule(GX-54,gy-dn-10.5,GX+54,gy-dn,5),al=PLATE_A,steps=9,feather=3.0)   # v46 (Dom): shadow pulled in under the dial
+    scrim(_dome(GX,gy,ro+GLAB+1,dn),al=PLATE_A,steps=9,feather=4.5); scrim(_capsule(GX-56,gy-dn-12.0,GX+56,gy-dn,5),al=PLATE_A,steps=9,feather=3.0)   # v46 (Dom): shadow pulled in under the dial; Oct 29 taller
     nowedge(bx,pb,yt)
     for d_,(mode,x,yr) in zip(S,plan): draw_mark(d_,mode,x,yr,T[d_["k"]])
     D["marks"]=[(d_["k"],d_["ps"])+d_["placed"] for d_ in S]; D["edge"]=(round(bx,1),round(yt,1),round(off,1))
@@ -2911,9 +2916,9 @@ def block(D,top,h,VMAX,GX):
         htxt(GX,gy-31,"FINAL","PopB",5.6,TXT,"c",hw=1.6)
         return dvx-br
     MW_,ME_=MOD[D["lab"]]["pct"],EFF[D["lab"]]["pct"]; CP=COMP[D["lab"]]
-    METER_NOW[D["lab"]]=dict(yahoo=D["pct"],ratcliffe=MW_,gotham=ME_,comp=CP)   # the field cards read these
+    METER_NOW[D["lab"]]=dict(yahoo=D["pct"],ratcliffe=MW_,gotham=ME_,koerner=KOR.get(D["lab"],{}).get("pct"),comp=CP)   # the field cards read these
     gauge3(GX,gy,gr,D["pct"],MW_,ME_,col,CP["all_pct"])
-    _STW[0]=MTR["leagues"].get(D["lab"],{}).get("state") or ""; readout3(GX,gy,D["pct"],MW_,ME_,CP)
+    _STW[0]=MTR["leagues"].get(D["lab"],{}).get("state") or ""; readout3(GX,gy,D["pct"],MW_,ME_,CP,KOR.get(D["lab"],{}).get("pct"))
     return dvx-br
 
 METER_NOW={}; METERBOX=[54.0]
@@ -3067,7 +3072,7 @@ def _final(i): return all(r.result==r.result for r in G.itertuples() if _SLOT[(r
 DONE=0
 while DONE<NW and _final(DONE): DONE+=1
 # ---- per-league data in the shapes the drawing code already reads ----
-YL,YAH,MOD,EFF,COMP,ACT,DEC={},{},{},{},{},{},{}
+YL,YAH,MOD,EFF,COMP,ACT,DEC,KOR={},{},{},{},{},{},{},{}
 for lab,L in MTR["leagues"].items():
     sm,so=L["starters"]["me"],L["starters"]["op"]
     row=lambda p:(p["player"],p["team"],p["slot"],p["yahoo"] or 0.0,p["actual"])
@@ -3076,6 +3081,7 @@ for lab,L in MTR["leagues"].items():
     _rk="ratcliffe" if L["needles"].get("ratcliffe") is not None and L["totals"].get("ratcliffe") else "gotham"   # Oct 28 (Dom): Ratcliffe leads; Sleeper off the meters
     MOD[lab]=dict(me=L["totals"][_rk][0],op=L["totals"][_rk][1],pct=L["needles"][_rk])
     EFF[lab]=dict(me=L["totals"]["gotham"][0],op=L["totals"]["gotham"][1],pct=L["needles"]["gotham"])
+    if L["needles"].get("koerner") is not None and L["totals"].get("koerner"): KOR[lab]=dict(me=L["totals"]["koerner"][0],op=L["totals"]["koerner"][1],pct=L["needles"]["koerner"])   # Oct 29 (Dom): Koerner
     def _bank(S):
         w=[0.0]*NW
         for p in S:

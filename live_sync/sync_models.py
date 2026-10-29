@@ -26,7 +26,8 @@ for lab, k in KEY.items():
         rc = s.get('ratcliffe'); g = s['gotham'] if s['gotham'] is not None else rc
         if s['pos'] in ('K', 'DEF'): g = rc
         if rc is None and g is None: continue
-        d[norm(s['player'])] = [rc if rc is not None else g, g]
+        ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
+        d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g)]
     pm[k] = d
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
@@ -60,7 +61,7 @@ for lab, k in KEY.items():
     L = M['leagues'][lab]; bm = L.get('best_moves') or {}
     if not bm: continue
     ent = {}
-    for col, tag in (('ratcliffe' if bm.get('ratcliffe') else 'gotham', 'g'), ('gotham', 's')):   # Oct 28: g = Ratcliffe (lead), s = Gotham
+    for col, tag in (('ratcliffe' if bm.get('ratcliffe') else 'gotham', 'g'), ('gotham', 's')) + ((('koerner', 'k'),) if bm.get('koerner') else ()):   # Oct 28: g = Ratcliffe, s = Gotham; Oct 29: k = Koerner
         ent[tag] = {side: {norm(mv['out']): mv['in_v'] for mv in (bm.get(col) or {}).get(side, []) if mv.get('out')}
                     for side in ('me', 'op')}
     def _lines(side):
@@ -74,15 +75,15 @@ for lab, k in KEY.items():
         if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
         return t
     ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
-    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham')}
+    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
 from datetime import datetime, timedelta, timezone
 t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
 cur['stamp'] = (t + timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')
-cur['source'] = f"Week {M['week']}: RATCLIFFE and GOTHAM per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
-cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), GOTHAM], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
+cur['source'] = f"Week {M['week']}: RATCLIFFE, GOTHAM and KOERNER per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
+cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), GOTHAM, KOERNER (FantasyLabs, same scoring; Ratcliffe where he has no line)], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
 # game weather (Oct 11): the Dispatch build's kickoff forecast, passed through for the Live page's sky pictures.
 # A failed fetch or another week's file leaves the last good weather in place.
 try:
