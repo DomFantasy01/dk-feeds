@@ -576,7 +576,10 @@ def rc_weekly(p,x,ytag=""):
     if k in _RCT:
         # Oct 28 (Dom): spread his rest-of-season total across the weeks by matchup - each week weighted by how that
         # opponent defends the position (the engine's RATIO, ~0.9-1.1), rescaled so the weeks still add to his total
-        b=max(NOW,back(p,ytag)); W_=[w for w in range(b,18) if w not in byes.get(p["team"],[])]
+        # Oct 29 (Tyrone Tracy, on IR): his total is spread over ALL his team's remaining games, then the weeks he's out
+        # are zeroed (above). Spreading it over only the weeks after he's back crammed a backup's 9-game total into 5
+        # weeks (Tracy ~14 a game in Weeks 13-17) and made two IR backups look like big pickups.
+        b=NOW; W_=[w for w in range(b,18) if w not in byes.get(p["team"],[])]
         if not W_: return 0.0
         rw=lambda w: RATIO.get((sched[p["team"]].get(w),p["pos"]),1.0)
         return _RCT[k]*rw(x)/sum(rw(w) for w in W_)
