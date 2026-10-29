@@ -59,6 +59,20 @@ for l in open(f"{H}/dk{CF['n']}_waivers.txt"):
         if "/" in it: n,c=it.rsplit("/",1); WAIV[norm(n)]=c
 for _nn,_aa in {"cardinals":"ARI","falcons":"ATL","ravens":"BAL","bills":"BUF","panthers":"CAR","bears":"CHI","bengals":"CIN","browns":"CLE","cowboys":"DAL","broncos":"DEN","lions":"DET","packers":"GB","texans":"HOU","colts":"IND","jaguars":"JAX","chiefs":"KC","raiders":"LV","chargers":"LAC","rams":"LA","dolphins":"MIA","vikings":"MIN","patriots":"NE","saints":"NO","giants":"NYG","jets":"NYJ","eagles":"PHI","steelers":"PIT","49ers":"SF","seahawks":"SEA","buccaneers":"TB","titans":"TEN","commanders":"WAS"}.items():   # Oct 17 (Dom): a defense on waivers is found by its nickname
     if _nn in WAIV: WAIV["def "+_aa.lower()]=WAIV[_nn]
+# Oct 28 (Dom, DK IV Josh Downs): Yahoo won't let you claim back a man YOU dropped while he sits on waivers. The Scout told
+# Dom to claim Downs, whom he had dropped at 2:48 AM that morning. His own drops come from the league's transaction log; any
+# still on waivers is never a pickup (board, alerts, simulator) - he shows on the watch list with the date he frees up.
+MYDROPS=set()
+try:
+    _tx=[os.environ.get("DK_REPO"),os.environ.get("GITHUB_WORKSPACE"),"/home/claude/dk-feeds"]
+    _tf=next(f"{r}/yahoo_drop/morning/txn_dk{CF['n']}.txt" for r in _tx if r and os.path.exists(f"{r}/yahoo_drop/morning/txn_dk{CF['n']}.txt"))
+    for _l in open(_tf):
+        if _l.startswith("#"): continue
+        _x=_l.rstrip("\n").split("|")
+        if len(_x)>=6 and _x[1]==str(CF["me"]) and _x[3]=="Dropped":
+            _tp=_x[5].split(" - "); MYDROPS.add(("def "+tm(_tp[0]).lower()) if len(_tp)>1 and _tp[1].strip()=="DEF" else norm(_x[4]))
+except StopIteration: print("Scout: no transaction log - own-drop check skipped")
+except Exception as _e: print("Scout: own-drop check skipped:", _e)
 pbp=pd.read_csv(f"{D}/play_by_play_2026.csv.gz",low_memory=False); pbp=pbp[pbp.season_type=="REG"]
 st=pd.read_csv(f"{D}/stats_player_week_2026.csv",low_memory=False); st=st[st.season_type=="REG"].copy()
 s25=pd.read_csv(f"{L}/stats_week_2025.csv",low_memory=False); s25=s25[s25.season_type=="REG"].copy()
@@ -641,6 +655,7 @@ try:
     _fa.sort(key=lambda kp:-max(weekly(kp[1],x) for x in WEEKS))
     for k,p in _fa[:80]:
         if (CF["kick"] is None and p["pos"]=="K"): continue
+        if k[0] in MYDROPS and WAIV.get(k[0]): continue   # his own drop, still on waivers - Yahoo blocks the claim
         _r=_simrow(k,p["name"],p["pos"],"",""); _r["acq"]=(f"Waivers, clears {WAIV[k[0]]}" if WAIV.get(k[0]) else "Free agent"); _SIM["pool"].append(_r)
     # Oct 28: how Ratcliffe's level compares with the engine's on rostered men he projects (by position) - a check that
     # teams aren't helped or hurt just by how many of their men he lists
@@ -710,6 +725,14 @@ def gate2_reason(k,p):
     for _tc in p.get("tradecut",[]): r.append("door closing: "+_tc)
     return r
 cands=[k for k in PL if k not in taken and PL[k]["fwd"]>=(5 if PL[k]["pos"] in ("K","DEF") else 6) and norm(PL[k]["name"]) not in SEASON_OUT]
+# Oct 28 (Dom, DK IV Josh Downs): Yahoo won't let you claim back a man YOU dropped while he sits on waivers. The Scout told
+# Dom to claim Downs, whom he had dropped at 2:48 AM that morning. Read his own drops from the league's transaction log; any
+# of them still on waivers is never a pickup - he shows on the watch list with the date he can be added as a free agent.
+MYDROP_BLOCK=[]
+for k in list(cands):
+    if k[0] in MYDROPS and WAIV.get(k[0]):
+        cands.remove(k); MYDROP_BLOCK.append(f"Can't claim: {PL[k]['name']} ({PL[k]['team']} {PL[k]['pos']}) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after {WAIV[k[0]]} and you can add him then.")
+if MYDROP_BLOCK: print("Scout: your own recent drops held off the board:", len(MYDROP_BLOCK))
 # Oct 10 night (Dom): the Positions chart's free agents (its doors list) are priced here too, floor or not
 DOORS={}
 try:
@@ -1308,6 +1331,7 @@ try:
         if e.get("flag","") and str(e.get("flag")).startswith("Watch") and not killed(e["p"]["name"]):
             BOARD["watch"].append(f"Watch: {e['p']['name']} ({e['p']['team']} {e['p']['pos']}) - {e['flag'].split(': ',1)[1]}")
     BOARD["watch"]=BOARD["watch"][:3]
+    BOARD["watch"]=MYDROP_BLOCK+BOARD["watch"]
     _tl=st.groupby("team").week.max().to_dict(); _stash=[]
     for _t,_g in st[st.position=="RB"].groupby("team"):
         _g=_g[_g.week>=_tl.get(_t,0)-2]
