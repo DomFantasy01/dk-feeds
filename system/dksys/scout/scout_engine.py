@@ -301,7 +301,10 @@ try:   # Oct 12 (Dom): news that he will miss time keeps him out - only news wri
         for _k,_p in _NAMES.items():
             if not _p['name'] or _p['name'] not in _nm: continue
             _es=_ESPD.get(_k)
-            if _es and _es[1]>_when.strftime('%Y-%m-%d') and not any(w in _es[0] for w in ('out','reserve','pup','suspen','doubtful')): continue
+            # Oct 28 (Mayfield): same-day counts too - ESPN 'Active' (full practice) on Oct 28 vs RotoWire 'day-to-day and
+            # week-to-week' the same evening read as out to Week 11. An official tag from the same day or later wins.
+            if _es and _es[1]>=_when.strftime('%Y-%m-%d') and not any(w in _es[0] for w in ('out','reserve','pup','suspen','doubtful')): continue
+            if re.search(r'full (practice )?(participant|participation)|practiced (fully|in full)|full practice',_tx,re.I): continue
             _gday=_GD.get((_p['team'],int(_p['last'])),'')
             if _gday and _when.strftime('%Y-%m-%d')<_gday: continue           # written before his last game - he has played since
             _n=_nweeks(_tx); _ph=_NEWSRE.search(_tx).group(0)
