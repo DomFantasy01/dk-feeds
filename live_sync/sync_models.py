@@ -48,8 +48,19 @@ try:
         if not sl: cur['leagues'].setdefault(k, {})['sim'] = None; continue
         tests = [t for t in sl.get('tests', []) if t.get('d_playoff', 0) >= .005][:3]
         swaps = [w for w in (sl.get('swaps') or [])][:2]
+        # Oct 29 (Dom): the playoff tube's tick - where the season's playoff odds stood about a week ago. Each sync keeps
+        # one entry per new sim run (when it was first seen, the odds); the tick uses the entry closest to 7 days back,
+        # and only once an entry is at least 20 hours old - until that history exists the tube shows no tick.
+        import datetime as _dt
+        _now = _dt.datetime.now(_dt.timezone.utc); _lg = cur['leagues'].setdefault(k, {})
+        _h = [x for x in (_lg.get('sim_hist') or []) if isinstance(x, list) and len(x) == 3]
+        if not _h or _h[-1][1] != SIM.get('run'): _h.append([_now.strftime('%Y-%m-%dT%H:%M:%SZ'), SIM.get('run'), sl.get('playoff')])
+        _h = [x for x in _h if (_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).days <= 21][-400:]
+        _lg['sim_hist'] = _h
+        _old = [x for x in _h if (_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).total_seconds() >= 20 * 3600]
+        _prev = min(_old, key=lambda x: abs((_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).total_seconds() - 7 * 86400)) if _old else None
         cur['leagues'].setdefault(k, {})['sim'] = dict(run=SIM.get('run'), sims=SIM.get('sims'), read=sl.get('standings_read'),
-            playoff=sl.get('playoff'), week=sl.get('week_win'), wins=sl.get('wins'), first=sl.get('first'), opp=sl.get('opp'),
+            playoff=sl.get('playoff'), prev=_prev[2] if _prev else None, prev_at=_prev[0] if _prev else None, week=sl.get('week_win'), wins=sl.get('wins'), first=sl.get('first'), opp=sl.get('opp'),
             tests=[dict(add=t['add'], drop=t['drop'], acq=t.get('acq', ''), base=sl.get('playoff'), playoff=t['playoff'], d=t['d_playoff'], dw=t.get('d_week', 0)) for t in tests],
             swaps=swaps)
     print('sim on Live:', {k: round((cur['leagues'][k].get('sim') or {}).get('playoff') or 0, 3) for k in KEY.values()}, 'run', SIM.get('run'))
