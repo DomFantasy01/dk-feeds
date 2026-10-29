@@ -332,7 +332,7 @@ def add_to_brief(path, rep):
         if checked: bits.append("New arrivals checked, not upgrades for you: " + ", ".join(checked[:6]) + ".")
         if bits: parts.append(f"{lab}: " + " ".join(bits))
     body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert panel touches your teams."
-    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Ciallela, Ratcliffe, Thorman, Koerner):\n\n{body}\n")
+    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Ciallela, Orginski, Ratcliffe, Thorman, Koerner):\n\n{body}\n")
 
 if __name__ == "__main__":
     R = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.getcwd()

@@ -3,7 +3,8 @@
 didn't see so we can dig in and learn. It never picks up a player; every add and drop is talked through with Dom.
 
 THE PANEL - each expert's own weekly rankings from FantasyPros' public partner feed (pull_experts.py, GitHub, no browser):
-  Mick Ciallela (Fantrax)            - FantasyPros in-season accuracy 2026: 1st of 167
+  Mick Ciallela (Fantrax)            - FantasyPros in-season accuracy 2026: 1st of 167 (2nd of 165 on Oct 29)
+  Tyler Orginski (FTN)               - added Oct 29 (Dom): 3rd of 165 through Week 7; lists every week, updated Sunday morning
   Jeff Ratcliffe (FTN)               - 4th
   Patrick Thorman (Establish the Run)- 5th
   Sean Koerner (Action Network)      - 7th
@@ -27,9 +28,9 @@ except Exception:
 
 LEAGUES = [("DK I", 1, "269381", 2), ("DK II", 2, "1519795", 7), ("DK III", 3, "1507991", 2), ("DK IV", 4, "864215", 6)]
 POS = ("QB", "RB", "WR", "TE")
-PANEL = ["Mick Ciallela", "Jeff Ratcliffe", "Patrick Thorman", "Sean Koerner"]
+PANEL = ["Mick Ciallela", "Tyler Orginski", "Jeff Ratcliffe", "Patrick Thorman", "Sean Koerner"]   # Oct 29 (Dom): Orginski added
 BACKUP = "Nathan Jahnke"
-SHOW = {"Mick Ciallela": "Ciallela", "Jeff Ratcliffe": "Ratcliffe", "Patrick Thorman": "Thorman", "Sean Koerner": "Koerner", "Nathan Jahnke": "Jahnke"}
+SHOW = {"Mick Ciallela": "Ciallela", "Tyler Orginski": "Orginski", "Jeff Ratcliffe": "Ratcliffe", "Patrick Thorman": "Thorman", "Sean Koerner": "Koerner", "Nathan Jahnke": "Jahnke"}
 NEED = 3          # experts that must agree
 EDGE = 3          # ranks better by at least this many spots
 TEAM_FIX = {"JAC": "JAX", "LA": "LAR", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}
