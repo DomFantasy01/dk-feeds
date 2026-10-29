@@ -153,13 +153,19 @@ for pid,g in st[st.position.isin(["QB","RB","WR","TE"])].groupby("player_id"):
     if len(_sp)>=2 and _sp.median()>=.6:
         _ex=[w for w in g.week if _sp.get(w,1)<.35]
         if _ex and len(g)>len(_ex): g=g[~g.week.isin(_ex)]
-    fp=list(g.fp); xv=[X.get((pid,w),0) for w in g.week]
+    fp=list(g.fp); xv=[X.get((pid,w),0) for w in g.week]; _wk=list(g.week)
+    # Oct 29 (Dom, Pierre Strong): a game he PLAYED but never touched the ball has no stats row, so it vanished and his
+    # two busy weeks (Jacobs and Brooks out) stood alone - 14.8 a week vs Ratcliffe 2.5 after 8 snaps, 0 touches in Wk 7.
+    # Any game with offensive snaps for this team and no stats row now counts as a 0 (same hurt-early rule as above).
+    _zm=[w for w,v in _sp.items() if v>0 and w not in _wk and not (len(_sp)>=2 and _sp.median()>=.6 and v<.35)]
+    if _zm:
+        _r=sorted(list(zip(_wk,fp,xv))+[(w,0.0,X.get((pid,w),0)) for w in _zm]); _wk=[a for a,_,_ in _r]; fp=[b for _,b,_ in _r]; xv=[c for _,_,c in _r]
     prior=P25.get(norm(name)); proven=prior is not None and prior>=8
     wr=.7 if proven else .4
     v26=wr*steady(fp)+(1-wr)*steady(xv)
     val=(len(fp)*v26+3*prior)/(len(fp)+3) if proven else v26          # last season counts like three games
     PL[(norm(name),team)]=dict(name=name,team=team,pos=pos,pid=pid,fwd=val,v26=v26,prior=prior,proven=proven,fp=fp,xv=xv,
-        wks=list(g.week),last=int(g.week.max()),nflstat=rs.get(pid,""),rep=rep.get(pid,""),prac=prac.get(pid,""),inj=injname.get(pid,""))
+        wks=_wk,last=int(max(_wk)),nflstat=rs.get(pid,""),rep=rep.get(pid,""),prac=prac.get(pid,""),inj=injname.get(pid,""))
 # Oct 27 (Dom): NO GAMES YET THIS SEASON - a man back from injury (or signed, or traded) with no 2026 games was invisible
 # to the Scout. Now he's priced on last season's per-game level in this league's scoring, at 85%: tested on the 57 men
 # whose first 2026 game came in Week 3 or later, 85% had no bias (miss 3.1 pts a game; 100% of last season ran 0.7 high).
@@ -446,6 +452,11 @@ for k,p in skill.items():
     elif (p["pos"] in ("RB","QB") and p["last"]==TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES"
           and any(w not in p["wks"] for w in range(max(1,p["last"]-4),p["last"]))
           and len([w for w in p["wks"] if w<p["last"]-4])>=1): bw=NOW; why=f"back - played Week {p['last']} after missing games"
+    # Oct 29 (Dom, Pierre Strong): a proven starter whose FIRST 2026 game came in the last two weeks (Josh Jacobs, off the
+    # exempt list in Week 7) missed the rule above - he had no early games. Same treatment: the fill-in keeps only his work
+    # alongside him.
+    elif (p["pos"] in ("RB","QB") and p.get("proven") and p["last"]==TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES"
+          and min(p["wks"])>=TEAMLAST.get(p["team"],0)-1 and min(p["wks"])>2): bw=NOW; why=f"back - first game of the season in Week {min(p['wks'])}"
     else: continue
     full=[w for w in p["wks"] if SNAP.get((k[0],p["team"],w),1)>=.35]
     if not full: continue
@@ -719,7 +730,7 @@ def gate2_reason(k,p):
     o=owner(k); r=[]
     if back(p)>NOW: r.append(f"due back Wk {back(p)} ({'IR minimum' if (p['nflstat']=='RES' or EXTINJ.get((norm(p['name']),p['pos']))=='IR') else 'listed Out'})")
     mates=[m for kk_,m in skill.items() if m["team"]==p["team"] and m["pos"]==p["pos"] and kk_!=k and back(m,(owner(kk_) or (0,0,''))[2])>NOW]
-    if mates and len(p["xv"])>=2 and np.mean(p["xv"][-2:])>np.mean(p["xv"][:-2] or [0])+2: r.append(f"door open: {mates[0]['name']} out")
+    if mates and len(p["xv"])>=2 and np.mean(p["xv"][-2:])>np.mean(p["xv"][:-2] or [0])+2: r.append(f"door open: {mates[0]['name']} " + ("off the roster" if mates[0].get("gone") else "out"))   # Oct 29: a released man isn't coming back - no "check his status" guard
     if len(p["xv"])>=3:
         e,l=np.mean(p["xv"][:-2]),np.mean(p["xv"][-2:])
         if l-e>=3 and l>=1.25*e: r.append(f"workload up from {e:.1f} to {l:.1f} expected a game")
