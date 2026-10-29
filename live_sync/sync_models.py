@@ -36,6 +36,23 @@ for lab, k in KEY.items():
     lg['std'] = ([["DIVISION", o(L['div_rank'])], ["LEAGUE", o(L['rank'])]] if L.get('div_rank')
                  else [["POINTS FOR", o(L['pf_rank'])], ["LEAGUE", o(L['rank'])]])
 cur['pm'] = pm
+# Oct 28 (Dom): THE SIMULATOR ON LIVE - playoff odds for the season, this week's chance, and the tested moves, per league card
+try:
+    import os as _os2
+    _sf = _os2.path.join(_os2.path.dirname(_os2.path.abspath(sys.argv[2])), 'sim', 'sim_latest.json')
+    SIM = json.load(open(_sf))
+    _SK = {'DK I': 'DKI', 'DK II': 'DKII', 'DK III': 'DKIII', 'DK IV': 'DKIV'}
+    for lab, k in KEY.items():
+        sl = SIM['leagues'].get(_SK[lab])
+        if not sl: cur['leagues'].setdefault(k, {})['sim'] = None; continue
+        tests = [t for t in sl.get('tests', []) if t.get('d_playoff', 0) >= .005][:3]
+        swaps = [w for w in (sl.get('swaps') or [])][:2]
+        cur['leagues'].setdefault(k, {})['sim'] = dict(run=SIM.get('run'), sims=SIM.get('sims'), read=sl.get('standings_read'),
+            playoff=sl.get('playoff'), week=sl.get('week_win'), wins=sl.get('wins'), first=sl.get('first'), opp=sl.get('opp'),
+            tests=[dict(add=t['add'], drop=t['drop'], acq=t.get('acq', ''), base=sl.get('playoff'), playoff=t['playoff'], d=t['d_playoff'], dw=t.get('d_week', 0)) for t in tests],
+            swaps=swaps)
+    print('sim on Live:', {k: round((cur['leagues'][k].get('sim') or {}).get('playoff') or 0, 3) for k in KEY.values()}, 'run', SIM.get('run'))
+except Exception as _e: print('sim on Live skipped:', _e)
 # Oct 13 5 PM (Dom): BEST LINEUP, BOTH SIDES - the meter now sets each team's best legal lineup from its whole roster.
 # Live gets the swaps (out man -> in man, per model) so its Gotham and Sleeper needles count the same best lineups.
 best = {}
