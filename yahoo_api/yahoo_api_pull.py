@@ -139,6 +139,29 @@ def write_all_rosters(repo, out, when, tag):
     lines = [f"{n}~{tm['id']}~" + "|".join(p["name"] for p in tm["players"]) for lab, n, _, _ in LEAGUES if lab in out for tm in out[lab]["teams"]]
     open(f"{od}/all_rosters_{tag}.txt", "w").write(f"# Yahoo team pages, every team in all four leagues, {when}. league(1=DK I 269381, 2=DK II 1519795, 3=DK III 1507991, 4=DK IV 864215)~team id~players (DEF listed by nickname). (Yahoo API read)\n" + "\n".join(lines) + "\n")
 
+def probe(repo):
+    # Oct 29: one-off checks of what the API can give us beyond the base read (pending trades, player projections)
+    y = Y(access_token(repo)); gk = "470"; R = {}
+    def raw(path):
+        try:
+            req = urllib.request.Request(API + path, headers={"Authorization": "Bearer " + y.at})
+            with urllib.request.urlopen(req, timeout=40) as r: return r.read().decode(errors="ignore")
+        except urllib.error.HTTPError as e: return f"HTTP {e.code} " + e.read().decode(errors="ignore")[:400]
+        except Exception as e: return f"ERR {e}"
+    lk = f"{gk}.l.1519795"; tk = f"{lk}.t.7"
+    for name, path in [
+        ("trades_league", f"league/{lk}/transactions;types=pending_trade;team_key={tk}"),
+        ("trades_team", f"team/{tk}/transactions;types=pending_trade"),
+        ("roster_stats_week", f"team/{tk}/roster;week=8/players/stats;type=week;week=8"),
+        ("proj_week", f"team/{tk}/roster;week=8/players/stats;type=projected_week;week=8"),
+        ("proj_out", f"team/{tk}/roster;week=8/players;out=projected_stats"),
+        ("proj_league_players", f"league/{lk}/players;player_keys=470.p.40121/projected_stats;type=week;week=8"),
+        ("team_proj", f"team/{tk}/stats;type=week;week=8"),
+    ]:
+        x = raw(path); R[name] = {"path": path, "len": len(x), "head": x[:3000]}
+    os.makedirs(f"{repo}/yahoo_api", exist_ok=True)
+    json.dump(R, open(f"{repo}/yahoo_api/probe.json", "w"), indent=1); print("probe done", {k: v["len"] for k, v in R.items()})
+
 def main():
     a = sys.argv[1:]
     if not a: raise SystemExit(__doc__ or "usage: auth <code> [repo] | read [repo]")
@@ -146,6 +169,7 @@ def main():
         repo = a[2] if len(a) > 2 else os.getcwd()
         tok = token_call({"grant_type": "authorization_code", "code": a[1].strip(), "redirect_uri": REDIRECT})
         save_token(repo, tok); print("approved: lasting key saved (encrypted) to yahoo_auth/token.enc"); a = ["read", repo]
+    if a[0] == "probe": return probe(a[1] if len(a) > 1 else os.getcwd())
     if a[0] == "read":
         repo = a[1] if len(a) > 1 else os.getcwd(); T = now_pt(); when = stamp(T); tag = f"{T:%a}".lower() + f"{T:%H%M}"
         log, out = [], {}

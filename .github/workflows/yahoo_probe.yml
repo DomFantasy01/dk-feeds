@@ -1,0 +1,28 @@
+name: Yahoo API probe
+# Oct 29: one-off checks of what Yahoo's API offers beyond the base read (pending trades, player projections). Read-only.
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: dk-feeds
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python3 yahoo_api/yahoo_api_pull.py probe "$GITHUB_WORKSPACE"
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+      - name: save
+        if: always()
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add yahoo_auth yahoo_api
+          git commit -m "Yahoo API probe $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && exit 0; sleep 5; done; exit 1
