@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Thu Oct 29 2026 03:39 PM PT",
+ "built_pt": "Thu Oct 29 2026 04:07 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -13,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Thu Oct 29 03:39 PM PT",
+   "pulled_pt": "Thu Oct 29 04:06 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -21,27 +21,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_thu1453.txt",
-   "pulled_pt": "Thu Oct 29 02:53 PM PT",
-   "age_h": 0.8,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_thu1553.txt",
+   "pulled_pt": "Thu Oct 29 03:53 PM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_thu1453.txt",
-   "pulled_pt": "Thu Oct 29 02:53 PM PT",
-   "age_h": 0.8,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_thu1553.txt",
+   "pulled_pt": "Thu Oct 29 03:53 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_thu1453.txt",
-   "pulled_pt": "Thu Oct 29 02:53 PM PT",
-   "age_h": 0.8,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_thu1553.txt",
+   "pulled_pt": "Thu Oct 29 03:53 PM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,17 +49,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Thu Oct 29 03:39 PM PT",
+   "pulled_pt": "Thu Oct 29 04:07 PM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Thu Oct 29 2026 03:39 PM PT for week 8"
+   "note": "Gotham run Thu Oct 29 2026 04:07 PM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Thu Oct 29 2026 3:22 PM PT",
-   "age_h": 0.3,
+   "age_h": 0.8,
    "rows": 2244,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -67,7 +67,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Thu Oct 29 2026 3:35 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.5,
    "rows": 2564,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
@@ -75,25 +75,25 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-29T2155Z.csv",
    "pulled_pt": "Thu Oct 29 02:55 PM PT",
-   "age_h": 0.7,
+   "age_h": 1.2,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.7 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (unchanged 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-29T2155Z.csv",
    "pulled_pt": "Thu Oct 29 02:55 PM PT",
-   "age_h": 0.7,
+   "age_h": 1.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.7 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (unchanged 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
-   "pulled_pt": "Thu Oct 29 02:53 PM PT",
-   "age_h": 0.8,
+   "pulled_pt": "Thu Oct 29 03:53 PM PT",
+   "age_h": 0.2,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
@@ -376,7 +376,7 @@
      },
      {
       "slot": "DEF",
-      "player": "Commanders",
+      "player": "Washington",
       "team": "WAS",
       "status": "",
       "kickoff": "Sun 5:20 pm",
@@ -578,7 +578,7 @@
      },
      {
       "slot": "DEF",
-      "player": "Patriots",
+      "player": "New England",
       "team": "NE",
       "status": "",
       "kickoff": "Sun 1:25 pm",
@@ -770,8 +770,8 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 29%.",
    "experts": {
-    "read": "Thu Oct 29 2026 3:39 PM PT",
-    "vs_pull": "Thu Oct 29 2026 11:29 AM PT",
+    "read": "Thu Oct 29 2026 4:06 PM PT",
+    "vs_pull": "Thu Oct 29 2026 3:39 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -1542,8 +1542,8 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 33%.",
    "experts": {
-    "read": "Thu Oct 29 2026 3:39 PM PT",
-    "vs_pull": "Thu Oct 29 2026 11:29 AM PT",
+    "read": "Thu Oct 29 2026 4:06 PM PT",
+    "vs_pull": "Thu Oct 29 2026 3:39 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -2183,8 +2183,8 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 47%.",
    "experts": {
-    "read": "Thu Oct 29 2026 3:39 PM PT",
-    "vs_pull": "Thu Oct 29 2026 11:29 AM PT",
+    "read": "Thu Oct 29 2026 4:06 PM PT",
+    "vs_pull": "Thu Oct 29 2026 3:39 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -2965,8 +2965,8 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 67%.",
    "experts": {
-    "read": "Thu Oct 29 2026 3:39 PM PT",
-    "vs_pull": "Thu Oct 29 2026 11:29 AM PT",
+    "read": "Thu Oct 29 2026 4:06 PM PT",
+    "vs_pull": "Thu Oct 29 2026 3:39 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
