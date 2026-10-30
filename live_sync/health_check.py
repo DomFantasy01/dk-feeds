@@ -305,6 +305,9 @@ else:
     bt = ptstr(br.splitlines()[0]); m = re.search(r"Yahoo read of (.+?PT)", br); bread = ptstr(m.group(1)) if m else None
     linked = bread and read_t and abs((bread - read_t).total_seconds()) <= 600
     row("Brief", "Morning brief", "green" if linked else "yellow", "built from the latest Yahoo read" if linked else "built from an older read", bt)
+    if "HOLD ON" in br:   # Oct 30 (Dom): a brief on a Yahoo read from before a finished game is broken, not green
+        row("Brief", "Brief numbers current", "red", re.search(r"HOLD ON[^\n]*", br).group(0)[:200], bt)
+    else: row("Brief", "Brief numbers current", "green", "Yahoo matchup read is newer than every finished game this week", bt)
 
 # ---------- 12. known open problems (until marked fixed) ----------
 ki = load("live_sync/known_issues.json") or {"issues": []}

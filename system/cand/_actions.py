@@ -151,6 +151,23 @@ for _lab in _ALG:
 _n1 = [a for a in ACTIONS if a["rank"] == 1]
 _bl.append(f"That's {len(ACTIONS)} item{'s' if len(ACTIONS) != 1 else ''}" + (f", {len(_n1)} of them lineup holes that score zero if left alone." if _n1 else ".") +
            f" Numbers from the Yahoo read of {_AM['sources'].get('yahoo_matchups', {}).get('pulled_pt', 'unknown')}.")
+# Oct 30 (Dom): "how can you give me a briefing when you don't even have the briefing up to date?" - the 6:10 AM brief read
+# the Thursday 5:02 PM matchup numbers, from before Thursday night's game. When the Yahoo matchup read is older than the end
+# of a game already played this week, the brief says so FIRST, and the system check turns red on this line.
+try:
+    _rp = _AM["sources"].get("yahoo_matchups", {}).get("pulled_pt") or ""
+    _rt = _ad.datetime.strptime(_ar.sub(r" PT$", "", _rp) if _ar.search(r" \d{4} ", _rp) else _ar.sub(r"^(\w{3} \w{3} \d{1,2}) ", r"\g<1> %d " % _ANOW.year, _ar.sub(r" PT$", "", _rp)), "%a %b %d %Y %I:%M %p").replace(tzinfo=_APT)
+    _gw = _AG[_AG.week == _AMW]; _ends = []
+    for _r in _gw.itertuples():
+        _k = _ad.datetime.strptime(f"{_r.gameday} {_r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=_ad.timezone(_ad.timedelta(hours=-4 if _ad.date.fromisoformat(_r.gameday) < _ad.date(2026, 11, 1) else -5)))
+        _e = _k + _ad.timedelta(hours=3, minutes=30)
+        if _e <= _ANOW: _ends.append((_e, f"{_r.away_team} at {_r.home_team}"))
+    _late = [x for x in _ends if x[0] > _rt]
+    if _late:
+        _bl.insert(1, f"HOLD ON - STALE: the Yahoo matchup numbers in this brief are from {_rp}, before {', '.join(x[1] for x in _late)} finished, so they don't count those points. "
+                      "Treat the chances below as out of date until the next Yahoo read; the brief rebuilds right after it.")
+except Exception as _e:
+    _bl.insert(1, f"HOLD ON: couldn't check whether the Yahoo read is current ({type(_e).__name__}).")
 BRIEF = "\n\n".join(_bl)
 open(_ao.path.join(_AOUT, "brief_latest.txt"), "w").write(BRIEF + "\n")
 
