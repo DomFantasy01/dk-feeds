@@ -500,6 +500,12 @@ try:
         GP.setdefault(k, set()).add(wk)
         if wk >= max(GP[k]): LASTTM[k] = r.get("team")
     GMAX = max((max(v) for v in GP.values()), default=0)
+    TW = {}   # Oct 30: the weeks each TEAM actually played - a bye is not a missed game (Herbert, Hampton, Meyers... were flagged off a Week 7 bye)
+    for _k, _ws in GP.items():
+        if LASTTM.get(_k): TW.setdefault(LASTTM[_k], set()).update(_ws)
+    def _missed(k, g):
+        t = LASTTM.get(k); tw = TW.get(t) or set(range(1, GMAX + 1))
+        return sum(1 for w in tw if w > max(g))
     SP = {}
     try:
         for v in json.loads(_raw("sleeper_players_min.json")).get("players", {}).values():
@@ -527,7 +533,7 @@ try:
         k = _nm(r["name"]); g = GP.get(k, set())
         _tm = lambda t: {"LA": "LAR", "JAC": "JAX", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}.get(t or "", t or "")
         why = ("hasn't played a game this season" if not g else
-               f"no game since Week {max(g)}" if max(g) <= GMAX - 2 else
+               f"no game since Week {max(g)} ({_missed(k, g)} team games missed)" if _missed(k, g) >= 2 else
                f"only one game this season (Week {max(g)}), just back" if len(g) == 1 else
                f"new team: played for {_tm(LASTTM.get(k))}, now {r.get('team')}" if LASTTM.get(k) and r.get("team") and _tm(LASTTM[k]) != _tm(r.get("team")) else None)
         if why: CAND.append((r, p, k, g, why))
@@ -668,7 +674,7 @@ try:
             ok_ = bar(cn_, sn_)
             if not ok_:
                 RISERS.append((lg, it, cn_, sn_, st_)); continue      # under the bar this week: the rising check decides
-            ko_pt = ko.astimezone(dt.timezone(dt.timedelta(hours=-8 if dt.date(2026, 11, 1) <= ko.date() < dt.date(2027, 3, 14) else -7))); kot   # Oct 29: Pacific for the GAME's date (clocks fall back Sun Nov 1) = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"
+            ko_pt = ko.astimezone(dt.timezone(dt.timedelta(hours=-8 if dt.date(2026, 11, 1) <= ko.date() < dt.date(2027, 3, 14) else -7))); kot = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"   # Oct 29: Pacific for the GAME's date (clocks fall back Sun Nov 1)
             n0 = (it.get("news") or [{}])[0]
             add(id=slug("rk", W, lg, name), color="gold", lg=lg, who=name, kind="radar_prekick",
                 title=f"Before lock ({kot}): {name} ({pos}, {team}) over your {st_['slot']} {st_['player']} this week - clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_),
