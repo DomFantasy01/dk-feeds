@@ -1,18 +1,17 @@
 {
  "week": 8,
- "built_pt": "Fri Oct 30 2026 06:09 AM PT",
+ "built_pt": "Fri Oct 30 2026 08:04 AM PT",
  "alarms": [],
  "lineup": [],
  "notes": [
-  "DK I: Gotham 28.4 vs Yahoo 20.3 / Sleeper 19.7 on Josh Jacobs - check role/news",
-  "DK II: Gotham 27.5 vs Yahoo 22.2 / Sleeper 19.8 on Jordan Love - check role/news",
+  "DK IV: Gotham 9.8 vs Yahoo 15.2 / Sleeper 16.6 on Garrett Wilson - check role/news",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 30 06:08 AM PT",
+   "pulled_pt": "Fri Oct 30 08:04 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -20,27 +19,27 @@
   },
   "yahoo_matchups": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_thu1702.txt",
-   "pulled_pt": "Thu Oct 29 05:02 PM PT",
-   "age_h": 13.1,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_fri0753.txt",
+   "pulled_pt": "Fri Oct 30 07:53 AM PT",
+   "age_h": 0.2,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_thu1702.txt",
-   "pulled_pt": "Thu Oct 29 05:02 PM PT",
-   "age_h": 13.1,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_fri0753.txt",
+   "pulled_pt": "Fri Oct 30 07:53 AM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_thu1702.txt",
-   "pulled_pt": "Thu Oct 29 05:02 PM PT",
-   "age_h": 13.1,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_fri0753.txt",
+   "pulled_pt": "Fri Oct 30 07:53 AM PT",
+   "age_h": 0.2,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -48,17 +47,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 30 06:09 AM PT",
+   "pulled_pt": "Fri Oct 30 08:04 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Fri Oct 30 2026 06:09 AM PT for week 8"
+   "note": "Gotham run Fri Oct 30 2026 08:04 AM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Fri Oct 30 2026 5:40 AM PT",
-   "age_h": 0.5,
+   "age_h": 2.4,
    "rows": 2244,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -66,33 +65,33 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Fri Oct 30 2026 6:03 AM PT",
-   "age_h": 0.1,
+   "age_h": 2.0,
    "rows": 2564,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-30T1004Z.csv",
-   "pulled_pt": "Fri Oct 30 03:04 AM PT",
-   "age_h": 3.1,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-30T1413Z.csv",
+   "pulled_pt": "Fri Oct 30 07:13 AM PT",
+   "age_h": 0.9,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 1.2 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-30T1004Z.csv",
-   "pulled_pt": "Fri Oct 30 03:04 AM PT",
-   "age_h": 3.1,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-30T1413Z.csv",
+   "pulled_pt": "Fri Oct 30 07:13 AM PT",
+   "age_h": 0.9,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 1.2 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
-   "pulled_pt": "Thu Oct 29 05:02 PM PT",
-   "age_h": 13.1,
+   "pulled_pt": "Fri Oct 30 07:53 AM PT",
+   "age_h": 0.2,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
