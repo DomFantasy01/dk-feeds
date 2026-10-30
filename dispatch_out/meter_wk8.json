@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Fri Oct 30 2026 03:29 PM PT",
+ "built_pt": "Fri Oct 30 2026 03:41 PM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -13,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 30 03:29 PM PT",
+   "pulled_pt": "Fri Oct 30 03:41 PM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,7 +22,7 @@
   "yahoo_matchups": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_api.txt",
-   "pulled_pt": "Fri Oct 30 03:29 PM PT",
+   "pulled_pt": "Fri Oct 30 03:40 PM PT",
    "age_h": 0.0,
    "rows": 41,
    "need": 41,
@@ -31,7 +31,7 @@
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_api.txt",
-   "pulled_pt": "Fri Oct 30 03:29 PM PT",
+   "pulled_pt": "Fri Oct 30 03:40 PM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -41,7 +41,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_fri1454.txt",
    "pulled_pt": "Fri Oct 30 02:54 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,51 +49,51 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 30 03:29 PM PT",
+   "pulled_pt": "Fri Oct 30 03:41 PM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Fri Oct 30 2026 03:29 PM PT for week 8"
+   "note": "Gotham run Fri Oct 30 2026 03:41 PM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Fri Oct 30 2026 3:22 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.3,
    "rows": 2240,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   "koerner": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
-   "pulled_pt": "Fri Oct 30 2026 11:34 AM PT",
-   "age_h": 3.9,
-   "rows": 2564,
+   "pulled_pt": "Fri Oct 30 2026 3:36 PM PT",
+   "age_h": 0.1,
+   "rows": 2572,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-30T2151Z.csv",
    "pulled_pt": "Fri Oct 30 02:51 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.6 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.8 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-30T2151Z.csv",
    "pulled_pt": "Fri Oct 30 02:51 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.6 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.8 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Fri Oct 30 02:54 PM PT",
-   "age_h": 0.6,
+   "age_h": 0.8,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
@@ -102,6 +102,8 @@
  "alarms": [],
  "lineup": [],
  "notes": [
+  "DK I: experts split on your RB TreVeyon Henderson - Ratcliffe 8.2 vs Koerner 3.1 (Yahoo 8.4)",
+  "DK III: experts split on your RB Jonah Coleman - Ratcliffe 10.9 vs Koerner 15.8 (Yahoo 13.1)",
   "DK IV: Gotham 14.7 vs Yahoo 21.5 / Sleeper 20.9 on Bijan Robinson - check role/news",
   "DK IV: Gotham 9.8 vs Yahoo 15.3 / Sleeper 16.8 on Garrett Wilson - check role/news",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
@@ -124,7 +126,7 @@
     "gotham": 20,
     "sleeper": 21,
     "ratcliffe": 22,
-    "koerner": 19,
+    "koerner": 17,
     "yahoo": 23,
     "yahoo_best": false,
     "yahoo_posted": 23,
@@ -148,8 +150,8 @@
      171.56
     ],
     "koerner": [
-     130.6,
-     170.58
+     127.79,
+     172.72
     ]
    },
    "windows": {
@@ -212,7 +214,7 @@
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
-      "koerner": 21.82,
+      "koerner": 22.0,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -232,7 +234,7 @@
       "window": 1,
       "ratcliffe": 19.17,
       "ratcliffe_src": "ftn",
-      "koerner": 18.28,
+      "koerner": 18.37,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -252,7 +254,7 @@
       "window": 2,
       "ratcliffe": 8.18,
       "ratcliffe_src": "ftn",
-      "koerner": 7.2,
+      "koerner": 3.08,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -272,7 +274,7 @@
       "window": 1,
       "ratcliffe": 14.68,
       "ratcliffe_src": "ftn",
-      "koerner": 15.56,
+      "koerner": 14.46,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -292,7 +294,7 @@
       "window": 1,
       "ratcliffe": 16.89,
       "ratcliffe_src": "ftn",
-      "koerner": 17.02,
+      "koerner": 17.57,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -312,7 +314,7 @@
       "window": 2,
       "ratcliffe": 11.05,
       "ratcliffe_src": "ftn",
-      "koerner": 11.28,
+      "koerner": 10.46,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -332,7 +334,7 @@
       "window": 3,
       "ratcliffe": 10.85,
       "ratcliffe_src": "ftn",
-      "koerner": 9.94,
+      "koerner": 10.42,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -414,7 +416,7 @@
       "window": 1,
       "ratcliffe": 24.86,
       "ratcliffe_src": "ftn",
-      "koerner": 26.41,
+      "koerner": 26.47,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -434,7 +436,7 @@
       "window": 1,
       "ratcliffe": 20.55,
       "ratcliffe_src": "ftn",
-      "koerner": 21.15,
+      "koerner": 21.2,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -494,7 +496,7 @@
       "window": 1,
       "ratcliffe": 17.74,
       "ratcliffe_src": "ftn",
-      "koerner": 19.23,
+      "koerner": 18.73,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -514,7 +516,7 @@
       "window": 1,
       "ratcliffe": 18.27,
       "ratcliffe_src": "ftn",
-      "koerner": 18.54,
+      "koerner": 19.26,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -534,7 +536,7 @@
       "window": 1,
       "ratcliffe": 11.19,
       "ratcliffe_src": "ftn",
-      "koerner": 10.4,
+      "koerner": 11.3,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -554,7 +556,7 @@
       "window": 1,
       "ratcliffe": 11.99,
       "ratcliffe_src": "ftn",
-      "koerner": 11.57,
+      "koerner": 12.48,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -641,7 +643,7 @@
      "sleeper": 11.46,
      "window": 1,
      "ratcliffe": 11.05,
-     "koerner": 10.71
+     "koerner": 12.64
     },
     {
      "slot": "BN",
@@ -696,7 +698,7 @@
     "sleeper": 20,
     "yahoo_from_spread": 20,
     "ratcliffe": 20,
-    "koerner": 19
+    "koerner": 15
    },
    "totals_set": {
     "yahoo": [
@@ -716,8 +718,8 @@
      171.56
     ],
     "koerner": [
-     129.79,
-     170.58
+     125.05,
+     172.72
     ]
    },
    "best_moves": {
@@ -771,7 +773,7 @@
        "out": "Brenton Strange",
        "out_v": 9.9,
        "into": "Chris Godwin Jr.",
-       "in_v": 10.7
+       "in_v": 12.6
       }
      ],
      "op": []
@@ -779,8 +781,8 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 23%.",
    "experts": {
-    "read": "Fri Oct 30 2026 3:29 PM PT",
-    "vs_pull": "Fri Oct 30 2026 3:05 PM PT",
+    "read": "Fri Oct 30 2026 3:41 PM PT",
+    "vs_pull": "Fri Oct 30 2026 3:29 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -823,10 +825,10 @@
     "gotham": 21,
     "sleeper": 26,
     "ratcliffe": 30,
-    "koerner": 29,
-    "yahoo": 29,
+    "koerner": 27,
+    "yahoo": 30,
     "yahoo_best": false,
-    "yahoo_posted": 29,
+    "yahoo_posted": 30,
     "yahoo_from_spread": 28
    },
    "totals": {
@@ -847,8 +849,8 @@
      179.67
     ],
     "koerner": [
-     148.01,
-     176.95
+     148.29,
+     180.12
     ]
    },
    "windows": {
@@ -911,7 +913,7 @@
       "window": 1,
       "ratcliffe": 20.97,
       "ratcliffe_src": "ftn",
-      "koerner": 22.43,
+      "koerner": 22.59,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -931,7 +933,7 @@
       "window": 1,
       "ratcliffe": 11.44,
       "ratcliffe_src": "ftn",
-      "koerner": 12.23,
+      "koerner": 11.6,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -971,7 +973,7 @@
       "window": 1,
       "ratcliffe": 16.89,
       "ratcliffe_src": "ftn",
-      "koerner": 17.02,
+      "koerner": 17.57,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -991,7 +993,7 @@
       "window": 1,
       "ratcliffe": 11.07,
       "ratcliffe_src": "ftn",
-      "koerner": 12.01,
+      "koerner": 11.59,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1031,7 +1033,7 @@
       "window": 2,
       "ratcliffe": 11.05,
       "ratcliffe_src": "ftn",
-      "koerner": 11.28,
+      "koerner": 10.46,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1051,7 +1053,7 @@
       "window": 2,
       "ratcliffe": 10.12,
       "ratcliffe_src": "ftn",
-      "koerner": 9.24,
+      "koerner": 10.5,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1071,7 +1073,7 @@
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
-      "koerner": 21.82,
+      "koerner": 22.0,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1133,7 +1135,7 @@
       "window": 1,
       "ratcliffe": 27.78,
       "ratcliffe_src": "ftn",
-      "koerner": 28.54,
+      "koerner": 28.83,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1153,7 +1155,7 @@
       "window": 1,
       "ratcliffe": 21.15,
       "ratcliffe_src": "ftn",
-      "koerner": 20.58,
+      "koerner": 20.91,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1173,7 +1175,7 @@
       "window": 2,
       "ratcliffe": 15.73,
       "ratcliffe_src": "ftn",
-      "koerner": 15.73,
+      "koerner": 15.83,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1193,7 +1195,7 @@
       "window": 3,
       "ratcliffe": 10.85,
       "ratcliffe_src": "ftn",
-      "koerner": 9.94,
+      "koerner": 10.42,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1213,7 +1215,7 @@
       "window": 1,
       "ratcliffe": 8.51,
       "ratcliffe_src": "ftn",
-      "koerner": 9.36,
+      "koerner": 10.88,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1233,7 +1235,7 @@
       "window": 1,
       "ratcliffe": 8.91,
       "ratcliffe_src": "ftn",
-      "koerner": 9.14,
+      "koerner": 8.88,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1253,7 +1255,7 @@
       "window": 1,
       "ratcliffe": 18.27,
       "ratcliffe_src": "ftn",
-      "koerner": 18.54,
+      "koerner": 19.26,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1366,7 +1368,7 @@
      "sleeper": 19.71,
      "window": 1,
      "ratcliffe": 17.93,
-     "koerner": 16.25
+     "koerner": 16.27
     },
     {
      "slot": "BN",
@@ -1380,7 +1382,7 @@
      "sleeper": 8.06,
      "window": 1,
      "ratcliffe": 9.24,
-     "koerner": 8.66
+     "koerner": 8.74
     },
     {
      "slot": "BN",
@@ -1457,11 +1459,11 @@
    "state_note": "1 of 22 starters done, 1 games kicked off",
    "needles_set": {
     "gotham": 22,
-    "yahoo": 29,
+    "yahoo": 30,
     "sleeper": 26,
     "yahoo_from_spread": 28,
     "ratcliffe": 32,
-    "koerner": 31
+    "koerner": 29
    },
    "totals_set": {
     "yahoo": [
@@ -1481,8 +1483,8 @@
      176.23
     ],
     "koerner": [
-     148.01,
-     174.4
+     148.29,
+     177.58
     ]
    },
    "best_moves": {
@@ -1542,17 +1544,17 @@
      "op": [
       {
        "out": "Ollie Gordon II",
-       "out_v": 15.7,
+       "out_v": 15.8,
        "into": "Jaylen Warren",
-       "in_v": 18.3
+       "in_v": 18.4
       }
      ]
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 29%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 30%.",
    "experts": {
-    "read": "Fri Oct 30 2026 3:29 PM PT",
-    "vs_pull": "Fri Oct 30 2026 3:05 PM PT",
+    "read": "Fri Oct 30 2026 3:41 PM PT",
+    "vs_pull": "Fri Oct 30 2026 3:29 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -1599,10 +1601,10 @@
     "gotham": 38,
     "sleeper": 42,
     "ratcliffe": 39,
-    "koerner": 42,
-    "yahoo": 47,
+    "koerner": 40,
+    "yahoo": 46,
     "yahoo_best": false,
-    "yahoo_posted": 47,
+    "yahoo_posted": 46,
     "yahoo_from_spread": 46
    },
    "totals": {
@@ -1623,8 +1625,8 @@
      124.84
     ],
     "koerner": [
-     113.74,
-     123.09
+     118.7,
+     130.06
     ]
    },
    "windows": {
@@ -1687,7 +1689,7 @@
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
-      "koerner": 21.82,
+      "koerner": 22.0,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1707,7 +1709,7 @@
       "window": 3,
       "ratcliffe": 14.23,
       "ratcliffe_src": "ftn",
-      "koerner": 14.73,
+      "koerner": 15.04,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1727,7 +1729,7 @@
       "window": 2,
       "ratcliffe": 10.95,
       "ratcliffe_src": "ftn",
-      "koerner": 10.81,
+      "koerner": 15.75,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1747,7 +1749,7 @@
       "window": 1,
       "ratcliffe": 14.68,
       "ratcliffe_src": "ftn",
-      "koerner": 15.56,
+      "koerner": 14.46,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1767,7 +1769,7 @@
       "window": 2,
       "ratcliffe": 10.21,
       "ratcliffe_src": "ftn",
-      "koerner": 10.88,
+      "koerner": 10.83,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1787,7 +1789,7 @@
       "window": 1,
       "ratcliffe": 10.24,
       "ratcliffe_src": "ftn",
-      "koerner": 9.64,
+      "koerner": 10.38,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1827,7 +1829,7 @@
       "window": 1,
       "ratcliffe": 9.38,
       "ratcliffe_src": "ftn",
-      "koerner": 9.62,
+      "koerner": 9.56,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1869,7 +1871,7 @@
       "window": 1,
       "ratcliffe": 20.97,
       "ratcliffe_src": "ftn",
-      "koerner": 22.43,
+      "koerner": 22.59,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1889,7 +1891,7 @@
       "window": 4,
       "ratcliffe": 10.68,
       "ratcliffe_src": "ftn",
-      "koerner": 9.35,
+      "koerner": 13.33,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1909,7 +1911,7 @@
       "window": 2,
       "ratcliffe": 23.91,
       "ratcliffe_src": "ftn",
-      "koerner": 24.34,
+      "koerner": 24.27,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1949,7 +1951,7 @@
       "window": 4,
       "ratcliffe": 11.36,
       "ratcliffe_src": "ftn",
-      "koerner": 11.24,
+      "koerner": 12.02,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1969,7 +1971,7 @@
       "window": 2,
       "ratcliffe": 8.25,
       "ratcliffe_src": "ftn",
-      "koerner": 7.56,
+      "koerner": 8.74,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -1989,7 +1991,7 @@
       "window": 2,
       "ratcliffe": 10.54,
       "ratcliffe_src": "ftn",
-      "koerner": 10.55,
+      "koerner": 10.23,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2009,7 +2011,7 @@
       "window": 2,
       "ratcliffe": 10.12,
       "ratcliffe_src": "ftn",
-      "koerner": 9.24,
+      "koerner": 10.5,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2048,7 +2050,7 @@
      "sleeper": 19.71,
      "window": 1,
      "ratcliffe": 17.93,
-     "koerner": 16.25
+     "koerner": 16.27
     },
     {
      "slot": "BN",
@@ -2090,7 +2092,7 @@
      "sleeper": 7.01,
      "window": 2,
      "ratcliffe": 8.26,
-     "koerner": 7.5
+     "koerner": 8.6
     },
     {
      "slot": "IR",
@@ -2140,11 +2142,11 @@
    "state_note": "1 of 18 starters done, 1 games kicked off",
    "needles_set": {
     "gotham": 38,
-    "yahoo": 47,
+    "yahoo": 46,
     "sleeper": 42,
     "yahoo_from_spread": 46,
     "ratcliffe": 39,
-    "koerner": 42
+    "koerner": 40
    },
    "totals_set": {
     "yahoo": [
@@ -2164,8 +2166,8 @@
      124.84
     ],
     "koerner": [
-     113.74,
-     123.09
+     118.7,
+     130.06
     ]
    },
    "best_moves": {
@@ -2197,10 +2199,10 @@
      "op": []
     }
    },
-   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 47%.",
+   "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 46%.",
    "experts": {
-    "read": "Fri Oct 30 2026 3:29 PM PT",
-    "vs_pull": "Fri Oct 30 2026 3:05 PM PT",
+    "read": "Fri Oct 30 2026 3:41 PM PT",
+    "vs_pull": "Fri Oct 30 2026 3:29 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
@@ -2248,7 +2250,7 @@
     "gotham": 74,
     "sleeper": 75,
     "ratcliffe": 76,
-    "koerner": 79,
+    "koerner": 77,
     "yahoo": 75,
     "yahoo_best": false,
     "yahoo_posted": 75,
@@ -2272,8 +2274,8 @@
      137.17
     ],
     "koerner": [
-     171.84,
-     130.11
+     177.1,
+     138.06
     ]
    },
    "windows": {
@@ -2336,7 +2338,7 @@
       "window": 1,
       "ratcliffe": 24.84,
       "ratcliffe_src": "ftn",
-      "koerner": 26.24,
+      "koerner": 26.3,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2356,7 +2358,7 @@
       "window": 1,
       "ratcliffe": 20.28,
       "ratcliffe_src": "ftn",
-      "koerner": 19.74,
+      "koerner": 21.16,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2376,7 +2378,7 @@
       "window": 4,
       "ratcliffe": 13.86,
       "ratcliffe_src": "ftn",
-      "koerner": 14.1,
+      "koerner": 16.14,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2396,7 +2398,7 @@
       "window": 1,
       "ratcliffe": 18.43,
       "ratcliffe_src": "ftn",
-      "koerner": 17.32,
+      "koerner": 18.14,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2416,7 +2418,7 @@
       "window": 1,
       "ratcliffe": 16.0,
       "ratcliffe_src": "ftn",
-      "koerner": 15.61,
+      "koerner": 16.69,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2436,7 +2438,7 @@
       "window": 1,
       "ratcliffe": 10.52,
       "ratcliffe_src": "ftn",
-      "koerner": 8.86,
+      "koerner": 8.66,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2476,7 +2478,7 @@
       "window": 2,
       "ratcliffe": 12.1,
       "ratcliffe_src": "ftn",
-      "koerner": 12.1,
+      "koerner": 12.06,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2578,7 +2580,7 @@
       "window": 1,
       "ratcliffe": 9.6,
       "ratcliffe_src": "ftn",
-      "koerner": 9.72,
+      "koerner": 9.96,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2598,7 +2600,7 @@
       "window": 1,
       "ratcliffe": 10.39,
       "ratcliffe_src": "ftn",
-      "koerner": 8.4,
+      "koerner": 9.5,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2618,7 +2620,7 @@
       "window": 1,
       "ratcliffe": 13.46,
       "ratcliffe_src": "ftn",
-      "koerner": 12.72,
+      "koerner": 14.14,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2638,7 +2640,7 @@
       "window": 1,
       "ratcliffe": 10.89,
       "ratcliffe_src": "ftn",
-      "koerner": 10.12,
+      "koerner": 10.95,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2658,7 +2660,7 @@
       "window": 3,
       "ratcliffe": 10.82,
       "ratcliffe_src": "ftn",
-      "koerner": 9.94,
+      "koerner": 10.42,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2678,7 +2680,7 @@
       "window": 1,
       "ratcliffe": 16.26,
       "ratcliffe_src": "ftn",
-      "koerner": 16.28,
+      "koerner": 15.94,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2698,7 +2700,7 @@
       "window": 2,
       "ratcliffe": 8.55,
       "ratcliffe_src": "ftn",
-      "koerner": 8.44,
+      "koerner": 12.7,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2718,7 +2720,7 @@
       "window": 2,
       "ratcliffe": 17.18,
       "ratcliffe_src": "ftn",
-      "koerner": 16.46,
+      "koerner": 16.98,
       "koerner_src": "flabs",
       "gs": "pre"
      },
@@ -2777,7 +2779,7 @@
      "sleeper": 10.97,
      "window": 1,
      "ratcliffe": 9.42,
-     "koerner": 12.22
+     "koerner": 12.1
     },
     {
      "slot": "BN",
@@ -2805,7 +2807,7 @@
      "sleeper": 11.52,
      "window": 2,
      "ratcliffe": 11.05,
-     "koerner": 11.28
+     "koerner": 10.46
     },
     {
      "slot": "BN",
@@ -2887,7 +2889,7 @@
     "sleeper": 76,
     "yahoo_from_spread": 76,
     "ratcliffe": 77,
-    "koerner": 78
+    "koerner": 76
    },
    "totals_set": {
     "yahoo": [
@@ -2907,8 +2909,8 @@
      135.28
     ],
     "koerner": [
-     168.48,
-     128.05
+     173.66,
+     136.56
     ]
    },
    "best_moves": {
@@ -2953,31 +2955,25 @@
      "me": [
       {
        "out": "Omar Cooper Jr.",
-       "out_v": 8.9,
+       "out_v": 8.7,
        "into": "Wan'Dale Robinson",
-       "in_v": 12.2
+       "in_v": 12.1
       }
      ],
      "op": [
       {
        "out": "Jeremiyah Love",
-       "out_v": 8.4,
-       "into": "Zach Charbonnet",
-       "in_v": 8.5
-      },
-      {
-       "out": "Jonah Coleman",
-       "out_v": 8.4,
+       "out_v": 9.5,
        "into": "Makai Lemon",
-       "in_v": 10.4
+       "in_v": 11.0
       }
      ]
     }
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 75%.",
    "experts": {
-    "read": "Fri Oct 30 2026 3:29 PM PT",
-    "vs_pull": "Fri Oct 30 2026 3:05 PM PT",
+    "read": "Fri Oct 30 2026 3:41 PM PT",
+    "vs_pull": "Fri Oct 30 2026 3:29 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
      "Ciallela",
