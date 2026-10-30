@@ -1,6 +1,6 @@
 {
  "week": 8,
- "built_pt": "Fri Oct 30 2026 09:03 AM PT",
+ "built_pt": "Fri Oct 30 2026 09:12 AM PT",
  "windows": [
   "THU 5:15 PM",
   "SUN 10:00 AM",
@@ -13,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Oct 30 09:02 AM PT",
+   "pulled_pt": "Fri Oct 30 09:11 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -22,7 +22,7 @@
   "yahoo_matchups": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_api.txt",
-   "pulled_pt": "Fri Oct 30 09:02 AM PT",
+   "pulled_pt": "Fri Oct 30 09:11 AM PT",
    "age_h": 0.0,
    "rows": 41,
    "need": 41,
@@ -31,7 +31,7 @@
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_api.txt",
-   "pulled_pt": "Fri Oct 30 09:02 AM PT",
+   "pulled_pt": "Fri Oct 30 09:11 AM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -41,7 +41,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_fri0853.txt",
    "pulled_pt": "Fri Oct 30 08:53 AM PT",
-   "age_h": 0.2,
+   "age_h": 0.3,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,17 +49,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Oct 30 09:03 AM PT",
+   "pulled_pt": "Fri Oct 30 09:12 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Fri Oct 30 2026 09:03 AM PT for week 8"
+   "note": "Gotham run Fri Oct 30 2026 09:12 AM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Fri Oct 30 2026 5:40 AM PT",
-   "age_h": 3.4,
+   "age_h": 3.5,
    "rows": 2244,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -67,33 +67,33 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Fri Oct 30 2026 6:03 AM PT",
-   "age_h": 3.0,
+   "age_h": 3.2,
    "rows": 2564,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-30T1413Z.csv",
-   "pulled_pt": "Fri Oct 30 07:13 AM PT",
-   "age_h": 1.8,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-10-30T1605Z.csv",
+   "pulled_pt": "Fri Oct 30 09:05 AM PT",
+   "age_h": 0.1,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.9 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.1 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-30T1413Z.csv",
-   "pulled_pt": "Fri Oct 30 07:13 AM PT",
-   "age_h": 1.8,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-10-30T1605Z.csv",
+   "pulled_pt": "Fri Oct 30 09:05 AM PT",
+   "age_h": 0.1,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.9 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.1 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Fri Oct 30 08:53 AM PT",
-   "age_h": 0.2,
+   "age_h": 0.3,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
@@ -121,7 +121,7 @@
    "teams": 12,
    "opp_rank": 2,
    "needles": {
-    "gotham": 19,
+    "gotham": 20,
     "sleeper": 20,
     "ratcliffe": 20,
     "koerner": 19,
@@ -132,12 +132,12 @@
    },
    "totals": {
     "gotham": [
-     131.21,
+     131.25,
      171.18
     ],
     "sleeper": [
-     133.74,
-     171.82
+     133.92,
+     171.81
     ],
     "yahoo": [
      134.31,
@@ -208,7 +208,7 @@
       "gotham": 22.13,
       "gotham_raw": 22.13,
       "gotham_src": "gotham",
-      "sleeper": 21.47,
+      "sleeper": 21.66,
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
@@ -288,7 +288,7 @@
       "gotham": 13.29,
       "gotham_raw": 13.29,
       "gotham_src": "gotham",
-      "sleeper": 16.96,
+      "sleeper": 16.85,
       "window": 1,
       "ratcliffe": 16.89,
       "ratcliffe_src": "ftn",
@@ -325,10 +325,10 @@
       "yahoo": 12.34,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.1,
+      "gotham": 12.14,
       "gotham_raw": 13.26,
       "gotham_src": "gotham-capped",
-      "sleeper": 11.87,
+      "sleeper": 11.95,
       "window": 3,
       "ratcliffe": 10.87,
       "ratcliffe_src": "ftn",
@@ -345,10 +345,10 @@
       "yahoo": 10.19,
       "actual": null,
       "pos": "TE",
-      "gotham": 10.5,
+      "gotham": 10.51,
       "gotham_raw": 10.62,
       "gotham_src": "gotham-capped",
-      "sleeper": 10.81,
+      "sleeper": 10.82,
       "window": 1,
       "ratcliffe": 9.47,
       "ratcliffe_src": "ftn",
@@ -388,7 +388,7 @@
       "gotham": 10.27,
       "gotham_raw": 10.27,
       "gotham_src": "ratcliffe",
-      "sleeper": 10.69,
+      "sleeper": 10.7,
       "window": 3,
       "ratcliffe": 10.27,
       "ratcliffe_src": "ftn",
@@ -430,7 +430,7 @@
       "gotham": 19.67,
       "gotham_raw": 19.67,
       "gotham_src": "gotham",
-      "sleeper": 20.0,
+      "sleeper": 19.99,
       "window": 1,
       "ratcliffe": 21.04,
       "ratcliffe_src": "ftn",
@@ -638,7 +638,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 10.68,
-     "sleeper": 10.38,
+     "sleeper": 10.36,
      "window": 1,
      "ratcliffe": 9.31,
      "koerner": 10.71
@@ -704,12 +704,12 @@
      175.91
     ],
     "gotham": [
-     130.87,
+     130.92,
      171.18
     ],
     "sleeper": [
-     133.74,
-     171.72
+     133.92,
+     171.71
     ],
     "ratcliffe": [
      133.05,
@@ -765,7 +765,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 22%.",
    "experts": {
-    "read": "Fri Oct 30 2026 9:02 AM PT",
+    "read": "Fri Oct 30 2026 9:11 AM PT",
     "vs_pull": "Thu Oct 29 2026 5:17 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
@@ -820,11 +820,11 @@
    "totals": {
     "gotham": [
      143.31,
-     185.45
+     185.49
     ],
     "sleeper": [
-     152.14,
-     184.23
+     152.21,
+     184.31
     ],
     "yahoo": [
      153.52,
@@ -935,7 +935,7 @@
       "gotham": 7.92,
       "gotham_raw": 7.92,
       "gotham_src": "gotham",
-      "sleeper": 8.64,
+      "sleeper": 8.63,
       "window": 1,
       "ratcliffe": 9.38,
       "ratcliffe_src": "ftn",
@@ -955,7 +955,7 @@
       "gotham": 13.29,
       "gotham_raw": 13.29,
       "gotham_src": "gotham",
-      "sleeper": 16.96,
+      "sleeper": 16.85,
       "window": 1,
       "ratcliffe": 16.89,
       "ratcliffe_src": "ftn",
@@ -1055,7 +1055,7 @@
       "gotham": 22.13,
       "gotham_raw": 22.13,
       "gotham_src": "gotham",
-      "sleeper": 21.47,
+      "sleeper": 21.66,
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
@@ -1117,7 +1117,7 @@
       "gotham": 28.97,
       "gotham_raw": 29.71,
       "gotham_src": "gotham-capped",
-      "sleeper": 28.43,
+      "sleeper": 28.44,
       "window": 1,
       "ratcliffe": 27.78,
       "ratcliffe_src": "ftn",
@@ -1174,10 +1174,10 @@
       "yahoo": 12.41,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.14,
+      "gotham": 12.18,
       "gotham_raw": 13.26,
       "gotham_src": "gotham-capped",
-      "sleeper": 11.87,
+      "sleeper": 11.95,
       "window": 3,
       "ratcliffe": 10.87,
       "ratcliffe_src": "ftn",
@@ -1257,7 +1257,7 @@
       "gotham": 18.96,
       "gotham_raw": 18.96,
       "gotham_src": "gotham",
-      "sleeper": 22.5,
+      "sleeper": 22.49,
       "window": 1,
       "ratcliffe": 18.85,
       "ratcliffe_src": "ftn",
@@ -1365,7 +1365,7 @@
      "yahoo": null,
      "actual": null,
      "gotham": 7.49,
-     "sleeper": 8.27,
+     "sleeper": 8.25,
      "window": 1,
      "ratcliffe": 9.24,
      "koerner": 8.66
@@ -1458,11 +1458,11 @@
     ],
     "gotham": [
      143.31,
-     182.61
+     182.65
     ],
     "sleeper": [
-     150.17,
-     181.46
+     150.24,
+     181.54
     ],
     "ratcliffe": [
      150.74,
@@ -1539,7 +1539,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 30%.",
    "experts": {
-    "read": "Fri Oct 30 2026 9:02 AM PT",
+    "read": "Fri Oct 30 2026 9:11 AM PT",
     "vs_pull": "Thu Oct 29 2026 5:17 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
@@ -1585,7 +1585,7 @@
    "opp_rank": 6,
    "needles": {
     "gotham": 37,
-    "sleeper": 39,
+    "sleeper": 40,
     "ratcliffe": 39,
     "koerner": 42,
     "yahoo": 45,
@@ -1599,8 +1599,8 @@
      121.79
     ],
     "sleeper": [
-     116.68,
-     128.99
+     116.87,
+     129.01
     ],
     "yahoo": [
      121.6,
@@ -1671,7 +1671,7 @@
       "gotham": 22.13,
       "gotham_raw": 22.13,
       "gotham_src": "gotham",
-      "sleeper": 21.47,
+      "sleeper": 21.66,
       "window": 3,
       "ratcliffe": 21.94,
       "ratcliffe_src": "ftn",
@@ -1691,7 +1691,7 @@
       "gotham": 11.01,
       "gotham_raw": 11.01,
       "gotham_src": "gotham",
-      "sleeper": 13.82,
+      "sleeper": 13.8,
       "window": 3,
       "ratcliffe": 14.23,
       "ratcliffe_src": "ftn",
@@ -1791,7 +1791,7 @@
       "gotham": 8.57,
       "gotham_raw": 8.57,
       "gotham_src": "gotham",
-      "sleeper": 10.14,
+      "sleeper": 10.16,
       "window": 1,
       "ratcliffe": 9.46,
       "ratcliffe_src": "ftn",
@@ -1933,7 +1933,7 @@
       "gotham": 11.38,
       "gotham_raw": 11.38,
       "gotham_src": "gotham",
-      "sleeper": 12.48,
+      "sleeper": 12.5,
       "window": 4,
       "ratcliffe": 12.12,
       "ratcliffe_src": "ftn",
@@ -2129,7 +2129,7 @@
    "needles_set": {
     "gotham": 37,
     "yahoo": 45,
-    "sleeper": 39,
+    "sleeper": 40,
     "yahoo_from_spread": 45,
     "ratcliffe": 39,
     "koerner": 42
@@ -2144,8 +2144,8 @@
      121.79
     ],
     "sleeper": [
-     116.68,
-     128.99
+     116.87,
+     129.01
     ],
     "ratcliffe": [
      112.97,
@@ -2180,7 +2180,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 45%.",
    "experts": {
-    "read": "Fri Oct 30 2026 9:02 AM PT",
+    "read": "Fri Oct 30 2026 9:11 AM PT",
     "vs_pull": "Thu Oct 29 2026 5:17 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
@@ -2238,11 +2238,11 @@
    },
    "totals": {
     "gotham": [
-     163.36,
+     163.38,
      130.78
     ],
     "sleeper": [
-     175.52,
+     175.48,
      138.91
     ],
     "yahoo": [
@@ -2334,7 +2334,7 @@
       "gotham": 14.68,
       "gotham_raw": 14.68,
       "gotham_src": "gotham",
-      "sleeper": 20.65,
+      "sleeper": 20.6,
       "window": 1,
       "ratcliffe": 20.28,
       "ratcliffe_src": "ftn",
@@ -2351,7 +2351,7 @@
       "yahoo": 13.04,
       "actual": null,
       "pos": "RB",
-      "gotham": 12.99,
+      "gotham": 13.0,
       "gotham_raw": 17.56,
       "gotham_src": "gotham-capped",
       "sleeper": 12.95,
@@ -2371,10 +2371,10 @@
       "yahoo": 18.56,
       "actual": null,
       "pos": "WR",
-      "gotham": 18.5,
+      "gotham": 18.51,
       "gotham_raw": 18.64,
       "gotham_src": "gotham-capped",
-      "sleeper": 18.44,
+      "sleeper": 18.45,
       "window": 1,
       "ratcliffe": 18.43,
       "ratcliffe_src": "ftn",
@@ -2633,10 +2633,10 @@
       "yahoo": 12.33,
       "actual": null,
       "pos": "WR",
-      "gotham": 12.09,
+      "gotham": 12.13,
       "gotham_raw": 13.24,
       "gotham_src": "gotham-capped",
-      "sleeper": 11.84,
+      "sleeper": 11.92,
       "window": 3,
       "ratcliffe": 10.84,
       "ratcliffe_src": "ftn",
@@ -2673,10 +2673,10 @@
       "yahoo": 11.93,
       "actual": null,
       "pos": "WR",
-      "gotham": 11.82,
+      "gotham": 11.78,
       "gotham_raw": 12.47,
       "gotham_src": "gotham-capped",
-      "sleeper": 11.71,
+      "sleeper": 11.63,
       "window": 1,
       "ratcliffe": 11.1,
       "ratcliffe_src": "ftn",
@@ -2877,11 +2877,11 @@
      139.76
     ],
     "gotham": [
-     163.36,
+     163.38,
      129.75
     ],
     "sleeper": [
-     174.57,
+     174.53,
      137.73
     ],
     "ratcliffe": [
@@ -2958,7 +2958,7 @@
    },
    "best_note": "Best legal lineups for both teams from each full roster (out, bye and IR men can't start; men whose game has started stay put). Yahoo's own posted win % is for the lineups as set: 74%.",
    "experts": {
-    "read": "Fri Oct 30 2026 9:02 AM PT",
+    "read": "Fri Oct 30 2026 9:11 AM PT",
     "vs_pull": "Thu Oct 29 2026 5:17 PM PT",
     "vs_week": "Week 7 final list",
     "panel": [
