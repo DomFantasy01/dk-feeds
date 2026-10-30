@@ -178,10 +178,17 @@ import os as _o2, csv as _c2
 BAR_PCT, BAR_PTS = 0.15, 2.0
 _ROOT = _o2.environ.get("DK_ROOT", "/home/claude")
 _LGN = {"DK I": "1", "DK II": "2", "DK III": "3", "DK IV": "4"}
+_RAW = "https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/"
+def _rawtxt(rel):   # Oct 29: the hourly Live pass runs outside the repo - fall back to GitHub's copy
+    import urllib.request, time
+    try: return urllib.request.urlopen(f"{_RAW}{rel}?t={int(time.time())}", timeout=40).read().decode()
+    except Exception: return ""
+_HERE = _o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..")
 def _ldcsv(f):
-    for d in (_ROOT + "/dksys/data/latest/",):
+    for d in (_ROOT + "/dksys/data/latest/", _o2.path.join(_HERE, "dispatch_out") + "/"):
         if _o2.path.exists(d + f): return list(_c2.DictReader(open(d + f)))
-    return []
+    t = _rawtxt("dispatch_out/" + f)
+    return list(_c2.DictReader(t.splitlines())) if t else []
 def _fl(v):
     try: return float(v) if v not in ("", None, "nan") else None
     except Exception: return None
@@ -196,6 +203,7 @@ for _n2 in "1234":
     for _d2 in [SCOUT, _o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_drop", "scout")]:
         _p2 = _o2.path.join(_d2 or "", f"yproj_dk{_n2}.txt")
         if _d2 and _o2.path.exists(_p2): _t2 = open(_p2).read(); break
+    if not _t2: _t2 = _rawtxt(f"yahoo_drop/scout/yproj_dk{_n2}.txt")
     for l in _t2.splitlines():
         if l.startswith("#"): YP_AT = (re.search(r"read live (.+? PT)", l) or [None, YP_AT])[1]; continue
         x = l.split("|")
@@ -234,7 +242,9 @@ def srcages():
 YA = {}
 for _d2 in [_o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_api", "latest.json")]:
     try: YA = json.load(open(_d2))
-    except Exception: YA = {}
+    except Exception:
+        try: YA = json.loads(_rawtxt("yahoo_api/latest.json") or "{}")
+        except Exception: YA = {}
 YA_AT = YA.get("read_pt") or ""
 _TEAMOF = {}
 for _lk2, _YL in (YA.get("leagues") or {}).items():
