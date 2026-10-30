@@ -231,7 +231,10 @@ try:
         _runs = json.loads(urllib.request.urlopen(_rq, timeout=30).read()).get('workflow_runs', [])
     except Exception:
         import subprocess as _sp  # unauthenticated API is rate-limited (403); fall back to the gh tool
-        _runs = json.loads(_sp.run(['gh', 'api', 'repos/DomFantasy01/dk-feeds/actions/runs?per_page=100'], capture_output=True, text=True, timeout=60, check=True).stdout).get('workflow_runs', [])
+        try:
+            _runs = json.loads(_sp.run(['gh', 'api', 'repos/DomFantasy01/dk-feeds/actions/runs?per_page=100'], capture_output=True, text=True, timeout=60, check=True).stdout).get('workflow_runs', [])
+        except Exception:  # last resort: the run list each build saves to the repo (up to ~2 hours old)
+            _runs = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/gh_runs.json', timeout=30).read()).get('workflow_runs', [])
     _cut = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
     _by = {}
     for _r in sorted([r for r in _runs if r.get('status') == 'completed' and r.get('created_at', '') >= _cut], key=lambda r: r['created_at']):

@@ -21,6 +21,7 @@ on:
   workflow_dispatch: {}            # 'Run workflow' button for an on-demand build
 permissions:
   contents: write
+  actions: read                    # Oct 30: lets the build save the job-run list for Live's GitHub light
 concurrency:
   group: dk-feeds                  # same group as the other two jobs: never two writers at once
   cancel-in-progress: false
@@ -41,6 +42,11 @@ jobs:
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+      # Oct 30: the hourly Live sync can't read GitHub's run list (unsigned reads get refused), so each build saves it here
+      - name: save the job-run list for the GitHub light
+        run: gh api 'repos/${{ github.repository }}/actions/runs?per_page=100' > dispatch_out/gh_runs.json || echo "!! run list not saved"
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: save the page back to the repo
         run: |
           git config user.name dk-feed-bot
