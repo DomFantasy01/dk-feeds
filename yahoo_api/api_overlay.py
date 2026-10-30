@@ -57,11 +57,19 @@ def main():
     WF = newest_chrome(wd, "league_windows_*.txt", at.year)
     if WF and at > file_time(WF, at.year):
         win, rec = {}, {}
+        # Oct 30 (Dom caught it): the API's team "projected points" is Yahoo's PREGAME projection - it does not swap in the
+        # points already scored. So the total = the Chrome total with every window that has kicked off replaced by the
+        # API's actual points so far (windows: THU, SUN early, SUN 10a, SUN 1p, SUN night, MON).
+        K = kickoffs(games, wk); starts = [None] * 6
+        for k in K.values():
+            i = 0 if k.weekday() == 3 else 5 if k.weekday() == 0 else (1 if k.hour < 9 else 2 if k.hour < 12 else 3 if k.hour < 16 else 4) if k.weekday() == 6 else None
+            if i is not None and (starts[i] is None or k < starts[i]): starts[i] = k
+        passed = [s is not None and now >= s for s in starts]
         for lab, L in A["leagues"].items():
             lid = LG[lab]
             for m in L.get("scoreboard", []):
                 for x in m["teams"]:
-                    try: win[(lid, x["name"])] = (round(float(x["win_probability"]) * 100), float(x["proj"]))
+                    try: win[(lid, x["name"])] = (round(float(x["win_probability"]) * 100), float(x["points"]))
                     except (TypeError, ValueError): pass
             for s in L.get("standings", []):
                 rec[(lid, s["name"])] = f"{s['w']}-{s['l']}-{s['tie']}/{ordinal(s['rank'])}"
@@ -70,7 +78,11 @@ def main():
             if ln.startswith("#") or not ln.strip(): continue
             f = ln.split("~"); n += 1; k = (f[0], f[1])
             if k in win:
-                f[3] = str(win[k][0]); f[-2] = f"{win[k][1]:.2f}"; hit += 1
+                wv = [float(v) for v in f[4].split()]
+                done_chrome = sum(v for v, p in zip(wv, passed) if p)
+                f[3] = str(win[k][0]); f[-2] = f"{float(f[-2]) - done_chrome + win[k][1]:.2f}"; hit += 1
+                if sum(passed) == 1:   # one window played so far: it now holds the actual points (the mountain chart)
+                    wv[passed.index(True)] = win[k][1]; f[4] = " ".join(f"{v:.2f}" for v in wv)
             if k in rec: f[2] = rec[k]
             out.append("~".join(f))
         if n and hit == n:
