@@ -14,6 +14,8 @@ on:
     - cron: '10,40 0-4 * * 2,5'
     - cron: '10,40 13-23 * * 0'
     - cron: '10,40 0-4 * * 1'
+    # Oct 30 (Dom: the brief must be current by 4-5 AM, last night's games included): one build at 4:30 AM PT every day
+    - cron: '30 11 * * *'
     # Times are UTC on PDT (UTC-7). After Nov 1 (PST) every time lands one hour earlier in Pacific.
   workflow_dispatch: {}            # 'Run workflow' button for an on-demand build
 permissions:

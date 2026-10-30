@@ -49,6 +49,8 @@ curl -sfL -o gate/fresh/stats_player_week_2026.csv $N/stats_player/stats_player_
 curl -sfL -o gate/fresh/injuries_2026.csv $N/injuries/injuries_2026.csv
 curl -sfL -o gate/fresh/roster_2026.csv $N/rosters/roster_2026.csv
 curl -sfL -o gate/fresh/snap_counts_2026.csv $N/snap_counts/snap_counts_2026.csv
+echo "== 2b Yahoo API overlay (Oct 30, Dom): the API's newer win %, totals, lineups and points laid over the last Chrome read"
+if [ -f "$REPO/yahoo_api/latest.json" ]; then python3 "$REPO/yahoo_api/api_overlay.py" "$REPO" "$ROOT/dksys/data/latest/yahoo" "$ROOT/dksys/data/latest/games.csv"; fi
 echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
 echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"

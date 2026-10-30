@@ -104,6 +104,22 @@ def read_league(y, gk, lab, lid, me, log):
                 for x in m.iterfind("y:teams/y:team", NS)]
         sb.append(dict(week=t(m, "y:week"), status=t(m, "y:status"), teams=side))
     L["scoreboard"] = sb
+    # Oct 30 (Dom): Dom's own matchup, both sides, with each player's points this week in the league's scoring, so the
+    # meters and the brief stay current between Chrome reads (overnight games, Thursday night). Yahoo's per-player
+    # PROJECTIONS are still Chrome-only (the API refuses them - see probe.json); points and lineups come from here.
+    try:
+        wk = L["week"]; mine = [m for m in sb if any(x["id"] == me for x in m["teams"])]
+        if mine:
+            sides = {}
+            for x in mine[0]["teams"]:
+                ros = y.get(f"team/{lk}.t.{x['id']}/roster;week={wk}/players/stats;type=week;week={wk}")
+                pl = []
+                for p in ros.iterfind(".//y:roster/y:players/y:player", NS):
+                    r = player_row(p); r["points"] = t(p, "y:player_points/y:total"); pl.append(r)
+                sides["me" if x["id"] == me else "op"] = dict(id=x["id"], name=x["name"], players=pl)
+            L["matchup"] = sides
+    except Exception as e:
+        log.append(f"{lab} matchup points not read: {str(e)[:200]}")
     st = []
     for x in y.get(f"league/{lk}/standings").iterfind(".//y:team", NS):
         st.append(dict(id=int(t(x, "y:team_id")), name=t(x, "y:name"), rank=t(x, "y:team_standings/y:rank"),

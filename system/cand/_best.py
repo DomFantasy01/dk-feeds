@@ -21,7 +21,7 @@ def _bstart(team):
 # Yahoo bench projections, when the read carried them: lines "lg#ME bench##OPP bench", same row format as dom_matchups
 _BY = {}
 _bf = sorted(_bg.glob(YDIR + "dom_benches_*.txt"), key=_bo.path.getmtime)
-_mf = sorted(_bg.glob(YDIR + "dom_matchups_*.txt"), key=_bo.path.getmtime)
+_mf = sorted((f for f in _bg.glob(YDIR + "dom_matchups_*.txt") if not f.endswith("_api.txt")), key=_bo.path.getmtime)   # Oct 30: pair benches with the Chrome read they came from, not the API overlay
 if _bf and (not _mf or _bo.path.basename(_bf[-1]).split("_")[-1] == _bo.path.basename(_mf[-1]).split("_")[-1]):
     for _ln in open(_bf[-1]):
         if _ln.startswith("#") or "#" not in _ln: continue
