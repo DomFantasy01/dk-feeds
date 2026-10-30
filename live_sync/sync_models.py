@@ -194,6 +194,53 @@ if bf_at and (not _p(H['build']) or bf_at > _p(H['build'])) and CH['state'] in (
     CH.update(state='broken', msg='the last Dispatch build failed at ' + _iso(bf_at))
 print('CHAIN', CH['state'].upper(), '-', CH['msg'] or 'no read due yet', ('| start scheduled task ' + CH['trigger']) if CH['state'] == 'refire' else '')
 cur['health'] = H
+# ---------- Oct 30 (Dom): THE STATUS ROW - one light per piece, in the order everything depends on ----------
+# Each piece's last good run (UTC ISO) for the Live page's status row; the page knows each piece's schedule and turns a
+# light red when a scheduled run is missed. Radar, Scout and GitHub come from GitHub itself (the sync runs in the cloud).
+def _pt2utc(sx):
+    try:
+        sx = (sx or '').replace(' PT', '').strip()
+        if not re.search(r' \d{4} ', sx): sx = re.sub(r'^(\w{3} \w{3} \d{1,2}) ', r'\g<1> ' + M['built_pt'].split()[3] + ' ', sx)
+        tt = datetime.strptime(sx, '%a %b %d %Y %I:%M %p')
+        off = 7 if (tt.month, tt.day) < (11, 1) or (tt.month, tt.day) >= (3, 8) else 8
+        return (tt + timedelta(hours=off)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    except Exception: return None
+SRC = M.get('sources') or {}
+ST = {'checked': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+      'yahoo': {'last': _pt2utc((SRC.get('yahoo_rosters') or {}).get('pulled_pt')), 'api': _pt2utc((SRC.get('yahoo_matchups') or {}).get('pulled_pt')),
+                'ok': (SRC.get('yahoo_matchups') or {}).get('status') == 'OK'},
+      'ratcliffe': {'last': _pt2utc((SRC.get('ratcliffe') or {}).get('pulled_pt')), 'ok': (SRC.get('ratcliffe') or {}).get('status') == 'OK'},
+      'koerner': {'last': _pt2utc((SRC.get('koerner') or {}).get('pulled_pt')), 'ok': (SRC.get('koerner') or {}).get('status') == 'OK'},
+      'build': {'last': cur.get('stamp'), 'alarms': len(M.get('alarms') or []), 'failed': (H.get('build_failed') or {}).get('at') if isinstance(H.get('build_failed'), dict) else None},
+      'sync': {'last': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}}
+try:
+    import urllib.request, time as _tm
+    _raw = lambda rel: urllib.request.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/{rel}?t={int(_tm.time())}", timeout=30).read()
+    _R = json.loads(_raw(f"dispatch_out/radar_wk{M['week']}.json"))
+    ST['radar'] = {'last': (_R.get('built_utc') or '')[:19] + 'Z' if _R.get('built_utc') else None, 'flags': sum(len(v.get('in') or []) for v in (_R.get('leagues') or {}).values())}
+    try: _raw('dispatch_out/RADAR_FAILED.txt'); ST['radar']['failed'] = True
+    except Exception: ST['radar']['failed'] = False
+    _B = json.loads(_raw('dispatch_out/scout_state/scout_board_DKI.json'))
+    _rs = re.sub(r',', '', _B.get('run_str') or '')   # "Fri Oct 30 12:02 PM PT"
+    ST['scout'] = {'last': _pt2utc(_rs)}
+except Exception as _e: ST['radar_scout_error'] = f"{type(_e).__name__}: {_e}"[:160]
+try:
+    import urllib.request
+    _rq = urllib.request.Request("https://api.github.com/repos/DomFantasy01/dk-feeds/actions/runs?per_page=100", headers={"Accept": "application/vnd.github+json", "User-Agent": "dk-live"})
+    _runs = json.loads(urllib.request.urlopen(_rq, timeout=30).read()).get('workflow_runs', [])
+    _cut = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    _by = {}
+    for _r in sorted([r for r in _runs if r.get('status') == 'completed' and r.get('created_at', '') >= _cut], key=lambda r: r['created_at']):
+        _by.setdefault(_r['name'], []).append(_r)
+    _red, _yel = [], []
+    for _nm, _rs2 in _by.items():
+        _f = [r for r in _rs2 if r.get('conclusion') == 'failure']
+        if not _f: continue
+        if _rs2[-1].get('conclusion') == 'failure': _red.append({'name': _nm, 'at': _rs2[-1]['created_at']})
+        else: _yel.append({'name': _nm, 'at': _f[-1]['created_at'], 'ok': _rs2[-1]['created_at'], 'n': len(_f)})
+    ST['github'] = {'last': max((r['created_at'] for r in _runs), default=None), 'runs24': sum(len(v) for v in _by.values()), 'red': _red, 'yellow': _yel}
+except Exception as _e: ST['github'] = {'error': f"{type(_e).__name__}: {_e}"[:160]}
+cur['status'] = ST
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
 # ---- ONE YAHOO READER (Oct 13): Live's live/state from the Dispatch's read, when that read is newer
