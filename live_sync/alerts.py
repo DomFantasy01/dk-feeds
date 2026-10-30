@@ -668,7 +668,7 @@ try:
             ok_ = bar(cn_, sn_)
             if not ok_:
                 RISERS.append((lg, it, cn_, sn_, st_)); continue      # under the bar this week: the rising check decides
-            ko_pt = ko.astimezone(_PT); kot = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"
+            ko_pt = ko.astimezone(dt.timezone(dt.timedelta(hours=-8 if dt.date(2026, 11, 1) <= ko.date() < dt.date(2027, 3, 14) else -7))); kot   # Oct 29: Pacific for the GAME's date (clocks fall back Sun Nov 1) = f"{ko_pt:%a} {ko_pt.hour % 12 or 12}:{ko_pt:%M} {'AM' if ko_pt.hour < 12 else 'PM'} PT"
             n0 = (it.get("news") or [{}])[0]
             add(id=slug("rk", W, lg, name), color="gold", lg=lg, who=name, kind="radar_prekick",
                 title=f"Before lock ({kot}): {name} ({pos}, {team}) over your {st_['slot']} {st_['player']} this week - clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_),
