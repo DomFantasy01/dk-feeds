@@ -786,6 +786,13 @@ try:
         if it.get("online") and any(isinstance(v, (int, float)) and v >= 6 for v in cn_.values()):
             rs.append(why_ + " - and an expert already projects him for real work")
         if not rs: continue
+        # Oct 30 (Dom's alert review): a 'riser' projected at 1.9 against a 9.4 starter, or a man sent back to the practice
+        # squad, is noise. He must be within reach: some source this week at 60%+ of the starter's number on that source,
+        # or Ratcliffe's rest of season at 75%+ of the starter's - and never a practice-squad or released man.
+        reach = any(isinstance(cn_.get(s_), (int, float)) and isinstance(sn_.get(s_), (int, float)) and sn_[s_] > 0 and cn_[s_] >= .6 * sn_[s_] for s_ in NAMES)
+        if not reach and not (isinstance(rp, (int, float)) and isinstance(sp, (int, float)) and sp > 0 and rp >= .75 * sp): continue
+        if re.search(r"practice squad|reverted|waived|released", " ".join((n_.get("title") or "") + " " + (n_.get("text") or "") for n_ in (it.get("news") or [])), re.I): continue
+        if (RAT.get((_LGN.get(lg), _nm(name))) or (None, None))[1] is not None and (RAT.get((_LGN.get(lg), _nm(name))) or (None, None))[1] < 4: continue   # Ratcliffe under 4 a game rest of season: not a riser
         best = max([v for v in cn_.values() if isinstance(v, (int, float))] or [0])
         _rk2.setdefault(lg, []).append((len(rs), best, lg, it, cn_, sn_, st_, rs, o_))
     _nr2 = 0
