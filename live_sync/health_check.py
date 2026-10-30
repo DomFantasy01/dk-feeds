@@ -309,6 +309,32 @@ else:
         row("Brief", "Brief numbers current", "red", re.search(r"HOLD ON[^\n]*", br).group(0)[:200], bt)
     else: row("Brief", "Brief numbers current", "green", "Yahoo matchup read is newer than every finished game this week", bt)
 
+# ---------- 11b. GitHub's own jobs (Oct 30, Dom: "I'm not trusting anything" - hear about every failure email from us first) ----------
+# Every GitHub run in the last 24 hours, including the Pages website step the system doesn't use. A failure the next run of
+# the same job fixed is yellow (with both times); a job whose latest run failed is red.
+try:
+    import urllib.request
+    rq = urllib.request.Request("https://api.github.com/repos/DomFantasy01/dk-feeds/actions/runs?per_page=100",
+                                headers={"Accept": "application/vnd.github+json", "User-Agent": "dk-health"})
+    runs = json.loads(urllib.request.urlopen(rq, timeout=30).read()).get("workflow_runs", [])
+    day = [r for r in runs if iso(r.get("created_at")) and iso(r["created_at"]) >= NOW - dt.timedelta(hours=24) and r.get("status") == "completed"]
+    byname = {}
+    for r in sorted(day, key=lambda r: r["created_at"]): byname.setdefault(r["name"], []).append(r)
+    bad = 0
+    for nm, rs in byname.items():
+        fails = [r for r in rs if r.get("conclusion") == "failure"]
+        if not fails: continue
+        bad += 1
+        last = rs[-1]; side = " (GitHub's website step - your system doesn't use it)" if nm.startswith("pages build") else ""
+        if last.get("conclusion") == "failure":
+            row("GitHub jobs", nm, "red", f"latest run FAILED at {at(iso(last['created_at']))}{side}; {len(fails)} failure(s) in 24 h", iso(last["created_at"]))
+        else:
+            f0 = fails[-1]
+            row("GitHub jobs", nm, "yellow", f"failed {len(fails)}x in 24 h, last at {at(iso(f0['created_at']))} - fixed itself, latest run OK at {at(iso(last['created_at']))}{side}", iso(f0["created_at"]))
+    if not bad: row("GitHub jobs", "Every GitHub job", "green", f"{len(day)} runs in the last 24 hours, no failures")
+except Exception as e:
+    row("GitHub jobs", "Every GitHub job", "grey", f"couldn't read GitHub's run list ({type(e).__name__}) - check skipped")
+
 # ---------- 12. known open problems (until marked fixed) ----------
 ki = load("live_sync/known_issues.json") or {"issues": []}
 for i in ki.get("issues", []):
