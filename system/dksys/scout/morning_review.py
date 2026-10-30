@@ -150,6 +150,52 @@ def yahoo_ros(R, n, week):
             if w >= week: Y[norm(p[1])] = Y.get(norm(p[1]), 0.0) + v
     return Y
 
+# ---------- Oct 30 (Dom): a REAL VERDICT on every pickup a rival makes ----------
+# "I have no idea whether I need to pick up Lemon or not. Names never even come up, and somebody picked him up. Maybe he's
+# just a one-game pickup." Every add by another team now says: what he is worth this week and the rest of the season
+# (Ratcliffe first, Koerner and Yahoo beside him), his Weeks 15-17 games, whether he would have started for Dom (the
+# 15%-and-2-points bar against the man he'd replace), and whether our system put him in front of Dom before he was taken.
+import csv as _csv
+_ROOT = os.environ.get("DK_ROOT", "/home/claude")
+def _ldcsv(R, f):
+    for p in (f"{_ROOT}/dksys/data/latest/{f}", f"{R}/dispatch_out/{f}"):
+        if os.path.exists(p): return list(_csv.DictReader(open(p)))
+    return []
+def _fl(v):
+    try: return float(v) if v not in ("", None, "nan") else None
+    except Exception: return None
+def expert_nums(R):
+    RAT, KOR = {}, {}
+    for r in _ldcsv(R, "ftn_scored.csv"): RAT[(str(r.get("lg")), norm(r.get("name")))] = (_fl(r.get("wk")), _fl(r.get("ros_pg")))
+    for r in _ldcsv(R, "koerner_scored.csv"): KOR[(str(r.get("lg")), norm(r.get("name")))] = _fl(r.get("wk"))
+    return RAT, KOR
+def yahoo_weeks(R, n):
+    f = f"{R}/yahoo_drop/scout/yproj_dk{n}.txt"; Y = {}
+    if os.path.exists(f):
+        for ln in open(f):
+            p = ln.rstrip("\n").split("|")
+            if ln.startswith("#") or len(p) < 5: continue
+            try: Y.setdefault(norm(p[1]), {})[int(p[0])] = float(p[4])
+            except ValueError: pass
+    return Y
+def sched(R):
+    G = {}
+    for f in (f"{_ROOT}/dksys/data/latest/games.csv",):
+        if not os.path.exists(f): continue
+        for r in _csv.DictReader(open(f)):
+            if r.get("season") != "2026" or r.get("game_type") != "REG": continue
+            w = int(r["week"]); G[(r["home_team"], w)] = "vs " + r["away_team"]; G[(r["away_team"], w)] = "at " + r["home_team"]
+    return G
+def flagged_before(R, nm, t):
+    """Did any alert or Scout board show him to Dom before the claim went through?"""
+    hits = []
+    try:
+        for x in json.load(open(f"{R}/dispatch_out/alerts_build.json")).get("items", []):
+            if norm(x.get("who")) != norm(nm): continue
+            fs = dt.datetime.fromisoformat(x.get("first_seen")).astimezone(PT)
+            if fs < t: hits.append(f"{x.get('lg')} {x.get('kind')} alert {pt_str(fs)}")
+    except Exception: pass
+    return hits
 NEWS_RX = re.compile(r"\b(trade[sd]?|traded to|acquire[sd]?|sign(s|ed)|re-sign|released?|waive[sd]|claimed off waivers|promoted)\b", re.I)
 def news_arrivals(R, since):
     """player name -> short reason, from the news feeds (trade/sign/release words in the headline or first line)."""
@@ -186,6 +232,9 @@ def run(R, since, asof, out_dir, write_brief):
         return f"panel {b['pos']}{b['rank']}" if b and b.get("rank") else "not ranked by the expert panel this week (bye, hurt or deep)"
 
     news = news_arrivals(R, since)
+    RAT, KOR = expert_nums(R); GS = sched(R)
+    TEAMOF = {}
+    for k_, v_ in scout_positions(R).items(): TEAMOF[k_] = v_[1].upper()
     report = dict(built=pt_str(dt.datetime.now(PT)), window=dict(since=pt_str(since.astimezone(PT)), asof=pt_str(asof.astimezone(PT))),
                   sources=dict(boone=bhead, yahoo_read=inbox.get("read_pt"), yahoo_file=os.path.basename(inbox_f)), leagues={})
     for lab, n, lid, me in LEAGUES:
@@ -213,7 +262,32 @@ def run(R, since, asof, out_dir, write_brief):
             if c: return f"on waivers until {c}"
             if norm(nm) in recent_drop: return f"just dropped {pt_str(recent_drop[norm(nm)])} - on waivers about two days, so it takes a claim"
             return "free agent - add any time"
-        L = dict(opponent=(OPP.get(lid) or ("", ""))[1], expert=[], arrivals=[], review=dict(yours=[], hurts=[], missed=[], openings=[], quiet=0),
+        YW = yahoo_weeks(R, n); WK = min((w for d in YW.values() for w in d), default=week or 0)   # the read starts at the current week
+        def verdict(nm, pos, t=None):
+            """One line: worth this week / rest of season, Weeks 15-17, vs the man he'd replace on Dom's roster, flagged or not."""
+            k = norm(nm); rw, rr = RAT.get((str(n), k), (None, None)); kw = KOR.get((str(n), k)); yw = (YW.get(k) or {})
+            elig = {"QB": {"QB"}, "RB": {"RB"}, "WR": {"WR"}, "TE": {"TE"}}[pos]
+            flexok = pos in ("RB", "WR", "TE")
+            st = [p for p in mine if posof(p) == pos or (flexok and posof(p) in ("RB", "WR", "TE") and slots.get(norm(p), "BN") in ("W/R/T", "W/R", "W/T"))]
+            st = [p for p in st if slots.get(norm(p), "BN") not in ("BN", "IR")]
+            bn = [p for p in mine if posof(p) == pos and slots.get(norm(p), "BN") == "BN"]
+            ros = lambda p: (RAT.get((str(n), norm(p)), (None, None))[1])
+            wkv = lambda p: (RAT.get((str(n), norm(p)), (None, None))[0])
+            weak = min([p for p in st if ros(p) is not None], key=ros, default=None)
+            clr = lambda a, b: a is not None and b is not None and a - b >= 2 and a >= b * 1.15
+            if weak and clr(rr, ros(weak)): tag = f"STARTER UPGRADE over your {weak} the rest of the season ({rr:.1f} vs {ros(weak):.1f} a game, Ratcliffe)"
+            elif weak and clr(rw, wkv(weak)): tag = f"ONE-WEEK FILL: beats your {weak} this week ({rw:.1f} vs {wkv(weak):.1f}) but not over the season ({rr if rr is None else round(rr,1)} vs {ros(weak) if ros(weak) is None else round(ros(weak),1)} a game)"
+            elif bn and rr is not None and any(ros(b) is not None and rr > ros(b) for b in bn):
+                b = min([b for b in bn if ros(b) is not None], key=ros); tag = f"BENCH DEPTH only: better than your {b} ({rr:.1f} vs {ros(b):.1f} a game) but would not start"
+            elif rr is None and rw is None: tag = "NO EXPERT NUMBER: Ratcliffe has no projection for him (deep or hurt) - not an upgrade on what we know"
+            else: tag = "NOT AN UPGRADE: would not start or beat your bench" + (f" ({rr:.1f} a game vs your weakest {weak} {ros(weak):.1f})" if weak and rr is not None and ros(weak) is not None else "")
+            nums = f"Ratcliffe {('%.1f' % rw) if rw is not None else '-'} this week / {('%.1f' % rr) if rr is not None else '-'} a game rest of season; Koerner {('%.1f' % kw) if kw is not None else '-'}; Yahoo {('%.1f' % yw[WK]) if WK in yw else '-'}"
+            tm = TEAMOF.get(k, "")
+            po = ", ".join(f"Wk{w} {GS.get((tm, w), '?')}" + (f" (Yahoo {yw[w]:.1f})" if w in yw else "") for w in (15, 16, 17)) if tm else "playoff schedule unknown"
+            fb = flagged_before(R, nm, t) if t else []
+            seen = ("We showed him to you first: " + "; ".join(fb[:2]) + ".") if fb else ("No alert fired on him in this league before he was taken." if t else "")
+            return f"VERDICT: {tag}. {nums}. Playoffs: {po}. {seen}".strip()
+        L = dict(opponent=(OPP.get(lid) or ("", ""))[1], expert=[], arrivals=[], review=dict(yours=[], hurts=[], missed=[], openings=[], others=[], quiet=0),
                  worst={k: f"{v[0]} ({k}{v[1]})" for k, v in worst.items()}, txn_read=thead)
         # 1 EXPERT CHECK
         for key, b in B.items():
@@ -238,7 +312,7 @@ def run(R, since, asof, out_dir, write_brief):
             L["arrivals"].append(dict(name=nm, pos=ps, why=why, boone=rk(nm), beats=w[0] if w else None, how=how(nm),
                                       yahoo_ros=round(Y[key], 1) if key in Y else None,
                                       line=f"{nm} ({ps}) - {why}. Experts: {rtxt(nm)}" + (f", ahead of your {w[0]} ({ps}{w[1]})" if w else "")
-                                           + (f". Yahoo rest of season {Y[key]:.0f}" if key in Y else "") + f". {how(nm)}."))
+                                           + (f". Yahoo rest of season {Y[key]:.0f}" if key in Y else "") + f". {how(nm)}. {verdict(nm, ps)}"))
         L["arrivals"].sort(key=lambda a: (a["beats"] is None, a["boone"] or 999)); L["arrivals"] = L["arrivals"][:10]
         # 3 TRANSACTION REVIEW
         myname, opp = OPP.get(lid, ("", ""))
@@ -252,14 +326,15 @@ def run(R, since, asof, out_dir, write_brief):
                 L["review"]["yours"].append(ln); continue
             if x["action"] == "Added" and x["pos"] in POS:
                 w = beats(x["player"])
+                vd = verdict(x["player"], x["pos"], x["t"])
                 if opp and x["team"] == opp:
-                    L["review"]["hurts"].append(f"Your opponent {opp} added {who}, {pt_str(x['t'])} ({x['detail']}). Experts: {rtxt(x['player'])}.")
-                elif w:
-                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}).")
-                else: L["review"]["quiet"] += 1
+                    L["review"]["hurts"].append(f"Your opponent {opp} added {who}, {pt_str(x['t'])} ({x['detail']}). Experts: {rtxt(x['player'])}. {vd}")
+                elif w and ("STARTER UPGRADE" in vd or "ONE-WEEK FILL" in vd):   # Oct 30: 'we missed' only when he'd have started for Dom
+                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}). {vd}")
+                else: L["review"]["others"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). {vd}")   # Oct 30 (Dom): no more silent 'quiet' adds
             elif x["action"] == "Dropped" and x["pos"] in POS and norm(x["player"]) not in rostered:
                 w = beats(x["player"])
-                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}.")
+                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}. {verdict(x['player'], x['pos'])}")
                 else: L["review"]["quiet"] += 1
             else: L["review"]["quiet"] += 1
         report["leagues"][lab] = L
@@ -303,7 +378,7 @@ def render(rep):
     for lab, L in rep["leagues"].items():
         out.append(f"\n{lab} (plays {L['opponent'] or '?'})")
         r = L["review"]
-        for k, title in (("yours", "Your moves"), ("hurts", "Hurts you"), ("missed", "We missed"), ("openings", "Openings")):
+        for k, title in (("yours", "Your moves"), ("hurts", "Hurts you"), ("missed", "We missed"), ("openings", "Openings"), ("others", "Rival pickup")):
             for ln in r[k]: out.append(f"  {title}: {ln}")
         out.append(f"  {r['quiet']} other move(s) in the window don't touch you.")
         for e in L["expert"]: out.append(f"  EXPERT PANEL: {e['line']}")
@@ -323,7 +398,7 @@ def add_to_brief(path, rep):
     if P is None: parts.append("Warning, the expert panel did not run this build, so no pickup names are listed.")
     if P and P.get("experts_stale"): parts.append("Expert panel: " + P["experts_stale"] + ".")
     for lab, L in rep["leagues"].items():
-        r = L["review"]; bits = r["yours"][:3] + r["hurts"][:2] + r["missed"][:2]
+        r = L["review"]; bits = r["yours"][:3] + r["hurts"][:2] + r["missed"][:3] + r.get("others", [])[:4] + r["openings"][:2]
         passed = (P or {}).get("leagues", {}).get(lab, {}).get("passed", [])
         for x in passed:
             bits.append(f"Expert flag to analyze: {x['name']} ({x['team']} {x['pos']}) over your {x['beats']} - {', '.join(x['yes'])} rank him higher this week"
