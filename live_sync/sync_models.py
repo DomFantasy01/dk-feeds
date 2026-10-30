@@ -247,6 +247,10 @@ try:
         else: _yel.append({'name': _nm, 'at': _f[-1]['created_at'], 'ok': _rs2[-1]['created_at'], 'n': len(_f)})
     ST['github'] = {'last': max((r['created_at'] for r in _runs), default=None), 'runs24': sum(len(v) for v in _by.values()), 'red': _red, 'yellow': _yel}
 except Exception as _e: ST['github'] = {'error': f"{type(_e).__name__}: {_e}"[:160]}
+# Oct 30 (Dom): a light blinks while it's being worked on. live_sync/fixing.json lists the pieces being fixed right now,
+# e.g. {"radar": {"note": "retry failing on the injury feed", "since": "2026-10-30T23:00:00Z"}}; an empty {} when nothing is
+try: ST['fixing'] = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/live_sync/fixing.json', timeout=20).read())
+except Exception: ST['fixing'] = {}
 cur['status'] = ST
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
