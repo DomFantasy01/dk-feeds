@@ -105,6 +105,10 @@ class Engine:
                           seeds=[round(float((sd == k).mean()), 4) for k in range(1, 13)],
                           wins_hist=np.bincount(np.clip(np.round(Wm[i]).astype(int), 0, 28), minlength=15).tolist())   # 28: the median league counts two results a week
         out["_week"] = week_win
+        six = Wm[order[5], cols]                            # the 6th seed's final wins in each season = the playoff line
+        out["_line"] = dict(median=float(np.median(six)), dist=np.bincount(np.clip(np.round(six).astype(int), 0, 28), minlength=15).tolist())
+        mi = T.index(self.me)
+        out["_line"]["reach"] = float((Wm[mi] >= np.median(six)).mean())
         return out
 
 def season_val(p, a, b): return sum(v for w, v in p["wk"].items() if a <= int(w) <= b)
@@ -188,14 +192,29 @@ for lgk in LGS:
                               my_playoff=round(rr[me]["playoff"] - Bm["playoff"], 3), my_title=round(rr[me]["title"] - Bm["title"], 4))
     # trades: screen every 1-for-1 and 2-for-1 on both lineups (rest of season, title weeks count 1.5x), then play out the best
     def val(roster): return lineup_pts(E, roster, REM) + 1.5 * lineup_pts(E, roster, list(PO))
-    my_v = val(mine); give_pool = [p for p in mine if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF")]
+    # Dom's trade rules (Oct 31 11 AM): (1) a star only comes back for a star - no deal asks for a man clearly better-ranked
+    # than the best one Dom gives (Ratcliffe rest of season, within 15%); (2) a handcuff to one of Dom's own starting backs
+    # is protected (Kaelon Black behind McCaffrey: "if something happens to McCaffrey, my team's done"); (3) no deals with
+    # this week's opponent; (4) nobody who is OUT this week goes either way.
+    RRt = {}
+    try:
+        for r_ in csv.DictReader(open(os.path.join(R, "dispatch_out", "ftn_scored.csv"))):
+            if r_["lg"] == LGN[lgk] and r_.get("ros_pg"): RRt[nk(r_["name"])] = float(r_["ros_pg"])
+    except Exception: pass
+    def rv(p): return RRt.get(nk(p["name"])) or season_val(p, now, 17) / max(1, 17 - now + 1)
+    my_rb_teams = {p.get("nfl") for p in mine if p["pos"] == "RB" and rv(p) >= 15}
+    protected = {p["name"] for p in mine if p["pos"] == "RB" and p.get("nfl") in my_rb_teams and rv(p) < 15}
+    out_now = lambda p: (p.get("ytag") or "").upper() in ("O", "IR") or (p.get("slot") == "IR")
+    opp_now = next((b if a == me else a for a, b in L["sched"].get(now, []) if me in (a, b)), None)
+    my_v = val(mine); give_pool = [p for p in mine if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF") and p["name"] not in protected and not out_now(p)]
     screened = []
     for t, Rt in base_R.items():
-        if t == me: continue
-        their_v = val(Rt); get_pool = [p for p in Rt if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF")]
+        if t == me or t == opp_now: continue
+        their_v = val(Rt); get_pool = [p for p in Rt if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF") and not out_now(p)]
         gives = [(g,) for g in give_pool] + list(itertools.combinations(give_pool, 2))
         for G in gives:
             for gt in get_pool:
+                if rv(gt) > 1.15 * max(rv(g) for g in G): continue          # star for star
                 mine2 = [q for q in mine if q not in G] + [dict(gt, slot="BN")]
                 theirs2 = [q for q in Rt if q is not gt] + [dict(g, slot="BN") for g in G]
                 if len(G) == 2:   # they take two for one: they drop their least valuable non-IR man to make room
@@ -212,7 +231,7 @@ for lgk in LGS:
         dpm, dtm = a_me["playoff"] - Bm["playoff"], a_me["title"] - Bm["title"]
         dpt, dtt = a_t["playoff"] - B[t]["playoff"], a_t["title"] - B[t]["title"]
         # Dom: "it needs to be powerful for them too, or they won't even consider it" - both sides must gain for real
-        if (dpm >= 0.02 or dtm >= 0.01) and (dpt >= 0.02 or dtt >= 0.01):
+        if (dpm >= 0.02 or dtm >= 0.01) and (dpt >= 0.02 or dtt >= 0.01) and dpm >= -0.005 and dpt >= -0.005:   # nobody gives up playoff odds
             need = gt["pos"]; gave = "/".join(g["pos"] for g in G)
             trades.append(dict(partner=names.get(t, t), give=[g["name"] for g in G], get=gt["name"], get_pos=gt["pos"], give_pos=gave,
                                me_before=summ(Bm), me_after=summ(a_me), them_before=summ(B[t]), them_after=summ(a_t),
@@ -234,10 +253,19 @@ for lgk in LGS:
     po_weeks = sorted(((round(lineup_pts(E, Rt, list(PO)) / 3, 1), names.get(t, t), t == me) for t, Rt in base_R.items()), reverse=True)
     funnel = dict(playoff=round(Bm["playoff"], 3), semis=round(Bm["semis"], 3), final=round(Bm["final"], 3), title=round(Bm["title"], 4))
     # a move only headlines if it clears the bar AND its drop wouldn't start for a rival (Dom's rule) - the rest fold away
+    rec_now = sorted(((L["rec"].get(t, {}).get("w", 0), L["rec"].get(t, {}).get("pf", 0), t) for t in base_R), reverse=True)
+    stand_now = [t for _, _, t in rec_now].index(me) + 1
+    left = {o for wk in REM for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o}
+    path, cw = [], float(L["rec"].get(me, {}).get("w", 0))
+    for g_ in games: cw += g_["win"]; path.append(dict(wk=g_["wk"], opp=g_["opp"], win=g_["win"], cum=round(cw, 2)))
     keep_moves = [m for m in best if not m.get("drop_helps") and (m["d_wins"] >= 0.08 or m["d_playoff"] >= 0.012 or m["d_title"] >= 0.004 or m["this_week"] >= 0.02)]
     OUT["leagues"][LAB[lgk]] = dict(
         week=now, built=BUILT, standings=L["stamp"], base=summ(Bm), funnel=funnel, wins_hist=Bm["wins_hist"],
-        race=[dict(team=names.get(t, t), playoff=round(v, 3), title=round(B[t]["title"], 4), me=(t == me)) for v, t in table],
+        race=[dict(team=names.get(t, t), playoff=round(v, 3), title=round(B[t]["title"], 4), me=(t == me), left=(t in left),
+                   rec=f"{L['rec'].get(t, {}).get('w', 0)}-{L['rec'].get(t, {}).get('l', 0)}") for v, t in table],
+        stand_now=stand_now, median_league=bool(L["cfg"]["median"]), rec_now=f"{L['rec'].get(me, {}).get('w', 0)}-{L['rec'].get(me, {}).get('l', 0)}",
+        line=dict(median=round(B["_line"]["median"], 1), reach=round(B[me].get("_reach", B["_line"]["reach"]), 3), dist=B["_line"]["dist"]), path=path,
+        protected=sorted(protected), trade_rules="star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
         games=games, po_weeks=[dict(pts=a, team=b, me=c) for a, b, c in po_weeks], worth=worth,
         moves=keep_moves[:5], not_worth=[dict(add=m["add"], drop=m["drop"], d_wins=m["d_wins"], d_playoff=m["d_playoff"]) for m in best if m not in keep_moves][:8],
         trades=trades[:3], trades_screened=len(screened),
