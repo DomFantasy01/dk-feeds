@@ -163,7 +163,9 @@ else:
         of = [r for r in open_f if r in rr]; hl = [r for r in healed if r in rr]
         last_ok = max([r.get("finished") or r.get("started") or "" for r in runs if _src(r.get("task")) == src and r.get("status") == "ok"] or [""])
         name = "Chain runs (last 30 h)" if src == "Chain" else f"{src} reads (last 30 h)"
-        row(src, name, "red" if of else "green",
+        # the chain summary only repeats its reads' results (and the chain emails its own failures) - shown, never red,
+        # or one failed chain would turn every later chain's system check red forever
+        row(src, name, ("grey" if src == "Chain" else "red") if of else "green",
             f"{len(rr)} runs, {len(of)} failed and not yet redone" + (f"; last good {at(iso(last_ok))}" if last_ok and of else "")
             + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in of[-2:]) if of else "")
             + (f" ({len(hl)} earlier failure{'s' if len(hl) > 1 else ''} already fixed by a later good run)" if hl else ""),
