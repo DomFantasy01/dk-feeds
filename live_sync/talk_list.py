@@ -86,6 +86,7 @@ for lab, key, lid, lgn, myid in LG:
             if ln.startswith("#") or "|" not in ln: continue
             t, slot, name, tm, pos, st = (ln.rstrip("\n").split("|") + [""] * 6)[:6]
             rost.setdefault(t, []).append(dict(slot=slot, name=name, team=tm, pos=pos, status=st)); owner[nk(name)] = t
+            if pos.split(",")[0] in ("DEF", "DST"): owner[nk(f"{tm.upper()} DEF")] = t   # Oct 31 fix: Yahoo says "Jaguars", Ratcliffe says "JAX DEF" - rostered defenses were showing as free
     except Exception: pass
     waiv = {}
     try:
