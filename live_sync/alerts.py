@@ -449,13 +449,13 @@ if FEEDS:
             fix = ("Good news, nothing to do: more work for him." if good else
                    f"His team has let him go, so he scores 0 unless someone signs him. Bench him and pick up another {slot}."
                    if role == "starter" and gone else
-                   "Check his status before kickoff and line up a bench fill; the next Dispatch build re-scores the lineup."
+                   "Check his status before kickoff; have a bench fill ready."
                    if role == "starter" else "Nothing to do now.")
             add(id=slug("w", W, lg, "feed", name, n["t"]), color=color, lg=lg, who=name, kind="feed",
                 title=n["title"] if nn in _norm(n["title"]) else f"{name}: {n['title']}",
                 what=(n["text"] or n["title"])[:400], tie=tie, fix=fix,
                 ba=None,
-                receipts=["Raw feed hit: the next Dispatch build confirms it against ESPN and Sleeper and re-scores your lineup"],
+                receipts=["Unconfirmed news - the next build checks it against ESPN and Sleeper"],
                 by=None, feed=f"{srcname(n['src'])}, {_pt(d)}", feed_title=n["title"], news_t=d.isoformat(),
                 src=f"{srcname(n['src'])} (raw feed, pulled every 30 minutes)")
             seen_titles.setdefault((lg, name), []).append(n["title"])
@@ -684,7 +684,7 @@ try:
                 title=f"Before lock ({kot}): {name} ({pos}, {team}) over your {st_['slot']} {st_['player']} this week - clears the bar on " + ", ".join(NAMES[s_] for s_ in ok_),
                 what=(n0.get("title") or "") + (f" - {n0.get('text')}" if n0.get("text") else "") + (f" Radar: {why}." if why else ""),
                 tie=f"Would start over your {st_['slot']} {st_['player']} in {lg} this week, and he's free to add with no bid until {kot}.",
-                fix=f"Free to add, no bid, until his game kicks off {kot}; after that he goes to waivers. Bring him to Dom with the full workup before then - never add without Dom's go.",
+                fix=f"Free to add (no bid) until kickoff {kot}; waivers after. Talk it through first.",
                 ba=None, receipts=[numline(cn_, sn_, st_["player"]), barline(ok_), own_st[2], f"kickoff {kot} (nflverse schedule)", f"Radar flag: {why}"] + ([f"{srcname(n0.get('src'))}, {n0.get('t')}"] if n0.get("t") else []),
                 by="before " + kot, deadline_utc=ko.isoformat(), feed=feedline(n0) if n0 else "", feed_title=n0.get("title"),
                 src="the Radar, checked on Ratcliffe, Koerner, Yahoo and Gotham")
