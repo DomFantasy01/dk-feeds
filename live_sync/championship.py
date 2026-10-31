@@ -103,7 +103,7 @@ class Engine:
             out[t] = dict(wins=float(Wm[i].mean()), playoff=float(mk.mean()), semis=float(semis.mean()), final=float(((f1 == i) | (f2 == i)).mean()),
                           title=float((champ == i).mean()), first=float((sd == 1).mean()),
                           seeds=[round(float((sd == k).mean()), 4) for k in range(1, 13)],
-                          wins_hist=np.bincount(np.clip(np.round(Wm[i]).astype(int), 0, 14), minlength=15).tolist())
+                          wins_hist=np.bincount(np.clip(np.round(Wm[i]).astype(int), 0, 28), minlength=15).tolist())   # 28: the median league counts two results a week
         out["_week"] = week_win
         return out
 
