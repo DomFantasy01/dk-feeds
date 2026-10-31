@@ -342,6 +342,18 @@ for dk, key, full, lid, team, n in LEAGUES:
             opts.append({"name": b["name"], "pos": b["pos"], "nfl": b["nfl"], "kickoff": b["kickoff"], "status": b["status"] or "healthy",
                          "proj": b["proj"], "decide_by": b["kickoff"]})
         opts.sort(key=lambda o: -((o["proj"]["yahoo"] or o["proj"]["gotham"] or 0)))
+        # Oct 31: two-step swap. DK I had Pickens (WR) questionable with no bench WR, and this said "NO legal bench swap",
+        # but Godwin (flex) can slide to WR and Strange (TE, bench) can take the flex. Look for that before giving up.
+        if not opts:
+            for f in me:
+                if f is s or f["game"] != "not started" or f["slot"] == s["slot"] or f["slot"] not in SLOT_OK: continue
+                if f["pos"] not in SLOT_OK.get(s["slot"], {s["slot"]}): continue
+                for b in bench:
+                    if b["slot"] == "IR" or b["status"] in ("out", "injured reserve", "not active", "suspended"): continue
+                    if b["game"] != "not started" or b["pos"] not in SLOT_OK.get(f["slot"], {f["slot"]}): continue
+                    opts.append({"name": b["name"], "pos": b["pos"], "nfl": b["nfl"], "kickoff": b["kickoff"], "status": b["status"] or "healthy",
+                                 "proj": b["proj"], "decide_by": b["kickoff"], "via": f"{f['name']} moves {f['slot']} -> {s['slot']}, {b['name']} takes {f['slot']}"})
+            opts.sort(key=lambda o: -((o["proj"]["yahoo"] or o["proj"]["gotham"] or 0)))
         ko = iso(s["ko_utc"])
         inactives = ko - dt.timedelta(minutes=90) if ko else None
         r = {"starter": s["name"], "slot": s["slot"], "why": tag or "no game this week", "kickoff": s["kickoff"],
@@ -351,7 +363,7 @@ for dk, key, full, lid, team, n in LEAGUES:
         if not opts: r["warning"] = "NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
         else:
             best = opts[0]; dy = (s["proj"]["yahoo"] or 0) - (best["proj"]["yahoo"] if best["proj"]["yahoo"] is not None else (best["proj"]["gotham"] or 0))
-            r["plan"] = (f"If {s['name']} is ruled out, start {best['name']} ({best['pos']}, {best['nfl']}) - no drop needed. "
+            r["plan"] = (f"If {s['name']} is ruled out, start {best['name']} ({best['pos']}, {best['nfl']})" + (f" ({best['via']})" if best.get("via") else "") + " - no drop needed. "
                          f"Yahoo gap if he sits: about {dy:.1f} pts." + (f" Decision due when the inactives post, about {pt(inactives, False)}." if inactives and s["game"] != "no game" else ""))
         risks.append(r)
         HEALTH.append(("red" if not opts else "gold", dk, f"{s['name']} ({s['slot']}) {r['why']}, kickoff {s['kickoff']} - " + (r.get("plan") or r["warning"])))
