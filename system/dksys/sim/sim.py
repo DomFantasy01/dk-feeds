@@ -29,7 +29,7 @@ LG = {"DKI": "269381", "DKII": "1519795", "DKIII": "1507991", "DKIV": "864215"}
 LAB = {"DKI": "DK I", "DKII": "DK II", "DKIII": "DK III", "DKIV": "DK IV"}
 REG_LAST = 14
 RHO = 0.20                     # same-NFL-team pull (QB with his receivers, a backfield with its offense)
-ZERO = {"Q": .15, "D": .60}    # this week only: chance a questionable / doubtful man scores nothing
+ZERO = {"Q": .15, "D": .60, "O": 1.0, "IR": 1.0, "SUSP": 1.0}    # this week only: chance a man scores nothing (Oct 31: an OUT man is a zero, whatever the expert files still say)
 KDEF_SD = {"K": 4.5, "DEF": 6.5}
 FLEX = {"FLEX": ("RB", "WR", "TE"), "SUPERFLEX": ("QB", "RB", "WR", "TE")}
 def ok(slot): return FLEX.get(slot, (slot,))

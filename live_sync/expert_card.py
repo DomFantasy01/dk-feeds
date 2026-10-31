@@ -37,6 +37,8 @@ try:
         f = ln.rstrip("\n").split("|")
         if len(f) >= 5 and f[3].isdigit(): rk.setdefault(nk(f[4]), {})[f[1]] = (f[2], int(f[3]))
 except Exception: pass
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from outlist import out_now
+OUTL = out_now(R, int(re.search(r"_wk(\d+)", MF).group(1)) if re.search(r"_wk(\d+)", MF) else None)
 M = json.load(open(MF)); LGN = {"DK I": "1", "DK II": "2", "DK III": "3", "DK IV": "4"}
 NICK = {"cardinals": "ARI", "falcons": "ATL", "ravens": "BAL", "bills": "BUF", "panthers": "CAR", "bears": "CHI", "bengals": "CIN", "browns": "CLE",
         "cowboys": "DAL", "broncos": "DEN", "lions": "DET", "packers": "GB", "texans": "HOU", "colts": "IND", "jaguars": "JAX", "chiefs": "KC",
@@ -79,9 +81,23 @@ for lab, L in (M.get("leagues") or {}).items():
             x = (rk.get(k_) or {}).get(full)
             if x: r_[short] = x[1]; pos = pos or x[0]
         if not p and not r_: continue
+        p = dict(p)
+        if nk(name) in OUTL:   # Oct 31 (Dom): ruled out = zero this week for every expert, until their files catch up
+            p.update({x: 0.0 for x in ("r", "k", "c")}); p["out"] = OUTL[nk(name)]
         out[name] = dict(pos=pos, why=meta["why"], **p, rk=r_)
     L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read,
                    points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring")
     n_all += len(out)
+    for side in ("me", "op"):   # the meter's own copies too, so no page shows a stale number for a man who is out
+        for s in (L.get("starters") or {}).get(side) or []:
+            if s.get("actual") is None and nk(s.get("player")) in OUTL:
+                for x in ("ratcliffe", "koerner", "clay", "gotham", "sleeper"):
+                    if s.get(x) is not None: s[x] = 0.0
+                s["out_zero"] = OUTL[nk(s.get("player"))]
+    for b in L.get("bench") or []:
+        if nk(b.get("player")) in OUTL:
+            for x in ("ratcliffe", "koerner", "clay", "gotham", "sleeper"):
+                if b.get(x) is not None: b[x] = 0.0
+            b["out_zero"] = OUTL[nk(b.get("player"))]
 json.dump(M, open(MF, "w"), ensure_ascii=False)
 print(f"EXPERT CARDS: {n_all} player cards across four leagues (ranks read {rk_read})")

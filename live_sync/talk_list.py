@@ -98,11 +98,16 @@ for lab, key, lid, lgn, myid in LG:
     # the available pool: everyone Ratcliffe projects in this league who is on nobody's roster
     # (no roster read = no pool: without it every rostered star would look "available")
     pool = []
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from outlist import out_now
+        OUTL = out_now(R, W)
+    except Exception: OUTL = {}
     if not owner: print(f"!! {lab}: no roster read - no pickups, backups or blocks this build")
     for (lg_, k_), r in RAT.items():
         if not owner or lg_ != lgn or k_ in owner: continue
         ros, wk = fnum(r["ros_pg"]), fnum(r["wk"])
         if ros is None and wk is None: continue
+        if k_ in OUTL: wk = 0.0   # Oct 31: an OUT man is a zero this week whatever the expert file says
         pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=ros or 0.0, wk=wk or 0.0, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
     # Dom's weakest starter at each position (this week's lineup, Ratcliffe rest of season, his league's scoring)
     weak = {}
