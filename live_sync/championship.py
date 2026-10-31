@@ -151,7 +151,24 @@ for lgk in LGS:
             moves.append(dict(add=a["name"], pos=a["pos"], nfl=a.get("nfl"), acq=a.get("acq", ""), drop=d, before=summ(Bm), after=summ(r),
                               d_wins=round(r["wins"] - Bm["wins"], 2), d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4),
                               pts_total=tot, pts_per_game=pg, games_used=ng, wins_hist=r["wins_hist"], this_week=round(rr_["_week"].get(now, 0) - B["_week"].get(now, 0), 3)))
-    moves.sort(key=lambda m: -(m["d_wins"] * 0.25 + m["d_playoff"] + 2 * m["d_title"]))
+    # Dom's rule: never drop a man who could come back to hurt him - who would START him (Ratcliffe rest of season, this league)
+    RR = {}
+    try:
+        for r_ in csv.DictReader(open(os.path.join(R, "dispatch_out", "ftn_scored.csv"))):
+            if r_["lg"] == LGN[lgk] and r_.get("ros_pg"): RR[nk(r_["name"])] = float(r_["ros_pg"])
+    except Exception: pass
+    def helps(p):
+        v = RR.get(nk(p["name"])) if p else None
+        if v is None or p["pos"] in ("K", "DEF"): return []
+        out_ = []
+        for t, Rt in base_R.items():
+            if t == me: continue
+            st_ = [RR.get(nk(q["name"]), 0) for q in Rt if q["pos"] == p["pos"] and q.get("slot") not in ("BN", "IR")]
+            if st_ and v > min(st_) * 1.15: out_.append(names.get(t, t))
+        return out_
+    byname = {p["name"]: p for p in mine}
+    for m in moves: m["drop_helps"] = helps(byname.get(m["drop"]))
+    moves.sort(key=lambda m: -(m["d_wins"] * 0.25 + m["d_playoff"] + 2 * m["d_title"] - 0.004 * len(m["drop_helps"])))
     seen, best = set(), []
     for m in moves:
         if m["add"] in seen: continue
