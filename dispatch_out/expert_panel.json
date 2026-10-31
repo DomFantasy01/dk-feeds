@@ -1,76 +1,38 @@
 {
- "built": "Sat Oct 31 7:01 AM",
+ "built": "Sat Oct 31 8:05 AM",
  "week": 8,
  "yahoo_read": "Sat Oct 31 3:27 AM PT",
  "experts_read": [
-  "pulled Sat Oct 31 2026 6:59 AM PT",
+  "pulled Sat Oct 31 2026 8:03 AM PT",
   "Mick Ciallela updated 2026-10-29 15:43:04",
-  "Tyler Orginski updated 2026-10-31 05:25:45",
+  "Tyler Orginski updated 2026-10-31 07:08:12",
   "Jeff Ratcliffe updated 2026-10-29 17:13:16",
   "Patrick Thorman updated 2026-10-31 06:52:06",
   "Sean Koerner updated 2026-10-29 16:18:44",
-  "Nathan Jahnke updated 2026-10-29 17:14:42"
+  "Nathan Jahnke updated 2026-10-29 17:14:42",
+  "Paul Brenton updated 2026-10-29 16:25:53"
  ],
  "experts_stale": "",
  "panel": [
+  "Brenton",
   "Ciallela",
   "Orginski",
   "Ratcliffe",
   "Thorman",
   "Koerner"
  ],
- "rule": "3 of 5 experts rank him 3+ spots above one of your men at his position",
+ "rule": "3 of 6 experts rank him 3+ spots above one of your men at his position",
  "leagues": {
   "DK I": {
    "passed": [
-    {
-     "name": "Samaje Perine",
-     "pos": "RB",
-     "team": "CIN",
-     "beats": "TreVeyon Henderson",
-     "agree": "4 of 5",
-     "yes": [
-      "Orginski",
-      "Ratcliffe",
-      "Thorman",
-      "Koerner"
-     ],
-     "no": [
-      "Ciallela"
-     ],
-     "votes": {
-      "Ciallela": "RB33 v RB29",
-      "Orginski": "RB36 v RB39",
-      "Ratcliffe": "RB35 v RB40",
-      "Thorman": "RB36 v RB41",
-      "Koerner": "RB38 v RB43"
-     },
-     "other_experts": {
-      "Jahnke": "RB33"
-     },
-     "available": "free agent - instant add",
-     "injury": "",
-     "done": "Wk4 CIN: 3 car 1 tgt, 0.7 pts; Wk5 CIN: 14 car 2 tgt, 15.8 pts; Wk7 CIN: 4 car, 7.6 pts | snaps 36%/51%/23% | season 6.3 a game over 6",
-     "trend": "falling",
-     "bye": [],
-     "playoffs": [
-      "Wk15 @ CAR (easy)",
-      "Wk16 @ IND (neutral)",
-      "Wk17 vs BAL (hard)"
-     ],
-     "this_week": "Sun 10:00 AM PT vs TEN",
-     "drop_candidate": "Brenton Strange",
-     "notes": [],
-     "stops": [],
-     "verdict": "flag - worth analyzing"
-    },
     {
      "name": "Dylan Sampson",
      "pos": "RB",
      "team": "CLE",
      "beats": "TreVeyon Henderson",
-     "agree": "3 of 5",
+     "agree": "4 of 6",
      "yes": [
+      "Brenton",
       "Orginski",
       "Thorman",
       "Koerner"
@@ -80,6 +42,7 @@
       "Ratcliffe"
      ],
      "votes": {
+      "Brenton": "RB33 v RB37",
       "Ciallela": "RB35 v RB29",
       "Orginski": "RB34 v RB39",
       "Ratcliffe": "RB42 v RB40",
@@ -106,12 +69,101 @@
      "notes": [],
      "stops": [],
      "verdict": "flag - worth analyzing"
+    },
+    {
+     "name": "Samaje Perine",
+     "pos": "RB",
+     "team": "CIN",
+     "beats": "TreVeyon Henderson",
+     "agree": "4 of 6",
+     "yes": [
+      "Orginski",
+      "Ratcliffe",
+      "Thorman",
+      "Koerner"
+     ],
+     "no": [
+      "Brenton",
+      "Ciallela"
+     ],
+     "votes": {
+      "Brenton": "RB42 v RB37",
+      "Ciallela": "RB33 v RB29",
+      "Orginski": "RB36 v RB39",
+      "Ratcliffe": "RB35 v RB40",
+      "Thorman": "RB36 v RB41",
+      "Koerner": "RB38 v RB43"
+     },
+     "other_experts": {
+      "Jahnke": "RB33"
+     },
+     "available": "free agent - instant add",
+     "injury": "",
+     "done": "Wk4 CIN: 3 car 1 tgt, 0.7 pts; Wk5 CIN: 14 car 2 tgt, 15.8 pts; Wk7 CIN: 4 car, 7.6 pts | snaps 36%/51%/23% | season 6.3 a game over 6",
+     "trend": "falling",
+     "bye": [],
+     "playoffs": [
+      "Wk15 @ CAR (easy)",
+      "Wk16 @ IND (neutral)",
+      "Wk17 vs BAL (hard)"
+     ],
+     "this_week": "Sun 10:00 AM PT vs TEN",
+     "drop_candidate": "Brenton Strange",
+     "notes": [],
+     "stops": [],
+     "verdict": "flag - worth analyzing"
     }
    ],
    "failed": []
   },
   "DK II": {
-   "passed": [],
+   "passed": [
+    {
+     "name": "Dylan Sampson",
+     "pos": "RB",
+     "team": "CLE",
+     "beats": "Samaje Perine",
+     "agree": "3 of 6",
+     "yes": [
+      "Brenton",
+      "Thorman",
+      "Koerner"
+     ],
+     "no": [
+      "Ciallela",
+      "Orginski",
+      "Ratcliffe"
+     ],
+     "votes": {
+      "Brenton": "RB33 v RB42",
+      "Ciallela": "RB35 v RB33",
+      "Orginski": "RB34 v RB36",
+      "Ratcliffe": "RB42 v RB35",
+      "Thorman": "RB33 v RB36",
+      "Koerner": "RB34 v RB38"
+     },
+     "other_experts": {
+      "Jahnke": "RB41"
+     },
+     "available": "free agent - instant add",
+     "injury": "",
+     "done": "Wk1 CLE: 0 touches, 0.0 pts; Wk7 CLE: 6 car 3 tgt, 10.7 pts | snaps 0%/46% | season 5.3 a game over 2",
+     "trend": "",
+     "bye": [
+      11
+     ],
+     "playoffs": [
+      "Wk15 @ NYG (neutral)",
+      "Wk16 @ BAL (hard)",
+      "Wk17 vs IND (neutral)"
+     ],
+     "this_week": "Sun 10:00 AM PT @ PIT",
+     "drop_candidate": "Aaron Rodgers",
+     "notes": [],
+     "stops": [],
+     "verdict": "flag - worth analyzing"
+    }
+   ],
    "failed": []
   },
   "DK III": {
@@ -121,7 +173,7 @@
      "pos": "QB",
      "team": "SEA",
      "beats": "Aaron Rodgers",
-     "agree": "4 of 5",
+     "agree": "4 of 6",
      "yes": [
       "Orginski",
       "Ratcliffe",
@@ -129,9 +181,11 @@
       "Koerner"
      ],
      "no": [
+      "Brenton",
       "Ciallela"
      ],
      "votes": {
+      "Brenton": "QB18 v QB17",
       "Ciallela": "QB19 v QB9",
       "Orginski": "QB15 v QB20",
       "Ratcliffe": "QB15 v QB24",
@@ -171,23 +225,25 @@
      "name": "Chris Godwin Jr.",
      "pos": "WR",
      "team": "TB",
-     "beats": "Omar Cooper Jr.",
-     "agree": "3 of 5",
+     "beats": "Wan'Dale Robinson",
+     "agree": "3 of 6",
      "yes": [
+      "Brenton",
       "Ciallela",
-      "Thorman",
       "Koerner"
      ],
      "no": [
       "Orginski",
-      "Ratcliffe"
+      "Ratcliffe",
+      "Thorman"
      ],
      "votes": {
-      "Ciallela": "WR26 v WR39",
-      "Orginski": "WR30 v WR28",
-      "Ratcliffe": "WR46 v WR26",
-      "Thorman": "WR25 v WR29",
-      "Koerner": "WR26 v WR43"
+      "Brenton": "WR46 v WR50",
+      "Ciallela": "WR26 v WR34",
+      "Orginski": "WR33 v WR25",
+      "Ratcliffe": "WR46 v WR37",
+      "Thorman": "WR25 v WR23",
+      "Koerner": "WR26 v WR39"
      },
      "other_experts": {
       "Jahnke": "WR42"
@@ -206,9 +262,52 @@
      ],
      "this_week": "Sun 10:00 AM PT vs ATL",
      "drop_candidate": "Omar Cooper Jr.",
-     "notes": [
-      "the man he beats, Omar Cooper Jr., is also your weakest bench player"
+     "notes": [],
+     "stops": [],
+     "verdict": "flag - worth analyzing"
+    },
+    {
+     "name": "Josh Downs",
+     "pos": "WR",
+     "team": "IND",
+     "beats": "Wan'Dale Robinson",
+     "agree": "3 of 6",
+     "yes": [
+      "Brenton",
+      "Ciallela",
+      "Koerner"
      ],
+     "no": [
+      "Orginski",
+      "Ratcliffe",
+      "Thorman"
+     ],
+     "votes": {
+      "Brenton": "WR38 v WR50",
+      "Ciallela": "WR24 v WR34",
+      "Orginski": "WR38 v WR25",
+      "Ratcliffe": "WR36 v WR37",
+      "Thorman": "WR37 v WR23",
+      "Koerner": "WR36 v WR39"
+     },
+     "other_experts": {
+      "Jahnke": "WR36"
+     },
+     "available": "free agent - instant add",
+     "injury": "",
+     "done": "Wk5 IND: 6 tgt, 7.7 pts; Wk6 IND: 1 car 8 tgt, 8.7 pts; Wk7 IND: 4 tgt, 3.8 pts | snaps 85%/86%/85% | season 8.2 a game over 7",
+     "trend": "falling",
+     "bye": [
+      13
+     ],
+     "playoffs": [
+      "Wk15 @ TEN (easy)",
+      "Wk16 vs CIN (neutral)",
+      "Wk17 @ CLE (neutral)"
+     ],
+     "this_week": "Sun 10:00 AM PT @ JAX",
+     "drop_candidate": "Omar Cooper Jr.",
+     "notes": [],
      "stops": [],
      "verdict": "flag - worth analyzing"
     }
