@@ -34,6 +34,12 @@ meter_f = sorted(glob.glob(os.path.join(R, "dispatch_out", "meter_wk*.json")), k
 M = json.load(open(meter_f)); BUILT = M.get("built_pt")
 def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", str(s).lower()))
 def crc(*a): return zlib.crc32("|".join(map(str, a)).encode()) & 0xffffffff
+# Oct 31 (Dom: "the minute my quarterback throws him the ball and the receiver scores, he gets 15 and I get 10"): how players on
+# the same NFL team move together, measured on real games (nflverse weekly PPR, 2025 + 2026 to Week 8, 9,600 same-team pairs):
+# QB-WR +0.33, QB-TE +0.34, QB-RB +0.06, RB-WR +0.02, WR-WR +0.02, RB-RB -0.07. The old model gave every pair +0.20.
+# A passing-game factor per team per week: QB loads 0.90, WR/TE 0.37, RB 0.07 -> QB-WR/TE 0.33, QB-RB 0.06, WR-WR 0.14 (still
+# a little high), RB-WR 0.03. Kickers and defenses keep the old team pull (not measured yet). Each man's own spread is unchanged.
+LOAD = {"QB": 0.90, "WR": 0.37, "TE": 0.37, "RB": 0.07}
 
 class Engine:
     def __init__(self, L):
@@ -43,6 +49,10 @@ class Engine:
         k = (nfl, wk)
         if k not in self.tfc: self.tfc[k] = np.random.default_rng(crc("tf", nfl, wk)).standard_normal(N)
         return self.tfc[k]
+    def pf(self, nfl, wk):
+        k = ("pf", nfl, wk)
+        if k not in self.tfc: self.tfc[k] = np.random.default_rng(crc("pf", nfl, wk)).standard_normal(N)
+        return self.tfc[k]
     def pdraw(self, p, wk):
         k = (p["name"], p.get("nfl"), wk, round(p["wk"].get(str(wk), 0.0), 2), p.get("ytag", "") if wk == self.now else "")
         if k in self.cache: return self.cache[k]
@@ -50,7 +60,9 @@ class Engine:
         if m <= 0: s = np.zeros(N)
         else:
             rng = np.random.default_rng(crc(p["name"], p.get("nfl"), wk))
-            e = noise.z(p["pos"], rng, N); e = math.sqrt(SM.RHO) * self.tf(p.get("nfl"), wk) + math.sqrt(1 - SM.RHO) * e
+            e = noise.z(p["pos"], rng, N); ld = LOAD.get(p["pos"])
+            if ld is None: e = math.sqrt(SM.RHO) * self.tf(p.get("nfl"), wk) + math.sqrt(1 - SM.RHO) * e
+            else: e = ld * self.pf(p.get("nfl"), wk) + math.sqrt(1 - ld * ld) * e
             s = m + noise.sd(p["pos"], np.array([m]))[0] * e
             s = np.maximum(s, 0.0 if p["pos"] == "K" else (-4.0 if p["pos"] == "DEF" else -2.0))
             yt = p.get("ytag", "")
@@ -149,28 +161,6 @@ for lgk in LGS:
         d = [lineup_pts(E, roster_after, [w]) - lineup_pts(E, roster_before, [w]) for w in weeks]
         used = [x for x in d if abs(x) > .05]
         return round(sum(d), 1), round(sum(used) / len(used), 1) if used else 0.0, len(used)
-    # what each bench man is worth
-    worth = []
-    for p in mine:
-        if p.get("slot") != "BN": continue
-        r = E.run(with_([p["name"]], []))[me]
-        worth.append(dict(name=p["name"], pos=p["pos"], d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4), d_wins=round(r["wins"] - Bm["wins"], 2)))
-    worth.sort(key=lambda x: x["d_playoff"] + x["d_title"])
-    cheap = [w["name"] for w in worth[::-1] if w["d_playoff"] > -0.03][:3]
-    # candidate adds: best rest of season, best in the title weeks (the 5-today-20-later men), best this week
-    pool = S["pool"]; cand = {}
-    for pos in sorted({p["pos"] for p in pool}):
-        P = [p for p in pool if p["pos"] == pos]
-        for key in (lambda p: -season_val(p, now, 17), lambda p: -season_val(p, 15, 17), lambda p: -p["wk"].get(str(now), 0)):
-            for p in sorted(P, key=key)[:2]: cand[p["name"]] = p
-    moves = []
-    for d in cheap:
-        for a in cand.values():
-            Rm = with_([d], [a]); rr_ = E.run(Rm); r = rr_[me]
-            tot, pg, ng = per_game(mine, Rm[me], ALLW)
-            moves.append(dict(add=a["name"], pos=a["pos"], nfl=a.get("nfl"), acq=a.get("acq", ""), drop=d, before=summ(Bm), after=summ(r),
-                              d_wins=round(r["wins"] - Bm["wins"], 2), d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4),
-                              pts_total=tot, pts_per_game=pg, games_used=ng, wins_hist=r["wins_hist"], this_week=round(rr_["_week"].get(now, 0) - B["_week"].get(now, 0), 3)))
     # Dom's rule: never drop a man who could come back to hurt him - who would START him (Ratcliffe rest of season, this league)
     RR = {}
     try:
@@ -186,8 +176,51 @@ for lgk in LGS:
             st_ = [RR.get(nk(q["name"]), 0) for q in Rt if q["pos"] == p["pos"] and q.get("slot") not in ("BN", "IR")]
             if st_ and v > min(st_) * 1.15: out_.append(names.get(t, t))
         return out_
+    # Oct 31 (Dom: "it's a puzzle piece ... every time you take a piece out it affects something"): no player is off limits any more -
+    # every man can be tested as a drop, and each one carries what he is FOR, so nothing is dropped blind
+    rvp = lambda p: RR.get(nk(p["name"])) or season_val(p, now, 17) / max(1, 17 - now + 1)
+    starts_in = {p["name"]: [] for p in mine}
+    for w in ALLW:
+        for i in SM.best_lineup(mine, E.slots, w):
+            if i is not None: starts_in[mine[i]["name"]].append(w)
+    def role(p):
+        bits = []
+        if p["pos"] == "RB":
+            lead = [q for q in mine if q is not p and q["pos"] == "RB" and q.get("nfl") == p.get("nfl") and rvp(q) > rvp(p)]
+            if lead: bits.append(f"handcuff to {lead[0]['name']}")
+        if p["pos"] in ("QB", "DEF", "K") and p.get("slot") in ("BN", None):
+            st = [q["name"] for q in mine if q["pos"] == p["pos"] and q.get("slot") not in ("BN", "IR")]
+            if st: bits.append(f"backup {p['pos'] if p['pos'] != 'DEF' else 'defense'} behind {st[0]}")
+        sw = [w for w in starts_in.get(p["name"], [])]
+        bits.append(("starts for you in Week" + ("s " if len(sw) > 1 else " ") + ", ".join(str(w) for w in sw)) if sw else "doesn't start for you any week on current projections")
+        h = helps(p)
+        if h: bits.append(f"would start for {len(h)} rival{'s' if len(h) > 1 else ''} ({', '.join(h[:3])})")
+        return "; ".join(bits)
+    # what each bench man is worth
+    worth = []
+    for p in mine:
+        if p.get("slot") != "BN": continue
+        r = E.run(with_([p["name"]], []))[me]
+        worth.append(dict(name=p["name"], pos=p["pos"], d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4), d_wins=round(r["wins"] - Bm["wins"], 2),
+                          role=role(p), starts=starts_in.get(p["name"], []), helps=helps(p)))
+    worth.sort(key=lambda x: x["d_playoff"] + x["d_title"])
+    cheap = [w["name"] for w in worth]          # Oct 31 (Dom): every bench man is tested as a drop - nobody off limits
+    # candidate adds: best rest of season, best in the title weeks (the 5-today-20-later men), best this week
+    pool = S["pool"]; cand = {}
+    for pos in sorted({p["pos"] for p in pool}):
+        P = [p for p in pool if p["pos"] == pos]
+        for key in (lambda p: -season_val(p, now, 17), lambda p: -season_val(p, 15, 17), lambda p: -p["wk"].get(str(now), 0)):
+            for p in sorted(P, key=key)[:2]: cand[p["name"]] = p
+    moves = []
+    for d in cheap:
+        for a in cand.values():
+            Rm = with_([d], [a]); rr_ = E.run(Rm); r = rr_[me]
+            tot, pg, ng = per_game(mine, Rm[me], ALLW)
+            moves.append(dict(add=a["name"], pos=a["pos"], nfl=a.get("nfl"), acq=a.get("acq", ""), drop=d, before=summ(Bm), after=summ(r),
+                              d_wins=round(r["wins"] - Bm["wins"], 2), d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4),
+                              pts_total=tot, pts_per_game=pg, games_used=ng, wins_hist=r["wins_hist"], this_week=round(rr_["_week"].get(now, 0) - B["_week"].get(now, 0), 3)))
     byname = {p["name"]: p for p in mine}
-    for m in moves: m["drop_helps"] = helps(byname.get(m["drop"]))
+    for m in moves: m["drop_helps"] = helps(byname.get(m["drop"])); m["drop_role"] = role(byname[m["drop"]]) if m["drop"] in byname else ""
     moves.sort(key=lambda m: -(m["d_wins"] * 0.25 + m["d_playoff"] + 2 * m["d_title"] - 0.004 * len(m["drop_helps"])))
     seen, best = set(), []
     for m in moves:
@@ -222,7 +255,8 @@ for lgk in LGS:
     protected = {p["name"] for p in mine if p["pos"] == "RB" and p.get("nfl") in my_rb_teams and rv(p) < 15}
     out_now = lambda p: (p.get("ytag") or "").upper() in ("O", "IR") or (p.get("slot") == "IR")
     opp_now = next((b if a == me else a for a, b in L["sched"].get(now, []) if me in (a, b)), None)
-    my_v = val(mine); give_pool = [p for p in mine if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF") and p["name"] not in protected and not out_now(p)]
+    protected = set()   # Oct 31 (Dom): no off-limits list - handcuffs can be traded, and each trade says what the man was for
+    my_v = val(mine); give_pool = [p for p in mine if p.get("slot") != "IR" and p["pos"] not in ("K", "DEF") and not out_now(p)]
     screened = []
     for t, Rt in base_R.items():
         if t == me or t == opp_now: continue
@@ -249,7 +283,7 @@ for lgk in LGS:
         # Dom: "it needs to be powerful for them too, or they won't even consider it" - both sides must gain for real
         if (dpm >= 0.02 or dtm >= 0.01) and (dpt >= 0.02 or dtt >= 0.01) and dpm >= -0.005 and dpt >= -0.005:   # nobody gives up playoff odds
             need = gt["pos"]; gave = "/".join(g["pos"] for g in G)
-            trades.append(dict(partner=names.get(t, t), give=[g["name"] for g in G], get=gt["name"], get_pos=gt["pos"], give_pos=gave,
+            trades.append(dict(partner=names.get(t, t), give=[g["name"] for g in G], give_roles=[role(g) for g in G], get=gt["name"], get_pos=gt["pos"], give_pos=gave,
                                me_before=summ(Bm), me_after=summ(a_me), them_before=summ(B[t]), them_after=summ(a_t),
                                d_wins=round(a_me["wins"] - Bm["wins"], 2), d_playoff=round(dpm, 3), d_title=round(dtm, 4),
                                them_d_playoff=round(dpt, 3), them_d_title=round(dtt, 4), them_d_wins=round(a_t["wins"] - B[t]["wins"], 2),
@@ -262,6 +296,38 @@ for lgk in LGS:
         if x["partner"] in _p: continue
         _p.add(x["partner"]); _t.append(x)
     trades = _t
+    # Oct 31 (Dom): when your QB throws to HIS receiver (or his QB to yours) the same play scores for both of you
+    def ties(A, Bq, wk):
+        la = [A[i] for i in SM.best_lineup(A, E.slots, wk) if i is not None]; lb = [Bq[i] for i in SM.best_lineup(Bq, E.slots, wk) if i is not None]
+        out_ = []
+        for x in la:
+            for y in lb:
+                if not x.get("nfl") or x.get("nfl") != y.get("nfl"): continue
+                if x["pos"] == "QB" and y["pos"] in ("WR", "TE"): out_.append(f"Your QB {x['name']} throws to his {y['name']} - when they connect, he scores on your play")
+                elif y["pos"] == "QB" and x["pos"] in ("WR", "TE"): out_.append(f"His QB {y['name']} throws to your {x['name']} - you both score on those plays")
+                elif x["pos"] == y["pos"] == "QB": out_.append(f"Both QBs play for {x.get('nfl')}")
+        return out_
+    # Oct 31 (Dom: "if I pick up Caleb Douglas, what do I have to drop, and how does that affect me the rest of the year?"):
+    # every injury call on the talk list, played out - the starter out this week, each free agent fill against EVERY bench drop
+    calls = []
+    for bk in (((M.get("leagues") or {}).get(LAB[lgk]) or {}).get("talk") or {}).get("backup") or []:
+        st = next((p for p in mine if p["name"] == bk.get("starter")), None)
+        if not st: continue
+        out_me = [dict(p, wk=dict(p["wk"], **{str(now): 0.0}), ytag="") if p is st else p for p in mine]
+        R0 = {k: list(v) for k, v in base_R.items()}; R0[me] = out_me; r0_ = E.run(R0); r0 = r0_[me]
+        opts = []
+        for fa in (bk.get("fa") or [])[:2]:
+            a = next((p for p in pool if p["name"] == fa.get("name")), None)
+            if not a: continue
+            for d in [p for p in out_me if p.get("slot") == "BN" and p is not st]:
+                Rm = {k: list(v) for k, v in R0.items()}; Rm[me] = [q for q in out_me if q is not d] + [dict(a, slot="BN")]
+                rr_ = E.run(Rm); r = rr_[me]
+                opts.append(dict(add=a["name"], drop=d["name"], drop_pos=d["pos"], drop_role=role(d), drop_helps=helps(d), after=summ(r),
+                                 week=round(rr_["_week"].get(now, 0), 3), d_week=round(rr_["_week"].get(now, 0) - r0_["_week"].get(now, 0), 3),
+                                 d_playoff=round(r["playoff"] - r0["playoff"], 3), d_title=round(r["title"] - r0["title"], 4), d_wins=round(r["wins"] - r0["wins"], 2)))
+        opts.sort(key=lambda o: -(o["d_playoff"] + 2 * o["d_title"] + 0.5 * o["d_week"] - 0.004 * len(o["drop_helps"])))
+        calls.append(dict(starter=st["name"], status=bk.get("status"), locks=bk.get("locks"), if_out=summ(r0), week_if_out=round(r0_["_week"].get(now, 0), 3),
+                          week_now=round(B["_week"].get(now, 0), 3), options=opts[:6], tested=len(opts)))
     # the card box (Road to the Playoffs) fields, kept for the league card
     table = sorted(((B[t]["playoff"], t) for t in base_R), reverse=True)
     games = [dict(wk=wk, opp=names.get(o, o), win=round(B["_week"].get(wk, 0), 3)) for wk in REM
@@ -274,7 +340,7 @@ for lgk in LGS:
     left = {o for wk in REM for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o}
     path, cw = [], float(L["rec"].get(me, {}).get("w", 0))
     for g_ in games: cw += g_["win"]; path.append(dict(wk=g_["wk"], opp=g_["opp"], win=g_["win"], cum=round(cw, 2)))
-    keep_moves = [m for m in best if not m.get("drop_helps") and (m["d_wins"] >= 0.08 or m["d_playoff"] >= 0.012 or m["d_title"] >= 0.004 or m["this_week"] >= 0.02)]
+    keep_moves = [m for m in best if (m["d_wins"] >= 0.08 or m["d_playoff"] >= 0.012 or m["d_title"] >= 0.004 or m["this_week"] >= 0.02)]
     OUT["leagues"][LAB[lgk]] = dict(
         week=now, built=BUILT, standings=L["stamp"], base=summ(Bm), funnel=funnel, wins_hist=Bm["wins_hist"],
         race=[dict(team=names.get(t, t), playoff=round(v, 3), title=round(B[t]["title"], 4), me=(t == me), left=(t in left),
@@ -286,11 +352,12 @@ for lgk in LGS:
         bracket={k: ([dict(x, team=names.get(x["team"], x["team"])) for x in v] if isinstance(v, list) else round(v, 3)) for k, v in B["_bracket"].items()},
         weeks=[dict(wk=wk, opp=names.get(o, o), opp_rec=f"{L['rec'].get(o, {}).get('w', 0)}-{L['rec'].get(o, {}).get('l', 0)}", win=round(B["_week"].get(wk, 0), 3),
                     me=[[E.slots[k], base_R[me][i]["name"], round(base_R[me][i]["wk"].get(str(wk), 0), 1), base_R[me][i].get("ytag", "") if wk == now else ""] for k, i in enumerate(SM.best_lineup(base_R[me], E.slots, wk)) if i is not None],
-                    op=[[E.slots[k], base_R[o][i]["name"], round(base_R[o][i]["wk"].get(str(wk), 0), 1), base_R[o][i].get("ytag", "") if wk == now else ""] for k, i in enumerate(SM.best_lineup(base_R[o], E.slots, wk)) if i is not None])
-               for wk in REM for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o], trade_rules="star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
+                    op=[[E.slots[k], base_R[o][i]["name"], round(base_R[o][i]["wk"].get(str(wk), 0), 1), base_R[o][i].get("ytag", "") if wk == now else ""] for k, i in enumerate(SM.best_lineup(base_R[o], E.slots, wk)) if i is not None],
+                    ties=ties(base_R[me], base_R[o], wk))
+               for wk in REM for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o], trade_rules="star for star; no deals with this week's opponent; nobody who is out this week; both sides gain; each man given says what he was for",
         games=games, po_weeks=[dict(pts=a, team=b, me=c) for a, b, c in po_weeks], worth=worth,
         moves=keep_moves[:5], not_worth=[dict(add=m["add"], drop=m["drop"], d_wins=m["d_wins"], d_playoff=m["d_playoff"]) for m in best if m not in keep_moves][:8],
-        trades=trades[:3], trades_screened=len(screened),
+        trades=trades[:3], trades_screened=len(screened), calls=calls,
         note=f"{N:,} seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)")
     # the card box keeps working off the same numbers
     OUT["leagues"][LAB[lgk]]["plan"] = dict(week=now, built=BUILT, standings=L["stamp"], playoff=Bm["playoff"], wins=Bm["wins"], first=Bm["first"],
