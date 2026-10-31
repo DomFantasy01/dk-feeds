@@ -6,6 +6,9 @@ absolutely do, so we don't miss them"; "what if they're really 10% but their wor
               weakest starter at the position, or a Scout pick / before-lock flag. Says free agent or waivers-until.
   WATCH     - 10-15% better, or under the bar but RISING (workload/role news from the alert feed). Cheapest now.
   COVER     - a hole in the next three weeks (bye or injury) the Scout found, with the best fill it priced.
+  BACKUP    - (Oct 31, Dom) for every starter of Dom's tagged Q / D / O whose game hasn't started: who on his own bench
+              can take the seat, and the best free agents at that spot THIS WEEK (Ratcliffe), each with his own kickoff
+              (when he locks). No drop is named - "this is live and stuff is happening all the time"; Dom picks it.
   BLOCK     - a free agent who would START for this week's or next week's opponent over one of his starters (15%+, 2+
               pts on Ratcliffe this week / rest of season). Grabbing him first takes points away from that rival.
 
@@ -42,6 +45,26 @@ def scored(fn):
 RAT, KOE = scored("ftn_scored.csv"), scored("koerner_scored.csv")
 RAT_AT = next((r.get("read_pt") for r in RAT.values()), "") or ""
 KOE_AT = next((r.get("read_pt") for r in KOE.values()), "") or ""
+# kickoffs this week, every team (Pacific) - from the NFL schedule the build downloads
+import datetime as _dt
+from zoneinfo import ZoneInfo as _ZI
+KO = {}
+for _gp in ("/home/claude/dksys/gate/fresh/games.csv", "/home/claude/dksys/data/latest/games.csv"):
+    if not os.path.exists(_gp): continue
+    try:
+        for _r in csv.DictReader(open(_gp)):
+            if _r.get("game_type") != "REG" or not _r.get("gameday") or not _r.get("gametime"): continue
+            if _r["season"] != str(_dt.date.today().year): continue
+            _t = _dt.datetime.strptime(_r["gameday"] + " " + _r["gametime"], "%Y-%m-%d %H:%M").replace(tzinfo=_ZI("America/New_York"))
+            for _tm in (_r["home_team"], _r["away_team"]): KO[(int(_r["week"]), _tm)] = _t
+        break
+    except Exception: KO = {}
+_FIX = {"LAR": "LA", "JAC": "JAX", "WSH": "WAS"}
+def kick(team, wk):
+    t = str(team or "").upper(); return KO.get((wk, _FIX.get(t, t)))
+def ptlab(t):
+    p = t.astimezone(_ZI("America/Los_Angeles")); return p.strftime("%a %-I:%M %p").replace("AM", "AM").replace("PM", "PM")
+NOW = _dt.datetime.now(_dt.timezone.utc)
 def fnum(x):
     try: return float(x)
     except Exception: return None
@@ -72,9 +95,11 @@ for lab, key, lid, lgn, myid in LG:
                 if "/" in x: a, b = x.rsplit("/", 1); waiv[nk(a)] = b
     except Exception: pass
     # the available pool: everyone Ratcliffe projects in this league who is on nobody's roster
+    # (no roster read = no pool: without it every rostered star would look "available")
     pool = []
+    if not owner: print(f"!! {lab}: no roster read - no pickups, backups or blocks this build")
     for (lg_, k_), r in RAT.items():
-        if lg_ != lgn or k_ in owner: continue
+        if not owner or lg_ != lgn or k_ in owner: continue
         ros, wk = fnum(r["ros_pg"]), fnum(r["wk"])
         if ros is None and wk is None: continue
         pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=ros or 0.0, wk=wk or 0.0, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
@@ -128,10 +153,37 @@ for lab, key, lid, lgn, myid in LG:
                 if p["ros"] >= low_v * (1 + BAR) and p["ros"] - low_v >= MINPTS:
                     block.append(dict(week=wk_, opp=nm.get(opp, f"team {opp}"), name=p["name"], pos=pos, team=p["team"], acq=p["acq"],
                                       would_start_over=low_n, rat_ros=round(p["ros"], 1), their_ros=round(low_v, 1)))
+    # BACKUP: Dom's tagged starters whose game hasn't started - bench men first, then the best free agents this week
+    backup = []
+    ELIG = {"W/R/T": {"WR", "RB", "TE"}, "W/R": {"WR", "RB"}, "W/T": {"WR", "TE"}, "Q/W/R/T": {"QB", "WR", "RB", "TE"}}
+    bench = (L.get("bench") or [])
+    for s_ in me_st:
+        stt = (s_.get("status") or "").upper()
+        if stt not in ("Q", "D", "O") or s_.get("pos") in ("K",): continue
+        k0 = kick(s_.get("team"), W)
+        if k0 is not None and k0 <= NOW: continue                  # his game already started - nothing to swap
+        okp = ELIG.get(s_.get("slot"), {s_.get("pos")})
+        sw = s_.get("ratcliffe")
+        mine = []
+        for b_ in bench:
+            if b_.get("pos") not in okp or (b_.get("status") or "").upper() in ("O", "IR", "D") or b_.get("slot") not in ("BN", None): continue
+            kb = kick(b_.get("team"), W)
+            if kb is None or kb <= NOW: continue                      # on bye or already playing
+            mine.append(dict(name=b_.get("player"), pos=b_.get("pos"), team=b_.get("team"), wk=b_.get("ratcliffe"), locks=ptlab(kb), lock_utc=kb.astimezone(_dt.timezone.utc).isoformat()))
+        fa = []
+        for p_ in sorted([q for q in pool if q["pos"] in okp and q["acq"] == "free agent"], key=lambda q: -q["wk"]):
+            kp = kick(p_["team"], W)
+            if kp is None or kp <= NOW or p_["wk"] <= 0: continue
+            fa.append(dict(name=p_["name"], pos=p_["pos"], team=p_["team"], wk=round(p_["wk"], 1), koe=koe(lgn, p_["name"]), locks=ptlab(kp), lock_utc=kp.astimezone(_dt.timezone.utc).isoformat()))
+            if len(fa) >= 3: break
+        mine.sort(key=lambda x: -(x.get("wk") or 0))
+        backup.append(dict(starter=s_.get("player"), slot=s_.get("slot"), pos=s_.get("pos"), team=s_.get("team"), status=stt, wk=sw,
+                           locks=ptlab(k0) if k0 else s_.get("kickoff"), lock_utc=k0.astimezone(_dt.timezone.utc).isoformat() if k0 else None,
+                           bench=mine[:2], fa=fa))
     _tn = {nk(t["name"]) for t in talk}; watch = [w_ for w_ in watch if nk(w_["name"]) not in _tn]
     _seen = set(); watch = [w_ for w_ in watch if not (nk(w_["name"]) in _seen or _seen.add(nk(w_["name"])))]
     talk.sort(key=lambda x: -(x.get("pct") or 999)); watch.sort(key=lambda x: (-(1 if x.get("rising") else 0), -(x.get("pct") or 0)))
-    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4])
+    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup)
     # the brief, built to be heard
     parts = []
     for t in talk[:4]:
@@ -145,10 +197,23 @@ for lab, key, lid, lgn, myid in LG:
                      + (f"; rising - {t['rising']}" if t.get("rising") else ""))
     for c in cover[:2]:
         parts.append(f"COVER: {c['title']} - {c['target']}" + (f"; best fills {', '.join(c['picks'])}" if c["picks"] else ""))
+    for b in backup:
+        opts = [f"{x['name']} (your bench, {x['wk']})" for x in b["bench"]] + [f"{x['name']} (free agent, {x['wk']}, locks {x['locks']})" for x in b["fa"][:2]]
+        parts.append(f"BACKUP if {b['starter']} ({b['status']}) sits - locks {b['locks']}: " + ("; ".join(opts) if opts else "no healthy option found"))
     for b in block[:2]:
         parts.append(f"BLOCK: {b['name']} ({b['pos']}, {b['acq']}) would start for {b['opp']} (Week {b['week']}) over {b['would_start_over']} - Ratcliffe {b['rat_ros']} vs {b['their_ros']}")
     brief.append(f"{lab}: " + ("; ".join(parts) if parts else "nothing to talk about - no free agent clears or nears the bar, no hole in the next three weeks, nothing to block") + ".")
 
+PREV = load(O(R, "dispatch_out/talk_list.json"), {}) or {}
+def _ids(lv):
+    for kind in ("talk", "watch", "block"):
+        for x in lv.get(kind) or []: yield kind, f"{kind}:{nk(x.get('name'))}", x
+    for x in lv.get("cover") or []: yield "cover", "cover:" + nk(x.get("title")), x
+    for x in lv.get("backup") or []: yield "backup", "backup:" + nk(x.get("starter")), x
+for lab_, lv in out["leagues"].items():
+    old = {i: x for _, i, x in _ids((PREV.get("leagues") or {}).get(lab_) or {})}
+    for kind, i, x in _ids(lv):
+        x["id"] = i; x["first_seen"] = (old.get(i) or {}).get("first_seen") or out.get("built")
 json.dump(out, open(O(R, "dispatch_out/talk_list.json"), "w"), indent=1)
 # Live reads the meter file the build saved; the talk list rides inside it so the hourly sync carries it with no new download
 try:
@@ -157,8 +222,8 @@ try:
         if _lab in _m.get("leagues", {}): _m["leagues"][_lab]["talk"] = dict(_v, read=RAT_AT, built=out.get("built"))
     json.dump(_m, open(_mf, "w"), ensure_ascii=False)
 except Exception as _e: print("TALK LIST not added to the meter file:", _e)
-n = {k: sum(len(v[x]) for x in ("talk", "watch", "cover", "block")) for k, v in out["leagues"].items()}
-print("TALK LIST:", " | ".join(f"{k} talk {len(v['talk'])} watch {len(v['watch'])} cover {len(v['cover'])} block {len(v['block'])}" for k, v in out["leagues"].items()))
+n = {k: sum(len(v[x]) for x in ("talk", "watch", "cover", "block", "backup")) for k, v in out["leagues"].items()}
+print("TALK LIST:", " | ".join(f"{k} talk {len(v['talk'])} watch {len(v['watch'])} cover {len(v['cover'])} block {len(v['block'])} backup {len(v['backup'])}" for k, v in out["leagues"].items()))
 if BRIEF:
     bf = O(R, "dispatch_out/brief_latest.txt")
     try: s = open(bf).read()

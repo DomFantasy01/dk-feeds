@@ -813,6 +813,53 @@ try:
 except Exception as e:
     RISE_NOTE = f"rising check skipped: {type(e).__name__}: {e}"
 
+# Oct 31 (Dom: "send an alert the minute a questionable starter shows up as inactive, so you'd still have time to swap") -
+# THE INACTIVE ALERT. One of Dom's starters on the official inactives list (ESPN's feed, saved every 5 minutes by the
+# inactives watch) or tagged Out, while his game hasn't started: red, with the backups from the Pickups panel - his own
+# bench first, then the best free agents this week, each with the time he locks. No drop is named; Dom picks it.
+INACT_NOTE = ""
+try:
+    def _nn(x): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", str(x).lower()))
+    _it = None
+    for _p in (_o2.path.join(_HERE, "feeds", "inactives", f"wk{W}.json"), _o2.path.join(_HERE, "..", "feeds", "inactives", f"wk{W}.json")):
+        if _o2.path.exists(_p): _it = json.load(open(_p)); break
+    if _it is None:
+        _t = _rawtxt(f"feeds/inactives/wk{W}.json"); _it = json.loads(_t) if _t else {}
+    _inact = {_nn(x.get("name")): x for x in (_it.get("players") or [])}
+    _tl = None
+    for _p in (_o2.path.join(_HERE, "dispatch_out", "talk_list.json"),):
+        if _o2.path.exists(_p): _tl = json.load(open(_p))
+    if _tl is None:
+        _t = _rawtxt("dispatch_out/talk_list.json"); _tl = json.loads(_t) if _t else {}
+    _now = dt.datetime.now(dt.timezone.utc); _ni = 0
+    for lg, L in (M.get("leagues") or {}).items():
+        _bk = {_nn(b.get("starter")): b for b in ((_tl.get("leagues") or {}).get(lg) or {}).get("backup") or []}
+        for st in (L.get("starters") or {}).get("me") or []:
+            k = _nn(st.get("player")); hit = _inact.get(k); out_tag = (st.get("status") or "").upper() == "O"
+            if not hit and not out_tag: continue
+            if st.get("actual") is not None: continue                       # his game is on or over
+            b = _bk.get(k) or {}
+            if b.get("lock_utc"):
+                try:
+                    if dt.datetime.fromisoformat(b["lock_utc"]) <= _now: continue
+                except Exception: pass
+            opts = [f"{x['name']} (your bench, Ratcliffe {x.get('wk')})" for x in b.get("bench") or []] + \
+                   [f"{x['name']} ({x['pos']}, {x['team']}, free agent, Ratcliffe {x.get('wk')}, locks {x.get('locks')})" for x in (b.get("fa") or [])[:3]]
+            why = (f"on the official inactives list ({hit.get('detail') or 'inactive'}, first seen {hit.get('first_seen_utc') or hit.get('tagged_utc')})" if hit
+                   else "tagged Out")
+            add(id=slug("inact", W, lg, st.get("player")), color="red", lg=lg, who=st.get("player"), kind="inactive",
+                title=f"{st.get('player')} is OUT - your {st.get('slot')} in {lg} would score zero",
+                what=f"{st.get('player')} ({st.get('pos')}, {st.get('team')}) is {why}. His game: {b.get('locks') or st.get('kickoff') or 'not started'}.",
+                tie=f"He is in your {lg} starting lineup at {st.get('slot')}.",
+                fix="Swap him out before kickoff. Options: " + ("; ".join(opts) if opts else "no healthy bench man or free agent found - check Yahoo") + ". Adding a free agent means a drop - your pick.",
+                ba={"label": "that lineup spot this week, Ratcliffe points", "before": 0.0, "after": ((b.get("bench") or b.get("fa") or [{}])[0]).get("wk")},
+                receipts=[f"Inactives: {_it.get('source', 'ESPN injuries feed')}", "Backups: the Pickups panel's BACKUP list (Ratcliffe this week, his league's scoring)"],
+                by="before " + (b.get("locks") or "kickoff"), src="the inactives watch (official inactives, every 5 minutes before each window)")
+            _ni += 1
+    INACT_NOTE = f"inactive starters: {_ni}"
+except Exception as e:
+    INACT_NOTE = f"inactive check skipped: {type(e).__name__}: {e}"
+
 _rpk = {(x["lg"], x["who"]) for x in ITEMS if x.get("kind") == "radar_prekick"}
 ITEMS[:] = [x for x in ITEMS if not (x.get("kind") == "wire" and (x["lg"], x["who"]) in _rpk)]
 # ---------- Oct 29 (Dom): every card says whose man he is, what it means for him, and where the numbers came from ----------
@@ -862,7 +909,7 @@ for i, o in old.items():
                                "radar_prekick": "his game kicked off, someone added him, or he fell under the bar",
                                "prekick": "the kickoff passed or he fell under the bar",
                                "wire": "he fell under the bar or someone added him", "rising": "the reason went away or he was added",
-                               "scout_pickup": "the Scout no longer ranks him", "out": "the lineup hole is filled", "bye": "the lineup hole is filled"
+                               "scout_pickup": "the Scout no longer ranks him", "inactive": "his game started or he came off the inactives list", "out": "the lineup hole is filled", "bye": "the lineup hole is filled"
                                }.get(o.get("kind"), "the latest build no longer raises it"))
     if o.get("active") or not o.get("resolved_at") or o["resolved_at"] >= cut7:
         if (o.get("last_seen") or "") >= cut: out.append(o)
@@ -884,4 +931,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SIZE_NOTE)
