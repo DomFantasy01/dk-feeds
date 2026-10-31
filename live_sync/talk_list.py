@@ -184,7 +184,31 @@ for lab, key, lid, lgn, myid in LG:
     _tn = {nk(t["name"]) for t in talk}; watch = [w_ for w_ in watch if nk(w_["name"]) not in _tn]
     _seen = set(); watch = [w_ for w_ in watch if not (nk(w_["name"]) in _seen or _seen.add(nk(w_["name"])))]
     talk.sort(key=lambda x: -(x.get("pct") or 999)); watch.sort(key=lambda x: (-(1 if x.get("rising") else 0), -(x.get("pct") or 0)))
-    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup)
+    # Oct 31 (Dom): every free agent the experts moved up gets a plain tag - "Pick up now" / "Worth considering" /
+    # "No action needed" - with the real reason, from the same test as above (Ratcliffe rest of season vs your weakest starter)
+    fa_tags = {}
+    _talk = {nk(t["name"]): t for t in talk}; _watch = {nk(t["name"]): t for t in watch}
+    _pool = {nk(p["name"]): p for p in pool}
+    for _w in ((L.get("experts") or {}).get("wire") or []):
+        _nm = str(_w).split(" (")[0].strip(); k_ = nk(_nm)
+        if not _nm: continue
+        if k_ in _talk:
+            t = _talk[k_]; fa_tags[_nm] = dict(tag="Pick up now", why=(f"{t['pct']}% better than your {t['over']} over the rest of the season (Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game)" if t.get("over_ros") is not None else "clears your 15% bar (Scout pick)"))
+            continue
+        if k_ in _watch:
+            t = _watch[k_]; fa_tags[_nm] = dict(tag="Worth considering", why=(f"{t['pct']}% better than your {t['over']} (Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game) - under your 15% bar" if t.get("over_ros") is not None else "close to your bar") + (f"; rising - {t['rising']}" if t.get("rising") else ""))
+            continue
+        if owner and k_ in owner:
+            fa_tags[_nm] = dict(tag="No action needed", why=f"already on a roster ({owner[k_]})"); continue
+        p = _pool.get(k_)
+        if not p:
+            fa_tags[_nm] = dict(tag="No action needed", why="Ratcliffe doesn't project him in your league yet"); continue
+        if p["pos"] not in weak:
+            fa_tags[_nm] = dict(tag="No action needed", why=f"you don't start a {p['pos']}"); continue
+        wn, wv, _ = weak[p["pos"]]; pct = round(100 * (p["ros"] - wv) / wv) if wv else 0
+        fa_tags[_nm] = dict(tag="No action needed", why=(f"Ratcliffe has him at {p['ros']:.1f} a game, below your {wn} ({wv:.1f})" if pct <= 0
+                            else f"only {pct}% better than your {wn} ({p['ros']:.1f} vs {wv:.1f} a game, Ratcliffe) - under your 15% bar"))
+    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup, fa_tags=fa_tags)
     # the brief, built to be heard
     parts = []
     for t in talk[:4]:
