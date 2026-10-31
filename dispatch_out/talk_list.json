@@ -1,64 +1,11 @@
 {
  "week": 8,
- "built": "Sat Oct 31 2026 10:15 AM PT",
+ "built": "Sat Oct 31 2026 10:41 AM PT",
  "ratcliffe_read": "Sat Oct 31 2026 9:14 AM PT",
  "koerner_read": "Sat Oct 31 2026 9:11 AM PT",
  "leagues": {
   "DK I": {
-   "talk": [
-    {
-     "name": "Samaje Perine",
-     "pos": "RB",
-     "team": "CIN",
-     "acq": "Free agent",
-     "over": "Chris Godwin Jr.",
-     "pct": 494,
-     "gain": 6.9,
-     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
-     "scout": true,
-     "id": "talk:samajeperine",
-     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
-    },
-    {
-     "name": "Chris Rodriguez Jr.",
-     "pos": "RB",
-     "team": "JAX",
-     "acq": "Free agent",
-     "over": "Chris Godwin Jr.",
-     "pct": 406,
-     "gain": 5.5,
-     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
-     "scout": true,
-     "id": "talk:chrisrodriguez",
-     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
-    },
-    {
-     "name": "Kimani Vidal",
-     "pos": "RB",
-     "team": "LAC",
-     "acq": "Free agent",
-     "over": "Chris Godwin Jr.",
-     "pct": 356,
-     "gain": 4.8,
-     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
-     "scout": true,
-     "id": "talk:kimanividal",
-     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
-    },
-    {
-     "name": "Keaton Mitchell",
-     "pos": "RB",
-     "team": "LAC",
-     "acq": "Free agent",
-     "over": "Chris Godwin Jr.",
-     "pct": 316,
-     "gain": 4.1,
-     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
-     "scout": true,
-     "id": "talk:keatonmitchell",
-     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
-    }
-   ],
+   "talk": [],
    "watch": [
     {
      "name": "KC DEF",
@@ -78,9 +25,9 @@
      "pos": "QB",
      "team": "ATL",
      "acq": "Free agent",
-     "over": "Chris Godwin Jr.",
+     "over": "TreVeyon Henderson",
      "pct": 22,
-     "gain": 3.5,
+     "gain": 3.4,
      "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 16.7 vs 21.9 \u00b7 Koerner 17.3 vs 22.0 \u00b7 Yahoo 17.5 vs 23.9 \u00b7 Gotham 17.2 vs 22.1 - WORSE this week",
      "scout": true,
      "id": "watch:michaelpenix",
@@ -89,36 +36,21 @@
    ],
    "cover": [
     {
-     "title": "RB2, Week 8 Fill",
-     "target": "Target 17.7 pts",
-     "mark": "red",
-     "why": "Slot empty; ideally ~18 (Jaylen Warren's level) \u2014 anything beats zero.",
-     "picks": [
-      "Samaje Perine (Free agent)",
-      "Chris Rodriguez Jr. (Free agent)"
-     ],
-     "id": "cover:rb2week8fill",
-     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+     "title": "RB2, Weeks 8-9 Fill",
+     "target": "Target 10.4 pts",
+     "mark": "gold",
+     "why": "Full strength ~17.7 (Warren). Wk 8 Perine ~9.4 (Warren moves up to RB1, Perine slides in) \u00b7 Wk 9 Henderson ~11.5 (Warren on bye, Henderson slides in).",
+     "picks": [],
+     "id": "cover:rb2weeks89fill",
+     "first_seen": "Sat Oct 31 2026 10:41 AM PT"
     },
     {
      "title": "RB1, Weeks 8, 11 Fill",
      "target": "Target 20.3 pts",
-     "mark": "red",
-     "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~19.2 (McCaffrey on bye, Warren slides in) \u00b7 Wk 11 McCaffrey ~21.3 (hard matchup vs MIN).",
-     "picks": [
-      "Samaje Perine (Free agent)",
-      "Chris Rodriguez Jr. (Free agent)"
-     ],
-     "id": "cover:rb1weeks811fill",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
-     "title": "TE, Weeks 8, 10 Fill",
-     "target": "Target 11.7 pts",
      "mark": "gold",
-     "why": "Full strength ~10.5 (Strange). Wk 8 Kelce ~11.1 (Strange has a worse matchup) \u00b7 Wk 10 Kelce ~12.3 (Strange has a worse matchup).",
+     "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~19.2 (McCaffrey on bye, Warren slides in) \u00b7 Wk 11 McCaffrey ~21.3 (hard matchup vs MIN).",
      "picks": [],
-     "id": "cover:teweeks810fill",
+     "id": "cover:rb1weeks811fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     },
     {
@@ -133,48 +65,6 @@
    ],
    "block": [],
    "backup": [
-    {
-     "starter": "TreVeyon Henderson",
-     "slot": "RB",
-     "pos": "RB",
-     "team": "NE",
-     "status": "O",
-     "wk": 8.16,
-     "locks": "Sun 1:25 PM",
-     "lock_utc": "2026-11-01T21:25:00+00:00",
-     "bench": [],
-     "fa": [
-      {
-       "name": "Samaje Perine",
-       "pos": "RB",
-       "team": "CIN",
-       "wk": 9.4,
-       "koe": 7.69,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-01T18:00:00+00:00"
-      },
-      {
-       "name": "Dylan Sampson",
-       "pos": "RB",
-       "team": "CLE",
-       "wk": 8.3,
-       "koe": 8.27,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-01T18:00:00+00:00"
-      },
-      {
-       "name": "Chris Rodriguez Jr.",
-       "pos": "RB",
-       "team": "JAX",
-       "wk": 8.0,
-       "koe": 8.29,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-01T18:00:00+00:00"
-      }
-     ],
-     "id": "backup:treveyonhenderson",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
     {
      "starter": "George Pickens",
      "slot": "WR",
