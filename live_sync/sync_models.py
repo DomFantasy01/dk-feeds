@@ -251,6 +251,29 @@ except Exception as _e: ST['github'] = {'error': f"{type(_e).__name__}: {_e}"[:1
 # e.g. {"radar": {"note": "retry failing on the injury feed", "since": "2026-10-30T23:00:00Z"}}; an empty {} when nothing is
 try: ST['fixing'] = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/live_sync/fixing.json', timeout=20).read())
 except Exception: ST['fixing'] = {}
+# Oct 31 (Dom: "add them all and make this look advanced") - THE CHARTS. Per league `viz`: the simulator's score spread for
+# both teams, each remaining week's chance, the whole league's projected wins and playoff odds, and every starter's four
+# numbers (Ratcliffe, Koerner, Yahoo, Gotham). `work` + `rosters` come from the build's dispatch_out/viz_extra.json.
+try:
+    import urllib.request
+    _SK2 = {'DK I': 'DKI', 'DK II': 'DKII', 'DK III': 'DKIII', 'DK IV': 'DKIV'}
+    try: _SIM2 = SIM
+    except NameError: _SIM2 = None
+    _r1 = lambda v: None if v is None else round(float(v), 2)
+    for lab, k in KEY.items():
+        L = M['leagues'][lab]; sl = ((_SIM2 or {}).get('leagues') or {}).get(_SK2[lab]) or {}
+        st = lambda side: [dict(s=x.get('slot'), n=x.get('player'), p=x.get('pos'), t=x.get('team'), st=x.get('status') or '',
+                                a=_r1(x.get('actual')), r=_r1(x.get('ratcliffe')), k=_r1(x.get('koerner')) if x.get('koerner_src') == 'flabs' else None,
+                                y=_r1(x.get('yahoo')), g=_r1(x.get('gotham'))) for x in L['starters'][side]]
+        cur['leagues'].setdefault(k, {})['viz'] = dict(
+            run=(_SIM2 or {}).get('run'), built=M.get('built_pt'), week=sl.get('week_win'), scores=sl.get('scores'),
+            weeks=sl.get('weeks'), table=[dict(n=t['name'], w=_r1(t['wins']), p=_r1(t['playoff'])) for t in (sl.get('table') or [])],
+            me=st('me'), op=st('op'))
+    _vx = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/viz_extra.json', timeout=20).read())
+    cur['work'] = dict(built=_vx.get('built'), weeks=_vx.get('weeks'), p=_vx.get('work') or {})
+    cur['rosters'] = dict(read=_vx.get('rosters_read'), t=_vx.get('rosters') or {})
+    print('charts on Live:', {k: bool(cur['leagues'][k].get('viz')) for k in KEY.values()}, '| workload', len(cur['work']['p']), 'players')
+except Exception as _e: print('charts on Live skipped:', str(_e)[:120])
 cur['status'] = ST
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})

@@ -48,6 +48,9 @@ jobs:
         run: gh api 'repos/${{ github.repository }}/actions/runs?per_page=100' > dispatch_out/gh_runs.json || echo "!! run list not saved"
         env:
           GH_TOKEN: ${{ github.token }}
+      # Oct 31 (Dom): the chart extras for Live - workload per week (nflverse) and his four rosters; never fails the build
+      - name: chart extras for Dark Knight Live
+        run: timeout 180 python3 live_sync/viz_extra.py . || echo "!! chart extras not saved - Live keeps the last ones"
       - name: save the page back to the repo
         run: |
           git config user.name dk-feed-bot
