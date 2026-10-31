@@ -197,6 +197,9 @@ for r in _ldcsv("ftn_scored.csv"):
     RAT[(str(r.get("lg")), _nm(r.get("name")))] = (_fl(r.get("wk")), _fl(r.get("ros_pg"))); RAT_AT = r.get("read_pt") or RAT_AT
 for r in _ldcsv("koerner_scored.csv"):
     KOR[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); KOR_AT = r.get("read_pt") or KOR_AT
+CLY, CLY_AT = {}, ""   # Oct 31 (Dom): Mike Clay (ESPN) is an alert source too - if he spots a man the others miss, Dom hears about it
+for r in _ldcsv("clay_scored.csv"):
+    CLY[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); CLY_AT = r.get("read") or CLY_AT
 YP_AT = ""
 for _n2 in "1234":
     _t2 = ""
@@ -222,8 +225,9 @@ def nums(lg, name, p=None):
     return {"ratcliffe": pick(p.get("ratcliffe"), (RAT.get((n, k)) or (None, None))[0]),
             "koerner": pick(p.get("koerner"), KOR.get((n, k))),
             "yahoo": pick(p.get("yahoo"), YPJ.get((n, k))),
-            "gotham": pick(p.get("gotham"), GOT.get((n, k)))}
-NAMES = {"ratcliffe": "Ratcliffe", "koerner": "Koerner", "yahoo": "Yahoo", "gotham": "Gotham"}
+            "gotham": pick(p.get("gotham"), GOT.get((n, k))),
+            "clay": pick(p.get("clay"), CLY.get((n, k)))}
+NAMES = {"ratcliffe": "Ratcliffe", "koerner": "Koerner", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham"}
 def bar(cn, sn):
     """Sources where the candidate clears 15% AND 2 points a week over the starter. [] = he doesn't reach Dom."""
     out = []
@@ -237,7 +241,7 @@ def numline(cn, sn, sname="your starter"):
 def barline(ok_):
     return ("Clears the bar (15% and 2+ points this week) on " + ", ".join(NAMES[s] for s in ok_) + ("" if len(ok_) > 1 else " only - one source is enough to talk it through") + ".") if ok_ else ""
 def srcages():
-    return f"Numbers: Ratcliffe read {RAT_AT or 'unknown'} · Koerner read {KOR_AT or 'unknown'} · Yahoo read {YP_AT or 'unknown'} · Gotham built {BUILT or 'unknown'}"
+    return f"Numbers: Ratcliffe read {RAT_AT or 'unknown'} · Koerner read {KOR_AT or 'unknown'} · Clay read {CLY_AT or 'unknown'} · Yahoo read {YP_AT or 'unknown'} · Gotham built {BUILT or 'unknown'}"
 # whose player: Yahoo's API read (yahoo_api/latest.json) names every team in every league
 YA = {}
 for _d2 in [_o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_api", "latest.json")]:
