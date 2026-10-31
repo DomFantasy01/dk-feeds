@@ -126,5 +126,5 @@ python3 "$REPO/live_sync/brief_sim.py" "$REPO/dispatch_out/sim/sim_latest.txt" "
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
 python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON points skipped - the needles keep the engine in his slot"   # Oct 31 (Dom): third expert on the needles
 python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
-python3 "$REPO/live_sync/playoff_plan.py" "$REPO" DKI || echo "!! ROAD TO THE PLAYOFFS skipped - Live keeps the simulator box"   # Oct 31 (Dom): the playoff plan, DK I first
+python3 "$REPO/live_sync/championship.py" "$REPO" || echo "!! ROAD TO THE CHAMPIONSHIP skipped - Live keeps the last plan"   # Oct 31 (Dom): the playoff plan, DK I first
 echo "DONE week $W"
