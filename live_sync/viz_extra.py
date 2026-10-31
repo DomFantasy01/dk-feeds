@@ -28,7 +28,7 @@ try:
         lg = Y['leagues'].get(k)
         if not lg: continue
         me = [t for t in lg['teams'] if str(t['id']) == str(lg['me'])][0]
-        rosters[lab] = [[p['name'], p['slot'], p.get('pos', '')] for p in me['players']]
+        rosters[lab] = [[p['name'], p['slot'], p.get('pos', ''), str(p.get('team') or '').upper()] for p in me['players']]
         names.update(p['name'] for p in me['players'] if p.get('pos') not in ('K', 'DEF'))
 except Exception as e:
     print('!! rosters not read:', e)
@@ -44,7 +44,21 @@ for r in rows:
     if n in names:
         got.setdefault(n, {})[int(r['week'])] = [int(f(r.get('carries')) + f(r.get('targets'))), round(f(r.get('fantasy_points_ppr')), 1)]
 work = {n: [got[n].get(w) for w in range(1, maxw + 1)] for n in sorted(got)}
-out = dict(built=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), weeks=maxw, work=work,
+# Oct 31 (Dom: "a bye-week calendar through Week 17") - every NFL team's bye week(s) this season, nflverse schedule
+byes = {}
+try:
+    graw = None
+    for lp in ('/home/claude/dksys/gate/fresh/games.csv', '/home/claude/dksys/data/latest/games.csv'):
+        if os.path.exists(lp): graw = open(lp).read(); break
+    if graw is None: graw = urllib.request.urlopen('https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv', timeout=60).read().decode()
+    G = [r for r in csv.DictReader(io.StringIO(graw)) if r.get('season') == str(state.get('season') or dt.date.today().year) and r.get('game_type') == 'REG']
+    played = {}
+    for r in G:
+        for t in (r['home_team'], r['away_team']): played.setdefault(t, set()).add(int(r['week']))
+    byes = {t: [w for w in range(1, 19) if w not in ws] for t, ws in played.items()}
+except Exception as e:
+    print('!! byes not read:', e)
+out = dict(byes=byes, built=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), weeks=maxw, work=work,
            rosters=rosters, rosters_read=read, source='nflverse weekly player stats + Yahoo API rosters')
 json.dump(out, open(OUT, 'w'), ensure_ascii=False, separators=(',', ':'))
 print(f'viz extras: {len(work)} players, weeks 1-{maxw}, rosters {list(rosters)}')

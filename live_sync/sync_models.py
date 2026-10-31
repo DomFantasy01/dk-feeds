@@ -269,7 +269,7 @@ try:
         L = M['leagues'][lab]; sl = ((_SIM2 or {}).get('leagues') or {}).get(_SK2[lab]) or {}
         st = lambda side: [dict(s=x.get('slot'), n=x.get('player'), p=x.get('pos'), t=x.get('team'), st=x.get('status') or '',
                                 a=_r1(x.get('actual')), r=_r1(x.get('ratcliffe')), k=_r1(x.get('koerner')) if x.get('koerner_src') == 'flabs' else None,
-                                y=_r1(x.get('yahoo')), g=_r1(x.get('gotham'))) for x in L['starters'][side]]
+                                y=_r1(x.get('yahoo')), g=_r1(x.get('gotham')), b=_r1(x.get('brenton'))) for x in L['starters'][side]]
         cur['leagues'].setdefault(k, {})['viz'] = dict(
             run=(_SIM2 or {}).get('run'), built=M.get('built_pt'), week=sl.get('week_win'), scores=sl.get('scores'),
             weeks=sl.get('weeks'), table=[dict(n=t['name'], w=_r1(t['wins']), p=_r1(t['playoff'])) for t in (sl.get('table') or [])],
@@ -277,6 +277,7 @@ try:
     _vx = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/viz_extra.json', timeout=20).read())
     cur['work'] = dict(built=_vx.get('built'), weeks=_vx.get('weeks'), p=_vx.get('work') or {})
     cur['rosters'] = dict(read=_vx.get('rosters_read'), t=_vx.get('rosters') or {})
+    cur['byes'] = _vx.get('byes') or {}   # Oct 31 (Dom): bye-week calendar on each league card
     print('charts on Live:', {k: bool(cur['leagues'][k].get('viz')) for k in KEY.values()}, '| workload', len(cur['work']['p']), 'players')
 except Exception as _e: print('charts on Live skipped:', str(_e)[:120])
 cur['status'] = ST
