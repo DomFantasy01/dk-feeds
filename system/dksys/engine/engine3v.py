@@ -345,7 +345,13 @@ def run(lab):
         if len(late_)<DRIFT_HOLD or not len(early_): continue
         if late_.wl.min()<=0: continue
         d_=(late_.sh.mean()-early_.sh.mean())*100
-        if abs(d_)>=DRIFT_SWING: DRIFT[key_]=(round(d_,1),float(late_.wl.mean()))
+        if abs(d_)>=DRIFT_SWING:
+            _dm=os.environ.get('DK_DRIFT_MODE','half')   # Oct 31: half strength - back-test Wks 4-7 (3,045 player-weeks): full 6.131, half 6.118, off 6.118; on the 337 drift rows full 6.588 vs off 6.353
+            if _dm in ('both','bothhalf'):   # Oct 31 test: both late games must each show the move (one odd game - a blowout, an early exit - is not a new role)
+                _each=[(x-early_.sh.mean())*100 for x in late_.sh]
+                if not all(e_*d_>0 and abs(e_)>=DRIFT_SWING/2 for e_ in _each): continue
+            _lw=float(late_.wl.mean())
+            DRIFT[key_]=(round(d_,1),_lw,_dm)
     # v7 NEW STARTER (Oct 23, Dom). Back-test, Weeks 4-6, all four leagues, games before each week only: fired once (Gordon Wk 5:
     # 12.3 -> 14.2, scored 14.8), changed nobody else; overall miss 5.911 -> 5.907 (DK IV). A looser first try, without the snap
     # checks, made 18-31 player-weeks worse and was thrown out. Off switch: DK_ERA=off. A backup counts as the
@@ -404,7 +410,7 @@ def run(lab):
         else: opp=eff=None
         opp_pre=opp; dmark=''
         if opp is not None and r.k in DRIFT and (DRIFT[r.k][1]-opp)*DRIFT[r.k][0]>0:   # v3 DRIFT: workload = last 2 games; only moves the way the role moved
-            opp=DRIFT[r.k][1]; dmark='D'
+            opp=(DRIFT[r.k][1] if DRIFT[r.k][2] in ('full','both') else (opp+DRIFT[r.k][1])/2); dmark='D'
         def num(wk_):
             m=mfac(team,r.pos,wk_)
             if opp is None or m is None: return None

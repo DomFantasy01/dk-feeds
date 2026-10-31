@@ -116,4 +116,5 @@ python3 "$REPO/live_sync/brief_waiver_experts.py" "$REPO" "$REPO/dispatch_out/br
 python3 "$REPO/live_sync/brief_ratcliffe.py" "$REPO" "$REPO/dispatch_out/brief_latest.txt" || echo "!! RATCLIFFE section skipped"   # Oct 28 (Dom): Ratcliffe leads, the engine beside him
 python3 "$REPO/live_sync/brief_sim.py" "$REPO/dispatch_out/sim/sim_latest.txt" "$REPO/dispatch_out/brief_latest.txt" || echo "!! SIMULATOR section skipped"   # Oct 28 (Dom): sims as another test
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
+python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
 echo "DONE week $W"
