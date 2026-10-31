@@ -283,6 +283,7 @@ try:
     _vx = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/viz_extra.json', timeout=20).read())
     cur['work'] = dict(built=_vx.get('built'), weeks=_vx.get('weeks'), p=_vx.get('work') or {})
     cur['rosters'] = dict(read=_vx.get('rosters_read'), t=_vx.get('rosters') or {})
+    cur['acc'] = M.get('acc')   # Oct 31: expert accuracy, week by week (expert_card.py)
     cur['byes'] = _vx.get('byes') or {}   # Oct 31 (Dom): bye-week calendar on each league card
     print('charts on Live:', {k: bool(cur['leagues'][k].get('viz')) for k in KEY.values()}, '| workload', len(cur['work']['p']), 'players')
 except Exception as _e: print('charts on Live skipped:', str(_e)[:120])

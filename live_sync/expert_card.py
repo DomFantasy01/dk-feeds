@@ -99,5 +99,16 @@ for lab, L in (M.get("leagues") or {}).items():
             for x in ("ratcliffe", "koerner", "clay", "gotham", "sleeper"):
                 if b.get(x) is not None: b[x] = 0.0
             b["out_zero"] = OUTL[nk(b.get("player"))]
+# Oct 31 (Dom: "is Clay earning his spot?"): every source's miss against what players actually scored, week by week (the
+# scoreboard freezes each number pregame). Average points missed per player - lower is better - and how many players graded.
+try:
+    G = list(csv.DictReader(open(O(R, "dispatch_out/scoreboard/graded.csv"))))
+    acc = {}
+    for s_ in ("ratcliffe", "koerner", "clay", "yahoo", "gotham"):
+        for w_ in sorted({int(r["week"]) for r in G}):
+            d = [abs(float(r[s_]) - float(r["actual"])) for r in G if int(r["week"]) == w_ and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
+            if d: acc.setdefault(s_, {})[str(w_)] = [round(sum(d) / len(d), 2), len(d)]
+    M["acc"] = dict(src=acc, note="average points missed per player (lower is better), each source's number frozen before kickoff")
+except Exception as _e: print("accuracy skipped:", _e)
 json.dump(M, open(MF, "w"), ensure_ascii=False)
 print(f"EXPERT CARDS: {n_all} player cards across four leagues (ranks read {rk_read})")
