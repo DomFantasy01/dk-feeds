@@ -233,7 +233,8 @@ for lgk in LGS:
              for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o]
     po_weeks = sorted(((round(lineup_pts(E, Rt, list(PO)) / 3, 1), names.get(t, t), t == me) for t, Rt in base_R.items()), reverse=True)
     funnel = dict(playoff=round(Bm["playoff"], 3), semis=round(Bm["semis"], 3), final=round(Bm["final"], 3), title=round(Bm["title"], 4))
-    keep_moves = [m for m in best if m["d_wins"] >= 0.08 or m["d_playoff"] >= 0.012 or m["d_title"] >= 0.004 or m["this_week"] >= 0.02]
+    # a move only headlines if it clears the bar AND its drop wouldn't start for a rival (Dom's rule) - the rest fold away
+    keep_moves = [m for m in best if not m.get("drop_helps") and (m["d_wins"] >= 0.08 or m["d_playoff"] >= 0.012 or m["d_title"] >= 0.004 or m["this_week"] >= 0.02)]
     OUT["leagues"][LAB[lgk]] = dict(
         week=now, built=BUILT, standings=L["stamp"], base=summ(Bm), funnel=funnel, wins_hist=Bm["wins_hist"],
         race=[dict(team=names.get(t, t), playoff=round(v, 3), title=round(B[t]["title"], 4), me=(t == me)) for v, t in table],
