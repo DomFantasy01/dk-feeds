@@ -3052,7 +3052,7 @@ import json as _jm2, glob as _gm2, os as _om2, datetime as _dtm2
 _MFS=sorted(_gm2.glob("/home/claude/dksys/data/latest/meter/meter_wk*.json"),key=lambda p:int(p.split("_wk")[1].split(".")[0]))
 _MFP=(f"/home/claude/dksys/data/latest/meter/meter_wk{_om2.environ['DK_WEEK']}.json" if _om2.environ.get("DK_WEEK") else _MFS[-1])
 MTR=_jm2.load(open(_MFP)); MW=MTR["week"]
-EXL="BRENTON" if all((L["needles"].get("brenton") is not None) for L in MTR["leagues"].values()) else "GOTHAM"   # Oct 31: third meter slot label
+EXL="CLAY" if all((L["needles"].get("clay") is not None) for L in MTR["leagues"].values()) else "GOTHAM"   # Oct 31 2:50 PM (Dom): Mike Clay (ESPN) in the third slot; Brenton is ranking-only
 YMISS={}                                                    # Oct 9: Yahoo's posted win % missing for a league -> the dial uses the win %
 for _lb,_L in MTR["leagues"].items():                       # implied by Yahoo's own projected totals, and the card says so
     _n=_L["needles"]
@@ -3083,7 +3083,7 @@ for lab,L in MTR["leagues"].items():
     MOD[lab]=dict(me=L["totals"][_rk][0],op=L["totals"][_rk][1],pct=L["needles"][_rk])
     # Oct 31 (Dom: "I don't need to have the engine on my needle pages if I have another expert") - Paul Brenton in the third
     # slot when his numbers came through this build (brenton_points.py); the engine only if they didn't
-    _ek="brenton" if EXL=="BRENTON" else "gotham"
+    _ek="clay" if EXL=="CLAY" else "gotham"
     EFF[lab]=dict(me=L["totals"][_ek][0],op=L["totals"][_ek][1],pct=L["needles"][_ek])
     if L["needles"].get("koerner") is not None and L["totals"].get("koerner"): KOR[lab]=dict(me=L["totals"]["koerner"][0],op=L["totals"]["koerner"][1],pct=L["needles"]["koerner"])   # Oct 29 (Dom): Koerner
     def _bank(S):

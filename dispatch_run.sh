@@ -54,7 +54,8 @@ if [ -f "$REPO/yahoo_api/latest.json" ]; then python3 "$REPO/yahoo_api/api_overl
 echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
 WB=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
-python3 "$REPO/live_sync/brenton_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" "$ROOT/dksys/data/latest/ftn_scored.csv" || echo "!! BRENTON on the printed meter skipped - Gotham keeps the third slot"   # Oct 31 (Dom): Brenton on the Dispatch page too
+python3 "$REPO/live_sync/clay_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! CLAY skipped - Gotham keeps the third slot"   # Oct 31 2:50 PM (Dom): Mike Clay (ESPN) is the numbers check
+python3 "$REPO/live_sync/brenton_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" "$ROOT/dksys/data/latest/ftn_scored.csv" || echo "!! BRENTON ranking check skipped"   # Brenton: ranking check only
 echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"
 WM=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$ROOT/dksys/data/latest/meter/meter_wk$WM.json" > "$ROOT/expert_moves.log" 2>&1 && head -3 "$ROOT/expert_moves.log" || { echo "!! EXPERT MOVES FAILED - the Dispatch prints without them"; tail -5 "$ROOT/expert_moves.log"; }
@@ -124,7 +125,8 @@ python3 "$REPO/live_sync/brief_waiver_experts.py" "$REPO" "$REPO/dispatch_out/br
 python3 "$REPO/live_sync/brief_ratcliffe.py" "$REPO" "$REPO/dispatch_out/brief_latest.txt" || echo "!! RATCLIFFE section skipped"   # Oct 28 (Dom): Ratcliffe leads, the engine beside him
 python3 "$REPO/live_sync/brief_sim.py" "$REPO/dispatch_out/sim/sim_latest.txt" "$REPO/dispatch_out/brief_latest.txt" || echo "!! SIMULATOR section skipped"   # Oct 28 (Dom): sims as another test
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
-python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON points skipped - the needles keep the engine in his slot"   # Oct 31 (Dom): third expert on the needles
+python3 "$REPO/live_sync/clay_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! CLAY (Live copy) skipped"
+python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON ranking check skipped"
 python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
 python3 "$REPO/live_sync/championship.py" "$REPO" || echo "!! ROAD TO THE CHAMPIONSHIP skipped - Live keeps the last plan"   # Oct 31 (Dom): the playoff plan, DK I first
 echo "DONE week $W"

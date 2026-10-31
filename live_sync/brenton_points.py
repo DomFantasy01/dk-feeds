@@ -42,33 +42,28 @@ if len(sys.argv) > 2: mf = sys.argv[2]
 else:
     W = max([int(re.search(r"_wk(\d+)", f).group(1)) for f in glob.glob(O(R, "dispatch_out/meter_wk*.json"))] or [0])
     mf = O(R, f"dispatch_out/meter_wk{W}.json")
+# Oct 31 2:50 PM (Dom: "we don't know what that means"): Brenton is RANKING-ONLY now - no points, off the needles (Mike Clay took
+# the slot, clay_points.py). His order is a check: when he ranks one of Dom's men (or a man on the talk list) far from where
+# Ratcliffe ranks him at the same position this week, it is flagged to dig into. Nothing here drives a number.
 M = json.load(open(mf)); LGN = {"DK I": "1", "DK II": "2", "DK III": "3", "DK IV": "4"}
-hit = miss = 0
+rrank = {}
+for (lg, pos), xs in rat.items():
+    for i, (v, n) in enumerate(sorted(xs, reverse=True)): rrank[(lg, pos, nk(n))] = i + 1
+nflag = 0
 for lab, L in (M.get("leagues") or {}).items():
-    lg = LGN.get(lab)
-    for side in ("me", "op"):
-        for s in (L.get("starters") or {}).get(side) or []:
-            if s.get("pos") in ("K", "DEF"): s["brenton"] = s.get("ratcliffe"); s["brenton_src"] = "ratcliffe (no K/DEF list)"; continue
-            v = val.get((lg, nk(s.get("player"))))
-            if v is None: s["brenton"] = s.get("ratcliffe"); s["brenton_src"] = "ratcliffe (Brenton has no rank for him)"; miss += 1
-            else: s["brenton"] = v; s["brenton_src"] = "brenton"; hit += 1
-    for b in L.get("bench") or []:
-        v = val.get((lg, nk(b.get("player")))); b["brenton"] = v if v is not None else b.get("ratcliffe")
-from statistics import NormalDist, median
-ND = NormalDist()
-for lab, L in (M.get("leagues") or {}).items():
-    T, N = L.get("totals") or {}, L.get("needles") or {}
-    sds = []
-    for c in ("ratcliffe", "koerner", "gotham", "sleeper", "yahoo_from_spread"):
-        t = T.get(c if c != "yahoo_from_spread" else "yahoo"); n = N.get(c)
-        if t and n is not None and 2 <= n <= 98 and abs(t[0] - t[1]) > 1: sds.append((t[0] - t[1]) / ND.inv_cdf(n / 100))
-    if not T.get("ratcliffe") or not sds: continue
-    sd = median(x for x in sds if x > 0) if any(x > 0 for x in sds) else None
-    if not sd: continue
-    dl = [sum((s.get("brenton") or 0) - (s.get("ratcliffe") or 0) for s in (L.get("starters") or {}).get(side) or [] if s.get("actual") is None) for side in ("me", "op")]
-    a, b = T["ratcliffe"][0] + dl[0], T["ratcliffe"][1] + dl[1]
-    T["brenton"] = [round(a, 2), round(b, 2)]; N["brenton"] = round(100 * ND.cdf((a - b) / sd))
-    print(f"   {lab}: Brenton {a:.1f} vs {b:.1f} -> {N['brenton']}% chance to win this week (spread {sd:.1f})")
-M.setdefault("sources", {})["brenton"] = dict(status="OK", read=read, note="Paul Brenton (Points Over Hype) weekly ranks, turned into points on Ratcliffe's scale in each league's scoring")
+    lg = LGN.get(lab); seen, fl = set(), []
+    T = L.get("talk") or {}
+    men = [(s, "your starter") for s in (L.get("starters") or {}).get("me") or []] + [(b, "your bench") for b in L.get("bench") or []] + \
+          [(dict(player=t.get("name"), pos=t.get("pos")), "free agent on your talk list") for t in (T.get("talk") or []) + (T.get("watch") or [])]
+    for s, who in men:
+        pos, k_ = s.get("pos"), nk(s.get("player"))
+        for key in ("brenton", "brenton_src"): s.pop(key, None)
+        if not pos or pos in ("K", "DEF") or (pos, k_) in seen: continue
+        seen.add((pos, k_)); b = rk.get((pos, k_)); r = rrank.get((lg, pos, k_))
+        if not b or not r or min(b, r) > 40 or abs(b - r) < 8: continue
+        fl.append(dict(player=s.get("player"), pos=pos, who=who, brenton=b, ratcliffe=r, higher="Brenton" if b < r else "Ratcliffe"))
+    for t in (L.get("totals") or {}, L.get("needles") or {}): t.pop("brenton", None)
+    L["brenton_flags"] = sorted(fl, key=lambda x: -abs(x["brenton"] - x["ratcliffe"]))[:6]; nflag += len(fl)
+M.setdefault("sources", {})["brenton"] = dict(status="OK", read=read, note="Paul Brenton (Points Over Hype) weekly ranks - ranking check only, no points")
 json.dump(M, open(mf, "w"), ensure_ascii=False)
-print(f"BRENTON: {len(rk)} ranks (read {read}); starters with his rank {hit}, without {miss} (Ratcliffe's number used)")
+print(f"BRENTON: {len(rk)} ranks (read {read}); ranking check only - {nflag} men ranked 8+ spots from Ratcliffe")

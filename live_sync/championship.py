@@ -148,6 +148,27 @@ for lgk in LGS:
     t0 = time.time()
     try: L = SM.load_league(lgk)
     except Exception as e: print(f"CHAMP {lgk}: not built - {e}"); continue
+    # Oct 31 2:50 PM (Dom: Clay's future weeks feed the simulator): Ratcliffe still sets HOW MUCH a man scores the rest of the
+    # season (his rest-of-season total, as before); Mike Clay's week-by-week projections set WHICH WEEKS it lands in (matchups,
+    # byes, the playoff weeks) instead of an even split. A man Clay doesn't project keeps the old split. This week is untouched.
+    CL = {}
+    try:
+        for r_ in csv.DictReader(open(os.path.join(R, "dispatch_out", "clay_scored.csv"))):
+            if r_["lg"] != LGN[lgk]: continue
+            ws = {int(k[1:]): float(v) for k, v in r_.items() if re.fullmatch(r"w\d+", k or "") and v not in ("", None)}
+            CL[(r_["pos"].replace("DST", "DEF"), r_["key"])] = ws
+    except Exception: pass
+    shaped = 0
+    if CL:
+        now_ = int(L["S"]["now"])
+        for p in [q for t in L["S"]["teams"].values() for q in t] + list(L["S"]["pool"]):
+            k_ = (str(p.get("nfl") or "").upper() + "DEF") if p["pos"] == "DEF" else nk(p["name"])
+            ws = CL.get((p["pos"], k_))
+            if not ws: continue
+            fut = [w for w in range(now_ + 1, 18)]
+            tot_r = sum(p["wk"].get(str(w), 0.0) for w in fut); tot_c = sum(ws.get(w, 0.0) for w in fut)
+            if tot_r <= 0 or tot_c <= 0: continue
+            p["wk"] = dict(p["wk"], **{str(w): round(tot_r * ws.get(w, 0.0) / tot_c, 2) for w in fut}); shaped += 1
     E = Engine(L); S = E.S; me = E.me; now = E.now; names = L["names"]
     base_R = {t: list(v) for t, v in S["teams"].items()}
     B = E.run(base_R); Bm = B[me]
@@ -358,7 +379,7 @@ for lgk in LGS:
         games=games, po_weeks=[dict(pts=a, team=b, me=c) for a, b, c in po_weeks], worth=worth,
         moves=keep_moves[:5], not_worth=[dict(add=m["add"], drop=m["drop"], d_wins=m["d_wins"], d_playoff=m["d_playoff"]) for m in best if m not in keep_moves][:8],
         trades=trades[:3], trades_screened=len(screened), calls=calls,
-        note=f"{N:,} seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)")
+        note=f"{N:,} seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)" + (f"; future weeks shaped by Mike Clay (ESPN) for {shaped} players" if shaped else ""))
     # the card box keeps working off the same numbers
     OUT["leagues"][LAB[lgk]]["plan"] = dict(week=now, built=BUILT, standings=L["stamp"], playoff=Bm["playoff"], wins=Bm["wins"], first=Bm["first"],
         rank=[t for _, t in table].index(me) + 1, teams=len(table), race=OUT["leagues"][LAB[lgk]]["race"], games=games, week_win=B["_week"].get(now, 0),

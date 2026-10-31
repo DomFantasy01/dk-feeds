@@ -38,7 +38,7 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, koerner=s.get('koerner') if s.get('koerner_src') == 'flabs' else None, brenton=s.get('brenton') if s.get('brenton_src') == 'brenton' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, koerner=s.get('koerner') if s.get('koerner_src') == 'flabs' else None, brenton=s.get('brenton') if s.get('brenton_src') == 'brenton' else None, clay=s.get('clay') if s.get('clay_src') == 'espn' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
                 n += 1
         for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
             if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
@@ -64,7 +64,7 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), brenton=v.get('brenton'), actual=round(act, 2)))
+        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), brenton=v.get('brenton'), clay=v.get('clay'), actual=round(act, 2)))
 R = pd.DataFrame(rows)
 if 'side' not in R: R['side'] = None
 R['side'] = R['side'].fillna('seed')
@@ -80,7 +80,9 @@ if 'koerner' not in R: R['koerner'] = None   # Oct 29 (Dom): Sean Koerner frozen
 R['koerner'] = pd.to_numeric(R['koerner'], errors='coerce')
 if 'brenton' not in R: R['brenton'] = None   # Oct 31 (Dom): Paul Brenton's rank-based number, frozen pregame from Week 8
 R['brenton'] = pd.to_numeric(R['brenton'], errors='coerce')
-R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe', 'koerner', 'brenton']]
+if 'clay' not in R: R['clay'] = None   # Oct 31 (Dom): Mike Clay (ESPN), frozen pregame from Week 8 - graded by us, ESPN is not in FantasyPros' contest
+R['clay'] = pd.to_numeric(R['clay'], errors='coerce')
+R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe', 'koerner', 'brenton', 'clay']]
 if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
 R.to_csv(f"{OUT}/graded.csv", index=False)
 SRC = ['yahoo', 'gotham', 'sleeper']
@@ -122,7 +124,7 @@ out += ["", f"GOTHAM CEILING (Oct 21): Gotham is shown capped at the Yahoo/Sleep
 # had him, frozen pregame). Who was closer to what he really scored? If Gotham wins at least 55% of those calls over 20+ men, it
 # has earned a voice back on the meters; until then it stays an early-warning tool (alerts, workload, the Scout).
 try:
-    _E = R.copy(); _E['expert'] = _E[['ratcliffe', 'koerner', 'brenton']].mean(axis=1, skipna=True)
+    _E = R.copy(); _E['expert'] = _E[['ratcliffe', 'koerner', 'clay']].mean(axis=1, skipna=True)
     _E = _E.dropna(subset=['gotham_raw', 'expert']); _E['gap'] = _E.gotham_raw - _E.expert
     _D = _E[_E.gap.abs() >= 4].copy()
     if not len(_D):

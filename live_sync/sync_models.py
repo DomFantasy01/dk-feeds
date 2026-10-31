@@ -28,7 +28,9 @@ for lab, k in KEY.items():
         # Oct 31 (Dom): a third expert replaces the engine on the needles - Paul Brenton's ranks, on Ratcliffe's point scale
         # (brenton_points.py). Gotham keeps working behind the scenes (alerts, the Scout). Slot 1 falls back to Gotham only
         # when no Brenton list came through this build.
-        if s.get('brenton') is not None: g = s['brenton']
+        # Oct 31 2:50 PM (Dom): Mike Clay (ESPN, clay_points.py) takes that slot - real stat lines scored in each league's rules.
+        # Brenton is ranking-only now (brenton_flags), never a number.
+        if s.get('clay') is not None: g = s['clay']
         if rc is None and g is None: continue
         ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
         d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g)]
@@ -38,6 +40,7 @@ for lab, k in KEY.items():
     lg['pieces'] = L.get('pieces') or []; lg['pieces_set'] = L.get('pieces_set')   # Oct 23 (Dom): Missing Pieces
     lg['experts'] = L.get('experts')
     lg['talk'] = L.get('talk')
+    lg['brenton_flags'] = L.get('brenton_flags') or []   # Oct 31: Brenton's ranking check
     lg['plan'] = L.get('plan')
     lg['champ'] = L.get('champ')   # Oct 31 (Dom): Road to the Championship (championship.py)   # Oct 31 (Dom): Road to the Playoffs (playoff_plan.py)   # Oct 31 (Dom): players to talk about - pickups, the 10-15% watch list, holes, blocks (talk_list.py)
     lg['pieces_check'] = L.get('pieces_check')   # Oct 25 (Dom): each piece re-tested against the live roster every build   # Oct 25 (Dom): who the named experts moved up / down (expert_moves.py)
@@ -271,7 +274,7 @@ try:
         L = M['leagues'][lab]; sl = ((_SIM2 or {}).get('leagues') or {}).get(_SK2[lab]) or {}
         st = lambda side: [dict(s=x.get('slot'), n=x.get('player'), p=x.get('pos'), t=x.get('team'), st=x.get('status') or '',
                                 a=_r1(x.get('actual')), r=_r1(x.get('ratcliffe')), k=_r1(x.get('koerner')) if x.get('koerner_src') == 'flabs' else None,
-                                y=_r1(x.get('yahoo')), g=_r1(x.get('gotham')), b=_r1(x.get('brenton'))) for x in L['starters'][side]]
+                                y=_r1(x.get('yahoo')), g=_r1(x.get('gotham')), b=_r1(x.get('clay'))) for x in L['starters'][side]]
         cur['leagues'].setdefault(k, {})['viz'] = dict(
             run=(_SIM2 or {}).get('run'), built=M.get('built_pt'), week=sl.get('week_win'), scores=sl.get('scores'),
             weeks=sl.get('weeks'), table=[dict(n=t['name'], w=_r1(t['wins']), p=_r1(t['playoff'])) for t in (sl.get('table') or [])],
