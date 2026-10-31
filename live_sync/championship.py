@@ -66,14 +66,14 @@ class Engine:
         L = self.L; teams = sorted(rosters, key=int); n = N
         W = {t: np.full(n, L["rec"].get(t, {}).get("w", 0), float) for t in teams}
         PF = {t: np.full(n, L["rec"].get(t, {}).get("pf", 0.0)) for t in teams}
-        week_win = {}
+        week_win = {}; my_res = {}
         for wk in range(self.now, REG_LAST + 1):
             sc = {t: self.score(rosters[t], wk) for t in teams}
             med = np.median(np.vstack([sc[t] for t in teams]), axis=0) if L["cfg"]["median"] else None
             for a, b in L["sched"].get(wk, []):
                 if a not in sc or b not in sc: continue
                 wa = (sc[a] > sc[b]).astype(float) + .5 * (sc[a] == sc[b]); W[a] += wa; W[b] += 1 - wa
-                if self.me in (a, b): week_win[wk] = float((wa if a == self.me else 1 - wa).mean())
+                if self.me in (a, b): mw = (wa if a == self.me else 1 - wa); week_win[wk] = float(mw.mean()); my_res[wk] = mw > .5
             if med is not None:
                 for t in teams: W[t] += (sc[t] > med).astype(float)
             for t in teams: PF[t] += sc[t]
@@ -109,6 +109,22 @@ class Engine:
         out["_line"] = dict(median=float(np.median(six)), dist=np.bincount(np.clip(np.round(six).astype(int), 0, 28), minlength=15).tolist())
         mi = T.index(self.me)
         out["_line"]["reach"] = float((Wm[mi] >= np.median(six)).mean())
+        # Oct 31 11:30 (Dom: "which games swing everything"): playoff and title odds if you WIN that week vs if you LOSE it
+        mk_me = seed_of[mi] <= 6; ti_me = champ == mi
+        out["_swing"] = {wk: dict(win=float(r.mean()), po_w=float(mk_me[r].mean()) if r.any() else None, po_l=float(mk_me[~r].mean()) if (~r).any() else None,
+                                  ti_w=float(ti_me[r].mean()) if r.any() else None, ti_l=float(ti_me[~r].mean()) if (~r).any() else None) for wk, r in my_res.items()}
+        # the live bracket: who Dom most likely meets in each round, when he gets there
+        sd_me = seed_of[mi]
+        r1 = np.where(sd_me == 3, s[5], np.where(sd_me == 6, s[2], np.where(sd_me == 4, s[4], np.where(sd_me == 5, s[3], -1))))
+        in_r2 = (f1 == mi) | (f2 == mi) | (sd_me <= 2) | (w36 == mi) | (w45 == mi)
+        r2 = np.where(sd_me == 1, lo_left, np.where(sd_me == 2, hi_left, np.where(lo_left == mi, s[0], np.where(hi_left == mi, s[1], -1))))
+        fo = np.where(f1 == mi, f2, np.where(f2 == mi, f1, -1))
+        def top(arr, mask):
+            v = arr[mask & (arr >= 0)]
+            if not len(v): return []
+            u, c = np.unique(v, return_counts=True); o = np.argsort(-c)[:3]
+            return [dict(team=T[int(u[k])], p=round(float(c[k]) / n, 3)) for k in o]
+        out["_bracket"] = dict(bye=float((sd_me <= 2).mean()), r1=top(r1, (sd_me >= 3) & (sd_me <= 6)), r2=top(r2, in_r2 & (sd_me <= 6)), final=top(fo, fo >= 0))
         return out
 
 def season_val(p, a, b): return sum(v for w, v in p["wk"].items() if a <= int(w) <= b)
@@ -265,7 +281,13 @@ for lgk in LGS:
                    rec=f"{L['rec'].get(t, {}).get('w', 0)}-{L['rec'].get(t, {}).get('l', 0)}") for v, t in table],
         stand_now=stand_now, median_league=bool(L["cfg"]["median"]), rec_now=f"{L['rec'].get(me, {}).get('w', 0)}-{L['rec'].get(me, {}).get('l', 0)}",
         line=dict(median=round(B["_line"]["median"], 1), reach=round(B[me].get("_reach", B["_line"]["reach"]), 3), dist=B["_line"]["dist"]), path=path,
-        protected=sorted(protected), trade_rules="star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
+        protected=sorted(protected),
+        swing=[dict(wk=wk, opp=next((g_["opp"] for g_ in games if g_["wk"] == wk), ""), **{k: (round(v, 3) if v is not None else None) for k, v in sw.items()}) for wk, sw in sorted(B["_swing"].items())],
+        bracket={k: ([dict(x, team=names.get(x["team"], x["team"])) for x in v] if isinstance(v, list) else round(v, 3)) for k, v in B["_bracket"].items()},
+        weeks=[dict(wk=wk, opp=names.get(o, o), opp_rec=f"{L['rec'].get(o, {}).get('w', 0)}-{L['rec'].get(o, {}).get('l', 0)}", win=round(B["_week"].get(wk, 0), 3),
+                    me=[[E.slots[k], base_R[me][i]["name"], round(base_R[me][i]["wk"].get(str(wk), 0), 1), base_R[me][i].get("ytag", "") if wk == now else ""] for k, i in enumerate(SM.best_lineup(base_R[me], E.slots, wk)) if i is not None],
+                    op=[[E.slots[k], base_R[o][i]["name"], round(base_R[o][i]["wk"].get(str(wk), 0), 1), base_R[o][i].get("ytag", "") if wk == now else ""] for k, i in enumerate(SM.best_lineup(base_R[o], E.slots, wk)) if i is not None])
+               for wk in REM for o in [next((b if a == me else a for a, b in L["sched"].get(wk, []) if me in (a, b)), None)] if o], trade_rules="star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
         games=games, po_weeks=[dict(pts=a, team=b, me=c) for a, b, c in po_weeks], worth=worth,
         moves=keep_moves[:5], not_worth=[dict(add=m["add"], drop=m["drop"], d_wins=m["d_wins"], d_playoff=m["d_playoff"]) for m in best if m not in keep_moves][:8],
         trades=trades[:3], trades_screened=len(screened),
