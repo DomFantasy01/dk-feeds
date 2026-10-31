@@ -60,9 +60,11 @@ def row(group, name, status, detail, when=None):
 # ---------- the schedules (Pacific) ----------
 def read_slots(day):
     """scheduled Yahoo reads for a PT date"""
-    if day.weekday() == 6: hrs = [4] + list(range(8, 21))
-    else: hrs = [7, 12, 16]
-    return [dt.datetime(day.year, day.month, day.day, h, 50, tzinfo=PT) for h in hrs]
+    # Oct 31: THE CHAIN clock (Oct 30) - Mon-Sat Yahoo read :25 at 3, 9, 13, 18 (+21 Mon & Thu); Sunday hourly :50 from 4.
+    # (The old 7:50/12:50/4:50 clock flagged a false "MISSED" read between chain reads.)
+    if day.weekday() == 6: return [dt.datetime(day.year, day.month, day.day, h, 50, tzinfo=PT) for h in [4] + list(range(8, 21))]
+    hrs = [3, 9, 13, 18] + ([21] if day.weekday() in (0, 3) else [])
+    return [dt.datetime(day.year, day.month, day.day, h, 25, tzinfo=PT) for h in hrs]
 def last_slot(grace_min=25):
     cands = []
     for d in range(0, 3):
@@ -141,14 +143,31 @@ def _done_bad(r):
     if r.get("status") == "ok": return False
     if r.get("status") == "started" and (NOW - iso(r["started"])).total_seconds() < 45 * 60: return False
     return True
+# Oct 31 (Dom: "Yahoo is broke"): this row used to be labeled "Yahoo" for EVERY read and counted the chain's own
+# summary as a read, so a Ratcliffe (FTN) failure showed as a red Yahoo light. Now each source gets its own row
+# under its own name, and the chain summary is reported on its own (it is healed by the next good chain run).
+def _src(t):
+    t = (t or "").lower()
+    if "ftn" in t or "ratcliffe" in t: return "Ratcliffe (FTN)"
+    if "koerner" in t or "fantasylabs" in t: return "Koerner (FantasyLabs)"
+    if "chain" in t: return "Chain"
+    return "Yahoo"
 fails = [r for r in recent if _done_bad(r)]
 healed = [r for r in fails if any(x.get("task") == r.get("task") and x.get("status") == "ok" and (x.get("started") or "") > (r.get("started") or "") for x in runs)]
 open_f = [r for r in fails if r not in healed]
 if not recent: row("Yahoo", "Read run log", "yellow", "no scheduled read logged in the last 30 h")
 else:
-    row("Yahoo", "Read run log (last 30 h)", "red" if open_f else "green",
-        f"{len(recent)} reads, {len(open_f)} failed and not yet redone" + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in open_f) if open_f else "")
-        + (f" ({len(healed)} earlier failure{'s' if len(healed) > 1 else ''} already fixed by a later good run)" if healed else ""), iso(recent[-1].get("finished")))
+    for src in ["Yahoo", "Ratcliffe (FTN)", "Koerner (FantasyLabs)", "Chain"]:
+        rr = [r for r in recent if _src(r.get("task")) == src]
+        if not rr: continue
+        of = [r for r in open_f if r in rr]; hl = [r for r in healed if r in rr]
+        last_ok = max([r.get("finished") or r.get("started") or "" for r in runs if _src(r.get("task")) == src and r.get("status") == "ok"] or [""])
+        name = "Chain runs (last 30 h)" if src == "Chain" else f"{src} reads (last 30 h)"
+        row(src, name, "red" if of else "green",
+            f"{len(rr)} runs, {len(of)} failed and not yet redone" + (f"; last good {at(iso(last_ok))}" if last_ok and of else "")
+            + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in of[-2:]) if of else "")
+            + (f" ({len(hl)} earlier failure{'s' if len(hl) > 1 else ''} already fixed by a later good run)" if hl else ""),
+            iso(rr[-1].get("finished")))
 
 # ---------- 4. the Dispatch build (GitHub Actions) ----------
 me = load("dispatch_out/meter_wk%s.json" % (ls or {}).get("week", ""))
