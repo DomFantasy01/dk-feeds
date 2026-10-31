@@ -1,5 +1,5 @@
 {
- "run": "Fri Oct 30, 9:40 PM PT",
+ "run": "Fri Oct 30, 10:21 PM PT",
  "sims": 10000,
  "noise": {
   "QB": {
@@ -485,8 +485,8 @@
    "week": 8,
    "standings_read": "Fri Oct 30 8:52 PM PT",
    "week_win": 0.3538,
-   "playoff": 0.0005,
-   "wins": 3.7266,
+   "playoff": 0.0008,
+   "wins": 3.6163,
    "first": 0.0,
    "opp": "Benchdad's Beach",
    "scores": {
@@ -507,49 +507,29 @@
     "10": 0.0715,
     "11": 0.2049,
     "12": 0.2068,
-    "13": 0.5672,
-    "14": 0.0974
+    "13": 0.4632,
+    "14": 0.0911
    },
    "swaps": [],
    "tests": [
-    {
-     "add": "Xavier Worthy",
-     "pos": "WR",
-     "nfl": "KC",
-     "acq": "Waivers, clears Oct 31",
-     "drop": "Devaughn Vele",
-     "playoff": 0.0006,
-     "d_playoff": 9.999999999999994e-05,
-     "d_week": 0.0016999999999999793
-    },
     {
      "add": "Michael Penix Jr.",
      "pos": "QB",
      "nfl": "ATL",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0004,
-     "d_playoff": -9.999999999999999e-05,
+     "playoff": 0.001,
+     "d_playoff": 0.00019999999999999998,
      "d_week": 0.0
     },
     {
-     "add": "Emmett Johnson",
-     "pos": "RB",
-     "nfl": "KC",
+     "add": "Tre Harris",
+     "pos": "WR",
+     "nfl": "LAC",
      "acq": "Free agent",
-     "drop": "David Montgomery",
-     "playoff": 0.0004,
-     "d_playoff": -9.999999999999999e-05,
-     "d_week": 0.0
-    },
-    {
-     "add": "Jaylen Wright",
-     "pos": "RB",
-     "nfl": "MIA",
-     "acq": "Free agent",
-     "drop": "David Montgomery",
-     "playoff": 0.0004,
-     "d_playoff": -9.999999999999999e-05,
+     "drop": "Devaughn Vele",
+     "playoff": 0.0009,
+     "d_playoff": 9.999999999999994e-05,
      "d_week": 0.0
     },
     {
@@ -558,8 +538,8 @@
      "nfl": "SEA",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
      "d_week": 0.0
     },
     {
@@ -568,8 +548,8 @@
      "nfl": "TEN",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
      "d_week": 0.0
     },
     {
@@ -578,8 +558,8 @@
      "nfl": "NYG",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
      "d_week": 0.0
     },
     {
@@ -588,8 +568,8 @@
      "nfl": "PHI",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
      "d_week": 0.0
     },
     {
@@ -598,8 +578,28 @@
      "nfl": "LAC",
      "acq": "Free agent",
      "drop": "Aaron Rodgers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
+     "d_week": 0.0
+    },
+    {
+     "add": "Xavier Worthy",
+     "pos": "WR",
+     "nfl": "KC",
+     "acq": "Waivers, clears Oct 31",
+     "drop": "Devaughn Vele",
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
+     "d_week": 0.0016999999999999793
+    },
+    {
+     "add": "Emmett Johnson",
+     "pos": "RB",
+     "nfl": "KC",
+     "acq": "Free agent",
+     "drop": "David Montgomery",
+     "playoff": 0.0008,
+     "d_playoff": 0.0,
      "d_week": 0.0
     },
     {
@@ -608,19 +608,9 @@
      "nfl": "LAC",
      "acq": "Free agent",
      "drop": "David Montgomery",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0007,
+     "d_playoff": -0.00010000000000000005,
      "d_week": 0.0
-    },
-    {
-     "add": "DET defense",
-     "pos": "DEF",
-     "nfl": "DET",
-     "acq": "Free agent",
-     "drop": "Steelers",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
-     "d_week": -0.016400000000000026
     },
     {
      "add": "Chris Rodriguez Jr.",
@@ -628,8 +618,18 @@
      "nfl": "JAX",
      "acq": "Free agent",
      "drop": "David Montgomery",
-     "playoff": 0.0003,
-     "d_playoff": -0.00020000000000000004,
+     "playoff": 0.0007,
+     "d_playoff": -0.00010000000000000005,
+     "d_week": 0.0
+    },
+    {
+     "add": "Jaylen Wright",
+     "pos": "RB",
+     "nfl": "MIA",
+     "acq": "Free agent",
+     "drop": "David Montgomery",
+     "playoff": 0.0007,
+     "d_playoff": -0.00010000000000000005,
      "d_week": 0.0
     }
    ],
@@ -637,85 +637,85 @@
     {
      "name": "Dominique by 6",
      "playoff": 0.9945,
-     "wins": 10.8863,
-     "first": 0.5588
+     "wins": 10.8843,
+     "first": 0.5553
     },
     {
      "name": "Mr. Bobo",
-     "playoff": 0.9733,
-     "wins": 9.4774,
-     "first": 0.183
+     "playoff": 0.9732,
+     "wins": 9.45,
+     "first": 0.178
     },
     {
      "name": "The Deer Hunter Part Deux",
      "playoff": 0.9636,
-     "wins": 9.3863,
-     "first": 0.1962
+     "wins": 9.3798,
+     "first": 0.2029
     },
     {
      "name": "Derek\u2019s Better Half",
-     "playoff": 0.8264,
-     "wins": 8.1371,
-     "first": 0.0511
+     "playoff": 0.8242,
+     "wins": 8.1426,
+     "first": 0.0525
     },
     {
      "name": "Dawg Pound Eric",
-     "playoff": 0.4993,
-     "wins": 7.3375,
-     "first": 0.0033
+     "playoff": 0.4831,
+     "wins": 7.2959,
+     "first": 0.0029
     },
     {
      "name": "Rushin Roulette \ud83c\udfc8",
-     "playoff": 0.4637,
-     "wins": 7.2758,
-     "first": 0.0018
+     "playoff": 0.459,
+     "wins": 7.2691,
+     "first": 0.003
     },
     {
      "name": "Beachmom's Bench",
-     "playoff": 0.3732,
-     "wins": 6.8699,
-     "first": 0.002
+     "playoff": 0.3696,
+     "wins": 6.847,
+     "first": 0.0016
     },
     {
      "name": "Bad and Bougie 2.0",
-     "playoff": 0.3118,
-     "wins": 7.0439,
-     "first": 0.0023
+     "playoff": 0.3145,
+     "wins": 7.0414,
+     "first": 0.0025
     },
     {
      "name": "Maly\u2019s Better Half",
-     "playoff": 0.2072,
-     "wins": 6.0039,
-     "first": 0.0003
-    },
-    {
-     "name": "Benchdad's Beach",
-     "playoff": 0.1833,
+     "playoff": 0.1949,
      "wins": 5.9499,
-     "first": 0.0009
-    },
-    {
-     "name": "Press Coverage steph",
-     "playoff": 0.1332,
-     "wins": 6.0785,
-     "first": 0.0003
-    },
-    {
-     "name": "And A Goedert To You Sir",
-     "playoff": 0.0688,
-     "wins": 5.7753,
      "first": 0.0
     },
     {
-     "name": "Mrs. Bobo",
-     "playoff": 0.0012,
-     "wins": 4.0516,
+     "name": "Benchdad's Beach",
+     "playoff": 0.1828,
+     "wins": 5.9244,
+     "first": 0.0006
+    },
+    {
+     "name": "Press Coverage steph",
+     "playoff": 0.135,
+     "wins": 6.0807,
+     "first": 0.0007
+    },
+    {
+     "name": "And A Goedert To You Sir",
+     "playoff": 0.104,
+     "wins": 6.0512,
      "first": 0.0
     },
     {
      "name": "Dark Knight III",
-     "playoff": 0.0005,
-     "wins": 3.7266,
+     "playoff": 0.0008,
+     "wins": 3.6163,
+     "first": 0.0
+    },
+    {
+     "name": "Mrs. Bobo",
+     "playoff": 0.0008,
+     "wins": 4.0674,
      "first": 0.0
     }
    ]
