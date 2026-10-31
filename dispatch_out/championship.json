@@ -1,10 +1,10 @@
 {
- "built": "Sat Oct 31 2026 10:48 AM PT",
+ "built": "Sat Oct 31 2026 11:12 AM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 8,
-   "built": "Sat Oct 31 2026 10:48 AM PT",
+   "built": "Sat Oct 31 2026 11:12 AM PT",
    "standings": "Sat Oct 31 9:27 AM PT",
    "base": {
     "wins": 7.44,
@@ -57,75 +57,171 @@
      "team": "DIKFORE",
      "playoff": 0.931,
      "title": 0.1148,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "6-1"
     },
     {
      "team": "Remember the Tutens",
      "playoff": 0.914,
      "title": 0.1787,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "Punching Bag",
      "playoff": 0.864,
      "title": 0.1393,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "Coin Toss Mike",
      "playoff": 0.738,
      "title": 0.2137,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "4-3"
     },
     {
      "team": "JD",
      "playoff": 0.723,
      "title": 0.0652,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "Dark Knight I",
      "playoff": 0.633,
      "title": 0.0892,
-     "me": true
+     "me": true,
+     "left": false,
+     "rec": "4-3"
     },
     {
      "team": "Kraft Beer & TDs",
      "playoff": 0.509,
      "title": 0.1173,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "Mr. Rodgers\u2019 Neighborhood",
      "playoff": 0.31,
      "title": 0.042,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "2-5"
     },
     {
      "team": "Rolling With Romo",
      "playoff": 0.197,
      "title": 0.017,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "4-3"
     },
     {
      "team": "World Of Pain",
      "playoff": 0.148,
      "title": 0.02,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "2-5"
     },
     {
      "team": "RoadDogg",
      "playoff": 0.032,
      "title": 0.0027,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "1-6"
     },
     {
      "team": "Raider nation",
      "playoff": 0.001,
      "title": 0.0002,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "1-6"
     }
    ],
+   "stand_now": 6,
+   "median_league": false,
+   "rec_now": "4-3",
+   "line": {
+    "median": 7.0,
+    "reach": 0.776,
+    "dist": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     82,
+     3383,
+     2488,
+     47,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "path": [
+    {
+     "wk": 8,
+     "opp": "Punching Bag",
+     "win": 0.268,
+     "cum": 4.27
+    },
+    {
+     "wk": 9,
+     "opp": "Mr. Rodgers\u2019 Neighborhood",
+     "win": 0.33,
+     "cum": 4.6
+    },
+    {
+     "wk": 10,
+     "opp": "Rolling With Romo",
+     "win": 0.708,
+     "cum": 5.31
+    },
+    {
+     "wk": 11,
+     "opp": "Remember the Tutens",
+     "win": 0.489,
+     "cum": 5.79
+    },
+    {
+     "wk": 12,
+     "opp": "Coin Toss Mike",
+     "win": 0.499,
+     "cum": 6.29
+    },
+    {
+     "wk": 13,
+     "opp": "JD",
+     "win": 0.693,
+     "cum": 6.99
+    },
+    {
+     "wk": 14,
+     "opp": "Kraft Beer & TDs",
+     "win": 0.452,
+     "cum": 7.44
+    }
+   ],
+   "protected": [
+    "Kaelon Black"
+   ],
+   "trade_rules": "star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
    "games": [
     {
      "wk": 8,
@@ -262,182 +358,25 @@
      "d_wins": -0.02
     }
    ],
-   "moves": [
+   "moves": [],
+   "not_worth": [
     {
      "add": "Michael Penix Jr.",
-     "pos": "QB",
-     "nfl": "ATL",
-     "acq": "Free agent",
      "drop": "TreVeyon Henderson",
-     "before": {
-      "wins": 7.44,
-      "playoff": 0.633,
-      "title": 0.0892,
-      "final": 0.19,
-      "semis": 0.343,
-      "seed": 5,
-      "seeds": [
-       0.0593,
-       0.0617,
-       0.0295,
-       0.1652,
-       0.1685,
-       0.1487,
-       0.1337,
-       0.0975,
-       0.0775,
-       0.0453,
-       0.0128,
-       0.0003
-      ],
-      "first": 0.059
-     },
-     "after": {
-      "wins": 7.46,
-      "playoff": 0.642,
-      "title": 0.0933,
-      "final": 0.198,
-      "semis": 0.357,
-      "seed": 5,
-      "seeds": [
-       0.0623,
-       0.063,
-       0.0302,
-       0.1673,
-       0.1692,
-       0.1505,
-       0.127,
-       0.0977,
-       0.077,
-       0.0437,
-       0.012,
-       0.0002
-      ],
-      "first": 0.062
-     },
      "d_wins": 0.02,
-     "d_playoff": 0.01,
-     "d_title": 0.0042,
-     "pts_total": 3.4,
-     "pts_per_game": 0.7,
-     "games_used": 5,
-     "wins_hist": [
-      0,
-      0,
-      0,
-      0,
-      34,
-      278,
-      984,
-      1811,
-      1699,
-      904,
-      269,
-      21,
-      0,
-      0,
-      0
-     ],
-     "this_week": 0.0,
-     "block": {
-      "rival": "Remember the Tutens",
-      "rival_pts": 27.3,
-      "rival_playoff": 0.035,
-      "my_playoff": -0.006,
-      "my_title": -0.0012
-     }
+     "d_playoff": 0.01
     },
-    {
-     "add": "Brenton Strange",
-     "pos": "TE",
-     "nfl": "JAX",
-     "acq": "Waivers, clears Nov 4",
-     "drop": "TreVeyon Henderson",
-     "before": {
-      "wins": 7.44,
-      "playoff": 0.633,
-      "title": 0.0892,
-      "final": 0.19,
-      "semis": 0.343,
-      "seed": 5,
-      "seeds": [
-       0.0593,
-       0.0617,
-       0.0295,
-       0.1652,
-       0.1685,
-       0.1487,
-       0.1337,
-       0.0975,
-       0.0775,
-       0.0453,
-       0.0128,
-       0.0003
-      ],
-      "first": 0.059
-     },
-     "after": {
-      "wins": 7.42,
-      "playoff": 0.629,
-      "title": 0.0962,
-      "final": 0.189,
-      "semis": 0.34,
-      "seed": 5,
-      "seeds": [
-       0.058,
-       0.0595,
-       0.031,
-       0.1632,
-       0.1653,
-       0.1525,
-       0.1297,
-       0.0985,
-       0.0802,
-       0.0475,
-       0.0143,
-       0.0003
-      ],
-      "first": 0.058
-     },
-     "d_wins": -0.02,
-     "d_playoff": -0.003,
-     "d_title": 0.007,
-     "pts_total": -0.0,
-     "pts_per_game": -0.0,
-     "games_used": 4,
-     "wins_hist": [
-      0,
-      0,
-      0,
-      0,
-      37,
-      319,
-      1002,
-      1811,
-      1673,
-      886,
-      252,
-      20,
-      0,
-      0,
-      0
-     ],
-     "this_week": 0.0,
-     "block": {
-      "rival": "Remember the Tutens",
-      "rival_pts": 17.3,
-      "rival_playoff": 0.017,
-      "my_playoff": -0.004,
-      "my_title": -0.0015
-     }
-    }
-   ],
-   "not_worth": [
     {
      "add": "KC defense",
      "drop": "TreVeyon Henderson",
      "d_wins": 0.01,
      "d_playoff": 0.006
+    },
+    {
+     "add": "Brenton Strange",
+     "drop": "TreVeyon Henderson",
+     "d_wins": -0.02,
+     "d_playoff": -0.003
     },
     {
      "add": "Ka'imi Fairbairn",
@@ -468,245 +407,14 @@
      "drop": "TreVeyon Henderson",
      "d_wins": -0.02,
      "d_playoff": -0.003
-    },
-    {
-     "add": "Brandon McManus",
-     "drop": "TreVeyon Henderson",
-     "d_wins": -0.02,
-     "d_playoff": -0.003
-    },
-    {
-     "add": "Andy Borregales",
-     "drop": "TreVeyon Henderson",
-     "d_wins": -0.02,
-     "d_playoff": -0.003
     }
    ],
-   "trades": [
-    {
-     "partner": "Kraft Beer & TDs",
-     "give": [
-      "Chris Godwin Jr.",
-      "Kaelon Black"
-     ],
-     "get": "A.J. Brown",
-     "get_pos": "WR",
-     "give_pos": "WR/RB",
-     "me_before": {
-      "wins": 7.44,
-      "playoff": 0.633,
-      "title": 0.0892,
-      "final": 0.19,
-      "semis": 0.343,
-      "seed": 5,
-      "seeds": [
-       0.0593,
-       0.0617,
-       0.0295,
-       0.1652,
-       0.1685,
-       0.1487,
-       0.1337,
-       0.0975,
-       0.0775,
-       0.0453,
-       0.0128,
-       0.0003
-      ],
-      "first": 0.059
-     },
-     "me_after": {
-      "wins": 7.51,
-      "playoff": 0.658,
-      "title": 0.1085,
-      "final": 0.216,
-      "semis": 0.373,
-      "seed": 4,
-      "seeds": [
-       0.0617,
-       0.068,
-       0.0378,
-       0.1702,
-       0.1677,
-       0.1527,
-       0.13,
-       0.0967,
-       0.0683,
-       0.0377,
-       0.0093,
-       0.0
-      ],
-      "first": 0.062
-     },
-     "them_before": {
-      "wins": 7.18,
-      "playoff": 0.509,
-      "title": 0.1173,
-      "final": 0.186,
-      "semis": 0.346,
-      "seed": 7,
-      "seeds": [
-       0.0192,
-       0.0463,
-       0.0348,
-       0.1118,
-       0.143,
-       0.1537,
-       0.1568,
-       0.1292,
-       0.1097,
-       0.0627,
-       0.0292,
-       0.0037
-      ],
-      "first": 0.019
-     },
-     "them_after": {
-      "wins": 7.28,
-      "playoff": 0.547,
-      "title": 0.1302,
-      "final": 0.203,
-      "semis": 0.376,
-      "seed": 6,
-      "seeds": [
-       0.0257,
-       0.0542,
-       0.0398,
-       0.1202,
-       0.1528,
-       0.1548,
-       0.1537,
-       0.1228,
-       0.092,
-       0.0552,
-       0.0258,
-       0.003
-      ],
-      "first": 0.026
-     },
-     "d_wins": 0.08,
-     "d_playoff": 0.025,
-     "d_title": 0.0193,
-     "them_d_playoff": 0.039,
-     "them_d_title": 0.0128,
-     "them_d_wins": 0.1,
-     "pitch": "Chris Godwin Jr. and Kaelon Black for A.J. Brown. On 6,000 simulated seasons your playoff odds go 51% to 55% and your title odds 11.7% to 13.0%, and you add about +0.1 wins - Chris Godwin Jr. and Kaelon Black start for you the rest of the way."
-    },
-    {
-     "partner": "Punching Bag",
-     "give": [
-      "TreVeyon Henderson",
-      "Tyler Shough"
-     ],
-     "get": "Jordan Mason",
-     "get_pos": "RB",
-     "give_pos": "RB/QB",
-     "me_before": {
-      "wins": 7.44,
-      "playoff": 0.633,
-      "title": 0.0892,
-      "final": 0.19,
-      "semis": 0.343,
-      "seed": 5,
-      "seeds": [
-       0.0593,
-       0.0617,
-       0.0295,
-       0.1652,
-       0.1685,
-       0.1487,
-       0.1337,
-       0.0975,
-       0.0775,
-       0.0453,
-       0.0128,
-       0.0003
-      ],
-      "first": 0.059
-     },
-     "me_after": {
-      "wins": 7.64,
-      "playoff": 0.69,
-      "title": 0.0898,
-      "final": 0.184,
-      "semis": 0.399,
-      "seed": 4,
-      "seeds": [
-       0.0778,
-       0.0753,
-       0.0362,
-       0.1862,
-       0.1685,
-       0.1463,
-       0.1203,
-       0.0893,
-       0.0643,
-       0.027,
-       0.0087,
-       0.0
-      ],
-      "first": 0.078
-     },
-     "them_before": {
-      "wins": 8.36,
-      "playoff": 0.864,
-      "title": 0.1393,
-      "final": 0.256,
-      "semis": 0.555,
-      "seed": 3,
-      "seeds": [
-       0.1327,
-       0.2202,
-       0.4355,
-       0.0117,
-       0.0263,
-       0.0373,
-       0.0555,
-       0.044,
-       0.0235,
-       0.0117,
-       0.0017,
-       0.0
-      ],
-      "first": 0.133
-     },
-     "them_after": {
-      "wins": 8.43,
-      "playoff": 0.874,
-      "title": 0.1547,
-      "final": 0.295,
-      "semis": 0.575,
-      "seed": 3,
-      "seeds": [
-       0.1428,
-       0.2347,
-       0.4315,
-       0.0092,
-       0.0232,
-       0.0323,
-       0.051,
-       0.0365,
-       0.0265,
-       0.0102,
-       0.002,
-       0.0002
-      ],
-      "first": 0.143
-     },
-     "d_wins": 0.2,
-     "d_playoff": 0.057,
-     "d_title": 0.0007,
-     "them_d_playoff": 0.01,
-     "them_d_title": 0.0153,
-     "them_d_wins": 0.07,
-     "pitch": "TreVeyon Henderson and Tyler Shough for Jordan Mason. On 6,000 simulated seasons your playoff odds go 86% to 87% and your title odds 13.9% to 15.5%, and you add about +0.1 wins - TreVeyon Henderson and Tyler Shough start for you the rest of the way."
-    }
-   ],
-   "trades_screened": 59,
+   "trades": [],
+   "trades_screened": 17,
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)",
    "plan": {
     "week": 8,
-    "built": "Sat Oct 31 2026 10:48 AM PT",
+    "built": "Sat Oct 31 2026 11:12 AM PT",
     "standings": "Sat Oct 31 9:27 AM PT",
     "playoff": 0.6328333333333334,
     "wins": 7.438666666666666,
@@ -718,73 +426,97 @@
       "team": "DIKFORE",
       "playoff": 0.931,
       "title": 0.1148,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "6-1"
      },
      {
       "team": "Remember the Tutens",
       "playoff": 0.914,
       "title": 0.1787,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "Punching Bag",
       "playoff": 0.864,
       "title": 0.1393,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "Coin Toss Mike",
       "playoff": 0.738,
       "title": 0.2137,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "4-3"
      },
      {
       "team": "JD",
       "playoff": 0.723,
       "title": 0.0652,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "Dark Knight I",
       "playoff": 0.633,
       "title": 0.0892,
-      "me": true
+      "me": true,
+      "left": false,
+      "rec": "4-3"
      },
      {
       "team": "Kraft Beer & TDs",
       "playoff": 0.509,
       "title": 0.1173,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "Mr. Rodgers\u2019 Neighborhood",
       "playoff": 0.31,
       "title": 0.042,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "2-5"
      },
      {
       "team": "Rolling With Romo",
       "playoff": 0.197,
       "title": 0.017,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "4-3"
      },
      {
       "team": "World Of Pain",
       "playoff": 0.148,
       "title": 0.02,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "2-5"
      },
      {
       "team": "RoadDogg",
       "playoff": 0.032,
       "title": 0.0027,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "1-6"
      },
      {
       "team": "Raider nation",
       "playoff": 0.001,
       "title": 0.0002,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "1-6"
      }
     ],
     "games": [
@@ -976,36 +708,36 @@
   },
   "DK II": {
    "week": 8,
-   "built": "Sat Oct 31 2026 10:48 AM PT",
+   "built": "Sat Oct 31 2026 11:12 AM PT",
    "standings": "Sat Oct 31 9:27 AM PT",
    "base": {
     "wins": 6.57,
-    "playoff": 0.273,
-    "title": 0.0032,
-    "final": 0.015,
-    "semis": 0.083,
+    "playoff": 0.272,
+    "title": 0.003,
+    "final": 0.014,
+    "semis": 0.082,
     "seed": 9,
     "seeds": [
      0.0007,
      0.0065,
-     0.0153,
-     0.0433,
-     0.093,
-     0.1138,
-     0.1473,
-     0.1592,
-     0.1678,
-     0.1592,
-     0.09,
-     0.0038
+     0.0155,
+     0.0427,
+     0.092,
+     0.1145,
+     0.1465,
+     0.1598,
+     0.1673,
+     0.1605,
+     0.0903,
+     0.0037
     ],
     "first": 0.001
    },
    "funnel": {
-    "playoff": 0.273,
-    "semis": 0.083,
-    "final": 0.015,
-    "title": 0.0032
+    "playoff": 0.272,
+    "semis": 0.082,
+    "final": 0.014,
+    "title": 0.003
    },
    "wins_hist": [
     0,
@@ -1028,76 +760,170 @@
     {
      "team": "Daejon Love",
      "playoff": 0.999,
-     "title": 0.3603,
-     "me": false
+     "title": 0.3595,
+     "me": false,
+     "left": true,
+     "rec": "6-1"
     },
     {
      "team": "RAIDER FAN \u2620\ufe0f",
      "playoff": 0.971,
-     "title": 0.1345,
-     "me": false
+     "title": 0.134,
+     "me": false,
+     "left": false,
+     "rec": "6-1"
     },
     {
      "team": "Trophy Hunter \ud83c\udfc6",
-     "playoff": 0.965,
-     "title": 0.1458,
-     "me": false
+     "playoff": 0.966,
+     "title": 0.1465,
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "RFFR",
      "playoff": 0.942,
-     "title": 0.2755,
-     "me": false
+     "title": 0.275,
+     "me": false,
+     "left": false,
+     "rec": "4-3"
     },
     {
      "team": "Rated PG-18",
-     "playoff": 0.585,
-     "title": 0.037,
-     "me": false
+     "playoff": 0.584,
+     "title": 0.0378,
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "How \u2018Bout Them Points",
-     "playoff": 0.407,
-     "title": 0.016,
-     "me": false
+     "playoff": 0.405,
+     "title": 0.0158,
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "FUCKING COWBOYS",
-     "playoff": 0.33,
-     "title": 0.0138,
-     "me": false
+     "playoff": 0.327,
+     "title": 0.0137,
+     "me": false,
+     "left": false,
+     "rec": "3-4"
     },
     {
      "team": "Diddys Booty Butter",
-     "playoff": 0.316,
-     "title": 0.0025,
-     "me": false
+     "playoff": 0.324,
+     "title": 0.003,
+     "me": false,
+     "left": true,
+     "rec": "4-3"
     },
     {
      "team": "Dark Knight II",
-     "playoff": 0.273,
-     "title": 0.0032,
-     "me": true
+     "playoff": 0.272,
+     "title": 0.003,
+     "me": true,
+     "left": false,
+     "rec": "4-3"
     },
     {
      "team": "Hector Football",
      "playoff": 0.178,
-     "title": 0.0105,
-     "me": false
+     "title": 0.0108,
+     "me": false,
+     "left": true,
+     "rec": "2-5"
     },
     {
      "team": "Rams house",
      "playoff": 0.034,
      "title": 0.0008,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "1-6"
     },
     {
      "team": "Ground Game evan",
      "playoff": 0.0,
      "title": 0.0,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "1-6"
     }
    ],
+   "stand_now": 6,
+   "median_league": false,
+   "rec_now": "4-3",
+   "line": {
+    "median": 7.0,
+    "reach": 0.507,
+    "dist": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     326,
+     3986,
+     1669,
+     19,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "path": [
+    {
+     "wk": 8,
+     "opp": "Trophy Hunter \ud83c\udfc6",
+     "win": 0.27,
+     "cum": 4.27
+    },
+    {
+     "wk": 9,
+     "opp": "Hector Football",
+     "win": 0.244,
+     "cum": 4.51
+    },
+    {
+     "wk": 10,
+     "opp": "Diddys Booty Butter",
+     "win": 0.508,
+     "cum": 5.02
+    },
+    {
+     "wk": 11,
+     "opp": "Rams house",
+     "win": 0.357,
+     "cum": 5.38
+    },
+    {
+     "wk": 12,
+     "opp": "Daejon Love",
+     "win": 0.141,
+     "cum": 5.52
+    },
+    {
+     "wk": 13,
+     "opp": "How \u2018Bout Them Points",
+     "win": 0.684,
+     "cum": 6.2
+    },
+    {
+     "wk": 14,
+     "opp": "Rated PG-18",
+     "win": 0.371,
+     "cum": 6.57
+    }
+   ],
+   "protected": [],
+   "trade_rules": "star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
    "games": [
     {
      "wk": 8,
@@ -1202,7 +1028,7 @@
      "name": "Aaron Rodgers",
      "pos": "QB",
      "d_playoff": -0.07,
-     "d_title": -0.0017,
+     "d_title": -0.0015,
      "d_wins": -0.23
     },
     {
@@ -1222,7 +1048,7 @@
     {
      "name": "Alvin Kamara",
      "pos": "RB",
-     "d_playoff": -0.009,
+     "d_playoff": -0.01,
      "d_title": -0.0007,
      "d_wins": -0.04
     },
@@ -1230,12 +1056,18 @@
      "name": "Kyle Pitts Sr.",
      "pos": "TE",
      "d_playoff": -0.008,
-     "d_title": 0.0,
+     "d_title": -0.0002,
      "d_wins": -0.03
     }
    ],
    "moves": [],
    "not_worth": [
+    {
+     "add": "GB defense",
+     "drop": "Alvin Kamara",
+     "d_wins": -0.0,
+     "d_playoff": -0.001
+    },
     {
      "add": "Greg Dulcich",
      "drop": "Kyle Pitts Sr.",
@@ -1243,28 +1075,22 @@
      "d_playoff": 0.002
     },
     {
+     "add": "Justin Herbert",
+     "drop": "Alvin Kamara",
+     "d_wins": -0.02,
+     "d_playoff": -0.004
+    },
+    {
      "add": "ATL defense",
      "drop": "Kyle Pitts Sr.",
      "d_wins": -0.01,
-     "d_playoff": 0.0
-    },
-    {
-     "add": "Justin Herbert",
-     "drop": "Kyle Pitts Sr.",
-     "d_wins": -0.01,
-     "d_playoff": -0.002
-    },
-    {
-     "add": "GB defense",
-     "drop": "Alvin Kamara",
-     "d_wins": -0.0,
-     "d_playoff": -0.002
+     "d_playoff": -0.0
     },
     {
      "add": "J.J. McCarthy",
-     "drop": "Kyle Pitts Sr.",
+     "drop": "Alvin Kamara",
      "d_wins": -0.02,
-     "d_playoff": -0.003
+     "d_playoff": -0.007
     },
     {
      "add": "DET defense",
@@ -1276,13 +1102,13 @@
      "add": "Chig Okonkwo",
      "drop": "Kyle Pitts Sr.",
      "d_wins": -0.03,
-     "d_playoff": -0.006
+     "d_playoff": -0.005
     },
     {
      "add": "Kaelon Black",
-     "drop": "Kyle Pitts Sr.",
+     "drop": "Alvin Kamara",
      "d_wins": -0.03,
-     "d_playoff": -0.005
+     "d_playoff": -0.01
     }
    ],
    "trades": [
@@ -1296,67 +1122,67 @@
      "give_pos": "QB",
      "me_before": {
       "wins": 6.57,
-      "playoff": 0.273,
-      "title": 0.0032,
-      "final": 0.015,
-      "semis": 0.083,
+      "playoff": 0.272,
+      "title": 0.003,
+      "final": 0.014,
+      "semis": 0.082,
       "seed": 9,
       "seeds": [
        0.0007,
        0.0065,
-       0.0153,
-       0.0433,
-       0.093,
-       0.1138,
-       0.1473,
-       0.1592,
-       0.1678,
-       0.1592,
-       0.09,
-       0.0038
+       0.0155,
+       0.0427,
+       0.092,
+       0.1145,
+       0.1465,
+       0.1598,
+       0.1673,
+       0.1605,
+       0.0903,
+       0.0037
       ],
       "first": 0.001
      },
      "me_after": {
       "wins": 6.7,
       "playoff": 0.304,
-      "title": 0.0065,
+      "title": 0.0062,
       "final": 0.018,
-      "semis": 0.102,
-      "seed": 8,
+      "semis": 0.1,
+      "seed": 9,
       "seeds": [
        0.0013,
-       0.0073,
-       0.0232,
-       0.0517,
-       0.0967,
-       0.1238,
-       0.1542,
-       0.1602,
-       0.1598,
-       0.1463,
-       0.0732,
+       0.0072,
+       0.0233,
+       0.0515,
+       0.0963,
+       0.1243,
+       0.152,
+       0.16,
+       0.1612,
+       0.1472,
+       0.0733,
        0.0023
       ],
       "first": 0.001
      },
      "them_before": {
       "wins": 6.99,
-      "playoff": 0.585,
-      "title": 0.037,
-      "final": 0.091,
-      "semis": 0.263,
+      "playoff": 0.584,
+      "title": 0.0378,
+      "final": 0.092,
+      "semis": 0.264,
       "seed": 5,
       "seeds": [
        0.0042,
        0.019,
-       0.0558,
+       0.0555,
        0.1178,
-       0.2103,
-       0.1773,
-       0.1403,
-       0.1132,
-       0.0812,
+       0.2107,
+       0.1763,
+       0.1397,
+       0.1138,
+       0.0822,
        0.0578,
        0.0218,
        0.0012
@@ -1365,151 +1191,43 @@
      },
      "them_after": {
       "wins": 7.12,
-      "playoff": 0.621,
-      "title": 0.0422,
+      "playoff": 0.619,
+      "title": 0.0425,
       "final": 0.1,
-      "semis": 0.285,
+      "semis": 0.284,
       "seed": 5,
       "seeds": [
        0.0045,
        0.0287,
-       0.0693,
+       0.069,
        0.1298,
-       0.2143,
-       0.1747,
-       0.1328,
-       0.1115,
-       0.0687,
-       0.0465,
-       0.0182,
-       0.001
+       0.2142,
+       0.1728,
+       0.135,
+       0.1103,
+       0.07,
+       0.0463,
+       0.0187,
+       0.0007
       ],
       "first": 0.004
      },
      "d_wins": 0.13,
-     "d_playoff": 0.031,
-     "d_title": 0.0033,
-     "them_d_playoff": 0.037,
-     "them_d_title": 0.0052,
+     "d_playoff": 0.032,
+     "d_title": 0.0032,
+     "them_d_playoff": 0.035,
+     "them_d_title": 0.0047,
      "them_d_wins": 0.13,
-     "pitch": "Jacoby Brissett for Zach Charbonnet. On 6,000 simulated seasons your playoff odds go 58% to 62% and your title odds 3.7% to 4.2%, and you add about +0.1 wins - Jacoby Brissett starts for you the rest of the way."
-    },
-    {
-     "partner": "Trophy Hunter \ud83c\udfc6",
-     "give": [
-      "Germie Bernard"
-     ],
-     "get": "Ollie Gordon II",
-     "get_pos": "RB",
-     "give_pos": "WR",
-     "me_before": {
-      "wins": 6.57,
-      "playoff": 0.273,
-      "title": 0.0032,
-      "final": 0.015,
-      "semis": 0.083,
-      "seed": 9,
-      "seeds": [
-       0.0007,
-       0.0065,
-       0.0153,
-       0.0433,
-       0.093,
-       0.1138,
-       0.1473,
-       0.1592,
-       0.1678,
-       0.1592,
-       0.09,
-       0.0038
-      ],
-      "first": 0.001
-     },
-     "me_after": {
-      "wins": 6.65,
-      "playoff": 0.299,
-      "title": 0.004,
-      "final": 0.019,
-      "semis": 0.098,
-      "seed": 9,
-      "seeds": [
-       0.0012,
-       0.008,
-       0.0173,
-       0.049,
-       0.0993,
-       0.1247,
-       0.1505,
-       0.1608,
-       0.1633,
-       0.143,
-       0.0812,
-       0.0017
-      ],
-      "first": 0.001
-     },
-     "them_before": {
-      "wins": 9.0,
-      "playoff": 0.965,
-      "title": 0.1458,
-      "final": 0.323,
-      "semis": 0.706,
-      "seed": 3,
-      "seeds": [
-       0.1073,
-       0.246,
-       0.2767,
-       0.2042,
-       0.0898,
-       0.0412,
-       0.0208,
-       0.0103,
-       0.0022,
-       0.0013,
-       0.0002,
-       0.0
-      ],
-      "first": 0.107
-     },
-     "them_after": {
-      "wins": 9.04,
-      "playoff": 0.965,
-      "title": 0.1662,
-      "final": 0.351,
-      "semis": 0.735,
-      "seed": 3,
-      "seeds": [
-       0.1203,
-       0.249,
-       0.2807,
-       0.1942,
-       0.0855,
-       0.0353,
-       0.0215,
-       0.0075,
-       0.0045,
-       0.0015,
-       0.0,
-       0.0
-      ],
-      "first": 0.12
-     },
-     "d_wins": 0.08,
-     "d_playoff": 0.027,
-     "d_title": 0.0008,
-     "them_d_playoff": -0.0,
-     "them_d_title": 0.0203,
-     "them_d_wins": 0.04,
-     "pitch": "Germie Bernard for Ollie Gordon II. On 6,000 simulated seasons your playoff odds go 97% to 96% and your title odds 14.6% to 16.6%, and you add about +0.0 wins - Germie Bernard starts for you the rest of the way."
+     "pitch": "Jacoby Brissett for Zach Charbonnet. On 6,000 simulated seasons your playoff odds go 58% to 62% and your title odds 3.8% to 4.2%, and you add about +0.1 wins - Jacoby Brissett starts for you the rest of the way."
     }
    ],
-   "trades_screened": 94,
+   "trades_screened": 49,
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)",
    "plan": {
     "week": 8,
-    "built": "Sat Oct 31 2026 10:48 AM PT",
+    "built": "Sat Oct 31 2026 11:12 AM PT",
     "standings": "Sat Oct 31 9:27 AM PT",
-    "playoff": 0.27266666666666667,
+    "playoff": 0.2718333333333333,
     "wins": 6.5745,
     "first": 0.0006666666666666666,
     "rank": 9,
@@ -1518,74 +1236,98 @@
      {
       "team": "Daejon Love",
       "playoff": 0.999,
-      "title": 0.3603,
-      "me": false
+      "title": 0.3595,
+      "me": false,
+      "left": true,
+      "rec": "6-1"
      },
      {
       "team": "RAIDER FAN \u2620\ufe0f",
       "playoff": 0.971,
-      "title": 0.1345,
-      "me": false
+      "title": 0.134,
+      "me": false,
+      "left": false,
+      "rec": "6-1"
      },
      {
       "team": "Trophy Hunter \ud83c\udfc6",
-      "playoff": 0.965,
-      "title": 0.1458,
-      "me": false
+      "playoff": 0.966,
+      "title": 0.1465,
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "RFFR",
       "playoff": 0.942,
-      "title": 0.2755,
-      "me": false
+      "title": 0.275,
+      "me": false,
+      "left": false,
+      "rec": "4-3"
      },
      {
       "team": "Rated PG-18",
-      "playoff": 0.585,
-      "title": 0.037,
-      "me": false
+      "playoff": 0.584,
+      "title": 0.0378,
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "How \u2018Bout Them Points",
-      "playoff": 0.407,
-      "title": 0.016,
-      "me": false
+      "playoff": 0.405,
+      "title": 0.0158,
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "FUCKING COWBOYS",
-      "playoff": 0.33,
-      "title": 0.0138,
-      "me": false
+      "playoff": 0.327,
+      "title": 0.0137,
+      "me": false,
+      "left": false,
+      "rec": "3-4"
      },
      {
       "team": "Diddys Booty Butter",
-      "playoff": 0.316,
-      "title": 0.0025,
-      "me": false
+      "playoff": 0.324,
+      "title": 0.003,
+      "me": false,
+      "left": true,
+      "rec": "4-3"
      },
      {
       "team": "Dark Knight II",
-      "playoff": 0.273,
-      "title": 0.0032,
-      "me": true
+      "playoff": 0.272,
+      "title": 0.003,
+      "me": true,
+      "left": false,
+      "rec": "4-3"
      },
      {
       "team": "Hector Football",
       "playoff": 0.178,
-      "title": 0.0105,
-      "me": false
+      "title": 0.0108,
+      "me": false,
+      "left": true,
+      "rec": "2-5"
      },
      {
       "team": "Rams house",
       "playoff": 0.034,
       "title": 0.0008,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "1-6"
      },
      {
       "team": "Ground Game evan",
       "playoff": 0.0,
       "title": 0.0,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "1-6"
      }
     ],
     "games": [
@@ -1693,7 +1435,7 @@
       "name": "Aaron Rodgers",
       "pos": "QB",
       "d_playoff": -0.07,
-      "d_title": -0.0017,
+      "d_title": -0.0015,
       "d_wins": -0.23,
       "d_po": 0
      },
@@ -1716,7 +1458,7 @@
      {
       "name": "Alvin Kamara",
       "pos": "RB",
-      "d_playoff": -0.009,
+      "d_playoff": -0.01,
       "d_title": -0.0007,
       "d_wins": -0.04,
       "d_po": 0
@@ -1725,12 +1467,22 @@
       "name": "Kyle Pitts Sr.",
       "pos": "TE",
       "d_playoff": -0.008,
-      "d_title": 0.0,
+      "d_title": -0.0002,
       "d_wins": -0.03,
       "d_po": 0
      }
     ],
     "moves": [
+     {
+      "add": "GB defense",
+      "pos": "DEF",
+      "nfl": "GB",
+      "acq": "Waivers, clears Nov 4",
+      "drop": "Alvin Kamara",
+      "d_playoff": -0.001,
+      "d_week": 0.0,
+      "helps": []
+     },
      {
       "add": "Greg Dulcich",
       "pos": "TE",
@@ -1742,32 +1494,22 @@
       "helps": []
      },
      {
+      "add": "Justin Herbert",
+      "pos": "QB",
+      "nfl": "LAC",
+      "acq": "Free agent",
+      "drop": "Alvin Kamara",
+      "d_playoff": -0.004,
+      "d_week": 0.0,
+      "helps": []
+     },
+     {
       "add": "ATL defense",
       "pos": "DEF",
       "nfl": "ATL",
       "acq": "Free agent",
       "drop": "Kyle Pitts Sr.",
-      "d_playoff": 0.0,
-      "d_week": 0.0,
-      "helps": []
-     },
-     {
-      "add": "Justin Herbert",
-      "pos": "QB",
-      "nfl": "LAC",
-      "acq": "Free agent",
-      "drop": "Kyle Pitts Sr.",
-      "d_playoff": -0.002,
-      "d_week": 0.0,
-      "helps": []
-     },
-     {
-      "add": "GB defense",
-      "pos": "DEF",
-      "nfl": "GB",
-      "acq": "Waivers, clears Nov 4",
-      "drop": "Alvin Kamara",
-      "d_playoff": -0.002,
+      "d_playoff": -0.0,
       "d_week": 0.0,
       "helps": []
      }
@@ -1777,7 +1519,7 @@
   },
   "DK III": {
    "week": 8,
-   "built": "Sat Oct 31 2026 10:48 AM PT",
+   "built": "Sat Oct 31 2026 11:12 AM PT",
    "standings": "Sat Oct 31 9:27 AM PT",
    "base": {
     "wins": 3.65,
@@ -1830,87 +1572,185 @@
      "team": "Dominique by 6",
      "playoff": 0.996,
      "title": 0.1482,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "7-0"
     },
     {
      "team": "Mr. Bobo",
      "playoff": 0.977,
      "title": 0.2025,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "The Deer Hunter Part Deux",
      "playoff": 0.966,
      "title": 0.3025,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-2"
     },
     {
      "team": "Derek\u2019s Better Half",
      "playoff": 0.826,
      "title": 0.1412,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "4-3"
     },
     {
      "team": "Dawg Pound Eric",
      "playoff": 0.492,
      "title": 0.0628,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "Rushin Roulette \ud83c\udfc8",
      "playoff": 0.46,
      "title": 0.0387,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "Beachmom's Bench",
      "playoff": 0.374,
      "title": 0.0355,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "3-4"
     },
     {
      "team": "Bad and Bougie 2.0",
      "playoff": 0.288,
      "title": 0.017,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "4-3"
     },
     {
      "team": "Maly\u2019s Better Half",
      "playoff": 0.193,
      "title": 0.0225,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "2-5"
     },
     {
      "team": "Press Coverage steph",
      "playoff": 0.162,
      "title": 0.0117,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "3-4"
     },
     {
      "team": "Benchdad's Beach",
      "playoff": 0.147,
      "title": 0.0077,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "And A Goedert To You Sir",
      "playoff": 0.12,
      "title": 0.0098,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "3-4"
     },
     {
      "team": "Mrs. Bobo",
      "playoff": 0.001,
      "title": 0.0,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "2-5"
     },
     {
      "team": "Dark Knight III",
      "playoff": 0.0,
      "title": 0.0,
-     "me": true
+     "me": true,
+     "left": false,
+     "rec": "2-5"
     }
    ],
+   "stand_now": 13,
+   "median_league": false,
+   "rec_now": "2-5",
+   "line": {
+    "median": 8.0,
+    "reach": 0.0,
+    "dist": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     31,
+     2760,
+     3124,
+     85,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "path": [
+    {
+     "wk": 8,
+     "opp": "Benchdad's Beach",
+     "win": 0.37,
+     "cum": 2.37
+    },
+    {
+     "wk": 9,
+     "opp": "Maly\u2019s Better Half",
+     "win": 0.238,
+     "cum": 2.61
+    },
+    {
+     "wk": 10,
+     "opp": "Mr. Bobo",
+     "win": 0.073,
+     "cum": 2.68
+    },
+    {
+     "wk": 11,
+     "opp": "Rushin Roulette \ud83c\udfc8",
+     "win": 0.204,
+     "cum": 2.89
+    },
+    {
+     "wk": 12,
+     "opp": "The Deer Hunter Part Deux",
+     "win": 0.207,
+     "cum": 3.09
+    },
+    {
+     "wk": 13,
+     "opp": "And A Goedert To You Sir",
+     "win": 0.464,
+     "cum": 3.56
+    },
+    {
+     "wk": 14,
+     "opp": "Dawg Pound Eric",
+     "win": 0.095,
+     "cum": 3.65
+    }
+   ],
+   "protected": [],
+   "trade_rules": "star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
    "games": [
     {
      "wk": 8,
@@ -2109,11 +1949,11 @@
     }
    ],
    "trades": [],
-   "trades_screened": 52,
+   "trades_screened": 19,
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)",
    "plan": {
     "week": 8,
-    "built": "Sat Oct 31 2026 10:48 AM PT",
+    "built": "Sat Oct 31 2026 11:12 AM PT",
     "standings": "Sat Oct 31 9:27 AM PT",
     "playoff": 0.00016666666666666666,
     "wins": 3.6526666666666667,
@@ -2125,85 +1965,113 @@
       "team": "Dominique by 6",
       "playoff": 0.996,
       "title": 0.1482,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "7-0"
      },
      {
       "team": "Mr. Bobo",
       "playoff": 0.977,
       "title": 0.2025,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "The Deer Hunter Part Deux",
       "playoff": 0.966,
       "title": 0.3025,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-2"
      },
      {
       "team": "Derek\u2019s Better Half",
       "playoff": 0.826,
       "title": 0.1412,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "4-3"
      },
      {
       "team": "Dawg Pound Eric",
       "playoff": 0.492,
       "title": 0.0628,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "Rushin Roulette \ud83c\udfc8",
       "playoff": 0.46,
       "title": 0.0387,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "Beachmom's Bench",
       "playoff": 0.374,
       "title": 0.0355,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "3-4"
      },
      {
       "team": "Bad and Bougie 2.0",
       "playoff": 0.288,
       "title": 0.017,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "4-3"
      },
      {
       "team": "Maly\u2019s Better Half",
       "playoff": 0.193,
       "title": 0.0225,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "2-5"
      },
      {
       "team": "Press Coverage steph",
       "playoff": 0.162,
       "title": 0.0117,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "3-4"
      },
      {
       "team": "Benchdad's Beach",
       "playoff": 0.147,
       "title": 0.0077,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "And A Goedert To You Sir",
       "playoff": 0.12,
       "title": 0.0098,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "3-4"
      },
      {
       "team": "Mrs. Bobo",
       "playoff": 0.001,
       "title": 0.0,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "2-5"
      },
      {
       "team": "Dark Knight III",
       "playoff": 0.0,
       "title": 0.0,
-      "me": true
+      "me": true,
+      "left": false,
+      "rec": "2-5"
      }
     ],
     "games": [
@@ -2405,7 +2273,7 @@
   },
   "DK IV": {
    "week": 8,
-   "built": "Sat Oct 31 2026 10:48 AM PT",
+   "built": "Sat Oct 31 2026 11:12 AM PT",
    "standings": "Sat Oct 31 9:27 AM PT",
    "base": {
     "wins": 17.01,
@@ -2466,63 +2334,156 @@
      "team": "Dream Killers",
      "playoff": 0.988,
      "title": 0.1323,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "10-4"
     },
     {
      "team": "Brad's Ballers",
      "playoff": 0.985,
      "title": 0.2487,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "9-5"
     },
     {
      "team": "Dark Knight IV",
      "playoff": 0.95,
      "title": 0.266,
-     "me": true
+     "me": true,
+     "left": false,
+     "rec": "8-6"
     },
     {
      "team": "Mr. Irrelevant",
      "playoff": 0.836,
      "title": 0.1137,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "8-6"
     },
     {
      "team": "Team Other",
      "playoff": 0.822,
      "title": 0.0818,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "10-4"
     },
     {
      "team": "Alan's Team",
      "playoff": 0.688,
      "title": 0.1017,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "7-7"
     },
     {
      "team": "Fly Eagles Fly",
      "playoff": 0.617,
      "title": 0.0513,
-     "me": false
+     "me": false,
+     "left": false,
+     "rec": "7-7"
     },
     {
      "team": "Lin's Team \ud83c\udfc8",
      "playoff": 0.074,
      "title": 0.0037,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "4-10"
     },
     {
      "team": "Killer Ko-Gees",
      "playoff": 0.035,
      "title": 0.0007,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "5-9"
     },
     {
      "team": "Bad and Boujee",
      "playoff": 0.005,
      "title": 0.0002,
-     "me": false
+     "me": false,
+     "left": true,
+     "rec": "2-12"
     }
    ],
+   "stand_now": 5,
+   "median_league": true,
+   "rec_now": "8-6",
+   "line": {
+    "median": 14.0,
+    "reach": 0.938,
+    "dist": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     46,
+     467,
+     1542,
+     2336,
+     1369,
+     229,
+     9
+    ]
+   },
+   "path": [
+    {
+     "wk": 8,
+     "opp": "Killer Ko-Gees",
+     "win": 0.763,
+     "cum": 8.76
+    },
+    {
+     "wk": 9,
+     "opp": "Alan's Team",
+     "win": 0.57,
+     "cum": 9.33
+    },
+    {
+     "wk": 10,
+     "opp": "Lin's Team \ud83c\udfc8",
+     "win": 0.562,
+     "cum": 9.89
+    },
+    {
+     "wk": 11,
+     "opp": "Dream Killers",
+     "win": 0.637,
+     "cum": 10.53
+    },
+    {
+     "wk": 12,
+     "opp": "Bad and Boujee",
+     "win": 0.659,
+     "cum": 11.19
+    },
+    {
+     "wk": 13,
+     "opp": "Team Other",
+     "win": 0.553,
+     "cum": 11.74
+    },
+    {
+     "wk": 14,
+     "opp": "Mr. Irrelevant",
+     "win": 0.527,
+     "cum": 12.27
+    }
+   ],
+   "protected": [],
+   "trade_rules": "star for star; handcuffs to your starting backs protected; no deals with this week's opponent; nobody who is out this week",
    "games": [
     {
      "wk": 8,
@@ -2734,6 +2695,7 @@
       79
      ],
      "this_week": 0.0,
+     "drop_helps": [],
      "block": {
       "rival": "Bad and Boujee",
       "rival_pts": 6.7,
@@ -2826,6 +2788,7 @@
       67
      ],
      "this_week": 0.0,
+     "drop_helps": [],
      "block": {
       "rival": "Fly Eagles Fly",
       "rival_pts": 37.1,
@@ -3101,122 +3064,13 @@
      "them_d_title": 0.0148,
      "them_d_wins": 0.13,
      "pitch": "Dak Prescott for George Kittle. On 6,000 simulated seasons your playoff odds go 62% to 64% and your title odds 5.1% to 6.6%, and you add about +0.1 wins - Dak Prescott starts for you the rest of the way."
-    },
-    {
-     "partner": "Lin's Team \ud83c\udfc8",
-     "give": [
-      "Justin Jefferson",
-      "Tucker Kraft"
-     ],
-     "get": "Drake London",
-     "get_pos": "WR",
-     "give_pos": "WR/TE",
-     "me_before": {
-      "wins": 17.01,
-      "playoff": 0.95,
-      "title": 0.266,
-      "final": 0.459,
-      "semis": 0.7,
-      "seed": 3,
-      "seeds": [
-       0.1532,
-       0.2217,
-       0.2288,
-       0.1597,
-       0.1123,
-       0.0738,
-       0.04,
-       0.0085,
-       0.0018,
-       0.0002,
-       0.0,
-       0.0
-      ],
-      "first": 0.153
-     },
-     "me_after": {
-      "wins": 17.03,
-      "playoff": 0.948,
-      "title": 0.2925,
-      "final": 0.464,
-      "semis": 0.702,
-      "seed": 3,
-      "seeds": [
-       0.1617,
-       0.2208,
-       0.23,
-       0.1547,
-       0.115,
-       0.0655,
-       0.0395,
-       0.0108,
-       0.0017,
-       0.0003,
-       0.0,
-       0.0
-      ],
-      "first": 0.162
-     },
-     "them_before": {
-      "wins": 10.17,
-      "playoff": 0.074,
-      "title": 0.0037,
-      "final": 0.011,
-      "semis": 0.028,
-      "seed": 8,
-      "seeds": [
-       0.0,
-       0.0007,
-       0.0028,
-       0.0062,
-       0.0172,
-       0.0475,
-       0.1252,
-       0.328,
-       0.3232,
-       0.1493,
-       0.0,
-       0.0
-      ],
-      "first": 0.0
-     },
-     "them_after": {
-      "wins": 10.52,
-      "playoff": 0.1,
-      "title": 0.0065,
-      "final": 0.017,
-      "semis": 0.038,
-      "seed": 8,
-      "seeds": [
-       0.0,
-       0.0008,
-       0.0043,
-       0.0112,
-       0.0257,
-       0.0575,
-       0.1382,
-       0.3492,
-       0.2882,
-       0.125,
-       0.0,
-       0.0
-      ],
-      "first": 0.0
-     },
-     "d_wins": 0.02,
-     "d_playoff": -0.002,
-     "d_title": 0.0265,
-     "them_d_playoff": 0.025,
-     "them_d_title": 0.0028,
-     "them_d_wins": 0.35,
-     "pitch": "Justin Jefferson and Tucker Kraft for Drake London. On 6,000 simulated seasons your playoff odds go 7% to 10% and your title odds 0.4% to 0.7%, and you add about +0.3 wins - Justin Jefferson and Tucker Kraft start for you the rest of the way."
     }
    ],
-   "trades_screened": 46,
+   "trades_screened": 42,
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test)",
    "plan": {
     "week": 8,
-    "built": "Sat Oct 31 2026 10:48 AM PT",
+    "built": "Sat Oct 31 2026 11:12 AM PT",
     "standings": "Sat Oct 31 9:27 AM PT",
     "playoff": 0.9495,
     "wins": 17.014166666666668,
@@ -3228,61 +3082,81 @@
       "team": "Dream Killers",
       "playoff": 0.988,
       "title": 0.1323,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "10-4"
      },
      {
       "team": "Brad's Ballers",
       "playoff": 0.985,
       "title": 0.2487,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "9-5"
      },
      {
       "team": "Dark Knight IV",
       "playoff": 0.95,
       "title": 0.266,
-      "me": true
+      "me": true,
+      "left": false,
+      "rec": "8-6"
      },
      {
       "team": "Mr. Irrelevant",
       "playoff": 0.836,
       "title": 0.1137,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "8-6"
      },
      {
       "team": "Team Other",
       "playoff": 0.822,
       "title": 0.0818,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "10-4"
      },
      {
       "team": "Alan's Team",
       "playoff": 0.688,
       "title": 0.1017,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "7-7"
      },
      {
       "team": "Fly Eagles Fly",
       "playoff": 0.617,
       "title": 0.0513,
-      "me": false
+      "me": false,
+      "left": false,
+      "rec": "7-7"
      },
      {
       "team": "Lin's Team \ud83c\udfc8",
       "playoff": 0.074,
       "title": 0.0037,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "4-10"
      },
      {
       "team": "Killer Ko-Gees",
       "playoff": 0.035,
       "title": 0.0007,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "5-9"
      },
      {
       "team": "Bad and Boujee",
       "playoff": 0.005,
       "title": 0.0002,
-      "me": false
+      "me": false,
+      "left": true,
+      "rec": "2-12"
      }
     ],
     "games": [
