@@ -1,11 +1,64 @@
 {
  "week": 8,
- "built": "Sat Oct 31 2026 09:43 AM PT",
+ "built": "Sat Oct 31 2026 10:15 AM PT",
  "ratcliffe_read": "Sat Oct 31 2026 9:14 AM PT",
  "koerner_read": "Sat Oct 31 2026 9:11 AM PT",
  "leagues": {
   "DK I": {
-   "talk": [],
+   "talk": [
+    {
+     "name": "Samaje Perine",
+     "pos": "RB",
+     "team": "CIN",
+     "acq": "Free agent",
+     "over": "Chris Godwin Jr.",
+     "pct": 494,
+     "gain": 6.9,
+     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:samajeperine",
+     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+    },
+    {
+     "name": "Chris Rodriguez Jr.",
+     "pos": "RB",
+     "team": "JAX",
+     "acq": "Free agent",
+     "over": "Chris Godwin Jr.",
+     "pct": 406,
+     "gain": 5.5,
+     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:chrisrodriguez",
+     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+    },
+    {
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "Free agent",
+     "over": "Chris Godwin Jr.",
+     "pct": 356,
+     "gain": 4.8,
+     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:kimanividal",
+     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+    },
+    {
+     "name": "Keaton Mitchell",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "Free agent",
+     "over": "Chris Godwin Jr.",
+     "pct": 316,
+     "gain": 4.1,
+     "note": "Scout pick (rest of season): This week: your RB2 seat has nobody playing (Travis Etienne Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:keatonmitchell",
+     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+    }
+   ],
    "watch": [
     {
      "name": "KC DEF",
@@ -36,12 +89,27 @@
    ],
    "cover": [
     {
-     "title": "RB2, Weeks 8-9 Fill",
-     "target": "Target 9.8 pts",
-     "mark": "gold",
-     "why": "Full strength ~17.7 (Warren). Wk 8 Henderson ~8.2 (Warren moves up to RB1, Henderson slides in) \u00b7 Wk 9 Henderson ~11.5 (Warren on bye, Henderson slides in).",
-     "picks": [],
-     "id": "cover:rb2weeks89fill",
+     "title": "RB2, Week 8 Fill",
+     "target": "Target 17.7 pts",
+     "mark": "red",
+     "why": "Slot empty; ideally ~18 (Jaylen Warren's level) \u2014 anything beats zero.",
+     "picks": [
+      "Samaje Perine (Free agent)",
+      "Chris Rodriguez Jr. (Free agent)"
+     ],
+     "id": "cover:rb2week8fill",
+     "first_seen": "Sat Oct 31 2026 10:15 AM PT"
+    },
+    {
+     "title": "RB1, Weeks 8, 11 Fill",
+     "target": "Target 20.3 pts",
+     "mark": "red",
+     "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~19.2 (McCaffrey on bye, Warren slides in) \u00b7 Wk 11 McCaffrey ~21.3 (hard matchup vs MIN).",
+     "picks": [
+      "Samaje Perine (Free agent)",
+      "Chris Rodriguez Jr. (Free agent)"
+     ],
+     "id": "cover:rb1weeks811fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     },
     {
@@ -51,15 +119,6 @@
      "why": "Full strength ~10.5 (Strange). Wk 8 Kelce ~11.1 (Strange has a worse matchup) \u00b7 Wk 10 Kelce ~12.3 (Strange has a worse matchup).",
      "picks": [],
      "id": "cover:teweeks810fill",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
-     "title": "RB1, Weeks 8, 11 Fill",
-     "target": "Target 20.3 pts",
-     "mark": "gold",
-     "why": "Full strength ~25.1 (McCaffrey). Wk 8 Warren ~19.2 (McCaffrey on bye, Warren slides in) \u00b7 Wk 11 McCaffrey ~21.3 (hard matchup vs MIN).",
-     "picks": [],
-     "id": "cover:rb1weeks811fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     },
     {
@@ -79,7 +138,7 @@
      "slot": "RB",
      "pos": "RB",
      "team": "NE",
-     "status": "Q",
+     "status": "O",
      "wk": 8.16,
      "locks": "Sun 1:25 PM",
      "lock_utc": "2026-11-01T21:25:00+00:00",
