@@ -25,6 +25,10 @@ for lab, k in KEY.items():
         # Sleeper is off the meters. K and DEF use Ratcliffe in both (Gotham has no kicker/defense model).
         rc = s.get('ratcliffe'); g = s['gotham'] if s['gotham'] is not None else rc
         if s['pos'] in ('K', 'DEF'): g = rc
+        # Oct 31 (Dom): a third expert replaces the engine on the needles - Paul Brenton's ranks, on Ratcliffe's point scale
+        # (brenton_points.py). Gotham keeps working behind the scenes (alerts, the Scout). Slot 1 falls back to Gotham only
+        # when no Brenton list came through this build.
+        if s.get('brenton') is not None: g = s['brenton']
         if rc is None and g is None: continue
         ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
         d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g)]

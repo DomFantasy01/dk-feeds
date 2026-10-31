@@ -5,7 +5,7 @@ backup who fills in if one of them has no list this week. Accuracy = FantasyPros
 Writes yahoo_drop/morning/expert_rankings.txt (site|expert|list|rank|player|nflteam|pos) plus each expert's published time.
 A failed expert is logged and the file says so; if no expert comes back the old file is left alone and the run fails loudly."""
 import json, os, sys, time, datetime as dt, urllib.request, urllib.error
-EXPERTS = [(1667, "Mick Ciallela"), (2729, "Tyler Orginski"), (125, "Jeff Ratcliffe"), (534, "Patrick Thorman"), (120, "Sean Koerner"), (540, "Nathan Jahnke")]   # Oct 29 (Dom): Orginski (FTN) added - 2026 accuracy #3
+EXPERTS = [(1667, "Mick Ciallela"), (2729, "Tyler Orginski"), (125, "Jeff Ratcliffe"), (534, "Patrick Thorman"), (120, "Sean Koerner"), (540, "Nathan Jahnke"), (7560, "Paul Brenton")]   # Oct 31 (Dom: "I want another expert ... I don't want to pay"): Brenton (Points Over Hype) - FantasyPros 2026 in-season accuracy #1, free feed   # Oct 29 (Dom): Orginski (FTN) added - 2026 accuracy #3
 POS = ["QB", "RB", "WR", "TE"]
 API = "https://partners.fantasypros.com/api/v1/expert-rankings.php"
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36", "Accept": "application/json"}
