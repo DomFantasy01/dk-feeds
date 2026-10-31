@@ -38,7 +38,8 @@ jobs:
       # feed job's 30-minute runs, so a gauntlet could land on hour-old feeds and go NO-GO. A failed pull keeps the last feeds.
       # Oct 28: a hung feed pull held the whole build (and every queued one) for 30+ minutes - it now gives up after 10
       - run: timeout 600 python pull_feeds.py || echo "!! feed pull failed or timed out - the build uses the last saved feeds"
-      - run: bash dispatch_run.sh
+      # Oct 30 (Dom, THE CHAIN): a failed build retries once by itself; only a second failure turns the run red (GitHub's email)
+      - run: bash dispatch_run.sh || { echo "!! build failed - retrying once in 30 s"; sleep 30; bash dispatch_run.sh; }
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
