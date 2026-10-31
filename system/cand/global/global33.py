@@ -2798,7 +2798,7 @@ KORC=(1.0,.478,.851)   # Oct 29 (Dom): Koerner's pink, the same as Live
 def readout3(GX,gy,vy,vw,ve,CP,vk=None):
     # Oct 29 (Dom): Yahoo tight under the needle, then one row of three - Ratcliffe (FTN), Koerner (F Labs), Gotham
     htxt(GX,gy-17.0,f"{vy}%","Bebas",18,TXT,"c",hw=2.4); htxt(GX,gy-21.6,"YAHOO","PopB",4.2,TXT,"c",hw=1.3)
-    for x,v,k,lab in ((GX-38,vw,"w","RATCLIFFE · FTN"),(GX,vk,"k","KOERNER · F LABS"),(GX+38,ve,"e","GOTHAM")):
+    for x,v,k,lab in ((GX-38,vw,"w","RATCLIFFE · FTN"),(GX,vk,"k","KOERNER · F LABS"),(GX+38,ve,"e",EXL)):
         htxt(x,gy-31.0,("–" if v is None else f"{v}%"),"Bebas",9.5,mix(BG2,TXT,.85),"c",hw=1.6)
         if k=="k": c.saveState(); c.setStrokeColorRGB(*KORC); c.setLineWidth(1.6); c.setLineCap(1); c.line(x-6,gy-33.0,x+5,gy-33.0); c.restoreState()
         else: _key(x,gy-33.0,k,11)
@@ -2866,7 +2866,7 @@ def block(D,top,h,VMAX,GX):
     _row(y2m,"FTN",MD['me'],MD['op'],FM,mc_,oc_,1.8)
     EF=EFF[D["lab"]]; y2e=y2m-_sp
     if D["lab"] in KOR: _row(y2e,"KOERNER",KOR[D["lab"]]['me'],KOR[D["lab"]]['op'],FM,mc_,oc_,1.8); y2e-=_sp
-    _row(y2e,"GOTHAM",EF['me'],EF['op'],FM,mc_,oc_,1.8)
+    _row(y2e,EXL,EF['me'],EF['op'],FM,mc_,oc_,1.8)
     ks=[k for k,v in reversed(D["bands"]) if k!="you"]; kx=lx; ky=y2e-LS*1.2-0.2
     for k in ks:
         cc,al,ed=T[k]; c.setFillColor(cc); c.rect(kx,ky+.2,4.2,4.2,fill=1,stroke=0)
@@ -3052,6 +3052,7 @@ import json as _jm2, glob as _gm2, os as _om2, datetime as _dtm2
 _MFS=sorted(_gm2.glob("/home/claude/dksys/data/latest/meter/meter_wk*.json"),key=lambda p:int(p.split("_wk")[1].split(".")[0]))
 _MFP=(f"/home/claude/dksys/data/latest/meter/meter_wk{_om2.environ['DK_WEEK']}.json" if _om2.environ.get("DK_WEEK") else _MFS[-1])
 MTR=_jm2.load(open(_MFP)); MW=MTR["week"]
+EXL="BRENTON" if all((L["needles"].get("brenton") is not None) for L in MTR["leagues"].values()) else "GOTHAM"   # Oct 31: third meter slot label
 YMISS={}                                                    # Oct 9: Yahoo's posted win % missing for a league -> the dial uses the win %
 for _lb,_L in MTR["leagues"].items():                       # implied by Yahoo's own projected totals, and the card says so
     _n=_L["needles"]
@@ -3080,7 +3081,10 @@ for lab,L in MTR["leagues"].items():
     YAH[lab]=YL[lab]["live"]
     _rk="ratcliffe" if L["needles"].get("ratcliffe") is not None and L["totals"].get("ratcliffe") else "gotham"   # Oct 28 (Dom): Ratcliffe leads; Sleeper off the meters
     MOD[lab]=dict(me=L["totals"][_rk][0],op=L["totals"][_rk][1],pct=L["needles"][_rk])
-    EFF[lab]=dict(me=L["totals"]["gotham"][0],op=L["totals"]["gotham"][1],pct=L["needles"]["gotham"])
+    # Oct 31 (Dom: "I don't need to have the engine on my needle pages if I have another expert") - Paul Brenton in the third
+    # slot when his numbers came through this build (brenton_points.py); the engine only if they didn't
+    _ek="brenton" if EXL=="BRENTON" else "gotham"
+    EFF[lab]=dict(me=L["totals"][_ek][0],op=L["totals"][_ek][1],pct=L["needles"][_ek])
     if L["needles"].get("koerner") is not None and L["totals"].get("koerner"): KOR[lab]=dict(me=L["totals"]["koerner"][0],op=L["totals"]["koerner"][1],pct=L["needles"]["koerner"])   # Oct 29 (Dom): Koerner
     def _bank(S):
         w=[0.0]*NW

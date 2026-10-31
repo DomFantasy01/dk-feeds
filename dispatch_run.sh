@@ -53,6 +53,8 @@ echo "== 2b Yahoo API overlay (Oct 30, Dom): the API's newer win %, totals, line
 if [ -f "$REPO/yahoo_api/latest.json" ]; then python3 "$REPO/yahoo_api/api_overlay.py" "$REPO" "$ROOT/dksys/data/latest/yahoo" "$ROOT/dksys/data/latest/games.csv"; fi
 echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
 echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^DK|^ALARMS|^  !")
+WB=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+python3 "$REPO/live_sync/brenton_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" "$ROOT/dksys/data/latest/ftn_scored.csv" || echo "!! BRENTON on the printed meter skipped - Gotham keeps the third slot"   # Oct 31 (Dom): Brenton on the Dispatch page too
 echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"
 WM=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 DK_ROOT="$ROOT" python3 "$ROOT/dksys/scout/expert_moves.py" "$REPO" --meter "$ROOT/dksys/data/latest/meter/meter_wk$WM.json" > "$ROOT/expert_moves.log" 2>&1 && head -3 "$ROOT/expert_moves.log" || { echo "!! EXPERT MOVES FAILED - the Dispatch prints without them"; tail -5 "$ROOT/expert_moves.log"; }
@@ -87,7 +89,12 @@ W=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.
 mkdir -p "$REPO/dispatch_out"
 cp "$ROOT/cand/global/out/DK_Mountains_wk$W.pdf" "$REPO/dispatch_out/DK_Mountains_Wk${W}_latest.pdf"
 cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_Wk${W}_latest.pdf"
-cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_latest.pdf"   # one fixed link that never changes week to week (Oct 9)
+# Oct 31 (Dom: "that's the perfect way to do it"): the Dispatch link is ONE page of graphics - the overview with all four
+# leagues' meters and mountains; the brief carries the words. The full multi-page edition is still saved beside it.
+cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_full_latest.pdf"
+cp "$ROOT/cand/global/out/DK_Mountains_wk$W.pdf" "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf"
+if [ -f "$ROOT/cand/_footer_pass.py" ]; then python3 "$ROOT/cand/_footer_pass.py" "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" || true; fi
+cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_latest.pdf"   # one fixed link that never changes week to week (Oct 9)
 cp "$ROOT/dksys/data/latest/meter/meter_wk$W.json" "$ROOT/dksys/data/latest/meter/alarm_wk$W.json" "$REPO/dispatch_out/"
 cp "$ROOT/dksys/data/latest/ftn_scored.csv" "$ROOT/dksys/data/latest/koerner_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no scored expert files this build"   # Oct 29: the hourly alert pass reads Ratcliffe and Koerner from here
 cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null || echo "no weather file this build"   # game weather for Dark Knight Live (Oct 11)
