@@ -60,10 +60,10 @@ def row(group, name, status, detail, when=None):
 # ---------- the schedules (Pacific) ----------
 def read_slots(day):
     """scheduled Yahoo reads for a PT date"""
-    # Oct 31: THE CHAIN clock (Oct 30) - Mon-Sat Yahoo read :25 at 3, 9, 13, 18 (+21 Mon & Thu); Sunday hourly :50 from 4.
+    # Oct 31: THE CHAIN clock (Oct 30) - Mon-Sat Yahoo read :25 at 3, 9, 13, 18 (+21 Mon & Thu); Sunday 3:50 AM then hourly :50 8-20 (Oct 31).
     # (The old 7:50/12:50/4:50 clock flagged a false "MISSED" read between chain reads.)
-    if day.weekday() == 6: return [dt.datetime(day.year, day.month, day.day, h, 50, tzinfo=PT) for h in [4] + list(range(8, 21))]
-    hrs = [3, 9, 13, 18] + ([21] if day.weekday() in (0, 3) else [])
+    if day.weekday() == 6: return [dt.datetime(day.year, day.month, day.day, h, 50, tzinfo=PT) for h in [3] + list(range(8, 21))]
+    hrs = [3, 9, 13, 16, 18, 21]  # Oct 31: matches the Mon-Sat read task (:25 at 3, 9, 13, 16, 18, 21)
     return [dt.datetime(day.year, day.month, day.day, h, 25, tzinfo=PT) for h in hrs]
 def last_slot(grace_min=25):
     cands = []
