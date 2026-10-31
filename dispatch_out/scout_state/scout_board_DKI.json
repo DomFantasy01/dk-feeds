@@ -1,8 +1,8 @@
 {
  "league": "DK I",
- "run": "2026-10-31T13:16:17.512130-07:00",
- "run_str": "Sat Oct 31, 1:16 PM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-7 + Week 8 games so far of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 31, 1:15 PM PT (API) \u00b7 stats nflverse Sat 1:16 PM PT",
+ "run": "2026-10-31T13:42:17.513498-07:00",
+ "run_str": "Sat Oct 31, 1:42 PM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-7 + Week 8 games so far of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sat Oct 31, 1:41 PM PT (API) \u00b7 stats nflverse Sat 1:42 PM PT",
  "gate1": [
   {
    "mark": "red",
@@ -165,7 +165,7 @@
      "why": "Door open: Cooper Rush off the roster; workload up from 14.7 to 21.0 expected a game; door closing: Andy Dalton joined ATL from PHI: his pre-trade ~20.2 a game cut to ~19.5 (3% of the QB production goes to the newcomer); news (RotoBaller, Oct 31): Michael Penix Jr. a Volatile QB2 with QB1 Upside in Week 8; BOTH AGREE (Ratcliffe 17.7, engine 16.8 a week); Koerner 17.3 vs Ratcliffe 16.7 this week - experts agree",
      "when": "Wk 13",
      "urg": "gold",
-     "now": "This week vs your QB Jayden Daniels: Ratcliffe 16.7 vs 21.9 \u00b7 Koerner 17.3 vs 22.0 \u00b7 Yahoo 17.5 vs 23.9 \u00b7 Gotham 17.2 vs 22.1 - WORSE this week",
+     "now": "This week vs your QB Jayden Daniels: Ratcliffe 16.7 vs 21.9 \u00b7 Koerner 17.3 vs 22.0 \u00b7 Yahoo 17.4 vs 23.9 \u00b7 Gotham 17.2 vs 22.1 - WORSE this week",
      "gain": 2.7,
      "pgain": 0.2
     }
@@ -241,7 +241,7 @@
    "acq": "Free agent",
    "gain": 2.7,
    "pgain": 0.2,
-   "now": "This week vs your QB Jayden Daniels: Ratcliffe 16.7 vs 21.9 \u00b7 Koerner 17.3 vs 22.0 \u00b7 Yahoo 17.5 vs 23.9 \u00b7 Gotham 17.2 vs 22.1 - WORSE this week",
+   "now": "This week vs your QB Jayden Daniels: Ratcliffe 16.7 vs 21.9 \u00b7 Koerner 17.3 vs 22.0 \u00b7 Yahoo 17.4 vs 23.9 \u00b7 Gotham 17.2 vs 22.1 - WORSE this week",
    "rc": "both agree",
    "rc_why": "Ratcliffe 17.7, engine 16.8 a week",
    "ko": "Koerner 17.3 vs Ratcliffe 16.7 this week - experts agree",
@@ -272,6 +272,10 @@
   "masontaylor": {
    "fwd": 7.0,
    "gain": 0.0
+  },
+  "brentonstrange": {
+   "fwd": 10.5,
+   "gain": 2.5
   },
   "jalenmcmillan": {
    "fwd": 0.5,
@@ -516,7 +520,7 @@
    "Koerner"
   ],
   "read": [
-   "pulled Sat Oct 31 2026 1:15 PM PT",
+   "pulled Sat Oct 31 2026 1:41 PM PT",
    "Mick Ciallela updated 2026-10-29 15:43:04",
    "Tyler Orginski updated 2026-10-31 11:22:13",
    "Jeff Ratcliffe updated 2026-10-29 17:13:16",
@@ -525,7 +529,53 @@
    "Nathan Jahnke updated 2026-10-29 17:14:42",
    "Paul Brenton updated 2026-10-29 16:25:53"
   ],
-  "flags": [],
+  "flags": [
+   {
+    "name": "Dylan Sampson",
+    "pos": "RB",
+    "team": "CLE",
+    "beats": "Samaje Perine",
+    "agree": "3 of 6",
+    "yes": [
+     "Brenton",
+     "Orginski",
+     "Koerner"
+    ],
+    "no": [
+     "Ciallela",
+     "Ratcliffe",
+     "Thorman"
+    ],
+    "votes": {
+     "Brenton": "RB33 v RB42",
+     "Ciallela": "RB35 v RB33",
+     "Orginski": "RB33 v RB36",
+     "Ratcliffe": "RB42 v RB35",
+     "Thorman": "RB35 v RB36",
+     "Koerner": "RB34 v RB38"
+    },
+    "other_experts": {
+     "Jahnke": "RB41"
+    },
+    "available": "free agent - instant add",
+    "injury": "",
+    "done": "Wk1 CLE: 0 touches, 0.0 pts; Wk7 CLE: 6 car 3 tgt, 10.7 pts | snaps 0%/46% | season 5.3 a game over 2",
+    "trend": "",
+    "bye": [
+     11
+    ],
+    "playoffs": [
+     "Wk15 @ NYG (neutral)",
+     "Wk16 @ BAL (hard)",
+     "Wk17 vs IND (neutral)"
+    ],
+    "this_week": "Sun 10:00 AM PT @ PIT",
+    "drop_candidate": "TreVeyon Henderson",
+    "notes": [],
+    "stops": [],
+    "verdict": "flag - worth analyzing"
+   }
+  ],
   "failed": []
  },
  "arrivals": [
@@ -546,8 +596,8 @@
    "boone": 51,
    "beats": null,
    "how": "on waivers until Nov 2",
-   "yahoo_ros": null,
-   "line": "Roschon Johnson (RB) - dropped by JD Fri Oct 30 12:09 PM. Experts: panel RB51. on waivers until Nov 2. VERDICT: NOT AN UPGRADE: would not start or beat your bench (7.0 a game vs your weakest Chris Godwin Jr. 9.4). Ratcliffe 4.7 this week / 7.0 a game rest of season; Koerner 5.1; Yahoo -. Playoffs: Wk15 at BUF, Wk16 vs GB, Wk17 vs DET."
+   "yahoo_ros": 5.8,
+   "line": "Roschon Johnson (RB) - dropped by JD Fri Oct 30 12:09 PM. Experts: panel RB51. Yahoo rest of season 6. on waivers until Nov 2. VERDICT: NOT AN UPGRADE: would not start or beat your bench (7.0 a game vs your weakest Samaje Perine 8.1). Ratcliffe 4.7 this week / 7.0 a game rest of season; Koerner 5.1; Yahoo 5.8. Playoffs: Wk15 at BUF, Wk16 vs GB, Wk17 vs DET."
   }
  ],
  "txn_review": {
@@ -557,7 +607,7 @@
   "openings": [],
   "others": [
    "Remember the Tutens took Malik Washington (Mia WR), Sat Oct 31 1:01 AM ($1 Waiver). VERDICT: NOT AN UPGRADE: would not start or beat your bench (9.1 a game vs your weakest Chris Godwin Jr. 9.4). Ratcliffe 10.3 this week / 9.1 a game rest of season; Koerner 11.3; Yahoo -. Playoffs: Wk15 at GB, Wk16 vs LAC, Wk17 vs BUF. No alert fired on him in this league before he was taken.",
-   "JD took Jaydon Blue (Phi RB), Fri Oct 30 12:09 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (1.4 a game vs your weakest Chris Godwin Jr. 9.4). Ratcliffe 2.8 this week / 1.4 a game rest of season; Koerner 5.6; Yahoo -. Playoffs: Wk15 vs SEA, Wk16 vs HOU, Wk17 at SF. No alert fired on him in this league before he was taken."
+   "JD took Jaydon Blue (Phi RB), Fri Oct 30 12:09 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (1.4 a game vs your weakest Samaje Perine 8.1). Ratcliffe 2.8 this week / 1.4 a game rest of season; Koerner 5.6; Yahoo -. Playoffs: Wk15 vs SEA, Wk16 vs HOU, Wk17 at SF. No alert fired on him in this league before he was taken."
   ],
   "quiet": 5
  }
