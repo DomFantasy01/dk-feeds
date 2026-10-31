@@ -40,7 +40,8 @@ for lab, k in KEY.items():
     lg['pieces'] = L.get('pieces') or []; lg['pieces_set'] = L.get('pieces_set')   # Oct 23 (Dom): Missing Pieces
     lg['experts'] = L.get('experts')
     lg['talk'] = L.get('talk')
-    lg['brenton_flags'] = L.get('brenton_flags') or []   # Oct 31: Brenton's ranking check
+    lg['brenton_flags'] = L.get('brenton_flags') or []
+    lg['xp'] = L.get('xp')   # Oct 31: every expert on every player that matters (expert_card.py)   # Oct 31: Brenton's ranking check
     lg['plan'] = L.get('plan')
     lg['champ'] = L.get('champ')   # Oct 31 (Dom): Road to the Championship (championship.py)   # Oct 31 (Dom): Road to the Playoffs (playoff_plan.py)   # Oct 31 (Dom): players to talk about - pickups, the 10-15% watch list, holes, blocks (talk_list.py)
     lg['pieces_check'] = L.get('pieces_check')   # Oct 25 (Dom): each piece re-tested against the live roster every build   # Oct 25 (Dom): who the named experts moved up / down (expert_moves.py)
