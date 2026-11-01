@@ -36,6 +36,7 @@ try:
             m = re.search(r"read live (.*?) \(", ln); rk_read = rk_read or (m.group(1) if m else ""); continue
         f = ln.rstrip("\n").split("|")
         if len(f) >= 5 and f[3].isdigit(): rk.setdefault(nk(f[4]), {})[f[1]] = (f[2], int(f[3]))
+        if len(f) >= 6 and f[3].isdigit() and f[2] == "DST": rk.setdefault(str(f[5]).upper().replace("WSH", "WAS").replace("JAC", "JAX").replace("LAR", "LA") + "DEF", {})[f[1]] = ("DEF", int(f[3]))   # Nov 1: defense ranks, keyed by team
 except Exception: pass
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from outlist import out_now
 OUTL = out_now(R, int(re.search(r"_wk(\d+)", MF).group(1)) if re.search(r"_wk(\d+)", MF) else None)
@@ -78,7 +79,7 @@ for lab, L in (M.get("leagues") or {}).items():
         p, pos = look(lg, name, pos, team)
         r_ = {}
         for full, short, fp in RANKERS:
-            x = (rk.get(k_) or {}).get(full)
+            x = (rk.get(deft(name, team) + "DEF" if pos == "DEF" else k_) or {}).get(full)
             if x: r_[short] = x[1]; pos = pos or x[0]
         if not p and not r_: continue
         p = dict(p)

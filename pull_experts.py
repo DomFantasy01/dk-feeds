@@ -4,9 +4,9 @@ Panel: Mick Ciallela (accuracy #1), Jeff Ratcliffe (#4), Patrick Thorman (#5), S
 backup who fills in if one of them has no list this week. Accuracy = FantasyPros 2026 in-season, season to date.
 Writes yahoo_drop/morning/expert_rankings.txt (site|expert|list|rank|player|nflteam|pos) plus each expert's published time.
 A failed expert is logged and the file says so; if no expert comes back the old file is left alone and the run fails loudly."""
-import json, os, sys, time, datetime as dt, urllib.request, urllib.error
+import json, os, re, sys, time, datetime as dt, urllib.request, urllib.error
 EXPERTS = [(1667, "Mick Ciallela"), (2729, "Tyler Orginski"), (125, "Jeff Ratcliffe"), (534, "Patrick Thorman"), (120, "Sean Koerner"), (540, "Nathan Jahnke"), (7560, "Paul Brenton")]   # Oct 31 (Dom: "I want another expert ... I don't want to pay"): Brenton (Points Over Hype) - FantasyPros 2026 in-season accuracy #1, free feed   # Oct 29 (Dom): Orginski (FTN) added - 2026 accuracy #3
-POS = ["QB", "RB", "WR", "TE"]
+POS = ["QB", "RB", "WR", "TE", "DST", "K"]   # Nov 1 (Dom: "we should be looking at everything"): defenses and kickers too
 API = "https://partners.fantasypros.com/api/v1/expert-rankings.php"
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36", "Accept": "application/json"}
 
@@ -38,7 +38,7 @@ def main(repo="."):
             if not j: counts.append(f"{p}0"); continue
             pubs.add(str(j.get("published", "")))
             for pl in j["players"]:
-                rk = str(pl.get("pos_rank", "")).lstrip("QBRWTE") or str(pl.get("rank", ""))
+                rk = re.sub(r"^[A-Z]+", "", str(pl.get("pos_rank", ""))) or str(pl.get("rank", ""))
                 rows.append("|".join(["FP", name, p, rk, pl.get("player_name", ""), pl.get("player_team_id", ""), p]))
             counts.append(f"{p}{len(j['players'])}")
         ok = all(c[2:] != "0" for c in counts)
@@ -61,7 +61,7 @@ def main(repo="."):
             for p in POS:
                 j = get(eid, p, w - 1)
                 for pl in (j or {}).get("players", []):
-                    rk = str(pl.get("pos_rank", "")).lstrip("QBRWTE") or str(pl.get("rank", ""))
+                    rk = re.sub(r"^[A-Z]+", "", str(pl.get("pos_rank", ""))) or str(pl.get("rank", ""))
                     prow.append("|".join(["FP", name, p, rk, pl.get("player_name", ""), pl.get("player_team_id", ""), p])); n_ += 1
             plog.append(f"{name}: {n_} rows (week {w-1} final list, backfilled)")
         if prow:
