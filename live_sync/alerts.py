@@ -839,6 +839,12 @@ try:
         _bk = {_nn(b.get("starter")): b for b in ((_tl.get("leagues") or {}).get(lg) or {}).get("backup") or []}
         for st in (L.get("starters") or {}).get("me") or []:
             k = _nn(st.get("player")); hit = _inact.get(k); out_tag = (st.get("status") or "").upper() == "O"
+            if hit:   # Nov 1: name AND team, fantasy positions only (Browns LB Justin Jefferson flagged the Vikings WR)
+                try:
+                    from outlist import inactive_counts as _ic
+                    if not _ic(hit, st.get("team")): hit = None
+                except Exception:
+                    if str(hit.get("pos") or "").upper() not in ("QB", "RB", "WR", "TE", "K", "FB", "PK"): hit = None
             if not hit and not out_tag: continue
             if st.get("actual") is not None: continue                       # his game is on or over
             b = _bk.get(k) or {}
