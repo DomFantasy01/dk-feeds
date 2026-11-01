@@ -105,7 +105,7 @@ NOWUTC=_dt.datetime.utcnow()
 def qlit(i):
     gs=[r for r in G.itertuples() if _SLOT[(r.weekday,r.gametime)]==i]; done=0
     for r in gs:
-        k=_dt.datetime.strptime(f"{r.gameday} {r.gametime}","%Y-%m-%d %H:%M")+_dt.timedelta(hours=4)   # Eastern daylight to UTC
+        k=_dt.datetime.strptime(f"{r.gameday} {r.gametime}","%Y-%m-%d %H:%M").replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/New_York")).astimezone(_dt.timezone.utc).replace(tzinfo=None)   # Eastern (EDT or EST) to UTC
         el=(NOWUTC-k).total_seconds()/60; done+=sum(el>=q for q in QEND)
     return int(4*done/(4*len(gs))) if gs else 0
 # ---------- jagged ridges, deterministic so the shape never reads as movement (options v14/v15 grammar) ----------
@@ -238,7 +238,7 @@ def build(fn):
     DS=[prep(l) for l in LG]
     VMAX=max(max(v) for D in DS for k,v in D["bands"])*1.08
     y=Ht-M-18; txt(M,y,"DARK KNIGHT","Bebas",30); txt(M+c.stringWidth("DARK KNIGHT","Bebas",30)+8,y,"WHERE EACH TEAM STANDS · WEEK 4","Bebas",18,GOLDISH)
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     txt(W-M,y+10,f"Rebuilt {pt.strftime('%a %b')} {pt.day}, ~{hh}:{mm:02d} {'p.m.' if pt.hour>=12 else 'a.m.'} PT","PopM",6,GR,"r")
     txt(W-M,y+2,"Yahoo matchups, lineups, standings: pulled Wed Sep 30 evening","Pop",5.6,GR2,"r")
@@ -366,7 +366,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT","Bebas",24); txt(W-M,y,"STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     txt(M,y-15,"ALL FOUR LEAGUES","Bebas",13,GR)
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     st_=f"Rebuilt {pt.strftime('%a %b')} {pt.day}, ~{hh}:{mm:02d} {'p.m.' if pt.hour>=12 else 'a.m.'} PT  ·  Yahoo matchups, lineups, standings pulled Wed Sep 30 evening, a day old  ·  "
     wq="refresh before kickoff"
@@ -560,7 +560,7 @@ def build(fn):
     while max(c.stringWidth(FULL[l]+"  ·  ","PopM",fs)+c.stringWidth(TEAMN[l],"PopB",fs) for l in LG)>cw-8: fs-=.05
     for i,l in enumerate(LG):
         sx=M+i*cw; w=txt(sx,y-14,FULL[l]+"  ·  ","PopM",fs,GR); txt(sx+w,y-14,TEAMN[l],"PopB",fs,LC[l])
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     st_=f"Rebuilt {pt.strftime('%a %b')} {pt.day}, ~{hh}:{mm:02d} {'p.m.' if pt.hour>=12 else 'a.m.'} PT  ·  Yahoo matchups, lineups, standings pulled Wed Sep 30 evening, a day old  ·  "
     wq="refresh before Sunday"
@@ -733,7 +733,7 @@ def build(fn):
     while max(c.stringWidth(FULL[l]+"  ·  ","PopM",fs)+c.stringWidth(TEAMN[l],"PopB",fs) for l in LG)>cw-8: fs-=.05
     for i,l in enumerate(LG):
         sx=M+i*cw; w=txt(sx,y-14,FULL[l]+"  ·  ","PopM",fs,GR); txt(sx+w,y-14,TEAMN[l],"PopB",fs,LC[l])
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     st_=f"Rebuilt {pt.strftime('%a %b')} {pt.day}, ~{hh}:{mm:02d} {'p.m.' if pt.hour>=12 else 'a.m.'} PT  ·  Yahoo matchups, lineups, standings pulled Wed Sep 30 evening, a day old  ·  "
     wq="refresh before Sunday"
@@ -933,7 +933,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1027,7 +1027,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1073,7 +1073,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1125,7 +1125,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1220,7 +1220,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1335,7 +1335,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh before Sunday","Pop",sf,GOLDISH)
@@ -1506,7 +1506,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh Friday and before Sunday","Pop",sf,GOLDISH)
@@ -1581,7 +1581,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh Friday and before Sunday","Pop",sf,GOLDISH)
@@ -1683,7 +1683,7 @@ def build(fn):
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
     # second row: sources left, ages right
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups, lineups, standings  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh Friday and before Sunday","Pop",sf,GOLDISH)
@@ -1925,7 +1925,7 @@ def build(fn):
     VMAX=max(max(v) for D in DS for k,v in D["bands"])*1.08
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups and lineups  ·  ","Pop",sf,GR2); txt(M+w,y2,"refresh after Friday's injury reports","Pop",sf,GOLDISH)
@@ -2092,7 +2092,7 @@ def build(fn):
     VMAX=max(max(v) for D in DS for k,v in D["bands"])*1.08
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups and lineups  ·  ","Pop",sf,GR2); txt(M+w,y2,"Friday injury reports not yet pulled","Pop",sf,GOLDISH)
@@ -2275,7 +2275,7 @@ def build(fn):
     VMAX=max(max(v) for D in DS for k,v in D["bands"])*1.08
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT FANTASY","Bebas",24); txt(W-M,y,"GLOBAL STANDINGS  ·  WEEK 4","Bebas",24,TXT,"r")
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Yahoo matchups and lineups  ·  ","Pop",sf,GR2); txt(M+w,y2,"Friday injury reports not yet pulled","Pop",sf,GOLDISH)
@@ -2496,7 +2496,7 @@ def build(fn):
     VMAX=max(max(v) for D in DS for k,v in D["bands"])*1.08
     y=Ht-M-10
     txt(M,y,"DARK KNIGHT DISPATCH","Bebas",24); txt(W-M,y,"OVERVIEW  ·  WEEK 4","Bebas",24,TXT,"r")
-    pt=NOWUTC-_dt.timedelta(hours=7); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
+    pt=NOWUTC.replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")); hh=pt.hour%12 or 12; mm=int(round(pt.minute/5)*5)
     if mm==60: hh,mm=hh%12+1,0
     sf=5.8; y2=y-13
     w=txt(M,y2,"Rosters, injuries and the market re-pulled Sat Oct 3 night  ·  ","Pop",sf,GR2); txt(M+w,y2,"mountains and meters: Friday's 44-team lineup pull","Pop",sf,GOLDISH)

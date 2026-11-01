@@ -23,7 +23,7 @@ ROOT = '/home/claude/dksys/data/latest/'
 FEEDS = '/home/claude/domfantasy01/dk-feeds/feeds/'
 ENGINE = '/home/claude/dksys/engine/'
 OUT = ROOT + 'meter/'
-PT = dt.timezone(dt.timedelta(hours=-7))          # Pacific daylight time until Nov 1
+PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")          # Pacific daylight time until Nov 1
 NOW = dt.datetime.now(PT)
 
 LEAGUES = {   # league facts that do not change week to week

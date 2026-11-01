@@ -12,7 +12,7 @@
 #   python3 api_overlay.py <repo> <yahoo_dir> <games.csv>
 import sys, os, re, json, glob, datetime as dt
 
-PT = dt.timezone(dt.timedelta(hours=-7))
+PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 LG = {"DKI": "269381", "DKII": "1519795", "DKIII": "1507991", "DKIV": "864215"}
 FIX = {"WSH": "WAS", "JAC": "JAX", "LAR": "LA"}
 RX = re.compile(r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\w{3}) (\d{1,2}),?(?: (\d{4}))? (\d{1,2}):(\d{2}) ([AP]M) PT")

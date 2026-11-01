@@ -110,7 +110,7 @@ import datetime as _dt
 _INJ=_pd15.read_csv("/home/claude/dksys/data/latest/injuries.csv");_INJ=_INJ[_INJ.season==2026].copy();_INJ["k"]=_INJ.full_name.map(_norm)
 _G15=_pd15.read_csv("/home/claude/dksys/data/latest/games.csv",low_memory=False);_G15=_G15[(_G15.season==2026)&(_G15.week==_E10.WEEK)]
 _SUN=max(_dt.date.fromisoformat(d) for d in _G15.gameday if _dt.date.fromisoformat(d).weekday()==6)
-_TODAY=(_dt.datetime.utcnow()-_dt.timedelta(hours=7)).date()            # Pacific
+_TODAY=_dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).date()            # Pacific
 _DAYS=max(1,(_TODAY-(_SUN-_dt.timedelta(days=4))).days+1)               # Wednesday of the week = 01
 CALLS={}   # (league, player) -> (color, call-sheet number). Filled only when a call is on the Call Sheet. Empty Fri Oct 2.
 ROSTN={"DK I":{"QB":22,"RB":53,"WR":64,"TE":22},"DK II":{"QB":30,"RB":54,"WR":67,"TE":20},"DK III":{"QB":26,"RB":59,"WR":74,"TE":25},"DK IV":{"QB":27,"RB":52,"WR":56,"TE":17}}   # rostered league-wide, Yahoo Fri Oct 2

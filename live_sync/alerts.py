@@ -122,7 +122,7 @@ def _when(s):
     try: return dt.datetime.fromisoformat((s or "").replace("Z", "+00:00"))
     except Exception: return None
 def _pt(d):
-    return d.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %b %-d %-I:%M %p PT")
+    return d.astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %-I:%M %p PT")
 # ---------- Yahoo's live roster read (the Scout's files): who's taken, who's on waivers ----------
 SCOUT = sys.argv[sys.argv.index("--scout") + 1] if "--scout" in sys.argv else None
 LGN = {"DK I": 1, "DK II": 2, "DK III": 3, "DK IV": 4}
@@ -409,7 +409,7 @@ if FEEDS:
         try: return dt.datetime.fromisoformat((s or "").replace("Z", "+00:00"))
         except Exception: return None
     def _pt(d):
-        return d.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %b %-d %-I:%M %p PT")
+        return d.astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %-I:%M %p PT")
     people = []   # (league, name, role, slot, gotham)
     for lg, L in M["leagues"].items():
         for p in L.get("starters", {}).get("me", []): people.append((lg, p["player"], "starter", p["slot"], g(p)))
@@ -528,7 +528,7 @@ try:
         try: return float(r["pts_ppr"]) if r and r.get("pts_ppr") not in ("", None) else None
         except Exception: return None
     _t = dt.datetime.strptime(_stamp, "%Y-%m-%dT%H%MZ").replace(tzinfo=dt.timezone.utc)
-    _stamp_pt = _t.astimezone(dt.timezone(dt.timedelta(hours=-7))).strftime("%a %-I:%M %p PT")
+    _stamp_pt = _t.astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).strftime("%a %-I:%M %p PT")
     CAND = []
     for r in _rows:
         if r.get("pos") not in ("QB", "RB", "WR", "TE"): continue
@@ -650,11 +650,10 @@ try:
     _KO = {}
     for _g in _csv.DictReader(_io.StringIO(_gtxt)):
         if _g.get("season") != "2026" or str(_g.get("week")) != str(W) or not _g.get("gameday"): continue
-        try: _t = dt.datetime.strptime(f"{_g['gameday']} {_g.get('gametime') or '13:00'}", "%Y-%m-%d %H:%M").replace(tzinfo=dt.timezone(dt.timedelta(hours=-4)))  # nflverse times are US Eastern (EDT until Nov 1)
+        try: _t = dt.datetime.strptime(f"{_g['gameday']} {_g.get('gametime') or '13:00'}", "%Y-%m-%d %H:%M").replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/New_York"))  # nflverse times are US Eastern (EDT until Nov 1)
         except Exception: continue
-        if dt.date(2026, 11, 1) <= _t.date() < dt.date(2027, 3, 14): _t = _t.replace(tzinfo=dt.timezone(dt.timedelta(hours=-5)))
         for _k in ("home_team", "away_team"): _KO[_TM.get(_g[_k], _g[_k])] = _t
-    _nowu = dt.datetime.now(dt.timezone.utc); _PT = dt.timezone(dt.timedelta(hours=-7 if _nowu.date() < dt.date(2026, 11, 1) else -8))
+    _nowu = dt.datetime.now(dt.timezone.utc); _PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")
     _pp_ = (lambda n: (lambda r: float(r["pts_ppr"]) if r and r.get("pts_ppr") not in ("", None) else None)(PROJ.get(_nm(n)))) if "PROJ" in globals() else (lambda n: None)
     _nr = 0
     for lg, RL in R.get("leagues", {}).items():

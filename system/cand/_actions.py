@@ -13,7 +13,7 @@ _AMW = max(int(_ar.search(r"wk(\d+)", f).group(1)) for f in _ag.glob("/home/clau
 _AM = _aj.load(open(f"/home/claude/dksys/data/latest/meter/meter_wk{_AMW}.json"))
 _ALG = ["DK I", "DK II", "DK III", "DK IV"]
 _AKEY = {"DK I": "MOST", "DK II": "WINNERS", "DK III": "HERS&HIS", "DK IV": "NEXTDOOR"}
-_APT = _ad.timezone(_ad.timedelta(hours=-7))
+_APT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 _ANOW = _ad.datetime.now(_APT)
 _AG = _apd.read_csv("/home/claude/dksys/data/latest/games.csv", low_memory=False)
 _AG = _AG[(_AG.season == 2026) & (_AG.game_type == "REG")]
@@ -159,7 +159,7 @@ try:
     _rt = _ad.datetime.strptime(_ar.sub(r" PT$", "", _rp) if _ar.search(r" \d{4} ", _rp) else _ar.sub(r"^(\w{3} \w{3} \d{1,2}) ", r"\g<1> %d " % _ANOW.year, _ar.sub(r" PT$", "", _rp)), "%a %b %d %Y %I:%M %p").replace(tzinfo=_APT)
     _gw = _AG[_AG.week == _AMW]; _ends = []
     for _r in _gw.itertuples():
-        _k = _ad.datetime.strptime(f"{_r.gameday} {_r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=_ad.timezone(_ad.timedelta(hours=-4 if _ad.date.fromisoformat(_r.gameday) < _ad.date(2026, 11, 1) else -5)))
+        _k = _ad.datetime.strptime(f"{_r.gameday} {_r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/New_York"))
         _e = _k + _ad.timedelta(hours=3, minutes=30)
         if _e <= _ANOW: _ends.append((_e, f"{_r.away_team} at {_r.home_team}"))
     _late = [x for x in _ends if x[0] > _rt]
@@ -177,7 +177,7 @@ def _a_utc(pt):
     if not _ar.search(r" \d{4} ", s_): s_ = _ar.sub(r"^(\w{3} \w{3} \d{1,2}) ", r"\g<1> " + _AM["built_pt"].split()[3] + " ", s_)   # "Tue Oct 13 05:44 AM" has no year
     try: t = _ad.datetime.strptime(s_, "%a %b %d %Y %I:%M %p")
     except Exception: return None
-    return (t + _ad.timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return t.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(_ad.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 def _a_pl(p):
     gs = p.get("gs"); a = p.get("actual")
     when = "Final" if gs == "final" else "Bye" if gs == "nogame" else "In progress" if gs == "playing" else (p.get("kickoff") or "")

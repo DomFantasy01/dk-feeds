@@ -10,7 +10,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 GF="/usr/share/fonts/truetype/google-fonts/"
 for n,f in (("Pop","Poppins-Regular"),("PopB","Poppins-Bold")): pdfmetrics.registerFont(TTFont(n,GF+f+".ttf"))
-PT=dt.timezone(dt.timedelta(hours=-7)); now=dt.datetime.now(PT)
+PT=__import__("zoneinfo").ZoneInfo("America/Los_Angeles"); now=dt.datetime.now(PT)
 MON={1:"Jan.",2:"Feb.",3:"March",4:"April",5:"May",6:"June",7:"July",8:"Aug.",9:"Sept.",10:"Oct.",11:"Nov.",12:"Dec."}
 built=f"Built {now:%a} {MON[now.month]} {now.day}, {now.hour%12 or 12}:{now:%M} {'AM' if now.hour<12 else 'PM'} PT"
 try:

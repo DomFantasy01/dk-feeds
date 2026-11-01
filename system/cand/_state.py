@@ -10,7 +10,7 @@ import datetime as _sd
 try:
     from zoneinfo import ZoneInfo as _ZI; _ET = _ZI("America/New_York")
 except Exception:
-    _ET = _sd.timezone(_sd.timedelta(hours=-4))
+    _ET = _sd.timezone(_sd.timedelta(hours=-4 if 3 < _sd.datetime.utcnow().month < 11 else -5))   # fallback only if zoneinfo is missing
 _UTC = _sd.timezone.utc
 _NOWU = _sd.datetime.now(_UTC)
 _GAME = {}

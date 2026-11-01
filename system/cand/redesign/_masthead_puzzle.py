@@ -12,7 +12,7 @@ PZ_NFS=(9.0,9.0,9.0,7.6)
 # edge signs: + bumps toward +x / +y. Chosen so all four pieces differ (see notes).
 PZ_V={(0,1):+1,(0,0):-1,(1,1):+1,(1,0):-1,(2,1):-1,(2,0):+1}     # vertical line x, row
 PZ_H={(0,0):+1,(1,0):+1,(0,1):+1,(1,1):-1,(0,2):-1,(1,2):+1}     # horizontal line col, y
-def _pt(iso): return _dt.datetime.fromisoformat(iso)-_dt.timedelta(hours=7)      # UTC -> Pacific (PDT)
+def _pt(iso): return _dt.datetime.fromisoformat(iso).replace(tzinfo=_dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))      # UTC -> Pacific (PDT or PST)
 PZ_NOW=_dt.datetime.utcnow()
 PZ_STAMPS=[("Rosters",  "2026-10-03T17:45"),          # Yahoo
            ("Injuries", "2026-10-03T17:40"),          # NFL injury report via nflverse

@@ -42,7 +42,7 @@ TEAMFIX={"LAR":"LA"}
 def tm(t): t=t.upper(); return TEAMFIX.get(t,t)
 def norm(n):
     n=re.sub(r"[.'’\-]"," ",str(n).lower()); n=re.sub(r"\b(jr|sr|ii|iii|iv|v)\b","",n); return re.sub(r"\b([a-z])\s+(?=[a-z]\b)",r"\1"," ".join(n.split()))   # Oct 14: "d k metcalf" -> "dk metcalf"
-NOWPT=dt.datetime.now(dt.timezone(dt.timedelta(hours=-7)))
+NOWPT=dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
 QUIET="--quiet" in sys.argv
 
 # ================= inputs =================
@@ -259,7 +259,7 @@ def newscheck(p):
     bad=[x for x in about if (dt.datetime.now(dt.timezone.utc)-x[0]).days<=7 and (_BADNEWS.search(x[1]) or re.search(r"\bout\b",x[4]))]
     hits=about or hits
     x=bad[-1] if bad else hits[-1]
-    d_=x[0].astimezone(dt.timezone(dt.timedelta(hours=-7)))
+    d_=x[0].astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     line=f"{'NEWS FLAG - check before acting: ' if bad else 'news '}({x[3]}, {d_:%b} {d_.day}): {x[2]}"
     return line,bool(bad)
 def find(name,team,pos):
@@ -942,7 +942,7 @@ _wt=st.groupby("week").team.nunique() if len(st) else None   # Oct 23: a week co
 _GW=int(max([w for w,n in _wt.items() if n>=24] or [0])) if _wt is not None else 0
 _GX=int(st.week.max()) if len(st) else 0
 _GWS=f"Weeks 1-{_GW}"+(f" + Week {_GX} games so far" if _GX>_GW else "")
-_st0=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
+_st0=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
 _ststamp0=f"{_st0:%a} {_st0.hour%12 or 12}:{_st0:%M} {'AM' if _st0.hour<12 else 'PM'} PT"
 _REC=CF["record"]
 try:
@@ -1002,7 +1002,7 @@ for k,c in CLOSE.items():
 P("\nPROTECTED (Dom's call): "+", ".join(CF["protect"])+kills_str()+(" · PENDING: "+CF["pending"] if CF["pending"] else ""))
 if MISS: P("No 2026 games, not scored: "+", ".join(MISS))
 # ---- structured board for the Dispatch page (Dispatch voice: no "you/your", one decimal, capitalized labels)
-_stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
+_stt=dt.datetime.fromtimestamp(os.path.getmtime(f"{D}/stats_player_week_2026.csv"),dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
 _ststamp=f"{_stt:%a} {_stt.hour%12 or 12}:{_stt:%M} {'AM' if _stt.hour<12 else 'PM'} PT"
 BOARD=dict(league=CF["lab"],run=NOWPT.isoformat(),run_str=NOWPT.strftime('%a %b %d, %I:%M %p PT').replace(' 0',' '),
            depth=f"Built from real points and workload — {_GWS} of 2026 data, so read it as a direction · rosters {CF['rost_at']} · stats nflverse "+_ststamp,

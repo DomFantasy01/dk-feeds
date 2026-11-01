@@ -136,7 +136,7 @@ DL=W-M-13   # Oct 10: DELTA clear of its divider
 exec(open("/home/claude/cand/redesign/_oct10_fr.py").read())   # Oct 10: team-name capitals, the Scout mark in the MARKER column
 NUMBERS_NOTE=f"Gotham = ours: this week (pregame once played), next 3. Yahoo = now. Sleeper = league scoring. Actual = avg Wks 1–{WEEKN-1}. Red box: Gotham, Yahoo 4+ apart. Green glow: game on now."
 # ---- freshness stamps: every block reads one data build, so one time, no pile-up
-_PT23=_d23.timezone(_d23.timedelta(hours=-7))
+_PT23=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 def _iso23(k):
     p=MTR["sources"].get(k,{}).get("pulled_pt")
     if not p: return None

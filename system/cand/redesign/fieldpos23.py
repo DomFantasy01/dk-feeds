@@ -134,7 +134,7 @@ import pandas as _pd
 NX_=NX;B3=NX_+272;YH=NX_+303;GW=NX_+334;BR=NX_+365;AA=NX_+396;OPN=NX_+414;OPP=NX_+478;PAIR=(OPN-8,OPP+22)
 NUMBERS_NOTE=f"Sleeper = Sleeper, league scoring. Yahoo = Yahoo now. Gotham = our engine, this week and a game over his next three. Actual = his average, Weeks 1–{WEEKN-1}."
 # ---- freshness stamps: every block reads one data build, so one time, no pile-up
-_PT23=_d23.timezone(_d23.timedelta(hours=-7))
+_PT23=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 def _iso23(k):
     p=MTR["sources"].get(k,{}).get("pulled_pt")
     if not p: return None

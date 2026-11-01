@@ -103,7 +103,7 @@ cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
 from datetime import datetime, timedelta, timezone
 t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
-cur['stamp'] = (t + timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')
+cur['stamp'] = t.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 cur['source'] = f"Week {M['week']}: RATCLIFFE, GOTHAM and KOERNER per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
 cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), GOTHAM, KOERNER (FantasyLabs, same scoring; Ratcliffe where he has no line)], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
 # game weather (Oct 11): the Dispatch build's kickoff forecast, passed through for the Live page's sky pictures.
@@ -129,7 +129,7 @@ try:
     for _w in _wins:
         _d, _hm, _ap = _w.split()[0].upper(), _w.split()[1], _w.split()[2].upper()
         _t = datetime.strptime(f"{_tue + timedelta(days=_DOFF[_d])} {_hm} {_ap}", '%Y-%m-%d %I:%M %p')
-        _kicks.append([(_t + timedelta(hours=7 if 3 <= _t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')])
+        _kicks.append([_t.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')])
     _tw = {}
     for _L in M['leagues'].values():
         for _p in (_L['starters']['me'] + _L['starters']['op'] + (_L.get('bench') or [])):
@@ -148,7 +148,7 @@ def _utc(pt):
     if not re.search(r' \d{4} ', s_): s_ = re.sub(r'^(\w{3} \w{3} \d{1,2}) ', r'\g<1> ' + M['built_pt'].split()[3] + ' ', s_)   # "Tue Oct 13 05:44 AM" has no year
     try: t = datetime.strptime(s_, '%a %b %d %Y %I:%M %p')
     except Exception: return None
-    return (t + timedelta(hours=7 if 3 <= t.month <= 10 else 8)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    return t.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 H = dict(read=_utc(M['sources'].get('yahoo_matchups', {}).get('pulled_pt', '')), build=cur['stamp'], week=M['week'],
          alarms=len(M.get('alarms', [])), checked=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
 bf = _raw('dispatch_out/build_failed.json')
@@ -213,8 +213,7 @@ def _pt2utc(sx):
         sx = (sx or '').replace(' PT', '').strip()
         if not re.search(r' \d{4} ', sx): sx = re.sub(r'^(\w{3} \w{3} \d{1,2}) ', r'\g<1> ' + M['built_pt'].split()[3] + ' ', sx)
         tt = datetime.strptime(sx, '%a %b %d %Y %I:%M %p')
-        off = 7 if (tt.month, tt.day) < (11, 1) or (tt.month, tt.day) >= (3, 8) else 8
-        return (tt + timedelta(hours=off)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        return tt.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     except Exception: return None
 SRC = M.get('sources') or {}
 ST = {'checked': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),

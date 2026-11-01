@@ -74,7 +74,7 @@ for k, e in LOG.items():
                      claimed_gain=e.get('gain'), over_bar=(e.get('best_gain') or 0) >= 20, weeks=len(wks),
                      add_ppg=round(sum(a) / len(wks), 2), rep_ppg=round(sum(r) / len(wks), 2), net=round(sum(a) - sum(r), 2)))
 C = pd.DataFrame(rows)
-pt = dt.datetime.now(dt.timezone(dt.timedelta(hours=-7)))
+pt = dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
 out = [f"THE SCOUT REPORT CARD - graded {pt:%a %b %d %Y} {pt.hour % 12 or 12}:{pt:%M} {'AM' if pt.hour < 12 else 'PM'} PT. Every add the Scout put on a board,",
        "graded against the man on Dom's roster it would replace, in that league's scoring, every final week since the call.", ""]
 if not len(C):

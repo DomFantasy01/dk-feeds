@@ -11,7 +11,7 @@
 #    "alerts":{"status": "ok" | "failed" | "skipped", "detail": "ALERTS ... line"}}
 import json, sys, datetime as dt
 pre, post, steps = (json.load(open(p)) for p in sys.argv[1:4]); out = sys.argv[4]
-PT = dt.timezone(dt.timedelta(hours=-7))
+PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 def pt(iso):
     try: t = dt.datetime.fromisoformat(str(iso).replace("Z", "+00:00")).astimezone(PT)
     except Exception: return ""

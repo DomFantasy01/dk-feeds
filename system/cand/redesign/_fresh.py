@@ -1,7 +1,7 @@
 # Freshness stamps (Dom's doctrine): one "as of" per block, date AND time, always printed.
 # Times come from the source files themselves (or the ledger for browser reads). Gold = more than a day old at build.
 import json,os,datetime as _dt
-_PT=_dt.timezone(_dt.timedelta(hours=-7))
+_PT=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 FRESH=json.load(open("/home/claude/dksys/data/state/fresh.json"))
 BUILT=_dt.datetime.now(_PT)
 def ftime(k):

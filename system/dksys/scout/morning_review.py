@@ -23,7 +23,7 @@ import sys, os, re, json, glob, datetime as dt
 try:
     from zoneinfo import ZoneInfo; PT = ZoneInfo("America/Los_Angeles")
 except Exception:
-    PT = dt.timezone(dt.timedelta(hours=-7))
+    PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 
 LEAGUES = [("DK I", 1, "269381", 2), ("DK II", 2, "1519795", 7), ("DK III", 3, "1507991", 2), ("DK IV", 4, "864215", 6)]
 POS = ("QB", "RB", "WR", "TE")

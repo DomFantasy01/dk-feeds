@@ -28,7 +28,7 @@ def get(eid, pos, w):
 
 def main(repo="."):
     w = int(os.environ.get("DK_WEEK") or week())
-    now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-7)))
+    now = dt.datetime.now(dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     stamp = f"{now:%a %b} {now.day} {now:%Y} {now.hour % 12 or 12}:{now:%M} {'AM' if now.hour < 12 else 'PM'} PT"
     rows, log, got = [], [], 0
     for eid, name in EXPERTS:

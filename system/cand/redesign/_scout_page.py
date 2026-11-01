@@ -62,7 +62,7 @@ def scout_page(c,pg,lab,k):
         _EMT=(f'<font name="PopB" color="#3E5FA8">Expert Moves</font>  <font size="7">(read {_esc(_EM.get("now_read","?"))})</font>  '+("  ·  ".join(_EB) if _EB else "no big moves on your roster"))
         _MPT=(_MPT+"<br/>"+_EMT) if _MPT else _EMT
     except Exception: pass
-    today=_dts.datetime.now(_dts.timezone(_dts.timedelta(hours=-7))).date()
+    today=_dts.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).date()
     def dage(first): return max(0,(today-_dts.date.fromisoformat(first)).days)
     def age(first):
         d=(today-_dts.date.fromisoformat(first)).days

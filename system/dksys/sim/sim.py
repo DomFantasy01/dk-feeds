@@ -233,7 +233,7 @@ def lineup_swaps(L, noise, n=N, seed=11):
 def main():
     noise = Noise(f"{REPO}/dispatch_out/scoreboard/graded.csv")
     od = f"{REPO}/dispatch_out/sim"; os.makedirs(od, exist_ok=True)
-    now_pt = dt.datetime.now(dt.timezone(dt.timedelta(hours=-7)))
+    now_pt = dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     stamp = f"{now_pt:%a %b} {now_pt.day}, {now_pt.hour % 12 or 12}:{now_pt:%M} {'AM' if now_pt.hour < 12 else 'PM'} PT"
     J = dict(run=stamp, sims=N, noise={p: dict(a=round(a, 2), b=round(b, 3), n=noise.n[p]) for p, (a, b) in noise.fit.items()}, leagues={})
     T = [f"THE SIMULATOR - {stamp} - {N:,} seasons per league, best lineups for everyone, misses drawn from {sum(noise.n.values())} graded projections"]

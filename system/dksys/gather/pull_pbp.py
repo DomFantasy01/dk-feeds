@@ -10,5 +10,5 @@ def main():
     now=datetime.datetime.now(datetime.timezone.utc)
     print('HTTP', status, os.path.getsize(DST), 'bytes', '%.1fs'%(time.time()-t))
     print('pulled', now.strftime('%Y-%m-%d %H:%M UTC'), '/',
-          (now-datetime.timedelta(hours=7)).strftime('%H:%M PT'))
+          now.astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).strftime('%H:%M PT'))
 if __name__=='__main__': main()

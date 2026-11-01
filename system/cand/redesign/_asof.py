@@ -4,7 +4,7 @@
 # same meter file every page uses, so every page shows the same light.
 import datetime as _aod, json as _aoj, glob as _aog
 from reportlab.lib.colors import HexColor as _AOH
-_AO_PT=_aod.timezone(_aod.timedelta(hours=-7))
+_AO_PT=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")
 _AO_MON={1:"Jan.",2:"Feb.",3:"March",4:"April",5:"May",6:"June",7:"July",8:"Aug.",9:"Sept.",10:"Oct.",11:"Nov.",12:"Dec."}
 def _ao_now(): return _aod.datetime.now(_AO_PT)
 def _ao_fmt(t): return f"{t:%a} {_AO_MON[t.month]} {t.day}, {t.hour%12 or 12}:{t:%M} {'AM' if t.hour<12 else 'PM'} PT"

@@ -14,7 +14,7 @@ REDIRECT = "https://localhost"
 TOKEN_URL = "https://api.login.yahoo.com/oauth2/get_token"
 API = "https://fantasysports.yahooapis.com/fantasy/v2/"
 NS = {"y": "http://fantasysports.yahooapis.com/fantasy/v2/base.rng"}
-PT = dt.timezone(dt.timedelta(hours=-7))          # PDT; the stamp text says PT (shifts an hour after Nov 1, like the rest)
+PT = __import__("zoneinfo").ZoneInfo("America/Los_Angeles")          # PDT; the stamp text says PT (shifts an hour after Nov 1, like the rest)
 
 def now_pt(): return dt.datetime.now(dt.timezone.utc).astimezone(PT)
 def stamp(t): return f"{t:%a} {t:%b} {t.day} {t.hour % 12 or 12}:{t:%M} {'AM' if t.hour < 12 else 'PM'} PT"

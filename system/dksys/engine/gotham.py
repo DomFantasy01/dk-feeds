@@ -29,7 +29,7 @@ if r.returncode: print(r.stderr[-3000:]); raise SystemExit('GOTHAM FAILED: engin
 P=pd.read_csv(D+'stats_week_2025.csv',low_memory=False); P=P[P.season_type=='REG'].fillna(0).copy(); P['k']=P.player_display_name.fillna('').astype(str).map(norm)
 S=pd.read_csv(D+'stats_week.csv',low_memory=False); S=S[(S.season_type=='REG')&(S.week<WEEK)].copy(); S['k']=S.player_display_name.fillna('').astype(str).map(norm)
 NG=S.groupby('k').size()
-stamp=dt.datetime.now(dt.timezone(dt.timedelta(hours=-7))).strftime('%a %b %d %Y %I:%M %p PT')
+stamp=dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).strftime('%a %b %d %Y %I:%M %p PT')
 LGK={'DKI':1,'DKII':2,'DKIII':3,'DKIV':4}; summary={}
 try:   # Oct 21 (Dom): jobs inherited from a man out for the season - last season's number is left out for whoever took the job
     OUTS=set(json.load(open(os.path.join(HERE,'outseason.json'))))
