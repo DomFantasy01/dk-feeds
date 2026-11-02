@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-11-02T02:13:34+00:00",
+ "pulled_utc": "2026-11-02T02:28:37+00:00",
  "probes": {
   "espn_injuries_team1": {
    "answered": true,
@@ -17,7 +17,7 @@
   },
   "espn_fantasy_player_news": {
    "answered": false,
-   "error": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
+   "error": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   "cbs_nfl_rss": {
    "answered": true,
@@ -30,8 +30,8 @@
    "answered": true,
    "kind": "rss",
    "items": 50,
-   "newest_utc": "2026-11-02T02:06+00:00",
-   "bytes": 306360
+   "newest_utc": "2026-11-02T02:22+00:00",
+   "bytes": 294601
   },
   "pft_rss_old": {
    "answered": true,
@@ -47,9 +47,9 @@
   "google_news_nfl_injury": {
    "answered": true,
    "kind": "rss",
-   "items": 30,
+   "items": 31,
    "newest_utc": "2026-11-02T01:59+00:00",
-   "bytes": 42855
+   "bytes": 43975
   },
   "rotowire_mirror": {
    "answered": false,
