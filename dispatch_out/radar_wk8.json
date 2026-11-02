@@ -1,48 +1,48 @@
 {
  "week": 8,
- "built": "Sun Nov 1 10:40 PM PT",
- "built_utc": "2026-11-02T06:40:20.735602+00:00",
+ "built": "Mon Nov 2 12:48 AM PT",
+ "built_utc": "2026-11-02T08:48:44.616591+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Nov 1 10:35 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 2 12:43 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 1586,
-   "newest": "1.2 h ago",
+   "newest": "3.4 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Nov 1 10:35 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 5082,
-   "newest": "28 min ago",
+   "pulled": "Mon Nov 2 12:43 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 5087,
+   "newest": "48 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Nov 1 10:35 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 1284,
-   "newest": "12 min ago",
+   "pulled": "Mon Nov 2 12:43 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 1285,
+   "newest": "1.4 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Nov 1 10:35 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 2 12:43 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 374,
-   "newest": "1.2 h ago",
+   "newest": "3.4 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Nov 1 10:35 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 2 12:43 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Nov 1 10:38 PM PT",
-   "pulled_ago": "2 min ago",
+   "pulled": "Mon Nov 2 12:46 AM PT",
+   "pulled_ago": "3 min ago",
    "items": 771,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Nov 01 2026 10:38 PM PT",
+   "pulled": "Mon Nov 02 2026 12:46 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Nov 1 3:45 PM PT",
-   "pulled_ago": "6.9 h ago",
+   "pulled_ago": "9.1 h ago",
    "items": 339,
    "newest": null,
    "warn": "over 6 h old",
@@ -92,7 +92,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "red",
       "grades": [
        "bad"
@@ -128,61 +128,27 @@
      "trend": -0.38
     },
     {
-     "name": "Stefon Diggs",
-     "pos": "WR",
-     "team": "WAS",
-     "slot": "W/R/T",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 30 3:27 PM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Cleared to Play on Sunday Night Football",
-       "text": "Washington Commanders wide receiver Stefon Diggs (hand, hamstring) is off the final Week 8 injury report and will be active [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Oct 28 7:54 PM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Expected to Return to Practice on Thursday",
-       "text": "According to Tashan Reed of The Washington Post, Washington Commanders head coach Dan Quinn said that wide receiver Stefon Diggs [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Mon Oct 26 10:52 AM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Won't See a Workload Change with Teammate's Injury",
-       "text": "Washington Commanders veteran wide receiver Stefon Diggs (hamstring) missed the team's Week 5 tie with the Giants and again appeared [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 12.8,
-     "gotham_ros": 13.3,
-     "sleeper": 12.5,
-     "workload": "10/8/7/9/8/7",
-     "trend": -0.14
-    },
-    {
      "name": "Jaylen Warren",
      "pos": "RB",
      "team": "PIT",
      "slot": "RB",
      "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "grey",
+      "count": 3,
+      "recency": 1,
+      "color": "gold",
       "grades": [
+       "caution",
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 1 11:03 PM PT",
+       "src": "rotoballer",
+       "title": "Jaylen Warren Remains Effective Despite Heavier Backfield Split",
+       "text": "Pittsburgh Steelers running back Jaylen Warren rushed for 143 yards and a touchdown on 17 carries in his team's 27-6 [&#8230;]",
+       "grade": "caution"
+      },
       {
        "t": "Sun Nov 1 1:17 PM PT",
        "src": "ESPN news",
@@ -195,13 +161,6 @@
        "src": "pft",
        "title": "Jaylen Warren rushes for 143 on his birthday, Steelers beat Browns 27-6",
        "text": "The streak continues for the Steelers and Browns in Pittsburgh.",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 30 6:56 PM PT",
-       "src": "rotoballer",
-       "title": "Jaylen Warren Should Remain Locked Into Lineups Against Browns",
-       "text": "Pittsburgh Steelers running back Jaylen Warren eclipsed 100 rushing yards for the third time this season last week and will [&#8230;]",
        "grade": "note"
       }
      ],
@@ -217,14 +176,21 @@
      "team": "WAS",
      "slot": "QB",
      "marker": {
-      "count": 2,
-      "recency": 0,
+      "count": 3,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 1 11:21 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels, Commanders 'keep fighting through adversity,' improve to 2-4-1",
+       "text": "After falling behind 10-0 in the first half, quarterback Jayden Daniels led the Washington Commanders on a rousing rally, cruising to a 27-10 win over the Philadelphia Eagles at Northwest Stadium, an effort in which he threw for 217 yards and a touchdown.",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 1 8:49 PM PT",
        "src": "RotoWire news",
@@ -237,13 +203,6 @@
        "src": "ESPN news",
        "title": "Jayden Daniels throws TD pass and Commanders shut out Eagles over final 3 quarters of 27-10 win",
        "text": "\u2014 Jayden Daniels threw for 217 yards and a touchdown, and the Washington Commanders shut out the Philadelphia Eagles over the final three quarters of a 27-10 victory on Sunday night.",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Oct 21 2:31 AM PT",
-       "src": "pft",
-       "title": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field",
-       "text": "One of the lingering questions from this week's Monday Night Football relates to the perception that Commanders coach Dan Quinn didn't know his team was facing a fourth-and-two play from the San Francisco 13 when it was, you know, facing a fourth-and-two play ",
        "grade": "note"
       }
      ],
@@ -260,7 +219,7 @@
      "slot": "WR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -302,7 +261,7 @@
      "slot": "WR",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -344,7 +303,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -380,13 +339,55 @@
      "trend": -0.31
     },
     {
+     "name": "Stefon Diggs",
+     "pos": "WR",
+     "team": "WAS",
+     "slot": "W/R/T",
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Oct 30 3:27 PM PT",
+       "src": "rotoballer",
+       "title": "Stefon Diggs Cleared to Play on Sunday Night Football",
+       "text": "Washington Commanders wide receiver Stefon Diggs (hand, hamstring) is off the final Week 8 injury report and will be active [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Wed Oct 28 7:54 PM PT",
+       "src": "rotoballer",
+       "title": "Stefon Diggs Expected to Return to Practice on Thursday",
+       "text": "According to Tashan Reed of The Washington Post, Washington Commanders head coach Dan Quinn said that wide receiver Stefon Diggs [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Mon Oct 26 10:52 AM PT",
+       "src": "rotoballer",
+       "title": "Stefon Diggs Won't See a Workload Change with Teammate's Injury",
+       "text": "Washington Commanders veteran wide receiver Stefon Diggs (hamstring) missed the team's Week 5 tie with the Giants and again appeared [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 12.8,
+     "gotham_ros": 13.3,
+     "sleeper": 12.5,
+     "workload": "10/8/7/9/8/7",
+     "trend": -0.14
+    },
+    {
      "name": "Travis Kelce",
      "pos": "TE",
      "team": "KC",
      "slot": "TE",
      "marker": {
       "count": 2,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -428,7 +429,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -470,7 +471,7 @@
      "slot": "IR",
      "marker": {
       "count": 2,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "note"
@@ -512,7 +513,7 @@
      "slot": "BN",
      "marker": {
       "count": 5,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "caution",
@@ -547,90 +548,6 @@
      "sleeper": null,
      "workload": "27/24/28/28/19/42/23",
      "trend": 0.09
-    },
-    {
-     "name": "Tyler Shough",
-     "pos": "QB",
-     "team": "NO",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 25 4:30 PM PT",
-       "src": "ESPN news",
-       "title": "Even Tyler Shough can't save Saints as run game falls to new lows",
-       "text": "The Saints' run game wasn't just bad in the loss to Pittsburgh -- it struggled on levels unseen in several decades.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 25 7:32 AM PT",
-       "src": "pft",
-       "title": "Saints benefit from questionable replay review on T.J. Watt strip sack of Tyler Shough",
-       "text": "What appeared to be a Saints turnover was overturned on replay, leading to a Saints field goal in Paris.",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 23 6:40 PM PT",
-       "src": "rotoballer",
-       "title": "Tyler Shough Faces Tough Test After Productive Week 6",
-       "text": "New Orleans Saints quarterback Tyler Shough completed 16 of 30 passes for 144 yards and three touchdowns, adding five carries [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 21.7,
-     "sleeper": null,
-     "workload": "63/50/44/52/25/39/43",
-     "trend": -0.08
-    },
-    {
-     "name": "Kaelon Black",
-     "pos": "RB",
-     "team": "SF",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 25 5:29 PM PT",
-       "src": "RotoWire news",
-       "title": "Kaelon Black: Efficient with expanded opportunity",
-       "text": "Black rushed 12 times for 63 yards and a touchdown and brought in one of three targets for minus-4 yards in the 49ers' 29-20 loss to the Falcons on Sunday. He also returned one kickoff for 34 yards.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 25 3:56 PM PT",
-       "src": "rotoballer",
-       "title": "Kaelon Black Sees Increased Opportunity in Loss",
-       "text": "San Francisco 49ers running back Kaelon Black struggled early on during Sunday's game, but he was able to turn it [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Oct 24 8:06 PM PT",
-       "src": "rotoballer",
-       "title": "Kaelon Black a Top Handcuff to Roster in Fantasy Football",
-       "text": "San Francisco 49ers running back Kaelon Black currently lacks standalone value in his role as the No. 2 ball-carrier behind [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 7.1,
-     "sleeper": null,
-     "workload": "16/9/8/9/6/12/21",
-     "trend": 0.73
     }
    ],
    "in": [
@@ -639,11 +556,11 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #2 (402,304 in 24 h)"
+      "Sleeper adds #2 (417,496 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -676,11 +593,11 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #18 (91,656 in 24 h)"
+      "Sleeper adds #18 (89,991 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -714,11 +631,11 @@
      "team": "NE",
      "why": [
       "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #16 (95,290 in 24 h)"
+      "Sleeper adds #16 (93,295 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -755,7 +672,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -796,12 +713,12 @@
      "team": "TEN",
      "why": [
       "good news",
-      "Sleeper adds #19 (86,292 in 24 h)"
+      "Sleeper adds #21 (83,164 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -840,11 +757,11 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #17 (91,926 in 24 h)"
+      "Sleeper adds #17 (91,806 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -877,11 +794,11 @@
      "pos": "RB",
      "team": "LAC",
      "why": [
-      "Sleeper adds #15 (101,270 in 24 h)"
+      "Sleeper adds #15 (99,200 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "note"
@@ -915,12 +832,12 @@
      "team": "PHI",
      "why": [
       "good news",
-      "Sleeper adds #25 (74,039 in 24 h)"
+      "Sleeper adds #25 (72,149 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -956,7 +873,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -993,7 +910,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -1030,7 +947,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -1074,8 +991,8 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -1117,7 +1034,7 @@
      "team": "GB",
      "marker": {
       "count": 5,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "caution",
@@ -1160,7 +1077,7 @@
      "slot": "WR",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good",
@@ -1203,7 +1120,7 @@
      "slot": "WR",
      "marker": {
       "count": 4,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1245,7 +1162,7 @@
      "slot": "RB",
      "marker": {
       "count": 4,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1286,14 +1203,21 @@
      "team": "WAS",
      "slot": "Q/W/R/T",
      "marker": {
-      "count": 2,
-      "recency": 0,
+      "count": 3,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 1 11:21 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels, Commanders 'keep fighting through adversity,' improve to 2-4-1",
+       "text": "After falling behind 10-0 in the first half, quarterback Jayden Daniels led the Washington Commanders on a rousing rally, cruising to a 27-10 win over the Philadelphia Eagles at Northwest Stadium, an effort in which he threw for 217 yards and a touchdown.",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 1 8:49 PM PT",
        "src": "RotoWire news",
@@ -1306,13 +1230,6 @@
        "src": "ESPN news",
        "title": "Jayden Daniels throws TD pass and Commanders shut out Eagles over final 3 quarters of 27-10 win",
        "text": "\u2014 Jayden Daniels threw for 217 yards and a touchdown, and the Washington Commanders shut out the Philadelphia Eagles over the final three quarters of a 27-10 victory on Sunday night.",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Oct 21 2:31 AM PT",
-       "src": "pft",
-       "title": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field",
-       "text": "One of the lingering questions from this week's Monday Night Football relates to the perception that Commanders coach Dan Quinn didn't know his team was facing a fourth-and-two play from the San Francisco 13 when it was, you know, facing a fourth-and-two play ",
        "grade": "note"
       }
      ],
@@ -1329,7 +1246,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1371,7 +1288,7 @@
      "slot": "QB",
      "marker": {
       "count": 5,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1413,7 +1330,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1455,7 +1372,7 @@
      "slot": "WR",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1497,7 +1414,7 @@
      "slot": "TE",
      "marker": {
       "count": 2,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -1539,7 +1456,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -1581,7 +1498,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -1623,7 +1540,7 @@
      "slot": "IR",
      "marker": {
       "count": 2,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "note"
@@ -1665,7 +1582,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 5,
+      "recency": 6,
       "color": "grey",
       "grades": [
        "caution",
@@ -1708,11 +1625,11 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #2 (402,304 in 24 h)"
+      "Sleeper adds #2 (417,496 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -1745,11 +1662,11 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #8 (189,504 in 24 h)"
+      "Sleeper adds #7 (194,571 in 24 h)"
      ],
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -1783,11 +1700,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #21 (83,520 in 24 h)"
+      "Sleeper adds #20 (84,216 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -1827,11 +1744,11 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #18 (91,656 in 24 h)"
+      "Sleeper adds #18 (89,991 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -1865,11 +1782,11 @@
      "team": "NE",
      "why": [
       "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #16 (95,290 in 24 h)"
+      "Sleeper adds #16 (93,295 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -1906,7 +1823,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -1947,12 +1864,12 @@
      "team": "TEN",
      "why": [
       "good news",
-      "Sleeper adds #19 (86,292 in 24 h)"
+      "Sleeper adds #21 (83,164 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -1991,11 +1908,11 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #17 (91,926 in 24 h)"
+      "Sleeper adds #17 (91,806 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -2028,11 +1945,11 @@
      "pos": "RB",
      "team": "LAC",
      "why": [
-      "Sleeper adds #15 (101,270 in 24 h)"
+      "Sleeper adds #15 (99,200 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "note"
@@ -2069,7 +1986,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -2106,7 +2023,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -2150,8 +2067,8 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -2188,38 +2105,39 @@
    ],
    "opp": [
     {
-     "name": "Stefon Diggs",
-     "pos": "WR",
-     "team": "WAS",
+     "name": "Jaylen Warren",
+     "pos": "RB",
+     "team": "PIT",
      "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
+      "count": 3,
+      "recency": 1,
+      "color": "gold",
       "grades": [
-       "good"
+       "caution",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Fri Oct 30 3:27 PM PT",
+       "t": "Sun Nov 1 11:03 PM PT",
        "src": "rotoballer",
-       "title": "Stefon Diggs Cleared to Play on Sunday Night Football",
-       "text": "Washington Commanders wide receiver Stefon Diggs (hand, hamstring) is off the final Week 8 injury report and will be active [&#8230;]",
-       "grade": "good"
+       "title": "Jaylen Warren Remains Effective Despite Heavier Backfield Split",
+       "text": "Pittsburgh Steelers running back Jaylen Warren rushed for 143 yards and a touchdown on 17 carries in his team's 27-6 [&#8230;]",
+       "grade": "caution"
       },
       {
-       "t": "Wed Oct 28 7:54 PM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Expected to Return to Practice on Thursday",
-       "text": "According to Tashan Reed of The Washington Post, Washington Commanders head coach Dan Quinn said that wide receiver Stefon Diggs [&#8230;]",
-       "grade": "good"
+       "t": "Sun Nov 1 1:17 PM PT",
+       "src": "ESPN news",
+       "title": "Steelers bulldoze Browns 27-6 to take AFC North lead, extend home streak over rivals to 23 straight",
+       "text": "\u2014 Jaylen Warren tied a career high with 143 yards rushing and a touchdown on his 28th birthday, and the Pittsburgh Steelers moved into first place in the AFC North by drilling Cleveland 27-6 on...",
+       "grade": "note"
       }
      ],
-     "gotham": 12.8,
-     "gotham_ros": 13.3,
-     "sleeper": 12.5,
-     "workload": "10/8/7/9/8/7",
-     "trend": -0.14
+     "gotham": 25.6,
+     "gotham_ros": 20.9,
+     "sleeper": 18.3,
+     "workload": "24/19/28/31/26/23/29/25",
+     "trend": 0.03
     }
    ]
   },
@@ -2235,7 +2153,7 @@
      "slot": "RB",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good",
@@ -2278,7 +2196,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2319,14 +2237,21 @@
      "team": "WAS",
      "slot": "QB",
      "marker": {
-      "count": 2,
-      "recency": 0,
+      "count": 3,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 1 11:21 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels, Commanders 'keep fighting through adversity,' improve to 2-4-1",
+       "text": "After falling behind 10-0 in the first half, quarterback Jayden Daniels led the Washington Commanders on a rousing rally, cruising to a 27-10 win over the Philadelphia Eagles at Northwest Stadium, an effort in which he threw for 217 yards and a touchdown.",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 1 8:49 PM PT",
        "src": "RotoWire news",
@@ -2339,13 +2264,6 @@
        "src": "ESPN news",
        "title": "Jayden Daniels throws TD pass and Commanders shut out Eagles over final 3 quarters of 27-10 win",
        "text": "\u2014 Jayden Daniels threw for 217 yards and a touchdown, and the Washington Commanders shut out the Philadelphia Eagles over the final three quarters of a 27-10 victory on Sunday night.",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Oct 21 2:31 AM PT",
-       "src": "pft",
-       "title": "Dan Quinn tells Jayden Daniels to \"take your shot\" even then there's a penalty flag on the field",
-       "text": "One of the lingering questions from this week's Monday Night Football relates to the perception that Commanders coach Dan Quinn didn't know his team was facing a fourth-and-two play from the San Francisco 13 when it was, you know, facing a fourth-and-two play ",
        "grade": "note"
       }
      ],
@@ -2362,7 +2280,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2403,14 +2321,21 @@
      "team": "MIN",
      "slot": "TE",
      "marker": {
-      "count": 1,
-      "recency": 0,
+      "count": 2,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 1 11:18 PM PT",
+       "src": "rotoballer",
+       "title": "T.J. Hockenson Provides Steady Production in Vikings' Loss",
+       "text": "Minnesota Vikings tight end T.J. Hockenson collected four of five targets for 58 yards and a touchdown in Sunday's 19-15 [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 1 7:25 PM PT",
        "src": "RotoWire news",
@@ -2423,13 +2348,6 @@
        "src": "rotoballer",
        "title": "T.J. Hockenson Deserves Lineup Consideration Against Lions",
        "text": "Minnesota Vikings tight end T.J. Hockenson is a fringe TE1 when his team travels to Detroit to play the Lions [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Oct 26 1:39 PM PT",
-       "src": "rotoballer",
-       "title": "T.J. Hockenson Emerging as a Potential Tight End Solution",
-       "text": "Minnesota Vikings tight end T.J. Hockenson was one of the few players on his team's offense to have a productive [&#8230;]",
        "grade": "note"
       }
      ],
@@ -2446,7 +2364,7 @@
      "slot": "WR",
      "marker": {
       "count": 5,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2488,7 +2406,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2530,7 +2448,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2572,7 +2490,7 @@
      "slot": "WR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2614,7 +2532,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -2656,7 +2574,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 5,
+      "recency": 6,
       "color": "grey",
       "grades": [
        "caution",
@@ -2699,7 +2617,7 @@
      "slot": "IR",
      "marker": {
       "count": 1,
-      "recency": 5,
+      "recency": 6,
       "color": "grey",
       "grades": [
        "note"
@@ -2733,48 +2651,6 @@
      "sleeper": null,
      "workload": "3/5/4",
      "trend": 0.1
-    },
-    {
-     "name": "Devaughn Vele",
-     "pos": "WR",
-     "team": "NO",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 25 11:28 AM PT",
-       "src": "RotoWire news",
-       "title": "Devaughn Vele: Finds end zone in Paris",
-       "text": "Vele caught all five of his targets for 54 yards and a touchdown in Sunday's 16-10 loss to the Steelers.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 25 10:47 AM PT",
-       "src": "rotoballer",
-       "title": "Devaughn Vele Efficient, Finds End Zone in Loss to Steelers",
-       "text": "New Orleans Saints wide receiver Devaughn Vele had an efficient effort and found the end zone in a 16-10 loss [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 23 10:59 PM PT",
-       "src": "rotoballer",
-       "title": "Devaughn Vele Remains a Viable FLEX Option Against Steelers",
-       "text": "New Orleans Saints wide receiver Devaughn Vele recorded three receptions for 42 yards in Week 6's win over the Giants. [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 11.1,
-     "sleeper": null,
-     "workload": "10/8/7/11/6/6/6",
-     "trend": -0.26
     }
    ],
    "in": [
@@ -2783,11 +2659,11 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #2 (402,304 in 24 h)"
+      "Sleeper adds #2 (417,496 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -2820,11 +2696,11 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #8 (189,504 in 24 h)"
+      "Sleeper adds #7 (194,571 in 24 h)"
      ],
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -2858,11 +2734,11 @@
      "team": "NE",
      "why": [
       "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #16 (95,290 in 24 h)"
+      "Sleeper adds #16 (93,295 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -2899,7 +2775,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -2940,12 +2816,12 @@
      "team": "TEN",
      "why": [
       "good news",
-      "Sleeper adds #19 (86,292 in 24 h)"
+      "Sleeper adds #21 (83,164 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -2984,11 +2860,11 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #17 (91,926 in 24 h)"
+      "Sleeper adds #17 (91,806 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -3022,12 +2898,12 @@
      "team": "PHI",
      "why": [
       "good news",
-      "Sleeper adds #25 (74,039 in 24 h)"
+      "Sleeper adds #25 (72,149 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -3063,7 +2939,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -3100,7 +2976,7 @@
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -3140,11 +3016,11 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #18 (91,656 in 24 h)"
+      "Sleeper adds #18 (89,991 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -3177,11 +3053,11 @@
      "pos": "RB",
      "team": "LAC",
      "why": [
-      "Sleeper adds #15 (101,270 in 24 h)"
+      "Sleeper adds #15 (99,200 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "note"
@@ -3218,8 +3094,8 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -3262,56 +3138,13 @@
    "unread": [],
    "own": [
     {
-     "name": "Isiah Pacheco",
-     "pos": "RB",
-     "team": "DET",
-     "slot": "IR",
-     "marker": {
-      "count": 3,
-      "recency": 2,
-      "color": "red",
-      "grades": [
-       "bad",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 30 10:37 AM PT",
-       "src": "rotoballer",
-       "title": "Isiah Pacheco Has a Chance of Returning in 2026",
-       "text": "Detroit Lions running back Isiah Pacheco (back) has not played a game since signing a one-year deal in the offseason, [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 30 10:09 AM PT",
-       "src": "RotoWire news",
-       "title": "Isiah Pacheco: Still targeting December return",
-       "text": "Lions coach Dan Campbell said Friday that Pacheco (back) has a chance to return in late December, Justin Rogers of DetroitFootball.net reports.",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Oct 30 10:09 AM PT",
-       "src": "ESPN injury report",
-       "title": "Isiah Pacheco: Injured Reserve (Back)",
-       "text": "Lions coach Dan Campbell said Friday that Pacheco (back) has a chance to return in late December, Justin Rogers of DetroitFootball.net reports.",
-       "grade": "bad"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": null,
-     "workload": NaN,
-     "trend": null
-    },
-    {
      "name": "Dak Prescott",
      "pos": "QB",
      "team": "DAL",
      "slot": "QB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3353,7 +3186,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3395,7 +3228,7 @@
      "slot": "BN",
      "marker": {
       "count": 4,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3437,7 +3270,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3479,7 +3312,7 @@
      "slot": "WR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3521,7 +3354,7 @@
      "slot": "Q/W/R/T",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3563,7 +3396,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3605,7 +3438,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3647,7 +3480,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -3689,7 +3522,7 @@
      "slot": "TE",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -3731,7 +3564,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -3767,13 +3600,56 @@
      "trend": 0.2
     },
     {
+     "name": "Isiah Pacheco",
+     "pos": "RB",
+     "team": "DET",
+     "slot": "IR",
+     "marker": {
+      "count": 3,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "bad",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Oct 30 10:37 AM PT",
+       "src": "rotoballer",
+       "title": "Isiah Pacheco Has a Chance of Returning in 2026",
+       "text": "Detroit Lions running back Isiah Pacheco (back) has not played a game since signing a one-year deal in the offseason, [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 30 10:09 AM PT",
+       "src": "RotoWire news",
+       "title": "Isiah Pacheco: Still targeting December return",
+       "text": "Lions coach Dan Campbell said Friday that Pacheco (back) has a chance to return in late December, Justin Rogers of DetroitFootball.net reports.",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Oct 30 10:09 AM PT",
+       "src": "ESPN injury report",
+       "title": "Isiah Pacheco: Injured Reserve (Back)",
+       "text": "Lions coach Dan Campbell said Friday that Pacheco (back) has a chance to return in late December, Justin Rogers of DetroitFootball.net reports.",
+       "grade": "bad"
+      }
+     ],
+     "gotham": null,
+     "gotham_ros": null,
+     "sleeper": null,
+     "workload": NaN,
+     "trend": null
+    },
+    {
      "name": "James Conner",
      "pos": "RB",
      "team": "ARI",
      "slot": "IR",
      "marker": {
       "count": 1,
-      "recency": 5,
+      "recency": 6,
       "color": "grey",
       "grades": [
        "note"
@@ -3815,7 +3691,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "note"
@@ -3849,48 +3725,6 @@
      "sleeper": null,
      "workload": "41/59/30/34/42/35/31",
      "trend": -0.19
-    },
-    {
-     "name": "Marvin Harrison Jr.",
-     "pos": "WR",
-     "team": "ARI",
-     "slot": "BN",
-     "marker": {
-      "count": 3,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Oct 25 7:50 PM PT",
-       "src": "pft",
-       "title": "Travis Kelce moves to No. 5 all-time in receptions, passes Marvin Harrison, Cris Carter",
-       "text": "The Chiefs have been mostly stymied on offense throughout Sunday night\u2019s matchup with the Seahawks.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 25 6:44 PM PT",
-       "src": "rotoballer",
-       "title": "Kendrick Bourne Produces a Dud in Week 7 Loss to Denver",
-       "text": "Arizona Cardinals wide receiver Kendrick Bourne became an interesting waiver-wire pickup when the Cardinals traded former first-rounder Marvin Harrison Jr. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Oct 25 2:25 PM PT",
-       "src": "RotoWire news",
-       "title": "Marvin Harrison Jr.: Gets first TD with Texans",
-       "text": "Harrison caught one of four targets for a six-yard touchdown in Sunday's 27-21 overtime loss to the Giants.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 6.9,
-     "gotham_ros": 6.8,
-     "sleeper": null,
-     "workload": "3/1/5/5",
-     "trend": 0.74
     }
    ],
    "in": [
@@ -3899,11 +3733,11 @@
      "pos": "RB",
      "team": "ARI",
      "why": [
-      "Sleeper adds #4 (235,890 in 24 h)"
+      "Sleeper adds #4 (242,930 in 24 h)"
      ],
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -3936,11 +3770,11 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #2 (402,304 in 24 h)"
+      "Sleeper adds #2 (417,496 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -3973,11 +3807,11 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #8 (189,504 in 24 h)"
+      "Sleeper adds #7 (194,571 in 24 h)"
      ],
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -4011,11 +3845,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #21 (83,520 in 24 h)"
+      "Sleeper adds #20 (84,216 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -4055,11 +3889,11 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #18 (91,656 in 24 h)"
+      "Sleeper adds #18 (89,991 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -4096,8 +3930,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -4129,11 +3963,11 @@
      "pos": "WR",
      "team": "TB",
      "why": [
-      "Sleeper adds #23 (82,614 in 24 h)"
+      "Sleeper adds #23 (79,980 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -4167,11 +4001,11 @@
      "team": "NE",
      "why": [
       "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #16 (95,290 in 24 h)"
+      "Sleeper adds #16 (93,295 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -4204,12 +4038,12 @@
      "pos": "RB",
      "team": "CIN",
      "why": [
-      "Sleeper adds #5 (227,436 in 24 h)"
+      "Sleeper adds #6 (221,948 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "gold",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "note"
       ]
@@ -4242,12 +4076,12 @@
      "team": "TEN",
      "why": [
       "good news",
-      "Sleeper adds #19 (86,292 in 24 h)"
+      "Sleeper adds #21 (83,164 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -4286,11 +4120,11 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #17 (91,926 in 24 h)"
+      "Sleeper adds #17 (91,806 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -4324,12 +4158,12 @@
      "team": "PHI",
      "why": [
       "good news",
-      "Sleeper adds #25 (74,039 in 24 h)"
+      "Sleeper adds #25 (72,149 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -4364,7 +4198,7 @@
      "team": "ARI",
      "marker": {
       "count": 6,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "caution",
@@ -4399,7 +4233,7 @@
      "team": "DEN",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good",
@@ -4427,40 +4261,6 @@
      "sleeper": 11.7,
      "workload": "0/22/14/35",
      "trend": 1.18
-    },
-    {
-     "name": "Stefon Diggs",
-     "pos": "WR",
-     "team": "WAS",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Oct 30 3:27 PM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Cleared to Play on Sunday Night Football",
-       "text": "Washington Commanders wide receiver Stefon Diggs (hand, hamstring) is off the final Week 8 injury report and will be active [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Oct 28 7:54 PM PT",
-       "src": "rotoballer",
-       "title": "Stefon Diggs Expected to Return to Practice on Thursday",
-       "text": "According to Tashan Reed of The Washington Post, Washington Commanders head coach Dan Quinn said that wide receiver Stefon Diggs [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "gotham": 12.8,
-     "gotham_ros": 13.2,
-     "sleeper": 12.5,
-     "workload": "10/8/7/9/8/7",
-     "trend": -0.14
     }
    ]
   }
