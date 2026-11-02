@@ -1,47 +1,47 @@
 {
  "week": 8,
- "built": "Mon Nov 2 11:13 AM PT",
- "built_utc": "2026-11-02T19:13:16.387322+00:00",
+ "built": "Mon Nov 2 12:17 PM PT",
+ "built_utc": "2026-11-02T20:17:43.031837+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Mon Nov 2 11:06 AM PT",
+   "pulled": "Mon Nov 2 12:11 PM PT",
    "pulled_ago": "7 min ago",
-   "items": 1593,
-   "newest": "18 min ago",
+   "items": 1597,
+   "newest": "7 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Mon Nov 2 11:06 AM PT",
+   "pulled": "Mon Nov 2 12:11 PM PT",
    "pulled_ago": "7 min ago",
-   "items": 5154,
-   "newest": "13 min ago",
+   "items": 5164,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Mon Nov 2 11:06 AM PT",
+   "pulled": "Mon Nov 2 12:11 PM PT",
    "pulled_ago": "7 min ago",
-   "items": 1308,
-   "newest": "13 min ago",
+   "items": 1311,
+   "newest": "22 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Mon Nov 2 11:06 AM PT",
+   "pulled": "Mon Nov 2 12:11 PM PT",
    "pulled_ago": "7 min ago",
-   "items": 383,
-   "newest": "8 min ago",
+   "items": 386,
+   "newest": "19 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Mon Nov 2 11:06 AM PT",
+   "pulled": "Mon Nov 2 12:11 PM PT",
    "pulled_ago": "7 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Mon Nov 2 11:10 AM PT",
+   "pulled": "Mon Nov 2 12:15 PM PT",
    "pulled_ago": "3 min ago",
    "items": 771,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Mon Nov 02 2026 11:11 AM PT",
+   "pulled": "Mon Nov 02 2026 12:15 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Mon Nov 2 9:19 AM PT",
-   "pulled_ago": "1.9 h ago",
+   "pulled_ago": "3.0 h ago",
    "items": 339,
    "newest": null,
    "warn": null,
@@ -83,6 +83,48 @@
    "opponent": "Punching Bag",
    "unread": [],
    "own": [
+    {
+     "name": "TreVeyon Henderson",
+     "pos": "RB",
+     "team": "NE",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "red",
+      "grades": [
+       "bad"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 2 11:13 AM PT",
+       "src": "ESPN injury report",
+       "title": "TreVeyon Henderson: Out (Illness)",
+       "text": "out",
+       "grade": "bad"
+      },
+      {
+       "t": "Sat Oct 31 10:21 AM PT",
+       "src": "pft",
+       "title": "Patriots rule out A.J. Brown, TreVeyon Henderson",
+       "text": "Wide receiver A.J.",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Oct 31 10:18 AM PT",
+       "src": "rotoballer",
+       "title": "TreVeyon Henderson Downgraded to Out in Week 8",
+       "text": "New England Patriots running back TreVeyon Henderson (illness) has been downgraded to out for Sunday's contest against the Miami Dolphins. [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 0.0,
+     "gotham_ros": 8.0,
+     "sleeper": null,
+     "workload": "16/11/19/7/9/7",
+     "trend": -0.38
+    },
     {
      "name": "Travis Etienne Jr.",
      "pos": "RB",
@@ -126,48 +168,6 @@
      "sleeper": null,
      "workload": "30/12/20",
      "trend": -0.2
-    },
-    {
-     "name": "TreVeyon Henderson",
-     "pos": "RB",
-     "team": "NE",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "red",
-      "grades": [
-       "bad"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 1 11:57 AM PT",
-       "src": "ESPN injury report",
-       "title": "TreVeyon Henderson: Out (Illness)",
-       "text": "inactive",
-       "grade": "bad"
-      },
-      {
-       "t": "Sat Oct 31 10:21 AM PT",
-       "src": "pft",
-       "title": "Patriots rule out A.J. Brown, TreVeyon Henderson",
-       "text": "Wide receiver A.J.",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Oct 31 10:18 AM PT",
-       "src": "rotoballer",
-       "title": "TreVeyon Henderson Downgraded to Out in Week 8",
-       "text": "New England Patriots running back TreVeyon Henderson (illness) has been downgraded to out for Sunday's contest against the Miami Dolphins. [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 8.0,
-     "sleeper": null,
-     "workload": "16/11/19/7/9/7",
-     "trend": -0.38
     },
     {
      "name": "Jaylen Warren",
@@ -598,7 +598,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #1 (586,352 in 24 h)"
+      "Sleeper adds #1 (574,448 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -635,7 +635,7 @@
      "pos": "QB",
      "team": "MIA",
      "why": [
-      "Sleeper adds #24 (33,488 in 24 h)"
+      "Sleeper adds #23 (31,878 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -672,8 +672,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #20 (39,670 in 24 h)"
+      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -711,7 +710,7 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #19 (40,628 in 24 h)"
+      "Sleeper adds #17 (42,322 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -799,7 +798,7 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #9 (60,012 in 24 h)"
+      "Sleeper adds #11 (55,206 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -823,48 +822,11 @@
       "gotham": 0.0
      },
      "beats_floor": true,
-     "gotham": 7.4,
+     "gotham": 7.5,
      "gotham_ros": 6.4,
      "sleeper": 8.6,
      "workload": "3/2/6/2/4/10/2",
      "trend": 0.18,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Kimani Vidal",
-     "pos": "RB",
-     "team": "LAC",
-     "why": [
-      "Sleeper adds #25 (32,920 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 31 10:15 AM PT",
-       "src": "rotoballer",
-       "title": "Will Kimani Vidal Continue to Volume Vulture in Week 8 vs. Rams?",
-       "text": "Los Angeles Chargers running back Kimani Vidal has turned the Chargers' backfield into a three-man committee, with all three backs [&#8230;]",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Samaje Perine",
-      "gotham": 3.9
-     },
-     "beats_floor": true,
-     "gotham": 7.0,
-     "gotham_ros": 9.1,
-     "sleeper": 8.4,
-     "workload": "0/8/12/12/17/12",
-     "trend": 0.43,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -902,43 +864,6 @@
      "sleeper": 7.9,
      "workload": "4/9/3/2/3/6",
      "trend": 0.16,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dylan Sampson",
-     "pos": "RB",
-     "team": "CLE",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Oct 29 1:05 PM PT",
-       "src": "RotoWire news",
-       "title": "Dylan Sampson: Logs full practice",
-       "text": "Sampson (knee) was a full participant in Thursday's practice, Daniel Oyefusi of ESPN.com reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Samaje Perine",
-      "gotham": 3.9
-     },
-     "beats_floor": true,
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": 7.7,
-     "workload": null,
-     "trend": null,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1066,45 +991,83 @@
      "trend": -0.37,
      "yahoo": null,
      "acq": "unverified"
-    }
-   ],
-   "opp": [
+    },
     {
-     "name": "Josh Jacobs",
-     "pos": "RB",
-     "team": "GB",
+     "name": "Romeo Doubs",
+     "pos": "WR",
+     "team": "NE",
+     "why": [
+      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)"
+     ],
      "marker": {
-      "count": 5,
+      "count": 1,
       "recency": 1,
       "color": "gold",
       "grades": [
-       "caution",
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Oct 21 6:28 PM PT",
+       "src": "rotoballer",
+       "title": "Romeo Doubs a Drop Candidate Following Injury",
+       "text": "New England Patriots wide receiver Romeo Doubs (shoulder) was placed on the Injured Reserve earlier this week. The Patriots are [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Chris Godwin Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 0.0,
+     "gotham_ros": 8.8,
+     "sleeper": null,
+     "workload": "3/4/5/11/4",
+     "trend": 0.17,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyler Higbee",
+     "pos": "TE",
+     "team": "LA",
+     "why": [
+      "Sleeper adds #18 (39,735 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
        "note"
       ]
      },
      "news": [
       {
-       "t": "Sun Nov 1 3:56 PM PT",
-       "src": "ESPN news",
-       "title": "Additional allegations against Packers' Josh Jacobs 'unsupported,' attorneys say",
-       "text": "The attorneys for Green Bay's Josh Jacobs called the additional allegations of physical and verbal abuse \"unsupported and stale allegations\" in a statement on Sunday, two days after a police department in Wisconsin released records related to his arrest.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 1 3:20 PM PT",
+       "t": "Mon Nov 2 11:00 AM PT",
        "src": "rotoballer",
-       "title": "Josh Jacobs' Lawyers Release Statement on Recent Allegations",
-       "text": "Green Bay Packers running back Josh Jacobs recently returned to the field after missing the first six games due to [&#8230;]",
-       "grade": "note"
+       "title": "Players To Cut Before Week 9 Fantasy Football? Lamar Jackson, Tre Tucker, Ja'Kobi Lane, Xavier Worthy, Chris Godwin Jr., Tyler Higbee",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/Tre-Tucker-Fantasy-Football-Rankings-Draft-Sleepers-Waiver-Wire-Pickups-icon-rotoballer.jpeg\" class=\"wp-post-image\" alt=\"Players To Cut Before Week 9 Fantasy Football? Lama",
+       "grade": "mention"
       }
      ],
-     "gotham": 28.4,
-     "gotham_ros": 23.5,
-     "sleeper": 19.7,
-     "workload": "30/42",
-     "trend": 0.25
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 11.7
+     },
+     "beats_floor": false,
+     "gotham": 2.4,
+     "gotham_ros": 9.2,
+     "sleeper": 9.8,
+     "workload": "12/6/6/4/3/2",
+     "trend": -0.62,
+     "yahoo": null,
+     "acq": "unverified"
     }
-   ]
+   ],
+   "opp": []
   },
   "DK II": {
    "key": "WINNERS",
@@ -1667,7 +1630,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #1 (586,352 in 24 h)"
+      "Sleeper adds #1 (574,448 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1704,7 +1667,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #4 (252,657 in 24 h)"
+      "Sleeper adds #4 (264,780 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1742,7 +1705,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #13 (54,200 in 24 h)"
+      "Sleeper adds #10 (56,312 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1786,8 +1749,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #20 (39,670 in 24 h)"
+      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -1825,7 +1787,7 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #19 (40,628 in 24 h)"
+      "Sleeper adds #17 (42,322 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1913,7 +1875,7 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #9 (60,012 in 24 h)"
+      "Sleeper adds #11 (55,206 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1937,48 +1899,11 @@
       "gotham": 1.8
      },
      "beats_floor": true,
-     "gotham": 7.4,
+     "gotham": 7.5,
      "gotham_ros": 6.4,
      "sleeper": 8.6,
      "workload": "3/2/6/2/4/10/2",
      "trend": 0.18,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Kimani Vidal",
-     "pos": "RB",
-     "team": "LAC",
-     "why": [
-      "Sleeper adds #25 (32,920 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 31 10:15 AM PT",
-       "src": "rotoballer",
-       "title": "Will Kimani Vidal Continue to Volume Vulture in Week 8 vs. Rams?",
-       "text": "Los Angeles Chargers running back Kimani Vidal has turned the Chargers' backfield into a three-man committee, with all three backs [&#8230;]",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Samaje Perine",
-      "gotham": 3.9
-     },
-     "beats_floor": true,
-     "gotham": 7.0,
-     "gotham_ros": 9.1,
-     "sleeper": 8.4,
-     "workload": "0/8/12/12/17/12",
-     "trend": 0.43,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2148,6 +2073,43 @@
      "sleeper": 6.6,
      "workload": "14/20/11",
      "trend": -0.15,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "AJ Barner",
+     "pos": "TE",
+     "team": "SEA",
+     "why": [
+      "Sleeper adds #25 (31,410 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 31 3:18 PM PT",
+       "src": "rotoballer",
+       "title": "AJ Barner Barely a TE2 in Week 8",
+       "text": "Seattle Seahawks tight end AJ Barner is not on the fantasy radar in Week 8 against the Chicago Bears. The [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 11.7
+     },
+     "beats_floor": false,
+     "gotham": 7.9,
+     "gotham_ros": 7.6,
+     "sleeper": 8.5,
+     "workload": "2/1/12/4/5/5/6",
+     "trend": 0.13,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2708,7 +2670,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #1 (586,352 in 24 h)"
+      "Sleeper adds #1 (574,448 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2745,7 +2707,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #4 (252,657 in 24 h)"
+      "Sleeper adds #4 (264,780 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2782,8 +2744,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #20 (39,670 in 24 h)"
+      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -2821,7 +2782,7 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #19 (40,628 in 24 h)"
+      "Sleeper adds #17 (42,322 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2909,7 +2870,7 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #9 (60,012 in 24 h)"
+      "Sleeper adds #11 (55,206 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2933,7 +2894,7 @@
       "gotham": 6.8
      },
      "beats_floor": true,
-     "gotham": 7.4,
+     "gotham": 7.5,
      "gotham_ros": 6.4,
      "sleeper": 8.6,
      "workload": "3/2/6/2/4/10/2",
@@ -3060,43 +3021,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Kimani Vidal",
-     "pos": "RB",
-     "team": "LAC",
-     "why": [
-      "Sleeper adds #25 (32,920 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Oct 31 10:15 AM PT",
-       "src": "rotoballer",
-       "title": "Will Kimani Vidal Continue to Volume Vulture in Week 8 vs. Rams?",
-       "text": "Los Angeles Chargers running back Kimani Vidal has turned the Chargers' backfield into a three-man committee, with all three backs [&#8230;]",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Rachaad White",
-      "gotham": 16.8
-     },
-     "beats_floor": false,
-     "gotham": 7.0,
-     "gotham_ros": 9.1,
-     "sleeper": 8.4,
-     "workload": "0/8/12/12/17/12",
-     "trend": 0.43,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tre' Harris",
      "pos": "WR",
      "team": "LAC",
@@ -3145,7 +3069,7 @@
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #22 (36,152 in 24 h)"
+      "Sleeper adds #20 (34,768 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3174,6 +3098,43 @@
      "sleeper": 6.2,
      "workload": "2/2/5/12/7/4/14/6",
      "trend": 0.41,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jordyn Tyson",
+     "pos": "WR",
+     "team": "NO",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 2 9:28 AM PT",
+       "src": "rotoballer",
+       "title": "Unclear if Jordyn Tyson Will Return to Practice This Week",
+       "text": "New Orleans Saints head coach Kellen Moore said on Monday that it is still to be determined whether rookie wide [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "George Pickens",
+      "gotham": 6.8
+     },
+     "beats_floor": false,
+     "gotham": null,
+     "gotham_ros": null,
+     "sleeper": null,
+     "workload": NaN,
+     "trend": null,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3305,7 +3266,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 16.8,
+     "gotham": 16.6,
      "gotham_ros": 17.6,
      "sleeper": 14.6,
      "workload": "29/34/37/28/25/39/36",
@@ -3781,7 +3742,7 @@
      "pos": "RB",
      "team": "ARI",
      "why": [
-      "Sleeper adds #2 (312,570 in 24 h)"
+      "Sleeper adds #2 (328,845 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3818,7 +3779,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #1 (586,352 in 24 h)"
+      "Sleeper adds #1 (574,448 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3855,7 +3816,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #4 (252,657 in 24 h)"
+      "Sleeper adds #4 (264,780 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3892,7 +3853,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #15 (47,392 in 24 h)"
+      "Sleeper adds #12 (50,276 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3930,7 +3891,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #13 (54,200 in 24 h)"
+      "Sleeper adds #10 (56,312 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4011,8 +3972,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #20 (39,670 in 24 h)"
+      "opening: DeMario Douglas \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -4093,7 +4053,7 @@
      "pos": "WR",
      "team": "SEA",
      "why": [
-      "Sleeper adds #9 (60,012 in 24 h)"
+      "Sleeper adds #11 (55,206 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4117,7 +4077,7 @@
       "gotham": 0.0
      },
      "beats_floor": true,
-     "gotham": 7.4,
+     "gotham": 7.5,
      "gotham_ros": 6.4,
      "sleeper": 8.6,
      "workload": "3/2/6/2/4/10/2",
