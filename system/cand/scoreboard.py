@@ -63,6 +63,12 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
     for key, v in P.items():
         if v.get('game') not in fin: continue
         x = SW[SW.k == norm(v['player'])]
+        # Nov 1 (false zeros): a final game whose stat lines nflverse hasn't posted yet is PENDING, not 0. A missing man counts
+        # as 0 (inactive) only once that game's teams have stat lines this week; otherwise skip him until the next build.
+        if not len(x):
+            gm = G[G.game_id == v.get('game')]
+            tms = set(gm[['home_team', 'away_team']].values.ravel()) if len(gm) else set()
+            if 'team' in SW and not SW.team.isin(tms).any(): continue
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
         rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), brenton=v.get('brenton'), clay=v.get('clay'), actual=round(act, 2)))
 R = pd.DataFrame(rows)
