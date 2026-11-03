@@ -1,9 +1,8 @@
 {
  "week": 8,
- "built_pt": "Tue Nov 03 2026 12:35 AM PT",
+ "built_pt": "Tue Nov 03 2026 02:09 AM PT",
  "alarms": [
-  "yahoo_all_teams: STALE - 27.7 h old (limit 26 h)",
-  "koerner: STALE - FantasyLabs read unknown (None h old, limit 36 h)"
+  "yahoo_all_teams: STALE - 29.3 h old (limit 26 h)"
  ],
  "lineup": [],
  "notes": [
@@ -14,7 +13,7 @@
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Nov 03 12:34 AM PT",
+   "pulled_pt": "Tue Nov 03 02:09 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -24,7 +23,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_mon2127.txt",
    "pulled_pt": "Mon Nov 02 09:27 PM PT",
-   "age_h": 3.1,
+   "age_h": 4.7,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -33,7 +32,7 @@
    "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_sun2052.txt",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 27.7,
+   "age_h": 29.3,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -42,7 +41,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_sun2052.txt",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 27.7,
+   "age_h": 29.3,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -50,33 +49,33 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Nov 03 12:35 AM PT",
+   "pulled_pt": "Tue Nov 03 02:09 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Tue Nov 03 2026 12:35 AM PT for week 8"
+   "note": "Gotham run Tue Nov 03 2026 02:09 AM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Mon Nov 2 2026 5:56 PM PT",
-   "age_h": 6.7,
+   "age_h": 8.2,
    "rows": 2260,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   "koerner": {
-   "status": "STALE",
+   "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
-   "pulled_pt": "",
-   "age_h": null,
-   "rows": 0,
+   "pulled_pt": "Tue Nov 3 2026 2:04 AM PT",
+   "age_h": 0.1,
+   "rows": 2726,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-11-03T0303Z.csv",
    "pulled_pt": "Mon Nov 02 07:03 PM PT",
-   "age_h": 5.5,
+   "age_h": 7.1,
    "rows": 3117,
    "need": 400,
    "note": "GitHub job checked 1.1 h ago ()"
@@ -85,7 +84,7 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-11-02T2254Z.csv",
    "pulled_pt": "Mon Nov 02 02:54 PM PT",
-   "age_h": 9.7,
+   "age_h": 11.3,
    "rows": 185,
    "need": 60,
    "note": "GitHub job checked 1.1 h ago ()"
@@ -94,7 +93,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 27.7,
+   "age_h": 29.3,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
