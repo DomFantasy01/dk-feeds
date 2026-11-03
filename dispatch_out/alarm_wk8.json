@@ -1,19 +1,25 @@
 {
  "week": 8,
- "built_pt": "Tue Nov 03 2026 02:09 AM PT",
+ "built_pt": "Tue Nov 03 2026 03:07 AM PT",
  "alarms": [
-  "yahoo_all_teams: STALE - 29.3 h old (limit 26 h)"
+  "yahoo_all_teams: STALE - 30.3 h old (limit 26 h)",
+  "yahoo_standings: STALE - 30.3 h old (limit 30 h)",
+  "yahoo_rosters: STALE - 30.3 h old (limit 30 h)"
  ],
  "lineup": [],
  "notes": [
+  "DK I: no Ratcliffe number for Jaylen Warren, Chris Boswell - Yahoo used on the Ratcliffe needle",
+  "DK II: no Ratcliffe number for Jacoby Brissett, Germie Bernard, Jaylen Warren - Yahoo used on the Ratcliffe needle",
+  "DK III: no Ratcliffe number for Steelers, Jacoby Brissett - Yahoo used on the Ratcliffe needle",
   "DK IV: Sleeper lists Jeremiyah Love with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle",
+  "DK IV: no Ratcliffe number for Wan'Dale Robinson, Rico Dowdle - Yahoo used on the Ratcliffe needle",
   "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Nov 03 02:09 AM PT",
+   "pulled_pt": "Tue Nov 03 03:07 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -23,7 +29,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_matchups_mon2127.txt",
    "pulled_pt": "Mon Nov 02 09:27 PM PT",
-   "age_h": 4.7,
+   "age_h": 5.7,
    "rows": 41,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
@@ -32,16 +38,16 @@
    "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/league_windows_sun2052.txt",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 29.3,
+   "age_h": 30.3,
    "rows": 48,
    "need": 48,
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   "yahoo_standings": {
-   "status": "OK",
+   "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/standings_sun2052.txt",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 29.3,
+   "age_h": 30.3,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -49,25 +55,25 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Nov 03 02:09 AM PT",
+   "pulled_pt": "Tue Nov 03 03:07 AM PT",
    "age_h": 0.0,
    "rows": 8,
    "need": 8,
-   "note": "Gotham run Tue Nov 03 2026 02:09 AM PT for week 8"
+   "note": "Gotham run Tue Nov 03 2026 03:07 AM PT for week 8"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
-   "pulled_pt": "Mon Nov 2 2026 5:56 PM PT",
-   "age_h": 8.2,
-   "rows": 2260,
+   "pulled_pt": "Tue Nov 3 2026 2:57 AM PT",
+   "age_h": 0.2,
+   "rows": 2042,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   "koerner": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Tue Nov 3 2026 2:04 AM PT",
-   "age_h": 0.1,
+   "age_h": 1.1,
    "rows": 2726,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
@@ -75,25 +81,25 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk8_2026-11-03T0303Z.csv",
    "pulled_pt": "Mon Nov 02 07:03 PM PT",
-   "age_h": 7.1,
+   "age_h": 8.1,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 1.1 h ago ()"
+   "note": "GitHub job checked 0.9 h ago ()"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk8_2026-11-02T2254Z.csv",
    "pulled_pt": "Mon Nov 02 02:54 PM PT",
-   "age_h": 11.3,
+   "age_h": 12.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 1.1 h ago ()"
+   "note": "GitHub job checked 0.9 h ago ()"
   },
   "yahoo_rosters": {
-   "status": "OK",
+   "status": "STALE",
    "path": "/home/claude/dksys/data/latest/yahoo/wk8/dom_rosters.json",
    "pulled_pt": "Sun Nov 01 08:52 PM PT",
-   "age_h": 29.3,
+   "age_h": 30.3,
    "rows": 66,
    "need": null,
    "note": "Dom's four rosters"
