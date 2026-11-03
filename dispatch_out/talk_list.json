@@ -1,7 +1,7 @@
 {
  "week": 8,
- "built": "Mon Nov 02 2026 04:19 PM PT",
- "ratcliffe_read": "Mon Nov 2 2026 1:09 PM PT",
+ "built": "Mon Nov 02 2026 04:27 PM PT",
+ "ratcliffe_read": "Mon Nov 2 2026 4:09 PM PT",
  "koerner_read": "Mon Nov 2 2026 4:10 PM PT",
  "leagues": {
   "DK I": {
@@ -12,16 +12,16 @@
      "title": "RB2, Weeks 8-9 Fill",
      "target": "Target 10.2 pts",
      "mark": "gold",
-     "why": "Full strength ~19.8 (Warren). Wk 8 Perine ~8.9 (Warren moves up to RB1, Perine slides in) \u00b7 Wk 9 Henderson ~11.4 (Warren on bye, Henderson slides in).",
+     "why": "Full strength ~19.8 (Warren). Wk 8 Perine ~8.9 (Warren moves up to RB1, Perine slides in) \u00b7 Wk 9 Black ~11.5 (Warren on bye, Black slides in).",
      "picks": [],
      "id": "cover:rb2weeks89fill",
      "first_seen": "Sat Oct 31 2026 10:41 AM PT"
     },
     {
      "title": "FLEX1, Week 11 Fill",
-     "target": "Target 10.3 pts",
+     "target": "Target 10.5 pts",
      "mark": "gold",
-     "why": "Full strength ~12.8 (Pickens). Wk 11 Godwin ~10.3 (Pickens moves up to WR1, Godwin slides in).",
+     "why": "Full strength ~12.8 (Pickens). Wk 11 Etienne ~10.5 (Pickens moves up to WR1, Etienne slides in).",
      "picks": [],
      "id": "cover:flex1week11fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
@@ -39,7 +39,7 @@
      "title": "WR2, Week 9 Fill",
      "target": "Target 14.0 pts",
      "mark": "gold",
-     "why": "Full strength ~12.9 (Diggs). Wk 9 Pickens ~14.0 (Diggs has a worse matchup).",
+     "why": "Full strength ~12.9 (Diggs). Wk 9 Pickens ~14.0 (Diggs moves up to FLEX2, Pickens slides in).",
      "picks": [],
      "id": "cover:wr2week9fill",
      "first_seen": "Sun Nov 01 2026 05:26 PM PT"
@@ -50,7 +50,7 @@
    "fa_tags": {
     "Dylan Sampson": {
      "tag": "No action needed",
-     "why": "only 5% better than your Samaje Perine (8.4 vs 8.1 a game, Ratcliffe) - under your 15% bar"
+     "why": "only 6% better than your Samaje Perine (8.4 vs 8.0 a game, Ratcliffe) - under your 15% bar"
     }
    }
   },
@@ -96,6 +96,23 @@
      "first_seen": "Sun Nov 01 2026 05:26 PM PT"
     },
     {
+     "name": "Kaelon Black",
+     "pos": "RB",
+     "team": "SF",
+     "acq": "free agent",
+     "over": "Samaje Perine",
+     "rat_ros": 10.8,
+     "over_ros": 8.0,
+     "pct": 36,
+     "gain": 2.8,
+     "rat_wk": 0.0,
+     "koe_wk": null,
+     "rising": null,
+     "scout": false,
+     "id": "talk:kaelonblack",
+     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
+    },
+    {
      "name": "DET DEF",
      "pos": "DEF",
      "team": "DET",
@@ -120,53 +137,19 @@
      "scout": true,
      "id": "talk:atldef",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
-     "name": "Kaelon Black",
-     "pos": "RB",
-     "team": "SF",
-     "acq": "free agent",
-     "over": "Samaje Perine",
-     "rat_ros": 10.1,
-     "over_ros": 8.1,
-     "pct": 26,
-     "gain": 2.1,
-     "rat_wk": 0.0,
-     "koe_wk": null,
-     "rising": null,
-     "scout": false,
-     "id": "talk:kaelonblack",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     }
    ],
    "watch": [
-    {
-     "name": "Brian Robinson Jr.",
-     "pos": "RB",
-     "team": "ATL",
-     "acq": "waivers until Nov 4",
-     "over": "Samaje Perine",
-     "rat_ros": 9.7,
-     "over_ros": 8.1,
-     "pct": 20,
-     "gain": 1.7,
-     "rat_wk": 0.0,
-     "koe_wk": 0.0,
-     "rising": null,
-     "scout": false,
-     "id": "watch:brianrobinson",
-     "first_seen": "Sat Oct 31 2026 06:10 PM PT"
-    },
     {
      "name": "Kendre Miller",
      "pos": "RB",
      "team": "NO",
      "acq": "free agent",
      "over": "Samaje Perine",
-     "rat_ros": 9.5,
-     "over_ros": 8.1,
-     "pct": 18,
-     "gain": 1.5,
+     "rat_ros": 9.6,
+     "over_ros": 8.0,
+     "pct": 20,
+     "gain": 1.6,
      "rat_wk": 0.0,
      "koe_wk": null,
      "rising": null,
@@ -180,33 +163,50 @@
      "team": "KC",
      "acq": "free agent",
      "over": "Samaje Perine",
-     "rat_ros": 9.4,
-     "over_ros": 8.1,
-     "pct": 16,
-     "gain": 1.3,
+     "rat_ros": 9.5,
+     "over_ros": 8.0,
+     "pct": 19,
+     "gain": 1.5,
      "rat_wk": 5.6,
      "koe_wk": 5.07,
      "rising": null,
      "scout": false,
      "id": "watch:emmettjohnson",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
+    },
+    {
+     "name": "Brian Robinson Jr.",
+     "pos": "RB",
+     "team": "ATL",
+     "acq": "waivers until Nov 4",
+     "over": "Samaje Perine",
+     "rat_ros": 9.2,
+     "over_ros": 8.0,
+     "pct": 15,
+     "gain": 1.2,
+     "rat_wk": 0.0,
+     "koe_wk": 0.0,
+     "rising": null,
+     "scout": false,
+     "id": "watch:brianrobinson",
+     "first_seen": "Sat Oct 31 2026 06:10 PM PT"
     }
    ],
    "cover": [
     {
      "title": "WR3, Week 11 Fill",
-     "target": "Target 9.8 pts",
+     "target": "Target 10.4 pts",
      "mark": "gold",
-     "why": "Full strength ~8.6 (McConkey). Wk 11 McConkey ~9.8 (hard matchup vs NYJ).",
+     "why": "Full strength ~8.6 (McConkey). Wk 11 McConkey ~10.4 (hard matchup vs NYJ).",
      "picks": [],
      "id": "cover:wr3week11fill",
      "first_seen": "Sun Nov 01 2026 06:03 PM PT"
     },
     {
      "title": "WR2, Week 11 Fill",
-     "target": "Target 12.3 pts",
+     "target": "Target 12.0 pts",
      "mark": "gold",
-     "why": "Full strength ~14.1 (London). Wk 11 Bernard ~12.3 (London on bye, Bernard slides in).",
+     "why": "Full strength ~14.1 (London). Wk 11 Bernard ~12.0 (London on bye, Bernard slides in).",
      "picks": [],
      "id": "cover:wr2week11fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
@@ -224,8 +224,8 @@
      "team": "KC",
      "acq": "Free agent",
      "over": "Caleb Douglas",
-     "pct": 25,
-     "gain": 2.0,
+     "pct": 26,
+     "gain": 3.8,
      "note": "Scout pick (rest of season): This week vs your FLEX2 Josh Downs: Ratcliffe 5.6 vs 8.9 \u00b7 Koerner 5.1 vs 8.2 \u00b7 Yahoo 4.9 vs 9.9 \u00b7 Gotham 25.6 vs 9.8 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:emmettjohnson",
@@ -235,23 +235,24 @@
    "watch": [],
    "cover": [
     {
-     "title": "RB2, Weeks 9-13 Fill",
+     "title": "RB2, Weeks 9-12 Fill",
      "target": "Target 11.7 pts",
      "mark": "red",
-     "why": "Full strength ~12.7 (Coleman). Wk 9 Montgomery ~12.5 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 10 White ~10.7 (Coleman on bye, White slides in) \u00b7 Wk 11 Montgomery ~12.5 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 12 Mont",
+     "why": "Full strength ~12.7 (Coleman). Wk 9 Montgomery ~12.2 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 10 White ~11.0 (Coleman on bye, White slides in) \u00b7 Wk 11 Montgomery ~12.2 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 12 Whit",
      "picks": [
       "Emmett Johnson (Free agent)"
      ],
-     "id": "cover:rb2weeks913fill",
-     "first_seen": "Sun Nov 01 2026 10:09 PM PT"
+     "id": "cover:rb2weeks912fill",
+     "first_seen": "Mon Nov 02 2026 04:27 PM PT"
     },
     {
      "title": "FLEX1, Weeks 9-10 Fill",
-     "target": "Target 9.8 pts",
+     "target": "Target 9.6 pts",
      "mark": "red",
-     "why": "Full strength ~11.3 (Waddle). Wk 9 White ~10.6 (Waddle moves up to FLEX2, White slides in) \u00b7 Wk 10 Vele ~8.9 (Waddle on bye, Vele slides in).",
+     "why": "Full strength ~11.3 (Waddle). Wk 9 White ~10.9 (Waddle moves up to WR2, White slides in) \u00b7 Wk 10 Vele ~8.3 (Waddle on bye, Vele slides in).",
      "picks": [
-      "Emmett Johnson (Free agent)"
+      "Emmett Johnson (Free agent)",
+      "Adonai Mitchell (Waivers, clears Nov 4)"
      ],
      "id": "cover:flex1weeks910fill",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
@@ -262,7 +263,7 @@
    "fa_tags": {
     "Sam Darnold": {
      "tag": "No action needed",
-     "why": "Ratcliffe has him at 18.2 a game, below your Jayden Daniels (22.3)"
+     "why": "Ratcliffe has him at 17.4 a game, below your Jayden Daniels (23.3)"
     }
    }
   },
@@ -297,32 +298,28 @@
      "first_seen": "Sun Nov 01 2026 02:19 PM PT"
     },
     {
-     "name": "Josh Downs",
+     "name": "Antonio Williams",
      "pos": "WR",
-     "team": "IND",
-     "acq": "waivers until Nov 4",
-     "over": "Wan'Dale Robinson",
-     "rat_ros": 10.7,
-     "over_ros": 9.7,
-     "pct": 10,
-     "gain": 1.0,
-     "rat_wk": 8.9,
-     "koe_wk": 8.24,
-     "rising": null,
-     "scout": false,
-     "id": "watch:joshdowns",
-     "first_seen": "Sat Oct 31 2026 06:10 PM PT"
+     "team": "WAS",
+     "acq": "Free agent",
+     "over": "Marvin Harrison Jr.",
+     "pct": 27,
+     "gain": 2.3,
+     "note": "Scout pick (rest of season): This week vs your WR3 Wan'Dale Robinson: Ratcliffe 8.8 vs 11.4 \u00b7 Koerner 8.7 vs 12.0 \u00b7 Yahoo 8.6 vs 11.4 \u00b7 Gotham 10.4 vs 11.1 - WORSE this week",
+     "scout": true,
+     "id": "watch:antoniowilliams",
+     "first_seen": "Mon Nov 02 2026 04:27 PM PT"
     }
    ],
    "cover": [
     {
-     "title": "RB2, Weeks 8, 10-11 Fill",
-     "target": "Target 13.3 pts",
+     "title": "RB2, Weeks 8-11 Fill",
+     "target": "Target 14.1 pts",
      "mark": "gold",
-     "why": "Full strength ~17.4 (Robinson). Wk 8 Swift ~14.3 (Robinson moves up to RB1, Swift slides in) \u00b7 Wk 10 Gordon ~12.5 (Robinson moves up to RB1, Gordon slides in) \u00b7 Wk 11 Gordon ~13.0 (Robinson on bye, Gordon slides in).",
+     "why": "Full strength ~17.4 (Robinson). Wk 8 Swift ~14.3 (Robinson moves up to RB1, Swift slides in) \u00b7 Wk 9 Swift ~15.7 (Robinson moves up to RB1, Swift slides in) \u00b7 Wk 10 Gordon ~12.9 (Robinson moves up to RB1, Gordon slides in) \u00b7 Wk 11 Gordon ~13",
      "picks": [],
-     "id": "cover:rb2weeks81011fill",
-     "first_seen": "Mon Nov 02 2026 01:24 PM PT"
+     "id": "cover:rb2weeks811fill",
+     "first_seen": "Mon Nov 02 2026 04:27 PM PT"
     },
     {
      "title": "QB, Week 10 Fill",
@@ -339,7 +336,7 @@
    "fa_tags": {
     "Dylan Sampson": {
      "tag": "No action needed",
-     "why": "Ratcliffe has him at 7.2 a game, below your Ollie Gordon II (12.0)"
+     "why": "Ratcliffe has him at 7.2 a game, below your Ollie Gordon II (12.4)"
     }
    }
   }
