@@ -1,6 +1,6 @@
 {
  "what": "Dark Knight state file - read this before answering anything about Dom's four teams",
- "built_utc": "2026-11-03T02:32:02+00:00",
+ "built_utc": "2026-11-03T02:32:35+00:00",
  "built_pt": "Mon Nov 2, 6:32 PM PT",
  "week": 8,
  "dispatch_built_pt": "Mon Nov 02 2026 06:30 PM PT",
@@ -465,7 +465,7 @@
       {
        "src": "RotoWire",
        "at": "Mon Nov 2, 6:01 PM PT",
-       "age": "30 min ago",
+       "age": "31 min ago",
        "line": "Wil Lutz: Makes all four kicks in Week 8 win"
       },
       {
@@ -1678,7 +1678,7 @@
       {
        "src": "RotoWire",
        "at": "Mon Nov 2, 6:01 PM PT",
-       "age": "30 min ago",
+       "age": "31 min ago",
        "line": "Wil Lutz: Makes all four kicks in Week 8 win"
       },
       {
@@ -2280,7 +2280,7 @@
       {
        "src": "RotoWire",
        "at": "Sun Nov 1, 6:53 PM PT",
-       "age": "23.6 hr ago",
+       "age": "23.7 hr ago",
        "line": "Josh Downs: Reaches paydirt in Week 8"
       }
      ]
@@ -3312,7 +3312,7 @@
       {
        "src": "RotoWire",
        "at": "Mon Nov 2, 5:46 PM PT",
-       "age": "45 min ago",
+       "age": "46 min ago",
        "line": "Elic Ayomanor: Three grabs in Week 8 defeat"
       },
       {
@@ -3364,7 +3364,7 @@
       {
        "src": "ProFootballTalk",
        "at": "Sun Nov 1, 9:35 AM PT",
-       "age": "32.9 hr ago",
+       "age": "33.0 hr ago",
        "line": "Jets WR Omar Cooper Jr. has two straight games with 100-plus yards and a touchdown"
       }
      ]
@@ -3531,7 +3531,7 @@
     {
      "slot": "BN",
      "name": "Broncos",
-     "pos": "DEF",
+     "pos": "WR",
      "nfl": "",
      "kickoff": "no game this week",
      "ko_utc": null,
@@ -3568,6 +3568,33 @@
        "line": "Chiefs' Reid says he didn't bench OL Suamataia as punishment"
       }
      ]
+    },
+    {
+     "slot": "BN",
+     "name": "Denver",
+     "pos": "DEF",
+     "nfl": "DEN",
+     "kickoff": "Sun Nov 1, 1:25 PM PT",
+     "ko_utc": "2026-11-01T21:25:00+00:00",
+     "game": "played",
+     "status": "",
+     "actual": null,
+     "proj": {
+      "yahoo": null,
+      "gotham": null,
+      "sleeper": null
+     },
+     "yahoo_weeks_ahead": {
+      "wk9": "bye",
+      "wk10": "bye",
+      "wk11": "bye",
+      "wk12": "bye",
+      "wk13": 8.0,
+      "wk14": 7.8,
+      "wk15": "bye",
+      "wk16": "bye",
+      "wk17": "bye"
+     }
     }
    ],
    "opp_starters": [
@@ -3771,6 +3798,11 @@
  "health": [
   {
    "level": "red",
+   "piece": "Yahoo rosters (all teams)",
+   "what": "as of Sun Nov 1, 8:52 PM PT (21.7 hr ago) - Dom's four rosters; older than the Mon 4:50 PM scheduled read"
+  },
+  {
+   "level": "red",
    "piece": "clay",
    "what": "as of unknown time (age unknown) - Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17; no timestamp - treat as missing"
   },
@@ -3795,9 +3827,9 @@
    "what": "FTN gives this week plus one rest-of-season total (through Week 17), not Week 15-17 one by one. Later weeks use his season rate spread over the games a man is available for (byes and injury returns counted); matchup strength in those weeks still comes from the engine, not Ratcliffe."
   },
   {
-   "level": "grey",
-   "piece": "Yahoo rosters (all teams)",
-   "what": "as of Sun Nov 1, 8:52 PM PT (21.7 hr ago) - Dom's four rosters; older than the Mon 4:50 PM scheduled read - but the newer live roster read matches it in all four leagues, so nothing is missing"
+   "level": "gold",
+   "piece": "DK IV roster",
+   "what": "Denver is on the live roster read but not in the meter - added from the roster read"
   },
   {
    "level": "grey",
@@ -3833,32 +3865,27 @@
    "level": "grey",
    "piece": "DK III meter",
    "what": "Packers tagged WR in the meter, DEF on Yahoo - using Yahoo"
-  },
-  {
-   "level": "grey",
-   "piece": "DK IV meter",
-   "what": "Broncos tagged WR in the meter, DEF on Yahoo - using Yahoo"
   }
  ],
  "sources": [
   {
    "source": "NFL schedule",
    "as_of": "Mon Nov 2, 6:30 PM PT",
-   "age": "2 min ago",
+   "age": "3 min ago",
    "level": "green",
    "note": "week 8: 14 games"
   },
   {
    "source": "Yahoo matchups (scores, starters)",
    "as_of": "Mon Nov 2, 6:29 PM PT",
-   "age": "3 min ago",
+   "age": "4 min ago",
    "level": "green",
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   {
    "source": "Yahoo win % (all teams)",
    "as_of": "Mon Nov 2, 6:29 PM PT",
-   "age": "3 min ago",
+   "age": "4 min ago",
    "level": "green",
    "note": "every team in all four leagues: Yahoo win %, record"
   },
@@ -3872,21 +3899,21 @@
   {
    "source": "Gotham projections",
    "as_of": "Mon Nov 2, 6:30 PM PT",
-   "age": "2 min ago",
+   "age": "3 min ago",
    "level": "green",
    "note": "Gotham run Mon Nov 02 2026 06:30 PM PT for week 8"
   },
   {
    "source": "ratcliffe",
    "as_of": "Mon Nov 2, 5:56 PM PT",
-   "age": "36 min ago",
+   "age": "37 min ago",
    "level": "green",
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   {
    "source": "koerner",
    "as_of": "Mon Nov 2, 6:04 PM PT",
-   "age": "28 min ago",
+   "age": "29 min ago",
    "level": "green",
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
@@ -3908,8 +3935,8 @@
    "source": "Yahoo rosters (all teams)",
    "as_of": "Sun Nov 1, 8:52 PM PT",
    "age": "21.7 hr ago",
-   "level": "grey",
-   "note": "Dom's four rosters; older than the Mon 4:50 PM scheduled read; the newer live roster read matches it"
+   "level": "red",
+   "note": "Dom's four rosters; older than the Mon 4:50 PM scheduled read"
   },
   {
    "source": "clay",
@@ -4071,6 +4098,7 @@
  ],
  "verdict": "NO-GO",
  "verdict_why": [
+  "Yahoo rosters (all teams): as of Sun Nov 1, 8:52 PM PT (21.7 hr ago) - Dom's four rosters; older than the Mon 4:50 PM scheduled read",
   "clay: as of unknown time (age unknown) - Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17; no timestamp - treat as missing",
   "brenton: as of unknown time (age unknown) - Paul Brenton (Points Over Hype) weekly ranks - ranking check only, no points; no timestamp - treat as missing"
  ]
