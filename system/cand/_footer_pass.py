@@ -40,10 +40,12 @@ def section(page):
     return a
 # THE CONTROLS STRIP (Dom, Nov 3: "a line of controls like in DK Live"). Same look as Live's CONTROLS bar - a dark framed
 # strip, the label notched into its top edge in brushed gold type, four identical brushed-gold buttons with a caption under
-# each name. Drawn on the Overview page (the one-page Dispatch and page 1 of the full edition), in the empty band
-# between the footnote and the footer. Other pages keep the small link row in the footer.
-def controls(c,W_):
-    M=30; y0,y1=27.5,58.5; bx0,bx1=M,W_-M
+# each name. Drawn on the Overview page (the one-page Dispatch and page 1 of the full edition), right under the
+# masthead (moved Nov 3; it used to sit between the footnote and the footer). Other pages keep the small link row in the footer.
+# Nov 3 (Dom): "move the controls under the heading" - the strip now sits right under the masthead's gold rule, in the
+# band global33.py leaves open above DK I (the blocks start at Ht-87-7+1-9 = 690 on Letter; strip is 31 tall).
+def controls(c,W_,H_=792.0):
+    M=30; y1=H_-102.0; y0=y1-31.0; bx0,bx1=M,W_-M
     c.setFillColor(H("#0A1020")); c.setStrokeColor(H("#2A3A5E")); c.setLineWidth(.8); c.roundRect(bx0,y0,bx1-bx0,y1-y0,6,stroke=1,fill=1)
     lab="CONTROLS"; c.setFont("PopB",5.6); lw=c.stringWidth(lab,"PopB",5.6)+c._charSpace*0
     sp=1.1; tw=lw+sp*(len(lab)-1)+8
@@ -77,7 +79,7 @@ for i,pg in enumerate(R.pages):
     # the link row, centered: the same links as Dark Knight Live's CONTROLS bar - Yahoo, Blitz, Live - plus the full
     # edition on the one-page Dispatch (Dom, Nov 3). Dark Knight Live keeps its navy-and-gold button (Oct 11).
     ov=sec.lower().startswith("overview")
-    if ov: controls(c,W_)                                                   # the CONTROLS strip sits above the footer
+    if ov: controls(c,W_,float(pg.mediabox.height))                         # the CONTROLS strip sits under the masthead (Nov 3)
     btns=[("DARK KNIGHT LIVE",LIVE_URL,True)] if ov else [("YAHOO",YAHOO_URL,False),("BLITZ",BLITZ_URL,False),("DARK KNIGHT LIVE",LIVE_URL,True)]
     ws=[c.stringWidth(t+"  \u203a","PopB",6.4)+14 for t,_,_ in btns]; gap=5; bx=W_/2-(sum(ws)+gap*(len(ws)-1))/2
     for (t,u,main),bw in zip(btns,ws):

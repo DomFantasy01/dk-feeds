@@ -2962,6 +2962,9 @@ def build(fn):
     GX=min(max(GX,_lo),_hi); METERBOX[0]=_HW
     print("GX",round(GX,1),"clear",round(clear,1),"mid",round((rowR+ballL)/2,1),"edge",round(_bx,1),"lane",round(_lo,1),round(_hi,1),"gap",round(_clr(GX),1))
     top=y3-9; gap=8; h=142.0; bottom=top-4*h-3*gap   # v44 (Dom): blocks shorter, the stack ends higher
+    # Nov 3 (Dom): "move the controls under the heading" - the CONTROLS strip (drawn by _footer_pass.py at
+    # CTRL_Y1..CTRL_Y1-31) now sits right under the masthead, so the four blocks and the footnote move down to make room.
+    CTRL_Y1=top; top=top-31-7; bottom=top-4*h-3*gap
     global LS; LS=7.0
     def _room(D):
         w=c.stringWidth(DISP[D["lab"]],"Bebas",16)+6+c.stringWidth(D["rec"],"Bebas",16)+c.stringWidth("  vs  ","PopM",7)
