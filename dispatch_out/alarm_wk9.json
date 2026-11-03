@@ -1,0 +1,110 @@
+{
+ "week": 9,
+ "built_pt": "Tue Nov 03 2026 03:37 AM PT",
+ "alarms": [],
+ "lineup": [
+  "DK I: YOUR starter Jaylen Warren (PIT) has no game this week",
+  "DK II: YOUR starter Germie Bernard (PIT) has no game this week",
+  "DK III: YOUR starter Steelers (PIT) has no game this week",
+  "DK IV: YOUR starter Wan'Dale Robinson (TEN) has no game this week"
+ ],
+ "notes": [
+  "DK II: Sleeper lists Jacoby Brissett with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle",
+  "DK II: no Ratcliffe number for Jacoby Brissett, Breece Hall, A.J. Brown - Yahoo used on the Ratcliffe needle",
+  "DK II: Gotham 0.0 vs Yahoo 6.3 / Sleeper 6.3 on Jacoby Brissett - check role/news",
+  "DK II: Gotham 25.4 vs Yahoo 17.2 / Sleeper 17.3 on D'Andre Swift - check role/news",
+  "DK II: Gotham 0.0 vs Yahoo 0.0 / Sleeper 14.1 on A.J. Brown - check role/news",
+  "DK IV: Gotham 20.3 vs Yahoo 13.7 / Sleeper 13.9 on D'Andre Swift - check role/news",
+  "best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting"
+ ],
+ "sources": {
+  "nfl_schedule": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/games.csv",
+   "pulled_pt": "Tue Nov 03 03:37 AM PT",
+   "age_h": 0.0,
+   "rows": 15,
+   "need": 15,
+   "note": "week 9: 15 games"
+  },
+  "yahoo_matchups": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk9/dom_matchups_api.txt",
+   "pulled_pt": "Tue Nov 03 03:36 AM PT",
+   "age_h": 0.0,
+   "rows": 41,
+   "need": 41,
+   "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
+  },
+  "yahoo_all_teams": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk9/league_windows_api.txt",
+   "pulled_pt": "Tue Nov 03 03:36 AM PT",
+   "age_h": 0.0,
+   "rows": 48,
+   "need": 48,
+   "note": "every team in all four leagues: Yahoo win %, record"
+  },
+  "yahoo_standings": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk9/standings_tue0327.txt",
+   "pulled_pt": "Tue Nov 03 03:27 AM PT",
+   "age_h": 0.2,
+   "rows": 48,
+   "need": 48,
+   "note": "rank, division rank, points for"
+  },
+  "gotham": {
+   "status": "OK",
+   "path": "/home/claude/dksys/engine/gotham_status.json",
+   "pulled_pt": "Tue Nov 03 03:37 AM PT",
+   "age_h": 0.0,
+   "rows": 9,
+   "need": 9,
+   "note": "Gotham run Tue Nov 03 2026 03:37 AM PT for week 9"
+  },
+  "ratcliffe": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
+   "pulled_pt": "Tue Nov 3 2026 2:57 AM PT",
+   "age_h": 0.7,
+   "rows": 2042,
+   "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
+  },
+  "koerner": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
+   "pulled_pt": "Tue Nov 3 2026 3:05 AM PT",
+   "age_h": 0.5,
+   "rows": 2726,
+   "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
+  },
+  "sleeper_skill": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk9_2026-11-03T1111Z.csv",
+   "pulled_pt": "Tue Nov 03 03:11 AM PT",
+   "age_h": 0.4,
+   "rows": 3117,
+   "need": 400,
+   "note": "GitHub job checked 0.4 h ago (saved 3117 rows)"
+  },
+  "sleeper_kdef": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk9_2026-11-03T1111Z.csv",
+   "pulled_pt": "Tue Nov 03 03:11 AM PT",
+   "age_h": 0.4,
+   "rows": 187,
+   "need": 60,
+   "note": "GitHub job checked 0.4 h ago (saved 187 rows)"
+  },
+  "yahoo_rosters": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk9/dom_rosters.json",
+   "pulled_pt": "Tue Nov 03 03:27 AM PT",
+   "age_h": 0.2,
+   "rows": 66,
+   "need": null,
+   "note": "Dom's four rosters"
+  }
+ }
+}
