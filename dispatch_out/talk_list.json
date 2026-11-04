@@ -1,23 +1,59 @@
 {
  "week": 9,
- "built": "Tue Nov 03 2026 03:55 PM PT",
- "ratcliffe_read": "Tue Nov 3 2026 12:57 PM PT",
+ "built": "Tue Nov 03 2026 04:05 PM PT",
+ "ratcliffe_read": "Tue Nov 3 2026 3:56 PM PT",
  "koerner_read": "Tue Nov 3 2026 3:04 PM PT",
  "leagues": {
   "DK I": {
    "talk": [],
-   "watch": [],
+   "watch": [
+    {
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "free agent",
+     "over": "Samaje Perine",
+     "rat_ros": 9.2,
+     "over_ros": 7.8,
+     "pct": 19,
+     "gain": 1.5,
+     "rat_wk": 8.5,
+     "koe_wk": 9.31,
+     "rising": null,
+     "scout": false,
+     "id": "watch:kimanividal",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
+    }
+   ],
    "cover": [
     {
      "title": "RB2, Week 9 Fill",
-     "target": "Target 9.7 pts",
+     "target": "Target 10.2 pts",
      "mark": "red",
-     "why": "Full strength ~19.8 (Warren). Wk 9 Black ~9.7 (Warren on bye, Black slides in).",
+     "why": "Full strength ~19.8 (Warren). Wk 9 Black ~10.2 (Warren on bye, Black slides in).",
      "picks": [
       "Devin Singletary (Waivers, clears Nov 4)"
      ],
      "id": "cover:rb2week9fill",
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
+    },
+    {
+     "title": "FLEX1, Week 11 Fill",
+     "target": "Target 10.3 pts",
+     "mark": "gold",
+     "why": "Full strength ~12.8 (Pickens). Wk 11 Godwin ~10.3 (Pickens moves up to WR1, Godwin slides in).",
+     "picks": [],
+     "id": "cover:flex1week11fill",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
+    },
+    {
+     "title": "RB1, Week 11 Fill",
+     "target": "Target 21.4 pts",
+     "mark": "gold",
+     "why": "Full strength ~25.1 (McCaffrey). Wk 11 McCaffrey ~21.4 (hard matchup vs MIN).",
+     "picks": [],
+     "id": "cover:rb1week11fill",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
     }
    ],
    "block": [],
@@ -25,7 +61,7 @@
    "fa_tags": {
     "Dylan Sampson": {
      "tag": "No action needed",
-     "why": "only 7% better than your Samaje Perine (9.5 vs 8.8 a game, Ratcliffe) - under your 15% bar"
+     "why": "only 4% better than your Samaje Perine (8.1 vs 7.8 a game, Ratcliffe) - under your 15% bar"
     }
    }
   },
@@ -37,9 +73,9 @@
      "team": "NYG",
      "acq": "Free agent",
      "over": "Jacoby Brissett",
-     "pct": 25,
-     "gain": 4.8,
-     "note": "Scout pick (rest of season): This week vs your SUPERFLEX Jacoby Brissett: Ratcliffe 17.4 vs not read \u00b7 Koerner 18.9 vs 0.0 \u00b7 Yahoo 18.2 vs 0.0 \u00b7 Gotham not read vs 0.0 - better this week",
+     "pct": 43,
+     "gain": 6.2,
+     "note": "Scout pick (rest of season): This week vs your SUPERFLEX Jacoby Brissett: Ratcliffe 17.7 vs not read \u00b7 Koerner 18.9 vs 0.0 \u00b7 Yahoo 18.2 vs 0.0 \u00b7 Gotham not read vs 0.0 - better this week",
      "scout": true,
      "id": "talk:jjmccarthy",
      "first_seen": "Tue Nov 03 2026 01:14 PM PT"
@@ -50,16 +86,63 @@
      "team": "SF",
      "acq": "free agent",
      "over": "Samaje Perine",
-     "rat_ros": 10.9,
-     "over_ros": 8.8,
-     "pct": 23,
-     "gain": 2.0,
-     "rat_wk": 9.7,
+     "rat_ros": 11.0,
+     "over_ros": 7.8,
+     "pct": 41,
+     "gain": 3.2,
+     "rat_wk": 10.2,
      "koe_wk": 9.4,
      "rising": null,
      "scout": false,
      "id": "talk:kaelonblack",
      "first_seen": "Sat Oct 31 2026 08:51 AM PT"
+    },
+    {
+     "name": "Emmett Johnson",
+     "pos": "RB",
+     "team": "KC",
+     "acq": "free agent",
+     "over": "Samaje Perine",
+     "rat_ros": 11.0,
+     "over_ros": 7.8,
+     "pct": 41,
+     "gain": 3.2,
+     "rat_wk": 9.0,
+     "koe_wk": 5.65,
+     "rising": "Ratcliffe's rest of season has him at 11.0 a game vs 7.8 for Samaje Perine",
+     "scout": false,
+     "id": "talk:emmettjohnson",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
+    },
+    {
+     "name": "Brian Robinson Jr.",
+     "pos": "RB",
+     "team": "ATL",
+     "acq": "waivers until Nov 4",
+     "over": "Samaje Perine",
+     "rat_ros": 10.8,
+     "over_ros": 7.8,
+     "pct": 38,
+     "gain": 3.0,
+     "rat_wk": 5.0,
+     "koe_wk": 0.0,
+     "rising": null,
+     "scout": false,
+     "id": "talk:brianrobinson",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
+    },
+    {
+     "name": "Tanner McKee",
+     "pos": "QB",
+     "team": "PHI",
+     "acq": "Waivers, clears Nov 4",
+     "over": "Jacoby Brissett",
+     "pct": 27,
+     "gain": 3.3,
+     "note": "Scout pick (rest of season): This week vs your SUPERFLEX Jacoby Brissett: Ratcliffe 15.7 vs not read \u00b7 Koerner 14.7 vs 0.0 \u00b7 Yahoo 15.8 vs 0.0 \u00b7 Gotham not read vs 0.0 - better this week",
+     "scout": true,
+     "id": "talk:tannermckee",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
     }
    ],
    "watch": [
@@ -116,46 +199,46 @@
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
     },
     {
-     "name": "Emmett Johnson",
+     "name": "Kendre Miller",
      "pos": "RB",
-     "team": "KC",
-     "acq": "free agent",
-     "over": "Samaje Perine",
-     "rat_ros": 10.5,
-     "over_ros": 8.8,
-     "pct": 19,
-     "gain": 1.7,
-     "rat_wk": 9.0,
-     "koe_wk": 5.65,
-     "rising": null,
-     "scout": false,
-     "id": "watch:emmettjohnson",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
-     "name": "Brian Robinson Jr.",
-     "pos": "RB",
-     "team": "ATL",
+     "team": "NO",
      "acq": "waivers until Nov 4",
      "over": "Samaje Perine",
-     "rat_ros": 10.5,
-     "over_ros": 8.8,
+     "rat_ros": 9.2,
+     "over_ros": 7.8,
      "pct": 19,
-     "gain": 1.7,
-     "rat_wk": 5.5,
-     "koe_wk": 0.0,
+     "gain": 1.5,
+     "rat_wk": 9.4,
+     "koe_wk": 9.16,
      "rising": null,
      "scout": false,
-     "id": "watch:brianrobinson",
-     "first_seen": "Sat Oct 31 2026 06:10 PM PT"
+     "id": "watch:kendremiller",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
+    },
+    {
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "free agent",
+     "over": "Samaje Perine",
+     "rat_ros": 9.2,
+     "over_ros": 7.8,
+     "pct": 19,
+     "gain": 1.5,
+     "rat_wk": 8.5,
+     "koe_wk": 9.31,
+     "rising": null,
+     "scout": false,
+     "id": "watch:kimanividal",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
     }
    ],
    "cover": [
     {
      "title": "SUPERFLEX, Weeks 9, 12 Fill",
-     "target": "Target 18.4 pts",
+     "target": "Target 16.5 pts",
      "mark": "red",
-     "why": "Full strength ~19.4 (Brissett). Wk 9 Brissett ~13.9 (hard matchup vs SEA) \u00b7 Wk 12 Rodgers ~22.9 (Brissett has a worse matchup).",
+     "why": "Full strength ~19.4 (Brissett). Wk 9 Brissett ~12.4 (hard matchup vs SEA) \u00b7 Wk 12 Rodgers ~20.6 (Brissett has a worse matchup).",
      "picks": [
       "J.J. McCarthy (Free agent)",
       "Tanner McKee (Waivers, clears Nov 4)"
@@ -167,28 +250,28 @@
      "title": "RB2, Weeks 12-15 Fill",
      "target": "Target 11.3 pts",
      "mark": "gold",
-     "why": "Full strength ~13.2 (Kamara). Wk 12 Montgomery ~10.9 (Kamara has a worse matchup) \u00b7 Wk 13 Montgomery ~10.9 (Kamara has a worse matchup) \u00b7 Wk 14 Etienne ~13.0 (Kamara has a worse matchup) \u00b7 Wk 15 Etienne ~10.3 (Kamara has a worse matchup).",
+     "why": "Full strength ~13.2 (Kamara). Wk 12 Montgomery ~11.0 (Kamara has a worse matchup) \u00b7 Wk 13 Montgomery ~11.1 (Kamara moves up to FLEX, Montgomery slides in) \u00b7 Wk 14 Etienne ~12.8 (Kamara moves up to FLEX, Etienne slides in) \u00b7 Wk 15 Montgomery",
      "picks": [],
      "id": "cover:rb2weeks1215fill",
      "first_seen": "Tue Nov 03 2026 03:37 AM PT"
     },
     {
-     "title": "WR2, Week 11 Fill",
-     "target": "Target 13.3 pts",
-     "mark": "gold",
-     "why": "Full strength ~14.1 (London). Wk 11 Bernard ~13.3 (London on bye, Bernard slides in).",
-     "picks": [],
-     "id": "cover:wr2week11fill",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
      "title": "WR3, Week 11 Fill",
-     "target": "Target 11.5 pts",
+     "target": "Target 10.7 pts",
      "mark": "gold",
-     "why": "Full strength ~8.6 (McConkey). Wk 11 McConkey ~11.5 (hard matchup vs NYJ).",
+     "why": "Full strength ~8.6 (McConkey). Wk 11 McConkey ~10.7 (hard matchup vs NYJ).",
      "picks": [],
      "id": "cover:wr3week11fill",
      "first_seen": "Sun Nov 01 2026 06:03 PM PT"
+    },
+    {
+     "title": "WR2, Week 11 Fill",
+     "target": "Target 12.6 pts",
+     "mark": "gold",
+     "why": "Full strength ~14.1 (London). Wk 11 Bernard ~12.6 (London on bye, Bernard slides in).",
+     "picks": [],
+     "id": "cover:wr2week11fill",
+     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     }
    ],
    "block": [],
@@ -204,7 +287,7 @@
      "acq": "Free agent",
      "over": "Devaughn Vele",
      "pct": 30,
-     "gain": 2.6,
+     "gain": 2.9,
      "note": "Scout pick (rest of season): This week vs your DEF Packers DEF: Ratcliffe 9.8 vs 7.3 \u00b7 Koerner 5.5 vs 7.8 \u00b7 Yahoo 6.2 vs 7.0 - mixed - Ratcliffe says better",
      "scout": true,
      "id": "talk:atldef",
@@ -213,38 +296,38 @@
    ],
    "watch": [
     {
-     "name": "Emmett Johnson",
-     "pos": "RB",
-     "team": "KC",
-     "acq": "Free agent",
-     "over": "Devaughn Vele",
-     "pct": 36,
-     "gain": 4.0,
-     "note": "Scout pick (rest of season): This week vs your FLEX2 Caleb Douglas: Ratcliffe 9.0 vs 10.6 \u00b7 Koerner 5.7 vs 8.7 \u00b7 Yahoo 6.6 vs 8.8 \u00b7 Gotham 7.7 vs 8.6 - WORSE this week",
-     "scout": true,
-     "id": "watch:emmettjohnson",
-     "first_seen": "Mon Nov 02 2026 08:33 PM PT"
-    },
-    {
      "name": "Adonai Mitchell",
      "pos": "WR",
      "team": "NYJ",
      "acq": "Free agent",
      "over": "Devaughn Vele",
-     "pct": 36,
-     "gain": 2.8,
-     "note": "Scout pick (rest of season): This week vs your FLEX2 Caleb Douglas: Ratcliffe 9.5 vs 10.6 \u00b7 Koerner 8.4 vs 8.7 \u00b7 Yahoo 8.1 vs 8.8 \u00b7 Gotham 6.7 vs 8.6 - WORSE this week",
+     "pct": 35,
+     "gain": 2.4,
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Caleb Douglas: Ratcliffe 8.9 vs 10.6 \u00b7 Koerner 8.4 vs 8.7 \u00b7 Yahoo 8.1 vs 8.8 \u00b7 Gotham 6.7 vs 8.6 - WORSE this week",
      "scout": true,
      "id": "watch:adonaimitchell",
+     "first_seen": "Mon Nov 02 2026 08:33 PM PT"
+    },
+    {
+     "name": "Emmett Johnson",
+     "pos": "RB",
+     "team": "KC",
+     "acq": "Free agent",
+     "over": "Devaughn Vele",
+     "pct": 29,
+     "gain": 11.0,
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Caleb Douglas: Ratcliffe 9.0 vs 10.6 \u00b7 Koerner 5.7 vs 8.7 \u00b7 Yahoo 6.6 vs 8.8 \u00b7 Gotham 7.7 vs 8.6 - WORSE this week",
+     "scout": true,
+     "id": "watch:emmettjohnson",
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
     }
    ],
    "cover": [
     {
      "title": "RB2, Weeks 10-12 Fill",
-     "target": "Target 12.0 pts",
+     "target": "Target 11.9 pts",
      "mark": "red",
-     "why": "Full strength ~12.7 (Coleman). Wk 10 Montgomery ~11.3 (Coleman on bye, Montgomery slides in) \u00b7 Wk 11 Montgomery ~12.0 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 12 White ~12.6 (Coleman moves up to RB1, White slides in).",
+     "why": "Full strength ~12.7 (Coleman). Wk 10 Montgomery ~11.5 (Coleman on bye, Montgomery slides in) \u00b7 Wk 11 Montgomery ~12.2 (Coleman moves up to RB1, Montgomery slides in) \u00b7 Wk 12 White ~11.9 (Coleman moves up to RB1, White slides in).",
      "picks": [
       "Emmett Johnson (Free agent)"
      ],
@@ -252,35 +335,25 @@
      "first_seen": "Tue Nov 03 2026 03:07 AM PT"
     },
     {
-     "title": "FLEX1, Weeks 9-10, 12 Fill",
-     "target": "Target 10.3 pts",
+     "title": "FLEX1, Weeks 9-10 Fill",
+     "target": "Target 9.6 pts",
      "mark": "red",
-     "why": "Full strength ~11.3 (Waddle). Wk 9 Vele ~10.7 (Waddle moves up to WR2, Vele slides in) \u00b7 Wk 10 Douglas ~9.2 (Waddle on bye, Douglas slides in) \u00b7 Wk 12 Montgomery ~10.9 (Waddle moves up to WR2, Montgomery slides in).",
+     "why": "Full strength ~11.3 (Waddle). Wk 9 Vele ~10.7 (Waddle moves up to WR2, Vele slides in) \u00b7 Wk 10 Douglas ~8.4 (Waddle on bye, Douglas slides in).",
      "picks": [
       "Emmett Johnson (Free agent)",
       "Adonai Mitchell (Free agent)"
      ],
-     "id": "cover:flex1weeks91012fill",
-     "first_seen": "Tue Nov 03 2026 09:14 AM PT"
-    },
-    {
-     "title": "FLEX2, Week 10 Fill",
-     "target": "Target 8.3 pts",
-     "mark": "red",
-     "why": "Full strength ~11.1 (Hockenson). Wk 10 Vele ~8.3 (Hockenson has a worse matchup).",
-     "picks": [
-      "Adonai Mitchell (Free agent)",
-      "Emmett Johnson (Free agent)"
-     ],
-     "id": "cover:flex2week10fill",
-     "first_seen": "Mon Nov 02 2026 08:33 PM PT"
+     "id": "cover:flex1weeks910fill",
+     "first_seen": "Tue Nov 03 2026 04:05 PM PT"
     },
     {
      "title": "RB1, Weeks 11-14 Fill",
-     "target": "Target 13.8 pts",
+     "target": "Target 13.0 pts",
      "mark": "gold",
-     "why": "Full strength ~13.0 (White). Wk 11 Coleman ~14.5 (White moves up to FLEX1, Coleman slides in) \u00b7 Wk 12 Coleman ~12.9 (White moves up to RB2, Coleman slides in) \u00b7 Wk 13 Coleman ~14.4 (White moves up to RB2, Coleman slides in) \u00b7 Wk 14 Coleman ",
-     "picks": [],
+     "why": "Full strength ~13.0 (White). Wk 11 Coleman ~13.6 (White moves up to FLEX1, Coleman slides in) \u00b7 Wk 12 Coleman ~12.1 (White moves up to RB2, Coleman slides in) \u00b7 Wk 13 Coleman ~13.5 (White moves up to RB2, Coleman slides in) \u00b7 Wk 14 Coleman ",
+     "picks": [
+      "Emmett Johnson (Free agent)"
+     ],
      "id": "cover:rb1weeks1114fill",
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
     }
@@ -290,7 +363,7 @@
    "fa_tags": {
     "Sam Darnold": {
      "tag": "No action needed",
-     "why": "Ratcliffe has him at 19.6 a game, below your Jayden Daniels (25.9)"
+     "why": "Ratcliffe has him at 18.0 a game, below your Jayden Daniels (23.2)"
     }
    }
   },
@@ -302,9 +375,9 @@
      "team": "WAS",
      "acq": "Free agent",
      "over": "Marvin Harrison Jr.",
-     "pct": 43,
+     "pct": 48,
      "gain": 3.5,
-     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 9.7 vs 10.2 \u00b7 Koerner 9.6 vs 7.9 \u00b7 Yahoo 8.6 vs 8.2 \u00b7 Gotham 7.5 vs 11.6 - mixed - Ratcliffe says worse",
+     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 9.7 vs 9.9 \u00b7 Koerner 9.6 vs 7.9 \u00b7 Yahoo 8.6 vs 8.2 \u00b7 Gotham 7.5 vs 11.6 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:antoniowilliams",
      "first_seen": "Tue Nov 03 2026 02:09 AM PT"
@@ -315,9 +388,9 @@
      "team": "JAX",
      "acq": "Waivers, clears Nov 4",
      "over": "Marvin Harrison Jr.",
-     "pct": 28,
-     "gain": 3.3,
-     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 8.8 vs 10.2 \u00b7 Koerner 9.7 vs 7.9 \u00b7 Yahoo 9.4 vs 8.2 \u00b7 Gotham 9.5 vs 11.6 - mixed - Ratcliffe says worse",
+     "pct": 36,
+     "gain": 4.1,
+     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 9.2 vs 9.9 \u00b7 Koerner 9.7 vs 7.9 \u00b7 Yahoo 9.4 vs 8.2 \u00b7 Gotham 9.5 vs 11.6 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:jakobimeyers",
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
@@ -329,23 +402,10 @@
      "acq": "Waivers, clears Nov 4",
      "over": "Marvin Harrison Jr.",
      "pct": 27,
-     "gain": 2.4,
-     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 8.8 vs 10.2 \u00b7 Koerner 9.8 vs 7.9 \u00b7 Yahoo 10.2 vs 8.2 \u00b7 Gotham 7.2 vs 11.6 - mixed - Ratcliffe says worse",
+     "gain": 2.0,
+     "note": "Scout pick (rest of season): This week vs your WR3 Omar Cooper Jr.: Ratcliffe 8.8 vs 9.9 \u00b7 Koerner 9.8 vs 7.9 \u00b7 Yahoo 10.2 vs 8.2 \u00b7 Gotham 7.2 vs 11.6 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:chrisgodwin",
-     "first_seen": "Mon Nov 02 2026 08:33 PM PT"
-    },
-    {
-     "name": "Dontayvion Wicks",
-     "pos": "WR",
-     "team": "PHI",
-     "acq": "Waivers, clears Nov 4",
-     "over": "Marvin Harrison Jr.",
-     "pct": 25,
-     "gain": 2.1,
-     "note": "Scout pick (rest of season): This week: Dontayvion Wicks is out (due back Wk 10) - no help this week",
-     "scout": true,
-     "id": "talk:dontayvionwicks",
      "first_seen": "Mon Nov 02 2026 08:33 PM PT"
     },
     {
@@ -370,8 +430,8 @@
      "acq": "Free agent",
      "over": "Broncos",
      "pct": 44,
-     "gain": 20.5,
-     "note": "Scout pick (rest of season): This week vs your DEF Broncos DEF: Ratcliffe 7.3 vs 8.6 \u00b7 Koerner 5.9 vs 7.2 \u00b7 Yahoo 4.4 vs 6.9 - WORSE this week",
+     "gain": 20.2,
+     "note": "Scout pick (rest of season): This week vs your DEF Broncos DEF: Ratcliffe 7.3 vs 9.0 \u00b7 Koerner 5.9 vs 7.2 \u00b7 Yahoo 4.4 vs 6.9 - WORSE this week",
      "scout": true,
      "id": "watch:tbdef",
      "first_seen": "Tue Nov 03 2026 03:07 AM PT"
@@ -380,61 +440,29 @@
    "cover": [
     {
      "title": "QB, Week 10 Fill",
-     "target": "Target 25.8 pts",
+     "target": "Target 23.0 pts",
      "mark": "gold",
-     "why": "Full strength ~23.1 (Prescott). Wk 10 Prescott ~25.8 (hard matchup vs SF).",
+     "why": "Full strength ~23.1 (Prescott). Wk 10 Prescott ~23.0 (hard matchup vs SF).",
      "picks": [],
      "id": "cover:qbweek10fill",
      "first_seen": "Mon Nov 02 2026 09:47 AM PT"
     },
     {
-     "title": "FLEX, Weeks 9-11 Fill",
-     "target": "Target 11.6 pts",
-     "mark": "gold",
-     "why": "Full strength ~14.9 (Gordon). Wk 9 Gordon ~11.9 (hard matchup vs DET) \u00b7 Wk 10 Robinson ~11.6 (Gordon moves up to RB2, Robinson slides in) \u00b7 Wk 11 Robinson ~11.3 (Gordon moves up to RB2, Robinson slides in).",
-     "picks": [],
-     "id": "cover:flexweeks911fill",
-     "first_seen": "Mon Nov 02 2026 08:33 PM PT"
-    },
-    {
      "title": "RB2, Weeks 10-11 Fill",
-     "target": "Target 14.5 pts",
+     "target": "Target 13.6 pts",
      "mark": "gold",
-     "why": "Full strength ~17.4 (Robinson). Wk 10 Gordon ~14.2 (Robinson moves up to RB1, Gordon slides in) \u00b7 Wk 11 Gordon ~14.8 (Robinson on bye, Gordon slides in).",
+     "why": "Full strength ~17.4 (Robinson). Wk 10 Gordon ~13.3 (Robinson moves up to RB1, Gordon slides in) \u00b7 Wk 11 Gordon ~13.8 (Robinson on bye, Gordon slides in).",
      "picks": [],
      "id": "cover:rb2weeks1011fill",
      "first_seen": "Tue Nov 03 2026 03:07 AM PT"
-    },
-    {
-     "title": "TE, Week 9 Fill",
-     "target": "Target 10.3 pts",
-     "mark": "gold",
-     "why": "Full strength ~13.2 (Kraft). Wk 9 Kraft ~10.3 (hard matchup vs NE).",
-     "picks": [],
-     "id": "cover:teweek9fill",
-     "first_seen": "Tue Nov 03 2026 09:14 AM PT"
     }
    ],
-   "block": [
-    {
-     "week": 10,
-     "opp": "Lin's Team \ud83c\udfc8",
-     "name": "Pat Freiermuth",
-     "pos": "TE",
-     "team": "PIT",
-     "acq": "waivers until Nov 4",
-     "would_start_over": "Mark Andrews",
-     "rat_ros": 10.6,
-     "their_ros": 8.1,
-     "id": "block:patfreiermuth",
-     "first_seen": "Tue Nov 03 2026 03:37 AM PT"
-    }
-   ],
+   "block": [],
    "backup": [],
    "fa_tags": {
     "Dylan Sampson": {
      "tag": "No action needed",
-     "why": "Ratcliffe has him at 8.1 a game, below your Ollie Gordon II (13.8)"
+     "why": "Ratcliffe has him at 7.0 a game, below your Ollie Gordon II (12.9)"
     }
    }
   }
