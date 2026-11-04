@@ -582,7 +582,9 @@ try:
             add(id=slug("w", W, lg, "online", name), color="gold" if beats else "grey", lg=lg, who=name, kind="online",
                 title=f"Coming online: {name} ({pos}, {team}), {why}. {kind_l}" + (f", clears {own_st[1]}" if own_st[0] == "waivers" else ""),
                 what=(news[2] if news else f"Sleeper now projects him {p:.1f} this week; Gotham has no recent games to rate him."),
-                tie=(f"Would beat your weakest {pos} starter in {lg}, {weak[0]['player']} ({weak[1]:.1f})." if beats else
+                tie=((f"Would beat your weakest {pos} starter in {lg}, {weak[0]['player']} ({weak[1]:.1f})." if weak[0] else   # Nov 3: no same-position starter with a Sleeper number (e.g. the spot is a flex) - name the man he was measured against
+                      f"Would beat {_st['player']} in your {lg} {_st.get('slot') or 'lineup'} on " + ", ".join(NAMES[s] for s in ok_ if s in NAMES) + "." if _st else
+                      f"Clears the bar in {lg}.") if beats else
                      f"Not ahead of your {pos} starters yet" + (f" (weakest: {weak[0]['player']}, {weak[1]:.1f})" if weak[0] else "") + "; worth watching."),
                 fix=(f"Your call: {'claim' if own_st[0] == 'waivers' else 'add'} {name} - Sleeper projects {p:.1f} (PPR). Confirm his role in the news first; Gotham can't rate him until he plays. Adding him means dropping someone."
                      if beats else "Nothing to do yet - watch his first game back."),
