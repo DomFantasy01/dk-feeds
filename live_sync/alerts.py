@@ -543,7 +543,8 @@ try:
         if why: CAND.append((r, p, k, g, why))
     nonline = 0
     for lg, L in M["leagues"].items():
-        mine_ = {_nm(x["player"]): x for x in L.get("starters", {}).get("me", []) + L.get("bench", [])}
+        _me_st = [x for x in ((L.get("starters") or {}).get("me") or []) if isinstance(x, dict) and x.get("player")]   # Nov 3: empty slots come through as None
+        mine_ = {_nm(x["player"]): x for x in _me_st + [x for x in (L.get("bench") or []) if isinstance(x, dict) and x.get("player")]}
         for r, p, k, g, why in CAND:
             name, pos, team = r["name"], r["pos"], r.get("team") or ""
             sp = SP.get(k, {}); inj = sp.get("inj") or ""
@@ -592,7 +593,9 @@ try:
             nonline += 1
     ONLINE_NOTE = f"coming online: {len(CAND)} players checked, {nonline} alerts (Sleeper {_stamp_pt}, games through Week {GMAX})"
 except Exception as e:
-    ONLINE_NOTE = f"coming online check skipped: {type(e).__name__}: {e}"
+    import traceback as _tb   # Nov 3: name the exact line so a skipped check gets fixed at its cause, not guessed at
+    _fr = [f for f in _tb.extract_tb(e.__traceback__) if f.filename.endswith("alerts.py")]
+    ONLINE_NOTE = f"coming online check skipped: {type(e).__name__}: {e}" + (f" (alerts.py line {_fr[-1].lineno}: {(_fr[-1].line or '').strip()[:120]})" if _fr else "")
 
 # ---------- THE PRE-KICKOFF CHECK (Dom, Oct 17) ----------
 # The Scout puts each starter whose game hasn't started against the best healthy free agent, on this week's numbers,
