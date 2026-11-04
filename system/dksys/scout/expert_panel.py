@@ -28,10 +28,10 @@ except Exception:
 
 LEAGUES = [("DK I", 1, "269381", 2), ("DK II", 2, "1519795", 7), ("DK III", 3, "1507991", 2), ("DK IV", 4, "864215", 6)]
 POS = ("QB", "RB", "WR", "TE")
-PANEL = ["Paul Brenton", "Mick Ciallela", "Tyler Orginski", "Jeff Ratcliffe", "Patrick Thorman", "Sean Koerner"]   # Oct 29 (Dom): Orginski added; Oct 31: Brenton (2026 accuracy #1) added
-BACKUP = "Nathan Jahnke"
+PANEL = ["Jeff Ratcliffe", "Sean Koerner"]   # Nov 4: Brenton, Ciallela, Orginski, Thorman and Jahnke removed (Dom, Nov 3: "all useless")   # was:   # Oct 29 (Dom): Orginski added; Oct 31: Brenton (2026 accuracy #1) added
+BACKUP = None   # Nov 4: Jahnke removed with the other four ranking experts
 SHOW = {"Paul Brenton": "Brenton", "Mick Ciallela": "Ciallela", "Tyler Orginski": "Orginski", "Jeff Ratcliffe": "Ratcliffe", "Patrick Thorman": "Thorman", "Sean Koerner": "Koerner", "Nathan Jahnke": "Jahnke"}
-NEED = 3          # experts that must agree
+NEED = 2          # experts that must agree (Nov 4: the panel is Ratcliffe + Koerner, so both must agree)
 EDGE = 3          # ranks better by at least this many spots
 TEAM_FIX = {"JAC": "JAX", "LA": "LAR", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LAR"}
 

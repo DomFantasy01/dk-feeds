@@ -18,7 +18,7 @@ def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?",
 def fnum(x):
     try: return round(float(x), 1)
     except Exception: return None
-RANKERS = [("Paul Brenton", "Brenton", 1), ("Mick Ciallela", "Ciallela", 2), ("Tyler Orginski", "Orginski", 3), ("Nathan Jahnke", "Jahnke", 4), ("Patrick Thorman", "Thorman", 11)]
+RANKERS = []   # Nov 4 (Dom, Nov 3: the five ranking experts are "all useless"): Brenton, Ciallela, Orginski, Jahnke, Thorman removed
 pts = {}   # (lg, key) -> dict
 def put(lg, key, **kw): pts.setdefault((lg, key), {}).update({k: v for k, v in kw.items() if v is not None})
 for r in csv.DictReader(open(O(R, "dispatch_out/ftn_scored.csv"))) if os.path.exists(O(R, "dispatch_out/ftn_scored.csv")) else []:

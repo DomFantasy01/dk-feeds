@@ -126,7 +126,7 @@ def main(repo="."):
     now = dt.datetime.now(dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     stamp = f"{now:%a %b} {now.day} {now.hour % 12 or 12}:{now:%M} {'AM' if now.hour < 12 else 'PM'} PT"
     rows, log, got = [], [], 0
-    for fn in (boone, english, jahnke):
+    for fn in (boone, english):   # Nov 4: Jahnke removed with the other ranking experts (Dom, Nov 3)
         try:
             r, why = fn(w, idx)
         except Exception as e:
