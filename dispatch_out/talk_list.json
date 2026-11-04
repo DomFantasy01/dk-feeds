@@ -1,8 +1,8 @@
 {
  "week": 9,
- "built": "Wed Nov 04 2026 06:39 AM PT",
+ "built": "Wed Nov 04 2026 08:11 AM PT",
  "ratcliffe_read": "Wed Nov 4 2026 6:25 AM PT",
- "koerner_read": "Wed Nov 4 2026 3:10 AM PT",
+ "koerner_read": "Wed Nov 4 2026 8:06 AM PT",
  "leagues": {
   "DK I": {
    "talk": [],
@@ -338,9 +338,56 @@
    }
   },
   "DK III": {
-   "talk": [],
+   "talk": [
+    {
+     "name": "Hunter Henry",
+     "pos": "TE",
+     "team": "NE",
+     "acq": "Waivers, clears Nov 7",
+     "over": "Caleb Douglas",
+     "pct": 57,
+     "gain": 3.2,
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Caleb Douglas: Ratcliffe 5.0 vs 10.4 \u00b7 Koerner 10.2 vs 8.7 \u00b7 Yahoo not read vs 9.0 \u00b7 Gotham 9.4 vs 8.5 - mixed - Ratcliffe says worse",
+     "scout": true,
+     "id": "talk:hunterhenry",
+     "first_seen": "Wed Nov 04 2026 08:11 AM PT"
+    }
+   ],
    "watch": [],
    "cover": [
+    {
+     "title": "TE, Weeks 9-11 Fill",
+     "target": "Target 10.2 pts",
+     "mark": "red",
+     "why": "Full strength ~13.2 (Fannin). Wk 9 Fannin ~11.2 \u00b7 Wk 10 Fannin ~10.8 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~8.6 (Fannin on bye, Hockenson slides in).",
+     "picks": [
+      "Hunter Henry (Waivers, clears Nov 7)"
+     ],
+     "id": "cover:teweeks911fill",
+     "first_seen": "Wed Nov 04 2026 06:39 AM PT"
+    },
+    {
+     "title": "FLEX1, Week 10 Fill",
+     "target": "Target 8.1 pts",
+     "mark": "red",
+     "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.1 (Hockenson moves up to FLEX2, Douglas slides in).",
+     "picks": [
+      "Hunter Henry (Waivers, clears Nov 7)"
+     ],
+     "id": "cover:flex1week10fill",
+     "first_seen": "Wed Nov 04 2026 06:39 AM PT"
+    },
+    {
+     "title": "FLEX2, Week 10 Fill",
+     "target": "Target 7.7 pts",
+     "mark": "red",
+     "why": "Full strength ~8.6 (Downs). Wk 10 Hockenson ~7.7 (Downs moves up to WR2, Hockenson slides in).",
+     "picks": [
+      "Hunter Henry (Waivers, clears Nov 7)"
+     ],
+     "id": "cover:flex2week10fill",
+     "first_seen": "Wed Nov 04 2026 04:48 AM PT"
+    },
     {
      "title": "RB1, Weeks 11-14 Fill",
      "target": "Target 14.8 pts",
@@ -349,33 +396,6 @@
      "picks": [],
      "id": "cover:rb1weeks1114fill",
      "first_seen": "Wed Nov 04 2026 06:39 AM PT"
-    },
-    {
-     "title": "TE, Weeks 9-11 Fill",
-     "target": "Target 10.2 pts",
-     "mark": "gold",
-     "why": "Full strength ~13.2 (Fannin). Wk 9 Fannin ~11.2 \u00b7 Wk 10 Fannin ~10.8 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~8.6 (Fannin on bye, Hockenson slides in).",
-     "picks": [],
-     "id": "cover:teweeks911fill",
-     "first_seen": "Wed Nov 04 2026 06:39 AM PT"
-    },
-    {
-     "title": "FLEX1, Week 10 Fill",
-     "target": "Target 8.1 pts",
-     "mark": "gold",
-     "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.1 (Hockenson moves up to FLEX2, Douglas slides in).",
-     "picks": [],
-     "id": "cover:flex1week10fill",
-     "first_seen": "Wed Nov 04 2026 06:39 AM PT"
-    },
-    {
-     "title": "FLEX2, Week 10 Fill",
-     "target": "Target 7.7 pts",
-     "mark": "gold",
-     "why": "Full strength ~8.6 (Downs). Wk 10 Hockenson ~7.7 (Downs moves up to WR2, Hockenson slides in).",
-     "picks": [],
-     "id": "cover:flex2week10fill",
-     "first_seen": "Wed Nov 04 2026 04:48 AM PT"
     }
    ],
    "block": [],
@@ -409,15 +429,6 @@
      ],
      "fa": [
       {
-       "name": "Devin Singletary",
-       "pos": "RB",
-       "team": "NYG",
-       "wk": 10.9,
-       "koe": 5.42,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-08T18:00:00+00:00"
-      },
-      {
        "name": "Chris Rodriguez Jr.",
        "pos": "RB",
        "team": "JAX",
@@ -434,6 +445,15 @@
        "koe": 9.31,
        "locks": "Sun 1:05 PM",
        "lock_utc": "2026-11-08T21:05:00+00:00"
+      },
+      {
+       "name": "Elijah Mitchell",
+       "pos": "RB",
+       "team": "PHI",
+       "wk": 8.7,
+       "koe": 10.27,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-08T18:00:00+00:00"
       }
      ],
      "id": "backup:davidmontgomery",
@@ -443,21 +463,7 @@
    "fa_tags": {}
   },
   "DK IV": {
-   "talk": [
-    {
-     "name": "Tyler Bass",
-     "pos": "K",
-     "team": "BUF",
-     "acq": "Free agent",
-     "over": "Will Reichard",
-     "pct": 21,
-     "gain": 6.7,
-     "note": "Scout pick (rest of season): This week vs your K Will Reichard: Ratcliffe 10.7 vs 11.4 \u00b7 Koerner 8.4 vs 7.8 \u00b7 Yahoo 8.5 vs 8.4 - mixed - Ratcliffe says worse",
-     "scout": true,
-     "id": "talk:tylerbass",
-     "first_seen": "Tue Nov 03 2026 02:09 AM PT"
-    }
-   ],
+   "talk": [],
    "watch": [],
    "cover": [
     {
