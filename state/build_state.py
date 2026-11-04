@@ -202,7 +202,8 @@ for k, v in (M.get("sources") or {}).items():
     source({"yahoo_matchups": "Yahoo matchups (scores, starters)", "yahoo_rosters": "Yahoo rosters (all teams)",
             "yahoo_all_teams": "Yahoo win % (all teams)", "yahoo_standings": "Yahoo standings", "nfl_schedule": "NFL schedule",
             "gotham": "Gotham projections", "sleeper_skill": "Sleeper projections", "sleeper_kdef": "Sleeper K/DEF projections"}.get(k, k),
-           ptstr(v.get("pulled_pt")), hrs, (v.get("note") or "") + ("" if st in ("OK", "") else f"; build says {st}"), lvl_old,
+           ptstr(v.get("pulled_pt") or v.get("read")), hrs,   # Nov 4: Clay/Brenton write their time as "read", not "pulled_pt" - that blank tripped a false NO-GO
+           (v.get("note") or "") + ("" if st in ("OK", "") else f"; build says {st}"), lvl_old,
            by_read=k in ("yahoo_matchups", "yahoo_rosters"))
     if st not in ("OK", ""): HEALTH.append(("red", k, f"build marked it {st}: {v.get('note', '')}"))
 FS = load(os.path.join(FEEDS, "status.json"), {}) or {}

@@ -135,6 +135,6 @@ for lab, L in (M.get("leagues") or {}).items():
     a, b = T["ratcliffe"][0] + dl[0], T["ratcliffe"][1] + dl[1]
     T["clay"] = [round(a, 2), round(b, 2)]; Nd["clay"] = round(100 * ND.cdf((a - b) / sd))
     print(f"   {lab}: Clay {a:.1f} vs {b:.1f} -> {Nd['clay']}% chance to win this week")
-M.setdefault("sources", {})["clay"] = dict(status="OK", read=data["read"], note="Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17")
+M.setdefault("sources", {})["clay"] = dict(status="OK", read=data["read"], pulled_pt=data["read"], note="Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17")
 json.dump(M, open(MF, "w"), ensure_ascii=False)
 print(f"CLAY: starters with his number {hit}, without {miss} (Ratcliffe's number used); {len(rows)} player-league rows")

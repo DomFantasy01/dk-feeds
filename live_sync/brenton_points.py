@@ -64,6 +64,6 @@ for lab, L in (M.get("leagues") or {}).items():
         fl.append(dict(player=s.get("player"), pos=pos, who=who, brenton=b, ratcliffe=r, higher="Brenton" if b < r else "Ratcliffe"))
     for t in (L.get("totals") or {}, L.get("needles") or {}): t.pop("brenton", None)
     L["brenton_flags"] = sorted(fl, key=lambda x: -abs(x["brenton"] - x["ratcliffe"]))[:6]; nflag += len(fl)
-M.setdefault("sources", {})["brenton"] = dict(status="OK", read=read, note="Paul Brenton (Points Over Hype) weekly ranks - ranking check only, no points")
+M.setdefault("sources", {})["brenton"] = dict(status="OK", read=read, pulled_pt=read, note="Paul Brenton (Points Over Hype) weekly ranks - ranking check only, no points")
 json.dump(M, open(mf, "w"), ensure_ascii=False)
 print(f"BRENTON: {len(rk)} ranks (read {read}); ranking check only - {nflag} men ranked 8+ spots from Ratcliffe")

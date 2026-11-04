@@ -53,6 +53,33 @@ def main():
     if not os.path.isdir(wd): print(f"overlay: no Chrome read for week {wk} yet - nothing written"); return
     now = dt.datetime.now(PT); done = []
 
+    # ---- 0. Dom's four rosters (Nov 4, Dom caught it): the meter's bench/IR came only from the Chrome roster read, so a
+    # move made after that read (DK IV, Nov 4: Meyers added / Harrison Jr. dropped at 4:03 AM, Chrome read 3:27 AM) still
+    # showed the dropped man on the bench in the 4:47 build. The API read has every roster every build - it wins when newer.
+    RF = os.path.join(wd, "dom_rosters.json")
+    try: R0 = json.load(open(RF)) if os.path.exists(RF) else None
+    except Exception: R0 = None
+    r0t = None
+    if R0:
+        m = RX.search(str(R0.get("pulled_pt", "")))
+        if m:
+            r0t = dt.datetime.strptime(f"{m.group(2)} {m.group(3)} {m.group(4) or at.year} {m.group(5)}:{m.group(6)} {m.group(7)}", "%b %d %Y %I:%M %p").replace(tzinfo=PT)
+    NAMES = {"DKI": "DK I", "DKII": "DK II", "DKIII": "DK III", "DKIV": "DK IV"}
+    if r0t is None or at > r0t:
+        legs = {}
+        for lab, L in A["leagues"].items():
+            t = next((x for x in L.get("teams", []) if str(x.get("id")) == str(L.get("me"))), None)
+            if not t or not t.get("players"): legs = None; break
+            ps = [dict(slot=("IR" if p["slot"].startswith("IR") else p["slot"]), player=p["name"], status=p.get("status", "")) for p in t["players"]]
+            legs[NAMES[lab]] = dict(league_id=LG[lab], count=len(ps), players=ps)
+        if legs and len(legs) == 4:
+            out = dict(source=f"Yahoo API read {when} (Dom's four teams) - laid over the Chrome roster read" + (f" of {r0t:%a %b} {r0t.day} {r0t.hour % 12 or 12}:{r0t:%M} {'AM' if r0t.hour < 12 else 'PM'} PT" if r0t else ""),
+                       pulled_pt=f"{at:%a %b %d %Y} {at.hour % 12 or 12}:{at:%M} {'AM' if at.hour < 12 else 'PM'} PT", week=wk, leagues=legs)
+            json.dump(out, open(RF, "w"), indent=1)
+            done.append(f"Dom's rosters ({sum(v['count'] for v in legs.values())} players)")
+        else: print("overlay: API read is missing one of Dom's teams - rosters left on the Chrome read")
+    # (runs first: it needs no schedule, so a failure further down never leaves the dropped man on the bench)
+
     # ---- 1. every team's Yahoo win %, total, record
     WF = newest_chrome(wd, "league_windows_*.txt", at.year)
     if WF and at > file_time(WF, at.year):
