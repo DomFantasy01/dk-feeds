@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-11-04T03:38:40.055975-08:00",
- "run_str": "Wed Nov 4, 3:38 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-8 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 4, 3:37 AM PT (API) \u00b7 stats nflverse Wed 3:37 AM PT",
+ "run": "2026-11-04T03:46:41.063511-08:00",
+ "run_str": "Wed Nov 4, 3:46 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-8 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 4, 3:45 AM PT (API) \u00b7 stats nflverse Wed 3:46 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -452,6 +452,7 @@
  "prekick": [],
  "watch": [
   "Can't claim: RJ Harvey (DEN RB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 7 and you can add him then.",
+  "Can't claim: DEN defense (DEN DEF) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 7 and you can add him then.",
   "Watch: Dontayvion Wicks (PHI WR) - listed out, due back Wk 10 - waits for his return to be confirmed (a full practice).",
   "Stash: Kenny Gainwell (TB RB, free agent) - 34% of the TB backfield's touches the last three games behind Bucky Irving (~17.2 a game, 60%); the lead job is his if Irving goes down; his own level now ~9.3",
   "Stash: Chris Rodriguez Jr. (JAX RB, free agent) - 31% of the JAX backfield's touches the last three games behind Bhayshul Tuten (~16.4 a game, 56%); the lead job is his if Tuten goes down; his own level now ~5.6",
@@ -474,13 +475,29 @@
   "flags": [],
   "failed": []
  },
- "arrivals": [],
+ "arrivals": [
+  {
+   "name": "RJ Harvey",
+   "pos": "RB",
+   "why": "dropped by Mr. Irrelevant Wed Nov 4 1:32 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 7",
+   "yahoo_ros": 39.9,
+   "line": "RJ Harvey (RB) - dropped by Mr. Irrelevant Wed Nov 4 1:32 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). Yahoo rest of season 40. on waivers until Nov 7. VERDICT: NOT AN UPGRADE: would not start or beat your bench (10.6 a game vs your weakest Ollie Gordon II 12.9). Ratcliffe - this week / 10.6 a game rest of season; Koerner 0.0; Yahoo -. Playoffs: Wk15 at LV (Yahoo 8.5), Wk16 vs BUF (Yahoo 7.9), Wk17 at NE (Yahoo 7.8)."
+  }
+ ],
  "txn_review": {
-  "yours": [],
+  "yours": [
+   "You added Buccaneers (TB DEF), Wed Nov 4 1:32 AM (Waiver).",
+   "You dropped Broncos (Den DEF), Wed Nov 4 1:32 AM (To Waivers)."
+  ],
   "hurts": [],
   "missed": [],
   "openings": [],
-  "others": [],
-  "quiet": 0
+  "others": [
+   "Mr. Irrelevant took Emmett Johnson (KC RB), Wed Nov 4 1:32 AM (Waiver). VERDICT: NOT AN UPGRADE: would not start or beat your bench (9.3 a game vs your weakest Ollie Gordon II 12.9). Ratcliffe 8.4 this week / 9.3 a game rest of season; Koerner 5.3; Yahoo -. Playoffs: Wk15 vs NE, Wk16 vs SF, Wk17 at LAC. We showed him to you first: DK II rising alert Tue Nov 3 4:07 PM."
+  ],
+  "quiet": 4
  }
 }
