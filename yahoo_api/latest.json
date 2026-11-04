@@ -1,6 +1,6 @@
 {
- "read_pt": "Wed Nov 4 12:35 PM PT",
- "read_utc": "2026-11-04T20:35:39+00:00",
+ "read_pt": "Wed Nov 4 1:09 PM PT",
+ "read_utc": "2026-11-04T21:09:47+00:00",
  "game_key": "470",
  "leagues_read": [
   "DKI",
@@ -10,7 +10,7 @@
  ],
  "calls": 29,
  "log": [
-  "DKI TheMostImportantThingInLife: week 9, 12 teams, 187 rostered, 6 matchups, 10 on waivers",
+  "DKI TheMostImportantThingInLife: week 9, 12 teams, 187 rostered, 6 matchups, 12 on waivers",
   "DKII Winners and Sinners: week 9, 12 teams, 201 rostered, 6 matchups, 5 on waivers",
   "DKIII Hers and His Version 2.0: week 9, 14 teams, 203 rostered, 7 matchups, 6 on waivers",
   "DKIV Murrieta NextDoor: week 9, 10 teams, 176 rostered, 5 matchups, 11 on waivers"
@@ -111,7 +111,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905"
       },
       {
@@ -644,14 +644,6 @@
       },
       {
        "slot": "BN",
-       "name": "Mark Andrews",
-       "team": "Bal",
-       "pos": "TE",
-       "status": "",
-       "key": "470.p.31056"
-      },
-      {
-       "slot": "BN",
        "name": "Seth McGowan",
        "team": "Ind",
        "pos": "RB",
@@ -659,7 +651,7 @@
        "key": "470.p.42859"
       },
       {
-       "slot": "IR",
+       "slot": "BN",
        "name": "DeVonta Smith",
        "team": "Phi",
        "pos": "WR",
@@ -668,11 +660,11 @@
       },
       {
        "slot": "K",
-       "name": "Tyler Loop",
-       "team": "Bal",
+       "name": "Matt Gay",
+       "team": "Lv",
        "pos": "K",
-       "status": "IR",
-       "key": "470.p.41988"
+       "status": "",
+       "key": "470.p.31977"
       },
       {
        "slot": "DEF",
@@ -725,7 +717,7 @@
        "name": "Amon-Ra St. Brown",
        "team": "Det",
        "pos": "WR",
-       "status": "",
+       "status": "Q",
        "key": "470.p.33500"
       },
       {
@@ -1469,6 +1461,14 @@
      "name": "Remember the Tutens",
      "players": [
       {
+       "slot": "QB",
+       "name": "Bo Nix",
+       "team": "Den",
+       "pos": "QB",
+       "status": "",
+       "key": "470.p.40875"
+      },
+      {
        "slot": "RB",
        "name": "Kenneth Walker III",
        "team": "Kc",
@@ -1478,11 +1478,11 @@
       },
       {
        "slot": "RB",
-       "name": "Bhayshul Tuten",
-       "team": "Jax",
+       "name": "Ollie Gordon II",
+       "team": "Mia",
        "pos": "RB",
-       "status": "Q",
-       "key": "470.p.41900"
+       "status": "",
+       "key": "470.p.41969"
       },
       {
        "slot": "WR",
@@ -1501,15 +1501,31 @@
        "key": "470.p.40084"
       },
       {
-       "slot": "W/R/T",
-       "name": "Ollie Gordon II",
-       "team": "Mia",
-       "pos": "RB",
+       "slot": "TE",
+       "name": "Dalton Schultz",
+       "team": "Hou",
+       "pos": "TE",
        "status": "",
-       "key": "470.p.41969"
+       "key": "470.p.31107"
       },
       {
        "slot": "W/R/T",
+       "name": "Bhayshul Tuten",
+       "team": "Jax",
+       "pos": "RB",
+       "status": "Q",
+       "key": "470.p.41900"
+      },
+      {
+       "slot": "W/R/T",
+       "name": "Woody Marks",
+       "team": "Hou",
+       "pos": "RB",
+       "status": "",
+       "key": "470.p.41902"
+      },
+      {
+       "slot": "BN",
        "name": "Malik Washington",
        "team": "Mia",
        "pos": "WR",
@@ -1523,14 +1539,6 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.30295"
-      },
-      {
-       "slot": "BN",
-       "name": "Woody Marks",
-       "team": "Hou",
-       "pos": "RB",
-       "status": "",
-       "key": "470.p.41902"
       },
       {
        "slot": "BN",
@@ -1550,19 +1558,11 @@
       },
       {
        "slot": "BN",
-       "name": "Bo Nix",
-       "team": "Den",
-       "pos": "QB",
+       "name": "Chris Rodriguez Jr.",
+       "team": "Jax",
+       "pos": "RB",
        "status": "",
-       "key": "470.p.40875"
-      },
-      {
-       "slot": "BN",
-       "name": "Dalton Schultz",
-       "team": "Hou",
-       "pos": "TE",
-       "status": "",
-       "key": "470.p.31107"
+       "key": "470.p.40231"
       },
       {
        "slot": "IR",
@@ -1581,7 +1581,7 @@
        "key": "470.p.28227"
       },
       {
-       "slot": "BN",
+       "slot": "DEF",
        "name": "Giants",
        "team": "Nyg",
        "pos": "DEF",
@@ -1600,14 +1600,14 @@
        "id": 1,
        "name": "JD",
        "points": "0.00",
-       "proj": "148.07",
+       "proj": "148.00",
        "win_probability": "0.72"
       },
       {
        "id": 10,
        "name": "RoadDogg",
        "points": "0.00",
-       "proj": "116.52",
+       "proj": "116.41",
        "win_probability": "0.28"
       }
      ]
@@ -1620,14 +1620,14 @@
        "id": 2,
        "name": "Dark Knight I",
        "points": "0.00",
-       "proj": "139.89",
+       "proj": "139.75",
        "win_probability": "0.4"
       },
       {
        "id": 9,
        "name": "Mr. Rodgers\u2019 Neighborhood",
        "points": "0.00",
-       "proj": "154.36",
+       "proj": "154.73",
        "win_probability": "0.6"
       }
      ]
@@ -1640,15 +1640,15 @@
        "id": 3,
        "name": "DIKFORE",
        "points": "0.00",
-       "proj": "146.86",
-       "win_probability": "0.58"
+       "proj": "146.64",
+       "win_probability": "0.53"
       },
       {
        "id": 5,
        "name": "World Of Pain",
        "points": "0.00",
-       "proj": "134.61",
-       "win_probability": "0.42"
+       "proj": "142.01",
+       "win_probability": "0.47"
       }
      ]
     },
@@ -1660,15 +1660,15 @@
        "id": 4,
        "name": "Rolling With Romo",
        "points": "0.00",
-       "proj": "134.57",
-       "win_probability": "0.73"
+       "proj": "133.38",
+       "win_probability": "0.72"
       },
       {
        "id": 7,
        "name": "Raider nation",
        "points": "0.00",
-       "proj": "104.80",
-       "win_probability": "0.27"
+       "proj": "105.16",
+       "win_probability": "0.28"
       }
      ]
     },
@@ -1680,15 +1680,15 @@
        "id": 6,
        "name": "Punching Bag",
        "points": "0.00",
-       "proj": "149.86",
-       "win_probability": "0.69"
+       "proj": "149.31",
+       "win_probability": "0.41"
       },
       {
        "id": 12,
        "name": "Remember the Tutens",
        "points": "0.00",
-       "proj": "119.70",
-       "win_probability": "0.31"
+       "proj": "163.16",
+       "win_probability": "0.59"
       }
      ]
     },
@@ -1700,14 +1700,14 @@
        "id": 8,
        "name": "Coin Toss Mike",
        "points": "0.00",
-       "proj": "148.36",
+       "proj": "148.82",
        "win_probability": "0.46"
       },
       {
        "id": 11,
        "name": "Kraft Beer & TDs",
        "points": "0.00",
-       "proj": "154.69",
+       "proj": "154.98",
        "win_probability": "0.54"
       }
      ]
@@ -2152,6 +2152,11 @@
      "clears": "2026-11-05"
     },
     {
+     "name": "Mark Andrews",
+     "pos": "TE",
+     "clears": "2026-11-07"
+    },
+    {
      "name": "Najee Harris",
      "pos": "RB",
      "clears": "2026-11-05"
@@ -2165,6 +2170,11 @@
      "name": "Keon Coleman",
      "pos": "WR",
      "clears": "2026-11-06"
+    },
+    {
+     "name": "Tyler Loop",
+     "pos": "K",
+     "clears": "2026-11-07"
     },
     {
      "name": "Browns",
@@ -3061,7 +3071,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905"
       },
       {
@@ -3385,7 +3395,7 @@
        "name": "Amon-Ra St. Brown",
        "team": "Det",
        "pos": "WR",
-       "status": "",
+       "status": "Q",
        "key": "470.p.33500"
       },
       {
@@ -3874,14 +3884,14 @@
        "id": 1,
        "name": "Daejon Love",
        "points": "0.00",
-       "proj": "171.10",
+       "proj": "170.80",
        "win_probability": "0.89"
       },
       {
        "id": 12,
        "name": "Ground Game evan",
        "points": "0.00",
-       "proj": "107.75",
+       "proj": "107.58",
        "win_probability": "0.11"
       }
      ]
@@ -3894,15 +3904,15 @@
        "id": 2,
        "name": "Diddys Booty Butter",
        "points": "0.00",
-       "proj": "165.27",
-       "win_probability": "0.52"
+       "proj": "164.37",
+       "win_probability": "0.55"
       },
       {
        "id": 10,
        "name": "Rated PG-18",
        "points": "0.00",
-       "proj": "162.96",
-       "win_probability": "0.48"
+       "proj": "156.60",
+       "win_probability": "0.45"
       }
      ]
     },
@@ -3914,15 +3924,15 @@
        "id": 3,
        "name": "RFFR",
        "points": "0.00",
-       "proj": "139.04",
-       "win_probability": "0.32"
+       "proj": "138.76",
+       "win_probability": "0.31"
       },
       {
        "id": 4,
        "name": "FUCKING COWBOYS",
        "points": "0.00",
-       "proj": "168.71",
-       "win_probability": "0.68"
+       "proj": "168.56",
+       "win_probability": "0.69"
       }
      ]
     },
@@ -3934,14 +3944,14 @@
        "id": 5,
        "name": "How \u2018Bout Them Points",
        "points": "0.00",
-       "proj": "118.27",
+       "proj": "117.62",
        "win_probability": "0.38"
       },
       {
        "id": 9,
        "name": "Rams house",
        "points": "0.00",
-       "proj": "134.22",
+       "proj": "134.45",
        "win_probability": "0.62"
       }
      ]
@@ -3954,15 +3964,15 @@
        "id": 6,
        "name": "Trophy Hunter \ud83c\udfc6",
        "points": "0.00",
-       "proj": "165.75",
-       "win_probability": "0.52"
+       "proj": "165.55",
+       "win_probability": "0.51"
       },
       {
        "id": 8,
        "name": "RAIDER FAN \u2620\ufe0f",
        "points": "0.00",
-       "proj": "163.47",
-       "win_probability": "0.48"
+       "proj": "164.32",
+       "win_probability": "0.49"
       }
      ]
     },
@@ -3974,15 +3984,15 @@
        "id": 7,
        "name": "Dark Knight II",
        "points": "0.00",
-       "proj": "157.00",
-       "win_probability": "0.4"
+       "proj": "144.86",
+       "win_probability": "0.33"
       },
       {
        "id": 11,
        "name": "Hector Football",
        "points": "0.00",
-       "proj": "173.02",
-       "win_probability": "0.6"
+       "proj": "171.89",
+       "win_probability": "0.67"
       }
      ]
     }
@@ -4006,7 +4016,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905",
        "points": "0.00"
       },
@@ -4642,7 +4652,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905"
       },
       {
@@ -5484,7 +5494,7 @@
        "name": "Amon-Ra St. Brown",
        "team": "Det",
        "pos": "WR",
-       "status": "",
+       "status": "Q",
        "key": "470.p.33500"
       },
       {
@@ -6169,15 +6179,15 @@
        "id": 1,
        "name": "Benchdad's Beach",
        "points": "0.00",
-       "proj": "131.45",
-       "win_probability": "0.38"
+       "proj": "131.44",
+       "win_probability": "0.37"
       },
       {
        "id": 6,
        "name": "The Deer Hunter Part Deux",
        "points": "0.00",
-       "proj": "149.99",
-       "win_probability": "0.62"
+       "proj": "152.09",
+       "win_probability": "0.63"
       }
      ]
     },
@@ -6189,15 +6199,15 @@
        "id": 2,
        "name": "Dark Knight III",
        "points": "0.00",
-       "proj": "124.13",
-       "win_probability": "0.48"
+       "proj": "111.89",
+       "win_probability": "0.37"
       },
       {
        "id": 3,
        "name": "Maly\u2019s Better Half",
        "points": "0.00",
-       "proj": "127.05",
-       "win_probability": "0.52"
+       "proj": "127.59",
+       "win_probability": "0.63"
       }
      ]
     },
@@ -6209,15 +6219,15 @@
        "id": 4,
        "name": "Bad and Bougie 2.0",
        "points": "0.00",
-       "proj": "110.21",
-       "win_probability": "0.34"
+       "proj": "104.92",
+       "win_probability": "0.29"
       },
       {
        "id": 11,
        "name": "Beachmom's Bench",
        "points": "0.00",
-       "proj": "132.60",
-       "win_probability": "0.66"
+       "proj": "135.56",
+       "win_probability": "0.71"
       }
      ]
     },
@@ -6229,14 +6239,14 @@
        "id": 5,
        "name": "Dawg Pound Eric",
        "points": "0.00",
-       "proj": "104.19",
+       "proj": "104.35",
        "win_probability": "0.57"
       },
       {
        "id": 12,
        "name": "And A Goedert To You Sir",
        "points": "0.00",
-       "proj": "96.52",
+       "proj": "96.36",
        "win_probability": "0.43"
       }
      ]
@@ -6249,14 +6259,14 @@
        "id": 7,
        "name": "Press Coverage steph",
        "points": "0.00",
-       "proj": "126.84",
+       "proj": "127.45",
        "win_probability": "0.43"
       },
       {
        "id": 9,
        "name": "Dominique by 6",
        "points": "0.00",
-       "proj": "137.04",
+       "proj": "136.63",
        "win_probability": "0.57"
       }
      ]
@@ -6269,15 +6279,15 @@
        "id": 8,
        "name": "Rushin Roulette \ud83c\udfc8",
        "points": "0.00",
-       "proj": "135.53",
-       "win_probability": "0.49"
+       "proj": "135.57",
+       "win_probability": "0.5"
       },
       {
        "id": 10,
        "name": "Derek\u2019s Better Half",
        "points": "0.00",
-       "proj": "136.98",
-       "win_probability": "0.51"
+       "proj": "135.42",
+       "win_probability": "0.5"
       }
      ]
     },
@@ -6289,14 +6299,14 @@
        "id": 13,
        "name": "Mr. Bobo",
        "points": "0.00",
-       "proj": "138.93",
+       "proj": "137.69",
        "win_probability": "0.64"
       },
       {
        "id": 14,
        "name": "Mrs. Bobo",
        "points": "0.00",
-       "proj": "119.45",
+       "proj": "119.34",
        "win_probability": "0.36"
       }
      ]
@@ -6375,7 +6385,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905",
        "points": "0.00"
       },
@@ -7300,7 +7310,7 @@
        "name": "David Montgomery",
        "team": "Hou",
        "pos": "RB",
-       "status": "Q",
+       "status": "O",
        "key": "470.p.31905"
       },
       {
@@ -7662,7 +7672,7 @@
        "name": "Amon-Ra St. Brown",
        "team": "Det",
        "pos": "WR",
-       "status": "",
+       "status": "Q",
        "key": "470.p.33500"
       },
       {
@@ -8231,15 +8241,15 @@
        "id": 1,
        "name": "Brad's Ballers",
        "points": "0.00",
-       "proj": "172.52",
-       "win_probability": "0.51"
+       "proj": "173.28",
+       "win_probability": "0.54"
       },
       {
        "id": 10,
        "name": "Dream Killers",
        "points": "0.00",
-       "proj": "170.53",
-       "win_probability": "0.49"
+       "proj": "166.24",
+       "win_probability": "0.46"
       }
      ]
     },
@@ -8251,14 +8261,14 @@
        "id": 2,
        "name": "Alan's Team",
        "points": "0.00",
-       "proj": "171.58",
+       "proj": "171.44",
        "win_probability": "0.53"
       },
       {
        "id": 6,
        "name": "Dark Knight IV",
        "points": "0.00",
-       "proj": "167.59",
+       "proj": "167.53",
        "win_probability": "0.47"
       }
      ]
@@ -8271,15 +8281,15 @@
        "id": 3,
        "name": "Fly Eagles Fly",
        "points": "0.00",
-       "proj": "153.29",
-       "win_probability": "0.8"
+       "proj": "153.88",
+       "win_probability": "0.84"
       },
       {
        "id": 9,
        "name": "Bad and Boujee",
        "points": "0.00",
-       "proj": "111.66",
-       "win_probability": "0.2"
+       "proj": "105.18",
+       "win_probability": "0.16"
       }
      ]
     },
@@ -8291,14 +8301,14 @@
        "id": 4,
        "name": "Lin's Team \ud83c\udfc8",
        "points": "0.00",
-       "proj": "138.93",
+       "proj": "138.74",
        "win_probability": "0.43"
       },
       {
        "id": 11,
        "name": "Killer Ko-Gees",
        "points": "0.00",
-       "proj": "147.63",
+       "proj": "147.79",
        "win_probability": "0.57"
       }
      ]
@@ -8311,14 +8321,14 @@
        "id": 5,
        "name": "Team Other",
        "points": "0.00",
-       "proj": "157.41",
+       "proj": "156.99",
        "win_probability": "0.51"
       },
       {
        "id": 8,
        "name": "Mr. Irrelevant",
        "points": "0.00",
-       "proj": "155.89",
+       "proj": "155.97",
        "win_probability": "0.49"
       }
      ]
