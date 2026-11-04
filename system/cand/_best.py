@@ -28,8 +28,7 @@ if _bf and (not _mf or _bo.path.basename(_bf[-1]).split("_")[-1] == _bo.path.bas
         _lg, _rest = _ln.rstrip("\n").split("#", 1); _me, _op = (_rest.split("##") + [""])[:2]
         _BY[_lg] = {"me": {norm(p["player"]): p for p in parse_side(_me) if p["player"]},
                     "op": {norm(p["player"]): p for p in parse_side(_op) if p["player"]}}
-else:
-    notes.append("best lineup: no Yahoo bench projections in this read - the Yahoo lineup can only use who Yahoo shows starting")
+# (Nov 3: the note for a missing Yahoo bench is written per league below, once the weekly projections read has been checked too)
 # Oct 23: Dom's own bench Yahoo numbers for this week, from the weekly projections read (yproj_dk*.txt, MINE rows)
 _YPW = {}
 for _k4 in (1, 2, 3, 4):
@@ -38,9 +37,10 @@ for _k4 in (1, 2, 3, 4):
     for _l in open(_yf):
         if _l.startswith("#"): continue
         _x = _l.rstrip("\n").split("|")
-        if len(_x) >= 6 and _x[0] == str(WEEK) and _x[5] == "MINE":
-            try: _YPW[(_k4, _id(dict(player=_x[1], team=T(_x[2]), pos=_x[3], slot=_x[3])))] = float(_x[4])
+        if len(_x) >= 6 and _x[0] == str(WEEK) and _x[5] in ("MINE", "OPP"):   # Nov 3 (Dom): OPP = this week's opponent's whole roster, so his Yahoo lineup is set best too
+            try: _YPW[(_k4, _x[5], _id(dict(player=_x[1], team=T(_x[2]), pos=_x[3], slot=_x[3])))] = float(_x[4])
             except ValueError: pass
+_YPW_SIDES = {(_k, _s) for _k, _s, _ in _YPW}
 def _roster_rows(k, team_id):
     f = ROOT.replace("data/latest/", "") + f"scout/dk{k}_rosters_live.txt"
     if not _bo.path.exists(f): return None
@@ -124,7 +124,7 @@ for _lab, _cfg in LEAGUES.items():
                         sl = _S.get(k); go = _gm.get(k)
                         go = None if go is None or (isinstance(go, float) and _bm.isnan(go)) else go
                     yb = _yb.get(k); yv = yb["yahoo"] if yb else None
-                    if yv is None and _side == "me": yv = _YPW.get((_cfg["k"], _id(dict(r, pos=pos))))   # Oct 23: Dom's bench from the weekly Yahoo projections read
+                    if yv is None: yv = _YPW.get((_cfg["k"], "MINE" if _side == "me" else "OPP", _id(dict(r, pos=pos))))   # Oct 23: Dom's bench from the weekly Yahoo projections read; Nov 3: the opponent's too
                     _from_gotham = go is not None and pos not in ("K", "DEF")
                     if go is None: go = yv if yv is not None else sl          # a bench man Gotham can't model: Yahoo, then Sleeper
                     # Oct 23 (Dom): the bench gets the SAME Gotham ceiling the starters get (meter_data.py, Oct 21). Without it a
@@ -157,7 +157,8 @@ for _lab, _cfg in LEAGUES.items():
             a, b, pct = chance([dict(p, **{col: p["_v"]}) for p in lu["me"]], [dict(p, **{col: p["_v"]}) for p in lu["op"]], col)
             _best[col] = (round(a, 2), round(b, 2), pct)
         _L["needles_set"] = dict(_L["needles"]); _L["totals_set"] = {k: (list(v) if v is not None else None) for k, v in _L["totals"].items()}
-        _yb_ok = bool(_BY.get(_cfg["id"]))
+        _yb_ok = bool(_BY.get(_cfg["id"])) or ((_cfg["k"], "MINE") in _YPW_SIDES and (_cfg["k"], "OPP") in _YPW_SIDES)   # Nov 3 (Dom): best lineup on BOTH sides whenever both benches have Yahoo numbers
+        if not _yb_ok: notes.append(f"{_lab}: no Yahoo numbers for " + ("the opponent's bench" if (_cfg["k"], "MINE") in _YPW_SIDES else "the benches") + " this week - the Yahoo needle uses the lineups as set (Ratcliffe, Koerner and Gotham still use best lineups)")
         _L["needles"] = dict(gotham=_best["gotham"][2], sleeper=_best["sleeper"][2], ratcliffe=_best["ratcliffe"][2] if "ratcliffe" in _best else None, koerner=_best["koerner"][2] if "koerner" in _best else None,
                              yahoo=_best["yahoo"][2] if _yb_ok else _L["needles_set"].get("yahoo"), yahoo_best=_yb_ok,
                              yahoo_posted=_L["needles_set"].get("yahoo"), yahoo_from_spread=_L["needles_set"].get("yahoo_from_spread"))
