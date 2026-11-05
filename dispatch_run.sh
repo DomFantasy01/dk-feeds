@@ -96,7 +96,11 @@ cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dar
 cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_full_latest.pdf"
 cp "$ROOT/cand/global/out/DK_Mountains_wk$W.pdf" "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf"
 if [ -f "$ROOT/cand/_footer_pass.py" ]; then python3 "$ROOT/cand/_footer_pass.py" "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" || true; fi
-cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_latest.pdf"   # one fixed link that never changes week to week (Oct 9)
+cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_onepage_latest.pdf"
+# Nov 5 (Dom: "the dispatch is missing everything underneath the four charts"): the fixed link now opens the FULL edition -
+# the overview with the four leagues on page 1, then Calls, each league's Field Report, Scout and Positions, and The Marks.
+# The one-page overview is still saved beside it (Dark_Knight_Dispatch_onepage_latest.pdf).
+cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_latest.pdf"   # one fixed link that never changes week to week (Oct 9)
 cp "$ROOT/dksys/data/latest/meter/meter_wk$W.json" "$ROOT/dksys/data/latest/meter/alarm_wk$W.json" "$REPO/dispatch_out/"
 cp "$ROOT/dksys/data/latest/ftn_scored.csv" "$ROOT/dksys/data/latest/koerner_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no scored expert files this build"   # Oct 29: the hourly alert pass reads Ratcliffe and Koerner from here
 cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null || echo "no weather file this build"   # game weather for Dark Knight Live (Oct 11)

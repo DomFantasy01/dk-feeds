@@ -21,11 +21,17 @@ try:
     mf=sorted(glob.glob("/home/claude/dksys/data/latest/meter/meter_wk*.json"),key=lambda p:int(p.split("_wk")[1].split(".")[0]))[-1]
     week=json.load(open(mf))["week"]
 except Exception: week="?"
-LIVE_URL="https://claude.ai/artifact/5MYR1N6N64JTdERe7zRZJh"
+# Nov 5: Live was recreated Nov 4 - the old address went dead. Read the current one from live_page/LIVE_URL.txt.
+LIVE_URL="https://claude.ai/artifact/BpRiXXCsxMLsdfMoxfrztr"
+for _lu in (os.path.join(os.path.dirname(os.path.abspath(__file__)),"../../live_page/LIVE_URL.txt"),"/home/claude/domfantasy01/dk-feeds/live_page/LIVE_URL.txt"):
+    try:
+        _u=open(_lu).read().strip()
+        if _u.startswith("https://claude.ai/artifact/"): LIVE_URL=_u; break
+    except Exception: pass
 YAHOO_URL="https://football.fantasysports.yahoo.com/"          # lineups & waivers (same as Live, Nov 3)
 BLITZ_URL="https://leagueblitz.app/"                            # live play-by-play (same as Live, Nov 3)
 FULL_URL="https://domfantasy01.github.io/dk-feeds/dispatch_out/Dark_Knight_Dispatch_full_latest.pdf"
-ONE_URL="https://domfantasy01.github.io/dk-feeds/dispatch_out/Dark_Knight_Dispatch_latest.pdf"
+ONE_URL="https://domfantasy01.github.io/dk-feeds/dispatch_out/Dark_Knight_Dispatch_onepage_latest.pdf"   # Nov 5: the main link is now the full edition
 ONEPAGE="onepage" in (sys.argv[1] if len(sys.argv)>1 else "").lower()
 PAPER,INKN,GR,LINE=H("#FBF7EF"),H("#14213D"),H("#7A7F8C"),H("#DDD5C4")
 SEC=re.compile(r"(OVERVIEW|FIELD REPORT|SCOUT|POSITIONS|THE MARKS|POST-MORTEM|OUTLOOK|CALIBRATION)(?:[\s·]*(DK ?[1-4]|DK I{1,3}V?|DK IV|FANTASY FOOTBALL))?",re.I)
