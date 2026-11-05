@@ -428,7 +428,7 @@ def g_trend8(x, y, up):
     else: c.line(x + 3, y + 5.6, x + 3, y + .4); p_.moveTo(x + .4, y + 1.6); p_.lineTo(x + 3, y - 1.4); p_.lineTo(x + 5.6, y + 1.6)
     p_.close(); c.drawPath(p_, stroke=0, fill=1); return 9
 
-_ALURL8 = "https://claude.ai/code/artifact/2342ca1f-956b-4342-b3d0-f801496c1ed2"
+_ALURL8 = "https://claude.ai/artifact/BpRiXXCsxMLsdfMoxfrztr"
 _AL8 = None
 def _alerts8(lab):
     global _AL8
