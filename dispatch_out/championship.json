@@ -1,10 +1,10 @@
 {
- "built": "Wed Nov 04 2026 03:36 PM PT",
+ "built": "Wed Nov 04 2026 04:10 PM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 9,
-   "built": "Wed Nov 04 2026 03:36 PM PT",
+   "built": "Wed Nov 04 2026 04:10 PM PT",
    "standings": "Wed Nov 4 1:27 PM PT",
    "base": {
     "wins": 6.91,
@@ -2283,7 +2283,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 242 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 03:36 PM PT",
+    "built": "Wed Nov 04 2026 04:10 PM PT",
     "standings": "Wed Nov 4 1:27 PM PT",
     "playoff": 0.396,
     "wins": 6.9111666666666665,
@@ -2629,7 +2629,7 @@
   },
   "DK II": {
    "week": 9,
-   "built": "Wed Nov 04 2026 03:36 PM PT",
+   "built": "Wed Nov 04 2026 04:10 PM PT",
    "standings": "Wed Nov 4 1:27 PM PT",
    "base": {
     "wins": 6.71,
@@ -4672,7 +4672,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 250 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 03:36 PM PT",
+    "built": "Wed Nov 04 2026 04:10 PM PT",
     "standings": "Wed Nov 4 1:27 PM PT",
     "playoff": 0.381,
     "wins": 6.712833333333333,
@@ -5023,7 +5023,7 @@
   },
   "DK III": {
    "week": 9,
-   "built": "Wed Nov 04 2026 03:36 PM PT",
+   "built": "Wed Nov 04 2026 04:10 PM PT",
    "standings": "Wed Nov 4 1:27 PM PT",
    "base": {
     "wins": 5.0,
@@ -6197,22 +6197,6 @@
      ]
     },
     {
-     "name": "Caleb Douglas",
-     "pos": "WR",
-     "d_playoff": -0.003,
-     "d_title": -0.0002,
-     "d_wins": -0.03,
-     "role": "starts for you in Weeks 9, 10; would start for 2 rivals (Press Coverage steph, Mrs. Bobo)",
-     "starts": [
-      9,
-      10
-     ],
-     "helps": [
-      "Press Coverage steph",
-      "Mrs. Bobo"
-     ]
-    },
-    {
      "name": "Steelers",
      "pos": "DEF",
      "d_playoff": -0.003,
@@ -6228,6 +6212,26 @@
       17
      ],
      "helps": []
+    },
+    {
+     "name": "Josh Downs",
+     "pos": "WR",
+     "d_playoff": -0.001,
+     "d_title": -0.0002,
+     "d_wins": -0.05,
+     "role": "starts for you in Weeks 10, 11, 12, 14; would start for 4 rivals (Dawg Pound Eric, Press Coverage steph, Rushin Roulette \ud83c\udfc8)",
+     "starts": [
+      10,
+      11,
+      12,
+      14
+     ],
+     "helps": [
+      "Dawg Pound Eric",
+      "Press Coverage steph",
+      "Rushin Roulette \ud83c\udfc8",
+      "Mrs. Bobo"
+     ]
     },
     {
      "name": "Packers",
@@ -6696,41 +6700,43 @@
       },
       {
        "add": "Jahan Dotson",
-       "drop": "Caleb Douglas",
+       "drop": "Josh Downs",
        "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 9, 10; would start for 2 rivals (Press Coverage steph, Mrs. Bobo)",
+       "drop_role": "starts for you in Weeks 10, 11, 12, 14; would start for 4 rivals (Dawg Pound Eric, Press Coverage steph, Rushin Roulette \ud83c\udfc8)",
        "drop_helps": [
+        "Dawg Pound Eric",
         "Press Coverage steph",
+        "Rushin Roulette \ud83c\udfc8",
         "Mrs. Bobo"
        ],
        "after": {
-        "wins": 4.93,
+        "wins": 4.91,
         "playoff": 0.011,
         "title": 0.0,
         "final": 0.002,
-        "semis": 0.004,
+        "semis": 0.003,
         "seed": 12,
         "seeds": [
          0.0,
          0.0,
-         0.0002,
-         0.002,
-         0.0038,
-         0.0052,
-         0.0148,
-         0.023,
-         0.026,
-         0.056,
-         0.0983,
-         0.1322
+         0.0,
+         0.0017,
+         0.0043,
+         0.005,
+         0.014,
+         0.0228,
+         0.0295,
+         0.0525,
+         0.093,
+         0.1258
         ],
         "first": 0.0
        },
-       "week": 0.334,
-       "d_week": -0.026,
+       "week": 0.35,
+       "d_week": -0.01,
        "d_playoff": -0.001,
        "d_title": -0.0002,
-       "d_wins": -0.04
+       "d_wins": -0.06
       }
      ],
      "tested": 5
@@ -6739,7 +6745,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 03:36 PM PT",
+    "built": "Wed Nov 04 2026 04:10 PM PT",
     "standings": "Wed Nov 4 1:27 PM PT",
     "playoff": 0.014333333333333333,
     "wins": 4.9991666666666665,
@@ -6991,23 +6997,6 @@
       "d_po": 0
      },
      {
-      "name": "Caleb Douglas",
-      "pos": "WR",
-      "d_playoff": -0.003,
-      "d_title": -0.0002,
-      "d_wins": -0.03,
-      "role": "starts for you in Weeks 9, 10; would start for 2 rivals (Press Coverage steph, Mrs. Bobo)",
-      "starts": [
-       9,
-       10
-      ],
-      "helps": [
-       "Press Coverage steph",
-       "Mrs. Bobo"
-      ],
-      "d_po": 0
-     },
-     {
       "name": "Steelers",
       "pos": "DEF",
       "d_playoff": -0.003,
@@ -7023,6 +7012,27 @@
        17
       ],
       "helps": [],
+      "d_po": 0
+     },
+     {
+      "name": "Josh Downs",
+      "pos": "WR",
+      "d_playoff": -0.001,
+      "d_title": -0.0002,
+      "d_wins": -0.05,
+      "role": "starts for you in Weeks 10, 11, 12, 14; would start for 4 rivals (Dawg Pound Eric, Press Coverage steph, Rushin Roulette \ud83c\udfc8)",
+      "starts": [
+       10,
+       11,
+       12,
+       14
+      ],
+      "helps": [
+       "Dawg Pound Eric",
+       "Press Coverage steph",
+       "Rushin Roulette \ud83c\udfc8",
+       "Mrs. Bobo"
+      ],
       "d_po": 0
      },
      {
@@ -7104,7 +7114,7 @@
   },
   "DK IV": {
    "week": 9,
-   "built": "Wed Nov 04 2026 03:36 PM PT",
+   "built": "Wed Nov 04 2026 04:10 PM PT",
    "standings": "Wed Nov 4 1:27 PM PT",
    "base": {
     "wins": 15.14,
@@ -8401,30 +8411,6 @@
      ]
     },
     {
-     "name": "Tucker Kraft",
-     "pos": "TE",
-     "d_playoff": -0.026,
-     "d_title": -0.0245,
-     "d_wins": -0.19,
-     "role": "starts for you in Weeks 9, 10, 12, 13, 14, 15, 16, 17; would start for 4 rivals (Alan's Team, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-     "starts": [
-      9,
-      10,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17
-     ],
-     "helps": [
-      "Alan's Team",
-      "Lin's Team \ud83c\udfc8",
-      "Mr. Irrelevant",
-      "Bad and Boujee"
-     ]
-    },
-    {
      "name": "Wan'Dale Robinson",
      "pos": "WR",
      "d_playoff": -0.029,
@@ -8439,6 +8425,21 @@
       "Fly Eagles Fly",
       "Mr. Irrelevant",
       "Bad and Boujee"
+     ]
+    },
+    {
+     "name": "Travis Kelce",
+     "pos": "TE",
+     "d_playoff": -0.029,
+     "d_title": -0.0068,
+     "d_wins": -0.28,
+     "role": "starts for you in Week 11; would start for 2 rivals (Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
+     "starts": [
+      11
+     ],
+     "helps": [
+      "Lin's Team \ud83c\udfc8",
+      "Mr. Irrelevant"
      ]
     },
     {
@@ -8474,46 +8475,46 @@
      "d_playoff": 0.006
     },
     {
+     "add": "Pat Freiermuth",
+     "drop": "Travis Kelce",
+     "d_wins": -0.05,
+     "d_playoff": -0.005
+    },
+    {
+     "add": "Chig Okonkwo",
+     "drop": "Travis Kelce",
+     "d_wins": -0.05,
+     "d_playoff": -0.004
+    },
+    {
+     "add": "Dalton Schultz",
+     "drop": "Travis Kelce",
+     "d_wins": -0.06,
+     "d_playoff": -0.006
+    },
+    {
+     "add": "Mike Gesicki",
+     "drop": "Travis Kelce",
+     "d_wins": -0.07,
+     "d_playoff": -0.007
+    },
+    {
+     "add": "Michael Mayer",
+     "drop": "Travis Kelce",
+     "d_wins": -0.07,
+     "d_playoff": -0.007
+    },
+    {
+     "add": "Greg Dulcich",
+     "drop": "Travis Kelce",
+     "d_wins": -0.07,
+     "d_playoff": -0.008
+    },
+    {
      "add": "Woody Marks",
      "drop": "Omar Cooper Jr.",
      "d_wins": -0.02,
      "d_playoff": -0.007
-    },
-    {
-     "add": "GB defense",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.07,
-     "d_playoff": -0.012
-    },
-    {
-     "add": "Tyler Allgeier",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.08,
-     "d_playoff": -0.011
-    },
-    {
-     "add": "Adonai Mitchell",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.12,
-     "d_playoff": -0.015
-    },
-    {
-     "add": "Matt Gay",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.13,
-     "d_playoff": -0.017
-    },
-    {
-     "add": "Josh Downs",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.11,
-     "d_playoff": -0.018
-    },
-    {
-     "add": "CHI defense",
-     "drop": "Omar Cooper Jr.",
-     "d_wins": -0.12,
-     "d_playoff": -0.016
     }
    ],
    "trades": [
@@ -8743,283 +8744,11 @@
     }
    ],
    "trades_screened": 107,
-   "calls": [
-    {
-     "starter": "Travis Kelce",
-     "status": "Q",
-     "locks": "Sun 10:00 AM",
-     "if_out": {
-      "wins": 15.14,
-      "playoff": 0.855,
-      "title": 0.1088,
-      "final": 0.204,
-      "semis": 0.43,
-      "seed": 4,
-      "seeds": [
-       0.01,
-       0.0692,
-       0.1952,
-       0.2465,
-       0.1908,
-       0.1433,
-       0.084,
-       0.0488,
-       0.012,
-       0.0002,
-       0.0,
-       0.0
-      ],
-      "first": 0.01
-     },
-     "week_if_out": 0.471,
-     "week_now": 0.471,
-     "options": [
-      {
-       "add": "Mike Gesicki",
-       "drop": "Wan'Dale Robinson",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 11, 13; would start for 3 rivals (Fly Eagles Fly, Mr. Irrelevant, Bad and Boujee)",
-       "drop_helps": [
-        "Fly Eagles Fly",
-        "Mr. Irrelevant",
-        "Bad and Boujee"
-       ],
-       "after": {
-        "wins": 14.86,
-        "playoff": 0.826,
-        "title": 0.0998,
-        "final": 0.19,
-        "semis": 0.406,
-        "seed": 4,
-        "seeds": [
-         0.0078,
-         0.055,
-         0.172,
-         0.228,
-         0.1977,
-         0.1655,
-         0.0982,
-         0.059,
-         0.0163,
-         0.0005,
-         0.0,
-         0.0
-        ],
-        "first": 0.008
-       },
-       "week": 0.471,
-       "d_week": 0.0,
-       "d_playoff": -0.029,
-       "d_title": -0.009,
-       "d_wins": -0.28
-      },
-      {
-       "add": "Greg Dulcich",
-       "drop": "Wan'Dale Robinson",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 11, 13; would start for 3 rivals (Fly Eagles Fly, Mr. Irrelevant, Bad and Boujee)",
-       "drop_helps": [
-        "Fly Eagles Fly",
-        "Mr. Irrelevant",
-        "Bad and Boujee"
-       ],
-       "after": {
-        "wins": 14.86,
-        "playoff": 0.826,
-        "title": 0.0998,
-        "final": 0.19,
-        "semis": 0.406,
-        "seed": 4,
-        "seeds": [
-         0.0078,
-         0.055,
-         0.172,
-         0.228,
-         0.1977,
-         0.1655,
-         0.0982,
-         0.059,
-         0.0163,
-         0.0005,
-         0.0,
-         0.0
-        ],
-        "first": 0.008
-       },
-       "week": 0.471,
-       "d_week": 0.0,
-       "d_playoff": -0.029,
-       "d_title": -0.009,
-       "d_wins": -0.28
-      },
-      {
-       "add": "Mike Gesicki",
-       "drop": "Omar Cooper Jr.",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 9, 10, 11, 12, 14, 15, 16; would start for 4 rivals (Fly Eagles Fly, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-       "drop_helps": [
-        "Fly Eagles Fly",
-        "Lin's Team \ud83c\udfc8",
-        "Mr. Irrelevant",
-        "Bad and Boujee"
-       ],
-       "after": {
-        "wins": 15.01,
-        "playoff": 0.838,
-        "title": 0.0973,
-        "final": 0.189,
-        "semis": 0.404,
-        "seed": 4,
-        "seeds": [
-         0.0103,
-         0.061,
-         0.1798,
-         0.2397,
-         0.1995,
-         0.1473,
-         0.0958,
-         0.0517,
-         0.0147,
-         0.0002,
-         0.0,
-         0.0
-        ],
-        "first": 0.01
-       },
-       "week": 0.46,
-       "d_week": -0.012,
-       "d_playoff": -0.017,
-       "d_title": -0.0115,
-       "d_wins": -0.14
-      },
-      {
-       "add": "Greg Dulcich",
-       "drop": "Omar Cooper Jr.",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 9, 10, 11, 12, 14, 15, 16; would start for 4 rivals (Fly Eagles Fly, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-       "drop_helps": [
-        "Fly Eagles Fly",
-        "Lin's Team \ud83c\udfc8",
-        "Mr. Irrelevant",
-        "Bad and Boujee"
-       ],
-       "after": {
-        "wins": 15.01,
-        "playoff": 0.838,
-        "title": 0.0973,
-        "final": 0.189,
-        "semis": 0.404,
-        "seed": 4,
-        "seeds": [
-         0.0103,
-         0.061,
-         0.1798,
-         0.2397,
-         0.1995,
-         0.1473,
-         0.0958,
-         0.0517,
-         0.0147,
-         0.0002,
-         0.0,
-         0.0
-        ],
-        "first": 0.01
-       },
-       "week": 0.46,
-       "d_week": -0.012,
-       "d_playoff": -0.017,
-       "d_title": -0.0115,
-       "d_wins": -0.14
-      },
-      {
-       "add": "Mike Gesicki",
-       "drop": "C.J. Stroud",
-       "drop_pos": "QB",
-       "drop_role": "backup QB behind Dak Prescott; starts for you in Weeks 11, 14, 15; would start for 4 rivals (Brad's Ballers, Fly Eagles Fly, Bad and Boujee)",
-       "drop_helps": [
-        "Brad's Ballers",
-        "Fly Eagles Fly",
-        "Bad and Boujee",
-        "Dream Killers"
-       ],
-       "after": {
-        "wins": 14.76,
-        "playoff": 0.809,
-        "title": 0.0955,
-        "final": 0.18,
-        "semis": 0.386,
-        "seed": 4,
-        "seeds": [
-         0.0078,
-         0.049,
-         0.1653,
-         0.2197,
-         0.1987,
-         0.1687,
-         0.1063,
-         0.0653,
-         0.0182,
-         0.001,
-         0.0,
-         0.0
-        ],
-        "first": 0.008
-       },
-       "week": 0.471,
-       "d_week": 0.0,
-       "d_playoff": -0.046,
-       "d_title": -0.0133,
-       "d_wins": -0.39
-      },
-      {
-       "add": "Greg Dulcich",
-       "drop": "C.J. Stroud",
-       "drop_pos": "QB",
-       "drop_role": "backup QB behind Dak Prescott; starts for you in Weeks 11, 14, 15; would start for 4 rivals (Brad's Ballers, Fly Eagles Fly, Bad and Boujee)",
-       "drop_helps": [
-        "Brad's Ballers",
-        "Fly Eagles Fly",
-        "Bad and Boujee",
-        "Dream Killers"
-       ],
-       "after": {
-        "wins": 14.76,
-        "playoff": 0.809,
-        "title": 0.0955,
-        "final": 0.18,
-        "semis": 0.386,
-        "seed": 4,
-        "seeds": [
-         0.0078,
-         0.049,
-         0.1653,
-         0.2197,
-         0.1987,
-         0.1687,
-         0.1063,
-         0.0653,
-         0.0182,
-         0.001,
-         0.0,
-         0.0
-        ],
-        "first": 0.008
-       },
-       "week": 0.471,
-       "d_week": 0.0,
-       "d_playoff": -0.046,
-       "d_title": -0.0133,
-       "d_wins": -0.39
-      }
-     ],
-     "tested": 10
-    }
-   ],
+   "calls": [],
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 228 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 03:36 PM PT",
+    "built": "Wed Nov 04 2026 04:10 PM PT",
     "standings": "Wed Nov 4 1:27 PM PT",
     "playoff": 0.855,
     "wins": 15.1435,
@@ -9233,31 +8962,6 @@
       "d_po": 0
      },
      {
-      "name": "Tucker Kraft",
-      "pos": "TE",
-      "d_playoff": -0.026,
-      "d_title": -0.0245,
-      "d_wins": -0.19,
-      "role": "starts for you in Weeks 9, 10, 12, 13, 14, 15, 16, 17; would start for 4 rivals (Alan's Team, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-      "starts": [
-       9,
-       10,
-       12,
-       13,
-       14,
-       15,
-       16,
-       17
-      ],
-      "helps": [
-       "Alan's Team",
-       "Lin's Team \ud83c\udfc8",
-       "Mr. Irrelevant",
-       "Bad and Boujee"
-      ],
-      "d_po": 0
-     },
-     {
       "name": "Wan'Dale Robinson",
       "pos": "WR",
       "d_playoff": -0.029,
@@ -9272,6 +8976,22 @@
        "Fly Eagles Fly",
        "Mr. Irrelevant",
        "Bad and Boujee"
+      ],
+      "d_po": 0
+     },
+     {
+      "name": "Travis Kelce",
+      "pos": "TE",
+      "d_playoff": -0.029,
+      "d_title": -0.0068,
+      "d_wins": -0.28,
+      "role": "starts for you in Week 11; would start for 2 rivals (Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
+      "starts": [
+       11
+      ],
+      "helps": [
+       "Lin's Team \ud83c\udfc8",
+       "Mr. Irrelevant"
       ],
       "d_po": 0
      },
@@ -9312,33 +9032,33 @@
       "helps": []
      },
      {
-      "add": "Woody Marks",
-      "pos": "RB",
+      "add": "Pat Freiermuth",
+      "pos": "TE",
+      "nfl": "PIT",
+      "acq": "Free agent",
+      "drop": "Travis Kelce",
+      "d_playoff": -0.005,
+      "d_week": 0.0,
+      "helps": []
+     },
+     {
+      "add": "Chig Okonkwo",
+      "pos": "TE",
+      "nfl": "WAS",
+      "acq": "Free agent",
+      "drop": "Travis Kelce",
+      "d_playoff": -0.004,
+      "d_week": 0.0,
+      "helps": []
+     },
+     {
+      "add": "Dalton Schultz",
+      "pos": "TE",
       "nfl": "HOU",
       "acq": "Free agent",
-      "drop": "Omar Cooper Jr.",
-      "d_playoff": -0.007,
-      "d_week": -0.012,
-      "helps": []
-     },
-     {
-      "add": "GB defense",
-      "pos": "DEF",
-      "nfl": "GB",
-      "acq": "Free agent",
-      "drop": "Omar Cooper Jr.",
-      "d_playoff": -0.012,
-      "d_week": -0.012,
-      "helps": []
-     },
-     {
-      "add": "Tyler Allgeier",
-      "pos": "RB",
-      "nfl": "ARI",
-      "acq": "Free agent",
-      "drop": "Omar Cooper Jr.",
-      "d_playoff": -0.011,
-      "d_week": -0.008,
+      "drop": "Travis Kelce",
+      "d_playoff": -0.006,
+      "d_week": 0.0,
       "helps": []
      }
     ],
