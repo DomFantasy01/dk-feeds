@@ -19,6 +19,9 @@ on:
       minutes: { description: 'Run for this many minutes regardless of the schedule (0 = follow the inactives times)', required: false, default: '0' }
 permissions:
   contents: write
+  actions: read                    # Nov 5: wait_pages.sh checks for a Pages deploy in progress
+env:
+  GH_TOKEN: ${{ github.token }}     # Nov 5: for wait_pages.sh
 concurrency:
   group: dk-inactives                # its own lane: it never writes a file the other jobs write, except the state file (see below)
   cancel-in-progress: false
@@ -61,7 +64,7 @@ jobs:
               python3 state/build_state.py . || echo "!! state file failed this pass"
               git add feeds/fast dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt
               git commit -qm "inactives watch $(date -u +%H:%MZ)" || { echo "nothing new"; break; }
-              git push -q origin HEAD:main && { echo "saved $(TZ=America/Los_Angeles date '+%l:%M %p PT')"; break; }
+              bash .github/wait_pages.sh; git push -q origin HEAD:main && { echo "saved $(TZ=America/Los_Angeles date '+%l:%M %p PT')"; break; }
               echo "lost a race with another job - redoing this pass"; sleep 5
             done
             WAIT=$(( 300 - ($(date +%s) - T0) )); [ $WAIT -gt 0 ] && sleep $WAIT

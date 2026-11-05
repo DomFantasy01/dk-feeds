@@ -12,6 +12,9 @@ on:
   workflow_dispatch: {}            # a manual 'Run now' button
 permissions:
   contents: write
+  actions: read                    # Nov 5: wait_pages.sh checks for a Pages deploy in progress
+env:
+  GH_TOKEN: ${{ github.token }}     # Nov 5: for wait_pages.sh
 concurrency:                       # v4: two runs never overlap
   group: dk-feeds
   cancel-in-progress: false
@@ -31,7 +34,7 @@ jobs:
           git commit -m "feeds $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           # v4: get GitHub's latest copy first, so a re-run or an overlap can't be rejected as out of date
           for i in 1 2 3; do
-            git pull --rebase -X theirs origin main && git push && exit 0
+            git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0
             sleep 5
           done
           echo "save failed after 3 tries"; exit 1

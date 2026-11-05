@@ -6,6 +6,9 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write
+  actions: read                    # Nov 5: wait_pages.sh checks for a Pages deploy in progress
+env:
+  GH_TOKEN: ${{ github.token }}     # Nov 5: for wait_pages.sh
 concurrency:
   group: dk-feeds            # same group as the news job: the two never write at the same time
   cancel-in-progress: false
@@ -26,7 +29,7 @@ jobs:
           git add feeds/proj
           git commit -m "proj $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
-            git pull --rebase -X theirs origin main && git push && exit 0
+            git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0
             sleep 5
           done
           echo "save failed after 3 tries"; exit 1

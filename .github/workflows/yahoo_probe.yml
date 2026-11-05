@@ -4,6 +4,9 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write
+  actions: read                    # Nov 5: wait_pages.sh checks for a Pages deploy in progress
+env:
+  GH_TOKEN: ${{ github.token }}     # Nov 5: for wait_pages.sh
 concurrency:
   group: dk-feeds
   cancel-in-progress: false
@@ -25,4 +28,4 @@ jobs:
           git config user.email dk-feed-bot@users.noreply.github.com
           git add yahoo_auth yahoo_api
           git commit -m "Yahoo API probe $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
-          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && exit 0; sleep 5; done; exit 1
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0; sleep 5; done; exit 1

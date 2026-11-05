@@ -22,6 +22,8 @@ on:
 permissions:
   contents: write
   actions: read                    # Oct 30: lets the build save the job-run list for Live's GitHub light
+env:
+  GH_TOKEN: ${{ github.token }}     # Nov 5: for wait_pages.sh
 concurrency:
   group: dk-feeds                  # same group as the other two jobs: never two writers at once
   cancel-in-progress: false
@@ -64,7 +66,7 @@ jobs:
             if python3 state/build_state.py . "${DK_ROOT:-/home/claude}" >/dev/null 2>&1 && ! git diff --quiet -- dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt; then
               git add dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt && git commit -qm "state file rebuilt on the merged copy"
             fi
-            git push && exit 0
+            bash .github/wait_pages.sh; git push && exit 0
             sleep 5
           done
           echo "save failed after 3 tries"; exit 1
@@ -79,7 +81,7 @@ jobs:
             git pull --rebase origin main >/dev/null 2>&1 || true
             echo "{\"at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"run\": \"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" > dispatch_out/build_failed.json
             git add dispatch_out/build_failed.json && git commit -m "build failed $(date -u +%Y-%m-%dT%H:%MZ)" >/dev/null 2>&1
-            git push && exit 0
+            bash .github/wait_pages.sh; git push && exit 0
             sleep 5
           done
           echo "could not record the failure"
