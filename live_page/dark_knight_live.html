@@ -42,6 +42,8 @@ header.mh{display:flex;align-items:center;gap:10px;margin:12px 0 8px;padding:12p
 .stat{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 10px;border-radius:8px;background:var(--raise);font-size:13px;cursor:pointer;border:0;width:100%;text-align:left}
 .stat b{color:#fff;font-weight:600}
 .stat .late{color:var(--dn);font-weight:700}
+.sfail{margin-top:8px;padding:9px 11px;border-radius:8px;background:rgba(255,77,87,.14);border:1px solid var(--red);font-size:13px;line-height:1.45;color:#FFD6D8}
+.sfail b{display:block;color:var(--red);font:700 10.5px/1.2 var(--f-body);letter-spacing:.14em;margin-bottom:4px}
 .lights{display:inline-flex;gap:8px;margin-left:auto;align-items:center}
 .lt{display:inline-flex;align-items:center;gap:4px;font:700 9.5px/1 var(--f-body);letter-spacing:.08em;color:var(--ink2)}
 .lt i{width:10px;height:10px;border-radius:50%;display:block}
@@ -241,6 +243,56 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .top{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;flex-direction:column;gap:6px}
 .top button{width:40px;height:30px;opacity:.88;border-radius:8px;border:1px solid var(--line);background:rgba(22,33,58,.95);color:var(--ink);font:700 11px/1 var(--f-body);cursor:pointer}
 @media (prefers-reduced-motion:no-preference){.tube .tb i,.climb .bar i{transition:width .4s ease}}
+/* Nov 5 additions: needs-you panel, alert preview, finder, deadline chips, meter extras */
+.need{display:flex;flex-direction:column;gap:6px}
+.nd{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:8px 10px;border-radius:7px;border:1px solid var(--rim);border-left:4px solid var(--nc,var(--amber));background:var(--raise);cursor:pointer;min-height:44px}
+.nd.red{--nc:var(--red)} .nd.gold{--nc:var(--amber)}
+.nd .lgtag{flex:none;min-width:40px}
+.nd .tx{flex:1;min-width:0;font-size:13px;line-height:1.35;overflow-wrap:anywhere;color:var(--ink2)}
+.nd .tx b{color:#fff}
+.nd .cd{flex:none;font-family:var(--f-num);font-size:12.5px;font-weight:600;color:var(--nc);text-align:right;white-space:nowrap}
+.nd .cd small{display:block;font:600 9.5px/1.3 var(--f-body);color:var(--mute);letter-spacing:.04em}
+.allclear{padding:9px 11px;border-radius:7px;background:rgba(79,208,138,.08);border:1px solid rgba(79,208,138,.4);color:var(--up);font-size:13px;font-weight:600}
+.prev{display:flex;flex-direction:column;margin-top:8px}
+.prev button{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--hair);padding:7px 2px;cursor:pointer;font-size:12.5px;line-height:1.35;color:var(--ink2);min-height:38px}
+.prev button > span:last-child{min-width:0;overflow-wrap:anywhere}
+.prev .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--amber);transform:translateY(-1px)}
+.prev .dot.red{background:var(--red)} .prev .dot.grey{background:var(--grey)}
+.prev button.unread{color:#fff;font-weight:600}
+.find{display:flex;gap:6px;margin-top:10px}
+.find input{flex:1;min-width:0;background:#0A1020;border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:9px 10px;font:inherit;font-size:13px}
+.find input::placeholder{color:var(--mute)}
+.fres:empty{display:none}
+.fres{margin-top:4px}
+.dl{display:inline-block;margin-left:6px;font:700 9.5px/1 var(--f-body);letter-spacing:.06em;padding:3px 5px;border-radius:3px;border:1px solid currentColor;color:var(--amber);vertical-align:1px}
+.dl.hot{color:var(--red)}
+.seatb{display:inline-block;margin-top:4px;font:700 9px/1 var(--f-body);letter-spacing:.06em;padding:3px 5px;border-radius:3px;background:var(--red);color:#fff}
+.mgn{font:600 10.5px/1.2 var(--f-num);margin-top:1px}
+.mgn span{font:700 9px/1 var(--f-body);letter-spacing:.06em;color:var(--mute);margin-right:3px}
+.sc .s.ahead{color:var(--up)} .sc .s.behind{color:var(--dn)}
+.unr{color:#fff;font-weight:700}
+.kk{font-family:var(--f-num);font-weight:600;color:#fff}
+.keys{font-size:11px;color:var(--mute);margin:6px 0 0}
+.keys kbd{font:600 10.5px/1 var(--f-num);border:1px solid var(--line);border-radius:3px;padding:1px 4px;color:var(--ink2)}
+.mtr.flash{animation:fl 1.8s ease}
+@keyframes fl{0%{box-shadow:0 0 0 2px var(--gold),0 0 14px var(--gold)}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){.mtr.flash{animation:none;outline:2px solid var(--gold)}}
+.rmsg{white-space:pre-line;user-select:text}
+.mrow{flex-wrap:wrap;row-gap:3px}.mrow .tube{flex:1 1 100%}.mrow .bell{margin-left:auto}
+@media (hover:none){.keys{display:none}}
+.astrip .tal{flex:1 1 180px}
+/* legibility: nothing under 9px */
+.xps span,.tube span{font-size:9px}
+.mtr .src,.mstate{font-size:9px}
+.mtr .lgn{font-size:9.5px;height:12px}
+.xrow span,.funnel span,.chartbox .ct{font-size:9.5px}
+/* tap targets */
+.mv .x{min-width:36px;min-height:32px;font-size:15px}
+.sbar button{min-height:28px;padding:2px 10px}
+.al .acts button{min-height:36px}
+.linkbtn{min-height:36px}
+.ctl2 button{flex:1 1 40%;min-height:38px}
+.top button{width:auto;min-width:48px;height:34px;padding:0 9px}
 @media (max-width:380px){.mh h1{font-size:26px}.mh .wk{font-size:19px}.mtr .pct{font-size:27px}.score .big{font-size:38px}}
 </style>
 
@@ -248,7 +300,10 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 
 <button type="button" class="stat" id="stat" aria-expanded="false"><span id="statTxt">Loading the latest read…</span>
   <span class="lights"><span class="lt grey" id="ltY"><i></i>YAHOO</span><span class="lt grey" id="ltD"><i></i>DATA</span><span class="det">Details</span></span></button>
+<div class="sfail" id="sfail" role="alert" hidden></div>
 <div class="hc" id="hc" hidden></div>
+
+<section class="frame" id="needBox"><span class="lab">Needs you</span><div id="need"><div class="empty">Checking the deadlines…</div></div></section>
 
 <section class="frame" id="metersFrame"><span class="lab">Win probability · this week</span>
   <div class="meters" id="meters"><div class="empty" style="grid-column:1/-1">Waiting for the first read.</div></div>
@@ -263,11 +318,13 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
     <a id="dispatch" href="https://domfantasy01.github.io/dk-feeds/dispatch_out/Dark_Knight_Dispatch_latest.pdf" target="_blank" rel="noopener">Dispatch</a>
     <button type="button" id="refresh">Refresh</button>
   </nav>
-  <div class="ctl2"><button type="button" id="openAll">Open all folds</button><button type="button" id="closeAll">Close all folds</button><button type="button" id="wake">Keep screen on</button></div>
+  <div class="ctl2"><button type="button" id="openAll">Open all folds</button><button type="button" id="closeAll">Close all folds</button><button type="button" id="wake">Keep screen on</button><button type="button" id="copy">Copy scores</button></div>
+  <p class="keys">Keys: <kbd>1</kbd>–<kbd>4</kbd> jump to a league · <kbd>N</kbd> next · <kbd>T</kbd> top · <kbd>/</kbd> find a player · <kbd>Esc</kbd> close</p>
   <p class="rmsg" id="rmsg" hidden></p>
 </section>
 
-<section class="frame" id="alertsTop"><span class="lab">Alerts</span><div id="astrip"></div></section>
+<section class="frame" id="alertsTop"><span class="lab">Alerts</span><div id="astrip"></div>
+  <div class="find"><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div></section>
 
 <section class="frame" id="movesBox"><span class="lab">Your moves</span><div id="moves"></div></section>
 
@@ -279,7 +336,7 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 <footer id="foot"></footer>
 <div class="top"><button type="button" id="goNext" aria-label="Next league">NEXT</button><button type="button" id="goTop" aria-label="Back to top">TOP</button></div>
 <script>
-/* Dark Knight Live - rebuilt Nov 4-5 2026 after the old page was lost. Source of truth: dk-feeds/live_page/dark_knight_live.html */
+/* Dark Knight Live - rebuilt Nov 4-5 2026 after the old page was lost. Nov 5: needs-you panel, alert preview + finder, deadline chips, deep links, keys. Source of truth: dk-feeds/live_page/dark_knight_live.html */
 "use strict";
 const KEYS = ["MOST", "WINNERS", "HERS&HIS", "NEXTDOOR"];
 const DK = {MOST: "DK1", WINNERS: "DK2", "HERS&HIS": "DK3", NEXTDOOR: "DK4"};
@@ -308,6 +365,11 @@ const ptTime = (iso) => PT(iso, {weekday: "short", hour: "numeric", minute: "2-d
 const ago = (iso) => { const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
   if (!(m >= 0)) return ""; if (m < 1) return "just now"; if (m < 60) return m + " min ago"; const h = Math.floor(m / 60);
   if (h < 24) return h + " hr" + (m % 60 >= 30 && h < 6 ? " " + (m % 60) + " min" : "") + " ago"; const d = Math.floor(h / 24); return d + (d === 1 ? " day" : " days") + " ago"; };
+const SMOOTH = () => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"; } catch(_){ return "auto"; } };
+const dueMin = (iso) => (new Date(iso).getTime() - Date.now()) / 6e4;
+const DUE = (iso) => { const m = Math.round(dueMin(iso)); if (!(m > 0)) return "now"; const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mi = m % 60;
+  return d ? d + "d " + h + "h" : h ? h + "h " + mi + "m" : mi + "m"; };
+const KEYOF = {dk1: "MOST", dk2: "WINNERS", dk3: "HERS&HIS", dk4: "NEXTDOOR"};
 const lgS = (k) => S && S.leagues ? S.leagues.find(L => L.key === k) : null;
 const lgM = (k) => (M && M.leagues && M.leagues[k]) || {};
 
@@ -347,6 +409,7 @@ function chance(L, src){
 }
 const finals = (L) => ({me: L.players.reduce((a, p) => a + manFinal(p, "y"), 0), op: L.oppPlayers.reduce((a, p) => a + manFinal(p, "y"), 0)});
 const score = (list) => list.reduce((a, p) => a + pts(p), 0);
+const emptySeats = (L) => L.players.filter(p => !isDone(p) && (isOut(p) || /^D$/i.test(p.status || "") || ((+p.proj || 0) === 0 && !isLive(p))));
 const leftOf = (list) => list.filter(p => !isDone(p) && !isOut(p));
 const settled = (L) => leftOf(L.players).length === 0 && leftOf(L.oppPlayers).length === 0;
 function verdict(m){ const a = Math.abs(m);
@@ -381,7 +444,7 @@ function alertCard(x, sep){
   const age = d >= 1 ? d + (d === 1 ? " DAY" : " DAYS") : "NEW";
   return `<div class="al ${x.color}${m.read ? " read" : ""}${op ? " open" : ""}" data-aid="${esc(x.id)}" tabindex="0" role="button" aria-expanded="${op}">
     <div class="row"><div class="tag">${AL_TAG[x.color] || "NOTED"}</div>
-      <div class="main"><div class="w"><span class="age">${age}</span>${esc(PT(x.first_seen, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}</div><div class="t">${esc(x.title)}</div><div class="w">${esc(x.own || "")}${x.by ? " · " + esc(x.by) : ""}</div></div></div>
+      <div class="main"><div class="w"><span class="age">${age}</span>${esc(PT(x.first_seen, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}${x.deadline_utc && dueMin(x.deadline_utc) > 0 ? `<span class="dl${dueMin(x.deadline_utc) < 180 ? " hot" : ""}">${DUE(x.deadline_utc)} LEFT</span>` : ""}</div><div class="t">${esc(x.title)}</div><div class="w">${esc(x.own || "")}${x.by ? " · " + esc(x.by) : ""}</div></div></div>
     <div class="b">${x.tie ? `<p><b>What it means:</b> ${esc(x.tie)}</p>` : ""}${x.fix ? `<p><b>Next:</b> ${esc(x.fix)}</p>` : ""}
       ${(x.receipts || []).length ? `<ul>${x.receipts.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
       <p class="note">Source: ${esc(x.src || "the Dispatch build")}${x.feed ? " · " + esc(x.feed) : ""} · built ${esc(x.built || "")}</p>
@@ -500,9 +563,18 @@ function renderStatus(){
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
     : `Updated <b>${esc(ptTime(S.stamp))}</b> · ${esc(ago(S.stamp))} · Next ${esc(nextRun())}`;
+  const kk = nextKick(); if (kk) $("#statTxt").innerHTML += ` · Kickoff in <span class="kk">${esc(kk)}</span>`;
+  if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
+  const fb = $("#sfail"), AL = S.alert;
+  if (AL && (typeof AL === "string" ? AL.trim() : (AL.msg || AL.message || AL.text || AL.error))){
+    const msg = typeof AL === "string" ? AL : (AL.msg || AL.message || AL.text || AL.error);
+    const at = typeof AL === "object" ? (AL.at || AL.time || AL.when || "") : "";
+    fb.innerHTML = `<b>RUN FAILED${at ? " · " + esc(ptTime(at)) : ""}</b>${esc(msg)}`; fb.hidden = false;
+  } else { fb.hidden = true; fb.innerHTML = ""; }
 }
 let HC_ALL = false;
+const FEED_ERR = new Set();
 function renderHealth(){
   const box = $("#hc"); if (box.hidden) return;
   if (!H){ box.innerHTML = `<div class="hh">No system check on this page yet.</div><p class="note">The chain writes one after every run.</p>`; return; }
@@ -518,6 +590,7 @@ function renderHealth(){
 }
 
 /* ---------- meters + sticky scoreboard ---------- */
+const LASTY = {};
 function meters(){
   if (!S || !S.leagues){ return; }
   const prev = prevEntry();
@@ -525,9 +598,13 @@ function meters(){
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive), w = worst(live);
     const arrow = (src, v) => { const pv = prev && prev.lg[k] ? prev.lg[k][src] : null; if (pv === null || pv === undefined || v === pv) return ""; return v > pv ? `<em class="up">▲</em>` : `<em class="dn">▼</em>`; };
     const po = m.champ && m.champ.base ? m.champ.base.playoff : (m.sim ? m.sim.playoff : null);
-    return `<div class="mtr" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${DK[k]} details">
+    const goNow = [...L.players, ...L.oppPlayers].some(started), F = finals(L), mg = goNow ? score(L.players) - score(L.oppPlayers) : F.me - F.op;
+    const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
+    const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
+    return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
       <div class="lgn">${esc(LGN[k])}</div><div class="dk">${DK[k]}</div>${dial(y, HEX[k])}
       <div class="pct">${y}%${arrow("y", y)}</div><div class="src">YAHOO · BEST LINEUP</div>
+      <div class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}"><span>${goNow ? "LIVE" : "PROJ"}</span>${sgn(mg)}</div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}
       <div class="xps"><div><span>RATCLIFFE</span><b>${chance(L, "r")}%</b></div><div><span>KOERNER</span><b>${chance(L, "k")}%</b></div><div><span>CLAY</span><b>${chance(L, "c")}%</b></div></div>
       <div class="mrow"><div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div><span>PLAYOFFS ${pcs(po)}</span></div>
         <span class="bell ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span></div>
@@ -535,7 +612,7 @@ function meters(){
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
-    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
+    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${score(L.players) > score(L.oppPlayers) ? "ahead" : score(L.players) < score(L.oppPlayers) ? "behind" : ""}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
       <div class="p"><b>${y}%</b> ${mv}</div><div class="p">${leftOf(L.players).length}/${leftOf(L.oppPlayers).length} left</div></button>`; }).join("");
   $("#sbar").innerHTML = `<span>Yahoo read ${esc(ago(S.stamp))}</span><span>${kick ? "Next kickoff " + esc(kick) : "No games left this week"}</span><button type="button" data-jump="top">Top</button>`;
 }
@@ -632,7 +709,7 @@ function card(k){
       takes += ` Breakeven: if the rest hit their numbers, <b>${esc(top.name)}</b> has to score <b>${f1(Math.max(0, be))}</b> (Yahoo has him at ${f1(manFinal(top, "y"))}).`; }
     takes += `</div>`; }
   /* empty seats: a starter who can't score */
-  const seats = L.players.filter(p => !isDone(p) && (isOut(p) || /^D$/i.test(p.status || "") || ((+p.proj || 0) === 0 && !isLive(p))));
+  const seats = emptySeats(L);
   const seatHtml = seats.length ? `<div class="seat"><div class="h">EMPTY SEAT</div>${seats.map(p => `<div><b>${esc(p.slot)} ${esc(p.name)}</b> ${p.status ? `<span class="chip r">${esc(p.status)}</span>` : ""} · Yahoo ${f1(p.proj)} · locks ${esc(p.when || "?")}</div>`).join("")}</div>` : "";
   /* the four needles with their move since the last read */
   const xr = [["y", "YAHOO"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
@@ -731,14 +808,68 @@ function card(k){
 }
 
 /* ---------- top alert strip, separated alerts ---------- */
+const alertRow = (x) => { const k = BYPRINT[x.lg];
+  return `<button type="button" class="${mk(x.id).read ? "" : "unread"}" data-goal="${esc(x.id)}"><span class="dot ${x.color}"></span><span><span class="lgtag" style="color:${LCOL[k] || "var(--ink)"}">${esc(DK[k] || x.lg)}</span> ${esc(x.title)}${x.deadline_utc && dueMin(x.deadline_utc) > 0 ? `<span class="dl${dueMin(x.deadline_utc) < 180 ? " hot" : ""}">${DUE(x.deadline_utc)} LEFT</span>` : ""}</span></button>`; };
+/* ---------- needs you: before-lock free agents, act-now alerts, empty seats ---------- */
+function needs(){
+  const box = $("#need"); if (!box || !S) return;
+  const out = [];
+  for (const x of alertsAll().filter(aLive)){ const k = BYPRINT[x.lg];
+    if (x.kind === "radar_prekick" && x.deadline_utc && dueMin(x.deadline_utc) > 0)
+      out.push({k, col: dueMin(x.deadline_utc) < 180 ? "red" : "gold", r: 1, t: dueMin(x.deadline_utc), aid: x.id, cd: DUE(x.deadline_utc), cl: "until lock",
+        html: `<b>${esc(x.who || "")}</b> is a free agent you could start. Free to add until ${esc((x.by || "").replace(/^before /i, "") || ptTime(x.deadline_utc))}.`});
+    else if (x.color === "red")
+      out.push({k, col: "red", r: 0, t: x.deadline_utc ? dueMin(x.deadline_utc) : 0, aid: x.id, cd: x.deadline_utc && dueMin(x.deadline_utc) > 0 ? DUE(x.deadline_utc) : "", cl: "act now", html: esc(x.title)});
+  }
+  for (const k of KEYS){ const L = lgS(k); if (!L) continue;
+    for (const p of emptySeats(L)) out.push({k, col: "red", r: 0, t: whenRank(p.when), cd: "", cl: p.when ? "locks " + p.when : "",
+      html: `Empty seat: <b>${esc(p.slot)} ${esc(p.name)}</b>${p.status ? " (" + esc(p.status) + ")" : ""} won't score. Yahoo has him at ${f1(p.proj)}.`}); }
+  out.sort((a, b) => (a.col === "red" ? 0 : 1) - (b.col === "red" ? 0 : 1) || a.r - b.r || a.t - b.t);
+  box.innerHTML = out.length ? `<div class="need">${out.map(o => `<button type="button" class="nd ${o.col}" ${o.aid ? `data-goal="${esc(o.aid)}"` : `data-jump="${SLUG[o.k]}"`}><span class="lgtag" style="color:${LCOL[o.k] || "var(--ink)"}">${DK[o.k] || ""}</span><span class="tx">${o.html}</span>${o.cd || o.cl ? `<span class="cd">${esc(o.cd)}<small>${esc(o.cl)}</small></span>` : ""}</button>`).join("")}</div>`
+    : `<div class="allclear">Nothing needs you right now: no free agent to grab before lock, no empty seat, no act-now alert.</div>`;
+}
+/* open one alert in its league card */
+async function goAlert(id){
+  const x = alertsAll().find(a => a.id === id); if (!x) return; const k = BYPRINT[x.lg]; if (!k) return;
+  const fid = "al-" + SLUG[k]; FOLDS[fid] = true; store.set("folds", FOLDS);
+  const d = document.querySelector(`details[data-fold="${fid}"]`); if (d) d.open = true;
+  if (x.color === "grey") SHOWNOTED.add(k);
+  OPEN.add(id);
+  if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly();
+  const el = [...document.querySelectorAll("#cards .al")].find(e => e.dataset.aid === id); el && el.scrollIntoView({behavior: SMOOTH(), block: "center"});
+}
+/* find a player */
+function findRun(){
+  const box = $("#fres"), raw = $("#findq").value.trim(), q = norm(raw); if (q.length < 2){ box.innerHTML = ""; return; }
+  const ros = []; for (const k of KEYS){ const L = lgS(k); if (!L) continue;
+    for (const p of L.players) if (norm(p.name).includes(q)) ros.push({k, p, mine: true});
+    for (const p of L.oppPlayers) if (norm(p.name).includes(q)) ros.push({k, p, mine: false}); }
+  const hits = alertsAll().filter(x => (aLive(x) || aSep(x)) && norm([x.who, x.title, x.tie].join(" ")).includes(q)).sort(aSort);
+  const mv = ((MV && MV.items) || []).filter(x => norm(x.text).includes(q));
+  const html = (ros.length ? `<div class="sub">This week's lineups (${ros.length})</div>` + ros.map(r => `<div class="mv"><span class="k"><span class="lgtag" style="color:${LCOL[r.k]}">${DK[r.k]}</span></span><span class="t"><b>${esc(r.p.name)}</b> <span class="mute">${esc(r.p.slot || "")} ${esc(r.p.tm || "")} · ${r.mine ? "starts for you" : "starts against you"} · ${started(r.p) ? f1(pts(r.p)) + " pts" : "Yahoo " + f1(r.p.proj)}${r.p.status ? " · " + esc(r.p.status) : ""} · ${esc(r.p.when || "")}</span></span></div>`).join("") : "")
+    + (hits.length ? `<div class="sub">Alerts (${hits.length})</div><div class="prev">${hits.map(alertRow).join("")}</div>` : "")
+    + (mv.length ? `<div class="sub">Your moves (${mv.length})</div>` + mv.map(x => `<div class="mv"><span class="k mute">${esc(x.lg)}</span><span class="t">${esc(x.text)}</span></div>`).join("") : "");
+  box.innerHTML = html || `<div class="empty">Nobody on this page matches “${esc(raw)}”.</div>`;
+}
+/* the floating NEXT button names the league it goes to */
+function nextTarget(){ const cs = KEYS.map(k => document.getElementById(SLUG[k])).filter(Boolean); return cs.find(c => c.getBoundingClientRect().top > 100) || cs[0] || null; }
+function nextLabel(){ const b = $("#goNext"), nx = nextTarget(); if (!b) return; if (!nx){ b.textContent = "NEXT"; return; }
+  const lab = DK[KEYOF[nx.id]] || "NEXT", up = nx.getBoundingClientRect().top <= 100; b.textContent = lab + (up ? " ↑" : " ↓"); b.setAttribute("aria-label", "Jump to " + lab); }
+let NL = 0; addEventListener("scroll", () => { if (NL) return; NL = requestAnimationFrame(() => { NL = 0; nextLabel(); }); }, {passive: true});
+function jumpTo(id){ const el = document.getElementById(id); if (!el) return; el.scrollIntoView({behavior: SMOOTH(), block: "start"});
+  try { history.replaceState(null, "", "#" + id); } catch(_){} }
+function scoresText(){ return `Dark Knight Live · NFL Week ${S.week} · ${ptTime(S.stamp)} PT\n` + KEYS.map(k => { const L = lgS(k); if (!L) return ""; const F = finals(L);
+  return `${DK[k]} vs ${L.opp}: ${f1(score(L.players))}–${f1(score(L.oppPlayers))} (Yahoo proj ${f1(F.me)}–${f1(F.op)}) · ${chance(L, "y")}% to win`; }).filter(Boolean).join("\n"); }
 function astrip(){
   const live = alertsAll().filter(aLive), cnt = (c) => live.filter(x => x.color === c).length;
-  const newest = A ? A.generated || A.built : "";
+  const newest = A ? A.generated || A.built : "", unread = live.filter(x => !mk(x.id).read), loud = live.filter(x => x.color !== "grey").sort((a, b) => (b.deadline_utc && dueMin(b.deadline_utc) > 0 ? 1 : 0) - (a.deadline_utc && dueMin(a.deadline_utc) > 0 ? 1 : 0) || aSort(a, b));
   $("#astrip").innerHTML = `<div class="astrip"><span class="ttl" style="color:${live.length ? (cnt("red") ? "var(--red)" : cnt("gold") ? "var(--amber)" : "var(--ink)") : "var(--up)"}">${live.length}</span>
-    <span class="tal">${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted${newest ? " · checked " + esc(ago(newest)) : ""}</span>
+    <span class="tal">${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted${unread.length ? ` · <span class="unr">${unread.length} unread</span>` : ""}${newest ? " · checked " + esc(ago(newest)) : ""}</span>
+    ${unread.length ? `<button type="button" class="abtn sep" data-markread="1">Mark all read</button>` : ""}
     <button type="button" class="abtn${ARM === "del:ALL" ? " arm" : ""}" data-abulk="del:ALL">${ARM === "del:ALL" ? "Tap again: delete " + live.length : "Delete all"}</button>
     <button type="button" class="abtn sep${ARM === "sep:ALL" ? " arm" : ""}" data-abulk="sep:ALL">${ARM === "sep:ALL" ? "Tap again: separate " + live.length : "Separate all"}</button></div>
-    <div class="note">${KEYS.map(k => { const n = aFor(k, aLive); return `<a href="#${SLUG[k]}" data-jump="${SLUG[k]}" style="color:${LCOL[k]};text-decoration:none;font-weight:700">${DK[k]} ${n.length}</a>`; }).join(" · ")} · Each alert sits in its league's card. Separate keeps it for 7 days at the bottom of the page.</div>`;
+    <div class="note">${KEYS.map(k => { const n = aFor(k, aLive); return `<a href="#${SLUG[k]}" data-jump="${SLUG[k]}" style="color:${LCOL[k]};text-decoration:none;font-weight:700">${DK[k]} ${n.length}</a>`; }).join(" · ")} · Each alert sits in its league's card. Separate keeps it for 7 days at the bottom of the page.</div>
+    ${loud.length ? `<div class="prev">${loud.slice(0, 4).map(alertRow).join("")}</div>${loud.length > 4 ? `<p class="note">${loud.length - 4} more act-now and monitor alerts in the league cards.</p>` : ""}` : ""}`;
 }
 function separated(){
   const xs = alertsAll().filter(aSep).sort(aSort);
@@ -747,7 +878,7 @@ function separated(){
     ${KEYS.map(k => { const n = xs.filter(x => BYPRINT[x.lg] === k).length; return n ? `<button type="button" class="abtn${ARM === "delsep:" + k ? " arm" : ""}" data-abulk="delsep:${k}">${ARM === "delsep:" + k ? "Tap again" : DK[k] + " · " + n}</button>` : ""; }).join("")}</div>
     <div class="alist">${xs.map(x => alertCard(x, true)).join("")}</div>` : `<div class="empty">Nothing separated.</div>`;
 }
-function renderAlertsOnly(){ astrip(); separated(); for (const k of KEYS){ const el = document.getElementById("alb-" + SLUG[k]); if (el) el.innerHTML = alertsBlock(k); } meters(); }
+function renderAlertsOnly(){ astrip(); separated(); needs(); for (const k of KEYS){ const el = document.getElementById("alb-" + SLUG[k]); if (el) el.innerHTML = alertsBlock(k); } meters(); }
 
 function footer(){
   const st = (M && M.status) || {};
@@ -763,8 +894,9 @@ function renderAll(){
   $("#moves").innerHTML = movesHtml(null);
   boards();
   $("#cards").innerHTML = KEYS.map(card).join("");
-  separated(); footer();
-  scrollTo(0, y);
+  separated(); footer(); needs();
+  if ($("#findq").value.trim()) findRun();
+  scrollTo(0, y); nextLabel();
 }
 document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches || !d.matches("details[data-fold]")) return; FOLDS[d.dataset.fold] = d.open; store.set("folds", FOLDS); }, true);
 
@@ -772,11 +904,16 @@ document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches 
 function rmsg(t, bad){ const el = $("#rmsg"); el.textContent = t; el.hidden = false; el.style.background = bad ? "#FBE4E5" : "#F2E6C4"; clearTimeout(rmsg.t); rmsg.t = setTimeout(() => el.hidden = true, 9000); }
 document.addEventListener("click", async (e) => {
   const t = e.target.closest ? e.target : e.target.parentElement;
-  const j = t.closest("[data-jump]"); if (j){ e.preventDefault(); const id = j.dataset.jump; if (id === "top") scrollTo({top: 0, behavior: "smooth"}); else document.getElementById(id)?.scrollIntoView({behavior: "smooth", block: "start"}); return; }
+  const ga = t.closest("[data-goal]"); if (ga){ e.preventDefault(); await goAlert(ga.dataset.goal); return; }
+  const j = t.closest("[data-jump]"); if (j){ e.preventDefault(); const id = j.dataset.jump; if (id === "top") scrollTo({top: 0, behavior: SMOOTH()}); else jumpTo(id); return; }
+  if (t.closest("[data-markread]")){ const ts = new Date().toISOString(), up = {}; for (const x of alertsAll().filter(aLive)) if (!mk(x.id).read) up[x.id] = Object.assign({}, mk(x.id), {read: ts});
+    await writeMarks(up); rmsg("Marked " + Object.keys(up).length + " alerts read."); return; }
+  if (t.id === "copy"){ if (!S){ rmsg("No scores yet - the first read hasn't landed.", 1); return; } const txt = scoresText();
+    try { await navigator.clipboard.writeText(txt); rmsg("Copied the four scores."); } catch(_){ rmsg("This view blocked copying. Select the text below:\n\n" + txt, 1); } return; }
   if (t.closest("#stat")){ const b = $("#hc"); b.hidden = !b.hidden; $("#stat").setAttribute("aria-expanded", String(!b.hidden)); renderHealth(); return; }
   if (t.id === "hcAll"){ HC_ALL = !HC_ALL; renderHealth(); return; }
-  if (t.id === "goTop"){ scrollTo({top: 0, behavior: "smooth"}); return; }
-  if (t.id === "goNext"){ const cs = KEYS.map(k => document.getElementById(SLUG[k])).filter(Boolean); const nx = cs.find(c => c.getBoundingClientRect().top > 100) || cs[0]; nx && nx.scrollIntoView({behavior: "smooth", block: "start"}); return; }
+  if (t.id === "goTop"){ scrollTo({top: 0, behavior: SMOOTH()}); return; }
+  if (t.id === "goNext"){ const nx = nextTarget(); nx && jumpTo(nx.id); return; }
   if (t.id === "openAll" || t.id === "closeAll"){ const o = t.id === "openAll"; document.querySelectorAll("details[data-fold]").forEach(d => { d.open = o; FOLDS[d.dataset.fold] = o; }); store.set("folds", FOLDS); return; }
   if (t.id === "wake"){ try { if (wakeLock){ await wakeLock.release(); wakeLock = null; t.classList.remove("on"); t.textContent = "Keep screen on"; }
       else { wakeLock = await navigator.wakeLock.request("screen"); t.classList.add("on"); t.textContent = "Screen stays on"; wakeLock.addEventListener("release", () => { wakeLock = null; t.classList.remove("on"); t.textContent = "Keep screen on"; }); } }
@@ -810,10 +947,21 @@ document.addEventListener("click", async (e) => {
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr")){ e.preventDefault(); e.target.click(); } });
-let wakeLock = null;
+document.addEventListener("keydown", (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.target.matches && e.target.matches("input,textarea,select,[contenteditable]")){ if (e.key === "Escape") e.target.blur(); return; }
+  if (/^[1-4]$/.test(e.key)){ e.preventDefault(); jumpTo("dk" + e.key); }
+  else if (e.key === "t" || e.key === "T"){ scrollTo({top: 0, behavior: SMOOTH()}); }
+  else if (e.key === "n" || e.key === "N"){ const nx = nextTarget(); nx && jumpTo(nx.id); }
+  else if (e.key === "/"){ e.preventDefault(); $("#findq").focus(); }
+  else if (e.key === "Escape"){ if (OPEN.size){ OPEN.clear(); renderAlertsOnly(); } const b = $("#hc"); if (!b.hidden){ b.hidden = true; $("#stat").setAttribute("aria-expanded", "false"); } }
+});
+$("#findq").addEventListener("input", findRun);
+addEventListener("hashchange", () => { const h = location.hash.slice(1); if (/^dk[1-4]$/.test(h)) document.getElementById(h)?.scrollIntoView({behavior: SMOOTH(), block: "start"}); });
+let wakeLock = null, HASHED = false;
 /* sticky scoreboard once the meters scroll away */
 try { new IntersectionObserver(([en]) => { $("#sticky").hidden = en.isIntersecting || !S; }, {threshold: 0}).observe($("#metersFrame")); } catch(_){}
-setInterval(() => { renderStatus(); if (S) meters(); }, 60000);
+setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
 
 /* ---------- data ---------- */
 (async () => {
@@ -821,7 +969,9 @@ setInterval(() => { renderStatus(); if (S) meters(); }, 60000);
   if (!db){ $("#statTxt").innerHTML = `<span class="late">Can't reach the live feed in this view.</span> Open Dark Knight Live from your Claude sidebar or artifact list.`; $("#meters").innerHTML = `<div class="empty" style="grid-column:1/-1">No data in this view.</div>`; return; }
   DB = db;
   const val = (s) => s && (s.data ? s.data() : s);
-  const watch = (path, fn) => { try { db.doc(path).onSnapshot(s => { fn(val(s)); }, () => {}); } catch(_){ db.doc(path).get().then(s => fn(val(s))).catch(() => {}); } };
+  const watch = (path, fn) => { try { db.doc(path).onSnapshot(s => { if (FEED_ERR.delete(path)) renderStatus(); fn(val(s)); },
+      () => { FEED_ERR.add(path); renderStatus(); setTimeout(() => watch(path, fn), 30000); }); }
+    catch(_){ db.doc(path).get().then(s => fn(val(s))).catch(() => {}); } };
   const tm = setTimeout(() => { if (!S) $("#statTxt").innerHTML = `<span class="late">The live feed hasn't answered in 10 seconds.</span> It keeps trying.`; }, 10000);
   try { TR = val(await db.doc("live/trail").get()) || {entries: []}; } catch(_){ TR = {entries: []}; }
   if (!Array.isArray(TR.entries)) TR = {entries: []};
@@ -830,6 +980,7 @@ setInterval(() => { renderStatus(); if (S) meters(); }, 60000);
   watch("live/health", v => { H = v || null; renderStatus(); renderHealth(); });
   watch("live/alerts", v => { A = v || null; if (S) renderAll(); });
   watch("live/models", v => { if (v){ M = v; if (S){ renderAll(); trailAdd(); } } });
-  watch("live/state", v => { if (v && v.leagues){ clearTimeout(tm); S = v; renderAll(); if (M) trailAdd(); } });
+  watch("live/state", v => { if (v && v.leagues){ clearTimeout(tm); S = v; renderAll(); if (M) trailAdd();
+    if (!HASHED){ HASHED = true; const h = location.hash.slice(1); if (/^dk[1-4]$/.test(h)) setTimeout(() => document.getElementById(h)?.scrollIntoView({block: "start"}), 60); } } });
 })();
 </script>

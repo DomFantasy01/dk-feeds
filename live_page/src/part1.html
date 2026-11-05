@@ -42,6 +42,8 @@ header.mh{display:flex;align-items:center;gap:10px;margin:12px 0 8px;padding:12p
 .stat{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 10px;border-radius:8px;background:var(--raise);font-size:13px;cursor:pointer;border:0;width:100%;text-align:left}
 .stat b{color:#fff;font-weight:600}
 .stat .late{color:var(--dn);font-weight:700}
+.sfail{margin-top:8px;padding:9px 11px;border-radius:8px;background:rgba(255,77,87,.14);border:1px solid var(--red);font-size:13px;line-height:1.45;color:#FFD6D8}
+.sfail b{display:block;color:var(--red);font:700 10.5px/1.2 var(--f-body);letter-spacing:.14em;margin-bottom:4px}
 .lights{display:inline-flex;gap:8px;margin-left:auto;align-items:center}
 .lt{display:inline-flex;align-items:center;gap:4px;font:700 9.5px/1 var(--f-body);letter-spacing:.08em;color:var(--ink2)}
 .lt i{width:10px;height:10px;border-radius:50%;display:block}
@@ -241,5 +243,55 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .top{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;flex-direction:column;gap:6px}
 .top button{width:40px;height:30px;opacity:.88;border-radius:8px;border:1px solid var(--line);background:rgba(22,33,58,.95);color:var(--ink);font:700 11px/1 var(--f-body);cursor:pointer}
 @media (prefers-reduced-motion:no-preference){.tube .tb i,.climb .bar i{transition:width .4s ease}}
+/* Nov 5 additions: needs-you panel, alert preview, finder, deadline chips, meter extras */
+.need{display:flex;flex-direction:column;gap:6px}
+.nd{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:8px 10px;border-radius:7px;border:1px solid var(--rim);border-left:4px solid var(--nc,var(--amber));background:var(--raise);cursor:pointer;min-height:44px}
+.nd.red{--nc:var(--red)} .nd.gold{--nc:var(--amber)}
+.nd .lgtag{flex:none;min-width:40px}
+.nd .tx{flex:1;min-width:0;font-size:13px;line-height:1.35;overflow-wrap:anywhere;color:var(--ink2)}
+.nd .tx b{color:#fff}
+.nd .cd{flex:none;font-family:var(--f-num);font-size:12.5px;font-weight:600;color:var(--nc);text-align:right;white-space:nowrap}
+.nd .cd small{display:block;font:600 9.5px/1.3 var(--f-body);color:var(--mute);letter-spacing:.04em}
+.allclear{padding:9px 11px;border-radius:7px;background:rgba(79,208,138,.08);border:1px solid rgba(79,208,138,.4);color:var(--up);font-size:13px;font-weight:600}
+.prev{display:flex;flex-direction:column;margin-top:8px}
+.prev button{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--hair);padding:7px 2px;cursor:pointer;font-size:12.5px;line-height:1.35;color:var(--ink2);min-height:38px}
+.prev button > span:last-child{min-width:0;overflow-wrap:anywhere}
+.prev .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--amber);transform:translateY(-1px)}
+.prev .dot.red{background:var(--red)} .prev .dot.grey{background:var(--grey)}
+.prev button.unread{color:#fff;font-weight:600}
+.find{display:flex;gap:6px;margin-top:10px}
+.find input{flex:1;min-width:0;background:#0A1020;border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:9px 10px;font:inherit;font-size:13px}
+.find input::placeholder{color:var(--mute)}
+.fres:empty{display:none}
+.fres{margin-top:4px}
+.dl{display:inline-block;margin-left:6px;font:700 9.5px/1 var(--f-body);letter-spacing:.06em;padding:3px 5px;border-radius:3px;border:1px solid currentColor;color:var(--amber);vertical-align:1px}
+.dl.hot{color:var(--red)}
+.seatb{display:inline-block;margin-top:4px;font:700 9px/1 var(--f-body);letter-spacing:.06em;padding:3px 5px;border-radius:3px;background:var(--red);color:#fff}
+.mgn{font:600 10.5px/1.2 var(--f-num);margin-top:1px}
+.mgn span{font:700 9px/1 var(--f-body);letter-spacing:.06em;color:var(--mute);margin-right:3px}
+.sc .s.ahead{color:var(--up)} .sc .s.behind{color:var(--dn)}
+.unr{color:#fff;font-weight:700}
+.kk{font-family:var(--f-num);font-weight:600;color:#fff}
+.keys{font-size:11px;color:var(--mute);margin:6px 0 0}
+.keys kbd{font:600 10.5px/1 var(--f-num);border:1px solid var(--line);border-radius:3px;padding:1px 4px;color:var(--ink2)}
+.mtr.flash{animation:fl 1.8s ease}
+@keyframes fl{0%{box-shadow:0 0 0 2px var(--gold),0 0 14px var(--gold)}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){.mtr.flash{animation:none;outline:2px solid var(--gold)}}
+.rmsg{white-space:pre-line;user-select:text}
+.mrow{flex-wrap:wrap;row-gap:3px}.mrow .tube{flex:1 1 100%}.mrow .bell{margin-left:auto}
+@media (hover:none){.keys{display:none}}
+.astrip .tal{flex:1 1 180px}
+/* legibility: nothing under 9px */
+.xps span,.tube span{font-size:9px}
+.mtr .src,.mstate{font-size:9px}
+.mtr .lgn{font-size:9.5px;height:12px}
+.xrow span,.funnel span,.chartbox .ct{font-size:9.5px}
+/* tap targets */
+.mv .x{min-width:36px;min-height:32px;font-size:15px}
+.sbar button{min-height:28px;padding:2px 10px}
+.al .acts button{min-height:36px}
+.linkbtn{min-height:36px}
+.ctl2 button{flex:1 1 40%;min-height:38px}
+.top button{width:auto;min-width:48px;height:34px;padding:0 9px}
 @media (max-width:380px){.mh h1{font-size:26px}.mh .wk{font-size:19px}.mtr .pct{font-size:27px}.score .big{font-size:38px}}
 </style>
