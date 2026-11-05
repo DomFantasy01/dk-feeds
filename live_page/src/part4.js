@@ -346,65 +346,11 @@ function nextKick(){ const ks = ((M && M.kicks) || []).map(x => new Date(Array.i
 const FOLDS = store.get("folds", {});
 const fold = (id, title, cnt, body, hot) => `<details class="fold" data-fold="${id}"${FOLDS[id] ? " open" : ""}><summary>${title}${cnt !== "" && cnt !== undefined ? ` <span class="cnt${hot ? " hot" : ""}">${cnt}</span>` : ""}</summary><div class="fb">${body}</div></details>`;
 
-/* ---------- the week's boards ---------- */
-function climb(){
-  const rows = KEYS.map(lgS).filter(Boolean);
-  const mx = Math.max(60, ...rows.map(L => Math.max(finals(L).me, finals(L).op))) * 1.05;
-  return `<div class="climb">${rows.map(L => { const k = L.key, s = score(L.players), f = finals(L), o = finals(L).op, w = lgM(k).champ && lgM(k).champ.base ? lgM(k).champ.base.wins : null;
-    return `<div class="row"><span class="lgtag" style="color:${LCOL[k]}">${DK[k]}</span>
-      <div class="bar" title="banked ${f1(s)}, projected ${f1(f.me)}, opponent projected ${f1(o)}"><i style="left:0;width:${s / mx * 100}%;background:${HEX[k]}"></i><i style="left:${s / mx * 100}%;width:${Math.max(0, f.me - s) / mx * 100}%;background:${HEX[k]};opacity:.35"></i><span class="opp" style="left:${o / mx * 100}%"></span></div>
-      <div class="v">${f1(s)} → <b>${f1(f.me)}</b><br><span class="mute">opp ${f1(o)}${w !== null ? " · " + w.toFixed(1) + " W" : ""}</span></div></div>`; }).join("")}
-    <p class="note">Solid = points banked, faded = Yahoo's projection for the rest, white tick = opponent's projected final. W = expected season wins (championship simulator).</p></div>`;
-}
-function onTheLine(){
-  return `<table class="tbl"><tr><th>League</th><th>This week</th><th>If win</th><th>If lose</th><th>Title W / L</th></tr>${KEYS.map(k => { const L = lgS(k), sw = ((lgM(k).champ || {}).swing || [])[0]; if (!L || !sw) return "";
-    return `<tr><td><span class="lgtag" style="color:${LCOL[k]}">${DK[k]}</span> <span class="mute">vs ${esc(sw.opp)}</span></td><td>${chance(L, "y")}%</td><td class="up">${pc(sw.po_w)}</td><td class="dn">${pc(sw.po_l)}</td><td>${pcs(sw.ti_w)} / ${pcs(sw.ti_l)}</td></tr>`; }).join("")}</table>
-    <p class="note">"If win / If lose" = playoff odds for the season. This week = Yahoo's chance to win this week. Simulator: ${esc((lgM("MOST").champ || {}).built || "")}.</p>`;
-}
-function ride(){
-  const es = trailEntries().filter(e => S && e.w === S.week);
-  if (es.length < 2) return `<div class="empty">The chart fills in as reads land this week (${es.length} so far).</div>`;
-  const xl = es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", ""));
-  return lineChart(KEYS.map(k => ({col: HEX[k], pts: es.map((e, i) => [i, e.lg[k] ? e.lg[k].y : null])})), xl, 130) +
-    `<div class="key">${KEYS.map(k => `<span><i style="border-color:${HEX[k]}"></i>${DK[k]}</span>`).join("")}</div><p class="note">Yahoo's chance to win this week, read by read.</p>`;
-}
-function whoLeft(){
-  const byWhen = {}, add = (p, k, side) => { const key = isLive(p) ? "Playing now" : (p.when || "Time unknown"); const id = p.name;
-    (byWhen[key] = byWhen[key] || {})[id] = (byWhen[key][id] || {name: p.name, tm: p.tm, mine: [], opp: []}); byWhen[key][id][side].push(k); };
-  for (const k of KEYS){ const L = lgS(k); if (!L) continue; L.players.filter(p => !isDone(p) && !isOut(p)).forEach(p => add(p, k, "mine")); L.oppPlayers.filter(p => !isDone(p) && !isOut(p)).forEach(p => add(p, k, "opp")); }
-  const order = (w) => w === "Playing now" ? -1 : (((M && M.kicks) || []).length ? 0 : 0);
-  const ws = Object.keys(byWhen).sort((a, b) => order(a) - order(b) || whenRank(a) - whenRank(b));
-  if (!ws.length) return `<div class="empty">Nobody left to play this week.</div>`;
-  return ws.map(w => `<div class="sub">${esc(w)}</div>` + Object.values(byWhen[w]).sort((a, b) => b.mine.length - a.mine.length).map(x =>
-    `<div class="mv"><span class="k">${x.mine.map(k => `<span class="lgtag" style="color:${LCOL[k]}">${DK[k]}</span>`).join(" ") || '<span class="mute">opp</span>'}</span><span class="t"><b>${esc(x.name)}</b> <span class="mute">${esc(x.tm || "")}</span>${x.mine.length > 1 ? ` <span class="chip y">×${x.mine.length}</span>` : ""}${x.opp.length ? ` <span class="mute">· against you in ${x.opp.map(k => DK[k]).join(", ")}</span>` : ""}</span></div>`).join("")).join("");
-}
+/* Nov 5 v9 (Dom): the page-wide boards (Climb, On the line, ride, Who's left, Rooting guide, Next up) are gone - each
+   league card now carries its own version, and the Rooting guide is dropped. */
 function whenRank(w){ const m = /(Thu|Fri|Sat|Sun|Mon|Tue)\s+(\d+):(\d+)\s*(am|pm)/i.exec(w || ""); if (!m) return 9999;
   const d = {Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4, Tue: 5}[m[1].slice(0, 1).toUpperCase() + m[1].slice(1, 3).toLowerCase()];
   return d * 1440 + ((+m[2] % 12) + (/pm/i.test(m[4]) ? 12 : 0)) * 60 + (+m[3]); }
-function rooting(){
-  const net = {};
-  for (const k of KEYS){ const L = lgS(k); if (!L) continue;
-    for (const p of L.players) if (!isDone(p) && !isOut(p)) (net[p.name] = net[p.name] || {n: 0, f: [], a: []}).n++, net[p.name].f.push(k);
-    for (const p of L.oppPlayers) if (!isDone(p) && !isOut(p)) (net[p.name] = net[p.name] || {n: 0, f: [], a: []}).n--, net[p.name].a.push(k); }
-  const xs = Object.entries(net).map(([n, v]) => ({name: n, ...v})).sort((a, b) => b.n - a.n || a.name.localeCompare(b.name));
-  const grp = (t, fn, cls) => { const g = xs.filter(fn); return g.length ? `<div class="sub">${t} (${g.length})</div>` + g.map(x =>
-    `<div class="mv"><span class="k"><span class="chip ${cls}">${x.n > 0 ? "+" + x.n : x.n}</span></span><span class="t"><b>${esc(x.name)}</b> <span class="mute">${x.f.length ? "yours in " + x.f.map(k => DK[k]).join(", ") : ""}${x.f.length && x.a.length ? " · " : ""}${x.a.length ? "against you in " + x.a.map(k => DK[k]).join(", ") : ""}</span></span></div>`).join("") : ""; };
-  if (!xs.length) return `<div class="empty">Nobody left to root for this week.</div>`;
-  return grp("Root for", x => x.n > 0, "g") + grp("Root against", x => x.n < 0, "r") + grp("Wash", x => x.n === 0, "n") + `<p class="note">Each remaining man counted across all four leagues: +1 for every league he starts for you, −1 for every opponent he starts for.</p>`;
-}
-function nextUp(){
-  return `<table class="tbl"><tr><th>League</th><th>Next week</th><th>Chance</th><th>Playoffs if W / L</th></tr>${KEYS.map(k => { const sw = ((lgM(k).champ || {}).swing || [])[1]; if (!sw) return "";
-    return `<tr><td><span class="lgtag" style="color:${LCOL[k]}">${DK[k]}</span></td><td style="text-align:left">Wk ${sw.wk} vs ${esc(sw.opp)}</td><td>${pc(sw.win)}</td><td><span class="up">${pc(sw.po_w)}</span> / <span class="dn">${pc(sw.po_l)}</span></td></tr>`; }).join("")}</table>
-    <p class="note">Chance = the simulator's chance to win that game. Playoff odds are for the season.</p>`;
-}
-function boards(){
-  if (!S || !S.leagues){ $("#boards").innerHTML = ""; return; }
-  const left = KEYS.reduce((a, k) => { const L = lgS(k); return a + (L ? leftOf(L.players).length + leftOf(L.oppPlayers).length : 0); }, 0);
-  const nxt = ((lgM("MOST").champ || {}).swing || [])[1];
-  $("#boards").innerHTML = fold("climb", "The Climb", "all four on one scale", climb()) + fold("line", "On the line this week", "", onTheLine()) +
-    fold("ride", "This week's ride", trailEntries().filter(e => S && e.w === S.week).length + " reads", ride()) + fold("left", "Who's left", left + " starters", whoLeft()) +
-    fold("root", "Rooting guide", "", rooting()) + fold("next", nxt ? "Week " + nxt.wk + " next up" : "Next up", "", nextUp());
-}
 
 /* ---------- your moves ---------- */
 function movesItems(k){ return ((MV && MV.items) || []).filter(x => (!k || BYPRINT[x.lg] === k || x.lg === DK[k]) && !MK["mvd:" + x.id]); }
@@ -414,6 +360,132 @@ function movesHtml(k){
   return xs.map(x => { const [lab, cls] = KC[x.kind] || ["NOTE", "n"]; const lk = BYPRINT[x.lg] || Object.keys(DK).find(q => DK[q] === x.lg);
     return `<div class="mv"><span class="k">${k ? "" : `<span class="lgtag" style="color:${LCOL[lk] || "var(--ink)"}">${esc(DK[lk] || x.lg)}</span> `}<span class="chip ${cls}">${lab}</span></span><span class="t">${esc(x.text)}${x.due ? ` <span class="mute">· ${esc(x.due)}</span>` : ""}</span><button type="button" class="x" data-mvx="${esc(x.id)}" aria-label="Remove this line">×</button></div>`; }).join("") +
     (k ? "" : `<p class="note">Your decided plan, kept by Claude${MV && MV.updated ? " · updated " + esc(MV.updated) : ""}. × hides a line on every device.</p>`);
+}
+
+/* ---------- Nov 5 v9 charts (Dom: "improve the graphics... super cool", "charts are very important") ---------- */
+let GID = 0; const gid = () => "z" + (++GID);
+const heatCol = (v) => { const t = Math.max(0, Math.min(1, (v - .25) / .5)); const a = [255, 107, 114], b = [247, 197, 49], c = [79, 208, 138];
+  const m = t < .5 ? a.map((x, i) => x + (b[i] - x) * t * 2) : b.map((x, i) => x + (c[i] - x) * (t - .5) * 2); return `rgb(${m.map(Math.round).join(",")})`; };
+/* area line chart: like lineChart, the first series gets a glowing gradient fill */
+function areaChart(series, xlabels, h = 120, fmt = (v) => v){
+  const W = 340, pl = 28, pr = 10, pt = 10, pb = 18, n = Math.max(2, xlabels.length), id = gid();
+  const X = (i) => pl + (W - pl - pr) * (i / (n - 1)), Y = (v) => pt + (h - pt - pb) * (1 - v / 100);
+  let g = `<defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${series[0].col}" stop-opacity=".55"/><stop offset="1" stop-color="${series[0].col}" stop-opacity="0"/></linearGradient>
+    <filter id="${id}f" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>`;
+  for (const v of [0, 25, 50, 75, 100]) g += `<line x1="${pl}" x2="${W - pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v === 50 ? "#3A4A6E" : "#17233F"}" ${v === 50 ? 'stroke-dasharray="3 3"' : ""}/>` + (v % 50 === 0 ? `<text x="${pl - 5}" y="${Y(v) + 3}" font-size="8.5" text-anchor="end" fill="#8A93A6" font-family="IBM Plex Mono,monospace">${v}</text>` : "");
+  const step = Math.max(1, Math.ceil(n / 6));
+  xlabels.forEach((t, i) => { if ((i % step === 0 && n - 1 - i >= step / 2) || i === n - 1) g += `<text x="${X(i)}" y="${h - 4}" font-size="8" text-anchor="${i === n - 1 ? "end" : i === 0 ? "start" : "middle"}" fill="#8A93A6" font-family="Poppins,sans-serif">${esc(t)}</text>`; });
+  series.forEach((s, si) => { const P = s.pts.filter(p => p[1] !== null && p[1] !== undefined && !isNaN(p[1])); if (!P.length) return;
+    const line = P.map(p => X(p[0]).toFixed(1) + "," + Y(p[1]).toFixed(1)).join(" ");
+    if (si === 0){ g += `<polygon points="${X(P[0][0]).toFixed(1)},${Y(0)} ${line} ${X(P[P.length - 1][0]).toFixed(1)},${Y(0)}" fill="url(#${id})"/>`;
+      g += `<polyline points="${line}" fill="none" stroke="${s.col}" stroke-width="5" opacity=".45" filter="url(#${id}f)"/>`; }
+    g += `<polyline points="${line}" fill="none" stroke="${s.col}" stroke-width="${s.w || 2}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""} stroke-linejoin="round" stroke-linecap="round"/>`;
+    const L = P[P.length - 1]; g += `<circle cx="${X(L[0]).toFixed(1)}" cy="${Y(L[1]).toFixed(1)}" r="${si ? 2.6 : 4}" fill="${s.col}" stroke="#0B1222" stroke-width="1.2"/>`;
+    if (si === 0) g += `<text x="${Math.min(W - pr - 2, X(L[0]) - 6).toFixed(1)}" y="${(Y(L[1]) - 8).toFixed(1)}" font-size="11" text-anchor="end" fill="#fff" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".04em">${esc(fmt(L[1]))}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${h}" role="img">${g}</svg>`;
+}
+/* the drawn road to the title: five rings (playoffs, round 1, semis, final, title), each filled to its chance, linked by
+   tubes as thick as the chance of getting that far; likeliest opponent in each round under its ring */
+function bracketChart(c, k){
+  const b = c.base || {}, br = c.bracket || {}, col = HEX[k], id = gid();
+  const st = [["PLAYOFFS", b.playoff, null], ["ROUND 1", b.playoff, (br.r1 || [])[0]], ["SEMIS", b.semis, (br.r2 || [])[0]], ["FINAL", b.final, (br.final || [])[0]], ["TITLE", b.title, null]];
+  if (st.some(s => s[1] === undefined || s[1] === null)) return "";
+  const W = 340, H = 146, cy = 54, R = 23, xs = st.map((_, i) => 34 + i * 68);
+  let g = `<defs><filter id="${id}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <linearGradient id="${id}t" gradientUnits="userSpaceOnUse" x1="0" x2="${W}" y1="0" y2="0"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="#EFD23E"/></linearGradient></defs>`;
+  for (let i = 0; i < 4; i++){ const w = Math.max(1.5, 14 * (st[i + 1][1] || 0) / Math.max(.01, st[0][1] || .01) ); 
+    g += `<line x1="${xs[i] + R}" x2="${xs[i + 1] - R}" y1="${cy}" y2="${cy}" stroke="#1C2A48" stroke-width="14" stroke-linecap="round"/><line x1="${xs[i] + R}" x2="${xs[i + 1] - R}" y1="${cy}" y2="${cy}" stroke="url(#${id}t)" stroke-width="${w.toFixed(1)}" stroke-linecap="round" opacity=".9"/>`; }
+  st.forEach(([lab, p, opp], i) => { const x = xs[i], a = Math.max(.001, Math.min(.999, p)), A = -Math.PI / 2 + a * 2 * Math.PI, last = i === 4, cc = last ? "#EFD23E" : col;
+    const x1 = x + R * Math.cos(A), y1 = cy + R * Math.sin(A);
+    g += `<circle cx="${x}" cy="${cy}" r="${R}" fill="#0E1628" stroke="#24304C" stroke-width="5"/>`;
+    g += `<path d="M${x} ${cy - R} A${R} ${R} 0 ${a > .5 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${cc}" stroke-width="5" stroke-linecap="round"/>`;
+    if (last) g += `<path d="M${x - 7} ${cy - 12} h14 v5 a7 7 0 0 1 -14 0 z M${x - 2} ${cy - 1} h4 v4 h3 v3 h-10 v-3 h3 z" fill="#EFD23E" opacity=".9"/>`;
+    g += `<text x="${x}" y="${cy + (last ? 18 : 5)}" text-anchor="middle" font-size="${last ? 11 : 15}" fill="#fff" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".03em">${pcs(p)}</text>`;
+    g += `<text x="${x}" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="${last ? "#EFD23E" : "#C9CFDB"}" font-family="Poppins,sans-serif" letter-spacing=".08em">${lab}</text>`;
+    if (opp){ const nm = String(opp.team || ""); g += `<text x="${x}" y="${cy + R + 16}" text-anchor="middle" font-size="7.5" fill="#8A93A6" font-family="Poppins,sans-serif">likeliest</text><text x="${x}" y="${cy + R + 26}" text-anchor="middle" font-size="8" fill="#C9CFDB" font-family="Poppins,sans-serif" font-weight="600">${esc(nm.length > 13 ? nm.slice(0, 12) + "…" : nm)}</text><text x="${x}" y="${cy + R + 36}" text-anchor="middle" font-size="7.5" fill="#8A93A6" font-family="IBM Plex Mono,monospace">${pcs(opp.p)}</text>`; } });
+  if (b.first || br.bye) g += `<text x="${xs[1]}" y="${cy + R + 48}" text-anchor="middle" font-size="7.5" fill="#EFD23E" font-family="Poppins,sans-serif">first-round bye ${pcs(br.bye ?? b.first)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`Playoffs ${pcs(b.playoff)}, semis ${pcs(b.semis)}, final ${pcs(b.final)}, title ${pcs(b.title)}`)}">${g}</svg>`;
+}
+/* where you finish: one bar per seed, playoff seeds in the league color, a gold cut line at the last playoff seat */
+function seedChart(c, k){
+  const s = (c.base || {}).seeds; if (!s || !s.length) return "";
+  const N = Math.round((c.race || []).reduce((a, r) => a + (r.playoff || 0), 0)) || 6, W = 340, H = 112, pl = 6, pr = 6, base = 88, top = 26;
+  const bw = (W - pl - pr) / s.length, mx = Math.max(...s, .01), id = gid(), best = s.indexOf(Math.max(...s));
+  let g = `<defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${HEX[k]}"/><stop offset="1" stop-color="${HEX[k]}" stop-opacity=".35"/></linearGradient></defs>`;
+  s.forEach((p, i) => { const x = pl + i * bw + 3, h = (base - top) * p / mx, y = base - h, inn = i < N;
+    g += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${Math.max(1, h).toFixed(1)}" rx="2.5" fill="${inn ? `url(#${id})` : "#3A4664"}"${i === best ? ' stroke="#fff" stroke-width="1.2"' : ""}/>`;
+    if (p >= .03) g += `<text x="${(x + (bw - 6) / 2).toFixed(1)}" y="${(y - 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${Math.round(p * 100)}</text>`;
+    g += `<text x="${(x + (bw - 6) / 2).toFixed(1)}" y="${base + 11}" text-anchor="middle" font-size="8.5" fill="${inn ? "#EEF1F6" : "#6C7790"}" font-family="Bebas Neue,Arial Narrow,sans-serif">${i + 1}</text>`; });
+  const cx = pl + N * bw; g += `<line x1="${cx.toFixed(1)}" x2="${cx.toFixed(1)}" y1="6" y2="${base + 2}" stroke="#EFD23E" stroke-width="1.4" stroke-dasharray="3 2"/><text x="${(cx - 4).toFixed(1)}" y="12" text-anchor="end" font-size="7.5" fill="#EFD23E" font-family="Poppins,sans-serif" font-weight="700" letter-spacing=".06em">PLAYOFF LINE</text>`;
+  g += `<text x="${W / 2}" y="${H - 2}" text-anchor="middle" font-size="7.5" fill="#6C7790" font-family="Poppins,sans-serif">FINAL SEED · % OF SIMULATED SEASONS</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+}
+/* how many wins: histogram of simulated final win totals, the usual playoff cut marked */
+function winsChart(c, k){
+  const h = c.wins_hist; if (!h || !h.length) return ""; const tot = h.reduce((a, v) => a + v, 0) || 1;
+  const lo = h.findIndex(v => v > 0), hi = h.length - 1 - [...h].reverse().findIndex(v => v > 0); if (lo < 0) return "";
+  const cut = c.line && c.line.median, W = 340, H = 106, pl = 6, pr = 6, base = 84, top = 26, n = hi - lo + 1, bw = (W - pl - pr) / n, mx = Math.max(...h);
+  let g = "";
+  for (let w = lo; w <= hi; w++){ const p = h[w] / tot, x = pl + (w - lo) * bw + 3, ht = (base - top) * h[w] / mx, ok = cut !== undefined && w >= cut;
+    g += `<rect x="${x.toFixed(1)}" y="${(base - ht).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${Math.max(1, ht).toFixed(1)}" rx="2.5" fill="${ok ? HEX[k] : "#3A4664"}" opacity="${ok ? 1 : .9}"/>`;
+    if (p >= .02) g += `<text x="${(x + (bw - 6) / 2).toFixed(1)}" y="${(base - ht - 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${Math.round(p * 100)}</text>`;
+    g += `<text x="${(x + (bw - 6) / 2).toFixed(1)}" y="${base + 11}" text-anchor="middle" font-size="9" fill="#EEF1F6" font-family="Bebas Neue,Arial Narrow,sans-serif">${w}</text>`; }
+  if (cut !== undefined && cut >= lo && cut <= hi){ const x = pl + (cut - lo) * bw; g += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="14" y2="${base + 2}" stroke="#EFD23E" stroke-width="1.4" stroke-dasharray="3 2"/><text x="${Math.min(x + 4, 150).toFixed(1)}" y="10" font-size="7.5" fill="#EFD23E" font-family="Poppins,sans-serif" font-weight="700" letter-spacing=".06em">USUAL CUT · ${cut} W${c.line.reach !== undefined ? " · YOU REACH IT " + pcs(c.line.reach) : ""}</text>`; }
+  g += `<text x="${W / 2}" y="${H - 2}" text-anchor="middle" font-size="7.5" fill="#6C7790" font-family="Poppins,sans-serif">FINAL WINS · % OF SIMULATED SEASONS</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+}
+/* on the line: playoff odds now, if you win, if you lose, on one 0-100 track */
+function swingChart(c, k){
+  const sw = (c.swing || [])[0], now = (c.base || {}).playoff; if (!sw || now === undefined) return "";
+  const W = 340, H = 70, X = (v) => 14 + (W - 28) * v, y = 34, id = gid();
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`Playoff odds ${pc(now)} now, ${pc(sw.po_w)} with a win, ${pc(sw.po_l)} with a loss`)}"><defs><linearGradient id="${id}" x1="0" x2="1"><stop offset="0" stop-color="#FF6B72"/><stop offset="1" stop-color="#4FD08A"/></linearGradient></defs>
+    <rect x="14" y="${y - 4}" width="${W - 28}" height="8" rx="4" fill="#1C2A48"/>
+    <rect x="${X(sw.po_l).toFixed(1)}" y="${y - 4}" width="${Math.max(2, X(sw.po_w) - X(sw.po_l)).toFixed(1)}" height="8" rx="4" fill="url(#${id})"/>
+    ${[0, .5, 1].map(v => `<text x="${X(v)}" y="${H - 4}" text-anchor="middle" font-size="7.5" fill="#6C7790" font-family="IBM Plex Mono,monospace">${v * 100}%</text>`).join("")}
+    <circle cx="${X(sw.po_l).toFixed(1)}" cy="${y}" r="6" fill="#FF6B72" stroke="#0B1222" stroke-width="2"/><text x="${X(sw.po_l).toFixed(1)}" y="${y - 11}" text-anchor="middle" font-size="12" fill="#FF6B72" font-family="Bebas Neue,Arial Narrow,sans-serif">LOSE ${pc(sw.po_l)}</text>
+    <circle cx="${X(sw.po_w).toFixed(1)}" cy="${y}" r="6" fill="#4FD08A" stroke="#0B1222" stroke-width="2"/><text x="${X(sw.po_w).toFixed(1)}" y="${y - 11}" text-anchor="middle" font-size="12" fill="#4FD08A" font-family="Bebas Neue,Arial Narrow,sans-serif">WIN ${pc(sw.po_w)}</text>
+    <path d="M${X(now).toFixed(1)} ${y + 6} l-5 8 h10 z" fill="#fff"/><text x="${X(now).toFixed(1)}" y="${y + 24}" text-anchor="middle" font-size="8" fill="#fff" font-family="Poppins,sans-serif" font-weight="700">NOW ${pc(now)}</text></svg>`;
+}
+/* the road ahead: one glowing tile per remaining game, colored by your chance to win it */
+function roadTiles(c, m){
+  const g = (c.path && c.path.length ? c.path : Object.entries((m.viz || {}).weeks || {}).map(([wk, win]) => ({wk, win, opp: ""})));
+  if (!g.length) return "";
+  return `<div class="road">${g.map(x => { const nm = String(x.opp || ""); return `<div style="--hc:${heatCol(x.win)}" title="${esc(`Week ${x.wk} vs ${nm}: ${pc(x.win)}`)}"><span>WK ${esc(x.wk)}</span><b>${pc(x.win)}</b><em>${esc(nm.length > 11 ? nm.slice(0, 10) + "…" : nm)}</em></div>`; }).join("")}</div>`;
+}
+/* every expert, every starter: four thin bars per man - Yahoo, Ratcliffe, Koerner, Clay - in this league's scoring */
+function expertBars(L, m, k){
+  const xp = (m.xp && m.xp.players) || {}, rows = [];
+  for (const p of L.players){ const v = xp[p.name] || {}; const vals = {y: +p.proj || null, r: v.r ?? null, k: v.k ?? null, c: v.c ?? null};
+    if ([vals.r, vals.k, vals.c].every(x => x === null)) continue; const ns = [vals.y, vals.r, vals.k, vals.c].filter(x => x !== null); rows.push({n: p.name, slot: p.slot, ...vals, sp: Math.max(...ns) - Math.min(...ns)}); }
+  if (!rows.length) return "";
+  const mx = Math.max(...rows.flatMap(r => [r.y, r.r, r.k, r.c]).filter(x => x !== null), 5), W = 340, rh = 40, nl = 104, bx = nl + 4, bwid = W - bx - 34;
+  const S4 = [["y", "#EEF1F6", "Y"], ["r", HEX[k], "R"], ["k", HEX[k] + "AA", "K"], ["c", "#8A93A6", "C"]];
+  let g = "";
+  rows.forEach((r, i) => { const y0 = 4 + i * rh;
+    if (i % 2 === 0) g += `<rect x="0" y="${y0 - 2}" width="${W}" height="${rh}" fill="#ffffff" opacity=".025" rx="4"/>`;
+    g += `<text x="4" y="${y0 + 11}" font-size="9.5" fill="#fff" font-family="Poppins,sans-serif" font-weight="600">${esc(r.n.length > 17 ? r.n.slice(0, 16) + "…" : r.n)}</text><text x="4" y="${y0 + 22}" font-size="7.5" fill="#8A93A6" font-family="Poppins,sans-serif">${esc(r.slot || "")}${r.sp >= 3 ? ' · <tspan fill="#EFD23E" font-weight="700">SPLIT ' + r.sp.toFixed(1) + "</tspan>" : ""}</text>`;
+    S4.forEach(([s, col], j) => { const v = r[s]; if (v === null) return; const y = y0 + 1 + j * 8.6, w = Math.max(1.5, bwid * v / mx);
+      g += `<rect x="${bx}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="5.6" rx="2.8" fill="${col}"/><text x="${(bx + w + 3).toFixed(1)}" y="${(y + 5.6).toFixed(1)}" font-size="7.4" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${v.toFixed(1)}</text>`; }); });
+  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Koerner</span><span><i style="border-color:#8A93A6"></i>Clay</span></div>`;
+}
+/* who's been closest: season average points missed per man, shortest bar wins */
+function accBars(){
+  const acc = (M && M.acc && M.acc.src) || {}, rows = Object.entries(acc).map(([s, wk]) => { const ws = Object.values(wk); const n = ws.reduce((a, v) => a + (v[1] || 1), 0);
+    return {s, avg: ws.reduce((a, v) => a + v[0] * (v[1] || 1), 0) / (n || 1), wks: ws.length, men: n}; }).sort((a, b) => a.avg - b.avg);
+  if (!rows.length) return ""; const W = 340, rh = 22, lo = Math.floor(Math.min(...rows.map(r => r.avg)) - 1), hi = Math.ceil(Math.max(...rows.map(r => r.avg)) + .3), X = (v) => 86 + (W - 130) * (v - lo) / (hi - lo);
+  const NM = {yahoo: "Yahoo", gotham: "Gotham", ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", sleeper: "Sleeper"};
+  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 16}" role="img">${rows.map((r, i) => { const y = 4 + i * rh, best = i === 0;
+    return `<text x="4" y="${y + 12}" font-size="10" fill="${best ? "#EFD23E" : "#EEF1F6"}" font-family="Poppins,sans-serif" font-weight="600">${esc(NM[r.s] || r.s)}</text>
+      <rect x="86" y="${y + 3}" width="${(X(r.avg) - 86).toFixed(1)}" height="11" rx="5.5" fill="${best ? "#EFD23E" : "#3F5785"}"/>
+      <text x="${(X(r.avg) + 5).toFixed(1)}" y="${y + 12}" font-size="9" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${r.avg.toFixed(2)} <tspan fill="#6C7790">· ${r.wks} wk${r.wks > 1 ? "s" : ""}</tspan></text>`; }).join("")}
+    <text x="86" y="${rows.length * rh + 13}" font-size="7.5" fill="#6C7790" font-family="Poppins,sans-serif">POINTS MISSED PER MAN · SHORTER = CLOSER</text></svg>`;
+}
+/* who's left in this league, by kickoff */
+function leftHere(L){
+  const rows = [...L.players.filter(p => !isDone(p) && !isOut(p)).map(p => ({p, me: true})), ...L.oppPlayers.filter(p => !isDone(p) && !isOut(p)).map(p => ({p, me: false}))];
+  if (!rows.length) return `<div class="empty">Nobody left to play.</div>`;
+  const by = {}; for (const r of rows){ const w = isLive(r.p) ? "Playing now" : (r.p.when || "Time unknown"); (by[w] = by[w] || []).push(r); }
+  return Object.keys(by).sort((a, b) => (a === "Playing now" ? -1 : 0) - (b === "Playing now" ? -1 : 0) || whenRank(a) - whenRank(b)).map(w => `<div class="sub">${esc(w)}</div><div class="lh">${by[w].map(r => `<span class="${r.me ? "me" : "op"}">${esc(r.p.name)} <em>${f1(manFinal(r.p, "y"))}</em></span>`).join("")}</div>`).join("") + `<p class="note">Bright = yours, dim = the opponent's. Number = Yahoo's projected final.</p>`;
 }
 
 /* ---------- a league card ---------- */
@@ -444,12 +516,12 @@ function card(k){
   if (pv){ const dm = me - pv.me, dop = op - pv.op, moved = [];
     if (pv.pl) for (const [side, list] of [["you", L.players], ["opp", L.oppPlayers]]) for (const p of list){ const was = pv.pl[p.name]; if (was === undefined) continue; const d = pts(p) - was; if (Math.abs(d) >= .5) moved.push({n: p.name, d, side}); }
     moved.sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-    since = fold("since-" + SLUG[k], "Since last read", `${sgn(dm)} / ${sgn(dop)}`, `<div class="takes">Since the ${esc(ptTime(prev.t))} read: you <b class="${dm >= 0 ? "up" : "dn"}">${sgn(dm)}</b> · opponent <b>${sgn(dop)}</b> · net <b class="${dm - dop >= 0 ? "up" : "dn"}">${sgn(dm - dop)}</b> (Yahoo live scores).</div>` +
+    since = `<div class="sub">Since last read · ${sgn(dm)} / ${sgn(dop)}</div>` + (`<div class="takes">Since the ${esc(ptTime(prev.t))} read: you <b class="${dm >= 0 ? "up" : "dn"}">${sgn(dm)}</b> · opponent <b>${sgn(dop)}</b> · net <b class="${dm - dop >= 0 ? "up" : "dn"}">${sgn(dm - dop)}</b> (Yahoo live scores).</div>` +
       (moved.length ? `<div class="sub">Who moved</div>` + moved.map(x => `<div class="mv"><span class="k">${x.side === "you" ? "You" : '<span class="mute">Opp</span>'}</span><span class="t">${esc(x.n)}</span><span class="num ${x.d >= 0 ? "up" : "dn"}">${sgn(x.d)}</span></div>`).join("") : `<p class="note">Nobody moved half a point or more.</p>`)); }
   /* read-by-read chance */
   const es = trailEntries().filter(e => e.w === S.week && e.lg[k]);
-  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Chance to win this week, read by read</div>${lineChart([["y", "#EEF1F6", ""], ["r", HEX[k], ""], ["k", HEX[k], "4 3"], ["c", "#8A93A6", "2 3"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.5 : 1.6, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")))}
-      <div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe</span><span><i class="dot" style="border-color:${HEX[k]}"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span></div></div>` : "";
+  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["k", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
+      <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span></div></div>` : "";
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */
   const bar = (list) => list.map(p => `<i class="${isLive(p) ? "on" : isDone(p) ? "done" : ""}"></i>`).join("");
@@ -464,15 +536,12 @@ function card(k){
   const calls = (c.calls || []).filter(x => shown(callId(k, x), sigCall(x)));
   const trades = (c.trades || []).filter(x => shown(tradeId(k, x), sigTrade(x)));
   const b = c.base || {};
-  const road = `<div class="funnel"><div><b>${pcs(b.playoff)}</b><span>PLAYOFFS</span></div><div><b>${pcs(b.semis)}</b><span>SEMIS</span></div><div><b>${pcs(b.final)}</b><span>FINAL</span></div><div><b>${pcs(b.title)}</b><span>TITLE</span></div></div>
-    <p class="note">${esc(c.rec_now || m.rec || "")} · ${c.stand_now ? "standing " + c.stand_now : ""}${b.wins ? " · " + b.wins.toFixed(1) + " expected wins" : ""}${b.seed ? " · likeliest seed " + b.seed : ""}. Season odds from ${esc(c.note ? "the championship simulator" : "the simulator")}, built ${esc(c.built || "")}.</p>
+  const road = `<p class="note">${esc(c.rec_now || m.rec || "")} · ${c.stand_now ? "standing " + c.stand_now : ""}${b.wins ? " · " + b.wins.toFixed(1) + " expected wins" : ""}${b.seed ? " · likeliest seed " + b.seed : ""}. Season odds from ${esc(c.note ? "the championship simulator" : "the simulator")}, built ${esc(c.built || "")}.</p>
     <div class="sub">Pickups tested (${mvs.length})</div>${mvs.length ? mvs.map(x => `<div class="pk"><b>Add ${esc(x.add)}</b> (${esc(x.pos || "")} ${esc(x.nfl || "")}, ${esc(x.acq || "")}) · drop ${esc(x.drop)}: playoff odds <b class="${x.d_playoff >= 0 ? "up" : "dn"}">${sgn(x.d_playoff * 100)} pts</b>, title ${sgn((x.d_title || 0) * 100)} pts, ${sgn(x.d_wins || 0, 2)} wins.<br><span class="mute">${esc(x.drop)} ${esc(x.drop_role || "")}${x.block && x.block.rival ? " · blocks " + esc(x.block.rival) : ""}</span></div>`).join("") : `<p class="note">Nothing tested clears the bar right now.</p>`}
     ${(c.not_worth || []).length ? `<p class="note">${c.not_worth.length} other adds tested and not worth it (under half a point of playoff odds).</p>` : ""}
     <div class="sub">Injury calls (${calls.length})</div>${calls.length ? calls.map(x => { const best = (x.options || [])[0];
       return `<div class="pk"><b>${esc(x.starter)}</b> <span class="chip ${/^(O|D)$/.test(x.status) ? "r" : "y"}">${esc(x.status)}</span> locks ${esc(x.locks)}: this week ${pc(x.week_now)} with him, ${pc(x.week_if_out)} if out${best ? `; best fill <b>${esc(best.add)}</b> for ${esc(best.drop)} (${sgn((best.d_week || 0) * 100)} this week)` : ""}. Season playoff odds if he sits: ${pc(x.if_out && x.if_out.playoff)}.</div>`; }).join("") : `<p class="note">No starter on the injury report.</p>`}
     <div class="sub">Trades screened (${trades.length} of ${c.trades_screened || 0})</div>${trades.length ? trades.map(x => `<div class="pk">Give <b>${esc((x.give || []).join(" + "))}</b> for <b>${esc(x.get)}</b>: playoff odds ${sgn(x.d_playoff * 100)} pts, title ${sgn((x.d_title || 0) * 100)} pts.</div>`).join("") : `<p class="note">${esc(c.trade_rules || "No trade clears both sides.")}</p>`}
-    ${(c.race || []).length ? `<div class="sub">The race</div><div class="scroll"><table class="tbl"><tr><th>Team</th><th>Record</th><th>Playoffs</th><th>Title</th></tr>${c.race.map(r => `<tr class="${r.me ? "me" : ""}"><td>${esc(r.team)}</td><td>${esc(r.rec)}</td><td>${pcs(r.playoff)}</td><td>${pcs(r.title)}</td></tr>`).join("")}</table></div>` : ""}
-    ${(c.path || []).length ? `<div class="sub">The road ahead</div><div class="heat">${c.path.map(g => { const v = g.win, col = v >= .6 ? "#4FD08A" : v >= .45 ? "#F7C531" : "#FF6B72"; return `<div style="background:${col}"><span>WK ${g.wk}</span>${pc(v)}</div>`; }).join("")}</div><p class="note">${c.path.map(g => "Wk " + g.wk + " " + esc(g.opp)).join(" · ")}</p>` : ""}
     ${(c.worth || []).length ? `<div class="sub">What your bench is for</div>` + c.worth.map(x => `<div class="pk"><b>${esc(x.name)}</b> ${esc(x.pos)}: ${esc(x.role)}. Dropping him would ${(x.d_playoff || 0) < -.0005 ? "cost " + Math.abs(x.d_playoff * 100).toFixed(1) + " pts of" : (x.d_playoff || 0) > .0005 ? "add " + (x.d_playoff * 100).toFixed(1) + " pts to" : "barely move"} playoff odds.</div>`).join("") : ""}`;
   const roadCnt = `${mvs.length} pickups · ${calls.length} injury · ${trades.length} trades`;
 
@@ -482,19 +551,25 @@ function card(k){
   const accRows = Object.entries(acc).map(([s, wk]) => { const ws = Object.entries(wk); const last = ws[ws.length - 1]; const avg = ws.reduce((a, [, v]) => a + v[0], 0) / (ws.length || 1);
     return [s, last ? last[0] : "", last ? last[1][0] : null, avg, ws.length]; }).sort((a, b) => a[3] - b[3]);
   const byes = {}; for (const r of ((M && M.rosters && M.rosters.t && M.rosters.t[DKP[k]]) || [])){ const wk = (M.byes || {})[r[3]]; if (wk) for (const w of wk) if (w >= (S.week || 0)) (byes[w] = byes[w] || []).push(r[0]); }
-  const analytics = `${m.viz && m.viz.weeks ? `<div class="sub">Chance to win, week by week</div><div class="heat">${Object.entries(m.viz.weeks).map(([w, v]) => { const col = v >= .6 ? "#4FD08A" : v >= .45 ? "#F7C531" : "#FF6B72"; return `<div style="background:${col}"><span>WK ${w}</span>${pc(v)}</div>`; }).join("")}</div>` : ""}
-    ${hist.length >= 2 ? `<div class="sub">Playoff odds over time</div>${lineChart([{col: HEX[k], pts: hist.map((h, i) => [i, h[1] * 100])}], hist.map(h => PT(h[0], {month: "numeric", day: "numeric"})), 100)}` : `<p class="note">Playoff odds history: ${hist.length} point${hist.length === 1 ? "" : "s"} so far (${hist.length ? pcs(hist[0][1]) : "–"}); the line draws from the second build on.</p>`}
-    ${Object.keys(byes).length ? `<div class="sub">Byes ahead</div>${Object.entries(byes).sort((a, b) => a[0] - b[0]).map(([w, ns]) => `<div class="mv"><span class="k">Wk ${w}</span><span class="t">${esc(ns.join(", "))}</span></div>`).join("")}` : ""}
-    ${accRows.length ? `<div class="sub">Who's been most accurate</div><table class="tbl"><tr><th>Source</th><th>Last graded</th><th>Season avg</th><th>Weeks</th></tr>${accRows.map(r => `<tr><td>${esc(r[0][0].toUpperCase() + r[0].slice(1))}</td><td>${r[2] === null ? "–" : r[2].toFixed(2)} <span class="mute">wk ${esc(r[1])}</span></td><td>${r[3].toFixed(2)}</td><td>${r[4]}</td></tr>`).join("")}</table><p class="note">${esc((M.acc || {}).note || "")}. All four leagues together.</p>` : ""}`;
+  const sw0 = (c.swing || [])[0], sw1 = (c.swing || [])[1];
+  const picture = `${bracketChart(c, k) ? `<div class="chartbox"><div class="ct">The bracket · your road to the title</div>${bracketChart(c, k)}<p class="note">Each ring fills to your chance of getting that far; the gold tube thins as the odds drop. Under each round: the opponent you're likeliest to meet there, and how often. ${esc(c.note || "")}.</p></div>` : ""}
+    ${seedChart(c, k) ? `<div class="chartbox"><div class="ct">Where you finish</div>${seedChart(c, k)}</div>` : ""}
+    ${winsChart(c, k) ? `<div class="chartbox"><div class="ct">How many wins</div>${winsChart(c, k)}</div>` : ""}
+    ${(c.race || []).length ? `<div class="sub">The race</div><div class="scroll"><table class="tbl"><tr><th>Team</th><th>Record</th><th>Playoffs</th><th>Title</th></tr>${c.race.map(r => `<tr class="${r.me ? "me" : ""}"><td>${esc(r.team)}</td><td>${esc(r.rec)}</td><td>${pcs(r.playoff)}</td><td>${pcs(r.title)}</td></tr>`).join("")}</table></div>` : ""}`;
+  const season = `${hist.length >= 2 ? `<div class="chartbox"><div class="ct">Playoff odds over time</div>${areaChart([{col: HEX[k], w: 2.6, pts: hist.map((h, i) => [i, h[1] * 100])}], hist.map(h => PT(h[0], {weekday: "short", hour: "numeric"}).replace(" ", "")), 120, v => Math.round(v) + "%")}<p class="note">Playoff odds for the season after every simulator run.</p></div>` : `<p class="note">Playoff odds history: ${hist.length} point${hist.length === 1 ? "" : "s"} so far (${hist.length ? pcs(hist[0][1]) : "–"}); the line draws from the second run on.</p>`}
+    <div class="chartbox"><div class="ct">The road ahead · chance to win each game</div>${roadTiles(c, m)}${b.wins ? `<p class="note">${b.wins.toFixed(1)} expected wins${b.seed ? " · likeliest seed " + b.seed : ""}.</p>` : ""}</div>
+    ${sw1 ? `<div class="sub">Week ${sw1.wk} next up</div><div class="pk">vs ${esc(sw1.opp)}: ${pc(sw1.win)} chance to win that game · playoff odds <span class="up">${pc(sw1.po_w)}</span> with a win, <span class="dn">${pc(sw1.po_l)}</span> with a loss.</div>` : ""}
+    ${Object.keys(byes).length ? `<div class="sub">Byes ahead</div>${Object.entries(byes).sort((a, b) => a[0] - b[0]).map(([w, ns]) => `<div class="mv"><span class="k">Wk ${w}</span><span class="t">${esc(ns.join(", "))}</span></div>`).join("")}` : ""}`;
 
   /* expert cards */
   const xp = (m.xp && m.xp.players) || {};
   const xpc = Object.entries(xp).filter(([n, v]) => v && (v.r !== undefined || v.k !== undefined)).map(([n, v]) => { const ns = [v.r, v.k, v.c].filter(x => x !== null && x !== undefined); const sp = ns.length ? Math.max(...ns) - Math.min(...ns) : 0;
     return {n, v, sp}; }).filter((x, i, arr) => arr.findIndex(y => y.v.pos === x.v.pos && y.v.r === x.v.r && y.v.k === x.v.k && y.v.c === x.v.c) === i).sort((a, b) => b.sp - a.sp);
-  const experts = xpc.length ? `<div class="xpc">${xpc.map(({n, v, sp}) => `<div class="c${sp >= 3 ? " split" : ""}"><b>${esc(n)}</b><div class="why">${esc(v.pos || "")} · ${esc(v.why || "")}${sp >= 3 ? " · split " + sp.toFixed(1) : ""}</div>
+  const eb = expertBars(L, m, k);
+  const experts = (eb ? `<div class="chartbox"><div class="ct">Your starters · every expert · ${DK[k]} scoring</div>${eb}</div>` : "") + (accBars() ? `<div class="chartbox"><div class="ct">Who's been closest</div>${accBars()}</div>` : "") + (xpc.length ? `<div class="sub">Every player the experts cover</div><div class="xpc">${xpc.map(({n, v, sp}) => `<div class="c${sp >= 3 ? " split" : ""}"><b>${esc(n)}</b><div class="why">${esc(v.pos || "")} · ${esc(v.why || "")}${sp >= 3 ? " · split " + sp.toFixed(1) : ""}</div>
       <div class="ns"><span>R ${f1(v.r)}</span><span>K ${f1(v.k)}</span><span>C ${f1(v.c)}</span></div></div>`).join("")}</div><p class="note">This week in ${DK[k]} scoring: R = Ratcliffe (FTN, leads), K = Koerner (FantasyLabs), C = Clay (ESPN). Gold edge = the experts split by 3+ points. ${esc((m.experts || {}).read ? "Ranks read " + m.experts.read : "")}</p>
       ${((m.experts || {}).rising || []).length ? `<div class="sub">Moving up</div>${m.experts.rising.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}
-      ${((m.experts || {}).sliding || []).length ? `<div class="sub">Sliding</div>${m.experts.sliding.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}` : `<div class="empty">No expert numbers for this league yet.</div>`;
+      ${((m.experts || {}).sliding || []).length ? `<div class="sub">Sliding</div>${m.experts.sliding.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}` : (eb ? "" : `<div class="empty">No expert numbers for this league yet.</div>`));
 
   /* weather for the teams in this game */
   const teams = new Set([...L.players, ...L.oppPlayers].filter(p => !isDone(p)).map(p => (p.tm || "").toUpperCase()));
@@ -518,13 +593,14 @@ function card(k){
     <div class="recl">${esc(rec)}</div>
     ${scoreHtml}${takes}${seatHtml}
     <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number.</p>${splitHtml}
-    ${mountain(L, m, k)}${since}${rbr}${rng}
-    ${fold("mv-" + SLUG[k], "Your moves", notes.length, movesHtml(k))}
-    ${fold("road-" + SLUG[k], "Road to the championship", roadCnt, road, calls.length > 0)}
-    ${fold("ana-" + SLUG[k], "Season analytics", "", analytics)}
-    ${fold("xp-" + SLUG[k], "Your players, every expert", xpc.filter(x => x.sp >= 3).length + " splits", experts)}
-    ${fold("wx-" + SLUG[k], "Game weather", wxs.filter(w => w.flag).length ? wxs.filter(w => w.flag).length + " red" : wxs.length + " games", wx, wxs.some(w => w.flag))}
+    ${mountain(L, m, k)}
+    ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
+    ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
     ${fold("al-" + SLUG[k], "Alerts", al.length ? `${al.filter(x => x.color === "red").length} act now · ${al.filter(x => x.color === "gold").length} monitor · ${al.filter(x => x.color === "grey").length} noted` : "none", `<div id="alb-${SLUG[k]}">${alertsBlock(k)}</div>`, al.some(x => x.color === "red"))}
+    ${fold("pic-" + SLUG[k], "Playoff picture", b.playoff !== undefined ? pcs(b.playoff) + " playoffs · " + pcs(b.title) + " title" : "", picture)}
+    ${fold("ana-" + SLUG[k], "Season odds", hist.length + " runs", season)}
+    ${fold("xp-" + SLUG[k], "Experts", xpc.filter(x => x.sp >= 3).length + " splits", experts)}
+    ${fold("wx-" + SLUG[k], "Game weather", wxs.filter(w => w.flag).length ? wxs.filter(w => w.flag).length + " red" : wxs.length + " games", wx, wxs.some(w => w.flag))}
     ${fold("clr-" + SLUG[k], "Clear " + DK[k], "", clr)}
   </article>`;
 }
@@ -585,6 +661,7 @@ function scoresText(){ return `Dark Knight Live · NFL Week ${S.week} · ${ptTim
 function astrip(){
   const live = alertsAll().filter(aLive), cnt = (c) => live.filter(x => x.color === c).length;
   const newest = A ? A.generated || A.built : "", unread = live.filter(x => !mk(x.id).read), loud = live.filter(x => x.color !== "grey").sort((a, b) => (b.deadline_utc && dueMin(b.deadline_utc) > 0 ? 1 : 0) - (a.deadline_utc && dueMin(a.deadline_utc) > 0 ? 1 : 0) || aSort(a, b));
+  { const ac = $("#alCnt"); if (ac) { ac.textContent = live.length ? `${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted` : "none"; ac.className = "cnt" + (cnt("red") ? " hot" : ""); } }
   $("#astrip").innerHTML = `<div class="astrip"><span class="ttl" style="color:${live.length ? (cnt("red") ? "var(--red)" : cnt("gold") ? "var(--amber)" : "var(--ink)") : "var(--up)"}">${live.length}</span>
     <span class="tal">${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted${unread.length ? ` · <span class="unr">${unread.length} unread</span>` : ""}${newest ? " · checked " + esc(ago(newest)) : ""}</span>
     ${unread.length ? `<button type="button" class="abtn sep" data-markread="1">Mark all read</button>` : ""}
@@ -613,8 +690,6 @@ function renderAll(){
   renderStatus(); renderHealth();
   if (!S || !S.leagues){ return; }
   const y = scrollY; meters(); astrip();
-  $("#moves").innerHTML = movesHtml(null);
-  boards();
   $("#cards").innerHTML = KEYS.map(card).join("");
   separated(); footer(); needs();
   if ($("#findq").value.trim()) findRun();

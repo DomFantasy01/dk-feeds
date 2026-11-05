@@ -6,11 +6,11 @@
 <div class="sfail" id="sfail" role="alert" hidden></div>
 <div class="hc" id="hc" hidden></div>
 
-<section class="frame" id="needBox"><span class="lab">Needs you</span><div id="need"><div class="empty">Checking the deadlines…</div></div></section>
-
-<section class="frame" id="metersFrame"><span class="lab">Win probability · this week</span>
+<section class="frame" id="metersFrame"><span class="lab">Chance to win this week · tap a league</span>
   <div class="meters" id="meters"><div class="empty" style="grid-column:1/-1">Waiting for the first read.</div></div>
 </section>
+
+<section class="frame" id="needBox"><span class="lab">Needs you</span><div id="need"><div class="empty">Checking the deadlines…</div></div></section>
 
 <div class="sticky" id="sticky" hidden><div class="sch" id="sch"></div><div class="sbar" id="sbar"></div></div>
 
@@ -23,16 +23,13 @@
   </nav>
   <div class="ctl2"><button type="button" id="openAll">Open all folds</button><button type="button" id="closeAll">Close all folds</button><button type="button" id="wake">Keep screen on</button><button type="button" id="copy">Copy scores</button></div>
   <p class="keys">Keys: <kbd>1</kbd>–<kbd>4</kbd> jump to a league · <kbd>N</kbd> next · <kbd>T</kbd> top · <kbd>/</kbd> find a player · <kbd>Esc</kbd> close</p>
+  <div class="find"><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
   <p class="rmsg" id="rmsg" hidden></p>
 </section>
 
-<section class="frame" id="alertsTop"><span class="lab">Alerts</span><div id="astrip"></div>
-  <div class="find"><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div></section>
-
-<section class="frame" id="movesBox"><span class="lab">Your moves</span><div id="moves"></div></section>
-
-<div id="boards"></div>
 <div id="cards"></div>
+
+<details class="fold" id="f-alall" data-fold="alall"><summary>All alerts, every league <span class="cnt" id="alCnt"></span></summary><div class="fb" id="astrip"></div></details>
 
 <details class="fold" id="f-sep" data-fold="sep"><summary>Separated alerts <span class="cnt" id="sepCnt"></span></summary><div class="fb" id="sep"></div></details>
 
