@@ -1,0 +1,28 @@
+name: DK clock (catches missed runs)
+# Nov 4 2026 (Dom: "fix the engines"). GitHub drops scheduled runs when it is busy - on Nov 4 the 30-minute news job ran
+# about once an hour, the hourly projection job missed runs, and the 7:40 PM Dispatch build never started.
+# This job stays awake ~6 hours and starts any watched job (news feeds, projections, Dispatch build) whose scheduled time
+# passed 26+ minutes ago without a run. It writes nothing to the repo. Each clock hands off to the next one when it ends;
+# the hourly schedule below only restarts the chain if a handoff is ever lost (a second clock just waits its turn).
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch: {}
+permissions:
+  actions: write       # to start the watched jobs and the next clock
+  contents: read
+concurrency:
+  group: dk-clock      # its own lane: never holds the dk-feeds queue the writer jobs share
+  cancel-in-progress: false
+jobs:
+  clock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 358
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install croniter
+      - run: python live_sync/clock.py
+        env:
+          GH_TOKEN: ${{ github.token }}

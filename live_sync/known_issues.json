@@ -151,6 +151,13 @@
    "level": "grey",
    "since": "2026-10-28",
    "what": "The scoreboard starts grading Ratcliffe with Week 8 (his pregame numbers are frozen from the 10:10 AM Oct 28 read). Until a few weeks are in, his accuracy line is a small sample; the RATCLIFFE MEN line compares all four sources on the same men."
+  },
+  {
+   "piece": "GitHub scheduler dropping runs",
+   "level": "red",
+   "since": "2026-11-04",
+   "what": "GitHub skipped about half of the scheduled runs on Nov 4: the 30-minute news job ran about once an hour (15-25 min late), the hourly projection job ran ~50 min late or not at all, and the 7:40 PM Dispatch build never started - so the News feed light went red twice.",
+   "fixed": "2026-11-04 8:55 PM PT: new DK clock job (.github/workflows/clock.yml, live_sync/clock.py) starts any news, projection or Dispatch run GitHub misses, 26 min after its slot; replayed against Nov 4's real run history it would have filled every gap"
   }
  ]
 }
