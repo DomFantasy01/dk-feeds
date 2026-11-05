@@ -102,6 +102,16 @@ cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_onepage.pdf" "$REPO/dispatch_out/
 # The one-page overview is still saved beside it (Dark_Knight_Dispatch_onepage_latest.pdf).
 cp "$ROOT/cand/global/out/Dark_Knight_Dispatch_Wk$W.pdf" "$REPO/dispatch_out/Dark_Knight_Dispatch_latest.pdf"   # one fixed link that never changes week to week (Oct 9)
 cp "$ROOT/dksys/data/latest/meter/meter_wk$W.json" "$ROOT/dksys/data/latest/meter/alarm_wk$W.json" "$REPO/dispatch_out/"
+# Nov 5 (Dom): the week's starting needles - written once, at the first build of a new week, kept all week (Live's dotted needles)
+python3 - "$REPO/dispatch_out/meter_wk$W.json" "$REPO/dispatch_out/week_start.json" <<'PYWS' || echo "week start file skipped"
+import json, sys, os
+m = json.load(open(sys.argv[1])); out = sys.argv[2]
+old = json.load(open(out)) if os.path.exists(out) else {}
+if old.get('week') != m['week']:
+    S = {'yahoo': 'y', 'ratcliffe': 'r', 'koerner': 'k', 'clay': 'c'}
+    json.dump({'week': m['week'], 'at': m['built_pt'], 'leagues': {lab: {S[s]: L['needles'].get(s) for s in S} for lab, L in m['leagues'].items()}}, open(out, 'w'), indent=1)
+    print('week start set:', m['built_pt'])
+PYWS
 cp "$ROOT/dksys/data/latest/ftn_scored.csv" "$ROOT/dksys/data/latest/koerner_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no scored expert files this build"   # Oct 29: the hourly alert pass reads Ratcliffe and Koerner from here
 cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null || echo "no weather file this build"   # game weather for Dark Knight Live (Oct 11)
 rm -f "$REPO"/dispatch_out/DK_League_Pages_Wk*_latest.pdf                     # the Oct 9 v2 test file: the Scout now lives inside the Dispatch

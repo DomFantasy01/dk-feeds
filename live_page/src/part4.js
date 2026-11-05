@@ -154,30 +154,38 @@ async function trailAdd(){
   try { await DB.doc("live/trail").set({entries: JSON.parse(JSON.stringify(next))}); TR = {entries: next}; }
   catch(_){} finally { trailBusy = false; }
 }
+/* the week's first read (Dom, Nov 5: "where we started to where we are now") */
+function weekStart(k, src){ const w0 = M && M.wk0; if (w0 && S && w0.week === S.week && w0.lg && w0.lg[k] && w0.lg[k][src] !== null && w0.lg[k][src] !== undefined) return w0.lg[k][src];
+  const e = trailEntries().find(e => S && e.w === S.week && e.lg[k] && e.lg[k][src] !== undefined && e.lg[k][src] !== null); return e ? e.lg[k][src] : null; }
 function prevEntry(){ const es = trailEntries().filter(e => S && e.t < S.stamp && e.w === S.week); return es.length ? es[es.length - 1] : null; }
 
 /* ---------- small charts ---------- */
-function dial(v, col, id){
+function dial(v, col, id, v0){
   /* Nov 5 v2: the Yahoo needle - graded arc (red-amber-green behind a league-colored fill), 10-point ticks, glowing needle */
   v = Math.max(0, Math.min(100, +v || 0));
   const cx = 60, cy = 54, r = 44, A = (p) => Math.PI * (1 - p), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
   const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
   let ticks = ""; for (let t = 0; t <= 10; t++){ const [a0, b0] = P(t / 10, r + 6), [a1, b1] = P(t / 10, r + (t % 5 ? 9 : 11)); ticks += `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="${t === 5 ? "#C9CFDB" : "#3A4A6E"}" stroke-width="${t % 5 ? 1 : 1.6}"/>`; }
   const [nx, ny] = P(v / 100, r - 4), g = "g" + (id || "x");
+  let ghost = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v)){ const w0 = Math.max(0, Math.min(100, v0)), [gx, gy] = P(w0 / 100, r - 4), up = v > w0;
+    ghost = `<path d="${arc(Math.min(w0, v) / 100, Math.max(w0, v) / 100, r + 9)}" stroke="${up ? "#4FD08A" : "#FF6B72"}" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <line x1="${cx}" y1="${cy}" x2="${gx.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="#C9CFDB" stroke-width="1.6" stroke-dasharray="2.5 2.5" opacity=".75"/><circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="2.6" fill="#0B1222" stroke="#C9CFDB" stroke-width="1.2"/>`; }
   return `<svg viewBox="0 0 120 64" aria-hidden="true"><defs><linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#4FD08A"/></linearGradient>
     <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter></defs>${ticks}
     <path d="${arc(0, 1, r)}" stroke="url(#${g})" stroke-opacity=".22" stroke-width="10" fill="none"/>
-    <path d="${arc(0, Math.max(.01, v / 100), r)}" stroke="${col}" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, Math.max(.01, v / 100), r)}" stroke="${col}" stroke-width="10" fill="none" stroke-linecap="round"/>${ghost}
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="5" stroke-linecap="round" opacity=".55" filter="url(#${g}f)"/>
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.2" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#F4F6FA"/><circle cx="${cx}" cy="${cy}" r="2" fill="${col}"/></svg>`;
 }
 /* a small expert needle: half arc, number underneath */
-function miniDial(v, col){
+function miniDial(v, col, v0){
   v = Math.max(0, Math.min(100, +v || 0)); const cx = 20, cy = 19, r = 15, A = Math.PI * (1 - v / 100);
+  let ghost = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v)){ const B = Math.PI * (1 - Math.max(0, Math.min(100, v0)) / 100);
+    ghost = `<line x1="${cx}" y1="${cy}" x2="${(cx + (r - 2) * Math.cos(B)).toFixed(1)}" y2="${(cy - (r - 2) * Math.sin(B)).toFixed(1)}" stroke="#C9CFDB" stroke-width="1.1" stroke-dasharray="1.6 1.6" opacity=".8"/>`; }
   const x1 = cx + r * Math.cos(A), y1 = cy - r * Math.sin(A);
   return `<svg viewBox="0 0 40 22" aria-hidden="true"><path d="M5 19 A15 15 0 0 1 35 19" stroke="#26365A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
     <path d="M5 19 A15 15 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="${col}" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-    <line x1="${cx}" y1="${cy}" x2="${(cx + (r - 3) * Math.cos(A)).toFixed(1)}" y2="${(cy - (r - 3) * Math.sin(A)).toFixed(1)}" stroke="#EEF1F6" stroke-width="1.4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="2" fill="#EEF1F6"/></svg>`;
+    <line x1="${cx}" y1="${cy}" x2="${(cx + (r - 3) * Math.cos(A)).toFixed(1)}" y2="${(cy - (r - 3) * Math.sin(A)).toFixed(1)}" stroke="#EEF1F6" stroke-width="1.4" stroke-linecap="round"/>${ghost}<circle cx="${cx}" cy="${cy}" r="2" fill="#EEF1F6"/></svg>`;
 }
 /* sparkline of the Yahoo chance read by read this week; 50% line dashed, last point marked */
 function spark(vals, col){
@@ -205,42 +213,90 @@ function lineChart(series, xlabels, h = 110){
   }
   return `<svg viewBox="0 0 ${W} ${Ht}" role="img">${g}</svg>`;
 }
-/* the win-probability mountain (Nov 5 v2, Dom's chart from the old page): two see-through score curves on one scale, your
-   curve in the league color, the opponent's in silver, the overlap shaded, a pole between them with your numbers on the
-   left and his on the right. Before kickoff the curves come from the simulator's score range; once games start each
-   curve slides to live score + Yahoo's projection for the men left and narrows as fewer points are left to play. */
-function mountain(L, m, k){
-  const sc = m.viz && m.viz.scores; const F = finals(L), me = score(L.players), op = score(L.oppPlayers);
-  const side = (list, fin, cur, rng) => { const full = list.reduce((a, p) => a + Math.max(0, manFinal(p, "y")), 0) || 1;
-    const left = list.reduce((a, p) => a + (isDone(p) || isOut(p) ? 0 : Math.max(0, manFinal(p, "y") - pts(p))), 0);
-    const sd0 = rng ? Math.max(6, (rng[2] - rng[0]) / 2.563) : 21; const mu = [...list].some(started) ? fin : (rng ? rng[1] : fin);
-    return {mu, sd: Math.max(1.2, sd0 * Math.sqrt(Math.min(1, left / full))), left}; };
-  const a = side(L.players, F.me, me, sc && sc.me), b = side(L.oppPlayers, F.op, op, sc && sc.opp);
-  const lo = Math.max(0, Math.min(a.mu - 3 * a.sd, b.mu - 3 * b.sd)), hi = Math.max(a.mu + 3 * a.sd, b.mu + 3 * b.sd);
-  const W = 340, H = 150, pl = 8, pr = 8, top = 34, base = 120, X = (v) => pl + (W - pl - pr) * (v - lo) / ((hi - lo) || 1);
-  const pdf = (x, d) => Math.exp(-.5 * ((x - d.mu) / d.sd) ** 2) / d.sd, n = 90, xs = Array.from({length: n + 1}, (_, i) => lo + (hi - lo) * i / n);
-  const peak = Math.max(...xs.map(x => Math.max(pdf(x, a), pdf(x, b)))), Y = (v) => base - (base - top) * v / peak;
-  const path = (d) => `M${X(lo).toFixed(1)} ${base} ` + xs.map(x => `L${X(x).toFixed(1)} ${Y(pdf(x, d)).toFixed(1)}`).join(" ") + ` L${X(hi).toFixed(1)} ${base} Z`;
-  const ov = `M${X(lo).toFixed(1)} ${base} ` + xs.map(x => `L${X(x).toFixed(1)} ${Y(Math.min(pdf(x, a), pdf(x, b))).toFixed(1)}`).join(" ") + ` L${X(hi).toFixed(1)} ${base} Z`;
-  const ya = chance(L, "y"), col = HEX[k], pole = X((a.mu + b.mu) / 2);
-  let ax = ""; const step = (hi - lo) > 90 ? 20 : 10; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) ax += `<line x1="${X(v)}" x2="${X(v)}" y1="${base}" y2="${base + 3}" stroke="#3A4A6E"/><text x="${X(v)}" y="${base + 13}" font-size="8" text-anchor="middle" fill="#6C7790" font-family="IBM Plex Mono,monospace">${v}</text>`;
-  const live = [...L.players, ...L.oppPlayers].some(started);
-  const mk = (d, c, lab, cur) => `<line x1="${X(d.mu)}" x2="${X(d.mu)}" y1="${Y(pdf(d.mu, d)) - 2}" y2="${base}" stroke="${c}" stroke-width="1.2" stroke-dasharray="2 2"/>` + (live ? `<circle cx="${X(Math.max(lo, cur))}" cy="${base}" r="3.2" fill="${c}" stroke="#0B1222" stroke-width="1.2"/>` : "");
-  const lt = Math.max(66, pole - 6), rt = Math.min(W - 66, pole + 6);
-  return `<div class="chartbox mtn"><div class="ct">Win-probability mountain</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`You ${f1(a.mu)} projected against ${f1(b.mu)}; ${ya}% to win on Yahoo`)}">
-    <defs><linearGradient id="mt-${k.replace(/\W/g, "")}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".75"/><stop offset="1" stop-color="${col}" stop-opacity=".08"/></linearGradient>
-      <linearGradient id="mo-${k.replace(/\W/g, "")}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C9CFDB" stop-opacity=".55"/><stop offset="1" stop-color="#C9CFDB" stop-opacity=".06"/></linearGradient></defs>
-    <line x1="${pl}" x2="${W - pr}" y1="${base}" y2="${base}" stroke="#2A3A5E"/>${ax}
-    <path d="${path(b)}" fill="url(#mo-${k.replace(/\W/g, "")})" stroke="#C9CFDB" stroke-width="1.4"/>
-    <path d="${path(a)}" fill="url(#mt-${k.replace(/\W/g, "")})" stroke="${col}" stroke-width="2"/>
-    <path d="${ov}" fill="#F7B32B" opacity=".18"/>
-    ${mk(a, col, "you", me)}${mk(b, "#C9CFDB", "opp", op)}
-    <line x1="${pole}" x2="${pole}" y1="6" y2="${base}" stroke="#EFD23E" stroke-width="1.6"/><circle cx="${pole}" cy="6" r="3" fill="#EFD23E"/>
-    <text x="${lt}" y="14" text-anchor="end" font-size="15" fill="${col}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".04em">YOU ${ya}%</text>
-    <text x="${lt}" y="26" text-anchor="end" font-size="8.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${live ? f1(me) + " now · " : ""}${f1(a.mu)} proj</text>
-    <text x="${rt}" y="14" font-size="15" fill="#C9CFDB" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".04em">OPP ${100 - ya}%</text>
-    <text x="${rt}" y="26" font-size="8.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${live ? f1(op) + " now · " : ""}${f1(b.mu)} proj</text></svg>
-    <p class="note">${live ? "Curves = live score plus Yahoo's projection for the men left; they narrow as the games are played. Dots = points on the board." : `Curves = the simulator's range of final scores${sc ? "" : " (estimated spread)"}; dashed lines = the most likely final.`} Gold = where the two overlap. Pole = halfway between the two projections.</p></div>`;
+/* WEEKLY PROGRESS (Nov 5 v10, Dom: "it's not win probability once the games start... it's about progress in the games").
+   Modeled on the Dispatch overview's mountains. The frame never moves: kickoff windows across the bottom, one fixed height.
+   Each window is a triangle peak as tall as the points scored in it (yours in the league color, the opponent's silver);
+   windows still to come show only as a faint outline. A gold NOW bar sweeps across the week. Under it, two fixed points
+   tracks with a triangle marker at each side's actual points, then every game in this matchup with four quarter boxes
+   that light up as quarters finish. No projections printed and no win chance - that lives on the meters. */
+const QTXT = (t) => { t = String(t || "");
+  if (/^(Fin|Final)/i.test(t)) return {done: 4, live: false};
+  if (/OT/i.test(t)) return {done: 4, live: true};
+  if (/Half/i.test(t)) return {done: 2, live: true};
+  const e = /End\s*(?:of\s*)?(1st|2nd|3rd|4th|Q[1-4])/i.exec(t); if (e) return {done: {"1st": 1, "2nd": 2, "3rd": 3, "4th": 4, q1: 1, q2: 2, q3: 3, q4: 4}[e[1].toLowerCase()], live: true};
+  const q = /(1st|2nd|3rd|4th|Q[1-4])/i.exec(t); if (q) return {done: {"1st": 0, "2nd": 1, "3rd": 2, "4th": 3, q1: 0, q2: 1, q3: 2, q4: 3}[q[1].toLowerCase()], live: true};
+  return null; };
+const TALIAS = {LAR: "LA", LA: "LAR", WSH: "WAS", WAS: "WSH", JAC: "JAX", JAX: "JAC", LV: "OAK", ARZ: "ARI", ARI: "ARZ"};
+function wxOf(tm){ const T = (M && M.wx && M.wx.teams) || {}, t = (tm || "").toUpperCase(); return T[t] || T[TALIAS[t]] || null; }
+function teamKo(tm){ const w = wxOf(tm); return w && w.ko ? new Date(w.ko).getTime() : null; }
+function gameOf(tm){ const w = wxOf(tm); return w ? w.game : null; }
+function windowsNow(){
+  const ks = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x).getTime()).filter(t => !isNaN(t)).sort((a, b) => a - b);
+  const lab = (M && M.windows) || ks.map(t => PT(new Date(t).toISOString(), {weekday: "short", hour: "numeric", minute: "2-digit"}).toUpperCase());
+  return {ks, lab}; }
+function winIdx(p, ks){
+  const t = teamKo(p.tm); if (t !== null && ks.length){ let i = 0; ks.forEach((k, j) => { if (k <= t + 6e4) i = j; }); return i; }
+  const lab = (M && M.windows) || [], r = whenRank(p.when); let i = -1; lab.forEach((l, j) => { if (whenRank(l) <= r) i = j; }); return i < 0 ? 0 : i; }
+function gameState(game, ko){
+  for (const k of KEYS){ const L = lgS(k); if (!L) continue;
+    for (const p of [...L.players, ...L.oppPlayers]) if (gameOf(p.tm) === game){ const q = QTXT(p.when); if (q) return q; } }
+  if (ko && Date.now() > ko + 3.4 * 36e5) return {done: 4, live: false, est: true};
+  if (ko && Date.now() > ko){ const d = Math.min(3, Math.floor((Date.now() - ko) / (50 * 6e4))); return {done: d, live: true, est: true}; }
+  return {done: 0, live: false}; }
+function progress(L, k){
+  const {ks, lab} = windowsNow(); const nW = Math.max(1, lab.length || ks.length);
+  const me = score(L.players), op = score(L.oppPlayers), meL = leftOf(L.players).length, opL = leftOf(L.oppPlayers).length, col = HEX[k], id = gid();
+  const sum = (list, fn) => { const a = Array(nW).fill(0); for (const p of list){ const i = Math.min(nW - 1, winIdx(p, ks)); a[i] += fn(p); } return a; };
+  const playedA = sum(L.players, p => started(p) ? pts(p) : 0), playedB = sum(L.oppPlayers, p => started(p) ? pts(p) : 0);
+  const fullA = sum(L.players, p => Math.max(0, started(p) ? pts(p) : manFinal(p, "y"))), fullB = sum(L.oppPlayers, p => Math.max(0, started(p) ? pts(p) : manFinal(p, "y")));
+  const W = 340, H = 204, pl = 16, pr = 16, top = 50, base = 136, sp = (W - pl - pr) / Math.max(1, nW - 1), X = (i) => nW === 1 ? W / 2 : pl + i * sp, hw = Math.max(26, sp * .95);
+  const yMax = Math.max(20, ...fullA, ...fullB, ...playedA, ...playedB) * 1.12, Y = (v) => base - (base - top) * v / yMax;
+  const ridge = (arr) => { const n = 120, pts2 = []; for (let s2 = 0; s2 <= n; s2++){ const x = pl - 8 + (W - pl - pr + 16) * s2 / n; let v = 0; arr.forEach((h, i) => { v += h * Math.max(0, 1 - Math.abs(x - X(i)) / hw); }); pts2.push([x, v]); } return pts2; };
+  const area = (arr) => { const r = ridge(arr); return `M${r[0][0].toFixed(1)} ${base} ` + r.map(([x, v]) => `L${x.toFixed(1)} ${Y(v).toFixed(1)}`).join(" ") + ` L${r[r.length - 1][0].toFixed(1)} ${base} Z`; };
+  const line = (arr) => ridge(arr).map(([x, v], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${Y(v).toFixed(1)}`).join(" ");
+  /* the NOW bar: where this moment sits among the kickoff windows */
+  const now = Date.now(); let nx = pl - 8;
+  if (ks.length){ if (now >= ks[ks.length - 1] + 3.4 * 36e5) nx = W - pr + 8; else if (now >= ks[0]){ let i = ks.findIndex((t, j) => now >= t && (j === ks.length - 1 || now < ks[j + 1]));
+      const t0 = ks[i], t1 = i < ks.length - 1 ? ks[i + 1] : ks[i] + 3.4 * 36e5; nx = X(i) + (i < ks.length - 1 ? sp : 18) * Math.min(1, (now - t0) / (t1 - t0)); } }
+  const mg = me - op, anyGo = [...L.players, ...L.oppPlayers].some(started);
+  const tMax = Math.ceil(Math.max(60, finals(L).me, finals(L).op, me, op) * 1.15 / 20) * 20, TX = (v) => pl + (W - pl - pr) * Math.min(1, v / tMax);
+  const track = (y, v, c, labTxt) => `<text x="${pl}" y="${y - 6}" font-size="8" font-weight="700" fill="${c}" font-family="Poppins,sans-serif" letter-spacing=".08em">${labTxt}</text>
+    <rect x="${pl}" y="${y - 2.5}" width="${W - pl - pr}" height="5" rx="2.5" fill="#1C2A48"/><rect x="${pl}" y="${y - 2.5}" width="${Math.max(0, TX(v) - pl).toFixed(1)}" height="5" rx="2.5" fill="${c}"/>
+    <path d="M${TX(v).toFixed(1)} ${y + 3} l-5 -9 h10 z" fill="${c}" stroke="#0B1222" stroke-width="1"/>`;
+  let ax = ""; lab.forEach((t, i) => { const p2 = String(t).replace(/:00/, "").replace(/ (AM|PM)$/i, (m0) => m0.trim()[0].toLowerCase()); ax += `<text x="${X(i).toFixed(1)}" y="${base + 11}" text-anchor="${i === 0 ? "start" : i === nW - 1 ? "end" : "middle"}" font-size="7.6" fill="#8A93A6" font-family="Poppins,sans-serif">${esc(p2)}</text>`; });
+  for (let v = 20; v < yMax; v += yMax > 90 ? 40 : 20) ax += `<line x1="${pl}" x2="${W - pr}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="#17233F" stroke-dasharray="2 3"/><text x="${W - pr}" y="${(Y(v) - 2).toFixed(1)}" text-anchor="end" font-size="7" fill="#4F5B75" font-family="IBM Plex Mono,monospace">${v}</text>`;
+  const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`You ${f1(me)} with ${meL} left, opponent ${f1(op)} with ${opL} left`)}">
+    <defs><linearGradient id="${id}a" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".95"/><stop offset="1" stop-color="${col}" stop-opacity=".25"/></linearGradient>
+      <linearGradient id="${id}b" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C9CFDB" stop-opacity=".7"/><stop offset="1" stop-color="#C9CFDB" stop-opacity=".12"/></linearGradient>
+      <filter id="${id}g" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
+    <text x="${pl}" y="15" font-size="22" fill="${col}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".03em">YOU ${f1(me)}</text>
+    <text x="${pl}" y="27" font-size="8" fill="#C9CFDB" font-family="Poppins,sans-serif" font-weight="600">${meL} LEFT TO PLAY</text>
+    <text x="${W - pr}" y="15" text-anchor="end" font-size="22" fill="#E3E7EF" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".03em">OPP ${f1(op)}</text>
+    <text x="${W - pr}" y="27" text-anchor="end" font-size="8" fill="#C9CFDB" font-family="Poppins,sans-serif" font-weight="600">${opL} LEFT TO PLAY</text>
+    <text x="${W / 2}" y="15" text-anchor="middle" font-size="15" fill="${!anyGo || Math.abs(mg) < .05 ? "#EFD23E" : mg > 0 ? "#4FD08A" : "#FF6B72"}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".05em">${!anyGo || Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "UP " : "DOWN ") + Math.abs(mg).toFixed(1)}</text>
+    ${ax}<line x1="${pl - 8}" x2="${W - pr + 8}" y1="${base}" y2="${base}" stroke="#2A3A5E"/>
+    <path d="${area(fullB)}" fill="#C9CFDB" opacity=".07"/><path d="${line(fullB)}" fill="none" stroke="#C9CFDB" stroke-width="1.1" stroke-dasharray="3 3" opacity=".45"/>
+    <path d="${area(fullA)}" fill="${col}" opacity=".14"/><path d="${line(fullA)}" fill="none" stroke="${col}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>
+    <path d="${area(playedB)}" fill="url(#${id}b)" stroke="#C9CFDB" stroke-width="1.2"/>
+    <path d="${area(playedA)}" fill="url(#${id}a)" stroke="${col}" stroke-width="1.8"/>
+    ${lab.map((_, i) => `<circle cx="${X(i).toFixed(1)}" cy="${base}" r="2.2" fill="${ks[i] && now >= ks[i] ? "#EFD23E" : "#3A4A6E"}"/>`).join("")}
+    <line x1="${nx.toFixed(1)}" x2="${nx.toFixed(1)}" y1="${top - 6}" y2="${base}" stroke="#EFD23E" stroke-width="5" opacity=".35" filter="url(#${id}g)"/>
+    <line x1="${nx.toFixed(1)}" x2="${nx.toFixed(1)}" y1="${top - 6}" y2="${base}" stroke="#EFD23E" stroke-width="1.6"/>
+    <text x="${Math.max(pl - 6, Math.min(W - pr + 6, nx)).toFixed(1)}" y="${top - 9}" text-anchor="${nx < pl + 20 ? "start" : nx > W - pr - 20 ? "end" : "middle"}" font-size="7.5" font-weight="700" fill="#EFD23E" font-family="Poppins,sans-serif" letter-spacing=".1em">NOW</text>
+    ${track(base + 31, me, col, "YOU")}${track(base + 56, op, "#C9CFDB", "OPP")}
+    <text x="${W - pr}" y="${base + 25}" text-anchor="end" font-size="7" fill="#4F5B75" font-family="IBM Plex Mono,monospace">0 – ${tMax} pts</text></svg>`;
+  /* every game in this matchup, four quarter boxes each */
+  const gm = {};
+  for (const [side, list] of [["me", L.players], ["op", L.oppPlayers]]) for (const p of list){ const g = gameOf(p.tm) || (p.tm ? p.tm + " game" : null); if (!g) continue;
+    const e = gm[g] = gm[g] || {g, ko: teamKo(p.tm), when: p.when, me: 0, op: 0}; e[side]++; }
+  const games = Object.values(gm), byW = {};
+  for (const x of games){ const wi = x.ko !== null && ks.length ? (() => { let i = 0; ks.forEach((t, j) => { if (t <= x.ko + 6e4) i = j; }); return i; })() : winIdx({tm: "", when: x.when}, []); (byW[wi] = byW[wi] || []).push(x); }
+  const gHtml = Object.keys(byW).map(Number).sort((a, b) => a - b).map(wi => `<div class="gwin">${esc(lab[wi] || "")}</div>` + byW[wi].map(x => { const q = gameState(x.g, x.ko), d = q.done, fin = d >= 4 && !q.live;
+    const box = [0, 1, 2, 3].map(i => `<i class="${i < d ? "on" : q.live && i === d ? "go" : ""}"></i>`).join("");
+    return `<div class="gm${fin ? " fin" : q.live ? " live" : ""}" title="${esc(x.g)}${fin ? " · final" : q.live ? " · live" : ""}"><b>${esc(x.g.replace(/ game$/, ""))}</b><span class="qb">${box}</span><span class="gw">${x.me ? `<span class="me">${x.me}</span>` : ""}${x.me && x.op ? "·" : ""}${x.op ? `<span class="op">${x.op}</span>` : ""}</span></div>`; }).join("")).join("");
+  return `<div class="chartbox prog"><div class="ct">Weekly progress</div>${svg}
+    <div class="gms">${gHtml}</div>
+    <p class="note">Solid peaks = points scored in each kickoff window (yours in color, the opponent's silver); faint dotted peaks = still to be played. The gold NOW bar sweeps across the week; the tracks fill to each side's points. Each game: four quarter boxes that light up as quarters finish, then <span style="color:var(--lc)">your men</span> · <span class="mute">his men</span> in it.</p></div>`;
 }
 /* score range: p10-p90 bars for both sides on one scale, median marked, live score as a tick */
 function rangeChart(sc, live){
@@ -283,8 +339,8 @@ function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
-    : `Updated <b>${esc(ptTime(S.stamp))}</b> · ${esc(ago(S.stamp))} · Next ${esc(nextRun())}`;
-  const kk = nextKick(); if (kk) $("#statTxt").innerHTML += ` · Kickoff in <span class="kk">${esc(kk)}</span>`;
+    : `Updated <b>${esc(ptTime(S.stamp))}</b> <span class="mute">· ${esc(ago(S.stamp))}</span>`;
+  const kk = nextKick(), hn = $("#hcNext"); if (hn) hn.innerHTML = `Next update ${esc(nextRun())}${kk ? ` · next kickoff in <b>${esc(kk)}</b>` : ""}.`;
   if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
   const fb = $("#sfail"), AL = S.alert;
@@ -297,7 +353,7 @@ function renderStatus(){
 let HC_ALL = false;
 const FEED_ERR = new Set();
 function renderHealth(){
-  const box = $("#hc"); if (box.hidden) return;
+  if ($("#hc").hidden) return; const box = $("#hcBody");
   if (!H){ box.innerHTML = `<div class="hh">No system check on this page yet.</div><p class="note">The chain writes one after every run.</p>`; return; }
   const cut = (s, n) => { s = String(s || ""); return HC_ALL || s.length <= n ? s : s.slice(0, n - 1) + "…"; };
   const groups = {}; for (const r of H.rows || []) (groups[r.group] = groups[r.group] || []).push(r);
@@ -322,15 +378,13 @@ function meters(){
     const goNow = [...L.players, ...L.oppPlayers].some(started), F = finals(L), mg = goNow ? score(L.players) - score(L.oppPlayers) : F.me - F.op;
     const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
     const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
+    const dlt = (src, v) => { const v0 = weekStart(k, src); if (v0 === null || Math.round(v0) === Math.round(v)) return ""; const d = Math.round(v - v0); return `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`; };
     return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="lgn">${esc(LGN[k])}</div><div class="dk">${DK[k]}</div>${dial(y, HEX[k], SLUG[k])}
-      <div class="pct">${y}%${arrow("y", y)}</div><div class="src">YAHOO · BEST LINEUP</div>
-      <div class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}"><span>${goNow ? "LIVE" : "PROJ"}</span>${sgn(mg)}</div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}
-      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : "Clay"} ${v}%">${miniDial(v, HEX[k])}<b>${v}</b><span>${lab}</span></div>`; }).join("")}</div>
-      ${spark(trailEntries().filter(e => e.w === S.week && e.lg[k]).map(e => e.lg[k].y).concat([y]), HEX[k])}
-      <div class="mrow"><div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div><span>PLAYOFFS ${pcs(po)}</span></div>
-        <span class="bell ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span></div>
-      <div class="mstate">${settled(L) ? verdict(score(L.players) - score(L.oppPlayers)) : esc(L.state || "")}</div></div>`; }).join("");
+      <div class="mtop"><b>${DK[k]}</b><span>${esc(LGN[k])}</span></div><span class="bell mb ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span>${dial(y, HEX[k], SLUG[k], weekStart(k, "y"))}
+      <div class="pct">${y}%${arrow("y", y)}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
+      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : "Clay"} ${v}% (dotted = start of week ${weekStart(k, s2) ?? "–"}%)">${miniDial(v, HEX[k], weekStart(k, s2))}<b>${v}${dlt(s2, v)}</b><span>${lab}</span></div>`; }).join("")}</div>
+      <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}">${sgn(mg)}</span><span class="pof">PO <b>${pcs(po)}</b></span></div>
+      <div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
@@ -589,11 +643,11 @@ function card(k){
 
   const rec = [m.rec ? "Record " + m.rec : "", (m.std || []).map(x => x.join(" ")).join(" · "), m.oppRec ? "opponent " + m.oppRec : ""].filter(Boolean).join(" · ");
   return `<article class="card" id="${SLUG[k]}" style="--lc:${LCOL[k]}">
-    <div class="chd"><span class="lgname">${esc(LGN[k])}</span><span class="dkt">${DK[k]}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
-    <div class="recl">${esc(rec)}</div>
+    <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
+    <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : ""].join("")}</div>
     ${scoreHtml}${takes}${seatHtml}
     <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number.</p>${splitHtml}
-    ${mountain(L, m, k)}
+    ${progress(L, k)}
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
     ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
     ${fold("al-" + SLUG[k], "Alerts", al.length ? `${al.filter(x => x.color === "red").length} act now · ${al.filter(x => x.color === "gold").length} monitor · ${al.filter(x => x.color === "grey").length} noted` : "none", `<div id="alb-${SLUG[k]}">${alertsBlock(k)}</div>`, al.some(x => x.color === "red"))}
@@ -623,8 +677,9 @@ function needs(){
     for (const p of emptySeats(L)) out.push({k, col: "red", r: 0, t: whenRank(p.when), cd: "", cl: p.when ? "locks " + p.when : "",
       html: `Empty seat: <b>${esc(p.slot)} ${esc(p.name)}</b>${p.status ? " (" + esc(p.status) + ")" : ""} won't score. Yahoo has him at ${f1(p.proj)}.`}); }
   out.sort((a, b) => (a.col === "red" ? 0 : 1) - (b.col === "red" ? 0 : 1) || a.r - b.r || a.t - b.t);
+  { const n = $("#ltN"); if (n) n.className = "lt " + (out.some(o => o.col === "red") ? "red" : out.length ? "yellow" : "green"); }
   box.innerHTML = out.length ? `<div class="need">${out.map(o => `<button type="button" class="nd ${o.col}" ${o.aid ? `data-goal="${esc(o.aid)}"` : `data-jump="${SLUG[o.k]}"`}><span class="lgtag" style="color:${LCOL[o.k] || "var(--ink)"}">${DK[o.k] || ""}</span><span class="tx">${o.html}</span>${o.cd || o.cl ? `<span class="cd">${esc(o.cd)}<small>${esc(o.cl)}</small></span>` : ""}</button>`).join("")}</div>`
-    : `<div class="allclear">Nothing needs you right now: no free agent to grab before lock, no empty seat, no act-now alert.</div>`;
+    : `<div class="allclear">Nothing needs you: no free agent to grab before lock, no empty seat, no act-now alert.</div>`;
 }
 /* open one alert in its league card */
 async function goAlert(id){

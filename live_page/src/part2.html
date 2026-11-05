@@ -2,15 +2,14 @@
 <header class="mh"><img alt="" src="@@ICON@@"><h1>Dark Knight Live</h1><span class="wk" id="wk">NFL WEEK</span></header>
 
 <button type="button" class="stat" id="stat" aria-expanded="false"><span id="statTxt">Loading the latest read…</span>
-  <span class="lights"><span class="lt grey" id="ltY"><i></i>YAHOO</span><span class="lt grey" id="ltD"><i></i>DATA</span><span class="det">Details</span></span></button>
+  <span class="lights"><span class="lt grey" id="ltY"><i></i>YAHOO</span><span class="lt grey" id="ltD"><i></i>DATA</span><span class="lt grey" id="ltN"><i></i>ACTION</span><span class="det">▾</span></span></button>
 <div class="sfail" id="sfail" role="alert" hidden></div>
-<div class="hc" id="hc" hidden></div>
+<div class="hc" id="hc" hidden><div id="hcNext" class="note"></div><div class="hg">Needs you</div><div id="need"></div><div id="hcBody"></div></div>
 
 <section class="frame" id="metersFrame"><span class="lab">Chance to win this week · tap a league</span>
   <div class="meters" id="meters"><div class="empty" style="grid-column:1/-1">Waiting for the first read.</div></div>
 </section>
 
-<section class="frame" id="needBox"><span class="lab">Needs you</span><div id="need"><div class="empty">Checking the deadlines…</div></div></section>
 
 <div class="sticky" id="sticky" hidden><div class="sch" id="sch"></div><div class="sbar" id="sbar"></div></div>
 
@@ -21,8 +20,6 @@
     <a id="dispatch" href="https://domfantasy01.github.io/dk-feeds/dispatch_out/Dark_Knight_Dispatch_latest.pdf" target="_blank" rel="noopener">Dispatch</a>
     <button type="button" id="refresh">Refresh</button>
   </nav>
-  <div class="ctl2"><button type="button" id="openAll">Open all folds</button><button type="button" id="closeAll">Close all folds</button><button type="button" id="wake">Keep screen on</button><button type="button" id="copy">Copy scores</button></div>
-  <p class="keys">Keys: <kbd>1</kbd>–<kbd>4</kbd> jump to a league · <kbd>N</kbd> next · <kbd>T</kbd> top · <kbd>/</kbd> find a player · <kbd>Esc</kbd> close</p>
   <div class="find"><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
   <p class="rmsg" id="rmsg" hidden></p>
 </section>

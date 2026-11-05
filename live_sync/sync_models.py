@@ -286,6 +286,19 @@ try:
     cur['byes'] = _vx.get('byes') or {}   # Oct 31 (Dom): bye-week calendar on each league card
     print('charts on Live:', {k: bool(cur['leagues'][k].get('viz')) for k in KEY.values()}, '| workload', len(cur['work']['p']), 'players')
 except Exception as _e: print('charts on Live skipped:', str(_e)[:120])
+# Nov 5 (Dom): "where we started to where we are now" - each needle's value at the week's first build (dispatch_out/
+# week_start.json, kept by dispatch_run.sh). Live draws it as a dotted needle on every meter.
+try:
+    import os, urllib.request
+    _ws = None
+    for _p in (os.path.join(os.path.dirname(os.path.abspath(sys.argv[2])), 'week_start.json'),):
+        if os.path.exists(_p): _ws = json.load(open(_p))
+    if _ws is None or _ws.get('week') != M.get('week'):
+        _ws = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/week_start.json', timeout=20).read())
+    if _ws and _ws.get('week') == M.get('week'):
+        cur['wk0'] = dict(week=_ws['week'], at=_ws.get('at'), lg={KEY[lab]: v for lab, v in _ws.get('leagues', {}).items() if lab in KEY})
+    print('week start on Live:', cur.get('wk0', {}).get('at'))
+except Exception as _e: print('week start skipped:', str(_e)[:120])
 cur['status'] = ST
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
