@@ -250,8 +250,10 @@ function progress(L, k){
   const playedA = sum(L.players, p => started(p) ? pts(p) : 0), playedB = sum(L.oppPlayers, p => started(p) ? pts(p) : 0);
   const fullA = sum(L.players, p => Math.max(0, started(p) ? pts(p) : manFinal(p, "y"))), fullB = sum(L.oppPlayers, p => Math.max(0, started(p) ? pts(p) : manFinal(p, "y")));
   const W = 340, H = 204, pl = 16, pr = 16, top = 50, base = 136, sp = (W - pl - pr) / Math.max(1, nW - 1), X = (i) => nW === 1 ? W / 2 : pl + i * sp, hw = Math.max(26, sp * .95);
-  const yMax = Math.max(20, ...fullA, ...fullB, ...playedA, ...playedB) * 1.12, Y = (v) => base - (base - top) * v / yMax;
-  const ridge = (arr) => { const n = 120, pts2 = []; for (let s2 = 0; s2 <= n; s2++){ const x = pl - 8 + (W - pl - pr + 16) * s2 / n; let v = 0; arr.forEach((h, i) => { v += h * Math.max(0, 1 - Math.abs(x - X(i)) / hw); }); pts2.push([x, v]); } return pts2; };
+  const sg = Math.max(14, sp * .4);   /* Nov 5 (Dom: "these are just pointed and they look stupid"): smooth hills, not triangles */
+  const ridge = (arr) => { const n = 160, pts2 = []; for (let s2 = 0; s2 <= n; s2++){ const x = pl - 8 + (W - pl - pr + 16) * s2 / n; let v = 0; arr.forEach((h, i) => { v += h * Math.exp(-.5 * ((x - X(i)) / sg) ** 2); }); pts2.push([x, v]); } return pts2; };
+  const peakOf = (arr) => Math.max(0, ...ridge(arr).map(q => q[1]));
+  const yMax = Math.max(20, peakOf(fullA), peakOf(fullB), peakOf(playedA), peakOf(playedB)) * 1.1, Y = (v) => base - (base - top) * v / yMax;
   const area = (arr) => { const r = ridge(arr); return `M${r[0][0].toFixed(1)} ${base} ` + r.map(([x, v]) => `L${x.toFixed(1)} ${Y(v).toFixed(1)}`).join(" ") + ` L${r[r.length - 1][0].toFixed(1)} ${base} Z`; };
   const line = (arr) => ridge(arr).map(([x, v], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${Y(v).toFixed(1)}`).join(" ");
   /* the NOW bar: where this moment sits among the kickoff windows */
@@ -268,17 +270,21 @@ function progress(L, k){
   const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`You ${f1(me)} with ${meL} left, opponent ${f1(op)} with ${opL} left`)}">
     <defs><linearGradient id="${id}a" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".95"/><stop offset="1" stop-color="${col}" stop-opacity=".25"/></linearGradient>
       <linearGradient id="${id}b" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C9CFDB" stop-opacity=".7"/><stop offset="1" stop-color="#C9CFDB" stop-opacity=".12"/></linearGradient>
+      <linearGradient id="${id}fa" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".30"/><stop offset="1" stop-color="#16213A" stop-opacity=".2"/></linearGradient>
+      <linearGradient id="${id}fb" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5C677D" stop-opacity=".45"/><stop offset="1" stop-color="#16213A" stop-opacity=".2"/></linearGradient>
+      <linearGradient id="${id}sky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity="0"/><stop offset="1" stop-color="${col}" stop-opacity=".10"/></linearGradient>
       <filter id="${id}g" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
+    <rect x="0" y="${top - 10}" width="${W}" height="${base - top + 10}" fill="url(#${id}sky)"/>
     <text x="${pl}" y="15" font-size="22" fill="${col}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".03em">YOU ${f1(me)}</text>
     <text x="${pl}" y="27" font-size="8" fill="#C9CFDB" font-family="Poppins,sans-serif" font-weight="600">${meL} LEFT TO PLAY</text>
     <text x="${W - pr}" y="15" text-anchor="end" font-size="22" fill="#E3E7EF" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".03em">OPP ${f1(op)}</text>
     <text x="${W - pr}" y="27" text-anchor="end" font-size="8" fill="#C9CFDB" font-family="Poppins,sans-serif" font-weight="600">${opL} LEFT TO PLAY</text>
     <text x="${W / 2}" y="15" text-anchor="middle" font-size="15" fill="${!anyGo || Math.abs(mg) < .05 ? "#EFD23E" : mg > 0 ? "#4FD08A" : "#FF6B72"}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".05em">${!anyGo || Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "UP " : "DOWN ") + Math.abs(mg).toFixed(1)}</text>
     ${ax}<line x1="${pl - 8}" x2="${W - pr + 8}" y1="${base}" y2="${base}" stroke="#2A3A5E"/>
-    <path d="${area(fullB)}" fill="#C9CFDB" opacity=".07"/><path d="${line(fullB)}" fill="none" stroke="#C9CFDB" stroke-width="1.1" stroke-dasharray="3 3" opacity=".45"/>
-    <path d="${area(fullA)}" fill="${col}" opacity=".14"/><path d="${line(fullA)}" fill="none" stroke="${col}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>
-    <path d="${area(playedB)}" fill="url(#${id}b)" stroke="#C9CFDB" stroke-width="1.2"/>
-    <path d="${area(playedA)}" fill="url(#${id}a)" stroke="${col}" stroke-width="1.8"/>
+    <path d="${area(fullB)}" fill="url(#${id}fb)"/><path d="${line(fullB)}" fill="none" stroke="#8A93A6" stroke-width="1" opacity=".45"/>
+    <path d="${area(fullA)}" fill="url(#${id}fa)"/><path d="${line(fullA)}" fill="none" stroke="${col}" stroke-width="1" opacity=".5"/>
+    <path d="${area(playedB)}" fill="url(#${id}b)"/><path d="${line(playedB)}" fill="none" stroke="#E3E7EF" stroke-width="1.4" opacity=".9"/>
+    <path d="${area(playedA)}" fill="url(#${id}a)" opacity=".92"/><path d="${line(playedA)}" fill="none" stroke="${col}" stroke-width="5" opacity=".45" filter="url(#${id}g)"/><path d="${line(playedA)}" fill="none" stroke="${col}" stroke-width="2"/>
     ${lab.map((_, i) => `<circle cx="${X(i).toFixed(1)}" cy="${base}" r="2.2" fill="${ks[i] && now >= ks[i] ? "#EFD23E" : "#3A4A6E"}"/>`).join("")}
     <line x1="${nx.toFixed(1)}" x2="${nx.toFixed(1)}" y1="${top - 6}" y2="${base}" stroke="#EFD23E" stroke-width="5" opacity=".35" filter="url(#${id}g)"/>
     <line x1="${nx.toFixed(1)}" x2="${nx.toFixed(1)}" y1="${top - 6}" y2="${base}" stroke="#EFD23E" stroke-width="1.6"/>
@@ -289,14 +295,13 @@ function progress(L, k){
   const gm = {};
   for (const [side, list] of [["me", L.players], ["op", L.oppPlayers]]) for (const p of list){ const g = gameOf(p.tm) || (p.tm ? p.tm + " game" : null); if (!g) continue;
     const e = gm[g] = gm[g] || {g, ko: teamKo(p.tm), when: p.when, me: 0, op: 0}; e[side]++; }
-  const games = Object.values(gm), byW = {};
-  for (const x of games){ const wi = x.ko !== null && ks.length ? (() => { let i = 0; ks.forEach((t, j) => { if (t <= x.ko + 6e4) i = j; }); return i; })() : winIdx({tm: "", when: x.when}, []); (byW[wi] = byW[wi] || []).push(x); }
-  const gHtml = Object.keys(byW).map(Number).sort((a, b) => a - b).map(wi => `<div class="gwin">${esc(lab[wi] || "")}</div>` + byW[wi].map(x => { const q = gameState(x.g, x.ko), d = q.done, fin = d >= 4 && !q.live;
+  const games = Object.values(gm).sort((a, b) => (a.ko ?? 9e15) - (b.ko ?? 9e15) || a.g.localeCompare(b.g));
+  const gHtml = games.map(x => { const q = gameState(x.g, x.ko), d = q.done, fin = d >= 4 && !q.live;
     const box = [0, 1, 2, 3].map(i => `<i class="${i < d ? "on" : q.live && i === d ? "go" : ""}"></i>`).join("");
-    return `<div class="gm${fin ? " fin" : q.live ? " live" : ""}" title="${esc(x.g)}${fin ? " · final" : q.live ? " · live" : ""}"><b>${esc(x.g.replace(/ game$/, ""))}</b><span class="qb">${box}</span><span class="gw">${x.me ? `<span class="me">${x.me}</span>` : ""}${x.me && x.op ? "·" : ""}${x.op ? `<span class="op">${x.op}</span>` : ""}</span></div>`; }).join("")).join("");
+    const kt = x.ko ? PT(new Date(x.ko).toISOString(), {weekday: "short", hour: "numeric", minute: "2-digit"}) : (x.when || "");
+    return `<div class="gm${fin ? " fin" : q.live ? " live" : ""}" title="${esc(x.g)} · ${esc(kt)}${fin ? " · final" : q.live ? " · live" : ""} · ${x.me} yours, ${x.op} his"><b>${esc(x.g.replace(/ game$/, "").replace(/ @ /, "@"))}</b><span class="qb">${box}</span><span class="gw">${x.me ? `<span class="me">${x.me}</span>` : ""}${x.me && x.op ? "/" : ""}${x.op ? `<span class="op">${x.op}</span>` : ""}</span></div>`; }).join("");
   return `<div class="chartbox prog"><div class="ct">Weekly progress</div>${svg}
-    <div class="gms">${gHtml}</div>
-    <p class="note">Solid peaks = points scored in each kickoff window (yours in color, the opponent's silver); faint dotted peaks = still to be played. The gold NOW bar sweeps across the week; the tracks fill to each side's points. Each game: four quarter boxes that light up as quarters finish, then <span style="color:var(--lc)">your men</span> · <span class="mute">his men</span> in it.</p></div>`;
+    <div class="gms">${gHtml}</div></div>`;
 }
 /* score range: p10-p90 bars for both sides on one scale, median marked, live score as a tick */
 function rangeChart(sc, live){
