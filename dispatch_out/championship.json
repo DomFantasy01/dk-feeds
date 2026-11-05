@@ -1,10 +1,10 @@
 {
- "built": "Wed Nov 04 2026 06:40 PM PT",
+ "built": "Wed Nov 04 2026 08:35 PM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 9,
-   "built": "Wed Nov 04 2026 06:40 PM PT",
+   "built": "Wed Nov 04 2026 08:35 PM PT",
    "standings": "Wed Nov 4 6:27 PM PT",
    "base": {
     "wins": 6.87,
@@ -2283,7 +2283,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 242 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 06:40 PM PT",
+    "built": "Wed Nov 04 2026 08:35 PM PT",
     "standings": "Wed Nov 4 6:27 PM PT",
     "playoff": 0.3795,
     "wins": 6.872833333333333,
@@ -2629,7 +2629,7 @@
   },
   "DK II": {
    "week": 9,
-   "built": "Wed Nov 04 2026 06:40 PM PT",
+   "built": "Wed Nov 04 2026 08:35 PM PT",
    "standings": "Wed Nov 4 6:27 PM PT",
    "base": {
     "wins": 6.72,
@@ -5073,7 +5073,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 250 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 06:40 PM PT",
+    "built": "Wed Nov 04 2026 08:35 PM PT",
     "standings": "Wed Nov 4 6:27 PM PT",
     "playoff": 0.4003333333333333,
     "wins": 6.7215,
@@ -5424,7 +5424,7 @@
   },
   "DK III": {
    "week": 9,
-   "built": "Wed Nov 04 2026 06:40 PM PT",
+   "built": "Wed Nov 04 2026 08:35 PM PT",
    "standings": "Wed Nov 4 6:27 PM PT",
    "base": {
     "wins": 5.02,
@@ -6633,7 +6633,7 @@
      "d_playoff": -0.001,
      "d_title": -0.0002,
      "d_wins": -0.05,
-     "role": "starts for you in Weeks 10, 11, 12, 14; would start for 3 rivals (Dawg Pound Eric, Press Coverage steph, Mrs. Bobo)",
+     "role": "starts for you in Weeks 10, 11, 12, 14; would start for 2 rivals (Dawg Pound Eric, Mrs. Bobo)",
      "starts": [
       10,
       11,
@@ -6642,7 +6642,6 @@
      ],
      "helps": [
       "Dawg Pound Eric",
-      "Press Coverage steph",
       "Mrs. Bobo"
      ]
     },
@@ -6812,7 +6811,7 @@
       "Aaron Rodgers"
      ],
      "give_roles": [
-      "starts for you in Weeks 10, 11, 12, 14; would start for 3 rivals (Dawg Pound Eric, Press Coverage steph, Mrs. Bobo)",
+      "starts for you in Weeks 10, 11, 12, 14; would start for 2 rivals (Dawg Pound Eric, Mrs. Bobo)",
       "backup QB behind Jayden Daniels; starts for you in Weeks 16, 17; would start for 2 rivals (Bad and Bougie 2.0, Mrs. Bobo)"
      ],
      "get": "Ja'Marr Chase",
@@ -7061,6 +7060,44 @@
       },
       {
        "add": "Jahan Dotson",
+       "drop": "Josh Downs",
+       "drop_pos": "WR",
+       "drop_role": "starts for you in Weeks 10, 11, 12, 14; would start for 2 rivals (Dawg Pound Eric, Mrs. Bobo)",
+       "drop_helps": [
+        "Dawg Pound Eric",
+        "Mrs. Bobo"
+       ],
+       "after": {
+        "wins": 4.92,
+        "playoff": 0.011,
+        "title": 0.0002,
+        "final": 0.002,
+        "semis": 0.003,
+        "seed": 12,
+        "seeds": [
+         0.0,
+         0.0,
+         0.0002,
+         0.0015,
+         0.0052,
+         0.0043,
+         0.0147,
+         0.0232,
+         0.0303,
+         0.051,
+         0.0935,
+         0.1272
+        ],
+        "first": 0.0
+       },
+       "week": 0.344,
+       "d_week": -0.01,
+       "d_playoff": -0.001,
+       "d_title": -0.0002,
+       "d_wins": -0.06
+      },
+      {
+       "add": "Jahan Dotson",
        "drop": "David Montgomery",
        "drop_pos": "RB",
        "drop_role": "starts for you in Weeks 10, 11, 12, 13, 14, 15, 16, 17; would start for 3 rivals (Maly\u2019s Better Half, Bad and Bougie 2.0, Beachmom's Bench)",
@@ -7097,45 +7134,6 @@
        "d_playoff": -0.005,
        "d_title": -0.0002,
        "d_wins": -0.18
-      },
-      {
-       "add": "Jahan Dotson",
-       "drop": "Josh Downs",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Weeks 10, 11, 12, 14; would start for 3 rivals (Dawg Pound Eric, Press Coverage steph, Mrs. Bobo)",
-       "drop_helps": [
-        "Dawg Pound Eric",
-        "Press Coverage steph",
-        "Mrs. Bobo"
-       ],
-       "after": {
-        "wins": 4.92,
-        "playoff": 0.011,
-        "title": 0.0002,
-        "final": 0.002,
-        "semis": 0.003,
-        "seed": 12,
-        "seeds": [
-         0.0,
-         0.0,
-         0.0002,
-         0.0015,
-         0.0052,
-         0.0043,
-         0.0147,
-         0.0232,
-         0.0303,
-         0.051,
-         0.0935,
-         0.1272
-        ],
-        "first": 0.0
-       },
-       "week": 0.344,
-       "d_week": -0.01,
-       "d_playoff": -0.001,
-       "d_title": -0.0002,
-       "d_wins": -0.06
       }
      ],
      "tested": 5
@@ -7144,7 +7142,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 06:40 PM PT",
+    "built": "Wed Nov 04 2026 08:35 PM PT",
     "standings": "Wed Nov 4 6:27 PM PT",
     "playoff": 0.015166666666666667,
     "wins": 5.024166666666667,
@@ -7433,7 +7431,7 @@
       "d_playoff": -0.001,
       "d_title": -0.0002,
       "d_wins": -0.05,
-      "role": "starts for you in Weeks 10, 11, 12, 14; would start for 3 rivals (Dawg Pound Eric, Press Coverage steph, Mrs. Bobo)",
+      "role": "starts for you in Weeks 10, 11, 12, 14; would start for 2 rivals (Dawg Pound Eric, Mrs. Bobo)",
       "starts": [
        10,
        11,
@@ -7442,7 +7440,6 @@
       ],
       "helps": [
        "Dawg Pound Eric",
-       "Press Coverage steph",
        "Mrs. Bobo"
       ],
       "d_po": 0
@@ -7512,7 +7509,7 @@
   },
   "DK IV": {
    "week": 9,
-   "built": "Wed Nov 04 2026 06:40 PM PT",
+   "built": "Wed Nov 04 2026 08:35 PM PT",
    "standings": "Wed Nov 4 6:27 PM PT",
    "base": {
     "wins": 15.15,
@@ -9147,7 +9144,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 229 players",
    "plan": {
     "week": 9,
-    "built": "Wed Nov 04 2026 06:40 PM PT",
+    "built": "Wed Nov 04 2026 08:35 PM PT",
     "standings": "Wed Nov 4 6:27 PM PT",
     "playoff": 0.8576666666666667,
     "wins": 15.147666666666666,
