@@ -157,14 +157,36 @@ async function trailAdd(){
 function prevEntry(){ const es = trailEntries().filter(e => S && e.t < S.stamp && e.w === S.week); return es.length ? es[es.length - 1] : null; }
 
 /* ---------- small charts ---------- */
-function dial(v, col){
-  const a = Math.PI * (1 - Math.max(0, Math.min(100, v)) / 100), cx = 60, cy = 52, r = 42;
-  const x = cx + r * Math.cos(a), y = cy - r * Math.sin(a);
-  const arc = (p0, p1, c, w) => { const a0 = Math.PI * (1 - p0), a1 = Math.PI * (1 - p1);
-    return `<path d="M${cx + r * Math.cos(a0)} ${cy - r * Math.sin(a0)} A${r} ${r} 0 0 1 ${cx + r * Math.cos(a1)} ${cy - r * Math.sin(a1)}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`; };
-  return `<svg viewBox="0 0 120 60" aria-hidden="true">${arc(0, 1, "#26365A", 9)}${arc(0, Math.max(.01, v / 100), col, 9)}
-    <line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#EEF1F6" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#EEF1F6"/>
-    <text x="14" y="59" font-size="8" fill="#8A93A6" font-family="Poppins,sans-serif">0</text><text x="98" y="59" font-size="8" fill="#8A93A6" font-family="Poppins,sans-serif">100</text></svg>`;
+function dial(v, col, id){
+  /* Nov 5 v2: the Yahoo needle - graded arc (red-amber-green behind a league-colored fill), 10-point ticks, glowing needle */
+  v = Math.max(0, Math.min(100, +v || 0));
+  const cx = 60, cy = 54, r = 44, A = (p) => Math.PI * (1 - p), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
+  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+  let ticks = ""; for (let t = 0; t <= 10; t++){ const [a0, b0] = P(t / 10, r + 6), [a1, b1] = P(t / 10, r + (t % 5 ? 9 : 11)); ticks += `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="${t === 5 ? "#C9CFDB" : "#3A4A6E"}" stroke-width="${t % 5 ? 1 : 1.6}"/>`; }
+  const [nx, ny] = P(v / 100, r - 4), g = "g" + (id || "x");
+  return `<svg viewBox="0 0 120 64" aria-hidden="true"><defs><linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#4FD08A"/></linearGradient>
+    <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter></defs>${ticks}
+    <path d="${arc(0, 1, r)}" stroke="url(#${g})" stroke-opacity=".22" stroke-width="10" fill="none"/>
+    <path d="${arc(0, Math.max(.01, v / 100), r)}" stroke="${col}" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="5" stroke-linecap="round" opacity=".55" filter="url(#${g}f)"/>
+    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.2" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#F4F6FA"/><circle cx="${cx}" cy="${cy}" r="2" fill="${col}"/></svg>`;
+}
+/* a small expert needle: half arc, number underneath */
+function miniDial(v, col){
+  v = Math.max(0, Math.min(100, +v || 0)); const cx = 20, cy = 19, r = 15, A = Math.PI * (1 - v / 100);
+  const x1 = cx + r * Math.cos(A), y1 = cy - r * Math.sin(A);
+  return `<svg viewBox="0 0 40 22" aria-hidden="true"><path d="M5 19 A15 15 0 0 1 35 19" stroke="#26365A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M5 19 A15 15 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="${col}" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${(cx + (r - 3) * Math.cos(A)).toFixed(1)}" y2="${(cy - (r - 3) * Math.sin(A)).toFixed(1)}" stroke="#EEF1F6" stroke-width="1.4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="2" fill="#EEF1F6"/></svg>`;
+}
+/* sparkline of the Yahoo chance read by read this week; 50% line dashed, last point marked */
+function spark(vals, col){
+  const P = vals.filter(v => v !== null && v !== undefined && !isNaN(v)); if (P.length < 2) return "";
+  const W = 100, H = 22, X = (i) => 2 + (W - 4) * i / (P.length - 1), Y = (v) => 2 + (H - 4) * (1 - v / 100);
+  const pts = P.map((v, i) => X(i).toFixed(1) + "," + Y(v).toFixed(1)).join(" ");
+  return `<svg class="spk" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><line x1="2" x2="${W - 2}" y1="${Y(50)}" y2="${Y(50)}" stroke="#3A4A6E" stroke-dasharray="2 2" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <polygon points="2,${H - 2} ${pts} ${X(P.length - 1).toFixed(1)},${H - 2}" fill="${col}" opacity=".18"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+    <circle cx="${X(P.length - 1).toFixed(1)}" cy="${Y(P[P.length - 1]).toFixed(1)}" r="2.2" fill="#fff"/></svg>`;
 }
 const bellSvg = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c-2.5 0-4.2 2-4.2 4.4v2.6L2.5 11h11l-1.3-2.5V5.9C12.2 3.5 10.5 1.5 8 1.5Z" fill="currentColor"/><path d="M6.3 12.3a1.8 1.8 0 0 0 3.4 0" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`;
 /* a line chart, 0-100 on Y, any number of series [{pts:[[x,y]], col, dash}] over x labels */
@@ -182,6 +204,43 @@ function lineChart(series, xlabels, h = 110){
     const L = P[P.length - 1]; g += `<circle cx="${X(L[0]).toFixed(1)}" cy="${Y(L[1]).toFixed(1)}" r="3" fill="${s.col}"/>`;
   }
   return `<svg viewBox="0 0 ${W} ${Ht}" role="img">${g}</svg>`;
+}
+/* the win-probability mountain (Nov 5 v2, Dom's chart from the old page): two see-through score curves on one scale, your
+   curve in the league color, the opponent's in silver, the overlap shaded, a pole between them with your numbers on the
+   left and his on the right. Before kickoff the curves come from the simulator's score range; once games start each
+   curve slides to live score + Yahoo's projection for the men left and narrows as fewer points are left to play. */
+function mountain(L, m, k){
+  const sc = m.viz && m.viz.scores; const F = finals(L), me = score(L.players), op = score(L.oppPlayers);
+  const side = (list, fin, cur, rng) => { const full = list.reduce((a, p) => a + Math.max(0, manFinal(p, "y")), 0) || 1;
+    const left = list.reduce((a, p) => a + (isDone(p) || isOut(p) ? 0 : Math.max(0, manFinal(p, "y") - pts(p))), 0);
+    const sd0 = rng ? Math.max(6, (rng[2] - rng[0]) / 2.563) : 21; const mu = [...list].some(started) ? fin : (rng ? rng[1] : fin);
+    return {mu, sd: Math.max(1.2, sd0 * Math.sqrt(Math.min(1, left / full))), left}; };
+  const a = side(L.players, F.me, me, sc && sc.me), b = side(L.oppPlayers, F.op, op, sc && sc.opp);
+  const lo = Math.max(0, Math.min(a.mu - 3 * a.sd, b.mu - 3 * b.sd)), hi = Math.max(a.mu + 3 * a.sd, b.mu + 3 * b.sd);
+  const W = 340, H = 150, pl = 8, pr = 8, top = 34, base = 120, X = (v) => pl + (W - pl - pr) * (v - lo) / ((hi - lo) || 1);
+  const pdf = (x, d) => Math.exp(-.5 * ((x - d.mu) / d.sd) ** 2) / d.sd, n = 90, xs = Array.from({length: n + 1}, (_, i) => lo + (hi - lo) * i / n);
+  const peak = Math.max(...xs.map(x => Math.max(pdf(x, a), pdf(x, b)))), Y = (v) => base - (base - top) * v / peak;
+  const path = (d) => `M${X(lo).toFixed(1)} ${base} ` + xs.map(x => `L${X(x).toFixed(1)} ${Y(pdf(x, d)).toFixed(1)}`).join(" ") + ` L${X(hi).toFixed(1)} ${base} Z`;
+  const ov = `M${X(lo).toFixed(1)} ${base} ` + xs.map(x => `L${X(x).toFixed(1)} ${Y(Math.min(pdf(x, a), pdf(x, b))).toFixed(1)}`).join(" ") + ` L${X(hi).toFixed(1)} ${base} Z`;
+  const ya = chance(L, "y"), col = HEX[k], pole = X((a.mu + b.mu) / 2);
+  let ax = ""; const step = (hi - lo) > 90 ? 20 : 10; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) ax += `<line x1="${X(v)}" x2="${X(v)}" y1="${base}" y2="${base + 3}" stroke="#3A4A6E"/><text x="${X(v)}" y="${base + 13}" font-size="8" text-anchor="middle" fill="#6C7790" font-family="IBM Plex Mono,monospace">${v}</text>`;
+  const live = [...L.players, ...L.oppPlayers].some(started);
+  const mk = (d, c, lab, cur) => `<line x1="${X(d.mu)}" x2="${X(d.mu)}" y1="${Y(pdf(d.mu, d)) - 2}" y2="${base}" stroke="${c}" stroke-width="1.2" stroke-dasharray="2 2"/>` + (live ? `<circle cx="${X(Math.max(lo, cur))}" cy="${base}" r="3.2" fill="${c}" stroke="#0B1222" stroke-width="1.2"/>` : "");
+  const lt = Math.max(66, pole - 6), rt = Math.min(W - 66, pole + 6);
+  return `<div class="chartbox mtn"><div class="ct">Win-probability mountain</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`You ${f1(a.mu)} projected against ${f1(b.mu)}; ${ya}% to win on Yahoo`)}">
+    <defs><linearGradient id="mt-${k.replace(/\W/g, "")}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".75"/><stop offset="1" stop-color="${col}" stop-opacity=".08"/></linearGradient>
+      <linearGradient id="mo-${k.replace(/\W/g, "")}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C9CFDB" stop-opacity=".55"/><stop offset="1" stop-color="#C9CFDB" stop-opacity=".06"/></linearGradient></defs>
+    <line x1="${pl}" x2="${W - pr}" y1="${base}" y2="${base}" stroke="#2A3A5E"/>${ax}
+    <path d="${path(b)}" fill="url(#mo-${k.replace(/\W/g, "")})" stroke="#C9CFDB" stroke-width="1.4"/>
+    <path d="${path(a)}" fill="url(#mt-${k.replace(/\W/g, "")})" stroke="${col}" stroke-width="2"/>
+    <path d="${ov}" fill="#F7B32B" opacity=".18"/>
+    ${mk(a, col, "you", me)}${mk(b, "#C9CFDB", "opp", op)}
+    <line x1="${pole}" x2="${pole}" y1="6" y2="${base}" stroke="#EFD23E" stroke-width="1.6"/><circle cx="${pole}" cy="6" r="3" fill="#EFD23E"/>
+    <text x="${lt}" y="14" text-anchor="end" font-size="15" fill="${col}" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".04em">YOU ${ya}%</text>
+    <text x="${lt}" y="26" text-anchor="end" font-size="8.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${live ? f1(me) + " now · " : ""}${f1(a.mu)} proj</text>
+    <text x="${rt}" y="14" font-size="15" fill="#C9CFDB" font-family="Bebas Neue,Arial Narrow,sans-serif" letter-spacing=".04em">OPP ${100 - ya}%</text>
+    <text x="${rt}" y="26" font-size="8.5" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${live ? f1(op) + " now · " : ""}${f1(b.mu)} proj</text></svg>
+    <p class="note">${live ? "Curves = live score plus Yahoo's projection for the men left; they narrow as the games are played. Dots = points on the board." : `Curves = the simulator's range of final scores${sc ? "" : " (estimated spread)"}; dashed lines = the most likely final.`} Gold = where the two overlap. Pole = halfway between the two projections.</p></div>`;
 }
 /* score range: p10-p90 bars for both sides on one scale, median marked, live score as a tick */
 function rangeChart(sc, live){
@@ -264,10 +323,11 @@ function meters(){
     const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
     const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
     return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="lgn">${esc(LGN[k])}</div><div class="dk">${DK[k]}</div>${dial(y, HEX[k])}
+      <div class="lgn">${esc(LGN[k])}</div><div class="dk">${DK[k]}</div>${dial(y, HEX[k], SLUG[k])}
       <div class="pct">${y}%${arrow("y", y)}</div><div class="src">YAHOO · BEST LINEUP</div>
       <div class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}"><span>${goNow ? "LIVE" : "PROJ"}</span>${sgn(mg)}</div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}
-      <div class="xps"><div><span>RATCLIFFE</span><b>${chance(L, "r")}%</b></div><div><span>KOERNER</span><b>${chance(L, "k")}%</b></div><div><span>CLAY</span><b>${chance(L, "c")}%</b></div></div>
+      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : "Clay"} ${v}%">${miniDial(v, HEX[k])}<b>${v}</b><span>${lab}</span></div>`; }).join("")}</div>
+      ${spark(trailEntries().filter(e => e.w === S.week && e.lg[k]).map(e => e.lg[k].y).concat([y]), HEX[k])}
       <div class="mrow"><div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div><span>PLAYOFFS ${pcs(po)}</span></div>
         <span class="bell ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span></div>
       <div class="mstate">${settled(L) ? verdict(score(L.players) - score(L.oppPlayers)) : esc(L.state || "")}</div></div>`; }).join("");
@@ -458,7 +518,7 @@ function card(k){
     <div class="recl">${esc(rec)}</div>
     ${scoreHtml}${takes}${seatHtml}
     <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number.</p>${splitHtml}
-    ${since}${rbr}${rng}
+    ${mountain(L, m, k)}${since}${rbr}${rng}
     ${fold("mv-" + SLUG[k], "Your moves", notes.length, movesHtml(k))}
     ${fold("road-" + SLUG[k], "Road to the championship", roadCnt, road, calls.length > 0)}
     ${fold("ana-" + SLUG[k], "Season analytics", "", analytics)}
