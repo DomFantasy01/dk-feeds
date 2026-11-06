@@ -31,19 +31,35 @@ def main(repo="."):
     now = dt.datetime.now(dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     stamp = f"{now:%a %b} {now.day} {now:%Y} {now.hour % 12 or 12}:{now:%M} {'AM' if now.hour < 12 else 'PM'} PT"
     rows, log, got = [], [], 0
+    # Nov 5 (Dom, "Fix"): an expert can come back empty for a few minutes while he republishes (Ratcliffe, 3:41 PM Nov 5).
+    # Keep his last good rows for that position from the previous file instead of wiping them, and say so in the header.
+    prev, prev_stamp = {}, ""
+    try:
+        for ln in open(f"{repo}/yahoo_drop/morning/expert_rankings.txt"):
+            if ln.startswith("# Named expert"):
+                m = re.search(rf"week {w}\. .*?read live (.+?) \(", ln); prev_stamp = m.group(1) if m else ""
+            elif not ln.startswith("#") and ln.count("|") == 6 and prev_stamp:
+                f = ln.rstrip("\n").split("|"); prev.setdefault((f[1], f[2]), []).append(ln.rstrip("\n"))
+    except FileNotFoundError:
+        pass
     for eid, name in EXPERTS:
-        counts, pubs = [], set()
+        counts, pubs, kept = [], set(), []
         for p in POS:
             j = get(eid, p, w)
-            if not j: counts.append(f"{p}0"); continue
+            if not j:
+                old = prev.get((name, p), [])
+                if old: rows.extend(old); kept.append(p); counts.append(f"{p}{len(old)}")
+                else: counts.append(f"{p}0")
+                continue
             pubs.add(str(j.get("published", "")))
             for pl in j["players"]:
                 rk = re.sub(r"^[A-Z]+", "", str(pl.get("pos_rank", ""))) or str(pl.get("rank", ""))
                 rows.append("|".join(["FP", name, p, rk, pl.get("player_name", ""), pl.get("player_team_id", ""), p]))
             counts.append(f"{p}{len(j['players'])}")
-        ok = all(c[2:] != "0" for c in counts)
+        ok = all(int(re.sub(r"^[A-Z]+", "", c)) > 0 for c in counts)   # Nov 5 fix: was c[2:], which read "K30" as 0 and failed complete lists
         got += ok
-        log.append(f"{name}: {'/'.join(counts)}, last updated {max(pubs) if pubs else 'none'} (FantasyPros time)" + ("" if ok else " - INCOMPLETE"))
+        note = f" - {'/'.join(kept)} kept from the {prev_stamp} pull (feed empty right now)" if kept else ""
+        log.append(f"{name}: {'/'.join(counts)}, last updated {max(pubs) if pubs else 'none'} (FantasyPros time)" + ("" if ok else " - INCOMPLETE") + note)
     if not got:
         print("EXPERT PULL FAILED - no expert came back; old file left in place"); print("\n".join(log)); sys.exit(1)
     od = f"{repo}/yahoo_drop/morning"; os.makedirs(od, exist_ok=True)
