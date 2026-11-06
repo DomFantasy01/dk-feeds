@@ -2,7 +2,7 @@
 workload filters can never throw a name out of them. Built after the Marvin Harrison Jr. miss (DK III, Oct 21-23):
 the Scout only looks for climbing workload, Harrison failed that test, and nothing else was watching.
 
-  1. EXPERT CHECK   - every available player the named-expert panel (Ciallela, Ratcliffe, Thorman, Koerner; Jahnke backup; median rank) puts ahead of someone on Dom's roster
+  1. EXPERT CHECK   - every available player the named-expert panel (Ratcliffe and Koerner since Nov 4; median rank) puts ahead of someone on Dom's roster
                       at the same position. Each flag carries the expert's name and both ranks. No workload test.
   2. NEW-ARRIVAL GATE - every player traded, signed, released or dropped in the last 72 hours who is available in one of
                       Dom's leagues gets a full line the day it happens: expert rank, Yahoo rest-of-season, how he can be had.
@@ -386,6 +386,15 @@ def render(rep):
         if not L["expert"] and not L["arrivals"]: out.append("  Expert check and new-arrival gate: nobody available beats your men.")
     return "\n".join(out)
 
+def _panel_names(P):
+    """Nov 6: this header named the five ranking experts removed Nov 4; it now names the panel that actually ranked."""
+    try:
+        import expert_panel as EP
+        return ", ".join(EP.SHOW.get(e, e) for e in ((P or {}).get("panel") or [])) or "Ratcliffe, Koerner"
+    except Exception:
+        return ", ".join((P or {}).get("panel") or []) or "Ratcliffe, Koerner"
+
+
 def add_to_brief(path, rep):
     """Oct 24 (Dom): no raw flags in the brief. A pickup name reaches the brief only after the expert panel and the full
     workup passed it (expert_panel.json). New arrivals that did not pass are listed by name only, as checked."""
@@ -407,7 +416,7 @@ def add_to_brief(path, rep):
         if checked: bits.append("New arrivals checked, not upgrades for you: " + ", ".join(checked[:6]) + ".")
         if bits: parts.append(f"{lab}: " + " ".join(bits))
     body = "\n\n".join(parts) if parts else "Nothing in last night's moves or the expert panel touches your teams."
-    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: Ciallela, Orginski, Ratcliffe, Thorman, Koerner):\n\n{body}\n")
+    open(path, "w").write(s + f"\n\nMorning check (moves since {rep['window']['since']}; expert panel: {_panel_names(P)}):\n\n{body}\n")
 
 if __name__ == "__main__":
     R = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.getcwd()
