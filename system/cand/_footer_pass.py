@@ -94,7 +94,8 @@ for i,pg in enumerate(R.pages):
         c.setFont("PopB",6.4); c.drawCentredString(bx+bw/2,10.4,t+"  \u203a")
         c.linkURL(u,(bx,6.8,bx+bw,18.0),relative=0,thickness=0); bx+=bw+gap
     c.setFont("Pop",5.8); c.setFillColor(GR); c.drawRightString(W_-M,10.4,f"Page {i+1} of {N}")
-    c.save(); buf.seek(0); pg.merge_page(PdfReader(buf).pages[0]); w.add_page(pg)
+    # Nov 6: pypdf 7.0 (released overnight) refuses merge_page on a page not yet in a writer - add it first, then stamp.
+    c.save(); buf.seek(0); pg=w.add_page(pg); pg.merge_page(PdfReader(buf).pages[0])
 w.write(src); print("   footers: one footer on all",N,"pages, numbered 1 to",N)
 
 # OCT12 footer dk names
