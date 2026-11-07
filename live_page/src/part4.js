@@ -178,7 +178,7 @@ function dial(v, col, id, v0){
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.2" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#F4F6FA"/><circle cx="${cx}" cy="${cy}" r="2" fill="${col}"/></svg>`;
 }
 /* Nov 7 (Dom: "a little round looking glass with the numbers in there ... showing up or down ... make it look creatively excellent"):
-   one glass orb per source, stacked top to bottom under the Yahoo dial, Vegas first. The bezel ring fills clockwise to the chance
+   one glass orb per source, stacked top to bottom under the Yahoo dial, Vegas first. The bezel ring starts at the bottom and climbs up the left side like a clock hand (25% = left, 50% = top, 75% = right; Dom, Nov 7)
    and takes its color from the red-amber-green scale; a small dot on the bezel marks where the week started; the number sits
    behind a glass sheen; the week's change rides beside it. */
 const heat = (v) => { v = Math.max(0, Math.min(100, +v || 0)); const L = (a, b, t) => Math.round(a + (b - a) * t);
@@ -186,7 +186,7 @@ const heat = (v) => { v = Math.max(0, Math.min(100, +v || 0)); const L = (a, b, 
   return `rgb(${L(c0[0], c1[0], t)},${L(c0[1], c1[1], t)},${L(c0[2], c1[2], t)})`; };
 function glassOrb(v, v0, tint, id, gold){
   v = Math.max(0, Math.min(100, +v || 0)); const c = 18, r = 15.2, C = 2 * Math.PI * r, col = heat(v), g = "o" + id;
-  let dot = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0)){ const a = (Math.max(0, Math.min(100, v0)) / 100) * 2 * Math.PI - Math.PI / 2;
+  let dot = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0)){ const a = (Math.max(0, Math.min(100, v0)) / 100) * 2 * Math.PI + Math.PI / 2;
     dot = `<circle cx="${(c + r * Math.cos(a)).toFixed(2)}" cy="${(c + r * Math.sin(a)).toFixed(2)}" r="1.9" fill="#0B1222" stroke="#EEF1F6" stroke-width=".9"/>`; }
   return `<svg viewBox="0 0 36 36" aria-hidden="true"><defs>
     <radialGradient id="${g}b" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="${tint}" stop-opacity=".55"/><stop offset=".55" stop-color="#14203A"/><stop offset="1" stop-color="#070C18"/></radialGradient>
@@ -194,8 +194,9 @@ function glassOrb(v, v0, tint, id, gold){
     <filter id="${g}f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.3"/></filter></defs>
     ${gold ? `<circle cx="${c}" cy="${c}" r="17.3" fill="none" stroke="#EFD23E" stroke-opacity=".45" stroke-width=".8"/>` : ""}
     <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#1C2A48" stroke-width="2.8"/>
-    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 ${c} ${c})" opacity=".55" filter="url(#${g}f)"/>
-    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 ${c} ${c})"/>${dot}
+    <line x1="${c}" y1="${c - r - 2.4}" x2="${c}" y2="${c - r + 2.4}" stroke="#8A93A6" stroke-width=".8" opacity=".8"/><line x1="${c}" y1="${c + r - 2.4}" x2="${c}" y2="${c + r + 2.4}" stroke="#8A93A6" stroke-width=".8" opacity=".5"/>
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(90 ${c} ${c})" opacity=".55" filter="url(#${g}f)"/>
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(90 ${c} ${c})"/>${dot}
     <circle cx="${c}" cy="${c}" r="12.4" fill="url(#${g}b)" stroke="rgba(255,255,255,.16)" stroke-width=".7"/>
     <text x="${c}" y="${c + 4.6}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="13.5" fill="#fff" letter-spacing=".3">${Math.round(v)}</text>
     <ellipse cx="${c - 2.6}" cy="${c - 6.4}" rx="7.6" ry="3.9" fill="url(#${g}s)"/>
