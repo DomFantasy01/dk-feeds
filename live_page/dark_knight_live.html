@@ -950,7 +950,7 @@ function expertBars(L, m, k){
    every man the cards cover. Props run low on touchdowns, so each Vegas number is first lifted by this league's typical
    Vegas-to-Ratcliffe ratio; a man is flagged when the lifted number still differs from Ratcliffe by 25%+ and 2+ points. */
 function vegHtml(L, m, k, yv){
-  const xp = (m.xp && m.xp.players) || {}, both = Object.entries(xp).filter(([n, v]) => v && v.v != null && v.r != null && v.r > 1 && !v.out);
+  const xp = (m.xp && m.xp.players) || {}, both = Object.entries(xp).filter(([n, v]) => v && v.v != null && v.r != null && v.r > 1 && !v.out && v.pos !== "K");
   if (!both.length) return "";
   const rat = both.map(([, v]) => v.v / v.r).sort((a, b) => a - b), med = rat[Math.floor(rat.length / 2)] || 1;
   const rows = both.map(([n, v]) => { const adj = v.v / med, d = adj - v.r; return {n, v, adj, d, pct: d / v.r}; })
@@ -958,7 +958,7 @@ function vegHtml(L, m, k, yv){
   const gapTxt = (v) => v.vrk ? `Vegas #${v.vrk}${v.vgap ? ` (${v.vgap > 0 ? "+" : ""}${v.vgap} vs experts)` : ""}` : "";
   return `<div class="sub">Vegas vs Ratcliffe${yv != null ? ` · Vegas needle ${yv}%` : ""}</div>` + (rows.length ? rows.map(x => `<div class="mv"><span class="k ${x.d > 0 ? "up" : "dn"}">${x.d > 0 ? "▲ HIGHER" : "▼ LOWER"}</span><span class="t">${esc(x.n)} <span class="mute">${esc(x.v.why || "")} · ${esc(gapTxt(x.v))}</span></span><span class="num">R ${f1(x.v.r)} · V ${f1(x.v.v)}</span></div>`).join("")
     : `<p class="note">No big disagreements: Vegas and Ratcliffe line up on every man the cards cover.</p>`) +
-    `<p class="note">Vegas runs about ${Math.round((1 - med) * 100)}% under Ratcliffe in ${DK[k]} scoring (props are cautious on touchdowns), so each Vegas number is lifted by that before comparing. Flag = 25%+ and 2+ points apart. Talk it through - Ratcliffe still leads.</p>`;
+    `<p class="note">Across your men Vegas runs ${Math.abs(Math.round((med - 1) * 100)) < 2 ? "even with" : "about " + Math.abs(Math.round((med - 1) * 100)) + "% " + (med > 1 ? "above" : "below")} Ratcliffe in ${DK[k]} scoring, so each Vegas number is evened out by that before comparing; kickers use the site's own points. Flag = 25%+ and 2+ points apart. Talk it through - Ratcliffe still leads.</p>`;
 }
 /* who's been closest: season average points missed per man, shortest bar wins */
 function accBars(){
