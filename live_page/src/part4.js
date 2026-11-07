@@ -177,6 +177,30 @@ function dial(v, col, id, v0){
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="5" stroke-linecap="round" opacity=".55" filter="url(#${g}f)"/>
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.2" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#F4F6FA"/><circle cx="${cx}" cy="${cy}" r="2" fill="${col}"/></svg>`;
 }
+/* Nov 7 (Dom: "a little round looking glass with the numbers in there ... showing up or down ... make it look creatively excellent"):
+   one glass orb per source, stacked top to bottom under the Yahoo dial, Vegas first. The bezel ring fills clockwise to the chance
+   and takes its color from the red-amber-green scale; a small dot on the bezel marks where the week started; the number sits
+   behind a glass sheen; the week's change rides beside it. */
+const heat = (v) => { v = Math.max(0, Math.min(100, +v || 0)); const L = (a, b, t) => Math.round(a + (b - a) * t);
+  const [c0, c1, t] = v < 50 ? [[255, 77, 87], [247, 179, 43], v / 50] : [[247, 179, 43], [79, 208, 138], (v - 50) / 50];
+  return `rgb(${L(c0[0], c1[0], t)},${L(c0[1], c1[1], t)},${L(c0[2], c1[2], t)})`; };
+function glassOrb(v, v0, tint, id, gold){
+  v = Math.max(0, Math.min(100, +v || 0)); const c = 18, r = 15.2, C = 2 * Math.PI * r, col = heat(v), g = "o" + id;
+  let dot = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0)){ const a = (Math.max(0, Math.min(100, v0)) / 100) * 2 * Math.PI - Math.PI / 2;
+    dot = `<circle cx="${(c + r * Math.cos(a)).toFixed(2)}" cy="${(c + r * Math.sin(a)).toFixed(2)}" r="1.9" fill="#0B1222" stroke="#EEF1F6" stroke-width=".9"/>`; }
+  return `<svg viewBox="0 0 36 36" aria-hidden="true"><defs>
+    <radialGradient id="${g}b" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="${tint}" stop-opacity=".55"/><stop offset=".55" stop-color="#14203A"/><stop offset="1" stop-color="#070C18"/></radialGradient>
+    <linearGradient id="${g}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="${g}f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.3"/></filter></defs>
+    ${gold ? `<circle cx="${c}" cy="${c}" r="17.3" fill="none" stroke="#EFD23E" stroke-opacity=".45" stroke-width=".8"/>` : ""}
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#1C2A48" stroke-width="2.8"/>
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 ${c} ${c})" opacity=".55" filter="url(#${g}f)"/>
+    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 ${c} ${c})"/>${dot}
+    <circle cx="${c}" cy="${c}" r="12.4" fill="url(#${g}b)" stroke="rgba(255,255,255,.16)" stroke-width=".7"/>
+    <text x="${c}" y="${c + 4.6}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="13.5" fill="#fff" letter-spacing=".3">${Math.round(v)}</text>
+    <ellipse cx="${c - 2.6}" cy="${c - 6.4}" rx="7.6" ry="3.9" fill="url(#${g}s)"/>
+    <path d="M${c - 7.5} ${c + 6.5} Q${c} ${c + 10.6} ${c + 7.5} ${c + 6.5}" stroke="${tint}" stroke-opacity=".5" stroke-width=".8" fill="none"/></svg>`;
+}
 /* a small expert needle: half arc, number underneath */
 function miniDial(v, col, v0){
   v = Math.max(0, Math.min(100, +v || 0)); const cx = 20, cy = 19, r = 15, A = Math.PI * (1 - v / 100);
@@ -387,7 +411,8 @@ function meters(){
     return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
       <div class="mtop"><b>${DK[k]}</b><span>${esc(LGN[k])}</span></div><span class="bell mb ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span>${dial(y, HEX[k], SLUG[k], weekStart(k, "y"))}
       <div class="pct">${y}%${arrow("y", y)}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
-      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"], ["v", "VEGAS"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : lab === "VEGAS" ? "Vegas props" : "Clay"} ${v}% (dotted = start of week ${weekStart(k, s2) ?? "–"}%)">${miniDial(v, HEX[k], weekStart(k, s2))}<b>${v}${dlt(s2, v)}</b><span>${lab}</span></div>`; }).join("")}</div>
+      <div class="orbs">${[["v", "VEGAS", "VEG"], ["r", "RATCLIFFE", "RAT"], ["k", "KOERNER", "KOE"], ["c", "CLAY", "CLAY"]].map(([s2, lab, sh]) => { const v = chance(L, s2), v0 = weekStart(k, s2), d = v0 === null ? null : Math.round(v - v0);
+        return `<div class="ob${s2 === "v" ? " vg" : ""}" title="${s2 === "v" ? "Vegas props" : lab.charAt(0) + lab.slice(1).toLowerCase()} ${v}% chance to win this week${v0 === null ? "" : ` · started the week at ${Math.round(v0)}%`}">${glassOrb(v, v0, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="ot"><b><span class="lf">${lab}</span><span class="ls">${sh}</span></b>${d === null ? `<em class="z">–</em>` : d === 0 ? `<em class="z">±0</em>` : `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`}</span></div>`; }).join("")}</div>
       <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}">${sgn(mg)}</span><span class="pof">PO <b>${pcs(po)}</b></span></div>
       <div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
   const kick = nextKick();
@@ -579,7 +604,7 @@ function card(k){
   const seats = emptySeats(L);
   const seatHtml = seats.length ? `<div class="seat"><div class="h">EMPTY SEAT</div>${seats.map(p => `<div><b>${esc(p.slot)} ${esc(p.name)}</b> ${p.status ? `<span class="chip r">${esc(p.status)}</span>` : ""} · Yahoo ${f1(p.proj)} · locks ${esc(p.when || "?")}</div>`).join("")}</div>` : "";
   /* the four needles with their move since the last read */
-  const xr = [["y", "YAHOO"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"], ["v", "VEGAS"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
+  const xr = [["y", "YAHOO"], ["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
     const mv = p0 === null || p0 === undefined || p0 === v ? "" : `<em class="${v > p0 ? "up" : "dn"}">${v > p0 ? "▲" : "▼"}${Math.abs(v - p0)}</em>`; return `<div><b>${v}%</b><span>${lab}</span> ${mv}</div>`; }).join("");
   const ys = [chance(L, "y"), chance(L, "r"), chance(L, "k"), chance(L, "c")], yv = chance(L, "v"), split = Math.max(...ys) - Math.min(...ys);
   const anyStart = [...L.players, ...L.oppPlayers].some(started);

@@ -30,7 +30,8 @@ for r in csv.DictReader(open(O(R, "dispatch_out/clay_scored.csv"))) if os.path.e
     key = r["key"] if r["pos"] == "DST" else nk(r["name"])
     put(r["lg"], key, c=fnum(r.get("wk")), cr=round(sum(fut) / len(fut), 1) if fut else None)
 for r in csv.DictReader(open(O(R, "dispatch_out/vegas_scored.csv"))) if os.path.exists(O(R, "dispatch_out/vegas_scored.csv")) else []:   # Nov 7 (Dom): Vegas props
-    put(r["lg"], nk(r["name"]), v=fnum(r.get("wk")), vrk=int(r["rank"]) if (r.get("rank") or "").isdigit() else None, vgap=int(r["ecr_gap"]) if re.fullmatch(r"-?\d+", r.get("ecr_gap") or "") else None)
+    put(r["lg"], nk(r["name"]), v=fnum(r.get("wk")), vrk=int(r["rank"]) if (r.get("rank") or "").isdigit() else None, vgap=int(r["ecr_gap"]) if re.fullmatch(r"-?\d+", r.get("ecr_gap") or "") else None,
+        vsh=fnum(r.get("vegas_share")), vfill=(r.get("model_fill") or None))
 rk, rk_read = {}, ""
 try:
     for ln in open(O(R, "yahoo_drop/morning/expert_rankings.txt")):

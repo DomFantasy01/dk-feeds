@@ -96,23 +96,80 @@ def known_names():
         except Exception: pass
     return k
 
+# Nov 7 11:30 AM: every page also carries the site's own data rows (all 190 players, every position) as JSON inside the page:
+# full-precision stat lines, which stats came from a Vegas prop vs the site's own model fill-in ("projection"), the injury tag,
+# kickoff time, the experts' consensus rank (ppr_erc) and the time the site last updated. Those rows are read first; the
+# rendered table is the fallback if they ever disappear.
+JMAP = {"passing_yards": "pass_yd", "passing_touchdowns": "pass_td", "interceptions": "int", "rushing_yards": "rush_yd",
+        "rushing_attempts": "rush_att", "receptions": "rec", "receiving_yards": "rec_yd"}
+def json_rows(page):
+    t = page.replace('\\"', '"'); out = {}; i = 0
+    while True:
+        i = t.find('"rows":[', i)
+        if i < 0: break
+        j = i + 7; d = 0; k = j
+        for k in range(j, len(t)):
+            c = t[k]
+            if c == "[": d += 1
+            elif c == "]":
+                d -= 1
+                if d == 0: break
+        try:
+            for r in json.loads(t[j:k + 1]):
+                if isinstance(r, dict) and r.get("position") and r.get("name"): out[r.get("player_id") or r["name"]] = r
+        except Exception: pass
+        i = k
+    return out
+def from_json(rows):
+    by = {}
+    for r in rows.values(): by.setdefault(r["position"], []).append(r)
+    out = []
+    for pos, lst in by.items():
+        if pos not in COLS: continue
+        lst.sort(key=lambda r: -(r.get("ppr") or 0))
+        for n, r in enumerate(lst, 1):
+            st = {v: float(r.get(k) or 0) for k, v in JMAP.items()}
+            st["rush_td" if pos == "QB" else "td"] = float(r.get("expected_touchdowns") or 0)
+            src = r.get("stat_sources") or {}; vs = sum(1 for v in src.values() if v == "vegas")
+            erc = r.get("ppr_erc")
+            out.append(dict(name=r["name"], pos=pos, team=TEAMFIX.get(r.get("team") or "", r.get("team") or ""), opp=r.get("opponent") or "",
+                            home=" vs " in (r.get("game_details") or ""), status=STATUS.get(str(r.get("injury_status") or "").lower(), str(r.get("injury_status") or "")),
+                            rank=n, ecr_gap=(int(erc) - n) if isinstance(erc, (int, float)) else 0, ecr=erc,
+                            site_pts=round(float(r.get("ppr") or 0), 2), st=st, kickoff=r.get("kickoff_at"),
+                            vegas_share=round(vs / len(src), 2) if src else None,
+                            model_fill=[JMAP.get(k, k) for k, v in src.items() if v != "vegas"], updated_at=r.get("updated_at")))
+    return out
+def _pt(iso):
+    try:
+        import datetime as dt; from zoneinfo import ZoneInfo
+        return dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %-I:%M %p PT")
+    except Exception: return iso or ""
+
 def read_site(keep_raw=False):
-    known = known_names(); out, meta = [], {}
+    known = known_names(); out, meta, allj = [], {}, {}
     for pos, url in PAGES.items():
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
                                                    "Accept": "text/html"})
         page = urllib.request.urlopen(req, timeout=45).read().decode("utf-8", "replace")
+        jr = json_rows(page); allj.update(jr)
         rows = parse(pos, page, known)
         up = re.search(r"Updated:?\s*(?:<[^>]+>\s*)*([0-9]{1,2}/[0-9]{1,2}[^<]{0,14})", page)
         wk = re.search(r"Week\s*(?:<[^>]+>\s*)*(\d{1,2})\b", page)
-        meta[pos] = dict(n=len(rows), updated=(up.group(1).strip() if up else ""), week=int(wk.group(1)) if wk else None)
-        if keep_raw or len(rows) < 15:
+        meta[pos] = dict(n=len(rows), json=len(jr), updated=(up.group(1).strip() if up else ""), week=int(wk.group(1)) if wk else None)
+        if keep_raw or (len(rows) < 15 and len(jr) < 100):
             os.makedirs(O(R, "yahoo_drop/vegas/raw"), exist_ok=True); open(O(R, f"yahoo_drop/vegas/raw/{pos.lower()}.html"), "w").write(page)
-        print(f"   VEGAS {pos}: {len(rows)} players, site updated '{meta[pos]['updated']}', page week {meta[pos]['week']}")
+        print(f"   VEGAS {pos}: {len(rows)} table rows, {len(jr)} data rows, site updated '{meta[pos]['updated']}', page week {meta[pos]['week']}")
         out += rows
+    if len(allj) >= 100:
+        js = from_json(allj); ups = sorted(r["updated_at"] for r in js if r.get("updated_at"))
+        meta["data_rows"] = len(js); meta["updated_at"] = _pt(ups[-1]) if ups else ""
+        wks = [r.get("week") for r in allj.values() if r.get("week")]
+        if wks and max(set(wks), key=wks.count) != NOW: raise RuntimeError(f"site data is Week {max(set(wks), key=wks.count)}, this is Week {NOW}")
+        print(f"   VEGAS: using the page data rows ({len(js)} players, site data updated {meta['updated_at']})")
+        return js, meta
     short = [p for p in ("QB", "RB", "WR", "TE") if meta[p]["n"] < 15]
     if short: raise RuntimeError(f"page(s) {short} came back with too few rows - layout may have changed (raw pages saved in yahoo_drop/vegas/raw/)")
-    pw = [m["week"] for m in meta.values() if m["week"]]
+    pw = [m["week"] for m in meta.values() if isinstance(m, dict) and m.get("week")]
     if pw and max(set(pw), key=pw.count) != NOW: raise RuntimeError(f"site shows Week {max(set(pw), key=pw.count)}, this is Week {NOW}")
     return out, meta
 
@@ -120,9 +177,9 @@ def read_site(keep_raw=False):
 def score(p, lg, cfg):
     st, pos = p["st"], p["pos"]; g = lambda k: float(st.get(k) or 0)
     it = float(cfg.get("int", -2)); ra = float(cfg.get("rush_att", 0.25))
-    if pos == "QB": return g("pass_yd") / 25 + 6 * g("pass_td") + it * g("int") + g("rush_yd") / 10 + 6 * g("rush_td")
-    if pos == "RB": return g("rush_yd") / 10 + ra * g("rush_att") + g("rec") + g("rec_yd") / 10 + 6 * g("td")
-    if pos in ("WR", "TE"): return g("rec") + g("rec_yd") / 10 + 6 * g("td")
+    run = g("rush_yd") / 10 + ra * g("rush_att")   # carries count for every position (same as Ratcliffe/Clay scoring)
+    if pos == "QB": return g("pass_yd") / 25 + 6 * g("pass_td") + it * g("int") + run + 6 * g("rush_td")
+    if pos in ("RB", "WR", "TE"): return run + g("rec") + g("rec_yd") / 10 + 6 * g("td")
     if pos == "K": return None if cfg.get("no_kicker") else p["site_pts"]
     return None
 
@@ -132,7 +189,7 @@ if __name__ == "__main__":
         try:
             pl, meta = read_site("--keep-raw" in sys.argv)
             data = dict(read=pt_now(), week=NOW, source="First Down Studio Vegas prop rankings (firstdown.studio)", pages=meta,
-                        site_updated=meta.get("RB", {}).get("updated", ""), players=pl)
+                        site_updated=meta.get("updated_at") or meta.get("RB", {}).get("updated", ""), players=pl)
             os.makedirs(os.path.dirname(SAVE), exist_ok=True); json.dump(data, open(SAVE, "w"), indent=0)
             print(f"VEGAS: read {len(pl)} players, {data['read']} (site updated {data['site_updated']})")
         except Exception as e:
@@ -153,10 +210,11 @@ if __name__ == "__main__":
             if v is None: continue
             k_ = nk(p["name"]); val[(lg, k_)] = round(v, 2); info[k_] = p
             rows.append([lg, k_, p["name"], p["team"], p["pos"], round(v, 2), p["rank"], p["ecr_gap"], p.get("status", ""),
-                         p["st"].get("rush_att", ""), p["st"].get("rec", ""), data["read"], data.get("site_updated", "")])
+                         p["st"].get("rush_att", ""), p["st"].get("rec", ""), data["read"], data.get("site_updated", ""),
+                         "" if p.get("vegas_share") is None else p["vegas_share"], " ".join(p.get("model_fill") or [])])
     os.makedirs(O(R, "dispatch_out/vegas_history"), exist_ok=True)
     with open(O(R, "dispatch_out/vegas_scored.csv"), "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(["lg", "key", "name", "team", "pos", "wk", "rank", "ecr_gap", "status", "rush_att", "rec", "read", "site_updated"])
+        w = csv.writer(fh); w.writerow(["lg", "key", "name", "team", "pos", "wk", "rank", "ecr_gap", "status", "rush_att", "rec", "read", "site_updated", "vegas_share", "model_fill"])
         w.writerows(rows)
     try:
         import shutil; shutil.copy(O(R, "dispatch_out/vegas_scored.csv"), O(R, f"dispatch_out/vegas_history/vegas_wk{NOW}.csv"))
@@ -173,7 +231,7 @@ if __name__ == "__main__":
                 if v is None: s["vegas"] = s.get("ratcliffe"); s["vegas_src"] = "ratcliffe (no Vegas prop)"; miss += 1
                 else:
                     s["vegas"] = v; s["vegas_src"] = "props"; hit += 1
-                    i = info.get(nk(s.get("player"))) or {}; s["vegas_rank"] = i.get("rank"); s["vegas_gap"] = i.get("ecr_gap")
+                    i = info.get(nk(s.get("player"))) or {}; s["vegas_rank"] = i.get("rank"); s["vegas_gap"] = i.get("ecr_gap"); s["vegas_share"] = i.get("vegas_share")
         for b in L.get("bench") or []:
             v = val.get((lg, nk(b.get("player")))); b["vegas"] = v if v is not None else b.get("ratcliffe")
             b["vegas_src"] = "props" if v is not None else "ratcliffe (no Vegas prop)"
