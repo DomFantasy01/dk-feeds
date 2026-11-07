@@ -1,10 +1,10 @@
 {
- "built": "Fri Nov 06 2026 04:38 PM PT",
+ "built": "Fri Nov 06 2026 05:17 PM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 9,
-   "built": "Fri Nov 06 2026 04:38 PM PT",
+   "built": "Fri Nov 06 2026 05:17 PM PT",
    "standings": "Fri Nov 6 4:27 PM PT",
    "base": {
     "wins": 7.02,
@@ -1868,7 +1868,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 245 players",
    "plan": {
     "week": 9,
-    "built": "Fri Nov 06 2026 04:38 PM PT",
+    "built": "Fri Nov 06 2026 05:17 PM PT",
     "standings": "Fri Nov 6 4:27 PM PT",
     "playoff": 0.4246666666666667,
     "wins": 7.018166666666667,
@@ -2217,7 +2217,7 @@
   },
   "DK II": {
    "week": 9,
-   "built": "Fri Nov 06 2026 04:38 PM PT",
+   "built": "Fri Nov 06 2026 05:17 PM PT",
    "standings": "Fri Nov 6 4:27 PM PT",
    "base": {
     "wins": 6.82,
@@ -4020,7 +4020,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 250 players",
    "plan": {
     "week": 9,
-    "built": "Fri Nov 06 2026 04:38 PM PT",
+    "built": "Fri Nov 06 2026 05:17 PM PT",
     "standings": "Fri Nov 6 4:27 PM PT",
     "playoff": 0.44416666666666665,
     "wins": 6.8205,
@@ -4370,7 +4370,7 @@
   },
   "DK III": {
    "week": 9,
-   "built": "Fri Nov 06 2026 04:38 PM PT",
+   "built": "Fri Nov 06 2026 05:17 PM PT",
    "standings": "Fri Nov 6 4:27 PM PT",
    "base": {
     "wins": 4.9,
@@ -5563,17 +5563,15 @@
      "helps": []
     },
     {
-     "name": "Josh Downs",
+     "name": "Caleb Douglas",
      "pos": "WR",
      "d_playoff": -0.001,
      "d_title": 0.0,
-     "d_wins": -0.06,
-     "role": "starts for you in Weeks 10, 11, 12, 14; would start for 1 rival (Mrs. Bobo)",
+     "d_wins": -0.02,
+     "role": "starts for you in Weeks 9, 10; would start for 1 rival (Mrs. Bobo)",
      "starts": [
-      10,
-      11,
-      12,
-      14
+      9,
+      10
      ],
      "helps": [
       "Mrs. Bobo"
@@ -5630,31 +5628,31 @@
      "d_playoff": 0.001
     },
     {
+     "add": "Hunter Henry",
+     "drop": "Caleb Douglas",
+     "d_wins": -0.0,
+     "d_playoff": 0.0
+    },
+    {
      "add": "Austin Ekeler",
      "drop": "Aaron Rodgers",
      "d_wins": 0.01,
      "d_playoff": 0.0
     },
     {
-     "add": "Hunter Henry",
-     "drop": "Aaron Rodgers",
-     "d_wins": 0.01,
-     "d_playoff": 0.0
+     "add": "Dalton Schultz",
+     "drop": "Caleb Douglas",
+     "d_wins": -0.01,
+     "d_playoff": -0.001
+    },
+    {
+     "add": "Ricky Pearsall",
+     "drop": "Caleb Douglas",
+     "d_wins": -0.01,
+     "d_playoff": -0.001
     },
     {
      "add": "SF defense",
-     "drop": "Aaron Rodgers",
-     "d_wins": 0.0,
-     "d_playoff": 0.0
-    },
-    {
-     "add": "WAS defense",
-     "drop": "Aaron Rodgers",
-     "d_wins": 0.0,
-     "d_playoff": 0.0
-    },
-    {
-     "add": "TEN defense",
      "drop": "Aaron Rodgers",
      "d_wins": 0.0,
      "d_playoff": 0.0
@@ -6028,7 +6026,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 228 players",
    "plan": {
     "week": 9,
-    "built": "Fri Nov 06 2026 04:38 PM PT",
+    "built": "Fri Nov 06 2026 05:17 PM PT",
     "standings": "Fri Nov 6 4:27 PM PT",
     "playoff": 0.010666666666666666,
     "wins": 4.903333333333333,
@@ -6300,17 +6298,15 @@
       "d_po": 0
      },
      {
-      "name": "Josh Downs",
+      "name": "Caleb Douglas",
       "pos": "WR",
       "d_playoff": -0.001,
       "d_title": 0.0,
-      "d_wins": -0.06,
-      "role": "starts for you in Weeks 10, 11, 12, 14; would start for 1 rival (Mrs. Bobo)",
+      "d_wins": -0.02,
+      "role": "starts for you in Weeks 9, 10; would start for 1 rival (Mrs. Bobo)",
       "starts": [
-       10,
-       11,
-       12,
-       14
+       9,
+       10
       ],
       "helps": [
        "Mrs. Bobo"
@@ -6381,13 +6377,13 @@
       "helps": []
      },
      {
-      "add": "Austin Ekeler",
-      "pos": "RB",
-      "nfl": "WAS",
-      "acq": "Free agent",
-      "drop": "Aaron Rodgers",
+      "add": "Hunter Henry",
+      "pos": "TE",
+      "nfl": "NE",
+      "acq": "Waivers, clears Nov 7",
+      "drop": "Caleb Douglas",
       "d_playoff": 0.0,
-      "d_week": 0.0,
+      "d_week": -0.007,
       "helps": []
      }
     ],
@@ -6396,7 +6392,7 @@
   },
   "DK IV": {
    "week": 9,
-   "built": "Fri Nov 06 2026 04:38 PM PT",
+   "built": "Fri Nov 06 2026 05:17 PM PT",
    "standings": "Fri Nov 6 4:27 PM PT",
    "base": {
     "wins": 15.22,
@@ -7691,6 +7687,29 @@
      ]
     },
     {
+     "name": "Tucker Kraft",
+     "pos": "TE",
+     "d_playoff": -0.025,
+     "d_title": -0.013,
+     "d_wins": -0.16,
+     "role": "starts for you in Weeks 10, 12, 13, 14, 15, 16, 17; would start for 4 rivals (Alan's Team, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
+     "starts": [
+      10,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+     ],
+     "helps": [
+      "Alan's Team",
+      "Lin's Team \ud83c\udfc8",
+      "Mr. Irrelevant",
+      "Bad and Boujee"
+     ]
+    },
+    {
      "name": "Wan'Dale Robinson",
      "pos": "WR",
      "d_playoff": -0.03,
@@ -7706,22 +7725,6 @@
       "Lin's Team \ud83c\udfc8",
       "Mr. Irrelevant",
       "Bad and Boujee"
-     ]
-    },
-    {
-     "name": "Travis Kelce",
-     "pos": "TE",
-     "d_playoff": -0.026,
-     "d_title": -0.0043,
-     "d_wins": -0.28,
-     "role": "starts for you in Weeks 9, 11; would start for 2 rivals (Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-     "starts": [
-      9,
-      11
-     ],
-     "helps": [
-      "Lin's Team \ud83c\udfc8",
-      "Mr. Irrelevant"
      ]
     },
     {
@@ -7764,22 +7767,10 @@
      "d_playoff": -0.002
     },
     {
-     "add": "Chig Okonkwo",
-     "drop": "Travis Kelce",
-     "d_wins": -0.05,
-     "d_playoff": -0.003
-    },
-    {
      "add": "Chris Godwin Jr.",
      "drop": "Wan'Dale Robinson",
      "d_wins": -0.03,
      "d_playoff": -0.003
-    },
-    {
-     "add": "Pat Freiermuth",
-     "drop": "Travis Kelce",
-     "d_wins": -0.07,
-     "d_playoff": -0.002
     },
     {
      "add": "Woody Marks",
@@ -7788,16 +7779,28 @@
      "d_playoff": 0.0
     },
     {
-     "add": "Michael Mayer",
-     "drop": "Travis Kelce",
+     "add": "NO defense",
+     "drop": "Omar Cooper Jr.",
      "d_wins": -0.06,
-     "d_playoff": -0.005
+     "d_playoff": -0.008
     },
     {
-     "add": "Greg Dulcich",
-     "drop": "Travis Kelce",
+     "add": "Tyler Allgeier",
+     "drop": "Omar Cooper Jr.",
+     "d_wins": -0.06,
+     "d_playoff": -0.012
+    },
+    {
+     "add": "NYG defense",
+     "drop": "Omar Cooper Jr.",
      "d_wins": -0.08,
-     "d_playoff": -0.006
+     "d_playoff": -0.012
+    },
+    {
+     "add": "Spencer Shrader",
+     "drop": "Omar Cooper Jr.",
+     "d_wins": -0.09,
+     "d_playoff": -0.012
     }
    ],
    "trades": [
@@ -8031,7 +8034,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 231 players",
    "plan": {
     "week": 9,
-    "built": "Fri Nov 06 2026 04:38 PM PT",
+    "built": "Fri Nov 06 2026 05:17 PM PT",
     "standings": "Fri Nov 6 4:27 PM PT",
     "playoff": 0.8748333333333334,
     "wins": 15.216666666666667,
@@ -8245,6 +8248,30 @@
       "d_po": 0
      },
      {
+      "name": "Tucker Kraft",
+      "pos": "TE",
+      "d_playoff": -0.025,
+      "d_title": -0.013,
+      "d_wins": -0.16,
+      "role": "starts for you in Weeks 10, 12, 13, 14, 15, 16, 17; would start for 4 rivals (Alan's Team, Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
+      "starts": [
+       10,
+       12,
+       13,
+       14,
+       15,
+       16,
+       17
+      ],
+      "helps": [
+       "Alan's Team",
+       "Lin's Team \ud83c\udfc8",
+       "Mr. Irrelevant",
+       "Bad and Boujee"
+      ],
+      "d_po": 0
+     },
+     {
       "name": "Wan'Dale Robinson",
       "pos": "WR",
       "d_playoff": -0.03,
@@ -8260,23 +8287,6 @@
        "Lin's Team \ud83c\udfc8",
        "Mr. Irrelevant",
        "Bad and Boujee"
-      ],
-      "d_po": 0
-     },
-     {
-      "name": "Travis Kelce",
-      "pos": "TE",
-      "d_playoff": -0.026,
-      "d_title": -0.0043,
-      "d_wins": -0.28,
-      "role": "starts for you in Weeks 9, 11; would start for 2 rivals (Lin's Team \ud83c\udfc8, Mr. Irrelevant)",
-      "starts": [
-       9,
-       11
-      ],
-      "helps": [
-       "Lin's Team \ud83c\udfc8",
-       "Mr. Irrelevant"
       ],
       "d_po": 0
      },
@@ -8328,16 +8338,6 @@
       "helps": []
      },
      {
-      "add": "Chig Okonkwo",
-      "pos": "TE",
-      "nfl": "WAS",
-      "acq": "Free agent",
-      "drop": "Travis Kelce",
-      "d_playoff": -0.003,
-      "d_week": -0.014,
-      "helps": []
-     },
-     {
       "add": "Chris Godwin Jr.",
       "pos": "WR",
       "nfl": "TB",
@@ -8345,6 +8345,16 @@
       "drop": "Wan'Dale Robinson",
       "d_playoff": -0.003,
       "d_week": 0.0,
+      "helps": []
+     },
+     {
+      "add": "Woody Marks",
+      "pos": "RB",
+      "nfl": "HOU",
+      "acq": "Free agent",
+      "drop": "Omar Cooper Jr.",
+      "d_playoff": 0.0,
+      "d_week": -0.012,
       "helps": []
      }
     ],
