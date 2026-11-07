@@ -337,7 +337,16 @@ try:
     import urllib.request
     rq = urllib.request.Request("https://api.github.com/repos/DomFantasy01/dk-feeds/actions/runs?per_page=100",
                                 headers={"Accept": "application/vnd.github+json", "User-Agent": "dk-health"})
-    runs = json.loads(urllib.request.urlopen(rq, timeout=30).read()).get("workflow_runs", [])
+    _src = "live"
+    try: runs = json.loads(urllib.request.urlopen(rq, timeout=30).read()).get("workflow_runs", [])
+    except Exception:   # Nov 7: unsigned reads get refused (403) from shared cloud addresses - same fallbacks as the Live sync
+        import subprocess as _sp
+        try:
+            runs = json.loads(_sp.run(["gh", "api", "repos/DomFantasy01/dk-feeds/actions/runs?per_page=100"], capture_output=True, text=True, timeout=60, check=True).stdout).get("workflow_runs", []); _src = "gh"
+        except Exception:   # last resort: the copy every Dispatch build saves (up to ~2 hours old)
+            _g = load("dispatch_out/gh_runs.json")
+            if not _g: raise
+            runs = _g.get("workflow_runs", []); _src = "saved"
     day = [r for r in runs if iso(r.get("created_at")) and iso(r["created_at"]) >= NOW - dt.timedelta(hours=24) and r.get("status") == "completed"]
     byname = {}
     for r in sorted(day, key=lambda r: r["created_at"]): byname.setdefault(r["name"], []).append(r)
@@ -352,7 +361,9 @@ try:
         else:
             f0 = fails[-1]
             row("GitHub jobs", nm, "yellow", f"failed {len(fails)}x in 24 h, last at {at(iso(f0['created_at']))} - fixed itself, latest run OK at {at(iso(last['created_at']))}{side}", iso(f0["created_at"]))
-    if not bad: row("GitHub jobs", "Every GitHub job", "green", f"{len(day)} runs in the last 24 hours, no failures")
+    _lt = max((r.get("created_at") or "" for r in runs), default="")
+    _note = "" if _src == "live" else f" (from the build's saved run list, newest run {at(iso(_lt)) if _lt else '?'})"
+    if not bad: row("GitHub jobs", "Every GitHub job", "green", f"{len(day)} runs in the last 24 hours, no failures{_note}")
 except Exception as e:
     row("GitHub jobs", "Every GitHub job", "grey", f"couldn't read GitHub's run list ({type(e).__name__}) - check skipped")
 

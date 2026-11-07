@@ -553,6 +553,30 @@ function expertBars(L, m, k){
       g += `<rect x="${bx}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="5.6" rx="2.8" fill="${col}"/><text x="${(bx + w + 3).toFixed(1)}" y="${(y + 5.6).toFixed(1)}" font-size="7.4" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${v.toFixed(1)}</text>`; }); });
   return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Koerner</span><span><i style="border-color:#8A93A6"></i>Clay</span><span><i style="border-color:#E0A84A"></i>Vegas</span></div>`;
 }
+/* Nov 7 (Dom: "wherever there's a discrepancy maybe we should automatically list the players so we know what the hell is really
+   going on"; trigger 5 points): when any source's chance to win this week sits 5+ points from the middle of the five, name the
+   men behind it - each man's number from that source against the middle of the other sources, both sides, the biggest first. */
+function whyDiffer(L, k){
+  if (settled(L)) return "";
+  const pm = (M && M.pm && M.pm[L.key]) || {}, S5 = [["y", "Yahoo"], ["v", "Vegas"], ["r", "Ratcliffe"], ["k", "Koerner"], ["c", "Clay"]];
+  const ch = Object.fromEntries(S5.map(([s]) => [s, chance(L, s)])), med = (a) => { const b = a.filter(x => x !== null && !isNaN(x)).sort((x, y) => x - y); return b.length ? (b.length % 2 ? b[(b.length - 1) / 2] : (b[b.length / 2 - 1] + b[b.length / 2]) / 2) : null; };
+  const mid = med(Object.values(ch)), out = [];
+  for (const [s, nm] of S5){
+    const gap = ch[s] - mid; if (Math.abs(gap) < 5) continue;
+    const rows = [];
+    for (const [list, mine] of [[L.players, true], [L.oppPlayers, false]]) for (const p of list){
+      if (isDone(p) || isOut(p)) continue;
+      const mv = manFinal(p, s, pm), others = med(S5.filter(([o]) => o !== s).map(([o]) => manFinal(p, o, pm)));
+      if (others === null) continue; const d = mv - others, push = mine ? d : -d;   /* push > 0 helps you on this source */
+      if (Math.abs(d) >= 1 && Math.sign(push) === Math.sign(gap)) rows.push({p, mine, mv, others, push});
+    }
+    rows.sort((a, b) => Math.abs(b.push) - Math.abs(a.push));
+    if (!rows.length) continue;
+    out.push(`<div class="wd"><div class="wh"><b class="${gap > 0 ? "up" : "dn"}">${nm} ${gap > 0 ? "higher" : "lower"}</b> <span>${ch[s]}% vs the others' ~${Math.round(mid)}%</span></div>` +
+      rows.slice(0, 3).map(x => `<div class="wr"><span class="wn">${esc(x.p.name)} <em>${x.mine ? "yours" : "opp"}</em></span><span class="wv">${nm.slice(0, 3).toUpperCase()} <b>${f1(x.mv)}</b> · others ${f1(x.others)}</span></div>`).join("") + `</div>`);
+  }
+  return out.length ? `<div class="sub">Why they differ</div>${out.join("")}<p class="note">Shown when a source is 5+ points from the middle of the five. Each man: that source's points against the middle of the other four, ${DK[k]} scoring.</p>` : "";
+}
 /* Nov 7 (Dom: "it's gonna let us know if there's a disagreement ... compare it and talk about it"): Vegas against Ratcliffe on
    every man the cards cover. Props run low on touchdowns, so each Vegas number is first lifted by this league's typical
    Vegas-to-Ratcliffe ratio; a man is flagged when the lifted number still differs from Ratcliffe by 25%+ and 2+ points. */
@@ -691,7 +715,7 @@ function card(k){
     <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
     <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : ""].join("")}</div>
     ${scoreHtml}${takes}${seatHtml}
-    <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${vegHtml(L, m, k, yv)}
+    <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${whyDiffer(L, k)}${vegHtml(L, m, k, yv)}
     ${progress(L, k)}
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
     ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
