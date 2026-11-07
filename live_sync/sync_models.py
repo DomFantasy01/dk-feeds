@@ -69,6 +69,11 @@ try:
         if not _h or _h[-1][1] != SIM.get('run'): _h.append([_now.strftime('%Y-%m-%dT%H:%M:%SZ'), SIM.get('run'), sl.get('playoff')])
         _h = [x for x in _h if (_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).days <= 21][-400:]
         _lg['sim_hist'] = _h
+        # Nov 7 (Dom): playoff-odds badge on the meters - one entry per new Road to the Championship run (the number the meter shows)
+        _c = M['leagues'][lab].get('champ') or {}; _cp = (_c.get('base') or {}).get('playoff')
+        _ph = [x for x in (_lg.get('po_hist') or []) if isinstance(x, list) and len(x) == 3]
+        if _cp is not None and (not _ph or _ph[-1][1] != _c.get('built')): _ph.append([_now.strftime('%Y-%m-%dT%H:%M:%SZ'), _c.get('built'), _cp])
+        _lg['po_hist'] = _ph[-200:]
         _old = [x for x in _h if (_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).total_seconds() >= 20 * 3600]
         _prev = min(_old, key=lambda x: abs((_now - _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)).total_seconds() - 7 * 86400)) if _old else None
         cur['leagues'].setdefault(k, {})['sim'] = dict(run=SIM.get('run'), sims=SIM.get('sims'), read=sl.get('standings_read'),

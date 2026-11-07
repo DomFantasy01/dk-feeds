@@ -404,6 +404,15 @@ function meters(){
   $("#meters").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return "";
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive), w = worst(live);
     const arrow = (src, v) => { const pv = prev && prev.lg[k] ? prev.lg[k][src] : null; if (pv === null || pv === undefined || v === pv) return ""; return v > pv ? `<em class="up">▲</em>` : `<em class="dn">▼</em>`; };
+    /* Nov 7 (Dom): since-last-read tick beside the big Yahoo number - how far it moved since the previous Yahoo read */
+    const ypv = prev && prev.lg[k] ? prev.lg[k].y : null, yd = ypv === null || ypv === undefined ? null : Math.round(y - ypv);
+    const tick = yd === null ? "" : `<span class="slr ${yd > 0 ? "up" : yd < 0 ? "dn" : "z"}" title="Since the ${esc(ptTime(prev.t))} Yahoo read: ${ypv}% → ${y}%">${yd > 0 ? "▲" + yd : yd < 0 ? "▼" + Math.abs(yd) : "±0"}<small>LAST READ</small></span>`;
+    /* Nov 7 (Dom): playoff odds badge - the season number with its move since the previous simulator run */
+    const ph = (m.po_hist && m.po_hist.length ? m.po_hist : (m.sim_hist || [])).filter(h => Array.isArray(h) && h[2] !== null && h[2] !== undefined);
+    let pod = null, pwhen = "";
+    if (ph.length >= 2){ const last = ph[ph.length - 1]; for (let i = ph.length - 2; i >= 0; i--){ if (ph[i][1] !== last[1] && Math.abs(ph[i][2] - last[2]) >= .005){ pod = (last[2] - ph[i][2]) * 100; pwhen = ph[i][1]; break; } } }
+    /* Nov 7 (Dom): an orb glows gold when its source sits 5+ points from the middle of the five */
+    const C5 = {y, v: chance(L, "v"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c")}, c5 = Object.values(C5).sort((a, b) => a - b), mid5 = c5[2];
     const po = m.champ && m.champ.base ? m.champ.base.playoff : (m.sim ? m.sim.playoff : null);
     const goNow = [...L.players, ...L.oppPlayers].some(started), F = finals(L), mg = goNow ? score(L.players) - score(L.oppPlayers) : F.me - F.op;
     const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
@@ -411,11 +420,12 @@ function meters(){
     const dlt = (src, v) => { const v0 = weekStart(k, src); if (v0 === null || Math.round(v0) === Math.round(v)) return ""; const d = Math.round(v - v0); return `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`; };
     return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
       <div class="mtop"><b>${DK[k]}</b><span>${esc(LGN[k])}</span></div><span class="bell mb ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span>${dial(y, HEX[k], SLUG[k], weekStart(k, "y"))}
-      <div class="pct">${y}%${arrow("y", y)}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
+      <div class="pct">${y}%${tick}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
       <div class="orbs">${[["v", "VEGAS", "VEG"], ["r", "RATCLIFFE", "RAT"], ["k", "KOERNER", "KOE"], ["c", "CLAY", "CLAY"]].map(([s2, lab, sh]) => { const v = chance(L, s2), v0 = weekStart(k, s2), d = v0 === null ? null : Math.round(v - v0);
-        return `<div class="ob${s2 === "v" ? " vg" : ""}" title="${s2 === "v" ? "Vegas props" : lab.charAt(0) + lab.slice(1).toLowerCase()} ${v}% chance to win this week${v0 === null ? "" : ` · started the week at ${Math.round(v0)}%`}">${glassOrb(v, v0, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="ot"><b><span class="lf">${lab}</span><span class="ls">${sh}</span></b>${d === null ? `<em class="z">–</em>` : d === 0 ? `<em class="z">±0</em>` : `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`}</span></div>`; }).join("")}</div>
-      <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}">${sgn(mg)}</span><span class="pof">PO <b>${pcs(po)}</b></span></div>
-      <div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
+        const odd = Math.abs(v - mid5) >= 5;
+        return `<div class="ob${s2 === "v" ? " vg" : ""}${odd ? " odd" : ""}" title="${s2 === "v" ? "Vegas props" : lab.charAt(0) + lab.slice(1).toLowerCase()} ${v}% chance to win this week${v0 === null ? "" : ` · started the week at ${Math.round(v0)}%`}${odd ? ` · ${Math.abs(Math.round(v - mid5))} points ${v > mid5 ? "above" : "below"} the others - see Why they differ in the card` : ""}">${glassOrb(v, v0, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="ot"><b><span class="lf">${lab}</span><span class="ls">${sh}</span></b>${d === null ? `<em class="z">–</em>` : d === 0 ? `<em class="z">±0</em>` : `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`}</span></div>`; }).join("")}</div>
+      <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}"><span>${goNow ? "LIVE" : "PROJ"}</span>${sgn(mg)}</span></div>
+      <div class="pob" title="Playoff odds for the season (Road to the Championship simulator)${pod === null ? "" : ` · ${pod > 0 ? "up" : "down"} ${Math.abs(pod).toFixed(1)} points since the ${esc(pwhen)} run`}"><span class="pl">PLAYOFFS</span><b>${pcs(po)}</b>${pod === null || Math.abs(pod) < .5 ? "" : `<em class="${pod > 0 ? "up" : "dn"}">${pod > 0 ? "▲" : "▼"}${Math.abs(pod).toFixed(pod >= 9.95 || pod <= -9.95 ? 0 : 1)}</em>`}<div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;

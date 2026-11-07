@@ -402,4 +402,23 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .wd .wr{display:flex;justify-content:space-between;gap:8px;font-size:12px;line-height:1.35;padding-top:3px;min-width:0}
 .wd .wn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}.wd .wn em{font-style:normal;font-size:10px;color:var(--mute);margin-left:3px}
 .wd .wv{flex:none;font-family:var(--f-num);font-size:11px;color:var(--ink2)}.wd .wv b{color:#fff}
+
+/* Nov 7: since-last-read tick, playoff badge, gold glow on a disagreeing orb */
+.mtr .pct{position:relative}
+.slr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin-left:4px;padding:2px 5px 1px;border-radius:6px;font:700 11px/1 var(--f-num);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);letter-spacing:0}
+.slr small{font:700 5.5px/1.2 var(--f-body);letter-spacing:.08em;color:var(--mute);margin-top:1px}
+.slr.up{color:var(--up);border-color:rgba(79,208,138,.35);background:rgba(79,208,138,.08)}.slr.dn{color:var(--dn);border-color:rgba(255,107,114,.35);background:rgba(255,107,114,.08)}.slr.z{color:var(--mute)}
+.mrow{justify-content:center}
+.pob{position:relative;display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:3px 5px;margin:5px 2px 0;padding:5px 6px 6px;border-radius:9px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--lc) 16%,#101a30),#0d1528);border:1px solid color-mix(in srgb,var(--lc) 40%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.pob .pl{font:700 7px/1 var(--f-body);letter-spacing:.14em;color:var(--brass);width:100%;text-align:center}
+.pob b{font:400 22px/1 var(--f-disp);color:#fff;letter-spacing:.02em}
+.pob em{font:700 11px/1 var(--f-num);font-style:normal;padding:2px 4px;border-radius:5px}
+.pob em.up{color:var(--up);background:rgba(79,208,138,.12)}.pob em.dn{color:var(--dn);background:rgba(255,107,114,.12)}
+.pob .tb{width:100%;height:4px;border-radius:2px;background:#26365A;overflow:hidden;margin-top:3px}.pob .tb i{display:block;height:4px;border-radius:2px;background:linear-gradient(90deg,color-mix(in srgb,var(--lc) 70%,#fff),var(--lc))}
+.ob.odd{background:linear-gradient(90deg,rgba(239,210,62,.22),transparent 90%);box-shadow:inset 0 0 0 1px rgba(239,210,62,.55),0 0 12px -2px rgba(239,210,62,.6)}
+.ob.odd svg{filter:drop-shadow(0 0 5px rgba(239,210,62,.85)) drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+.ob.odd .ot b{color:var(--gold)}
+@media (prefers-reduced-motion:no-preference){.ob.odd{animation:oglow 2.4s ease-in-out infinite}@keyframes oglow{50%{box-shadow:inset 0 0 0 1px rgba(239,210,62,.8),0 0 16px 0 rgba(239,210,62,.75)}}}
+@media (max-width:560px){.pob b{font-size:19px}.pob em{font-size:9.5px;padding:1px 3px}.slr{font-size:9.5px;padding:1px 3px}}
 </style>
