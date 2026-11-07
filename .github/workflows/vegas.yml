@@ -1,0 +1,42 @@
+name: Vegas props read
+# Nov 7 2026 (Dom): the Vegas needle. Reads First Down Studio's Vegas-prop rankings (free) into yahoo_drop/vegas/vegas_weekly.json
+# between builds, so the hourly Live sync and the alerts always have a fresh Vegas line. Every Dispatch build also reads it itself
+# (dispatch_run.sh) and scores it into the meter. Props move up to kickoff, so this runs every 2 hours, hourly Sunday morning.
+# Times are UTC (PST = UTC-8 until Mar 8 2027).
+on:
+  schedule:
+    - cron: '20 */2 * * *'
+    - cron: '20 13-20 * * 0'          # Sunday 5 AM - 12 PM PT, hourly (after inactives props get pulled / re-posted)
+  push:
+    paths: ['live_sync/vegas_points.py', '.github/workflows/vegas.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: dk-feeds
+  cancel-in-progress: false
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: read Vegas props
+        run: |
+          W=$(ls dispatch_out/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+          RAW=""; [ "${{ github.event_name }}" = "push" ] && RAW="--keep-raw"
+          python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" --read-only $RAW
+          python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" "dispatch_out/meter_wk$W.json" --no-read
+      - name: save
+        if: always()
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add yahoo_drop/vegas dispatch_out/vegas_scored.csv dispatch_out/vegas_history dispatch_out/meter_wk*.json 2>/dev/null || true
+          git commit -m "vegas $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0; sleep 5; done; exit 1
