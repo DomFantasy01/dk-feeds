@@ -394,7 +394,8 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .ob .ot em{font:600 10.5px/1.15 var(--f-num);font-style:normal;margin-top:1px}
 .ob .ot em.z{color:var(--mute)}
 .ob .ls{display:none}
-@media (max-width:560px){.ob .lf{display:none}.ob .ls{display:inline}.ob{gap:3px}.ob svg{width:30px;height:30px;margin:0}.ob .ot b{font-size:8px;letter-spacing:.05em}.ob .ot em{font-size:9.5px}}
+@media (max-width:360px){.ob .ot b{font-size:6.6px;letter-spacing:0}}
+@media (max-width:560px){.ob{gap:2px;padding-right:2px}.ob svg{width:29px;height:29px;margin:0}.ob .ot b{font-size:6.9px;letter-spacing:0}.ob .ot em{font-size:9.5px}}
 
 /* Nov 7: Why they differ */
 .wd{margin-top:6px;padding:6px 9px;border-radius:7px;background:rgba(255,255,255,.035);border-left:3px solid var(--lc)}
@@ -416,9 +417,17 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .pob em{font:700 11px/1 var(--f-num);font-style:normal;padding:2px 4px;border-radius:5px}
 .pob em.up{color:var(--up);background:rgba(79,208,138,.12)}.pob em.dn{color:var(--dn);background:rgba(255,107,114,.12)}
 .pob .tb{width:100%;height:4px;border-radius:2px;background:#26365A;overflow:hidden;margin-top:3px}.pob .tb i{display:block;height:4px;border-radius:2px;background:linear-gradient(90deg,color-mix(in srgb,var(--lc) 70%,#fff),var(--lc))}
-.ob.odd{background:linear-gradient(90deg,rgba(239,210,62,.22),transparent 90%);box-shadow:inset 0 0 0 1px rgba(239,210,62,.55),0 0 12px -2px rgba(239,210,62,.6)}
-.ob.odd svg{filter:drop-shadow(0 0 5px rgba(239,210,62,.85)) drop-shadow(0 2px 3px rgba(0,0,0,.45))}
-.ob.odd .ot b{color:var(--gold)}
-@media (prefers-reduced-motion:no-preference){.ob.odd{animation:oglow 2.4s ease-in-out infinite}@keyframes oglow{50%{box-shadow:inset 0 0 0 1px rgba(239,210,62,.8),0 0 16px 0 rgba(239,210,62,.75)}}}
+/* Nov 7 (Dom: "neon"): a source 3-5 pts from the others glows steady neon; 5+ flickers. Green = above the others, orange = below */
+.ob.neo{--neo:#39FF88;background:linear-gradient(90deg,color-mix(in srgb,var(--neo) 16%,transparent),transparent 92%);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--neo) 55%,transparent),0 0 6px -1px color-mix(in srgb,var(--neo) 55%,transparent)}
+.ob.neo.lo{--neo:#FF9A1F}
+.ob.neo svg{filter:drop-shadow(0 0 2px var(--neo)) drop-shadow(0 0 5px color-mix(in srgb,var(--neo) 60%,transparent)) drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+.ob.neo .ot b{color:var(--neo);text-shadow:0 0 4px color-mix(in srgb,var(--neo) 70%,transparent)}
+.ob.neo.pulse{box-shadow:inset 0 0 0 1.5px var(--neo),0 0 4px var(--neo),0 0 14px -1px var(--neo);background:linear-gradient(90deg,color-mix(in srgb,var(--neo) 26%,transparent),transparent 92%)}
+.ob.neo.pulse .ot b{text-shadow:0 0 3px var(--neo),0 0 9px var(--neo)}
+@media (prefers-reduced-motion:no-preference){.ob.neo.pulse{animation:neon 2.6s infinite}
+  @keyframes neon{0%,18%,22%,62%,66%,100%{opacity:1;box-shadow:inset 0 0 0 1.5px var(--neo),0 0 4px var(--neo),0 0 14px -1px var(--neo)}
+    20%,64%{opacity:.55;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--neo) 40%,transparent),0 0 0 transparent}
+    40%{box-shadow:inset 0 0 0 1.5px var(--neo),0 0 7px var(--neo),0 0 22px 1px var(--neo)}}}
 @media (max-width:560px){.pob b{font-size:19px}.pob em{font-size:9.5px;padding:1px 3px}.slr{font-size:9.5px;padding:1px 3px}}
 </style>
