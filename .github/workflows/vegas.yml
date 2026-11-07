@@ -29,8 +29,7 @@ jobs:
       - name: read Vegas props
         run: |
           W=$(ls dispatch_out/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
-          RAW=""; [ "${{ github.event_name }}" = "push" ] && RAW="--keep-raw"
-          python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" --read-only $RAW
+          python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" --read-only
           python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" "dispatch_out/meter_wk$W.json" --no-read
       - name: save
         if: always()
