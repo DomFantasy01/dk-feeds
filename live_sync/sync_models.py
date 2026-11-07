@@ -33,7 +33,8 @@ for lab, k in KEY.items():
         if s.get('clay') is not None: g = s['clay']
         if rc is None and g is None: continue
         ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
-        d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g)]
+        vg = s.get('vegas') if s.get('vegas_src') == 'props' else None   # Nov 7 (Dom): Vegas props are slot 3 (Ratcliffe where no prop)
+        d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g), vg if vg is not None else (rc if rc is not None else g)]
     pm[k] = d
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
@@ -97,7 +98,7 @@ for lab, k in KEY.items():
         if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
         return t
     ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
-    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner')}
+    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner'), 'clay': (L.get('needles_set') or {}).get('clay'), 'vegas': (L.get('needles_set') or {}).get('vegas')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
@@ -105,7 +106,7 @@ from datetime import datetime, timedelta, timezone
 t = datetime.strptime(M['built_pt'].replace(' PT', ''), '%a %b %d %Y %I:%M %p')
 cur['stamp'] = t.replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/Los_Angeles")).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 cur['source'] = f"Week {M['week']}: RATCLIFFE, GOTHAM and KOERNER per player from the Dispatch build of {M['built_pt']} (dispatch_out/meter_wk{M['week']}.json)"
-cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), GOTHAM, KOERNER (FantasyLabs, same scoring; Ratcliffe where he has no line)], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
+cur['pm_note'] = "Per-player numbers: [RATCLIFFE (FTN, scored in this league's rules), CLAY (Gotham where Clay has none), KOERNER (FantasyLabs, same scoring; Ratcliffe where he has no line), VEGAS (prop stat lines, same scoring; Ratcliffe where no prop)], keyed by norm(name). K and DEF use Ratcliffe in both; a man FTN does not list carries Yahoo in the Ratcliffe slot."
 # game weather (Oct 11): the Dispatch build's kickoff forecast, passed through for the Live page's sky pictures.
 # A failed fetch or another week's file leaves the last good weather in place.
 try:

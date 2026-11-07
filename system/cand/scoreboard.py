@@ -38,7 +38,7 @@ if mf:
                 g = game_of(s.get('team'), W)
                 if g is None or g.ko is None or now >= g.ko.astimezone(dt.timezone.utc): continue   # kicked off: frozen
                 P[f"{lab}|{side}|{norm(s['player'])}"] = dict(league=lab, side=side, player=s['player'], pos=s['pos'], team=s.get('team'),
-                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, koerner=s.get('koerner') if s.get('koerner_src') == 'flabs' else None, brenton=s.get('brenton') if s.get('brenton_src') == 'brenton' else None, clay=s.get('clay') if s.get('clay_src') == 'espn' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
+                    yahoo=s.get('yahoo'), gotham=s.get('gotham'), gotham_raw=s.get('gotham_raw', s.get('gotham')), sleeper=s.get('sleeper'), ratcliffe=s.get('ratcliffe') if s.get('ratcliffe_src') == 'ftn' else None, koerner=s.get('koerner') if s.get('koerner_src') == 'flabs' else None, brenton=s.get('brenton') if s.get('brenton_src') == 'brenton' else None, clay=s.get('clay') if s.get('clay_src') == 'espn' else None, vegas=s.get('vegas') if s.get('vegas_src') == 'props' else None, status=s.get('status'), at=M['built_pt'], game=g.game_id)   # Oct 21: injury tag kept, so Q/D calls can be graded
                 n += 1
         for s in L.get('bench', []):            # Oct 21 (Dom): Dom's bench too - graded on its own, never mixed into the starters' table
             if s.get('slot') != 'BN' or s.get('pos') in ('K', 'DEF') or not s.get('player'): continue
@@ -70,7 +70,7 @@ for pf in sorted(glob.glob(f"{OUT}/pregame_wk*.json")):
             tms = set(gm[['home_team', 'away_team']].values.ravel()) if len(gm) else set()
             if 'team' in SW and not SW.team.isin(tms).any(): continue
         act = float(FM.price(x, LGK[v['league']]).iloc[0]) if len(x) else 0.0      # final game, no stat line = 0 (inactive)
-        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), brenton=v.get('brenton'), clay=v.get('clay'), actual=round(act, 2)))
+        rows.append(dict(side=v.get('side', 'me'), week=W, league=v['league'], pos=v['pos'], player=v['player'], yahoo=v['yahoo'], gotham_raw=v.get('gotham_raw', v.get('gotham')), sleeper=v['sleeper'], ratcliffe=v.get('ratcliffe'), koerner=v.get('koerner'), brenton=v.get('brenton'), clay=v.get('clay'), vegas=v.get('vegas'), actual=round(act, 2)))
 R = pd.DataFrame(rows)
 if 'side' not in R: R['side'] = None
 R['side'] = R['side'].fillna('seed')
@@ -88,7 +88,9 @@ if 'brenton' not in R: R['brenton'] = None   # Oct 31 (Dom): Paul Brenton's rank
 R['brenton'] = pd.to_numeric(R['brenton'], errors='coerce')
 if 'clay' not in R: R['clay'] = None   # Oct 31 (Dom): Mike Clay (ESPN), frozen pregame from Week 8 - graded by us, ESPN is not in FantasyPros' contest
 R['clay'] = pd.to_numeric(R['clay'], errors='coerce')
-R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe', 'koerner', 'brenton', 'clay']]
+if 'vegas' not in R: R['vegas'] = None   # Nov 7 (Dom): the Vegas needle (prop stat lines), frozen pregame from Week 9 - graded by us
+R['vegas'] = pd.to_numeric(R['vegas'], errors='coerce')
+R = R[['week', 'league', 'pos', 'player', 'yahoo', 'gotham', 'sleeper', 'actual', 'gotham_raw', 'ratcliffe', 'koerner', 'brenton', 'clay', 'vegas']]
 if not len(R): print("   scoreboard: nothing graded yet"); sys.exit(0)
 R.to_csv(f"{OUT}/graded.csv", index=False)
 SRC = ['yahoo', 'gotham', 'sleeper']

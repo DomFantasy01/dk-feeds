@@ -29,6 +29,8 @@ for r in csv.DictReader(open(O(R, "dispatch_out/clay_scored.csv"))) if os.path.e
     fut = [float(v) for k, v in r.items() if re.fullmatch(r"w\d+", k or "") and v not in ("", None) and float(v) > 0]
     key = r["key"] if r["pos"] == "DST" else nk(r["name"])
     put(r["lg"], key, c=fnum(r.get("wk")), cr=round(sum(fut) / len(fut), 1) if fut else None)
+for r in csv.DictReader(open(O(R, "dispatch_out/vegas_scored.csv"))) if os.path.exists(O(R, "dispatch_out/vegas_scored.csv")) else []:   # Nov 7 (Dom): Vegas props
+    put(r["lg"], nk(r["name"]), v=fnum(r.get("wk")), vrk=int(r["rank"]) if (r.get("rank") or "").isdigit() else None, vgap=int(r["ecr_gap"]) if re.fullmatch(r"-?\d+", r.get("ecr_gap") or "") else None)
 rk, rk_read = {}, ""
 try:
     for ln in open(O(R, "yahoo_drop/morning/expert_rankings.txt")):
@@ -84,20 +86,20 @@ for lab, L in (M.get("leagues") or {}).items():
         if not p and not r_: continue
         p = dict(p)
         if nk(name) in OUTL:   # Oct 31 (Dom): ruled out = zero this week for every expert, until their files catch up
-            p.update({x: 0.0 for x in ("r", "k", "c")}); p["out"] = OUTL[nk(name)]
+            p.update({x: 0.0 for x in ("r", "k", "c", "v") if x in p or x != "v"}); p["out"] = OUTL[nk(name)]
         out[name] = dict(pos=pos, why=meta["why"], **p, rk=r_)
     L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read,
-                   points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring")
+                   points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring; Vegas: prop stat lines, same scoring (a check, not an expert)")
     n_all += len(out)
     for side in ("me", "op"):   # the meter's own copies too, so no page shows a stale number for a man who is out
         for s in (L.get("starters") or {}).get(side) or []:
             if s.get("actual") is None and nk(s.get("player")) in OUTL:
-                for x in ("ratcliffe", "koerner", "clay", "gotham", "sleeper"):
+                for x in ("ratcliffe", "koerner", "clay", "vegas", "gotham", "sleeper"):
                     if s.get(x) is not None: s[x] = 0.0
                 s["out_zero"] = OUTL[nk(s.get("player"))]
     for b in L.get("bench") or []:
         if nk(b.get("player")) in OUTL:
-            for x in ("ratcliffe", "koerner", "clay", "gotham", "sleeper"):
+            for x in ("ratcliffe", "koerner", "clay", "vegas", "gotham", "sleeper"):
                 if b.get(x) is not None: b[x] = 0.0
             b["out_zero"] = OUTL[nk(b.get("player"))]
 # Oct 31 (Dom: "is Clay earning his spot?"): every source's miss against what players actually scored, week by week (the
@@ -105,7 +107,7 @@ for lab, L in (M.get("leagues") or {}).items():
 try:
     G = list(csv.DictReader(open(O(R, "dispatch_out/scoreboard/graded.csv"))))
     acc = {}
-    for s_ in ("ratcliffe", "koerner", "clay", "yahoo", "gotham"):
+    for s_ in ("ratcliffe", "koerner", "clay", "vegas", "yahoo", "gotham"):
         for w_ in sorted({int(r["week"]) for r in G}):
             d = [abs(float(r[s_]) - float(r["actual"])) for r in G if int(r["week"]) == w_ and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
             if d: acc.setdefault(s_, {})[str(w_)] = [round(sum(d) / len(d), 2), len(d)]

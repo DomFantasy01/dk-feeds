@@ -134,6 +134,8 @@ for lab, L in (M.get("leagues") or {}).items():
     dl = [sum((s.get("clay") or 0) - (s.get("ratcliffe") or 0) for s in (L.get("starters") or {}).get(side) or [] if s.get("actual") is None) for side in ("me", "op")]
     a, b = T["ratcliffe"][0] + dl[0], T["ratcliffe"][1] + dl[1]
     T["clay"] = [round(a, 2), round(b, 2)]; Nd["clay"] = round(100 * ND.cdf((a - b) / sd))
+    rs = (L.get("needles_set") or {}).get("ratcliffe")   # Nov 7: best-lineup version for Live's pregame Clay dial (it was falling back to Gotham)
+    if rs is not None and 1 <= rs <= 99: L.setdefault("needles_set", {})["clay"] = round(100 * ND.cdf(ND.inv_cdf(rs / 100) + (dl[0] - dl[1]) / sd))
     print(f"   {lab}: Clay {a:.1f} vs {b:.1f} -> {Nd['clay']}% chance to win this week")
 M.setdefault("sources", {})["clay"] = dict(status="OK", read=data["read"], pulled_pt=data["read"], note="Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17")
 json.dump(M, open(MF, "w"), ensure_ascii=False)

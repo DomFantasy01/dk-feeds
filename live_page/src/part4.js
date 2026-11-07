@@ -41,8 +41,8 @@ const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d)/i.test(p.
 const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim());
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
 const started = (p) => isDone(p) || isLive(p);
-/* each source's projected final for one man: Yahoo's live projection, or the expert's number (pm: [Ratcliffe, Clay, Koerner]) */
-const SRCI = {r: 0, c: 1, k: 2};
+/* each source's projected final for one man: Yahoo's live projection, or the expert's number (pm: [Ratcliffe, Clay, Koerner, Vegas]) */
+const SRCI = {r: 0, c: 1, k: 2, v: 3};   /* Nov 7 (Dom): v = Vegas props */
 function manFinal(p, src, pm){
   if (isDone(p)) return pts(p);
   if (isOut(p)) return pts(p);
@@ -58,7 +58,7 @@ function chance(L, src){
   const anyStarted = [...L.players, ...L.oppPlayers].some(started);
   if (!anyStarted && src !== "y"){
     const set = (M && M.best && M.best[L.key] && M.best[L.key].set) || {};
-    const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : set.gotham;   /* the build's best-lineup number, both sides */
+    const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : src === "v" ? set.vegas : (set.clay ?? set.gotham);   /* the build's best-lineup number, both sides */
     if (v !== null && v !== undefined) return +v;
   }
   if (src === "y") return +L.pct;
@@ -140,7 +140,7 @@ function snap(){
   const e = {t: S.stamp, w: S.week, lg: {}};
   for (const L of S.leagues){
     const pl = {}; for (const p of [...L.players, ...L.oppPlayers]) pl[p.name] = Math.round(pts(p) * 100) / 100;
-    e.lg[L.key] = {y: chance(L, "y"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c"), me: +score(L.players).toFixed(2), op: +score(L.oppPlayers).toFixed(2), pl};
+    e.lg[L.key] = {y: chance(L, "y"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c"), v: chance(L, "v"), me: +score(L.players).toFixed(2), op: +score(L.oppPlayers).toFixed(2), pl};
   }
   return e;
 }
@@ -382,12 +382,12 @@ function meters(){
     const po = m.champ && m.champ.base ? m.champ.base.playoff : (m.sim ? m.sim.playoff : null);
     const goNow = [...L.players, ...L.oppPlayers].some(started), F = finals(L), mg = goNow ? score(L.players) - score(L.oppPlayers) : F.me - F.op;
     const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
-    const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
+    const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%, Vegas ${chance(L, "v")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
     const dlt = (src, v) => { const v0 = weekStart(k, src); if (v0 === null || Math.round(v0) === Math.round(v)) return ""; const d = Math.round(v - v0); return `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`; };
     return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
       <div class="mtop"><b>${DK[k]}</b><span>${esc(LGN[k])}</span></div><span class="bell mb ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span>${dial(y, HEX[k], SLUG[k], weekStart(k, "y"))}
       <div class="pct">${y}%${arrow("y", y)}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
-      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : "Clay"} ${v}% (dotted = start of week ${weekStart(k, s2) ?? "–"}%)">${miniDial(v, HEX[k], weekStart(k, s2))}<b>${v}${dlt(s2, v)}</b><span>${lab}</span></div>`; }).join("")}</div>
+      <div class="xd">${[["r", "RAT"], ["k", "KOE"], ["c", "CLAY"], ["v", "VEGAS"]].map(([s2, lab]) => { const v = chance(L, s2); return `<div title="${lab === "RAT" ? "Ratcliffe" : lab === "KOE" ? "Koerner" : lab === "VEGAS" ? "Vegas props" : "Clay"} ${v}% (dotted = start of week ${weekStart(k, s2) ?? "–"}%)">${miniDial(v, HEX[k], weekStart(k, s2))}<b>${v}${dlt(s2, v)}</b><span>${lab}</span></div>`; }).join("")}</div>
       <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}">${sgn(mg)}</span><span class="pof">PO <b>${pcs(po)}</b></span></div>
       <div class="tube"><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
   const kick = nextKick();
@@ -511,28 +511,42 @@ function roadTiles(c, m){
   if (!g.length) return "";
   return `<div class="road">${g.map(x => { const nm = String(x.opp || ""); return `<div style="--hc:${heatCol(x.win)}" title="${esc(`Week ${x.wk} vs ${nm}: ${pc(x.win)}`)}"><span>WK ${esc(x.wk)}</span><b>${pc(x.win)}</b><em>${esc(nm.length > 11 ? nm.slice(0, 10) + "…" : nm)}</em></div>`; }).join("")}</div>`;
 }
-/* every expert, every starter: four thin bars per man - Yahoo, Ratcliffe, Koerner, Clay - in this league's scoring */
+/* every expert, every starter: five thin bars per man - Yahoo, Ratcliffe, Koerner, Clay, Vegas - in this league's scoring */
 function expertBars(L, m, k){
   const xp = (m.xp && m.xp.players) || {}, rows = [];
-  for (const p of L.players){ const v = xp[p.name] || {}; const vals = {y: +p.proj || null, r: v.r ?? null, k: v.k ?? null, c: v.c ?? null};
+  for (const p of L.players){ const v = xp[p.name] || {}; const vals = {y: +p.proj || null, r: v.r ?? null, k: v.k ?? null, c: v.c ?? null, v: v.v ?? null};
     if ([vals.r, vals.k, vals.c].every(x => x === null)) continue; const ns = [vals.y, vals.r, vals.k, vals.c].filter(x => x !== null); rows.push({n: p.name, slot: p.slot, ...vals, sp: Math.max(...ns) - Math.min(...ns)}); }
   if (!rows.length) return "";
-  const mx = Math.max(...rows.flatMap(r => [r.y, r.r, r.k, r.c]).filter(x => x !== null), 5), W = 340, rh = 40, nl = 104, bx = nl + 4, bwid = W - bx - 34;
-  const S4 = [["y", "#EEF1F6", "Y"], ["r", HEX[k], "R"], ["k", HEX[k] + "AA", "K"], ["c", "#8A93A6", "C"]];
+  const mx = Math.max(...rows.flatMap(r => [r.y, r.r, r.k, r.c, r.v]).filter(x => x !== null), 5), W = 340, rh = 48, nl = 104, bx = nl + 4, bwid = W - bx - 34;
+  const S4 = [["y", "#EEF1F6", "Y"], ["r", HEX[k], "R"], ["k", HEX[k] + "AA", "K"], ["c", "#8A93A6", "C"], ["v", "#E0A84A", "V"]];
   let g = "";
   rows.forEach((r, i) => { const y0 = 4 + i * rh;
     if (i % 2 === 0) g += `<rect x="0" y="${y0 - 2}" width="${W}" height="${rh}" fill="#ffffff" opacity=".025" rx="4"/>`;
     g += `<text x="4" y="${y0 + 11}" font-size="9.5" fill="#fff" font-family="Poppins,sans-serif" font-weight="600">${esc(r.n.length > 17 ? r.n.slice(0, 16) + "…" : r.n)}</text><text x="4" y="${y0 + 22}" font-size="7.5" fill="#8A93A6" font-family="Poppins,sans-serif">${esc(r.slot || "")}${r.sp >= 3 ? ' · <tspan fill="#EFD23E" font-weight="700">SPLIT ' + r.sp.toFixed(1) + "</tspan>" : ""}</text>`;
     S4.forEach(([s, col], j) => { const v = r[s]; if (v === null) return; const y = y0 + 1 + j * 8.6, w = Math.max(1.5, bwid * v / mx);
       g += `<rect x="${bx}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="5.6" rx="2.8" fill="${col}"/><text x="${(bx + w + 3).toFixed(1)}" y="${(y + 5.6).toFixed(1)}" font-size="7.4" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${v.toFixed(1)}</text>`; }); });
-  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Koerner</span><span><i style="border-color:#8A93A6"></i>Clay</span></div>`;
+  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Koerner</span><span><i style="border-color:#8A93A6"></i>Clay</span><span><i style="border-color:#E0A84A"></i>Vegas</span></div>`;
+}
+/* Nov 7 (Dom: "it's gonna let us know if there's a disagreement ... compare it and talk about it"): Vegas against Ratcliffe on
+   every man the cards cover. Props run low on touchdowns, so each Vegas number is first lifted by this league's typical
+   Vegas-to-Ratcliffe ratio; a man is flagged when the lifted number still differs from Ratcliffe by 25%+ and 2+ points. */
+function vegHtml(L, m, k, yv){
+  const xp = (m.xp && m.xp.players) || {}, both = Object.entries(xp).filter(([n, v]) => v && v.v != null && v.r != null && v.r > 1 && !v.out);
+  if (!both.length) return "";
+  const rat = both.map(([, v]) => v.v / v.r).sort((a, b) => a - b), med = rat[Math.floor(rat.length / 2)] || 1;
+  const rows = both.map(([n, v]) => { const adj = v.v / med, d = adj - v.r; return {n, v, adj, d, pct: d / v.r}; })
+    .filter(x => Math.abs(x.d) >= 2 && Math.abs(x.pct) >= .25).sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).slice(0, 8);
+  const gapTxt = (v) => v.vrk ? `Vegas #${v.vrk}${v.vgap ? ` (${v.vgap > 0 ? "+" : ""}${v.vgap} vs experts)` : ""}` : "";
+  return `<div class="sub">Vegas vs Ratcliffe${yv != null ? ` · Vegas needle ${yv}%` : ""}</div>` + (rows.length ? rows.map(x => `<div class="mv"><span class="k ${x.d > 0 ? "up" : "dn"}">${x.d > 0 ? "▲ HIGHER" : "▼ LOWER"}</span><span class="t">${esc(x.n)} <span class="mute">${esc(x.v.why || "")} · ${esc(gapTxt(x.v))}</span></span><span class="num">R ${f1(x.v.r)} · V ${f1(x.v.v)}</span></div>`).join("")
+    : `<p class="note">No big disagreements: Vegas and Ratcliffe line up on every man the cards cover.</p>`) +
+    `<p class="note">Vegas runs about ${Math.round((1 - med) * 100)}% under Ratcliffe in ${DK[k]} scoring (props are cautious on touchdowns), so each Vegas number is lifted by that before comparing. Flag = 25%+ and 2+ points apart. Talk it through - Ratcliffe still leads.</p>`;
 }
 /* who's been closest: season average points missed per man, shortest bar wins */
 function accBars(){
   const acc = (M && M.acc && M.acc.src) || {}, rows = Object.entries(acc).map(([s, wk]) => { const ws = Object.values(wk); const n = ws.reduce((a, v) => a + (v[1] || 1), 0);
     return {s, avg: ws.reduce((a, v) => a + v[0] * (v[1] || 1), 0) / (n || 1), wks: ws.length, men: n}; }).sort((a, b) => a.avg - b.avg);
   if (!rows.length) return ""; const W = 340, rh = 22, lo = Math.floor(Math.min(...rows.map(r => r.avg)) - 1), hi = Math.ceil(Math.max(...rows.map(r => r.avg)) + .3), X = (v) => 86 + (W - 130) * (v - lo) / (hi - lo);
-  const NM = {yahoo: "Yahoo", gotham: "Gotham", ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", sleeper: "Sleeper"};
+  const NM = {yahoo: "Yahoo", gotham: "Gotham", ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", sleeper: "Sleeper"};
   return `<svg viewBox="0 0 ${W} ${rows.length * rh + 16}" role="img">${rows.map((r, i) => { const y = 4 + i * rh, best = i === 0;
     return `<text x="4" y="${y + 12}" font-size="10" fill="${best ? "#EFD23E" : "#EEF1F6"}" font-family="Poppins,sans-serif" font-weight="600">${esc(NM[r.s] || r.s)}</text>
       <rect x="86" y="${y + 3}" width="${(X(r.avg) - 86).toFixed(1)}" height="11" rx="5.5" fill="${best ? "#EFD23E" : "#3F5785"}"/>
@@ -565,9 +579,9 @@ function card(k){
   const seats = emptySeats(L);
   const seatHtml = seats.length ? `<div class="seat"><div class="h">EMPTY SEAT</div>${seats.map(p => `<div><b>${esc(p.slot)} ${esc(p.name)}</b> ${p.status ? `<span class="chip r">${esc(p.status)}</span>` : ""} · Yahoo ${f1(p.proj)} · locks ${esc(p.when || "?")}</div>`).join("")}</div>` : "";
   /* the four needles with their move since the last read */
-  const xr = [["y", "YAHOO"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
+  const xr = [["y", "YAHOO"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"], ["v", "VEGAS"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
     const mv = p0 === null || p0 === undefined || p0 === v ? "" : `<em class="${v > p0 ? "up" : "dn"}">${v > p0 ? "▲" : "▼"}${Math.abs(v - p0)}</em>`; return `<div><b>${v}%</b><span>${lab}</span> ${mv}</div>`; }).join("");
-  const ys = [chance(L, "y"), chance(L, "r"), chance(L, "k"), chance(L, "c")], split = Math.max(...ys) - Math.min(...ys);
+  const ys = [chance(L, "y"), chance(L, "r"), chance(L, "k"), chance(L, "c")], yv = chance(L, "v"), split = Math.max(...ys) - Math.min(...ys);
   const anyStart = [...L.players, ...L.oppPlayers].some(started);
   const splitHtml = split >= 20 && opL.length + meL.length > 0 ? `<div class="warn">The sources split by ${split} points on this game${anyStart ? "" : " - check why before kickoff"}.</div>` : "";
   /* points since the last read */
@@ -579,8 +593,8 @@ function card(k){
       (moved.length ? `<div class="sub">Who moved</div>` + moved.map(x => `<div class="mv"><span class="k">${x.side === "you" ? "You" : '<span class="mute">Opp</span>'}</span><span class="t">${esc(x.n)}</span><span class="num ${x.d >= 0 ? "up" : "dn"}">${sgn(x.d)}</span></div>`).join("") : `<p class="note">Nobody moved half a point or more.</p>`)); }
   /* read-by-read chance */
   const es = trailEntries().filter(e => e.w === S.week && e.lg[k]);
-  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["k", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
-      <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span></div></div>` : "";
+  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["k", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"], ["v", "#E0A84A", "1 2"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
+      <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span><span><i class="dot" style="border-color:#E0A84A"></i>Vegas</span></div></div>` : "";
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */
   const bar = (list) => list.map(p => `<i class="${isLive(p) ? "on" : isDone(p) ? "done" : ""}"></i>`).join("");
@@ -626,7 +640,7 @@ function card(k){
     return {n, v, sp}; }).filter((x, i, arr) => arr.findIndex(y => y.v.pos === x.v.pos && y.v.r === x.v.r && y.v.k === x.v.k && y.v.c === x.v.c) === i).sort((a, b) => b.sp - a.sp);
   const eb = expertBars(L, m, k);
   const experts = (eb ? `<div class="chartbox"><div class="ct">Your starters · every expert · ${DK[k]} scoring</div>${eb}</div>` : "") + (accBars() ? `<div class="chartbox"><div class="ct">Who's been closest</div>${accBars()}</div>` : "") + (xpc.length ? `<div class="sub">Every player the experts cover</div><div class="xpc">${xpc.map(({n, v, sp}) => `<div class="c${sp >= 3 ? " split" : ""}"><b>${esc(n)}</b><div class="why">${esc(v.pos || "")} · ${esc(v.why || "")}${sp >= 3 ? " · split " + sp.toFixed(1) : ""}</div>
-      <div class="ns"><span>R ${f1(v.r)}</span><span>K ${f1(v.k)}</span><span>C ${f1(v.c)}</span></div></div>`).join("")}</div><p class="note">This week in ${DK[k]} scoring: R = Ratcliffe (FTN, leads), K = Koerner (FantasyLabs), C = Clay (ESPN). Gold edge = the experts split by 3+ points. ${esc((m.experts || {}).read ? "Ranks read " + m.experts.read : "")}</p>
+      <div class="ns"><span>R ${f1(v.r)}</span><span>K ${f1(v.k)}</span><span>C ${f1(v.c)}</span><span title="${v.vrk ? "Vegas rank " + v.vrk + (v.vgap ? " (" + (v.vgap > 0 ? "+" : "") + v.vgap + " vs experts)" : "") : "no Vegas prop"}">V ${f1(v.v)}</span></div></div>`).join("")}</div><p class="note">This week in ${DK[k]} scoring: R = Ratcliffe (FTN, leads), K = Koerner (FantasyLabs), C = Clay (ESPN), V = Vegas (player props, a check - not an expert). Gold edge = the experts split by 3+ points. ${esc((m.experts || {}).read ? "Ranks read " + m.experts.read : "")}</p>
       ${((m.experts || {}).rising || []).length ? `<div class="sub">Moving up</div>${m.experts.rising.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}
       ${((m.experts || {}).sliding || []).length ? `<div class="sub">Sliding</div>${m.experts.sliding.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}` : (eb ? "" : `<div class="empty">No expert numbers for this league yet.</div>`));
 
@@ -651,7 +665,7 @@ function card(k){
     <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
     <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : ""].join("")}</div>
     ${scoreHtml}${takes}${seatHtml}
-    <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number.</p>${splitHtml}
+    <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${vegHtml(L, m, k, yv)}
     ${progress(L, k)}
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
     ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
