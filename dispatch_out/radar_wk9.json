@@ -1,48 +1,48 @@
 {
  "week": 9,
- "built": "Fri Nov 6 9:38 PM PT",
- "built_utc": "2026-11-07T05:38:46.532860+00:00",
+ "built": "Fri Nov 6 11:50 PM PT",
+ "built_utc": "2026-11-07T07:50:12.691623+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Fri Nov 6 9:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Nov 6 11:44 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 2066,
-   "newest": "44 min ago",
+   "newest": "2.9 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Fri Nov 6 9:33 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 6049,
-   "newest": "11 min ago",
+   "pulled": "Fri Nov 6 11:44 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 6053,
+   "newest": "1.4 h ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Fri Nov 6 9:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Nov 6 11:44 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 1531,
-   "newest": "4.5 h ago",
+   "newest": "6.7 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Fri Nov 6 9:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Nov 6 11:44 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 392,
-   "newest": "44 min ago",
+   "newest": "2.9 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Fri Nov 6 9:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Fri Nov 6 11:44 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Fri Nov 6 9:36 PM PT",
-   "pulled_ago": "2 min ago",
+   "pulled": "Fri Nov 6 11:47 PM PT",
+   "pulled_ago": "3 min ago",
    "items": 769,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Fri Nov 06 2026 09:36 PM PT",
+   "pulled": "Fri Nov 06 2026 11:47 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Fri Nov 6 8:44 PM PT",
-   "pulled_ago": "55 min ago",
+   "pulled_ago": "3.1 h ago",
    "items": 370,
    "newest": null,
    "warn": null,
@@ -500,8 +500,8 @@
        "grade": "good"
       }
      ],
-     "gotham": 12.1,
-     "gotham_ros": 13.0,
+     "gotham": 13.9,
+     "gotham_ros": 13.3,
      "sleeper": 12.7,
      "workload": "10/8/7/9/8/7",
      "trend": -0.14
@@ -640,7 +640,7 @@
      "pos": "QB",
      "team": "MIA",
      "why": [
-      "Sleeper adds #11 (77,490 in 24 h)"
+      "Sleeper adds #11 (71,463 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -721,7 +721,7 @@
      "pos": "RB",
      "team": "CLE",
      "why": [
-      "Sleeper adds #19 (47,815 in 24 h)"
+      "Sleeper adds #19 (45,810 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -754,19 +754,63 @@
      "acq": "unverified"
     },
     {
+     "name": "Mack Hollins",
+     "pos": "WR",
+     "team": "NE",
+     "why": [
+      "good news",
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 9:10 PM PT",
+       "src": "rotoballer",
+       "title": "Mack Hollins an Immediate WR3/Flex Option if Activated",
+       "text": "New England Patriots wide receiver Mack Hollins (calf) could immediately return to the WR3/flex range in fantasy football if he [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Wed Nov 4 6:17 AM PT",
+       "src": "rotoballer",
+       "title": "Mack Hollins Set to Return to Practice Wednesday",
+       "text": "New England Patriots wide receiver Mack Hollins (calf) is set to return to practice on Wednesday, according to NFL Network's [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.5
+     },
+     "beats_floor": true,
+     "gotham": 8.8,
+     "gotham_ros": 8.7,
+     "sleeper": 7.7,
+     "workload": "6/2/11/4",
+     "trend": 0.09,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darius Cooper",
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "opening: DeVonta Smith \u2014 bad news (rotoballer)",
-      "Sleeper adds #8 (91,133 in 24 h)"
+      "Sleeper adds #8 (89,705 in 24 h)"
      ],
      "marker": {
       "count": 1,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "opening"
+       "note"
       ]
      },
      "news": [
@@ -796,7 +840,7 @@
      "pos": "WR",
      "team": "ATL",
      "why": [
-      "Sleeper adds #24 (42,909 in 24 h)"
+      "Sleeper adds #22 (43,512 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -947,89 +991,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Mack Hollins",
-     "pos": "WR",
-     "team": "NE",
-     "why": [
-      "good news",
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 9:10 PM PT",
-       "src": "rotoballer",
-       "title": "Mack Hollins an Immediate WR3/Flex Option if Activated",
-       "text": "New England Patriots wide receiver Mack Hollins (calf) could immediately return to the WR3/flex range in fantasy football if he [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 4 6:17 AM PT",
-       "src": "rotoballer",
-       "title": "Mack Hollins Set to Return to Practice Wednesday",
-       "text": "New England Patriots wide receiver Mack Hollins (calf) is set to return to practice on Wednesday, according to NFL Network's [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.5
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 9.0,
-     "sleeper": 7.7,
-     "workload": "6/2/11/4",
-     "trend": 0.09,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dontayvion Wicks",
-     "pos": "WR",
-     "team": "PHI",
-     "why": [
-      "opening: DeVonta Smith \u2014 bad news (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 4:12 PM PT",
-       "src": "RotoWire news",
-       "title": "Darius Cooper: Set up for another start",
-       "text": "Cooper and Makai Lemon are positioned to start again Sunday against the Giants, with fellow wideouts DeVonta Smith (hamstring) and Dontayvion Wicks (ankle) ruled out for a third straight game, per PhiladelphiaEagles.com .",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.5
-     },
-     "beats_floor": false,
-     "gotham": 7.5,
-     "gotham_ros": 8.3,
-     "sleeper": null,
-     "workload": "5/7/6/5/8/4",
-     "trend": -0.09,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Pat Bryant",
      "pos": "WR",
      "team": "DEN",
@@ -1065,7 +1026,7 @@
       "gotham": 8.5
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 5.8,
      "gotham_ros": 5.8,
      "sleeper": 6.7,
      "workload": "6/1/3/3",
@@ -1078,8 +1039,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -1108,6 +1068,43 @@
      "sleeper": 6.4,
      "workload": "0/2/3/2/3/1/1/1",
      "trend": -0.42,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Isaac TeSlaa",
+     "pos": "WR",
+     "team": "DET",
+     "why": [
+      "opening: Amon-Ra St. Brown \u2014 questionable/limited (pft)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 31 7:16 AM PT",
+       "src": "rotoballer",
+       "title": "Isaac TeSlaa is Tough to Trust in Difficult Week 8 Matchup",
+       "text": "Across six games in 2026, Detroit Lions wide receiver Isaac TeSlaa has recorded 10 catches for 197 yards on 21 [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.5
+     },
+     "beats_floor": false,
+     "gotham": 6.3,
+     "gotham_ros": 5.8,
+     "sleeper": 4.5,
+     "workload": "1/6/4/9/3/3",
+     "trend": -0.38,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1269,7 +1266,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 14.3,
+     "gotham": 14.7,
      "gotham_ros": 17.1,
      "sleeper": 13.7,
      "workload": "13/13/20/33/22/35/31",
@@ -1789,7 +1786,7 @@
      "pos": "RB",
      "team": "SF",
      "why": [
-      "Sleeper adds #20 (47,264 in 24 h)"
+      "Sleeper adds #20 (45,248 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1826,7 +1823,7 @@
      "pos": "WR",
      "team": "ATL",
      "why": [
-      "Sleeper adds #24 (42,909 in 24 h)"
+      "Sleeper adds #22 (43,512 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1981,7 +1978,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #10 (82,863 in 24 h)"
+      "Sleeper adds #10 (78,831 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2049,7 +2046,7 @@
       "gotham": 7.8
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 5.8,
      "gotham_ros": 5.8,
      "sleeper": 6.7,
      "workload": "6/1/3/3",
@@ -2062,8 +2059,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -2841,88 +2837,12 @@
      "acq": "unverified"
     },
     {
-     "name": "Darius Cooper",
-     "pos": "WR",
-     "team": "PHI",
-     "why": [
-      "opening: DeVonta Smith \u2014 bad news (rotoballer)",
-      "Sleeper adds #8 (91,133 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 4:12 PM PT",
-       "src": "RotoWire news",
-       "title": "Darius Cooper: Set up for another start",
-       "text": "Cooper and Makai Lemon are positioned to start again Sunday against the Giants, with fellow wideouts DeVonta Smith (hamstring) and Dontayvion Wicks (ankle) ruled out for a third straight game, per PhiladelphiaEagles.com .",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 9.6
-     },
-     "beats_floor": false,
-     "gotham": 6.1,
-     "gotham_ros": 6.8,
-     "sleeper": 8.7,
-     "workload": "4/9/3/2/3/6",
-     "trend": 0.16,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Jahan Dotson",
-     "pos": "WR",
-     "team": "ATL",
-     "why": [
-      "Sleeper adds #24 (42,909 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 4 7:39 AM PT",
-       "src": "rotoballer",
-       "title": "Jahan Dotson Worth Streaming in Deep Setups in Week 9",
-       "text": "Atlanta wide receiver Jahan Dotson has quietly produced solid stat lines over the past several games, but he still is [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Josh Downs",
-      "gotham": 9.6
-     },
-     "beats_floor": false,
-     "gotham": 6.5,
-     "gotham_ros": 6.3,
-     "sleeper": 8.6,
-     "workload": "3/4/3/3/5/6/3/6",
-     "trend": 0.16,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Mack Hollins",
      "pos": "WR",
      "team": "NE",
      "why": [
       "good news",
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -2953,11 +2873,85 @@
       "gotham": 9.6
      },
      "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 9.0,
+     "gotham": 8.8,
+     "gotham_ros": 8.7,
      "sleeper": 7.7,
      "workload": "6/2/11/4",
      "trend": 0.09,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Darius Cooper",
+     "pos": "WR",
+     "team": "PHI",
+     "why": [
+      "Sleeper adds #8 (89,705 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 4:12 PM PT",
+       "src": "RotoWire news",
+       "title": "Darius Cooper: Set up for another start",
+       "text": "Cooper and Makai Lemon are positioned to start again Sunday against the Giants, with fellow wideouts DeVonta Smith (hamstring) and Dontayvion Wicks (ankle) ruled out for a third straight game, per PhiladelphiaEagles.com .",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 9.6
+     },
+     "beats_floor": false,
+     "gotham": 6.1,
+     "gotham_ros": 6.8,
+     "sleeper": 8.7,
+     "workload": "4/9/3/2/3/6",
+     "trend": 0.16,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jahan Dotson",
+     "pos": "WR",
+     "team": "ATL",
+     "why": [
+      "Sleeper adds #22 (43,512 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 4 7:39 AM PT",
+       "src": "rotoballer",
+       "title": "Jahan Dotson Worth Streaming in Deep Setups in Week 9",
+       "text": "Atlanta wide receiver Jahan Dotson has quietly produced solid stat lines over the past several games, but he still is [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Josh Downs",
+      "gotham": 9.6
+     },
+     "beats_floor": false,
+     "gotham": 6.5,
+     "gotham_ros": 6.3,
+     "sleeper": 8.6,
+     "workload": "3/4/3/3/5/6/3/6",
+     "trend": 0.16,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2997,7 +2991,7 @@
       "gotham": 9.6
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 5.8,
      "gotham_ros": 5.8,
      "sleeper": 6.7,
      "workload": "6/1/3/3",
@@ -3010,8 +3004,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -3183,7 +3176,7 @@
       "gotham": 12.6
      },
      "beats_floor": false,
-     "gotham": 5.1,
+     "gotham": 5.2,
      "gotham_ros": 5.4,
      "sleeper": 0.4,
      "workload": "0/0/0/6/12/8/7",
@@ -3192,39 +3185,39 @@
      "acq": "unverified"
     },
     {
-     "name": "KaVontae Turpin",
-     "pos": "WR",
-     "team": "DAL",
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
      "why": [
-      "opening: George Pickens \u2014 questionable/limited (pft)"
+      "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
-      "color": "gold",
+      "recency": 1,
+      "color": "green",
       "grades": [
-       "opening"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Fri Nov 6 4:19 PM PT",
+       "t": "Thu Nov 5 11:16 AM PT",
        "src": "RotoWire news",
-       "title": "KaVontae Turpin: Won't play for third consecutive game",
-       "text": "Turpin (ribs) has been ruled out ahead of Sunday's game against the Colts, Tommy Yarrish of the Cowboys' official site reports.",
-       "grade": "bad"
+       "title": "Jaylen Wright: Returns to practice Thursday",
+       "text": "Wright (quadriceps) is taking part in practice Thursday, David Furones of the South Florida Sun Sentinel reports.",
+       "grade": "good"
       }
      ],
      "floor": {
-      "name": "Josh Downs",
-      "gotham": 9.6
+      "name": "Rachaad White",
+      "gotham": 12.6
      },
      "beats_floor": false,
-     "gotham": 5.0,
-     "gotham_ros": 4.7,
-     "sleeper": null,
-     "workload": "1/0/3/0/4/0",
-     "trend": 0.04,
+     "gotham": 3.8,
+     "gotham_ros": 3.9,
+     "sleeper": 4.8,
+     "workload": "1/4/5/6/10/4",
+     "trend": 0.22,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3272,48 +3265,6 @@
    "unread": [],
    "own": [
     {
-     "name": "Jared Goff",
-     "pos": "QB",
-     "team": "DET",
-     "slot": "Q/W/R/T",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 8:38 AM PT",
-       "src": "rotoballer",
-       "title": "5 Dynasty Fantasy Football Buys for Contenders: Players to Trade For in Week 9 (2026)",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/jared-goff-fantasy-football-rankings-news-NFL-DFS-lineup-picks-icon-rotoballer-1220x791.jpeg\" class=\"wp-post-image\" alt=\"5 Dynasty Fantasy Football Buys for Contenders: Pla",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 1 1:21 PM PT",
-       "src": "ESPN news",
-       "title": "Goff throws go-ahead touchdown pass to Williams and Lions beat Vikings 19-15 for their 1st loss",
-       "text": "\u2014 Jared Goff threw a go-ahead, 7-yard touchdown pass to Jameson Williams with 4:35 left and the Detroit Lions beat the Minnesota Vikings 19-15 on...",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Oct 31 6:53 AM PT",
-       "src": "rotoballer",
-       "title": "Jared Goff Remains a Low-End Starter in Tough Week 8 Matchup",
-       "text": "Across six games in 2026, Detroit Lions quarterback Jared Goff has completed 67.3% of his pass attempts and thrown for [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 24.5,
-     "gotham_ros": 22.5,
-     "sleeper": 23.4,
-     "workload": "42/42/37/52/31/35/29",
-     "trend": -0.22
-    },
-    {
      "name": "Dak Prescott",
      "pos": "QB",
      "team": "DAL",
@@ -3354,6 +3305,48 @@
      "sleeper": 23.0,
      "workload": "37/36/45/48/42/57/30/38",
      "trend": -0.17
+    },
+    {
+     "name": "Jared Goff",
+     "pos": "QB",
+     "team": "DET",
+     "slot": "Q/W/R/T",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:38 AM PT",
+       "src": "rotoballer",
+       "title": "5 Dynasty Fantasy Football Buys for Contenders: Players to Trade For in Week 9 (2026)",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/jared-goff-fantasy-football-rankings-news-NFL-DFS-lineup-picks-icon-rotoballer-1220x791.jpeg\" class=\"wp-post-image\" alt=\"5 Dynasty Fantasy Football Buys for Contenders: Pla",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 1 1:21 PM PT",
+       "src": "ESPN news",
+       "title": "Goff throws go-ahead touchdown pass to Williams and Lions beat Vikings 19-15 for their 1st loss",
+       "text": "\u2014 Jared Goff threw a go-ahead, 7-yard touchdown pass to Jameson Williams with 4:35 left and the Detroit Lions beat the Minnesota Vikings 19-15 on...",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Oct 31 6:53 AM PT",
+       "src": "rotoballer",
+       "title": "Jared Goff Remains a Low-End Starter in Tough Week 8 Matchup",
+       "text": "Across six games in 2026, Detroit Lions quarterback Jared Goff has completed 67.3% of his pass attempts and thrown for [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 24.5,
+     "gotham_ros": 22.5,
+     "sleeper": 23.4,
+     "workload": "42/42/37/52/31/35/29",
+     "trend": -0.22
     },
     {
      "name": "D'Andre Swift",
@@ -3398,6 +3391,48 @@
      "trend": 0.3
     },
     {
+     "name": "Omar Cooper Jr.",
+     "pos": "WR",
+     "team": "NYJ",
+     "slot": "BN",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:15 PM PT",
+       "src": "rotoballer",
+       "title": "Omar Cooper Jr. Suddenly Facing Competition for Volume Ahead of Week 9",
+       "text": "New York Jets wide receiver Omar Cooper Jr. looked spectacular between Weeks 6-7, catching a total of 11 passes for [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Nov 6 10:24 AM PT",
+       "src": "RotoWire news",
+       "title": "Omar Cooper: Primed for key role sans Wilson",
+       "text": "Cooper and Adonai Mitchell will be the Jets' top wide receivers with Garrett Wilson (concussion) unavailable for Sunday's game at Kansas City, ESPN's Rich Cimini reports.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 1 7:19 PM PT",
+       "src": "RotoWire news",
+       "title": "Omar Cooper: No targets in Week 8",
+       "text": "Cooper did not garner a target during Sunday's 38-33 loss to the Raiders.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 15.4,
+     "gotham_ros": 15.4,
+     "sleeper": 14.1,
+     "workload": "8/6",
+     "trend": -0.16
+    },
+    {
      "name": "Ollie Gordon II",
      "pos": "RB",
      "team": "MIA",
@@ -3438,48 +3473,6 @@
      "sleeper": 13.9,
      "workload": "30/17/31/40/26",
      "trend": 0.07
-    },
-    {
-     "name": "Omar Cooper Jr.",
-     "pos": "WR",
-     "team": "NYJ",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 8:15 PM PT",
-       "src": "rotoballer",
-       "title": "Omar Cooper Jr. Suddenly Facing Competition for Volume Ahead of Week 9",
-       "text": "New York Jets wide receiver Omar Cooper Jr. looked spectacular between Weeks 6-7, catching a total of 11 passes for [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 6 10:24 AM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper: Primed for key role sans Wilson",
-       "text": "Cooper and Adonai Mitchell will be the Jets' top wide receivers with Garrett Wilson (concussion) unavailable for Sunday's game at Kansas City, ESPN's Rich Cimini reports.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 1 7:19 PM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper: No targets in Week 8",
-       "text": "Cooper did not garner a target during Sunday's 38-33 loss to the Raiders.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 12.6,
-     "gotham_ros": 15.4,
-     "sleeper": 14.1,
-     "workload": "8/6",
-     "trend": -0.16
     },
     {
      "name": "Justin Jefferson",
@@ -3986,19 +3979,63 @@
      "acq": "unverified"
     },
     {
+     "name": "Mack Hollins",
+     "pos": "WR",
+     "team": "NE",
+     "why": [
+      "good news",
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 9:10 PM PT",
+       "src": "rotoballer",
+       "title": "Mack Hollins an Immediate WR3/Flex Option if Activated",
+       "text": "New England Patriots wide receiver Mack Hollins (calf) could immediately return to the WR3/flex range in fantasy football if he [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Wed Nov 4 6:17 AM PT",
+       "src": "rotoballer",
+       "title": "Mack Hollins Set to Return to Practice Wednesday",
+       "text": "New England Patriots wide receiver Mack Hollins (calf) is set to return to practice on Wednesday, according to NFL Network's [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Zay Flowers",
+      "gotham": 5.3
+     },
+     "beats_floor": true,
+     "gotham": 8.8,
+     "gotham_ros": 8.7,
+     "sleeper": 7.7,
+     "workload": "6/2/11/4",
+     "trend": 0.09,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darius Cooper",
      "pos": "WR",
      "team": "PHI",
      "why": [
-      "opening: DeVonta Smith \u2014 bad news (rotoballer)",
-      "Sleeper adds #8 (91,133 in 24 h)"
+      "Sleeper adds #8 (89,705 in 24 h)"
      ],
      "marker": {
       "count": 1,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "opening"
+       "note"
       ]
      },
      "news": [
@@ -4028,7 +4065,7 @@
      "pos": "WR",
      "team": "ATL",
      "why": [
-      "Sleeper adds #24 (42,909 in 24 h)"
+      "Sleeper adds #22 (43,512 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4098,89 +4135,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Mack Hollins",
-     "pos": "WR",
-     "team": "NE",
-     "why": [
-      "good news",
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 9:10 PM PT",
-       "src": "rotoballer",
-       "title": "Mack Hollins an Immediate WR3/Flex Option if Activated",
-       "text": "New England Patriots wide receiver Mack Hollins (calf) could immediately return to the WR3/flex range in fantasy football if he [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 4 6:17 AM PT",
-       "src": "rotoballer",
-       "title": "Mack Hollins Set to Return to Practice Wednesday",
-       "text": "New England Patriots wide receiver Mack Hollins (calf) is set to return to practice on Wednesday, according to NFL Network's [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Zay Flowers",
-      "gotham": 5.3
-     },
-     "beats_floor": true,
-     "gotham": 0.0,
-     "gotham_ros": 9.0,
-     "sleeper": 7.7,
-     "workload": "6/2/11/4",
-     "trend": 0.09,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dontayvion Wicks",
-     "pos": "WR",
-     "team": "PHI",
-     "why": [
-      "opening: DeVonta Smith \u2014 bad news (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 4:12 PM PT",
-       "src": "RotoWire news",
-       "title": "Darius Cooper: Set up for another start",
-       "text": "Cooper and Makai Lemon are positioned to start again Sunday against the Giants, with fellow wideouts DeVonta Smith (hamstring) and Dontayvion Wicks (ankle) ruled out for a third straight game, per PhiladelphiaEagles.com .",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Zay Flowers",
-      "gotham": 5.3
-     },
-     "beats_floor": true,
-     "gotham": 7.5,
-     "gotham_ros": 8.2,
-     "sleeper": null,
-     "workload": "5/7/6/5/8/4",
-     "trend": -0.09,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Pat Bryant",
      "pos": "WR",
      "team": "DEN",
@@ -4216,7 +4170,7 @@
       "gotham": 5.3
      },
      "beats_floor": true,
-     "gotham": 0.0,
+     "gotham": 5.8,
      "gotham_ros": 5.7,
      "sleeper": 6.7,
      "workload": "6/1/3/3",
@@ -4229,8 +4183,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: DeMario Douglas \u2014 bad news (rotoballer)",
-      "opening: A.J. Brown \u2014 questionable/limited (pft)"
+      "opening: DeMario Douglas \u2014 bad news (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -4370,6 +4323,43 @@
      "sleeper": 4.8,
      "workload": "3/8/3/3/7/2/1",
      "trend": -0.7,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "why": [
+      "opening: Deshaun Watson \u2014 questionable/limited (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 11:09 AM PT",
+       "src": "rotoballer",
+       "title": "Shedeur Sanders to Start Vs. Saints",
+       "text": "Cleveland Browns head coach Todd Monken said on Friday that second-year quarterback Shedeur Sanders will start under center on Sunday [&#8230;]",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Dak Prescott",
+      "gotham": 24.5
+     },
+     "beats_floor": false,
+     "gotham": 0.0,
+     "gotham_ros": 7.7,
+     "sleeper": 15.5,
+     "workload": "1/2",
+     "trend": 0.6,
      "yahoo": null,
      "acq": "unverified"
     }
