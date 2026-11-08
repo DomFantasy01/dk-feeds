@@ -381,7 +381,7 @@ function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
-    : `<span class="upw">Updated </span><b><span class="upw">${esc(PT(S.stamp, {weekday: "short"}))}, </span>${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>${nextMins() !== null ? ` <span class="mute">· next<span class="upw"> in</span> ${esc(nextMins())}m</span>` : ""}`;
+    : `<span class="upw">Updated </span><b><span class="upw">${esc(PT(S.stamp, {weekday: "short"}))}, </span>${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b> <span class="mute upw">· updates every 20 min in games</span>`;
   const kk = nextKick(), hn = $("#hcNext"); if (hn) hn.innerHTML = `Next update ${esc(nextRun())}${kk ? ` · next kickoff in <b>${esc(kk)}</b>` : ""}.`;
   if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
@@ -470,8 +470,10 @@ function scoreGlobe(L, k, o){
     const span = Math.PI - .3, g = .06, w = span / n;
     return st.map((p, i) => { const j = mine ? n - 1 - i : i, a0 = mine ? Math.PI / 2 + .15 + j * w : -Math.PI / 2 + .15 + i * w, s = ringState(p), am = a0 + w / 2, [lx, ly] = P(am, R + 7.5);
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
-      return `<g class="seg ${s}"><title>${tip}</title><path class="rg" d="${arc(a0 + g / 2, a0 + w - g / 2, R)}" stroke="${RINGC[s]}"/></g>
-        <text class="pos" x="${lx.toFixed(1)}" y="${(ly + 2).toFixed(1)}" text-anchor="middle"><title>${tip}</title>${POSAB(p.slot)}</text>`; }).join(""); };
+      const dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
+      return `<g class="seg ${s}"><path class="rg" d="${arc(a0 + g / 2, a0 + w - g / 2, R)}" stroke="${RINGC[s]}"/></g>
+        <g class="tap" data-pl="${dp}" role="button" aria-label="${tip}"><path class="hit" d="${arc(a0 + g / 2, a0 + w - g / 2, R + 3)}"/>
+        <text class="pos" x="${lx.toFixed(1)}" y="${(ly + 2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text></g>`; }).join(""); };
   const fin = o.state === "FINAL", y = o.y;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
@@ -479,10 +481,12 @@ function scoreGlobe(L, k, o){
   const orb = (x, val, proj, col, side) => { const r = 23.5, ocy = cy - 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
     const wave = (yy) => `M${x - r - 6} ${yy.toFixed(1)} q 5.5 -2.4 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0`;
     return `<clipPath id="${id}${side}"><circle cx="${x}" cy="${ocy}" r="${r}"/></clipPath>
+      <pattern id="${id}${side}hp" patternUnits="userSpaceOnUse" width="3.2" height="3.2" patternTransform="rotate(45)"><rect width="1.3" height="3.2" fill="${col}" fill-opacity=".55"/></pattern>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".72"/></linearGradient>
       <circle cx="${x}" cy="${ocy}" r="${r}" fill="#070C18" fill-opacity=".85" stroke="${col}" stroke-opacity=".6" stroke-width="1.1"/>
       <g clip-path="url(#${id}${side})">
-        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity=".4"/>
+        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity=".2"/>
+        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="url(#${id}${side}hp)"/>
         <line x1="${x - r}" y1="${py.toFixed(1)}" x2="${x + r}" y2="${py.toFixed(1)}" stroke="${col}" stroke-opacity=".55" stroke-width="2.4" filter="url(#${id}b)"/>
         ${val > 0 ? `<g class="wv${side === "o" ? " w2" : ""}"><path d="${wave(ly)} V ${top + 2} H ${x - r - 6} Z" fill="url(#${id}${side}s)"/>
           <path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width=".7"/></g>` : ""}</g>
@@ -531,15 +535,16 @@ function meters(){
         return {k, a: T("a", `<div class="mxh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span></div>
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>`),
-          b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : LGFULL[k])}</span></div><div class="mxs sgw${onField ? " on" : ""}" title="${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
+          b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : LGFULL[k])}</span></div><div class="mxs sgw${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>YAHOO WIN THIS WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>
-          <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>`),
+          <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>
+        <div class="sgt">Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? ` · next kick <b>${esc(nextUp(L))}</b>` : done ? " · all games final" : ""}</div>`),
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div>`)}; }).filter(Boolean);
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
-  $("#meters").innerHTML = SEC("msScore", "Yahoo Scoreboard", "this week · live", "b");
+  $("#meters").innerHTML = SEC("msScore", "Yahoo Scoreboard", "updates every 20 min in games", "b");
   $("#meters2").innerHTML = SEC("msExp", "Experts &amp; playoff odds", "win probability this week · playoff odds for the season", "c") + SEC("msWin", "Win probability", "this week · Yahoo", "a");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
@@ -1011,9 +1016,13 @@ document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches 
 function rmsg(t, bad){ const el = $("#rmsg"); el.textContent = t; el.hidden = false; el.style.background = bad ? "#FBE4E5" : "#F2E6C4"; clearTimeout(rmsg.t); rmsg.t = setTimeout(() => el.hidden = true, 9000); }
 document.addEventListener("click", async (e) => {
   const t = e.target.closest ? e.target : e.target.parentElement;
+  if (t.closest("[data-shclose]") && (t.closest("[data-alerts]") || t.closest("[data-jump]"))) closeSheet();
   const ga = t.closest("[data-goal]"); if (ga){ e.preventDefault(); await goAlert(ga.dataset.goal); return; }
   const ab = t.closest("[data-alerts]"); if (ab){ e.preventDefault(); e.stopPropagation(); const id = "al-" + ab.dataset.alerts, d = document.querySelector(`details[data-fold="${id}"]`);
     if (d){ d.open = true; try { FOLDS[id] = true; } catch(_){} d.scrollIntoView({behavior: SMOOTH(), block: "start"}); } else jumpTo(ab.dataset.alerts); return; }
+  const pl = t.closest("[data-pl]"); if (pl){ e.preventDefault(); e.stopPropagation(); plPop(pl.dataset.pl); return; }
+  const sh = t.closest("[data-sheet]"); if (sh && (sh.tagName === "BUTTON" || !t.closest("#gsheet"))){ e.preventDefault(); e.stopPropagation(); openSheet(sh.dataset.sheet); return; }
+  if (t.closest("[data-shclose]") || t.id === "gback"){ e.preventDefault(); closeSheet(); return; }
   const j = t.closest("[data-jump]"); if (j){ e.preventDefault(); const id = j.dataset.jump; if (id === "top") scrollTo({top: 0, behavior: SMOOTH()}); else jumpTo(id); return; }
   if (t.closest("[data-markread]")){ const ts = new Date().toISOString(), up = {}; for (const x of alertsAll().filter(aLive)) if (!mk(x.id).read) up[x.id] = Object.assign({}, mk(x.id), {read: ts});
     await writeMarks(up); rmsg("Marked " + Object.keys(up).length + " alerts read."); return; }
@@ -1092,3 +1101,54 @@ setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
   watch("live/state", v => { if (v && v.leagues){ clearTimeout(tm); S = v; renderAll(); if (M) trailAdd();
     if (!HASHED){ HASHED = true; const h = location.hash.slice(1); if (/^dk[1-4]$/.test(h)) setTimeout(() => document.getElementById(h)?.scrollIntoView({block: "start"}), 60); } } });
 })();
+
+/* ---------- Nov 8 2:30 PM (Dom: "make these four 20x better"): globe taps ----------
+   Tap a ring segment or position: that player's line in a bottom sheet. Tap the globe: both lineups side by side,
+   the week's Yahoo win-chance trend read by read, the gap and projections, with buttons to the alerts and the full card. */
+const DORD = {Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4, Tue: 5, Wed: 6};
+const whenKey = (w) => { const m = /^(\w{3})\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(w || ""); if (!m) return null; let h = +m[2] % 12; if (/pm/i.test(m[4])) h += 12; return (DORD[m[1]] ?? 9) * 1440 + h * 60 + +m[3]; };
+function nextUp(L){ const pre = [...L.players, ...L.oppPlayers].filter(p => isStarter(p) && !started(p) && !isOut(p) && whenKey(p.when) !== null);
+  if (!pre.length) return ""; pre.sort((a, b) => whenKey(a.when) - whenKey(b.when)); const w = pre[0].when, today = PT(new Date().toISOString(), {weekday: "short"});
+  return w.startsWith(today + " ") ? w.slice(today.length + 1) : w; }
+const STW = {pre: "Still to play", live: "Playing now", done: "Done", out: "Out", unk: "No projection - unknown why", trbl: "Questionable / problem"};
+function sheetHost(){ let b = $("#gback"); if (!b){ b = document.createElement("div"); b.id = "gback"; b.hidden = true; document.body.appendChild(b);
+    const sh = document.createElement("div"); sh.id = "gsheet"; sh.setAttribute("role", "dialog"); sh.setAttribute("aria-modal", "true"); sh.hidden = true; document.body.appendChild(sh); }
+  return $("#gsheet"); }
+function showSheet(html, lc){ const sh = sheetHost(); sh.innerHTML = `<div class="gsg"></div>` + html; sh.style.setProperty("--lc", lc); sh.hidden = false; $("#gback").hidden = false;
+  requestAnimationFrame(() => { sh.classList.add("up"); $("#gback").classList.add("up"); }); }
+function closeSheet(){ const sh = $("#gsheet"), b = $("#gback"); if (!sh) return; sh.classList.remove("up"); b.classList.remove("up"); setTimeout(() => { sh.hidden = true; b.hidden = true; }, 220); }
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
+function plRow(p){ const s = ringState(p), f = manFinal(p, "y");
+  return `<div class="gpr ${s}"><i></i><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc([p.tm, p.status].filter(Boolean).join(" · "))}</em></span><span class="pp">${f1(pts(p))}<em>${started(p) && !isDone(p) ? "→ " + f1(f) : isDone(p) ? "final" : "proj " + f1(f)}</em></span></div>`; }
+function plPop(key){ const [slug, side, idx] = key.split("|"), k = KEYOF[slug], L = lgS(k); if (!L) return;
+  const list = (side === "m" ? L.players : L.oppPlayers).filter(isStarter), p = list[+idx]; if (!p) return; const s = ringState(p), ig = igOf(p);
+  showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${side === "m" ? "Your" : esc(L.opp) + "'s"} ${esc(p.slot || "")}</span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
+    <div class="gpl"><div class="gpn">${esc(p.name)}<em>${esc(p.tm || "")}</em></div>
+      <div class="gst ${s}"><i></i>${STW[s]}${p.status ? " · " + esc(p.status) : ""}</div>
+      <div class="gnums"><div><span>POINTS</span><b>${f1(pts(p))}</b></div><div><span>YAHOO PROJ</span><b>${f1(+p.proj || 0)}</b></div><div><span>PROJ FINAL</span><b>${f1(manFinal(p, "y"))}</b></div></div>
+      <div class="gwh">Game: <b>${esc(p.when || "-")}</b>${ig ? `<br>${esc(ig.note)} <span class="mute">(RotoWire)</span>` : ""}</div>
+      <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}</div></div>
+    <div class="gbt"><button type="button" data-sheet="${slug}">Both lineups</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
+}
+function trendSvg(k, y){ const es = trailEntries().filter(e => S && e.w === S.week && e.lg && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null && e.t < S.stamp).map(e => ({t: e.t, y: +e.lg[k].y}));
+  es.push({t: S.stamp, y}); const W = 300, H = 74, pad = 6, n = es.length;
+  const X = (i) => n < 2 ? W / 2 : pad + i * (W - 2 * pad) / (n - 1), Y = (v) => pad + (100 - v) * (H - 2 * pad) / 100;
+  const zc = (v) => v >= 55 ? "#3DDC84" : v >= 45 ? "#F7B32B" : "#FF4D57";
+  const line = es.map((e, i) => `${X(i).toFixed(1)},${Y(e.y).toFixed(1)}`).join(" ");
+  return `<svg class="gtr" viewBox="0 0 ${W} ${H}" role="img" aria-label="Yahoo chance to win this week, read by read: ${es.map(e => Math.round(e.y) + "%").join(", ")}">
+    <rect x="0" y="${Y(55)}" width="${W}" height="${Y(45) - Y(55)}" fill="#F7B32B" opacity=".08"/>
+    <line x1="0" x2="${W}" y1="${Y(50)}" y2="${Y(50)}" stroke="#8E98AE" stroke-dasharray="2 3" stroke-width=".8" opacity=".6"/>
+    <text x="${W - 2}" y="${Y(50) - 2}" text-anchor="end" class="gtl">50%</text>
+    ${n > 1 ? `<polyline points="${line}" fill="none" stroke="${zc(y)}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>` : ""}
+    ${es.map((e, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(e.y).toFixed(1)}" r="${i === n - 1 ? 3.6 : 1.8}" fill="${zc(e.y)}"><title>${esc(PT(e.t, {weekday: "short", hour: "numeric", minute: "2-digit"}))}: ${Math.round(e.y)}%</title></circle>`).join("")}</svg>
+    <div class="gtk"><span>${n > 1 ? esc(PT(es[0].t, {weekday: "short", hour: "numeric", minute: "2-digit"})) + " · " + Math.round(es[0].y) + "%" : "first read"}</span><span>now · <b style="color:${zc(y)}">${y}%</b></span></div>`; }
+function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; const y = chance(L, "y"), F = finals(L), me = score(L.players), op = score(L.oppPlayers), mg = me - op;
+  const a = L.players.filter(isStarter), b = L.oppPlayers.filter(isStarter), n = Math.max(a.length, b.length), live = aFor(k, aLive);
+  showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${esc(k === "MOST" ? "Most Important" : LGFULL[k])} <em>vs ${esc(L.opp)}</em></span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
+    <div class="gsc"><div><span>YOU</span><b>${f1(me)}</b><em>proj ${f1(F.me)}</em></div><div class="gm2"><span>GAP</span><b class="${Math.abs(mg) < .05 ? "" : mg > 0 ? "up" : "dn"}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</b><em>proj gap ${(F.me - F.op >= 0 ? "+" : "") + (F.me - F.op).toFixed(1)}</em></div><div><span>HIM</span><b>${f1(op)}</b><em>proj ${f1(F.op)}</em></div></div>
+    <div class="gsec">YAHOO WIN THIS WEEK · READ BY READ</div>${trendSvg(k, y)}
+    <div class="gsec">LINEUPS · ${leftOf(L.players).length} OF YOURS LEFT · ${leftOf(L.oppPlayers).length} OF HIS</div>
+    <div class="glu"><div>${a.map(plRow).join("")}</div><div>${b.map(plRow).join("")}</div></div>
+    <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? " · next kick " + esc(nextUp(L)) : ""}</div>
+    <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>Alerts${live.length ? " (" + live.length + ")" : ""}</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
+}
