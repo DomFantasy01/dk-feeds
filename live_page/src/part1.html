@@ -614,7 +614,7 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (min-width:561px){.sc2 b{font-size:30px}.sc2 .o b{font-size:24px}.sc2 small{font-size:8px}.mxs .mg{font-size:10.5px;padding:4px 0}.strip .w{width:24px;font-size:8px}.strip .n{font-size:11px;width:16px}.strip .sg i{height:9px}}
 
 /* Nov 8 v10: SCORE heading, MY TEAM vs OPPONENT same size (color + blink set yours apart), Yahoo label under the % with a line */
-#metersFrame{padding-top:8px}
+#metersFrame{padding-top:0}
 .mxs .mxt2:first-child{margin-top:0}
 .sc3{display:flex;align-items:flex-end;justify-content:space-between;gap:3px;margin-top:4px}
 .sc3 .sr{display:flex;flex-direction:column;min-width:0}
@@ -683,4 +683,30 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (min-width:641px){.sc3 b{font-size:clamp(17px,3.1vw,24px)}.sc3 .vs{margin:0 2px}}
 @media (min-width:421px) and (max-width:640px){.sc3{flex-direction:column;align-items:stretch;gap:2px}.sc3 .sr{flex-direction:column;align-items:flex-start;gap:1px}.sc3 .sr.o{align-items:flex-end}
   .sc3 b{font-size:22px;margin:0}.sc3 .vs{align-self:center;margin:0}}
+/* Nov 8 12:51 (Dom: "make the meters their own section... three sections... make this look better"):
+   1 Win probability (league, bell, dial)  2 Scoreboard  3 Experts & playoff odds - each its own framed strip, four tiles across, rows lined up */
+.mwrap{margin:14px 0 6px}
+#meters{display:block}
+.msec{margin:18px 0 0;padding:16px 7px 8px;background:linear-gradient(180deg,#0C1324,#0A1020);border-color:#26355A}
+.msec:first-child{margin-top:10px}
+.msec > .lab{font-size:11px;letter-spacing:.18em;color:var(--gold)}
+.msec > .lsub{position:absolute;top:-7px;right:12px;padding:0 6px;background:var(--night);font:600 9px/14px var(--f-body);letter-spacing:.06em;color:var(--mute);text-transform:uppercase;white-space:nowrap;max-width:55%;overflow:hidden;text-overflow:ellipsis}
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:6px;row-gap:0}
+.mgrid .mx{row-gap:6px;padding:8px 5px 8px}
+.g-a .mx{grid-row:span 2}.g-b .mx{grid-row:span 2}.g-c .mx{grid-row:span 3}
+.mx.ms-b,.mx.ms-c{padding-top:7px}
+.mtag{display:flex;flex-direction:column;align-items:flex-start;min-width:0;text-align:left;line-height:1}
+.mtag b{font:400 19px/1 var(--f-disp);letter-spacing:.04em;color:var(--lc)}
+.mtag span{margin-top:2px;font:600 8.5px/1.15 var(--f-body);letter-spacing:.02em;text-transform:uppercase;color:var(--ink2)}
+.ms-b .mxs{margin:0}
+.ms-c .mxe{padding-top:0}
+.ms-c .mxo{margin-top:2px}
+.mxd .mxl{margin-top:4px}
+/* scoreboard: projected final on one line */
+.pjf{justify-content:center;gap:4px}
+@media (max-width:560px){.pjf{flex-direction:column;align-items:center;gap:1px}.pjf .pv{white-space:nowrap}}
+@media (max-width:420px){.msec{padding:15px 5px 7px}.mgrid{column-gap:4px}.mgrid .mx{padding:7px 4px}.msec > .lsub{display:none}.mtag b{font-size:17px}.mtag span{font-size:7.6px;letter-spacing:0}
+  .msec > .lab{font-size:10px;letter-spacing:.14em}}
+@media (max-width:375px){.mtag span{font-size:7px}}
+@media (min-width:561px){.msec{padding:18px 10px 10px}.mgrid{column-gap:8px}.mtag b{font-size:24px}.mtag span{font-size:11px}.msec > .lab{font-size:12px}.msec > .lsub{font-size:10px}}
 </style>
