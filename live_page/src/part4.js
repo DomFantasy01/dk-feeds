@@ -381,7 +381,7 @@ function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
-    : `<span class="upw">Updated </span><b>${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}).replace(/ (AM|PM)$/, ""))}</b>${nextMins() !== null ? ` <span class="mute">· next in ${esc(nextMins())}m</span>` : ""}`;
+    : `<span class="upw">Updated </span><b><span class="upw">${esc(PT(S.stamp, {weekday: "short"}))}, </span>${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>${nextMins() !== null ? ` <span class="mute">· next<span class="upw"> in</span> ${esc(nextMins())}m</span>` : ""}`;
   const kk = nextKick(), hn = $("#hcNext"); if (hn) hn.innerHTML = `Next update ${esc(nextRun())}${kk ? ` · next kickoff in <b>${esc(kk)}</b>` : ""}.`;
   if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
