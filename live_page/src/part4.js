@@ -37,7 +37,7 @@ const lgM = (k) => (M && M.leagues && M.leagues[k]) || {};
 
 /* ---------- game state of a man ---------- */
 const isDone = (p) => /^(Fin|Final|Bye|No game)/i.test((p.when || "").trim());
-const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d)/i.test(p.when || "");
+const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d|In progress|Playing)/i.test(p.when || "");   /* Nov 8: the Dispatch read says "In progress" */
 const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim());
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
 const started = (p) => isDone(p) || isLive(p);
@@ -666,7 +666,7 @@ function boxHtml(k, L){
     return `<div class="bxr${f ? " fl " + f.c : ""}"><div class="bx1"><i class="bk sm ${s.g}">${esc(SLOTLAB(r.slot))}</i>
       <span class="nm"><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}</span>
       <span class="pt">${gotPts ? f1(s.pts) : "–"}${vs}</span></div>
-      <div class="bx2"><span>${esc(s.g === "live" ? "Playing · " + s.when : s.g === "done" ? (s.when && !/^Final$/i.test(s.when) ? s.when : "Final") : s.when)}</span><span>${proj}</span></div>
+      <div class="bx2"><span>${esc(s.g === "live" ? (/^(In progress|Playing)$/i.test(s.when || "") ? "Playing" : "Playing · " + s.when) : s.g === "done" ? (s.when && !/^Final$/i.test(s.when) ? s.when : "Final") : s.when)}</span><span>${proj}</span></div>
       ${r.line ? `<div class="bx3">${esc(r.line)}</div>` : gotPts && B && s.pts ? `<div class="bx3 mute">No stat line in the last Yahoo API read.</div>` : ""}
       ${f ? `<div class="bxf">${esc(f.t)}</div>` : ""}</div>`; };
   const team = (rows, name, mine) => { const st = rows.filter(r => !isBench(r)), bn = rows.filter(isBench);
