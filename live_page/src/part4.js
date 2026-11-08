@@ -622,6 +622,62 @@ function leftHere(L){
 }
 
 /* ---------- a league card ---------- */
+/* ---------- Nov 8 (Dom): the played strip + box score ----------
+   Strip: every starter in lineup order, labeled with his position. Dark green = done, light green blinking neon = playing now,
+   gray = not played yet. Tap the strip: the box score for both teams - starters and bench - with each man's stat line, Yahoo
+   points (league scoring) and his projection (Yahoo, Ratcliffe where the meter has him). Your bench is flagged when a man
+   there is projected 2+ points over the starter at his position (before lock) or outscored him by 2+ (after). */
+const SLOTLAB = (s) => ({"W/R/T": "FLEX", "Q/W/R/T": "SFLX", "SUPER": "SFLX", "W/R": "W/R", "DEF": "DEF"})[s] || s || "?";
+const bxNorm = (n) => String(n || "").toLowerCase().replace(/ (jr|sr|ii|iii|iv)\.?$/, "").replace(/[^a-z]/g, "");
+function bxState(r, L){
+  const all = [...(L.players || []), ...(L.oppPlayers || [])], n = bxNorm(r.name);
+  const st = all.find(p => bxNorm(p.name) === n);
+  if (st) return {g: isLive(st) ? "live" : isDone(st) ? "done" : "pre", when: st.when || r.when || "", pts: started(st) ? pts(st) : (r.pts || 0), starter: st};
+  const tm = String(r.tm || "").toUpperCase();
+  for (const LL of (S.leagues || [])) for (const p of [...(LL.players || []), ...(LL.oppPlayers || [])])
+    if (String(p.tm || "").toUpperCase() === tm && (isLive(p) || isDone(p))) return {g: isLive(p) ? "live" : "done", when: p.when, pts: r.pts || 0};
+  return {g: r.gs === "final" || r.gs === "bye" ? "done" : r.gs === "live" ? "live" : "pre", when: r.when || "", pts: r.pts || 0};
+}
+function boxHtml(k, L){
+  const B = L.box && L.box.me && L.box.op ? L.box : null;
+  const fallback = (list) => list.map(p => ({slot: p.slot, name: p.name, tm: p.tm, pos: "", status: p.status, pts: p.actual, line: "", yp: p.proj, rp: null, gs: "", when: p.when}));
+  const sides = B ? {me: B.me, op: B.op} : {me: fallback(L.players || []), op: fallback(L.oppPlayers || [])};
+  const isBench = (r) => /^(BN|IR)/.test(r.slot || "");
+  const blocks = (rows) => rows.filter(r => !isBench(r)).map(r => { const s = bxState(r, L);
+    return `<i class="bk ${s.g}" title="${esc(r.name)} · ${esc(s.when)}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
+  const fid = "bx-" + SLUG[k], open = !!FOLDS[fid];
+  /* bench flags, your side only */
+  const flags = {};
+  if (B){ const st = sides.me.filter(r => !isBench(r) && r.slot !== "IR"), bn = sides.me.filter(r => r.slot === "BN");
+    for (const b of bn){ const sb = bxState(b, L); const same = st.filter(s => (s.pos || "") === (b.pos || "") && b.pos); if (!same.length) continue;
+      if (sb.g === "pre"){ const pre = same.filter(s => bxState(s, L).g === "pre" && s.yp !== null && s.yp !== undefined);
+        if (b.yp !== null && b.yp !== undefined && pre.length){ const w = pre.reduce((a, c) => c.yp < a.yp ? c : a); const d = b.yp - w.yp;
+          if (d >= 2) flags[b.name] = {c: "y", t: `Projected ${d.toFixed(1)} more than ${w.name} (${SLOTLAB(w.slot)}) · swap before ${sb.when}`}; } }
+      else if (sb.g === "done"){ const dn = same.filter(s => bxState(s, L).g === "done");
+        if (dn.length){ const w = dn.reduce((a, c) => bxState(c, L).pts < bxState(a, L).pts ? c : a); const d = sb.pts - bxState(w, L).pts;
+          if (d >= 2) flags[b.name] = {c: "r", t: `Outscored ${w.name} (${SLOTLAB(w.slot)}) by ${d.toFixed(1)} · left on the bench`}; } } } }
+  const row = (r, mine) => { const s = bxState(r, L), f = mine ? flags[r.name] : null, gotPts = s.g !== "pre";
+    const proj = [r.yp !== null && r.yp !== undefined ? `Yahoo ${f1(r.yp)}` : "", r.rp !== null && r.rp !== undefined ? `Ratcliffe ${f1(r.rp)}` : ""].filter(Boolean).join(" · ") || "no projection";
+    const vs = gotPts && r.yp !== null && r.yp !== undefined && s.g === "done" ? ` <em class="${s.pts - r.yp >= 0 ? "up" : "dn"}">${sgn(s.pts - r.yp)}</em>` : "";
+    return `<div class="bxr${f ? " fl " + f.c : ""}"><div class="bx1"><i class="bk sm ${s.g}">${esc(SLOTLAB(r.slot))}</i>
+      <span class="nm"><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}</span>
+      <span class="pt">${gotPts ? f1(s.pts) : "–"}${vs}</span></div>
+      <div class="bx2"><span>${esc(s.g === "live" ? "Playing · " + s.when : s.g === "done" ? (s.when && !/^Final$/i.test(s.when) ? s.when : "Final") : s.when)}</span><span>${proj}</span></div>
+      ${r.line ? `<div class="bx3">${esc(r.line)}</div>` : gotPts && B && s.pts ? `<div class="bx3 mute">No stat line in the last Yahoo API read.</div>` : ""}
+      ${f ? `<div class="bxf">${esc(f.t)}</div>` : ""}</div>`; };
+  const team = (rows, name, mine) => { const st = rows.filter(r => !isBench(r)), bn = rows.filter(isBench);
+    const tot = st.reduce((a, r) => a + (bxState(r, L).g !== "pre" ? bxState(r, L).pts : 0), 0), ytot = st.reduce((a, r) => a + (+r.yp || 0), 0);
+    return `<div class="bxt"><div class="bxh"><b>${esc(name)}</b><span>${f1(tot)} pts · Yahoo proj ${f1(ytot)}</span></div>
+      <div class="sub">Starters</div>${st.map(r => row(r, mine)).join("")}
+      ${bn.length ? `<div class="sub">Bench${mine && Object.keys(flags).length ? ` · <span class="hot">${Object.keys(flags).length} flagged</span>` : ""}</div>${bn.map(r => row(r, mine)).join("")}` : B ? "" : `<p class="note">Bench and stat lines come with the next Dispatch build.</p>`}</div>`; };
+  const nfl = Object.keys(flags).length;
+  return `<details class="bxd" data-fold="${fid}"${open ? " open" : ""}><summary aria-label="Box score for both teams">
+      <div class="pr"><span class="who">YOU</span><div class="blks">${blocks(sides.me)}</div></div>
+      <div class="pr"><span class="who op">OPP</span><div class="blks">${blocks(sides.op)}</div></div>
+      <div class="pkey"><span><i class="bk sm done"></i>Done</span><span><i class="bk sm live"></i>Playing</span><span><i class="bk sm pre"></i>Not yet</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
+    <div class="bxb">${team(sides.me, L.team || "Dark Knight", true)}${team(sides.op, L.opp || "Opponent", false)}
+      <p class="note">Points: Yahoo, league scoring${B ? `, Yahoo API read ${esc(B.read || "")}` : ""}. Projections: Yahoo's weekly projection (league scoring) and Ratcliffe's where the meter has him. Live status follows the latest Yahoo read.</p></div></details>`;
+}
 function card(k){
   const L = lgS(k); if (!L) return "";
   const m = lgM(k), c = m.champ || {}, pm = (M && M.pm && M.pm[k]) || {};
@@ -662,7 +718,7 @@ function card(k){
       <div class="mid">${done ? `<div class="vd" style="color:${me >= op ? "var(--up)" : "var(--dn)"}">${verdict(me - op)}</div><small>FINAL · ${sgn(me - op)}</small>` : `<div class="vd">${esc(L.state || "")}</div><small>${meL.length} / ${opL.length} left</small>`}</div>
       <div class="side r"><span>${esc(L.opp)}</span><div class="big" style="color:var(--ink2)">${f1(op)}</div></div></div>
     <div class="proj"><span>Yahoo proj ${f1(F.me)}</span><span>Yahoo proj ${f1(F.op)}</span></div>
-    <div class="played">${bar(L.players)}<em>PLAYED</em>${bar(L.oppPlayers)}</div>`;
+    ${boxHtml(k, L)}`;
 
   /* road to the championship */
   const mvs = (c.moves || []).filter(x => shown(moveId(k, x), sigMove(x)));

@@ -115,7 +115,13 @@ def read_league(y, gk, lab, lid, me, log):
                 ros = y.get(f"team/{lk}.t.{x['id']}/roster;week={wk}/players/stats;type=week;week={wk}")
                 pl = []
                 for p in ros.iterfind(".//y:roster/y:players/y:player", NS):
-                    r = player_row(p); r["points"] = t(p, "y:player_points/y:total"); pl.append(r)
+                    r = player_row(p); r["points"] = t(p, "y:player_points/y:total")
+                    # Nov 8 (Dom): the stat line behind the points, for Live's box score (stat_id -> value, non-zero only)
+                    st = {}
+                    for s_ in p.iterfind("y:player_stats/y:stats/y:stat", NS):
+                        v = t(s_, "y:value")
+                        if v not in ("", "0", "0.0", "-"): st[t(s_, "y:stat_id")] = v
+                    r["stats"] = st; pl.append(r)
                 sides["me" if x["id"] == me else "op"] = dict(id=x["id"], name=x["name"], players=pl)
             L["matchup"] = sides
     except Exception as e:
@@ -194,13 +200,18 @@ def main():
         except Exception as e:                       # some accounts are refused the bare game call; ask through the signed-in user
             log.append(f"game/nfl refused, asking through the user: {str(e)[:300]}")
             gk = t(y.get("users;use_login=1/games;game_codes=nfl").find(".//y:game", NS), "y:game_key")
+        stat_names = {}
+        try:                                         # Nov 8: names for the stat ids in the box score ("Rec Yds", "Pass TD" ...)
+            for c in y.get(f"game/{gk}/stat_categories").iterfind(".//y:stat_categories/y:stats/y:stat", NS):
+                stat_names[t(c, "y:stat_id")] = t(c, "y:display_name") or t(c, "y:name")
+        except Exception as e: log.append(f"stat names not read: {str(e)[:200]}")
         for lab, n, lid, me in LEAGUES:
             try: out[lab] = read_league(y, gk, lab, lid, me, log); write_scout(repo, lab, n, out[lab], when)
             except Exception as e: log.append(f"FAILED {lab}: {str(e)[:200]}")
         if out: write_all_rosters(repo, out, when, tag)
         os.makedirs(f"{repo}/yahoo_api", exist_ok=True)
         status = dict(read_pt=when, read_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), game_key=gk,
-                      leagues_read=sorted(out), calls=y.calls, log=log)
+                      leagues_read=sorted(out), calls=y.calls, log=log, stat_names=stat_names)
         json.dump(dict(status, leagues=out), open(f"{repo}/yahoo_api/latest.json", "w"), indent=1)
         json.dump(status, open(f"{repo}/yahoo_api/status.json", "w"), indent=1)
         print("YAHOO API read", when, "|", "; ".join(log))

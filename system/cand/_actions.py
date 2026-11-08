@@ -199,6 +199,61 @@ for _lab in _ALG:
         oppLeft=sum(1 for p in _L["starters"]["op"] if p.get("gs") in ("pre", "playing")), players=me, oppPlayers=op))
     for p in _L["starters"]["me"]: _EXP.setdefault(p["player"], dict(starts=[], bench=[]))["starts"].append(_lab)
     for p in _L.get("bench", []): _EXP.setdefault(p["player"], dict(starts=[], bench=[]))["bench"].append(_lab)
+# Nov 8 (Dom): BOX SCORE for Live's played strip - both teams, starters AND bench, from the Yahoo API read (points in the
+# league's scoring + the stat line behind them), with Yahoo's own projection for every rostered man (the Chrome Yahoo
+# projections read, MINE + OPP rows) and Ratcliffe's where the meter has him. Never stops the build.
+try:
+    _BX_API = _aj.load(open(_ao.path.join(_AREPO, "yahoo_api", "latest.json")))
+    _BX_SN = _BX_API.get("stat_names") or {}
+    _BX_FIX = {"WSH": "WAS", "JAC": "JAX", "LAR": "LA"}
+    _bx_tm = lambda a: _BX_FIX.get(str(a or "").upper(), str(a or "").upper())
+    _bx_n = lambda n: _ar.sub(r"[^a-z]", "", (n or "").lower().replace(" jr.", "").replace(" sr.", "").replace(" iii", "").replace(" ii", ""))
+    _BX_KO = {}
+    for _r in _AG[_AG.week == _AMW].itertuples():
+        _k = _ad.datetime.strptime(f"{_r.gameday} {_r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/New_York"))
+        for _tt in (_r.away_team, _r.home_team): _BX_KO[_tt] = (_k, not _apd.isna(_r.result))
+    def _bx_gs(tm):
+        g = _BX_KO.get(_bx_tm(tm))
+        if not g: return "bye", "Bye"
+        k, fin = g
+        if fin or _ANOW >= k + _ad.timedelta(hours=3, minutes=45): return "final", "Final"
+        if _ANOW >= k: return "live", "In progress"
+        k = k.astimezone(_APT); return "pre", f"{k:%a} {k.hour % 12 or 12}:{k:%M} {'AM' if k.hour < 12 else 'PM'}"
+    def _bx_line(st):
+        out = []
+        for sid in sorted(st, key=lambda x: int(x) if str(x).isdigit() else 999):
+            v = st[sid]; nm = _BX_SN.get(str(sid)) or f"stat {sid}"
+            try: fv = float(v); v = str(int(fv)) if fv == int(fv) else f"{fv:g}"
+            except Exception: pass
+            out.append(f"{v} {nm}")
+        return " · ".join(out)
+    for _lab, _api_lab in zip(_ALG, ["DKI", "DKII", "DKIII", "DKIV"]):
+        _LL = next((x for x in _LS["leagues"] if x["key"] == _AKEY[_lab]), None)
+        _AL = (_BX_API.get("leagues") or {}).get(_api_lab) or {}
+        _MU = _AL.get("matchup")
+        if not _LL or not _MU: continue
+        _YP = {}
+        try:
+            for _ln in open(_ao.path.join(_AREPO, "yahoo_drop", "scout", f"yproj_dk{_ALG.index(_lab) + 1}.txt")).read().splitlines()[1:]:
+                _c = _ln.split("|")
+                if len(_c) >= 6 and _c[0] == str(_AMW): _YP[(_bx_n(_c[1]), _c[5])] = float(_c[4])
+        except Exception: pass
+        _ML = _AM["leagues"].get(_lab) or {}
+        _RP = {_bx_n(p.get("player")): p.get("ratcliffe") for p in (_ML.get("starters", {}).get("me", []) + _ML.get("bench", []) + _ML.get("starters", {}).get("op", [])) if p.get("ratcliffe") is not None}
+        _box = {"read": _BX_API.get("read_pt", ""), "week": _AMW}
+        for _side, _tag in (("me", "MINE"), ("op", "OPP")):
+            _rows = []
+            for p in (_MU.get(_side) or {}).get("players", []):
+                gs, when = _bx_gs(p.get("team"))
+                try: pts = float(p.get("points")) if p.get("points") not in (None, "") else None
+                except Exception: pts = None
+                _nn = _bx_n(p.get("name"))
+                _rows.append(dict(slot=p.get("slot"), name=p.get("name"), tm=_bx_tm(p.get("team")), pos=p.get("pos"), status=p.get("status") or "",
+                                  pts=pts, line=_bx_line(p.get("stats") or {}), yp=_YP.get((_nn, _tag)), rp=_RP.get(_nn), gs=gs, when=when))
+            _box[_side] = _rows
+        _LL["box"] = _box
+except Exception as _e:
+    print("BOX SCORE skipped:", type(_e).__name__, str(_e)[:200])
 _LS["exposure"] = sorted([dict(name=k, starts=len(v["starts"]), where=v["starts"], bench=v["bench"])
                           for k, v in _EXP.items() if len(v["starts"]) + len(v["bench"]) > 1], key=lambda e: (-e["starts"], e["name"]))
 _aj.dump(_LS, open(_ao.path.join(_AOUT, "live_state_latest.json"), "w"), ensure_ascii=False)
