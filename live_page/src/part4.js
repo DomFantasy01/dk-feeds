@@ -475,7 +475,7 @@ function scoreGlobe(L, k, o){
   const fin = o.state === "FINAL", y = o.y;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
-  const zw = fin ? (zone === "win" ? "WON" : "LOST") : (o.state === "NOT STARTED" ? "PRE" : o.state) + (y === null || y === undefined || isNaN(y) ? "" : " · " + y + "%");
+  const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
   const orb = (x, val, proj, col, side) => { const r = 23.5, ocy = cy - 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
     const wave = (yy) => `M${x - r - 6} ${yy.toFixed(1)} q 5.5 -2.4 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0`;
     return `<clipPath id="${id}${side}"><circle cx="${x}" cy="${ocy}" r="${r}"/></clipPath>
@@ -498,7 +498,7 @@ function scoreGlobe(L, k, o){
     ${ring(L.players, true)}${ring(L.oppPlayers, false)}
         <circle cx="${cx}" cy="${cy}" r="${G}" fill="#070C18"/><circle cx="${cx}" cy="${cy}" r="${G}" fill="url(#${id}g)" stroke="#C9CFDB" stroke-opacity=".3" stroke-width=".9"/>
     <path d="M${cx - 30} ${cy - 32} A 40 40 0 0 1 ${cx + 20} ${cy - 39}" stroke="#fff" stroke-opacity=".17" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs" style="fill:${ZC}">${zw}</text>
+    <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
     <text x="${cx - 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">ME ${o.meL} LEFT</text><text x="${cx + 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">OPP ${o.opL} LEFT</text>
     <text x="${cx}" y="${cy + 42}" text-anchor="middle" class="sgm" style="fill:${mgc}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</text></svg>`;
@@ -522,21 +522,24 @@ function meters(){
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
         ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<b>${nm}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
-        const BELL = `<button type="button" class="bel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
+        const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
+        const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
+        const ZN = settled(L) ? (score(L.players) >= score(L.oppPlayers) ? "win" : "lose") : ZF(y), PZ = ZF(po === null || po === undefined ? null : po * 100);
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span></div>
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>`),
-          b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span>${BELL}</div><div class="mxs sgw${onField ? " on" : ""}" title="${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
+          b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGFULL[k])}</span></div><div class="mxs sgw${onField ? " on" : ""}" title="${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
-        <div class="sgx"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WIN THIS WEEK</span><b>${y}%</b>${yPrev === null || y === yPrev ? `<em class="z">–</em>` : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</div>
-          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS · SEASON</span><b>${pcs(po)}</b></div></div>`),
+        <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>YAHOO WIN THIS WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
+          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>
+          <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>`),
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div>`)}; }).filter(Boolean);
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
-  $("#meters").innerHTML = SEC("msScore", "Scoreboard", "this week · Yahoo live", "b");
+  $("#meters").innerHTML = SEC("msScore", "Yahoo Scoreboard", "this week · live", "b");
   $("#meters2").innerHTML = SEC("msExp", "Experts &amp; playoff odds", "win probability this week · playoff odds for the season", "c") + SEC("msWin", "Win probability", "this week · Yahoo", "a");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;

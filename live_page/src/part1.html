@@ -787,4 +787,31 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (min-width:561px){.sbh b{font-size:28px}.sbh .nm{font-size:11px}.sgx span{font-size:8px}.sgx b{font-size:24px}.sgx em{font-size:10.5px}}
 @media (max-width:560px){.sbh b{font-size:21px}.sbh .nm{font-size:8.2px;letter-spacing:0}.sbh{gap:4px;padding:0 3px 0 5px}
   .ctlf .ctl a,.ctlf .ctl button{font-size:15.5px;letter-spacing:.02em}.ctlf .find input{font-size:12.5px}}
+/* Nov 8 2:00 PM (Dom): full league name beside the tag; strip = Yahoo win this week · Playoffs · alert bell, colored green/amber/red;
+   top of the globe just LIVE (pulses while one of your men is on the field) / FINAL / PRE-GAME */
+.sbh{justify-content:flex-start;align-items:baseline;gap:7px}
+.sbh .nm{text-align:left;flex:1 1 auto}
+.sgx{position:relative;gap:0;margin:3px 6px 0;padding:6px 0 7px}
+.sgx::after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:2px;border-radius:2px;background:var(--zc);box-shadow:0 0 8px var(--zc),0 0 2px var(--zc)}
+.sgx.z-win{--zc:#3DDC84}.sgx.z-mid{--zc:#F7B32B}.sgx.z-lose{--zc:#FF4D57}
+.sgx > div{flex:1 1 0}
+.sgx > div.sgbel{flex:0 0 auto;padding:0 4px 0 6px}
+.sgx b{display:flex;align-items:baseline;gap:3px}
+.sgx b.z-win{color:#3DDC84;text-shadow:0 0 10px rgba(61,220,132,.45)}.sgx b.z-mid{color:#F7B32B;text-shadow:0 0 10px rgba(247,179,43,.4)}.sgx b.z-lose{color:#FF6B72;text-shadow:0 0 10px rgba(255,77,87,.4)}
+.sgx b em{font-size:8.5px;margin:0}
+.sgx b em.up{color:#3DDC84}.sgx b em.dn{color:#FF6B72}
+.sbel{position:relative;display:inline-flex;align-items:center;gap:3px;height:22px;margin-top:2px;padding:0 7px 0 5px;border:0;border-radius:11px;cursor:pointer;
+  font:700 11px/1 var(--f-num);color:#fff;background:radial-gradient(circle at 35% 30%,#3A4766,#141D33);box-shadow:inset 0 0 0 1px rgba(220,226,238,.3)}
+.sbel svg{width:11px;height:11px}
+.sbel i{position:static;font-style:normal;font:700 11px/1 var(--f-num);background:none !important;box-shadow:none !important;min-width:0;height:auto;padding:0}
+.sbel.red{background:radial-gradient(circle at 35% 30%,#FF7A82,#C61F2A);box-shadow:0 0 10px rgba(255,77,87,.8),inset 0 0 0 1px rgba(255,255,255,.35)}
+.sbel.gold{color:#1A1206;background:radial-gradient(circle at 35% 30%,#FFD47A,#D18F12);box-shadow:0 0 8px rgba(247,179,43,.55),inset 0 0 0 1px rgba(255,255,255,.35)}
+.sbel.grey{background:radial-gradient(circle at 35% 30%,#9AA2B5,#4F5B75)}
+.sbel.none{color:#4F5B75;padding:0 6px}
+@media (prefers-reduced-motion:no-preference){.sbel.red{animation:sbelr 2.4s ease-in-out infinite}@keyframes sbelr{50%{box-shadow:0 0 16px rgba(255,77,87,1),inset 0 0 0 1px rgba(255,255,255,.5)}}
+  .sglobe .sgs.on{animation:sgnon 1.8s ease-in-out infinite}}
+.sglobe .sgs{font-size:7.4px;letter-spacing:.2em}
+@media (max-width:560px){.sgx span{font-size:6px;letter-spacing:.04em}.sgx b{font-size:17px}.sbel{height:19px;padding:0 5px 0 4px;font-size:9.5px}.sbel i{font-size:9.5px}.sbel svg{width:9px;height:9px}
+  .sbh{gap:5px}.sbh .nm{font-size:7.8px}}
+@media (max-width:380px){.sgx span{font-size:5.4px;letter-spacing:0}}
 </style>
