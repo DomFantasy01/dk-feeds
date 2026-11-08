@@ -630,4 +630,22 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
   .sc3 small{font-size:5.2px;letter-spacing:0}.sc3 .sr{gap:2px;min-width:0}.mxl .yw{display:none}.sc3 .vs{text-align:center;padding:0;font-size:6.5px;line-height:1}.strip .w{width:17px}}
 @media (min-width:561px){.sc3 b{font-size:30px}.sc3 small{font-size:8px}.sc3 .vs{font-size:10px}}
 @media (max-width:375px){.sc3 .onx{display:none}.sc3 b{font-size:14px}.sc3 small{font-size:4.8px}}
+
+/* Nov 8 v11 (Dom): no sheen anywhere on the meters; blinking slowed and softened */
+.mx{background:linear-gradient(180deg,#18233D,#111A2E) padding-box,linear-gradient(160deg,#C9CFDB,#6E7891 30%,#AAB2C3 60%,#5E6880) border-box !important}
+.mx::after{display:none}
+.mx::before{box-shadow:none}
+.mxp b{text-shadow:none}
+.mxh > b{text-shadow:none}
+.xo svg{filter:none}
+.xo.neo{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--neo) 55%,transparent)}
+@media (prefers-reduced-motion:no-preference){
+  .strip .sg i.live,.strip .sg i.trbl,.mxdots i.live,.mxdots i.trbl{animation:segsoft 3.2s ease-in-out infinite}
+  .mxs.on .sc3 .sr:first-child b,.mxs.on .sc2 .sd:first-child b{animation:scsoft 3.6s ease-in-out infinite}
+  .bk.live,.bk.trbl{animation:segsoft 3.2s ease-in-out infinite}
+  .xo.neo.pulse,.mxh .bel.red{animation:none}
+  @keyframes segsoft{0%,100%{opacity:1}50%{opacity:.62}}
+  @keyframes scsoft{0%,100%{opacity:1}50%{opacity:.75}}}
+.strip .sg i.live{box-shadow:none}
+.mxh .bel{background:#1C2741 !important;box-shadow:inset 0 0 0 1px rgba(220,226,238,.3) !important}.mxh .bel.red{background:#D7262F !important;box-shadow:none !important}.mxh .bel.gold{background:#E0A020 !important;box-shadow:none !important}.mxh .bel.grey{background:#5C677D !important}
 </style>

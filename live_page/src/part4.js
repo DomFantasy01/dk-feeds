@@ -200,7 +200,7 @@ function glassOrb(v, v0, tint, id, gold){
   let dot = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0)){ const a = (Math.max(0, Math.min(100, v0)) / 100) * 2 * Math.PI + Math.PI / 2;
     dot = `<circle cx="${(c + r * Math.cos(a)).toFixed(2)}" cy="${(c + r * Math.sin(a)).toFixed(2)}" r="1.9" fill="#0B1222" stroke="#EEF1F6" stroke-width=".9"/>`; }
   return `<svg viewBox="0 0 36 36" aria-hidden="true"><defs>
-    <radialGradient id="${g}b" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="${tint}" stop-opacity=".55"/><stop offset=".55" stop-color="#14203A"/><stop offset="1" stop-color="#070C18"/></radialGradient>
+    <radialGradient id="${g}b" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#121B30"/><stop offset="1" stop-color="#121B30"/></radialGradient>
     <linearGradient id="${g}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <filter id="${g}f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.3"/></filter></defs>
     ${gold ? `<circle cx="${c}" cy="${c}" r="17.3" fill="none" stroke="#EFD23E" stroke-opacity=".45" stroke-width=".8"/>` : ""}
@@ -209,8 +209,7 @@ function glassOrb(v, v0, tint, id, gold){
     <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(90 ${c} ${c})" opacity=".55" filter="url(#${g}f)"/>
     <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(90 ${c} ${c})"/>${dot}
     <circle cx="${c}" cy="${c}" r="12.4" fill="url(#${g}b)" stroke="rgba(255,255,255,.16)" stroke-width=".7"/>
-    <text x="${c}" y="${c + 4.6}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="13.5" fill="#fff" letter-spacing=".3">${Math.round(v)}</text>
-    <path d="M${c - 7.5} ${c + 6.5} Q${c} ${c + 10.6} ${c + 7.5} ${c + 6.5}" stroke="${tint}" stroke-opacity=".5" stroke-width=".8" fill="none"/></svg>`;
+    <text x="${c}" y="${c + 4.6}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="13.5" fill="#fff" letter-spacing=".3">${Math.round(v)}</text></svg>`;
 }
 /* a small expert needle: half arc, number underneath */
 function miniDial(v, col, v0){
@@ -432,17 +431,14 @@ function bigDial(v, col, mark, id, v0){
     <linearGradient id="${g}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E7891"/><stop offset=".25" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#8E98AE"/><stop offset=".75" stop-color="#F4F6FA"/><stop offset="1" stop-color="#6E7891"/></linearGradient><linearGradient id="${g}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A70"/><stop offset="1" stop-color="#121A30"/></linearGradient>
     <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
     <path d="${arc(0, 100, r + 16)}" stroke="url(#${g}s)" stroke-width="2.2" fill="none"/><path d="${arc(0, 100, r + 6)}" stroke="url(#${g}b)" stroke-width="1.4" fill="none"/>
-    <path d="${arc(0, 100, r - 12)} L${cx} ${cy} Z" fill="url(#${g}h)"/>${ticks}
+${ticks}
     <path d="${arc(0, 100, r)}" stroke="#16203A" stroke-width="11" fill="none"/>
     <path d="${arc(0, 100, r)}" stroke="url(#${g})" stroke-opacity=".22" stroke-width="11" fill="none"/>
-    <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="11" fill="none" filter="url(#${g}f)" opacity=".7"/>
     <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="11" fill="none"/>
-    <path d="${arc(0, Math.max(1, v), r - 4)}" stroke="#fff" stroke-opacity=".28" stroke-width="1.2" fill="none"/>
-    <circle cx="${tx.toFixed(1)}" cy="${ty.toFixed(1)}" r="4" fill="#fff" opacity=".9" filter="url(#${g}f)"/>${mk}
+${mk}
     ${v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = Math.max(0, Math.min(100, +v0)), [gx, gy] = P(w0, r - 8), [ax, ay] = P(w0, r + 8);
       return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
       <line x1="${cx}" y1="${cy}" x2="${gx.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="#D9DEE8" stroke-width="1.6" stroke-dasharray="2.6 2.4" opacity=".85"/><circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="2.4" fill="#0B1222" stroke="#D9DEE8" stroke-width="1.2"/>`; })() : ""}
-    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="7" stroke-linecap="round" opacity=".65" filter="url(#${g}f)"/>
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.6" stroke-linecap="round"/>
     <circle cx="${cx}" cy="${cy}" r="6.5" fill="#0B1222" stroke="#F4F6FA" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="${col}"/></svg>`;
 }
