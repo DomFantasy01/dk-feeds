@@ -909,4 +909,32 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 /* Nov 8 2:44 PM (Dom): positions back around the right side too; texture in the fluid (rising bubbles, side shading, fine grain on the still-to-come shade) */
 .mgrid.g-b .sglobe{max-width:330px !important}
 @media (prefers-reduced-motion:no-preference){.sglobe .wv path[fill*="bu)"]{animation:bub 6s linear infinite}@keyframes bub{from{transform:translateY(0)}to{transform:translateY(-9px)}}}
+/* Nov 8 2:46 PM (Dom): scoreboard back to four across */
+.mgrid.g-b{grid-template-columns:repeat(4,minmax(0,1fr)) !important;column-gap:5px !important}
+.mgrid.g-b .sglobe{max-width:none !important;width:calc(100% + 6px) !important;margin:0 -3px !important}
+@media (max-width:560px){
+  .mgrid.g-b .sbh{flex-direction:column;align-items:flex-start !important;gap:1px;min-height:0;padding:0 3px}
+  .mgrid.g-b .sbh b{font-size:19px}
+  .mgrid.g-b .sbh .nm{font-size:8.5px !important;-webkit-line-clamp:2;line-height:1.05}
+  .mgrid.g-b .sgx{flex-wrap:wrap;margin:2px 2px 0;padding:4px 0 4px;row-gap:4px}
+  .mgrid.g-b .sgx > div{flex:1 1 45%}
+  .mgrid.g-b .sgx > div.sgbel{flex:1 1 100%;flex-direction:row;justify-content:center;gap:4px;border-left:0 !important;padding:0}
+  .mgrid.g-b .sgx span{font-size:5.4px;letter-spacing:0}
+  .mgrid.g-b .sgx b{font-size:15px}.mgrid.g-b .sgx b em{font-size:7px}
+  .mgrid.g-b .sgt{font-size:6.4px;margin:2px 2px 0;white-space:normal}
+  .mgrid.g-b .sglobe .pos{font-size:7.2px}
+  .mgrid.g-b .sglobe .sgn.bg{font-size:22px}.mgrid.g-b .sglobe .sgn.bg.lg{font-size:19px}
+  .mgrid.g-b .sglobe .sgn.sm{font-size:13px}.mgrid.g-b .sglobe .sgn.sm.lg{font-size:11.5px}
+  .mgrid.g-b .sglobe .sgpj{font-size:6px}.mgrid.g-b .sglobe .sgpj.sm{font-size:5.4px}}
+/* four across: strip labels wrap to two lines, the change arrow sits under the %, names fit */
+.mgrid.g-b .sgx span{white-space:normal;text-align:center;line-height:1.1;min-height:2.2em;display:flex;align-items:flex-end;justify-content:center}
+.mgrid.g-b .sgx b{flex-direction:column;align-items:center;gap:0}
+.mgrid.g-b .sgx b em{font-size:9px;line-height:1}
+.mgrid.g-b .sgx > div{min-width:0;padding:0 2px}
+.mgrid.g-b .sbh .nm{font-size:13px !important}
+.mgrid.g-b .sgt{white-space:normal}
+@media (max-width:560px){.mgrid.g-b .sbh .nm{font-size:8.5px !important}.mgrid.g-b .sgx span{font-size:5.6px;min-height:2.3em}.mgrid.g-b .sgx b em{font-size:7px}
+  .mgrid.g-b .sgx > div.sgbel span{min-height:0}}
+@media (max-width:560px){.mgrid.g-b .sbh{min-height:40px !important}}
+.mgrid.g-b .sbh{min-height:44px}
 </style>
