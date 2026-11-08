@@ -478,15 +478,14 @@ function scoreGlobe(L, k, o){
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
-  const orb = (x, val, proj, col, side) => { const r = 23.5, ocy = cy - 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
+  const orb = (x, val, proj, col, side) => { const r = 24.5, ocy = cy + 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
     const wave = (yy) => `M${x - r - 6} ${yy.toFixed(1)} q 5.5 -2.4 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0`;
     return `<clipPath id="${id}${side}"><circle cx="${x}" cy="${ocy}" r="${r}"/></clipPath>
       <pattern id="${id}${side}hp" patternUnits="userSpaceOnUse" width="3.2" height="3.2" patternTransform="rotate(45)"><rect width="1.3" height="3.2" fill="${col}" fill-opacity=".55"/></pattern>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".72"/></linearGradient>
       <circle cx="${x}" cy="${ocy}" r="${r}" fill="#070C18" fill-opacity=".85" stroke="${col}" stroke-opacity=".6" stroke-width="1.1"/>
       <g clip-path="url(#${id}${side})">
-        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity=".2"/>
-        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="url(#${id}${side}hp)"/>
+        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity=".34"/>
         <line x1="${x - r}" y1="${py.toFixed(1)}" x2="${x + r}" y2="${py.toFixed(1)}" stroke="${col}" stroke-opacity=".55" stroke-width="2.4" filter="url(#${id}b)"/>
         ${val > 0 ? `<g class="wv${side === "o" ? " w2" : ""}"><path d="${wave(ly)} V ${top + 2} H ${x - r - 6} Z" fill="url(#${id}${side}s)"/>
           <path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width=".7"/></g>` : ""}</g>
@@ -504,9 +503,7 @@ function scoreGlobe(L, k, o){
     <path d="M${cx - 30} ${cy - 32} A 40 40 0 0 1 ${cx + 20} ${cy - 39}" stroke="#fff" stroke-opacity=".17" stroke-width="3" fill="none" stroke-linecap="round"/>
     <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
-    ${(() => { const ev = Math.abs(mg) < .05, pc = ev ? "#AEB6C8" : mg > 0 ? "#3DDC84" : "#FF4D57";
-      return `<text x="${cx}" y="${cy + 33}" text-anchor="middle" class="sgm3 big" style="fill:${pc}">${ev ? "EVEN" : `<tspan class="ar">${mg > 0 ? "▲" : "▼"}</tspan> ` + Math.abs(mg).toFixed(1)}</text>
-      <text x="${cx}" y="${cy + 40.5}" text-anchor="middle" class="sgg2">GAP</text>`; })()}</svg>`;
+    </svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
