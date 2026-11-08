@@ -549,7 +549,6 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
   linear-gradient(160deg,#F4F6FA,#7C869C 22%,#D5DAE4 42%,#5E6880 62%,#E9EDF5 82%,#8E98AE) border-box;border:1.5px solid transparent;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 22px -8px rgba(0,0,0,.7),0 0 22px -12px var(--lc)}
 .mx::before{content:"";position:absolute;left:10%;right:10%;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--lc);box-shadow:0 0 12px var(--lc)}
-.mx::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 45%,transparent 58%)}
 .mxh .r1{display:flex;align-items:center;justify-content:space-between;gap:3px}
 .mxh .bel{position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
   background:radial-gradient(circle at 35% 30%,#3A4766,#141D33);box-shadow:inset 0 0 0 1px rgba(220,226,238,.35)}
@@ -562,4 +561,19 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mxs{background:linear-gradient(180deg,rgba(6,10,20,.75),rgba(10,16,30,.55)) padding-box,linear-gradient(160deg,#C9CFDB,#4F5B75 40%,#AAB2C3 70%,#3A4560) border-box;border:1px solid transparent}
 .mxs.on{background:linear-gradient(180deg,rgba(6,10,20,.75),rgba(10,16,30,.55)) padding-box,linear-gradient(160deg,#C9F2D9,#2FA866 40%,#8EDBAE 70%,#1F6B43) border-box}
 @media (min-width:561px){.mxh .bel{width:26px;height:26px}.mxh .bel svg{width:14px;height:14px}}
+
+/* Nov 8 v7: one-line header (DK tag, short league name, color-only bell); no sheen on the tiles or orbs */
+.mxh{display:flex;align-items:center;gap:4px;min-width:0;text-align:left}
+.mxh > b{flex:none;display:inline;font:400 22px/1 var(--f-disp)}
+.mxh .nm{flex:1 1 auto;min-width:0;margin:0;font:600 8px/1.1 var(--f-body);letter-spacing:.02em;color:var(--ink2);overflow-wrap:normal}
+.mxh .bel{flex:none;position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;padding:0;border:0;cursor:pointer;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#3A4766,#141D33);box-shadow:inset 0 0 0 1px rgba(220,226,238,.35)}
+.mxh .bel svg{width:12px;height:12px}
+.mxh .bel.red{color:#fff;background:radial-gradient(circle at 35% 30%,#FF7A82,#C61F2A);box-shadow:0 0 10px rgba(255,77,87,.85),inset 0 0 0 1px rgba(255,255,255,.4)}
+.mxh .bel.gold{color:#1A1206;background:radial-gradient(circle at 35% 30%,#FFD47A,#D18F12);box-shadow:0 0 8px rgba(247,179,43,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
+.mxh .bel.grey{color:#fff;background:radial-gradient(circle at 35% 30%,#9AA2B5,#4F5B75)}
+.mxh .bel.none{color:#4F5B75}
+@media (prefers-reduced-motion:no-preference){.mxh .bel.red{animation:belr2 2.2s ease-in-out infinite}@keyframes belr2{50%{box-shadow:0 0 16px 2px rgba(255,77,87,.95),inset 0 0 0 1px rgba(255,255,255,.4)}}}
+@media (max-width:420px){.mxh{justify-content:space-between}.mxh > b{font-size:21px}.mxh .nm{display:none}.mxt2{white-space:nowrap}.mxt2 em{font-size:6px;padding:0 2px}.mxh .bel{width:19px;height:19px}.mxh .bel svg{width:10px;height:10px}.mxh{gap:3px}}
+@media (min-width:561px){.mxh > b{font-size:26px}.mxh .nm{font-size:10px}.mxh .bel{width:26px;height:26px}.mxh .bel svg{width:14px;height:14px}}
 </style>

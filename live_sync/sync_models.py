@@ -306,6 +306,29 @@ try:
     print('week start on Live:', cur.get('wk0', {}).get('at'))
 except Exception as _e: print('week start skipped:', str(_e)[:120])
 cur['status'] = ST
+# Nov 8 (Dom, Waddle concussion): IN-GAME STATUS. Yahoo does not tag a man hurt mid-game, so Live reads the fast RotoWire
+# player-news file (feeds/fast/rotowire_players.json, pulled every few minutes by the inactives watch) for TODAY's items:
+# ruled out / won't return = "out" (his dot goes red, no more points counted for him); questionable to return / being
+# evaluated / left the game = "trbl" (amber). Keyed by norm(name); each carries the headline, its link and when it was pulled.
+def _ingame():
+    import os, datetime as _dt
+    from zoneinfo import ZoneInfo
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'feeds', 'fast', 'rotowire_players.json')
+    try: R = json.load(open(f))
+    except Exception: return None
+    today = _dt.datetime.now(ZoneInfo("America/Los_Angeles")); day = f"{today.strftime('%B')} {today.day}, {today.year}"
+    OUT = re.compile(r"ruled out for (the )?(rest|remainder)|won't return|will not return|not return to|out for (the )?(rest|remainder)", re.I)
+    TRB = re.compile(r"questionable to return|doubtful to return|being evaluated|evaluated for|checked for|exits|left (the|sunday's|monday's|thursday's|today's) (game|contest)|left the field|carted|injured during|headed to the locker room|went to the locker room", re.I)
+    res = {}
+    for name, v in (R.get('players') or {}).items():
+        for it in (v.get('items') or []):
+            if it.get('date') != day: continue
+            txt = (it.get('headline') or '') + ' ' + (it.get('text') or '')
+            st = 'out' if OUT.search(txt) else 'trbl' if TRB.search(txt) else None
+            if st: res[norm(name)] = {'s': st, 'name': name, 'note': it.get('headline') or '', 'link': it.get('link') or '', 'pulled': R.get('pulled_utc')}; break
+    return {'day': day, 'pulled': R.get('pulled_utc'), 'players': res}
+_ig = _ingame()
+if _ig is not None: cur['ingame'] = _ig
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
 # ---- ONE YAHOO READER (Oct 13): Live's live/state from the Dispatch's read, when that read is newer

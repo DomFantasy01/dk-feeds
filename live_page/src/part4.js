@@ -38,7 +38,12 @@ const lgM = (k) => (M && M.leagues && M.leagues[k]) || {};
 /* ---------- game state of a man ---------- */
 const isDone = (p) => /^(Fin|Final|Bye|No game)/i.test((p.when || "").trim());
 const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d|In progress|Playing)/i.test(p.when || "");   /* Nov 8: the Dispatch read says "In progress" */
-const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim());
+/* Nov 8 (Dom, Waddle): in-game status from the fast RotoWire news (models.ingame, written by sync_models.py) - "out" = ruled out
+   mid-game (red, no more points counted), "trbl" = questionable to return / being checked (amber). Today's items only. */
+const igOf = (p) => { const I = M && M.ingame; if (!I || !I.players) return null;
+  const d = PT(new Date().toISOString(), {month: "long", day: "numeric", year: "numeric"}); if (I.day && I.day !== d) return null;
+  return I.players[norm(p.name)] || null; };
+const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim()) || ((igOf(p) || {}).s === "out" && !isDone(p));
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
 const started = (p) => isDone(p) || isLive(p);
 /* each source's projected final for one man: Yahoo's live projection, or the expert's number (pm: [Ratcliffe, Clay, Koerner, Vegas]) */
@@ -204,7 +209,6 @@ function glassOrb(v, v0, tint, id, gold){
     <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="${(C * v / 100).toFixed(2)} ${C.toFixed(2)}" transform="rotate(90 ${c} ${c})"/>${dot}
     <circle cx="${c}" cy="${c}" r="12.4" fill="url(#${g}b)" stroke="rgba(255,255,255,.16)" stroke-width=".7"/>
     <text x="${c}" y="${c + 4.6}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="13.5" fill="#fff" letter-spacing=".3">${Math.round(v)}</text>
-    <ellipse cx="${c - 2.6}" cy="${c - 6.4}" rx="7.6" ry="3.9" fill="url(#${g}s)"/>
     <path d="M${c - 7.5} ${c + 6.5} Q${c} ${c + 10.6} ${c + 7.5} ${c + 6.5}" stroke="${tint}" stroke-opacity=".5" stroke-width=".8" fill="none"/></svg>`;
 }
 /* a small expert needle: half arc, number underneath */
@@ -411,6 +415,7 @@ function renderHealth(){
    (red out, blinking amber trouble, blinking green playing, green done, grey not yet - the same colors as the card's boxes) ·
    the four experts as glass orbs with names spelled out and their move since the last read · playoff odds for the season. */
 const LASTY = {};
+const LGSHORT = {MOST: "Most Important", WINNERS: "Winners Sinners", "HERS&HIS": "Hers & His", NEXTDOOR: "NextDoor"};
 const LGFULL = {MOST: "The Most Important Thing in Life", WINNERS: "Winners and Sinners", "HERS&HIS": "Hers and His Version 2.0", NEXTDOOR: "Murrieta NextDoor"};
 function bigDial(v, col, mark, id, v0){
   v = Math.max(0, Math.min(100, +v || 0));
@@ -441,10 +446,10 @@ function bigDial(v, col, mark, id, v0){
     <circle cx="${cx}" cy="${cy}" r="6.5" fill="#0B1222" stroke="#F4F6FA" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="${col}"/></svg>`;
 }
 const isStarter = (p) => !/^(BN|IR|IR\+|NA)$/i.test((p.slot || "").trim());
-const isTrouble = (p) => /^(Q|D|GTD|DTD)$/i.test((p.status || "").trim());
+const isTrouble = (p) => /^(Q|D|GTD|DTD)$/i.test((p.status || "").trim()) || (igOf(p) || {}).s === "trbl";
 /* one state for a starter, shared by the meter dots and the card's boxes */
 const dotState = (p) => (!isDone(p) && (isOut(p) || (!isLive(p) && (+p.proj || 0) === 0 && !/bye/i.test(p.when || "")))) ? "out" : isTrouble(p) && !isDone(p) ? "trbl" : isLive(p) ? "live" : isDone(p) ? "done" : "pre";
-const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || ""))}"></i>`).join("");
+const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || "") + (igOf(p) ? " · " + igOf(p).note + " (RotoWire)" : ""))}"></i>`).join("");
 function meters(){
   if (!S || !S.leagues){ return; }
   const prev = prevEntry();
@@ -465,7 +470,7 @@ function meters(){
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
         ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<b>${nm}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         return `<div class="mx${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="mxh"><div class="r1"><b>${DK[k]}</b>${live.length ? `<span class="bel ${nA.red ? "red" : nA.gold ? "gold" : "grey"}" title="${live.length} open alert${live.length > 1 ? "s" : ""}: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted">${bellSvg}<i>${live.length}</i></span>` : ""}</div><span>${esc(LGFULL[k])}</span></div>
+      <div class="mxh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span><button type="button" class="bel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}</button></div>
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}">WIN PROBABILITY${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div></div>
       <div class="mxs${onField ? " on" : ""}" title="${goNow ? "Actual points so far (Yahoo live). Your score's color = win probability; it blinks while your players are on the field." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
@@ -946,6 +951,8 @@ function rmsg(t, bad){ const el = $("#rmsg"); el.textContent = t; el.hidden = fa
 document.addEventListener("click", async (e) => {
   const t = e.target.closest ? e.target : e.target.parentElement;
   const ga = t.closest("[data-goal]"); if (ga){ e.preventDefault(); await goAlert(ga.dataset.goal); return; }
+  const ab = t.closest("[data-alerts]"); if (ab){ e.preventDefault(); e.stopPropagation(); const id = "al-" + ab.dataset.alerts, d = document.querySelector(`details[data-fold="${id}"]`);
+    if (d){ d.open = true; try { FOLDS[id] = true; } catch(_){} d.scrollIntoView({behavior: SMOOTH(), block: "start"}); } else jumpTo(ab.dataset.alerts); return; }
   const j = t.closest("[data-jump]"); if (j){ e.preventDefault(); const id = j.dataset.jump; if (id === "top") scrollTo({top: 0, behavior: SMOOTH()}); else jumpTo(id); return; }
   if (t.closest("[data-markread]")){ const ts = new Date().toISOString(), up = {}; for (const x of alertsAll().filter(aLive)) if (!mk(x.id).read) up[x.id] = Object.assign({}, mk(x.id), {read: ts});
     await writeMarks(up); rmsg("Marked " + Object.keys(up).length + " alerts read."); return; }
