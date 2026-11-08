@@ -412,7 +412,7 @@ function renderHealth(){
    the four experts as glass orbs with names spelled out and their move since the last read · playoff odds for the season. */
 const LASTY = {};
 const LGFULL = {MOST: "The Most Important Thing in Life", WINNERS: "Winners and Sinners", "HERS&HIS": "Hers and His Version 2.0", NEXTDOOR: "Murrieta NextDoor"};
-function bigDial(v, col, mark, id){
+function bigDial(v, col, mark, id, v0){
   v = Math.max(0, Math.min(100, +v || 0));
   const cx = 60, cy = 60, r = 44, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
   const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
@@ -423,9 +423,9 @@ function bigDial(v, col, mark, id){
   return `<svg class="bdl" viewBox="0 0 120 66" aria-hidden="true"><defs>
     <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#4FD08A"/></linearGradient>
     <radialGradient id="${g}h" cx="50%" cy="100%" r="80%"><stop offset="0" stop-color="${col}" stop-opacity=".45"/><stop offset=".7" stop-color="${col}" stop-opacity=".05"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></radialGradient>
-    <linearGradient id="${g}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A70"/><stop offset="1" stop-color="#121A30"/></linearGradient>
+    <linearGradient id="${g}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E7891"/><stop offset=".25" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#8E98AE"/><stop offset=".75" stop-color="#F4F6FA"/><stop offset="1" stop-color="#6E7891"/></linearGradient><linearGradient id="${g}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A70"/><stop offset="1" stop-color="#121A30"/></linearGradient>
     <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
-    <path d="${arc(0, 100, r + 6)}" stroke="url(#${g}b)" stroke-width="1.4" fill="none"/>
+    <path d="${arc(0, 100, r + 16)}" stroke="url(#${g}s)" stroke-width="2.2" fill="none"/><path d="${arc(0, 100, r + 6)}" stroke="url(#${g}b)" stroke-width="1.4" fill="none"/>
     <path d="${arc(0, 100, r - 12)} L${cx} ${cy} Z" fill="url(#${g}h)"/>${ticks}
     <path d="${arc(0, 100, r)}" stroke="#16203A" stroke-width="11" fill="none"/>
     <path d="${arc(0, 100, r)}" stroke="url(#${g})" stroke-opacity=".22" stroke-width="11" fill="none"/>
@@ -433,6 +433,9 @@ function bigDial(v, col, mark, id){
     <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="11" fill="none"/>
     <path d="${arc(0, Math.max(1, v), r - 4)}" stroke="#fff" stroke-opacity=".28" stroke-width="1.2" fill="none"/>
     <circle cx="${tx.toFixed(1)}" cy="${ty.toFixed(1)}" r="4" fill="#fff" opacity=".9" filter="url(#${g}f)"/>${mk}
+    ${v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = Math.max(0, Math.min(100, +v0)), [gx, gy] = P(w0, r - 8), [ax, ay] = P(w0, r + 8);
+      return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
+      <line x1="${cx}" y1="${cy}" x2="${gx.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="#D9DEE8" stroke-width="1.6" stroke-dasharray="2.6 2.4" opacity=".85"/><circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="2.4" fill="#0B1222" stroke="#D9DEE8" stroke-width="1.2"/>`; })() : ""}
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="7" stroke-linecap="round" opacity=".65" filter="url(#${g}f)"/>
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.6" stroke-linecap="round"/>
     <circle cx="${cx}" cy="${cy}" r="6.5" fill="#0B1222" stroke="#F4F6FA" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="${col}"/></svg>`;
@@ -440,7 +443,7 @@ function bigDial(v, col, mark, id){
 const isStarter = (p) => !/^(BN|IR|IR\+|NA)$/i.test((p.slot || "").trim());
 const isTrouble = (p) => /^(Q|D|GTD|DTD)$/i.test((p.status || "").trim());
 /* one state for a starter, shared by the meter dots and the card's boxes */
-const dotState = (p) => (!isDone(p) && (isOut(p) || (!isLive(p) && (+p.proj || 0) === 0 && !/bye/i.test(p.when || "")))) ? "out" : isTrouble(p) && !isDone(p) ? "warn" : isLive(p) ? "live" : isDone(p) ? "done" : "pre";
+const dotState = (p) => (!isDone(p) && (isOut(p) || (!isLive(p) && (+p.proj || 0) === 0 && !/bye/i.test(p.when || "")))) ? "out" : isTrouble(p) && !isDone(p) ? "trbl" : isLive(p) ? "live" : isDone(p) ? "done" : "pre";
 const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || ""))}"></i>`).join("");
 function meters(){
   if (!S || !S.leagues){ return; }
@@ -461,12 +464,10 @@ function meters(){
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
         ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<b>${nm}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
-    const ab = (c, n, lab) => `<span class="ac ${c}${n ? "" : " zero"}" title="${n} ${lab}">${n}</span>`;
-    return `<div class="mx${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="mxh"><b>${DK[k]}</b><span>${esc(LGFULL[k])}</span></div>
-      <div class="mxa"><span class="bl">${bellSvg}</span>${ab("red", nA.red, "act now")}${ab("gold", nA.gold, "monitor")}${ab("grey", nA.grey, "noted")}</div>
-      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k])}<div class="mxp"><b>${y}<small>%</small></b></div>
-        <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}">WIN PROBABILITY${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div></div>
+        return `<div class="mx${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
+      <div class="mxh"><div class="r1"><b>${DK[k]}</b>${live.length ? `<span class="bel ${nA.red ? "red" : nA.gold ? "gold" : "grey"}" title="${live.length} open alert${live.length > 1 ? "s" : ""}: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted">${bellSvg}<i>${live.length}</i></span>` : ""}</div><span>${esc(LGFULL[k])}</span></div>
+      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
+        <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}">WIN PROBABILITY${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div></div>
       <div class="mxs${onField ? " on" : ""}" title="${goNow ? "Actual points so far (Yahoo live). Your score's color = win probability; it blinks while your players are on the field." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
         <div class="mxn"><b class="${scoreCls(L).split(" ")[0]}">${f1(goNow ? me : F.me)}</b><span>${done ? "FINAL<br>" : goNow ? "" : "PROJ<br>"}${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲" : "▼") + Math.abs(mg).toFixed(1)}</span><b class="o">${f1(goNow ? op : F.op)}</b></div>
         <div class="mxt2">PLAYERS${outs ? ` <em>${outs} OUT</em>` : ""}</div>
@@ -726,7 +727,7 @@ function boxHtml(k, L){
   return `<details class="bxd" data-fold="${fid}"${open ? " open" : ""}><summary aria-label="Box score for both teams">
       <div class="pr"><span class="who">YOU</span><div class="blks">${blocks(sides.me)}</div></div>
       <div class="pr"><span class="who op">OPP</span><div class="blks">${blocks(sides.op)}</div></div>
-      <div class="pkey"><span><i class="bk sm done"></i>Done</span><span><i class="bk sm live"></i>Playing</span><span><i class="bk sm pre"></i>Not yet</span><span><i class="bk sm warn"></i>Trouble</span><span><i class="bk sm out"></i>Out</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
+      <div class="pkey"><span><i class="bk sm done"></i>Done</span><span><i class="bk sm live"></i>Playing</span><span><i class="bk sm pre"></i>Not yet</span><span><i class="bk sm trbl"></i>Trouble</span><span><i class="bk sm out"></i>Out</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
     <div class="bxb">${team(sides.me, L.team || "Dark Knight", true)}${team(sides.op, L.opp || "Opponent", false)}
       <p class="note">Points: Yahoo, league scoring${B ? `, Yahoo API read ${esc(B.read || "")}` : ""}. Projections: Yahoo's weekly projection (league scoring) and Ratcliffe's where the meter has him. Live status follows the latest Yahoo read.</p></div></details>`;
 }
