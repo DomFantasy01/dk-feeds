@@ -62,6 +62,11 @@ function chance(L, src){
     if (v !== null && v !== undefined) return +v;
   }
   if (src === "y") return +L.pct;
+  return liveModel(L, src);
+}
+/* the same spread model run on one source's projected finals; for "y" it gives the chance Yahoo's own projections imply */
+function liveModel(L, src){
+  const pm = (M && M.pm && M.pm[L.key]) || {};
   const me = L.players.reduce((a, p) => a + manFinal(p, src, pm), 0), op = L.oppPlayers.reduce((a, p) => a + manFinal(p, src, pm), 0);
   const remain = [...L.players, ...L.oppPlayers].reduce((a, p) => a + (isDone(p) || isOut(p) ? 0 : Math.max(0, manFinal(p, src, pm) - pts(p))), 0);
   const full = [...L.players, ...L.oppPlayers].reduce((a, p) => a + Math.max(1, manFinal(p, src, pm)), 0) || 1;
@@ -397,35 +402,49 @@ function renderHealth(){
 }
 
 /* ---------- meters + sticky scoreboard ---------- */
+/* Nov 8 (Dom: "make those meters look better ... they're weak ... too much information ... more professional"):
+   one clean gauge per league - Yahoo's chance to win this week on the arc, a white tick where the four experts' middle sits -
+   then the live score (blinks while your men are on the field), the four expert numbers, and the playoff odds for the season. */
 const LASTY = {};
+function gauge(v, col, mark, id){
+  v = Math.max(0, Math.min(100, +v || 0)); const cx = 50, cy = 50, r = 40, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
+  const arc = (p0, p1) => { const [x0, y0] = P(p0, r), [x1, y1] = P(p1, r); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
+  let mk = ""; if (mark !== null && mark !== undefined && !isNaN(mark)){ const [a0, b0] = P(mark, r - 6), [a1, b1] = P(mark, r + 6);
+    mk = `<line x1="${a0.toFixed(2)}" y1="${b0.toFixed(2)}" x2="${a1.toFixed(2)}" y2="${b1.toFixed(2)}" stroke="#0B1222" stroke-width="4" stroke-linecap="round"/><line x1="${a0.toFixed(2)}" y1="${b0.toFixed(2)}" x2="${a1.toFixed(2)}" y2="${b1.toFixed(2)}" stroke="#F4F6FA" stroke-width="1.8" stroke-linecap="round"/>`; }
+  const [hx0, hy0] = P(50, r + 5), [hx1, hy1] = P(50, r + 8.5);
+  return `<svg class="gz" viewBox="0 0 100 56" aria-hidden="true">
+    <path d="${arc(0, 100)}" stroke="#1E2A45" stroke-width="7" fill="none" stroke-linecap="round"/>
+    ${v > 0 ? `<path d="${arc(0, Math.max(1.5, v))}" stroke="${col}" stroke-width="7" fill="none" stroke-linecap="round"/>` : ""}
+    <line x1="${hx0.toFixed(2)}" y1="${hy0.toFixed(2)}" x2="${hx1.toFixed(2)}" y2="${hy1.toFixed(2)}" stroke="#4F5B75" stroke-width="1.2"/>${mk}
+    <text x="${cx}" y="${cy - 1}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="31" fill="#fff" letter-spacing=".5">${Math.round(v)}<tspan font-size="15" dx="1" fill="#C9CFDB">%</tspan></text></svg>`;
+}
 function meters(){
   if (!S || !S.leagues){ return; }
   const prev = prevEntry();
   $("#meters").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return "";
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive), w = worst(live);
-    const arrow = (src, v) => { const pv = prev && prev.lg[k] ? prev.lg[k][src] : null; if (pv === null || pv === undefined || v === pv) return ""; return v > pv ? `<em class="up">▲</em>` : `<em class="dn">▼</em>`; };
-    /* Nov 7 (Dom): since-last-read tick beside the big Yahoo number - how far it moved since the previous Yahoo read */
-    const ypv = prev && prev.lg[k] ? prev.lg[k].y : null, yd = ypv === null || ypv === undefined ? null : Math.round(y - ypv);
-    const tick = yd === null ? "" : `<span class="slr ${yd > 0 ? "up" : yd < 0 ? "dn" : "z"}" title="Since the ${esc(ptTime(prev.t))} Yahoo read: ${ypv}% → ${y}%">${yd > 0 ? "▲" + yd : yd < 0 ? "▼" + Math.abs(yd) : "±0"}<small>LAST READ</small></span>`;
-    /* Nov 7 (Dom): playoff odds badge - the season number with its move since the previous simulator run */
-    const ph = (m.po_hist && m.po_hist.length ? m.po_hist : (m.sim_hist || [])).filter(h => Array.isArray(h) && h[2] !== null && h[2] !== undefined);
-    let pod = null, pwhen = "";
-    if (ph.length >= 2){ const last = ph[ph.length - 1]; for (let i = ph.length - 2; i >= 0; i--){ if (ph[i][1] !== last[1] && Math.abs(ph[i][2] - last[2]) >= .005){ pod = (last[2] - ph[i][2]) * 100; pwhen = ph[i][1]; break; } } }
-    /* Nov 7 (Dom): an orb glows gold when its source sits 5+ points from the middle of the five */
-    const C5 = {y, v: chance(L, "v"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c")}, c5 = Object.values(C5).sort((a, b) => a - b), mid5 = c5[2];
+    const X = {v: chance(L, "v"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c")};
+    const xs = Object.values(X).filter(v => v !== null && !isNaN(v)).sort((a, b) => a - b), xmid = xs.length ? (xs[(xs.length - 1) >> 1] + xs[xs.length >> 1]) / 2 : null;
+    const five = [y, ...xs].sort((a, b) => a - b), mid5 = five[2];
+    /* Yahoo check: does Yahoo's own % agree with Yahoo's own projected totals? */
+    const F = finals(L), imp = liveModel(L, "y"), off = Math.abs(y - imp) >= 20;
     const po = m.champ && m.champ.base ? m.champ.base.playoff : (m.sim ? m.sim.playoff : null);
-    const goNow = [...L.players, ...L.oppPlayers].some(started), F = finals(L), mg = goNow ? score(L.players) - score(L.oppPlayers) : F.me - F.op;
+    const goNow = [...L.players, ...L.oppPlayers].some(started), me = score(L.players), op = score(L.oppPlayers), mg = goNow ? me - op : F.me - F.op;
+    const onField = L.players.some(isLive), done = settled(L), meL = leftOf(L.players).length, opL = leftOf(L.oppPlayers).length;
     const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
-    const say = `${DK[k]}, ${LGN[k]}: ${y}% to win this week on Yahoo, Ratcliffe ${chance(L, "r")}%, Koerner ${chance(L, "k")}%, Clay ${chance(L, "c")}%, Vegas ${chance(L, "v")}%. ${goNow ? "Live margin" : "Projected margin"} ${sgn(mg)}. Playoff odds ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
-    const dlt = (src, v) => { const v0 = weekStart(k, src); if (v0 === null || Math.round(v0) === Math.round(v)) return ""; const d = Math.round(v - v0); return `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`; };
-    return `<div class="mtr${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="mtop"><b>${DK[k]}</b><span>${esc(LGN[k])}</span></div><span class="bell mb ${w}" title="${live.length} open alerts">${bellSvg}${live.length}</span>${dial(y, HEX[k], SLUG[k], weekStart(k, "y"))}
-      <div class="pct">${y}%${tick}</div><div class="wkd">${weekStart(k, "y") === null ? "YAHOO" : `YAHOO ${dlt("y", y) || "±0"} <span>WK</span>`}</div>
-      <div class="orbs">${[["v", "VEGAS", "VEG"], ["r", "RATCLIFFE", "RAT"], ["k", "KOERNER", "KOE"], ["c", "CLAY", "CLAY"]].map(([s2, lab, sh]) => { const v = chance(L, s2), v0 = weekStart(k, s2), d = v0 === null ? null : Math.round(v - v0);
-        const gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, odd = lvl > 0;   /* Nov 7 (Dom): neon - steady 3-5 pts, pulsing 5+; green above the others, orange below */
-        return `<div class="ob${s2 === "v" ? " vg" : ""}${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${s2 === "v" ? "Vegas props" : lab.charAt(0) + lab.slice(1).toLowerCase()} ${v}% chance to win this week${v0 === null ? "" : ` · started the week at ${Math.round(v0)}%`}${odd ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the others${lvl === 2 ? " - see Why they differ in the card" : ""}` : ""}">${glassOrb(v, v0, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="ot"><b><span class="lf">${lab}</span><span class="ls">${sh}</span></b>${d === null ? `<em class="z">–</em>` : d === 0 ? `<em class="z">±0</em>` : `<em class="${d > 0 ? "up" : "dn"}">${d > 0 ? "▲" : "▼"}${Math.abs(d)}</em>`}</span></div>`; }).join("")}</div>
-      <div class="mrow"><span class="mgn ${mg > 0 ? "up" : mg < 0 ? "dn" : ""}" title="${goNow ? "live margin" : "projected margin"}"><span>${goNow ? "LIVE" : "PROJ"}</span>${sgn(mg)}</span></div>
-      <div class="pob" title="Playoff odds for the season (Road to the Championship simulator)${pod === null ? "" : ` · ${pod > 0 ? "up" : "down"} ${Math.abs(pod).toFixed(1)} points since the ${esc(pwhen)} run`}"><span class="pl">PLAYOFFS</span><b>${pcs(po)}</b>${pod === null || Math.abs(pod) < .5 ? "" : `<em class="${pod > 0 ? "up" : "dn"}">${pod > 0 ? "▲" : "▼"}${Math.abs(pod).toFixed(pod >= 9.95 || pod <= -9.95 ? 0 : 1)}</em>`}<div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="seatb">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
+    const say = `${DK[k]}, ${LGN[k]}: ${y}% chance to win this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} left. Playoff odds for the season ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
+    const ex = [["v", "VEG", "Vegas props"], ["r", "RAT", "Ratcliffe"], ["k", "KOE", "Koerner"], ["c", "CLAY", "Clay"]].map(([s2, sh, nm]) => { const v = X[s2], gap = v - mid5, odd = Math.abs(gap) >= 5;
+      return `<span class="${odd ? (gap > 0 ? "hi" : "lo") : ""}" title="${nm}: ${v}% chance to win this week${odd ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}"><i>${sh}</i>${v}</span>`; }).join("");
+    const pv = prev && prev.lg[k] ? prev.lg[k].y : null;
+    return `<div class="mx${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
+      <div class="mxh"><b>${DK[k]}</b>${live.length ? `<span class="al ${w}" title="${live.length} open alert${live.length > 1 ? "s" : ""}">${live.length}</span>` : ""}</div>
+      <div class="mxn" title="${esc(LGN[k])}">${esc(LGN[k])}</div>
+      ${gauge(y, HEX[k], xmid, SLUG[k])}
+      <div class="mxl" title="Yahoo's chance to win this week${pv === null || pv === undefined ? "" : ` · ${pv}% at the ${esc(ptTime(prev.t))} read`}${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}">YAHOO${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div>
+      <div class="mxsc${onField ? " on" : ""}${done ? " fin" : ""}" title="${goNow ? "Live score (Yahoo)" : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">${onField ? `<i class="ld"></i>` : ""}<b class="${goNow ? scoreCls(L).split(" ")[0] : ""}">${f1(goNow ? me : F.me)}</b><span>${f1(goNow ? op : F.op)}</span></div>
+      <div class="mxm"><span class="${mg > .05 ? "up" : mg < -.05 ? "dn" : ""}">${done ? "FINAL " : goNow ? "" : "PROJ "}${sgn(mg)}</span>${done ? "" : `<span>${meL}·${opL} LEFT</span>`}</div>
+      <div class="mxe">${ex}</div>
+      <div class="mxp" title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b>${pcs(po)}</b><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="mxw">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
