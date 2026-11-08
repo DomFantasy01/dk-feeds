@@ -664,4 +664,23 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:420px){.xo{gap:3px}.xo svg{width:22px;height:22px}.xo b{font-size:6.2px;letter-spacing:0;overflow:visible}.xo em{font-size:8px}.xo em.z{display:none}.mxh > b{font-size:17px}}
 @media (max-width:380px){.xo svg{width:20px;height:20px}.xo b{font-size:5.8px}.mxh > b{font-size:15px}}
 @media (min-width:561px){.xo svg{width:34px;height:34px}.xo b{font-size:9px}.xo em{font-size:11px}}
+/* Nov 8 12:46 (Dom): smaller bells; bigger league name alone on its own line, never cut off (wraps instead);
+   score rows on phones - label on its own line, number under it, so the number is never cut off */
+.mxh .bel{height:18px;min-width:18px;padding:0 5px 0 4px;border-radius:9px;gap:2px}
+.mxh .bel svg{width:9px;height:9px}
+.mxh .bel i{font-size:9px}
+.mxh .bel.none{width:18px;padding:0}
+.mxh .nm{white-space:normal;overflow:visible;text-overflow:clip;font-size:9.5px;line-height:1.15;letter-spacing:.01em}
+@media (max-width:420px){.mxh .bel{height:15px;min-width:15px;padding:0 3px;gap:1px}.mxh .bel svg{width:8px;height:8px}.mxh .bel i{font-size:8px}.mxh .bel.none{width:15px;padding:0}
+  .mxh .nm{font-size:8.4px;letter-spacing:0}
+  .sc3 .sr,.sc3 .sr.o{flex-direction:column;align-items:flex-start;gap:1px}.sc3 .sr.o{align-items:flex-end}
+  .sc3 small{font-size:6px;letter-spacing:.04em}.sc3 b{font-size:20px;max-width:100%}.sc3 .vs{align-self:center}}
+@media (max-width:375px){.sc3 b{font-size:18px}.mxh .nm{font-size:7.8px}}
+@media (min-width:561px){.mxh .bel{height:21px;min-width:21px;padding:0 6px 0 5px;border-radius:11px}.mxh .bel svg{width:11px;height:11px}.mxh .bel i{font-size:10.5px}.mxh .bel.none{width:21px;padding:0}.mxh .nm{font-size:12px}}
+/* expert rows on phones: name alone on its line, the change since the last read under it */
+@media (max-width:560px){.xo{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:3px;align-items:center;text-align:left}
+  .xo svg{grid-row:1 / span 2;grid-column:1}.xo b{grid-row:1;grid-column:2;align-self:end;overflow:visible}.xo em,.xo em.z{display:block;grid-row:2;grid-column:2;align-self:start;text-align:left;line-height:1.1}}
+@media (min-width:641px){.sc3 b{font-size:clamp(17px,3.1vw,24px)}.sc3 .vs{margin:0 2px}}
+@media (min-width:421px) and (max-width:640px){.sc3{flex-direction:column;align-items:stretch;gap:2px}.sc3 .sr{flex-direction:column;align-items:flex-start;gap:1px}.sc3 .sr.o{align-items:flex-end}
+  .sc3 b{font-size:22px;margin:0}.sc3 .vs{align-self:center;margin:0}}
 </style>
