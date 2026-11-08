@@ -501,7 +501,7 @@ function scoreGlobe(L, k, o){
     <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
     <text x="${cx - 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">ME ${o.meL} LEFT</text><text x="${cx + 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">OPP ${o.opL} LEFT</text>
-    <text x="${cx}" y="${cy + 42}" text-anchor="middle" class="sgm" style="fill:${mgc}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</text></svg>`;
+    <text x="${cx}" y="${cy + 42}" text-anchor="middle" class="sgm" style="fill:${mgc}"><tspan class="sgg">GAP </tspan>${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</text></svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
