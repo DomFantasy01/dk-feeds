@@ -36,6 +36,17 @@ jobs:
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add yahoo_drop/vegas dispatch_out/vegas_scored.csv dispatch_out/vegas_history dispatch_out/meter_wk*.json 2>/dev/null || true
-          git commit -m "vegas $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
-          for i in 1 2 3; do git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0; sleep 5; done; exit 1
+          # Nov 8 (Dom): never commit the meter copy this job started from - a Dispatch build that finished meanwhile has a
+          # newer meter, and "-X theirs" used to put the old one back (DK3 showed 6% again). Save the Vegas data, pull, then
+          # lay the Vegas needle onto the CURRENT meter and commit that.
+          git add yahoo_drop/vegas dispatch_out/vegas_scored.csv dispatch_out/vegas_history 2>/dev/null || true
+          git checkout -- dispatch_out/meter_wk*.json 2>/dev/null || true
+          git commit -m "vegas $(date -u +%Y-%m-%dT%H:%MZ)" || true
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main || { git rebase --abort 2>/dev/null; sleep 5; continue; }
+            W=$(ls dispatch_out/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
+            python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" "dispatch_out/meter_wk$W.json" --no-read || true
+            git add dispatch_out/meter_wk*.json; MC=0; git commit -m "vegas needle on the current meter $(date -u +%Y-%m-%dT%H:%MZ)" && MC=1
+            bash .github/wait_pages.sh; git push && exit 0
+            [ "$MC" = 1 ] && git reset -q --hard HEAD~1; sleep 5
+          done; exit 1
