@@ -1,6 +1,6 @@
 {
  "week": 9,
- "built": "Sun Nov 08 2026 11:43 AM PT",
+ "built": "Sun Nov 08 2026 11:59 AM PT",
  "ratcliffe_read": "Sun Nov 8 2026 9:02 AM PT",
  "koerner_read": "Sun Nov 8 2026 11:05 AM PT",
  "leagues": {
@@ -226,9 +226,112 @@
    "fa_tags": {}
   },
   "DK III": {
-   "talk": [],
+   "talk": [
+    {
+     "name": "Elijah Mitchell",
+     "pos": "RB",
+     "team": "PHI",
+     "acq": "Waivers, clears Nov 11",
+     "over": "Packers",
+     "pct": 9480,
+     "gain": 7.4,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:elijahmitchell",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "name": "Marvin Harrison Jr.",
+     "pos": "WR",
+     "team": "HOU",
+     "acq": "Waivers, clears Nov 11",
+     "over": "Packers",
+     "pct": 7950,
+     "gain": 5.9,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy WR who plays helps this week",
+     "scout": true,
+     "id": "talk:marvinharrison",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "name": "Jahan Dotson",
+     "pos": "WR",
+     "team": "ATL",
+     "acq": "Waivers, clears Nov 11",
+     "over": "Packers",
+     "pct": 7910,
+     "gain": 5.8,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy WR who plays helps this week",
+     "scout": true,
+     "id": "talk:jahandotson",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "Free agent",
+     "over": "Packers",
+     "pct": 7700,
+     "gain": 7.0,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy RB who plays helps this week",
+     "scout": true,
+     "id": "talk:kimanividal",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "name": "Darius Cooper",
+     "pos": "WR",
+     "team": "PHI",
+     "acq": "Waivers, clears Nov 11",
+     "over": "Packers",
+     "pct": 7410,
+     "gain": 5.3,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy WR who plays helps this week",
+     "scout": true,
+     "id": "talk:dariuscooper",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "name": "Mason Taylor",
+     "pos": "TE",
+     "team": "NYJ",
+     "acq": "Waivers, clears Nov 11",
+     "over": "Packers",
+     "pct": 7360,
+     "gain": 5.3,
+     "note": "Scout pick (rest of season): This week: your FLEX2 seat has nobody playing (Michael Pittman Jr. on bye), so any healthy TE who plays helps this week",
+     "scout": true,
+     "id": "talk:masontaylor",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    }
+   ],
    "watch": [],
    "cover": [
+    {
+     "title": "FLEX2, Week 9 Fill",
+     "target": "Target 8.6 pts",
+     "mark": "red",
+     "why": "Slot empty; ideally ~9 (Josh Downs' level) \u2014 anything beats zero.",
+     "picks": [
+      "Elijah Mitchell (Waivers, clears Nov 11)",
+      "Marvin Harrison Jr. (Waivers, clears Nov 11)"
+     ],
+     "id": "cover:flex2week9fill",
+     "first_seen": "Sun Nov 08 2026 11:59 AM PT"
+    },
+    {
+     "title": "TE, Weeks 9-11 Fill",
+     "target": "Target 10.1 pts",
+     "mark": "red",
+     "why": "Full strength ~13.2 (Fannin). Wk 9 Fannin ~11.0 \u00b7 Wk 10 Fannin ~10.9 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~8.6 (Fannin on bye, Hockenson slides in).",
+     "picks": [
+      "Mason Taylor (Waivers, clears Nov 11)",
+      "Darren Waller (Waivers, clears Nov 11)"
+     ],
+     "id": "cover:teweeks911fill",
+     "first_seen": "Wed Nov 04 2026 12:35 PM PT"
+    },
     {
      "title": "RB1, Weeks 11-14 Fill",
      "target": "Target 14.8 pts",
@@ -237,24 +340,6 @@
      "picks": [],
      "id": "cover:rb1weeks1114fill",
      "first_seen": "Wed Nov 04 2026 06:39 AM PT"
-    },
-    {
-     "title": "TE, Weeks 9-11 Fill",
-     "target": "Target 10.1 pts",
-     "mark": "gold",
-     "why": "Full strength ~13.2 (Fannin). Wk 9 Fannin ~11.0 \u00b7 Wk 10 Fannin ~10.9 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~8.6 (Fannin on bye, Hockenson slides in).",
-     "picks": [],
-     "id": "cover:teweeks911fill",
-     "first_seen": "Wed Nov 04 2026 12:35 PM PT"
-    },
-    {
-     "title": "FLEX2, Weeks 9-10 Fill",
-     "target": "Target 8.6 pts",
-     "mark": "gold",
-     "why": "Full strength ~8.6 (Downs). Wk 9 Douglas ~9.5 (Downs moves up to WR2, Douglas slides in) \u00b7 Wk 10 Hockenson ~7.6 (Downs moves up to WR2, Hockenson slides in).",
-     "picks": [],
-     "id": "cover:flex2weeks910fill",
-     "first_seen": "Sun Nov 08 2026 09:22 AM PT"
     },
     {
      "title": "FLEX1, Weeks 10, 12 Fill",
