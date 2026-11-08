@@ -1,6 +1,6 @@
 {
- "read_pt": "Sun Nov 8 9:43 AM PT",
- "read_utc": "2026-11-08T17:43:35+00:00",
+ "read_pt": "Sun Nov 8 9:58 AM PT",
+ "read_utc": "2026-11-08T17:58:47+00:00",
  "game_key": "470",
  "leagues_read": [
   "DKI",
@@ -12,7 +12,7 @@
  "log": [
   "DKI TheMostImportantThingInLife: week 9, 12 teams, 188 rostered, 6 matchups, 116 on waivers",
   "DKII Winners and Sinners: week 9, 12 teams, 202 rostered, 6 matchups, 122 on waivers",
-  "DKIII Hers and His Version 2.0: week 9, 14 teams, 204 rostered, 7 matchups, 113 on waivers",
+  "DKIII Hers and His Version 2.0: week 9, 14 teams, 204 rostered, 7 matchups, 114 on waivers",
   "DKIV Murrieta NextDoor: week 9, 10 teams, 179 rostered, 5 matchups, 117 on waivers"
  ],
  "leagues": {
@@ -5966,11 +5966,11 @@
      "players": [
       {
        "slot": "QB",
-       "name": "Deshaun Watson",
-       "team": "Cle",
+       "name": "Malik Willis",
+       "team": "Mia",
        "pos": "QB",
-       "status": "O",
-       "key": "470.p.30125"
+       "status": "",
+       "key": "470.p.34042"
       },
       {
        "slot": "RB",
@@ -5982,11 +5982,11 @@
       },
       {
        "slot": "RB",
-       "name": "Tony Pollard",
-       "team": "Ten",
+       "name": "Keaton Mitchell",
+       "team": "Lac",
        "pos": "RB",
        "status": "",
-       "key": "470.p.31960"
+       "key": "470.p.40641"
       },
       {
        "slot": "WR",
@@ -6022,19 +6022,27 @@
       },
       {
        "slot": "W/R/T",
-       "name": "Keaton Mitchell",
-       "team": "Lac",
+       "name": "Audric Estime",
+       "team": "No",
        "pos": "RB",
        "status": "",
-       "key": "470.p.40641"
+       "key": "470.p.41019"
       },
       {
        "slot": "BN",
-       "name": "Malik Willis",
-       "team": "Mia",
-       "pos": "QB",
+       "name": "Tony Pollard",
+       "team": "Ten",
+       "pos": "RB",
        "status": "",
-       "key": "470.p.34042"
+       "key": "470.p.31960"
+      },
+      {
+       "slot": "BN",
+       "name": "Deshaun Watson",
+       "team": "Cle",
+       "pos": "QB",
+       "status": "O",
+       "key": "470.p.30125"
       },
       {
        "slot": "BN",
@@ -6070,14 +6078,6 @@
       },
       {
        "slot": "DEF",
-       "name": "Eagles",
-       "team": "Phi",
-       "pos": "DEF",
-       "status": "",
-       "key": "470.p.100021"
-      },
-      {
-       "slot": "BN",
        "name": "Texans",
        "team": "Hou",
        "pos": "DEF",
@@ -7348,15 +7348,15 @@
        "id": 4,
        "name": "Bad and Bougie 2.0",
        "points": "17.10",
-       "proj": "99.99",
-       "win_probability": "0.15"
+       "proj": "131.64",
+       "win_probability": "0.35"
       },
       {
        "id": 11,
        "name": "Beachmom's Bench",
        "points": "18.75",
        "proj": "150.02",
-       "win_probability": "0.85"
+       "win_probability": "0.65"
       }
      ]
     },
@@ -8411,6 +8411,11 @@
     },
     {
      "name": "Falcons",
+     "pos": "DEF",
+     "clears": "2026-11-11"
+    },
+    {
+     "name": "Eagles",
      "pos": "DEF",
      "clears": "2026-11-11"
     },
@@ -9474,28 +9479,20 @@
      "name": "Bad and Boujee",
      "players": [
       {
-       "slot": "QB",
-       "name": "Deshaun Watson",
-       "team": "Cle",
-       "pos": "QB",
-       "status": "O",
-       "key": "470.p.30125"
-      },
-      {
-       "slot": "RB",
-       "name": "Tony Pollard",
-       "team": "Ten",
-       "pos": "RB",
-       "status": "",
-       "key": "470.p.31960"
-      },
-      {
        "slot": "RB",
        "name": "Dylan Laube",
        "team": "Lv",
        "pos": "RB",
        "status": "",
        "key": "470.p.41054"
+      },
+      {
+       "slot": "RB",
+       "name": "Saquon Barkley",
+       "team": "Phi",
+       "pos": "RB",
+       "status": "",
+       "key": "470.p.30972"
       },
       {
        "slot": "WR",
@@ -9547,19 +9544,19 @@
       },
       {
        "slot": "BN",
+       "name": "Tony Pollard",
+       "team": "Ten",
+       "pos": "RB",
+       "status": "",
+       "key": "470.p.31960"
+      },
+      {
+       "slot": "BN",
        "name": "Jameson Williams",
        "team": "Det",
        "pos": "WR",
        "status": "",
        "key": "470.p.33967"
-      },
-      {
-       "slot": "BN",
-       "name": "Lamar Jackson",
-       "team": "Bal",
-       "pos": "QB",
-       "status": "IR",
-       "key": "470.p.31002"
       },
       {
        "slot": "BN",
@@ -9586,20 +9583,28 @@
        "key": "470.p.41882"
       },
       {
-       "slot": "IR",
-       "name": "Saquon Barkley",
-       "team": "Phi",
-       "pos": "RB",
-       "status": "",
-       "key": "470.p.30972"
-      },
-      {
-       "slot": "IR",
+       "slot": "BN",
        "name": "Breece Hall",
        "team": "Nyj",
        "pos": "RB",
        "status": "",
        "key": "470.p.33991"
+      },
+      {
+       "slot": "IR",
+       "name": "Lamar Jackson",
+       "team": "Bal",
+       "pos": "QB",
+       "status": "IR",
+       "key": "470.p.31002"
+      },
+      {
+       "slot": "IR",
+       "name": "Deshaun Watson",
+       "team": "Cle",
+       "pos": "QB",
+       "status": "O",
+       "key": "470.p.30125"
       },
       {
        "slot": "K",
@@ -9970,14 +9975,14 @@
        "name": "Fly Eagles Fly",
        "points": "16.08",
        "proj": "157.54",
-       "win_probability": "0.89"
+       "win_probability": "0.83"
       },
       {
        "id": 9,
        "name": "Bad and Boujee",
        "points": "15.58",
-       "proj": "99.09",
-       "win_probability": "0.11"
+       "proj": "111.00",
+       "win_probability": "0.17"
       }
      ]
     },
