@@ -709,4 +709,28 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
   .msec > .lab{font-size:10px;letter-spacing:.14em}}
 @media (max-width:375px){.mtag span{font-size:7px}}
 @media (min-width:561px){.msec{padding:18px 10px 10px}.mgrid{column-gap:8px}.mtag b{font-size:24px}.mtag span{font-size:11px}.msec > .lab{font-size:12px}.msec > .lsub{font-size:10px}}
+/* Nov 8 12:56: scoreboard globe; bells another 20% smaller */
+.sgw{padding:4px 2px 6px !important}
+.sglobe{display:block;width:100%;max-width:170px;margin:0 auto;overflow:visible}
+.sglobe .rg{fill:none;stroke-width:5.5;stroke-linecap:butt}
+.sglobe .sgn{font:400 15px/1 var(--f-disp);fill:#fff;letter-spacing:.01em;paint-order:stroke;stroke:#060A14;stroke-width:2.2px}
+.sglobe .sgl{font:700 6.2px/1 var(--f-body);fill:var(--ink2);letter-spacing:.08em}
+.sglobe .sgs{font:700 6px/1 var(--f-body);fill:var(--brass);letter-spacing:.16em}
+.sglobe .sgm{font:600 10px/1 var(--f-num);letter-spacing:0}
+.sgp{display:flex;justify-content:center;align-items:baseline;gap:3px;margin-top:3px;font:700 6.5px/1.2 var(--f-body);letter-spacing:.08em;color:var(--mute);white-space:nowrap}
+.sgp b{font:600 9.5px/1 var(--f-num);color:var(--ink2);letter-spacing:0}.sgp b.up{color:#4FD08A}.sgp b.dn{color:#FF8A91}.sgp i{font-style:normal;color:var(--mute)}
+.sgp.n{font-weight:600;letter-spacing:.02em;text-transform:none;font-size:7.5px}
+@media (prefers-reduced-motion:no-preference){.sglobe .wv{animation:sgwave 3.2s ease-in-out infinite alternate}.sglobe .wv.w2{animation-duration:4.4s;animation-direction:alternate-reverse}
+  @keyframes sgwave{from{transform:translateX(0)}to{transform:translateX(-11px)}}
+  .sgw.on .sglobe .rg.live{animation:segsoft 2.6s ease-in-out infinite}}
+@media (max-width:420px){.sgp{flex-wrap:wrap;column-gap:3px;font-size:6px}.sgp span{width:100%;text-align:center}.sgp b{font-size:8.5px}}
+@media (min-width:561px){.sgp{font-size:8px}.sgp b{font-size:11.5px}.sgp.n{font-size:9px}}
+.mxh .bel{height:14.5px;min-width:14.5px;padding:0 4px 0 3px;border-radius:7.5px;gap:2px}.mxh .bel svg{width:7.5px;height:7.5px}.mxh .bel i{font-size:7.5px}.mxh .bel.none{width:14.5px;padding:0}
+@media (max-width:420px){.mxh .bel{height:12px;min-width:12px;padding:0 2.5px;gap:1px;border-radius:6px}.mxh .bel svg{width:6.5px;height:6.5px}.mxh .bel i{font-size:7px}.mxh .bel.none{width:12px;padding:0}}
+@media (min-width:561px){.mxh .bel{height:17px;min-width:17px;padding:0 5px 0 4px;border-radius:9px}.mxh .bel svg{width:9px;height:9px}.mxh .bel i{font-size:8.5px}.mxh .bel.none{width:17px;padding:0}}
+.mxs.sgw,.mxs.sgw.on{background:none !important;border:0 !important;box-shadow:none !important;padding:0 !important}
+.sglobe{max-width:190px}
+.sglobe .sgn{font-size:17px}.sglobe .sgl{font-size:5.6px;letter-spacing:.04em}.sglobe .sgs{font-size:6.4px}.sglobe .sgm{font-size:10.5px;font-weight:700}
+@media (max-width:420px){.ms-b.mx{padding:7px 2px 6px}}
+.sglobe .sgn.lg{font-size:14.5px}
 </style>
