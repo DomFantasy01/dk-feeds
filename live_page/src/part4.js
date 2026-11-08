@@ -478,7 +478,7 @@ function scoreGlobe(L, k, o){
   const tank = (x, w, val, proj, col, side) => { const h = T1 - T0, ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, big = side === "m";
     const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N);
     return `<clipPath id="${id}${side}"><rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7"/></clipPath>
-      <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".7"/></linearGradient>
+      <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset=".55" stop-color="${col}" stop-opacity=".9"/><stop offset="1" stop-color="${col}" stop-opacity=".62"/></linearGradient>
       <rect x="${x - 1.2}" y="${T0 - 1.2}" width="${w + 2.4}" height="${h + 2.4}" rx="8" fill="#05080F"/>
       <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="url(#${id}gl)"/>
       <g clip-path="url(#${id}${side})">
@@ -486,9 +486,15 @@ function scoreGlobe(L, k, o){
         <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="url(#${id}gr)"/>
         <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${col}" stroke-opacity=".6" stroke-width="2.2" filter="url(#${id}b)"/>
         ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}${side}s)"/>
-          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}bu)"/><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}sh)"/>
+          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}ca)"/>
+          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}bu)" class="bub"/><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}sh)"/>
+          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}dp)"/>
           <path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width=".7"/></g>` : ""}
-        <rect x="${x + 3}" y="${T0 + 3}" width="${Math.max(3, w * .12)}" height="${h - 6}" rx="2" fill="#fff" opacity=".07"/></g>
+        <rect class="swp" x="${x - w}" y="${T0}" width="${w * .55}" height="${h}" fill="url(#${id}sw)" transform="skewX(-14)"/>
+        <rect x="${x + 2.6}" y="${T0 + 4}" width="${Math.max(2.6, w * .1)}" height="${h - 8}" rx="1.5" fill="url(#${id}hl)"/>
+        <rect x="${x + w - 3.4}" y="${T0 + 6}" width="1.1" height="${h - 12}" rx=".5" fill="#fff" opacity=".12"/>
+        <rect x="${x}" y="${T0}" width="${w}" height="${h}" fill="url(#${id}ed)"/></g>
+      <path d="M${x + 5} ${T0 + .6} H ${x + w - 5}" stroke="#fff" stroke-opacity=".35" stroke-width=".7" stroke-linecap="round"/>
       <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? col : "#A3ABBD"}" stroke-opacity="${big ? .75 : .45}" stroke-width="${big ? 1.1 : .8}"/>
       <text x="${x + w / 2}" y="${T0 + 15}" text-anchor="middle" class="sgn ${big ? "bg" : "sm"}${f1(val).length > 4 ? " lg" : ""}${(big ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
       <text x="${x + w / 2}" y="${T0 + 23}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
@@ -504,7 +510,12 @@ function scoreGlobe(L, k, o){
     <pattern id="${id}bu" patternUnits="userSpaceOnUse" width="11" height="9"><circle cx="2" cy="2.5" r=".75" fill="#fff" fill-opacity=".22"/><circle cx="7.5" cy="6.5" r=".5" fill="#fff" fill-opacity=".18"/><circle cx="9.5" cy="1.5" r=".35" fill="#fff" fill-opacity=".14"/><circle cx="4.5" cy="7.5" r=".3" fill="#fff" fill-opacity=".12"/></pattern>
     <pattern id="${id}gr" patternUnits="userSpaceOnUse" width="4" height="4"><circle cx="1" cy="1" r=".35" fill="#fff" fill-opacity=".09"/><circle cx="3" cy="3" r=".3" fill="#fff" fill-opacity=".06"/></pattern>
     <linearGradient id="${id}sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity=".1"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
-    <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter></defs>
+    <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <pattern id="${id}ca" patternUnits="userSpaceOnUse" width="26" height="18" patternTransform="rotate(-8)"><path d="M0 9 Q 6.5 4 13 9 T 26 9" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="1.6"/><path d="M0 16 Q 6.5 12 13 16 T 26 16" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="1"/></pattern>
+    <linearGradient id="${id}dp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".18" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient>
+    <linearGradient id="${id}sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="${id}hl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></linearGradient>
+    <linearGradient id="${id}ed" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".12" stop-color="#000" stop-opacity="0"/><stop offset=".88" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient></defs>
     <text x="${W / 2}" y="8.4" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     ${tank(17, 44, o.me, o.pMe, ZC, "m")}${tank(65, 38, o.op, o.pOp, "#A3ABBD", "o")}
     ${rail(L.players, true)}${rail(L.oppPlayers, false)}
