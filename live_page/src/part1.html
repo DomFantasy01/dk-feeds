@@ -814,4 +814,11 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:560px){.sgx span{font-size:6px;letter-spacing:.04em}.sgx b{font-size:17px}.sbel{height:19px;padding:0 5px 0 4px;font-size:9.5px}.sbel i{font-size:9.5px}.sbel svg{width:9px;height:9px}
   .sbh{gap:5px}.sbh .nm{font-size:7.8px}}
 @media (max-width:380px){.sgx span{font-size:5.4px;letter-spacing:0}}
+/* Nov 8 2:00 PM (Dom): league name larger - wraps to two lines rather than cutting off */
+.sbh{align-items:center !important}
+.sbh .nm{font-size:13px !important;line-height:1.05;letter-spacing:.01em !important;white-space:normal;overflow:visible;text-overflow:clip;color:#E6EAF2;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:560px){.sbh .nm{font-size:10.5px !important}}
+@media (max-width:380px){.sbh .nm{font-size:9.5px !important}}
+@media (max-width:560px){.sbh .nm{-webkit-line-clamp:3;max-height:3.2em}.mgrid.g-b .sbh{min-height:34px}}
 </style>
