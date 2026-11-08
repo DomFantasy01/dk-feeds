@@ -504,9 +504,9 @@ function scoreGlobe(L, k, o){
     <path d="M${cx - 30} ${cy - 32} A 40 40 0 0 1 ${cx + 20} ${cy - 39}" stroke="#fff" stroke-opacity=".17" stroke-width="3" fill="none" stroke-linecap="round"/>
     <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
-    <text x="${cx - 23}" y="${cy + 30}" text-anchor="middle" class="sgl2"><tspan class="n">${o.meL}</tspan> TO PLAY</text><text x="${cx + 23}" y="${cy + 30}" text-anchor="middle" class="sgl2"><tspan class="n">${o.opL}</tspan> TO PLAY</text>
     ${(() => { const ev = Math.abs(mg) < .05, pc = ev ? "#AEB6C8" : mg > 0 ? "#3DDC84" : "#FF4D57";
-      return `<text x="${cx}" y="${cy + 41}" text-anchor="middle" class="sgm3" style="fill:${pc}"><tspan class="gl">GAP </tspan>${ev ? "EVEN" : `<tspan class="ar">${mg > 0 ? "▲" : "▼"}</tspan> ` + Math.abs(mg).toFixed(1)}</text>`; })()}</svg>`;
+      return `<text x="${cx}" y="${cy + 33}" text-anchor="middle" class="sgm3 big" style="fill:${pc}">${ev ? "EVEN" : `<tspan class="ar">${mg > 0 ? "▲" : "▼"}</tspan> ` + Math.abs(mg).toFixed(1)}</text>
+      <text x="${cx}" y="${cy + 40.5}" text-anchor="middle" class="sgg2">GAP</text>`; })()}</svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
