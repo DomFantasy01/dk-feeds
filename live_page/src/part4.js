@@ -473,7 +473,7 @@ function scoreGlobe(L, k, o){
       const dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       return `<g class="seg ${s}"><path class="rg" d="${arc(a0 + g / 2, a0 + w - g / 2, R)}" stroke="${RINGC[s]}"/></g>
         <g class="tap" data-pl="${dp}" role="button" aria-label="${tip}"><path class="hit" d="${arc(a0 + g / 2, a0 + w - g / 2, R + 3)}"/>
-        <text class="pos" x="${lx.toFixed(1)}" y="${(ly + 2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text></g>`; }).join(""); };
+        ${mine ? `<text class="pos" x="${lx.toFixed(1)}" y="${(ly + 2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
   const fin = o.state === "FINAL", y = o.y;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
@@ -494,7 +494,7 @@ function scoreGlobe(L, k, o){
       <text x="${x}" y="${ocy + 4.5}" text-anchor="middle" class="sgn${f1(val).length > 4 ? " lg" : ""}${(side === "m" ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
       <text x="${x}" y="${ocy + 13}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
   const mg = o.me - o.op, mgc = Math.abs(mg) < .05 ? "#C9CFDB" : mg > 0 ? "#4FD08A" : "#FF6B72";
-  return `<svg class="sglobe" viewBox="0 0 140 140" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${zw}`)}"><defs>
+  return `<svg class="sglobe" viewBox="0 1 129 137" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${zw}`)}"><defs>
     <radialGradient id="${id}g" cx="40%" cy="28%" r="80%"><stop offset="0" stop-color="#1A2440"/><stop offset=".6" stop-color="#0B1222"/><stop offset="1" stop-color="#05080F"/></radialGradient>
     <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
     <filter id="${id}h" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
