@@ -784,9 +784,10 @@ function card(k){
   return `<article class="card" id="${SLUG[k]}" style="--lc:${LCOL[k]}">
     <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
     <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : ""].join("")}</div>
-    ${scoreHtml}${takes}${seatHtml}
-    <div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${whyDiffer(L, k)}${vegHtml(L, m, k, yv)}
-    ${progress(L, k)}
+    ${scoreHtml}${seatHtml}
+    ${fold("num-" + SLUG[k], "The numbers", `Ratcliffe ${chance(L, "r")}% · Vegas ${chance(L, "v")}%${splitHtml ? " · sources split" : ""}`,
+      `${takes}<div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${whyDiffer(L, k)}${vegHtml(L, m, k, yv)}`, !!splitHtml)}
+    ${fold("gm-" + SLUG[k], "Games", `${meL.length} / ${opL.length} left`, progress(L, k))}
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
     ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
     ${fold("al-" + SLUG[k], "Alerts", al.length ? `${al.filter(x => x.color === "red").length} act now · ${al.filter(x => x.color === "gold").length} monitor · ${al.filter(x => x.color === "grey").length} noted` : "none", `<div id="alb-${SLUG[k]}">${alertsBlock(k)}</div>`, al.some(x => x.color === "red"))}
