@@ -402,49 +402,77 @@ function renderHealth(){
 }
 
 /* ---------- meters + sticky scoreboard ---------- */
-/* Nov 8 (Dom: "make those meters look better ... they're weak ... too much information ... more professional"):
-   one clean gauge per league - Yahoo's chance to win this week on the arc, a white tick where the four experts' middle sits -
-   then the live score (blinks while your men are on the field), the four expert numbers, and the playoff odds for the season. */
+/* Nov 8 v4 (Dom: "I like heavy design ... graphs, charts ... logical: most important to least, what needs action"):
+   each meter reads top to bottom by importance -
+   1 ACTION banner (empty seat / red alert) or a quiet ALL SET,
+   2 the Yahoo dial (graded arc, glowing needle, white tick = the experts' middle),
+   3 the live score as a tug-of-war bar with a dot per starter (done / on the field, blinking / still to play),
+   4 the four experts as small bars,
+   5 playoff odds for the season. */
 const LASTY = {};
-function gauge(v, col, mark, id){
-  v = Math.max(0, Math.min(100, +v || 0)); const cx = 50, cy = 50, r = 40, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
-  const arc = (p0, p1) => { const [x0, y0] = P(p0, r), [x1, y1] = P(p1, r); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
-  let mk = ""; if (mark !== null && mark !== undefined && !isNaN(mark)){ const [a0, b0] = P(mark, r - 6), [a1, b1] = P(mark, r + 6);
-    mk = `<line x1="${a0.toFixed(2)}" y1="${b0.toFixed(2)}" x2="${a1.toFixed(2)}" y2="${b1.toFixed(2)}" stroke="#0B1222" stroke-width="4" stroke-linecap="round"/><line x1="${a0.toFixed(2)}" y1="${b0.toFixed(2)}" x2="${a1.toFixed(2)}" y2="${b1.toFixed(2)}" stroke="#F4F6FA" stroke-width="1.8" stroke-linecap="round"/>`; }
-  const [hx0, hy0] = P(50, r + 5), [hx1, hy1] = P(50, r + 8.5);
-  return `<svg class="gz" viewBox="0 0 100 56" aria-hidden="true">
-    <path d="${arc(0, 100)}" stroke="#1E2A45" stroke-width="7" fill="none" stroke-linecap="round"/>
-    ${v > 0 ? `<path d="${arc(0, Math.max(1.5, v))}" stroke="${col}" stroke-width="7" fill="none" stroke-linecap="round"/>` : ""}
-    <line x1="${hx0.toFixed(2)}" y1="${hy0.toFixed(2)}" x2="${hx1.toFixed(2)}" y2="${hy1.toFixed(2)}" stroke="#4F5B75" stroke-width="1.2"/>${mk}
-    <text x="${cx}" y="${cy - 1}" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="31" fill="#fff" letter-spacing=".5">${Math.round(v)}<tspan font-size="15" dx="1" fill="#C9CFDB">%</tspan></text></svg>`;
+function bigDial(v, col, mark, id){
+  v = Math.max(0, Math.min(100, +v || 0));
+  const cx = 60, cy = 58, r = 46, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
+  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+  let ticks = ""; for (let t = 0; t <= 20; t++){ const [a0, b0] = P(t * 5, r + 7), [a1, b1] = P(t * 5, r + (t % 2 ? 9.5 : t % 10 ? 11 : 13)); ticks += `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="${t === 10 ? "#C9CFDB" : "#34446A"}" stroke-width="${t % 10 ? .8 : 1.5}"/>`; }
+  const g = "bd" + id, [nx, ny] = P(v, r - 9);
+  let mk = ""; if (mark !== null && mark !== undefined && !isNaN(mark)){ const [a0, b0] = P(mark, r - 7), [a1, b1] = P(mark, r + 7);
+    mk = `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="#0B1222" stroke-width="4.5" stroke-linecap="round"/><line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="#fff" stroke-width="2" stroke-linecap="round"/>`; }
+  return `<svg class="bdl" viewBox="0 0 120 66" aria-hidden="true"><defs>
+    <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#4FD08A"/></linearGradient>
+    <radialGradient id="${g}h" cx="50%" cy="100%" r="70%"><stop offset="0" stop-color="${col}" stop-opacity=".35"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></radialGradient>
+    <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter></defs>
+    <path d="${arc(0, 100, r - 13)} L${cx} ${cy} Z" fill="url(#${g}h)"/>${ticks}
+    <path d="${arc(0, 100, r)}" stroke="url(#${g})" stroke-opacity=".25" stroke-width="11" fill="none"/>
+    <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="11" fill="none"/>
+    <path d="${arc(0, Math.max(1, v), r)}" stroke="${col}" stroke-width="3" fill="none" opacity=".9"/>${mk}
+    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${col}" stroke-width="6" stroke-linecap="round" opacity=".6" filter="url(#${g}f)"/>
+    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="5.5" fill="#F4F6FA"/><circle cx="${cx}" cy="${cy}" r="2.4" fill="${col}"/></svg>`;
 }
+/* tug of war: your share of the points on the left in league color, his on the right; a marker at the 50 line */
+function tug(me, op, col, live){
+  const t = me + op, f = t > 0 ? me / t : .5, W = 100, x = Math.max(3, Math.min(97, W * f));
+  return `<svg class="tug${live ? " on" : ""}" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+    <rect x="0" y="2" width="100" height="6" rx="3" fill="#3A4560"/><rect x="0" y="2" width="${x.toFixed(1)}" height="6" rx="3" fill="${col}"/>
+    <line x1="50" x2="50" y1="0" y2="10" stroke="#0B1222" stroke-width="1.6" vector-effect="non-scaling-stroke"/><line x1="50" x2="50" y1="0" y2="10" stroke="#C9CFDB" stroke-width=".8" vector-effect="non-scaling-stroke"/></svg>`;
+}
+const isStarter = (p) => !/^(BN|IR|IR\+|NA)$/i.test((p.slot || "").trim());
+const dots = (list) => list.filter(isStarter).map(p => `<i class="${isDone(p) || isOut(p) ? "d" : isLive(p) ? "l" : "p"}"></i>`).join("");
 function meters(){
   if (!S || !S.leagues){ return; }
   const prev = prevEntry();
   $("#meters").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return "";
-    const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive), w = worst(live);
+    const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive), w = worst(live), reds = live.filter(x => x.color === "red").length;
     const X = {v: chance(L, "v"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c")};
     const xs = Object.values(X).filter(v => v !== null && !isNaN(v)).sort((a, b) => a - b), xmid = xs.length ? (xs[(xs.length - 1) >> 1] + xs[xs.length >> 1]) / 2 : null;
-    const five = [y, ...xs].sort((a, b) => a - b), mid5 = five[2];
-    /* Yahoo check: does Yahoo's own % agree with Yahoo's own projected totals? */
+    const mid5 = [y, ...xs].sort((a, b) => a - b)[2];
     const F = finals(L), imp = liveModel(L, "y"), off = Math.abs(y - imp) >= 20;
     const po = m.champ && m.champ.base ? m.champ.base.playoff : (m.sim ? m.sim.playoff : null);
     const goNow = [...L.players, ...L.oppPlayers].some(started), me = score(L.players), op = score(L.oppPlayers), mg = goNow ? me - op : F.me - F.op;
     const onField = L.players.some(isLive), done = settled(L), meL = leftOf(L.players).length, opL = leftOf(L.oppPlayers).length;
-    const es = emptySeats(L).length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
+    const seats = emptySeats(L), es = seats.length, fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
+    /* 1 - what needs you */
+    const act = es ? `<div class="mxa r" title="${esc(seats.map(p => p.slot + " " + p.name + (p.status ? " (" + p.status + ")" : "")).join(", "))} - can't score">⚠ ${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>`
+      : reds ? `<div class="mxa r" title="${reds} red alert${reds > 1 ? "s" : ""} open">⚠ ${reds} RED ALERT${reds > 1 ? "S" : ""}</div>`
+      : live.length ? `<div class="mxa y" title="${live.length} open alert${live.length > 1 ? "s" : ""}">${live.length} ALERT${live.length > 1 ? "S" : ""} TO READ</div>`
+      : `<div class="mxa ok">✓ ALL SET</div>`;
     const say = `${DK[k]}, ${LGN[k]}: ${y}% chance to win this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} left. Playoff odds for the season ${pcs(po)}. ${live.length} open alerts${es ? ", " + es + " empty seat" + (es > 1 ? "s" : "") : ""}. Opens the league card.`;
     const ex = [["v", "VEG", "Vegas props"], ["r", "RAT", "Ratcliffe"], ["k", "KOE", "Koerner"], ["c", "CLAY", "Clay"]].map(([s2, sh, nm]) => { const v = X[s2], gap = v - mid5, odd = Math.abs(gap) >= 5;
-      return `<span class="${odd ? (gap > 0 ? "hi" : "lo") : ""}" title="${nm}: ${v}% chance to win this week${odd ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}"><i>${sh}</i>${v}</span>`; }).join("");
-    const pv = prev && prev.lg[k] ? prev.lg[k].y : null;
+      return `<div class="xb${odd ? (gap > 0 ? " hi" : " lo") : ""}" title="${nm}: ${v}% chance to win this week${odd ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}"><i>${sh}</i><span class="tr"><span class="fl" style="width:${Math.max(2, Math.min(100, v))}%;background:${heat(v)}"></span><span class="h"></span></span><b>${v}</b></div>`; }).join("");
+    const pv = prev && prev.lg[k] ? prev.lg[k].y : null, yd = pv === null || pv === undefined ? null : Math.round(y - pv);
     return `<div class="mx${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">
-      <div class="mxh"><b>${DK[k]}</b>${live.length ? `<span class="al ${w}" title="${live.length} open alert${live.length > 1 ? "s" : ""}">${live.length}</span>` : ""}</div>
-      <div class="mxn" title="${esc(LGN[k])}">${esc(LGN[k])}</div>
-      ${gauge(y, HEX[k], xmid, SLUG[k])}
-      <div class="mxl" title="Yahoo's chance to win this week${pv === null || pv === undefined ? "" : ` · ${pv}% at the ${esc(ptTime(prev.t))} read`}${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}">YAHOO${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div>
-      <div class="mxsc${onField ? " on" : ""}${done ? " fin" : ""}" title="${goNow ? "Live score (Yahoo)" : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">${onField ? `<i class="ld"></i>` : ""}<b class="${goNow ? scoreCls(L).split(" ")[0] : ""}">${f1(goNow ? me : F.me)}</b><span>${f1(goNow ? op : F.op)}</span></div>
-      <div class="mxm"><span class="${mg > .05 ? "up" : mg < -.05 ? "dn" : ""}">${done ? "FINAL " : goNow ? "" : "PROJ "}${sgn(mg)}</span>${done ? "" : `<span>${meL}·${opL} LEFT</span>`}</div>
-      <div class="mxe">${ex}</div>
-      <div class="mxp" title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b>${pcs(po)}</b><div class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></div></div>${es ? `<div class="mxw">${es} EMPTY SEAT${es > 1 ? "S" : ""}</div>` : ""}</div>`; }).join("");
+      <div class="mxh"><b>${DK[k]}</b><span title="${esc(LGN[k])}">${esc(LGN[k])}</span></div>
+      ${act}
+      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k])}<div class="mxp"><b>${y}<small>%</small></b></div></div>
+      <div class="mxl" title="Yahoo's chance to win this week${pv === null || pv === undefined ? "" : ` · ${pv}% at the ${esc(ptTime(prev.t))} read`}${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}">WIN THIS WEEK${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div>
+      <div class="mxs${onField ? " on" : ""}" title="${goNow ? "Live score (Yahoo)" : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
+        <div class="mxn"><b class="${goNow ? scoreCls(L).split(" ")[0] : ""}">${f1(goNow ? me : F.me)}</b><span class="${mg > .05 ? "up" : mg < -.05 ? "dn" : ""}">${done ? "FINAL" : goNow ? (onField ? "● LIVE" : "LIVE") : "PROJ"}<br>${sgn(mg)}</span><b class="o">${f1(goNow ? op : F.op)}</b></div>
+        ${tug(goNow ? me : F.me, goNow ? op : F.op, HEX[k], onField)}
+        <div class="mxdots"><span class="me">${dots(L.players)}</span><span class="op">${dots(L.oppPlayers)}</span></div>
+        <div class="mxlf"><span>${meL} LEFT</span><span>${opL} LEFT</span></div></div>
+      <div class="mxe"><div class="mxt">EXPERTS · WIN THIS WEEK</div>${ex}</div>
+      <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS · SEASON</div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div></div>`; }).join("");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
