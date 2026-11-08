@@ -733,4 +733,16 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .sglobe .sgn{font-size:17px}.sglobe .sgl{font-size:5.6px;letter-spacing:.04em}.sglobe .sgs{font-size:6.4px}.sglobe .sgm{font-size:10.5px;font-weight:700}
 @media (max-width:420px){.ms-b.mx{padding:7px 2px 6px}}
 .sglobe .sgn.lg{font-size:14.5px}
+/* Nov 8 1:40 PM: globe take 2 - thinner position ring, blinking states, two-tone orbs */
+.sglobe{max-width:200px}
+.sglobe .rg{stroke-width:3}
+.sglobe .pos{font:700 6.2px/1 var(--f-body);letter-spacing:.02em;paint-order:stroke;stroke:#060A14;stroke-width:1.4px}
+.sglobe .sgpj{font:600 5.2px/1 var(--f-body);fill:#E6EAF2;letter-spacing:.05em;paint-order:stroke;stroke:#060A14;stroke-width:1.4px}
+.sglobe .sgs{font-size:6.4px;letter-spacing:.12em}
+@media (prefers-reduced-motion:no-preference){
+  .sglobe .seg.live,.sglobe .seg.trbl,.sglobe .seg.unk{animation:segblink 1.3s ease-in-out infinite}
+  .sglobe .seg.trbl{animation-duration:1.8s}
+  @keyframes segblink{0%,100%{opacity:1}50%{opacity:.25}}}
+@media (max-width:420px){.sglobe .pos{font-size:7.4px}.sglobe .sgl{font-size:6.2px}}
+.sglobe .sgn{font-size:14.5px}.sglobe .sgn.lg{font-size:12.5px}
 </style>
