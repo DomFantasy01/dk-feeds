@@ -441,9 +441,15 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .bk{flex:1 1 0;min-width:0;height:20px;display:flex;align-items:center;justify-content:center;border-radius:3px;font:700 8.5px/1 var(--f-body);font-style:normal;letter-spacing:.02em;overflow:hidden;white-space:nowrap}
 .bk.pre{background:#4A5368;color:#D5DAE4}
 .bk.done{background:#17663D;color:#CFF5DD}
-.bk.live{background:#7CFFB2;color:#062A16;box-shadow:0 0 4px #7CFFB2,0 0 10px rgba(124,255,178,.7)}
-@media (prefers-reduced-motion:no-preference){.bk.live{animation:bkneon 1.6s infinite}
-  @keyframes bkneon{0%,40%,48%,100%{opacity:1;box-shadow:0 0 4px #7CFFB2,0 0 12px rgba(124,255,178,.8)}44%{opacity:.45;box-shadow:none}70%{box-shadow:0 0 6px #7CFFB2,0 0 18px rgba(124,255,178,.9)}}}
+.bk.live{background:#8EDBAE;color:#0A2A18;box-shadow:0 0 3px rgba(142,219,174,.5)}
+@media (prefers-reduced-motion:no-preference){.bk.live{animation:bkneon 2.4s ease-in-out infinite}
+  @keyframes bkneon{0%,100%{opacity:1;box-shadow:0 0 3px rgba(142,219,174,.5)}50%{opacity:.72;box-shadow:0 0 6px rgba(142,219,174,.35)}}}
+/* score colored by chance to win this week; blinks while your men are playing */
+.score .big.sc-g,.sc .s.sc-g{color:#4FD08A}
+.score .big.sc-a,.sc .s.sc-a{color:#E8B04A}
+.score .big.sc-r,.sc .s.sc-r{color:#FF6B72}
+@media (prefers-reduced-motion:no-preference){.score .big.sc-live{animation:scblink 2.2s ease-in-out infinite}
+  @keyframes scblink{0%,100%{opacity:1;text-shadow:0 0 10px currentColor}50%{opacity:.55;text-shadow:none}}}
 .bk.sm{flex:none;width:34px;height:16px;font-size:8px}
 .pkey{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:5px;font-size:10.5px;color:var(--ink2)}
 .pkey span{display:inline-flex;align-items:center;gap:4px}
@@ -934,7 +940,7 @@ function meters(){
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
-    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${score(L.players) > score(L.oppPlayers) ? "ahead" : score(L.players) < score(L.oppPlayers) ? "behind" : ""}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
+    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${scoreCls(L).split(" ")[0]}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
       <div class="p"><b>${y}%</b> ${mv}</div><div class="p">${leftOf(L.players).length}/${leftOf(L.oppPlayers).length} left</div></button>`; }).join("");
   $("#sbar").innerHTML = `<span>Yahoo read ${esc(ago(S.stamp))}</span><span>${kick ? "Next kickoff " + esc(kick) : "No games left this week"}</span><button type="button" data-jump="top">Top</button>`;
 }
@@ -1143,6 +1149,10 @@ function bxState(r, L){
     if (String(p.tm || "").toUpperCase() === tm && (isLive(p) || isDone(p))) return {g: isLive(p) ? "live" : "done", when: p.when, pts: r.pts || 0};
   return {g: r.gs === "final" || r.gs === "bye" ? "done" : r.gs === "live" ? "live" : "pre", when: r.when || "", pts: r.pts || 0};
 }
+/* Nov 8 (Dom): your score is colored by Yahoo's chance to win this week - green 55%+, soft amber 45-55%, red under 45% -
+   and blinks while any of your starters is on the field */
+const scoreCls = (L) => { const c = chance(L, "y"); if (c === null || c === undefined || isNaN(c)) return "";
+  return "sc-" + (c >= 55 ? "g" : c >= 45 ? "a" : "r") + ((L.players || []).some(isLive) ? " sc-live" : ""); };
 function boxHtml(k, L){
   const B = L.box && L.box.me && L.box.op ? L.box : null;
   const fallback = (list) => list.map(p => ({slot: p.slot, name: p.name, tm: p.tm, pos: "", status: p.status, pts: p.actual, line: "", yp: p.proj, rp: null, gs: "", when: p.when}));
@@ -1219,7 +1229,7 @@ function card(k){
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */
   const bar = (list) => list.map(p => `<i class="${isLive(p) ? "on" : isDone(p) ? "done" : ""}"></i>`).join("");
-  const scoreHtml = `<div class="score"><div class="side"><span>${esc(L.team || "Dark Knight")}</span><div class="big">${f1(me)}</div></div>
+  const scoreHtml = `<div class="score"><div class="side"><span>${esc(L.team || "Dark Knight")}</span><div class="big ${scoreCls(L)}" title="${chance(L, "y")}% chance to win this week (Yahoo)">${f1(me)}</div></div>
       <div class="mid">${done ? `<div class="vd" style="color:${me >= op ? "var(--up)" : "var(--dn)"}">${verdict(me - op)}</div><small>FINAL · ${sgn(me - op)}</small>` : `<div class="vd">${esc(L.state || "")}</div><small>${meL.length} / ${opL.length} left</small>`}</div>
       <div class="side r"><span>${esc(L.opp)}</span><div class="big" style="color:var(--ink2)">${f1(op)}</div></div></div>
     <div class="proj"><span>Yahoo proj ${f1(F.me)}</span><span>Yahoo proj ${f1(F.op)}</span></div>

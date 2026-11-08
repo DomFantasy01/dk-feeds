@@ -429,7 +429,7 @@ function meters(){
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
-    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${score(L.players) > score(L.oppPlayers) ? "ahead" : score(L.players) < score(L.oppPlayers) ? "behind" : ""}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
+    return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${scoreCls(L).split(" ")[0]}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
       <div class="p"><b>${y}%</b> ${mv}</div><div class="p">${leftOf(L.players).length}/${leftOf(L.oppPlayers).length} left</div></button>`; }).join("");
   $("#sbar").innerHTML = `<span>Yahoo read ${esc(ago(S.stamp))}</span><span>${kick ? "Next kickoff " + esc(kick) : "No games left this week"}</span><button type="button" data-jump="top">Top</button>`;
 }
@@ -638,6 +638,10 @@ function bxState(r, L){
     if (String(p.tm || "").toUpperCase() === tm && (isLive(p) || isDone(p))) return {g: isLive(p) ? "live" : "done", when: p.when, pts: r.pts || 0};
   return {g: r.gs === "final" || r.gs === "bye" ? "done" : r.gs === "live" ? "live" : "pre", when: r.when || "", pts: r.pts || 0};
 }
+/* Nov 8 (Dom): your score is colored by Yahoo's chance to win this week - green 55%+, soft amber 45-55%, red under 45% -
+   and blinks while any of your starters is on the field */
+const scoreCls = (L) => { const c = chance(L, "y"); if (c === null || c === undefined || isNaN(c)) return "";
+  return "sc-" + (c >= 55 ? "g" : c >= 45 ? "a" : "r") + ((L.players || []).some(isLive) ? " sc-live" : ""); };
 function boxHtml(k, L){
   const B = L.box && L.box.me && L.box.op ? L.box : null;
   const fallback = (list) => list.map(p => ({slot: p.slot, name: p.name, tm: p.tm, pos: "", status: p.status, pts: p.actual, line: "", yp: p.proj, rp: null, gs: "", when: p.when}));
@@ -714,7 +718,7 @@ function card(k){
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */
   const bar = (list) => list.map(p => `<i class="${isLive(p) ? "on" : isDone(p) ? "done" : ""}"></i>`).join("");
-  const scoreHtml = `<div class="score"><div class="side"><span>${esc(L.team || "Dark Knight")}</span><div class="big">${f1(me)}</div></div>
+  const scoreHtml = `<div class="score"><div class="side"><span>${esc(L.team || "Dark Knight")}</span><div class="big ${scoreCls(L)}" title="${chance(L, "y")}% chance to win this week (Yahoo)">${f1(me)}</div></div>
       <div class="mid">${done ? `<div class="vd" style="color:${me >= op ? "var(--up)" : "var(--dn)"}">${verdict(me - op)}</div><small>FINAL · ${sgn(me - op)}</small>` : `<div class="vd">${esc(L.state || "")}</div><small>${meL.length} / ${opL.length} left</small>`}</div>
       <div class="side r"><span>${esc(L.opp)}</span><div class="big" style="color:var(--ink2)">${f1(op)}</div></div></div>
     <div class="proj"><span>Yahoo proj ${f1(F.me)}</span><span>Yahoo proj ${f1(F.op)}</span></div>
