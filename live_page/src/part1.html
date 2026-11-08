@@ -576,4 +576,14 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (prefers-reduced-motion:no-preference){.mxh .bel.red{animation:belr2 2.2s ease-in-out infinite}@keyframes belr2{50%{box-shadow:0 0 16px 2px rgba(255,77,87,.95),inset 0 0 0 1px rgba(255,255,255,.4)}}}
 @media (max-width:420px){.mxh{justify-content:space-between}.mxh > b{font-size:21px}.mxh .nm{display:none}.mxt2{white-space:nowrap}.mxt2 em{font-size:6px;padding:0 2px}.mxh .bel{width:19px;height:19px}.mxh .bel svg{width:10px;height:10px}.mxh{gap:3px}}
 @media (min-width:561px){.mxh > b{font-size:26px}.mxh .nm{font-size:10px}.mxh .bel{width:26px;height:26px}.mxh .bel svg{width:14px;height:14px}}
+
+/* Nov 8 v8: DK tag + bell (with count, colored by the worst alert) on one line, short league name under it */
+.mxh{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;column-gap:4px;row-gap:2px}
+.mxh > b{grid-column:1;grid-row:1}
+.mxh .bel{grid-column:2;grid-row:1;width:auto;height:22px;min-width:22px;padding:0 6px 0 5px;border-radius:11px;gap:3px}
+.mxh .bel i{position:static;font:700 11px/1 var(--f-num);font-style:normal;color:inherit;background:none;box-shadow:none;padding:0;min-width:0;height:auto}
+.mxh .bel.none{padding:0;width:22px}
+.mxh .nm{display:block !important;grid-column:1 / -1;grid-row:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:600 8px/1.2 var(--f-body);letter-spacing:.03em;text-transform:uppercase;color:var(--ink2)}
+@media (max-width:420px){.mxh .bel{height:19px;min-width:19px;padding:0 4px;gap:2px}.mxh .bel i{font-size:9.5px}.mxh .bel.none{width:19px;padding:0}.mxh .nm{font-size:6.6px;letter-spacing:.01em}}
+@media (min-width:561px){.mxh .bel{height:26px;min-width:26px;padding:0 8px 0 7px;border-radius:13px}.mxh .bel i{font-size:13px}.mxh .bel.none{width:26px;padding:0}.mxh .nm{font-size:10px}}
 </style>
