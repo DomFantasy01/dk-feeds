@@ -5,6 +5,7 @@ import os, sys, shutil, urllib.request, datetime
 import pandas as pd
 sys.path.insert(0, os.path.dirname(__file__))
 import manifest as M
+from nfl_fetch import fetch   # Nov 8: retries + last-good-copy fallback
 
 SEASON = 2026
 SRC = {
@@ -38,14 +39,16 @@ def pull(key):
     dest = os.path.join(M.LATEST, f"{key}.csv")
     tmp = dest + ".part"
     try:
-        urllib.request.urlretrieve(url, tmp)
+        got = fetch(url, tmp)
+        if got == "failed": raise IOError("nflverse unreachable after 4 tries, no saved copy")
         rows, note = freshness(key, tmp)
+        if got == "cached": note = "LAST GOOD COPY (nflverse down) - " + note
         if os.path.exists(dest):
             stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
             arc = os.path.join(M.ROOT, "data", "archive", stamp); os.makedirs(arc, exist_ok=True)
             shutil.move(dest, os.path.join(arc, f"{key}.csv"))
         os.replace(tmp, dest)
-        return M.record(key, source="nflverse", url=url, status="ok", rows=rows,
+        return M.record(key, source="nflverse", url=url, status=("ok" if got == "ok" else "cached"), rows=rows,
                         bytes=os.path.getsize(dest), freshness=note)
     except Exception as e:
         if os.path.exists(tmp): os.remove(tmp)

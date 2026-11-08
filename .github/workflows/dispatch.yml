@@ -40,11 +40,26 @@ jobs:
       # feed job's 30-minute runs, so a gauntlet could land on hour-old feeds and go NO-GO. A failed pull keeps the last feeds.
       # Oct 28: a hung feed pull held the whole build (and every queued one) for 30+ minutes - it now gives up after 10
       - run: timeout 600 python pull_feeds.py || echo "!! feed pull failed or timed out - the build uses the last saved feeds"
+      # Nov 8 (Dom: "Fix" - the 2:06 AM build died on nflverse 504s): keep the last good copy of every nflverse file
+      # between runs. nfl_fetch.py retries 4 times, then falls back to this copy instead of stopping the build.
+      - name: restore last good nflverse files
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/nflcache
+          key: nflverse-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: nflverse-
       # Oct 30 (Dom, THE CHAIN): a failed build retries once by itself; only a second failure turns the run red (GitHub's email)
       - run: bash dispatch_run.sh || { echo "!! build failed - retrying once in 30 s"; sleep 30; bash dispatch_run.sh; }
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          NFL_CACHE: ${{ runner.temp }}/nflcache
+      - name: save last good nflverse files
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/nflcache
+          key: nflverse-${{ github.run_id }}-${{ github.run_attempt }}
       # Oct 30: the hourly Live sync can't read GitHub's run list (unsigned reads get refused), so each build saves it here
       - name: save the job-run list for the GitHub light
         run: gh api 'repos/${{ github.repository }}/actions/runs?per_page=100' > dispatch_out/gh_runs.json || echo "!! run list not saved"

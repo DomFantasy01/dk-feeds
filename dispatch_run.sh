@@ -43,12 +43,13 @@ $S mkdir -p "$GF"; for w in Regular Medium Bold Light SemiBold; do $S curl -sfL 
 echo "== 2 NFL data (nflverse)"
 cd "$ROOT/dksys" && python3 gather/pull_nflverse.py && python3 gather/pull_pbp.py
 N=https://github.com/nflverse/nflverse-data/releases/download; mkdir -p gate/fresh
-curl -sfL -o data/latest/stats_week_2025.csv $N/stats_player/stats_player_week_2025.csv
-curl -sfL -o gate/fresh/play_by_play_2026.csv.gz $N/pbp/play_by_play_2026.csv.gz          # the Scout's inputs (Oct 9)
-curl -sfL -o gate/fresh/stats_player_week_2026.csv $N/stats_player/stats_player_week_2026.csv
-curl -sfL -o gate/fresh/injuries_2026.csv $N/injuries/injuries_2026.csv
-curl -sfL -o gate/fresh/roster_2026.csv $N/rosters/roster_2026.csv
-curl -sfL -o gate/fresh/snap_counts_2026.csv $N/snap_counts/snap_counts_2026.csv
+NF="python3 $ROOT/dksys/gather/nfl_fetch.py"   # Nov 8: retries + last good copy - an nflverse outage no longer stops the build
+$NF $N/stats_player/stats_player_week_2025.csv data/latest/stats_week_2025.csv
+$NF $N/pbp/play_by_play_2026.csv.gz gate/fresh/play_by_play_2026.csv.gz          # the Scout's inputs (Oct 9)
+$NF $N/stats_player/stats_player_week_2026.csv gate/fresh/stats_player_week_2026.csv
+$NF $N/injuries/injuries_2026.csv gate/fresh/injuries_2026.csv
+$NF $N/rosters/roster_2026.csv gate/fresh/roster_2026.csv
+$NF $N/snap_counts/snap_counts_2026.csv gate/fresh/snap_counts_2026.csv
 echo "== 2b Yahoo API overlay (Oct 30, Dom): the API's newer win %, totals, lineups and points laid over the last Chrome read"
 if [ -f "$REPO/yahoo_api/latest.json" ]; then python3 "$REPO/yahoo_api/api_overlay.py" "$REPO" "$ROOT/dksys/data/latest/yahoo" "$ROOT/dksys/data/latest/games.csv"; fi
 echo "== 3 Gotham";      (cd engine && python3 gotham.py | head -2)
