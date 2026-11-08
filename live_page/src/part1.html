@@ -937,4 +937,17 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
   .mgrid.g-b .sgx > div.sgbel span{min-height:0}}
 @media (max-width:560px){.mgrid.g-b .sbh{min-height:40px !important}}
 .mgrid.g-b .sbh{min-height:44px}
+/* Nov 8 2:50 PM: scoreboard tanks (box instead of globe); card frame glows in Dom's win color */
+.mgrid.g-b .sglobe.sbox{width:100% !important;margin:2px auto 0 !important;max-width:300px !important}
+.sbox .pos{fill:#7F889C !important;font:600 4.6px var(--f-body) !important;letter-spacing:.02em;stroke:none !important}
+.sbox .sgn.bg{font-size:12.5px !important}.sbox .sgn.bg.lg{font-size:10.5px !important}
+.sbox .sgn.sm{font-size:10.5px !important}.sbox .sgn.sm.lg{font-size:9px !important}
+.sbox .sgpj{font-size:4.2px !important}
+.sbox .sgs{font-size:5.6px !important;letter-spacing:.22em}
+.sbox .sgl3{font:700 4.6px var(--f-body);letter-spacing:.22em;fill:#8E98AE}
+.ms-b:has(.sgw.z-win){border-color:color-mix(in srgb,#3DDC84 55%,#22304C) !important;box-shadow:0 0 16px -6px #3DDC84,inset 0 0 18px -12px #3DDC84 !important}
+.ms-b:has(.sgw.z-mid){border-color:color-mix(in srgb,#F7B32B 55%,#22304C) !important;box-shadow:0 0 16px -6px #F7B32B,inset 0 0 18px -12px #F7B32B !important}
+.ms-b:has(.sgw.z-lose){border-color:color-mix(in srgb,#FF4D57 55%,#22304C) !important;box-shadow:0 0 16px -6px #FF4D57,inset 0 0 18px -12px #FF4D57 !important}
+@media (prefers-reduced-motion:no-preference){.sbox .seg.live,.sbox .seg.trbl,.sbox .seg.unk{animation:segsoft2 2.2s ease-in-out infinite}}
+@media (max-width:560px){.mgrid.g-b .sbox .pos{font-size:5.4px !important}}
 </style>
