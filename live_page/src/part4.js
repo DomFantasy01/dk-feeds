@@ -449,7 +449,7 @@ const dotState = (p) => (!isDone(p) && (isOut(p) || (!isLive(p) && (+p.proj || 0
 const segs = (list) => list.filter(isStarter).sort((a, b) => SEGORD[dotState(a)] - SEGORD[dotState(b)]).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || "") + (igOf(p) ? " · " + igOf(p).note + " (RotoWire)" : ""))}"></i>`).join("");
 const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || "") + (igOf(p) ? " · " + igOf(p).note + " (RotoWire)" : ""))}"></i>`).join("");
 /* Nov 8 1:40 PM (Dom): the scoreboard globe, take 2.
-   The whole globe takes the color of Yahoo's chance to win this week: green 55% and up, amber 45-55%, red under 45% (FINAL = the real result).
+   Your orb's fluid takes the color of Yahoo's chance to win this week (Nov 8 1:45: globe back to black, his orb always gray): green 55% and up, amber 45-55%, red under 45% (FINAL = the real result).
    Inside, two orbs: yours in the league color, his in gray. Solid fluid = points scored, with the wave on top and a soft glowing edge;
    a lighter shade of the same color above it rises to Yahoo's projected final (league scoring). No dotted line.
    Ring = every starter with his position spelled out, yours on the left, his on the right:
@@ -461,7 +461,7 @@ const ringState = (p) => { const s = dotState(p); return s === "out" && !isOut(p
 const POSAB = (sl) => { const t = (sl || "").toUpperCase().trim(); return /Q\/W\/R\/T|SUPER|^SF/.test(t) ? "SF" : /W\/R\/T|W\/R|FLEX|R\/W/.test(t) ? "FX" : /DEF|D\/ST|DST/.test(t) ? "DEF" : t.replace(/[^A-Z]/g, "").slice(0, 3) || "?"; };
 const STWORD = {pre: "still to play", live: "playing now", done: "done", out: "out", unk: "no projection - unknown", trbl: "questionable / problem"};
 function scoreGlobe(L, k, o){
-  const cx = 70, cy = 70, R = 54, G = 46, id = "sg" + SLUG[k];
+  const cx = 70, cy = 70, R = 55, G = 47.5, id = "sg" + SLUG[k];
   const sc = Math.max(o.pMe, o.pOp, o.me, o.op, 1) * 1.08;
   const P = (a, r) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
   const arc = (a0, a1, r) => { const [x0, y0] = P(a0, r), [x1, y1] = P(a1, r); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
@@ -476,7 +476,7 @@ function scoreGlobe(L, k, o){
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? (zone === "win" ? "WON" : "LOST") : (o.state === "NOT STARTED" ? "PRE" : o.state) + (y === null || y === undefined || isNaN(y) ? "" : " · " + y + "%");
-  const orb = (x, val, proj, col, side) => { const r = 21.5, ocy = cy - 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
+  const orb = (x, val, proj, col, side) => { const r = 23.5, ocy = cy - 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
     const wave = (yy) => `M${x - r - 6} ${yy.toFixed(1)} q 5.5 -2.4 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0`;
     return `<clipPath id="${id}${side}"><circle cx="${x}" cy="${ocy}" r="${r}"/></clipPath>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".72"/></linearGradient>
@@ -491,18 +491,17 @@ function scoreGlobe(L, k, o){
       <text x="${x}" y="${ocy + 13}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
   const mg = o.me - o.op, mgc = Math.abs(mg) < .05 ? "#C9CFDB" : mg > 0 ? "#4FD08A" : "#FF6B72";
   return `<svg class="sglobe" viewBox="0 0 140 140" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${zw}`)}"><defs>
-    <radialGradient id="${id}g" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="${ZC}" stop-opacity=".5"/><stop offset=".55" stop-color="${ZC}" stop-opacity=".2"/><stop offset="1" stop-color="#060A16"/></radialGradient>
+    <radialGradient id="${id}g" cx="40%" cy="28%" r="80%"><stop offset="0" stop-color="#1A2440"/><stop offset=".6" stop-color="#0B1222"/><stop offset="1" stop-color="#05080F"/></radialGradient>
     <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
     <filter id="${id}h" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
     <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#18213A" stroke-width="3"/>
     ${ring(L.players, true)}${ring(L.oppPlayers, false)}
-    <circle cx="${cx}" cy="${cy}" r="${G + 1.5}" fill="none" stroke="${ZC}" stroke-width="3.5" opacity=".5" filter="url(#${id}h)"/>
-    <circle cx="${cx}" cy="${cy}" r="${G}" fill="#070C18"/><circle cx="${cx}" cy="${cy}" r="${G}" fill="url(#${id}g)" stroke="${ZC}" stroke-opacity=".85" stroke-width="1.2"/>
+        <circle cx="${cx}" cy="${cy}" r="${G}" fill="#070C18"/><circle cx="${cx}" cy="${cy}" r="${G}" fill="url(#${id}g)" stroke="#C9CFDB" stroke-opacity=".3" stroke-width=".9"/>
     <path d="M${cx - 30} ${cy - 32} A 40 40 0 0 1 ${cx + 20} ${cy - 39}" stroke="#fff" stroke-opacity=".17" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <text x="${cx}" y="${cy - 33}" text-anchor="middle" class="sgs" style="fill:${ZC}">${zw}</text>
-    ${orb(cx - 22, o.me, o.pMe, HEX[k], "m")}${orb(cx + 22, o.op, o.pOp, "#A3ABBD", "o")}
-    <text x="${cx - 21}" y="${cy + 30}" text-anchor="middle" class="sgl">ME ${o.meL} LEFT</text><text x="${cx + 21}" y="${cy + 30}" text-anchor="middle" class="sgl">OPP ${o.opL} LEFT</text>
-    <text x="${cx}" y="${cy + 41}" text-anchor="middle" class="sgm" style="fill:${mgc}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</text></svg>`;
+    <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs" style="fill:${ZC}">${zw}</text>
+    ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
+    <text x="${cx - 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">ME ${o.meL} LEFT</text><text x="${cx + 23}" y="${cy + 31.5}" text-anchor="middle" class="sgl">OPP ${o.opL} LEFT</text>
+    <text x="${cx}" y="${cy + 42}" text-anchor="middle" class="sgm" style="fill:${mgc}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</text></svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
@@ -528,7 +527,7 @@ function meters(){
         return {k, a: T("a", `<div class="mxh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span><button type="button" class="bel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button></div>
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>`),
-          b: T("b", tag + `<div class="mxs sgw${onField ? " on" : ""}" title="${goNow ? "Live points (Yahoo). Globe color = chance to win this week: green 55%+, amber 45-55%, red under 45%. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); blinking = playing (green), problem (amber) or unknown (red)." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
+          b: T("b", tag + `<div class="mxs sgw${onField ? " on" : ""}" title="${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); blinking = playing (green), problem (amber) or unknown (red)." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}
                 ${goNow ? "" : `<div class="sgp n">kickoff scores fill the orbs</div>`}</div>`),
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
