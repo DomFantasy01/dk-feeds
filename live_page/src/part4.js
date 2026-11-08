@@ -478,20 +478,21 @@ function scoreGlobe(L, k, o){
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
-  const orb = (x, val, proj, col, side) => { const r = 24.5, ocy = cy + 3, top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r;
-    const wave = (yy) => `M${x - r - 6} ${yy.toFixed(1)} q 5.5 -2.4 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0 t 11 0`;
+  /* Nov 8 2:41 PM (Dom: "drop the left small globe and fill the large, keep the opponent globe"): the big globe itself is YOUR tank -
+     two-tone fluid in your win color (solid = scored, lighter = rest of the projection, soft edge between); his small gray orb sits inside it. */
+  const orb = (x, ocy, r, val, proj, col, side, tx, ty) => { const top = ocy + r, ly = top - Math.max(0, Math.min(1, val / sc)) * 2 * r, py = top - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * 2 * r, big = side === "m";
+    const W = Math.ceil((2 * r + 24) / 11), wave = (yy) => `M${(x - r - 6).toFixed(1)} ${yy.toFixed(1)} q 5.5 -2.4 11 0` + " t 11 0".repeat(W);
     return `<clipPath id="${id}${side}"><circle cx="${x}" cy="${ocy}" r="${r}"/></clipPath>
-      <pattern id="${id}${side}hp" patternUnits="userSpaceOnUse" width="3.2" height="3.2" patternTransform="rotate(45)"><rect width="1.3" height="3.2" fill="${col}" fill-opacity=".55"/></pattern>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".72"/></linearGradient>
-      <circle cx="${x}" cy="${ocy}" r="${r}" fill="#070C18" fill-opacity=".85" stroke="${col}" stroke-opacity=".6" stroke-width="1.1"/>
+      ${big ? "" : `<circle cx="${x}" cy="${ocy}" r="${r + 1.6}" fill="#05080F" opacity=".75"/><circle cx="${x}" cy="${ocy}" r="${r}" fill="#070C18" stroke="${col}" stroke-opacity=".7" stroke-width="1.1"/>`}
       <g clip-path="url(#${id}${side})">
-        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity=".34"/>
+        <rect x="${x - r}" y="${py.toFixed(1)}" width="${2 * r}" height="${(top - py + 2).toFixed(1)}" fill="${col}" fill-opacity="${big ? .3 : .34}"/>
         <line x1="${x - r}" y1="${py.toFixed(1)}" x2="${x + r}" y2="${py.toFixed(1)}" stroke="${col}" stroke-opacity=".55" stroke-width="2.4" filter="url(#${id}b)"/>
-        ${val > 0 ? `<g class="wv${side === "o" ? " w2" : ""}"><path d="${wave(ly)} V ${top + 2} H ${x - r - 6} Z" fill="url(#${id}${side}s)"/>
+        ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${wave(ly)} V ${top + 2} H ${(x - r - 6).toFixed(1)} Z" fill="url(#${id}${side}s)"/>
           <path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width=".7"/></g>` : ""}</g>
-      <ellipse cx="${x - 8}" cy="${ocy - 12}" rx="8" ry="4.2" fill="#fff" opacity=".12" transform="rotate(-30 ${x - 8} ${ocy - 12})"/>
-      <text x="${x}" y="${ocy + 4.5}" text-anchor="middle" class="sgn${f1(val).length > 4 ? " lg" : ""}${(side === "m" ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
-      <text x="${x}" y="${ocy + 13}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
+      ${big ? "" : `<ellipse cx="${x - r * .33}" cy="${ocy - r * .5}" rx="${r * .33}" ry="${r * .17}" fill="#fff" opacity=".12" transform="rotate(-30 ${x - r * .33} ${ocy - r * .5})"/>`}
+      <text x="${tx}" y="${ty}" text-anchor="middle" class="sgn${big ? " bg" : " sm"}${f1(val).length > 4 ? " lg" : ""}${(big ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
+      <text x="${tx}" y="${ty + (big ? 10 : 8)}" text-anchor="middle" class="sgpj${big ? "" : " sm"}">PROJ ${f1(proj)}</text>`; };
   const mg = o.me - o.op, mgc = Math.abs(mg) < .05 ? "#C9CFDB" : mg > 0 ? "#4FD08A" : "#FF6B72";
   return `<svg class="sglobe" viewBox="0 1 129 137" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${zw}`)}"><defs>
     <radialGradient id="${id}g" cx="40%" cy="28%" r="80%"><stop offset="0" stop-color="#1A2440"/><stop offset=".6" stop-color="#0B1222"/><stop offset="1" stop-color="#05080F"/></radialGradient>
@@ -502,7 +503,7 @@ function scoreGlobe(L, k, o){
         <circle cx="${cx}" cy="${cy}" r="${G}" fill="#070C18"/><circle cx="${cx}" cy="${cy}" r="${G}" fill="url(#${id}g)" stroke="#C9CFDB" stroke-opacity=".3" stroke-width=".9"/>
     <path d="M${cx - 30} ${cy - 32} A 40 40 0 0 1 ${cx + 20} ${cy - 39}" stroke="#fff" stroke-opacity=".17" stroke-width="3" fill="none" stroke-linecap="round"/>
     <text x="${cx}" y="${cy - 34.5}" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
-    ${orb(cx - 23.5, o.me, o.pMe, ZC, "m")}${orb(cx + 23.5, o.op, o.pOp, "#A3ABBD", "o")}
+    ${orb(cx, cy, G - .6, o.me, o.pMe, ZC, "m", cx - 19, cy + 4)}${orb(cx + 23.5, cy + 7, 17.5, o.op, o.pOp, "#A3ABBD", "o", cx + 23.5, cy + 9)}
     </svg>`;
 }
 function meters(){
