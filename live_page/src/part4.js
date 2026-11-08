@@ -449,6 +449,7 @@ const isStarter = (p) => !/^(BN|IR|IR\+|NA)$/i.test((p.slot || "").trim());
 const isTrouble = (p) => /^(Q|D|GTD|DTD)$/i.test((p.status || "").trim()) || (igOf(p) || {}).s === "trbl";
 /* one state for a starter, shared by the meter dots and the card's boxes */
 const dotState = (p) => (!isDone(p) && (isOut(p) || (!isLive(p) && (+p.proj || 0) === 0 && !/bye/i.test(p.when || "")))) ? "out" : isTrouble(p) && !isDone(p) ? "trbl" : isLive(p) ? "live" : isDone(p) ? "done" : "pre";
+const segs = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || "") + (igOf(p) ? " · " + igOf(p).note + " (RotoWire)" : ""))}"></i>`).join("");
 const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}" title="${esc((p.slot || "") + " " + p.name + (p.status ? " (" + p.status + ")" : "") + " · " + (p.when || "") + (igOf(p) ? " · " + igOf(p).note + " (RotoWire)" : ""))}"></i>`).join("");
 function meters(){
   if (!S || !S.leagues){ return; }
@@ -474,10 +475,11 @@ function meters(){
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}">WIN PROBABILITY${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</div></div>
       <div class="mxs${onField ? " on" : ""}" title="${goNow ? "Actual points so far (Yahoo live). Your score's color = win probability; it blinks while your players are on the field." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
-        <div class="mxn"><b class="${scoreCls(L).split(" ")[0]}">${f1(goNow ? me : F.me)}</b><span>${done ? "FINAL<br>" : goNow ? "" : "PROJ<br>"}${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲" : "▼") + Math.abs(mg).toFixed(1)}</span><b class="o">${f1(goNow ? op : F.op)}</b></div>
+        <div class="sc2"><div class="sd"><small>YOU</small><b class="${scoreCls(L).split(" ")[0]}">${f1(goNow ? me : F.me)}</b></div><div class="sd o"><small>HIM</small><b>${f1(goNow ? op : F.op)}</b></div></div>
+        <div class="mg ${Math.abs(mg) < .05 ? "ev" : mg > 0 ? "up" : "dn"}">${done ? "FINAL " : goNow ? "" : "PROJ "}${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ UP " : "▼ DOWN ") + Math.abs(mg).toFixed(1)}</div>
         <div class="mxt2">PLAYERS${outs ? ` <em>${outs} OUT</em>` : ""}</div>
-        <div class="mxdots"><span class="me">${dots(L.players)}</span><span class="op">${dots(L.oppPlayers)}</span></div>
-        <div class="mxlf"><span>YOU ${meL} LEFT</span><span>HIM ${opL} LEFT</span></div></div>
+        <div class="strip"><span class="w">YOU</span><span class="sg">${segs(L.players)}</span><span class="n" title="${meL} of your starters still to play or playing">${meL}</span></div>
+        <div class="strip"><span class="w">HIM</span><span class="sg">${segs(L.oppPlayers)}</span><span class="n" title="${opL} of his starters still to play or playing">${opL}</span></div></div>
       <div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div></div>`; }).join("");
   const kick = nextKick();

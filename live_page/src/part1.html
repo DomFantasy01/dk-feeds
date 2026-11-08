@@ -586,4 +586,30 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mxh .nm{display:block !important;grid-column:1 / -1;grid-row:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:600 8px/1.2 var(--f-body);letter-spacing:.03em;text-transform:uppercase;color:var(--ink2)}
 @media (max-width:420px){.mxh .bel{height:19px;min-width:19px;padding:0 4px;gap:2px}.mxh .bel i{font-size:9.5px}.mxh .bel.none{width:19px;padding:0}.mxh .nm{font-size:6.6px;letter-spacing:.01em}}
 @media (min-width:561px){.mxh .bel{height:26px;min-width:26px;padding:0 8px 0 7px;border-radius:13px}.mxh .bel i{font-size:13px}.mxh .bel.none{width:26px;padding:0}.mxh .nm{font-size:10px}}
+
+/* Nov 8 v9 (Dom: "kind of a mess", sheen hard to see): score box - solid dark panel, YOU / HIM scores, a plain margin pill,
+   one player strip per side in the card's colors with the count still to play */
+.mxs,.mxs.on{background:#080D19;border:1px solid #2E3B58;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);padding:6px 5px 6px}
+.mxs.on{border-color:#3F5A4E}
+.sc2{display:flex;justify-content:space-between;align-items:flex-end;gap:3px}
+.sc2 .sd{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.sc2 .sd.o{align-items:flex-end}
+.sc2 small{font:700 6.5px/1 var(--f-body);letter-spacing:.12em;color:var(--mute)}
+.sc2 b{font:400 22px/1 var(--f-disp);letter-spacing:.01em;color:#fff;margin-top:2px}
+.sc2 .o b{color:#AAB2C3;font-size:18px}
+.sc2 b.sc-g{color:#4FD08A}.sc2 b.sc-a{color:#F2B84B}.sc2 b.sc-r{color:#FF6B72}
+.mxs .mg{margin:5px auto 0;padding:3px 0;border-radius:4px;background:#131C30;font:700 8.5px/1 var(--f-num);color:#fff;letter-spacing:.02em;white-space:nowrap}
+.mxs .mg.up{color:#fff}.mxs .mg.dn{color:#fff}
+.mxs .mxt2{margin-top:6px}
+.strip{display:flex;align-items:center;gap:3px;margin-top:4px}
+.strip .w{flex:none;width:17px;font:700 6.5px/1 var(--f-body);letter-spacing:.06em;color:var(--mute);text-align:left}
+.strip .sg{flex:1;display:flex;gap:1.5px;min-width:0}
+.strip .sg i{flex:1 1 0;height:7px;border-radius:1.5px;background:#4A5368}
+.strip .sg i.done{background:#2FA866}.strip .sg i.live{background:#8EDBAE;box-shadow:0 0 4px rgba(142,219,174,.7)}
+.strip .sg i.trbl{background:var(--amber)}.strip .sg i.out{background:var(--red)}
+.strip .n{flex:none;width:12px;text-align:right;font:700 9px/1 var(--f-num);color:#fff}
+@media (prefers-reduced-motion:no-preference){.mxs.on .sc2 .sd:first-child b{animation:mxb2 2.2s ease-in-out infinite}@keyframes mxb2{0%,100%{opacity:1}50%{opacity:.7}}
+  .strip .sg i.live,.strip .sg i.trbl{animation:mxdl 1.3s ease-in-out infinite}}
+@media (max-width:420px){.sc2{flex-direction:column;align-items:stretch;gap:1px}.sc2 .sd,.sc2 .sd.o{flex-direction:row;align-items:baseline;justify-content:space-between}.sc2 b{font-size:20px;margin:0}.sc2 .o b{font-size:16px}.sc2 small{font-size:6px}.mxs .mg{font-size:7.5px}.strip .w{width:14px;font-size:5.8px}.strip .n{font-size:8px;width:10px}.strip .sg i{height:6px}}
+@media (min-width:561px){.sc2 b{font-size:30px}.sc2 .o b{font-size:24px}.sc2 small{font-size:8px}.mxs .mg{font-size:10.5px;padding:4px 0}.strip .w{width:24px;font-size:8px}.strip .n{font-size:11px;width:16px}.strip .sg i{height:9px}}
 </style>
