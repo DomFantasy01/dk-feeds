@@ -355,7 +355,7 @@ function rangeChart(sc, live){
 /* ---------- status line ---------- */
 const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly Live sync */
   yahoo(d){ return d === 0 ? [[3, 50], ...Array.from({length: 13}, (_, i) => [8 + i, 50])] : d === 7 ? [] : [[3, 25], [9, 25], [13, 25], [16, 25], [18, 25], [21, 25]]; },
-  sync(){ return Array.from({length: 20}, (_, i) => [4 + i, 18]); }
+  sync(d){ return [...Array.from({length: 20}, (_, i) => [4 + i, 25]), ...(d === 0 ? Array.from({length: 14}, (_, i) => [8 + i, 55]) : [])]; }   /* Nov 8: hourly at :25, plus :55 on Sundays */
 };
 function pacNow(){ const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}).formatToParts(new Date()).map(x => [x.type, x.value]));
   return {d: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), m: (+p.hour % 24) * 60 + (+p.minute)}; }
