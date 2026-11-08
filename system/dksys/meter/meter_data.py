@@ -253,13 +253,36 @@ def sleeper_tables(k):
 def pos_of(p):
     if p['slot'] in ('K', 'DEF'): return p['slot']
     return None
+# Nov 8 (Dom caught it: DK3 read 6% while leading 35-16 and Yahoo said 45%): a man whose game is IN PROGRESS has points
+# on the board but is not done. He used to count as final (points so far, nothing more to come), which sank every needle
+# early on Sunday. Now he counts his points so far PLUS the share of his projection still to play, estimated from how far
+# into the game it is (195 min a game), and his uncertainty shrinks the same way. Final or no game = what he scored.
+_LG = {}
+for _r in GW.itertuples():
+    try:
+        _k = dt.datetime.strptime(f"{_r.gameday} {_r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=__import__("zoneinfo").ZoneInfo("America/New_York"))
+        for _tm in (_r.home_team, _r.away_team): _LG[T(_tm)] = (_k, not pd.isna(_r.result))
+    except Exception: pass
+def rem_frac(p):
+    if p.get('actual') is None: return 1.0
+    g = _LG.get(T(p.get('team') or ''))
+    if not g: return 0.0
+    k, fin = g
+    if fin: return 0.0
+    el = (NOW - k).total_seconds() / 60
+    if el <= 0: return 1.0
+    if el >= 240: return 0.0
+    return max(0.03, 1 - el / 195)
+def exp_pts(p, col):
+    r = rem_frac(p); base = p['actual'] if p['actual'] is not None else 0.0
+    return base + (p[col] or 0) * r if p['actual'] is not None else (p[col] or 0)
 def side_var(players):
-    s = [SIG.get(p['pos'], 8.0) for p in players if p['actual'] is None]
+    s = [SIG.get(p['pos'], 8.0) * math.sqrt(rem_frac(p)) for p in players if p['actual'] is None or rem_frac(p) > 0]
     ss = sum(x * x for x in s); st = sum(s); return ss + RHO * (st * st - ss)
 def phi(z): return .5 * (1 + math.erf(z / math.sqrt(2)))
 def chance(me, op, col):
-    a = sum((p['actual'] if p['actual'] is not None else (p[col] or 0)) for p in me)
-    b = sum((p['actual'] if p['actual'] is not None else (p[col] or 0)) for p in op)
+    a = sum(exp_pts(p, col) for p in me)
+    b = sum(exp_pts(p, col) for p in op)
     v = side_var(me) + side_var(op)
     if v <= 0: return a, b, (100 if a > b else 0 if a < b else 50)
     return a, b, round(100 * phi((a - b) / math.sqrt(v)))

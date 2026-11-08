@@ -65,7 +65,7 @@ def _best_lineup(starters, pool, col):
     lineup = [None] * len(slots); used = set()
     for i, p in enumerate(starters):                       # locked: his game has started (or finished)
         if p.get("actual") is not None or _bstart(p.get("team")):
-            lineup[i] = dict(p, _v=(p["actual"] if p.get("actual") is not None else (p.get(col) or 0)), _lock=True); used.add(_id(p))
+            lineup[i] = dict(p, _v=(p.get(col) or 0), _lock=True); used.add(_id(p))   # Nov 8: keep his projection - chance() adds points so far + the share still to play
     def val(c):
         if c["status"].upper() in _OUTS or c.get("seat") == "IR" or TEAMWIN.get(c["team"]) is None: return None
         if _bstart(c["team"]): return None                 # can't be moved in once his game is on
