@@ -546,7 +546,7 @@ function meters(){
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div>`)}; }).filter(Boolean);
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
-  $("#meters").innerHTML = SEC("msScore", "Yahoo Scoreboard", "updates every 20 min in games", "b");
+  $("#meters").innerHTML = SEC("msScore", "Scoreboard", "", "b");
   $("#meters2").innerHTML = SEC("msExp", "Experts &amp; playoff odds", "win probability this week · playoff odds for the season", "c") + SEC("msWin", "Win probability", "this week · Yahoo", "a");
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
