@@ -473,8 +473,9 @@ function meters(){
       <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>
       <div class="mxs${onField ? " on" : ""}" title="${goNow ? "Actual points so far (Yahoo live). Your score's color = win probability; it blinks while your players are on the field." : "Not started · Yahoo projects " + f1(F.me) + " vs " + f1(F.op)}">
-        <div class="mxt2">SCORE</div>
+        <div class="mxt2">${done ? "FINAL SCORE" : goNow ? "SCORE NOW" : "PROJECTED SCORE"}</div>
         <div class="sc3"><div class="sr"><small>MY TEAM</small><b class="${scoreCls(L).split(" ")[0]}">${f1(goNow ? me : F.me)}</b></div><div class="vs">vs</div><div class="sr o"><small>OPP<span class="onx">ONENT</span></small><b>${f1(goNow ? op : F.op)}</b></div></div>
+        ${goNow && !done ? `<div class="pjf" title="Yahoo's projected final (league scoring)">PROJ <b>${f1(F.me)}</b>–<b>${f1(F.op)}</b></div>` : ""}
         <div class="mg ${Math.abs(mg) < .05 ? "ev" : mg > 0 ? "up" : "dn"}">${done ? "FINAL " : goNow ? "" : "PROJ "}${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ UP " : "▼ DOWN ") + Math.abs(mg).toFixed(1)}</div>
         <div class="mxt2">PLAYERS</div>
         <div class="strip"><span class="w">MINE</span><span class="sg">${segs(L.players)}</span><span class="n" title="${meL} of your starters still to play or playing">${meL}</span></div>

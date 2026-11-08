@@ -650,4 +650,18 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mxh .bel{background:#1C2741 !important;box-shadow:inset 0 0 0 1px rgba(220,226,238,.3) !important}.mxh .bel.red{background:#D7262F !important;box-shadow:none !important}.mxh .bel.gold{background:#E0A020 !important;box-shadow:none !important}.mxh .bel.grey{background:#5C677D !important}
 .mxl .yr{display:flex;align-items:center;justify-content:center;gap:3px;white-space:nowrap}
 .mxl .chk{padding:1px 2px;font-size:6px}
+/* Nov 8 12:25 (Dom): score label says what it is (projected before kickoff, live points during, projected final under it);
+   room around "vs"; expert orbs stacked one per row in priority order - Vegas, Ratcliffe, Koerner, Clay; DK label clear of the bell */
+.pjf{margin-top:4px;display:flex;justify-content:space-between;align-items:baseline;gap:2px;font:700 6.5px/1.2 var(--f-body);letter-spacing:.06em;color:var(--mute);white-space:nowrap}
+.pjf b{font:600 8.5px/1 var(--f-num);color:var(--ink2);letter-spacing:0}
+.sc3 .vs{margin:0 4px}
+@media (max-width:420px){.sc3{gap:4px}.sc3 .vs{margin:1px 0;line-height:9px}.sc3 .sr{gap:6px}.pjf{flex-direction:column;align-items:center;gap:1px;font-size:5.6px;letter-spacing:.02em}.pjf b{font-size:7.5px}}
+.xg{display:flex;flex-direction:column;gap:3px}
+.xo{flex-direction:row;align-items:center;gap:4px;padding:1px 3px 1px 1px;border-radius:999px;background:rgba(255,255,255,.035)}
+.xo svg{flex:none;width:26px;height:26px}
+.xo b{flex:1 1 auto;min-width:0;margin:0;text-align:left;font-size:7px;letter-spacing:.03em}
+.xo em{flex:none;font-size:9px}
+@media (max-width:420px){.xo{gap:3px}.xo svg{width:22px;height:22px}.xo b{font-size:6.2px;letter-spacing:0;overflow:visible}.xo em{font-size:8px}.xo em.z{display:none}.mxh > b{font-size:17px}}
+@media (max-width:380px){.xo svg{width:20px;height:20px}.xo b{font-size:5.8px}.mxh > b{font-size:15px}}
+@media (min-width:561px){.xo svg{width:34px;height:34px}.xo b{font-size:9px}.xo em{font-size:11px}}
 </style>
