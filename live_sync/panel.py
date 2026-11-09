@@ -91,10 +91,12 @@ class Panel:
             com = [r for r in R if all(fnum(r.get(s)) is not None for s in srcs)]
             if len(com) >= 20:
                 out["miss"] = {s: round(sum(abs(fnum(r[s]) - fnum(r["actual"])) for r in com) / len(com), 2) for s in srcs}
+                out["bias"] = {s: round(sum(fnum(r[s]) - fnum(r["actual"]) for r in com) / len(com), 2) for s in srcs}   # Nov 9 9:10 AM (Dom): + guessed high, - low
                 out["players"] = len(com); out["basis"] = "same players for every source"
             else:
                 for s in srcs:
                     d = [abs(fnum(r[s]) - fnum(r["actual"])) for r in R if fnum(r.get(s)) is not None]; out["miss"][s] = round(sum(d) / len(d), 2)
+                    e = [fnum(r[s]) - fnum(r["actual"]) for r in R if fnum(r.get(s)) is not None]; out.setdefault("bias", {})[s] = round(sum(e) / len(e), 2)
                 out["players"] = len(R); out["basis"] = "each source on its own players (too few shared)"
             out["weeks"] = [w]; break
         return out
