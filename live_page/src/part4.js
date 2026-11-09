@@ -1109,7 +1109,7 @@ function renderPickups(){
       const more = ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === tierOf(t)).length - 1;
       return `<button type="button" class="pkc t-${tierOf(t)}" data-pkgo="${n}" title="${esc(t.tier_why || "")}"><span class="lg">DK${n}</span><span class="tr">${tierOf(t)}</span><span class="who">${esc(t.pos === "DEF" ? t.team + " DEF" : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "").split(" ").slice(-1)[0])}${more > 0 ? ` <em>+${more}</em>` : ""}</span></button>`; }).join("");
     const nm = ["1", "2", "3", "4"].reduce((a, n) => a + ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === "MUST").length, 0);
-    TOP.innerHTML = `<section class="pktop${nm ? " hasmust" : ""}" aria-label="Pickups by league"><div class="pkth"><b>Pickups</b><span>${nm ? `${nm} MUST - grab before a rival does` : "best in each league"} · ${esc(P.built || "")}</span></div><div class="pkcs">${chips}</div></section>`;
+    TOP.innerHTML = `<section class="pktop${nm ? " hasmust" : ""}" aria-label="Diamonds in the Rough by league"><div class="pkth"><b>Diamonds in the Rough</b><span>${nm ? `${nm} MUST - grab before a rival does` : "best in each league"} · ${esc(P.built || "")}</span></div><div class="pkcs">${chips}</div></section>`;
   }
   const L = P.leagues[PKL] || {top: []}, src = P.sources || {};
   const gc = (g) => g >= 70 ? "g" : g >= 55 ? "a" : "n";
@@ -1122,7 +1122,7 @@ function renderPickups(){
       ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       ${p.experts ? `<div class="pkx2"><b>Expert check</b> - ${esc(p.experts.verdict)} <em>(noted only, nobody is dropped for it)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b> ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
-  el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Top 5 pickups</span>
+  el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span>
     <div class="pktabs" role="tablist">${["1", "2", "3", "4"].map(n => `<button type="button" role="tab" aria-selected="${n === PKL}" class="${n === PKL ? "on" : ""}" data-pkl="${n}" style="--lc:${LCOL[KEYS[+n - 1]]}">DK${n}</button>`).join("")}</div>
     <div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces - graded on upgrades over your starters and depth`}${L.pieces_built ? ` <em>(checked ${esc(L.pieces_built)})</em>` : ""}</div>
     ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}

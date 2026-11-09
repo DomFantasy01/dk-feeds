@@ -35,7 +35,7 @@ for n in sorted(new.get("leagues", {})):
         if k not in pool: why = "taken in your league, or the experts dropped him"
         else: why = f"grade {g['grade']} -> {pool[k][0]}, passed by others"
         lines.append(f"DK{n}: - {g['name']} out of the top 5 ({why})"); short.append(f"DK{n} -{g['name'].split()[-1]}")
-push = ("MUST PICKUP: " + "; ".join(must) + " - open DK Live") if must else ("Top 5 pickups changed: " + ", ".join(short)) if short else ("Top 5 pickups: grades moved" if lines else "")
+push = ("Diamonds in the Rough - MUST: " + "; ".join(must) + " - open DK Live") if must else ("Diamonds in the Rough changed: " + ", ".join(short)) if short else ("Diamonds in the Rough: grades moved" if lines else "")
 if len(push) > 190: push = push[:187] + "..."
 newer = ts(new) > ts(old) if old else True
 if not newer: lines, short, push, must = [], [], "", []
