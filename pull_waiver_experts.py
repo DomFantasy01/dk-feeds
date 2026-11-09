@@ -7,10 +7,12 @@ which post Sun night - Tue, before claims process. Picked from FantasyPros 2026 
 Writes yahoo_drop/morning/waiver_experts.txt: expert|site|acc_rank|posted|order|player|pos|team|section|bid
 A source that fails is logged and the others still write. Nothing is ever acted on from this file - it's the expert side of
 the waiver-night check, beside the Scout."""
-import json, os, re, sys, html, datetime as dt, urllib.request
+import json, os, re, sys, html, datetime as dt, urllib.request, urllib.error
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
       "Accept": "text/html,application/xhtml+xml", "Accept-Language": "en-US,en;q=0.9"}
+
+SEASON = "2026"
 
 def get(url):
     return urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40).read().decode("utf-8", "replace")
@@ -23,8 +25,16 @@ def text_of(h):
     return [re.sub(r"\s+,", ",", re.sub(r"\s+", " ", l)).strip() for l in h.split("\n") if l.strip()]
 
 def week():
+    """Nov 9 2026 fix: the WAIVER week, not Sleeper's week. Columns written Mon/Tue are for the NEXT week, but Sleeper keeps
+    showing the week just played until mid-week - the Mon 7:11 AM run asked for Week 9 columns (gone) and failed.
+    NFL weeks run Wed-Tue from Sleeper's season_start_date; on Mon and Tue (Pacific) the waiver week is the one ahead."""
     s = json.loads(urllib.request.urlopen(urllib.request.Request("https://api.sleeper.app/v1/state/nfl", headers=UA), timeout=30).read())
-    return int(s["week"])
+    now = dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
+    try:
+        d0 = dt.date.fromisoformat(s["season_start_date"]); played = (now.date() - d0).days // 7 + 1
+    except Exception:
+        played = int(s["week"])
+    return played + (1 if now.weekday() in (0, 1) else 0)
 
 def sq(n): return re.sub(r"[^a-z]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", n.lower()))
 
@@ -95,13 +105,18 @@ def english(w, idx):
     if not any(re.search(rf"(?i)week {w} waiver", l) for l in L[:200]): return None, "page is not the Week %d column yet" % w
     by = next((l for l in L if l.startswith("By ")), "")
     t = next((l for l in L if re.match(r"^[A-Z][a-z]{2} \d{1,2}, 20\d\d at", l)), "")
-    secs = [(r"priority targets", "priority"), (r"immediate help", "immediate"), (r"qb streamers", "QB stream"),
+    # Nov 9 2026: the week-N slug serves LAST year's column until the new one posts - only a 2026 page counts
+    if t and SEASON not in t: return None, "page is not the Week %d column yet (still the %s column)" % (w, re.search(r"20\d\d", t).group(0))
+    # Nov 9 2026: headings changed ("Priority Target of the Week", "Need Help Now?", "Drop Candidates") - old patterns found nothing
+    START = r"priority targets?( of the week)?:?"
+    secs = [(START, "priority"), (r"(immediate help|need help now\??)", "immediate"), (r"qb streamers", "QB stream"),
             (r"deep-league (options|plays)", "deep"), (r"upside stashes", "stash"), (r"injuries to (watch|note)", "injury-watch"),
-            (r"top rb handcuffs", "handcuff"), (r"top streaming kickers?", "K stream"), (r"drops", "drop")]
-    DIAG["english"] = f"{len(L)} lines, start found: {any(re.search('(?i)^priority targets$', l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
-    k0 = max([i for i, l in enumerate(L) if re.fullmatch(r"(?i)priority targets", l)] or [0])
+            (r"(top )?rb handcuffs?( top \d+)?", "handcuff"), (r"top streaming defenses?", "DEF stream"), (r"top streaming kickers?", "K stream"),
+            (r"(drops|drop candidates)", "drop")]
+    DIAG["english"] = f"{len(L)} lines, start found: {any(re.fullmatch('(?i)' + START, l) for l in L)}, first: {' / '.join(L[:6])[:200]}"
+    k0 = max([i for i, l in enumerate(L) if re.fullmatch(r"(?i)" + START, l)] or [0])
     L = L[k0 - 1:] if k0 else L
-    p = picks_from(L, idx, r"(?i)^priority targets$", r"(?i)^(kevin english, senior|in this article$)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
+    p = picks_from(L, idx, r"(?i)^" + START + "$", r"(?i)^(kevin english, senior|in this article$)", r"(?i)blind bid recommendation:\s*([\d\-]+%)", secs)
     p = [x for x in p if x[1] not in ("injury-watch",)]
     return dict(expert=by[3:].strip() or "Kevin English", site="Draft Sharks", acc="51 (site: 9, 13)", url=url, posted=t, picks=p,
                 note="blind bid as % of budget"), ""
@@ -125,20 +140,25 @@ def main(repo="."):
     idx = player_index(repo)
     now = dt.datetime.now(dt.timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
     stamp = f"{now:%a %b} {now.day} {now.hour % 12 or 12}:{now:%M} {'AM' if now.hour < 12 else 'PM'} PT"
-    rows, log, got = [], [], 0
+    rows, log, got, pend = [], [], 0, 0
     for fn in (boone, english):   # Nov 4: Jahnke removed with the other ranking experts (Dom, Nov 3)
         try:
             r, why = fn(w, idx)
+        except urllib.error.HTTPError as e:
+            r, why = None, (f"not posted yet (page {e.code})" if e.code == 404 else f"fetch failed: {e}")
         except Exception as e:
             r, why = None, f"fetch failed: {e}"
         if not r or not r["picks"]:
+            pend += 1 if why and "yet" in why else 0
             log.append(f"{fn.__name__}: NOT READ - {why or 'no players found on the page'} {DIAG.get(fn.__name__, '')}"); continue
         got += 1
         log.append(f"{r['expert']} ({r['site']}, accuracy #{r['acc']}): {len(r['picks'])} players, posted {r['posted'] or 'time not shown'} - {r['note']} - {r['url']}")
         for i, ((name, pos, team), sec, bid) in enumerate(r["picks"], 1):
             rows.append("|".join([r["expert"], r["site"], r["acc"], r["posted"], str(i), name, pos, team, sec, bid]))
-    print(f"WAIVER EXPERTS week {w} {stamp}: {got} of 3 read"); print("\n".join(log))
+    print(f"WAIVER EXPERTS week {w} {stamp}: {got} of 2 read"); print("\n".join(log))
     if not got:
+        # Nov 9 2026: columns not up yet (Monday runs, before Boone/English post) is normal - only a real break fails the run
+        if pend == 2: print("no Week %d column posted yet - old file left in place, will read again on the next run" % w); sys.exit(0)
         print("no source read - old file left in place"); sys.exit(1)
     od = f"{repo}/yahoo_drop/morning"; os.makedirs(od, exist_ok=True)
     head = f"# Waiver experts, week {w}. Read live {stamp} (GitHub read). expert|site|acc_rank|posted|order|player|pos|team|section|bid\n" + \
