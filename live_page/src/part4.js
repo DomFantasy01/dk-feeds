@@ -16,7 +16,7 @@ const BYPRINT = {"DK I": "MOST", "DK II": "WINNERS", "DK III": "HERS&HIS", "DK I
 const LIVE_SYNC_TASK = "trig_014As1cm2kT6H6bXFSbQvJL6";   /* Refresh = pull the latest Dispatch build into this page */
 const RSRV = "Claude Code Remote";
 
-let S = null, M = null, A = null, MK = {}, H = null, TR = null, MV = null, DB = null;
+let S = null, M = null, A = null, MK = {}, H = null, TR = null, MV = null, DB = null, PK = null;
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const f1 = (v) => (v === null || v === undefined || isNaN(v)) ? "–" : Number(v).toFixed(1);
@@ -1084,11 +1084,38 @@ function renderAll(){
   if (!S || !S.leagues){ return; }
   const y = scrollY; meters(); astrip();
   $("#cards").innerHTML = KEYS.map(card).join("");
-  separated(); footer(); needs();
+  separated(); footer(); needs(); renderPickups();
   if ($("#findq").value.trim()) findRun();
   scrollTo(0, y); nextLabel();
 }
 document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches || !d.matches("details[data-fold]")) return; FOLDS[d.dataset.fold] = d.open; store.set("folds", FOLDS); }, true);
+
+/* ---------- Nov 9 (Dom): TOP 5 PICKUPS moving forward - why, potential points rest of season, grade out of 100, built for EACH team ----------
+   Built by live_sync/pickups.py into live/pickups. One tab per league (remembered). Grade = value 45 + workload 20 +
+   playoff schedule 15 + team record 10 + path to the job 10; every part and every source carries its time. */
+let PKL = store.get("pkl") || "1";
+function renderPickups(){
+  const el = $("#pickups"); if (!el) return;
+  const MP = M && M.pickups;   /* the newer of the hand-written list (live/pickups) and the build's (models.pickups) */
+  const tsOf = (o) => { const t = o && o.built ? Date.parse(o.built.replace(/ PT$/, "").replace(/^\w+ /, "") + " GMT-0800") : 0; return isNaN(t) ? 0 : t; };
+  const P = (PK && MP) ? (tsOf(MP) > tsOf(PK) ? MP : PK) : (PK || MP);
+  if (!P || !P.leagues){ el.innerHTML = ""; return; }
+  const L = P.leagues[PKL] || {top: []}, src = P.sources || {};
+  const gc = (g) => g >= 70 ? "g" : g >= 55 ? "a" : "n";
+  const ring = (g) => { const r = 15, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g)) / 100;
+    return `<svg class="pkr ${gc(g)}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#1C2741" stroke-width="4"/><circle cx="20" cy="20" r="${r}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 20 20)"/><text x="20" y="24.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
+  const PART = [["value", "Value", 30], ["fit", "Your fit", 25], ["workload", "Workload", 15], ["playoffs", "Playoffs", 15], ["team", "Team", 5], ["path", "Path", 10]];
+  const rows = (L.top || []).map((p, i) => `<details class="pk2" data-fold="pk-${PKL}-${i}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
+      <summary><span class="rk">${i + 1}</span>${ring(p.grade)}<span class="nm"><b>${esc(p.name)}</b><em>${esc(p.pos)} · ${esc(p.team)} · ${esc(String(p.status || "").replace(/ \(.*\)$/, ""))}</em></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em></span></summary>
+      <div class="pkb"><div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${p.parts[k] || 0}/${mx}</em></div>`).join("")}</div>
+      <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul><div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
+  el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Top 5 pickups</span>
+    <div class="pktabs" role="tablist">${["1", "2", "3", "4"].map(n => `<button type="button" role="tab" aria-selected="${n === PKL}" class="${n === PKL ? "on" : ""}" data-pkl="${n}" style="--lc:${LCOL[KEYS[+n - 1]]}">DK${n}</button>`).join("")}</div>
+    <div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces - graded on upgrades over your starters and depth`}${L.pieces_built ? ` <em>(checked ${esc(L.pieces_built)})</em>` : ""}</div>
+    ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}
+    <div class="pkfoot">Points = Ratcliffe rest of season in this league's scoring (read ${esc(src.ratcliffe_read || "-")}) · usage through Week ${esc(String(src.nflverse_through_week || "-"))} · ${esc(src.standings || "")} · rosters read ${esc(L.read || "-")} · built ${esc(P.built || "-")}. Grade for this team: value 30, your fit 25 (missing pieces, beats your weakest starter, depth), workload 15, playoffs 15, team record 5, path to the job 10; Out or Doubtful costs 10. Talk it through before any claim.</div></section>`;
+}
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-pkl]"); if (!b) return; PKL = b.dataset.pkl; store.set("pkl", PKL); renderPickups(); });
 
 /* ---------- events ---------- */
 function rmsg(t, bad){ const el = $("#rmsg"); el.textContent = t; el.hidden = false; el.style.background = bad ? "#FBE4E5" : "#F2E6C4"; clearTimeout(rmsg.t); rmsg.t = setTimeout(() => el.hidden = true, 9000); }
@@ -1173,6 +1200,7 @@ setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
   if (!Array.isArray(TR.entries)) TR = {entries: []};
   watch("live/alert_marks", v => { MK = Object.assign({}, v || {}); if (S) renderAll(); });
   watch("live/moves", v => { MV = v || null; if (S) renderAll(); });
+  watch("live/pickups", v => { PK = v || null; renderPickups(); });
   watch("live/health", v => { H = v || null; renderStatus(); renderHealth(); });
   watch("live/alerts", v => { A = v || null; if (S) renderAll(); });
   watch("live/models", v => { if (v){ M = v; if (S){ renderAll(); trailAdd(); } } });

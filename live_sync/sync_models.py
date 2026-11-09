@@ -330,6 +330,12 @@ def _ingame():
     return {'day': day, 'pulled': R.get('pulled_utc'), 'players': res}
 _ig = _ingame()
 if _ig is not None: cur['ingame'] = _ig
+# Nov 9 (Dom): the Top 5 pickups per team ride along in the models document (Live reads live/pickups first, this second)
+try:
+    import os as _os
+    _pk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..', 'dispatch_out', 'pickups.json')
+    if _os.path.exists(_pk): cur['pickups'] = json.load(open(_pk))
+except Exception: pass
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
 # ---- ONE YAHOO READER (Oct 13): Live's live/state from the Dispatch's read, when that read is newer

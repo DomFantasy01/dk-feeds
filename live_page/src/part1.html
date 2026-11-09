@@ -1154,4 +1154,29 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .xo.xlead > b{color:var(--gold)}
 .xkey{margin:6px 4px 0;font-size:10.5px;line-height:1.4;color:var(--mute)}
 .xkey b{color:var(--gold);font-weight:600}
+
+/* Nov 9: Top 5 pickups */
+.pktabs{display:flex;gap:6px;margin:2px 0 8px}
+.pktabs button{flex:1;min-height:34px;border-radius:7px;border:1px solid #2E3B58;background:#0E1628;color:var(--ink2);font:400 17px/1 var(--f-disp);letter-spacing:.05em;cursor:pointer}
+.pktabs button.on{background:color-mix(in srgb,var(--lc) 22%,#0E1628);border-color:var(--lc);color:#fff}
+.pk2{border:1px solid #23314F;border-radius:9px;background:#0B1222;margin-top:6px}
+.pk2>summary{list-style:none;display:flex;align-items:center;gap:8px;padding:7px 9px;cursor:pointer}
+.pk2>summary::-webkit-details-marker{display:none}
+.pk2 .rk{flex:none;width:16px;font:400 20px/1 var(--f-disp);color:var(--brass);text-align:center}
+.pkr{flex:none;width:40px;height:40px}.pkr.g{color:#4FD08A}.pkr.a{color:#F2B84B}.pkr.n{color:#8A93A6}
+.pk2 .nm{flex:1;min-width:0;display:flex;flex-direction:column}
+.pk2 .nm b{font:600 14px/1.2 var(--f-body);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk2 .nm em{font:500 11px/1.3 var(--f-body);font-style:normal;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk2 .pp{flex:none;display:flex;flex-direction:column;align-items:flex-end}
+.pk2 .pp b{font:400 24px/1 var(--f-disp);color:#fff}.pk2 .pp em{font:700 8px/1 var(--f-body);font-style:normal;letter-spacing:.1em;color:var(--brass)}
+.pkb{padding:0 10px 10px 34px}
+.pkb .parts{display:grid;gap:3px;margin:2px 0 6px}
+.pkb .parts div{display:grid;grid-template-columns:62px 1fr 36px;align-items:center;gap:6px;font-size:10.5px;color:var(--ink2)}
+.pkb .parts i{height:6px;border-radius:3px;background:#1C2741;overflow:hidden}.pkb .parts i b{display:block;height:6px;background:#5B9BF5;border-radius:3px}
+.pkb .parts em{font:600 10px/1 var(--f-num);font-style:normal;text-align:right;color:var(--mute)}
+.pkb ul{margin:4px 0 0;padding-left:16px}.pkb li{font-size:12px;line-height:1.4;color:var(--ink2);margin:2px 0}
+.pkb .pst{margin-top:5px;font-size:11px;color:var(--amber)}
+.pkneed{font-size:12px;line-height:1.4;color:var(--ink2);margin:0 0 4px}.pkneed b{color:var(--amber)}.pkneed em{font-style:normal;color:var(--mute);font-size:10.5px}
+.pkfoot{margin-top:8px;font-size:10.5px;line-height:1.4;color:var(--mute)}
+@media (max-width:380px){.pkb{padding-left:12px}.pk2 .pp b{font-size:20px}}
 </style>
