@@ -468,49 +468,61 @@ const STWORD = {pre: "still to play", live: "playing now", done: "done", out: "o
    dark green done, light green pulsing = playing, amber pulsing = problem, red = out, red pulsing = unknown, gray = still to play.
    The card's frame glows in your win color. */
 function scoreGlobe(L, k, o){
-  const id = "sg" + SLUG[k], W = 120, H = 122;
+  const id = "sg" + SLUG[k], W = 120, H = 148;
   const sc = Math.max(o.pMe, o.pOp, o.me, o.op, 1) * 1.1;
   const fin = o.state === "FINAL", y = o.y;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
-  const T0 = 14, T1 = 114;                                   /* tank top / bottom */
-  /* Nov 8 4:19 PM (Dom): red tanks = deeper red for points scored, lighter red above it for what's still to come, textured where they meet */
-  /* Nov 8 4:24 PM (Dom: "can't you be creative"): MOLTEN TANKS. Every colour gets its own three-tone palette -
-     a deep core at the bottom, a rich middle and a bright glowing surface. The fluid is marbled with slow-moving
-     swirls (procedural noise), lit from the surface with a soft halo; the still-to-come zone above it is frosted glass
-     tinted the light tone, with a faint shimmer; sparks drift up off the surface while that side has a man playing. */
+  /* Nov 8 4:40 PM (Dom: "make them like filling up test tubes... at the bottom where it's round, put the actual score and whether
+     it's up or down, colored accordingly"): TEST TUBES. Each side is a glass test tube with a lip at the top and a round bulb at the
+     bottom. The tube fills with that side's molten fluid (yours in your win color, his gray) up to points scored; the lighter band
+     above runs to Yahoo's projected final, with lab graduation marks every 25 points. The bulb is the readout: the actual score,
+     and on yours the margin with ▲ (ahead, bulb green) or ▼ (behind, bulb red); his bulb stays gray. */
+  const T0 = 20, T1 = 108;                                   /* tube mouth / bottom of the position rails */
   const PAL = {"#3DDC84": ["#063D22", "#1FAE5E", "#9DFFC6"], "#F7B32B": ["#5A2E00", "#E38E0B", "#FFE08A"],
-    "#FF4D57": ["#4A030A", "#C8162A", "#FF9AA2"], "#A3ABBD": ["#2A3043", "#8890A6", "#E8ECF4"]};
-  const tank = (x, w, val, proj, col0, side) => { const [dk, md, lt] = PAL[col0] || [col0, col0, col0], h = T1 - T0, big = side === "m",
-      ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, on = big ? o.meOn : o.opOn;
-    const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N), body = (yy) => `${wave(yy)} V ${T1 + 2} H ${x - 6} Z`;
-    const sparks = on && val > 0 ? [0, 1, 2, 3, 4].map(i => `<circle class="spk" cx="${(x + 6 + i * (w - 12) / 4).toFixed(1)}" cy="${(ly - 1).toFixed(1)}" r="${i % 2 ? .7 : 1}" fill="${lt}" style="animation-delay:${(i * .7).toFixed(1)}s"/>`).join("") : "";
-    return `<clipPath id="${id}${side}"><rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7"/></clipPath>
+    "#FF4D57": ["#4A030A", "#C8162A", "#FF9AA2"], "#A3ABBD": ["#2A3043", "#8890A6", "#E8ECF4"], "#5B6E9C": ["#141C33", "#3A4A72", "#9AAAD0"]};
+  const pre = o.state === "NOT STARTED", mg = o.me - o.op;
+  const BULB = pre ? "#5B6E9C" : Math.abs(mg) < .05 ? "#F7B32B" : mg > 0 ? "#3DDC84" : "#FF4D57";
+  const tank = (cx, a, r, val, proj, col0, side) => { const [dk, md, lt] = PAL[col0] || [col0, col0, col0], big = side === "m",
+      cy = H - 24, yj = cy - Math.sqrt(r * r - a * a), Z = cy - r + 1.5, top = T0 + 3, h = Z - top, x = cx - a, w = 2 * a,
+      ly = Z - Math.max(0, Math.min(1, val / sc)) * h, py = Z - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, on = big ? o.meOn : o.opOn;
+    const V = `M${x} ${T0} V ${yj.toFixed(2)} A ${r} ${r} 0 1 0 ${cx + a} ${yj.toFixed(2)} V ${T0} Z`;
+    const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N), body = (yy) => `${wave(yy)} V ${(Z + 3).toFixed(1)} H ${x - 6} Z`;
+    const sparks = on && val > 0 ? [0, 1, 2, 3].map(i => `<circle class="spk" cx="${(x + 5 + i * (w - 10) / 3).toFixed(1)}" cy="${(ly - 1).toFixed(1)}" r="${i % 2 ? .7 : 1}" fill="${lt}" style="animation-delay:${(i * .7).toFixed(1)}s"/>`).join("") : "";
+    const ticks = []; for (let v = 25; v < sc; v += 25){ const ty = Z - v / sc * h; if (ty < top + 2) break; const maj = v % 50 === 0;
+      ticks.push(`<line x1="${cx + a - (maj ? 5 : 3)}" y1="${ty.toFixed(1)}" x2="${cx + a - .8}" y2="${ty.toFixed(1)}" stroke="#fff" stroke-opacity="${maj ? .38 : .22}" stroke-width=".55"/>${maj && big ? `<text x="${cx + a - 5.8}" y="${(ty + 1.3).toFixed(1)}" text-anchor="end" class="tbg">${v}</text>` : ""}`); }
+    const [bd, bm, bl] = PAL[big ? BULB : col0], sv = f1(val), mtxt = pre ? "PRE-GAME" : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
+    return `<clipPath id="${id}${side}"><path d="${V}"/></clipPath>
       <clipPath id="${id}${side}f"><path d="${body(ly)}"/></clipPath>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${lt}"/><stop offset=".12" stop-color="${md}"/><stop offset=".6" stop-color="${md}" stop-opacity=".95"/><stop offset="1" stop-color="${dk}"/></linearGradient>
       <radialGradient id="${id}${side}h" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${lt}" stop-opacity=".75"/><stop offset="1" stop-color="${lt}" stop-opacity="0"/></radialGradient>
-      <rect x="${x - 1.2}" y="${T0 - 1.2}" width="${w + 2.4}" height="${h + 2.4}" rx="8" fill="#05080F"/>
-      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="url(#${id}gl)"/>
+      <radialGradient id="${id}${side}q" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="${bl}"/><stop offset=".35" stop-color="${bm}"/><stop offset="1" stop-color="${bd}"/></radialGradient>
+      <path d="${V}" fill="url(#${id}gl)" stroke="#05080F" stroke-width="2.4"/>
       <g clip-path="url(#${id}${side})">
-        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${lt}" fill-opacity="${big ? .28 : .18}"/>
-        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${lt}" filter="url(#${id}fr)" opacity=".5"/>
-        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${lt}" stroke-opacity=".7" stroke-width="1.6" filter="url(#${id}b)"/>
+        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(Z - py + 3).toFixed(1)}" fill="${lt}" fill-opacity="${big ? .26 : .17}"/>
+        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(Z - py + 3).toFixed(1)}" fill="${lt}" filter="url(#${id}fr)" opacity=".45"/>
+        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${lt}" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="2 1.6"/>
         ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${body(ly)}" fill="url(#${id}${side}s)"/></g>
           <g clip-path="url(#${id}${side}f)">
-            <rect class="mrb" x="${x - 20}" y="${(ly - 4).toFixed(1)}" width="${w + 40}" height="${(T1 - ly + 8).toFixed(1)}" fill="${lt}" filter="url(#${id}mb${side})" opacity="${big ? .55 : .45}"/>
-            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(T1 - ly + 2).toFixed(1)}" fill="url(#${id}bu)" class="bub"/>
-            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(T1 - ly + 2).toFixed(1)}" fill="url(#${id}dp)"/>
-            <ellipse cx="${x + w / 2}" cy="${(ly + 2).toFixed(1)}" rx="${w * .7}" ry="7" fill="url(#${id}${side}h)"/></g>
-          <g class="wv${big ? "" : " w2"}"><path d="${wave(ly)}" fill="none" stroke="${lt}" stroke-opacity=".9" stroke-width="3" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width=".7"/></g>${sparks}` : ""}
-        <rect class="swp" x="${x - w}" y="${T0}" width="${w * .55}" height="${h}" fill="url(#${id}sw)" transform="skewX(-14)"/>
-        <rect x="${x + 2.6}" y="${T0 + 4}" width="${Math.max(2.6, w * .1)}" height="${h - 8}" rx="1.5" fill="url(#${id}hl)"/>
-        <rect x="${x + w - 3.4}" y="${T0 + 6}" width="1.1" height="${h - 12}" rx=".5" fill="#fff" opacity=".12"/>
-        <rect x="${x}" y="${T0}" width="${w}" height="${h}" fill="url(#${id}ed)"/></g>
-      <path d="M${x + 5} ${T0 + .6} H ${x + w - 5}" stroke="#fff" stroke-opacity=".35" stroke-width=".7" stroke-linecap="round"/>
-      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? md : "#A3ABBD"}" stroke-opacity="${big ? .9 : .45}" stroke-width="${big ? 1.1 : .8}"/>
-      <text x="${x + w / 2}" y="${T0 + 15}" text-anchor="middle" class="sgn ${big ? "bg" : "sm"}${f1(val).length > 4 ? " lg" : ""}${on ? " on" : ""}">${f1(val)}</text>
-      <text x="${x + w / 2}" y="${T0 + 23}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
+            <rect class="mrb" x="${x - 20}" y="${(ly - 4).toFixed(1)}" width="${w + 40}" height="${(Z - ly + 8).toFixed(1)}" fill="${lt}" filter="url(#${id}mb${side})" opacity="${big ? .5 : .4}"/>
+            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(Z - ly + 4).toFixed(1)}" fill="url(#${id}bu)" class="bub"/>
+            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(Z - ly + 4).toFixed(1)}" fill="url(#${id}dp)"/>
+            <ellipse cx="${cx}" cy="${(ly + 2).toFixed(1)}" rx="${w * .7}" ry="6" fill="url(#${id}${side}h)"/></g>
+          <g class="wv${big ? "" : " w2"}"><path d="${wave(ly)}" fill="none" stroke="${lt}" stroke-opacity=".9" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width=".6"/></g>${sparks}` : ""}
+        ${ticks.join("")}
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#${id}${side}q)"/>
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#${id}bu)" opacity=".7"/>
+        <ellipse cx="${(cx - r * .38).toFixed(1)}" cy="${(cy - r * .45).toFixed(1)}" rx="${(r * .3).toFixed(1)}" ry="${(r * .17).toFixed(1)}" fill="#fff" opacity=".35" transform="rotate(-35 ${(cx - r * .38).toFixed(1)} ${(cy - r * .45).toFixed(1)})"/>
+        <rect class="swp" x="${x - w}" y="${T0}" width="${w * .55}" height="${cy + r - T0}" fill="url(#${id}sw)" transform="skewX(-14)"/>
+        <rect x="${x + 2.2}" y="${T0 + 3}" width="${Math.max(2.2, w * .11)}" height="${(yj - T0 - 6).toFixed(1)}" rx="1.2" fill="url(#${id}hl)"/>
+        <rect x="${x}" y="${T0}" width="${w}" height="${(yj - T0).toFixed(1)}" fill="url(#${id}ed)"/></g>
+      <path d="${V}" fill="none" stroke="${big ? md : "#A3ABBD"}" stroke-opacity="${big ? .95 : .5}" stroke-width="${big ? 1 : .8}"/>
+      <circle cx="${cx}" cy="${cy}" r="${r - 1.6}" fill="none" stroke="${bl}" stroke-opacity="${!big || pre ? .25 : .55}" stroke-width=".6"/>
+      <rect x="${(x - 2.4).toFixed(1)}" y="${T0 - 2.4}" width="${w + 4.8}" height="3.2" rx="1.6" fill="#1A2440" stroke="${big ? md : "#A3ABBD"}" stroke-opacity="${big ? .95 : .5}" stroke-width=".7"/>
+      <text x="${cx}" y="${T0 - 5}" text-anchor="middle" class="tpj">PROJ ${f1(proj)}</text>
+      <text x="${cx}" y="${(cy + (big ? 1.2 : 3)).toFixed(1)}" text-anchor="middle" class="tbn ${big ? "bg" : "sm"}${sv.length > 4 ? " lg" : ""}${on ? " on" : ""}">${sv}</text>
+      ${big ? `<text x="${cx}" y="${(cy + 8.6).toFixed(1)}" text-anchor="middle" class="tbm">${mtxt}</text>` : ""}`; };
   const rail = (list, mine) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const g = 1.1, hh = (T1 - T0 - g * (n - 1)) / n;
     const bx = mine ? 11 : W - 13, lx = mine ? 8.6 : W - 8.6;
     return st.map((p, i) => { const s = ringState(p), y0 = T0 + i * (hh + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
@@ -534,9 +546,9 @@ function scoreGlobe(L, k, o){
     <linearGradient id="${id}hl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></linearGradient>
     <linearGradient id="${id}ed" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".12" stop-color="#000" stop-opacity="0"/><stop offset=".88" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient></defs>
     <text x="${W / 2}" y="8.4" text-anchor="middle" class="sgs${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
-    ${tank(17, 44, o.me, o.pMe, ZC, "m")}${tank(65, 38, o.op, o.pOp, "#A3ABBD", "o")}
+    ${tank(39, 12.5, 18, o.me, o.pMe, ZC, "m")}${tank(85, 10.5, 15, o.op, o.pOp, "#A3ABBD", "o")}
     ${rail(L.players, true)}${rail(L.oppPlayers, false)}
-    <text x="39" y="${H - 1}" text-anchor="middle" class="sgl3">YOU</text><text x="84" y="${H - 1}" text-anchor="middle" class="sgl3">HIM</text></svg>`;
+    <text x="39" y="${H - 1}" text-anchor="middle" class="sgl3">YOU</text><text x="85" y="${H - 1}" text-anchor="middle" class="sgl3">HIM</text></svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
