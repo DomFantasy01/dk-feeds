@@ -567,7 +567,7 @@ function scoreGlobe(L, k, o){
     ${strip(L.players, true, 142)}${strip(L.oppPlayers, false, 155)}</svg>`;
 }
 /* Nov 8 (Dom): each league name on ONE line - shrink it until it fits its tile, never cut it off */
-function fitNames(){ const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
+function fitNames(){ const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm, #msWin .wph .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
     let f = parseFloat(getComputedStyle(ns[0]).fontSize) || 17; const over = () => ns.some(n => n.scrollWidth > n.clientWidth + .5);
     while (over() && f > 6){ f -= .5; ns.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
   const go2 = () => { const ls = []; if (!ls.length) return; ls.forEach(n => n.style.removeProperty("font-size"));
@@ -600,21 +600,19 @@ function meters(){
         const ZN = settled(L) ? (score(L.players) >= score(L.oppPlayers) ? "win" : "lose") : ZF(y), PZ = ZF(po === null || po === undefined ? null : po * 100);
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
-        return {k, a: T("a", `<div class="mxh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(LGSHORT[k])}</span></div>
-      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp"><b>${y}<small>%</small></b></div>
-        <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>`),
+        return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
+      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b>${y}<small>%</small></b></div>
+        <div class="wpt"><span>Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</span>${nextUpdate() ? `<span>Next update <b>${esc(nextUpdate())}</b></span>` : ""}</div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
-          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>
-          <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>
-        <div class="sgt">Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}${nextUpdate() ? ` · Next update <b>${esc(nextUpdate())}</b>` : ""}</div>`),
+          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>`),
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div>`)}; }).filter(Boolean);
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
-  $("#meters").innerHTML = SEC("msScore", "Scoreboard", "", "b");
+  $("#meters").innerHTML = SEC("msWin", "Win probability", "", "a") + SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msWin", "Win probability", "this week · Yahoo", "a") + SEC("msExp", "Experts", "", "c");   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts", "", "c");   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;

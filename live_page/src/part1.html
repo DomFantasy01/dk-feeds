@@ -1063,4 +1063,24 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mgrid.g-b .sgx > div:not(.sgbel) > span{white-space:nowrap !important;min-height:0 !important;font-size:10px !important}
 @media (min-width:561px){.mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:12px !important}}
 .sgauge .gk.sm{font-size:5.2px !important;letter-spacing:.06em !important}
+/* Nov 8 8:35 PM (Dom): Win probability on top - DK tag + alert bell on one row, league name on the line under it (same as the
+   Scoreboard), smaller percentage, nothing under it but the Yahoo time and the next update. Scoreboard: no alerts row, no time line. */
+.mgrid.g-a .mx{grid-row:auto !important;display:block !important;container-type:inline-size;padding:7px 5px 7px !important;
+  border:1.5px solid color-mix(in srgb,var(--lc) 60%,#22304C) !important;border-top:4px solid var(--lc) !important;border-radius:12px !important;
+  box-shadow:0 10px 18px -6px rgba(0,0,0,.75),inset 0 2px 0 rgba(255,255,255,.06) !important}
+.mgrid.g-a{row-gap:8px !important}
+.wph{padding:0 2px 4px;margin-bottom:3px;border-bottom:1px solid color-mix(in srgb,var(--lc) 30%,transparent)}
+.wph .r1{display:flex;align-items:center;justify-content:space-between}
+.wph .r1 b{font:400 22px/1 var(--f-disp) !important;letter-spacing:.04em;color:var(--lc);text-shadow:0 0 12px color-mix(in srgb,var(--lc) 55%,transparent)}
+@media (max-width:560px){.wph .r1 b{font-size:19px !important}}
+.wph .nm{display:block;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:clip;font:500 17px/1.1 var(--f-body);color:#E6EAF2;text-transform:none;letter-spacing:.01em}
+.wph .sbel{transform:scale(.85);transform-origin:right center}
+.mgrid.g-a .mxp b{font-size:26px !important;margin-top:0 !important}
+.mgrid.g-a .mxp small{font-size:13px !important}
+@media (min-width:561px){.mgrid.g-a .mxp b{font-size:32px !important}}
+.wpt{margin-top:2px;text-align:center;font:500 7.4px/1.25 var(--f-body);color:#9AA3B5}.wpt b{color:#E6EAF2;font-weight:600}
+@media (min-width:561px){.wpt{font-size:10px}}
+.mgrid.g-a .mxl{display:none !important}
+.wpt span{display:block;white-space:nowrap;font-size:min(7.4px,9.6cqw)}
+@media (min-width:561px){.wpt span{font-size:10px}}
 </style>
