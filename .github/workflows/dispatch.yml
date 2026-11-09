@@ -80,7 +80,15 @@ jobs:
           git add -A dispatch_out yahoo_drop feeds $(ls -d yahoo_auth yahoo_api 2>/dev/null)   # only folders that exist (Oct 9 fix)
           git commit -m "dispatch $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
-            git pull --rebase -X theirs origin main || { git rebase --abort 2>/dev/null; sleep 5; continue; }
+            if ! git pull --rebase -X theirs origin main; then
+              # Nov 8 (Dom): a failed build in between leaves build_failed.json, this good build deletes it, and the rebase
+              # stops on "deleted here, changed there". A good build always clears the flag - settle it and carry on.
+              if git status --porcelain | grep -q 'dispatch_out/build_failed.json'; then
+                git rm -q -f dispatch_out/build_failed.json 2>/dev/null || true
+                GIT_EDITOR=true git rebase --continue || { git rebase --abort 2>/dev/null; sleep 5; continue; }
+              else git rebase --abort 2>/dev/null; sleep 5; continue; fi
+            fi
+            rm -f dispatch_out/build_failed.json; if git ls-files --error-unmatch dispatch_out/build_failed.json >/dev/null 2>&1; then git rm -q dispatch_out/build_failed.json && git commit -qm "good build clears the failure flag"; fi
             # Oct 19: the inactives watch also writes the state file - rebuild it on the merged copy so it is never a mix of two runs
             if python3 state/build_state.py . "${DK_ROOT:-/home/claude}" >/dev/null 2>&1 && ! git diff --quiet -- dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt; then
               git add dispatch_out/dk_state_latest.json dispatch_out/dk_state_latest.txt && git commit -qm "state file rebuilt on the merged copy"
