@@ -638,22 +638,25 @@ function ourRanks(){ const src = ((M && M.acc) || {}).src || {}, last = (wk) => 
   const ids = Object.keys(src).filter(id => last(src[id]) !== null).sort((a, b) => last(src[a]) - last(src[b])); return Object.fromEntries(ids.map((id, i) => [id, i + 1])); }
 const SRCID = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
 function accTable(){
-  /* Nov 9 (Dom): "add our rank behind, include Yahoo and Gotham" - Yahoo and Gotham ranked in with the experts;
-     our rank sits behind FantasyPros' rank on every row */
+  /* Nov 9 8:28 AM (Dom): list 1 through 7, best on top - "1, Ratcliffe" then how far off; a check mark on the three
+     the pickups use this week (taken from the pickup panel itself, so the mark never says something the pickups don't do) */
   const A = (M && M.acc) || {}, src = A.src || {}; if (!Object.keys(src).length) return "";
   const NM = {ratcliffe: ["Ratcliffe", "r"], koerner: ["Koerner", "k"], clay: ["Clay", "c"], vegas: ["Vegas", "v"], rotoballer: ["RotoBaller", "b"], yahoo: ["Yahoo", null], gotham: ["Gotham (engine)", null]};
+  const PN = (PK || (M && M.pickups) || {}).panel || {}, CK = (PN.check || []).map(x => String(x).toLowerCase().replace(/\s*\(.*$/, ""));
   const last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], ws.length > 1 ? ws[ws.length - 2] : null] : [null, null]; };
-  const tags = (fp, r) => `<em>${fp ? `FantasyPros #${fp}` : "FantasyPros –"} · <span class="our">ours ${r ? "#" + r : "–"}</span></em>`;
-  const row = (id, label, fp) => { const wk = src[id] || {}, [w, w0] = last(wk);
-    if (w === null) return {id, miss: 99, html: () => `<tr><td class="rk">–</td><td class="en">${label}${tags(fp, null)}</td><td colspan="3" class="ng">not graded yet</td></tr>`};
+  const row = (id, label, fp) => { const wk = src[id] || {}, [w, w0] = last(wk), ck = CK.includes(id);
+    const mark = ck ? `<span class="pk3" title="One of the three sources the pickups are averaged on this week">&#10003; pickups</span>` : "";
+    const sub = `${fp ? "FantasyPros #" + fp : "not in FantasyPros' contest"}`;
+    if (w === null) return {id, miss: 99, html: () => `<li class="${ck ? "ck" : ""}"><span class="n">–,</span><span class="nm">${label}${mark}</span><span class="of ng">not graded yet</span><em>${sub}</em></li>`};
     const [m, n, pc] = wk[String(w)], p0 = w0 !== null ? wk[String(w0)] : null, dm = p0 ? m - p0[0] : null;
-    const ch = dm === null ? `<span class="z">first week</span>` : Math.abs(dm) < .05 ? `<span class="z">same</span>` : `<span class="${dm < 0 ? "up" : "dn"}">${dm < 0 ? "better" : "worse"} ${Math.abs(dm).toFixed(1)}</span>`;
-    return {id, miss: m, w, html: (r) => `<tr class="${id === "ratcliffe" ? "lead" : ""}${id === "yahoo" || id === "gotham" ? " own" : ""}"><td class="rk">#${r}</td><td class="en">${label}${tags(fp, r)}</td><td class="mi"><b>${m.toFixed(2)}</b> pts</td><td class="pc">${pc !== undefined && pc !== null ? pc.toFixed(0) + "%" : "–"}</td><td class="ch">${ch}<em>Wk ${w} · ${n} players</em></td></tr>`}; };
+    const ch = dm === null ? "first week graded" : Math.abs(dm) < .05 ? "same as the week before" : `${dm < 0 ? "better" : "worse"} by ${Math.abs(dm).toFixed(1)} than the week before`;
+    return {id, miss: m, html: (r) => `<li class="${id === "ratcliffe" ? "lead" : ""}${ck ? " ck" : ""}"><span class="n">${r},</span><span class="nm">${label}${mark}</span><span class="of">off <b>${m.toFixed(1)}</b> pts a player${pc !== undefined && pc !== null ? " · " + pc.toFixed(0) + "%" : ""}</span><em>${sub} · ${ch} · Week ${w}, ${n} players</em></li>`}; };
   const ex = Object.entries(NM).map(([id, [nm, s2]]) => row(id, nm, s2 ? (XACC[s2] || {}).rk : null)).sort((a, b) => a.miss - b.miss);
   let r = 0; const body = ex.map(x => x.miss === 99 ? x.html() : x.html(++r)).join("");
+  const ckNote = CK.length ? `&#10003; = the ${CK.length} sources this week's pickups are averaged on (${esc((PN.check || []).join(", "))}), picked by the pickup check${PN.week ? " on Week " + esc(String(PN.week)) : ""}.` : "&#10003; marks appear once the next build posts this week's pickup check.";
   return `<div class="acct"><div class="ach"><b>How far off they were</b><span>graded ${esc(A.graded || "-")}${A.week ? ` · Week ${A.week} so far, ${A.players || "?"} players` : ""}</span></div>
-    <table><thead><tr><th>Our rank</th><th>Source</th><th>Off per player</th><th>% off</th><th>vs week before</th></tr></thead><tbody>${body}</tbody></table>
-    <p>Our rank = who missed least last graded week, in your leagues' scoring, each projection frozen before kickoff - experts, Yahoo and Gotham ranked together. FantasyPros # = their 2026 in-season accuracy contest (Yahoo, Gotham, Clay and Vegas aren't in it). % off = total points missed / total points scored.</p></div>`;
+    <ol class="acl">${body}</ol>
+    <p>${ckNote} Rank = who missed least last graded week, points missed per player in your leagues' scoring, each projection frozen before kickoff; % = total points missed / total points scored.</p></div>`;
 }
 function nextKick(){ const ks = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x).getTime()).filter(t => t > Date.now()).sort((a, b) => a - b);
   if (!ks.length) return ""; const m = Math.round((ks[0] - Date.now()) / 6e4); const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mi = m % 60;
