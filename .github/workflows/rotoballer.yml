@@ -33,12 +33,14 @@ jobs:
         run: |
           W=$(ls dispatch_out/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
           python3 live_sync/rotoballer_points.py "$GITHUB_WORKSPACE" "$W" --read-only
-          python3 live_sync/rotoballer_points.py "$GITHUB_WORKSPACE" "$W" --no-read
+          cp "dispatch_out/meter_wk$W.json" "$RUNNER_TEMP/meter_copy.json"   # Nov 8: score onto a scratch copy - the meter itself is the Dispatch build's to write
+          python3 live_sync/rotoballer_points.py "$GITHUB_WORKSPACE" "$W" "$RUNNER_TEMP/meter_copy.json" --no-read
       - name: save
         if: always()
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
+          git checkout -- dispatch_out/meter_wk*.json 2>/dev/null || true
           git add yahoo_drop/rotoballer dispatch_out/rotoballer_scored.csv dispatch_out/rotoballer_history 2>/dev/null || true
           git commit -m "rotoballer $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do
