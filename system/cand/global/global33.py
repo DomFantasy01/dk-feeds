@@ -1,5 +1,12 @@
 import math, zlib
 from reportlab.pdfgen import canvas
+# Nov 8 (Dom: 4 PM build failed): a dial at exactly 0% (or a range with no spread) asked reportlab for a zero-length arc,
+# which divides by zero and killed the whole Dispatch. A zero-length arc draws nothing, so skip it - every dial, every page.
+_dk_arc0 = canvas.Canvas.arc
+def _dk_arc(self, x1, y1, x2, y2, startAng=0, extent=90):
+    if abs(extent) < 1e-6: return
+    return _dk_arc0(self, x1, y1, x2, y2, startAng, extent)
+canvas.Canvas.arc = _dk_arc
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont

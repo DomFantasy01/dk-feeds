@@ -10,6 +10,7 @@ if [ ! -d "$ROOT" ]; then sudo mkdir -p "$ROOT" && sudo chown "$(id -u)" "$ROOT"
 # Oct 21 (Dom): ONE SYSTEM. All the code and its starting data live as plain files in system/ - no zip bundle, no overlay,
 # no patch scripts run at build time. What is in system/ is exactly what runs. (The old patch scripts sit in retired/, never run.)
 cp -r "$REPO/system/." "$ROOT/"; echo "   code from system/ (the one copy of the code)"
+export PYTHONPATH="$ROOT/_pyfix${PYTHONPATH:+:$PYTHONPATH}"   # Nov 8: zero-length dial arcs no longer crash the build (see system/_pyfix)
 OUTD=${DK_OUTD:-/mnt/user-data/outputs}
 [ -d "$OUTD" ] || { sudo mkdir -p "$OUTD" && sudo chown "$(id -u)" "$OUTD"; }   # old page code writes practice files here
 [ -f "$OUTD/dkl_db/live/state.json" ] || { mkdir -p "$OUTD/dkl_db/live" && echo '{"leagues":[],"week":0}' > "$OUTD/dkl_db/live/state.json"; }   # and reads this (practice page only)
