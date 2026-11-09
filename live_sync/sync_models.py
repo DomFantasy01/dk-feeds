@@ -335,7 +335,13 @@ try:
     import os as _os
     _pk = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..', 'dispatch_out', 'pickups.json')
     if _os.path.exists(_pk): cur['pickups'] = json.load(open(_pk))
-except Exception: pass
+    else:
+        # Nov 9 9:56 AM (Dom: "updated more frequently"): the scheduled Live syncs download only this script, so the
+        # pickups file was never next to it and the page only saw the 3-a-day list - fetch the build's copy directly
+        import urllib.request as _u, time as _t
+        cur['pickups'] = json.loads(_u.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/pickups.json?t={int(_t.time())}", timeout=30).read())
+    print('pickups on Live:', cur['pickups'].get('built'))
+except Exception as _e: print('pickups skipped:', str(_e)[:120])
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
 # ---- ONE YAHOO READER (Oct 13): Live's live/state from the Dispatch's read, when that read is newer
