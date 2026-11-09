@@ -489,7 +489,11 @@ function scoreGlobe(L, k, o){
   const fin = o.state === "FINAL", y = o.y, pre = o.state === "NOT STARTED", mg = o.me - o.op;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
-  const zw = fin ? "FINAL" : pre ? "PRE-GAME" : "LIVE";
+  /* Nov 8 8:10 PM (Dom): PRE-GAME before the first kickoff · LIVE while any game in this matchup is being played ·
+     "N GAMES LEFT" when nothing is on but games remain (every game with a starter from either side) · WIN green / LOSS red when final */
+  const stL = [...L.players, ...L.oppPlayers].filter(isStarter), anyLive = stL.some(isLive);
+  const gLeft = new Set(stL.filter(p => !isDone(p) && !isLive(p)).map(p => gameOf(p.tm) || (p.when || "").trim().toLowerCase() || p.tm)).size;
+  const zw = fin ? (o.me >= o.op ? "WIN" : "LOSS") : pre ? "PRE-GAME" : anyLive || !gLeft ? "LIVE" : gLeft + (gLeft === 1 ? " GAME LEFT" : " GAMES LEFT");
   const PAL = {"#3DDC84": ["#0F7A44", "#3DDC84", "#B4F8D2"], "#F7B32B": ["#A35E00", "#F7B32B", "#FFE6A8"],
     "#FF4D57": ["#9C1424", "#FF4D57", "#FFB3B8"], "#7FA3E0": ["#3B5684", "#7FA3E0", "#CFE0FF"]};
   const MC = pre ? "#AEB6C8" : Math.abs(mg) < .05 ? "#F7B32B" : mg > 0 ? "#3DDC84" : "#FF4D57";
@@ -541,7 +545,7 @@ function scoreGlobe(L, k, o){
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}hb)" stroke="#3A4A72" stroke-width=".7"/></g>
     <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}zg)"/>
     <path d="M${CX - 22} ${CY - 8} A 23 23 0 0 1 ${CX + 22} ${CY - 8}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round"/>
-    <text x="${CX}" y="${CY - 11}" text-anchor="middle" class="gk${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
+    <text x="${CX}" y="${CY - 11}" text-anchor="middle" class="gk${anyLive && !fin ? " on" : ""}${zw.length > 8 ? " sm" : ""}" style="fill:${fin ? (o.me >= o.op ? "#3DDC84" : "#FF4D57") : ZC}">${zw}</text>
     <text x="${CX}" y="${CY + 6}" text-anchor="middle" class="gsc${sv.length > 4 ? " lg" : ""}${o.meOn && !fin ? " on" : ""}" style="fill:${MC}">${sv}</text>
     <text x="${CX}" y="${CY + 17}" text-anchor="middle" class="gop">${f1(o.op)}</text>
     <path d="M${CX - 52} ${CY - 6} A 52 52 0 0 1 ${CX + 52} ${CY - 6} Q ${CX} ${CY - 22} ${CX - 52} ${CY - 6} Z" fill="url(#${id}gl)" pointer-events="none"/>
