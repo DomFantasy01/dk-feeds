@@ -1,5 +1,6 @@
 """Top 5 pickups - what changed since the list Dom last saw (Dom, Nov 9 2026: "updated three times a day and notified of changes").
-Usage: python3 pickups_notify.py <old.json | -> <new.json>
+Usage: python3 pickups_notify.py <old.json | -> <new.json> [db_out.json]
+(db_out = the new list without the available pool, ready to write to live/pickups)
 Prints JSON {"changed": bool, "push": "<one line, under 200 chars>", "lines": ["DK2: + Kenny Gainwell (RB, 57) in at #5", ...]}
 A man who drops out of a top 5 is explained: on a roster now (gone from the available pool), injury report, or grade fell."""
 import json, sys
@@ -29,3 +30,6 @@ for n in sorted(new.get("leagues", {})):
 push = ("Top 5 pickups changed: " + ", ".join(short)) if short else ("Top 5 pickups: grades moved" if lines else "")
 if len(push) > 190: push = push[:187] + "..."
 print(json.dumps({"changed": bool(lines), "first": not old, "push": push, "lines": lines}, indent=1))
+if len(sys.argv) > 3:
+    for L in new.get("leagues", {}).values(): L.pop("pool", None)
+    json.dump(new, open(sys.argv[3], "w"))
