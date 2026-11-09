@@ -68,9 +68,18 @@ class Engine:
             yt = p.get("ytag", "")
             if wk == self.now and yt in SM.ZERO: s = np.where(rng.random(N) < SM.ZERO[yt], 0.0, s)
         self.cache[k] = s; return s
-    def score(self, roster, wk):
+    def score(self, roster, wk, tid=None):
         lu = SM.best_lineup(roster, self.slots, wk)
         t = np.zeros(N)
+        LV = self.L.get("live") or {}
+        if wk == self.now and tid is not None and tid in LV.get("pts", {}):
+            # Nov 9 (Dom: "fix it"): week under way - real points so far + each man's share still to play (see sim.live_week)
+            left = 0.0
+            for i in lu:
+                if i is None: continue
+                p = roster[i]; m = max(p["wk"].get(str(wk), 0.0), 0.0); f = LV["frac"].get(p.get("nfl"), 0.0)
+                t = t + (self.pdraw(p, wk) - m) * math.sqrt(f); left += m * f
+            return t + LV["pts"][tid] + LV["left"].get(tid, left)
         for i in lu:
             if i is not None: t = t + self.pdraw(roster[i], wk)
         return t
@@ -80,7 +89,7 @@ class Engine:
         PF = {t: np.full(n, L["rec"].get(t, {}).get("pf", 0.0)) for t in teams}
         week_win = {}; my_res = {}
         for wk in range(self.now, REG_LAST + 1):
-            sc = {t: self.score(rosters[t], wk) for t in teams}
+            sc = {t: self.score(rosters[t], wk, t) for t in teams}
             med = np.median(np.vstack([sc[t] for t in teams]), axis=0) if L["cfg"]["median"] else None
             for a, b in L["sched"].get(wk, []):
                 if a not in sc or b not in sc: continue

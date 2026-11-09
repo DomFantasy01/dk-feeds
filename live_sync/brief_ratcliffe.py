@@ -24,6 +24,9 @@ def main(repo, brief):
         split = []
         for s in lg["starters"]["me"]:
             r, g = s.get("ratcliffe"), s.get("gotham")
+            # Nov 9 (Dom: "fix it"): once a man's game has kicked off the engine's number is his real score, not a projection -
+            # comparing that to Ratcliffe's pregame number read as "engine has Goff at 6" on Monday morning. Unplayed men only.
+            if s.get("actual") is not None or s.get("gs") in ("live", "final"): continue
             if s.get("ratcliffe_src") != "ftn":
                 split.append(f"{s['player']} engine only (Ratcliffe doesn't project him)"); continue
             if r is not None and g is not None and abs(r - g) >= 3:

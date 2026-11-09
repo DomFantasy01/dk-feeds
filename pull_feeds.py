@@ -443,6 +443,9 @@ def espn_injuries():
             elif isinstance(o, list):
                 for v in o: walk(v, team)
         walk(d)
+        # Nov 9 (Dom: "fix it"): fantasy positions only. Every reader matches this file on the player's name, so the
+        # Browns linebacker Justin Jefferson (inactive Sun Nov 8) zeroed the Vikings' Justin Jefferson in Gotham.
+        rows = [r for r in rows if str(r.get('pos') or '').upper() in ('QB', 'RB', 'WR', 'TE', 'FB', 'K', 'PK', '')]
         write('espn_injuries.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'players': rows})
         save_inactives(rows)
         mark('espn_injuries', bool(rows), players=len(rows), teams=len({r['team'] for r in rows}),

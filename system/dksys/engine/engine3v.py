@@ -159,7 +159,10 @@ try:
     if os.environ.get('DK_NOFEEDS'): raise RuntimeError('feeds off (back-test)')
     _EJ=json.load(open(_FD+'espn_injuries.json')); _EJ=_EJ.get('players',_EJ) if isinstance(_EJ,dict) else _EJ
     for it in (_EJ.values() if isinstance(_EJ,dict) else _EJ):
-        if isinstance(it,dict) and it.get('name'): _E[norm(it['name'])]=_canon(it.get('status'))
+        # Nov 9 (Dom: "fix it"): skill players only. ESPN's feed is matched on name alone, so the Browns linebacker Justin
+        # Jefferson (inactive Sun Nov 8) zeroed the Vikings' Justin Jefferson in Gotham for a Monday game he was playing in.
+        if isinstance(it,dict) and it.get('name') and str(it.get('pos') or 'WR').upper() in ('QB','RB','WR','TE','FB','K','PK'):
+            _E[norm(it['name'])]=_canon(it.get('status'))
 except Exception as _e: print('ESPN injury feed not read:',_e)
 try:
     if os.environ.get('DK_NOFEEDS'): raise RuntimeError('feeds off (back-test)')

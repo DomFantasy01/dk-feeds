@@ -138,7 +138,50 @@ def load_league(lgk):
                 for p in S["teams"][tid]:
                     b = blend.get(k_(p["name"]))
                     if b is not None and not p.get("rc") and p["wk"].get(str(now), 0) > 0: p["wk"][str(now)] = round(b, 2); used += 1
-    return dict(lgk=lgk, S=S, lid=lid, names=names, cfg=cfg, sched=sched, rec=rec, divs=divs, stamp=stamp, blend_used=used)
+    return dict(lgk=lgk, S=S, lid=lid, names=names, cfg=cfg, sched=sched, rec=rec, divs=divs, stamp=stamp, blend_used=used,
+                live=live_week(lid, now, LAB[lgk], me, next((b if a == me else a for a, b in sched.get(now, []) if me in (a, b)), None)))
+
+def live_week(lid, now, lab, me, opp):
+    """Nov 9 (Dom: "fix it"): once this week's games start, every team's real points count. Monday's brief had DK II at 52%
+    and DK IV at 53% to win this week while Yahoo, with Sunday already played, had both at 0% - the sim was replaying
+    games that were over.
+      points so far, every team  - Yahoo API scoreboard (all matchups)
+      what's left, by NFL team   - the nflverse schedule: not kicked off = all of it, final = none, in progress = the share
+                                   of about 3h15m still to go (the same clock the live meter uses)
+      Dom's own game             - the live meter's Yahoo projected finals for both sides (it knows who is still to play)
+    Returns {} before the week starts."""
+    try:
+        j = json.load(open(f"{REPO}/yahoo_api/latest.json"))
+        v = next(x for x in j["leagues"].values() if str(x.get("league_key", "")).endswith(".l." + lid))
+        pts = {}
+        for m in v.get("scoreboard") or []:
+            if str(m.get("week")) != str(now) or m.get("status") not in ("midevent", "postevent"): continue
+            for t in m.get("teams", []): pts[str(t["id"])] = float(t.get("points") or 0)
+        if not pts: return {}
+        frac = {}
+        gf = next((f for f in (os.environ.get("DK_GAMES", ""), "/home/claude/dksys/data/latest/games.csv",
+                               "/home/claude/dksys/gate/fresh/games.csv") if f and os.path.exists(f)), None)
+        G = pd.read_csv(gf, low_memory=False)
+        G = G[(G.season == 2026) & (G.game_type == "REG") & (G.week == now)]
+        tz = __import__("zoneinfo").ZoneInfo("America/New_York"); nowu = dt.datetime.now(dt.timezone.utc)
+        fixT = {"LA": "LAR", "JAC": "JAX", "WSH": "WAS"}
+        for r in G.itertuples():
+            k = dt.datetime.strptime(f"{r.gameday} {r.gametime}", "%Y-%m-%d %H:%M").replace(tzinfo=tz)
+            el = (nowu - k).total_seconds() / 60
+            f = 0.0 if not pd.isna(r.result) else 1.0 if el <= 0 else 0.0 if el >= 240 else max(0.03, 1 - el / 195)
+            for tm in (r.home_team, r.away_team): frac[tm] = f; frac[fixT.get(tm, tm)] = f
+        left = {}
+        mf = next((f for f in (os.path.join(os.environ.get("DK_METER", ""), f"meter_wk{now}.json"), f"{REPO}/dispatch_out/meter_wk{now}.json") if f and os.path.exists(f)), None)
+        if mf and opp:
+            M = json.load(open(mf))["leagues"].get(lab) or {}
+            ty = (M.get("totals") or {}).get("yahoo")
+            if ty and len(ty) == 2:
+                for tid, tot in ((me, ty[0]), (opp, ty[1])):
+                    if tid in pts: left[tid] = max(float(tot) - pts[tid], 0.0)
+        return dict(pts=pts, frac=frac, left=left)
+    except Exception as e:
+        print(f"  (live week not read for {lab}: {e} - this week simulated from scratch)")
+        return {}
 
 # ---------------------------------------------------------------- one league, all remaining games
 def season(L, noise, n=N, seed=7, rosters=None, lineups_override=None):
@@ -157,8 +200,19 @@ def season(L, noise, n=N, seed=7, rosters=None, lineups_override=None):
         for t in teams:
             lu = (lineups_override or {}).get((t, wk)) or best_lineup(rosters[t], slots, wk)
             pl = [rosters[t][i] for i in lu if i is not None]
-            arr = draw(noise, rng, [(p["wk"].get(str(wk), 0.0), p["pos"], p["nfl"], p.get("ytag", "")) for p in pl], n, zero_now=(wk == now), tf=tf)
+            means = [(p["wk"].get(str(wk), 0.0), p["pos"], p["nfl"], p.get("ytag", "")) for p in pl]
+            arr = draw(noise, rng, means, n, zero_now=(wk == now), tf=tf)
             score[t] = arr.sum(axis=1)
+            LV = L.get("live") or {}
+            if wk == now and t in LV.get("pts", {}):
+                # week under way: real points so far + each man's share still to play; his random swing shrinks with it
+                fr = np.array([LV["frac"].get(x[2], 0.0) for x in means]) if means else np.zeros(0)
+                mu = np.array([max(x[0], 0.0) for x in means]) if means else np.zeros(0)
+                dev = ((arr - mu) * np.sqrt(fr)).sum(axis=1) if means else 0.0
+                left = float((mu * fr).sum())
+                if t in LV["left"]:
+                    left = LV["left"][t]     # Dom's game: Yahoo's live projection knows exactly who is left
+                score[t] = LV["pts"][t] + left + dev
             if t == me and wk == now: out["lineups"][wk] = [(slots[k], rosters[t][i]["name"] if i is not None else None) for k, i in enumerate(lu)]
         med = np.median(np.vstack([score[t] for t in teams]), axis=0) if L["cfg"]["median"] else None
         for a, b in L["sched"].get(wk, []):
@@ -207,6 +261,7 @@ def lineup_swaps(L, noise, n=N, seed=11):
     S = L["S"]; me = str(S["me"]); now = int(S["now"]); slots = S["slots"]; R = S["teams"][me]
     opp = next((b if a == me else a for a, b in L["sched"].get(now, []) if me in (a, b)), None)
     if opp is None: return None, []
+    if L.get("live"): return None, []      # Nov 9: week under way - pregame swap math no longer applies (the live meter handles late swaps)
     rng = np.random.default_rng(seed)
     nfl = sorted({p["nfl"] for p in R} | {p["nfl"] for p in S["teams"][opp]})
     tf = {k: v for k, v in zip(nfl, rng.standard_normal((len(nfl), n)))}
@@ -273,11 +328,12 @@ def main():
                                  first=mt["first"], opp=L["names"].get(oppid, oppid), scores=dict(me=[p10, p50, p90], opp=[o10, o50, o90]),
                                  weeks=base["week_win"], swaps=swaps, tests=tests,
                                  table=sorted(base["teams"].values(), key=lambda x: -x["playoff"]))
-        T.append(f"\n{LAB[lgk]} - Week {now} vs {L['names'].get(oppid, oppid)}: win {wk_win:.0%}  |  playoffs {mt['playoff']:.0%}, about {mt['wins']:.1f} wins")
+        T.append(f"\n{LAB[lgk]} - Week {now}{' (under way)' if L.get('live') else ''} vs {L['names'].get(oppid, oppid)}: win {wk_win:.0%}  |  playoffs {mt['playoff']:.0%}, about {mt['wins']:.1f} wins")
         T.append(f"  Your score: 10% chance under {p10:.0f}, middle {p50:.0f}, 10% chance over {p90:.0f}  |  theirs {o10:.0f} / {o50:.0f} / {o90:.0f}")
         T.append("  Rest of the regular season, chance to win each game: " + ", ".join(f"Wk {w} {v:.0%}" for w, v in sorted(base["week_win"].items()) if w > now))
         for s in swaps: T.append(f"  Lineup: start {s['into']} over {s['out']} ({s['slot']}) - win {lw:.0%} -> {s['win']:.0%} (same draws)")
-        if not swaps: T.append("  Lineup: no bench swap raises your chance this week")
+        if L.get("live"): T.append("  Week under way - this week's chance counts the points already scored (Yahoo API scoreboard); no pregame swap check")
+        elif not swaps: T.append("  Lineup: no bench swap raises your chance this week")
         good = [t for t in tests if t["d_playoff"] >= .01]
         for t in good[:4]: T.append(f"  Move test: add {t['add']} ({t['pos']} {t['nfl']}, {t['acq']}), drop {t['drop']} - playoffs {mt['playoff']:.0%} -> {t['playoff']:.0%}")
         if not good: T.append("  Move test: no free agent or waiver player tested raises your playoff odds by 1 point or more")
