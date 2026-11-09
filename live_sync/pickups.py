@@ -117,6 +117,15 @@ try:
     for x in csv.DictReader(open(os.path.join(NFL, "injuries_2026.csv"))):
         if x.get("game_type", "REG") == "REG": INJ[norm(x["full_name"])] = (int(x["week"]), x["report_status"] or "", x["report_primary_injury"] or "")
 except Exception: pass
+# Nov 9 10:11 AM (Dom: "these need to be pickups that meet our criteria"): a man on injured reserve, PUP, NFI or suspended is not a
+# Diamond - De'Von Achane (IR, ACL surgery, season over) graded HOT in three leagues because only this week's Out/Doubtful counted.
+# Sleeper's status is read fresh by every build (feeds/sleeper_injuries.json). He comes back the moment the status clears.
+SIDELINED = {}
+try:
+    for _v in (json.load(open(os.path.join(ROOT, "feeds", "sleeper_injuries.json"))).get("players") or {}).values():
+        if isinstance(_v, dict) and str(_v.get("inj") or "").upper() in ("IR", "PUP", "NFI", "SUS", "SUSPENDED", "DNR"):
+            SIDELINED[norm(_v.get("name", ""))] = f"{_v['inj']}" + (f" - {_v['inj_body']}" if _v.get("inj_body") else "") + (f" ({_v['inj_notes']})" if _v.get("inj_notes") else "")
+except Exception as _e: print("sidelined list skipped:", str(_e)[:100])
 
 # ---- the experts, every one already scored in each league's rules
 def load(fn):
@@ -315,6 +324,7 @@ for n in LEAGUES:
     taken, MY, has_k, wv, rpt = league(n); NEED = needs(n); rows = []
     for (lg, key), d in EXP.items():
         if lg != n or key in taken: continue
+        if key in SIDELINED: continue              # IR / PUP / suspended - can't help, not a Diamond
         if d["_pos"] == "K" and not has_k: continue
         g = grade(n, key, d, MY, NEED)
         if not g: continue

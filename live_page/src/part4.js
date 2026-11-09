@@ -604,7 +604,7 @@ function meters(){
     const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${(XACC[s2] || {}).lead ? " xlead" : ""}${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}${(XACC[s2] || {}).lead ? " (the one everything is checked against)" : ""}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}<b>${nm}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}<b>${nm}${ORK[SRCID[s2]] ? `<span class="ork"> #${ORK[SRCID[s2]]}</span>` : ""}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -627,7 +627,7 @@ function meters(){
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
   $("#meters").innerHTML = SEC("msWin", "Win probability", "", "a") + SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey">Most to least accurate, top down · <b class="okk">&#10003;</b> = top three, used for pickups · tap a box for the detail</div>` + accTable()); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
@@ -1146,6 +1146,11 @@ let PKL = store.get("pkl") || "1";
 let PKOPEN = store.get("pkopen") || "";
 const PKI = {MUST: "&#128680;", HOT: "&#128293;", STASH: "&#128230;", WATCH: "&#128064;"};
 const PKW = {MUST: "must pick up", HOT: "hot", STASH: "stash", WATCH: "watch"};
+/* Nov 9 10:11 AM (Dom): "D. Achane" - first initial and last name; a defense stays "Vikings DEF" */
+const pkShort = (p) => { const n = String(p.name || ""); if (p.pos === "DEF" || p.pos === "DST" || /DEF$/.test(n)) return n.endsWith("DEF") ? n : (p.team || "") + " DEF";
+  const w = n.replace(/ (Jr\.?|Sr\.?|II|III|IV|V)$/, "").split(" "); return w.length > 1 ? w[0][0] + ". " + w.slice(1).join(" ") : n; };
+const pkOrb = (g) => { const r = 9, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g || 0)) / 100, col = g >= 70 ? "#3FBF7F" : g >= 55 ? "#E5A93B" : "#8592AB";
+  return `<svg class="pko" viewBox="0 0 24 24" aria-label="grade ${g} of 100"><circle cx="12" cy="12" r="${r}" fill="#0B1222" stroke="#1C2741" stroke-width="3"/><circle cx="12" cy="12" r="${r}" fill="none" stroke="${col}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 12 12)"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
 /* Nov 9 8:07 AM (Dom): "blink column when changes with recommended pickups" - each device remembers the list it last saw; a man who is new
    to a league's list, or whose tier or place moved, blinks his rank column (and that league's chip and tab) until his row is opened */
 const PKSEEN = store.get("pkseen", {});
@@ -1168,13 +1173,13 @@ function renderPickups(){
   /* top line: each league's best pickup by tier - MUST blinks (Dom, Nov 9: "blink ... pick up asap") */
   {
     const chips = ["1", "2", "3", "4"].map(n => { const t = ((P.leagues[n] || {}).top || []).slice().sort((a, b) => TO[tierOf(a)] - TO[tierOf(b)] || b.grade - a.grade)[0];
-      if (!t) return `<button type="button" class="pkc${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-pkgo="${n}"><span class="r1"><span class="lg">DK${n}</span></span><span class="who none">nothing yet</span></button>`;
+      if (!t) return `<button type="button" class="pkc${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-pkgo="${n}"><span class="r1"><span class="lg">DK${n}</span></span><span class="who none">none</span></button>`;
       const more = ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === tierOf(t)).length - 1;
       const nmT = t.pos === "DEF" || /DEF$/.test(t.name) ? (t.name.endsWith("DEF") ? t.name : t.team + " DEF") : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "");
-      return `<button type="button" class="pkc t-${tierOf(t)}${Object.keys(CHG[n]).length ? " chg" : ""}${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" aria-expanded="${n === PKOPEN}" data-pkgo="${n}" title="${esc(PKW[tierOf(t)] + ": " + (t.tier_why || ""))}" aria-label="DK${n} ${esc(PKW[tierOf(t)])}: ${esc(nmT)}"><span class="r1"><span class="lg">DK${n}</span><span class="ic">${PKI[tierOf(t)]}</span></span><span class="who">${esc(nmT)}${more > 0 ? ` <em>+${more}</em>` : ""}</span></button>`; }).join("");
+      return `<button type="button" class="pkc t-${tierOf(t)}${Object.keys(CHG[n]).length ? " chg" : ""}${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" aria-expanded="${n === PKOPEN}" data-pkgo="${n}" title="${esc(PKW[tierOf(t)] + ": " + (t.tier_why || ""))}" aria-label="DK${n} ${esc(PKW[tierOf(t)])}: ${esc(nmT)}"><span class="r1"><span class="lg">DK${n}</span><span class="ic">${PKI[tierOf(t)]}</span>${pkOrb(t.grade)}</span><span class="who">${esc(pkShort(t))}</span></button>`; }).join("");
     const nm = ["1", "2", "3", "4"].reduce((a, n) => a + ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === "MUST").length, 0);
     /* Nov 9 8:21 AM (Dom): one Diamonds in the Rough, down with the list - the league chips ARE the tabs */
-    TOP.innerHTML = ""; PKCHIPS = `<div class="pktop${nm ? " hasmust" : ""}">${nm ? `<div class="pkth"><span>&#128680; ${nm} must pick up - grab before a rival does</span></div>` : ""}<div class="pkcs">${chips}</div><div class="pkst">Updated <b>${esc(String(P.built || "-").replace(/^\w{3} \w{3} \d+ 20\d\d /, "").replace(/ PT$/, ""))}</b>${nextUpdate() ? ` · Next <b>${esc(nextUpdate())}</b>` : ""}${PKOPEN ? "" : " · tap a box"}</div></div>`;
+    TOP.innerHTML = ""; PKCHIPS = `<div class="pktop${nm ? " hasmust" : ""}"><div class="pkcs">${chips}</div></div>`;
   }
   if (PKOPEN) PKL = PKOPEN;
   const L = P.leagues[PKL] || {top: []}, src = P.sources || {};
@@ -1184,20 +1189,23 @@ function renderPickups(){
   const PART = [["value", "Value", 30], ["fit", "Your fit", 25], ["workload", "Workload", 15], ["playoffs", "Playoffs", 15], ["team", "Team", 5], ["path", "Path", 10]];
   const C = CHG[PKL] || {};
   const rows = (L.top || []).map((p, i) => `<details class="pk2${C[p.key] ? " chg" : ""}" data-fold="pk-${PKL}-${i}" data-pkseen="${PKL}|${esc(p.key)}|${esc(pkSig(p, i))}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
-      <summary><span class="rk" title="${C[p.key] ? "Changed since you last looked: " + esc(C[p.key]) + " - opening him clears it" : ""}">${i + 1}${C[p.key] ? `<i>${C[p.key] === "new" ? "NEW" : C[p.key].startsWith("tier") ? "TIER" : "MOVE"}</i>` : ""}</span>${ring(p.grade)}<span class="nm"><b><span class="ic t-${tierOf(p)}" title="${PKW[tierOf(p)]}">${PKI[tierOf(p)]}</span>${esc(p.name)} <em>${esc(p.pos)} · ${esc(p.team)}</em></b></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em></span></summary>
-      <div class="pkb"><div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em></div>`).join("")}</div>
+      <summary><span class="rk" title="${C[p.key] ? "Changed since you last looked: " + esc(C[p.key]) : ""}">${i + 1}${C[p.key] ? `<i>${C[p.key] === "new" ? "NEW" : C[p.key].startsWith("tier") ? "TIER" : "MOVE"}</i>` : ""}</span><span class="nm"><b>${esc(pkShort(p))}</b></span>${pkOrb(p.grade)}<span class="ic t-${tierOf(p)}" title="${PKW[tierOf(p)]}">${PKI[tierOf(p)]}</span></summary>
+      <div class="pkb"><div class="pkid">${esc(p.name)} · ${esc(p.pos)} · ${esc(p.team)} · <b>${Math.round(p.pts)}</b> pts rest of season · ${esc(String(p.status || ""))}</div>
+      <div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em></div>`).join("")}</div>
       ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       ${p.experts ? `<div class="pkx2"><b>Every source, most to least accurate</b> - ${esc(p.experts.verdict)} <em>(gold = in this man's top-3 check)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}${x.check ? " ck" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b>${x.rank ? `<small>${esc(x.rank)}</small>` : ""} ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
-  el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span>
+  const PKT = String(P.built || "").replace(/^\w{3} \w{3} \d+ 20\d\d /, "").replace(/ PT$/, ""), NXT = nextUpdate();
+  el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span><span class="pkts">${esc(PKT)}${NXT ? " · next " + esc(NXT.replace(/ (AM|PM)$/, "")) : ""}</span>
     ${PKCHIPS}
     ${PKOPEN ? `<div class="pkopen" style="--lc:${LCOL[KEYS[+PKL - 1]]}"><div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces`}${L.read ? ` <em>· rosters ${esc(L.read)}</em>` : ""}</div>
     ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}
-    <div class="pkfoot">Points = the top-three average (see How far off under Experts &amp; Sources) a game x games left, Weeks ${esc((P.panel || {}).weeks_ahead || "ahead")}, this league's scoring · tap a man for why.</div></div>` : ""}</section>`;
+    </div>` : ""}</section>`;
 }
-/* Experts box tap = open How far off they were and go to it */
+/* Nov 9 10:11 AM (Dom): nothing under the Experts boxes - tap any league's box and the detail opens; tap again and it goes away */
+let ACCSHOW = false;
 document.addEventListener("click", (e) => { const t = e.target.closest && e.target.closest(".ms-c"); if (!t || !t.closest("#msExp")) return; e.preventDefault(); e.stopImmediatePropagation();
-  const f = $(".accf"); if (!f) return; f.open = true; FOLDS.accf = true; store.set("folds", FOLDS); f.scrollIntoView({behavior: "smooth", block: "start"}); }, true);
+  const f = $(".accf"); if (!f) return; ACCSHOW = !ACCSHOW; f.hidden = !ACCSHOW; f.open = ACCSHOW; if (ACCSHOW) f.scrollIntoView({behavior: "smooth", block: "nearest"}); }, true);
 document.addEventListener("click", (e) => { const g = e.target.closest && e.target.closest("[data-pkgo]"); if (g){ const n = g.dataset.pkgo; PKOPEN = PKOPEN === n ? "" : n; store.set("pkopen", PKOPEN); if (PKOPEN){ PKL = n; store.set("pkl", PKL); } renderPickups(); } });
 document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-pkl]"); if (!b) return; PKL = b.dataset.pkl; store.set("pkl", PKL); renderPickups(); });
 
