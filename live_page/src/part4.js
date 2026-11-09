@@ -1218,3 +1218,6 @@ function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; con
     <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? " · next kick " + esc(nextUp(L)) : ""}</div>
     <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>Alerts${live.length ? " (" + live.length + ")" : ""}</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }
+/* Nov 8 (Dom): the floating NEXT/TOP buttons covered Refresh on the first screen - show them only once he has scrolled past the controls */
+(function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("ctlTop"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
+  addEventListener("scroll", f, {passive: true}); addEventListener("resize", f); try { new ResizeObserver(f).observe(document.body); } catch (e) { setInterval(f, 2000); } f(); })();
