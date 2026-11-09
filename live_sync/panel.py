@@ -8,11 +8,12 @@ WHO IS ON IT: the sources that give a FORWARD number (rest of season / Weeks ahe
   Yahoo      (Yahoo's weekly projections ahead, yahoo_drop/scout/yproj_dk<n>.txt - average of the weeks he plays)
   Gotham     (the engine's forward points a game, eng_fwd in <DK_ROOT>/dksys/engine/gotham_<league>.csv, written earlier in the build)
   Koerner, Vegas and RotoBaller post THIS WEEK only, so they stay in the expert check beside every pickup but not in the average.
-HOW THE THREE ARE PICKED: points missed per player (dispatch_out/scoreboard/graded.csv, every number frozen before kickoff, each league's
-scoring), on the SAME players for all four sources, over the last 4 graded weeks where all four have numbers. Lowest three are the panel.
-A member is only swapped out when a challenger beats him by 0.30 points or more (dispatch_out/pickup_panel.json keeps the panel).
-THE NUMBER: the average of the panel members who have a number for the man. Two or three = full; one = "thin" (said on the line).
-Every comparison of two men uses only the panel members who have BOTH, so nobody wins on a source the other man lacks.
+HOW THE THREE ARE PICKED (Dom, Nov 9 8:07 AM: "list by accuracy, use top 3 available as the check from last week, rather than 3 or 4"):
+the four are ranked by points missed per player in the LAST graded week (dispatch_out/scoreboard/graded.csv, every number frozen before
+kickoff, each league's scoring), on the SAME players for all four. For each man the number is the average of the three most accurate
+sources that HAVE a number for him (top 3 available) - when one of the top three has none, the fourth steps in. One source only = "thin".
+Every comparison of two men uses the three most accurate sources that have numbers for BOTH, so nobody wins on a source the other lacks.
+dispatch_out/pickup_panel.json keeps the order and the grades.
 usage (module): P = Panel(REPO); P.rate(league_n, key, pos) -> (avg, {source: value}); P.compare(n, kA, posA, kB, posB)
 usage (CLI):    python3 live_sync/panel.py REPO   -> prints and saves the panel
 """
@@ -22,7 +23,7 @@ from zoneinfo import ZoneInfo
 FORWARD = ("ratcliffe", "clay", "yahoo", "gotham")
 NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham"}
 LAB = {1: "DKI", 2: "DKII", 3: "DKIII", 4: "DKIV"}
-SWAP_BY, WEEKS_BACK, SIZE = 0.30, 4, 3
+WEEKS_BACK, SIZE = 1, 3
 TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals",
     "CLE": "Browns", "DAL": "Cowboys", "DEN": "Broncos", "DET": "Lions", "GB": "Packers", "HOU": "Texans", "IND": "Colts", "JAX": "Jaguars",
     "KC": "Chiefs", "LV": "Raiders", "LAC": "Chargers", "LA": "Rams", "MIA": "Dolphins", "MIN": "Vikings", "NE": "Patriots", "NO": "Saints",
@@ -51,7 +52,7 @@ class Panel:
         self.R = repo; self.root = root or os.environ.get("DK_ROOT", "/home/claude")
         self.notes = []; self.W = self._week(); self.start = self._start()
         self.grades = self._grade(); self.members = self._pick(save)
-        self.V = {s: {} for s in FORWARD}; self.read = {}
+        self.V = {s: {} for s in FORWARD}; self.read = {}; self.meta = {}
         self._ratcliffe(); self._clay(); self._yahoo(); self._gotham()
 
     # ---- which week we are in, and the first week still ahead
@@ -87,30 +88,23 @@ class Panel:
         return out
 
     def _pick(self, save):
-        fp = os.path.join(self.R, "dispatch_out", "pickup_panel.json")
-        try: old = json.load(open(fp)).get("members") or []
-        except Exception: old = []
-        m = self.grades["miss"]
-        if not m:
-            self.notes.append("no common graded weeks yet - panel = Ratcliffe, Yahoo, Gotham"); mem = ["ratcliffe", "yahoo", "gotham"]
-        else:
-            rank = sorted(FORWARD, key=lambda s: m[s]); mem = [s for s in old if s in m][:SIZE] if len(old) >= SIZE else rank[:SIZE]
-            for ch in rank:                               # a challenger replaces the worst member only by a clear margin
-                if ch in mem: continue
-                worst = max(mem, key=lambda s: m[s])
-                if m[worst] - m[ch] >= SWAP_BY: self.notes.append(f"{NAME[ch]} replaced {NAME[worst]} ({m[ch]:.2f} vs {m[worst]:.2f} pts missed)"); mem[mem.index(worst)] = ch
-            mem.sort(key=lambda s: m[s])
+        fp = os.path.join(self.R, "dispatch_out", "pickup_panel.json"); m = self.grades["miss"]
+        if not m: self.notes.append("no graded week yet - order Ratcliffe, Yahoo, Gotham, Clay"); order = ["ratcliffe", "yahoo", "gotham", "clay"]
+        else: order = sorted(FORWARD, key=lambda s: m[s])
+        self.order = order
         if save:
             try:
-                json.dump({"members": mem, "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "notes": self.notes,
-                           "rule": f"top {SIZE} forward sources by points missed per player on the same players, last {WEEKS_BACK} graded weeks; a member is swapped only when beaten by {SWAP_BY} pts",
+                json.dump({"order": order, "members": order[:SIZE], "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "notes": self.notes,
+                           "rule": "forward sources ranked by points missed per player on the same players, last graded week; each man = average of the 3 most accurate that have a number for him",
                            "built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT")}, open(fp, "w"), indent=1)
             except Exception: pass
-        return mem
+        return order[:SIZE]
 
     # ---- each source's number a game for the weeks ahead, in each league's own scoring
-    def _put(self, s, n, key, v):
-        if v is not None and v > 0: self.V[s][(int(n), key)] = round(v, 2)
+    def _put(self, s, n, key, v, meta=None):
+        if v is not None and v > 0:
+            self.V[s][(int(n), key)] = round(v, 2)
+            if meta: self.meta.setdefault((int(n), key), meta)       # (name, team, pos) - lets a man only Yahoo or Gotham sees reach the list
     def _csv(self, fn):
         try: return list(csv.DictReader(open(os.path.join(self.R, "dispatch_out", fn))))
         except Exception: return []
@@ -123,7 +117,7 @@ class Panel:
             self._put("clay", r["lg"], pkey(r["name"], r["pos"], r["team"]), sum(v) / len(v) if v else None); self.read["clay"] = r.get("read", "")
     def _yahoo(self):
         for n in LAB:
-            fp = os.path.join(self.R, "yahoo_drop", "scout", f"yproj_dk{n}.txt"); acc = {}
+            fp = os.path.join(self.R, "yahoo_drop", "scout", f"yproj_dk{n}.txt"); acc = {}; ym = {}
             try: L = open(fp).read().splitlines()
             except Exception: continue
             m = re.search(r"read (?:live )?(.+?PT)", L[0] if L else ""); self.read["yahoo"] = m.group(1) if m else ""
@@ -131,8 +125,8 @@ class Panel:
                 p = ln.split("|")
                 if len(p) < 5 or not p[0].isdigit() or int(p[0]) < self.start: continue
                 v = fnum(p[4])
-                if v: acc.setdefault(pkey(p[1], p[3], p[2]), []).append(v)
-            for k, v in acc.items(): self._put("yahoo", n, k, sum(v) / len(v))
+                if v: k = pkey(p[1], p[3], p[2]); acc.setdefault(k, []).append(v); ym[k] = (p[1], tm_of(p[2], p[1]), "DST" if p[3] in ("DEF", "DST") else p[3])
+            for k, v in acc.items(): self._put("yahoo", n, k, sum(v) / len(v), ym.get(k))
     def _gotham(self):
         for n, lab in LAB.items():
             fp = os.path.join(self.root, "dksys", "engine", f"gotham_{lab}.csv")
@@ -141,24 +135,29 @@ class Panel:
             wk = max([int(fnum(r.get("week")) or 0) for r in rows] or [0])
             if wk < self.W:          # never average in a stale engine run (the repo's starting copy is Week 5)
                 self.notes.append(f"Gotham {lab} is Week {wk} - stale, left out"); continue
-            for r in rows: self._put("gotham", n, pkey(r["player"], r["pos"], r["team"]), fnum(r.get("eng_fwd")))
+            for r in rows: self._put("gotham", n, pkey(r["player"], r["pos"], r["team"]), fnum(r.get("eng_fwd")), (r["player"], tm_of(r["team"], r["player"]), r["pos"]))
             self.read["gotham"] = (rows[0].get("gotham_run") if rows else "") or ""
 
     # ---- the panel's number
     def rate(self, n, key, pos=None):
-        got = {s: self.V[s].get((int(n), key)) for s in self.members}; got = {s: v for s, v in got.items() if v}
+        """(average, {source: value}) over the three most accurate sources that have a number for him."""
+        got = {}
+        for s in self.order:
+            v = self.V[s].get((int(n), key))
+            if v: got[s] = v
+            if len(got) >= SIZE: break
         return (round(sum(got.values()) / len(got), 2) if got else None), got
     def compare(self, n, ka, kb):
-        """(a, b, sources) - both men averaged over the panel members who have numbers for BOTH."""
-        _, A = self.rate(n, ka); _, B = self.rate(n, kb); both = [s for s in self.members if s in A and s in B]
+        """(a, b, sources) - both men averaged over the three most accurate sources that have numbers for BOTH."""
+        both = [s for s in self.order if self.V[s].get((int(n), ka)) and self.V[s].get((int(n), kb))][:SIZE]
         if not both: return None, None, []
-        return round(sum(A[s] for s in both) / len(both), 2), round(sum(B[s] for s in both) / len(both), 2), both
+        return round(sum(self.V[s][(int(n), ka)] for s in both) / len(both), 2), round(sum(self.V[s][(int(n), kb)] for s in both) / len(both), 2), both
     def label(self, srcs=None):
-        return "avg of " + " + ".join(NAME[s] for s in (srcs or self.members))
+        return ("avg of " if len(srcs or self.members) > 1 else "") + " + ".join(NAME[s] for s in (srcs or self.members))
     def summary(self):
         m = self.grades["miss"]
         return (f"Pickup panel: {', '.join(NAME[s] for s in self.members)} (points missed per player, same {self.grades['players']} players, "
-                f"Weeks {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
+                f"Week {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
 
 if __name__ == "__main__":
     import sys

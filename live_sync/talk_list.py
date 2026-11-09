@@ -71,6 +71,12 @@ def fnum(x):
 def rat(lgn, name):
     r = RAT.get((lgn, nk(name)));
     return (fnum(r["wk"]) if r else None), (fnum(r["ros_pg"]) if r else None), (r["pos"] if r else None), (r["team"] if r else None)
+# Nov 9 (Dom): pickups priced on the top-3 average by accuracy (last graded week), not Ratcliffe alone - live_sync/panel.py
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from panel import Panel, pkey as _pk
+PAN = Panel(R, save=False)
+def pan(lgn, name, pos, team):
+    try: return PAN.rate(int(lgn), _pk(name, (pos or "").split(",")[0], team or ""))[0]
+    except Exception: return None
 def koe(lgn, name):
     r = KOE.get((lgn, nk(name))); return fnum(r["wk"]) if r else None
 
@@ -105,14 +111,14 @@ for lab, key, lid, lgn, myid in LG:
     if not owner: print(f"!! {lab}: no roster read - no pickups, backups or blocks this build")
     for (lg_, k_), r in RAT.items():
         if not owner or lg_ != lgn or k_ in owner: continue
-        ros, wk = fnum(r["ros_pg"]), fnum(r["wk"])
+        ros, wk = pan(lgn, r["name"], r["pos"], r["team"]) or fnum(r["ros_pg"]), fnum(r["wk"])
         if ros is None and wk is None: continue
         if k_ in OUTL: wk = 0.0   # Oct 31: an OUT man is a zero this week whatever the expert file says
         pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=ros or 0.0, wk=wk or 0.0, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
     # Dom's weakest starter at each position (this week's lineup, Ratcliffe rest of season, his league's scoring)
     weak = {}
     for s in me_st:
-        pos = s.get("pos"); wk, ros, _, _ = rat(lgn, s.get("player"))
+        pos = s.get("pos"); wk, ros, _, _ = rat(lgn, s.get("player")); ros = pan(lgn, s.get("player"), pos, s.get("team")) or ros
         v = ros if ros is not None else s.get("ratcliffe")
         if pos and v is not None and (pos not in weak or v < weak[pos][1]): weak[pos] = (s.get("player"), v, wk)
     talk, watch, cover, block = [], [], [], []
@@ -151,7 +157,7 @@ for lab, key, lid, lgn, myid in LG:
         their = rost.get(opp) or []
         need = {"QB": 1, "RB": 2, "WR": 3, "TE": 1}
         for pos, n in need.items():
-            mine = sorted([(rat(lgn, x["name"])[1] or 0, x["name"]) for x in their if x["pos"].split(",")[0] == pos and x["slot"] not in ("IR",)], reverse=True)
+            mine = sorted([(pan(lgn, x["name"], x["pos"], x["team"]) or rat(lgn, x["name"])[1] or 0, x["name"]) for x in their if x["pos"].split(",")[0] == pos and x["slot"] not in ("IR",)], reverse=True)
             if len(mine) < n: continue
             low_v, low_n = mine[n - 1]
             if low_v <= 0: continue
@@ -198,10 +204,10 @@ for lab, key, lid, lgn, myid in LG:
         _nm = str(_w).split(" (")[0].strip(); k_ = nk(_nm)
         if not _nm: continue
         if k_ in _talk:
-            t = _talk[k_]; fa_tags[_nm] = dict(tag="Pick up now", why=(f"{t['pct']}% better than your {t['over']} over the rest of the season (Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game)" if t.get("over_ros") is not None else "clears your 15% bar (Scout pick)"))
+            t = _talk[k_]; fa_tags[_nm] = dict(tag="Pick up now", why=(f"{t['pct']}% better than your {t['over']} over the rest of the season (top-3 avg {t['rat_ros']} vs {t['over_ros']} a game)" if t.get("over_ros") is not None else "clears your 15% bar (Scout pick)"))
             continue
         if k_ in _watch:
-            t = _watch[k_]; fa_tags[_nm] = dict(tag="Worth considering", why=(f"{t['pct']}% better than your {t['over']} (Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game) - under your 15% bar" if t.get("over_ros") is not None else "close to your bar") + (f"; rising - {t['rising']}" if t.get("rising") else ""))
+            t = _watch[k_]; fa_tags[_nm] = dict(tag="Worth considering", why=(f"{t['pct']}% better than your {t['over']} (top-3 avg {t['rat_ros']} vs {t['over_ros']} a game) - under your 15% bar" if t.get("over_ros") is not None else "close to your bar") + (f"; rising - {t['rising']}" if t.get("rising") else ""))
             continue
         if owner and k_ in owner:
             fa_tags[_nm] = dict(tag="No action needed", why=f"already on a roster ({owner[k_]})"); continue
@@ -211,19 +217,19 @@ for lab, key, lid, lgn, myid in LG:
         if p["pos"] not in weak:
             fa_tags[_nm] = dict(tag="No action needed", why=f"you don't start a {p['pos']}"); continue
         wn, wv, _ = weak[p["pos"]]; pct = round(100 * (p["ros"] - wv) / wv) if wv else 0
-        fa_tags[_nm] = dict(tag="No action needed", why=(f"Ratcliffe has him at {p['ros']:.1f} a game, below your {wn} ({wv:.1f})" if pct <= 0
-                            else f"only {pct}% better than your {wn} ({p['ros']:.1f} vs {wv:.1f} a game, Ratcliffe) - under your 15% bar"))
+        fa_tags[_nm] = dict(tag="No action needed", why=(f"The top-3 average has him at {p['ros']:.1f} a game, below your {wn} ({wv:.1f})" if pct <= 0
+                            else f"only {pct}% better than your {wn} ({p['ros']:.1f} vs {wv:.1f} a game, top-3 avg) - under your 15% bar"))
     out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup, fa_tags=fa_tags)
     # the brief, built to be heard
     parts = []
     for t in talk[:4]:
         if t.get("pct") is None: parts.append(f"TALK NOW: {t['name']}, {t['acq']}" + (f", locks {t['deadline']}" if t.get("deadline") else "")); continue
         parts.append(f"TALK NOW: {t['name']} ({t['pos']}, {t['team']}, {t['acq']}) - {t['pct']}% better than your {t['over']} over the rest of the season "
-                     f"(Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game, your league's scoring)" if t.get("over_ros") else f"TALK NOW: {t['name']} - {t.get('note','')}")
+                     f"(top-3 avg {t['rat_ros']} vs {t['over_ros']} a game, your league's scoring)" if t.get("over_ros") else f"TALK NOW: {t['name']} - {t.get('note','')}")
     for t in watch[:3]:
         if t.get("rat_ros") is None:
             parts.append(f"WATCH: {t['name']} ({t['pos']}, {t['acq']}) - {t.get('note','')}"); continue
-        parts.append(f"WATCH: {t['name']} ({t['pos']}, {t['team']}, {t['acq']}) - {t['pct']}% over your {t['over']} (Ratcliffe {t['rat_ros']} vs {t['over_ros']})"
+        parts.append(f"WATCH: {t['name']} ({t['pos']}, {t['team']}, {t['acq']}) - {t['pct']}% over your {t['over']} (top-3 avg {t['rat_ros']} vs {t['over_ros']})"
                      + (f"; rising - {t['rising']}" if t.get("rising") else ""))
     for c in cover[:2]:
         parts.append(f"COVER: {c['title']} - {c['target']}" + (f"; best fills {', '.join(c['picks'])}" if c["picks"] else ""))
@@ -231,7 +237,7 @@ for lab, key, lid, lgn, myid in LG:
         opts = [f"{x['name']} (your bench, {x['wk']})" for x in b["bench"]] + [f"{x['name']} (free agent, {x['wk']}, locks {x['locks']})" for x in b["fa"][:2]]
         parts.append(f"BACKUP if {b['starter']} ({b['status']}) sits - locks {b['locks']}: " + ("; ".join(opts) if opts else "no healthy option found"))
     for b in block[:2]:
-        parts.append(f"BLOCK: {b['name']} ({b['pos']}, {b['acq']}) would start for {b['opp']} (Week {b['week']}) over {b['would_start_over']} - Ratcliffe {b['rat_ros']} vs {b['their_ros']}")
+        parts.append(f"BLOCK: {b['name']} ({b['pos']}, {b['acq']}) would start for {b['opp']} (Week {b['week']}) over {b['would_start_over']} - top-3 avg {b['rat_ros']} vs {b['their_ros']}")
     brief.append(f"{lab}: " + ("; ".join(parts) if parts else "nothing to talk about - no free agent clears or nears the bar, no hole in the next three weeks, nothing to block") + ".")
 
 PREV = load(O(R, "dispatch_out/talk_list.json"), {}) or {}
@@ -261,6 +267,6 @@ if BRIEF:
     first, _, rest = s.partition("\n")
     rest = re.sub(r"\n*Players to talk about \(.*?\n\n", "\n\n", rest, count=1, flags=re.S)
     block_txt = (f"Players to talk about (every pickup to consider, the 10-15% watch list, holes in the next three weeks, and players to block; "
-                 f"Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
+                 f"priced on the top-3 average by accuracy ({PAN.label()}); Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
     open(bf, "w").write(first + "\n\n" + block_txt + rest.lstrip("\n"))
     print("TALK LIST added to the top of the brief")
