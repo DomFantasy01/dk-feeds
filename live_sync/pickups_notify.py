@@ -3,7 +3,10 @@ Usage: python3 pickups_notify.py <old.json | -> <new.json> [db_out.json]
 (db_out = the new list without the available pool, ready to write to live/pickups)
 Prints JSON {"changed": bool, "push": "<one line, under 200 chars>", "lines": ["DK2: + Kenny Gainwell (RB, 57) in at #5", ...]}
 A man who drops out of a top 5 is explained: on a roster now (gone from the available pool), injury report, or grade fell."""
-import json, sys
+import json, sys, datetime
+def ts(o):
+    try: return datetime.datetime.strptime(o["built"].replace(" PT", ""), "%a %b %d %Y %I:%M %p")
+    except Exception: return datetime.datetime.min
 old = json.load(open(sys.argv[1])) if sys.argv[1] != "-" else {}
 try: old = old if old.get("leagues") else {}
 except Exception: old = {}
@@ -29,7 +32,9 @@ for n in sorted(new.get("leagues", {})):
         lines.append(f"DK{n}: - {g['name']} out of the top 5 ({why})"); short.append(f"DK{n} -{g['name'].split()[-1]}")
 push = ("Top 5 pickups changed: " + ", ".join(short)) if short else ("Top 5 pickups: grades moved" if lines else "")
 if len(push) > 190: push = push[:187] + "..."
-print(json.dumps({"changed": bool(lines), "first": not old, "push": push, "lines": lines}, indent=1))
+newer = ts(new) > ts(old) if old else True
+if not newer: lines, short, push = [], [], ""
+print(json.dumps({"newer": newer, "changed": bool(lines), "first": not old, "push": push, "lines": lines}, indent=1))
 if len(sys.argv) > 3:
     for L in new.get("leagues", {}).values(): L.pop("pool", None)
     json.dump(new, open(sys.argv[3], "w"))
