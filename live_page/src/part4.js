@@ -492,7 +492,7 @@ const STWORD = {pre: "still to play", live: "playing now", done: "done", out: "o
    faint arcs to each side's Yahoo projected final with a notch. Center: LIVE/FINAL/PRE-GAME, your score (green ahead / red behind),
    his score. Under the dial: margin pill, projected finals, players left each side, and the two position strips. */
 function scoreGlobe(L, k, o){
-  const id = "sg" + SLUG[k], W = 124, H = 168, CX = 62, CY = 62, LC = HEX[k];
+  const id = "sg" + SLUG[k], W = 124, H = 178, CX = 62, CY = 62, LC = HEX[k];
   const top = Math.max(o.pMe, o.pOp, o.me, o.op, 1), step = top > 160 ? 50 : 25, sc = Math.ceil(top * 1.05 / step) * step;
   const fin = o.state === "FINAL", y = o.y, pre = o.state === "NOT STARTED", mg = o.me - o.op;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
@@ -564,7 +564,7 @@ function scoreGlobe(L, k, o){
     <text x="${CX / 2 + 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${f1(o.pMe)}</tspan> · <tspan>${f1(o.pOp)}</tspan></text>
     <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 74}" stroke="#24304C" stroke-width=".7"/>
     <text x="${CX * 1.5 - 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">LEFT <tspan style="fill:${LC}">${lf(o.meL)}</tspan> · <tspan>${lf(o.opL)}</tspan></text>
-    ${strip(L.players, true, 142)}${strip(L.oppPlayers, false, 155)}</svg>`;
+    ${strip(L.players, true, 147)}${strip(L.oppPlayers, false, 161)}</svg>`;
 }
 /* Nov 8 (Dom): each league name on ONE line - shrink it until it fits its tile, never cut it off */
 function fitNames(){ const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm, #msWin .wph .nm, #msExp .wph .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
