@@ -1,59 +1,59 @@
 {
- "built": "Mon Nov 9 2026 9:06 AM PT",
+ "built": "Mon Nov 9 2026 9:13 AM PT",
  "panel": {
   "order": [
    "Gotham",
+   "Vegas",
    "Ratcliffe",
+   "Koerner",
    "Yahoo",
    "Clay"
   ],
   "check": [
    "Gotham",
-   "Ratcliffe",
-   "Yahoo"
+   "Vegas",
+   "Ratcliffe"
   ],
   "miss": {
-   "Ratcliffe": 6.52,
-   "Clay": 6.66,
-   "Yahoo": 6.56,
-   "Gotham": 6.06
+   "Ratcliffe": 7.08,
+   "Koerner": 7.12,
+   "Clay": 7.47,
+   "Vegas": 6.97,
+   "Yahoo": 7.26,
+   "Gotham": 6.82
   },
+  "waiting": {
+   "Koerner": 9,
+   "Vegas": 9,
+   "RotoBaller": 9
+  },
+  "basis": "same players for every source",
+  "ungraded": [
+   "RotoBaller"
+  ],
   "week": 9,
-  "players": 74,
+  "players": 61,
   "weeks_ahead": "10-17",
   "notes": [],
-  "others": [
-   {
-    "name": "Koerner",
-    "miss": null,
-    "week": null
-   },
-   {
-    "name": "Vegas",
-    "miss": null,
-    "week": null
-   },
-   {
-    "name": "RotoBaller",
-    "miss": null,
-    "week": null
-   }
-  ],
+  "others": [],
   "reads": {
-   "Gotham": "Mon Nov 09 2026 09:05 AM PT",
+   "Gotham": "Mon Nov 09 2026 09:11 AM PT",
+   "Vegas": "Mon Nov 9 2026 9:11 AM PT",
    "Ratcliffe": "Mon Nov 9 2026 8:26 AM PT",
+   "Koerner": "Mon Nov 9 2026 9:05 AM PT",
    "Yahoo": "Mon Nov 9 2026 8:15 AM PT",
-   "Clay": "Mon Nov 9 2026 9:05 AM PT"
+   "Clay": "Mon Nov 9 2026 9:11 AM PT",
+   "RotoBaller": "Mon Nov 9 2026 9:11 AM PT"
   }
  },
  "sources": {
   "ratcliffe_read": "Mon Nov 9 2026 8:26 AM PT",
   "expert_reads": {
    "Ratcliffe": "Mon Nov 9 2026 8:26 AM PT",
-   "Clay": "Mon Nov 9 2026 9:05 AM PT",
-   "Koerner": "Mon Nov 9 2026 8:05 AM PT",
-   "Vegas": "Mon Nov 9 2026 9:05 AM PT",
-   "RotoBaller": "Mon Nov 9 2026 9:05 AM PT"
+   "Clay": "Mon Nov 9 2026 9:11 AM PT",
+   "Koerner": "Mon Nov 9 2026 9:05 AM PT",
+   "Vegas": "Mon Nov 9 2026 9:11 AM PT",
+   "RotoBaller": "Mon Nov 9 2026 9:11 AM PT"
   },
   "nflverse_through_week": 9,
   "standings": "nflverse schedule, 135 games scored",
@@ -61,7 +61,7 @@
  },
  "leagues": {
   "1": {
-   "read": "Mon Nov 9 9:04 AM PT",
+   "read": "Mon Nov 9 9:10 AM PT",
    "top": [
     {
      "tier": "HOT",
@@ -84,7 +84,7 @@
      "why": [
       "136 pts rest of season in DK1 scoring (Gotham 17.02 a game x 8 games - thin, one source)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Kaelon Black (Gotham: 7.3 a game vs 17.0): +134% - clears your 15% bar",
+      "vs your weakest RB starter Kaelon Black (Gotham: 7.3 a game vs 17.0): +134% - clears the 10% MUST bar",
       "Workload last 3 games: touches 16 > 26 > 4, snaps 86% > 76% > 5%",
       "Playoffs: W15 GB (#6), W16 LAC (#12), W17 BUF (#3)",
       "MIA 1-7"
@@ -96,23 +96,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "17.0 vs Kaelon Black 7.3 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -120,40 +136,116 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Kaelon Black",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
+    },
+    {
+     "tier": "HOT",
+     "tier_why": "+15% over Chris Godwin Jr., but only 1 of 1 sources agree",
+     "gain": 15,
+     "key": "tyquan thornton",
+     "name": "Tyquan Thornton",
+     "team": "KC",
+     "pos": "WR",
+     "pts": 63.3,
+     "grade": 51,
+     "parts": {
+      "value": 19,
+      "fit": 10,
+      "workload": 8,
+      "playoffs": 10,
+      "team": 4,
+      "path": 0
+     },
+     "why": [
+      "63 pts rest of season in DK1 scoring (Gotham 7.91 a game x 8 games - thin, one source)",
+      "Depth: 0 healthy WR on your bench",
+      "vs your weakest WR starter Chris Godwin Jr. (Gotham: 6.9 a game vs 7.9): +15% - clears the 10% MUST bar",
+      "Workload last 3 games: touches 4 > 2 > 8, snaps 59% > 46% > 63%",
+      "Playoffs: W15 NE (#2), W16 SF (#28), W17 LAC (#5)",
+      "KC 6-2"
+     ],
+     "experts": {
+      "verdict": "1 of 1 sources have him ahead of Chris Godwin Jr.",
+      "agree": 1,
+      "of": 1,
+      "lines": [
+       {
+        "ex": "Gotham",
+        "rank": "#1 (6.82 missed Wk 9)",
+        "check": true,
+        "read": "Mon Nov 09 2026 09:11 AM PT",
+        "txt": "7.9 vs Chris Godwin Jr. 6.9 (a game ahead)",
+        "ok": true
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Ratcliffe",
+        "rank": "#3 (7.08 missed Wk 9)",
+        "check": false,
+        "read": "Mon Nov 9 2026 8:26 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Yahoo",
+        "rank": "#5 (7.26 missed Wk 9)",
+        "check": false,
+        "read": "Mon Nov 9 2026 8:15 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Clay",
+        "rank": "#6 (7.47 missed Wk 9)",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       }
+      ]
+     },
+     "replaces": "Chris Godwin Jr.",
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
@@ -176,7 +268,7 @@
      "why": [
       "60 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Yahoo 7.44 a game x 8 games)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Kaelon Black (avg of Gotham + Ratcliffe + Yahoo: 8.4 a game vs 7.4): -11% - under your 15% bar",
+      "vs your weakest RB starter Kaelon Black (avg of Gotham + Ratcliffe + Yahoo: 8.4 a game vs 7.4): -11% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#7), W17 BAL (#23)",
@@ -189,23 +281,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "7.1 vs Kaelon Black 7.3 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "7.8 vs Kaelon Black 11.0 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.6 vs Kaelon Black 9.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.4 vs Kaelon Black 6.8 (Wks 10-17)",
@@ -213,40 +321,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "8.5 vs Kaelon Black 9.0 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.6 vs Kaelon Black 9.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "5.2 vs Kaelon Black 7.3 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Kaelon Black",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
@@ -269,7 +361,7 @@
      "why": [
       "60 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Yahoo 8.51 a game x 7 games)",
       "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Chris Godwin Jr. (avg of Gotham + Ratcliffe + Yahoo: 8.3 a game vs 8.5): +2% - under your 15% bar",
+      "vs your weakest WR starter Chris Godwin Jr. (avg of Gotham + Ratcliffe + Yahoo: 8.3 a game vs 8.5): +2% - under the 10% MUST bar",
       "Workload last 3 games: touches 5 > 4 > 9, snaps 70% > 81% > 85%",
       "Coach: OC Davis Webb, Oct 13: more chances are \"coming down the alley for him\"",
       "Playoffs: W15 LV (#12), W16 BUF (#4), W17 NE (#2)",
@@ -282,23 +374,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.0 vs Chris Godwin Jr. 6.9 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "8.6 vs Chris Godwin Jr. 8.4 (this week)",
+        "ok": true
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "8.4 vs Chris Godwin Jr. 9.1 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "8.7 vs Chris Godwin Jr. 9.8 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "9.1 vs Chris Godwin Jr. 9.1 (Wks 10-17)",
@@ -306,132 +414,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "9.3 vs Chris Godwin Jr. 7.3 (Wks 10-17)",
         "ok": true
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "8.7 vs Chris Godwin Jr. 9.8 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "8.6 vs Chris Godwin Jr. 8.4 (this week)",
-        "ok": true
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "7.0 vs Chris Godwin Jr. 8.2 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Chris Godwin Jr.",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
-    },
-    {
-     "tier": "WATCH",
-     "tier_why": "grade 51; not yet an upgrade worth a roster spot",
-     "gain": 15,
-     "key": "tyquan thornton",
-     "name": "Tyquan Thornton",
-     "team": "KC",
-     "pos": "WR",
-     "pts": 63.3,
-     "grade": 51,
-     "parts": {
-      "value": 19,
-      "fit": 10,
-      "workload": 8,
-      "playoffs": 10,
-      "team": 4,
-      "path": 0
-     },
-     "why": [
-      "63 pts rest of season in DK1 scoring (Gotham 7.91 a game x 8 games - thin, one source)",
-      "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Chris Godwin Jr. (Gotham: 6.9 a game vs 7.9): +15% - under your 15% bar",
-      "Workload last 3 games: touches 4 > 2 > 8, snaps 59% > 46% > 63%",
-      "Playoffs: W15 NE (#2), W16 SF (#28), W17 LAC (#5)",
-      "KC 6-2"
-     ],
-     "experts": {
-      "verdict": "1 of 1 sources have him ahead of Chris Godwin Jr.",
-      "agree": 1,
-      "of": 1,
-      "lines": [
-       {
-        "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
-        "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
-        "txt": "7.9 vs Chris Godwin Jr. 6.9 (a game ahead)",
-        "ok": true
-       },
-       {
-        "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:26 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:15 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "RotoBaller",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       }
-      ]
-     },
-     "replaces": "Chris Godwin Jr.",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -454,7 +454,7 @@
      "why": [
       "52 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Yahoo 7.38 a game x 7 games)",
       "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Chris Godwin Jr. (avg of Gotham + Ratcliffe + Yahoo: 8.3 a game vs 7.4): -12% - under your 15% bar",
+      "vs your weakest WR starter Chris Godwin Jr. (avg of Gotham + Ratcliffe + Yahoo: 8.3 a game vs 7.4): -12% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#4), W16 GB (#7), W17 DET (#8)",
       "CHI 7-2"
@@ -466,23 +466,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.0 vs Chris Godwin Jr. 6.9 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "6.6 vs Chris Godwin Jr. 9.1 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.3 vs Chris Godwin Jr. 9.8 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.6 vs Chris Godwin Jr. 9.1 (Wks 10-17)",
@@ -490,49 +506,37 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.5 vs Chris Godwin Jr. 7.3 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.3 vs Chris Godwin Jr. 9.8 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "4.8 vs Chris Godwin Jr. 8.2 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Chris Godwin Jr.",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     }
    ],
    "needs": [],
-   "pieces_built": "Mon Nov 9 9:05 AM PT",
+   "pieces_built": "Mon Nov 9 9:11 AM PT",
    "kicker_slot": true,
    "pool": {
     "devon achane": [
      55,
      "De'Von Achane"
+    ],
+    "tyquan thornton": [
+     51,
+     "Tyquan Thornton"
     ],
     "samaje perine": [
      55,
@@ -541,10 +545,6 @@
     "courtland sutton": [
      55,
      "Courtland Sutton"
-    ],
-    "tyquan thornton": [
-     51,
-     "Tyquan Thornton"
     ],
     "kalif raymond": [
      49,
@@ -1781,8 +1781,8 @@
      "grade": 55
     },
     "WR": {
-     "name": "Courtland Sutton",
-     "grade": 55
+     "name": "Tyquan Thornton",
+     "grade": 51
     },
     "TE": {
      "name": "Darren Waller",
@@ -1799,7 +1799,7 @@
    }
   },
   "2": {
-   "read": "Mon Nov 9 9:04 AM PT",
+   "read": "Mon Nov 9 9:10 AM PT",
    "top": [
     {
      "tier": "HOT",
@@ -1823,7 +1823,7 @@
       "74 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Yahoo 9.27 a game x 8 games)",
       "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Yahoo: 10.7 a game vs 9.3): -13% - under your 15% bar",
+      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Yahoo: 10.7 a game vs 9.3): -13% - under the 10% MUST bar",
       "Workload last 3 games: touches 3 > 6 > 8, snaps 68% > 86% > 74%",
       "Coach: Jeff Hafley, Nov 1: \"Hopefully we'll get a chance to get him the ball more.\"",
       "Playoffs: W15 GB (#7), W16 LAC (#5), W17 BUF (#4)",
@@ -1836,23 +1836,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "10.4 vs Ladd McConkey 8.4 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "9.3 vs Ladd McConkey 11.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "9.3 vs Ladd McConkey 11.3 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "9.3 vs Ladd McConkey 11.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "8.2 vs Ladd McConkey 12.3 (Wks 10-17)",
@@ -1860,40 +1876,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "9.7 vs Ladd McConkey 10.3 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "9.3 vs Ladd McConkey 11.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "9.3 vs Ladd McConkey 11.1 (this week)",
-        "ok": false
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "8.6 vs Ladd McConkey 10.9 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Ladd McConkey",
-     "status": "Free agent (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Free agent (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -1917,7 +1917,7 @@
       "60 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Yahoo 7.45 a game x 8 games)",
       "Fills your missing piece: A lead running back (short Weeks 15; he plays all of them)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Jadarian Price (avg of Gotham + Ratcliffe + Yahoo: 10.0 a game vs 7.5): -26% - under your 15% bar",
+      "vs your weakest RB starter Jadarian Price (avg of Gotham + Ratcliffe + Yahoo: 10.0 a game vs 7.5): -26% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#7), W17 BAL (#23)",
@@ -1930,23 +1930,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "7.1 vs Jadarian Price 9.7 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "7.8 vs Jadarian Price 7.5 (rest of season)",
         "ok": true
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.6 vs Jadarian Price 14.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.4 vs Jadarian Price 12.8 (Wks 10-17)",
@@ -1954,40 +1970,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "8.5 vs Jadarian Price 13.2 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.6 vs Jadarian Price 14.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "5.2 vs Jadarian Price 13.0 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jadarian Price",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -2011,7 +2011,7 @@
       "136 pts rest of season in DK2 scoring (Gotham 17.02 a game x 8 games - thin, one source)",
       "Fills your missing piece: A lead running back (short Weeks 15; he plays all of them)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Jadarian Price (Gotham: 9.7 a game vs 17.0): +76% - clears your 15% bar",
+      "vs your weakest RB starter Jadarian Price (Gotham: 9.7 a game vs 17.0): +76% - clears the 10% MUST bar",
       "Workload last 3 games: touches 16 > 26 > 4, snaps 86% > 76% > 5%",
       "Playoffs: W15 GB (#6), W16 LAC (#12), W17 BUF (#3)",
       "MIA 1-7"
@@ -2023,23 +2023,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "17.0 vs Jadarian Price 9.7 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -2047,40 +2063,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Jadarian Price",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -2104,7 +2104,7 @@
       "88 pts rest of season in DK2 scoring (Gotham 10.97 a game x 8 games - thin, one source)",
       "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Ladd McConkey (Gotham: 8.4 a game vs 11.0): +30% - clears your 15% bar",
+      "vs your weakest WR starter Ladd McConkey (Gotham: 8.4 a game vs 11.0): +30% - clears the 10% MUST bar",
       "Workload last 3 games: touches 9 > 4 > 1, snaps 75% > 58% > 10%",
       "Playoffs: W15 ATL (#13), W16 MIN (#29), W17 JAX (#14)",
       "WAS 2-5-1"
@@ -2116,23 +2116,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "11.0 vs Ladd McConkey 8.4 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -2140,40 +2156,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Ladd McConkey",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -2197,7 +2197,7 @@
       "52 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Yahoo 7.39 a game x 7 games)",
       "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Yahoo: 10.7 a game vs 7.4): -31% - under your 15% bar",
+      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Yahoo: 10.7 a game vs 7.4): -31% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#4), W16 GB (#7), W17 DET (#8)",
       "CHI 7-2"
@@ -2209,23 +2209,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.0 vs Ladd McConkey 8.4 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "6.6 vs Ladd McConkey 11.3 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.3 vs Ladd McConkey 11.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.6 vs Ladd McConkey 12.3 (Wks 10-17)",
@@ -2233,47 +2249,31 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.5 vs Ladd McConkey 10.3 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.3 vs Ladd McConkey 11.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "4.8 vs Ladd McConkey 10.9 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Ladd McConkey",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A lead running back (short Weeks 15)",
     "A wide receiver for Week 10 on (short Weeks 11)"
    ],
-   "pieces_built": "Mon Nov 9 9:05 AM PT",
+   "pieces_built": "Mon Nov 9 9:11 AM PT",
    "kicker_slot": true,
    "pool": {
     "caleb douglas": [
@@ -3541,7 +3541,7 @@
    }
   },
   "3": {
-   "read": "Mon Nov 9 9:04 AM PT",
+   "read": "Mon Nov 9 9:10 AM PT",
    "top": [
     {
      "tier": "HOT",
@@ -3565,7 +3565,7 @@
       "136 pts rest of season in DK3 scoring (Gotham 17.02 a game x 8 games - thin, one source)",
       "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 13, 15, 16; he plays all of them)",
       "Depth: 0 healthy RB on your bench",
-      "vs your weakest RB starter Rachaad White (Gotham: 11.8 a game vs 17.0): +44% - clears your 15% bar",
+      "vs your weakest RB starter Rachaad White (Gotham: 11.8 a game vs 17.0): +44% - clears the 10% MUST bar",
       "Workload last 3 games: touches 16 > 26 > 4, snaps 86% > 76% > 5%",
       "Playoffs: W15 GB (#6), W16 LAC (#12), W17 BUF (#3)",
       "MIA 1-7"
@@ -3577,23 +3577,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "17.0 vs Rachaad White 11.8 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -3601,40 +3617,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Rachaad White",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -3658,7 +3658,7 @@
       "52 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Yahoo 7.38 a game x 7 games)",
       "Fills your missing piece: new gap at WR (short Weeks 14; he plays all of them)",
       "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Caleb Douglas (avg of Gotham + Ratcliffe + Yahoo: 9.2 a game vs 7.4): -20% - under your 15% bar",
+      "vs your weakest WR starter Caleb Douglas (avg of Gotham + Ratcliffe + Yahoo: 9.2 a game vs 7.4): -20% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#4), W16 GB (#7), W17 DET (#8)",
       "CHI 7-2"
@@ -3670,23 +3670,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.0 vs Caleb Douglas 10.4 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "6.6 vs Caleb Douglas 9.3 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.3 vs Caleb Douglas 9.3 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.6 vs Caleb Douglas 8.1 (Wks 10-17)",
@@ -3694,40 +3710,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.5 vs Caleb Douglas 9.7 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.3 vs Caleb Douglas 9.3 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "4.8 vs Caleb Douglas 8.6 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Caleb Douglas",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3751,7 +3751,7 @@
       "63 pts rest of season in DK3 scoring (Gotham 7.91 a game x 8 games - thin, one source)",
       "Fills your missing piece: new gap at WR (short Weeks 14; he plays all of them)",
       "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Caleb Douglas (Gotham: 10.4 a game vs 7.9): -24% - under your 15% bar",
+      "vs your weakest WR starter Caleb Douglas (Gotham: 10.4 a game vs 7.9): -24% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 2 > 8, snaps 59% > 46% > 63%",
       "Playoffs: W15 NE (#2), W16 SF (#28), W17 LAC (#5)",
       "KC 6-2"
@@ -3763,23 +3763,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "7.9 vs Caleb Douglas 10.4 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -3787,40 +3803,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Caleb Douglas",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3844,7 +3844,7 @@
       "50 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Yahoo 6.27 a game x 8 games)",
       "Fills your missing piece: new gap at WR (short Weeks 14; he plays all of them)",
       "Depth: 0 healthy WR on your bench",
-      "vs your weakest WR starter Caleb Douglas (avg of Gotham + Ratcliffe + Yahoo: 9.2 a game vs 6.3): -32% - under your 15% bar",
+      "vs your weakest WR starter Caleb Douglas (avg of Gotham + Ratcliffe + Yahoo: 9.2 a game vs 6.3): -32% - under the 10% MUST bar",
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#7)",
       "HOU 3-5"
@@ -3856,23 +3856,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.9 vs Caleb Douglas 10.4 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "4.4 vs Caleb Douglas 9.3 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.0 vs Caleb Douglas 9.3 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "5.4 vs Caleb Douglas 8.1 (Wks 10-17)",
@@ -3880,40 +3896,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "8.5 vs Caleb Douglas 9.7 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.0 vs Caleb Douglas 9.3 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.0 vs Caleb Douglas 8.6 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Caleb Douglas",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3937,7 +3937,7 @@
       "49 pts rest of season in DK3 scoring (Clay 6.14 a game x 8 games - thin, one source)",
       "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 13, 15, 16; he plays all of them)",
       "Depth: 0 healthy RB on your bench",
-      "vs your weakest RB starter Rachaad White (Clay: 14.2 a game vs 6.1): -57% - under your 15% bar",
+      "vs your weakest RB starter Rachaad White (Clay: 14.2 a game vs 6.1): -57% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 3 > 8, snaps 9% > 16% > 23%",
       "Playoffs: W15 JAX (#31), W16 PHI (#22), W17 GB (#6)",
       "HOU 3-5"
@@ -3949,23 +3949,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "2.1 vs Rachaad White 14.7 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -3973,47 +3989,31 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.1 vs Rachaad White 14.2 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "2.1 vs Rachaad White 14.7 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "0.8 vs Rachaad White 12.7 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Rachaad White",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A lead running back - save the $91 for him (short Weeks 13, 15, 16)",
     "new gap at WR (short Weeks 14)"
    ],
-   "pieces_built": "Mon Nov 9 9:05 AM PT",
+   "pieces_built": "Mon Nov 9 9:11 AM PT",
    "kicker_slot": false,
    "pool": {
     "devon achane": [
@@ -5122,7 +5122,7 @@
    }
   },
   "4": {
-   "read": "Mon Nov 9 9:04 AM PT",
+   "read": "Mon Nov 9 9:10 AM PT",
    "top": [
     {
      "tier": "HOT",
@@ -5145,7 +5145,7 @@
      "why": [
       "88 pts rest of season in DK4 scoring (Gotham 10.94 a game x 8 games - thin, one source)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
-      "vs your weakest WR starter Jakobi Meyers (Gotham: 9.0 a game vs 10.9): +22% - clears your 15% bar",
+      "vs your weakest WR starter Jakobi Meyers (Gotham: 9.0 a game vs 10.9): +22% - clears the 10% MUST bar",
       "Workload last 3 games: touches 9 > 4 > 1, snaps 75% > 58% > 10%",
       "Playoffs: W15 ATL (#13), W16 MIN (#29), W17 JAX (#14)",
       "WAS 2-5-1"
@@ -5157,23 +5157,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "10.9 vs Jakobi Meyers 9.0 (a game ahead)",
         "ok": true
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -5181,40 +5197,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
@@ -5237,7 +5237,7 @@
      "why": [
       "49 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Yahoo 6.08 a game x 8 games)",
       "Depth: 0 healthy RB on your bench",
-      "vs your weakest RB starter Ollie Gordon II (avg of Gotham + Ratcliffe + Yahoo: 12.9 a game vs 6.1): -53% - under your 15% bar",
+      "vs your weakest RB starter Ollie Gordon II (avg of Gotham + Ratcliffe + Yahoo: 12.9 a game vs 6.1): -53% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#7), W17 BAL (#23)",
@@ -5250,23 +5250,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "5.7 vs Ollie Gordon II 13.3 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "6.5 vs Ollie Gordon II 13.1 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "5.3 vs Ollie Gordon II 14.5 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "6.1 vs Ollie Gordon II 12.4 (Wks 10-17)",
@@ -5274,40 +5290,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.7 vs Ollie Gordon II 14.2 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "5.3 vs Ollie Gordon II 14.5 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "4.0 vs Ollie Gordon II 16.3 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Ollie Gordon II",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5330,7 +5330,7 @@
      "why": [
       "51 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Yahoo 7.34 a game x 7 games)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
-      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Yahoo: 9.7 a game vs 7.3): -24% - under your 15% bar",
+      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Yahoo: 9.7 a game vs 7.3): -24% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#4), W16 GB (#7), W17 DET (#8)",
       "CHI 7-2"
@@ -5342,23 +5342,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "7.9 vs Jakobi Meyers 9.0 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "6.6 vs Jakobi Meyers 10.1 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "6.2 vs Jakobi Meyers 9.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "7.5 vs Jakobi Meyers 10.0 (Wks 10-17)",
@@ -5366,40 +5382,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.5 vs Jakobi Meyers 11.4 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "6.2 vs Jakobi Meyers 9.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "4.8 vs Jakobi Meyers 8.5 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5422,7 +5422,7 @@
      "why": [
       "63 pts rest of season in DK4 scoring (Gotham 7.89 a game x 8 games - thin, one source)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
-      "vs your weakest WR starter Jakobi Meyers (Gotham: 9.0 a game vs 7.9): -12% - under your 15% bar",
+      "vs your weakest WR starter Jakobi Meyers (Gotham: 9.0 a game vs 7.9): -12% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 2 > 8, snaps 59% > 46% > 63%",
       "Playoffs: W15 NE (#2), W16 SF (#28), W17 LAC (#5)",
       "KC 6-2"
@@ -5434,23 +5434,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "7.9 vs Jakobi Meyers 9.0 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": false,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "no number for him",
@@ -5458,40 +5474,24 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5514,7 +5514,7 @@
      "why": [
       "50 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Yahoo 6.29 a game x 8 games)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
-      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Yahoo: 9.7 a game vs 6.3): -35% - under your 15% bar",
+      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Yahoo: 9.7 a game vs 6.3): -35% - under the 10% MUST bar",
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#7)",
       "HOU 3-5"
@@ -5526,23 +5526,39 @@
       "lines": [
        {
         "ex": "Gotham",
-        "rank": "#1 (6.06 missed Wk 9)",
+        "rank": "#1 (6.82 missed Wk 9)",
         "check": true,
-        "read": "Mon Nov 09 2026 09:05 AM PT",
+        "read": "Mon Nov 09 2026 09:11 AM PT",
         "txt": "8.9 vs Jakobi Meyers 9.0 (a game ahead)",
         "ok": false
        },
        {
+        "ex": "Vegas",
+        "rank": "#2 (6.97 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:11 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
         "ex": "Ratcliffe",
-        "rank": "#2 (6.52 missed Wk 9)",
+        "rank": "#3 (7.08 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:26 AM PT",
         "txt": "4.3 vs Jakobi Meyers 10.1 (rest of season)",
         "ok": false
        },
        {
+        "ex": "Koerner",
+        "rank": "#4 (7.12 missed Wk 9), Week 9 numbers only - not averaged",
+        "check": false,
+        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "txt": "5.9 vs Jakobi Meyers 9.1 (this week)",
+        "ok": false
+       },
+       {
         "ex": "Yahoo",
-        "rank": "#3 (6.56 missed Wk 9)",
+        "rank": "#5 (7.26 missed Wk 9)",
         "check": true,
         "read": "Mon Nov 9 2026 8:15 AM PT",
         "txt": "5.7 vs Jakobi Meyers 10.0 (Wks 10-17)",
@@ -5550,46 +5566,30 @@
        },
        {
         "ex": "Clay",
-        "rank": "#4 (6.66 missed Wk 9)",
+        "rank": "#6 (7.47 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "8.4 vs Jakobi Meyers 11.4 (Wks 10-17)",
         "ok": false
        },
        {
-        "ex": "Koerner",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:05 AM PT",
-        "txt": "5.9 vs Jakobi Meyers 9.1 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "this week only",
-        "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
         "ex": "RotoBaller",
-        "rank": "this week only",
+        "rank": "not graded yet",
         "check": false,
-        "read": "Mon Nov 9 2026 9:05 AM PT",
+        "read": "Mon Nov 9 2026 9:11 AM PT",
         "txt": "6.0 vs Jakobi Meyers 8.5 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Mon Nov 9 9:04 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Mon Nov 9 9:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A steady second wide receiver (short Weeks 13)"
    ],
-   "pieces_built": "Mon Nov 9 9:05 AM PT",
+   "pieces_built": "Mon Nov 9 9:11 AM PT",
    "kicker_slot": true,
    "pool": {
     "terry mclaurin": [

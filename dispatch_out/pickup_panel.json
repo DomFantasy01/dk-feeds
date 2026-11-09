@@ -1,26 +1,31 @@
 {
  "order": [
   "gotham",
+  "vegas",
   "ratcliffe",
+  "koerner",
   "yahoo",
   "clay"
  ],
  "members": [
   "gotham",
-  "ratcliffe",
-  "yahoo"
+  "vegas",
+  "ratcliffe"
  ],
  "graded_weeks": [
   9
  ],
- "players": 74,
+ "players": 61,
  "miss": {
-  "ratcliffe": 6.52,
-  "clay": 6.66,
-  "yahoo": 6.56,
-  "gotham": 6.06
+  "ratcliffe": 7.08,
+  "koerner": 7.12,
+  "clay": 7.47,
+  "vegas": 6.97,
+  "yahoo": 7.26,
+  "gotham": 6.82
  },
  "notes": [],
- "rule": "forward sources ranked by points missed per player on the same players, last graded week; each man = average of the 3 most accurate that have a number for him",
- "built": "Mon Nov 9 2026 9:06 AM PT"
+ "basis": "same players for every source",
+ "rule": "all sources ranked by points missed per player, last graded week; the top 3 are the check; each man = average of the 3 most accurate that have a number for him",
+ "built": "Mon Nov 9 2026 9:13 AM PT"
 }
