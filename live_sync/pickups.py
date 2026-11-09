@@ -211,7 +211,7 @@ def grade(n, key, d, MY, NEED):
             soon = [w for w in (10, 11) if not sched.get(stm, {}).get(w)]
             if soon or not healthy(st): g_fit += 5; fit_why.append(f"Your {P} {st['name']} " + (f"is on bye Week {soon[0]}" if soon else "is hurt"))
         else: g_fit += 5; fit_why.append(f"You have no {P} on the roster")
-    rep = None
+    rep = None; gain = None
     if pool:
         rep = dict(min(pool, key=lambda m: (EXP.get((n, m["key"])) or {}).get(src, 0)))
         if pos == "DST": rep["name"] = TEAMNAME.get(rep["key"].split()[0].upper(), rep["name"]) + " DEF"
@@ -257,7 +257,19 @@ def grade(n, key, d, MY, NEED):
     why.append("Playoffs: " + ", ".join(f"W{w} {op or 'BYE'}" + (f" (#{rank.get((op, pos))})" if op and rank.get((op, pos)) else "") for w, op in opp)
                + ("" if rk else " (matchup ranks need this season's scores - scored even)"))
     if wp is not None: why.append(f"{tm} {REC[tm]}")
-    return dict(key=key, name=(TEAMNAME.get(tm, tm) + " DEF") if pos == "DST" else name, team=tm, pos=P,
+    # TIER (Dom, Nov 9: "top line indicators, must, hot, watch ... blink and alert to those to pick up asap")
+    maj = had >= 2 and agree * 2 >= had
+    clears = gain is not None and gain >= .15
+    if not hurt and maj and ((clears and total >= 60) or (hit and total >= 70)):
+        tier = "MUST"; tw = (f"+{gain * 100:.0f}% over {rep['name']}" if clears else "fills your missing piece") + f", {agree} of {had} experts agree, grade {total}"
+    elif total >= 60 or clears:
+        tier = "HOT"; tw = (f"grade {total}" if total >= 60 else f"+{gain * 100:.0f}% over {rep['name']}") + (f", but only {agree} of {had} experts agree" if had and not maj else f", {agree} of {had} experts agree" if had else "")
+    elif g_path >= 4:
+        tier = "STASH"; tw = "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out"
+    else:
+        tier = "WATCH"; tw = f"grade {total}; not yet an upgrade worth a roster spot"
+    if hurt: tw += f" ({inj[1]} on the injury report)"
+    return dict(tier=tier, tier_why=tw, gain=round(gain * 100) if gain is not None else None, key=key, name=(TEAMNAME.get(tm, tm) + " DEF") if pos == "DST" else name, team=tm, pos=P,
                 pts=pts, grade=total, parts=dict(value=round(g_val), fit=round(g_fit), workload=round(g_work), playoffs=round(g_play), team=round(g_team), path=g_path),
                 why=why, experts=dict(verdict=verdict, agree=agree, of=had, lines=xc), replaces=rep["name"] if rep else "")
 
@@ -276,12 +288,16 @@ for n in LEAGUES:
         if lv: g["status"] = ("Waivers until " + lv[3:-1] if lv.startswith("W (") else "Free agent" if lv == "FA" else lv) + " (Yahoo live " + LIVE["checked"] + ")"
         else: g["status"] = (("Waivers until " + wv[key]) if key in wv else "Free agent") + f" (per {rpt} read - confirm live)"
         rows.append(g)
+    TO = {"MUST": 0, "HOT": 1, "STASH": 2, "WATCH": 3}
     rows.sort(key=lambda g: -g["grade"])
-    out["leagues"][str(n)] = {"read": rpt, "top": rows[:5], "needs": [nd[2] + (f" (short Weeks {', '.join(map(str, nd[1]))})" if nd[1] else "") for nd in NEED],
+    top = sorted(rows[:5], key=lambda g: (TO[g["tier"]], -g["grade"]))
+    musts = [g for g in rows[5:] if g["tier"] == "MUST"]       # a MUST is never cut off the list
+    rows = top + musts + rows[5:]
+    out["leagues"][str(n)] = {"read": rpt, "top": top + musts, "needs": [nd[2] + (f" (short Weeks {', '.join(map(str, nd[1]))})" if nd[1] else "") for nd in NEED],
                               "pieces_built": PCHK.get("built", ""), "kicker_slot": has_k,
                               "pool": {g["key"]: [g["grade"], g["name"]] for g in rows},     # every man still available, for the change notes
                               "best": {p: next(({"name": g["name"], "grade": g["grade"]} for g in rows if g["pos"] == p), None) for p in ("RB", "WR", "TE", "K", "DEF")}}
 json.dump(out, open(OUT, "w"), indent=1)
 for n, L in out["leagues"].items():
     print("DK" + n, L["read"], "| best K", L["best"]["K"], "| best DEF", L["best"]["DEF"])
-    for g in L["top"]: print("  ", g["grade"], g["name"], g["pos"], g["team"], g["pts"], g["parts"], "|", g["experts"]["verdict"])
+    for g in L["top"]: print("  ", g["tier"], g["grade"], g["name"], g["pos"], g["team"], g["pts"], g["parts"], "|", g["experts"]["verdict"])

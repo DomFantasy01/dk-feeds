@@ -1098,23 +1098,37 @@ function renderPickups(){
   const el = $("#pickups"); if (!el) return;
   /* live/pickups is the list the 3-a-day check last sent Dom (so the page matches the notification); the build's copy only fills in before the first one */
   const P = PK || (M && M.pickups);
-  if (!P || !P.leagues){ el.innerHTML = ""; return; }
+  const TOP = $("#pkTop");
+  if (!P || !P.leagues){ el.innerHTML = ""; if (TOP) TOP.innerHTML = ""; return; }
+  const TO = {MUST: 0, HOT: 1, STASH: 2, WATCH: 3};
+  const tierOf = (p) => p.tier || "WATCH";
+  /* top line: each league's best pickup by tier - MUST blinks (Dom, Nov 9: "blink ... pick up asap") */
+  if (TOP){
+    const chips = ["1", "2", "3", "4"].map(n => { const t = ((P.leagues[n] || {}).top || []).slice().sort((a, b) => TO[tierOf(a)] - TO[tierOf(b)] || b.grade - a.grade)[0];
+      if (!t) return `<button type="button" class="pkc" data-pkgo="${n}"><span class="lg">DK${n}</span><span class="tr none">-</span></button>`;
+      const more = ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === tierOf(t)).length - 1;
+      return `<button type="button" class="pkc t-${tierOf(t)}" data-pkgo="${n}" title="${esc(t.tier_why || "")}"><span class="lg">DK${n}</span><span class="tr">${tierOf(t)}</span><span class="who">${esc(t.pos === "DEF" ? t.team + " DEF" : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "").split(" ").slice(-1)[0])}${more > 0 ? ` <em>+${more}</em>` : ""}</span></button>`; }).join("");
+    const nm = ["1", "2", "3", "4"].reduce((a, n) => a + ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === "MUST").length, 0);
+    TOP.innerHTML = `<section class="pktop${nm ? " hasmust" : ""}" aria-label="Pickups by league"><div class="pkth"><b>Pickups</b><span>${nm ? `${nm} MUST - grab before a rival does` : "best in each league"} · ${esc(P.built || "")}</span></div><div class="pkcs">${chips}</div></section>`;
+  }
   const L = P.leagues[PKL] || {top: []}, src = P.sources || {};
   const gc = (g) => g >= 70 ? "g" : g >= 55 ? "a" : "n";
   const ring = (g) => { const r = 15, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g)) / 100;
     return `<svg class="pkr ${gc(g)}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#1C2741" stroke-width="4"/><circle cx="20" cy="20" r="${r}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 20 20)"/><text x="20" y="24.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
   const PART = [["value", "Value", 30], ["fit", "Your fit", 25], ["workload", "Workload", 15], ["playoffs", "Playoffs", 15], ["team", "Team", 5], ["path", "Path", 10]];
   const rows = (L.top || []).map((p, i) => `<details class="pk2" data-fold="pk-${PKL}-${i}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
-      <summary><span class="rk">${i + 1}</span>${ring(p.grade)}<span class="nm"><b>${esc(p.name)}</b><em>${esc(p.pos)} · ${esc(p.team)} · ${esc(String(p.status || "").replace(/ \(.*\)$/, ""))}</em></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em>${p.experts && p.experts.of ? `<em class="xv">experts ${p.experts.agree}/${p.experts.of}</em>` : ""}</span></summary>
+      <summary><span class="rk">${i + 1}</span>${ring(p.grade)}<span class="nm"><b><span class="tg t-${tierOf(p)}">${tierOf(p)}</span>${esc(p.name)}</b><em>${esc(p.pos)} · ${esc(p.team)} · ${esc(String(p.status || "").replace(/ \(.*\)$/, ""))}</em></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em>${p.experts && p.experts.of ? `<em class="xv">experts ${p.experts.agree}/${p.experts.of}</em>` : ""}</span></summary>
       <div class="pkb"><div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em></div>`).join("")}</div>
+      ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       ${p.experts ? `<div class="pkx2"><b>Expert check</b> - ${esc(p.experts.verdict)} <em>(noted only, nobody is dropped for it)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b> ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
   el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Top 5 pickups</span>
     <div class="pktabs" role="tablist">${["1", "2", "3", "4"].map(n => `<button type="button" role="tab" aria-selected="${n === PKL}" class="${n === PKL ? "on" : ""}" data-pkl="${n}" style="--lc:${LCOL[KEYS[+n - 1]]}">DK${n}</button>`).join("")}</div>
     <div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces - graded on upgrades over your starters and depth`}${L.pieces_built ? ` <em>(checked ${esc(L.pieces_built)})</em>` : ""}</div>
     ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}
-    <div class="pkfoot">RB, WR, TE, kickers${L.kicker_slot === false ? " (none here - no K slot)" : ""} and defenses. Points = Ratcliffe rest of season (K and DEF: Clay Weeks 10-17) in this league's scoring (read ${esc(src.ratcliffe_read || "-")}) · usage through Week ${esc(String(src.nflverse_through_week || "-"))} · ${esc(src.standings || "")} · rosters read ${esc(L.read || "-")} · built ${esc(P.built || "-")}. Grade for this team: value 30, your fit 25 (missing pieces, beats your weakest starter, depth), workload 15, playoffs 15, team record 5, path to the job 10; Out or Doubtful costs 10. Checked three times a day; changes are pushed to your phone. Talk it through before any claim.</div></section>`;
+    <div class="pkfoot">RB, WR, TE, kickers${L.kicker_slot === false ? " (none here - no K slot)" : ""} and defenses. Points = Ratcliffe rest of season (K and DEF: Clay Weeks 10-17) in this league's scoring (read ${esc(src.ratcliffe_read || "-")}) · usage through Week ${esc(String(src.nflverse_through_week || "-"))} · ${esc(src.standings || "")} · rosters read ${esc(L.read || "-")} · built ${esc(P.built || "-")}. Grade for this team: value 30, your fit 25 (missing pieces, beats your weakest starter, depth), workload 15, playoffs 15, team record 5, path to the job 10; Out or Doubtful costs 10. MUST = clears your 15% bar (or fills a missing piece at grade 70+) with at least half the experts agreeing and grade 60+, healthy - it blinks and pushes to your phone; HOT = grade 60+ or clears the 15% bar without the experts behind it; STASH = the starter ahead is fading or a coach talked up his role; WATCH = not yet. Checked three times a day plus every hourly sync for a new MUST. Talk it through before any claim.</div></section>`;
 }
+document.addEventListener("click", (e) => { const g = e.target.closest && e.target.closest("[data-pkgo]"); if (g){ PKL = g.dataset.pkgo; store.set("pkl", PKL); renderPickups(); const s = $("#msPick"); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); } });
 document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-pkl]"); if (!b) return; PKL = b.dataset.pkl; store.set("pkl", PKL); renderPickups(); });
 
 /* ---------- events ---------- */

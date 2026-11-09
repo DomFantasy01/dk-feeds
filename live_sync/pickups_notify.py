@@ -11,7 +11,7 @@ old = json.load(open(sys.argv[1])) if sys.argv[1] != "-" else {}
 try: old = old if old.get("leagues") else {}
 except Exception: old = {}
 new = json.load(open(sys.argv[2]))
-lines, short = [], []
+lines, short, must = [], [], []
 for n in sorted(new.get("leagues", {})):
     O = {g["key"]: (i + 1, g) for i, g in enumerate(old.get("leagues", {}).get(n, {}).get("top", []))}
     N = {g["key"]: (i + 1, g) for i, g in enumerate(new["leagues"][n]["top"])}
@@ -19,10 +19,15 @@ for n in sorted(new.get("leagues", {})):
     if not O: continue
     for k, (r, g) in N.items():
         if k not in O:
-            lines.append(f"DK{n}: + {g['name']} ({g['pos']}, grade {g['grade']}) in at #{r} - {g['experts']['verdict']}"); short.append(f"DK{n} +{g['name'].split()[-1]}")
+            lines.append(f"DK{n}: + {g.get('tier', '')} {g['name']} ({g['pos']}, grade {g['grade']}) in at #{r} - {g['experts']['verdict']}"); short.append(f"DK{n} +{g['name'].split()[-1]}")
+            if g.get("tier") == "MUST": must.append(f"DK{n} {g['name']}")
         else:
             og = O[k][1]["grade"]
             if abs(g["grade"] - og) >= 3: lines.append(f"DK{n}: {g['name']} grade {og} -> {g['grade']} (#{O[k][0]} -> #{r})")
+            ot = O[k][1].get("tier")
+            if ot and ot != g.get("tier"):
+                lines.append(f"DK{n}: {g['name']} {ot} -> {g['tier']} ({g.get('tier_why', '')})"); short.append(f"DK{n} {g['name'].split()[-1]} {g['tier']}")
+                if g["tier"] == "MUST": must.append(f"DK{n} {g['name']}")
             if O[k][1].get("status", "").split(" (")[0] != g.get("status", "").split(" (")[0]:
                 lines.append(f"DK{n}: {g['name']} now {g['status'].split(' (')[0]}")
     for k, (r, g) in O.items():
@@ -30,11 +35,11 @@ for n in sorted(new.get("leagues", {})):
         if k not in pool: why = "taken in your league, or the experts dropped him"
         else: why = f"grade {g['grade']} -> {pool[k][0]}, passed by others"
         lines.append(f"DK{n}: - {g['name']} out of the top 5 ({why})"); short.append(f"DK{n} -{g['name'].split()[-1]}")
-push = ("Top 5 pickups changed: " + ", ".join(short)) if short else ("Top 5 pickups: grades moved" if lines else "")
+push = ("MUST PICKUP: " + "; ".join(must) + " - open DK Live") if must else ("Top 5 pickups changed: " + ", ".join(short)) if short else ("Top 5 pickups: grades moved" if lines else "")
 if len(push) > 190: push = push[:187] + "..."
 newer = ts(new) > ts(old) if old else True
-if not newer: lines, short, push = [], [], ""
-print(json.dumps({"newer": newer, "changed": bool(lines), "first": not old, "push": push, "lines": lines}, indent=1))
+if not newer: lines, short, push, must = [], [], "", []
+print(json.dumps({"must": must, "newer": newer, "changed": bool(lines), "first": not old, "push": push, "lines": lines}, indent=1))
 if len(sys.argv) > 3:
     for L in new.get("leagues", {}).values(): L.pop("pool", None)
     json.dump(new, open(sys.argv[3], "w"))
