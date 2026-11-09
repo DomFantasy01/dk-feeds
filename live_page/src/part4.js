@@ -507,14 +507,15 @@ function scoreGlobe(L, k, o){
       <path d="${arc(r, 0, 1)}" fill="none" stroke="#1C2742" stroke-width="${sw}" stroke-linecap="round"/>
       <path d="${arc(r, fv, fp)}" fill="none" stroke="${md}" stroke-opacity=".28" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${big ? "2.2 1.4" : "1.6 1.2"}"/>
       ${val > 0 ? `<path d="${arc(r, 0, fv)}" fill="none" stroke="${md}" stroke-opacity=".35" stroke-width="${sw + 3}" stroke-linecap="round" filter="url(#${id}bl)"/>
-      <path d="${arc(r, 0, fv)}" fill="none" stroke="url(#${id}${side}g)" stroke-width="${sw}" stroke-linecap="round"/>
-      ${big ? `<path d="${arc(r + sw * .28, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="${(sw * .14).toFixed(2)}" stroke-linecap="round"/>` : ""}
+      <g filter="url(#${id}ab)"><path d="${arc(r, 0, fv)}" fill="none" stroke="url(#${id}${side}g)" stroke-width="${sw}" stroke-linecap="round"/></g>
+      <path d="${arc(r - sw * .3, 0, fv)}" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="${(sw * .22).toFixed(2)}" stroke-linecap="round"/>
+      ${big ? `<path d="${arc(r + sw * .28, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="${(sw * .16).toFixed(2)}" stroke-linecap="round"/>` : ""}
       ${on ? `<circle class="gcap on" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .6).toFixed(2)}" fill="#fff" fill-opacity=".92"/>` : ""}` : ""}
       <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="${big ? 1.6 : 1.1}" stroke-linecap="round"/>`; };
   const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 22, x1 = W - 3, g = 1.2, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
     return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "YOU" : "OPP"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
-      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}"/>
+      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .42).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
         ${bw >= 7.5 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.6).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
   const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲ " : "▼ ") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
   const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n + " LEFT";
@@ -522,15 +523,29 @@ function scoreGlobe(L, k, o){
     <radialGradient id="${id}fc" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="#1B2848"/><stop offset=".7" stop-color="#0E1629"/><stop offset="1" stop-color="#080D1A"/></radialGradient>
     <radialGradient id="${id}zg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${MC}" stop-opacity=".22"/><stop offset="1" stop-color="${MC}" stop-opacity="0"/></radialGradient>
     <linearGradient id="${id}bz" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${LC}"/><stop offset=".5" stop-color="${LC}" stop-opacity=".35"/><stop offset="1" stop-color="${LC}"/></linearGradient>
-    <filter id="${id}bl" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.4"/></filter></defs>
-    <circle cx="${CX}" cy="${CY}" r="61" fill="url(#${id}fc)" stroke="url(#${id}bz)" stroke-width="1.6"/>
+    <filter id="${id}bl" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.4"/></filter>
+    <filter id="${id}ds" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="2.6"/><feOffset dy="3.2"/><feComponentTransfer><feFuncA type="linear" slope=".75"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="${id}ab" x="-10%" y="-10%" width="120%" height="130%"><feGaussianBlur in="SourceAlpha" stdDeviation=".7"/><feOffset dy="1.3"/><feComponentTransfer><feFuncA type="linear" slope=".85"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="${id}mt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F5FB"/><stop offset=".18" stop-color="${LC}"/><stop offset=".5" stop-color="#2A3656"/><stop offset=".82" stop-color="${LC}"/><stop offset="1" stop-color="#0A0F1C"/></linearGradient>
+    <linearGradient id="${id}mi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05080F"/><stop offset="1" stop-color="#3A4870"/></linearGradient>
+    <radialGradient id="${id}in" cx=".5" cy=".5" r=".5"><stop offset=".82" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+    <linearGradient id="${id}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".55" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="${id}hb" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#2E3D63"/><stop offset=".6" stop-color="#121A30"/><stop offset="1" stop-color="#070B16"/></radialGradient></defs>
+    <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY}" r="60.6" fill="url(#${id}fc)" stroke="url(#${id}mt)" stroke-width="2.8"/></g>
+    <circle cx="${CX}" cy="${CY}" r="58.6" fill="none" stroke="url(#${id}mi)" stroke-width="1"/>
+    <circle cx="${CX}" cy="${CY}" r="58.2" fill="url(#${id}in)"/>
     <circle cx="${CX}" cy="${CY}" r="53.6" fill="none" stroke="#24304C" stroke-width=".6"/>
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
     ${ring(44, 9.5, o.me, o.pMe, ZC, "m")}${ring(32.5, 5, o.op, o.pOp, "#7FA3E0", "o")}
+    <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}hb)" stroke="#3A4A72" stroke-width=".7"/></g>
+    <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}zg)"/>
+    <path d="M${CX - 22} ${CY - 8} A 23 23 0 0 1 ${CX + 22} ${CY - 8}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round"/>
     <text x="${CX}" y="${CY - 11}" text-anchor="middle" class="gk${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
     <text x="${CX}" y="${CY + 6}" text-anchor="middle" class="gsc${sv.length > 4 ? " lg" : ""}${o.meOn && !fin ? " on" : ""}" style="fill:${MC}">${sv}</text>
     <text x="${CX}" y="${CY + 17}" text-anchor="middle" class="gop">${f1(o.op)}</text>
+    <path d="M${CX - 52} ${CY - 6} A 52 52 0 0 1 ${CX + 52} ${CY - 6} Q ${CX} ${CY - 22} ${CX - 52} ${CY - 6} Z" fill="url(#${id}gl)" pointer-events="none"/>
+    <g filter="url(#${id}ab)"><rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 41}" width="${pw.toFixed(1)}" height="14" rx="7" fill="#0B1222"/></g>
     <rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 41}" width="${pw.toFixed(1)}" height="14" rx="7" fill="${MC}" fill-opacity="${pre ? .16 : .24}" stroke="${MC}" stroke-width="1"/>
     <text x="${CX}" y="${CY + 51.4}" text-anchor="middle" class="gmg" style="fill:${pre ? "#C9CFDB" : MC}">${mtxt}</text>
     <rect x="3" y="${CY + 62}" width="${W - 6}" height="15" rx="4" fill="#0A1122" stroke="#24304C" stroke-width=".7"/>
