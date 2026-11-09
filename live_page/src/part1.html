@@ -956,4 +956,10 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
   @keyframes sbswp{0%,30%{transform:skewX(-14deg) translateX(0)}70%,100%{transform:skewX(-14deg) translateX(160px)}}
   .sbox .bub{animation:sbbub 7s linear infinite}
   @keyframes sbbub{from{transform:translateY(0)}to{transform:translateY(-18px)}}}
+/* Nov 8 4:24 PM: molten tanks - marble drifts, sparks rise off the surface while that side is playing */
+@media (prefers-reduced-motion:no-preference){
+  .sbox .mrb{animation:sbmrb 14s ease-in-out infinite alternate}
+  @keyframes sbmrb{from{transform:translateX(-10px)}to{transform:translateX(10px)}}
+  .sbox .spk{animation:sbspk 2.8s ease-out infinite;opacity:0}
+  @keyframes sbspk{0%{transform:translateY(0);opacity:0}15%{opacity:.95}100%{transform:translateY(-14px);opacity:0}}}
 </style>

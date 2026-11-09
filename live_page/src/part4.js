@@ -476,30 +476,40 @@ function scoreGlobe(L, k, o){
   const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
   const T0 = 14, T1 = 114;                                   /* tank top / bottom */
   /* Nov 8 4:19 PM (Dom): red tanks = deeper red for points scored, lighter red above it for what's still to come, textured where they meet */
-  const RED = col0 => col0 === "#FF4D57";
-  const tank = (x, w, val, proj, col0, side) => { const red = RED(col0), col = red ? "#B3121F" : col0, pcol = red ? "#FF8F96" : col0, h = T1 - T0, ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, big = side === "m";
-    const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N);
+  /* Nov 8 4:24 PM (Dom: "can't you be creative"): MOLTEN TANKS. Every colour gets its own three-tone palette -
+     a deep core at the bottom, a rich middle and a bright glowing surface. The fluid is marbled with slow-moving
+     swirls (procedural noise), lit from the surface with a soft halo; the still-to-come zone above it is frosted glass
+     tinted the light tone, with a faint shimmer; sparks drift up off the surface while that side has a man playing. */
+  const PAL = {"#3DDC84": ["#063D22", "#1FAE5E", "#9DFFC6"], "#F7B32B": ["#5A2E00", "#E38E0B", "#FFE08A"],
+    "#FF4D57": ["#4A030A", "#C8162A", "#FF9AA2"], "#A3ABBD": ["#2A3043", "#8890A6", "#E8ECF4"]};
+  const tank = (x, w, val, proj, col0, side) => { const [dk, md, lt] = PAL[col0] || [col0, col0, col0], h = T1 - T0, big = side === "m",
+      ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, on = big ? o.meOn : o.opOn;
+    const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N), body = (yy) => `${wave(yy)} V ${T1 + 2} H ${x - 6} Z`;
+    const sparks = on && val > 0 ? [0, 1, 2, 3, 4].map(i => `<circle class="spk" cx="${(x + 6 + i * (w - 12) / 4).toFixed(1)}" cy="${(ly - 1).toFixed(1)}" r="${i % 2 ? .7 : 1}" fill="${lt}" style="animation-delay:${(i * .7).toFixed(1)}s"/>`).join("") : "";
     return `<clipPath id="${id}${side}"><rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7"/></clipPath>
-      <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset=".55" stop-color="${col}" stop-opacity=".9"/><stop offset="1" stop-color="${col}" stop-opacity=".62"/></linearGradient>
+      <clipPath id="${id}${side}f"><path d="${body(ly)}"/></clipPath>
+      <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${lt}"/><stop offset=".12" stop-color="${md}"/><stop offset=".6" stop-color="${md}" stop-opacity=".95"/><stop offset="1" stop-color="${dk}"/></linearGradient>
+      <radialGradient id="${id}${side}h" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${lt}" stop-opacity=".75"/><stop offset="1" stop-color="${lt}" stop-opacity="0"/></radialGradient>
       <rect x="${x - 1.2}" y="${T0 - 1.2}" width="${w + 2.4}" height="${h + 2.4}" rx="8" fill="#05080F"/>
       <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="url(#${id}gl)"/>
       <g clip-path="url(#${id}${side})">
-        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${pcol}" fill-opacity="${red ? .42 : .3}"/>
-        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="url(#${id}gr)"/>
-        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${pcol}" stroke-opacity=".6" stroke-width="2.2" filter="url(#${id}b)"/>
-        ${red && val > 0 ? `<rect x="${x}" y="${(ly - 7).toFixed(1)}" width="${w}" height="9" fill="url(#${id}mx)"/><rect x="${x}" y="${(ly - 7).toFixed(1)}" width="${w}" height="9" fill="url(#${id}gr)" opacity=".9"/>` : ""}
-        ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}${side}s)"/>
-          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}ca)"/>
-          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}bu)" class="bub"/><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}sh)"/>
-          <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}dp)"/>
-          <path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2.6" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width=".7"/></g>` : ""}
+        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${lt}" fill-opacity="${big ? .28 : .18}"/>
+        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${lt}" filter="url(#${id}fr)" opacity=".5"/>
+        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${lt}" stroke-opacity=".7" stroke-width="1.6" filter="url(#${id}b)"/>
+        ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${body(ly)}" fill="url(#${id}${side}s)"/></g>
+          <g clip-path="url(#${id}${side}f)">
+            <rect class="mrb" x="${x - 20}" y="${(ly - 4).toFixed(1)}" width="${w + 40}" height="${(T1 - ly + 8).toFixed(1)}" fill="${lt}" filter="url(#${id}mb${side})" opacity="${big ? .55 : .45}"/>
+            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(T1 - ly + 2).toFixed(1)}" fill="url(#${id}bu)" class="bub"/>
+            <rect x="${x}" y="${(ly - 1).toFixed(1)}" width="${w}" height="${(T1 - ly + 2).toFixed(1)}" fill="url(#${id}dp)"/>
+            <ellipse cx="${x + w / 2}" cy="${(ly + 2).toFixed(1)}" rx="${w * .7}" ry="7" fill="url(#${id}${side}h)"/></g>
+          <g class="wv${big ? "" : " w2"}"><path d="${wave(ly)}" fill="none" stroke="${lt}" stroke-opacity=".9" stroke-width="3" filter="url(#${id}b)"/><path d="${wave(ly)}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width=".7"/></g>${sparks}` : ""}
         <rect class="swp" x="${x - w}" y="${T0}" width="${w * .55}" height="${h}" fill="url(#${id}sw)" transform="skewX(-14)"/>
         <rect x="${x + 2.6}" y="${T0 + 4}" width="${Math.max(2.6, w * .1)}" height="${h - 8}" rx="1.5" fill="url(#${id}hl)"/>
         <rect x="${x + w - 3.4}" y="${T0 + 6}" width="1.1" height="${h - 12}" rx=".5" fill="#fff" opacity=".12"/>
         <rect x="${x}" y="${T0}" width="${w}" height="${h}" fill="url(#${id}ed)"/></g>
       <path d="M${x + 5} ${T0 + .6} H ${x + w - 5}" stroke="#fff" stroke-opacity=".35" stroke-width=".7" stroke-linecap="round"/>
-      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? (red ? "#FF4D57" : col) : "#A3ABBD"}" stroke-opacity="${big ? .75 : .45}" stroke-width="${big ? 1.1 : .8}"/>
-      <text x="${x + w / 2}" y="${T0 + 15}" text-anchor="middle" class="sgn ${big ? "bg" : "sm"}${f1(val).length > 4 ? " lg" : ""}${(big ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
+      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? md : "#A3ABBD"}" stroke-opacity="${big ? .9 : .45}" stroke-width="${big ? 1.1 : .8}"/>
+      <text x="${x + w / 2}" y="${T0 + 15}" text-anchor="middle" class="sgn ${big ? "bg" : "sm"}${f1(val).length > 4 ? " lg" : ""}${on ? " on" : ""}">${f1(val)}</text>
       <text x="${x + w / 2}" y="${T0 + 23}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
   const rail = (list, mine) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const g = 1.1, hh = (T1 - T0 - g * (n - 1)) / n;
     const bx = mine ? 11 : W - 13, lx = mine ? 8.6 : W - 8.6;
@@ -515,6 +525,9 @@ function scoreGlobe(L, k, o){
     <linearGradient id="${id}sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity=".1"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
     <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
     <pattern id="${id}ca" patternUnits="userSpaceOnUse" width="26" height="18" patternTransform="rotate(-8)"><path d="M0 9 Q 6.5 4 13 9 T 26 9" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="1.6"/><path d="M0 16 Q 6.5 12 13 16 T 26 16" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="1"/></pattern>
+    <filter id="${id}mbm" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035 .11" numOctaves="3" seed="${7 + Object.keys(KEYOF).indexOf(SLUG[k]) * 5}"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.4 -1.15"/><feComposite in="SourceGraphic" operator="in"/></filter>
+    <filter id="${id}mbo" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".04 .12" numOctaves="3" seed="${11 + Object.keys(KEYOF).indexOf(SLUG[k]) * 3}"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.4 -1.2"/><feComposite in="SourceGraphic" operator="in"/></filter>
+    <filter id="${id}fr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -.85"/><feComposite in="SourceGraphic" operator="in"/></filter>
     <linearGradient id="${id}mx" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8F96" stop-opacity="0"/><stop offset=".55" stop-color="#E0303C" stop-opacity=".55"/><stop offset="1" stop-color="#B3121F" stop-opacity="0"/></linearGradient>
     <linearGradient id="${id}dp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".18" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient>
     <linearGradient id="${id}sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
