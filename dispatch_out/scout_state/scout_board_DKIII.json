@@ -1,29 +1,9 @@
 {
  "league": "DK III",
- "run": "2026-11-08T15:14:31.234467-08:00",
- "run_str": "Sun Nov 8, 3:14 PM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-8 + Week 9 games so far of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Nov 8, 3:13 PM PT (API) \u00b7 stats nflverse Sun 3:13 PM PT",
+ "run": "2026-11-08T16:32:25.778930-08:00",
+ "run_str": "Sun Nov 8, 4:32 PM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-8 + Week 9 games so far of 2026 data, so read it as a direction \u00b7 rosters Yahoo Sun Nov 8, 4:31 PM PT (API) \u00b7 stats nflverse Sun 4:32 PM PT",
  "gate1": [
-  {
-   "mark": "red",
-   "first": "2026-10-20",
-   "key": "need:RB1:season-long:short",
-   "age": 0,
-   "gap": 6,
-   "head": "The Backfield Won't Hold",
-   "title": "RB1, Season-Long",
-   "target": "Target 14.4 pts",
-   "why": "Full strength ~18.7 (Coleman). Wk 10 White ~11.4 (Coleman on bye, White slides in) \u00b7 Wk 11 Coleman ~15.4 \u00b7 Wk 12 Coleman ~13.8 (hard matchup vs PIT) \u00b7 Wk 13 Coleman ~15.1 \u00b7 Wk 14 Coleman ~15.2 \u00b7 Wk 15 Coleman ~15.4 \u00b7 Wk 16 Coleman ~15.6 \u00b7 Wk 17 Coleman ~13.5 (hard matchup vs NE).",
-   "across": "Wk 10 Taylor ~22.8 vs White ~11.4 \u00b7 Wk 11 Gibbs ~27.8 vs Coleman ~15.4 \u00b7 Wk 12 Williams ~21.5 vs Coleman ~13.8 \u00b7 Wk 13 Warren ~20.2 vs Coleman ~15.1 \u00b7 Wk 14 McC",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off When Filled",
-   "rows": [
-    "Jonah Coleman",
-    "Rachaad White"
-   ],
-   "rep": 0
-  },
   {
    "mark": "red",
    "first": "2026-10-25",
@@ -42,6 +22,108 @@
     "Giants",
     "Packers",
     "Steelers"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:FLEX2:fill:short",
+   "age": 30,
+   "gap": null,
+   "head": "Byes Hit the Flex",
+   "title": "FLEX2, Weeks 9-10 Fill",
+   "target": "Target 8.6 pts",
+   "why": "Full strength ~9.7 (Waddle). Wk 9 Douglas ~9.5 (Waddle moves up to WR1, Douglas slides in) \u00b7 Wk 10 Hockenson ~7.8 (Waddle on bye, Hockenson slides in).",
+   "across": "Wk 9 Price ~14.9 vs Douglas ~9.5 \u00b7 Wk 10 Tate ~13.0 vs Hockenson ~7.8",
+   "picks": [
+    {
+     "rc": "both agree",
+     "rc_why": "Ratcliffe 7.8, engine 8.8 a week",
+     "ko": "Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
+     "guard": [
+      "his work depends on Julian Hill staying out - check Hill's status first"
+     ],
+     "rivals": "rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11)",
+     "drop": "Packers",
+     "name": "Hunter Henry",
+     "team": "NE",
+     "pos": "TE",
+     "scores": "5.6, 7.0, 1.5, 11.2, 13.4, 14.8, 14.1",
+     "acq": "Waivers, clears Nov 11",
+     "why": "Injured now (Foot), due back Wk 9 - but his waivers clear Nov 11, before a return can be confirmed. Claim decision now or he goes to whoever claims him.; door open: Julian Hill out; workload up from 6.7 to 9.7 expected a game; NEWS FLAG - check before acting: (RotoBaller, Nov 1): Hunter Henry Ruled Out With Foot Injury Against Dolphins; CHECK FIRST: his work depends on Julian Hill staying out - check Hill's status first; rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11); BOTH AGREE (Ratcliffe 7.8, engine 8.8 a week); Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
+     "when": "Wk 10",
+     "urg": "gold",
+     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe 7.5 vs 9.5 \u00b7 Koerner 9.9 vs 9.3 \u00b7 Yahoo 8.6 vs 9.6 \u00b7 Gotham 9.3 vs 9.2 - mixed - Ratcliffe says worse",
+     "gain": 2.0,
+     "pgain": 0.2
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 10",
+   "rows": [
+    "Caleb Douglas",
+    "T.J. Hockenson"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "red",
+   "first": "2026-10-09",
+   "key": "need:FLEX1:fill:short",
+   "age": 30,
+   "gap": null,
+   "head": "The Flex Runs Thin",
+   "title": "FLEX1, Week 10 Fill",
+   "target": "Target 8.8 pts",
+   "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.8 (Hockenson moves up to FLEX2, Douglas slides in).",
+   "across": "Wk 10 Allen ~16.8 vs Douglas ~8.8",
+   "picks": [
+    {
+     "rc": "both agree",
+     "rc_why": "Ratcliffe 7.8, engine 8.8 a week",
+     "ko": "Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
+     "guard": [
+      "his work depends on Julian Hill staying out - check Hill's status first"
+     ],
+     "rivals": "rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11)",
+     "drop": "Packers",
+     "name": "Hunter Henry",
+     "team": "NE",
+     "pos": "TE",
+     "scores": "5.6, 7.0, 1.5, 11.2, 13.4, 14.8, 14.1",
+     "acq": "Waivers, clears Nov 11",
+     "why": "Injured now (Foot), due back Wk 9 - but his waivers clear Nov 11, before a return can be confirmed. Claim decision now or he goes to whoever claims him.; door open: Julian Hill out; workload up from 6.7 to 9.7 expected a game; NEWS FLAG - check before acting: (RotoBaller, Nov 1): Hunter Henry Ruled Out With Foot Injury Against Dolphins; CHECK FIRST: his work depends on Julian Hill staying out - check Hill's status first; rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11); BOTH AGREE (Ratcliffe 7.8, engine 8.8 a week); Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
+     "when": "Wk 10",
+     "urg": "gold",
+     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe 7.5 vs 9.5 \u00b7 Koerner 9.9 vs 9.3 \u00b7 Yahoo 8.6 vs 9.6 \u00b7 Gotham 9.3 vs 9.2 - mixed - Ratcliffe says worse",
+     "gain": 2.0,
+     "pgain": 0.2
+    }
+   ],
+   "none": null,
+   "kill": "Drops Off After Wk 10",
+   "rows": [
+    "Caleb Douglas"
+   ],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
+   "key": "need:RB1:fill:short",
+   "age": 7,
+   "gap": 4,
+   "head": "Tough Draws for the Backfield",
+   "title": "RB1, Weeks 10, 12, 17 Fill",
+   "target": "Target 13.5 pts",
+   "why": "Full strength ~18.7 (Coleman). Wk 10 White ~11.4 (Coleman on bye, White slides in) \u00b7 Wk 12 Coleman ~14.7 (hard matchup vs PIT) \u00b7 Wk 17 Coleman ~14.4 (hard matchup vs NE).",
+   "across": "Wk 10 Taylor ~22.0 vs White ~11.4 \u00b7 Wk 12 Williams ~21.5 vs Coleman ~14.7",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off After Wk 17",
+   "rows": [
+    "Rachaad White"
    ],
    "rep": 0
   },
@@ -65,57 +147,20 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
-   "key": "need:FLEX2:fill:short",
-   "age": 30,
-   "gap": null,
-   "head": "Byes Hit the Flex",
-   "title": "FLEX2, Weeks 9-10 Fill",
-   "target": "Target 8.6 pts",
-   "why": "Full strength ~9.7 (Waddle). Wk 9 Douglas ~9.5 (Waddle moves up to WR1, Douglas slides in) \u00b7 Wk 10 Hockenson ~7.8 (Waddle on bye, Hockenson slides in).",
-   "across": "Wk 9 Price ~14.9 vs Douglas ~9.5 \u00b7 Wk 10 Tate ~12.7 vs Hockenson ~7.8",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 10",
-   "rows": [
-    "Caleb Douglas",
-    "T.J. Hockenson"
-   ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:FLEX1:fill:short",
-   "age": 30,
-   "gap": null,
-   "head": "The Flex Runs Thin",
-   "title": "FLEX1, Weeks 10, 12 Fill",
-   "target": "Target 9.3 pts",
-   "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.7 (Hockenson moves up to FLEX2, Douglas slides in) \u00b7 Wk 12 Montgomery ~9.9 (Hockenson has a worse matchup).",
-   "across": "Wk 10 Allen ~16.5 vs Douglas ~8.7 \u00b7 Wk 12 McMillan ~14.0 vs Montgomery ~9.9",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 12",
-   "rows": [
-    "Caleb Douglas"
-   ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
    "key": "need:WR2:fill:short",
    "age": 30,
    "gap": null,
    "head": "The Receiving Corps Runs Thin",
-   "title": "WR2, Weeks 12, 14 Fill",
-   "target": "Target 11.1 pts",
-   "why": "Full strength ~10.4 (Douglas). Wk 12 Waddle ~11.4 (Douglas has a worse matchup) \u00b7 Wk 14 Downs ~10.9 (Douglas moves up to FLEX2, Downs slides in).",
-   "across": "Wk 12 Golden ~15.8 vs Waddle ~11.4 \u00b7 Wk 14 Flowers ~15.1 vs Downs ~10.9",
+   "title": "WR2, Weeks 10, 12 Fill",
+   "target": "Target 10.2 pts",
+   "why": "Full strength ~10.4 (Douglas). Wk 10 Downs ~9.0 (Douglas moves up to FLEX1, Downs slides in) \u00b7 Wk 12 Waddle ~11.4 (Douglas has a worse matchup).",
+   "across": "Wk 10 Concepcion ~13.0 vs Downs ~9.0 \u00b7 Wk 12 Golden ~15.8 vs Waddle ~11.4",
    "picks": [],
    "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 14",
-   "rows": [],
+   "kill": "Drops Off After Wk 12",
+   "rows": [
+    "Josh Downs"
+   ],
    "rep": 0
   },
   {
@@ -143,9 +188,9 @@
    "gap": 3,
    "head": "The Backfield Runs Thin",
    "title": "RB2, Week 10 Fill",
-   "target": "Target 10.2 pts",
-   "why": "Full strength ~12.1 (White). Wk 10 Montgomery ~10.2 (White moves up to RB1, Montgomery slides in).",
-   "across": "Wk 10 Tuten ~19.2 vs Montgomery ~10.2",
+   "target": "Target 10.6 pts",
+   "why": "Full strength ~12.1 (White). Wk 10 Montgomery ~10.6 (White moves up to RB1, Montgomery slides in).",
+   "across": "Wk 10 Tuten ~19.4 vs Montgomery ~10.6",
    "picks": [],
    "none": "No recommendation \u2014 nobody available fits.",
    "kill": "Drops Off After Wk 10",
@@ -180,8 +225,8 @@
     "when": "Wk 9",
     "urg": "gold",
     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe not read vs 9.5 \u00b7 Yahoo not read vs 9.6 \u00b7 Gotham not read vs 9.2 - this week unknown",
-    "gain": 2.1,
-    "pgain": -0.1
+    "gain": 1.8,
+    "pgain": -0.2
    },
    "act": false,
    "flag": "Watch: only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it."
@@ -199,52 +244,22 @@
     "guard": [
      "his role shrinks to ~7.8 from Wk 10 when Travis Etienne is back (on IR)"
     ],
-    "rivals": "rival check: 2 teams would start him over one of their own - Press Coverage steph ($100 left, waiver #4), Dominique by 6 ($90 left, waiver #14)",
+    "rivals": "rival check: 4 teams would start him over one of their own - Bad and Bougie 2.0 ($100 left, waiver #10), Press Coverage steph ($100 left, waiver #4), Dominique by 6 ($90 left, waiver #14), And A Goedert To You Sir ($100 left, waiver #8)",
     "drop": "Caleb Douglas",
     "name": "Kendre Miller",
     "team": "NO",
     "pos": "RB",
     "scores": "11.2, 4.9, 3.4, 11.5, 14.0, 7.8",
     "acq": "Waivers, clears Nov 11",
-    "why": "Door open: Travis Etienne out; workload up from 9.5 to 19.5 expected a game; getting 12.9 expected but scoring 8.8; NEWS FLAG - check before acting: (ESPN, Nov 7): Saints activate WR Jordyn Tyson, LT Kelvin Banks, cut RB Kendre Miller; CHECK FIRST: his role shrinks to ~7.8 from Wk 10 when Travis Etienne is back (on IR); rival check: 2 teams would start him over one of their own - Press Coverage steph ($100 left, waiver #4), Dominique by 6 ($90 left, waiver #14); ENGINE ONLY (Ratcliffe doesn't project him); Koerner 0.0 this week (Ratcliffe has no line)",
+    "why": "Door open: Travis Etienne out; workload up from 9.5 to 19.5 expected a game; getting 12.9 expected but scoring 8.8; NEWS FLAG - check before acting: (ESPN, Nov 7): Saints activate WR Jordyn Tyson, LT Kelvin Banks, cut RB Kendre Miller; CHECK FIRST: his role shrinks to ~7.8 from Wk 10 when Travis Etienne is back (on IR); rival check: 4 teams would start him over one of their own - Bad and Bougie 2.0 ($100 left, waiver #10), Press Coverage steph ($100 left, waiver #4), Dominique by 6 ($90 left, waiver #14), And A Goedert To You Sir ($100 left, waiver #8); ENGINE ONLY (Ratcliffe doesn't project him); Koerner 0.0 this week (Ratcliffe has no line)",
     "when": "Wk 9",
     "urg": "gold",
     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe not read vs 9.5 \u00b7 Koerner 0.0 vs 9.3 \u00b7 Yahoo not read vs 9.6 \u00b7 Gotham 9.0 vs 9.2 - WORSE this week",
-    "gain": 2.1,
-    "pgain": -0.1
+    "gain": 1.9,
+    "pgain": -0.2
    },
    "act": false,
    "flag": "Watch: only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it."
-  },
-  {
-   "mark": "gold",
-   "first": "2026-11-07",
-   "age": 1,
-   "gap": null,
-   "title": "TE, Week 10",
-   "pick": {
-    "rc": "both agree",
-    "rc_why": "Ratcliffe 7.7, engine 8.8 a week",
-    "ko": "Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
-    "guard": [
-     "his work depends on Julian Hill staying out - check Hill's status first"
-    ],
-    "rivals": "rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11)",
-    "drop": "Aaron Rodgers",
-    "name": "Hunter Henry",
-    "team": "NE",
-    "pos": "TE",
-    "scores": "5.6, 7.0, 1.5, 11.2, 13.4, 14.8, 14.1",
-    "acq": "Waivers, clears Nov 11",
-    "why": "Door open: Julian Hill out; workload up from 6.7 to 9.7 expected a game; NEWS FLAG - check before acting: (RotoBaller, Nov 1): Hunter Henry Ruled Out With Foot Injury Against Dolphins; CHECK FIRST: his work depends on Julian Hill staying out - check Hill's status first; rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11); BOTH AGREE (Ratcliffe 7.7, engine 8.8 a week); Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
-    "when": "Wk 10",
-    "urg": "gold",
-    "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe 7.5 vs 9.5 \u00b7 Koerner 9.9 vs 9.3 \u00b7 Yahoo 8.6 vs 9.6 \u00b7 Gotham 9.3 vs 9.2 - mixed - Ratcliffe says worse",
-    "gain": 1.9,
-    "pgain": -2.0
-   },
-   "act": false,
-   "flag": "Watch, not a pickup yet: missed his last game hurt (Foot) - waits for a full practice this week."
   }
  ],
  "gate3": [],
@@ -255,7 +270,26 @@
   "bench": 0,
   "ir": 0
  },
- "adds": [],
+ "adds": [
+  {
+   "guard": [
+    "his work depends on Julian Hill staying out - check Hill's status first"
+   ],
+   "rivals": "rival check: 5 teams would start him over one of their own - Benchdad's Beach ($59 left, waiver #7), Maly's Better Half ($44 left, waiver #6), Bad and Bougie 2.0 ($100 left, waiver #10), Rushin Roulette ($51 left, waiver #9), Derek's Better Half ($100 left, waiver #11)",
+   "drop": "Packers",
+   "name": "Hunter Henry",
+   "team": "NE",
+   "pos": "TE",
+   "acq": "Waivers, clears Nov 11",
+   "gain": 2.0,
+   "pgain": 0.2,
+   "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe 7.5 vs 9.5 \u00b7 Koerner 9.9 vs 9.3 \u00b7 Yahoo 8.6 vs 9.6 \u00b7 Gotham 9.3 vs 9.2 - mixed - Ratcliffe says worse",
+   "rc": "both agree",
+   "rc_why": "Ratcliffe 7.8, engine 8.8 a week",
+   "ko": "Koerner 9.9 vs Ratcliffe 7.5 this week - experts agree",
+   "bar_pct": 17.0
+  }
+ ],
  "priced": {
   "emanuelwilson": {
    "fwd": 16.1,
@@ -307,7 +341,7 @@
   },
   "hunterhenry": {
    "fwd": 10.8,
-   "gain": 4.1
+   "gain": 2.0
   },
   "davidnjoku": {
    "fwd": 6.6,
@@ -386,7 +420,6 @@
   "Can't claim: George Holani (SEA RB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 11 and you can add him then.",
   "Watch: Audric Estim\u00e9 (NO RB) - only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it.",
   "Watch: Kendre Miller (NO RB) - only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it.",
-  "Watch: Hunter Henry (NE TE) - missed his last game hurt (Foot) - waits for a full practice this week.",
   "Stash: Tyler Goodson (DAL RB, waivers, clears Nov 11) - 29% of the DAL backfield's touches the last three games behind Javonte Williams (~21.2 a game, 70%); the lead job is his if Williams goes down; his own level now ~6.9",
   "Stash: Justice Hill (BAL RB, waivers, clears Nov 11) - 35% of the BAL backfield's touches the last three games behind Derrick Henry (~17.7 a game, 58%); the lead job is his if Henry goes down; his own level now ~8.6",
   "Rising: Van Jefferson (WAS WR, waivers, clears Nov 11) - workload jumped to 11.9 expected points last game from 0.7 before; season level ~6.1, not on the Scout's pickup list yet - one more game like it and he is",
@@ -399,7 +432,7 @@
    "Koerner"
   ],
   "read": [
-   "pulled Sun Nov 8 2026 3:13 PM PT",
+   "pulled Sun Nov 8 2026 4:31 PM PT",
    "Jeff Ratcliffe updated 2026-11-08 09:59:11",
    "Sean Koerner updated 2026-11-08 09:14:26"
   ],
@@ -415,7 +448,7 @@
    "beats": null,
    "how": "on waivers until Nov 11",
    "yahoo_ros": 57.5,
-   "line": "Marvin Harrison Jr. (WR) - dropped by The Deer Hunter Part Deux Sat Nov 7 8:53 PM. Experts: panel WR51. Yahoo rest of season 57. on waivers until Nov 11. VERDICT: NOT AN UPGRADE: would not start or beat your bench (8.0 a game vs your weakest Caleb Douglas 9.2). Ratcliffe 7.3 this week / 8.0 a game rest of season; Koerner 7.3; Yahoo 6.7. Playoffs: Wk15 vs JAX (Yahoo 6.7), Wk16 at PHI (Yahoo 6.0), Wk17 at GB (Yahoo 6.2)."
+   "line": "Marvin Harrison Jr. (WR) - dropped by The Deer Hunter Part Deux Sat Nov 7 8:53 PM. Experts: panel WR51. Yahoo rest of season 57. on waivers until Nov 11. VERDICT: NOT AN UPGRADE: would not start or beat your bench (8.0 a game vs your weakest Caleb Douglas 9.3). Ratcliffe 7.3 this week / 8.0 a game rest of season; Koerner 7.3; Yahoo 6.7. Playoffs: Wk15 vs JAX (Yahoo 6.7), Wk16 at PHI (Yahoo 6.0), Wk17 at GB (Yahoo 6.2)."
   }
  ],
  "txn_review": {
@@ -424,8 +457,8 @@
   "missed": [],
   "openings": [],
   "others": [
-   "The Deer Hunter Part Deux took Jordyn Tyson (NO WR), Sat Nov 7 8:53 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (9.4 a game vs your weakest Caleb Douglas 9.2). Ratcliffe 6.9 this week / 9.4 a game rest of season; Koerner 6.2; Yahoo -. Playoffs: Wk15 at TB, Wk16 vs ARI, Wk17 at ATL. No alert fired on him in this league before he was taken.",
-   "The Deer Hunter Part Deux took Demarcus Robinson (SF WR), Sat Nov 7 8:39 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (2.1 a game vs your weakest Caleb Douglas 9.2). Ratcliffe 7.3 this week / 2.1 a game rest of season; Koerner 8.4; Yahoo -. Playoffs: Wk15 at LAC, Wk16 at KC, Wk17 vs PHI. No alert fired on him in this league before he was taken."
+   "The Deer Hunter Part Deux took Jordyn Tyson (NO WR), Sat Nov 7 8:53 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (10.6 a game vs your weakest Caleb Douglas 9.3). Ratcliffe 6.9 this week / 10.6 a game rest of season; Koerner 6.2; Yahoo -. Playoffs: Wk15 at TB, Wk16 vs ARI, Wk17 at ATL. No alert fired on him in this league before he was taken.",
+   "The Deer Hunter Part Deux took Demarcus Robinson (SF WR), Sat Nov 7 8:39 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (2.1 a game vs your weakest Caleb Douglas 9.3). Ratcliffe 7.3 this week / 2.1 a game rest of season; Koerner 8.4; Yahoo -. Playoffs: Wk15 at LAC, Wk16 at KC, Wk17 vs PHI. No alert fired on him in this league before he was taken."
   ],
   "quiet": 1
  }
