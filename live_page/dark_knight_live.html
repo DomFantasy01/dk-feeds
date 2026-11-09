@@ -1817,7 +1817,7 @@ function meters(){
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
   $("#meters").innerHTML = SEC("msWin", "Win probability", "", "a") + SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msExp", "Experts", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"><b>Ratcliffe leads</b> (gold) · listed most to least accurate</div>`); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"><b>Ratcliffe leads</b> (gold) · listed most to least accurate</div>`); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
