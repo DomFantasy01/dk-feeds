@@ -1376,4 +1376,35 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 #msExp .mgrid.g-c .xg .xo .xtx b{font-size:7.6px !important;letter-spacing:-.01em !important;display:block;width:100%}
 #msExp .xtx .xoff{font-size:8.6px !important}
 @media (min-width:561px){#msExp .mgrid.g-c .xg .xo .xtx b{font-size:11px !important;width:auto}#msExp .xtx .xoff{font-size:11px !important}#msExp .mgrid.g-c .xg .xo svg{width:30px !important;height:30px !important}}
+
+/* Nov 9 11:00 AM (Dom): slim button row under the status line */
+.ctl.ctls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) 34px;gap:5px;margin:6px 0 2px}
+.ctl.ctls a,.ctl.ctls button{padding:5px 2px;font-size:15px;border-radius:6px}
+.ctl.ctls .fbtn{font-family:var(--f-body);font-size:14px;padding:4px 0}
+#findRow{margin:4px 0 0}
+/* Win Probability: percent + week trend on one line */
+.mgrid.g-a .mxd{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;column-gap:5px}
+.mgrid.g-a .mxd > .bdl,.mgrid.g-a .mxd > svg{flex:1 1 100%}
+.mgrid.g-a .mxd > .mxp{flex:none}.mgrid.g-a .mxd > .mxp b{margin:0 !important}
+.mgrid.g-a .mxd > .wtr{flex:none;margin:0 !important;padding:2px 4px !important;border:0 !important;background:none !important}
+.mgrid.g-a .wtr .wl{display:none}
+/* Experts: off-number out, names a touch bigger */
+#msExp .mgrid.g-c .xg .xo .xtx b{font-size:8.2px !important}
+@media (min-width:561px){#msExp .mgrid.g-c .xg .xo .xtx b{font-size:11px !important}}
+
+#findRow[hidden],.find[hidden]{display:none !important}
+.mgrid.g-a .mxd > .wtr{display:flex;align-items:center;gap:2px}
+.mgrid.g-a .wtr svg,.mgrid.g-a .wtr .spk{width:34px !important;max-width:34px !important;height:14px !important;flex:none}
+.mgrid.g-a .wtr .wtd{font-size:10px}
+#msExp .mgrid.g-c .xg{gap:1px !important}
+#msExp .mgrid.g-c .xg .xo{padding-top:1px !important;padding-bottom:1px !important;min-height:0 !important}
+#msExp .mgrid.g-c .xg .xo svg{width:20px !important;height:20px !important}
+@media (min-width:561px){#msExp .mgrid.g-c .xg .xo svg{width:28px !important;height:28px !important}}
+
+.mgrid.g-a .mxd{display:block !important}.mgrid.g-a .wln{display:flex;align-items:center;justify-content:center;column-gap:3px;flex-wrap:nowrap}.mgrid.g-a .wln > .wtr{display:flex;align-items:center;gap:2px;margin:0 !important;padding:0 !important;border:0 !important;background:none !important}.mgrid.g-a .wln .wl{display:none}
+.mgrid.g-a .mxd > .bdl,.mgrid.g-a .mxd > svg:first-child{position:relative}
+.mgrid.g-a .mxp b{font-size:17px !important}.mgrid.g-a .mxp small{font-size:9px !important}
+.mgrid.g-a .wtr svg,.mgrid.g-a .wtr .spk{width:24px !important;max-width:24px !important}
+.mgrid.g-a .wtr .wtd{font-size:9px}
+@media (min-width:561px){.mgrid.g-a .mxp b{font-size:22px !important}.mgrid.g-a .wtr svg,.mgrid.g-a .wtr .spk{width:40px !important;max-width:40px !important}.mgrid.g-a .wtr .wtd{font-size:11px}}
 </style>

@@ -604,7 +604,7 @@ function meters(){
     const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}<span class="xtx"><b>${nm}</b><span class="xoff">${OMISS[SRCID[s2]] !== undefined ? pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]]) : "–"}</span></span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}<span class="xtx"><b>${nm}</b></span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -612,12 +612,12 @@ function meters(){
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="mxp" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b>${wp2(y)}<small>%</small></b></div>
+      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="wln"><div class="mxp" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b>${wp2(y)}<small>%</small></b></div>
         ${(() => { const w0 = weekStart(k, "y"), tr = trailEntries().filter(e => S && e.w === S.week && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null).map(e => e.lg[k].y);
           const vals = [...(w0 !== null ? [w0] : []), ...tr, y].filter(v => v !== null && !isNaN(v)); if (vals.length < 2) return "";
           const d = Math.round(y - vals[0]), zc = y >= 55 ? "#3DDC84" : y >= 45 ? "#F7B32B" : "#FF4D57";
           return `<div class="wtr" title="Yahoo's chance to win this week, from the first read of the week to now"><span class="wl">WEEK</span>${spark(vals, zc)}<span class="wtd ${d > 0 ? "up" : d < 0 ? "dn" : ""}">${d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</span></div>`; })()}
-        </div>`),
+        </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${wp2(y)}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
@@ -628,10 +628,10 @@ function meters(){
   /* Nov 9 10:37 AM (Dom): every section label carries its time on the right, Diamonds style: "9:52 AM · Next 10:25" */
   const hm = (t) => String(t || "").replace(/:00 /, ":00 ");
   const TNOW = (stamp) => { const a = stamp ? esc(PT(stamp, {hour: "numeric", minute: "2-digit"})) : "–", n = nextUpdate(); return `${a}${n ? " · Next " + esc(n.replace(/ (AM|PM)$/, "")) : ""}`; };
-  $("#meters").innerHTML = SEC("msWin", "Win Probability · Yahoo", TNOW(S.stamp), "a") + SEC("msScore", "Scoreboard", TNOW(S.stamp), "b");
+  $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability · Yahoo", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
@@ -1272,10 +1272,12 @@ document.addEventListener("keydown", (e) => {
   if (/^[1-4]$/.test(e.key)){ e.preventDefault(); jumpTo("dk" + e.key); }
   else if (e.key === "t" || e.key === "T"){ scrollTo({top: 0, behavior: SMOOTH()}); }
   else if (e.key === "n" || e.key === "N"){ const nx = nextTarget(); nx && jumpTo(nx.id); }
-  else if (e.key === "/"){ e.preventDefault(); $("#findq").focus(); }
+  else if (e.key === "/"){ e.preventDefault(); $("#findRow").hidden = false; $("#findq").focus(); }
   else if (e.key === "Escape"){ if (OPEN.size){ OPEN.clear(); renderAlertsOnly(); } const b = $("#hc"); if (!b.hidden){ b.hidden = true; $("#stat").setAttribute("aria-expanded", "false"); } }
 });
 $("#findq").addEventListener("input", findRun);
+/* Nov 9 11:00 AM (Dom): search lives behind the magnifier in the slim button row */
+$("#findBtn").addEventListener("click", () => { const r = $("#findRow"), open = r.hidden; r.hidden = !open; $("#findBtn").setAttribute("aria-expanded", String(open)); if (open) $("#findq").focus(); else { $("#findq").value = ""; findRun(); } });
 addEventListener("hashchange", () => { const h = location.hash.slice(1); if (/^dk[1-4]$/.test(h)) document.getElementById(h)?.scrollIntoView({behavior: SMOOTH(), block: "start"}); });
 let wakeLock = null, HASHED = false;
 /* sticky scoreboard once the meters scroll away */
@@ -1355,5 +1357,5 @@ function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; con
     <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>Alerts${live.length ? " (" + live.length + ")" : ""}</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }
 /* Nov 8 (Dom): the floating NEXT/TOP buttons covered Refresh on the first screen - show them only once he has scrolled past the controls */
-(function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("ctlTop"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
+(function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("pickups") || document.getElementById("ctlTop"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
   addEventListener("scroll", f, {passive: true}); addEventListener("resize", f); try { new ResizeObserver(f).observe(document.body); } catch (e) { setInterval(f, 2000); } f(); })();
