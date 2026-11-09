@@ -999,4 +999,42 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 /* Nov 8 6:50 PM (Dom: "more 3D"): raised tiles */
 .mgrid.g-b .mx{box-shadow:0 10px 18px -6px rgba(0,0,0,.75),0 2px 0 rgba(255,255,255,.06) inset,0 -3px 8px -2px rgba(0,0,0,.5) inset,0 0 18px -10px var(--lc) !important}
 .mgrid.g-b .sgx{box-shadow:inset 0 2px 5px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.05)}
+/* Nov 8 7:45 PM (Dom): scoreboard header like the Experts section (name in plain white, thin, no glow);
+   labels white / light gray instead of gold; "WIN THIS WEEK" on one line, the row lined up; position letters not bold */
+.mgrid.g-b .mx .sbh .nm{font-family:var(--f-body) !important;font-weight:500 !important;color:#E6EAF2 !important;text-shadow:none !important;letter-spacing:.01em !important;text-transform:none !important}
+.mgrid.g-b .sgx span{color:#C9CFDB !important;font-weight:600 !important;white-space:nowrap !important;min-height:0 !important;display:block !important;letter-spacing:.06em !important;font-size:6.6px !important;line-height:1.2 !important}
+@media (min-width:561px){.mgrid.g-b .sgx span{font-size:8.5px !important}}
+.mgrid.g-b .sgx{flex-wrap:wrap !important;align-items:flex-start !important;row-gap:5px !important}
+.mgrid.g-b .sgx > div{flex:1 1 45% !important;justify-content:flex-start !important;gap:3px}
+.mgrid.g-b .sgx > div.sgbel{flex:1 1 100% !important;flex-direction:row !important;justify-content:center !important;align-items:center !important;gap:6px !important;border-left:0 !important;border-top:1px solid rgba(255,255,255,.07);padding-top:5px !important}
+.mgrid.g-b .sgx b{margin-top:0 !important}
+.mgrid.g-b .sgt{color:#9AA3B5 !important;font-weight:500 !important}.mgrid.g-b .sgt b{color:#E6EAF2 !important;font-weight:600 !important}
+.sgauge .gpz{font-weight:500 !important}
+.sgauge .gsl{font-weight:600 !important}
+.sgauge .gpj{fill:#AEB6C8 !important;font-weight:600 !important}.sgauge .gpj tspan{fill:#F2F4F8}
+.sgauge .gop{fill:#E6EAF2 !important}
+/* rows: label left, number right - lines up straight across the four tiles */
+.mgrid.g-b .sgx{flex-direction:column !important;flex-wrap:nowrap !important;row-gap:0 !important;padding:2px 6px !important}
+.mgrid.g-b .sgx > div,.mgrid.g-b .sgx > div.sgbel{flex:none !important;width:100%;flex-direction:row !important;justify-content:space-between !important;align-items:center !important;gap:4px !important;
+  padding:4px 0 !important;border-left:0 !important;border-top:1px solid rgba(255,255,255,.07) !important;min-height:24px}
+.mgrid.g-b .sgx > div:first-child{border-top:0 !important}
+.mgrid.g-b .sgx b{flex-direction:row !important;align-items:baseline !important;gap:2px !important;font-size:17px !important;line-height:1 !important}
+.mgrid.g-b .sgx b em{font-size:7.5px !important}
+@media (min-width:561px){.mgrid.g-b .sgx b{font-size:22px !important}}
+.mgrid.g-b .sgx .sbel{transform:scale(.85);transform-origin:right center}
+.mgrid.g-b .sgx > div > span{flex:1 1 auto !important;min-width:0 !important;overflow:hidden;text-overflow:clip;font-size:min(8px,7.6cqw) !important;letter-spacing:.03em !important;text-align:left !important}
+.mgrid.g-b .sgx b{flex:none !important;white-space:nowrap !important;font-size:min(17px,14cqw) !important}
+.mgrid.g-b .sgx b em{display:inline !important;white-space:nowrap}
+@media (max-width:560px){.mgrid.g-b .sgx{margin:4px 0 0 !important;padding:1px 4px !important}
+  .mgrid.g-b .sgx > div > span{font-size:7.5px !important;letter-spacing:.02em !important}
+  .mgrid.g-b .sgx b{font-size:14px !important}.mgrid.g-b .sgx b em{font-size:7px !important}}
+/* phone: label on its own line (one line, fitted), number + arrow on the line under it - rows line up across */
+.mgrid.g-b .sgx > div:not(.sgbel){flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:2px !important}
+.mgrid.g-b .sgx > div:not(.sgbel) > span{flex:none !important;width:100%;text-align:center !important}
+.mgrid.g-b .sgx > div.sgbel > span{flex:none !important;width:auto}
+/* experts: the up/down arrow sits on the same line as the expert's name, so each row is one line */
+.mgrid.g-c .xo{display:grid !important;grid-template-columns:auto minmax(0,1fr) auto !important;align-items:center !important;column-gap:4px !important}
+.mgrid.g-c .xo > b{grid-column:2;grid-row:1;margin:0 !important;align-self:center}
+.mgrid.g-c .xo > em{grid-column:3;grid-row:1;margin:0 !important;align-self:center;padding-right:4px}
+.mgrid.g-c .xo > svg{grid-column:1;grid-row:1}
 </style>

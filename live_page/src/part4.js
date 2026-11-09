@@ -558,7 +558,11 @@ function scoreGlobe(L, k, o){
 function fitNames(){ const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
     let f = parseFloat(getComputedStyle(ns[0]).fontSize) || 17; const over = () => ns.some(n => n.scrollWidth > n.clientWidth + .5);
     while (over() && f > 6){ f -= .5; ns.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
-  go(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); if (!fitNames.rz){ fitNames.rz = 1; addEventListener("resize", () => requestAnimationFrame(go)); } }
+  const go2 = () => { const ls = [...document.querySelectorAll("#msScore .sgx > div > span")]; if (!ls.length) return; ls.forEach(n => n.style.removeProperty("font-size"));
+    let f = parseFloat(getComputedStyle(ls[0]).fontSize) || 8; const over = () => ls.some(n => n.scrollWidth > n.clientWidth + .5);
+    while (over() && f > 4.5){ f -= .25; ls.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
+  const both = () => { go(); go2(); };
+  both(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(both); if (!fitNames.rz){ fitNames.rz = 1; addEventListener("resize", () => requestAnimationFrame(() => { go(); go2(); })); } }
 function meters(){
   if (!S || !S.leagues){ return; }
   const prev = prevEntry();
@@ -589,7 +593,7 @@ function meters(){
         <div class="mxl" title="Yahoo's win probability this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${weekStart(k, "y") === null ? "" : ` · dotted needle = where the week started, ${Math.round(weekStart(k, "y"))}%`}"><span class="yr">YAHOO<span class="yw"> WIN PROB</span>${off ? `<em class="chk" title="Yahoo shows ${y}% but its own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%. Check Yahoo before trusting the ${y}%.">CHECK</em>` : ""}</span></div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
-        <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>YAHOO WIN THIS WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
+        <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WIN THIS WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>
           <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>
         <div class="sgt">Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? ` · next kick <b>${esc(nextUp(L))}</b>` : done ? " · all games final" : ""}</div>`),
