@@ -159,19 +159,24 @@ def _wk_only_order():
         w = sorted((A.get(s) or {}).items(), key=lambda x: int(x[0])); return (w[-1][1][0], int(w[-1][0])) if w else (99, None)
     return sorted(("koerner", "vegas", "rotoballer"), key=lambda s: last(s)[0]), {s: last(s) for s in ("koerner", "vegas", "rotoballer")}
 WKO, WKG = _wk_only_order()
+# Nov 9 (Dom): the bar only decides MUST - 10% (was 15%); nobody is screened out by it, rising men still show HOT / STASH
+MUSTBAR = .10
 for (lg_, k_), (nm_, tm_, ps_) in PAN.meta.items():     # a man only Yahoo or Gotham sees still gets graded (Gotham is the early spotter)
     if ps_ in ALLPOS and (lg_, k_) not in EXP: EXP[(lg_, k_)] = {"_name": nm_, "_team": tm_, "_pos": ps_}
 XNAME = dict(PNAME, koerner="Koerner", vegas="Vegas", rotoballer="RotoBaller")
-EXPERTS = tuple(PAN.order) + tuple(WKO)                   # listed most to least accurate
+# Nov 9 8:55 AM: all seven are ranked together in the panel now - its order IS the list, most to least accurate
+WKO = [x for x in WKO if x not in PAN.order]
+EXPERTS = tuple(PAN.order) + tuple(WKO)
 SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks {START}-17", "gotham": "a game ahead", "koerner": "this week", "vegas": "this week", "rotoballer": "this week"}
 XREAD = dict(ratcliffe=READ.get("Ratcliffe", ""), clay=READ.get("Clay", ""), yahoo=PAN.read.get("yahoo", ""), gotham=PAN.read.get("gotham", ""),
              koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""))
 def xval(n, key, ex):
-    if ex in PAN.V: return PAN.V[ex].get((n, key))
+    if ex in PAN.V and PAN.V[ex]: return PAN.V[ex].get((n, key))
     return (EXP.get((n, key)) or {}).get(XNAME[ex])
 def xrank(ex):
-    if ex in PAN.order:
-        m = PAN.grades["miss"].get(ex); return f"#{PAN.order.index(ex) + 1}" + (f" ({m:.2f} missed Wk {PAN.grades['weeks'][0]})" if m is not None and PAN.grades["weeks"] else "")
+    if ex in PAN.ranked:
+        m = PAN.grades["miss"].get(ex); return f"#{PAN.ranked.index(ex) + 1}" + (f" ({m:.2f} missed Wk {PAN.grades['weeks'][0]})" if m is not None and PAN.grades["weeks"] else "") + (f", Week {PAN.waiting[ex]} numbers only - not averaged" if ex in PAN.waiting else "")
+    if ex in PAN.order: return "not graded yet"
     g, w = WKG.get(ex, (99, None)); return "this week only" + (f" ({g:.2f} missed Wk {w})" if w else "")
 
 # ---- Missing Pieces (open needs) and the league
@@ -241,7 +246,7 @@ def grade(n, key, d, MY, NEED):
         if rp and cp and rp > 0:
             gain = (cp - rp) / rp; g_fit += max(0, min(gain / 0.30, 1)) * 10
             fit_why.append(f"vs your {role} {rep['name']} ({PAN.label(both)}: {rp:.1f} a game vs {cp:.1f}): {'+' if gain >= 0 else ''}{gain * 100:.0f}%"
-                           + (" - clears your 15% bar" if gain >= .15 else " - under your 15% bar"))
+                           + (" - clears the 10% MUST bar" if gain >= MUSTBAR else " - under the 10% MUST bar"))
     if pos not in SKILL:
         rtm = (rep["key"].split()[0].upper() if pos == "DST" else rep["team"]) if rep else ""
         rw = (PAN.rate(n, rep["key"])[0] or 0) * len([w for w in range(START, 18) if sched.get(rtm, {}).get(w)]) if rep else 0
@@ -283,7 +288,7 @@ def grade(n, key, d, MY, NEED):
     if wp is not None: why.append(f"{tm} {REC[tm]}")
     # TIER (Dom, Nov 9: "top line indicators, must, hot, watch ... blink and alert to those to pick up asap")
     maj = had >= 2 and agree * 2 >= had
-    clears = gain is not None and gain >= .15
+    clears = gain is not None and gain >= MUSTBAR
     if not hurt and maj and ((clears and total >= 60) or (hit and total >= 70)):
         tier = "MUST"; tw = (f"+{gain * 100:.0f}% over {rep['name']}" if clears else "fills your missing piece") + f", {agree} of {had} sources agree, grade {total}"
     elif total >= 60 or clears:
@@ -298,7 +303,8 @@ def grade(n, key, d, MY, NEED):
                 why=why, experts=dict(verdict=verdict, agree=agree, of=had, lines=xc), replaces=rep["name"] if rep else "")
 
 out = {"built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT"),
-       "panel": {"order": [PNAME[s] for s in PAN.order], "check": [PNAME[s] for s in PAN.members], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
+       "panel": {"order": [PNAME[s] for s in PAN.ranked], "check": [PNAME[s] for s in PAN.members], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
+                 "waiting": {PNAME[s]: w for s, w in PAN.waiting.items()}, "basis": PAN.grades.get("basis", ""), "ungraded": [PNAME[s] for s in PAN.order if s not in PAN.ranked],
                  "week": (PAN.grades["weeks"] or [None])[0], "players": PAN.grades["players"], "weeks_ahead": f"{START}-17", "notes": PAN.notes,
                  "others": [dict(name=XNAME[s], miss=WKG[s][0] if WKG[s][1] else None, week=WKG[s][1]) for s in WKO],
                  "reads": {PNAME[s]: XREAD.get(s, "") for s in PAN.order}},

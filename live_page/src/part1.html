@@ -1233,4 +1233,25 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}
 #msPick .pkc.on{border-color:var(--lc);background:color-mix(in srgb,var(--lc) 18%,#0E1626);box-shadow:0 0 0 1px var(--lc),0 0 12px -4px var(--lc)}
-#msPick .pkc.on .lg{color:#fff}</style>
+#msPick .pkc.on .lg{color:#fff}
+/* Nov 9 8:55 AM (Dom): four boxes, icon on the right, full name; list folds under them */
+#msPick .pkc{gap:3px;padding:6px 7px}
+#msPick .pkc .r1{display:flex;justify-content:space-between;align-items:center;width:100%}
+#msPick .pkc .lg{font:400 17px/1 var(--f-disp);letter-spacing:.04em;color:var(--lc)}
+#msPick .pkc .ic{font-size:16px;line-height:1}
+#msPick .pkc .who{font-size:12.5px;font-weight:600;color:#fff;white-space:normal;overflow-wrap:anywhere;line-height:1.2}
+#msPick .pkc .who.none{color:#6B7893;font-weight:500}
+#msPick .pkst{font-size:10px;color:#6B7893;margin-top:4px;text-align:right}
+#msPick .pkth{margin:0 0 5px}#msPick .pkth span{color:var(--red);font-weight:700}
+@media (prefers-reduced-motion:no-preference){#msPick .pkc.t-MUST .ic{animation:pkm 1.2s steps(2,start) infinite}}
+.pkopen{border-top:2px solid var(--lc);padding-top:6px;margin-top:4px}
+.pk2 .nm b{display:flex;align-items:baseline;gap:5px;min-width:0}.pk2 .nm b em{font:500 11px/1 var(--f-body);font-style:normal;color:var(--mute);white-space:nowrap}
+.pk2 .nm .ic{flex:none;font-size:14px}
+.pk2>summary{padding:5px 8px}.pk2 .pkr{width:30px;height:30px}
+.okk{color:#3FBF7F;font-weight:800}
+.acct .pk3{display:inline-block;margin-left:4px;padding:0 5px;border:1px solid #3FBF7F;border-radius:6px;color:#3FBF7F;font-size:12px;font-weight:800}
+.acct ol.acl li .of b{font-size:15px;color:#fff}
+.xo b .ork .okk{font-size:9px}
+.xo b{font-size:8.5px}
+@media (max-width:560px){.xo b{font-size:8px}.xo b .ork{font-size:7.5px}}
+.accf{margin-top:8px}.xkey .okk{color:#3FBF7F}.accf > summary .cnt{color:#3FBF7F}</style>

@@ -584,7 +584,7 @@ function fitNames(){ const go = () => { const ns = [...document.querySelectorAll
   both(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(both); if (!fitNames.rz){ fitNames.rz = 1; addEventListener("resize", () => requestAnimationFrame(() => { go(); go2(); })); } }
 function meters(){
   if (!S || !S.leagues){ return; }
-  const prev = prevEntry(), ORK = ourRanks();
+  const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck();
   const TILES = KEYS.map(k => { const L = lgS(k); if (!L) return null;
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive);
     const nA = {red: live.filter(x => x.color === "red").length, gold: live.filter(x => x.color === "gold").length}; nA.grey = live.length - nA.red - nA.gold;
@@ -600,7 +600,7 @@ function meters(){
     const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${(XACC[s2] || {}).lead ? " xlead" : ""}${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}${(XACC[s2] || {}).lead ? " (the one everything is checked against)" : ""}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<b${nm.length > 9 ? ' class="lng"' : ""}>${nm}${ORK[SRCID[s2]] ? `<span class="ork"> #${ORK[SRCID[s2]]}</span>` : ""}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<b>${nm}${ORK[SRCID[s2]] ? `<span class="ork"> #${ORK[SRCID[s2]]}${OMISS[SRCID[s2]] !== undefined ? ` · ${OMISS[SRCID[s2]].toFixed(2)} off` : ""}${OCK.includes(SRCID[s2]) ? ` <span class="okk">&#10003;</span>` : ""}</span>` : ""}</b><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -618,12 +618,12 @@ function meters(){
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${wp2(y)}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>`),
-          c: T("c", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${[["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"], ["v", "VEGAS"], ["b", "ROTOBALLER"]].map(orb).join("")}</div></div>`)}; }).filter(Boolean);
+          c: T("c", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${[["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"], ["v", "VEGAS"], ["b", "ROTO"]].map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
   $("#meters").innerHTML = SEC("msWin", "Win probability", "", "a") + SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"><b>Ratcliffe leads</b> (gold) · listed most to least accurate</div>` + accTable()); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"># = accuracy rank · points missed per player last graded week · <b class="okk">&#10003;</b> = top three, used for pickups</div>` + accTable()); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
@@ -634,29 +634,42 @@ function meters(){
 /* Nov 9 (Dom): "Experts rank #, how far off pts or % from last week. Last time graded." Our own grade, in his leagues' scoring,
    each number frozen before kickoff: rank among the panel by last graded week, points missed per player and % off, change vs the week before. */
 /* Nov 9 8:20 AM (Dom): "add our rank behind name" - our accuracy rank (same order as the How far off table) behind every source's name */
-function ourRanks(){ const src = ((M && M.acc) || {}).src || {}, last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? wk[String(ws[ws.length - 1])][0] : null; };
+/* Nov 9 8:55 AM (Dom): one ranking everywhere - the pickup panel ranks all seven on the same players; its top three are the check */
+const PNID = {Ratcliffe: "ratcliffe", Koerner: "koerner", Clay: "clay", Vegas: "vegas", RotoBaller: "rotoballer", Yahoo: "yahoo", Gotham: "gotham"};
+function panelQ(){ const Q = ((PK || (M && M.pickups) || {}).panel) || null; return Q && Q.order && Q.miss && Object.keys(Q.miss).length ? Q : null; }
+function ourRanks(){ const Q = panelQ();
+  if (Q) return Object.fromEntries(Q.order.filter(n => Q.miss[n] !== undefined).map((n, i) => [PNID[n] || n.toLowerCase(), i + 1]));
+  const src = ((M && M.acc) || {}).src || {}, last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? wk[String(ws[ws.length - 1])][0] : null; };
   const ids = Object.keys(src).filter(id => last(src[id]) !== null).sort((a, b) => last(src[a]) - last(src[b])); return Object.fromEntries(ids.map((id, i) => [id, i + 1])); }
+function ourMiss(){ const Q = panelQ(); if (Q) return Object.fromEntries(Object.entries(Q.miss).map(([n, v]) => [PNID[n] || n.toLowerCase(), v]));
+  const src = ((M && M.acc) || {}).src || {}; return Object.fromEntries(Object.entries(src).map(([id, wk]) => { const ws = Object.keys(wk).map(Number).sort((a, b) => a - b); return [id, ws.length ? wk[String(ws[ws.length - 1])][0] : undefined]; }).filter(x => x[1] !== undefined)); }
+function ourCheck(){ const Q = panelQ(); return Q ? (Q.check || []).map(n => PNID[n] || n.toLowerCase()) : []; }
 const SRCID = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
 function accTable(){
-  /* Nov 9 8:28 AM (Dom): list 1 through 7, best on top - "1, Ratcliffe" then how far off; a check mark on the three
-     the pickups use this week (taken from the pickup panel itself, so the mark never says something the pickups don't do) */
-  const A = (M && M.acc) || {}, src = A.src || {}; if (!Object.keys(src).length) return "";
-  const NM = {ratcliffe: ["Ratcliffe", "r"], koerner: ["Koerner", "k"], clay: ["Clay", "c"], vegas: ["Vegas", "v"], rotoballer: ["RotoBaller", "b"], yahoo: ["Yahoo", null], gotham: ["Gotham (engine)", null]};
-  const PN = (PK || (M && M.pickups) || {}).panel || {}, CK = (PN.check || []).map(x => String(x).toLowerCase().replace(/\s*\(.*$/, ""));
-  const last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], ws.length > 1 ? ws[ws.length - 2] : null] : [null, null]; };
-  const row = (id, label, fp) => { const wk = src[id] || {}, [w, w0] = last(wk), ck = CK.includes(id);
-    const mark = ck ? `<span class="pk3" title="One of the three sources the pickups are averaged on this week">&#10003; pickups</span>` : "";
-    const sub = `${fp ? "FantasyPros #" + fp : "not in FantasyPros' contest"}`;
-    if (w === null) return {id, miss: 99, html: () => `<li class="${ck ? "ck" : ""}"><span class="n">–,</span><span class="nm">${label}${mark}</span><span class="of ng">not graded yet</span><em>${sub}</em></li>`};
-    const [m, n, pc] = wk[String(w)], p0 = w0 !== null ? wk[String(w0)] : null, dm = p0 ? m - p0[0] : null;
-    const ch = dm === null ? "first week graded" : Math.abs(dm) < .05 ? "same as the week before" : `${dm < 0 ? "better" : "worse"} by ${Math.abs(dm).toFixed(1)} than the week before`;
-    return {id, miss: m, html: (r) => `<li class="${id === "ratcliffe" ? "lead" : ""}${ck ? " ck" : ""}"><span class="n">${r},</span><span class="nm">${label}${mark}</span><span class="of">off <b>${m.toFixed(1)}</b> pts a player${pc !== undefined && pc !== null ? " · " + pc.toFixed(0) + "%" : ""}</span><em>${sub} · ${ch} · Week ${w}, ${n} players</em></li>`}; };
-  const ex = Object.entries(NM).map(([id, [nm, s2]]) => row(id, nm, s2 ? (XACC[s2] || {}).rk : null)).sort((a, b) => a.miss - b.miss);
-  let r = 0; const body = ex.map(x => x.miss === 99 ? x.html() : x.html(++r)).join("");
-  const ckNote = CK.length ? `&#10003; = the ${CK.length} sources this week's pickups are averaged on (${esc((PN.check || []).join(", "))}), picked by the pickup check${PN.week ? " on Week " + esc(String(PN.week)) : ""}.` : "&#10003; marks appear once the next build posts this week's pickup check.";
-  return `<div class="acct"><div class="ach"><b>How far off they were</b><span>graded ${esc(A.graded || "-")}${A.week ? ` · Week ${A.week} so far, ${A.players || "?"} players` : ""}</span></div>
-    <ol class="acl">${body}</ol>
-    <p>${ckNote} Rank = who missed least last graded week, points missed per player in your leagues' scoring, each projection frozen before kickoff; % = total points missed / total points scored.</p></div>`;
+  /* Nov 9 8:55 AM (Dom): "How far off they were" folds up into Experts & Sources (closed until tapped); 1-7 best on top,
+     "1, Gotham" then points off to two decimals; green check on the top three = the three this week's pickups are averaged on;
+     the pickup check's rules live here now, not under Diamonds in the Rough */
+  const Q = panelQ(), A = (M && M.acc) || {}, P = PK || (M && M.pickups) || {};
+  const LBL = {Ratcliffe: "Ratcliffe", Koerner: "Koerner", Clay: "Clay", Vegas: "Vegas", RotoBaller: "Roto", Yahoo: "Yahoo", Gotham: "Gotham (engine)"};
+  const FPR = {Ratcliffe: (XACC.r || {}).rk, Koerner: (XACC.k || {}).rk};
+  let rows = [], wk = "", np = "", basis = "";
+  if (Q){ wk = Q.week; np = Q.players; basis = Q.basis || "";
+    const ranked = Q.order.filter(n => Q.miss[n] !== undefined), rest = Object.keys(LBL).filter(n => !ranked.includes(n));
+    rows = ranked.map((n, i) => ({n, r: i + 1, m: Q.miss[n], ck: (Q.check || []).includes(n), wait: (Q.waiting || {})[n]})).concat(rest.map(n => ({n, r: null})));
+  } else { const src = A.src || {}; if (!Object.keys(src).length) return "";
+    const lastOf = (w) => { const ws = Object.keys(w || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], w[String(ws[ws.length - 1])]] : [null, null]; };
+    const IDN = {ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"};
+    const g = Object.entries(IDN).map(([id, n]) => { const [w, v] = lastOf(src[id]); if (w !== null) wk = w; return {n, m: v ? v[0] : null}; });
+    const gr = g.filter(x => x.m !== null).sort((a, b) => a.m - b.m); rows = gr.map((x, i) => ({n: x.n, r: i + 1, m: x.m, ck: false})).concat(g.filter(x => x.m === null).map(x => ({n: x.n, r: null}))); basis = "each source on its own players"; }
+  const li = rows.map(x => x.r === null
+      ? `<li><span class="n">–,</span><span class="nm">${LBL[x.n] || x.n}</span><span class="of ng">not graded yet</span></li>`
+      : `<li class="${x.ck ? "ck" : ""}"><span class="n">${x.r},</span><span class="nm">${LBL[x.n] || x.n}${x.ck ? ` <span class="pk3" title="Top three by accuracy - this week's pickups are averaged on these">&#10003;</span>` : ""}</span><span class="of"><b>${x.m.toFixed(2)}</b> off</span>${x.ck && x.wait ? `<em>Week ${esc(String(x.wait))} numbers only so far - the next source steps in until the week-ahead numbers post</em>` : FPR[x.n] ? `<em>FantasyPros #${FPR[x.n]}</em>` : ""}</li>`).join("");
+  const top = rows.filter(x => x.ck).map(x => x.n === "RotoBaller" ? "Roto" : x.n);
+  return `<details class="fold accf" data-fold="accf"${FOLDS.accf ? " open" : ""}><summary>How far off they were <span class="cnt">${top.length ? "&#10003; " + esc(top.join(", ")) : "Week " + esc(String(wk || "-"))}</span></summary><div class="fb"><div class="acct">
+    <div class="ach"><span>Week ${esc(String(wk || "-"))}${np ? ` · ${np} players` : ""}${basis ? " · " + esc(basis) : ""} · graded ${esc(A.graded || "-")}</span></div>
+    <ol class="acl">${li}</ol>
+    <p>Points missed per player, in your leagues' scoring, each projection frozen before kickoff. &#10003; = the top three: every pickup's points, and his edge over the man he'd replace, are the average of these three (if one has no number for a man, the next one down steps in). The order re-ranks every week. Alerts still fire on any one source.${Q && (Q.notes || []).length ? " Note: " + esc(Q.notes.join("; ")) : ""}</p>
+    <p>Diamonds in the Rough grade, out of 100: value 30, your fit 25 (missing pieces, beats your weakest starter, depth), workload 15, playoffs 15, team record 5, path to the job 10; Out or Doubtful costs 10. &#128680; MUST = 10%+ over the man he'd replace (or fills a missing piece at grade 70+), at least half the sources agree, grade 60+, healthy - blinks and pushes to your phone. &#128293; HOT = grade 60+ or clears 10% without the sources behind it. &#128230; STASH = the starter ahead is fading or a coach talked up his role. &#128064; WATCH = not yet. Checked 4:40 AM, 1:40 PM, 7:40 PM PT${P.built ? " · last " + esc(P.built) : ""}. Talk it through before any claim.</p></div></div></details>`;
 }
 function nextKick(){ const ks = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x).getTime()).filter(t => t > Date.now()).sort((a, b) => a - b);
   if (!ks.length) return ""; const m = Math.round((ks[0] - Date.now()) / 6e4); const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mi = m % 60;
@@ -1122,6 +1135,10 @@ document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches 
    Built by live_sync/pickups.py into live/pickups. One tab per league (remembered). Grade = value 45 + workload 20 +
    playoff schedule 15 + team record 10 + path to the job 10; every part and every source carries its time. */
 let PKL = store.get("pkl") || "1";
+/* Nov 9 8:55 AM (Dom): four boxes across, an icon instead of the word, everything else folded under them; tap a box = that league opens */
+let PKOPEN = store.get("pkopen") || "";
+const PKI = {MUST: "&#128680;", HOT: "&#128293;", STASH: "&#128230;", WATCH: "&#128064;"};
+const PKW = {MUST: "must pick up", HOT: "hot", STASH: "stash", WATCH: "watch"};
 /* Nov 9 8:07 AM (Dom): "blink column when changes with recommended pickups" - each device remembers the list it last saw; a man who is new
    to a league's list, or whose tier or place moved, blinks his rank column (and that league's chip and tab) until his row is opened */
 const PKSEEN = store.get("pkseen", {});
@@ -1141,13 +1158,15 @@ function renderPickups(){
   /* top line: each league's best pickup by tier - MUST blinks (Dom, Nov 9: "blink ... pick up asap") */
   {
     const chips = ["1", "2", "3", "4"].map(n => { const t = ((P.leagues[n] || {}).top || []).slice().sort((a, b) => TO[tierOf(a)] - TO[tierOf(b)] || b.grade - a.grade)[0];
-      if (!t) return `<button type="button" class="pkc${n === PKL ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-pkgo="${n}"><span class="lg">DK${n}</span><span class="tr none">-</span></button>`;
+      if (!t) return `<button type="button" class="pkc${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-pkgo="${n}"><span class="r1"><span class="lg">DK${n}</span></span><span class="who none">nothing yet</span></button>`;
       const more = ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === tierOf(t)).length - 1;
-      return `<button type="button" class="pkc t-${tierOf(t)}${Object.keys(CHG[n]).length ? " chg" : ""}${n === PKL ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" aria-pressed="${n === PKL}" data-pkgo="${n}" title="${esc(t.tier_why || "")}"><span class="lg">DK${n}</span><span class="tr">${tierOf(t)}</span><span class="who">${esc(t.pos === "DEF" ? t.team + " DEF" : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "").split(" ").slice(-1)[0])}${more > 0 ? ` <em>+${more}</em>` : ""}</span></button>`; }).join("");
+      const nmT = t.pos === "DEF" || /DEF$/.test(t.name) ? (t.name.endsWith("DEF") ? t.name : t.team + " DEF") : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "");
+      return `<button type="button" class="pkc t-${tierOf(t)}${Object.keys(CHG[n]).length ? " chg" : ""}${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" aria-expanded="${n === PKOPEN}" data-pkgo="${n}" title="${esc(PKW[tierOf(t)] + ": " + (t.tier_why || ""))}" aria-label="DK${n} ${esc(PKW[tierOf(t)])}: ${esc(nmT)}"><span class="r1"><span class="lg">DK${n}</span><span class="ic">${PKI[tierOf(t)]}</span></span><span class="who">${esc(nmT)}${more > 0 ? ` <em>+${more}</em>` : ""}</span></button>`; }).join("");
     const nm = ["1", "2", "3", "4"].reduce((a, n) => a + ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === "MUST").length, 0);
     /* Nov 9 8:21 AM (Dom): one Diamonds in the Rough, down with the list - the league chips ARE the tabs */
-    TOP.innerHTML = ""; PKCHIPS = `<div class="pktop${nm ? " hasmust" : ""}"><div class="pkth"><span>${nm ? `${nm} MUST - grab before a rival does` : "best in each league"} · ${esc(P.built || "")}</span></div><div class="pkcs">${chips}</div></div>`;
+    TOP.innerHTML = ""; PKCHIPS = `<div class="pktop${nm ? " hasmust" : ""}">${nm ? `<div class="pkth"><span>&#128680; ${nm} must pick up - grab before a rival does</span></div>` : ""}<div class="pkcs">${chips}</div><div class="pkst">${esc(P.built || "")}${PKOPEN ? "" : " · tap a box"}</div></div>`;
   }
+  if (PKOPEN) PKL = PKOPEN;
   const L = P.leagues[PKL] || {top: []}, src = P.sources || {};
   const gc = (g) => g >= 70 ? "g" : g >= 55 ? "a" : "n";
   const ring = (g) => { const r = 15, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g)) / 100;
@@ -1155,23 +1174,18 @@ function renderPickups(){
   const PART = [["value", "Value", 30], ["fit", "Your fit", 25], ["workload", "Workload", 15], ["playoffs", "Playoffs", 15], ["team", "Team", 5], ["path", "Path", 10]];
   const C = CHG[PKL] || {};
   const rows = (L.top || []).map((p, i) => `<details class="pk2${C[p.key] ? " chg" : ""}" data-fold="pk-${PKL}-${i}" data-pkseen="${PKL}|${esc(p.key)}|${esc(pkSig(p, i))}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
-      <summary><span class="rk" title="${C[p.key] ? "Changed since you last looked: " + esc(C[p.key]) + " - opening him clears it" : ""}">${i + 1}${C[p.key] ? `<i>${C[p.key] === "new" ? "NEW" : C[p.key].startsWith("tier") ? "TIER" : "MOVE"}</i>` : ""}</span>${ring(p.grade)}<span class="nm"><b><span class="tg t-${tierOf(p)}">${tierOf(p)}</span>${esc(p.name)}</b><em>${esc(p.pos)} · ${esc(p.team)} · ${esc(String(p.status || "").replace(/ \(.*\)$/, ""))}</em></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em>${p.experts && p.experts.of ? `<em class="xv">sources ${p.experts.agree}/${p.experts.of}</em>` : ""}</span></summary>
+      <summary><span class="rk" title="${C[p.key] ? "Changed since you last looked: " + esc(C[p.key]) + " - opening him clears it" : ""}">${i + 1}${C[p.key] ? `<i>${C[p.key] === "new" ? "NEW" : C[p.key].startsWith("tier") ? "TIER" : "MOVE"}</i>` : ""}</span>${ring(p.grade)}<span class="nm"><b><span class="ic t-${tierOf(p)}" title="${PKW[tierOf(p)]}">${PKI[tierOf(p)]}</span>${esc(p.name)} <em>${esc(p.pos)} · ${esc(p.team)}</em></b></span><span class="pp"><b>${Math.round(p.pts)}</b><em>pts ROS</em></span></summary>
       <div class="pkb"><div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em></div>`).join("")}</div>
       ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       ${p.experts ? `<div class="pkx2"><b>Every source, most to least accurate</b> - ${esc(p.experts.verdict)} <em>(gold = in this man's top-3 check)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}${x.check ? " ck" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b>${x.rank ? `<small>${esc(x.rank)}</small>` : ""} ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
   el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span>
     ${PKCHIPS}
-    <div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces - graded on upgrades over your starters and depth`}${L.pieces_built ? ` <em>(checked ${esc(L.pieces_built)})</em>` : ""}</div>
+    ${PKOPEN ? `<div class="pkopen" style="--lc:${LCOL[KEYS[+PKL - 1]]}"><div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces`}${L.read ? ` <em>· rosters ${esc(L.read)}</em>` : ""}</div>
     ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}
-    ${(() => { const Q = P.panel; if (!Q || !Q.order) return "";
-      const li = Q.order.map((nm, i) => `<li class="${(Q.check || []).includes(nm) ? "ck" : ""}"><span class="r">#${i + 1}</span><b>${esc(nm)}</b><em>${Q.miss && Q.miss[nm] !== undefined ? Q.miss[nm].toFixed(2) + " pts missed" : "not graded"}</em>${(Q.check || []).includes(nm) ? `<i>CHECK</i>` : `<i class="sb">steps in</i>`}</li>`).join("")
-        + (Q.others || []).map(o => `<li class="wk"><span class="r">–</span><b>${esc(o.name)}</b><em>${o.miss ? o.miss.toFixed(2) + " pts missed Wk " + o.week : "not graded yet"}</em><i class="sb">this week only</i></li>`).join("");
-      return `<details class="fold pkchk" data-fold="pkchk"${FOLDS.pkchk ? " open" : ""}><summary>The check · top 3 by accuracy <span class="cnt">${esc((Q.check || []).join(", "))}</span></summary><div class="fb">
-        <ul>${li}</ul><p class="note">Ranked on Week ${esc(String(Q.week || "-"))}, the last graded week (${Q.players || 0} players all four had numbers for, your leagues' scoring, each frozen before kickoff). Every pickup's points and his edge over the man he'd replace = the average of the three most accurate sources that have numbers for both; if one of the top three has none, the next one steps in. Koerner, Vegas and RotoBaller only post this week, so they're shown beside each man but not averaged into rest-of-season points. Alerts still fire on any one source.${(Q.notes || []).length ? " Note: " + esc(Q.notes.join("; ")) : ""}</p></div></details>`; })()}
-    <div class="pkfoot">RB, WR, TE, kickers${L.kicker_slot === false ? " (none here - no K slot)" : ""} and defenses. Points = the top-3 average (most accurate sources last graded week - see The check) a game x games left in Weeks ${esc((P.panel || {}).weeks_ahead || "ahead")}, in this league's scoring · usage through Week ${esc(String(src.nflverse_through_week || "-"))} · ${esc(src.standings || "")} · rosters read ${esc(L.read || "-")} · built ${esc(P.built || "-")}. Grade for this team: value 30, your fit 25 (missing pieces, beats your weakest starter, depth), workload 15, playoffs 15, team record 5, path to the job 10; Out or Doubtful costs 10. MUST = clears your 15% bar (or fills a missing piece at grade 70+) with at least half the sources agreeing and grade 60+, healthy - it blinks and pushes to your phone; HOT = grade 60+ or clears the 15% bar without the sources behind it; STASH = the starter ahead is fading or a coach talked up his role; WATCH = not yet. Checked three times a day (4:40 AM, 1:40 PM, 7:40 PM PT). Talk it through before any claim.</div></section>`;
+    <div class="pkfoot">Points = the top-three average (see How far off under Experts &amp; Sources) a game x games left, Weeks ${esc((P.panel || {}).weeks_ahead || "ahead")}, this league's scoring · tap a man for why.</div></div>` : ""}</section>`;
 }
-document.addEventListener("click", (e) => { const g = e.target.closest && e.target.closest("[data-pkgo]"); if (g){ PKL = g.dataset.pkgo; store.set("pkl", PKL); renderPickups(); const s = $("#msPick"); if (s) s.scrollIntoView({behavior: "smooth", block: "start"}); } });
+document.addEventListener("click", (e) => { const g = e.target.closest && e.target.closest("[data-pkgo]"); if (g){ const n = g.dataset.pkgo; PKOPEN = PKOPEN === n ? "" : n; store.set("pkopen", PKOPEN); if (PKOPEN){ PKL = n; store.set("pkl", PKL); } renderPickups(); } });
 document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-pkl]"); if (!b) return; PKL = b.dataset.pkl; store.set("pkl", PKL); renderPickups(); });
 
 /* ---------- events ---------- */

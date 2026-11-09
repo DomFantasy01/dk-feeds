@@ -21,7 +21,12 @@ import os, re, csv, json, glob, datetime
 from zoneinfo import ZoneInfo
 
 FORWARD = ("ratcliffe", "clay", "yahoo", "gotham")
-NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham"}
+NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham", "koerner": "Koerner", "vegas": "Vegas", "rotoballer": "RotoBaller"}
+# Nov 9 8:55 AM (Dom): "the top three that we have listed are the ones that we want to use this week in pickups" - all seven
+# sources are ranked together (same players, last graded week); the top three are the check, whoever they are. Koerner, Vegas and
+# RotoBaller post one week at a time: they count only once their numbers are for the week ahead (Dom: "every week it's going to change").
+ALL = ("ratcliffe", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
+WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read")}
 LAB = {1: "DKI", 2: "DKII", 3: "DKIII", 4: "DKIV"}
 WEEKS_BACK, SIZE = 1, 3
 TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals",
@@ -52,8 +57,8 @@ class Panel:
         self.R = repo; self.root = root or os.environ.get("DK_ROOT", "/home/claude")
         self.notes = []; self.W = self._week(); self.start = self._start()
         self.grades = self._grade(); self.members = self._pick(save)
-        self.V = {s: {} for s in FORWARD}; self.read = {}; self.meta = {}
-        self._ratcliffe(); self._clay(); self._yahoo(); self._gotham()
+        self.V = {s: {} for s in ALL}; self.read = {}; self.meta = {}; self.waiting = {}
+        self._ratcliffe(); self._clay(); self._yahoo(); self._gotham(); self._weekly()
 
     # ---- which week we are in, and the first week still ahead
     def _week(self):
@@ -74,28 +79,37 @@ class Panel:
 
     # ---- the accuracy grade, same players for all four sources
     def _grade(self):
+        """Every source with 20+ graded players in the last graded week, scored on the players they ALL have - nobody ranks
+        higher for grading on easier players. If that shared set is under 20, each is scored on its own players (noted)."""
         try: G = list(csv.DictReader(open(os.path.join(self.R, "dispatch_out", "scoreboard", "graded.csv"))))
         except Exception: G = []
-        weeks = sorted({int(r["week"]) for r in G}, reverse=True); out = {"weeks": [], "miss": {}, "players": 0}
-        tot = {s: 0.0 for s in FORWARD}; n = 0
+        weeks = sorted({int(r["week"]) for r in G}, reverse=True); out = {"weeks": [], "miss": {}, "players": 0, "basis": ""}
         for w in weeks:
-            rows = [r for r in G if int(r["week"]) == w and fnum(r.get("actual")) is not None and all(fnum(r.get(s)) is not None for s in FORWARD)]
-            if len(rows) < 20: continue
-            out["weeks"].append(w); n += len(rows)
-            for s in FORWARD: tot[s] += sum(abs(fnum(r[s]) - fnum(r["actual"])) for r in rows)
-            if len(out["weeks"]) >= WEEKS_BACK: break
-        out["players"] = n; out["miss"] = {s: round(tot[s] / n, 2) for s in FORWARD} if n else {}
+            R = [r for r in G if int(r["week"]) == w and fnum(r.get("actual")) is not None]
+            srcs = [s for s in ALL if sum(fnum(r.get(s)) is not None for r in R) >= 20]
+            if len(srcs) < SIZE: continue
+            com = [r for r in R if all(fnum(r.get(s)) is not None for s in srcs)]
+            if len(com) >= 20:
+                out["miss"] = {s: round(sum(abs(fnum(r[s]) - fnum(r["actual"])) for r in com) / len(com), 2) for s in srcs}
+                out["players"] = len(com); out["basis"] = "same players for every source"
+            else:
+                for s in srcs:
+                    d = [abs(fnum(r[s]) - fnum(r["actual"])) for r in R if fnum(r.get(s)) is not None]; out["miss"][s] = round(sum(d) / len(d), 2)
+                out["players"] = len(R); out["basis"] = "each source on its own players (too few shared)"
+            out["weeks"] = [w]; break
         return out
 
     def _pick(self, save):
         fp = os.path.join(self.R, "dispatch_out", "pickup_panel.json"); m = self.grades["miss"]
         if not m: self.notes.append("no graded week yet - order Ratcliffe, Yahoo, Gotham, Clay"); order = ["ratcliffe", "yahoo", "gotham", "clay"]
-        else: order = sorted(FORWARD, key=lambda s: m[s])
-        self.order = order
+        else: order = sorted(m, key=lambda s: m[s])
+        self.order = order + [s for s in ALL if s not in order]          # ungraded sources last, never in the check
+        self.ranked = order
         if save:
             try:
                 json.dump({"order": order, "members": order[:SIZE], "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "notes": self.notes,
-                           "rule": "forward sources ranked by points missed per player on the same players, last graded week; each man = average of the 3 most accurate that have a number for him",
+                           "basis": self.grades.get("basis", ""),
+                           "rule": "all sources ranked by points missed per player, last graded week; the top 3 are the check; each man = average of the 3 most accurate that have a number for him",
                            "built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT")}, open(fp, "w"), indent=1)
             except Exception: pass
         return order[:SIZE]
@@ -138,6 +152,20 @@ class Panel:
             for r in rows: self._put("gotham", n, pkey(r["player"], r["pos"], r["team"]), fnum(r.get("eng_fwd")), (r["player"], tm_of(r["team"], r["player"]), r["pos"]))
             self.read["gotham"] = (rows[0].get("gotham_run") if rows else "") or ""
 
+    def _weekly(self):
+        """Koerner / Vegas / RotoBaller: one week's number. It counts only when that week is the week ahead (self.start);
+        a number for a week already played sits out and the next most accurate source steps in."""
+        for s, (fn, wkcol, rdcol) in WEEKLY.items():
+            rows = self._csv(fn)
+            if not rows: continue
+            if wkcol: wk = int(fnum(rows[0].get(wkcol)) or 0)
+            else:
+                try: wk = int(json.load(open(os.path.join(self.R, "yahoo_drop", s, f"{s}_weekly.json"))).get("week") or 0)
+                except Exception: wk = 0
+            self.read[s] = rows[0].get(rdcol, "")
+            if wk < self.start: self.waiting[s] = wk; continue
+            for r in rows: self._put(s, r["lg"], pkey(r["name"], r["pos"], r["team"]), fnum(r.get("wk")))
+
     # ---- the panel's number
     def rate(self, n, key, pos=None):
         """(average, {source: value}) over the three most accurate sources that have a number for him."""
@@ -156,6 +184,7 @@ class Panel:
         return ("avg of " if len(srcs or self.members) > 1 else "") + " + ".join(NAME[s] for s in (srcs or self.members))
     def summary(self):
         m = self.grades["miss"]
+        if self.waiting: self.notes.append("; ".join(f"{NAME[s]} has Week {w} numbers only - waits for Week {self.start}, next source steps in" for s, w in self.waiting.items() if s in self.members))
         return (f"Pickup panel: {', '.join(NAME[s] for s in self.members)} (points missed per player, same {self.grades['players']} players, "
                 f"Week {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
 
