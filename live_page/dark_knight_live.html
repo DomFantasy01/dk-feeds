@@ -1209,7 +1209,7 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .acct td.rk{font-weight:800;color:#fff}.acct tr.lead td.en{color:var(--gold);font-weight:700}
 .acct td em{display:block;font-style:normal;font-size:10px;color:#8592AB;font-weight:400}
 .acct td.mi b{font-size:14px;color:#fff}.acct .up{color:#3FBF7F;font-weight:600}.acct .dn{color:#E5A93B;font-weight:600}.acct .z{color:#8592AB}
-.acct tr.ref td{color:#8592AB}.acct tr.ref td.mi b{color:#AEB8CC;font-size:13px}.acct .ng{color:#6B7893}
+.acct tr.ref td{color:#8592AB}.acct tr.ref td.mi b{color:#AEB8CC;font-size:13px}.acct .ng{color:#6B7893}.acct td em .our{color:#E8C66A;font-weight:700}.acct tr.own td.en{color:#9FC3FF}
 .acct p{margin:6px 2px 0;font-size:10.5px;color:#8592AB;line-height:1.35}
 </style>
 
@@ -1887,21 +1887,22 @@ function meters(){
 /* Nov 9 (Dom): "Experts rank #, how far off pts or % from last week. Last time graded." Our own grade, in his leagues' scoring,
    each number frozen before kickoff: rank among the panel by last graded week, points missed per player and % off, change vs the week before. */
 function accTable(){
+  /* Nov 9 (Dom): "add our rank behind, include Yahoo and Gotham" - Yahoo and Gotham ranked in with the experts;
+     our rank sits behind FantasyPros' rank on every row */
   const A = (M && M.acc) || {}, src = A.src || {}; if (!Object.keys(src).length) return "";
-  const NM = {ratcliffe: ["Ratcliffe", "r"], koerner: ["Koerner", "k"], clay: ["Clay", "c"], vegas: ["Vegas", "v"], rotoballer: ["RotoBaller", "b"]};
-  const REF = {yahoo: "Yahoo", gotham: "Gotham (engine)"};
+  const NM = {ratcliffe: ["Ratcliffe", "r"], koerner: ["Koerner", "k"], clay: ["Clay", "c"], vegas: ["Vegas", "v"], rotoballer: ["RotoBaller", "b"], yahoo: ["Yahoo", null], gotham: ["Gotham (engine)", null]};
   const last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], ws.length > 1 ? ws[ws.length - 2] : null] : [null, null]; };
-  const row = (id, label, fp, ref) => { const wk = src[id] || {}, [w, w0] = last(wk);
-    if (w === null) return {id, miss: 99, html: `<tr class="${ref ? "ref" : ""}"><td class="rk">–</td><td class="en">${label}${fp ? `<em>FantasyPros #${fp}</em>` : ""}</td><td colspan="3" class="ng">not graded yet</td></tr>`};
+  const tags = (fp, r) => `<em>${fp ? `FantasyPros #${fp}` : "FantasyPros –"} · <span class="our">ours ${r ? "#" + r : "–"}</span></em>`;
+  const row = (id, label, fp) => { const wk = src[id] || {}, [w, w0] = last(wk);
+    if (w === null) return {id, miss: 99, html: () => `<tr><td class="rk">–</td><td class="en">${label}${tags(fp, null)}</td><td colspan="3" class="ng">not graded yet</td></tr>`};
     const [m, n, pc] = wk[String(w)], p0 = w0 !== null ? wk[String(w0)] : null, dm = p0 ? m - p0[0] : null;
     const ch = dm === null ? `<span class="z">first week</span>` : Math.abs(dm) < .05 ? `<span class="z">same</span>` : `<span class="${dm < 0 ? "up" : "dn"}">${dm < 0 ? "better" : "worse"} ${Math.abs(dm).toFixed(1)}</span>`;
-    return {id, miss: m, ref, w, html: (r) => `<tr class="${ref ? "ref" : ""}${id === "ratcliffe" ? " lead" : ""}"><td class="rk">${ref ? "" : "#" + r}</td><td class="en">${label}${fp ? `<em>FantasyPros #${fp}</em>` : ""}</td><td class="mi"><b>${m.toFixed(2)}</b> pts</td><td class="pc">${pc !== undefined ? pc.toFixed(0) + "%" : "–"}</td><td class="ch">${ch}<em>Wk ${w} · ${n} players</em></td></tr>`}; };
-  const ex = Object.entries(NM).map(([id, [nm, s2]]) => row(id, nm, (XACC[s2] || {}).rk)).sort((a, b) => a.miss - b.miss);
-  let r = 0; const body = ex.map(x => typeof x.html === "function" ? x.html(++r) : x.html).join("");
-  const refs = Object.entries(REF).map(([id, nm]) => row(id, nm, null, true)).map(x => typeof x.html === "function" ? x.html(0) : x.html).join("");
+    return {id, miss: m, w, html: (r) => `<tr class="${id === "ratcliffe" ? "lead" : ""}${id === "yahoo" || id === "gotham" ? " own" : ""}"><td class="rk">#${r}</td><td class="en">${label}${tags(fp, r)}</td><td class="mi"><b>${m.toFixed(2)}</b> pts</td><td class="pc">${pc !== undefined && pc !== null ? pc.toFixed(0) + "%" : "–"}</td><td class="ch">${ch}<em>Wk ${w} · ${n} players</em></td></tr>`}; };
+  const ex = Object.entries(NM).map(([id, [nm, s2]]) => row(id, nm, s2 ? (XACC[s2] || {}).rk : null)).sort((a, b) => a.miss - b.miss);
+  let r = 0; const body = ex.map(x => x.miss === 99 ? x.html() : x.html(++r)).join("");
   return `<div class="acct"><div class="ach"><b>How far off they were</b><span>graded ${esc(A.graded || "-")}${A.week ? ` · Week ${A.week} so far, ${A.players || "?"} players` : ""}</span></div>
-    <table><thead><tr><th>Rank</th><th>Expert</th><th>Off per player</th><th>% off</th><th>vs week before</th></tr></thead><tbody>${body}${refs}</tbody></table>
-    <p>Rank = who missed least last graded week, in your leagues' scoring, each projection frozen before kickoff. % off = total points missed / total points scored. Yahoo and Gotham shown for comparison.</p></div>`;
+    <table><thead><tr><th>Our rank</th><th>Source</th><th>Off per player</th><th>% off</th><th>vs week before</th></tr></thead><tbody>${body}</tbody></table>
+    <p>Our rank = who missed least last graded week, in your leagues' scoring, each projection frozen before kickoff - experts, Yahoo and Gotham ranked together. FantasyPros # = their 2026 in-season accuracy contest (Yahoo, Gotham, Clay and Vegas aren't in it). % off = total points missed / total points scored.</p></div>`;
 }
 function nextKick(){ const ks = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x).getTime()).filter(t => t > Date.now()).sort((a, b) => a - b);
   if (!ks.length) return ""; const m = Math.round((ks[0] - Date.now()) / 6e4); const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mi = m % 60;
