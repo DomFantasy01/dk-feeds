@@ -1458,7 +1458,10 @@ function rangeChart(sc, live){
 /* ---------- status line ---------- */
 const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly Live sync */
   yahoo(d){ return d === 0 ? [[3, 50], ...Array.from({length: 13}, (_, i) => [8 + i, 50])] : d === 7 ? [] : [[3, 25], [9, 25], [13, 25], [16, 25], [18, 25], [21, 25]]; },
-  sync(d){ return [...Array.from({length: 20}, (_, i) => [4 + i, 25]), ...(d === 0 ? Array.from({length: 14}, (_, i) => [8 + i, 55]) : [])]; }   /* Nov 8: hourly at :25, plus :55 on Sundays */
+  /* Nov 8 8:30 PM: the real Live syncs - hourly at :25 (4:25 AM-11:25 PM), plus game-window syncs every 20 min with it:
+     Sunday :45 (9:45 AM-8:45 PM) and :05 (10:05 AM-9:05 PM); Monday and Thursday :45 (4:45-8:45 PM) and :05 (5:05-9:05 PM) */
+  sync(d){ const R = (a, b, m) => Array.from({length: b - a + 1}, (_, i) => [a + i, m]);
+    return [...R(4, 23, 25), ...(d === 0 ? [...R(9, 20, 45), ...R(10, 21, 5)] : d === 1 || d === 4 ? [...R(16, 20, 45), ...R(17, 21, 5)] : [])]; }
 };
 function pacNow(){ const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}).formatToParts(new Date()).map(x => [x.type, x.value]));
   return {d: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), m: (+p.hour % 24) * 60 + (+p.minute)}; }
@@ -1468,6 +1471,11 @@ function nextRun(){ const n = pacNow(); let best = null;
       if (t > n.m && (best === null || t < best.t)) best = {t, lab}; } }
   if (!best) return ""; const t = best.t % 1440, h = Math.floor(t / 60), mi = t % 60;
   return `${best.t >= 1440 ? "tomorrow " : ""}${(h % 12) || 12}:${String(mi).padStart(2, "0")} ${h < 12 ? "AM" : "PM"} (${best.lab})`; }
+/* the next time the Live page gets new data (next Live sync), as "8:45 PM" or "Mon 4:25 AM" */
+function nextUpdate(){ const n = pacNow(); let best = null;
+  for (let add = 0; add < 3 && best === null; add++){ const d = (n.d + add) % 7; for (const [h, mi] of SCHED.sync(d)){ const t = h * 60 + mi + add * 1440; if (t > n.m && (best === null || t < best)) best = t; } }
+  if (best === null) return ""; const t = best % 1440, h = Math.floor(t / 60), mi = t % 60, dd = Math.floor(best / 1440);
+  return `${dd ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][(n.d + dd) % 7] + " " : ""}${(h % 12) || 12}:${String(mi).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`; }
 function nextMins(){ const n = pacNow(); let best = null;   /* minutes to the next scheduled Yahoo read */
   for (let add = 0; add < 2 && best === null; add++){ const d = (n.d + add) % 7; for (const [h, mi] of SCHED.yahoo(d)){ const t = h * 60 + mi + add * 1440; if (t > n.m && (best === null || t < best)) best = t; } }
   return best === null ? null : best - n.m; }
@@ -1703,13 +1711,13 @@ function meters(){
         <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${y}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>
           <div class="sgbel"><span>ALERTS</span>${BELL}</div></div>
-        <div class="sgt">Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? ` · next kick <b>${esc(nextUp(L))}</b>` : done ? " · all games final" : ""}</div>`),
+        <div class="sgt">Yahoo ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}${nextUpdate() ? ` · Next update <b>${esc(nextUpdate())}</b>` : ""}</div>`),
           c: T("c", tag + `<div class="mxe"><div class="mxt">EXPERTS</div><div class="xg">${[["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(orb).join("")}</div></div>
       <div class="mxo" title="Playoff odds for the season (championship simulator)"><div class="mxt">PLAYOFF ODDS<span class="sx"> · SEASON</span></div><div class="pr"><b>${pcs(po)}</b><span class="tb"><i style="width:${po === null ? 0 : Math.max(2, po * 100)}%"></i></span></div></div>`)}; }).filter(Boolean);
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; playoff odds", "win probability this week · playoff odds for the season", "c") + SEC("msWin", "Win probability", "this week · Yahoo", "a");
+  $("#meters2").innerHTML = SEC("msWin", "Win probability", "this week · Yahoo", "a") + SEC("msExp", "Experts", "", "c");   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;

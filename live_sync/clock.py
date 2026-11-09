@@ -22,7 +22,11 @@ REPO = os.environ.get("GITHUB_REPOSITORY", "DomFantasy01/dk-feeds")
 WATCH = ["pull.yml", "proj.yml", "dispatch.yml"]   # the jobs whose schedules GitHub drops
 GRACE = 26          # minutes: on Nov 4 GitHub started the scheduled runs it did keep 10-25 minutes late - wait that out first
 LOOKBACK = 55       # minutes: only catch a slot this recent (an older miss is covered by the next slot)
-EARLY = {"dispatch.yml": 20}   # minutes: a build a Claude task started up to 20 min before the slot covers it (others: 3)
+EARLY = {"dispatch.yml": 8}    # minutes: a build started up to 8 min before the slot covers it (others: 3)
+# Nov 8 (Dom: "the page should update every 20 minutes in games"): with the 20-minute game-window builds, a 26-minute grace
+# meant the newest slot was ALWAYS younger than the grace, so the clock never caught a missed 20-minute build - Sunday night
+# the page went about an hour between builds. The Dispatch build now gets its own short grace.
+GRACE_WF = {"dispatch.yml": 7}
 PASS = 4            # minutes between passes
 LIFE = 345          # minutes this run stays awake (GitHub's limit is 360)
 WAITING = {"queued", "waiting", "pending", "requested"}
@@ -55,7 +59,7 @@ def one_pass(now, R, fired, log):
         S = last_slot(wf, now)
         if not S: continue
         age = (now - S).total_seconds() / 60
-        if age < GRACE or age > LOOKBACK or (wf, S) in fired: continue
+        if age < GRACE_WF.get(wf, GRACE) or age > LOOKBACK or (wf, S) in fired: continue
         mine = [r for r in R if r.get("path", "").endswith("/" + wf)]
         if any(ts(r["created_at"]) >= S - dt.timedelta(minutes=EARLY.get(wf, 3)) for r in mine): continue
         if qwait:
