@@ -475,16 +475,19 @@ function scoreGlobe(L, k, o){
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? "FINAL" : o.state === "NOT STARTED" ? "PRE-GAME" : "LIVE";
   const T0 = 14, T1 = 114;                                   /* tank top / bottom */
-  const tank = (x, w, val, proj, col, side) => { const h = T1 - T0, ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, big = side === "m";
+  /* Nov 8 4:19 PM (Dom): red tanks = deeper red for points scored, lighter red above it for what's still to come, textured where they meet */
+  const RED = col0 => col0 === "#FF4D57";
+  const tank = (x, w, val, proj, col0, side) => { const red = RED(col0), col = red ? "#B3121F" : col0, pcol = red ? "#FF8F96" : col0, h = T1 - T0, ly = T1 - Math.max(0, Math.min(1, val / sc)) * h, py = T1 - Math.max(0, Math.min(1, Math.max(proj, val) / sc)) * h, big = side === "m";
     const N = Math.ceil((w + 24) / 11), wave = (yy) => `M${x - 6} ${yy.toFixed(1)} q 5.5 -2 11 0` + " t 11 0".repeat(N);
     return `<clipPath id="${id}${side}"><rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7"/></clipPath>
       <linearGradient id="${id}${side}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}"/><stop offset=".55" stop-color="${col}" stop-opacity=".9"/><stop offset="1" stop-color="${col}" stop-opacity=".62"/></linearGradient>
       <rect x="${x - 1.2}" y="${T0 - 1.2}" width="${w + 2.4}" height="${h + 2.4}" rx="8" fill="#05080F"/>
       <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="url(#${id}gl)"/>
       <g clip-path="url(#${id}${side})">
-        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${col}" fill-opacity=".3"/>
+        <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="${pcol}" fill-opacity="${red ? .42 : .3}"/>
         <rect x="${x}" y="${py.toFixed(1)}" width="${w}" height="${(T1 - py + 1).toFixed(1)}" fill="url(#${id}gr)"/>
-        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${col}" stroke-opacity=".6" stroke-width="2.2" filter="url(#${id}b)"/>
+        <line x1="${x}" y1="${py.toFixed(1)}" x2="${x + w}" y2="${py.toFixed(1)}" stroke="${pcol}" stroke-opacity=".6" stroke-width="2.2" filter="url(#${id}b)"/>
+        ${red && val > 0 ? `<rect x="${x}" y="${(ly - 7).toFixed(1)}" width="${w}" height="9" fill="url(#${id}mx)"/><rect x="${x}" y="${(ly - 7).toFixed(1)}" width="${w}" height="9" fill="url(#${id}gr)" opacity=".9"/>` : ""}
         ${val > 0 ? `<g class="wv${big ? "" : " w2"}"><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}${side}s)"/>
           <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}ca)"/>
           <path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}bu)" class="bub"/><path d="${wave(ly)} V ${T1 + 2} H ${x - 6} Z" fill="url(#${id}sh)"/>
@@ -495,7 +498,7 @@ function scoreGlobe(L, k, o){
         <rect x="${x + w - 3.4}" y="${T0 + 6}" width="1.1" height="${h - 12}" rx=".5" fill="#fff" opacity=".12"/>
         <rect x="${x}" y="${T0}" width="${w}" height="${h}" fill="url(#${id}ed)"/></g>
       <path d="M${x + 5} ${T0 + .6} H ${x + w - 5}" stroke="#fff" stroke-opacity=".35" stroke-width=".7" stroke-linecap="round"/>
-      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? col : "#A3ABBD"}" stroke-opacity="${big ? .75 : .45}" stroke-width="${big ? 1.1 : .8}"/>
+      <rect x="${x}" y="${T0}" width="${w}" height="${h}" rx="7" fill="none" stroke="${big ? (red ? "#FF4D57" : col) : "#A3ABBD"}" stroke-opacity="${big ? .75 : .45}" stroke-width="${big ? 1.1 : .8}"/>
       <text x="${x + w / 2}" y="${T0 + 15}" text-anchor="middle" class="sgn ${big ? "bg" : "sm"}${f1(val).length > 4 ? " lg" : ""}${(big ? o.meOn : o.opOn) ? " on" : ""}">${f1(val)}</text>
       <text x="${x + w / 2}" y="${T0 + 23}" text-anchor="middle" class="sgpj">PROJ ${f1(proj)}</text>`; };
   const rail = (list, mine) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const g = 1.1, hh = (T1 - T0 - g * (n - 1)) / n;
@@ -512,6 +515,7 @@ function scoreGlobe(L, k, o){
     <linearGradient id="${id}sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity=".1"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
     <filter id="${id}b" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
     <pattern id="${id}ca" patternUnits="userSpaceOnUse" width="26" height="18" patternTransform="rotate(-8)"><path d="M0 9 Q 6.5 4 13 9 T 26 9" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="1.6"/><path d="M0 16 Q 6.5 12 13 16 T 26 16" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="1"/></pattern>
+    <linearGradient id="${id}mx" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8F96" stop-opacity="0"/><stop offset=".55" stop-color="#E0303C" stop-opacity=".55"/><stop offset="1" stop-color="#B3121F" stop-opacity="0"/></linearGradient>
     <linearGradient id="${id}dp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".18" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient>
     <linearGradient id="${id}sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <linearGradient id="${id}hl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></linearGradient>
