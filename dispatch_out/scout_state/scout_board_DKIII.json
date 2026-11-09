@@ -1,8 +1,8 @@
 {
  "league": "DK III",
- "run": "2026-11-09T00:43:26.792427-08:00",
- "run_str": "Mon Nov 9, 12:43 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-9 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Mon Nov 9, 12:42 AM PT (API) \u00b7 stats nflverse Mon 12:42 AM PT",
+ "run": "2026-11-09T02:36:04.095000-08:00",
+ "run_str": "Mon Nov 9, 2:36 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-9 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Mon Nov 9, 2:35 AM PT (API) \u00b7 stats nflverse Mon 2:35 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -12,7 +12,7 @@
    "gap": 7,
    "head": "The Defense Won't Hold",
    "title": "DEF, Season-Long",
-   "target": "Target 11.6 pts",
+   "target": "Target 11.5 pts",
    "why": "Full strength ~15.9 (Steelers). Wk 9 Giants ~12.0 (Steelers on bye, Giants slides in) \u00b7 Wk 10 Packers ~11.8 (Steelers has a worse matchup) \u00b7 Wk 12 Steelers ~9.8 (hard matchup vs DEN) \u00b7 Wk 13 Packers ~10.7 (Steelers has a worse matchup) \u00b7 Wk 14 Steelers ~8.8 (hard matchup vs JAX) \u00b7 Wk 15 Steelers ~13.3 \u00b7 Wk 16 Steelers ~12.7 \u00b7 Wk 17 Steelers ~13.3.",
    "across": "Wk 9 Bears ~10.1 vs Giants ~12.0 \u00b7 Wk 10 Buccaneers ~0.0 vs Packers ~11.8 \u00b7 Wk 12 Browns ~6.2 vs Steelers ~9.8 \u00b7 Wk 13 Lions ~10.1 vs Packers ~10.7 \u00b7 Wk 14 Viki",
    "picks": [],
@@ -72,10 +72,10 @@
    "age": 31,
    "gap": null,
    "head": "The Flex Runs Thin",
-   "title": "FLEX1, Week 10 Fill",
-   "target": "Target 8.7 pts",
-   "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.7 (Hockenson moves up to FLEX2, Douglas slides in).",
-   "across": "Wk 10 Allen ~16.9 vs Douglas ~8.7",
+   "title": "FLEX1, Weeks 10, 12 Fill",
+   "target": "Target 9.5 pts",
+   "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.7 (Hockenson moves up to FLEX2, Douglas slides in) \u00b7 Wk 12 Montgomery ~10.3 (Hockenson has a worse matchup).",
+   "across": "Wk 10 Allen ~16.9 vs Douglas ~8.7 \u00b7 Wk 12 McMillan ~14.5 vs Montgomery ~10.3",
    "picks": [
     {
      "rc": "both agree",
@@ -98,7 +98,7 @@
     }
    ],
    "none": null,
-   "kill": "Drops Off After Wk 10",
+   "kill": "Drops Off After Wk 12",
    "rows": [
     "Caleb Douglas"
    ],
@@ -145,6 +145,23 @@
   {
    "mark": "gold",
    "first": "2026-10-09",
+   "key": "need:WR2:fill:short",
+   "age": 31,
+   "gap": null,
+   "head": "The Receiving Corps Runs Thin",
+   "title": "WR2, Weeks 12, 14 Fill",
+   "target": "Target 11.1 pts",
+   "why": "Full strength ~10.5 (Douglas). Wk 12 Waddle ~11.3 (Douglas has a worse matchup) \u00b7 Wk 14 Downs ~10.9 (Douglas moves up to FLEX2, Downs slides in).",
+   "across": "Wk 12 Golden ~15.7 vs Waddle ~11.3 \u00b7 Wk 14 Flowers ~15.0 vs Downs ~10.9",
+   "picks": [],
+   "none": "No recommendation \u2014 nobody available fits.",
+   "kill": "Drops Off After Wk 14",
+   "rows": [],
+   "rep": 0
+  },
+  {
+   "mark": "gold",
+   "first": "2026-10-09",
    "key": "need:TE:fill:short",
    "age": 31,
    "gap": null,
@@ -169,30 +186,13 @@
    "title": "RB2, Week 10 Fill",
    "target": "Target 10.6 pts",
    "why": "Full strength ~12.1 (White). Wk 10 Montgomery ~10.6 (White moves up to RB1, Montgomery slides in).",
-   "across": "Wk 10 Tuten ~19.4 vs Montgomery ~10.6",
+   "across": "Wk 10 Tuten ~19.3 vs Montgomery ~10.6",
    "picks": [],
    "none": "No recommendation \u2014 nobody available fits.",
    "kill": "Drops Off After Wk 10",
    "rows": [
     "David Montgomery"
    ],
-   "rep": 0
-  },
-  {
-   "mark": "gold",
-   "first": "2026-10-09",
-   "key": "need:WR2:fill:short",
-   "age": 31,
-   "gap": null,
-   "head": "The Receiving Corps Runs Thin",
-   "title": "WR2, Week 12 Fill",
-   "target": "Target 11.3 pts",
-   "why": "Full strength ~10.5 (Douglas). Wk 12 Waddle ~11.3 (Douglas has a worse matchup).",
-   "across": "Wk 12 Golden ~15.7 vs Waddle ~11.3",
-   "picks": [],
-   "none": "No recommendation \u2014 nobody available fits.",
-   "kill": "Drops Off After Wk 12",
-   "rows": [],
    "rep": 0
   }
  ],
@@ -221,7 +221,7 @@
     "when": "Wk 9",
     "urg": "gold",
     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe not read vs 9.5 \u00b7 Yahoo not read vs 9.6 \u00b7 Gotham not read vs 9.2 - this week unknown",
-    "gain": 1.7,
+    "gain": 1.8,
     "pgain": -0.2
    },
    "act": false,
@@ -251,7 +251,7 @@
     "when": "Wk 9",
     "urg": "gold",
     "now": "This week vs your FLEX2 Caleb Douglas: Ratcliffe not read vs 9.5 \u00b7 Koerner 0.0 vs 9.3 \u00b7 Yahoo not read vs 9.6 \u00b7 Gotham 9.0 vs 9.2 - WORSE this week",
-    "gain": 2.2,
+    "gain": 2.3,
     "pgain": -0.2
    },
    "act": false,
@@ -309,6 +309,10 @@
    "fwd": 7.2,
    "gain": 0.0
   },
+  "cadeotton": {
+   "fwd": 5.6,
+   "gain": 0.0
+  },
   "gunnarhelm": {
    "fwd": 5.5,
    "gain": 0.0
@@ -323,10 +327,6 @@
   },
   "charliekolar": {
    "fwd": 5.2,
-   "gain": 0.0
-  },
-  "cadeotton": {
-   "fwd": 4.4,
    "gain": 0.0
   },
   "kenyonsadiq": {
@@ -381,6 +381,10 @@
    "fwd": 7.8,
    "gain": 0.0
   },
+  "kalifraymond": {
+   "fwd": 8.1,
+   "gain": 0.0
+  },
   "elicayomanor": {
    "fwd": 7.1,
    "gain": 0.0
@@ -411,7 +415,7 @@
   "Watch: Kendre Miller (NO RB) - only the Scout's model has a number on him - no Yahoo or Sleeper projection backs it.",
   "Stash: Tyler Goodson (DAL RB, waivers, clears Nov 11) - 29% of the DAL backfield's touches the last three games behind Javonte Williams (~21.2 a game, 70%); the lead job is his if Williams goes down; his own level now ~6.9",
   "Stash: Justice Hill (BAL RB, waivers, clears Nov 11) - 35% of the BAL backfield's touches the last three games behind Derrick Henry (~17.7 a game, 58%); the lead job is his if Henry goes down; his own level now ~8.6",
-  "Rising: Van Jefferson (WAS WR, waivers, clears Nov 11) - workload jumped to 11.9 expected points last game from 0.7 before; season level ~6.1, not on the Scout's pickup list yet - one more game like it and he is",
+  "Rising: Van Jefferson (WAS WR, waivers, clears Nov 11) - workload jumped to 12.0 expected points last game from 0.7 before; season level ~6.1, not on the Scout's pickup list yet - one more game like it and he is",
   "Rising: Darren Waller (CAR TE, waivers, clears Nov 11) - workload jumped to 16.2 expected points last game from 6.0 before; season level ~9.2, not on the Scout's pickup list yet - one more game like it and he is"
  ],
  "fade": [],
@@ -421,7 +425,7 @@
    "Koerner"
   ],
   "read": [
-   "pulled Mon Nov 9 2026 12:42 AM PT",
+   "pulled Mon Nov 9 2026 2:35 AM PT",
    "Jeff Ratcliffe updated 2026-11-08 09:59:11",
    "Sean Koerner updated 2026-11-08 09:14:26"
   ],

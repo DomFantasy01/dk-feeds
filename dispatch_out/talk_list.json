@@ -1,8 +1,8 @@
 {
  "week": 9,
- "built": "Mon Nov 09 2026 12:42 AM PT",
- "ratcliffe_read": "Sun Nov 8 2026 4:02 PM PT",
- "koerner_read": "Sun Nov 8 2026 6:05 PM PT",
+ "built": "Mon Nov 09 2026 02:35 AM PT",
+ "ratcliffe_read": "Mon Nov 9 2026 2:26 AM PT",
+ "koerner_read": "Mon Nov 9 2026 2:05 AM PT",
  "leagues": {
   "DK I": {
    "talk": [
@@ -20,7 +20,21 @@
      "first_seen": "Sun Nov 08 2026 05:16 PM PT"
     }
    ],
-   "watch": [],
+   "watch": [
+    {
+     "name": "MIN DEF",
+     "pos": "DEF",
+     "team": "MIN",
+     "acq": "Free agent",
+     "over": "TreVeyon Henderson",
+     "pct": 17,
+     "gain": 2.1,
+     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 7.8 vs 11.3 \u00b7 Koerner 7.0 vs 10.8 \u00b7 Yahoo 7.2 vs 10.1 - WORSE this week",
+     "scout": true,
+     "id": "watch:mindef",
+     "first_seen": "Mon Nov 09 2026 02:35 AM PT"
+    }
+   ],
    "cover": [
     {
      "title": "K, Week 10 Fill",
@@ -37,7 +51,7 @@
      "title": "FLEX1, Weeks 9, 11 Fill",
      "target": "Target 10.0 pts",
      "mark": "gold",
-     "why": "Full strength ~11.6 (Diggs). Wk 9 Douglas ~9.5 (Diggs moves up to WR2, Douglas slides in) \u00b7 Wk 11 Black ~10.4 (Diggs moves up to WR2, Black slides in).",
+     "why": "Full strength ~11.6 (Diggs). Wk 9 Douglas ~9.5 (Diggs moves up to WR2, Douglas slides in) \u00b7 Wk 11 Etienne ~10.5 (Diggs moves up to WR2, Etienne slides in).",
      "picks": [],
      "id": "cover:flex1weeks911fill",
      "first_seen": "Sun Nov 08 2026 09:06 AM PT"
@@ -129,8 +143,8 @@
      "team": "JAX",
      "acq": "Free agent",
      "over": "Chiefs",
-     "pct": 27,
-     "gain": 6.4,
+     "pct": 31,
+     "gain": 7.0,
      "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 10.6 vs 9.0 \u00b7 Koerner 9.8 vs 8.4 \u00b7 Yahoo 7.5 vs 7.3 - better this week",
      "scout": true,
      "id": "talk:jaxdef",
@@ -184,19 +198,6 @@
      "scout": false,
      "id": "watch:brianrobinson",
      "first_seen": "Sun Nov 08 2026 04:32 PM PT"
-    },
-    {
-     "name": "Chase McLaughlin",
-     "pos": "K",
-     "team": "TB",
-     "acq": "Waivers, clears Nov 11",
-     "over": "David Montgomery",
-     "pct": 20,
-     "gain": 2.2,
-     "note": "Scout pick (rest of season): This week vs your K Will Reichard: Ratcliffe 8.5 vs 9.4 \u00b7 Koerner 7.7 vs 7.7 \u00b7 Yahoo 7.7 vs 8.4 - WORSE this week",
-     "scout": true,
-     "id": "watch:chasemclaughlin",
-     "first_seen": "Sun Nov 08 2026 09:22 AM PT"
     },
     {
      "name": "Kimani Vidal",
@@ -273,15 +274,15 @@
      "first_seen": "Sun Nov 08 2026 02:02 PM PT"
     },
     {
-     "title": "FLEX1, Week 10 Fill",
-     "target": "Target 8.7 pts",
+     "title": "FLEX1, Weeks 10, 12 Fill",
+     "target": "Target 9.5 pts",
      "mark": "red",
-     "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.7 (Hockenson moves up to FLEX2, Douglas slides in).",
+     "why": "Full strength ~11.1 (Hockenson). Wk 10 Douglas ~8.7 (Hockenson moves up to FLEX2, Douglas slides in) \u00b7 Wk 12 Montgomery ~10.3 (Hockenson has a worse matchup).",
      "picks": [
       "Hunter Henry (Waivers, clears Nov 11)"
      ],
-     "id": "cover:flex1week10fill",
-     "first_seen": "Sun Nov 08 2026 04:32 PM PT"
+     "id": "cover:flex1weeks1012fill",
+     "first_seen": "Mon Nov 09 2026 02:35 AM PT"
     },
     {
      "title": "TE, Week 11 Fill",
@@ -309,6 +310,19 @@
   "DK IV": {
    "talk": [
     {
+     "name": "PIT DEF",
+     "pos": "DEF",
+     "team": "PIT",
+     "acq": "Free agent",
+     "over": "Bengals",
+     "pct": 37,
+     "gain": 3.4,
+     "note": "Scout pick (rest of season): This week: PIT DEF has a bye - no help this week",
+     "scout": true,
+     "id": "talk:pitdef",
+     "first_seen": "Sun Nov 08 2026 03:01 PM PT"
+    },
+    {
      "name": "GB DEF",
      "pos": "DEF",
      "team": "GB",
@@ -320,31 +334,27 @@
      "scout": true,
      "id": "talk:gbdef",
      "first_seen": "Sun Nov 08 2026 05:16 PM PT"
-    },
-    {
-     "name": "PIT DEF",
-     "pos": "DEF",
-     "team": "PIT",
-     "acq": "Free agent",
-     "over": "Bengals",
-     "pct": 26,
-     "gain": 2.0,
-     "note": "Scout pick (rest of season): This week: PIT DEF has a bye - no help this week",
-     "scout": true,
-     "id": "talk:pitdef",
-     "first_seen": "Sun Nov 08 2026 03:01 PM PT"
     }
    ],
    "watch": [],
    "cover": [
     {
      "title": "QB, Week 10 Fill",
-     "target": "Target 24.6 pts",
+     "target": "Target 24.7 pts",
      "mark": "gold",
-     "why": "Full strength ~22.4 (Prescott). Wk 10 Goff ~24.6 (Prescott moves up to SUPERFLEX, Goff slides in).",
+     "why": "Full strength ~22.4 (Prescott). Wk 10 Goff ~24.7 (Prescott moves up to SUPERFLEX, Goff slides in).",
      "picks": [],
      "id": "cover:qbweek10fill",
      "first_seen": "Mon Nov 02 2026 09:47 AM PT"
+    },
+    {
+     "title": "RB2, Weeks 10-11 Fill",
+     "target": "Target 13.8 pts",
+     "mark": "gold",
+     "why": "Full strength ~16.8 (Swift). Wk 10 Gordon ~13.6 (Swift on bye, Gordon slides in) \u00b7 Wk 11 Gordon ~13.9 (Swift moves up to RB1, Gordon slides in).",
+     "picks": [],
+     "id": "cover:rb2weeks1011fill",
+     "first_seen": "Mon Nov 09 2026 02:35 AM PT"
     }
    ],
    "block": [
