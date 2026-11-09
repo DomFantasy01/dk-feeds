@@ -381,7 +381,7 @@ function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
-    : `<span class="upw">Updated </span><b><span class="upw">${esc(PT(S.stamp, {weekday: "short"}))}, </span>${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b> <span class="mute upw">· updates every 20 min in games</span>`;
+    : `<b>${esc(PT(S.stamp, {weekday: "short"}))}, ${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>`;
   const kk = nextKick(), hn = $("#hcNext"); if (hn) hn.innerHTML = `Next update ${esc(nextRun())}${kk ? ` · next kickoff in <b>${esc(kk)}</b>` : ""}.`;
   if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
@@ -474,54 +474,51 @@ const STWORD = {pre: "still to play", live: "playing now", done: "done", out: "o
    (green ahead, red behind), his score under it. In the open bottom: the margin pill, ▲ ahead / ▼ behind, colored.
    Under the dial, two position strips (YOU / HIM, lineup order): dark green done, light green pulsing = playing,
    amber = problem, red = out/unknown, gray = still to play. Tap a block for that player, the dial for the league sheet. */
+/* Nov 8 5:55 PM (Dom: "hastily improve the graphics, better chart"): gauge v2 - built for the 4-across phone width (~85px a dial).
+   Clean 240-degree dial, no texture or blur: thick outer arc = you (win color), thin inner arc = him (gray); faint arc to Yahoo's
+   projected final with a white notch at the projection. Big score in the middle, his under it, projected finals under the dial,
+   margin pill, then two taller position strips (YOU / OPP) with readable letters. */
 function scoreGlobe(L, k, o){
-  const id = "sg" + SLUG[k], W = 120, H = 151, CX = 60, CY = 66;
-  const sc = Math.max(o.pMe, o.pOp, o.me, o.op, 1) * 1.08;
+  const id = "sg" + SLUG[k], W = 120, H = 146, CX = 60, CY = 58;
+  const sc = Math.max(o.pMe, o.pOp, o.me, o.op, 1) * 1.06;
   const fin = o.state === "FINAL", y = o.y, pre = o.state === "NOT STARTED", mg = o.me - o.op;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}[zone];
   const zw = fin ? "FINAL" : pre ? "PRE-GAME" : "LIVE";
-  const PAL = {"#3DDC84": ["#0E7A44", "#3DDC84", "#A9FFD0"], "#F7B32B": ["#A85F00", "#F7B32B", "#FFE6A0"],
-    "#FF4D57": ["#9C1220", "#FF4D57", "#FFB0B6"], "#A3ABBD": ["#4E566C", "#A3ABBD", "#E8ECF4"]};
+  const PAL = {"#3DDC84": ["#13894E", "#3DDC84", "#9CF5C4"], "#F7B32B": ["#B86A00", "#F7B32B", "#FFE19A"],
+    "#FF4D57": ["#B01B2A", "#FF4D57", "#FFA3AA"], "#A3ABBD": ["#5E677D", "#A3ABBD", "#D8DDE7"]};
   const MC = pre ? "#8E98AE" : Math.abs(mg) < .05 ? "#F7B32B" : mg > 0 ? "#3DDC84" : "#FF4D57";
-  const A0 = 135, SW = 270, rad = (d) => d * Math.PI / 180, pt = (r, d) => [CX + r * Math.cos(rad(d)), CY + r * Math.sin(rad(d))];
+  const A0 = 150, SW = 240, rad = (d) => d * Math.PI / 180, pt = (r, d) => [CX + r * Math.cos(rad(d)), CY + r * Math.sin(rad(d))];
   const arc = (r, f0, f1) => { f0 = Math.max(0, Math.min(1, f0)); f1 = Math.max(f0, Math.min(1, f1)); if (f1 - f0 < .002) return "";
     const d0 = A0 + SW * f0, d1 = A0 + SW * f1, [x0, y0] = pt(r, d0), [x1, y1] = pt(r, d1);
     return `M${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${d1 - d0 > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
   const ring = (r, sw, val, proj, col, side) => { const [dk, md, lt] = PAL[col], fv = val / sc, fp = Math.max(proj, val) / sc, big = side === "m", on = big ? o.meOn : o.opOn;
-    const [tx0, ty0] = pt(r - sw / 2 - 1, A0 + SW * Math.min(1, proj / sc)), [tx1, ty1] = pt(r + sw / 2 + 1, A0 + SW * Math.min(1, proj / sc)), [ex, ey] = pt(r, A0 + SW * Math.min(1, fv));
-    const ticks = []; for (let v = 50; v < sc; v += 50){ const [a1, b1] = pt(r + sw / 2 + (big ? 1.6 : 0), A0 + SW * v / sc), [a2, b2] = pt(r + sw / 2 + (big ? 3.4 : 0), A0 + SW * v / sc);
-      if (big) ticks.push(`<line x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${a2.toFixed(1)}" y2="${b2.toFixed(1)}" stroke="#5A6680" stroke-width=".6"/>`); }
-    return `<linearGradient id="${id}${side}g" gradientUnits="userSpaceOnUse" x1="${CX - r}" y1="${CY + r}" x2="${CX + r}" y2="${CY - r}"><stop offset="0" stop-color="${dk}"/><stop offset=".6" stop-color="${md}"/><stop offset="1" stop-color="${lt}"/></linearGradient>
-      <path d="${arc(r, 0, 1)}" fill="none" stroke="#141D33" stroke-width="${sw}" stroke-linecap="round"/>
-      <path d="${arc(r, 0, 1)}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="${sw - 2.4}" stroke-linecap="round" stroke-dasharray=".6 2.2"/>
-      ${ticks.join("")}
-      <path d="${arc(r, fv, fp)}" fill="none" stroke="${md}" stroke-opacity="${big ? .28 : .22}" stroke-width="${sw}" stroke-linecap="round"/>
-      ${val > 0 ? `<path d="${arc(r, 0, fv)}" fill="none" stroke="${md}" stroke-width="${sw}" stroke-linecap="round" filter="url(#${id}gw)" opacity="${big ? .7 : .35}"/>
-      <path d="${arc(r, 0, fv)}" fill="none" stroke="url(#${id}${side}g)" stroke-width="${sw}" stroke-linecap="round"/>
-      <path d="${arc(r - sw * .22, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="${(sw * .18).toFixed(2)}" stroke-linecap="round"/>
-      <circle class="${on ? "gcap on" : "gcap"}" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .6).toFixed(2)}" fill="${lt}"/>` : ""}
-      <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/>`; };
-  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 17, x1 = W - 3, g = 1, bw = (x1 - x0 - g * (n - 1)) / n, bh = 8.5;
-    return `<text x="2" y="${(yy + 6.2).toFixed(1)}" class="gsl${mine ? " me" : ""}">${mine ? "YOU" : "HIM"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
+    const pa = A0 + SW * Math.min(1, proj / sc), [tx0, ty0] = pt(r - sw / 2 - (big ? .3 : .2), pa), [tx1, ty1] = pt(r + sw / 2 + (big ? 3.2 : .2), pa), [ex, ey] = pt(r, A0 + SW * Math.min(1, fv));
+    return `<linearGradient id="${id}${side}g" gradientUnits="userSpaceOnUse" x1="${CX - r}" y1="${CY + r}" x2="${CX + r}" y2="${CY - r}"><stop offset="0" stop-color="${dk}"/><stop offset=".55" stop-color="${md}"/><stop offset="1" stop-color="${lt}"/></linearGradient>
+      <path d="${arc(r, 0, 1)}" fill="none" stroke="#18223A" stroke-width="${sw}" stroke-linecap="round"/>
+      <path d="${arc(r, fv, fp)}" fill="none" stroke="${md}" stroke-opacity="${big ? .3 : .25}" stroke-width="${sw}" stroke-linecap="round"/>
+      ${val > 0 ? `<path d="${arc(r, 0, fv)}" fill="none" stroke="url(#${id}${side}g)" stroke-width="${sw}" stroke-linecap="round"/>
+      ${big ? `<path d="${arc(r + sw * .26, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="${(sw * .16).toFixed(2)}" stroke-linecap="round"/>` : ""}
+      ${on ? `<circle class="gcap on" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .8).toFixed(2)}" fill="#fff" fill-opacity=".9"/>` : ""}` : ""}
+      <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="${big ? 1.6 : 1.1}" stroke-linecap="round"/>`; };
+  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 21, x1 = W - 1, g = 1.2, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
+    return `<text x="1" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}">${mine ? "YOU" : "OPP"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
-      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="1.4" fill="${RINGC[s]}"/>
-        <text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 5.9).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text></g>`; }).join(""); };
-  const sv = f1(o.me), mtxt = pre ? "PRE-GAME" : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
-  const pw = Math.max(32, mtxt.length * 4.9 + 9);
+      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}"/>
+        ${bw >= 7.5 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.6).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
+  const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲ " : "▼ ") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
+  const pw = Math.max(40, mtxt.length * 6.6 + 12);
   return `<svg class="sglobe sbox sgauge" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}, ${pre ? "not started" : mg >= 0 ? "ahead by " + f1(mg) : "behind by " + f1(-mg)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${zw}`)}"><defs>
-    <filter id="${id}gw" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>
-    <radialGradient id="${id}fc" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="${MC}" stop-opacity=".16"/><stop offset=".7" stop-color="#0A1122" stop-opacity="0"/></radialGradient></defs>
-    <text x="${CX}" y="5.6" text-anchor="middle" class="sgs gst${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
-    <circle cx="${CX}" cy="${CY}" r="37" fill="url(#${id}fc)"/>
-    ${ring(51, 9.5, o.me, o.pMe, ZC, "m")}${ring(39.5, 6, o.op, o.pOp, "#A3ABBD", "o")}
-    <text x="${CX}" y="${CY - 12}" text-anchor="middle" class="gk">YOU</text>
-    <text x="${CX}" y="${CY + 5.5}" text-anchor="middle" class="gsc${sv.length > 4 ? " lg" : ""}${o.meOn && !fin ? " on" : ""}" style="fill:${MC}">${sv}</text>
-    <text x="${CX}" y="${CY + 16}" text-anchor="middle" class="gop">vs <tspan>${f1(o.op)}</tspan></text>
-    <text x="${CX}" y="${CY + 24}" text-anchor="middle" class="gpj">PROJ ${f1(o.pMe)} – ${f1(o.pOp)}</text>
-    <rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 35}" width="${pw.toFixed(1)}" height="12" rx="6" fill="${MC}" fill-opacity="${pre ? .18 : .2}" stroke="${MC}" stroke-width=".8"/>
-    <text x="${CX}" y="${CY + 43.4}" text-anchor="middle" class="gmg" style="fill:${pre ? "#C9CFDB" : MC}">${mtxt}</text>
-    ${strip(L.players, true, 128)}${strip(L.oppPlayers, false, 140)}</svg>`;
+    <radialGradient id="${id}fc" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${MC}" stop-opacity=".14"/><stop offset="1" stop-color="${MC}" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="${CX}" cy="${CY}" r="30" fill="url(#${id}fc)"/>
+    ${ring(48, 11, o.me, o.pMe, ZC, "m")}${ring(35, 5.5, o.op, o.pOp, "#A3ABBD", "o")}
+    <text x="${CX}" y="${CY - 9}" text-anchor="middle" class="gk${o.meOn && !fin ? " on" : ""}" style="fill:${ZC}">${zw}</text>
+    <text x="${CX}" y="${CY + 8}" text-anchor="middle" class="gsc${sv.length > 4 ? " lg" : ""}${o.meOn && !fin ? " on" : ""}" style="fill:${MC}">${sv}</text>
+    <text x="${CX}" y="${CY + 20}" text-anchor="middle" class="gop">${f1(o.op)}</text>
+    <text x="${CX}" y="${CY + 36}" text-anchor="middle" class="gpj">PROJ <tspan>${f1(o.pMe)}</tspan> · ${f1(o.pOp)}</text>
+    <rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 41}" width="${pw.toFixed(1)}" height="14" rx="7" fill="${MC}" fill-opacity="${pre ? .16 : .22}" stroke="${MC}" stroke-width="1"/>
+    <text x="${CX}" y="${CY + 51.6}" text-anchor="middle" class="gmg" style="fill:${pre ? "#C9CFDB" : MC}">${mtxt}</text>
+    ${strip(L.players, true, 118)}${strip(L.oppPlayers, false, 132)}</svg>`;
 }
 function meters(){
   if (!S || !S.leagues){ return; }
