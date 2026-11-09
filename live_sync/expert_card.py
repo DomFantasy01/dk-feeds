@@ -110,9 +110,15 @@ try:
     acc = {}
     for s_ in ("ratcliffe", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham"):
         for w_ in sorted({int(r["week"]) for r in G}):
-            d = [abs(float(r[s_]) - float(r["actual"])) for r in G if int(r["week"]) == w_ and s_ in r and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
-            if d: acc.setdefault(s_, {})[str(w_)] = [round(sum(d) / len(d), 2), len(d)]
-    M["acc"] = dict(src=acc, note="average points missed per player (lower is better), each source's number frozen before kickoff")
+            pr = [(float(r[s_]), float(r["actual"])) for r in G if int(r["week"]) == w_ and s_ in r and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
+            d = [abs(a - b) for a, b in pr]
+            # Nov 9 (Dom: "how far off pts or %"): [points missed per player, players graded, % off = total missed / total scored]
+            if d: acc.setdefault(s_, {})[str(w_)] = [round(sum(d) / len(d), 2), len(d), round(100 * sum(d) / max(1e-9, sum(b for _, b in pr)), 1)]
+    import datetime as _dt, zoneinfo as _zi
+    _gm = _dt.datetime.fromtimestamp(os.path.getmtime(O(R, "dispatch_out/scoreboard/graded.csv")), _zi.ZoneInfo("America/Los_Angeles"))
+    _lw = max(int(r["week"]) for r in G)
+    M["acc"] = dict(src=acc, graded=_gm.strftime("%a %b %-d %-I:%M %p PT"), week=_lw, players=len([r for r in G if int(r["week"]) == _lw and r.get("actual") not in ("", None)]),
+                    note="average points missed per player (lower is better), each source's number frozen before kickoff")
 except Exception as _e: print("accuracy skipped:", _e)
 json.dump(M, open(MF, "w"), ensure_ascii=False)
 print(f"EXPERT CARDS: {n_all} player cards across four leagues (ranks read {rk_read})")

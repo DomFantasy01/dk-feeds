@@ -623,13 +623,32 @@ function meters(){
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
   $("#meters").innerHTML = SEC("msWin", "Win probability", "", "a") + SEC("msScore", "Scoreboard", "", "b");
   fitNames();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"><b>Ratcliffe leads</b> (gold) · listed most to least accurate</div>`); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", "", "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", `<div class="xkey"><b>Ratcliffe leads</b> (gold) · listed most to least accurate</div>` + accTable()); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
     const mv = pv === null || pv === undefined ? "" : y === pv ? "" : `<span class="${y > pv ? "up" : "dn"}">${y > pv ? "▲" : "▼"}${Math.abs(y - pv)}</span>`;
     return `<button type="button" class="sc" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}"><div class="t">${DK[k]}</div><div class="s ${scoreCls(L).split(" ")[0]}">${f1(score(L.players))}–${f1(score(L.oppPlayers))}</div>
       <div class="p"><b>${y}%</b> ${mv}</div><div class="p">${leftOf(L.players).length}/${leftOf(L.oppPlayers).length} left</div></button>`; }).join("");
   $("#sbar").innerHTML = `<span>Yahoo read ${esc(ago(S.stamp))}</span><span>${kick ? "Next kickoff " + esc(kick) : "No games left this week"}</span><button type="button" data-jump="top">Top</button>`;
+}
+/* Nov 9 (Dom): "Experts rank #, how far off pts or % from last week. Last time graded." Our own grade, in his leagues' scoring,
+   each number frozen before kickoff: rank among the panel by last graded week, points missed per player and % off, change vs the week before. */
+function accTable(){
+  const A = (M && M.acc) || {}, src = A.src || {}; if (!Object.keys(src).length) return "";
+  const NM = {ratcliffe: ["Ratcliffe", "r"], koerner: ["Koerner", "k"], clay: ["Clay", "c"], vegas: ["Vegas", "v"], rotoballer: ["RotoBaller", "b"]};
+  const REF = {yahoo: "Yahoo", gotham: "Gotham (engine)"};
+  const last = (wk) => { const ws = Object.keys(wk || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], ws.length > 1 ? ws[ws.length - 2] : null] : [null, null]; };
+  const row = (id, label, fp, ref) => { const wk = src[id] || {}, [w, w0] = last(wk);
+    if (w === null) return {id, miss: 99, html: `<tr class="${ref ? "ref" : ""}"><td class="rk">–</td><td class="en">${label}${fp ? `<em>FantasyPros #${fp}</em>` : ""}</td><td colspan="3" class="ng">not graded yet</td></tr>`};
+    const [m, n, pc] = wk[String(w)], p0 = w0 !== null ? wk[String(w0)] : null, dm = p0 ? m - p0[0] : null;
+    const ch = dm === null ? `<span class="z">first week</span>` : Math.abs(dm) < .05 ? `<span class="z">same</span>` : `<span class="${dm < 0 ? "up" : "dn"}">${dm < 0 ? "better" : "worse"} ${Math.abs(dm).toFixed(1)}</span>`;
+    return {id, miss: m, ref, w, html: (r) => `<tr class="${ref ? "ref" : ""}${id === "ratcliffe" ? " lead" : ""}"><td class="rk">${ref ? "" : "#" + r}</td><td class="en">${label}${fp ? `<em>FantasyPros #${fp}</em>` : ""}</td><td class="mi"><b>${m.toFixed(2)}</b> pts</td><td class="pc">${pc !== undefined ? pc.toFixed(0) + "%" : "–"}</td><td class="ch">${ch}<em>Wk ${w} · ${n} players</em></td></tr>`}; };
+  const ex = Object.entries(NM).map(([id, [nm, s2]]) => row(id, nm, (XACC[s2] || {}).rk)).sort((a, b) => a.miss - b.miss);
+  let r = 0; const body = ex.map(x => typeof x.html === "function" ? x.html(++r) : x.html).join("");
+  const refs = Object.entries(REF).map(([id, nm]) => row(id, nm, null, true)).map(x => typeof x.html === "function" ? x.html(0) : x.html).join("");
+  return `<div class="acct"><div class="ach"><b>How far off they were</b><span>graded ${esc(A.graded || "-")}${A.week ? ` · Week ${A.week} so far, ${A.players || "?"} players` : ""}</span></div>
+    <table><thead><tr><th>Rank</th><th>Expert</th><th>Off per player</th><th>% off</th><th>vs week before</th></tr></thead><tbody>${body}${refs}</tbody></table>
+    <p>Rank = who missed least last graded week, in your leagues' scoring, each projection frozen before kickoff. % off = total points missed / total points scored. Yahoo and Gotham shown for comparison.</p></div>`;
 }
 function nextKick(){ const ks = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x).getTime()).filter(t => t > Date.now()).sort((a, b) => a - b);
   if (!ks.length) return ""; const m = Math.round((ks[0] - Date.now()) / 6e4); const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mi = m % 60;
