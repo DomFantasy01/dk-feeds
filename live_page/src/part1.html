@@ -1136,4 +1136,14 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mgrid.g-a .mxp{margin-top:6px !important}
 /* Nov 8 8:53 PM (Dom): more room above, between and below the position strips */
 @media (max-width:560px){.msec{margin-top:13px !important}}
+/* Nov 8 8:55 PM: week trend under the Win probability % - start of the week to now, sparkline in the win color */
+.wtr{display:flex;align-items:center;gap:3px;margin:4px 2px 0;padding:3px 4px;border-radius:6px;background:rgba(6,10,20,.55);border:1px solid #22304C;box-shadow:inset 0 1px 3px rgba(0,0,0,.6)}
+.wtr .wl{flex:none;font:400 9px/1 var(--f-disp);letter-spacing:.08em;color:#AEB6C8}
+.wtr .spk{flex:1;min-width:0;height:14px;margin:0}
+.wtr .wtd{flex:none;font:700 8.5px/1 var(--f-num);color:var(--mute)}.wtr .wtd.up{color:#3DDC84}.wtr .wtd.dn{color:#FF6B72}
+@media (min-width:561px){.wtr .wl{font-size:11px}.wtr .spk{height:18px}.wtr .wtd{font-size:10.5px}}
+.wtr svg.spk{display:block !important;flex:1 1 auto;width:100% !important;max-width:none !important;height:14px !important;margin:0 !important;filter:none !important}
+@media (min-width:561px){.wtr svg.spk{height:18px !important}}
+@media (max-width:560px){.mgrid.g-c .xg{gap:0 !important}.mgrid.g-c .xo{padding:0 !important}.mgrid.g-c .xo svg{width:22px !important;height:22px !important}
+  .mgrid.g-c .mx{padding:6px 4px 5px !important}}
 </style>
