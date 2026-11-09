@@ -108,9 +108,9 @@ for lab, L in (M.get("leagues") or {}).items():
 try:
     G = list(csv.DictReader(open(O(R, "dispatch_out/scoreboard/graded.csv"))))
     acc = {}
-    for s_ in ("ratcliffe", "koerner", "clay", "vegas", "yahoo", "gotham"):
+    for s_ in ("ratcliffe", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham"):
         for w_ in sorted({int(r["week"]) for r in G}):
-            d = [abs(float(r[s_]) - float(r["actual"])) for r in G if int(r["week"]) == w_ and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
+            d = [abs(float(r[s_]) - float(r["actual"])) for r in G if int(r["week"]) == w_ and s_ in r and r.get(s_) not in ("", None) and r.get("actual") not in ("", None)]
             if d: acc.setdefault(s_, {})[str(w_)] = [round(sum(d) / len(d), 2), len(d)]
     M["acc"] = dict(src=acc, note="average points missed per player (lower is better), each source's number frozen before kickoff")
 except Exception as _e: print("accuracy skipped:", _e)

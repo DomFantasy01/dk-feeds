@@ -17,12 +17,17 @@ Two jobs, same shape as vegas_points.py:
            stat line - left out. Writes dispatch_out/rotoballer_scored.csv and a weekly copy in dispatch_out/rotoballer_history/
            for the accuracy grade.
 If the feed can't be reached, the last saved file is used only if it is for the current week - never a stale number passed as fresh.
-usage: python3 rotoballer_points.py REPO WEEK               (read + score)
+Nov 8 10 PM (Dom: "Use it and evaluate later ... post it on DK Live, note testing"): also laid onto the meter like Vegas -
+"rotoballer" on every starter and bench man, totals/needles["rotoballer"] and needles_set["rotoballer"] (best lineups both sides,
+Ratcliffe's set moved by the per-man difference, same spread as the other needles). Shown on Live as a TESTING source; graded weekly.
+usage: python3 rotoballer_points.py REPO WEEK [METER.json]  (read + score + meter)
        python3 rotoballer_points.py REPO WEEK --read-only   (read + log only - used by the every-few-hours watch)
        python3 rotoballer_points.py REPO WEEK --no-read     (score the saved file)"""
 import sys, os, re, csv, json, time, hashlib, urllib.request
+from statistics import NormalDist, median
 
 R = sys.argv[1]; NOW = int(sys.argv[2]); O = os.path.join
+MF = sys.argv[3] if len(sys.argv) > 3 and not sys.argv[3].startswith("--") else O(R, f"dispatch_out/meter_wk{NOW}.json")
 SAVE = O(R, "yahoo_drop/rotoballer/rotoballer_weekly.json"); LOG = O(R, "yahoo_drop/rotoballer/reads.jsonl")
 FEED = "https://www.rotoballer.com/wp-json/rb/v1/rankings?league=Overall&perPage=600&spreadsheet=ppr"
 CONF = "https://www.rotoballer.com/wp-json/rb/v1/rankings-config?name=interface"
@@ -96,14 +101,49 @@ if __name__ == "__main__":
 
     SCF = [p for p in (O(R, "system/dksys/data/latest/yahoo/scoring/scoring_audit_oct1.json"), "/home/claude/dksys/data/latest/yahoo/scoring/scoring_audit_oct1.json") if os.path.exists(p)]
     SC = json.load(open(SCF[0])); LGK = {1: "DK I 269381", 2: "DK II 1519795", 3: "DK III 1507991", 4: "DK IV 864215"}
-    rows = []
+    rows, val = [], {}
     for lg, key in LGK.items():
         for p in data["players"]:
             v = score(p, SC[key])
             if v is None: continue
+            val[(lg, nk(p["name"]))] = round(v, 2)
             rows.append([lg, nk(p["name"]), p["name"], p["team"], p["pos"], p["opp"], round(v, 2), p["rank"], p["st"]["rush_att"], p["st"]["rec"], data["read"], p.get("updated_at") or ""])
     os.makedirs(O(R, "dispatch_out/rotoballer_history"), exist_ok=True)
     with open(O(R, "dispatch_out/rotoballer_scored.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["lg", "key", "name", "team", "pos", "opp", "wk", "rank", "rush_att", "rec", "read", "site_updated_et"]); w.writerows(rows)
     import shutil; shutil.copy(O(R, "dispatch_out/rotoballer_scored.csv"), O(R, f"dispatch_out/rotoballer_history/rotoballer_wk{NOW}.csv"))
     print(f"ROTOBALLER: {len(rows)} player-league rows scored in each league's own rules (Week {NOW})")
+
+    try: M = json.load(open(MF))
+    except Exception as e: print("ROTOBALLER: no meter file to fill -", e); sys.exit(0)
+    LGN = {"DK I": 1, "DK II": 2, "DK III": 3, "DK IV": 4}; hit = miss = 0
+    for lab, L in (M.get("leagues") or {}).items():
+        lg = LGN.get(lab)
+        for side in ("me", "op"):
+            for s_ in (L.get("starters") or {}).get(side) or []:
+                v = val.get((lg, nk(s_.get("player"))))
+                if v is None: s_["rotoballer"] = s_.get("ratcliffe"); s_["rotoballer_src"] = "ratcliffe (not on RotoBaller's list)"; miss += 1
+                else: s_["rotoballer"] = v; s_["rotoballer_src"] = "rotoballer"; hit += 1
+        for b in L.get("bench") or []:
+            v = val.get((lg, nk(b.get("player")))); b["rotoballer"] = v if v is not None else b.get("ratcliffe")
+            b["rotoballer_src"] = "rotoballer" if v is not None else "ratcliffe (not on RotoBaller's list)"
+    ND = NormalDist()
+    for lab, L in (M.get("leagues") or {}).items():
+        T, Nd = L.get("totals") or {}, L.get("needles") or {}
+        sds = []
+        for c in ("ratcliffe", "koerner", "gotham", "clay"):
+            t = T.get(c); n = Nd.get(c)
+            if t and n is not None and 2 <= n <= 98 and abs(t[0] - t[1]) > 1: sds.append((t[0] - t[1]) / ND.inv_cdf(n / 100))
+        if not T.get("ratcliffe") or not any(x > 0 for x in sds): continue
+        sd = median(x for x in sds if x > 0)
+        dl = [sum((s_.get("rotoballer") or 0) - (s_.get("ratcliffe") or 0) for s_ in (L.get("starters") or {}).get(side) or [] if s_.get("actual") is None) for side in ("me", "op")]
+        a, b = T["ratcliffe"][0] + dl[0], T["ratcliffe"][1] + dl[1]
+        T["rotoballer"] = [round(a, 2), round(b, 2)]; Nd["rotoballer"] = round(100 * ND.cdf((a - b) / sd))
+        rs = (L.get("needles_set") or {}).get("ratcliffe")
+        if rs is not None and 1 <= rs <= 99:
+            L.setdefault("needles_set", {})["rotoballer"] = round(100 * ND.cdf(ND.inv_cdf(rs / 100) + (dl[0] - dl[1]) / sd))
+        print(f"   {lab}: RotoBaller {a:.1f} vs {b:.1f} -> {Nd['rotoballer']}% chance to win this week (best lineups {L.get('needles_set', {}).get('rotoballer')}%)")
+    M.setdefault("sources", {})["rotoballer"] = dict(status="TESTING", read=data["read"], pulled_pt=data["read"], site_updated=data.get("newest_update_et", ""),
+        note="RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads")
+    json.dump(M, open(MF, "w"), ensure_ascii=False)
+    print(f"ROTOBALLER: starters on RotoBaller's list {hit}, not on it {miss} (Ratcliffe's number used)")

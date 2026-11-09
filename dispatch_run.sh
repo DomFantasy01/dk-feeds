@@ -58,6 +58,7 @@ echo "== 4 meter data";  (cd meter && python3 meter_data.py | grep -E "^METER|^D
 WB=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 python3 "$REPO/live_sync/clay_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! CLAY skipped - Gotham keeps the third slot"   # Oct 31 2:50 PM (Dom): Mike Clay (ESPN) is the numbers check
 python3 "$REPO/live_sync/vegas_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! VEGAS skipped - the meters print without the Vegas needle"   # Nov 7 (Dom): the Vegas needle - prop stat lines scored in each league's rules
+python3 "$REPO/live_sync/rotoballer_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! ROTOBALLER skipped - the meters print without the RotoBaller needle"   # Nov 8 (Dom): RotoBaller on trial ("use it and evaluate later")
 # Nov 4: Brenton removed (Dom) - python3 "$REPO/live_sync/brenton_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" "$ROOT/dksys/data/latest/ftn_scored.csv" || echo "!! BRENTON ranking check skipped"   # Brenton: ranking check only
 echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"
 WM=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
@@ -111,7 +112,7 @@ import json, sys, os
 m = json.load(open(sys.argv[1])); out = sys.argv[2]
 old = json.load(open(out)) if os.path.exists(out) else {}
 if old.get('week') != m['week']:
-    S = {'yahoo': 'y', 'ratcliffe': 'r', 'koerner': 'k', 'clay': 'c', 'vegas': 'v'}
+    S = {'yahoo': 'y', 'ratcliffe': 'r', 'koerner': 'k', 'clay': 'c', 'vegas': 'v', 'rotoballer': 'b'}
     json.dump({'week': m['week'], 'at': m['built_pt'], 'leagues': {lab: {S[s]: L['needles'].get(s) for s in S} for lab, L in m['leagues'].items()}}, open(out, 'w'), indent=1)
     print('week start set:', m['built_pt'])
 PYWS
@@ -144,6 +145,7 @@ python3 "$REPO/live_sync/brief_sim.py" "$REPO/dispatch_out/sim/sim_latest.txt" "
 python3 "$REPO/live_sync/brief_prekick.py" "$REPO/dispatch_out/alerts_build.json" "$REPO/dispatch_out/brief_latest.txt" || echo "!! BEFORE LOCK section skipped"
 python3 "$REPO/live_sync/clay_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! CLAY (Live copy) skipped"
 python3 "$REPO/live_sync/vegas_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! VEGAS (Live copy) skipped"
+python3 "$REPO/live_sync/rotoballer_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! ROTOBALLER (Live copy) skipped"
 # Nov 4: Brenton removed (Dom) - python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON ranking check skipped"
 python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
 python3 "$REPO/live_sync/championship.py" "$REPO" || echo "!! ROAD TO THE CHAMPIONSHIP skipped - Live keeps the last plan"   # Oct 31 (Dom): the playoff plan, DK I first

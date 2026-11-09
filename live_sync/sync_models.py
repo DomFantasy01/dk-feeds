@@ -34,7 +34,8 @@ for lab, k in KEY.items():
         if rc is None and g is None: continue
         ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
         vg = s.get('vegas') if s.get('vegas_src') == 'props' else None   # Nov 7 (Dom): Vegas props are slot 3 (Ratcliffe where no prop)
-        d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g), vg if vg is not None else (rc if rc is not None else g)]
+        rb = s.get('rotoballer') if s.get('rotoballer_src') == 'rotoballer' else None   # Nov 8 (Dom): RotoBaller on trial - slot 4 (Ratcliffe where not listed)
+        d[norm(s['player'])] = [rc if rc is not None else g, g, ko if ko is not None else (rc if rc is not None else g), vg if vg is not None else (rc if rc is not None else g), rb if rb is not None else (rc if rc is not None else g)]
     pm[k] = d
     lg = cur['leagues'].setdefault(k, {})
     lg['rec'] = L['record']; lg['oppRec'] = L['opp_record']; lg['opp'] = L['opp'].upper()
@@ -103,7 +104,7 @@ for lab, k in KEY.items():
         if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
         return t
     ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
-    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner'), 'clay': (L.get('needles_set') or {}).get('clay'), 'vegas': (L.get('needles_set') or {}).get('vegas')}
+    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner'), 'clay': (L.get('needles_set') or {}).get('clay'), 'vegas': (L.get('needles_set') or {}).get('vegas'), 'rotoballer': (L.get('needles_set') or {}).get('rotoballer')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
