@@ -1037,4 +1037,22 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mgrid.g-c .xo > b{grid-column:2;grid-row:1;margin:0 !important;align-self:center}
 .mgrid.g-c .xo > em{grid-column:3;grid-row:1;margin:0 !important;align-self:center;padding-right:4px}
 .mgrid.g-c .xo > svg{grid-column:1;grid-row:1}
+/* Nov 8 7:55 PM (Dom): TEAM / OPPONENT strips, position letters thin and smaller; Win this week + Playoffs side by side, Alerts under them;
+   the stats box raised in 3D like the gauges */
+.sgauge .gsl{font:600 3.9px var(--f-body) !important;letter-spacing:.02em !important}
+.sgauge .gpz{font:400 4.2px var(--f-body) !important;letter-spacing:0 !important}
+.mgrid.g-b .sgx{flex-direction:row !important;flex-wrap:wrap !important;padding:3px 3px 2px !important;margin:5px 1px 0 !important;border-radius:9px !important;border:1px solid #2C3A5C !important;
+  background:linear-gradient(180deg,#1E2A48 0%,#141D35 45%,#0C1325 100%) !important;
+  box-shadow:0 6px 10px -4px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -2px 4px rgba(0,0,0,.55) !important}
+.mgrid.g-b .sgx > div:not(.sgbel){flex:1 1 0 !important;width:auto !important;min-width:0 !important;flex-direction:column !important;align-items:center !important;gap:2px !important;
+  padding:4px 2px 5px !important;margin:2px !important;border:0 !important;border-radius:6px;background:linear-gradient(180deg,#070B16,#111a30);box-shadow:inset 0 2px 4px rgba(0,0,0,.75),0 1px 0 rgba(255,255,255,.07)}
+.mgrid.g-b .sgx > div:not(.sgbel) > span{font-family:var(--f-disp) !important;font-weight:400 !important;letter-spacing:.06em !important;font-size:10px;color:#D5DAE4 !important;text-align:center !important;width:100%}
+.mgrid.g-b .sgx > div.sgbel{flex:1 1 100% !important;margin:1px 2px 2px !important;padding:3px 4px !important;border:0 !important;border-top:0 !important;justify-content:center !important;gap:8px !important}
+.mgrid.g-b .sgx > div.sgbel > span{font-family:var(--f-disp) !important;font-weight:400 !important;letter-spacing:.08em !important;font-size:10px !important;color:#AEB6C8 !important}
+.mgrid.g-b .sgx b{font-size:min(18px,15cqw) !important;text-shadow:0 1px 0 rgba(0,0,0,.8),0 0 8px currentColor !important}
+@media (max-width:560px){.mgrid.g-b .sgx b{font-size:15px !important}}
+.mgrid.g-b .sgx > div:not(.sgbel){margin:1.5px !important;padding:4px 1px 5px !important}
+.mgrid.g-b .sgx > div:not(.sgbel) > span{white-space:normal !important;text-wrap:balance;line-height:1.05 !important;min-height:2.1em !important;display:flex !important;align-items:flex-end;justify-content:center;font-size:9px !important;overflow:visible !important}
+@media (min-width:561px){.mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:12px !important;min-height:1.1em !important}}
+.sgauge .gpz.done{fill:#EFFFF4 !important}.sgauge .gpz.pre{fill:#E6EAF2 !important}.sgauge .gpz.out{fill:#fff !important}
 </style>

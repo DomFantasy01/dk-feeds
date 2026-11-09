@@ -512,11 +512,11 @@ function scoreGlobe(L, k, o){
       ${big ? `<path d="${arc(r + sw * .28, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="${(sw * .16).toFixed(2)}" stroke-linecap="round"/>` : ""}
       ${on ? `<circle class="gcap on" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .6).toFixed(2)}" fill="#fff" fill-opacity=".92"/>` : ""}` : ""}
       <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="${big ? 1.6 : 1.1}" stroke-linecap="round"/>`; };
-  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 22, x1 = W - 3, g = 1.2, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
-    return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "YOU" : "OPP"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
+  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 28.5, x1 = W - 3, g = 1, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
+    return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "TEAM" : "OPPONENT"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
       return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .42).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
-        ${bw >= 7.5 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.6).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
+        ${bw >= 6 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
   const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲ " : "▼ ") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
   const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n + " LEFT";
   return `<svg class="sglobe sbox sgauge" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}, ${pre ? "not started" : mg >= 0 ? "ahead by " + f1(mg) : "behind by " + f1(-mg)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${o.meL} of yours and ${o.opL} of his left; ${zw}`)}"><defs>
@@ -558,7 +558,7 @@ function scoreGlobe(L, k, o){
 function fitNames(){ const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
     let f = parseFloat(getComputedStyle(ns[0]).fontSize) || 17; const over = () => ns.some(n => n.scrollWidth > n.clientWidth + .5);
     while (over() && f > 6){ f -= .5; ns.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
-  const go2 = () => { const ls = [...document.querySelectorAll("#msScore .sgx > div > span")]; if (!ls.length) return; ls.forEach(n => n.style.removeProperty("font-size"));
+  const go2 = () => { const ls = []; if (!ls.length) return; ls.forEach(n => n.style.removeProperty("font-size"));
     let f = parseFloat(getComputedStyle(ls[0]).fontSize) || 8; const over = () => ls.some(n => n.scrollWidth > n.clientWidth + .5);
     while (over() && f > 4.5){ f -= .25; ls.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
   const both = () => { go(); go2(); };
