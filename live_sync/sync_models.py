@@ -343,9 +343,23 @@ try:
         # pickups file was never next to it and the page only saw the 3-a-day list - fetch the build's copy directly
         import urllib.request as _u, time as _t
         cur['pickups'] = json.loads(_u.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/pickups.json?t={int(_t.time())}", timeout=30).read())
+    for _L in (cur['pickups'].get('leagues') or {}).values(): _L.pop('pool', None)   # Nov 10: the full available pool is only for the change notes - never on Live
     print('pickups on Live:', cur['pickups'].get('built'))
 except Exception as _e: print('pickups skipped:', str(_e)[:120])
-json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False)
+# Nov 10 10:05 AM (Dom: "Fix" - the 8:55 AM chain failed: live/models came to 276,313 bytes, the database caps a document at 262,144).
+# Size guard: keep the document under 250,000 bytes by shedding the least-needed riders first (the page falls back to live/pickups).
+def _size(o): return len(json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
+CAP = 250000
+if _size(cur) > CAP and cur.get('pickups'):
+    for _L in (cur['pickups'].get('leagues') or {}).values():
+        for _g in _L.get('top', []): _g.pop('why', None); (_g.get('experts') or {}).pop('lines', None)
+    print('size guard: trimmed pickup details')
+if _size(cur) > CAP and cur.get('pickups'):
+    cur['pickups'] = {k_: cur['pickups'].get(k_) for k_ in ('built', 'sources', 'panel')}
+    print('size guard: pickups reduced to the expert panel (page uses live/pickups)')
+if _size(cur) > CAP: print('SIZE WARNING: live/models still', _size(cur), 'bytes')
+print('live/models size:', _size(cur), 'bytes (cap 262144)')
+json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False, separators=(',', ':'))
 print('synced', {k: len(v) for k, v in pm.items()}, 'built', M['built_pt'], '| health', {k: v for k, v in H.items() if k != 'checked'})
 # ---- ONE YAHOO READER (Oct 13): Live's live/state from the Dispatch's read, when that read is newer
 if len(sys.argv) >= 7:
