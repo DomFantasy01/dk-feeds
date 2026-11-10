@@ -1,5 +1,5 @@
 {
- "built": "Tue Nov 10 2026 7:54 AM PT",
+ "built": "Tue Nov 10 2026 8:12 AM PT",
  "panel": {
   "order": [
    "Gotham",
@@ -22,9 +22,7 @@
    "Yahoo": 7.15,
    "Gotham": 6.67
   },
-  "waiting": {
-   "Vegas": 9
-  },
+  "waiting": {},
   "bias": {
    "Ratcliffe": 1.6,
    "Koerner": 1.73,
@@ -32,6 +30,14 @@
    "Vegas": 1.59,
    "Yahoo": 2.28,
    "Gotham": 1.02
+  },
+  "pct": {
+   "Ratcliffe": 11.4,
+   "Koerner": 12.3,
+   "Clay": 18.0,
+   "Vegas": 11.3,
+   "Yahoo": 16.2,
+   "Gotham": 7.2
   },
   "basis": "same players for every source",
   "ungraded": [
@@ -43,23 +49,23 @@
   "notes": [],
   "others": [],
   "reads": {
-   "Gotham": "Tue Nov 10 2026 07:52 AM PT",
-   "Vegas": "Mon Nov 9 2026 8:25 PM PT",
+   "Gotham": "Tue Nov 10 2026 08:10 AM PT",
+   "Vegas": "Tue Nov 10 2026 8:10 AM PT",
    "Ratcliffe": "Tue Nov 10 2026 2:26 AM PT",
-   "Koerner": "Tue Nov 10 2026 3:05 AM PT",
+   "Koerner": "Tue Nov 10 2026 8:05 AM PT",
    "Yahoo": "Tue Nov 10 2026 3:14 AM PT",
-   "Clay": "Tue Nov 10 2026 7:52 AM PT",
-   "RotoBaller": "Tue Nov 10 2026 7:52 AM PT"
+   "Clay": "Tue Nov 10 2026 8:10 AM PT",
+   "RotoBaller": "Tue Nov 10 2026 8:10 AM PT"
   }
  },
  "sources": {
   "ratcliffe_read": "Tue Nov 10 2026 2:26 AM PT",
   "expert_reads": {
    "Ratcliffe": "Tue Nov 10 2026 2:26 AM PT",
-   "Clay": "Tue Nov 10 2026 7:52 AM PT",
-   "Koerner": "Tue Nov 10 2026 3:05 AM PT",
-   "Vegas": "Mon Nov 9 2026 8:25 PM PT",
-   "RotoBaller": "Tue Nov 10 2026 7:52 AM PT"
+   "Clay": "Tue Nov 10 2026 8:10 AM PT",
+   "Koerner": "Tue Nov 10 2026 8:05 AM PT",
+   "Vegas": "Tue Nov 10 2026 8:10 AM PT",
+   "RotoBaller": "Tue Nov 10 2026 8:10 AM PT"
   },
   "nflverse_through_week": 9,
   "standings": "nflverse schedule, 136 games scored",
@@ -67,7 +73,7 @@
  },
  "leagues": {
   "1": {
-   "read": "Tue Nov 10 7:52 AM PT",
+   "read": "Tue Nov 10 8:10 AM PT",
    "top": [
     {
      "tier": "STASH",
@@ -77,10 +83,10 @@
      "name": "Samaje Perine",
      "team": "CIN",
      "pos": "RB",
-     "pts": 60.7,
-     "grade": 56,
+     "pts": 62.9,
+     "grade": 57,
      "parts": {
-      "value": 18,
+      "value": 19,
       "fit": 2,
       "workload": 15,
       "playoffs": 10,
@@ -88,34 +94,34 @@
       "path": 6
      },
      "why": [
-      "61 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Koerner 7.59 a game x 8 games)",
+      "63 pts rest of season in DK1 scoring (avg of Gotham + Vegas + Ratcliffe 7.86 a game x 8 games)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Jaylen Warren (avg of Gotham + Ratcliffe + Koerner: 19.1 a game vs 7.6): -60% - under the 10% MUST bar",
+      "vs your weakest RB starter Jaylen Warren (avg of Gotham + Vegas + Ratcliffe: 19.7 a game vs 7.9): -60% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#6), W17 BAL (#23)",
       "CIN 6-2"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Jaylen Warren",
+      "verdict": "0 of 7 sources have him ahead of Jaylen Warren",
       "agree": 0,
-      "of": 6,
+      "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.0 vs Jaylen Warren 20.1 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "7.3 vs Jaylen Warren 19.2 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -128,9 +134,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.5 vs Jaylen Warren 17.3 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "6.9 vs Jaylen Warren 17.1 (this week)",
         "ok": false
        },
        {
@@ -145,7 +151,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.6 vs Jaylen Warren 19.2 (Wks 10-17)",
         "ok": false
        },
@@ -153,14 +159,14 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "5.2 vs Jaylen Warren 16.2 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jaylen Warren",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
@@ -189,25 +195,25 @@
       "DEN 7-2"
      ],
      "experts": {
-      "verdict": "1 of 5 sources have him ahead of Jordan Addison",
+      "verdict": "1 of 4 sources have him ahead of Jordan Addison",
       "agree": 1,
-      "of": 5,
+      "of": 4,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "8.9 vs Jordan Addison 8.4 (a game ahead)",
         "ok": true
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "8.6 vs Jordan Addison 9.8 (this week)",
-        "ok": false
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "no number for him",
+        "ok": null
        },
        {
         "ex": "Ratcliffe",
@@ -221,7 +227,7 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -237,7 +243,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "9.5 vs Jordan Addison 10.3 (Wks 10-17)",
         "ok": false
        },
@@ -245,27 +251,27 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Jordan Addison",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
      "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
-     "gain": -55,
+     "gain": -54,
      "key": "justice hill",
      "name": "Justice Hill",
      "team": "BAL",
      "pos": "RB",
-     "pts": 59.6,
-     "grade": 44,
+     "pts": 63.3,
+     "grade": 45,
      "parts": {
-      "value": 18,
+      "value": 19,
       "fit": 2,
       "workload": 10,
       "playoffs": 7,
@@ -273,34 +279,34 @@
       "path": 4
      },
      "why": [
-      "60 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Koerner 8.52 a game x 7 games)",
+      "63 pts rest of season in DK1 scoring (avg of Gotham + Vegas + Ratcliffe 9.04 a game x 7 games)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Jaylen Warren (avg of Gotham + Ratcliffe + Koerner: 19.1 a game vs 8.5): -55% - under the 10% MUST bar",
+      "vs your weakest RB starter Jaylen Warren (avg of Gotham + Vegas + Ratcliffe: 19.7 a game vs 9.0): -54% - under the 10% MUST bar",
       "Workload last 3 games: touches 7 > 11 > 12, snaps 46% > 49% > 52%",
       "Path: Derrick Henry is 32, yards per carry down 4.11 to 3.44 the last 3 games; Giants asked about trading for Hill (deadline Tue Nov 10, 1 PM PT)",
       "Playoffs: W15 PIT (#21), W16 CLE (#15), W17 CIN (#18)",
       "BAL 4-5"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Jaylen Warren",
+      "verdict": "0 of 7 sources have him ahead of Jaylen Warren",
       "agree": 0,
-      "of": 6,
+      "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "9.8 vs Jaylen Warren 20.1 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "7.9 (this week; no number for Jaylen Warren)",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.2 vs Jaylen Warren 19.2 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -313,9 +319,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "7.6 vs Jaylen Warren 17.3 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "7.9 vs Jaylen Warren 17.1 (this week)",
         "ok": false
        },
        {
@@ -330,7 +336,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "7.4 vs Jaylen Warren 19.2 (Wks 10-17)",
         "ok": false
        },
@@ -338,27 +344,27 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.8 vs Jaylen Warren 16.2 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jaylen Warren",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
-     "tier_why": "grade 47; not yet an upgrade worth a roster spot",
+     "tier_why": "grade 48; not yet an upgrade worth a roster spot",
      "gain": -35,
      "key": "darren waller",
      "name": "Darren Waller",
      "team": "CAR",
      "pos": "TE",
-     "pts": 61.1,
-     "grade": 47,
+     "pts": 64.2,
+     "grade": 48,
      "parts": {
-      "value": 18,
+      "value": 19,
       "fit": 5,
       "workload": 15,
       "playoffs": 7,
@@ -366,33 +372,33 @@
       "path": 0
      },
      "why": [
-      "61 pts rest of season in DK1 scoring (avg of Gotham + Ratcliffe + Koerner 7.64 a game x 8 games)",
+      "64 pts rest of season in DK1 scoring (avg of Gotham + Vegas + Ratcliffe 8.02 a game x 8 games)",
       "Depth: 0 healthy TE on your bench",
-      "vs your weakest TE starter Travis Kelce (avg of Gotham + Ratcliffe + Koerner: 11.7 a game vs 7.6): -35% - under the 10% MUST bar",
+      "vs your weakest TE starter Travis Kelce (avg of Gotham + Vegas + Ratcliffe: 12.4 a game vs 8.0): -35% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 2 > 10, snaps 45% > 62% > 53%",
       "Playoffs: W15 CIN (#8), W16 PIT (#20), W17 SEA (#24)",
       "CAR 3-5"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Travis Kelce",
+      "verdict": "0 of 7 sources have him ahead of Travis Kelce",
       "agree": 0,
-      "of": 6,
+      "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "9.0 vs Travis Kelce 11.5 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "7.3 vs Travis Kelce 13.3 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -405,9 +411,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.2 vs Travis Kelce 11.3 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "9.1 vs Travis Kelce 11.3 (this week)",
         "ok": false
        },
        {
@@ -422,7 +428,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "7.9 vs Travis Kelce 11.5 (Wks 10-17)",
         "ok": false
        },
@@ -430,24 +436,24 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "4.7 vs Travis Kelce 8.9 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Travis Kelce",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
      "tier_why": "grade 45; not yet an upgrade worth a roster spot",
-     "gain": -47,
+     "gain": -46,
      "key": "dylan sampson",
      "name": "Dylan Sampson",
      "team": "CLE",
      "pos": "RB",
-     "pts": 69.5,
+     "pts": 70.7,
      "grade": 45,
      "parts": {
       "value": 21,
@@ -458,33 +464,33 @@
       "path": 0
      },
      "why": [
-      "70 pts rest of season in DK1 scoring (avg of Ratcliffe + Koerner + Yahoo 9.93 a game x 7 games)",
+      "71 pts rest of season in DK1 scoring (avg of Vegas + Ratcliffe + Koerner 10.10 a game x 7 games)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Jaylen Warren (avg of Ratcliffe + Koerner + Yahoo: 18.6 a game vs 9.9): -47% - under the 10% MUST bar",
+      "vs your weakest RB starter Jaylen Warren (avg of Vegas + Ratcliffe + Koerner: 18.8 a game vs 10.1): -46% - under the 10% MUST bar",
       "Workload last 3 games: touches 9 > 9 > 14, snaps 46% > 56% > 64%",
       "Playoffs: W15 NYG (#26), W16 BAL (#23), W17 IND (#6)",
       "CLE 5-4"
      ],
      "experts": {
-      "verdict": "0 of 5 sources have him ahead of Jaylen Warren",
+      "verdict": "0 of 6 sources have him ahead of Jaylen Warren",
       "agree": 0,
-      "of": 5,
+      "of": 6,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "8.5 (this week; no number for Jaylen Warren)",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.5 vs Jaylen Warren 19.2 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -498,14 +504,14 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "9.1 vs Jaylen Warren 17.3 (this week)",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "9.3 vs Jaylen Warren 17.1 (this week)",
         "ok": false
        },
        {
         "ex": "Yahoo",
         "rank": "#5 (7.15 missed Wk 9)",
-        "check": true,
+        "check": false,
         "read": "Tue Nov 10 2026 3:14 AM PT",
         "txt": "9.2 vs Jaylen Warren 18.7 (Wks 10-17)",
         "ok": false
@@ -514,7 +520,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "10.3 vs Jaylen Warren 19.2 (Wks 10-17)",
         "ok": false
        },
@@ -522,22 +528,22 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.8 vs Jaylen Warren 16.2 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jaylen Warren",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     }
    ],
    "needs": [],
-   "pieces_built": "Tue Nov 10 7:52 AM PT",
+   "pieces_built": "Tue Nov 10 8:10 AM PT",
    "kicker_slot": true,
    "pool": {
     "samaje perine": [
-     56,
+     57,
      "Samaje Perine"
     ],
     "courtland sutton": [
@@ -545,32 +551,36 @@
      "Courtland Sutton"
     ],
     "justice hill": [
-     44,
+     45,
      "Justice Hill"
     ],
     "darren waller": [
-     47,
+     48,
      "Darren Waller"
     ],
     "dylan sampson": [
      45,
      "Dylan Sampson"
     ],
+    "kaleb johnson": [
+     44,
+     "Kaleb Johnson"
+    ],
+    "xavier hutchinson": [
+     44,
+     "Xavier Hutchinson"
+    ],
     "gunnar helm": [
      44,
      "Gunnar Helm"
     ],
-    "kaleb johnson": [
+    "austin ekeler": [
      43,
-     "Kaleb Johnson"
+     "Austin Ekeler"
     ],
     "keaton mitchell": [
      43,
      "Keaton Mitchell"
-    ],
-    "xavier hutchinson": [
-     43,
-     "Xavier Hutchinson"
     ],
     "kalif raymond": [
      43,
@@ -580,25 +590,21 @@
      43,
      "Cade Otton"
     ],
-    "corey kiner": [
-     42,
-     "Corey Kiner"
-    ],
-    "austin ekeler": [
-     42,
-     "Austin Ekeler"
-    ],
     "tommy tremble": [
      42,
      "Tommy Tremble"
     ],
-    "eli raridon": [
-     40,
-     "Eli Raridon"
+    "corey kiner": [
+     41,
+     "Corey Kiner"
     ],
     "tyler higbee": [
-     39,
+     40,
      "Tyler Higbee"
+    ],
+    "eli raridon": [
+     39,
+     "Eli Raridon"
     ],
     "dawson knox": [
      38,
@@ -620,6 +626,10 @@
      37,
      "Sam Roush"
     ],
+    "kimani vidal": [
+     36,
+     "Kimani Vidal"
+    ],
     "pat freiermuth": [
      36,
      "Pat Freiermuth"
@@ -628,17 +638,25 @@
      36,
      "Evan Engram"
     ],
-    "kimani vidal": [
+    "ameer abdullah": [
      35,
-     "Kimani Vidal"
+     "Ameer Abdullah"
+    ],
+    "jordan watkins": [
+     34,
+     "Jordan Watkins"
     ],
     "darnell mooney": [
-     35,
+     34,
      "Darnell Mooney"
     ],
-    "ameer abdullah": [
+    "zonovan knight": [
      34,
-     "Ameer Abdullah"
+     "Zonovan Knight"
+    ],
+    "tank dell": [
+     33,
+     "Tank Dell"
     ],
     "kayshon boutte": [
      33,
@@ -648,25 +666,37 @@
      33,
      "Cooper Kupp"
     ],
+    "davis allen": [
+     33,
+     "Davis Allen"
+    ],
     "emanuel wilson": [
      33,
      "Emanuel Wilson"
     ],
-    "sione vaki": [
+    "tutu atwell": [
      32,
-     "Sione Vaki"
+     "Tutu Atwell"
     ],
     "mark andrews": [
      32,
      "Mark Andrews"
     ],
-    "darnell washington": [
+    "colby parkinson": [
      32,
-     "Darnell Washington"
+     "Colby Parkinson"
     ],
     "myles price": [
      32,
      "Myles Price"
+    ],
+    "ty johnson": [
+     31,
+     "Ty Johnson"
+    ],
+    "sione vaki": [
+     31,
+     "Sione Vaki"
     ],
     "ray davis": [
      31,
@@ -675,10 +705,6 @@
     "malachi fields": [
      31,
      "Malachi Fields"
-    ],
-    "dohnte meyers": [
-     31,
-     "Dohnte Meyers"
     ],
     "tre harris": [
      31,
@@ -692,73 +718,69 @@
      31,
      "Chig Okonkwo"
     ],
-    "davis allen": [
+    "darnell washington": [
      31,
-     "Davis Allen"
-    ],
-    "chris boswell": [
-     31,
-     "Chris Boswell"
-    ],
-    "ty johnson": [
-     30,
-     "Ty Johnson"
-    ],
-    "tank dell": [
-     30,
-     "Tank Dell"
-    ],
-    "jordan watkins": [
-     30,
-     "Jordan Watkins"
-    ],
-    "jahan dotson": [
-     30,
-     "Jahan Dotson"
-    ],
-    "tutu atwell": [
-     30,
-     "Tutu Atwell"
-    ],
-    "colby parkinson": [
-     30,
-     "Colby Parkinson"
+     "Darnell Washington"
     ],
     "oronde gadsden": [
-     30,
+     31,
      "Oronde Gadsden"
     ],
-    "jaylen wright": [
+    "audric estime": [
      30,
-     "Jaylen Wright"
+     "Audric Estime"
     ],
-    "emari demercado": [
-     29,
-     "Emari Demercado"
+    "dohnte meyers": [
+     30,
+     "Dohnte Meyers"
     ],
-    "greg dulcich": [
+    "elijah higgins": [
+     30,
+     "Elijah Higgins"
+    ],
+    "tyjae spears": [
      29,
-     "Greg Dulcich"
+     "Tyjae Spears"
+    ],
+    "jahan dotson": [
+     29,
+     "Jahan Dotson"
+    ],
+    "simi fehoko": [
+     29,
+     "Simi Fehoko"
     ],
     "charlie kolar": [
      29,
      "Charlie Kolar"
     ],
-    "elijah higgins": [
+    "jaylen wright": [
      29,
-     "Elijah Higgins"
+     "Jaylen Wright"
     ],
     "jackson hawes": [
      29,
      "Jackson Hawes"
     ],
-    "evan hull": [
-     29,
-     "Evan Hull"
-    ],
-    "tyjae spears": [
+    "emari demercado": [
      28,
-     "Tyjae Spears"
+     "Emari Demercado"
+    ],
+    "keon coleman": [
+     28,
+     "Keon Coleman"
+    ],
+    "greg dulcich": [
+     28,
+     "Greg Dulcich"
+    ],
+    "brevyn spann ford": [
+     28,
+     "Brevyn Spann-Ford"
+    ],
+    "noah fant": [
+     28,
+     "Noah Fant"
     ],
     "sean tucker": [
      28,
@@ -784,29 +806,13 @@
      28,
      "Keleki Latu"
     ],
-    "audric estime": [
-     27,
-     "Audric Estime"
-    ],
-    "keon coleman": [
-     27,
-     "Keon Coleman"
-    ],
     "savion williams": [
      27,
      "Savion Williams"
     ],
-    "efton chism": [
-     27,
-     "Efton Chism III"
-    ],
     "elic ayomanor": [
      27,
      "Elic Ayomanor"
-    ],
-    "simi fehoko": [
-     27,
-     "Simi Fehoko"
     ],
     "chimere dike": [
      27,
@@ -815,18 +821,6 @@
     "tory horton": [
      27,
      "Tory Horton"
-    ],
-    "brevyn spann ford": [
-     27,
-     "Brevyn Spann-Ford"
-    ],
-    "noah fant": [
-     27,
-     "Noah Fant"
-    ],
-    "isaiah williams": [
-     27,
-     "Isaiah Williams"
     ],
     "troy franklin": [
      27,
@@ -840,13 +834,9 @@
      27,
      "Khalil Herbert"
     ],
-    "kyle williams": [
-     26,
-     "Kyle Williams"
-    ],
-    "travis hunter": [
-     26,
-     "Travis Hunter"
+    "ashton dulin": [
+     27,
+     "Ashton Dulin"
     ],
     "mason taylor": [
      26,
@@ -856,57 +846,69 @@
      26,
      "AJ Dillon"
     ],
-    "cameron latu": [
-     26,
-     "Cameron Latu"
-    ],
-    "josh cameron": [
+    "pierre strong": [
      25,
-     "Josh Cameron"
+     "Pierre Strong Jr."
+    ],
+    "quentin johnston": [
+     25,
+     "Quentin Johnston"
+    ],
+    "reggie virgil": [
+     25,
+     "Reggie Virgil"
+    ],
+    "travis hunter": [
+     25,
+     "Travis Hunter"
+    ],
+    "nate boerkircher": [
+     25,
+     "Nate Boerkircher"
     ],
     "daniel bellinger": [
      25,
      "Daniel Bellinger"
     ],
+    "min def": [
+     25,
+     "Vikings DEF"
+    ],
     "zavion thomas": [
      25,
      "Zavion Thomas"
+    ],
+    "isaiah williams": [
+     25,
+     "Isaiah Williams"
     ],
     "adam trautman": [
      25,
      "Adam Trautman"
     ],
-    "ashton dulin": [
-     25,
-     "Ashton Dulin"
-    ],
     "ben yurosek": [
      25,
      "Ben Yurosek"
     ],
-    "quentin johnston": [
+    "treveyon henderson": [
      24,
-     "Quentin Johnston"
+     "TreVeyon Henderson"
     ],
     "jerry jeudy": [
      24,
      "Jerry Jeudy"
     ],
-    "isaac teslaa": [
+    "efton chism": [
      24,
-     "Isaac TeSlaa"
+     "Efton Chism III"
     ],
-    "nate boerkircher": [
+    "kyle williams": [
      24,
-     "Nate Boerkircher"
+     "Kyle Williams"
     ],
-    "dominic zvada": [
+    "josh cameron": [
      24,
-     "Dominic Zvada"
-    ],
-    "min def": [
-     24,
-     "Vikings DEF"
+     "Josh Cameron"
     ],
     "nicholas singleton": [
      24,
@@ -924,29 +926,13 @@
      24,
      "Marvin Mims Jr."
     ],
-    "josh cuevas": [
-     24,
-     "Josh Cuevas"
-    ],
-    "mo alie cox": [
-     24,
-     "Mo Alie-Cox"
-    ],
     "zach ertz": [
      24,
      "Zach Ertz"
     ],
-    "pierre strong": [
+    "isaac teslaa": [
      23,
-     "Pierre Strong Jr."
-    ],
-    "treveyon henderson": [
-     23,
-     "TreVeyon Henderson"
-    ],
-    "kaytron allen": [
-     23,
-     "Kaytron Allen"
+     "Isaac TeSlaa"
     ],
     "jalen nailor": [
      23,
@@ -956,37 +942,53 @@
      23,
      "Cyrus Allen"
     ],
+    "noah gray": [
+     23,
+     "Noah Gray"
+    ],
+    "chris boswell": [
+     23,
+     "Chris Boswell"
+    ],
     "roschon johnson": [
      23,
      "Roschon Johnson"
     ],
-    "kevin coleman": [
+    "josh cuevas": [
      23,
-     "Kevin Coleman Jr."
+     "Josh Cuevas"
     ],
-    "foster moreau": [
+    "mo alie cox": [
      23,
-     "Foster Moreau"
+     "Mo Alie-Cox"
     ],
-    "austin hooper": [
-     23,
-     "Austin Hooper"
-    ],
-    "reggie virgil": [
+    "kaytron allen": [
      22,
-     "Reggie Virgil"
+     "Kaytron Allen"
     ],
-    "noah gray": [
+    "konata mumpfield": [
      22,
-     "Noah Gray"
+     "Konata Mumpfield"
+    ],
+    "mitchell evans": [
+     22,
+     "Mitchell Evans"
     ],
     "lequint allen": [
      22,
      "LeQuint Allen Jr."
     ],
-    "will mallory": [
+    "kevin coleman": [
      22,
-     "Will Mallory"
+     "Kevin Coleman Jr."
+    ],
+    "foster moreau": [
+     22,
+     "Foster Moreau"
+    ],
+    "austin hooper": [
+     22,
+     "Austin Hooper"
     ],
     "charlie woerner": [
      22,
@@ -1000,25 +1002,33 @@
      22,
      "Ben Skowronek"
     ],
+    "chris blair": [
+     22,
+     "Chris Blair"
+    ],
     "jake briningstool": [
      22,
      "Jake Briningstool"
+    ],
+    "lan larison": [
+     21,
+     "Lan Larison"
     ],
     "mack hollins": [
      21,
      "Mack Hollins"
     ],
-    "konata mumpfield": [
-     21,
-     "Konata Mumpfield"
-    ],
     "jakobi lane": [
      21,
      "Ja'Kobi Lane"
     ],
-    "mitchell evans": [
+    "rashod bateman": [
      21,
-     "Mitchell Evans"
+     "Rashod Bateman"
+    ],
+    "kaimi fairbairn": [
+     21,
+     "Ka'imi Fairbairn"
     ],
     "andre szmyt": [
      21,
@@ -1040,49 +1050,17 @@
      21,
      "Jacob Cowing"
     ],
-    "luke farrell": [
-     21,
-     "Luke Farrell"
-    ],
     "eric saubert": [
      21,
      "Eric Saubert"
     ],
+    "jack endries": [
+     21,
+     "Jack Endries"
+    ],
     "wil lutz": [
      21,
      "Wil Lutz"
-    ],
-    "jonathan mingo": [
-     21,
-     "Jonathan Mingo"
-    ],
-    "chris manhertz": [
-     21,
-     "Chris Manhertz"
-    ],
-    "chris blair": [
-     21,
-     "Chris Blair"
-    ],
-    "jerome ford": [
-     21,
-     "Jerome Ford"
-    ],
-    "lan larison": [
-     20,
-     "Lan Larison"
-    ],
-    "brandin cooks": [
-     20,
-     "Brandin Cooks"
-    ],
-    "bryce lance": [
-     20,
-     "Bryce Lance"
-    ],
-    "harrison butker": [
-     20,
-     "Harrison Butker"
     ],
     "cle def": [
      20,
@@ -1096,37 +1074,45 @@
      20,
      "Ted Hurst III"
     ],
-    "jonnu smith": [
-     20,
-     "Jonnu Smith"
-    ],
     "matt hibner": [
      20,
      "Matt Hibner"
     ],
-    "jack endries": [
+    "luke farrell": [
      20,
-     "Jack Endries"
+     "Luke Farrell"
     ],
     "teagan quitoriano": [
      20,
      "Teagan Quitoriano"
     ],
+    "chris manhertz": [
+     20,
+     "Chris Manhertz"
+    ],
     "brandon smith": [
      20,
      "Brandon Smith"
     ],
-    "khadarel hodge": [
+    "thomas fidone": [
      20,
-     "KhaDarel Hodge"
-    ],
-    "rashod bateman": [
-     19,
-     "Rashod Bateman"
+     "Thomas Fidone II"
     ],
     "jalen royals": [
      19,
      "Jalen Royals"
+    ],
+    "dominic zvada": [
+     19,
+     "Dominic Zvada"
+    ],
+    "harrison butker": [
+     19,
+     "Harrison Butker"
+    ],
+    "bal def": [
+     19,
+     "Ravens DEF"
     ],
     "nyj def": [
      19,
@@ -1136,6 +1122,14 @@
      19,
      "Eli Stowers"
     ],
+    "jonnu smith": [
+     19,
+     "Jonnu Smith"
+    ],
+    "will mallory": [
+     19,
+     "Will Mallory"
+    ],
     "tanner koziol": [
      19,
      "Tanner Koziol"
@@ -1144,17 +1138,21 @@
      19,
      "Oscar Delp"
     ],
-    "cade stover": [
-     19,
-     "Cade Stover"
-    ],
     "nate adkins": [
      19,
      "Nate Adkins"
     ],
+    "jonathan mingo": [
+     19,
+     "Jonathan Mingo"
+    ],
     "deejay dallas": [
      19,
      "DeeJay Dallas"
+    ],
+    "deion burks": [
+     19,
+     "Deion Burks"
     ],
     "ian thomas": [
      19,
@@ -1176,9 +1174,25 @@
      18,
      "Trevor Etienne"
     ],
+    "devin duvernay": [
+     18,
+     "Devin Duvernay"
+    ],
+    "van jefferson": [
+     18,
+     "Van Jefferson"
+    ],
     "laquon treadwell": [
      18,
      "Laquon Treadwell"
+    ],
+    "brandin cooks": [
+     18,
+     "Brandin Cooks"
+    ],
+    "bryce lance": [
+     18,
+     "Bryce Lance"
     ],
     "charlie smyth": [
      18,
@@ -1204,37 +1218,33 @@
      18,
      "Tahj Brooks"
     ],
-    "jack bech": [
-     18,
-     "Jack Bech"
-    ],
     "brock wright": [
      18,
      "Brock Wright"
+    ],
+    "cade stover": [
+     18,
+     "Cade Stover"
     ],
     "blake whiteheart": [
      18,
      "Blake Whiteheart"
     ],
-    "cam grandy": [
+    "hayden rucci": [
      18,
-     "Cam Grandy"
+     "Hayden Rucci"
     ],
-    "devin duvernay": [
+    "jordan whittington": [
      17,
-     "Devin Duvernay"
+     "Jordan Whittington"
     ],
-    "kaimi fairbairn": [
+    "brandon mcmanus": [
      17,
-     "Ka'imi Fairbairn"
+     "Brandon McManus"
     ],
     "zane gonzalez": [
      17,
      "Zane Gonzalez"
-    ],
-    "bal def": [
-     17,
-     "Ravens DEF"
     ],
     "was def": [
      17,
@@ -1244,6 +1254,14 @@
      17,
      "Falcons DEF"
     ],
+    "jordan james": [
+     17,
+     "Jordan James"
+    ],
+    "dj giddens": [
+     17,
+     "DJ Giddens"
+    ],
     "travis homer": [
      17,
      "Travis Homer"
@@ -1252,17 +1270,21 @@
      17,
      "Tim Patrick"
     ],
+    "jack bech": [
+     17,
+     "Jack Bech"
+    ],
     "tai felton": [
      17,
      "Tai Felton"
     ],
-    "marlin klein": [
-     17,
-     "Marlin Klein"
-    ],
     "drew ogletree": [
      17,
      "Drew Ogletree"
+    ],
+    "max klare": [
+     17,
+     "Max Klare"
     ],
     "brady russell": [
      17,
@@ -1272,17 +1294,13 @@
      17,
      "Tyler Conklin"
     ],
-    "deion burks": [
-     17,
-     "Deion Burks"
-    ],
     "mark redman": [
      17,
      "Mark Redman"
     ],
-    "hayden rucci": [
+    "khadarel hodge": [
      17,
-     "Hayden Rucci"
+     "KhaDarel Hodge"
     ],
     "brandon johnson": [
      17,
@@ -1291,10 +1309,6 @@
     "gregory desrosiers": [
      17,
      "Gregory Desrosiers"
-    ],
-    "carlos washington": [
-     17,
-     "Carlos Washington"
     ],
     "robert tonyan": [
      17,
@@ -1308,10 +1322,6 @@
      16,
      "Rashid Shaheed"
     ],
-    "van jefferson": [
-     16,
-     "Van Jefferson"
-    ],
     "andrew armstrong": [
      16,
      "Andrew Armstrong"
@@ -1324,10 +1334,6 @@
      16,
      "Jason Sanders"
     ],
-    "brandon mcmanus": [
-     16,
-     "Brandon McManus"
-    ],
     "ten def": [
      16,
      "Titans DEF"
@@ -1335,14 +1341,6 @@
     "ari def": [
      16,
      "Cardinals DEF"
-    ],
-    "jordan james": [
-     16,
-     "Jordan James"
-    ],
-    "dylan laube": [
-     16,
-     "Dylan Laube"
     ],
     "julius chestnut": [
      16,
@@ -1356,6 +1354,10 @@
      16,
      "Jauan Jennings"
     ],
+    "cj daniels": [
+     16,
+     "CJ Daniels"
+    ],
     "malik benson": [
      16,
      "Malik Benson"
@@ -1364,13 +1366,9 @@
      16,
      "Cody White"
     ],
-    "max klare": [
+    "luke schoonmaker": [
      16,
-     "Max Klare"
-    ],
-    "j michael sturdivant": [
-     16,
-     "J. Michael Sturdivant"
+     "Luke Schoonmaker"
     ],
     "riley nowakowski": [
      16,
@@ -1380,13 +1378,9 @@
      16,
      "Adam Prentice"
     ],
-    "jared wayne": [
+    "harrison wallace": [
      16,
-     "Jared Wayne"
-    ],
-    "zamir white": [
-     16,
-     "Zamir White"
+     "Harrison Wallace III"
     ],
     "dj herman": [
      16,
@@ -1400,9 +1394,9 @@
      16,
      "Lew Nichols"
     ],
-    "jordan whittington": [
+    "treylon burks": [
      15,
-     "Jordan Whittington"
+     "Treylon Burks"
     ],
     "andy borregales": [
      15,
@@ -1420,9 +1414,9 @@
      15,
      "Cowboys DEF"
     ],
-    "cj daniels": [
+    "dylan laube": [
      15,
-     "CJ Daniels"
+     "Dylan Laube"
     ],
     "bo melton": [
      15,
@@ -1431,10 +1425,6 @@
     "colbie young": [
      15,
      "Colbie Young"
-    ],
-    "mitch tinsley": [
-     15,
-     "Mitch Tinsley"
     ],
     "justin joly": [
      15,
@@ -1456,37 +1446,29 @@
      15,
      "Kaden Wetjen"
     ],
-    "charlie jones": [
-     15,
-     "Charlie Jones"
-    ],
-    "luke schoonmaker": [
-     15,
-     "Luke Schoonmaker"
-    ],
     "connor heyward": [
      15,
      "Connor Heyward"
-    ],
-    "jeremy ruckert": [
-     15,
-     "Jeremy Ruckert"
     ],
     "justin watson": [
      15,
      "Justin Watson"
     ],
-    "jacoby jones": [
+    "jared wayne": [
      15,
-     "Jacoby Jones"
+     "Jared Wayne"
     ],
-    "nick nash": [
+    "zamir white": [
      15,
-     "Nick Nash"
+     "Zamir White"
     ],
-    "drake dabney": [
+    "jalin hyatt": [
      15,
-     "Drake Dabney"
+     "Jalin Hyatt"
+    ],
+    "carlos washington": [
+     15,
+     "Carlos Washington"
     ],
     "feleipe franks": [
      15,
@@ -1495,10 +1477,6 @@
     "brayden willis": [
      15,
      "Brayden Willis"
-    ],
-    "treylon burks": [
-     14,
-     "Treylon Burks"
     ],
     "john metchie": [
      14,
@@ -1520,21 +1498,33 @@
      14,
      "Hunter Luepke"
     ],
-    "dj giddens": [
+    "mitch tinsley": [
      14,
-     "DJ Giddens"
+     "Mitch Tinsley"
     ],
     "will kacmarek": [
      14,
      "Will Kacmarek"
     ],
+    "charlie jones": [
+     14,
+     "Charlie Jones"
+    ],
     "nikko remigio": [
      14,
      "Nikko Remigio"
     ],
+    "j michael sturdivant": [
+     14,
+     "J. Michael Sturdivant"
+    ],
     "mitchell tinsley": [
      14,
      "Mitchell Tinsley"
+    ],
+    "jeremy ruckert": [
+     14,
+     "Jeremy Ruckert"
     ],
     "david moore": [
      14,
@@ -1543,18 +1533,6 @@
     "colson yankoff": [
      14,
      "Colson Yankoff"
-    ],
-    "jelani woods": [
-     14,
-     "Jelani Woods"
-    ],
-    "harrison wallace": [
-     14,
-     "Harrison Wallace III"
-    ],
-    "jalin hyatt": [
-     14,
-     "Jalin Hyatt"
     ],
     "ryan fitzgerald": [
      13,
@@ -1580,9 +1558,9 @@
      13,
      "Skyler Bell"
     ],
-    "john bates": [
+    "marlin klein": [
      13,
-     "John Bates"
+     "Marlin Klein"
     ],
     "phi def": [
      13,
@@ -1616,13 +1594,13 @@
      13,
      "Velus Jones Jr."
     ],
+    "jelani woods": [
+     13,
+     "Jelani Woods"
+    ],
     "nick kallerup": [
      13,
      "Nick Kallerup"
-    ],
-    "khyiris tonga": [
-     13,
-     "Khyiris Tonga"
     ],
     "jaydn ott": [
      13,
@@ -1640,13 +1618,13 @@
      12,
      "LaJohntay Wester"
     ],
-    "isaiah bond": [
-     12,
-     "Isaiah Bond"
-    ],
     "donte thornton": [
      12,
      "Dont'e Thornton Jr."
+    ],
+    "john bates": [
+     12,
+     "John Bates"
     ],
     "seydou traore": [
      12,
@@ -1660,25 +1638,17 @@
      12,
      "Barion Brown"
     ],
-    "camden brown": [
+    "dareke young": [
      12,
-     "Camden Brown"
+     "Dareke Young"
     ],
-    "tylan wallace": [
+    "montorie foster": [
      12,
-     "Tylan Wallace"
-    ],
-    "malik mcclain": [
-     12,
-     "Malik McClain"
+     "Montorie Foster Jr."
     ],
     "james mitchell": [
      12,
      "James Mitchell"
-    ],
-    "irvin charles": [
-     12,
-     "Irvin Charles"
     ],
     "michael carter": [
      11,
@@ -1696,6 +1666,14 @@
      11,
      "KaVontae Turpin"
     ],
+    "isaiah bond": [
+     11,
+     "Isaiah Bond"
+    ],
+    "ben sinnott": [
+     11,
+     "Ben Sinnott"
+    ],
     "greg dortch": [
      11,
      "Greg Dortch"
@@ -1708,29 +1686,41 @@
      11,
      "Anthony Tyus III"
     ],
-    "dareke young": [
+    "tylan wallace": [
      11,
-     "Dareke Young"
+     "Tylan Wallace"
     ],
-    "brevin jordan": [
+    "malik mcclain": [
      11,
-     "Brevin Jordan"
+     "Malik McClain"
+    ],
+    "jaden bradley": [
+     11,
+     "Jaden Bradley"
     ],
     "brycen tremayne": [
      10,
      "Brycen Tremayne"
     ],
-    "ben sinnott": [
+    "camden brown": [
      10,
-     "Ben Sinnott"
+     "Camden Brown"
     ],
     "scott matlock": [
      10,
      "Scott Matlock"
     ],
+    "brevin jordan": [
+     10,
+     "Brevin Jordan"
+    ],
     "robert henry": [
      10,
      "Robert Henry"
+    ],
+    "beaux collins": [
+     10,
+     "Beaux Collins"
     ],
     "jabari small": [
      10,
@@ -1739,10 +1729,6 @@
     "devontez walker": [
      9,
      "Devontez Walker"
-    ],
-    "jordan hudson": [
-     9,
-     "Jordan Hudson"
     ],
     "kene nwangwu": [
      8,
@@ -1756,13 +1742,17 @@
      8,
      "DeAndre Carter"
     ],
-    "jaden bradley": [
-     8,
-     "Jaden Bradley"
-    ],
     "cj donaldson": [
      7,
      "CJ Donaldson"
+    ],
+    "josh whyle": [
+     6,
+     "Josh Whyle"
+    ],
+    "keandre lambert smith": [
+     5,
+     "KeAndre Lambert-Smith"
     ],
     "zachariah branch": [
      5,
@@ -1772,10 +1762,6 @@
      5,
      "Derius Davis"
     ],
-    "keandre lambert smith": [
-     3,
-     "KeAndre Lambert-Smith"
-    ],
     "brenen thompson": [
      0,
      "Brenen Thompson"
@@ -1784,7 +1770,7 @@
    "best": {
     "RB": {
      "name": "Samaje Perine",
-     "grade": 56
+     "grade": 57
     },
     "WR": {
      "name": "Courtland Sutton",
@@ -1792,68 +1778,68 @@
     },
     "TE": {
      "name": "Darren Waller",
-     "grade": 47
+     "grade": 48
     },
     "K": {
      "name": "Chris Boswell",
-     "grade": 31
+     "grade": 23
     },
     "DEF": {
      "name": "Vikings DEF",
-     "grade": 24
+     "grade": 25
     }
    }
   },
   "2": {
-   "read": "Tue Nov 10 7:52 AM PT",
+   "read": "Tue Nov 10 8:10 AM PT",
    "top": [
     {
      "tier": "HOT",
-     "tier_why": "grade 75, but only 1 of 7 sources agree",
-     "gain": 6,
+     "tier_why": "grade 73, but only 2 of 7 sources agree",
+     "gain": 1,
      "key": "caleb douglas",
      "name": "Caleb Douglas",
      "team": "MIA",
      "pos": "WR",
-     "pts": 85.3,
-     "grade": 75,
+     "pts": 85.5,
+     "grade": 73,
      "parts": {
       "value": 26,
-      "fit": 17,
+      "fit": 15,
       "workload": 14,
       "playoffs": 12,
       "team": 1,
       "path": 6
      },
      "why": [
-      "85 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Koerner 10.66 a game x 8 games)",
+      "86 pts rest of season in DK2 scoring (avg of Gotham + Vegas + Ratcliffe 10.69 a game x 8 games)",
       "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Koerner: 10.0 a game vs 10.7): +6% - under the 10% MUST bar",
+      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Vegas + Ratcliffe: 10.6 a game vs 10.7): +1% - under the 10% MUST bar",
       "Workload last 3 games: touches 3 > 6 > 8, snaps 68% > 86% > 74%",
       "Coach: Jeff Hafley, Nov 1: \"Hopefully we'll get a chance to get him the ball more.\"",
       "Playoffs: W15 GB (#6), W16 LAC (#4), W17 BUF (#10)",
       "MIA 1-7"
      ],
      "experts": {
-      "verdict": "1 of 7 sources have him ahead of Ladd McConkey",
-      "agree": 1,
+      "verdict": "2 of 7 sources have him ahead of Ladd McConkey",
+      "agree": 2,
       "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "11.6 vs Ladd McConkey 8.4 (a game ahead)",
         "ok": true
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "9.3 vs Ladd McConkey 11.1 (this week)",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.2 vs Ladd McConkey 11.1 (this week)",
         "ok": false
        },
        {
@@ -1867,10 +1853,10 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "9.1 vs Ladd McConkey 9.5 (this week)",
-        "ok": false
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "10.7 vs Ladd McConkey 9.0 (this week)",
+        "ok": true
        },
        {
         "ex": "Yahoo",
@@ -1884,7 +1870,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "9.5 vs Ladd McConkey 10.5 (Wks 10-17)",
         "ok": false
        },
@@ -1892,27 +1878,27 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.6 vs Ladd McConkey 10.9 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Ladd McConkey",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "HOT",
-     "tier_why": "grade 65, but only 0 of 6 sources agree",
-     "gain": -32,
+     "tier_why": "grade 66, but only 0 of 7 sources agree",
+     "gain": -21,
      "key": "samaje perine",
      "name": "Samaje Perine",
      "team": "CIN",
      "pos": "RB",
-     "pts": 60.7,
-     "grade": 65,
+     "pts": 62.9,
+     "grade": 66,
      "parts": {
-      "value": 18,
+      "value": 19,
       "fit": 12,
       "workload": 15,
       "playoffs": 10,
@@ -1920,34 +1906,34 @@
       "path": 6
      },
      "why": [
-      "61 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Koerner 7.59 a game x 8 games)",
+      "63 pts rest of season in DK2 scoring (avg of Gotham + Vegas + Ratcliffe 7.86 a game x 8 games)",
       "Fills your missing piece: A lead running back (short Weeks 10, 15; he plays all of them)",
-      "vs your weakest RB starter Jadarian Price (avg of Gotham + Ratcliffe + Koerner: 11.1 a game vs 7.6): -32% - under the 10% MUST bar",
+      "vs your weakest RB starter Jadarian Price (avg of Gotham + Vegas + Ratcliffe: 10.0 a game vs 7.9): -21% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#6), W17 BAL (#23)",
       "CIN 6-2"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Jadarian Price",
+      "verdict": "0 of 7 sources have him ahead of Jadarian Price",
       "agree": 0,
-      "of": 6,
+      "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.0 vs Jadarian Price 9.7 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "7.3 vs Jadarian Price 11.0 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -1960,9 +1946,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.5 vs Jadarian Price 14.4 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "6.9 vs Jadarian Price 10.9 (this week)",
         "ok": false
        },
        {
@@ -1977,7 +1963,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.6 vs Jadarian Price 12.7 (Wks 10-17)",
         "ok": false
        },
@@ -1985,25 +1971,25 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "5.2 vs Jadarian Price 13.0 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jadarian Price",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "STASH",
      "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
-     "gain": -16,
+     "gain": -10,
      "key": "chris rodriguez",
      "name": "Chris Rodriguez Jr.",
      "team": "JAX",
      "pos": "RB",
-     "pts": 74.4,
-     "grade": 58,
+     "pts": 71.8,
+     "grade": 57,
      "parts": {
       "value": 22,
       "fit": 12,
@@ -2013,9 +1999,9 @@
       "path": 4
      },
      "why": [
-      "74 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Koerner 9.30 a game x 8 games)",
+      "72 pts rest of season in DK2 scoring (avg of Gotham + Vegas + Ratcliffe 8.98 a game x 8 games)",
       "Fills your missing piece: A lead running back (short Weeks 10, 15; he plays all of them)",
-      "vs your weakest RB starter Jadarian Price (avg of Gotham + Ratcliffe + Koerner: 11.1 a game vs 9.3): -16% - under the 10% MUST bar",
+      "vs your weakest RB starter Jadarian Price (avg of Gotham + Vegas + Ratcliffe: 10.0 a game vs 9.0): -10% - under the 10% MUST bar",
       "Workload last 3 games: touches 12 > 7 > 12, snaps 30% > 22% > 45%",
       "Path: Bhayshul Tuten questionable (ankle) for Week 9, snaps 58% to 50% to 36%",
       "Playoffs: W15 HOU (#13), W16 DAL (#4), W17 WAS (#24)",
@@ -2030,16 +2016,16 @@
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "8.4 vs Jadarian Price 9.7 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "7.9 vs Jadarian Price 14.1 (this week)",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "8.5 vs Jadarian Price 11.0 (this week)",
         "ok": false
        },
        {
@@ -2053,9 +2039,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "9.5 vs Jadarian Price 14.4 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "10.1 vs Jadarian Price 10.9 (this week)",
         "ok": false
        },
        {
@@ -2070,7 +2056,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.1 vs Jadarian Price 12.7 (Wks 10-17)",
         "ok": false
        },
@@ -2078,14 +2064,107 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "10.0 vs Jadarian Price 13.0 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Jadarian Price",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
+    },
+    {
+     "tier": "WATCH",
+     "tier_why": "grade 59; not yet an upgrade worth a roster spot",
+     "gain": -17,
+     "key": "xavier hutchinson",
+     "name": "Xavier Hutchinson",
+     "team": "HOU",
+     "pos": "WR",
+     "pts": 65.1,
+     "grade": 59,
+     "parts": {
+      "value": 20,
+      "fit": 14,
+      "workload": 11,
+      "playoffs": 12,
+      "team": 2,
+      "path": 0
+     },
+     "why": [
+      "65 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Koerner 8.14 a game x 8 games)",
+      "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
+      "Depth: 1 healthy WR on your bench",
+      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Koerner: 9.9 a game vs 8.1): -17% - under the 10% MUST bar",
+      "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
+      "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
+      "HOU 3-5"
+     ],
+     "experts": {
+      "verdict": "0 of 6 sources have him ahead of Ladd McConkey",
+      "agree": 0,
+      "of": 6,
+      "lines": [
+       {
+        "ex": "Gotham",
+        "rank": "#1 (6.67 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 08:10 AM PT",
+        "txt": "8.4 vs Ladd McConkey 8.4 (a game ahead)",
+        "ok": false
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Ratcliffe",
+        "rank": "#3 (6.92 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 2:26 AM PT",
+        "txt": "7.9 vs Ladd McConkey 12.1 (rest of season)",
+        "ok": false
+       },
+       {
+        "ex": "Koerner",
+        "rank": "#4 (6.96 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "8.2 vs Ladd McConkey 9.0 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Yahoo",
+        "rank": "#5 (7.15 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 3:14 AM PT",
+        "txt": "5.6 vs Ladd McConkey 12.2 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "Clay",
+        "rank": "#6 (7.28 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "8.3 vs Ladd McConkey 10.5 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "6.0 vs Ladd McConkey 10.9 (this week)",
+        "ok": false
+       }
+      ]
+     },
+     "replaces": "Ladd McConkey",
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -2123,15 +2202,15 @@
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.3 vs Ladd McConkey 8.4 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -2147,7 +2226,7 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -2163,7 +2242,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.5 vs Ladd McConkey 10.5 (Wks 10-17)",
         "ok": false
        },
@@ -2171,146 +2250,57 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Ladd McConkey",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
-    },
-    {
-     "tier": "WATCH",
-     "tier_why": "grade 57; not yet an upgrade worth a roster spot",
-     "gain": -26,
-     "key": "xavier hutchinson",
-     "name": "Xavier Hutchinson",
-     "team": "HOU",
-     "pos": "WR",
-     "pts": 59.3,
-     "grade": 57,
-     "parts": {
-      "value": 18,
-      "fit": 14,
-      "workload": 11,
-      "playoffs": 12,
-      "team": 2,
-      "path": 0
-     },
-     "why": [
-      "59 pts rest of season in DK2 scoring (avg of Gotham + Ratcliffe + Koerner 7.41 a game x 8 games)",
-      "Fills your missing piece: A wide receiver for Week 10 on (short Weeks 11; he plays all of them)",
-      "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Ladd McConkey (avg of Gotham + Ratcliffe + Koerner: 10.0 a game vs 7.4): -26% - under the 10% MUST bar",
-      "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
-      "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "HOU 3-5"
-     ],
-     "experts": {
-      "verdict": "0 of 6 sources have him ahead of Ladd McConkey",
-      "agree": 0,
-      "of": 6,
-      "lines": [
-       {
-        "ex": "Gotham",
-        "rank": "#1 (6.67 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
-        "txt": "8.4 vs Ladd McConkey 8.4 (a game ahead)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Ratcliffe",
-        "rank": "#3 (6.92 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 2:26 AM PT",
-        "txt": "7.9 vs Ladd McConkey 12.1 (rest of season)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.0 vs Ladd McConkey 9.5 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Yahoo",
-        "rank": "#5 (7.15 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 3:14 AM PT",
-        "txt": "5.6 vs Ladd McConkey 12.2 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Clay",
-        "rank": "#6 (7.28 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "8.3 vs Ladd McConkey 10.5 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "6.0 vs Ladd McConkey 10.9 (this week)",
-        "ok": false
-       }
-      ]
-     },
-     "replaces": "Ladd McConkey",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A lead running back (short Weeks 10, 15)",
     "A wide receiver for Week 10 on (short Weeks 11)"
    ],
-   "pieces_built": "Tue Nov 10 7:52 AM PT",
+   "pieces_built": "Tue Nov 10 8:10 AM PT",
    "kicker_slot": true,
    "pool": {
     "caleb douglas": [
-     75,
+     73,
      "Caleb Douglas"
     ],
     "samaje perine": [
-     65,
+     66,
      "Samaje Perine"
     ],
     "chris rodriguez": [
-     58,
+     57,
      "Chris Rodriguez Jr."
+    ],
+    "xavier hutchinson": [
+     59,
+     "Xavier Hutchinson"
     ],
     "kalif raymond": [
      58,
      "Kalif Raymond"
     ],
-    "xavier hutchinson": [
-     57,
-     "Xavier Hutchinson"
-    ],
     "emmett johnson": [
-     55,
+     56,
      "Emmett Johnson"
     ],
     "justice hill": [
-     53,
+     54,
      "Justice Hill"
     ],
+    "kaleb johnson": [
+     53,
+     "Kaleb Johnson"
+    ],
     "keaton mitchell": [
-     52,
+     53,
      "Keaton Mitchell"
     ],
     "pat bryant": [
@@ -2318,24 +2308,36 @@
      "Pat Bryant"
     ],
     "corey kiner": [
-     51,
+     50,
      "Corey Kiner"
     ],
-    "kaleb johnson": [
-     51,
-     "Kaleb Johnson"
+    "jordan watkins": [
+     48,
+     "Jordan Watkins"
     ],
     "darnell mooney": [
-     49,
+     48,
      "Darnell Mooney"
     ],
+    "tank dell": [
+     47,
+     "Tank Dell"
+    ],
     "kyle pitts": [
-     48,
+     47,
      "Kyle Pitts Sr."
+    ],
+    "kimani vidal": [
+     46,
+     "Kimani Vidal"
     ],
     "cooper kupp": [
      46,
      "Cooper Kupp"
+    ],
+    "tre harris": [
+     46,
+     "Tre' Harris"
     ],
     "chris bell": [
      46,
@@ -2349,37 +2351,25 @@
      46,
      "Myles Price"
     ],
-    "kimani vidal": [
+    "demarcus robinson": [
      45,
-     "Kimani Vidal"
-    ],
-    "tank dell": [
-     45,
-     "Tank Dell"
+     "Demarcus Robinson"
     ],
     "malachi fields": [
      45,
      "Malachi Fields"
     ],
+    "tutu atwell": [
+     45,
+     "Tutu Atwell"
+    ],
     "dohnte meyers": [
      45,
      "Dohnte Meyers"
     ],
-    "tre harris": [
-     45,
-     "Tre' Harris"
-    ],
     "brian thomas": [
      45,
      "Brian Thomas Jr."
-    ],
-    "jordan watkins": [
-     44,
-     "Jordan Watkins"
-    ],
-    "demarcus robinson": [
-     44,
-     "Demarcus Robinson"
     ],
     "gunnar helm": [
      44,
@@ -2389,41 +2379,41 @@
      44,
      "Ameer Abdullah"
     ],
+    "zonovan knight": [
+     44,
+     "Zonovan Knight"
+    ],
+    "simi fehoko": [
+     43,
+     "Simi Fehoko"
+    ],
     "cade otton": [
      43,
      "Cade Otton"
-    ],
-    "sione vaki": [
-     42,
-     "Sione Vaki"
     ],
     "jahan dotson": [
      42,
      "Jahan Dotson"
     ],
-    "tutu atwell": [
-     42,
-     "Tutu Atwell"
-    ],
     "elic ayomanor": [
      42,
      "Elic Ayomanor"
-    ],
-    "simi fehoko": [
-     42,
-     "Simi Fehoko"
     ],
     "tez johnson": [
      42,
      "Tez Johnson"
     ],
-    "isaiah williams": [
-     42,
-     "Isaiah Williams"
-    ],
     "troy franklin": [
      42,
      "Troy Franklin"
+    ],
+    "ty johnson": [
+     41,
+     "Ty Johnson"
+    ],
+    "sione vaki": [
+     41,
+     "Sione Vaki"
     ],
     "ray davis": [
      41,
@@ -2441,41 +2431,37 @@
      41,
      "Tommy Tremble"
     ],
-    "ty johnson": [
-     40,
-     "Ty Johnson"
+    "ashton dulin": [
+     41,
+     "Ashton Dulin"
     ],
     "travis hunter": [
      40,
      "Travis Hunter"
     ],
-    "eli raridon": [
+    "isaiah williams": [
      40,
+     "Isaiah Williams"
+    ],
+    "marshawn lloyd": [
+     39,
+     "MarShawn Lloyd"
+    ],
+    "reggie virgil": [
+     39,
+     "Reggie Virgil"
+    ],
+    "eli raridon": [
+     39,
      "Eli Raridon"
     ],
+    "cam little": [
+     39,
+     "Cam Little"
+    ],
     "jaylen wright": [
-     40,
+     39,
      "Jaylen Wright"
-    ],
-    "ashton dulin": [
-     40,
-     "Ashton Dulin"
-    ],
-    "emari demercado": [
-     39,
-     "Emari Demercado"
-    ],
-    "efton chism": [
-     39,
-     "Efton Chism III"
-    ],
-    "kyle williams": [
-     39,
-     "Kyle Williams"
-    ],
-    "josh cameron": [
-     39,
-     "Josh Cameron"
     ],
     "marvin mims": [
      39,
@@ -2485,17 +2471,25 @@
      39,
      "Zavion Thomas"
     ],
+    "audric estime": [
+     38,
+     "Audric Estime"
+    ],
     "bam knight": [
      38,
      "Bam Knight"
+    ],
+    "tyjae spears": [
+     38,
+     "Tyjae Spears"
     ],
     "isaac teslaa": [
      38,
      "Isaac TeSlaa"
     ],
-    "jalen nailor": [
+    "josh cameron": [
      38,
-     "Jalen Nailor"
+     "Josh Cameron"
     ],
     "dawson knox": [
      38,
@@ -2509,17 +2503,13 @@
      38,
      "Kevin Coleman Jr."
     ],
-    "evan hull": [
-     38,
-     "Evan Hull"
-    ],
-    "marshawn lloyd": [
+    "pierre strong": [
      37,
-     "MarShawn Lloyd"
+     "Pierre Strong Jr."
     ],
-    "tyjae spears": [
+    "emari demercado": [
      37,
-     "Tyjae Spears"
+     "Emari Demercado"
     ],
     "savion williams": [
      37,
@@ -2529,9 +2519,17 @@
      37,
      "Jerry Jeudy"
     ],
-    "reggie virgil": [
+    "efton chism": [
      37,
-     "Reggie Virgil"
+     "Efton Chism III"
+    ],
+    "kyle williams": [
+     37,
+     "Kyle Williams"
+    ],
+    "jalen nailor": [
+     37,
+     "Jalen Nailor"
     ],
     "cyrus allen": [
      37,
@@ -2565,57 +2563,41 @@
      36,
      "Evan Engram"
     ],
-    "jonathan mingo": [
-     36,
-     "Jonathan Mingo"
-    ],
-    "audric estime": [
-     35,
-     "Audric Estime"
-    ],
-    "pierre strong": [
-     35,
-     "Pierre Strong Jr."
-    ],
     "jakobi lane": [
      35,
      "Ja'Kobi Lane"
     ],
-    "khalil herbert": [
+    "rashod bateman": [
      35,
-     "Khalil Herbert"
+     "Rashod Bateman"
     ],
-    "brandin cooks": [
+    "konata mumpfield": [
      34,
-     "Brandin Cooks"
-    ],
-    "bryce lance": [
-     34,
-     "Bryce Lance"
+     "Konata Mumpfield"
     ],
     "ted hurst": [
      34,
      "Ted Hurst III"
     ],
+    "khalil herbert": [
+     34,
+     "Khalil Herbert"
+    ],
+    "jonathan mingo": [
+     34,
+     "Jonathan Mingo"
+    ],
+    "chris blair": [
+     34,
+     "Chris Blair"
+    ],
     "brandon smith": [
      34,
      "Brandon Smith"
     ],
-    "khadarel hodge": [
-     34,
-     "KhaDarel Hodge"
-    ],
-    "kaytron allen": [
+    "treveyon henderson": [
      33,
-     "Kaytron Allen"
-    ],
-    "konata mumpfield": [
-     33,
-     "Konata Mumpfield"
-    ],
-    "rashod bateman": [
-     33,
-     "Rashod Bateman"
+     "TreVeyon Henderson"
     ],
     "jalen royals": [
      33,
@@ -2625,33 +2607,49 @@
      33,
      "Laquon Treadwell"
     ],
+    "brandin cooks": [
+     33,
+     "Brandin Cooks"
+    ],
+    "bryce lance": [
+     33,
+     "Bryce Lance"
+    ],
+    "davis allen": [
+     33,
+     "Davis Allen"
+    ],
     "tyler goodson": [
      33,
      "Tyler Goodson"
     ],
-    "jack bech": [
+    "deion burks": [
      33,
-     "Jack Bech"
-    ],
-    "chris blair": [
-     33,
-     "Chris Blair"
+     "Deion Burks"
     ],
     "sterling shepard": [
      33,
      "Sterling Shepard"
     ],
-    "treveyon henderson": [
+    "kaytron allen": [
      32,
-     "TreVeyon Henderson"
+     "Kaytron Allen"
+    ],
+    "devin duvernay": [
+     32,
+     "Devin Duvernay"
+    ],
+    "van jefferson": [
+     32,
+     "Van Jefferson"
     ],
     "mark andrews": [
      32,
      "Mark Andrews"
     ],
-    "darnell washington": [
+    "colby parkinson": [
      32,
-     "Darnell Washington"
+     "Colby Parkinson"
     ],
     "nicholas singleton": [
      32,
@@ -2665,33 +2663,25 @@
      32,
      "Tai Felton"
     ],
-    "theo johnson": [
+    "khadarel hodge": [
      32,
-     "Theo Johnson"
+     "KhaDarel Hodge"
     ],
-    "deion burks": [
-     32,
-     "Deion Burks"
-    ],
-    "devin duvernay": [
+    "lan larison": [
      31,
-     "Devin Duvernay"
-    ],
-    "van jefferson": [
-     31,
-     "Van Jefferson"
+     "Lan Larison"
     ],
     "chig okonkwo": [
      31,
      "Chig Okonkwo"
     ],
-    "davis allen": [
+    "darnell washington": [
      31,
-     "Davis Allen"
+     "Darnell Washington"
     ],
-    "george holani": [
+    "oronde gadsden": [
      31,
-     "George Holani"
+     "Oronde Gadsden"
     ],
     "lequint allen": [
      31,
@@ -2705,13 +2695,17 @@
      31,
      "Tim Patrick"
     ],
+    "jack bech": [
+     31,
+     "Jack Bech"
+    ],
     "malik benson": [
      31,
      "Malik Benson"
     ],
-    "jerome ford": [
+    "theo johnson": [
      31,
-     "Jerome Ford"
+     "Theo Johnson"
     ],
     "brandon johnson": [
      31,
@@ -2721,17 +2715,13 @@
      30,
      "Andrew Armstrong"
     ],
-    "colby parkinson": [
-     30,
-     "Colby Parkinson"
-    ],
-    "oronde gadsden": [
-     30,
-     "Oronde Gadsden"
-    ],
     "elijah higgins": [
      30,
      "Elijah Higgins"
+    ],
+    "george holani": [
+     30,
+     "George Holani"
     ],
     "jauan jennings": [
      30,
@@ -2741,45 +2731,25 @@
      30,
      "Cody White"
     ],
-    "mitch tinsley": [
-     30,
-     "Mitch Tinsley"
-    ],
     "kaden wetjen": [
      30,
      "Kaden Wetjen"
-    ],
-    "charlie jones": [
-     30,
-     "Charlie Jones"
-    ],
-    "justin watson": [
-     30,
-     "Justin Watson"
     ],
     "jared wayne": [
      30,
      "Jared Wayne"
     ],
-    "jacoby jones": [
+    "harrison wallace": [
      30,
-     "Jacoby Jones"
+     "Harrison Wallace III"
     ],
-    "lan larison": [
+    "treylon burks": [
      29,
-     "Lan Larison"
+     "Treylon Burks"
     ],
-    "john metchie": [
+    "jordan whittington": [
      29,
-     "John Metchie III"
-    ],
-    "olamide zaccheaus": [
-     29,
-     "Olamide Zaccheaus"
-    ],
-    "greg dulcich": [
-     29,
-     "Greg Dulcich"
+     "Jordan Whittington"
     ],
     "aj barner": [
      29,
@@ -2788,10 +2758,6 @@
     "charlie kolar": [
      29,
      "Charlie Kolar"
-    ],
-    "cam little": [
-     29,
-     "Cam Little"
     ],
     "kyle juszczyk": [
      29,
@@ -2817,21 +2783,13 @@
      29,
      "Nikko Remigio"
     ],
-    "j michael sturdivant": [
-     29,
-     "J. Michael Sturdivant"
-    ],
     "mitchell tinsley": [
      29,
      "Mitchell Tinsley"
     ],
-    "harrison wallace": [
+    "justin watson": [
      29,
-     "Harrison Wallace III"
-    ],
-    "nick nash": [
-     29,
-     "Nick Nash"
+     "Justin Watson"
     ],
     "jalin hyatt": [
      29,
@@ -2841,17 +2799,45 @@
      28,
      "Trevor Etienne"
     ],
-    "treylon burks": [
+    "john metchie": [
      28,
-     "Treylon Burks"
+     "John Metchie III"
     ],
     "calvin ridley": [
      28,
      "Calvin Ridley"
     ],
+    "olamide zaccheaus": [
+     28,
+     "Olamide Zaccheaus"
+    ],
+    "greg dulcich": [
+     28,
+     "Greg Dulcich"
+    ],
+    "noah fant": [
+     28,
+     "Noah Fant"
+    ],
+    "jax def": [
+     28,
+     "Jaguars DEF"
+    ],
+    "cj daniels": [
+     28,
+     "CJ Daniels"
+    ],
     "bo melton": [
      28,
      "Bo Melton"
+    ],
+    "mitch tinsley": [
+     28,
+     "Mitch Tinsley"
+    ],
+    "charlie jones": [
+     28,
+     "Charlie Jones"
     ],
     "david moore": [
      28,
@@ -2861,21 +2847,13 @@
      28,
      "Keleki Latu"
     ],
-    "jordan whittington": [
+    "brevyn spann ford": [
      27,
-     "Jordan Whittington"
-    ],
-    "noah fant": [
-     27,
-     "Noah Fant"
+     "Brevyn Spann-Ford"
     ],
     "tahj brooks": [
      27,
      "Tahj Brooks"
-    ],
-    "cj daniels": [
-     27,
-     "CJ Daniels"
     ],
     "lajohntay wester": [
      27,
@@ -2889,29 +2867,25 @@
      27,
      "Gavin Bartholomew"
     ],
-    "luke mccaffrey": [
-     27,
-     "Luke McCaffrey"
-    ],
     "barion brown": [
      27,
      "Barion Brown"
+    ],
+    "j michael sturdivant": [
+     27,
+     "J. Michael Sturdivant"
     ],
     "gregory desrosiers": [
      27,
      "Gregory Desrosiers"
     ],
-    "carlos washington": [
-     27,
-     "Carlos Washington"
-    ],
     "mason taylor": [
      26,
      "Mason Taylor"
     ],
-    "brevyn spann ford": [
+    "eddy pineiro": [
      26,
-     "Brevyn Spann-Ford"
+     "Eddy Pineiro"
     ],
     "jordan james": [
      26,
@@ -2921,6 +2895,10 @@
      26,
      "Julius Chestnut"
     ],
+    "dj giddens": [
+     26,
+     "DJ Giddens"
+    ],
     "travis homer": [
      26,
      "Travis Homer"
@@ -2929,21 +2907,21 @@
      26,
      "Elijah Sarratt"
     ],
+    "kavontae turpin": [
+     26,
+     "KaVontae Turpin"
+    ],
     "donte thornton": [
      26,
      "Dont'e Thornton Jr."
     ],
+    "luke mccaffrey": [
+     26,
+     "Luke McCaffrey"
+    ],
     "greg dortch": [
      26,
      "Greg Dortch"
-    ],
-    "camden brown": [
-     26,
-     "Camden Brown"
-    ],
-    "malachi corley": [
-     26,
-     "Malachi Corley"
     ],
     "riley nowakowski": [
      26,
@@ -2957,21 +2935,21 @@
      26,
      "Dareke Young"
     ],
-    "cameron latu": [
-     26,
-     "Cameron Latu"
-    ],
-    "malik mcclain": [
-     26,
-     "Malik McClain"
-    ],
     "dj herman": [
      26,
      "DJ Herman"
     ],
+    "nate boerkircher": [
+     25,
+     "Nate Boerkircher"
+    ],
     "daniel bellinger": [
      25,
      "Daniel Bellinger"
+    ],
+    "cin def": [
+     25,
+     "Bengals DEF"
     ],
     "dylan laube": [
      25,
@@ -2985,17 +2963,17 @@
      25,
      "Hollywood Brown"
     ],
-    "kavontae turpin": [
-     25,
-     "KaVontae Turpin"
-    ],
-    "isaiah bond": [
-     25,
-     "Isaiah Bond"
-    ],
     "adam trautman": [
      25,
      "Adam Trautman"
+    ],
+    "camden brown": [
+     25,
+     "Camden Brown"
+    ],
+    "malachi corley": [
+     25,
+     "Malachi Corley"
     ],
     "tay martin": [
      25,
@@ -3009,21 +2987,25 @@
      25,
      "Ben Yurosek"
     ],
-    "zamir white": [
+    "malik mcclain": [
      25,
-     "Zamir White"
+     "Malik McClain"
+    ],
+    "jaden bradley": [
+     25,
+     "Jaden Bradley"
+    ],
+    "carlos washington": [
+     25,
+     "Carlos Washington"
     ],
     "lew nichols": [
      25,
      "Lew Nichols"
     ],
-    "nate boerkircher": [
+    "noah gray": [
      24,
-     "Nate Boerkircher"
-    ],
-    "dominic zvada": [
-     24,
-     "Dominic Zvada"
+     "Noah Gray"
     ],
     "jaydon blue": [
      24,
@@ -3037,13 +3019,9 @@
      24,
      "Devontez Walker"
     ],
-    "josh cuevas": [
+    "isaiah bond": [
      24,
-     "Josh Cuevas"
-    ],
-    "mo alie cox": [
-     24,
-     "Mo Alie-Cox"
+     "Isaiah Bond"
     ],
     "zach ertz": [
      24,
@@ -3057,17 +3035,13 @@
      24,
      "Tylan Wallace"
     ],
-    "irvin charles": [
+    "montorie foster": [
      24,
-     "Irvin Charles"
+     "Montorie Foster Jr."
     ],
-    "noah gray": [
-     23,
-     "Noah Gray"
-    ],
-    "jax def": [
-     23,
-     "Jaguars DEF"
+    "zamir white": [
+     24,
+     "Zamir White"
     ],
     "sf def": [
      23,
@@ -3077,37 +3051,25 @@
      23,
      "Hunter Luepke"
     ],
-    "dj giddens": [
-     23,
-     "DJ Giddens"
-    ],
     "ronnie rivers": [
      23,
      "Ronnie Rivers"
-    ],
-    "isaiah davis": [
-     23,
-     "Isaiah Davis"
     ],
     "jake ferguson": [
      23,
      "Jake Ferguson"
     ],
-    "foster moreau": [
+    "josh cuevas": [
      23,
-     "Foster Moreau"
+     "Josh Cuevas"
     ],
-    "austin hooper": [
+    "mo alie cox": [
      23,
-     "Austin Hooper"
+     "Mo Alie-Cox"
     ],
-    "dare ogunbowale": [
+    "max bredeson": [
      23,
-     "Dare Ogunbowale"
-    ],
-    "rasheen ali": [
-     23,
-     "Rasheen Ali"
+     "Max Bredeson"
     ],
     "deandre carter": [
      23,
@@ -3117,21 +3079,33 @@
      23,
      "Velus Jones Jr."
     ],
-    "jaden bradley": [
+    "beaux collins": [
      23,
-     "Jaden Bradley"
+     "Beaux Collins"
     ],
-    "jordan hudson": [
-     23,
-     "Jordan Hudson"
+    "mitchell evans": [
+     22,
+     "Mitchell Evans"
+    ],
+    "buf def": [
+     22,
+     "Bills DEF"
     ],
     "jacob saylors": [
      22,
      "Jacob Saylors"
     ],
-    "will mallory": [
+    "isaiah davis": [
      22,
-     "Will Mallory"
+     "Isaiah Davis"
+    ],
+    "foster moreau": [
+     22,
+     "Foster Moreau"
+    ],
+    "austin hooper": [
+     22,
+     "Austin Hooper"
     ],
     "charlie woerner": [
      22,
@@ -3141,9 +3115,13 @@
      22,
      "Drew Sample"
     ],
-    "max bredeson": [
+    "dare ogunbowale": [
      22,
-     "Max Bredeson"
+     "Dare Ogunbowale"
+    ],
+    "rasheen ali": [
+     22,
+     "Rasheen Ali"
     ],
     "michael burton": [
      22,
@@ -3153,17 +3131,13 @@
      22,
      "Jake Briningstool"
     ],
-    "khyiris tonga": [
-     22,
-     "Khyiris Tonga"
-    ],
     "jaydn ott": [
      22,
      "Jaydn Ott"
     ],
-    "mitchell evans": [
+    "kaimi fairbairn": [
      21,
-     "Mitchell Evans"
+     "Ka'imi Fairbairn"
     ],
     "andre szmyt": [
      21,
@@ -3173,21 +3147,17 @@
      21,
      "Chad Ryland"
     ],
-    "buf def": [
-     21,
-     "Bills DEF"
-    ],
     "lv def": [
      21,
      "Raiders DEF"
     ],
-    "luke farrell": [
-     21,
-     "Luke Farrell"
-    ],
     "eric saubert": [
      21,
      "Eric Saubert"
+    ],
+    "jack endries": [
+     21,
+     "Jack Endries"
     ],
     "wil lutz": [
      21,
@@ -3197,13 +3167,13 @@
      21,
      "Anthony Tyus III"
     ],
-    "chris manhertz": [
-     21,
-     "Chris Manhertz"
-    ],
-    "cin def": [
+    "keandre lambert smith": [
      20,
-     "Bengals DEF"
+     "KeAndre Lambert-Smith"
+    ],
+    "gb def": [
+     20,
+     "Packers DEF"
     ],
     "cle def": [
      20,
@@ -3213,37 +3183,45 @@
      20,
      "Michael Carter"
     ],
-    "jonnu smith": [
-     20,
-     "Jonnu Smith"
-    ],
     "matt hibner": [
      20,
      "Matt Hibner"
     ],
-    "jack endries": [
+    "luke farrell": [
      20,
-     "Jack Endries"
+     "Luke Farrell"
     ],
     "teagan quitoriano": [
      20,
      "Teagan Quitoriano"
     ],
+    "chris manhertz": [
+     20,
+     "Chris Manhertz"
+    ],
     "scott matlock": [
      20,
      "Scott Matlock"
+    ],
+    "thomas fidone": [
+     20,
+     "Thomas Fidone II"
     ],
     "jabari small": [
      20,
      "Jabari Small"
     ],
-    "eddy pineiro": [
-     19,
-     "Eddy Pineiro"
-    ],
     "matt gay": [
      19,
      "Matt Gay"
+    ],
+    "dominic zvada": [
+     19,
+     "Dominic Zvada"
+    ],
+    "bal def": [
+     19,
+     "Ravens DEF"
     ],
     "nyj def": [
      19,
@@ -3253,6 +3231,14 @@
      19,
      "Eli Stowers"
     ],
+    "jonnu smith": [
+     19,
+     "Jonnu Smith"
+    ],
+    "will mallory": [
+     19,
+     "Will Mallory"
+    ],
     "tanner koziol": [
      19,
      "Tanner Koziol"
@@ -3260,10 +3246,6 @@
     "oscar delp": [
      19,
      "Oscar Delp"
-    ],
-    "cade stover": [
-     19,
-     "Cade Stover"
     ],
     "nate adkins": [
      19,
@@ -3289,10 +3271,6 @@
      19,
      "Robert Henry"
     ],
-    "keandre lambert smith": [
-     18,
-     "KeAndre Lambert-Smith"
-    ],
     "charlie smyth": [
      18,
      "Charlie Smyth"
@@ -3309,9 +3287,9 @@
      18,
      "Joey Slye"
     ],
-    "gb def": [
+    "was def": [
      18,
-     "Packers DEF"
+     "Commanders DEF"
     ],
     "ind def": [
      18,
@@ -3325,6 +3303,10 @@
      18,
      "Brock Wright"
     ],
+    "cade stover": [
+     18,
+     "Cade Stover"
+    ],
     "chase mclaughlin": [
      18,
      "Chase McLaughlin"
@@ -3333,25 +3315,13 @@
      18,
      "Blake Whiteheart"
     ],
-    "cam grandy": [
+    "hayden rucci": [
      18,
-     "Cam Grandy"
-    ],
-    "kaimi fairbairn": [
-     17,
-     "Ka'imi Fairbairn"
+     "Hayden Rucci"
     ],
     "zane gonzalez": [
      17,
      "Zane Gonzalez"
-    ],
-    "bal def": [
-     17,
-     "Ravens DEF"
-    ],
-    "was def": [
-     17,
-     "Commanders DEF"
     ],
     "nyg def": [
      17,
@@ -3361,10 +3331,6 @@
      17,
      "Falcons DEF"
     ],
-    "marlin klein": [
-     17,
-     "Marlin Klein"
-    ],
     "drew ogletree": [
      17,
      "Drew Ogletree"
@@ -3372,6 +3338,10 @@
     "kene nwangwu": [
      17,
      "Kene Nwangwu"
+    ],
+    "max klare": [
+     17,
+     "Max Klare"
     ],
     "tyler conklin": [
      17,
@@ -3388,10 +3358,6 @@
     "mark redman": [
      17,
      "Mark Redman"
-    ],
-    "hayden rucci": [
-     17,
-     "Hayden Rucci"
     ],
     "robert tonyan": [
      17,
@@ -3417,9 +3383,9 @@
      16,
      "CJ Donaldson"
     ],
-    "max klare": [
+    "luke schoonmaker": [
      16,
-     "Max Klare"
+     "Luke Schoonmaker"
     ],
     "david martin robinson": [
      16,
@@ -3449,14 +3415,6 @@
      15,
      "Payne Durham"
     ],
-    "luke schoonmaker": [
-     15,
-     "Luke Schoonmaker"
-    ],
-    "drake dabney": [
-     15,
-     "Drake Dabney"
-    ],
     "feleipe franks": [
      15,
      "Feleipe Franks"
@@ -3481,17 +3439,13 @@
      14,
      "Colson Yankoff"
     ],
-    "jelani woods": [
-     14,
-     "Jelani Woods"
-    ],
     "ryan fitzgerald": [
      13,
      "Ryan Fitzgerald"
     ],
-    "john bates": [
+    "marlin klein": [
      13,
-     "John Bates"
+     "Marlin Klein"
     ],
     "phi def": [
      13,
@@ -3500,6 +3454,10 @@
     "jake elliott": [
      13,
      "Jake Elliott"
+    ],
+    "jelani woods": [
+     13,
+     "Jelani Woods"
     ],
     "nick kallerup": [
      13,
@@ -3513,6 +3471,10 @@
      12,
      "Brenen Thompson"
     ],
+    "john bates": [
+     12,
+     "John Bates"
+    ],
     "seydou traore": [
      12,
      "Seydou Traore"
@@ -3521,53 +3483,151 @@
      12,
      "James Mitchell"
     ],
-    "brevin jordan": [
+    "ben sinnott": [
      11,
+     "Ben Sinnott"
+    ],
+    "brevin jordan": [
+     10,
      "Brevin Jordan"
     ],
-    "ben sinnott": [
-     10,
-     "Ben Sinnott"
+    "josh whyle": [
+     6,
+     "Josh Whyle"
     ]
    },
    "best": {
     "RB": {
      "name": "Samaje Perine",
-     "grade": 65
+     "grade": 66
     },
     "WR": {
      "name": "Caleb Douglas",
-     "grade": 75
+     "grade": 73
     },
     "TE": {
      "name": "Kyle Pitts Sr.",
-     "grade": 48
+     "grade": 47
     },
     "K": {
      "name": "Cam Little",
-     "grade": 29
+     "grade": 39
     },
     "DEF": {
      "name": "Jaguars DEF",
-     "grade": 23
+     "grade": 28
     }
    }
   },
   "3": {
-   "read": "Tue Nov 10 7:52 AM PT",
+   "read": "Tue Nov 10 8:10 AM PT",
    "top": [
     {
      "tier": "STASH",
      "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
-     "gain": -52,
+     "gain": -28,
+     "key": "justice hill",
+     "name": "Justice Hill",
+     "team": "BAL",
+     "pos": "RB",
+     "pts": 63.3,
+     "grade": 55,
+     "parts": {
+      "value": 19,
+      "fit": 12,
+      "workload": 10,
+      "playoffs": 7,
+      "team": 2,
+      "path": 4
+     },
+     "why": [
+      "63 pts rest of season in DK3 scoring (avg of Gotham + Vegas + Ratcliffe 9.04 a game x 7 games)",
+      "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16; he misses some)",
+      "Depth: 1 healthy RB on your bench",
+      "vs your weakest RB starter Rachaad White (avg of Gotham + Vegas + Ratcliffe: 12.5 a game vs 9.0): -28% - under the 10% MUST bar",
+      "Workload last 3 games: touches 7 > 11 > 12, snaps 46% > 49% > 52%",
+      "Path: Derrick Henry is 32, yards per carry down 4.11 to 3.44 the last 3 games; Giants asked about trading for Hill (deadline Tue Nov 10, 1 PM PT)",
+      "Playoffs: W15 PIT (#21), W16 CLE (#15), W17 CIN (#18)",
+      "BAL 4-5"
+     ],
+     "experts": {
+      "verdict": "0 of 7 sources have him ahead of Rachaad White",
+      "agree": 0,
+      "of": 7,
+      "lines": [
+       {
+        "ex": "Gotham",
+        "rank": "#1 (6.67 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 08:10 AM PT",
+        "txt": "9.8 vs Rachaad White 11.5 (a game ahead)",
+        "ok": false
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.2 vs Rachaad White 12.6 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Ratcliffe",
+        "rank": "#3 (6.92 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 2:26 AM PT",
+        "txt": "8.1 vs Rachaad White 13.4 (rest of season)",
+        "ok": false
+       },
+       {
+        "ex": "Koerner",
+        "rank": "#4 (6.96 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "7.9 vs Rachaad White 13.2 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Yahoo",
+        "rank": "#5 (7.15 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 3:14 AM PT",
+        "txt": "7.5 vs Rachaad White 10.1 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "Clay",
+        "rank": "#6 (7.28 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "7.4 vs Rachaad White 13.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "6.8 vs Rachaad White 12.7 (this week)",
+        "ok": false
+       }
+      ]
+     },
+     "replaces": "Rachaad White",
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
+    },
+    {
+     "tier": "STASH",
+     "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
+     "gain": -54,
      "key": "corey kiner",
      "name": "Corey Kiner",
      "team": "NE",
      "pos": "RB",
-     "pts": 42.8,
-     "grade": 54,
+     "pts": 39.3,
+     "grade": 52,
      "parts": {
-      "value": 13,
+      "value": 12,
       "fit": 14,
       "workload": 9,
       "playoffs": 9,
@@ -3575,10 +3635,10 @@
       "path": 6
      },
      "why": [
-      "43 pts rest of season in DK3 scoring (avg of Ratcliffe + Koerner + Yahoo 6.12 a game x 7 games)",
+      "39 pts rest of season in DK3 scoring (avg of Ratcliffe + Koerner + Yahoo 5.62 a game x 7 games)",
       "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16; he plays all of them)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Rachaad White (avg of Ratcliffe + Koerner + Yahoo: 12.8 a game vs 6.1): -52% - under the 10% MUST bar",
+      "vs your weakest RB starter Rachaad White (avg of Ratcliffe + Koerner + Yahoo: 12.2 a game vs 5.6): -54% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 7 > 8, snaps 11% > 18% > 17%",
       "Coach: Mike Vrabel, Nov 6: \"Corey's worked really hard\" (praise; bigger role is the writer's read)",
       "Playoffs: W15 KC (#25), W16 NYJ (#7), W17 DEN (#11)",
@@ -3593,15 +3653,15 @@
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3617,8 +3677,8 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.2 vs Rachaad White 14.9 (this week)",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "4.8 vs Rachaad White 13.2 (this week)",
         "ok": false
        },
        {
@@ -3633,7 +3693,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "4.9 vs Rachaad White 13.9 (Wks 10-17)",
         "ok": false
        },
@@ -3641,121 +3701,27 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "5.5 vs Rachaad White 12.7 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Rachaad White",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
-    },
-    {
-     "tier": "STASH",
-     "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
-     "gain": -36,
-     "key": "justice hill",
-     "name": "Justice Hill",
-     "team": "BAL",
-     "pos": "RB",
-     "pts": 59.6,
-     "grade": 54,
-     "parts": {
-      "value": 18,
-      "fit": 12,
-      "workload": 10,
-      "playoffs": 7,
-      "team": 2,
-      "path": 4
-     },
-     "why": [
-      "60 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Koerner 8.52 a game x 7 games)",
-      "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16; he misses some)",
-      "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Rachaad White (avg of Gotham + Ratcliffe + Koerner: 13.3 a game vs 8.5): -36% - under the 10% MUST bar",
-      "Workload last 3 games: touches 7 > 11 > 12, snaps 46% > 49% > 52%",
-      "Path: Derrick Henry is 32, yards per carry down 4.11 to 3.44 the last 3 games; Giants asked about trading for Hill (deadline Tue Nov 10, 1 PM PT)",
-      "Playoffs: W15 PIT (#21), W16 CLE (#15), W17 CIN (#18)",
-      "BAL 4-5"
-     ],
-     "experts": {
-      "verdict": "0 of 7 sources have him ahead of Rachaad White",
-      "agree": 0,
-      "of": 7,
-      "lines": [
-       {
-        "ex": "Gotham",
-        "rank": "#1 (6.67 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
-        "txt": "9.8 vs Rachaad White 11.5 (a game ahead)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "7.9 vs Rachaad White 13.2 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Ratcliffe",
-        "rank": "#3 (6.92 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 2:26 AM PT",
-        "txt": "8.1 vs Rachaad White 13.4 (rest of season)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "7.6 vs Rachaad White 14.9 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Yahoo",
-        "rank": "#5 (7.15 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 3:14 AM PT",
-        "txt": "7.5 vs Rachaad White 10.1 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Clay",
-        "rank": "#6 (7.28 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "7.4 vs Rachaad White 13.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "6.8 vs Rachaad White 12.7 (this week)",
-        "ok": false
-       }
-      ]
-     },
-     "replaces": "Rachaad White",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
-     "tier_why": "grade 57; not yet an upgrade worth a roster spot",
-     "gain": -29,
+     "tier_why": "grade 59; not yet an upgrade worth a roster spot",
+     "gain": -15,
      "key": "xavier hutchinson",
      "name": "Xavier Hutchinson",
      "team": "HOU",
      "pos": "WR",
-     "pts": 59.3,
-     "grade": 57,
+     "pts": 65.1,
+     "grade": 59,
      "parts": {
-      "value": 18,
+      "value": 20,
       "fit": 14,
       "workload": 11,
       "playoffs": 12,
@@ -3763,32 +3729,32 @@
       "path": 0
      },
      "why": [
-      "59 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Koerner 7.41 a game x 8 games)",
+      "65 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Koerner 8.14 a game x 8 games)",
       "Fills your missing piece: new gap at WR (short Weeks 10, 14; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Josh Downs (avg of Gotham + Ratcliffe + Koerner: 10.4 a game vs 7.4): -29% - under the 10% MUST bar",
+      "vs your weakest WR starter Josh Downs (avg of Gotham + Ratcliffe + Koerner: 9.6 a game vs 8.1): -15% - under the 10% MUST bar",
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5"
      ],
      "experts": {
-      "verdict": "1 of 6 sources have him ahead of Josh Downs",
-      "agree": 1,
+      "verdict": "2 of 6 sources have him ahead of Josh Downs",
+      "agree": 2,
       "of": 6,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "8.4 vs Josh Downs 9.2 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3804,9 +3770,9 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "6.0 vs Josh Downs 9.8 (this week)",
-        "ok": false
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "8.2 vs Josh Downs 7.2 (this week)",
+        "ok": true
        },
        {
         "ex": "Yahoo",
@@ -3820,7 +3786,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.3 vs Josh Downs 7.4 (Wks 10-17)",
         "ok": true
        },
@@ -3828,14 +3794,107 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.0 vs Josh Downs 10.3 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Josh Downs",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
+    },
+    {
+     "tier": "WATCH",
+     "tier_why": "grade 56; not yet an upgrade worth a roster spot",
+     "gain": -45,
+     "key": "kaleb johnson",
+     "name": "Kaleb Johnson",
+     "team": "GB",
+     "pos": "RB",
+     "pts": 48.0,
+     "grade": 56,
+     "parts": {
+      "value": 14,
+      "fit": 14,
+      "workload": 15,
+      "playoffs": 9,
+      "team": 3,
+      "path": 0
+     },
+     "why": [
+      "48 pts rest of season in DK3 scoring (avg of Gotham + Vegas + Ratcliffe 6.86 a game x 7 games)",
+      "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16; he plays all of them)",
+      "Depth: 1 healthy RB on your bench",
+      "vs your weakest RB starter Rachaad White (avg of Gotham + Vegas + Ratcliffe: 12.5 a game vs 6.9): -45% - under the 10% MUST bar",
+      "Workload last 3 games: touches 7 > 1 > 14, snaps 15% > 5% > 39%",
+      "Playoffs: W15 MIA (#10), W16 CHI (#20), W17 HOU (#13)",
+      "GB 6-3"
+     ],
+     "experts": {
+      "verdict": "0 of 7 sources have him ahead of Rachaad White",
+      "agree": 0,
+      "of": 7,
+      "lines": [
+       {
+        "ex": "Gotham",
+        "rank": "#1 (6.67 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 08:10 AM PT",
+        "txt": "5.9 vs Rachaad White 11.5 (a game ahead)",
+        "ok": false
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.6 vs Rachaad White 12.6 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Ratcliffe",
+        "rank": "#3 (6.92 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 2:26 AM PT",
+        "txt": "5.1 vs Rachaad White 13.4 (rest of season)",
+        "ok": false
+       },
+       {
+        "ex": "Koerner",
+        "rank": "#4 (6.96 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "8.4 vs Rachaad White 13.2 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Yahoo",
+        "rank": "#5 (7.15 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 3:14 AM PT",
+        "txt": "6.9 vs Rachaad White 10.1 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "Clay",
+        "rank": "#6 (7.28 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "7.4 vs Rachaad White 13.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "1.5 vs Rachaad White 12.7 (this week)",
+        "ok": false
+       }
+      ]
+     },
+     "replaces": "Rachaad White",
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3873,15 +3932,15 @@
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.3 vs Josh Downs 9.2 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3897,7 +3956,7 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3913,7 +3972,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.5 vs Josh Downs 7.4 (Wks 10-17)",
         "ok": false
        },
@@ -3921,151 +3980,58 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Josh Downs",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
-    },
-    {
-     "tier": "WATCH",
-     "tier_why": "grade 54; not yet an upgrade worth a roster spot",
-     "gain": -49,
-     "key": "kaleb johnson",
-     "name": "Kaleb Johnson",
-     "team": "GB",
-     "pos": "RB",
-     "pts": 41.8,
-     "grade": 54,
-     "parts": {
-      "value": 13,
-      "fit": 14,
-      "workload": 15,
-      "playoffs": 9,
-      "team": 3,
-      "path": 0
-     },
-     "why": [
-      "42 pts rest of season in DK3 scoring (avg of Gotham + Ratcliffe + Yahoo 5.97 a game x 7 games)",
-      "Fills your missing piece: A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16; he plays all of them)",
-      "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Rachaad White (avg of Gotham + Ratcliffe + Yahoo: 11.7 a game vs 6.0): -49% - under the 10% MUST bar",
-      "Workload last 3 games: touches 7 > 1 > 14, snaps 15% > 5% > 39%",
-      "Playoffs: W15 MIA (#10), W16 CHI (#20), W17 HOU (#13)",
-      "GB 6-3"
-     ],
-     "experts": {
-      "verdict": "0 of 5 sources have him ahead of Rachaad White",
-      "agree": 0,
-      "of": 5,
-      "lines": [
-       {
-        "ex": "Gotham",
-        "rank": "#1 (6.67 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
-        "txt": "5.9 vs Rachaad White 11.5 (a game ahead)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Ratcliffe",
-        "rank": "#3 (6.92 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 2:26 AM PT",
-        "txt": "5.1 vs Rachaad White 13.4 (rest of season)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#4 (6.96 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Yahoo",
-        "rank": "#5 (7.15 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:14 AM PT",
-        "txt": "6.9 vs Rachaad White 10.1 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Clay",
-        "rank": "#6 (7.28 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "7.4 vs Rachaad White 13.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "1.5 vs Rachaad White 12.7 (this week)",
-        "ok": false
-       }
-      ]
-     },
-     "replaces": "Rachaad White",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A lead running back - save the $91 for him (short Weeks 10, 13, 15, 16)",
     "new gap at WR (short Weeks 10, 14)"
    ],
-   "pieces_built": "Tue Nov 10 7:52 AM PT",
+   "pieces_built": "Tue Nov 10 8:10 AM PT",
    "kicker_slot": false,
    "pool": {
-    "corey kiner": [
-     54,
-     "Corey Kiner"
-    ],
     "justice hill": [
-     54,
+     55,
      "Justice Hill"
     ],
+    "corey kiner": [
+     52,
+     "Corey Kiner"
+    ],
     "xavier hutchinson": [
-     57,
+     59,
      "Xavier Hutchinson"
+    ],
+    "kaleb johnson": [
+     56,
+     "Kaleb Johnson"
     ],
     "kalif raymond": [
      56,
      "Kalif Raymond"
     ],
-    "kaleb johnson": [
-     54,
-     "Kaleb Johnson"
-    ],
     "marvin harrison": [
-     52,
+     51,
      "Marvin Harrison Jr."
-    ],
-    "tb def": [
-     52,
-     "Buccaneers DEF"
     ],
     "pat bryant": [
      50,
      "Pat Bryant"
     ],
-    "darnell mooney": [
-     49,
-     "Darnell Mooney"
+    "kimani vidal": [
+     48,
+     "Kimani Vidal"
+    ],
+    "jordan watkins": [
+     48,
+     "Jordan Watkins"
     ],
     "kayshon boutte": [
      48,
@@ -4075,37 +4041,49 @@
      48,
      "Cooper Kupp"
     ],
-    "kimani vidal": [
-     47,
-     "Kimani Vidal"
+    "darnell mooney": [
+     48,
+     "Darnell Mooney"
     ],
     "darren waller": [
-     47,
+     48,
      "Darren Waller"
+    ],
+    "tb def": [
+     48,
+     "Buccaneers DEF"
+    ],
+    "tank dell": [
+     47,
+     "Tank Dell"
+    ],
+    "tutu atwell": [
+     47,
+     "Tutu Atwell"
+    ],
+    "ameer abdullah": [
+     47,
+     "Ameer Abdullah"
+    ],
+    "tre harris": [
+     46,
+     "Tre' Harris"
     ],
     "chris bell": [
      46,
      "Chris Bell"
     ],
-    "ameer abdullah": [
-     46,
-     "Ameer Abdullah"
-    ],
     "myles price": [
      46,
      "Myles Price"
     ],
-    "tank dell": [
-     45,
-     "Tank Dell"
+    "zonovan knight": [
+     46,
+     "Zonovan Knight"
     ],
     "dohnte meyers": [
      45,
      "Dohnte Meyers"
-    ],
-    "tre harris": [
-     45,
-     "Tre' Harris"
     ],
     "brian thomas": [
      45,
@@ -4115,29 +4093,25 @@
      45,
      "Emanuel Wilson"
     ],
-    "sione vaki": [
-     44,
-     "Sione Vaki"
-    ],
     "ray davis": [
      44,
      "Ray Davis"
-    ],
-    "jordan watkins": [
-     44,
-     "Jordan Watkins"
     ],
     "jahan dotson": [
      44,
      "Jahan Dotson"
     ],
-    "tutu atwell": [
-     44,
-     "Tutu Atwell"
-    ],
     "gunnar helm": [
      44,
      "Gunnar Helm"
+    ],
+    "sione vaki": [
+     43,
+     "Sione Vaki"
+    ],
+    "simi fehoko": [
+     43,
+     "Simi Fehoko"
     ],
     "tory horton": [
      43,
@@ -4151,29 +4125,13 @@
      42,
      "Elic Ayomanor"
     ],
-    "jaylen wright": [
-     42,
-     "Jaylen Wright"
-    ],
-    "isaiah williams": [
-     42,
-     "Isaiah Williams"
-    ],
-    "emari demercado": [
+    "marshawn lloyd": [
      41,
-     "Emari Demercado"
+     "MarShawn Lloyd"
     ],
-    "efton chism": [
+    "tyjae spears": [
      41,
-     "Efton Chism III"
-    ],
-    "kyle williams": [
-     41,
-     "Kyle Williams"
-    ],
-    "simi fehoko": [
-     41,
-     "Simi Fehoko"
+     "Tyjae Spears"
     ],
     "chimere dike": [
      41,
@@ -4183,41 +4141,37 @@
      41,
      "Tommy Tremble"
     ],
+    "jaylen wright": [
+     41,
+     "Jaylen Wright"
+    ],
     "darius cooper": [
      41,
      "Darius Cooper"
     ],
-    "evan hull": [
+    "ashton dulin": [
      41,
-     "Evan Hull"
+     "Ashton Dulin"
     ],
     "bam knight": [
      40,
      "Bam Knight"
     ],
-    "marshawn lloyd": [
+    "pierre strong": [
      40,
-     "MarShawn Lloyd"
+     "Pierre Strong Jr."
     ],
-    "tyjae spears": [
+    "emari demercado": [
      40,
-     "Tyjae Spears"
+     "Emari Demercado"
     ],
     "travis hunter": [
      40,
      "Travis Hunter"
     ],
-    "josh cameron": [
-     40,
-     "Josh Cameron"
-    ],
     "hunter henry": [
      40,
      "Hunter Henry"
-    ],
-    "eli raridon": [
-     40,
-     "Eli Raridon"
     ],
     "jaleel mclaughlin": [
      40,
@@ -4227,13 +4181,13 @@
      40,
      "Tez Johnson"
     ],
+    "isaiah williams": [
+     40,
+     "Isaiah Williams"
+    ],
     "troy franklin": [
      40,
      "Troy Franklin"
-    ],
-    "ashton dulin": [
-     40,
-     "Ashton Dulin"
     ],
     "savion williams": [
      39,
@@ -4243,25 +4197,29 @@
      39,
      "Jerry Jeudy"
     ],
+    "kyle williams": [
+     39,
+     "Kyle Williams"
+    ],
+    "josh cameron": [
+     39,
+     "Josh Cameron"
+    ],
+    "eli raridon": [
+     39,
+     "Eli Raridon"
+    ],
     "aj dillon": [
      39,
      "AJ Dillon"
     ],
-    "khalil herbert": [
-     39,
-     "Khalil Herbert"
-    ],
-    "pierre strong": [
+    "efton chism": [
      38,
-     "Pierre Strong Jr."
+     "Efton Chism III"
     ],
     "isaac teslaa": [
      38,
      "Isaac TeSlaa"
-    ],
-    "jalen nailor": [
-     38,
-     "Jalen Nailor"
     ],
     "dawson knox": [
      38,
@@ -4274,6 +4232,18 @@
     "kevin coleman": [
      38,
      "Kevin Coleman Jr."
+    ],
+    "khalil herbert": [
+     38,
+     "Khalil Herbert"
+    ],
+    "reggie virgil": [
+     37,
+     "Reggie Virgil"
+    ],
+    "jalen nailor": [
+     37,
+     "Jalen Nailor"
     ],
     "cyrus allen": [
      37,
@@ -4299,10 +4269,6 @@
      37,
      "Ben Skowronek"
     ],
-    "tyler goodson": [
-     36,
-     "Tyler Goodson"
-    ],
     "jacob cowing": [
      36,
      "Jacob Cowing"
@@ -4311,33 +4277,25 @@
      36,
      "Evan Engram"
     ],
-    "kaytron allen": [
-     35,
-     "Kaytron Allen"
+    "chris blair": [
+     36,
+     "Chris Blair"
     ],
     "konata mumpfield": [
      35,
      "Konata Mumpfield"
     ],
-    "reggie virgil": [
+    "rashod bateman": [
      35,
-     "Reggie Virgil"
+     "Rashod Bateman"
     ],
-    "sf def": [
+    "tyler goodson": [
      35,
-     "49ers DEF"
+     "Tyler Goodson"
     ],
-    "chris blair": [
-     35,
-     "Chris Blair"
-    ],
-    "brandin cooks": [
+    "kaytron allen": [
      34,
-     "Brandin Cooks"
-    ],
-    "bryce lance": [
-     34,
-     "Bryce Lance"
+     "Kaytron Allen"
     ],
     "nicholas singleton": [
      34,
@@ -4351,21 +4309,13 @@
      34,
      "Elijah Mitchell"
     ],
-    "jonathan mingo": [
-     34,
-     "Jonathan Mingo"
-    ],
     "brandon smith": [
      34,
      "Brandon Smith"
     ],
-    "khadarel hodge": [
-     34,
-     "KhaDarel Hodge"
-    ],
-    "rashod bateman": [
+    "lan larison": [
      33,
-     "Rashod Bateman"
+     "Lan Larison"
     ],
     "jalen royals": [
      33,
@@ -4375,6 +4325,18 @@
      33,
      "Laquon Treadwell"
     ],
+    "brandin cooks": [
+     33,
+     "Brandin Cooks"
+    ],
+    "bryce lance": [
+     33,
+     "Bryce Lance"
+    ],
+    "davis allen": [
+     33,
+     "Davis Allen"
+    ],
     "george holani": [
      33,
      "George Holani"
@@ -4383,25 +4345,21 @@
      33,
      "Roschon Johnson"
     ],
-    "jack bech": [
+    "deion burks": [
      33,
-     "Jack Bech"
-    ],
-    "jerome ford": [
-     33,
-     "Jerome Ford"
+     "Deion Burks"
     ],
     "sterling shepard": [
      33,
      "Sterling Shepard"
     ],
-    "lan larison": [
+    "van jefferson": [
      32,
-     "Lan Larison"
+     "Van Jefferson"
     ],
-    "darnell washington": [
+    "colby parkinson": [
      32,
-     "Darnell Washington"
+     "Colby Parkinson"
     ],
     "kyle juszczyk": [
      32,
@@ -4415,41 +4373,45 @@
      32,
      "Tai Felton"
     ],
-    "theo johnson": [
+    "jonathan mingo": [
      32,
-     "Theo Johnson"
+     "Jonathan Mingo"
     ],
-    "deion burks": [
+    "khadarel hodge": [
      32,
-     "Deion Burks"
+     "KhaDarel Hodge"
     ],
-    "van jefferson": [
+    "jordan whittington": [
      31,
-     "Van Jefferson"
+     "Jordan Whittington"
     ],
-    "olamide zaccheaus": [
+    "darnell washington": [
      31,
-     "Olamide Zaccheaus"
+     "Darnell Washington"
     ],
-    "davis allen": [
+    "oronde gadsden": [
      31,
-     "Davis Allen"
+     "Oronde Gadsden"
     ],
     "tim patrick": [
      31,
      "Tim Patrick"
     ],
+    "jack bech": [
+     31,
+     "Jack Bech"
+    ],
     "malik benson": [
      31,
      "Malik Benson"
     ],
+    "theo johnson": [
+     31,
+     "Theo Johnson"
+    ],
     "deejay dallas": [
      31,
      "DeeJay Dallas"
-    ],
-    "j michael sturdivant": [
-     31,
-     "J. Michael Sturdivant"
     ],
     "brandon johnson": [
      31,
@@ -4459,17 +4421,17 @@
      30,
      "Trevor Etienne"
     ],
+    "devin duvernay": [
+     30,
+     "Devin Duvernay"
+    ],
     "andrew armstrong": [
      30,
      "Andrew Armstrong"
     ],
-    "colby parkinson": [
+    "olamide zaccheaus": [
      30,
-     "Colby Parkinson"
-    ],
-    "oronde gadsden": [
-     30,
-     "Oronde Gadsden"
+     "Olamide Zaccheaus"
     ],
     "elijah higgins": [
      30,
@@ -4483,6 +4445,10 @@
      30,
      "Jauan Jennings"
     ],
+    "cj daniels": [
+     30,
+     "CJ Daniels"
+    ],
     "bo melton": [
      30,
      "Bo Melton"
@@ -4491,53 +4457,29 @@
      30,
      "Cody White"
     ],
-    "mitch tinsley": [
-     30,
-     "Mitch Tinsley"
-    ],
     "kaden wetjen": [
      30,
      "Kaden Wetjen"
-    ],
-    "charlie jones": [
-     30,
-     "Charlie Jones"
-    ],
-    "justin watson": [
-     30,
-     "Justin Watson"
     ],
     "jared wayne": [
      30,
      "Jared Wayne"
     ],
-    "jacoby jones": [
-     30,
-     "Jacoby Jones"
-    ],
-    "jordan whittington": [
+    "treylon burks": [
      29,
-     "Jordan Whittington"
-    ],
-    "devin duvernay": [
-     29,
-     "Devin Duvernay"
-    ],
-    "john metchie": [
-     29,
-     "John Metchie III"
+     "Treylon Burks"
     ],
     "charlie kolar": [
      29,
      "Charlie Kolar"
     ],
+    "jordan james": [
+     29,
+     "Jordan James"
+    ],
     "travis homer": [
      29,
      "Travis Homer"
-    ],
-    "cj daniels": [
-     29,
-     "CJ Daniels"
     ],
     "colbie young": [
      29,
@@ -4555,6 +4497,10 @@
      29,
      "Nikko Remigio"
     ],
+    "j michael sturdivant": [
+     29,
+     "J. Michael Sturdivant"
+    ],
     "brady russell": [
      29,
      "Brady Russell"
@@ -4563,33 +4509,33 @@
      29,
      "Mitchell Tinsley"
     ],
-    "nick nash": [
+    "justin watson": [
      29,
-     "Nick Nash"
+     "Justin Watson"
+    ],
+    "harrison wallace": [
+     29,
+     "Harrison Wallace III"
     ],
     "gregory desrosiers": [
      29,
      "Gregory Desrosiers"
     ],
-    "carlos washington": [
-     29,
-     "Carlos Washington"
-    ],
     "jalin hyatt": [
      29,
      "Jalin Hyatt"
     ],
-    "treylon burks": [
+    "john metchie": [
      28,
-     "Treylon Burks"
+     "John Metchie III"
     ],
     "calvin ridley": [
      28,
      "Calvin Ridley"
     ],
-    "jordan james": [
+    "noah fant": [
      28,
-     "Jordan James"
+     "Noah Fant"
     ],
     "julius chestnut": [
      28,
@@ -4599,13 +4545,17 @@
      28,
      "Patrick Ricard"
     ],
+    "mitch tinsley": [
+     28,
+     "Mitch Tinsley"
+    ],
     "isaiah bond": [
      28,
      "Isaiah Bond"
     ],
-    "malachi corley": [
+    "charlie jones": [
      28,
-     "Malachi Corley"
+     "Charlie Jones"
     ],
     "riley nowakowski": [
      28,
@@ -4619,14 +4569,6 @@
      28,
      "Keleki Latu"
     ],
-    "harrison wallace": [
-     28,
-     "Harrison Wallace III"
-    ],
-    "zamir white": [
-     28,
-     "Zamir White"
-    ],
     "dj herman": [
      28,
      "DJ Herman"
@@ -4635,9 +4577,13 @@
      28,
      "Lew Nichols"
     ],
-    "noah fant": [
+    "brevyn spann ford": [
      27,
-     "Noah Fant"
+     "Brevyn Spann-Ford"
+    ],
+    "dj giddens": [
+     27,
+     "DJ Giddens"
     ],
     "lajohntay wester": [
      27,
@@ -4651,25 +4597,25 @@
      27,
      "Gavin Bartholomew"
     ],
-    "luke mccaffrey": [
-     27,
-     "Luke McCaffrey"
-    ],
     "barion brown": [
      27,
      "Barion Brown"
     ],
+    "malachi corley": [
+     27,
+     "Malachi Corley"
+    ],
+    "zamir white": [
+     27,
+     "Zamir White"
+    ],
+    "carlos washington": [
+     27,
+     "Carlos Washington"
+    ],
     "mason taylor": [
      26,
      "Mason Taylor"
-    ],
-    "brevyn spann ford": [
-     26,
-     "Brevyn Spann-Ford"
-    ],
-    "buf def": [
-     26,
-     "Bills DEF"
     ],
     "hunter luepke": [
      26,
@@ -4679,10 +4625,6 @@
      26,
      "Jaydon Blue"
     ],
-    "dylan laube": [
-     26,
-     "Dylan Laube"
-    ],
     "elijah sarratt": [
      26,
      "Elijah Sarratt"
@@ -4690,6 +4632,10 @@
     "donte thornton": [
      26,
      "Dont'e Thornton Jr."
+    ],
+    "luke mccaffrey": [
+     26,
+     "Luke McCaffrey"
     ],
     "greg dortch": [
      26,
@@ -4707,21 +4653,21 @@
      26,
      "Dareke Young"
     ],
-    "cameron latu": [
+    "montorie foster": [
      26,
-     "Cameron Latu"
+     "Montorie Foster Jr."
     ],
-    "malik mcclain": [
-     26,
-     "Malik McClain"
-    ],
-    "irvin charles": [
-     26,
-     "Irvin Charles"
+    "nate boerkircher": [
+     25,
+     "Nate Boerkircher"
     ],
     "daniel bellinger": [
      25,
      "Daniel Bellinger"
+    ],
+    "dylan laube": [
+     25,
+     "Dylan Laube"
     ],
     "jacob saylors": [
      25,
@@ -4771,41 +4717,37 @@
      25,
      "Velus Jones Jr."
     ],
-    "khyiris tonga": [
+    "malik mcclain": [
      25,
-     "Khyiris Tonga"
+     "Malik McClain"
+    ],
+    "jaden bradley": [
+     25,
+     "Jaden Bradley"
+    ],
+    "beaux collins": [
+     25,
+     "Beaux Collins"
     ],
     "jaydn ott": [
      25,
      "Jaydn Ott"
     ],
-    "nate boerkircher": [
+    "sf def": [
      24,
-     "Nate Boerkircher"
-    ],
-    "dj giddens": [
-     24,
-     "DJ Giddens"
+     "49ers DEF"
     ],
     "devontez walker": [
      24,
      "Devontez Walker"
     ],
-    "josh cuevas": [
+    "kavontae turpin": [
      24,
-     "Josh Cuevas"
-    ],
-    "mo alie cox": [
-     24,
-     "Mo Alie-Cox"
+     "KaVontae Turpin"
     ],
     "zach ertz": [
      24,
      "Zach Ertz"
-    ],
-    "camden brown": [
-     24,
-     "Camden Brown"
     ],
     "noah gray": [
      23,
@@ -4823,21 +4765,21 @@
      23,
      "Hollywood Brown"
     ],
-    "kavontae turpin": [
+    "josh cuevas": [
      23,
-     "KaVontae Turpin"
+     "Josh Cuevas"
     ],
-    "foster moreau": [
+    "mo alie cox": [
      23,
-     "Foster Moreau"
-    ],
-    "austin hooper": [
-     23,
-     "Austin Hooper"
+     "Mo Alie-Cox"
     ],
     "rasheen ali": [
      23,
      "Rasheen Ali"
+    ],
+    "camden brown": [
+     23,
+     "Camden Brown"
     ],
     "anthony tyus": [
      23,
@@ -4847,13 +4789,21 @@
      23,
      "DeAndre Carter"
     ],
-    "jaden bradley": [
-     23,
-     "Jaden Bradley"
-    ],
-    "will mallory": [
+    "mitchell evans": [
      22,
-     "Will Mallory"
+     "Mitchell Evans"
+    ],
+    "buf def": [
+     22,
+     "Bills DEF"
+    ],
+    "foster moreau": [
+     22,
+     "Foster Moreau"
+    ],
+    "austin hooper": [
+     22,
+     "Austin Hooper"
     ],
     "charlie woerner": [
      22,
@@ -4879,53 +4829,53 @@
      22,
      "Jabari Small"
     ],
-    "mitchell evans": [
+    "bal def": [
      21,
-     "Mitchell Evans"
+     "Ravens DEF"
     ],
     "lv def": [
      21,
      "Raiders DEF"
     ],
-    "luke farrell": [
-     21,
-     "Luke Farrell"
-    ],
     "eric saubert": [
      21,
      "Eric Saubert"
     ],
-    "chris manhertz": [
+    "jack endries": [
      21,
-     "Chris Manhertz"
+     "Jack Endries"
     ],
-    "jordan hudson": [
-     21,
-     "Jordan Hudson"
+    "keandre lambert smith": [
+     20,
+     "KeAndre Lambert-Smith"
+    ],
+    "was def": [
+     20,
+     "Commanders DEF"
     ],
     "zachariah branch": [
      20,
      "Zachariah Branch"
     ],
-    "jonnu smith": [
-     20,
-     "Jonnu Smith"
-    ],
     "matt hibner": [
      20,
      "Matt Hibner"
     ],
-    "jack endries": [
+    "luke farrell": [
      20,
-     "Jack Endries"
+     "Luke Farrell"
     ],
     "teagan quitoriano": [
      20,
      "Teagan Quitoriano"
     ],
-    "ind def": [
-     19,
-     "Colts DEF"
+    "chris manhertz": [
+     20,
+     "Chris Manhertz"
+    ],
+    "thomas fidone": [
+     20,
+     "Thomas Fidone II"
     ],
     "nyj def": [
      19,
@@ -4939,6 +4889,14 @@
      19,
      "Eli Stowers"
     ],
+    "jonnu smith": [
+     19,
+     "Jonnu Smith"
+    ],
+    "will mallory": [
+     19,
+     "Will Mallory"
+    ],
     "tanner koziol": [
      19,
      "Tanner Koziol"
@@ -4946,10 +4904,6 @@
     "oscar delp": [
      19,
      "Oscar Delp"
-    ],
-    "cade stover": [
-     19,
-     "Cade Stover"
     ],
     "nate adkins": [
      19,
@@ -4971,13 +4925,17 @@
      19,
      "Quintin Morris"
     ],
-    "keandre lambert smith": [
+    "ind def": [
      18,
-     "KeAndre Lambert-Smith"
+     "Colts DEF"
     ],
     "brock wright": [
      18,
      "Brock Wright"
+    ],
+    "cade stover": [
+     18,
+     "Cade Stover"
     ],
     "kene nwangwu": [
      18,
@@ -4991,29 +4949,21 @@
      18,
      "Andrew Beck"
     ],
-    "cam grandy": [
+    "hayden rucci": [
      18,
-     "Cam Grandy"
-    ],
-    "bal def": [
-     17,
-     "Ravens DEF"
-    ],
-    "was def": [
-     17,
-     "Commanders DEF"
+     "Hayden Rucci"
     ],
     "atl def": [
      17,
      "Falcons DEF"
     ],
-    "marlin klein": [
-     17,
-     "Marlin Klein"
-    ],
     "drew ogletree": [
      17,
      "Drew Ogletree"
+    ],
+    "max klare": [
+     17,
+     "Max Klare"
     ],
     "tyler conklin": [
      17,
@@ -5026,10 +4976,6 @@
     "mark redman": [
      17,
      "Mark Redman"
-    ],
-    "hayden rucci": [
-     17,
-     "Hayden Rucci"
     ],
     "robert tonyan": [
      17,
@@ -5047,9 +4993,9 @@
      16,
      "Cardinals DEF"
     ],
-    "max klare": [
+    "luke schoonmaker": [
      16,
-     "Max Klare"
+     "Luke Schoonmaker"
     ],
     "david martin robinson": [
      16,
@@ -5083,14 +5029,6 @@
      15,
      "Eagles DEF"
     ],
-    "luke schoonmaker": [
-     15,
-     "Luke Schoonmaker"
-    ],
-    "drake dabney": [
-     15,
-     "Drake Dabney"
-    ],
     "feleipe franks": [
      15,
      "Feleipe Franks"
@@ -5111,13 +5049,13 @@
      14,
      "Colson Yankoff"
     ],
-    "jelani woods": [
-     14,
-     "Jelani Woods"
-    ],
-    "john bates": [
+    "marlin klein": [
      13,
-     "John Bates"
+     "Marlin Klein"
+    ],
+    "jelani woods": [
+     13,
+     "Jelani Woods"
     ],
     "nick kallerup": [
      13,
@@ -5127,6 +5065,10 @@
      12,
      "Brenen Thompson"
     ],
+    "john bates": [
+     12,
+     "John Bates"
+    ],
     "seydou traore": [
      12,
      "Seydou Traore"
@@ -5135,47 +5077,51 @@
      12,
      "James Mitchell"
     ],
-    "brevin jordan": [
+    "ben sinnott": [
      11,
+     "Ben Sinnott"
+    ],
+    "brevin jordan": [
+     10,
      "Brevin Jordan"
     ],
-    "ben sinnott": [
-     10,
-     "Ben Sinnott"
+    "josh whyle": [
+     6,
+     "Josh Whyle"
     ]
    },
    "best": {
     "RB": {
-     "name": "Corey Kiner",
-     "grade": 54
+     "name": "Justice Hill",
+     "grade": 55
     },
     "WR": {
      "name": "Xavier Hutchinson",
-     "grade": 57
+     "grade": 59
     },
     "TE": {
      "name": "Darren Waller",
-     "grade": 47
+     "grade": 48
     },
     "K": null,
     "DEF": {
      "name": "Buccaneers DEF",
-     "grade": 52
+     "grade": 48
     }
    }
   },
   "4": {
-   "read": "Tue Nov 10 7:52 AM PT",
+   "read": "Tue Nov 10 8:10 AM PT",
    "top": [
     {
      "tier": "STASH",
      "tier_why": "the starter ahead of him is fading or a coach has talked up his role - worth a bench spot before he breaks out",
-     "gain": -56,
+     "gain": -53,
      "key": "samaje perine",
      "name": "Samaje Perine",
      "team": "CIN",
      "pos": "RB",
-     "pts": 49.3,
+     "pts": 51.5,
      "grade": 53,
      "parts": {
       "value": 15,
@@ -5186,34 +5132,34 @@
       "path": 6
      },
      "why": [
-      "49 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Koerner 6.16 a game x 8 games)",
+      "52 pts rest of season in DK4 scoring (avg of Gotham + Vegas + Ratcliffe 6.44 a game x 8 games)",
       "Depth: 1 healthy RB on your bench",
-      "vs your weakest RB starter Ollie Gordon II (avg of Gotham + Ratcliffe + Koerner: 14.2 a game vs 6.2): -56% - under the 10% MUST bar",
+      "vs your weakest RB starter Ollie Gordon II (avg of Gotham + Vegas + Ratcliffe: 13.7 a game vs 6.4): -53% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 5 > 11, snaps 23% > 35% > 40%",
       "Coach: OC Dan Pitcher, Oct 13: will \"continually assess\" the touch split with Chase Brown",
       "Playoffs: W15 CAR (#2), W16 IND (#6), W17 BAL (#23)",
       "CIN 6-2"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Ollie Gordon II",
+      "verdict": "0 of 7 sources have him ahead of Ollie Gordon II",
       "agree": 0,
-      "of": 6,
+      "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "5.6 vs Ollie Gordon II 13.3 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "6.1 vs Ollie Gordon II 13.2 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -5226,9 +5172,9 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "5.2 vs Ollie Gordon II 14.5 (this week)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "5.4 vs Ollie Gordon II 15.2 (this week)",
         "ok": false
        },
        {
@@ -5243,7 +5189,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.8 vs Ollie Gordon II 14.0 (Wks 10-17)",
         "ok": false
        },
@@ -5251,14 +5197,107 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "4.0 vs Ollie Gordon II 16.3 (this week)",
         "ok": false
        }
       ]
      },
      "replaces": "Ollie Gordon II",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
+    },
+    {
+     "tier": "WATCH",
+     "tier_why": "grade 59; not yet an upgrade worth a roster spot",
+     "gain": -23,
+     "key": "xavier hutchinson",
+     "name": "Xavier Hutchinson",
+     "team": "HOU",
+     "pos": "WR",
+     "pts": 64.3,
+     "grade": 59,
+     "parts": {
+      "value": 19,
+      "fit": 14,
+      "workload": 11,
+      "playoffs": 12,
+      "team": 2,
+      "path": 0
+     },
+     "why": [
+      "64 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Koerner 8.04 a game x 8 games)",
+      "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
+      "Depth: 1 healthy WR on your bench",
+      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Koerner: 10.5 a game vs 8.0): -23% - under the 10% MUST bar",
+      "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
+      "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
+      "HOU 3-5"
+     ],
+     "experts": {
+      "verdict": "0 of 6 sources have him ahead of Jakobi Meyers",
+      "agree": 0,
+      "of": 6,
+      "lines": [
+       {
+        "ex": "Gotham",
+        "rank": "#1 (6.67 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 08:10 AM PT",
+        "txt": "8.3 vs Jakobi Meyers 9.4 (a game ahead)",
+        "ok": false
+       },
+       {
+        "ex": "Vegas",
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "no number for him",
+        "ok": null
+       },
+       {
+        "ex": "Ratcliffe",
+        "rank": "#3 (6.92 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 2:26 AM PT",
+        "txt": "7.8 vs Jakobi Meyers 11.5 (rest of season)",
+        "ok": false
+       },
+       {
+        "ex": "Koerner",
+        "rank": "#4 (6.96 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "8.1 vs Jakobi Meyers 10.6 (this week)",
+        "ok": false
+       },
+       {
+        "ex": "Yahoo",
+        "rank": "#5 (7.15 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 3:14 AM PT",
+        "txt": "5.7 vs Jakobi Meyers 10.0 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "Clay",
+        "rank": "#6 (7.28 missed Wk 9)",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "8.2 vs Jakobi Meyers 10.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "6.0 vs Jakobi Meyers 8.5 (this week)",
+        "ok": false
+       }
+      ]
+     },
+     "replaces": "Jakobi Meyers",
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5296,15 +5335,15 @@
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.2 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5320,7 +5359,7 @@
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
+        "read": "Tue Nov 10 2026 8:05 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5336,7 +5375,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "6.4 vs Jakobi Meyers 10.9 (Wks 10-17)",
         "ok": false
        },
@@ -5344,155 +5383,62 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Waivers until Nov 11 (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
-     "tier_why": "grade 57; not yet an upgrade worth a roster spot",
-     "gain": -27,
-     "key": "xavier hutchinson",
-     "name": "Xavier Hutchinson",
-     "team": "HOU",
-     "pos": "WR",
-     "pts": 58.5,
-     "grade": 57,
-     "parts": {
-      "value": 18,
-      "fit": 14,
-      "workload": 11,
-      "playoffs": 12,
-      "team": 2,
-      "path": 0
-     },
-     "why": [
-      "58 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Koerner 7.31 a game x 8 games)",
-      "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
-      "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Koerner: 10.1 a game vs 7.3): -27% - under the 10% MUST bar",
-      "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
-      "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "HOU 3-5"
-     ],
-     "experts": {
-      "verdict": "0 of 6 sources have him ahead of Jakobi Meyers",
-      "agree": 0,
-      "of": 6,
-      "lines": [
-       {
-        "ex": "Gotham",
-        "rank": "#1 (6.67 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
-        "txt": "8.3 vs Jakobi Meyers 9.4 (a game ahead)",
-        "ok": false
-       },
-       {
-        "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "no number for him",
-        "ok": null
-       },
-       {
-        "ex": "Ratcliffe",
-        "rank": "#3 (6.92 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 2:26 AM PT",
-        "txt": "7.8 vs Jakobi Meyers 11.5 (rest of season)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "5.9 vs Jakobi Meyers 9.4 (this week)",
-        "ok": false
-       },
-       {
-        "ex": "Yahoo",
-        "rank": "#5 (7.15 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 3:14 AM PT",
-        "txt": "5.7 vs Jakobi Meyers 10.0 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Clay",
-        "rank": "#6 (7.28 missed Wk 9)",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "8.2 vs Jakobi Meyers 10.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
-        "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "6.0 vs Jakobi Meyers 8.5 (this week)",
-        "ok": false
-       }
-      ]
-     },
-     "replaces": "Jakobi Meyers",
-     "status": "Waivers until Nov 11 (per Tue Nov 10 7:52 AM PT read - confirm live)"
-    },
-    {
-     "tier": "WATCH",
-     "tier_why": "grade 55; not yet an upgrade worth a roster spot",
-     "gain": 1,
+     "tier_why": "grade 53; not yet an upgrade worth a roster spot",
+     "gain": -6,
      "key": "antonio williams",
      "name": "Antonio Williams",
      "team": "WAS",
      "pos": "WR",
-     "pts": 81.5,
-     "grade": 55,
+     "pts": 78.2,
+     "grade": 53,
      "parts": {
-      "value": 24,
-      "fit": 15,
+      "value": 23,
+      "fit": 14,
       "workload": 8,
       "playoffs": 6,
       "team": 2,
       "path": 0
      },
      "why": [
-      "82 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Koerner 10.19 a game x 8 games)",
+      "78 pts rest of season in DK4 scoring (avg of Gotham + Vegas + Ratcliffe 9.78 a game x 8 games)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Koerner: 10.1 a game vs 10.2): +1% - under the 10% MUST bar",
+      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Vegas + Ratcliffe: 10.4 a game vs 9.8): -6% - under the 10% MUST bar",
       "Workload last 3 games: touches 4 > 7 > 6, snaps 67% > 83% > 84%",
       "Playoffs: W15 ATL (#13), W16 MIN (#30), W17 JAX (#14)",
       "WAS 2-5-1"
      ],
      "experts": {
-      "verdict": "4 of 7 sources have him ahead of Jakobi Meyers",
-      "agree": 4,
+      "verdict": "2 of 7 sources have him ahead of Jakobi Meyers",
+      "agree": 2,
       "of": 7,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
         "txt": "7.8 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
-        "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
-        "txt": "11.4 vs Jakobi Meyers 8.8 (this week)",
-        "ok": true
+        "rank": "#2 (6.81 missed Wk 9)",
+        "check": true,
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "9.9 vs Jakobi Meyers 10.5 (this week)",
+        "ok": false
        },
        {
         "ex": "Ratcliffe",
@@ -5505,10 +5451,10 @@
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "11.1 vs Jakobi Meyers 9.4 (this week)",
-        "ok": true
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "9.8 vs Jakobi Meyers 10.6 (this week)",
+        "ok": false
        },
        {
         "ex": "Yahoo",
@@ -5522,7 +5468,7 @@
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "8.6 vs Jakobi Meyers 10.9 (Wks 10-17)",
         "ok": false
        },
@@ -5530,60 +5476,60 @@
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "10.4 vs Jakobi Meyers 8.5 (this week)",
         "ok": true
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
      "tier_why": "grade 52; not yet an upgrade worth a roster spot",
-     "gain": -26,
-     "key": "marvin harrison",
-     "name": "Marvin Harrison Jr.",
-     "team": "HOU",
+     "gain": -31,
+     "key": "pat bryant",
+     "name": "Pat Bryant",
+     "team": "DEN",
      "pos": "WR",
-     "pts": 59.4,
+     "pts": 49.7,
      "grade": 52,
      "parts": {
-      "value": 18,
+      "value": 15,
       "fit": 14,
-      "workload": 6,
+      "workload": 8,
       "playoffs": 12,
-      "team": 2,
+      "team": 4,
       "path": 0
      },
      "why": [
-      "59 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Koerner 7.42 a game x 8 games)",
+      "50 pts rest of season in DK4 scoring (avg of Gotham + Ratcliffe + Yahoo 7.10 a game x 7 games)",
       "Fills your missing piece: A steady second wide receiver (short Weeks 13; he plays all of them)",
       "Depth: 1 healthy WR on your bench",
-      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Koerner: 10.1 a game vs 7.4): -26% - under the 10% MUST bar",
-      "Workload last 3 games: touches 4 > 4 > 3, snaps 19% > 21% > 46%",
-      "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "HOU 3-5"
+      "vs your weakest WR starter Jakobi Meyers (avg of Gotham + Ratcliffe + Yahoo: 10.3 a game vs 7.1): -31% - under the 10% MUST bar",
+      "Workload last 3 games: touches 2 > 3 > 5, snaps 70% > 36% > 68%",
+      "Playoffs: W15 LV (#12), W16 BUF (#10), W17 NE (#2)",
+      "DEN 7-2"
      ],
      "experts": {
-      "verdict": "0 of 6 sources have him ahead of Jakobi Meyers",
+      "verdict": "0 of 4 sources have him ahead of Jakobi Meyers",
       "agree": 0,
-      "of": 6,
+      "of": 4,
       "lines": [
        {
         "ex": "Gotham",
         "rank": "#1 (6.67 missed Wk 9)",
         "check": true,
-        "read": "Tue Nov 10 2026 07:52 AM PT",
-        "txt": "6.5 vs Jakobi Meyers 9.4 (a game ahead)",
+        "read": "Tue Nov 10 2026 08:10 AM PT",
+        "txt": "6.6 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
        {
         "ex": "Vegas",
-        "rank": "#2 (6.81 missed Wk 9), Week 9 numbers only - not averaged",
+        "rank": "#2 (6.81 missed Wk 9)",
         "check": false,
-        "read": "Mon Nov 9 2026 8:25 PM PT",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5592,80 +5538,84 @@
         "rank": "#3 (6.92 missed Wk 9)",
         "check": true,
         "read": "Tue Nov 10 2026 2:26 AM PT",
-        "txt": "8.6 vs Jakobi Meyers 11.5 (rest of season)",
+        "txt": "8.5 vs Jakobi Meyers 11.5 (rest of season)",
         "ok": false
        },
        {
         "ex": "Koerner",
         "rank": "#4 (6.96 missed Wk 9)",
-        "check": true,
-        "read": "Tue Nov 10 2026 3:05 AM PT",
-        "txt": "7.2 vs Jakobi Meyers 9.4 (this week)",
-        "ok": false
+        "check": false,
+        "read": "Tue Nov 10 2026 8:05 AM PT",
+        "txt": "no number for him",
+        "ok": null
        },
        {
         "ex": "Yahoo",
         "rank": "#5 (7.15 missed Wk 9)",
-        "check": false,
+        "check": true,
         "read": "Tue Nov 10 2026 3:14 AM PT",
-        "txt": "6.3 vs Jakobi Meyers 10.0 (Wks 10-17)",
+        "txt": "6.1 vs Jakobi Meyers 10.0 (Wks 10-17)",
         "ok": false
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.28 missed Wk 9)",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "6.2 vs Jakobi Meyers 10.9 (Wks 10-17)",
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "6.8 vs Jakobi Meyers 10.9 (Wks 10-17)",
         "ok": false
        },
        {
         "ex": "RotoBaller",
         "rank": "not graded yet",
         "check": false,
-        "read": "Tue Nov 10 2026 7:52 AM PT",
-        "txt": "6.5 vs Jakobi Meyers 8.5 (this week)",
-        "ok": false
+        "read": "Tue Nov 10 2026 8:10 AM PT",
+        "txt": "no number for him",
+        "ok": null
        }
       ]
      },
      "replaces": "Jakobi Meyers",
-     "status": "Free agent (per Tue Nov 10 7:52 AM PT read - confirm live)"
+     "status": "Free agent (per Tue Nov 10 8:10 AM PT read - confirm live)"
     }
    ],
    "needs": [
     "A steady second wide receiver (short Weeks 13)"
    ],
-   "pieces_built": "Tue Nov 10 7:52 AM PT",
+   "pieces_built": "Tue Nov 10 8:10 AM PT",
    "kicker_slot": true,
    "pool": {
     "samaje perine": [
      53,
      "Samaje Perine"
     ],
+    "xavier hutchinson": [
+     59,
+     "Xavier Hutchinson"
+    ],
     "kalif raymond": [
      58,
      "Kalif Raymond"
     ],
-    "xavier hutchinson": [
-     57,
-     "Xavier Hutchinson"
-    ],
     "antonio williams": [
-     55,
+     53,
      "Antonio Williams"
-    ],
-    "marvin harrison": [
-     52,
-     "Marvin Harrison Jr."
     ],
     "pat bryant": [
      52,
      "Pat Bryant"
     ],
-    "darnell mooney": [
-     49,
-     "Darnell Mooney"
+    "marvin harrison": [
+     51,
+     "Marvin Harrison Jr."
+    ],
+    "tank dell": [
+     50,
+     "Tank Dell"
+    ],
+    "jordan watkins": [
+     48,
+     "Jordan Watkins"
     ],
     "kayshon boutte": [
      48,
@@ -5675,21 +5625,29 @@
      48,
      "Cooper Kupp"
     ],
-    "tank dell": [
-     47,
-     "Tank Dell"
+    "darnell mooney": [
+     48,
+     "Darnell Mooney"
     ],
-    "chris bell": [
+    "tutu atwell": [
+     47,
+     "Tutu Atwell"
+    ],
+    "demarcus robinson": [
      46,
-     "Chris Bell"
+     "Demarcus Robinson"
+    ],
+    "tre harris": [
+     46,
+     "Tre' Harris"
+    ],
+    "darren waller": [
+     46,
+     "Darren Waller"
     ],
     "myles price": [
      46,
      "Myles Price"
-    ],
-    "demarcus robinson": [
-     45,
-     "Demarcus Robinson"
     ],
     "malachi fields": [
      45,
@@ -5699,33 +5657,25 @@
      45,
      "Dohnte Meyers"
     ],
-    "tre harris": [
+    "chris bell": [
      45,
-     "Tre' Harris"
-    ],
-    "darren waller": [
-     45,
-     "Darren Waller"
+     "Chris Bell"
     ],
     "chris godwin": [
      45,
      "Chris Godwin Jr."
     ],
-    "chris rodriguez": [
-     44,
-     "Chris Rodriguez Jr."
-    ],
-    "jordan watkins": [
-     44,
-     "Jordan Watkins"
-    ],
     "jahan dotson": [
      44,
      "Jahan Dotson"
     ],
-    "tutu atwell": [
-     44,
-     "Tutu Atwell"
+    "chris rodriguez": [
+     43,
+     "Chris Rodriguez Jr."
+    ],
+    "simi fehoko": [
+     43,
+     "Simi Fehoko"
     ],
     "darius cooper": [
      43,
@@ -5739,17 +5689,13 @@
      42,
      "Justice Hill"
     ],
+    "keon coleman": [
+     42,
+     "Keon Coleman"
+    ],
     "elic ayomanor": [
      42,
      "Elic Ayomanor"
-    ],
-    "simi fehoko": [
-     42,
-     "Simi Fehoko"
-    ],
-    "tory horton": [
-     42,
-     "Tory Horton"
     ],
     "tez johnson": [
      42,
@@ -5759,25 +5705,17 @@
      42,
      "Troy Franklin"
     ],
-    "keon coleman": [
-     41,
-     "Keon Coleman"
-    ],
     "savion williams": [
      41,
      "Savion Williams"
     ],
-    "efton chism": [
-     41,
-     "Efton Chism III"
-    ],
-    "kyle williams": [
-     41,
-     "Kyle Williams"
-    ],
     "chimere dike": [
      41,
      "Chimere Dike"
+    ],
+    "tory horton": [
+     41,
+     "Tory Horton"
     ],
     "gunnar helm": [
      41,
@@ -5787,37 +5725,37 @@
      41,
      "Cade Otton"
     ],
-    "corey kiner": [
+    "kaleb johnson": [
      40,
-     "Corey Kiner"
+     "Kaleb Johnson"
     ],
     "keaton mitchell": [
      40,
      "Keaton Mitchell"
     ],
+    "quentin johnston": [
+     40,
+     "Quentin Johnston"
+    ],
+    "reggie virgil": [
+     40,
+     "Reggie Virgil"
+    ],
     "travis hunter": [
      40,
      "Travis Hunter"
     ],
-    "isaiah williams": [
-     40,
-     "Isaiah Williams"
-    ],
-    "kaleb johnson": [
+    "corey kiner": [
      39,
-     "Kaleb Johnson"
+     "Corey Kiner"
     ],
-    "quentin johnston": [
+    "jerry jeudy": [
      39,
-     "Quentin Johnston"
+     "Jerry Jeudy"
     ],
-    "josh cameron": [
+    "kyle williams": [
      39,
-     "Josh Cameron"
-    ],
-    "mike gesicki": [
-     39,
-     "Mike Gesicki"
+     "Kyle Williams"
     ],
     "tommy tremble": [
      39,
@@ -5827,37 +5765,41 @@
      39,
      "Zavion Thomas"
     ],
+    "ashton dulin": [
+     39,
+     "Ashton Dulin"
+    ],
+    "omarion hampton": [
+     38,
+     "Omarion Hampton"
+    ],
     "austin ekeler": [
      38,
      "Austin Ekeler"
     ],
-    "jerry jeudy": [
+    "efton chism": [
      38,
-     "Jerry Jeudy"
+     "Efton Chism III"
     ],
     "isaac teslaa": [
      38,
      "Isaac TeSlaa"
     ],
+    "josh cameron": [
+     38,
+     "Josh Cameron"
+    ],
     "hunter henry": [
      38,
      "Hunter Henry"
     ],
-    "eli raridon": [
+    "mike gesicki": [
      38,
-     "Eli Raridon"
+     "Mike Gesicki"
     ],
     "marvin mims": [
      38,
      "Marvin Mims Jr."
-    ],
-    "ashton dulin": [
-     38,
-     "Ashton Dulin"
-    ],
-    "reggie virgil": [
-     37,
-     "Reggie Virgil"
     ],
     "cyrus allen": [
      37,
@@ -5867,65 +5809,57 @@
      37,
      "Tyler Higbee"
     ],
-    "kevin coleman": [
+    "eli raridon": [
      37,
-     "Kevin Coleman Jr."
+     "Eli Raridon"
+    ],
+    "isaiah williams": [
+     37,
+     "Isaiah Williams"
     ],
     "ben skowronek": [
      37,
      "Ben Skowronek"
     ],
-    "omarion hampton": [
-     36,
-     "Omarion Hampton"
-    ],
-    "mack hollins": [
-     36,
-     "Mack Hollins"
-    ],
     "konata mumpfield": [
      36,
      "Konata Mumpfield"
-    ],
-    "jalen nailor": [
-     36,
-     "Jalen Nailor"
     ],
     "dawson knox": [
      36,
      "Dawson Knox"
     ],
+    "kevin coleman": [
+     36,
+     "Kevin Coleman Jr."
+    ],
     "jacob cowing": [
      36,
      "Jacob Cowing"
     ],
-    "jonathan mingo": [
-     36,
-     "Jonathan Mingo"
-    ],
-    "kenyon sadiq": [
-     35,
-     "Kenyon Sadiq"
-    ],
-    "kc def": [
-     35,
-     "Chiefs DEF"
-    ],
     "chris blair": [
-     35,
+     36,
      "Chris Blair"
     ],
-    "brandin cooks": [
-     34,
-     "Brandin Cooks"
+    "mack hollins": [
+     35,
+     "Mack Hollins"
+    ],
+    "jalen nailor": [
+     35,
+     "Jalen Nailor"
     ],
     "pat freiermuth": [
      34,
      "Pat Freiermuth"
     ],
-    "michael mayer": [
+    "kenyon sadiq": [
      34,
-     "Michael Mayer"
+     "Kenyon Sadiq"
+    ],
+    "ameer abdullah": [
+     34,
+     "Ameer Abdullah"
     ],
     "ted hurst": [
      34,
@@ -5939,93 +5873,101 @@
      34,
      "Sam Roush"
     ],
+    "jonathan mingo": [
+     34,
+     "Jonathan Mingo"
+    ],
     "brandon smith": [
      34,
      "Brandon Smith"
-    ],
-    "khadarel hodge": [
-     34,
-     "KhaDarel Hodge"
     ],
     "jakobi lane": [
      33,
      "Ja'Kobi Lane"
     ],
+    "rashod bateman": [
+     33,
+     "Rashod Bateman"
+    ],
     "jalen royals": [
      33,
      "Jalen Royals"
+    ],
+    "brandin cooks": [
+     33,
+     "Brandin Cooks"
+    ],
+    "michael mayer": [
+     33,
+     "Michael Mayer"
     ],
     "kenny gainwell": [
      33,
      "Kenny Gainwell"
     ],
-    "ameer abdullah": [
-     33,
-     "Ameer Abdullah"
-    ],
-    "sione vaki": [
+    "devin duvernay": [
      32,
-     "Sione Vaki"
+     "Devin Duvernay"
     ],
-    "bryce lance": [
+    "van jefferson": [
      32,
-     "Bryce Lance"
-    ],
-    "chris boswell": [
-     32,
-     "Chris Boswell"
+     "Van Jefferson"
     ],
     "tai felton": [
      32,
      "Tai Felton"
     ],
+    "khadarel hodge": [
+     32,
+     "KhaDarel Hodge"
+    ],
+    "seth mcgowan": [
+     31,
+     "Seth McGowan"
+    ],
+    "sione vaki": [
+     31,
+     "Sione Vaki"
+    ],
+    "treylon burks": [
+     31,
+     "Treylon Burks"
+    ],
     "rashid shaheed": [
      31,
      "Rashid Shaheed"
     ],
-    "rashod bateman": [
+    "jordan whittington": [
      31,
-     "Rashod Bateman"
-    ],
-    "devin duvernay": [
-     31,
-     "Devin Duvernay"
-    ],
-    "van jefferson": [
-     31,
-     "Van Jefferson"
+     "Jordan Whittington"
     ],
     "laquon treadwell": [
      31,
      "Laquon Treadwell"
     ],
-    "olamide zaccheaus": [
+    "bryce lance": [
      31,
-     "Olamide Zaccheaus"
+     "Bryce Lance"
     ],
     "jk dobbins": [
      31,
      "J.K. Dobbins"
     ],
-    "jack bech": [
+    "deion burks": [
      31,
-     "Jack Bech"
-    ],
-    "j michael sturdivant": [
-     31,
-     "J. Michael Sturdivant"
+     "Deion Burks"
     ],
     "sterling shepard": [
      31,
      "Sterling Shepard"
     ],
+    "zonovan knight": [
+     31,
+     "Zonovan Knight"
+    ],
     "brandon johnson": [
      31,
      "Brandon Johnson"
-    ],
-    "ty johnson": [
-     30,
-     "Ty Johnson"
     ],
     "kimani vidal": [
      30,
@@ -6035,77 +5977,77 @@
      30,
      "Andrew Armstrong"
     ],
-    "darnell washington": [
+    "olamide zaccheaus": [
      30,
-     "Darnell Washington"
+     "Olamide Zaccheaus"
+    ],
+    "davis allen": [
+     30,
+     "Davis Allen"
     ],
     "jauan jennings": [
      30,
      "Jauan Jennings"
     ],
+    "cj daniels": [
+     30,
+     "CJ Daniels"
+    ],
     "bo melton": [
      30,
      "Bo Melton"
-    ],
-    "mitch tinsley": [
-     30,
-     "Mitch Tinsley"
     ],
     "kaden wetjen": [
      30,
      "Kaden Wetjen"
     ],
-    "charlie jones": [
-     30,
-     "Charlie Jones"
-    ],
-    "deion burks": [
-     30,
-     "Deion Burks"
-    ],
-    "justin watson": [
-     30,
-     "Justin Watson"
-    ],
     "jared wayne": [
      30,
      "Jared Wayne"
     ],
-    "jacoby jones": [
+    "harrison wallace": [
      30,
-     "Jacoby Jones"
+     "Harrison Wallace III"
+    ],
+    "ty johnson": [
+     29,
+     "Ty Johnson"
     ],
     "ray davis": [
      29,
      "Ray Davis"
     ],
-    "jordan whittington": [
+    "chig okonkwo": [
      29,
-     "Jordan Whittington"
-    ],
-    "john metchie": [
-     29,
-     "John Metchie III"
+     "Chig Okonkwo"
     ],
     "dalton schultz": [
      29,
      "Dalton Schultz"
     ],
-    "davis allen": [
+    "darnell washington": [
      29,
-     "Davis Allen"
+     "Darnell Washington"
+    ],
+    "colby parkinson": [
+     29,
+     "Colby Parkinson"
+    ],
+    "oronde gadsden": [
+     29,
+     "Oronde Gadsden"
     ],
     "emanuel wilson": [
      29,
      "Emanuel Wilson"
     ],
-    "cj daniels": [
-     29,
-     "CJ Daniels"
-    ],
     "tim patrick": [
      29,
      "Tim Patrick"
+    ],
+    "jack bech": [
+     29,
+     "Jack Bech"
     ],
     "malik benson": [
      29,
@@ -6123,45 +6065,29 @@
      29,
      "Nikko Remigio"
     ],
+    "j michael sturdivant": [
+     29,
+     "J. Michael Sturdivant"
+    ],
     "mitchell tinsley": [
      29,
      "Mitchell Tinsley"
     ],
-    "harrison wallace": [
+    "justin watson": [
      29,
-     "Harrison Wallace III"
-    ],
-    "nick nash": [
-     29,
-     "Nick Nash"
+     "Justin Watson"
     ],
     "jalin hyatt": [
      29,
      "Jalin Hyatt"
     ],
-    "emari demercado": [
+    "john metchie": [
      28,
-     "Emari Demercado"
-    ],
-    "treylon burks": [
-     28,
-     "Treylon Burks"
+     "John Metchie III"
     ],
     "calvin ridley": [
      28,
      "Calvin Ridley"
-    ],
-    "chig okonkwo": [
-     28,
-     "Chig Okonkwo"
-    ],
-    "colby parkinson": [
-     28,
-     "Colby Parkinson"
-    ],
-    "oronde gadsden": [
-     28,
-     "Oronde Gadsden"
     ],
     "sean tucker": [
      28,
@@ -6175,41 +6101,53 @@
      28,
      "Dontayvion Wicks"
     ],
-    "malachi corley": [
+    "mitch tinsley": [
      28,
-     "Malachi Corley"
+     "Mitch Tinsley"
+    ],
+    "charlie jones": [
+     28,
+     "Charlie Jones"
     ],
     "david moore": [
      28,
      "David Moore"
     ],
+    "emari demercado": [
+     27,
+     "Emari Demercado"
+    ],
+    "tyjae spears": [
+     27,
+     "Tyjae Spears"
+    ],
     "elijah higgins": [
      27,
      "Elijah Higgins"
-    ],
-    "jaylen wright": [
-     27,
-     "Jaylen Wright"
     ],
     "skyler bell": [
      27,
      "Skyler Bell"
     ],
-    "luke mccaffrey": [
-     27,
-     "Luke McCaffrey"
-    ],
-    "barion brown": [
-     27,
-     "Barion Brown"
-    ],
     "jackson hawes": [
      27,
      "Jackson Hawes"
     ],
-    "tyjae spears": [
+    "malachi corley": [
+     27,
+     "Malachi Corley"
+    ],
+    "audric estime": [
      26,
-     "Tyjae Spears"
+     "Audric Estime"
+    ],
+    "marshawn lloyd": [
+     26,
+     "MarShawn Lloyd"
+    ],
+    "pierre strong": [
+     26,
+     "Pierre Strong Jr."
     ],
     "greg dulcich": [
      26,
@@ -6223,6 +6161,10 @@
      26,
      "Charlie Kolar"
     ],
+    "jaylen wright": [
+     26,
+     "Jaylen Wright"
+    ],
     "cody white": [
      26,
      "Cody White"
@@ -6231,45 +6173,29 @@
      26,
      "Isaiah Bond"
     ],
-    "theo johnson": [
+    "luke mccaffrey": [
      26,
-     "Theo Johnson"
+     "Luke McCaffrey"
+    ],
+    "barion brown": [
+     26,
+     "Barion Brown"
     ],
     "greg dortch": [
      26,
      "Greg Dortch"
     ],
-    "camden brown": [
-     26,
-     "Camden Brown"
-    ],
     "tylan wallace": [
      26,
      "Tylan Wallace"
     ],
-    "evan hull": [
+    "montorie foster": [
      26,
-     "Evan Hull"
+     "Montorie Foster Jr."
     ],
-    "irvin charles": [
-     26,
-     "Irvin Charles"
-    ],
-    "seth mcgowan": [
+    "brevyn spann ford": [
      25,
-     "Seth McGowan"
-    ],
-    "marshawn lloyd": [
-     25,
-     "MarShawn Lloyd"
-    ],
-    "la def": [
-     25,
-     "Rams DEF"
-    ],
-    "sf def": [
-     25,
-     "49ers DEF"
+     "Brevyn Spann-Ford"
     ],
     "lajohntay wester": [
      25,
@@ -6283,6 +6209,14 @@
      25,
      "Gavin Bartholomew"
     ],
+    "theo johnson": [
+     25,
+     "Theo Johnson"
+    ],
+    "camden brown": [
+     25,
+     "Camden Brown"
+    ],
     "tay martin": [
      25,
      "Tay Martin"
@@ -6291,21 +6225,17 @@
      25,
      "Keleki Latu"
     ],
+    "jaden bradley": [
+     25,
+     "Jaden Bradley"
+    ],
+    "beaux collins": [
+     25,
+     "Beaux Collins"
+    ],
     "bam knight": [
      24,
      "Bam Knight"
-    ],
-    "pierre strong": [
-     24,
-     "Pierre Strong Jr."
-    ],
-    "brevyn spann ford": [
-     24,
-     "Brevyn Spann-Ford"
-    ],
-    "dominic zvada": [
-     24,
-     "Dominic Zvada"
     ],
     "elijah sarratt": [
      24,
@@ -6327,17 +6257,17 @@
      24,
      "Dareke Young"
     ],
-    "malik mcclain": [
-     24,
-     "Malik McClain"
-    ],
-    "mason taylor": [
-     23,
-     "Mason Taylor"
-    ],
     "noah fant": [
      23,
      "Noah Fant"
+    ],
+    "chris boswell": [
+     23,
+     "Chris Boswell"
+    ],
+    "sf def": [
+     23,
+     "49ers DEF"
     ],
     "roschon johnson": [
      23,
@@ -6359,25 +6289,17 @@
      23,
      "Adam Trautman"
     ],
-    "cameron latu": [
-     23,
-     "Cameron Latu"
-    ],
     "deandre carter": [
      23,
      "DeAndre Carter"
     ],
-    "jaden bradley": [
+    "malik mcclain": [
      23,
-     "Jaden Bradley"
+     "Malik McClain"
     ],
-    "jordan hudson": [
-     23,
-     "Jordan Hudson"
-    ],
-    "audric estime": [
+    "mason taylor": [
      22,
-     "Audric Estime"
+     "Mason Taylor"
     ],
     "nate boerkircher": [
      22,
@@ -6399,10 +6321,6 @@
      22,
      "Ben Yurosek"
     ],
-    "kaytron allen": [
-     21,
-     "Kaytron Allen"
-    ],
     "andre szmyt": [
      21,
      "Andre Szmyt"
@@ -6410,10 +6328,6 @@
     "chad ryland": [
      21,
      "Chad Ryland"
-    ],
-    "gb def": [
-     21,
-     "Packers DEF"
     ],
     "buf def": [
      21,
@@ -6431,26 +6345,6 @@
      21,
      "LeQuint Allen Jr."
     ],
-    "tyler goodson": [
-     21,
-     "Tyler Goodson"
-    ],
-    "jake ferguson": [
-     21,
-     "Jake Ferguson"
-    ],
-    "josh cuevas": [
-     21,
-     "Josh Cuevas"
-    ],
-    "foster moreau": [
-     21,
-     "Foster Moreau"
-    ],
-    "austin hooper": [
-     21,
-     "Austin Hooper"
-    ],
     "mo alie cox": [
      21,
      "Mo Alie-Cox"
@@ -6459,57 +6353,89 @@
      21,
      "Wil Lutz"
     ],
-    "jerome ford": [
-     21,
-     "Jerome Ford"
+    "treveyon henderson": [
+     20,
+     "TreVeyon Henderson"
+    ],
+    "kaytron allen": [
+     20,
+     "Kaytron Allen"
+    ],
+    "lan larison": [
+     20,
+     "Lan Larison"
+    ],
+    "keandre lambert smith": [
+     20,
+     "KeAndre Lambert-Smith"
     ],
     "noah gray": [
      20,
      "Noah Gray"
     ],
+    "la def": [
+     20,
+     "Rams DEF"
+    ],
     "no def": [
      20,
      "Saints DEF"
-    ],
-    "george holani": [
-     20,
-     "George Holani"
     ],
     "kyle juszczyk": [
      20,
      "Kyle Juszczyk"
     ],
+    "tyler goodson": [
+     20,
+     "Tyler Goodson"
+    ],
     "zachariah branch": [
      20,
      "Zachariah Branch"
     ],
-    "charlie woerner": [
+    "jake ferguson": [
      20,
-     "Charlie Woerner"
+     "Jake Ferguson"
+    ],
+    "josh cuevas": [
+     20,
+     "Josh Cuevas"
+    ],
+    "austin hooper": [
+     20,
+     "Austin Hooper"
     ],
     "drew sample": [
      20,
      "Drew Sample"
     ],
-    "treveyon henderson": [
-     19,
-     "TreVeyon Henderson"
-    ],
-    "lan larison": [
-     19,
-     "Lan Larison"
+    "jake briningstool": [
+     20,
+     "Jake Briningstool"
     ],
     "mitchell evans": [
      19,
      "Mitchell Evans"
     ],
+    "spencer shrader": [
+     19,
+     "Spencer Shrader"
+    ],
     "matt gay": [
      19,
      "Matt Gay"
     ],
+    "dominic zvada": [
+     19,
+     "Dominic Zvada"
+    ],
     "harrison butker": [
      19,
      "Harrison Butker"
+    ],
+    "kc def": [
+     19,
+     "Chiefs DEF"
     ],
     "ne def": [
      19,
@@ -6519,9 +6445,17 @@
      19,
      "Jets DEF"
     ],
-    "will mallory": [
+    "george holani": [
      19,
-     "Will Mallory"
+     "George Holani"
+    ],
+    "foster moreau": [
+     19,
+     "Foster Moreau"
+    ],
+    "charlie woerner": [
+     19,
+     "Charlie Woerner"
     ],
     "eric saubert": [
      19,
@@ -6534,18 +6468,6 @@
     "derius davis": [
      19,
      "Derius Davis"
-    ],
-    "jake briningstool": [
-     19,
-     "Jake Briningstool"
-    ],
-    "keandre lambert smith": [
-     18,
-     "KeAndre Lambert-Smith"
-    ],
-    "spencer shrader": [
-     18,
-     "Spencer Shrader"
     ],
     "charlie smyth": [
      18,
@@ -6563,6 +6485,10 @@
      18,
      "Joey Slye"
     ],
+    "gb def": [
+     18,
+     "Packers DEF"
+    ],
     "ind def": [
      18,
      "Colts DEF"
@@ -6579,9 +6505,9 @@
      18,
      "Jack Endries"
     ],
-    "chris manhertz": [
+    "teagan quitoriano": [
      18,
-     "Chris Manhertz"
+     "Teagan Quitoriano"
     ],
     "zane gonzalez": [
      17,
@@ -6607,13 +6533,21 @@
      17,
      "Jonnu Smith"
     ],
+    "will mallory": [
+     17,
+     "Will Mallory"
+    ],
+    "tanner koziol": [
+     17,
+     "Tanner Koziol"
+    ],
     "brady russell": [
      17,
      "Brady Russell"
     ],
-    "teagan quitoriano": [
+    "chris manhertz": [
      17,
-     "Teagan Quitoriano"
+     "Chris Manhertz"
     ],
     "nick muse": [
      17,
@@ -6623,9 +6557,9 @@
      17,
      "Quintin Morris"
     ],
-    "carlos washington": [
+    "thomas fidone": [
      17,
-     "Carlos Washington"
+     "Thomas Fidone II"
     ],
     "trevor etienne": [
      16,
@@ -6666,10 +6600,6 @@
     "eli stowers": [
      16,
      "Eli Stowers"
-    ],
-    "tanner koziol": [
-     16,
-     "Tanner Koziol"
     ],
     "oscar delp": [
      16,
@@ -6723,17 +6653,17 @@
      15,
      "Jaydon Blue"
     ],
-    "marlin klein": [
+    "dj giddens": [
      15,
-     "Marlin Klein"
+     "DJ Giddens"
     ],
     "brock wright": [
      15,
      "Brock Wright"
     ],
-    "drew ogletree": [
+    "max klare": [
      15,
-     "Drew Ogletree"
+     "Max Klare"
     ],
     "blake whiteheart": [
      15,
@@ -6743,21 +6673,13 @@
      15,
      "Connor Heyward"
     ],
-    "mark redman": [
-     15,
-     "Mark Redman"
-    ],
     "hayden rucci": [
      15,
      "Hayden Rucci"
     ],
-    "zamir white": [
+    "carlos washington": [
      15,
-     "Zamir White"
-    ],
-    "cam grandy": [
-     15,
-     "Cam Grandy"
+     "Carlos Washington"
     ],
     "nick vannett": [
      15,
@@ -6771,9 +6693,21 @@
      14,
      "Chargers DEF"
     ],
+    "drew ogletree": [
+     14,
+     "Drew Ogletree"
+    ],
     "tyler conklin": [
      14,
      "Tyler Conklin"
+    ],
+    "mark redman": [
+     14,
+     "Mark Redman"
+    ],
+    "zamir white": [
+     14,
+     "Zamir White"
     ],
     "robert tonyan": [
      14,
@@ -6786,10 +6720,6 @@
     "hunter luepke": [
      13,
      "Hunter Luepke"
-    ],
-    "dj giddens": [
-     13,
-     "DJ Giddens"
     ],
     "ronnie rivers": [
      13,
@@ -6811,17 +6741,9 @@
      13,
      "Jake Elliott"
     ],
-    "dare ogunbowale": [
+    "luke schoonmaker": [
      13,
-     "Dare Ogunbowale"
-    ],
-    "rasheen ali": [
-     13,
-     "Rasheen Ali"
-    ],
-    "max klare": [
-     13,
-     "Max Klare"
+     "Luke Schoonmaker"
     ],
     "max bredeson": [
      13,
@@ -6835,10 +6757,6 @@
      13,
      "Velus Jones Jr."
     ],
-    "drake dabney": [
-     13,
-     "Drake Dabney"
-    ],
     "david martin robinson": [
      13,
      "David Martin-Robinson"
@@ -6846,10 +6764,6 @@
     "brayden willis": [
      13,
      "Brayden Willis"
-    ],
-    "khyiris tonga": [
-     13,
-     "Khyiris Tonga"
     ],
     "drew stevens": [
      12,
@@ -6875,21 +6789,29 @@
      12,
      "Justin Joly"
     ],
-    "luke schoonmaker": [
+    "dare ogunbowale": [
      12,
-     "Luke Schoonmaker"
+     "Dare Ogunbowale"
+    ],
+    "rasheen ali": [
+     12,
+     "Rasheen Ali"
     ],
     "jeremy ruckert": [
      12,
      "Jeremy Ruckert"
     ],
-    "jelani woods": [
+    "colson yankoff": [
      12,
-     "Jelani Woods"
+     "Colson Yankoff"
     ],
     "feleipe franks": [
      12,
      "Feleipe Franks"
+    ],
+    "marlin klein": [
+     11,
+     "Marlin Klein"
     ],
     "will kacmarek": [
      11,
@@ -6899,9 +6821,9 @@
      11,
      "Anthony Tyus III"
     ],
-    "colson yankoff": [
+    "nick kallerup": [
      11,
-     "Colson Yankoff"
+     "Nick Kallerup"
     ],
     "john bates": [
      10,
@@ -6915,6 +6837,10 @@
      10,
      "Scott Matlock"
     ],
+    "jelani woods": [
+     10,
+     "Jelani Woods"
+    ],
     "james mitchell": [
      10,
      "James Mitchell"
@@ -6922,10 +6848,6 @@
     "robert henry": [
      10,
      "Robert Henry"
-    ],
-    "nick kallerup": [
-     10,
-     "Nick Kallerup"
     ],
     "jabari small": [
      10,
@@ -6954,6 +6876,10 @@
     "cj donaldson": [
      6,
      "CJ Donaldson"
+    ],
+    "josh whyle": [
+     3,
+     "Josh Whyle"
     ]
    },
    "best": {
@@ -6962,20 +6888,20 @@
      "grade": 53
     },
     "WR": {
-     "name": "Kalif Raymond",
-     "grade": 58
+     "name": "Xavier Hutchinson",
+     "grade": 59
     },
     "TE": {
      "name": "Darren Waller",
-     "grade": 45
+     "grade": 46
     },
     "K": {
      "name": "Chris Boswell",
-     "grade": 32
+     "grade": 23
     },
     "DEF": {
-     "name": "Chiefs DEF",
-     "grade": 35
+     "name": "49ers DEF",
+     "grade": 23
     }
    }
   }

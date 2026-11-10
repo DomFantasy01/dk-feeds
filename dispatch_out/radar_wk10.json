@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Tue Nov 10 7:54 AM PT",
- "built_utc": "2026-11-10T15:54:22.824197+00:00",
+ "built": "Tue Nov 10 8:12 AM PT",
+ "built_utc": "2026-11-10T16:12:28.962026+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Tue Nov 10 7:49 AM PT",
-   "pulled_ago": "5 min ago",
-   "items": 2418,
-   "newest": "8 min ago",
+   "pulled": "Tue Nov 10 8:06 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 2419,
+   "newest": "7 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Tue Nov 10 7:49 AM PT",
-   "pulled_ago": "5 min ago",
-   "items": 6768,
-   "newest": "8 min ago",
+   "pulled": "Tue Nov 10 8:06 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 6771,
+   "newest": "14 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Tue Nov 10 7:49 AM PT",
-   "pulled_ago": "5 min ago",
-   "items": 1683,
-   "newest": "17 min ago",
+   "pulled": "Tue Nov 10 8:06 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 1685,
+   "newest": "4 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Tue Nov 10 7:49 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Tue Nov 10 8:06 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 392,
-   "newest": "10 min ago",
+   "newest": "11 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Tue Nov 10 7:49 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Tue Nov 10 8:06 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Tue Nov 10 7:52 AM PT",
+   "pulled": "Tue Nov 10 8:10 AM PT",
    "pulled_ago": "2 min ago",
    "items": 773,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Tue Nov 10 2026 07:52 AM PT",
+   "pulled": "Tue Nov 10 2026 08:10 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Tue Nov 10 7:41 AM PT",
-   "pulled_ago": "13 min ago",
+   "pulled_ago": "31 min ago",
    "items": 364,
    "newest": null,
    "warn": null,
@@ -90,19 +90,19 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "red",
+      "recency": 0,
+      "color": "gold",
       "grades": [
-       "bad"
+       "caution"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 9 4:16 PM PT",
+       "t": "Tue Nov 10 7:44 AM PT",
        "src": "ESPN injury report",
-       "title": "George Pickens: Out (Hamstring)",
-       "text": "Pickens (hamstring) has a chance to play Sunday against San Francisco, but his practice reps will likely again be capped this week, Jon Machota of The Athletic reports.",
-       "grade": "bad"
+       "title": "George Pickens: Questionable (Hamstring)",
+       "text": "questionable",
+       "grade": "caution"
       },
       {
        "t": "Sun Nov 8 9:36 AM PT",
@@ -119,7 +119,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 0.0,
+     "gotham": 14.6,
      "gotham_ros": 14.0,
      "sleeper": 13.7,
      "workload": "6/9/12/3/14/12/7/4",
@@ -594,7 +594,8 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "good news"
+      "good news",
+      "opening: A.J. Brown \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
@@ -621,8 +622,8 @@
       }
      ],
      "floor": {
-      "name": "George Pickens",
-      "gotham": 0.0
+      "name": "Jordan Addison",
+      "gotham": 7.9
      },
      "beats_floor": true,
      "gotham": 9.4,
@@ -634,135 +635,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Isaiah Williams",
-     "pos": "WR",
-     "team": "NYJ",
-     "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "George Pickens",
-      "gotham": 0.0
-     },
-     "beats_floor": true,
-     "gotham": 4.8,
-     "gotham_ros": 4.9,
-     "sleeper": 0.7,
-     "workload": "1/7/2/3/2/0",
-     "trend": -0.73,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Sterling Shepard",
-     "pos": "WR",
-     "team": "NYJ",
-     "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "George Pickens",
-      "gotham": 0.0
-     },
-     "beats_floor": true,
-     "gotham": 4.7,
-     "gotham_ros": 4.8,
-     "sleeper": null,
-     "workload": "1/2",
-     "trend": 0.39,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tank Dell",
-     "pos": "WR",
-     "team": "HOU",
-     "why": [
-      "Sleeper adds #1 (1,512,824 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 10 7:30 AM PT",
-       "src": "rotoballer",
-       "title": "Fantasy Football Week 10 Waiver Wire: Deeper League Pickups (QB, RB, WR, TE)",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/11/Tank-Dell-fantasy-football-rankings-waiver-wire-targets-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Fantasy Football Week 10 Waiver Wire: Deeper League Pickups (QB, RB,",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "George Pickens",
-      "gotham": 0.0
-     },
-     "beats_floor": true,
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": 2.6,
-     "workload": null,
-     "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyquan Thornton",
-     "pos": "WR",
-     "team": "KC",
-     "why": [
-      "opening: Xavier Worthy \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "George Pickens",
-      "gotham": 0.0
-     },
-     "beats_floor": true,
-     "gotham": 0.0,
-     "gotham_ros": 7.9,
-     "sleeper": null,
-     "workload": "1/4/2/9",
-     "trend": 1.74,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Aaron Rodgers",
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #25 (76,216 in 24 h)"
+      "Sleeper adds #24 (79,900 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -830,7 +707,7 @@
       "gotham": 22.9
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 17.4,
      "gotham_ros": 19.7,
      "sleeper": 16.0,
      "workload": "33/43/50/46/44/40/41/44",
@@ -839,56 +716,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Shedeur Sanders",
-     "pos": "QB",
-     "team": "CLE",
-     "why": [
-      "good news",
-      "Sleeper adds #24 (76,568 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 8:33 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson is inactive for the Browns",
-       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 7 10:39 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson clears concussion protocol, remains questionable for Sunday",
-       "text": "Shedeur Sanders will start against the Saints.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Tyler Shough",
-      "gotham": 22.9
-     },
-     "beats_floor": false,
-     "gotham": 10.0,
-     "gotham_ros": 10.7,
-     "sleeper": null,
-     "workload": "1/2/49",
-     "trend": 19.13,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Justice Hill",
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #9 (158,220 in 24 h)"
+      "Sleeper adds #9 (163,557 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -921,11 +753,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Kaleb Johnson",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 6:23 AM PT",
+       "src": "rotoballer",
+       "title": "Kaleb Johnson Could Lead Green Bay's Backfield with Josh Jacobs Out",
+       "text": "Green Bay Packers running back Kaleb Johnson could get another chance to lead the team's backfield for the next few [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jaylen Warren",
+      "gotham": 20.0
+     },
+     "beats_floor": false,
+     "gotham": 8.2,
+     "gotham_ros": 5.9,
+     "sleeper": 9.5,
+     "workload": "0/8/10/10/7/1/16",
+     "trend": 0.68,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darren Waller",
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (354,195 in 24 h)"
+      "Sleeper adds #5 (366,381 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -962,7 +831,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #15 (114,390 in 24 h)"
+      "Sleeper adds #15 (118,908 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1030,6 +899,138 @@
      "trend": 0.05,
      "yahoo": null,
      "acq": "unverified"
+    },
+    {
+     "name": "Elic Ayomanor",
+     "pos": "WR",
+     "team": "TEN",
+     "why": [
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:40 PM PT",
+       "src": "rotoballer",
+       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
+       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jordan Addison",
+      "gotham": 7.9
+     },
+     "beats_floor": false,
+     "gotham": 5.6,
+     "gotham_ros": 6.1,
+     "sleeper": 6.0,
+     "workload": "4/4/4/1/3/3/8/6",
+     "trend": 0.75,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "KaVontae Turpin",
+     "pos": "WR",
+     "team": "DAL",
+     "why": [
+      "opening: George Pickens \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 7:44 AM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Jordan Addison",
+      "gotham": 7.9
+     },
+     "beats_floor": false,
+     "gotham": 4.9,
+     "gotham_ros": 4.7,
+     "sleeper": 2.5,
+     "workload": "1/0/3/0/4/0",
+     "trend": 0.04,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Isaiah Williams",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Jordan Addison",
+      "gotham": 7.9
+     },
+     "beats_floor": false,
+     "gotham": 4.8,
+     "gotham_ros": 4.9,
+     "sleeper": 0.7,
+     "workload": "1/7/2/3/2/0",
+     "trend": -0.73,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Najee Harris",
+     "pos": "RB",
+     "team": "NYG",
+     "why": [
+      "opening: Cam Skattebo \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Jaylen Warren",
+      "gotham": 20.0
+     },
+     "beats_floor": false,
+     "gotham": 4.8,
+     "gotham_ros": 4.9,
+     "sleeper": null,
+     "workload": "6/10/12/8/4",
+     "trend": -0.38,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -1038,33 +1039,31 @@
      "pos": "RB",
      "team": "NYG",
      "marker": {
-      "count": 5,
-      "recency": 1,
-      "color": "red",
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
       "grades": [
-       "bad",
-       "caution",
-       "note"
+       "caution"
       ]
      },
      "news": [
+      {
+       "t": "Tue Nov 10 7:44 AM PT",
+       "src": "ESPN injury report",
+       "title": "Cam Skattebo: Questionable (Hamstring)",
+       "text": "questionable",
+       "grade": "caution"
+      },
       {
        "t": "Mon Nov 9 4:55 PM PT",
        "src": "rotoballer",
        "title": "Cam Skattebo Limited in Monday's Walkthrough",
        "text": "New York Giants running back Cam Skattebo (hamstring) was an estimated limited participant in the team's walkthrough practice on Monday, [&#8230;]",
        "grade": "caution"
-      },
-      {
-       "t": "Mon Nov 9 3:59 PM PT",
-       "src": "ESPN injury report",
-       "title": "Cam Skattebo: Out (Hamstring)",
-       "text": "Skattebo (hamstring) was listed as limited on Monday's estimated injury report, Dan Salomone of the Giants' official site reports.",
-       "grade": "bad"
       }
      ],
-     "gotham": 0.0,
-     "gotham_ros": 15.9,
+     "gotham": 16.2,
+     "gotham_ros": 16.7,
      "sleeper": 16.0,
      "workload": "22/21/32/22/19/20",
      "trend": -0.15
@@ -1623,7 +1622,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #13 (137,552 in 24 h)"
+      "Sleeper adds #13 (141,528 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1691,7 +1690,7 @@
       "gotham": 18.6
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 17.4,
      "gotham_ros": 19.7,
      "sleeper": 16.0,
      "workload": "33/43/50/46/44/40/41/44",
@@ -1700,56 +1699,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Shedeur Sanders",
-     "pos": "QB",
-     "team": "CLE",
-     "why": [
-      "good news",
-      "Sleeper adds #24 (76,568 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 8:33 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson is inactive for the Browns",
-       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 7 10:39 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson clears concussion protocol, remains questionable for Sunday",
-       "text": "Shedeur Sanders will start against the Saints.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 18.6
-     },
-     "beats_floor": false,
-     "gotham": 10.0,
-     "gotham_ros": 10.7,
-     "sleeper": null,
-     "workload": "1/2/49",
-     "trend": 19.13,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Justice Hill",
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #9 (158,220 in 24 h)"
+      "Sleeper adds #9 (163,557 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1778,6 +1732,43 @@
      "sleeper": 8.5,
      "workload": "8/6/5/7/12/6/12/21/15",
      "trend": 0.82,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Kaleb Johnson",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 6:23 AM PT",
+       "src": "rotoballer",
+       "title": "Kaleb Johnson Could Lead Green Bay's Backfield with Josh Jacobs Out",
+       "text": "Green Bay Packers running back Kaleb Johnson could get another chance to lead the team's backfield for the next few [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jadarian Price",
+      "gotham": 9.8
+     },
+     "beats_floor": false,
+     "gotham": 8.2,
+     "gotham_ros": 5.9,
+     "sleeper": 9.5,
+     "workload": "0/8/10/10/7/1/16",
+     "trend": 0.68,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1819,6 +1810,80 @@
      "acq": "unverified"
     },
     {
+     "name": "Elic Ayomanor",
+     "pos": "WR",
+     "team": "TEN",
+     "why": [
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:40 PM PT",
+       "src": "rotoballer",
+       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
+       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Ladd McConkey",
+      "gotham": 7.8
+     },
+     "beats_floor": false,
+     "gotham": 5.6,
+     "gotham_ros": 6.1,
+     "sleeper": 6.0,
+     "workload": "4/4/4/1/3/3/8/6",
+     "trend": 0.75,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "KaVontae Turpin",
+     "pos": "WR",
+     "team": "DAL",
+     "why": [
+      "opening: George Pickens \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 7:44 AM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Ladd McConkey",
+      "gotham": 7.8
+     },
+     "beats_floor": false,
+     "gotham": 4.9,
+     "gotham_ros": 4.7,
+     "sleeper": 2.5,
+     "workload": "1/0/3/0/4/0",
+     "trend": 0.04,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Isaiah Williams",
      "pos": "WR",
      "team": "NYJ",
@@ -1844,6 +1909,35 @@
      "sleeper": 0.7,
      "workload": "1/7/2/3/2/0",
      "trend": -0.73,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Najee Harris",
+     "pos": "RB",
+     "team": "NYG",
+     "why": [
+      "opening: Cam Skattebo \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Jadarian Price",
+      "gotham": 9.8
+     },
+     "beats_floor": false,
+     "gotham": 4.8,
+     "gotham_ros": 4.9,
+     "sleeper": null,
+     "workload": "6/10/12/8/4",
+     "trend": -0.38,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1877,27 +1971,27 @@
      "acq": "unverified"
     },
     {
-     "name": "Tank Dell",
+     "name": "Calvin Ridley",
      "pos": "WR",
-     "team": "HOU",
+     "team": "TEN",
      "why": [
-      "Sleeper adds #1 (1,512,824 in 24 h)"
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
-       "note"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Tue Nov 10 7:30 AM PT",
-       "src": "rotoballer",
-       "title": "Fantasy Football Week 10 Waiver Wire: Deeper League Pickups (QB, RB, WR, TE)",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/11/Tank-Dell-fantasy-football-rankings-waiver-wire-targets-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Fantasy Football Week 10 Waiver Wire: Deeper League Pickups (QB, RB,",
-       "grade": "mention"
+       "t": "Mon Nov 9 8:20 AM PT",
+       "src": "pft",
+       "title": "Robert Saleh: Calvin Ridley's airport incident was \"a very minor miscommunication\"",
+       "text": "News emerged on Sunday night that Titans receiver Calvin Ridley was involved in an incident over the weekend at Nashville International Airport.",
+       "grade": "note"
       }
      ],
      "floor": {
@@ -1905,148 +1999,36 @@
       "gotham": 7.8
      },
      "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": 2.6,
-     "workload": null,
-     "trend": null,
+     "gotham": 4.0,
+     "gotham_ros": 4.3,
+     "sleeper": 2.7,
+     "workload": "2/1/2/3/3/4",
+     "trend": 0.53,
      "yahoo": null,
      "acq": "unverified"
     },
     {
-     "name": "Brian Robinson",
-     "pos": "RB",
-     "team": "ATL",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 7 1:30 PM PT",
-       "src": "rotoballer",
-       "title": "Khalil Herbert Signed to Falcons' Active Roster",
-       "text": "Atlanta Falcons running back Khalil Herbert has been signed to the active roster from the practice squad following Brian Robinson [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.8
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 10.3,
-     "sleeper": null,
-     "workload": "9/15/11/21/9/8",
-     "trend": -0.35,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Terrance Ferguson",
-     "pos": "TE",
-     "team": "LA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 2:02 PM PT",
-       "src": "RotoWire news",
-       "title": "Terrance Ferguson: No injury designation",
-       "text": "Ferguson (ankle) doesn't have an injury designation for Sunday's game against the Commanders, Adam Caplan of SiriusXM NFL Radio reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 11.9
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 6.8,
-     "sleeper": null,
-     "workload": "1/10/2",
-     "trend": -0.05,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "David Njoku",
-     "pos": "TE",
-     "team": "LAC",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 11:01 AM PT",
-       "src": "RotoWire news",
-       "title": "David Njoku: Not activated ahead of Week 9",
-       "text": "Njoku (fibula) wasn't activated from IR-designated to return ahead of Sunday's game against the Texans, per the NFL's official transaction log .",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 11.9
-     },
-     "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": null,
-     "workload": null,
-     "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Pat Bryant",
+     "name": "Kyle Williams",
      "pos": "WR",
-     "team": "DEN",
+     "team": "NE",
      "why": [
-      "good news",
-      "Sleeper adds #12 (144,816 in 24 h)"
+      "opening: A.J. Brown \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
-      "color": "grey",
+      "recency": 0,
+      "color": "gold",
       "grades": [
-       "good"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Sat Nov 7 3:43 PM PT",
+       "t": "Tue Nov 3 10:38 PM PT",
        "src": "rotoballer",
-       "title": "Pat Bryant Activated From Injured Reserve, Will Play in Week 9",
-       "text": "Denver Broncos wide receiver Pat Bryant (ankle) has been activated from injured reserve. He remains listed as questionable for Sunday's [&#8230;]",
-       "grade": "good"
+       "title": "Kyle Williams Emerging as a Big-Play Threat Amid Teammate Injuries",
+       "text": "New England Patriots wide receiver Kyle Williams has emerged as a potential waiver wire target in deeper fantasy leagues while [&#8230;]",
+       "grade": "note"
       }
      ],
      "floor": {
@@ -2054,11 +2036,11 @@
       "gotham": 7.8
      },
      "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": 6.7,
-     "sleeper": null,
-     "workload": "6/1/3/3/6",
-     "trend": 0.45,
+     "gotham": 3.6,
+     "gotham_ros": 3.5,
+     "sleeper": 3.4,
+     "workload": "0/2/3/2/3/1/1/1/2",
+     "trend": -0.01,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2070,48 +2052,6 @@
    "opponent": "Mr. Bobo",
    "unread": [],
    "own": [
-    {
-     "name": "George Pickens",
-     "pos": "WR",
-     "team": "DAL",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "red",
-      "grades": [
-       "bad"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 9 4:16 PM PT",
-       "src": "ESPN injury report",
-       "title": "George Pickens: Out (Hamstring)",
-       "text": "Pickens (hamstring) has a chance to play Sunday against San Francisco, but his practice reps will likely again be capped this week, Jon Machota of The Athletic reports.",
-       "grade": "bad"
-      },
-      {
-       "t": "Sun Nov 8 9:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Ryan Flournoy: Could see added looks with Pickens out",
-       "text": "With George Pickens (hamstring) inactive, Flournoy is slated to move into the No. 2 WR role opposite CeeDee Lamb in Sunday's game against the Colts, while Jonathan Mingo will be the team's No. 3 receiver, Todd Archer of ESPN reports.",
-       "grade": "bad"
-      },
-      {
-       "t": "Sun Nov 8 9:04 AM PT",
-       "src": "ESPN news",
-       "title": "Cowboys WR Pickens, CB Porter, LB Overshown inactive against Colts",
-       "text": "The Cowboys will be without wide receiver George Pickens, cornerback Joey Porter Jr. and linebacker DeMarvion Overshown on Sunday against the Colts.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 14.0,
-     "sleeper": 13.7,
-     "workload": "6/9/12/3/14/12/7/4",
-     "trend": -0.43
-    },
     {
      "name": "Jaylen Waddle",
      "pos": "WR",
@@ -2155,6 +2095,48 @@
      "sleeper": null,
      "workload": "3/11/7/7/6/7/8/7",
      "trend": 0.04
+    },
+    {
+     "name": "George Pickens",
+     "pos": "WR",
+     "team": "DAL",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 7:44 AM PT",
+       "src": "ESPN injury report",
+       "title": "George Pickens: Questionable (Hamstring)",
+       "text": "questionable",
+       "grade": "caution"
+      },
+      {
+       "t": "Sun Nov 8 9:36 AM PT",
+       "src": "RotoWire news",
+       "title": "Ryan Flournoy: Could see added looks with Pickens out",
+       "text": "With George Pickens (hamstring) inactive, Flournoy is slated to move into the No. 2 WR role opposite CeeDee Lamb in Sunday's game against the Colts, while Jonathan Mingo will be the team's No. 3 receiver, Todd Archer of ESPN reports.",
+       "grade": "bad"
+      },
+      {
+       "t": "Sun Nov 8 9:04 AM PT",
+       "src": "ESPN news",
+       "title": "Cowboys WR Pickens, CB Porter, LB Overshown inactive against Colts",
+       "text": "The Cowboys will be without wide receiver George Pickens, cornerback Joey Porter Jr. and linebacker DeMarvion Overshown on Sunday against the Colts.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 14.6,
+     "gotham_ros": 14.0,
+     "sleeper": 13.7,
+     "workload": "6/9/12/3/14/12/7/4",
+     "trend": -0.43
     },
     {
      "name": "David Montgomery",
@@ -2583,7 +2565,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (354,195 in 24 h)"
+      "Sleeper adds #5 (366,381 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2653,56 +2635,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Shedeur Sanders",
-     "pos": "QB",
-     "team": "CLE",
-     "why": [
-      "good news",
-      "Sleeper adds #24 (76,568 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 8:33 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson is inactive for the Browns",
-       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 7 10:39 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson clears concussion protocol, remains questionable for Sunday",
-       "text": "Shedeur Sanders will start against the Saints.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 18.6
-     },
-     "beats_floor": false,
-     "gotham": 10.0,
-     "gotham_ros": 10.7,
-     "sleeper": null,
-     "workload": "1/2/49",
-     "trend": 19.13,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Justice Hill",
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #9 (158,220 in 24 h)"
+      "Sleeper adds #9 (163,557 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2731,6 +2668,43 @@
      "sleeper": 8.5,
      "workload": "8/6/5/7/12/6/12/21/15",
      "trend": 0.82,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Kaleb Johnson",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 6:23 AM PT",
+       "src": "rotoballer",
+       "title": "Kaleb Johnson Could Lead Green Bay's Backfield with Josh Jacobs Out",
+       "text": "Green Bay Packers running back Kaleb Johnson could get another chance to lead the team's backfield for the next few [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Rachaad White",
+      "gotham": 10.8
+     },
+     "beats_floor": false,
+     "gotham": 8.2,
+     "gotham_ros": 5.9,
+     "sleeper": 9.5,
+     "workload": "0/8/10/10/7/1/16",
+     "trend": 0.68,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2769,6 +2743,80 @@
      "sleeper": null,
      "workload": "11/10/13/14/28/20",
      "trend": 0.51,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Elic Ayomanor",
+     "pos": "WR",
+     "team": "TEN",
+     "why": [
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:40 PM PT",
+       "src": "rotoballer",
+       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
+       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.8
+     },
+     "beats_floor": false,
+     "gotham": 5.6,
+     "gotham_ros": 6.1,
+     "sleeper": 6.0,
+     "workload": "4/4/4/1/3/3/8/6",
+     "trend": 0.75,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "KaVontae Turpin",
+     "pos": "WR",
+     "team": "DAL",
+     "why": [
+      "opening: George Pickens \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 7:44 AM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.8
+     },
+     "beats_floor": false,
+     "gotham": 4.9,
+     "gotham_ros": 4.7,
+     "sleeper": 2.5,
+     "workload": "1/0/3/0/4/0",
+     "trend": 0.04,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2831,11 +2879,85 @@
      "acq": "unverified"
     },
     {
+     "name": "Calvin Ridley",
+     "pos": "WR",
+     "team": "TEN",
+     "why": [
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 9 8:20 AM PT",
+       "src": "pft",
+       "title": "Robert Saleh: Calvin Ridley's airport incident was \"a very minor miscommunication\"",
+       "text": "News emerged on Sunday night that Titans receiver Calvin Ridley was involved in an incident over the weekend at Nashville International Airport.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.8
+     },
+     "beats_floor": false,
+     "gotham": 4.0,
+     "gotham_ros": 4.3,
+     "sleeper": 2.7,
+     "workload": "2/1/2/3/3/4",
+     "trend": 0.53,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Kyle Williams",
+     "pos": "WR",
+     "team": "NE",
+     "why": [
+      "opening: A.J. Brown \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 3 10:38 PM PT",
+       "src": "rotoballer",
+       "title": "Kyle Williams Emerging as a Big-Play Threat Amid Teammate Injuries",
+       "text": "New England Patriots wide receiver Kyle Williams has emerged as a potential waiver wire target in deeper fantasy leagues while [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.8
+     },
+     "beats_floor": false,
+     "gotham": 3.6,
+     "gotham_ros": 3.5,
+     "sleeper": 3.4,
+     "workload": "0/2/3/2/3/1/1/1/2",
+     "trend": -0.01,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Tank Dell",
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (1,512,824 in 24 h)"
+      "Sleeper adds #1 (1,548,808 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2864,110 +2986,6 @@
      "sleeper": 2.6,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "David Njoku",
-     "pos": "TE",
-     "team": "LAC",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 11:01 AM PT",
-       "src": "RotoWire news",
-       "title": "David Njoku: Not activated ahead of Week 9",
-       "text": "Njoku (fibula) wasn't activated from IR-designated to return ahead of Sunday's game against the Texans, per the NFL's official transaction log .",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Harold Fannin Jr.",
-      "gotham": 7.4
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 8.0,
-     "sleeper": null,
-     "workload": "6/3",
-     "trend": -0.28,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Pat Bryant",
-     "pos": "WR",
-     "team": "DEN",
-     "why": [
-      "good news",
-      "Sleeper adds #12 (144,816 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 7 3:43 PM PT",
-       "src": "rotoballer",
-       "title": "Pat Bryant Activated From Injured Reserve, Will Play in Week 9",
-       "text": "Denver Broncos wide receiver Pat Bryant (ankle) has been activated from injured reserve. He remains listed as questionable for Sunday's [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.8
-     },
-     "beats_floor": false,
-     "gotham": null,
-     "gotham_ros": 6.7,
-     "sleeper": null,
-     "workload": "6/1/3/3/6",
-     "trend": 0.45,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyquan Thornton",
-     "pos": "WR",
-     "team": "KC",
-     "why": [
-      "opening: Xavier Worthy \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.8
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 7.9,
-     "sleeper": null,
-     "workload": "1/4/2/9",
-     "trend": 1.74,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3133,6 +3151,48 @@
      "sleeper": 16.9,
      "workload": "10/7/8/8/10/11",
      "trend": 0.26
+    },
+    {
+     "name": "James Conner",
+     "pos": "RB",
+     "team": "ARI",
+     "slot": "IR",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 7:58 AM PT",
+       "src": "rotoballer",
+       "title": "James Conner a Speculative Stash in Deeper Leagues",
+       "text": "Arizona running back James Conner is an intriguing fantasy player to stash, despite still not taking the field yet this [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 4 8:14 AM PT",
+       "src": "rotoballer",
+       "title": "James Conner Won't Return in Week 9",
+       "text": "Arizona Cardinals running back James Conner (foot) remains a speculative injured-reserve stash, not an immediate answer to Arizona's backfield problems. [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 3 5:14 PM PT",
+       "src": "rotoballer",
+       "title": "James Conner Won't Come Off Injured Reserve This Week",
+       "text": "Arizona Cardinals head coach Mike LaFleur said that veteran running back James Conner (foot) will not come off Injured Reserve [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": null,
+     "gotham_ros": null,
+     "sleeper": null,
+     "workload": NaN,
+     "trend": null
     },
     {
      "name": "C.J. Stroud",
@@ -3595,48 +3655,6 @@
      "sleeper": 16.2,
      "workload": "11/10/11/12/5/6",
      "trend": -0.43
-    },
-    {
-     "name": "James Conner",
-     "pos": "RB",
-     "team": "ARI",
-     "slot": "IR",
-     "marker": {
-      "count": 1,
-      "recency": 6,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 4 8:14 AM PT",
-       "src": "rotoballer",
-       "title": "James Conner Won't Return in Week 9",
-       "text": "Arizona Cardinals running back James Conner (foot) remains a speculative injured-reserve stash, not an immediate answer to Arizona's backfield problems. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Tue Nov 3 5:14 PM PT",
-       "src": "rotoballer",
-       "title": "James Conner Won't Come Off Injured Reserve This Week",
-       "text": "Arizona Cardinals head coach Mike LaFleur said that veteran running back James Conner (foot) will not come off Injured Reserve [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Tue Nov 3 4:31 PM PT",
-       "src": "RotoWire news",
-       "title": "James Conner: Not expected to return Week 9",
-       "text": "Cardinals head coach Mike LaFleur said Tuesday that Conner (foot) won't return from IR this week, Darren Urban of the team's official site reports.",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": null,
-     "sleeper": null,
-     "workload": NaN,
-     "trend": null
     }
    ],
    "in": [
@@ -3645,7 +3663,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (1,512,824 in 24 h)"
+      "Sleeper adds #1 (1,548,808 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3678,56 +3696,12 @@
      "acq": "unverified"
     },
     {
-     "name": "Shedeur Sanders",
-     "pos": "QB",
-     "team": "CLE",
-     "why": [
-      "good news",
-      "Sleeper adds #24 (76,568 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 8:33 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson is inactive for the Browns",
-       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 7 10:39 AM PT",
-       "src": "pft",
-       "title": "Deshaun Watson clears concussion protocol, remains questionable for Sunday",
-       "text": "Shedeur Sanders will start against the Saints.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jared Goff",
-      "gotham": 23.0
-     },
-     "beats_floor": false,
-     "gotham": 9.9,
-     "gotham_ros": 10.5,
-     "sleeper": null,
-     "workload": "1/2/44",
-     "trend": 17.13,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Mack Hollins",
      "pos": "WR",
      "team": "NE",
      "why": [
-      "good news"
+      "good news",
+      "opening: A.J. Brown \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
@@ -3771,7 +3745,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (354,195 in 24 h)"
+      "Sleeper adds #5 (366,381 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3808,7 +3782,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #15 (114,390 in 24 h)"
+      "Sleeper adds #15 (118,908 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3845,7 +3819,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #9 (158,220 in 24 h)"
+      "Sleeper adds #9 (163,557 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3915,6 +3889,43 @@
      "acq": "unverified"
     },
     {
+     "name": "Kaleb Johnson",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 6:23 AM PT",
+       "src": "rotoballer",
+       "title": "Kaleb Johnson Could Lead Green Bay's Backfield with Josh Jacobs Out",
+       "text": "Green Bay Packers running back Kaleb Johnson could get another chance to lead the team's backfield for the next few [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Ollie Gordon II",
+      "gotham": 10.4
+     },
+     "beats_floor": false,
+     "gotham": 5.9,
+     "gotham_ros": 4.2,
+     "sleeper": 6.9,
+     "workload": "0/8/12/11/7/1/17",
+     "trend": 0.63,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Kendre Miller",
      "pos": "RB",
      "team": "NO",
@@ -3953,11 +3964,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Elic Ayomanor",
+     "pos": "WR",
+     "team": "TEN",
+     "why": [
+      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 6 8:40 PM PT",
+       "src": "rotoballer",
+       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
+       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jakobi Meyers",
+      "gotham": 10.2
+     },
+     "beats_floor": false,
+     "gotham": 5.6,
+     "gotham_ros": 6.1,
+     "sleeper": 6.0,
+     "workload": "4/4/4/1/3/3/8/6",
+     "trend": 0.75,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Seth McGowan",
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #14 (126,920 in 24 h)"
+      "Sleeper adds #14 (129,040 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4044,43 +4092,6 @@
      "sleeper": null,
      "workload": "1/2",
      "trend": 0.39,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Brian Robinson",
-     "pos": "RB",
-     "team": "ATL",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 7 1:30 PM PT",
-       "src": "rotoballer",
-       "title": "Khalil Herbert Signed to Falcons' Active Roster",
-       "text": "Atlanta Falcons running back Khalil Herbert has been signed to the active roster from the practice squad following Brian Robinson [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 10.4
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 8.1,
-     "sleeper": null,
-     "workload": "9/16/12/25/10/11",
-     "trend": -0.28,
      "yahoo": null,
      "acq": "unverified"
     }
