@@ -577,8 +577,8 @@ function scoreGlobe(L, k, o){
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
       return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .42).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
         ${bw >= 6 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
-  const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲ " : "▼ ") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲ " : "▼ ") + f1(Math.abs(mg));
-  const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n + " LEFT";
+  const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲" : "▼") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲" : "▼") + f1(Math.abs(mg));
+  const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n;
   return `<svg class="sglobe sbox sgauge" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`${DK[k]} score ${f1(o.me)} to ${f1(o.op)}, ${pre ? "not started" : mg >= 0 ? "ahead by " + f1(mg) : "behind by " + f1(-mg)}; Yahoo projected final ${f1(o.pMe)} to ${f1(o.pOp)}; ${o.meL} of yours and ${o.opL} of his left; ${zw}`)}"><defs>
     <radialGradient id="${id}fc" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="#1B2848"/><stop offset=".7" stop-color="#0E1629"/><stop offset="1" stop-color="#080D1A"/></radialGradient>
     <radialGradient id="${id}zg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${MC}" stop-opacity=".22"/><stop offset="1" stop-color="${MC}" stop-opacity="0"/></radialGradient>
@@ -590,6 +590,10 @@ function scoreGlobe(L, k, o){
     <linearGradient id="${id}mi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05080F"/><stop offset="1" stop-color="#3A4870"/></linearGradient>
     <radialGradient id="${id}in" cx=".5" cy=".5" r=".5"><stop offset=".82" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
     <linearGradient id="${id}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".55" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="${id}ga" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#2A3A5E"/><stop offset=".7" stop-color="#16213A"/><stop offset="1" stop-color="#0A1020"/></radialGradient>
+    <radialGradient id="${id}gr" cx="50%" cy="50%" r="50%"><stop offset=".74" stop-color="${ZC}" stop-opacity="0"/><stop offset="1" stop-color="${ZC}" stop-opacity=".5"/></radialGradient>
+    <linearGradient id="${id}gh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="${id}gb" cx="50%" cy="100%" r="60%"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
     <radialGradient id="${id}hb" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#2E3D63"/><stop offset=".6" stop-color="#121A30"/><stop offset="1" stop-color="#070B16"/></radialGradient></defs>
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY}" r="60.6" fill="url(#${id}fc)" stroke="url(#${id}mt)" stroke-width="2.8"/></g>
     <circle cx="${CX}" cy="${CY}" r="58.6" fill="none" stroke="url(#${id}mi)" stroke-width="1"/>
@@ -598,16 +602,20 @@ function scoreGlobe(L, k, o){
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
     ${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}
-    <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}hb)" stroke="#3A4A72" stroke-width=".7"/></g>
-    <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}zg)"/>
-    <path d="M${CX - 22} ${CY - 8} A 23 23 0 0 1 ${CX + 22} ${CY - 8}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round"/>
+    <ellipse cx="${CX}" cy="${CY + 28.6}" rx="16" ry="2.2" fill="#000" opacity=".4"/>
+    <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}ga)"/></g>
+    <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}gr)"/>
+    <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width=".9"/>
+    <ellipse cx="${CX}" cy="${CY + 20}" rx="15" ry="6" fill="url(#${id}gb)" pointer-events="none"/>
     <text x="${CX}" y="${CY - 8}" text-anchor="middle" class="gk g2${anyLive && !fin ? " on" : ""}">${anyLive && !fin ? "LIVE" : "SCORE"}</text>
     <text x="${CX}" y="${CY + 9}" text-anchor="middle" class="gsc g2${o.meOn && !fin ? " on" : ""}">${sv}</text>
+    <ellipse cx="${CX - 7}" cy="${CY - 15}" rx="12.5" ry="6.6" fill="url(#${id}gh)" transform="rotate(-18 ${CX - 7} ${CY - 15})" pointer-events="none"/>
+    <circle cx="${CX + 15.5}" cy="${CY - 8}" r="1.7" fill="#fff" opacity=".7" pointer-events="none"/>
     <path d="M${CX - 52} ${CY - 6} A 52 52 0 0 1 ${CX + 52} ${CY - 6} Q ${CX} ${CY - 22} ${CX - 52} ${CY - 6} Z" fill="url(#${id}gl)" pointer-events="none"/>
     <path id="${id}c1" d="M${pt(37, 150).map(v => v.toFixed(2)).join(" ")} A 37 37 0 0 0 ${pt(37, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
     <path id="${id}c2" d="M${pt(48.5, 150).map(v => v.toFixed(2)).join(" ")} A 48.5 48.5 0 0 0 ${pt(48.5, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
-    <text class="gcv"><textPath href="#${id}c1" startOffset="50%" text-anchor="middle"><tspan class="gco">OPNT${pre ? " PROJ" : ""}</tspan> <tspan class="gcn">${f1(pre ? o.pOp : o.op)}</tspan> <tspan style="fill:${MC}">${mtxt.replace(/^PROJ /, "")}</tspan></textPath></text>
-    <text class="gcl"><textPath href="#${id}c2" startOffset="50%" text-anchor="middle">${gAll ? gAll + (gAll === 1 ? " GAME LEFT" : " GAMES LEFT") : "FINAL"}</textPath></text>
+    <text class="gcv fitarc" data-max="${(2 * Math.PI * 37 / 3 * .84).toFixed(1)}"><textPath href="#${id}c1" startOffset="50%" text-anchor="middle"><tspan class="gco">OPNT${pre ? " PROJ" : ""}</tspan> <tspan class="gcn">${f1(pre ? o.pOp : o.op)}</tspan> <tspan style="fill:${MC}">${mtxt.replace(/^PROJ /, "")}</tspan></textPath></text>
+    <text class="gcl fitarc" data-max="${(2 * Math.PI * 48.5 / 3 * .8).toFixed(1)}"><textPath href="#${id}c2" startOffset="50%" text-anchor="middle">${gAll ? gAll + (gAll === 1 ? " GAME LEFT" : " GAMES LEFT") : "FINAL"}</textPath></text>
     <rect x="3" y="${CY + 62}" width="${W - 6}" height="15" rx="4" fill="#0A1122" stroke="#24304C" stroke-width=".7"/>
     <text x="${CX / 2 + 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${f1(o.pMe)}</tspan> · <tspan>${f1(o.pOp)}</tspan></text>
     <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 74}" stroke="#24304C" stroke-width=".7"/>
@@ -626,7 +634,12 @@ function fitExp(){ const xs = [...document.querySelectorAll("#msExp .xo .xtx")];
   os.forEach(o => { if (o.dataset.f1) o.textContent = o.dataset.f1; });
   let f = parseFloat(getComputedStyle(bs[0]).fontSize) || 7;
   while (over() && f > 4.6){ f -= .2; all.forEach(e => e.style.setProperty("font-size", f + "px", "important")); } }
-function fitNames(){ setTimeout(fitExp, 0); if (!fitNames.rzx){ fitNames.rzx = 1; addEventListener("resize", () => requestAnimationFrame(fitExp)); } const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm, #msWin .wph .nm, #msExp .wph .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
+/* Nov 10 10:10 AM (Dom): the curved wording in the bottom of each scoreboard globe must fit its arc - shrink it until it does */
+function fitArcs(){ document.querySelectorAll("#msScore .fitarc").forEach(t => { t.style.removeProperty("font-size"); [...t.querySelectorAll("tspan")].forEach(x => x.style.removeProperty("font-size"));
+  const mx = +t.dataset.max || 70; let len = 0; try { len = t.getComputedTextLength(); } catch(_){ return; } if (!len || len <= mx) return;
+  const r = mx / len; t.style.setProperty("font-size", (parseFloat(getComputedStyle(t).fontSize) * r).toFixed(2) + "px", "important");
+  [...t.querySelectorAll("tspan")].forEach(x => { const f = parseFloat(getComputedStyle(x).fontSize); if (f) x.style.setProperty("font-size", (f * r).toFixed(2) + "px", "important"); }); }); }
+function fitNames(){ setTimeout(fitArcs, 0); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitArcs); setTimeout(fitExp, 0); if (!fitNames.rzx){ fitNames.rzx = 1; addEventListener("resize", () => requestAnimationFrame(fitExp)); } const go = () => { const ns = [...document.querySelectorAll("#msScore .sbh .nm, #msWin .wph .nm, #msExp .wph .nm")]; if (!ns.length) return; ns.forEach(n => n.style.removeProperty("font-size"));
     let f = parseFloat(getComputedStyle(ns[0]).fontSize) || 17; const over = () => ns.some(n => n.scrollWidth > n.clientWidth + .5);
     while (over() && f > 6){ f -= .5; ns.forEach(n => n.style.setProperty("font-size", f + "px", "important")); } };
   const go2 = () => { const ls = []; if (!ls.length) return; ls.forEach(n => n.style.removeProperty("font-size"));
