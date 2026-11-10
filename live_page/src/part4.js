@@ -202,6 +202,23 @@ function dial(v, col, id, v0){
 const heat = (v) => { v = Math.max(0, Math.min(100, +v || 0)); const L = (a, b, t) => Math.round(a + (b - a) * t);
   const [c0, c1, t] = v < 50 ? [[255, 77, 87], [247, 179, 43], v / 50] : [[247, 179, 43], [79, 208, 138], (v - 50) / 50];
   return `rgb(${L(c0[0], c1[0], t)},${L(c0[1], c1[1], t)},${L(c0[2], c1[2], t)})`; };
+/* Nov 10 8:35 AM (Dom): a clear, shiny glass bubble - no ring, no needle - with the chance to win inside (green 55%+, amber 45-55, red under 45) */
+function glassBubble(v, id){
+  v = Math.max(0, Math.min(100, +v || 0)); const g = "gb" + id, col = v >= 55 ? "#3DDC84" : v >= 45 ? "#F7B32B" : "#FF4D57";
+  return `<svg viewBox="0 0 48 48" aria-hidden="true"><defs>
+    <radialGradient id="${g}a" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#2A3A5E" stop-opacity=".55"/><stop offset=".7" stop-color="#16213A" stop-opacity=".75"/><stop offset="1" stop-color="#0A1020" stop-opacity=".95"/></radialGradient>
+    <radialGradient id="${g}r" cx="50%" cy="50%" r="50%"><stop offset=".78" stop-color="${col}" stop-opacity="0"/><stop offset="1" stop-color="${col}" stop-opacity=".45"/></radialGradient>
+    <linearGradient id="${g}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="${g}b" cx="50%" cy="100%" r="60%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+    <ellipse cx="24" cy="45.5" rx="13" ry="1.8" fill="#000" opacity=".35"/>
+    <circle cx="24" cy="23" r="21" fill="url(#${g}a)"/>
+    <circle cx="24" cy="23" r="21" fill="url(#${g}r)"/>
+    <circle cx="24" cy="23" r="21" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".8"/>
+    <ellipse cx="24" cy="38" rx="12" ry="5" fill="url(#${g}b)"/>
+    <ellipse cx="19" cy="11.5" rx="11" ry="6.5" fill="url(#${g}h)" transform="rotate(-18 19 11.5)"/>
+    <circle cx="33" cy="13" r="1.6" fill="#fff" opacity=".7"/>
+    <text x="24" y="29.5" text-anchor="middle" font-family="Bebas Neue,Arial Narrow,sans-serif" font-size="19" fill="${col}" letter-spacing=".3" style="paint-order:stroke" stroke="#0A1020" stroke-width=".6">${wp2(v)}</text></svg>`;
+}
 function glassOrb(v, v0, tint, id, gold){
   v = Math.max(0, Math.min(100, +v || 0)); const c = 18, r = 15.2, C = 2 * Math.PI * r, col = heat(v), g = "o" + id;
   let dot = ""; if (v0 !== null && v0 !== undefined && !isNaN(v0)){ const a = (Math.max(0, Math.min(100, v0)) / 100) * 2 * Math.PI + Math.PI / 2;
@@ -641,7 +658,7 @@ function meters(){
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"))}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}">${glassOrb(y, null, HEX[k], SLUG[k] + "wy")}<span>YAHOO</span></div>
+      <div class="mxd mxd2"><div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}">${glassBubble(y, SLUG[k] + "wy")}<span>YAHOO</span></div>
         ${(() => { const w0 = weekStart(k, "y"), tr = trailEntries().filter(e => S && e.w === S.week && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null).map(e => e.lg[k].y);
           const vals = [...(w0 !== null ? [w0] : []), ...tr, y].filter(v => v !== null && !isNaN(v)); if (vals.length < 2) return "";
           const d = Math.round(y - vals[0]), zc = y >= 55 ? "#3DDC84" : y >= 45 ? "#F7B32B" : "#FF4D57";
@@ -650,7 +667,7 @@ function meters(){
           const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, top = OCK.map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
           if (!top.length) return "";
           const t3 = top.reduce((a, s3) => a + X[s3], 0) / top.length, NM3 = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"};
-          return `<div class="wo" title="Average chance to win this week of your top ${top.length} sources by accuracy: ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}">${glassOrb(t3, null, HEX[k], SLUG[k] + "wt")}<span>TOP ${top.length}</span></div>`; })()}
+          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}">${glassBubble(t3, SLUG[k] + "wt")}<span>RANKED</span></div>`; })()}
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
@@ -662,7 +679,7 @@ function meters(){
   /* Nov 9 10:37 AM (Dom): every section label carries its time on the right, Diamonds style: "9:52 AM · Next 10:25" */
   const hm = (t) => String(t || "").replace(/:00 /, ":00 ");
   const TNOW = (stamp) => { const a = stamp ? esc(PT(stamp, {hour: "numeric", minute: "2-digit"})) : "–", n = nextUpdate(); return `${a}${n ? " · Next " + esc(n.replace(/ (AM|PM)$/, "")) : ""}`; };
-  $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability · Yahoo", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
+  $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
   $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
