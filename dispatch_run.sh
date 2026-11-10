@@ -150,5 +150,6 @@ python3 "$REPO/live_sync/rotoballer_points.py" "$REPO" "$W" "$REPO/dispatch_out/
 # Nov 4: Brenton removed (Dom) - python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON ranking check skipped"
 python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
 python3 "$REPO/live_sync/championship.py" "$REPO" || echo "!! ROAD TO THE CHAMPIONSHIP skipped - Live keeps the last plan"   # Oct 31 (Dom): the playoff plan, DK I first
+python3 "$REPO/live_sync/wheel.py" "$REPO" "$ROOT/dksys/gate/fresh/games.csv" > "$ROOT/wheel.log" 2>&1 && echo "   the wheel (TEST) scored every Diamonds pick" || { echo "!! THE WHEEL (test) skipped"; tail -5 "$ROOT/wheel.log"; }   # Nov 10 (Dom): five-spoke wheel, test only - never decides a move
 python3 "$REPO/live_sync/expert_card.py" "$REPO" || echo "!! EXPERT CARDS skipped"   # Oct 31 (Dom): every expert, points and ranks, on every player that matters
 echo "DONE week $W"

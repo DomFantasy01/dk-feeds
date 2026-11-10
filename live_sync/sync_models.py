@@ -346,10 +346,21 @@ try:
     for _L in (cur['pickups'].get('leagues') or {}).values(): _L.pop('pool', None)   # Nov 10: the full available pool is only for the change notes - never on Live
     print('pickups on Live:', cur['pickups'].get('built'))
 except Exception as _e: print('pickups skipped:', str(_e)[:120])
+# Nov 10 (Dom): THE WHEEL rides along - TEST ONLY, shown beside each Diamonds pick, never used for a move
+try:
+    _wf = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..', 'dispatch_out', 'wheel.json')
+    if _os.path.exists(_wf): cur['wheel'] = json.load(open(_wf))
+    else:
+        import urllib.request as _u, time as _t
+        cur['wheel'] = json.loads(_u.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/wheel.json?t={int(_t.time())}", timeout=30).read())
+    print('wheel on Live:', cur['wheel'].get('built'))
+except Exception as _e: print('wheel skipped:', str(_e)[:120])
 # Nov 10 10:05 AM (Dom: "Fix" - the 8:55 AM chain failed: live/models came to 276,313 bytes, the database caps a document at 262,144).
 # Size guard: keep the document under 250,000 bytes by shedding the least-needed riders first (the page falls back to live/pickups).
 def _size(o): return len(json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
 CAP = 250000
+if _size(cur) > CAP and cur.get('wheel'):
+    cur.pop('wheel', None); print('size guard: wheel (test) left off Live')
 if _size(cur) > CAP and cur.get('pickups'):
     for _L in (cur['pickups'].get('leagues') or {}).values():
         for _g in _L.get('top', []): _g.pop('why', None); (_g.get('experts') or {}).pop('lines', None)

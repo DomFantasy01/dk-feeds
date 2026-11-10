@@ -1267,6 +1267,28 @@ function pkChanged(n, top){ const seen = PKSEEN[n]; if (!seen){ PKSEEN[n] = Obje
     else { seen[p.key] = sig; dirty = true; } });
   if (dirty) store.set("pkseen", PKSEEN); return out; }
 function pkSeen(n, key, sig){ PKSEEN[n] = PKSEEN[n] || {}; PKSEEN[n][key] = sig; store.set("pkseen", PKSEEN); }
+/* Nov 10 (Dom): THE WHEEL - five spokes on every pick, TEST ONLY: runs beside the system, never sets a tag or makes a move */
+const WSP = [["team", "Team"], ["consensus", "Experts"], ["upside", "Upside"], ["drop", "Drop cost"], ["stakes", "Stakes & opp"]];
+function wheelRadar(sp){
+  const cx = 60, cy = 58, R = 40, pt = (i, v) => { const a = -Math.PI / 2 + i * 2 * Math.PI / 5, r = R * Math.max(0, Math.min(20, v)) / 20; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+  const ring = (v) => WSP.map((_, i) => pt(i, v).map(x => x.toFixed(1)).join(",")).join(" ");
+  const poly = WSP.map(([k], i) => pt(i, sp[k] || 0).map(x => x.toFixed(1)).join(",")).join(" ");
+  return `<svg class="whr" viewBox="-16 0 152 116" aria-hidden="true"><polygon points="${ring(20)}" fill="none" stroke="#2A3A5C"/><polygon points="${ring(10)}" fill="none" stroke="#22304D"/><polygon points="${ring(5)}" fill="rgba(255,82,82,.10)" stroke="rgba(255,82,82,.45)" stroke-dasharray="2 2"/>
+    ${WSP.map((_, i) => { const [x, y] = pt(i, 20); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#22304D"/>`; }).join("")}
+    <polygon points="${poly}" fill="rgba(79,195,255,.28)" stroke="#4FC3FF" stroke-width="1.6"/>
+    ${WSP.map(([k], i) => { const [x, y] = pt(i, sp[k] || 0); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="${(sp[k] || 0) < 5 ? "#FF5252" : "#4FC3FF"}"/>`; }).join("")}
+    ${WSP.map(([, lab], i) => { const [x, y] = pt(i, 26.5); return `<text x="${x.toFixed(1)}" y="${(y + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="#9FB0CF" font-family="IBM Plex Sans,sans-serif">${lab.split(" ")[0]}</text>`; }).join("")}</svg>`;
+}
+function wheelBox(n, p){
+  const W = M && M.wheel; if (!W || !W.leagues) return "";
+  const w = ((W.leagues[n] || {}).picks || []).find(x => x.name === p.name);
+  if (!w) return `<div class="whx"><div class="whh"><b>THE WHEEL</b><span class="wht">TEST</span><em>not run on this pick yet</em></div></div>`;
+  const m = w.move, pc = (v) => (v >= 0 ? "+" : "") + (v * 100).toFixed(1);
+  return `<div class="whx"><div class="whh"><b>THE WHEEL</b><span class="wht">TEST - not used for moves</span><span class="whv v-${w.verdict.replace(" ", "")}">${esc(w.verdict)}</span><span class="whs">${w.total}/100</span></div>
+    <div class="whb">${wheelRadar(w.spokes)}<ul>${WSP.map(([k, lab]) => `<li class="${(w.spokes[k] || 0) < 5 ? "red" : ""}"><b>${lab}</b><i>${Math.floor(w.spokes[k] || 0)}</i><span>${esc((w.why || {})[k] || "")}</span></li>`).join("")}</ul></div>
+    ${m ? `<div class="whm">Played out: add him, drop <b>${esc(m.drop)}</b> - chance to win this week <b>${pc(m.d_week)}</b> · playoff odds for the season <b>${pc(m.d_playoff)}</b> · ${m.ppg >= 0 ? "+" : ""}${m.ppg} pts a game in ${m.games} games he'd start</div>` : ""}
+    <div class="whf">${esc(w.vwhy)} · run ${esc(String(W.built || "").replace(/^\w{3} /, "").replace(/ 2026/, ""))}</div></div>`;
+}
 function renderPickups(){
   const el = $("#pickups"); if (!el) return;
   /* live/pickups is the list the 3-a-day check last sent Dom (so the page matches the notification); the build's copy only fills in before the first one */
@@ -1302,6 +1324,7 @@ function renderPickups(){
       <summary><span class="rk">${i + 1}</span><span class="nm"><b>${esc(pkShort(p))}<em>${esc([p.pos === "DEF" || p.pos === "DST" ? "" : p.pos, p.team].filter(Boolean).join(" · "))}</em></b><span class="pkl2">${vs ? `<span class="pkvs ${vs.up ? "up" : "dn"}">${vs.txt}</span>` : ""}${C[p.key] ? `<span class="pkch">${esc(C[p.key])}</span>` : ""}</span></span>${pkOrb(p.grade)}<span class="ic t-${T}" title="${PKW[T]}">${PKI[T]}</span></summary>
       <div class="pkb"><div class="pkid">${esc(p.name)} · ${esc(p.pos)} · ${esc(p.team)} · <b>${Math.round(p.pts)}</b> pts rest of season · ${esc(String(p.status || ""))}</div>
       <div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em><small>${PEX[k]}</small></div>`).join("")}</div>
+      ${wheelBox(PKL, p)}
       ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
       ${p.experts ? `<div class="pkx2"><b>Every source, most to least accurate</b> - ${esc(p.experts.verdict)} <em>(gold = in this man's top-3 check)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}${x.check ? " ck" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b>${x.rank ? `<small>${esc(x.rank)}</small>` : ""} ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`; }).join("");

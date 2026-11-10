@@ -153,6 +153,7 @@ def lineup_pts(E, roster, weeks): return sum(sum(roster[i]["wk"].get(str(w), 0.0
 def summ(r): return dict(wins=round(r["wins"], 2), playoff=round(r["playoff"], 3), title=round(r["title"], 4), final=round(r["final"], 3), semis=round(r["semis"], 3),
                          seed=int(np.argmax(r["seeds"])) + 1, seeds=r["seeds"], first=round(r["first"], 3))
 OUT = {"built": BUILT, "sims": N, "leagues": {}}
+WHEEL_RES = {}
 for lgk in LGS:
     t0 = time.time()
     try: L = SM.load_league(lgk)
@@ -236,6 +237,36 @@ for lgk in LGS:
     worth.sort(key=lambda x: x["d_playoff"] + x["d_title"])
     cheap = [w["name"] for w in worth]          # Oct 31 (Dom): every bench man is tested as a drop - nobody off limits
     # candidate adds: best rest of season, best in the title weeks (the 5-today-20-later men), best this week
+    # Nov 10 (Dom): THE WHEEL - test only, runs beside the system and never decides a move. wheel.py hands over the Diamonds picks
+    # (DK_WHEEL=in.json); each is played out against the cheapest drops and this file is left untouched (results go to DK_WHEEL_OUT).
+    if os.environ.get("DK_WHEEL"):
+        WIN_ = json.load(open(os.environ["DK_WHEEL"])).get(LAB[lgk], [])
+        opp_now = next((names.get(b if a == me else a, b if a == me else a) for a, b in L["sched"].get(now, []) if me in (a, b)), None)
+        wres = dict(base=summ(Bm), week=round(B["_week"].get(now, 0), 3), worth=worth, picks=[])
+        for want in WIN_:
+            nm, pos_, tm_ = want["name"], want["pos"], (want.get("team") or "").upper()
+            a = next((p for p in S["pool"] if (p["pos"] == "DEF" and pos_ == "DEF" and str(p.get("nfl") or "").upper() == tm_) or nk(p["name"]) == nk(nm)), None)
+            if not a: wres["picks"].append(dict(name=nm, missing=True)); continue
+            cheap_ = sorted(worth, key=lambda w: -(w["d_playoff"] + 2 * w["d_title"]))         # cheapest first (worth is sorted dearest first)
+            drops = [w["name"] for w in cheap_[:3]] + [w["name"] for w in cheap_ if w["pos"] == a["pos"]][:1]
+            tried = []
+            for d in dict.fromkeys(drops):
+                Rm = with_([d], [a]); rr_ = E.run(Rm); r = rr_[me]; tot, pg, ng = per_game(mine, Rm[me], ALLW)
+                tried.append(dict(drop=d, d_week=round(rr_["_week"].get(now, 0) - B["_week"].get(now, 0), 3), d_playoff=round(r["playoff"] - Bm["playoff"], 3),
+                                  d_title=round(r["title"] - Bm["title"], 4), pts_total=tot, pts_per_game=pg, games_used=ng,
+                                  drop_cost=next((w["d_playoff"] for w in worth if w["name"] == d), 0), drop_helps=next((w["helps"] for w in worth if w["name"] == d), [])))
+            tried.sort(key=lambda t_: -(t_["d_playoff"] + 2 * t_["d_title"] + 0.25 * t_["d_week"]))
+            gains = []
+            for t, Rt in base_R.items():
+                if t == me: continue
+                drop_t = min([q for q in Rt if q.get("slot") not in ("IR",)], key=lambda q: season_val(q, now, 17))
+                g_ = lineup_pts(E, [q for q in Rt if q is not drop_t] + [dict(a, slot="BN")], ALLW) - lineup_pts(E, Rt, ALLW)
+                if g_ > 0.5: gains.append((round(g_, 1), names.get(t, t)))
+            gains.sort(reverse=True)
+            wres["picks"].append(dict(name=nm, add=a["name"], acq=a.get("acq", ""), best=tried[0] if tried else None, tried=tried, helps_rivals=gains[:6],
+                                      opp_now=opp_now, opp_gain=next((g_ for g_, t in gains if t == opp_now), 0)))
+        WHEEL_RES[LAB[lgk]] = wres
+        print(f"WHEEL {LAB[lgk]}: {len(WIN_)} picks played out ({time.time()-t0:.0f}s)"); continue
     pool = S["pool"]; cand = {}
     for pos in sorted({p["pos"] for p in pool}):
         P = [p for p in pool if p["pos"] == pos]
@@ -397,6 +428,8 @@ for lgk in LGS:
         note=OUT["leagues"][LAB[lgk]]["note"])
     print(f"CHAMP {LAB[lgk]}: wins {Bm['wins']:.1f}, playoffs {Bm['playoff']:.0%}, title {Bm['title']:.1%}, likeliest seed {int(np.argmax(Bm['seeds']))+1}; "
           f"{len(keep_moves)} moves worth it, {len(trades)} two-sided trades of {len(screened)} screened ({time.time()-t0:.0f}s)")
+if os.environ.get("DK_WHEEL"):          # test run for the wheel - championship.json and the meter are not touched
+    json.dump(WHEEL_RES, open(os.environ["DK_WHEEL_OUT"], "w"), indent=1, default=float); sys.stdout.flush(); os._exit(0)
 json.dump(OUT, open(os.path.join(R, "dispatch_out", "championship.json"), "w"), indent=1, default=float)
 try:
     Mm = json.load(open(meter_f))
