@@ -92,11 +92,15 @@ class Panel:
             if len(com) >= 20:
                 out["miss"] = {s: round(sum(abs(fnum(r[s]) - fnum(r["actual"])) for r in com) / len(com), 2) for s in srcs}
                 out["bias"] = {s: round(sum(fnum(r[s]) - fnum(r["actual"]) for r in com) / len(com), 2) for s in srcs}   # Nov 9 9:10 AM (Dom): + guessed high, - low
+                # Nov 10 (Dom): the same miss as a percent with its direction - +8 = projected players 8% too high, -5 = 5% too low (fair across the four scorings)
+                tot = sum(fnum(r["actual"]) for r in com)
+                out["pct"] = {s: (round(100 * sum(fnum(r[s]) - fnum(r["actual"]) for r in com) / tot, 1) if tot > 0 else None) for s in srcs}
                 out["players"] = len(com); out["basis"] = "same players for every source"
             else:
                 for s in srcs:
                     d = [abs(fnum(r[s]) - fnum(r["actual"])) for r in R if fnum(r.get(s)) is not None]; out["miss"][s] = round(sum(d) / len(d), 2)
                     e = [fnum(r[s]) - fnum(r["actual"]) for r in R if fnum(r.get(s)) is not None]; out.setdefault("bias", {})[s] = round(sum(e) / len(e), 2)
+                    t = sum(fnum(r["actual"]) for r in R if fnum(r.get(s)) is not None); out.setdefault("pct", {})[s] = round(100 * sum(e) / t, 1) if t > 0 else None
                 out["players"] = len(R); out["basis"] = "each source on its own players (too few shared)"
             out["weeks"] = [w]; break
         return out
@@ -109,7 +113,7 @@ class Panel:
         self.ranked = order
         if save:
             try:
-                json.dump({"order": order, "members": order[:SIZE], "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "notes": self.notes,
+                json.dump({"order": order, "members": order[:SIZE], "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "bias": self.grades.get("bias", {}), "pct": self.grades.get("pct", {}), "notes": self.notes,
                            "basis": self.grades.get("basis", ""),
                            "rule": "all sources ranked by points missed per player, last graded week; the top 3 are the check; each man = average of the 3 most accurate that have a number for him",
                            "built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT")}, open(fp, "w"), indent=1)

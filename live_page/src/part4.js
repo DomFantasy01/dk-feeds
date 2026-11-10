@@ -602,7 +602,7 @@ function fitNames(){ const go = () => { const ns = [...document.querySelectorAll
   both(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(both); if (!fitNames.rz){ fitNames.rz = 1; addEventListener("resize", () => requestAnimationFrame(() => { go(); go2(); })); } }
 function meters(){
   if (!S || !S.leagues){ return; }
-  const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck(), OBIAS = ourBias();
+  const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck(), OBIAS = ourBias(), OPCT = ourPct();
   /* Nov 9 9:56 AM (Dom): every league's Experts box lists the sources in accuracy order - #1 on top down to #7 - with a green check on the
      top three and nothing under the names; tap the box for the detail (How far off they were) */
   const OLAB = {g: "GOTHAM", v: "VEGAS", r: "RATCLIFFE", k: "KOERNER", y: "YAHOO", c: "CLAY", b: "ROTOBALLER"};
@@ -622,7 +622,7 @@ function meters(){
     const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="xtx"><b${s2 === "b" ? ' class="lng"' : ""}>${nm}</b>${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}</span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="xtx"><b${s2 === "b" ? ' class="lng"' : ""}>${nm}</b>${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}${pctTag(OPCT[SRCID[s2]]) ? `<i class="opc ${OPCT[SRCID[s2]] > 0 ? "hi" : "lo"}" title="${esc(pctWhy(OPCT[SRCID[s2]]))}">${pctTag(OPCT[SRCID[s2]])}</i>` : ""}</span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -672,6 +672,11 @@ function ourMiss(){ const Q = panelQ(); if (Q) return Object.fromEntries(Object.
 /* Nov 9 9:10 AM (Dom): "instead of off, use a + or - in front" - + = that source usually projected high, - = low; the number is how far off */
 function ourBias(){ const Q = panelQ(); return Q && Q.bias ? Object.fromEntries(Object.entries(Q.bias).map(([n, v]) => [PNID[n] || n.toLowerCase(), v])) : {}; }
 const pmSign = (miss, bias) => (bias === undefined || bias === null ? "±" : bias >= 0 ? "+" : "−") + miss.toFixed(2);
+/* Nov 10 (Dom): after each expert's name and check, how far off he was last graded week as a percent with its direction:
+   ▲11% = projected players 11% too high, ▼5% = 5% too low (fair across the four leagues' scoring) */
+function ourPct(){ const Q = panelQ(); return Q && Q.pct ? Object.fromEntries(Object.entries(Q.pct).filter(([, v]) => v !== null && v !== undefined).map(([n, v]) => [PNID[n] || n.toLowerCase(), v])) : {}; }
+const pctTag = (v) => v === undefined || v === null ? "" : Math.round(v) === 0 ? "±0%" : (v > 0 ? "▲" : "▼") + Math.abs(Math.round(v)) + "%";
+const pctWhy = (v) => v === undefined || v === null ? "" : Math.round(v) === 0 ? "right on, last graded week" : `projected players ${Math.abs(Math.round(v))}% too ${v > 0 ? "high" : "low"} last graded week`;
 function ourCheck(){ const Q = panelQ(); return Q ? (Q.check || []).map(n => PNID[n] || n.toLowerCase()) : []; }
 const SRCID = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
 function accTable(){
@@ -684,7 +689,7 @@ function accTable(){
   let rows = [], wk = "", np = "", basis = "";
   if (Q){ wk = Q.week; np = Q.players; basis = Q.basis || "";
     const ranked = Q.order.filter(n => Q.miss[n] !== undefined), rest = Object.keys(LBL).filter(n => !ranked.includes(n));
-    rows = ranked.map((n, i) => ({n, r: i + 1, m: Q.miss[n], b: (Q.bias || {})[n], ck: (Q.check || []).includes(n), wait: (Q.waiting || {})[n]})).concat(rest.map(n => ({n, r: null})));
+    rows = ranked.map((n, i) => ({n, r: i + 1, m: Q.miss[n], b: (Q.bias || {})[n], pc: (Q.pct || {})[n], ck: (Q.check || []).includes(n), wait: (Q.waiting || {})[n]})).concat(rest.map(n => ({n, r: null})));
   } else { const src = A.src || {}; if (!Object.keys(src).length) return "";
     const lastOf = (w) => { const ws = Object.keys(w || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], w[String(ws[ws.length - 1])]] : [null, null]; };
     const IDN = {ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"};
@@ -692,7 +697,7 @@ function accTable(){
     const gr = g.filter(x => x.m !== null).sort((a, b) => a.m - b.m); rows = gr.map((x, i) => ({n: x.n, r: i + 1, m: x.m, ck: false})).concat(g.filter(x => x.m === null).map(x => ({n: x.n, r: null}))); basis = "each source on its own players"; }
   const li = rows.map(x => x.r === null
       ? `<li><span class="n">–,</span><span class="nm">${LBL[x.n] || x.n}</span><span class="of ng">not graded yet</span></li>`
-      : `<li class="${x.ck ? "ck" : ""}"><span class="n">${x.r},</span><span class="nm">${LBL[x.n] || x.n}${x.ck ? ` <span class="pk3" title="Top three by accuracy - this week's pickups are averaged on these">&#10003;</span>` : ""}</span><span class="of" title="${x.b === undefined || x.b === null ? "" : x.b >= 0 ? "usually projected high" : "usually projected low"}"><b>${pmSign(x.m, x.b)}</b></span>${x.ck && x.wait ? `<em>Week ${esc(String(x.wait))} numbers only so far - the next source steps in until the week-ahead numbers post</em>` : FPR[x.n] ? `<em>FantasyPros #${FPR[x.n]}</em>` : ""}</li>`).join("");
+      : `<li class="${x.ck ? "ck" : ""}"><span class="n">${x.r},</span><span class="nm">${LBL[x.n] || x.n}${x.ck ? ` <span class="pk3" title="Top three by accuracy - this week's pickups are averaged on these">&#10003;</span>` : ""}</span><span class="of" title="${x.b === undefined || x.b === null ? "" : x.b >= 0 ? "usually projected high" : "usually projected low"}"><b>${pmSign(x.m, x.b)}</b>${pctTag(x.pc) ? ` <i class="opc ${x.pc > 0 ? "hi" : "lo"}" title="${esc(pctWhy(x.pc))}">${pctTag(x.pc)}</i>` : ""}</span>${x.ck && x.wait ? `<em>Week ${esc(String(x.wait))} numbers only so far - the next source steps in until the week-ahead numbers post</em>` : FPR[x.n] ? `<em>FantasyPros #${FPR[x.n]}</em>` : ""}</li>`).join("");
   const top = rows.filter(x => x.ck).map(x => x.n);
   return `<details class="fold accf" data-fold="accf"${FOLDS.accf ? " open" : ""}><summary>How far off they were <span class="cnt">${top.length ? "&#10003; " + esc(top.join(", ")) : "Week " + esc(String(wk || "-"))}</span></summary><div class="fb"><div class="acct">
     <div class="ach"><span>Week ${esc(String(wk || "-"))}${np ? ` · ${np} players` : ""}${basis ? " · " + esc(basis) : ""} · graded ${esc(A.graded || "-")}</span></div>

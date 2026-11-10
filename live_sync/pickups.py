@@ -313,7 +313,7 @@ def grade(n, key, d, MY, NEED):
 
 out = {"built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT"),
        "panel": {"order": [PNAME[s] for s in PAN.ranked], "check": [PNAME[s] for s in PAN.members], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
-                 "waiting": {PNAME[s]: w for s, w in PAN.waiting.items()}, "bias": {PNAME[s]: v for s, v in (PAN.grades.get("bias") or {}).items()}, "basis": PAN.grades.get("basis", ""), "ungraded": [PNAME[s] for s in PAN.order if s not in PAN.ranked],
+                 "waiting": {PNAME[s]: w for s, w in PAN.waiting.items()}, "bias": {PNAME[s]: v for s, v in (PAN.grades.get("bias") or {}).items()}, "pct": {PNAME[s]: v for s, v in (PAN.grades.get("pct") or {}).items()}, "basis": PAN.grades.get("basis", ""), "ungraded": [PNAME[s] for s in PAN.order if s not in PAN.ranked],
                  "week": (PAN.grades["weeks"] or [None])[0], "players": PAN.grades["players"], "weeks_ahead": f"{START}-17", "notes": PAN.notes,
                  "others": [dict(name=XNAME[s], miss=WKG[s][0] if WKG[s][1] else None, week=WKG[s][1]) for s in WKO],
                  "reads": {PNAME[s]: XREAD.get(s, "") for s in PAN.order}},
