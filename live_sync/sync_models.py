@@ -104,10 +104,9 @@ for lab, k in KEY.items():
         if holes: t.append(f"{holes} seat{'s' if holes > 1 else ''} nobody on the roster can fill")
         return t
     ent['lines'] = {'me': _lines('me'), 'op': _lines('op')}
-    ent['set'] = {'ratcliffe': (L.get('needles_set') or {}).get('ratcliffe'), 'gotham': (L.get('needles_set') or {}).get('gotham'), 'koerner': (L.get('needles_set') or {}).get('koerner'), 'clay': (L.get('needles_set') or {}).get('clay'), 'vegas': (L.get('needles_set') or {}).get('vegas'), 'rotoballer': (L.get('needles_set') or {}).get('rotoballer')}
+    # 'set' (the as-set needles) dropped Nov 10: the live/models document sits right at the 256 KB cap, and the page reads 'bestn' now
     # Nov 10 8:41 AM (Dom): "everything ... based on our opponent's best players - and the same with me, not the players I have in":
     # the page's pre-kickoff needles read 'bestn' = each source's chance with BOTH teams' best legal lineups (L['needles']);
-    # 'set' (the lineups as set) stays for reference only.
     ent['bestn'] = {s_: (L.get('needles') or {}).get(s_) for s_ in ('ratcliffe', 'gotham', 'koerner', 'clay', 'vegas', 'rotoballer')}
     best[k] = ent
 cur['best'] = best
