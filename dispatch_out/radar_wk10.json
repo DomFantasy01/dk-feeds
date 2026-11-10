@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Tue Nov 10 12:11 PM PT",
- "built_utc": "2026-11-10T20:11:43.300855+00:00",
+ "built": "Tue Nov 10 12:37 PM PT",
+ "built_utc": "2026-11-10T20:37:54.103935+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Tue Nov 10 12:06 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Tue Nov 10 12:32 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 2433,
-   "newest": "15 min ago",
+   "newest": "41 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Tue Nov 10 12:06 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 6830,
-   "newest": "8 min ago",
+   "pulled": "Tue Nov 10 12:32 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 6836,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Tue Nov 10 12:06 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 1704,
-   "newest": "8 min ago",
+   "pulled": "Tue Nov 10 12:32 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 1707,
+   "newest": "11 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Tue Nov 10 12:06 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 391,
-   "newest": "15 min ago",
+   "pulled": "Tue Nov 10 12:32 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 393,
+   "newest": "20 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Tue Nov 10 12:06 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Tue Nov 10 12:32 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Tue Nov 10 12:10 PM PT",
-   "pulled_ago": "1 min ago",
+   "pulled": "Tue Nov 10 12:35 PM PT",
+   "pulled_ago": "3 min ago",
    "items": 771,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Tue Nov 10 2026 12:10 PM PT",
+   "pulled": "Tue Nov 10 2026 12:35 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Tue Nov 10 11:44 AM PT",
-   "pulled_ago": "28 min ago",
+   "pulled_ago": "54 min ago",
    "items": 364,
    "newest": null,
    "warn": null,
@@ -89,7 +89,7 @@
      "team": "DAL",
      "slot": "BN",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -98,6 +98,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Tue Nov 10 12:10 PM PT",
+       "src": "rotoballer",
+       "title": "Cowboys Don't Appear Interested in Trading George Pickens",
+       "text": "NFL on Prime reporter James Palmer does not get any sense that the Dallas Cowboys are interested in moving wide [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Tue Nov 10 10:05 AM PT",
        "src": "rotoballer",
@@ -111,13 +118,6 @@
        "title": "George Pickens: Questionable (Hamstring)",
        "text": "questionable",
        "grade": "caution"
-      },
-      {
-       "t": "Sun Nov 8 9:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Ryan Flournoy: Could see added looks with Pickens out",
-       "text": "With George Pickens (hamstring) inactive, Flournoy is slated to move into the No. 2 WR role opposite CeeDee Lamb in Sunday's game against the Colts, while Jonathan Mingo will be the team's No. 3 receiver, Todd Archer of ESPN reports.",
-       "grade": "bad"
       }
      ],
      "gotham": 14.8,
@@ -382,7 +382,7 @@
      "name": "Tyler Shough",
      "pos": "QB",
      "team": "NO",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 1,
       "recency": 2,
@@ -424,7 +424,7 @@
      "name": "Jayden Daniels",
      "pos": "QB",
      "team": "WAS",
-     "slot": "QB",
+     "slot": "BN",
      "marker": {
       "count": 2,
       "recency": 2,
@@ -591,48 +591,11 @@
    ],
    "in": [
     {
-     "name": "Aaron Rodgers",
-     "pos": "QB",
-     "team": "PIT",
-     "why": [
-      "Sleeper adds #21 (129,908 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 10 6:38 AM PT",
-       "src": "rotoballer",
-       "title": "Darnell Washington Is a Solid TE Streamer after Bye",
-       "text": "Pittsburgh Steelers tight end Darnell Washington continues to split time with Pat Freiermuth, but Aaron Rodgers has been giving him [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 18.7
-     },
-     "beats_floor": true,
-     "gotham": 18.9,
-     "gotham_ros": 18.7,
-     "sleeper": 21.0,
-     "workload": "45/41/39/40/33/51/35/25",
-     "trend": -0.28,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Justice Hill",
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (225,603 in 24 h)"
+      "Sleeper adds #11 (230,301 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -746,6 +709,43 @@
      "acq": "unverified"
     },
     {
+     "name": "Aaron Rodgers",
+     "pos": "QB",
+     "team": "PIT",
+     "why": [
+      "Sleeper adds #21 (133,568 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 6:38 AM PT",
+       "src": "rotoballer",
+       "title": "Darnell Washington Is a Solid TE Streamer after Bye",
+       "text": "Pittsburgh Steelers tight end Darnell Washington continues to split time with Pat Freiermuth, but Aaron Rodgers has been giving him [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 23.0
+     },
+     "beats_floor": false,
+     "gotham": 18.9,
+     "gotham_ros": 18.7,
+     "sleeper": 21.0,
+     "workload": "45/41/39/40/33/51/35/25",
+     "trend": -0.28,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Deshaun Watson",
      "pos": "QB",
      "team": "CLE",
@@ -770,8 +770,8 @@
       }
      ],
      "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 18.7
+      "name": "Tyler Shough",
+      "gotham": 23.0
      },
      "beats_floor": false,
      "gotham": 17.4,
@@ -787,7 +787,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (507,348 in 24 h)"
+      "Sleeper adds #4 (519,111 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -824,7 +824,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #15 (172,665 in 24 h)"
+      "Sleeper adds #15 (177,057 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1277,7 +1277,7 @@
      "name": "Aaron Rodgers",
      "pos": "QB",
      "team": "PIT",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -1653,7 +1653,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (225,603 in 24 h)"
+      "Sleeper adds #11 (230,301 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1727,7 +1727,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #14 (177,080 in 24 h)"
+      "Sleeper adds #14 (180,784 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1933,7 +1933,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (1,916,968 in 24 h)"
+      "Sleeper adds #1 (1,953,856 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2047,7 +2047,43 @@
      "acq": "unverified"
     }
    ],
-   "opp": []
+   "opp": [
+    {
+     "name": "Cam Skattebo",
+     "pos": "RB",
+     "team": "NYG",
+     "marker": {
+      "count": 3,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 10 11:22 AM PT",
+       "src": "rotoballer",
+       "title": "Cam Skattebo Practicing Again on Tuesday",
+       "text": "New York Giants running back Cam Skattebo (hamstring) is participating in practice again on Tuesday during the portion open to [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 10 11:02 AM PT",
+       "src": "ESPN injury report",
+       "title": "Cam Skattebo: Questionable (Hamstring)",
+       "text": "questionable",
+       "grade": "caution"
+      }
+     ],
+     "gotham": 16.3,
+     "gotham_ros": 16.7,
+     "sleeper": 16.0,
+     "workload": "22/21/32/22/19/20",
+     "trend": -0.15
+    }
+   ]
   },
   "DK III": {
    "key": "HERS&HIS",
@@ -2104,7 +2140,7 @@
      "team": "DAL",
      "slot": "WR",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -2113,6 +2149,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Tue Nov 10 12:10 PM PT",
+       "src": "rotoballer",
+       "title": "Cowboys Don't Appear Interested in Trading George Pickens",
+       "text": "NFL on Prime reporter James Palmer does not get any sense that the Dallas Cowboys are interested in moving wide [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Tue Nov 10 10:05 AM PT",
        "src": "rotoballer",
@@ -2126,13 +2169,6 @@
        "title": "George Pickens: Questionable (Hamstring)",
        "text": "questionable",
        "grade": "caution"
-      },
-      {
-       "t": "Sun Nov 8 9:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Ryan Flournoy: Could see added looks with Pickens out",
-       "text": "With George Pickens (hamstring) inactive, Flournoy is slated to move into the No. 2 WR role opposite CeeDee Lamb in Sunday's game against the Colts, while Jonathan Mingo will be the team's No. 3 receiver, Todd Archer of ESPN reports.",
-       "grade": "bad"
       }
      ],
      "gotham": 14.8,
@@ -2568,7 +2604,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (507,348 in 24 h)"
+      "Sleeper adds #4 (519,111 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2642,7 +2678,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (225,603 in 24 h)"
+      "Sleeper adds #11 (230,301 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2886,7 +2922,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (1,916,968 in 24 h)"
+      "Sleeper adds #1 (1,953,856 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3377,7 +3413,7 @@
      "name": "Omar Cooper Jr.",
      "pos": "WR",
      "team": "NYJ",
-     "slot": "WR",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 2,
@@ -3461,7 +3497,7 @@
      "name": "Tucker Kraft",
      "pos": "TE",
      "team": "GB",
-     "slot": "BN",
+     "slot": "W/R/T",
      "marker": {
       "count": 1,
       "recency": 2,
@@ -3587,7 +3623,7 @@
      "name": "Jakobi Meyers",
      "pos": "WR",
      "team": "JAX",
-     "slot": "W/R/T",
+     "slot": "WR",
      "marker": {
       "count": 1,
       "recency": 4,
@@ -3674,7 +3710,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (1,916,968 in 24 h)"
+      "Sleeper adds #1 (1,953,856 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3755,7 +3791,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (507,348 in 24 h)"
+      "Sleeper adds #4 (519,111 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3775,8 +3811,8 @@
       }
      ],
      "floor": {
-      "name": "Travis Kelce",
-      "gotham": 11.9
+      "name": "Tucker Kraft",
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 9.1,
@@ -3792,7 +3828,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #15 (172,665 in 24 h)"
+      "Sleeper adds #15 (177,057 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3812,8 +3848,8 @@
       }
      ],
      "floor": {
-      "name": "Travis Kelce",
-      "gotham": 11.9
+      "name": "Tucker Kraft",
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 8.8,
@@ -3829,7 +3865,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #10 (225,603 in 24 h)"
+      "Sleeper adds #11 (230,301 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3886,8 +3922,8 @@
       }
      ],
      "floor": {
-      "name": "Travis Kelce",
-      "gotham": 11.9
+      "name": "Tucker Kraft",
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 7.0,
@@ -4015,7 +4051,7 @@
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #19 (145,864 in 24 h)"
+      "Sleeper adds #19 (147,304 in 24 h)"
      ],
      "marker": {
       "count": 1,
