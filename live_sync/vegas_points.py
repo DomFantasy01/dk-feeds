@@ -145,6 +145,12 @@ def _pt(iso):
         return dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %-I:%M %p PT")
     except Exception: return iso or ""
 
+class NotPosted(RuntimeError): pass   # Nov 10: site is on the new week but its rankings aren't up yet ("Want to know first when Week N rankings drop?")
+def not_posted_ok():
+    # waiting is normal Tue, Wed and Thu morning PT; still waiting after Thu noon (Thursday-night kickoff) = a real problem, fail loudly
+    import datetime as dt; from zoneinfo import ZoneInfo
+    n = dt.datetime.now(ZoneInfo("America/Los_Angeles")); return n.weekday() in (1, 2) or (n.weekday() == 3 and n.hour < 12)
+
 def read_site(keep_raw=False):
     known = known_names(); out, meta, allj = [], {}, {}
     for pos, url in PAGES.items():
@@ -155,7 +161,8 @@ def read_site(keep_raw=False):
         rows = parse(pos, page, known)
         up = re.search(r"Updated:?\s*(?:<[^>]+>\s*)*([0-9]{1,2}/[0-9]{1,2}[^<]{0,14})", page)
         wk = re.search(r"Week\s*(?:<[^>]+>\s*)*(\d{1,2})\b", page)
-        meta[pos] = dict(n=len(rows), json=len(jr), updated=(up.group(1).strip() if up else ""), week=int(wk.group(1)) if wk else None)
+        meta[pos] = dict(n=len(rows), json=len(jr), updated=(up.group(1).strip() if up else ""), week=int(wk.group(1)) if wk else None,
+                         waiting=bool(re.search(r"rankings\s+drop\?", page)))
         if keep_raw or (len(rows) < 15 and len(jr) < 100):
             os.makedirs(O(R, "yahoo_drop/vegas/raw"), exist_ok=True); open(O(R, f"yahoo_drop/vegas/raw/{pos.lower()}.html"), "w").write(page)
         print(f"   VEGAS {pos}: {len(rows)} table rows, {len(jr)} data rows, site updated '{meta[pos]['updated']}', page week {meta[pos]['week']}")
@@ -167,6 +174,8 @@ def read_site(keep_raw=False):
         if wks and max(set(wks), key=wks.count) != NOW: raise RuntimeError(f"site data is Week {max(set(wks), key=wks.count)}, this is Week {NOW}")
         print(f"   VEGAS: using the page data rows ({len(js)} players, site data updated {meta['updated_at']})")
         return js, meta
+    if all(meta[p]["n"] < 15 for p in ("QB", "RB", "WR", "TE")) and all(meta[p].get("waiting") for p in ("QB", "RB", "WR", "TE")):
+        raise NotPosted(f"site is on Week {meta['RB'].get('week')} but its rankings are not posted yet")
     short = [p for p in ("QB", "RB", "WR", "TE") if meta[p]["n"] < 15]
     if short: raise RuntimeError(f"page(s) {short} came back with too few rows - layout may have changed (raw pages saved in yahoo_drop/vegas/raw/)")
     pw = [m["week"] for m in meta.values() if isinstance(m, dict) and m.get("week")]
@@ -192,6 +201,14 @@ if __name__ == "__main__":
                         site_updated=meta.get("updated_at") or meta.get("RB", {}).get("updated", ""), players=pl)
             os.makedirs(os.path.dirname(SAVE), exist_ok=True); json.dump(data, open(SAVE, "w"), indent=0)
             print(f"VEGAS: read {len(pl)} players, {data['read']} (site updated {data['site_updated']})")
+        except NotPosted as e:
+            ok = not_posted_ok()
+            print(f"{'VEGAS' if ok else '!! VEGAS'}: {e} - Week {NOW} Vegas waits ({'normal before Thursday noon PT' if ok else 'past Thursday noon PT - FAILING'})")
+            try:
+                os.makedirs(os.path.dirname(SAVE), exist_ok=True)
+                json.dump(dict(checked=pt_now(), week=NOW, state="waiting" if ok else "late", note=str(e)), open(O(R, "yahoo_drop/vegas/status.json"), "w"))
+            except Exception: pass
+            if "--read-only" in sys.argv: sys.exit(0 if ok else 1)
         except Exception as e:
             print(f"!! VEGAS: site read failed ({e}) - trying the last saved file")
     if "--read-only" in sys.argv: sys.exit(0 if data else 1)
