@@ -1443,4 +1443,35 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 /* Nov 10 (Dom: "the player lights are blinking"): blinking means ONE thing - that player's game is on right now.
    Injury-tag (amber) and unknown-status markers stay solid, and the color keys never blink. */
 .bk.trbl,.bk.unk,.mxdots i.trbl,.strip .sg i.trbl,.seg.trbl,.seg.unk,.gpr.trbl i,.gpr.unk i,.pkey .bk,.pkey i{animation:none!important;opacity:1!important}
+
+/* Nov 10 (Dom, voice): THE PLAYER LIGHTS. green fine · amber Q/D · red out · pink bye · dark green game over ·
+   yellow/red two-tone flash = empty spot or no projection. Only a man whose game is on blinks (plus the empty-spot flash). */
+.sgauge .seg .rb{animation:none}
+.sgauge .seg.ok .rb,.sgauge .seg.live .rb{fill:#3DDC84}.sgauge .seg.trbl .rb,.sgauge .seg.trblon .rb{fill:#F7B32B}
+.sgauge .seg.out .rb{fill:#FF4D57}.sgauge .seg.bye .rb{fill:#FF7EC8}.sgauge .seg.done .rb{fill:#1C7A45}.sgauge .seg.empty .rb{fill:#F7C52B}
+.sgauge .seg.ok,.sgauge .seg.trbl,.sgauge .seg.out,.sgauge .seg.bye,.sgauge .seg.done{animation:none!important;opacity:1!important}
+.sgauge .gpz.ok,.sgauge .gpz.live,.sgauge .gpz.trbl,.sgauge .gpz.trblon,.sgauge .gpz.bye,.sgauge .gpz.empty{fill:#06110B !important}
+.sgauge .gpz.out{fill:#fff !important}.sgauge .gpz.done{fill:#EFFFF4 !important}
+.gpr.ok i,.gpr.live i{background:#3DDC84}.gpr.trbl i,.gpr.trblon i{background:#F7B32B}.gpr.out i{background:#FF4D57}.gpr.bye i{background:#FF7EC8}.gpr.done i{background:#1C7A45}.gpr.empty i{background:#F7C52B}
+.gpr.bye{background:rgba(255,126,200,.08)}.gpr.empty{background:rgba(247,197,43,.10)}.gpr.out{background:rgba(255,77,87,.08)}
+.gst.ok i,.gst.live i{background:#3DDC84}.gst.trbl i,.gst.trblon i{background:#F7B32B}.gst.out i{background:#FF4D57}.gst.bye i{background:#FF7EC8}.gst.done i{background:#1C7A45}.gst.empty i{background:#F7C52B}
+.gst.ok,.gst.live{color:#6FE7A6}.gst.trbl,.gst.trblon{color:#F7B32B}.gst.out{color:#FF6B72}.gst.bye{color:#FF9AD5}.gst.done{color:#4FBF7E}.gst.empty{color:#F7C52B}
+.gpr i,.gst i{animation:none!important;opacity:1!important}
+@keyframes dkOnBlink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes dkEmptyFill{0%,49%{fill:#F7C52B}50%,100%{fill:#FF4D57}}
+@keyframes dkEmptyBg{0%,49%{background:#F7C52B}50%,100%{background:#FF4D57}}
+@media (prefers-reduced-motion:no-preference){
+  .sgauge .seg.live,.sgauge .seg.trblon{animation:dkOnBlink 1.3s ease-in-out infinite!important}
+  .gpr.live i,.gpr.trblon i,.gst.live i,.gst.trblon i{animation:dkOnBlink 1.3s ease-in-out infinite!important}
+  .sgauge .seg.empty .rb{animation:dkEmptyFill .9s steps(1) infinite!important}
+  .gpr.empty i,.gst.empty i{animation:dkEmptyBg .9s steps(1) infinite!important}}
+.ldot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;box-shadow:0 0 4px currentColor}
+.ldot.ok,.ldot.live{background:#3DDC84;color:#3DDC84}.ldot.trbl,.ldot.trblon{background:#F7B32B;color:#F7B32B}.ldot.out{background:#FF4D57;color:#FF4D57}
+.ldot.bye{background:#FF7EC8;color:#FF7EC8}.ldot.done{background:#1C7A45;color:#1C7A45}.ldot.empty{background:#F7C52B;color:#F7C52B}
+@media (prefers-reduced-motion:no-preference){.ldot.live,.ldot.trblon{animation:dkOnBlink 1.3s ease-in-out infinite}.ldot.empty{animation:dkEmptyBg .9s steps(1) infinite}}
+.bk.lt-ok,.bk.lt-live{background:#3DDC84;color:#06110B}.bk.lt-trbl,.bk.lt-trblon{background:#F7B32B;color:#1A1206}.bk.lt-out{background:#FF4D57;color:#fff}
+.bk.lt-bye{background:#FF7EC8;color:#2A0A1C}.bk.lt-done{background:#1C7A45;color:#EFFFF4}.bk.lt-empty{background:#F7C52B;color:#1A1206}
+.bk[class*="lt-"]{animation:none!important;opacity:1!important;box-shadow:none}
+@media (prefers-reduced-motion:no-preference){.bk.lt-live,.bk.lt-trblon{animation:dkOnBlink 1.3s ease-in-out infinite!important}.bk.lt-empty:not(.sm){animation:dkEmptyBg .9s steps(1) infinite!important}}
+.pkey .bk.sm.lt-empty{background:linear-gradient(90deg,#F7C52B 50%,#FF4D57 50%)}
 </style>

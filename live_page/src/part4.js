@@ -470,11 +470,25 @@ const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}
    Ring = every starter with his position spelled out, yours on the left, his on the right:
    dark green done · light green blinking = playing · amber blinking = something's wrong (Q/D/GTD) ·
    red = out (ruled out) · red blinking = no projection and nobody knows why · gray = still to play. */
-const RINGC = {done: "#2FA866", live: "#8EDBAE", trbl: "#F7B32B", out: "#FF4D57", unk: "#FF4D57", pre: "#4A5674"};
-const SEGORD = {live: 0, unk: 1, out: 2, trbl: 3, done: 4, pre: 5};
-const ringState = (p) => { const s = dotState(p); return s === "out" && !isOut(p) ? "unk" : s; };
+/* Nov 10 (Dom, voice): THE PLAYER LIGHTS - one look tells the week. Starters only, his and the opponent's, reset each Tuesday with the new week's lineup.
+   green = fine · amber = questionable/doubtful · red = out/IR/suspended/inactive · pink = bye · empty spot or no projection = yellow/red two-tone flash all week
+   (and the ACTION light comes on) · solid dark green = his game is over. A light blinks ONLY while that man's game is on (the empty-spot flash is the one exception).
+   Statuses come from each Yahoo read. */
+const RINGC = {ok: "#3DDC84", live: "#3DDC84", trbl: "#F7B32B", trblon: "#F7B32B", out: "#FF4D57", bye: "#FF7EC8", done: "#1C7A45", empty: "#F7C52B"};
+const SEGORD = {live: 0, trblon: 1, empty: 2, out: 3, trbl: 4, bye: 5, ok: 6, done: 7};
+const isEmptySpot = (p) => !(p.name || "").trim() || /^\(?\s*empty\s*\)?$/i.test((p.name || "").trim());
+const isByeMan = (p) => /bye/i.test(p.when || "");
+const ringState = (p) => {
+  if (isEmptySpot(p)) return "empty";
+  if (isByeMan(p)) return "bye";
+  if (isOut(p)) return "out";
+  if (isDone(p)) return "done";
+  if (isLive(p)) return isTrouble(p) ? "trblon" : "live";
+  if (isTrouble(p)) return "trbl";
+  if ((+p.proj || 0) === 0) return "empty";   /* no projection and nobody knows why = a hole, same flash */
+  return "ok"; };
 const POSAB = (sl) => { const t = (sl || "").toUpperCase().trim(); return /Q\/W\/R\/T|SUPER|^SF/.test(t) ? "SF" : /W\/R\/T|W\/R|FLEX|R\/W/.test(t) ? "FX" : /DEF|D\/ST|DST/.test(t) ? "DEF" : t.replace(/[^A-Z]/g, "").slice(0, 3) || "?"; };
-const STWORD = {pre: "still to play", live: "playing now", done: "done", out: "out", unk: "no projection - unknown", trbl: "questionable / problem"};
+const STWORD = {ok: "fine, still to play", live: "playing now", trbl: "questionable / doubtful", trblon: "playing - questionable tag", out: "out", bye: "on bye", done: "game over", empty: "EMPTY SPOT / no projection - fill it"};
 /* Nov 8 2:50 PM (Dom: "maybe we're better making it a box rather than a circle... be creative"): the scoreboard TANKS.
    One card per league: two tall glass tanks side by side - yours fills in your win color (green 55%+, amber 45-55, red under 45 on
    Yahoo's chance to win this week), his in gray. Solid fluid = points scored (gentle wave, rising bubbles, soft glowing edge on top);
@@ -900,8 +914,11 @@ function boxHtml(k, L){
   const fallback = (list) => list.map(p => ({slot: p.slot, name: p.name, tm: p.tm, pos: "", status: p.status, pts: p.actual, line: "", yp: p.proj, rp: null, gs: "", when: p.when}));
   const sides = B ? {me: B.me, op: B.op} : {me: fallback(L.players || []), op: fallback(L.oppPlayers || [])};
   const isBench = (r) => /^(BN|IR)/.test(r.slot || "");
-  const blocks = (rows) => rows.filter(r => !isBench(r)).map(r => { const s = bxState(r, L);
-    return `<i class="bk ${s.g}" title="${esc(r.name)} · ${esc(s.when)}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
+  /* Nov 10 (Dom): the same player light beside every name in the box score */
+  const lightOf = (r, s) => ringState({name: r.name, status: r.status, proj: r.yp === null || r.yp === undefined ? 1 : r.yp, slot: r.slot,
+    when: /bye/i.test(r.when || "") || r.gs === "bye" ? "Bye" : s.g === "live" ? "In progress" : s.g === "done" ? "Final" : (r.when || "")});
+  const blocks = (rows) => rows.filter(r => !isBench(r)).map(r => { const s = bxState(r, L), lt = lightOf(r, s);
+    return `<i class="bk lt-${lt}" title="${esc(r.name)} · ${esc(STW[lt] || "")} · ${esc(s.when)}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
   const fid = "bx-" + SLUG[k], open = !!FOLDS[fid];
   /* bench flags, your side only */
   const flags = {};
@@ -917,7 +934,7 @@ function boxHtml(k, L){
     const proj = [r.yp !== null && r.yp !== undefined ? `Yahoo ${f1(r.yp)}` : "", r.rp !== null && r.rp !== undefined ? `Ratcliffe ${f1(r.rp)}` : ""].filter(Boolean).join(" · ") || "no projection";
     const vs = gotPts && r.yp !== null && r.yp !== undefined && s.g === "done" ? ` <em class="${s.pts - r.yp >= 0 ? "up" : "dn"}">${sgn(s.pts - r.yp)}</em>` : "";
     return `<div class="bxr${f ? " fl " + f.c : ""}"><div class="bx1"><i class="bk sm ${s.g}">${esc(SLOTLAB(r.slot))}</i>
-      <span class="nm"><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}</span>
+      <span class="nm"><i class="ldot ${lightOf(r, s)}" title="${esc(STW[lightOf(r, s)] || "")}"></i><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}</span>
       <span class="pt">${gotPts ? f1(s.pts) : "–"}${vs}</span></div>
       <div class="bx2"><span>${esc(s.g === "live" ? (/^(In progress|Playing)$/i.test(s.when || "") ? "Playing" : "Playing · " + s.when) : s.g === "done" ? (s.when && !/^Final$/i.test(s.when) ? s.when : "Final") : s.when)}</span><span>${proj}</span></div>
       ${r.line ? `<div class="bx3">${esc(r.line)}</div>` : gotPts && B && s.pts ? `<div class="bx3 mute">No stat line in the last Yahoo API read.</div>` : ""}
@@ -931,7 +948,7 @@ function boxHtml(k, L){
   return `<details class="bxd" data-fold="${fid}"${open ? " open" : ""}><summary aria-label="Box score for both teams">
       <div class="pr"><span class="who">YOU</span><div class="blks">${blocks(sides.me)}</div></div>
       <div class="pr"><span class="who op">OPP</span><div class="blks">${blocks(sides.op)}</div></div>
-      <div class="pkey"><span><i class="bk sm done"></i>Done</span><span><i class="bk sm live"></i>Playing</span><span><i class="bk sm pre"></i>Not yet</span><span><i class="bk sm trbl"></i>Trouble</span><span><i class="bk sm out"></i>Out</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
+      <div class="pkey"><span><i class="bk sm lt-ok"></i>Fine</span><span><i class="bk sm lt-trbl"></i>Q / D</span><span><i class="bk sm lt-out"></i>Out</span><span><i class="bk sm lt-bye"></i>Bye</span><span><i class="bk sm lt-done"></i>Done</span><span><i class="bk sm lt-empty"></i>Empty</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
     <div class="bxb">${team(sides.me, L.team || "Dark Knight", true)}${team(sides.op, L.opp || "Opponent", false)}
       <p class="note">Points: Yahoo, league scoring${B ? `, Yahoo API read ${esc(B.read || "")}` : ""}. Projections: Yahoo's weekly projection (league scoring) and Ratcliffe's where the meter has him. Live status follows the latest Yahoo read.</p></div></details>`;
 }
@@ -1067,7 +1084,11 @@ function needs(){
       out.push({k, col: "red", r: 0, t: x.deadline_utc ? dueMin(x.deadline_utc) : 0, aid: x.id, cd: x.deadline_utc && dueMin(x.deadline_utc) > 0 ? DUE(x.deadline_utc) : "", cl: "act now", html: esc(x.title)});
   }
   for (const k of KEYS){ const L = lgS(k); if (!L) continue;
-    for (const p of emptySeats(L)) out.push({k, col: "red", r: 0, t: whenRank(p.when), cd: "", cl: p.when ? "locks " + p.when : "",
+    for (const p of L.players.filter(isStarter).filter(p => ringState(p) === "empty" || ringState(p) === "bye"))
+      out.push({k, col: "red", r: 0, t: 0, cd: "", cl: "fill before kickoff", html: ringState(p) === "bye"
+        ? `<b>${esc(POSAB(p.slot))} ${esc(p.name)}</b> is on bye in your starting lineup - that spot scores 0.`
+        : `Empty spot: <b>${esc(POSAB(p.slot))}</b>${p.name && !isEmptySpot(p) ? " " + esc(p.name) + " has no projection" : " has nobody in it"} - fill it before kickoff.`});
+    for (const p of emptySeats(L).filter(p => isStarter(p) && ringState(p) !== "empty")) out.push({k, col: "red", r: 0, t: whenRank(p.when), cd: "", cl: p.when ? "locks " + p.when : "",
       html: `Empty seat: <b>${esc(p.slot)} ${esc(p.name)}</b>${p.status ? " (" + esc(p.status) + ")" : ""} won't score. Yahoo has him at ${f1(p.proj)}.`}); }
   out.sort((a, b) => (a.col === "red" ? 0 : 1) - (b.col === "red" ? 0 : 1) || a.r - b.r || a.t - b.t);
   { const n = $("#ltN"); if (n) n.className = "lt " + (out.some(o => o.col === "red") ? "red" : out.length ? "yellow" : "green"); }
@@ -1341,7 +1362,7 @@ const whenKey = (w) => { const m = /^(\w{3})\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i.exe
 function nextUp(L){ const pre = [...L.players, ...L.oppPlayers].filter(p => isStarter(p) && !started(p) && !isOut(p) && whenKey(p.when) !== null);
   if (!pre.length) return ""; pre.sort((a, b) => whenKey(a.when) - whenKey(b.when)); const w = pre[0].when, today = PT(new Date().toISOString(), {weekday: "short"});
   return w.startsWith(today + " ") ? w.slice(today.length + 1) : w; }
-const STW = {pre: "Still to play", live: "Playing now", done: "Done", out: "Out", unk: "No projection - unknown why", trbl: "Questionable / problem"};
+const STW = {ok: "Fine · still to play", live: "Playing now", trbl: "Questionable / doubtful", trblon: "Playing · questionable tag", out: "Out", bye: "On bye", done: "Game over", empty: "Empty spot / no projection - fill it"};
 function sheetHost(){ let b = $("#gback"); if (!b){ b = document.createElement("div"); b.id = "gback"; b.hidden = true; document.body.appendChild(b);
     const sh = document.createElement("div"); sh.id = "gsheet"; sh.setAttribute("role", "dialog"); sh.setAttribute("aria-modal", "true"); sh.hidden = true; document.body.appendChild(sh); }
   return $("#gsheet"); }
