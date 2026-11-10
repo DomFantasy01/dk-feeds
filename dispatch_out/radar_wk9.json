@@ -1,47 +1,47 @@
 {
  "week": 9,
- "built": "Mon Nov 9 4:11 PM PT",
- "built_utc": "2026-11-10T00:11:35.833095+00:00",
+ "built": "Mon Nov 9 4:35 PM PT",
+ "built_utc": "2026-11-10T00:35:59.712545+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Mon Nov 9 4:06 PM PT",
+   "pulled": "Mon Nov 9 4:31 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 2344,
-   "newest": "22 min ago",
+   "items": 2352,
+   "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Mon Nov 9 4:06 PM PT",
+   "pulled": "Mon Nov 9 4:31 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 6679,
-   "newest": "19 min ago",
+   "items": 6684,
+   "newest": "9 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Mon Nov 9 4:06 PM PT",
+   "pulled": "Mon Nov 9 4:31 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 1667,
-   "newest": "6 min ago",
+   "items": 1668,
+   "newest": "8 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Mon Nov 9 4:06 PM PT",
+   "pulled": "Mon Nov 9 4:31 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 396,
+   "items": 397,
    "newest": "11 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Mon Nov 9 4:06 PM PT",
+   "pulled": "Mon Nov 9 4:31 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Mon Nov 9 4:09 PM PT",
-   "pulled_ago": "2 min ago",
+   "pulled": "Mon Nov 9 4:34 PM PT",
+   "pulled_ago": "1 min ago",
    "items": 773,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Mon Nov 09 2026 04:09 PM PT",
+   "pulled": "Mon Nov 09 2026 04:34 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Mon Nov 9 3:44 PM PT",
-   "pulled_ago": "28 min ago",
+   "pulled_ago": "52 min ago",
    "items": 367,
    "newest": null,
    "warn": null,
@@ -140,10 +140,10 @@
      },
      "news": [
       {
-       "t": "Mon Nov 9 12:59 PM PT",
+       "t": "Mon Nov 9 4:16 PM PT",
        "src": "ESPN injury report",
        "title": "George Pickens: Out (Hamstring)",
-       "text": "out",
+       "text": "Pickens (hamstring) has a chance to play Sunday against San Francisco, but his practice reps will likely again be capped this week, Jon Machota of The Athletic reports.",
        "grade": "bad"
       },
       {
@@ -596,7 +596,7 @@
      "team": "CLE",
      "why": [
       "good news",
-      "Sleeper adds #12 (53,848 in 24 h)"
+      "Sleeper adds #12 (55,344 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -640,7 +640,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (127,485 in 24 h)"
+      "Sleeper adds #5 (130,860 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -677,7 +677,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #11 (55,944 in 24 h)"
+      "Sleeper adds #11 (57,573 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -715,7 +715,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #8 (74,400 in 24 h)"
+      "Sleeper adds #8 (77,456 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -803,7 +803,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #21 (35,226 in 24 h)"
+      "Sleeper adds #21 (36,504 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -836,11 +836,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "team": "NYG",
+     "why": [
+      "opening: Darnell Mooney \u2014 questionable/limited (RotoWire news)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 7 7:47 AM PT",
+       "src": "rotoballer",
+       "title": "Malachi Fields Not a Starting Option Despite Easy Matchup in Week 9",
+       "text": "New York Giants wide receiver Malachi Fields enters the second half of his rookie season as a full-time starter. In [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Chris Godwin Jr.",
+      "gotham": 5.0
+     },
+     "beats_floor": true,
+     "gotham": 7.0,
+     "gotham_ros": 7.2,
+     "sleeper": 6.3,
+     "workload": "4/6/2/4/2/9/5/6",
+     "trend": 0.18,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Ty Johnson",
      "pos": "RB",
      "team": "BUF",
      "why": [
-      "Sleeper adds #20 (36,366 in 24 h)"
+      "Sleeper adds #20 (37,428 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -877,7 +914,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (858,024 in 24 h)"
+      "Sleeper adds #1 (887,400 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1026,35 +1063,6 @@
      "trend": 0.02,
      "yahoo": null,
      "acq": "unverified"
-    },
-    {
-     "name": "Tyquan Thornton",
-     "pos": "WR",
-     "team": "KC",
-     "why": [
-      "opening: Xavier Worthy \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Chris Godwin Jr.",
-      "gotham": 5.0
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 7.9,
-     "sleeper": null,
-     "workload": "1/4/2/9",
-     "trend": 1.74,
-     "yahoo": null,
-     "acq": "unverified"
     }
    ],
    "opp": [
@@ -1158,10 +1166,10 @@
      },
      "news": [
       {
-       "t": "Mon Nov 9 6:38 AM PT",
+       "t": "Mon Nov 9 4:00 PM PT",
        "src": "ESPN injury report",
        "title": "Ladd McConkey: Questionable (Back)",
-       "text": "McConkey was active but didn't play any snaps in Sunday's 44-22 loss to the Texans after experiencing back spasms during pregame workouts, Noah Furtado of The Athletic reports.",
+       "text": "Chargers coach Jim Harbaugh noted Monday that McConkey is viewed as \"day to day\" with back spasms, Alex Insdorf of BoltBeat.com reports.",
        "grade": "caution"
       },
       {
@@ -1573,7 +1581,7 @@
      "team": "CLE",
      "why": [
       "good news",
-      "Sleeper adds #12 (53,848 in 24 h)"
+      "Sleeper adds #12 (55,344 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1617,7 +1625,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #11 (55,944 in 24 h)"
+      "Sleeper adds #11 (57,573 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1655,7 +1663,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #8 (74,400 in 24 h)"
+      "Sleeper adds #8 (77,456 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1699,7 +1707,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #10 (57,112 in 24 h)"
+      "Sleeper adds #10 (59,768 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1736,7 +1744,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #18 (38,832 in 24 h)"
+      "Sleeper adds #18 (39,272 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1769,11 +1777,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "team": "NYG",
+     "why": [
+      "opening: Darnell Mooney \u2014 questionable/limited (RotoWire news)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 7 7:47 AM PT",
+       "src": "rotoballer",
+       "title": "Malachi Fields Not a Starting Option Despite Easy Matchup in Week 9",
+       "text": "New York Giants wide receiver Malachi Fields enters the second half of his rookie season as a full-time starter. In [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Ladd McConkey",
+      "gotham": 7.8
+     },
+     "beats_floor": false,
+     "gotham": 7.0,
+     "gotham_ros": 7.2,
+     "sleeper": 6.3,
+     "workload": "4/6/2/4/2/9/5/6",
+     "trend": 0.18,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Ty Johnson",
      "pos": "RB",
      "team": "BUF",
      "why": [
-      "Sleeper adds #20 (36,366 in 24 h)"
+      "Sleeper adds #20 (37,428 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1810,7 +1855,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (858,024 in 24 h)"
+      "Sleeper adds #1 (887,400 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1996,35 +2041,6 @@
      "trend": 0.02,
      "yahoo": null,
      "acq": "unverified"
-    },
-    {
-     "name": "Tyquan Thornton",
-     "pos": "WR",
-     "team": "KC",
-     "why": [
-      "opening: Xavier Worthy \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [],
-     "floor": {
-      "name": "Ladd McConkey",
-      "gotham": 7.8
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 7.9,
-     "sleeper": null,
-     "workload": "1/4/2/9",
-     "trend": 1.74,
-     "yahoo": null,
-     "acq": "unverified"
     }
    ],
    "opp": [
@@ -2033,7 +2049,7 @@
      "pos": "WR",
      "team": "LA",
      "marker": {
-      "count": 5,
+      "count": 6,
       "recency": 0,
       "color": "red",
       "grades": [
@@ -2043,18 +2059,18 @@
      },
      "news": [
       {
+       "t": "Mon Nov 9 4:14 PM PT",
+       "src": "pft",
+       "title": "Sean McVay on Puka Nacua injury: I'd be lying if I said I wasn't questioning that play call",
+       "text": "Rams wide receiver Puka Nacua is set to go on injured reserve after suffering MCL, PCL and turf toe injuries in Sunday's win over the Commanders.",
+       "grade": "note"
+      },
+      {
        "t": "Mon Nov 9 3:30 PM PT",
        "src": "pft",
        "title": "Rams LG Steve Avila will miss time after aggravating hamstring injury",
        "text": "The Rams will place wide receiver Puka Nacua on injured reserve with MCL and PCL knee sprains and turf toe.",
        "grade": "note"
-      },
-      {
-       "t": "Mon Nov 9 2:31 PM PT",
-       "src": "pft",
-       "title": "Puka Nacua headed to IR with MCL, PCL knee sprains, turf toe",
-       "text": "The Rams wide receiver was injured on the team's final play from scrimmage on Sunday.",
-       "grade": "bad"
       }
      ],
      "gotham": 35.5,
@@ -2128,10 +2144,10 @@
      },
      "news": [
       {
-       "t": "Mon Nov 9 12:59 PM PT",
+       "t": "Mon Nov 9 4:16 PM PT",
        "src": "ESPN injury report",
        "title": "George Pickens: Out (Hamstring)",
-       "text": "out",
+       "text": "Pickens (hamstring) has a chance to play Sunday against San Francisco, but his practice reps will likely again be capped this week, Jon Machota of The Athletic reports.",
        "grade": "bad"
       },
       {
@@ -2543,7 +2559,7 @@
      "team": "CLE",
      "why": [
       "good news",
-      "Sleeper adds #12 (53,848 in 24 h)"
+      "Sleeper adds #12 (55,344 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2587,7 +2603,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (127,485 in 24 h)"
+      "Sleeper adds #5 (130,860 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2624,7 +2640,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #11 (55,944 in 24 h)"
+      "Sleeper adds #11 (57,573 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2662,7 +2678,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #8 (74,400 in 24 h)"
+      "Sleeper adds #8 (77,456 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2744,7 +2760,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (858,024 in 24 h)"
+      "Sleeper adds #1 (887,400 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2851,6 +2867,48 @@
    "unread": [],
    "own": [
     {
+     "name": "C.J. Stroud",
+     "pos": "QB",
+     "team": "HOU",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 9 4:27 PM PT",
+       "src": "ESPN news",
+       "title": "A 'confident' C.J. Stroud soaks in five-TD day against Chargers",
+       "text": "Stroud matched his career high with 5 TD passes and added 384 passing yards in the win.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 8 6:49 PM PT",
+       "src": "rotoballer",
+       "title": "C.J. Stroud Lights Up the Stat Sheet in Week 9 Win",
+       "text": "Houston Texans quarterback C.J. Stroud completed 21 of his 35 pass attempts for 384 passing yards, five passing touchdowns, and [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 8 4:44 PM PT",
+       "src": "ESPN news",
+       "title": "C.J. Stroud tosses 5 TD passes as Texans rout winless Chargers 44-22. LA finally scores a TD",
+       "text": "\u2014 C.J. Stroud threw five touchdown passes, including a pair of season-best 63-yarders to Tank Dell and Kayshon Boutte, and the Houston Texans routed the winless Chargers 44-22 on Sunday and sent Los Angeles to its eighth straight defeat in front of...",
+       "grade": "note"
+      }
+     ],
+     "gotham": 46.4,
+     "gotham_ros": 22.9,
+     "sleeper": 19.4,
+     "workload": "41/59/30/34/42/35/31/38",
+     "trend": -0.1
+    },
+    {
      "name": "Wan'Dale Robinson",
      "pos": "WR",
      "team": "TEN",
@@ -2891,48 +2949,6 @@
      "sleeper": null,
      "workload": "6/1/13/6/7/8/8/8",
      "trend": 0.19
-    },
-    {
-     "name": "C.J. Stroud",
-     "pos": "QB",
-     "team": "HOU",
-     "slot": "BN",
-     "marker": {
-      "count": 3,
-      "recency": 1,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 6:49 PM PT",
-       "src": "rotoballer",
-       "title": "C.J. Stroud Lights Up the Stat Sheet in Week 9 Win",
-       "text": "Houston Texans quarterback C.J. Stroud completed 21 of his 35 pass attempts for 384 passing yards, five passing touchdowns, and [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 8 4:44 PM PT",
-       "src": "ESPN news",
-       "title": "C.J. Stroud tosses 5 TD passes as Texans rout winless Chargers 44-22. LA finally scores a TD",
-       "text": "\u2014 C.J. Stroud threw five touchdown passes, including a pair of season-best 63-yarders to Tank Dell and Kayshon Boutte, and the Houston Texans routed the winless Chargers 44-22 on Sunday and sent Los Angeles to its eighth straight defeat in front of...",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 8 4:32 PM PT",
-       "src": "pft",
-       "title": "Texans blow out Chargers 44-22 as C.J. Stroud throws five TDs",
-       "text": "The Texans might not be back, considering it was the Chargers they blew out, but they can't be counted out just yet either.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 46.4,
-     "gotham_ros": 22.9,
-     "sleeper": 19.4,
-     "workload": "41/59/30/34/42/35/31/38",
-     "trend": -0.1
     },
     {
      "name": "Bijan Robinson",
@@ -3446,7 +3462,7 @@
      "team": "CLE",
      "why": [
       "good news",
-      "Sleeper adds #12 (53,848 in 24 h)"
+      "Sleeper adds #12 (55,344 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3490,7 +3506,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #5 (127,485 in 24 h)"
+      "Sleeper adds #5 (130,860 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3527,7 +3543,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #1 (858,024 in 24 h)"
+      "Sleeper adds #1 (887,400 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3564,7 +3580,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #11 (55,944 in 24 h)"
+      "Sleeper adds #11 (57,573 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3602,7 +3618,7 @@
      "team": "DEN",
      "why": [
       "good news",
-      "Sleeper adds #8 (74,400 in 24 h)"
+      "Sleeper adds #8 (77,456 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3690,7 +3706,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #18 (38,832 in 24 h)"
+      "Sleeper adds #18 (39,272 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3723,11 +3739,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "team": "NYG",
+     "why": [
+      "opening: Darnell Mooney \u2014 questionable/limited (RotoWire news)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 7 7:47 AM PT",
+       "src": "rotoballer",
+       "title": "Malachi Fields Not a Starting Option Despite Easy Matchup in Week 9",
+       "text": "New York Giants wide receiver Malachi Fields enters the second half of his rookie season as a full-time starter. In [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Zay Flowers",
+      "gotham": 5.3
+     },
+     "beats_floor": true,
+     "gotham": 7.0,
+     "gotham_ros": 7.1,
+     "sleeper": 6.3,
+     "workload": "4/6/2/4/2/9/5/6",
+     "trend": 0.18,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Seth McGowan",
      "pos": "RB",
      "team": "IND",
      "why": [
-      "Sleeper adds #9 (67,568 in 24 h)"
+      "Sleeper adds #9 (70,224 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3801,7 +3854,7 @@
      "pos": "RB",
      "team": "BUF",
      "why": [
-      "Sleeper adds #20 (36,366 in 24 h)"
+      "Sleeper adds #20 (37,428 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3867,43 +3920,6 @@
      "sleeper": 1.5,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Brian Robinson",
-     "pos": "RB",
-     "team": "ATL",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 7 1:30 PM PT",
-       "src": "rotoballer",
-       "title": "Khalil Herbert Signed to Falcons' Active Roster",
-       "text": "Atlanta Falcons running back Khalil Herbert has been signed to the active roster from the practice squad following Brian Robinson [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "D'Andre Swift",
-      "gotham": 3.1
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 8.1,
-     "sleeper": null,
-     "workload": "9/16/12/24/10/11",
-     "trend": -0.28,
      "yahoo": null,
      "acq": "unverified"
     }
