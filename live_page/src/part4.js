@@ -449,7 +449,11 @@ function renderHealth(){
 const LASTY = {};
 const LGSHORT = {MOST: "Most Important", WINNERS: "Winners & Sinners", "HERS&HIS": "Hers & His", NEXTDOOR: "NextDoor"};
 const LGFULL = {MOST: "The Most Important Thing in Life", WINNERS: "Winners & Sinners", "HERS&HIS": "Hers and His Version 2.0", NEXTDOOR: "Murrieta NextDoor"};
-function bigDial(v, col, mark, id, v0){
+/* Nov 10 (Dom): RANKED = average chance to win this week of the top three sources by accuracy (the checked ones) */
+function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"};
+  const top = (OCK || []).map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
+  return top.length ? {v: top.reduce((a, s3) => a + X[s3], 0) / top.length, top} : null; }
+function bigDial(v, col, mark, id, v0, v2){
   v = Math.max(0, Math.min(100, +v || 0));
   const cx = 60, cy = 60, r = 44, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
   const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
@@ -471,6 +475,8 @@ ${mk}
     ${v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = Math.max(0, Math.min(100, +v0)), [gx, gy] = P(w0, r - 8), [ax, ay] = P(w0, r + 8);
       return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
       <line x1="${cx}" y1="${cy}" x2="${gx.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="#D9DEE8" stroke-width="1.6" stroke-dasharray="2.6 2.4" opacity=".85"/><circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="2.4" fill="#0B1222" stroke="#D9DEE8" stroke-width="1.2"/>`; })() : ""}
+    ${v2 !== null && v2 !== undefined && !isNaN(v2) ? (() => { const [qx, qy] = P(Math.max(0, Math.min(100, +v2)), r - 8);
+      return `<line x1="${cx}" y1="${cy}" x2="${qx.toFixed(1)}" y2="${qy.toFixed(1)}" stroke="#0B1222" stroke-width="4.4" stroke-linecap="round" opacity=".7"/><line x1="${cx}" y1="${cy}" x2="${qx.toFixed(1)}" y2="${qy.toFixed(1)}" stroke="#4FC3FF" stroke-width="2.4" stroke-linecap="round"/>`; })() : ""}
     <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.6" stroke-linecap="round"/>
     <circle cx="${cx}" cy="${cy}" r="6.5" fill="#0B1222" stroke="#F4F6FA" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="${col}"/></svg>`;
 }
@@ -658,7 +664,7 @@ function meters(){
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd mxd2"><div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}">${glassBubble(y, SLUG[k] + "wy")}<span>YAHOO</span></div>
+      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}">${glassBubble(y, SLUG[k] + "wy")}<span class="ny">YAHOO</span></div>
         ${(() => { const w0 = weekStart(k, "y"), tr = trailEntries().filter(e => S && e.w === S.week && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null).map(e => e.lg[k].y);
           const vals = [...(w0 !== null ? [w0] : []), ...tr, y].filter(v => v !== null && !isNaN(v)); if (vals.length < 2) return "";
           const d = Math.round(y - vals[0]), zc = y >= 55 ? "#3DDC84" : y >= 45 ? "#F7B32B" : "#FF4D57";
@@ -667,7 +673,7 @@ function meters(){
           const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, top = OCK.map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
           if (!top.length) return "";
           const t3 = top.reduce((a, s3) => a + X[s3], 0) / top.length, NM3 = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"};
-          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}">${glassBubble(t3, SLUG[k] + "wt")}<span>RANKED</span></div>`; })()}
+          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}">${glassBubble(t3, SLUG[k] + "wt")}<span class="nr">RANKED</span></div>`; })()}
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
