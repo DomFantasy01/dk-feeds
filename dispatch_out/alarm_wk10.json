@@ -1,26 +1,23 @@
 {
  "week": 10,
- "built_pt": "Tue Nov 10 2026 07:07 AM PT",
+ "built_pt": "Tue Nov 10 2026 07:52 AM PT",
  "alarms": [
   "DK III: starters 9/8 - league starts 9"
  ],
  "lineup": [
-  "DK I: YOUR starter Chris Godwin Jr. (TB) has no game this week",
   "DK III: YOUR starter Jonah Coleman (DEN) has no game this week",
-  "DK III: YOUR starter Jaylen Waddle (DEN) has no game this week",
-  "DK IV: YOUR starter D'Andre Swift (CHI) has no game this week"
+  "DK III: YOUR starter Jaylen Waddle (DEN) has no game this week"
  ],
  "notes": [
-  "DK I: Gotham 19.4 vs Yahoo 9.0 / Sleeper 9.2 on Omar Cooper Jr. - check role/news",
+  "DK I: no Ratcliffe number for George Pickens - Yahoo used on the Ratcliffe needle",
   "DK I: Gotham 0.0 vs Yahoo 0.0 / Sleeper 15.9 on Cam Skattebo - check role/news",
-  "DK II: Gotham 19.4 vs Yahoo 9.1 / Sleeper 9.2 on Omar Cooper Jr. - check role/news",
   "DK IV: opponent starter Chase McLaughlin (TB) has no game this week"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Nov 10 07:07 AM PT",
+   "pulled_pt": "Tue Nov 10 07:52 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
@@ -29,7 +26,7 @@
   "yahoo_matchups": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/dom_matchups_api.txt",
-   "pulled_pt": "Tue Nov 10 07:06 AM PT",
+   "pulled_pt": "Tue Nov 10 07:52 AM PT",
    "age_h": 0.0,
    "rows": 41,
    "need": 41,
@@ -38,7 +35,7 @@
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/league_windows_api.txt",
-   "pulled_pt": "Tue Nov 10 07:06 AM PT",
+   "pulled_pt": "Tue Nov 10 07:52 AM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -48,7 +45,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/standings_tue0327.txt",
    "pulled_pt": "Tue Nov 10 03:27 AM PT",
-   "age_h": 3.7,
+   "age_h": 4.4,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -56,17 +53,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Nov 10 07:07 AM PT",
+   "pulled_pt": "Tue Nov 10 07:52 AM PT",
    "age_h": 0.0,
    "rows": 10,
    "need": 10,
-   "note": "Gotham run Tue Nov 10 2026 07:07 AM PT for week 10"
+   "note": "Gotham run Tue Nov 10 2026 07:52 AM PT for week 10"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Tue Nov 10 2026 2:26 AM PT",
-   "age_h": 4.7,
+   "age_h": 5.4,
    "rows": 1848,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -74,32 +71,32 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Tue Nov 10 2026 3:05 AM PT",
-   "age_h": 4.0,
+   "age_h": 4.8,
    "rows": 2564,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk10_2026-11-10T1444Z.csv",
-   "pulled_pt": "Tue Nov 10 06:44 AM PT",
-   "age_h": 0.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk10_2026-11-10T1541Z.csv",
+   "pulled_pt": "Tue Nov 10 07:41 AM PT",
+   "age_h": 0.2,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.4 h ago (saved 3117 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk10_2026-11-10T1444Z.csv",
-   "pulled_pt": "Tue Nov 10 06:44 AM PT",
-   "age_h": 0.4,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk10_2026-11-10T1541Z.csv",
+   "pulled_pt": "Tue Nov 10 07:41 AM PT",
+   "age_h": 0.2,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.4 h ago (saved 185 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/dom_rosters.json",
-   "pulled_pt": "Tue Nov 10 07:06 AM PT",
+   "pulled_pt": "Tue Nov 10 07:52 AM PT",
    "age_h": 0.0,
    "rows": 66,
    "need": null,
