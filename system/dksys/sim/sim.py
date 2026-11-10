@@ -9,7 +9,7 @@ Inputs (all already made by the Dispatch build):
                                                 where each player's range of outcomes comes from (how far real scores
                                                 land from the projection, by position, bigger misses for bigger numbers)
   yahoo_drop/sim/league_schedule.json           each league's matchups through Week 14, playoff settings, team names
-  yahoo_drop/_inbox/pull_*.json (latest)        standings: record, points for, divisions
+  yahoo_drop/_inbox/pull_*.json (newest with a standings file) standings: record, points for, divisions
 
 How one season is played: every team starts its best lineup each week (Dom's rule: assume rivals play their best).
 Each starter's score = his weekly value + a miss drawn from real graded misses for his position, sized to his value;
@@ -86,12 +86,16 @@ def best_lineup(players, slots, wk):
     return [pick.get(si) for si in range(len(slots))]
 
 # ---------------------------------------------------------------- league data
-def latest_pull():
-    fs = sorted(glob.glob(f"{REPO}/yahoo_drop/_inbox/pull_*.json"))
-    return json.load(open(fs[-1])) if fs else None
+def latest_pull(need=None):
+    # Nov 10 (Dom: "Record in the race, wins/losses not listed"): since Monday the pulls carry only matchups, so the newest pull
+    # had no standings and every team read 0-0. With `need`, take the newest pull that actually has that file.
+    for f in reversed(sorted(glob.glob(f"{REPO}/yahoo_drop/_inbox/pull_*.json"))):
+        d = json.load(open(f))
+        if need is None or any(need in k for k in d.get("files", {})): return d
+    return None
 
 def standings(lid, names):
-    d = latest_pull(); rec = {}; divs = {}
+    d = latest_pull("standings"); rec = {}; divs = {}
     if not d: return rec, divs, "no standings file"
     f = next((v for k, v in d["files"].items() if "standings" in k), "")
     inv = {v.replace("’", "'"): k for k, v in names.items()}
