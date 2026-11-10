@@ -69,7 +69,7 @@ function chance(L, src){
   const pm = (M && M.pm && M.pm[L.key]) || {};
   const anyStarted = [...L.players, ...L.oppPlayers].some(started);
   if (!anyStarted && src !== "y"){
-    const set = (M && M.best && M.best[L.key] && M.best[L.key].set) || {};
+    const set = (M && M.best && M.best[L.key] && (M.best[L.key].bestn || M.best[L.key].set)) || {};   /* Nov 10 (Dom): best lineups, both sides */
     const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : src === "v" ? set.vegas : src === "b" ? set.rotoballer : src === "g" ? set.gotham : (set.clay ?? set.gotham);   /* the build's best-lineup number, both sides */
     if (v !== null && v !== undefined) return +v;
   }
