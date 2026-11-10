@@ -508,6 +508,7 @@ function scoreGlobe(L, k, o){
      "N GAMES LEFT" when nothing is on but games remain (every game with a starter from either side) · WIN green / LOSS red when final */
   const stL = [...L.players, ...L.oppPlayers].filter(isStarter), anyLive = stL.some(isLive);
   const gLeft = new Set(stL.filter(p => !isDone(p) && !isLive(p)).map(p => gameOf(p.tm) || (p.when || "").trim().toLowerCase() || p.tm)).size;
+  const gAll = fin ? 0 : new Set(stL.filter(p => !isDone(p)).map(p => gameOf(p.tm) || (p.when || "").trim().toLowerCase() || p.tm)).size;
   const zw = fin ? (o.me >= o.op ? "WIN" : "LOSS") : pre ? "PRE-GAME" : anyLive || !gLeft ? "LIVE" : gLeft + (gLeft === 1 ? " GAME LEFT" : " GAMES LEFT");
   const PAL = {"#3DDC84": ["#0F7A44", "#3DDC84", "#B4F8D2"], "#F7B32B": ["#A35E00", "#F7B32B", "#FFE6A8"],
     "#FF4D57": ["#9C1424", "#FF4D57", "#FFB3B8"], "#7FA3E0": ["#3B5684", "#7FA3E0", "#CFE0FF"]};
@@ -519,11 +520,14 @@ function scoreGlobe(L, k, o){
   let ticks = ""; for (let v = 0; v <= sc + .01; v += step / 5){ const f = v / sc, d = A0 + SW * f, maj = Math.abs(v % step) < .01 || Math.abs(v % step - step) < .01;
     const [x0, y0] = pt(55.5, d), [x1, y1] = pt(maj ? 59.5 : 57.6, d); ticks += `<line x1="${x0.toFixed(2)}" y1="${y0.toFixed(2)}" x2="${x1.toFixed(2)}" y2="${y1.toFixed(2)}" stroke="${maj ? "#C9D1E2" : "#46557A"}" stroke-width="${maj ? 1.1 : .6}"/>`;
     if (maj && v > 0 && (v % (step * 2) < .01 || sc / step <= 4)){ const [lx, ly] = pt(49.5, d); ticks += `<text x="${lx.toFixed(2)}" y="${(ly + 1.6).toFixed(2)}" text-anchor="middle" class="gtk">${Math.round(v)}</text>`; } }
-  const ring = (r, sw, val, proj, col, side) => { const [dk, md, lt] = PAL[col], fv = val / sc, fp = Math.max(proj, val) / sc, big = side === "m", on = big ? o.meOn : o.opOn;
+  /* Nov 9 noon (Dom): your ring starts in the league color and blends into your win color (green 55%+, gold 45-55, red under 45);
+     his starts gray and blends into the mirror - green when he's winning, red when he's losing. True gray track, no blue */
+  const ring = (r, sw, val, proj, col, side, c0) => { const [dk, md, lt] = PAL[col], fv = val / sc, fp = Math.max(proj, val) / sc, big = side === "m", on = big ? o.meOn : o.opOn;
     const pa = A0 + SW * Math.min(1, proj / sc), [tx0, ty0] = pt(r - sw / 2 - .4, pa), [tx1, ty1] = pt(r + sw / 2 + .4, pa), [ex, ey] = pt(r, A0 + SW * Math.min(1, fv));
-    return `<linearGradient id="${id}${side}g" gradientUnits="userSpaceOnUse" x1="${CX - r}" y1="${CY + r}" x2="${CX + r}" y2="${CY - r}"><stop offset="0" stop-color="${dk}"/><stop offset=".55" stop-color="${md}"/><stop offset="1" stop-color="${lt}"/></linearGradient>
-      <path d="${arc(r, 0, 1)}" fill="none" stroke="#141D33" stroke-width="${sw + 1.6}" stroke-linecap="round"/>
-      <path d="${arc(r, 0, 1)}" fill="none" stroke="#1C2742" stroke-width="${sw}" stroke-linecap="round"/>
+    const [gx0, gy0] = pt(r, A0), gfar = Math.hypot(ex - gx0, ey - gy0) > 6, gx1 = gfar ? ex : gx0 + 6, gy1 = gfar ? ey : gy0;
+    return `<linearGradient id="${id}${side}g" gradientUnits="userSpaceOnUse" x1="${gx0.toFixed(2)}" y1="${gy0.toFixed(2)}" x2="${gx1.toFixed(2)}" y2="${gy1.toFixed(2)}"><stop offset="0" stop-color="${c0}"/><stop offset=".35" stop-color="${c0}"/><stop offset="1" stop-color="${md}"/></linearGradient>
+      <path d="${arc(r, 0, 1)}" fill="none" stroke="#151617" stroke-width="${sw + 1.6}" stroke-linecap="round"/>
+      <path d="${arc(r, 0, 1)}" fill="none" stroke="#25272B" stroke-width="${sw}" stroke-linecap="round"/>
       <path d="${arc(r, fv, fp)}" fill="none" stroke="${md}" stroke-opacity=".28" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${big ? "2.2 1.4" : "1.6 1.2"}"/>
       ${val > 0 ? `<path d="${arc(r, 0, fv)}" fill="none" stroke="${md}" stroke-opacity=".35" stroke-width="${sw + 3}" stroke-linecap="round" filter="url(#${id}bl)"/>
       <g filter="url(#${id}ab)"><path d="${arc(r, 0, fv)}" fill="none" stroke="url(#${id}${side}g)" stroke-width="${sw}" stroke-linecap="round"/></g>
@@ -556,17 +560,17 @@ function scoreGlobe(L, k, o){
     <circle cx="${CX}" cy="${CY}" r="53.6" fill="none" stroke="#24304C" stroke-width=".6"/>
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
-    ${ring(44, 9.5, o.me, o.pMe, ZC, "m")}${ring(32.5, 5, o.op, o.pOp, "#7FA3E0", "o")}
+    ${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}hb)" stroke="#3A4A72" stroke-width=".7"/></g>
     <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}zg)"/>
     <path d="M${CX - 22} ${CY - 8} A 23 23 0 0 1 ${CX + 22} ${CY - 8}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round"/>
-    <text x="${CX}" y="${CY - 11}" text-anchor="middle" class="gk${anyLive && !fin ? " on" : ""}${zw.length > 8 ? " sm" : ""}" style="fill:${fin ? (o.me >= o.op ? "#3DDC84" : "#FF4D57") : ZC}">${zw}</text>
-    <text x="${CX}" y="${CY + 6}" text-anchor="middle" class="gsc${sv.length > 4 ? " lg" : ""}${o.meOn && !fin ? " on" : ""}" style="fill:${MC}">${sv}</text>
-    <text x="${CX}" y="${CY + 17}" text-anchor="middle" class="gop">${f1(o.op)}</text>
+    <text x="${CX}" y="${CY - 8}" text-anchor="middle" class="gk g2${anyLive && !fin ? " on" : ""}">${anyLive && !fin ? "LIVE" : "SCORE"}</text>
+    <text x="${CX}" y="${CY + 9}" text-anchor="middle" class="gsc g2${o.meOn && !fin ? " on" : ""}">${sv}</text>
     <path d="M${CX - 52} ${CY - 6} A 52 52 0 0 1 ${CX + 52} ${CY - 6} Q ${CX} ${CY - 22} ${CX - 52} ${CY - 6} Z" fill="url(#${id}gl)" pointer-events="none"/>
-    <g filter="url(#${id}ab)"><rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 41}" width="${pw.toFixed(1)}" height="14" rx="7" fill="#0B1222"/></g>
-    <rect x="${(CX - pw / 2).toFixed(1)}" y="${CY + 41}" width="${pw.toFixed(1)}" height="14" rx="7" fill="${MC}" fill-opacity="${pre ? .16 : .24}" stroke="${MC}" stroke-width="1"/>
-    <text x="${CX}" y="${CY + 51.4}" text-anchor="middle" class="gmg" style="fill:${pre ? "#C9CFDB" : MC}">${mtxt}</text>
+    <path id="${id}c1" d="M${pt(37, 150).map(v => v.toFixed(2)).join(" ")} A 37 37 0 0 0 ${pt(37, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
+    <path id="${id}c2" d="M${pt(48.5, 150).map(v => v.toFixed(2)).join(" ")} A 48.5 48.5 0 0 0 ${pt(48.5, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
+    <text class="gcv"><textPath href="#${id}c1" startOffset="50%" text-anchor="middle"><tspan class="gco">OPNT${pre ? " PROJ" : ""}</tspan> <tspan class="gcn">${f1(pre ? o.pOp : o.op)}</tspan> <tspan style="fill:${MC}">${mtxt.replace(/^PROJ /, "")}</tspan></textPath></text>
+    <text class="gcl"><textPath href="#${id}c2" startOffset="50%" text-anchor="middle">${gAll ? gAll + (gAll === 1 ? " GAME LEFT" : " GAMES LEFT") : "FINAL"}</textPath></text>
     <rect x="3" y="${CY + 62}" width="${W - 6}" height="15" rx="4" fill="#0A1122" stroke="#24304C" stroke-width=".7"/>
     <text x="${CX / 2 + 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${f1(o.pMe)}</tspan> · <tspan>${f1(o.pOp)}</tspan></text>
     <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 74}" stroke="#24304C" stroke-width=".7"/>
@@ -587,7 +591,7 @@ function meters(){
   const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck(), OBIAS = ourBias();
   /* Nov 9 9:56 AM (Dom): every league's Experts box lists the sources in accuracy order - #1 on top down to #7 - with a green check on the
      top three and nothing under the names; tap the box for the detail (How far off they were) */
-  const OLAB = {g: "GOTHAM", v: "VEGAS", r: "RATCLIFFE", k: "KOERNER", y: "YAHOO", c: "CLAY", b: "ROTO"};
+  const OLAB = {g: "GOTHAM", v: "VEGAS", r: "RATCLIFFE", k: "KOERNER", y: "YAHOO", c: "CLAY", b: "ROTOBALLER"};
   const ORBS = Object.keys(OLAB).sort((a, b) => (ORK[SRCID[a]] || 99) - (ORK[SRCID[b]] || 99)).map(s2 => [s2, OLAB[s2]]);
   const TILES = KEYS.map(k => { const L = lgS(k); if (!L) return null;
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive);
@@ -604,7 +608,7 @@ function meters(){
     const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k}%, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}<span class="xtx"><b>${nm}</b></span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="xtx"><b${s2 === "b" ? ' class="lng"' : ""}>${nm}</b>${OCK.includes(SRCID[s2]) ? `<i class="okb" aria-label="top three, used for pickups">&#10003;</i>` : ""}</span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -661,7 +665,7 @@ function accTable(){
      "1, Gotham" then points off to two decimals; green check on the top three = the three this week's pickups are averaged on;
      the pickup check's rules live here now, not under Diamonds in the Rough */
   const Q = panelQ(), A = (M && M.acc) || {}, P = PK || (M && M.pickups) || {};
-  const LBL = {Ratcliffe: "Ratcliffe", Koerner: "Koerner", Clay: "Clay", Vegas: "Vegas", RotoBaller: "Roto", Yahoo: "Yahoo", Gotham: "Gotham (engine)"};
+  const LBL = {Ratcliffe: "Ratcliffe", Koerner: "Koerner", Clay: "Clay", Vegas: "Vegas", RotoBaller: "RotoBaller", Yahoo: "Yahoo", Gotham: "Gotham (engine)"};
   const FPR = {Ratcliffe: (XACC.r || {}).rk, Koerner: (XACC.k || {}).rk};
   let rows = [], wk = "", np = "", basis = "";
   if (Q){ wk = Q.week; np = Q.players; basis = Q.basis || "";
@@ -675,7 +679,7 @@ function accTable(){
   const li = rows.map(x => x.r === null
       ? `<li><span class="n">–,</span><span class="nm">${LBL[x.n] || x.n}</span><span class="of ng">not graded yet</span></li>`
       : `<li class="${x.ck ? "ck" : ""}"><span class="n">${x.r},</span><span class="nm">${LBL[x.n] || x.n}${x.ck ? ` <span class="pk3" title="Top three by accuracy - this week's pickups are averaged on these">&#10003;</span>` : ""}</span><span class="of" title="${x.b === undefined || x.b === null ? "" : x.b >= 0 ? "usually projected high" : "usually projected low"}"><b>${pmSign(x.m, x.b)}</b></span>${x.ck && x.wait ? `<em>Week ${esc(String(x.wait))} numbers only so far - the next source steps in until the week-ahead numbers post</em>` : FPR[x.n] ? `<em>FantasyPros #${FPR[x.n]}</em>` : ""}</li>`).join("");
-  const top = rows.filter(x => x.ck).map(x => x.n === "RotoBaller" ? "Roto" : x.n);
+  const top = rows.filter(x => x.ck).map(x => x.n);
   return `<details class="fold accf" data-fold="accf"${FOLDS.accf ? " open" : ""}><summary>How far off they were <span class="cnt">${top.length ? "&#10003; " + esc(top.join(", ")) : "Week " + esc(String(wk || "-"))}</span></summary><div class="fb"><div class="acct">
     <div class="ach"><span>Week ${esc(String(wk || "-"))}${np ? ` · ${np} players` : ""}${basis ? " · " + esc(basis) : ""} · graded ${esc(A.graded || "-")}</span></div>
     <ol class="acl">${li}</ol>
@@ -1140,7 +1144,7 @@ function renderAll(){
   scrollTo(0, y); nextLabel();
 }
 document.addEventListener("toggle", (e) => { const d = e.target; if (!d.matches || !d.matches("details[data-fold]")) return; FOLDS[d.dataset.fold] = d.open; store.set("folds", FOLDS);
-  if (d.open && d.dataset.pkseen && d.classList.contains("chg")){ const [n, k, sg] = d.dataset.pkseen.split("|"); pkSeen(n, k, sg + "|" + (d.dataset.pkseen.split("|")[3] || "")); d.classList.remove("chg"); const r = d.querySelector(".rk i"); if (r) r.remove(); renderPickups(); } }, true);
+  if (d.open && d.dataset.pkseen && d.classList.contains("chg")){ const ps = d.dataset.pkseen.split("|"); pkSeen(ps[0], ps[1], ps.slice(2).join("|")); d.classList.remove("chg"); renderPickups(); } }, true);
 
 /* ---------- Nov 9 (Dom): TOP 5 PICKUPS moving forward - why, potential points rest of season, grade out of 100, built for EACH team ----------
    Built by live_sync/pickups.py into live/pickups. One tab per league (remembered). Grade = value 45 + workload 20 +
@@ -1153,14 +1157,36 @@ const PKW = {MUST: "must pick up", HOT: "hot", STASH: "stash", WATCH: "watch"};
 /* Nov 9 10:11 AM (Dom): "D. Achane" - first initial and last name; a defense stays "Vikings DEF" */
 const pkShort = (p) => { const n = String(p.name || ""); if (p.pos === "DEF" || p.pos === "DST" || /DEF$/.test(n)) return n.endsWith("DEF") ? n : (p.team || "") + " DEF";
   const w = n.replace(/ (Jr\.?|Sr\.?|II|III|IV|V)$/, "").split(" "); return w.length > 1 ? w[0][0] + ". " + w.slice(1).join(" ") : n; };
+/* Nov 9 noon (Dom): what each grade part means, under its bar */
+const PEX = {value: "points he adds over the man he'd replace, in this league's scoring", fit: "how well he fills what this team is short on",
+  workload: "his touches and snaps, and which way they're trending", playoffs: "his Weeks 15-17 matchups",
+  team: "how good his NFL offense is", path: "the chance more work opens up for him - an injury or a depth-chart change ahead of him"};
+/* Nov 9 noon (Dom): his points a game next to the man he'd replace, so the row says right away whether he helps.
+   Top-3 sources by last week's accuracy when the build marked them (his Nov 9 rule), otherwise Ratcliffe */
+function pkVs(p){ try { const X = (p.experts && p.experts.lines) || [], parse = (x) => { const m = String(x.txt || "").match(/^\s*([\d.]+)\s+vs\s+(.+?)\s+([\d.]+)/); return m ? {a: +m[1], who: m[2], b: +m[3]} : null; };
+    let use = X.filter(x => x.check).map(parse).filter(Boolean), lab = "top 3";
+    if (!use.length){ const r = X.find(x => /ratcliffe/i.test(x.ex || "")); const pr = r && parse(r); if (pr){ use = [pr]; lab = "Ratcliffe"; } }
+    if (!use.length) return null;
+    const a = use.reduce((t, u) => t + u.a, 0) / use.length, b = use.reduce((t, u) => t + u.b, 0) / use.length, who = use[0].who;
+    const sw = who.split(" "), sn = sw.length > 1 && !/DEF$/.test(who) ? sw[0][0] + ". " + sw.slice(1).join(" ").replace(/ (Jr\.|Sr\.|II|III|IV)$/, "") : who;
+    return {up: a > b, txt: `${a.toFixed(1)} a game vs ${b.toFixed(1)} ${esc(sn)} <i>${lab}</i>`}; } catch (e) { return null; } }
 const pkOrb = (g) => { const r = 9, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g || 0)) / 100, col = g >= 70 ? "#3FBF7F" : g >= 55 ? "#E5A93B" : "#8592AB";
   return `<svg class="pko" viewBox="0 0 24 24" aria-label="grade ${g} of 100"><circle cx="12" cy="12" r="${r}" fill="#0B1222" stroke="#1C2741" stroke-width="3"/><circle cx="12" cy="12" r="${r}" fill="none" stroke="${col}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 12 12)"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
 /* Nov 9 8:07 AM (Dom): "blink column when changes with recommended pickups" - each device remembers the list it last saw; a man who is new
    to a league's list, or whose tier or place moved, blinks his rank column (and that league's chip and tab) until his row is opened */
 const PKSEEN = store.get("pkseen", {});
-const pkSig = (p, i) => (p.tier || "WATCH") + "|" + (i + 1);
+const pkSig = (p, i) => (p.tier || "WATCH") + "|" + (i + 1) + "|" + (p.grade == null ? "" : p.grade);
+/* Nov 9 noon (Dom): no MOVE/TIER codes - say it plainly: new, "WATCH → HOT", or "grade 63 → 70". A list spot changing on its own
+   (because someone else moved) means nothing to him, so it isn't flagged - the stored mark just catches up quietly */
 function pkChanged(n, top){ const seen = PKSEEN[n]; if (!seen){ PKSEEN[n] = Object.fromEntries((top || []).map((p, i) => [p.key, pkSig(p, i)])); store.set("pkseen", PKSEEN); return {}; }
-  const out = {}; (top || []).forEach((p, i) => { const o = seen[p.key]; if (o !== pkSig(p, i)) out[p.key] = o ? (o.split("|")[0] !== (p.tier || "WATCH") ? "tier " + o.split("|")[0] + " → " + (p.tier || "WATCH") : "moved #" + o.split("|")[1] + " → #" + (i + 1)) : "new"; }); return out; }
+  const out = {}; let dirty = false;
+  (top || []).forEach((p, i) => { const o = seen[p.key], sig = pkSig(p, i); if (o === sig) return;
+    const T = p.tier || "WATCH"; if (!o){ out[p.key] = "new on the list"; return; }
+    const [ot, , og] = o.split("|");
+    if (ot !== T) out[p.key] = ot + " → " + T;
+    else if (og !== undefined && og !== "" && p.grade != null && +og !== +p.grade) out[p.key] = "grade " + og + " → " + p.grade;
+    else { seen[p.key] = sig; dirty = true; } });
+  if (dirty) store.set("pkseen", PKSEEN); return out; }
 function pkSeen(n, key, sig){ PKSEEN[n] = PKSEEN[n] || {}; PKSEEN[n][key] = sig; store.set("pkseen", PKSEEN); }
 function renderPickups(){
   const el = $("#pickups"); if (!el) return;
@@ -1192,13 +1218,14 @@ function renderPickups(){
     return `<svg class="pkr ${gc(g)}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#1C2741" stroke-width="4"/><circle cx="20" cy="20" r="${r}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 20 20)"/><text x="20" y="24.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
   const PART = [["value", "Value", 30], ["fit", "Your fit", 25], ["workload", "Workload", 15], ["playoffs", "Playoffs", 15], ["team", "Team", 5], ["path", "Path", 10]];
   const C = CHG[PKL] || {};
-  const rows = (L.top || []).map((p, i) => `<details class="pk2${C[p.key] ? " chg" : ""}" data-fold="pk-${PKL}-${i}" data-pkseen="${PKL}|${esc(p.key)}|${esc(pkSig(p, i))}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
-      <summary><span class="rk" title="${C[p.key] ? "Changed since you last looked: " + esc(C[p.key]) : ""}">${i + 1}${C[p.key] ? `<i>${C[p.key] === "new" ? "NEW" : C[p.key].startsWith("tier") ? "TIER" : "MOVE"}</i>` : ""}</span><span class="nm"><b>${esc(pkShort(p))}</b></span>${pkOrb(p.grade)}<span class="ic t-${tierOf(p)}" title="${PKW[tierOf(p)]}">${PKI[tierOf(p)]}</span></summary>
+  const rows = (L.top || []).map((p, i) => { const vs = pkVs(p), T = tierOf(p);
+    return `<details class="pk2 t-${T}${C[p.key] ? " chg" : ""}" data-fold="pk-${PKL}-${i}" data-pkseen="${PKL}|${esc(p.key)}|${esc(pkSig(p, i))}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
+      <summary><span class="rk">${i + 1}</span><span class="nm"><b>${esc(pkShort(p))}<em>${esc([p.pos === "DEF" || p.pos === "DST" ? "" : p.pos, p.team].filter(Boolean).join(" · "))}</em></b><span class="pkl2">${vs ? `<span class="pkvs ${vs.up ? "up" : "dn"}">${vs.txt}</span>` : ""}${C[p.key] ? `<span class="pkch">${esc(C[p.key])}</span>` : ""}</span></span>${pkOrb(p.grade)}<span class="ic t-${T}" title="${PKW[T]}">${PKI[T]}</span></summary>
       <div class="pkb"><div class="pkid">${esc(p.name)} · ${esc(p.pos)} · ${esc(p.team)} · <b>${Math.round(p.pts)}</b> pts rest of season · ${esc(String(p.status || ""))}</div>
-      <div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em></div>`).join("")}</div>
+      <div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em><small>${PEX[k]}</small></div>`).join("")}</div>
       ${p.tier_why ? `<div class="pkwhy t-${tierOf(p)}"><b>${tierOf(p)}</b> ${esc(p.tier_why)}</div>` : ""}
       <ul>${(p.why || []).map(w => `<li>${esc(w)}</li>`).join("")}</ul>
-      ${p.experts ? `<div class="pkx2"><b>Every source, most to least accurate</b> - ${esc(p.experts.verdict)} <em>(gold = in this man's top-3 check)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}${x.check ? " ck" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b>${x.rank ? `<small>${esc(x.rank)}</small>` : ""} ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`).join("");
+      ${p.experts ? `<div class="pkx2"><b>Every source, most to least accurate</b> - ${esc(p.experts.verdict)} <em>(gold = in this man's top-3 check)</em><ul>${(p.experts.lines || []).map(x => `<li class="${x.ok === true ? "up" : x.ok === false ? "dn" : ""}${x.check ? " ck" : ""}"><span>${x.ok === true ? "▲" : x.ok === false ? "▼" : "·"}</span><b>${esc(x.ex)}</b>${x.rank ? `<small>${esc(x.rank)}</small>` : ""} ${esc(x.txt)}${x.read ? ` <em>read ${esc(x.read.replace(/ 2026/, ""))}</em>` : ""}</li>`).join("")}</ul></div>` : ""}<div class="pst">${esc(p.status || "")}</div></div></details>`; }).join("");
   const PKT = String(P.built || "").replace(/^\w{3} \w{3} \d+ 20\d\d /, "").replace(/ PT$/, ""), NXT = nextUpdate();
   el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span><span class="pkts">${esc(PKT)}${NXT ? " · Next " + esc(NXT.replace(/ (AM|PM)$/, "")) : ""}</span>
     ${PKCHIPS}
@@ -1357,5 +1384,5 @@ function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; con
     <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>Alerts${live.length ? " (" + live.length + ")" : ""}</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }
 /* Nov 8 (Dom): the floating NEXT/TOP buttons covered Refresh on the first screen - show them only once he has scrolled past the controls */
-(function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("pickups") || document.getElementById("ctlTop"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
+(function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("ctlTop") || document.getElementById("pickups"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
   addEventListener("scroll", f, {passive: true}); addEventListener("resize", f); try { new ResizeObserver(f).observe(document.body); } catch (e) { setInterval(f, 2000); } f(); })();

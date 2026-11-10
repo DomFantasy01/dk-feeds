@@ -1378,7 +1378,7 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (min-width:561px){#msExp .mgrid.g-c .xg .xo .xtx b{font-size:11px !important;width:auto}#msExp .xtx .xoff{font-size:11px !important}#msExp .mgrid.g-c .xg .xo svg{width:30px !important;height:30px !important}}
 
 /* Nov 9 11:00 AM (Dom): slim button row under the status line */
-.ctl.ctls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) 34px;gap:5px;margin:6px 0 2px}
+.ctl.ctls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) 34px;gap:5px;margin:10px 0 2px}
 .ctl.ctls a,.ctl.ctls button{padding:5px 2px;font-size:15px;border-radius:6px}
 .ctl.ctls .fbtn{font-family:var(--f-body);font-size:14px;padding:4px 0}
 #findRow{margin:4px 0 0}
@@ -1407,4 +1407,40 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .mgrid.g-a .wtr svg,.mgrid.g-a .wtr .spk{width:24px !important;max-width:24px !important}
 .mgrid.g-a .wtr .wtd{font-size:9px}
 @media (min-width:561px){.mgrid.g-a .mxp b{font-size:22px !important}.mgrid.g-a .wtr svg,.mgrid.g-a .wtr .spk{width:40px !important;max-width:40px !important}.mgrid.g-a .wtr .wtd{font-size:11px}}
+
+/* Nov 9 noon (Dom): every Diamonds row outlined in its tier color; position/team after the name; per-game vs the man he'd replace;
+   any change written out in words (green chip) instead of MOVE/TIER codes; a plain line under each grade bar */
+.pk2[class*=" t-"]{border-color:color-mix(in srgb,var(--tc) 70%,#23314F) !important;box-shadow:0 0 8px -4px var(--tc) !important}
+.pk2.chg .rk{color:var(--brass)}
+.pk2 .nm b em{font:600 10.5px/1 var(--f-body) !important;color:#AAB2C3 !important;margin-left:5px}
+.pkl2{display:flex;flex-wrap:wrap;gap:2px 7px;align-items:baseline;min-width:0}
+.pkl2:empty{display:none}
+.pkvs{font:600 10.5px/1.3 var(--f-num);color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pkvs.up{color:#4FD08A}.pkvs.dn{color:#FF8A91}.pkvs i{font:600 9px/1 var(--f-body);font-style:normal;color:var(--mute)}
+.pkch{font:700 9.5px/1.4 var(--f-body);color:#04140A;background:#39FF88;border-radius:3px;padding:0 4px;white-space:nowrap}
+.pkb .parts div{row-gap:0}
+.pkb .parts small{grid-column:1/-1;font-size:10px;line-height:1.25;color:var(--mute);margin:0 0 3px}
+
+/* Nov 9 noon (Dom): scoreboard dial center = SCORE / LIVE + your score in white; his score, the margin and games left curve along the open bottom */
+.sgauge .gk.g2{font:700 6px var(--f-body) !important;letter-spacing:.24em !important;fill:#C9CFDB !important}
+.sgauge .gk.g2.on{fill:#8EDBAE !important}
+.sgauge .gsc.g2{font:700 16px var(--f-num) !important;fill:#F4F6FA !important;letter-spacing:-.04em}
+.sgauge .gcv{font:700 6.6px var(--f-num);letter-spacing:.01em}
+.sgauge .gco{font:700 5.2px var(--f-body);fill:#9AA0A8;letter-spacing:.12em}
+.sgauge .gcn{fill:#E6E8EC}
+.sgauge .gcl{font:700 4.8px var(--f-body);fill:#8E9196;letter-spacing:.2em}
+@media (prefers-reduced-motion:no-preference){.sgauge .gk.g2.on{animation:tbon 2.2s ease-in-out infinite}}
+@media (max-width:560px){#msExp .mgrid.g-c .xg .xo .xtx b.lng{font-size:6.4px !important;letter-spacing:-.03em !important}}
+/* Nov 10 (Dom): the green check sits behind the name, not in front of it */
+#msExp .mgrid.g-c .xg .xo .xtx,#msExp .xg .xo .xtx{flex-direction:row !important;align-items:center !important;gap:3px !important}
+#msExp .mgrid.g-c .xg .xo .xtx b{width:auto !important;min-width:0;flex:0 1 auto}
+#msExp .mgrid.g-c .xg .xo .okb,#msExp .xg .xo .okb,#msExp .xo .okb{position:static !important;transform:none !important;flex:none;display:inline-block;left:auto !important;top:auto !important}
+#msExp .mgrid.g-c .xg .xo{padding-left:3px !important;padding-right:1px !important;column-gap:2px !important}
+#msExp .mgrid.g-c .xg .xo .xtx{gap:2px !important}
+@media (max-width:560px){#msExp .mgrid.g-c .xg .xo .okb{width:8px !important;height:8px !important;font-size:6px !important;line-height:8px !important}#msExp .mgrid.g-c .xg .xo .xtx b{letter-spacing:-.03em !important}}
+@media (max-width:380px){#msExp .mgrid.g-c .xg .xo svg{width:18px !important;height:18px !important}#msExp .mgrid.g-c .xg .xo .xtx b{font-size:6.9px !important}}
+
+/* Nov 10 (Dom: "the player lights are blinking"): blinking means ONE thing - that player's game is on right now.
+   Injury-tag (amber) and unknown-status markers stay solid, and the color keys never blink. */
+.bk.trbl,.bk.unk,.mxdots i.trbl,.strip .sg i.trbl,.seg.trbl,.seg.unk,.gpr.trbl i,.gpr.unk i,.pkey .bk,.pkey i{animation:none!important;opacity:1!important}
 </style>
