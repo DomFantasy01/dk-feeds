@@ -113,14 +113,54 @@ def wheel(n, g, S, C):
     elif tot >= 55: verdict, vwhy = "LEAN", f"{tot}/100"
     elif sp["upside"] >= 14 and sp["drop"] >= 14: verdict, vwhy = "STASH", "big upside, cheap drop"
     else: verdict, vwhy = "PASS", f"{tot}/100"
-    return dict(name=g["name"], pos=pos, team=tm, tier=g.get("tier"), grade=g.get("grade"), spokes=sp, total=tot, verdict=verdict, vwhy=vwhy, why=why, move=move)
+    return dict(name=g["name"], replaces=g.get("replaces", ""), pos=pos, team=tm, tier=g.get("tier"), grade=g.get("grade"), spokes=sp, total=tot, verdict=verdict, vwhy=vwhy, why=why, move=move)
 
 out = dict(built=datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT"), test=True,
            note="TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
            pickups_built=PK.get("built"), champ_built=CH.get("built"), leagues={})
 for n, L in PK["leagues"].items():
     lab = LAB[n]; C = CH["leagues"].get(lab, {}); S = sim.get(lab)
-    out["leagues"][n] = dict(base=(S or {}).get("base", {}).get("playoff"), week=(S or {}).get("week"), picks=[wheel(n, g, S, C) for g in L["top"]])
+    out["leagues"][n] = dict(base=(S or {}).get("base", {}).get("playoff"), week_win=(S or {}).get("week"), picks=[wheel(n, g, S, C) for g in L["top"]])
+# ---- HOW IT IS WORKING (Dom, Nov 10: "so I can see it and how it is working")
+# Every run is logged by week (latest call per pick wins). Once a week's games are played, each call is graded on what
+# happened: did the pick outscore the starter he'd have replaced? Wheel (GO/LEAN = yes, PASS/NO MOVE = no) side by side with
+# Diamonds in the Rough (MUST/HOT = yes, WATCH = no); STASH is a long-term call and is not graded on one week.
+HF = os.path.join(R, "dispatch_out", "wheel_history.json")
+try: H = json.load(open(HF))
+except Exception: H = {"calls": {}}
+wk = next((int(L["week"]) for L in CH["leagues"].values() if L.get("week")), None)
+if wk:
+    for n, L in out["leagues"].items():
+        for w in L["picks"]:
+            H["calls"][f"{wk}|{n}|{w['name']}"] = dict(wk=wk, lg=n, name=w["name"], pos=w["pos"], replaces=w.get("replaces", ""), wheel=w["verdict"], tier=w["tier"], total=w["total"], at=out["built"])
+spath = os.path.join(os.environ.get("DK_ROOT", "/home/claude"), "dksys", "gate", "fresh", "stats_player_week_2026.csv")
+ACT = collections.defaultdict(dict)
+try:
+    if not os.path.exists(spath):
+        spath = OUT + ".stats"; open(spath, "wb").write(urllib.request.urlopen("https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv", timeout=60).read())
+    for r_ in csv.DictReader(open(spath)):
+        try: ACT[int(r_["week"])][r_["player_display_name"].lower()] = float(r_.get("fantasy_points_ppr") or 0)
+        except Exception: pass
+    if spath.endswith(".stats"): os.remove(spath)
+    print('WHEEL: weekly stats for weeks', sorted(ACT)[-3:])
+except Exception as e: print("WHEEL: no weekly stats to grade with -", str(e)[:100])
+YES = {"wheel": ("GO", "LEAN"), "tier": ("MUST", "HOT")}; NO = {"wheel": ("PASS", "NO MOVE"), "tier": ("WATCH",)}
+score = {"wheel": [0, 0], "tier": [0, 0]}; graded = []
+for c in H["calls"].values():
+    A = ACT.get(c["wk"]) or {}
+    if len(A) < 300 or c["pos"] in ("DEF", "K"): continue          # week not played yet (or a K/DEF, graded elsewhere)
+    a_, b_ = A.get(c["name"].lower()), A.get((c.get("replaces") or "").lower())
+    if a_ is None or b_ is None: continue
+    won = a_ > b_; c["actual"] = [round(a_, 1), round(b_, 1)]; row = dict(c)
+    for k in ("wheel", "tier"):
+        if c[k] in YES[k] + NO[k]:
+            right = (c[k] in YES[k]) == won; score[k][0] += right; score[k][1] += 1; row[k + "_right"] = right
+    graded.append(row)
+H["graded"] = dict(wheel=score["wheel"], diamonds=score["tier"], rows=sorted(graded, key=lambda r: (-r["wk"], r["lg"]))[:40],
+                   note="each call checked after the games: did the pick outscore the starter he'd replace (PPR points, nflverse)")
+H["built"] = out["built"]
+json.dump(H, open(HF, "w"), indent=1)
+out["record"] = dict(wheel=score["wheel"], diamonds=score["tier"], logged=len(H["calls"]), weeks=sorted({c["wk"] for c in H["calls"].values()}), rows=H["graded"]["rows"][:12])
 json.dump(out, open(OUT, "w"), indent=1)
 for n, L in out["leagues"].items():
     print(f"WHEEL DK{n}: playoff odds now {(L['base'] or 0) * 100:.1f}%")

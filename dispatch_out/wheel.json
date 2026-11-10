@@ -1,5 +1,5 @@
 {
- "built": "Tue Nov 10 2026 2:22 PM PT",
+ "built": "Tue Nov 10 2026 2:24 PM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
  "pickups_built": "Tue Nov 10 2026 1:37 PM PT",
@@ -7,10 +7,11 @@
  "leagues": {
   "1": {
    "base": 0.3,
-   "week": 0.651,
+   "week_win": 0.651,
    "picks": [
     {
      "name": "Corey Kiner",
+     "replaces": "Kaelon Black",
      "pos": "RB",
      "team": "NE",
      "tier": "HOT",
@@ -43,6 +44,7 @@
     },
     {
      "name": "Samaje Perine",
+     "replaces": "Kaelon Black",
      "pos": "RB",
      "team": "CIN",
      "tier": "STASH",
@@ -68,6 +70,7 @@
     },
     {
      "name": "Courtland Sutton",
+     "replaces": "Caleb Douglas",
      "pos": "WR",
      "team": "DEN",
      "tier": "STASH",
@@ -100,6 +103,7 @@
     },
     {
      "name": "Dylan Sampson",
+     "replaces": "Kaelon Black",
      "pos": "RB",
      "team": "CLE",
      "tier": "WATCH",
@@ -132,6 +136,7 @@
     },
     {
      "name": "Darren Waller",
+     "replaces": "Travis Kelce",
      "pos": "TE",
      "team": "CAR",
      "tier": "WATCH",
@@ -166,10 +171,11 @@
   },
   "2": {
    "base": 0.196,
-   "week": 0.477,
+   "week_win": 0.477,
    "picks": [
     {
      "name": "Caleb Douglas",
+     "replaces": "Germie Bernard",
      "pos": "WR",
      "team": "MIA",
      "tier": "HOT",
@@ -202,6 +208,7 @@
     },
     {
      "name": "Samaje Perine",
+     "replaces": "Jadarian Price",
      "pos": "RB",
      "team": "CIN",
      "tier": "HOT",
@@ -227,6 +234,7 @@
     },
     {
      "name": "Corey Kiner",
+     "replaces": "Jadarian Price",
      "pos": "RB",
      "team": "NE",
      "tier": "STASH",
@@ -259,6 +267,7 @@
     },
     {
      "name": "Xavier Hutchinson",
+     "replaces": "Germie Bernard",
      "pos": "WR",
      "team": "HOU",
      "tier": "WATCH",
@@ -291,6 +300,7 @@
     },
     {
      "name": "Kalif Raymond",
+     "replaces": "Germie Bernard",
      "pos": "WR",
      "team": "CHI",
      "tier": "WATCH",
@@ -318,10 +328,11 @@
   },
   "3": {
    "base": 0.011,
-   "week": 0.154,
+   "week_win": 0.154,
    "picks": [
     {
      "name": "Corey Kiner",
+     "replaces": "David Montgomery",
      "pos": "RB",
      "team": "NE",
      "tier": "HOT",
@@ -354,6 +365,7 @@
     },
     {
      "name": "Justice Hill",
+     "replaces": "David Montgomery",
      "pos": "RB",
      "team": "BAL",
      "tier": "STASH",
@@ -386,6 +398,7 @@
     },
     {
      "name": "Kaleb Johnson",
+     "replaces": "David Montgomery",
      "pos": "RB",
      "team": "GB",
      "tier": "WATCH",
@@ -418,6 +431,7 @@
     },
     {
      "name": "Kimani Vidal",
+     "replaces": "David Montgomery",
      "pos": "RB",
      "team": "LAC",
      "tier": "WATCH",
@@ -450,6 +464,7 @@
     },
     {
      "name": "Darren Waller",
+     "replaces": "T.J. Hockenson",
      "pos": "TE",
      "team": "CAR",
      "tier": "WATCH",
@@ -484,10 +499,11 @@
   },
   "4": {
    "base": 0.832,
-   "week": 0.734,
+   "week_win": 0.734,
    "picks": [
     {
      "name": "Samaje Perine",
+     "replaces": "Ollie Gordon II",
      "pos": "RB",
      "team": "CIN",
      "tier": "STASH",
@@ -520,6 +536,7 @@
     },
     {
      "name": "Xavier Hutchinson",
+     "replaces": "Jakobi Meyers",
      "pos": "WR",
      "team": "HOU",
      "tier": "WATCH",
@@ -552,6 +569,7 @@
     },
     {
      "name": "Adonai Mitchell",
+     "replaces": "Jakobi Meyers",
      "pos": "WR",
      "team": "NYJ",
      "tier": "WATCH",
@@ -584,6 +602,7 @@
     },
     {
      "name": "Kalif Raymond",
+     "replaces": "Jakobi Meyers",
      "pos": "WR",
      "team": "CHI",
      "tier": "WATCH",
@@ -609,6 +628,7 @@
     },
     {
      "name": "Antonio Williams",
+     "replaces": "Jakobi Meyers",
      "pos": "WR",
      "team": "WAS",
      "tier": "WATCH",
@@ -641,5 +661,20 @@
     }
    ]
   }
+ },
+ "record": {
+  "wheel": [
+   0,
+   0
+  ],
+  "diamonds": [
+   0,
+   0
+  ],
+  "logged": 20,
+  "weeks": [
+   10
+  ],
+  "rows": []
  }
 }
