@@ -1229,6 +1229,12 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .acct .pk3{display:inline-block;margin-left:6px;padding:0 5px;border:1px solid #3FBF7F;border-radius:6px;color:#3FBF7F;font-size:10.5px;font-weight:800;letter-spacing:.02em;vertical-align:1px}
 .acct tr.ref td{color:#8592AB}.acct tr.ref td.mi b{color:#AEB8CC;font-size:13px}.acct .ng{color:#6B7893}.acct td em .our{color:#E8C66A;font-weight:700}.acct tr.own td.en{color:#9FC3FF}
 .acct p{margin:6px 2px 0;font-size:10.5px;color:#8592AB;line-height:1.35}
+/* Nov 11 2:35 PM (Dom): Win Probability numbers shown clean - no glass orbs - so the controls fit on the first screen */
+.mgrid.g-a .wln2 .wo b.wpn{display:block;font:800 15px/1 var(--f-num, var(--f-body));letter-spacing:-.01em}
+.mgrid.g-a .wln2 .wo b.wpn.z-win{color:#3DDC84}.mgrid.g-a .wln2 .wo b.wpn.z-mid{color:#F7B32B}.mgrid.g-a .wln2 .wo b.wpn.z-lose{color:#FF4D57}
+@media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:13px}}
+@media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:26px}}
+#ctlBot{margin-top:8px}
 </style>
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}
@@ -1590,11 +1596,7 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 <div id="metersFrame" class="mwrap">
   <div id="meters"><div class="empty">Waiting for the first read.</div></div>
 </div>
-<div id="meters2"></div>
-<div id="pkTop"></div>
-<div id="pickups"></div>
-<div id="wheel"></div>
-<div id="ctlBot"><!-- Nov 9 11:30 AM (Dom): controls back at the bottom of the first screen, under Diamonds; everything else moves up -->
+<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls come up right under Win Probability; Experts and Diamonds move down -->
 <nav class="ctl ctls" id="ctlTop">
     <a href="https://football.fantasysports.yahoo.com/" target="_blank" rel="noopener">Yahoo</a>
     <a href="https://leagueblitz.app/" target="_blank" rel="noopener">Blitz</a>
@@ -1604,6 +1606,11 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 </nav>
 <div class="find" id="findRow" hidden><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
 <p class="rmsg" id="rmsg" hidden></p></div>
+<div id="meters2"></div>
+<div id="pkTop"></div>
+<div id="pickups"></div>
+<div id="wheel"></div>
+
 
 
 
@@ -2301,11 +2308,16 @@ function meters(){
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
-        const ZN = settled(L) ? (score(L.players) >= score(L.oppPlayers) ? "win" : "lose") : ZF(y), PZ = ZF(po === null || po === undefined ? null : po * 100);
+        /* Nov 11 2:35 PM (Dom: "worked out from the experts, not Yahoo"): the Scoreboard WEEK number and the fluid color are the RANKED
+           chance - the average of the top three sources by accuracy - with Yahoo's own number kept in the tooltip */
+        const RK = rankedOf(X, OCK), wk = RK ? Math.round(RK.v) : y, wkP = (() => { /* change since the last read, counted only over the top sources both reads have, so a source missing from the old read can't fake a jump */
+          const P0 = prev && prev.lg[k]; if (!RK || !P0) return null; const cm = RK.top.filter(s3 => P0[s3] !== null && P0[s3] !== undefined && !isNaN(P0[s3])); if (!cm.length) return null;
+          const a0 = cm.reduce((a, s3) => a + P0[s3], 0) / cm.length, a1 = cm.reduce((a, s3) => a + X[s3], 0) / cm.length; return wk - Math.round(a1 - a0); })();
+        const ZN = settled(L) ? (score(L.players) >= score(L.oppPlayers) ? "win" : "lose") : ZF(wk), PZ = ZF(po === null || po === undefined ? null : po * 100);
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}">${glassBubble(y, SLUG[k] + "wy")}<span class="ny">YAHOO</span></div>
+      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b class="wpn z-${ZF(y)}">${wp2(y)}%</b><span class="ny">YAHOO</span></div>
         ${(() => { const w0 = weekStart(k, "y"), tr = trailEntries().filter(e => S && e.w === S.week && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null).map(e => e.lg[k].y);
           const vals = [...(w0 !== null ? [w0] : []), ...tr, y].filter(v => v !== null && !isNaN(v)); if (vals.length < 2) return "";
           const d = Math.round(y - vals[0]), zc = y >= 55 ? "#3DDC84" : y >= 45 ? "#F7B32B" : "#FF4D57";
@@ -2314,11 +2326,11 @@ function meters(){
           const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, top = OCK.map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
           if (!top.length) return "";
           const t3 = top.reduce((a, s3) => a + X[s3], 0) / top.length, NM3 = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"};
-          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}">${glassBubble(t3, SLUG[k] + "wt")}<span class="nr">RANKED</span></div>`; })()}
+          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}"><b class="wpn z-${ZF(t3)}">${wp2(Math.round(t3))}%</b><span class="nr">RANKED</span></div>`; })()}
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
-        ${scoreGlobe(L, k, {y, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
-        <div class="sgx z-${ZN}"><div title="Yahoo's chance to win this week${yPrev === null ? "" : " · " + (y === yPrev ? "no change" : (y > yPrev ? "up " : "down ") + Math.abs(y - yPrev)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${wp2(y)}%${yPrev === null || y === yPrev ? "" : `<em class="${y > yPrev ? "up" : "dn"}">${y > yPrev ? "▲" : "▼"}${Math.abs(y - yPrev)}</em>`}</b></div>
+        ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
+        <div class="sgx z-${ZN}"><div title="Chance to win this week - RANKED, the average of your top three sources by accuracy${RK ? " (" + RK.top.map(s3 => ({r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"})[s3] + " " + Math.round(X[s3]) + "%").join(", ") + ")" : ""} · Yahoo says ${y}%${wkP === null ? "" : " · " + (wk === wkP ? "no change" : (wk > wkP ? "up " : "down ") + Math.abs(wk - wkP)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${wp2(wk)}%${wkP === null || wk === wkP ? "" : `<em class="${wk > wkP ? "up" : "dn"}">${wk > wkP ? "▲" : "▼"}${Math.abs(wk - wkP)}</em>`}</b></div>
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
