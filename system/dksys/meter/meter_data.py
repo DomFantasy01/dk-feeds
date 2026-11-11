@@ -403,8 +403,11 @@ if RF:
         for p in RJ['leagues'][lab]['players']:
             if p['slot'] not in ('BN', 'IR'): continue
             k = norm(p['player']); pos = POSMAP.get(k, 'WR'); tm = TEAMOF.get(k, '')
+            if DEFNICK.get(str(p['player']).strip()): pos, tm = 'DEF', DEFNICK[str(p['player']).strip()]   # Nov 11: bench defenses (Chiefs, Bucs...) were read as WRs with no numbers
             go = gm.get(k); go = None if go is None or (isinstance(go, float) and math.isnan(go)) else round(float(go), 2)
             sl = S.get(k)
+            if pos == 'DEF':
+                sl = KD.get(('DEF', tm)); _r = rc_of(cfg['k'], p['player'], 'DEF', tm); go = None if _r is None else round(float(_r), 2)   # same as a starting DEF: Ratcliffe on the Gotham needle
             _rcb = rc_of(cfg['k'], p['player'], pos, tm)
             out.append(dict(slot=p['slot'], player=p['player'], team=tm, status=p['status'], pos=pos, yahoo=None, actual=None,
                             gotham=go, sleeper=None if sl is None else round(float(sl), 2), window=TEAMWIN.get(tm),
