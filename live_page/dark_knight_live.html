@@ -1235,6 +1235,11 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
 @media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+/* Nov 11 3:55 PM (Dom): Win Probability numbers in the Scoreboard's font */
+html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:400 17px/1 var(--f-disp) !important;letter-spacing:.02em !important}
+@media (max-width:380px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:15px !important}}
+@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:24px !important}}
+.mgrid.g-b .sgx b em.z{color:var(--ink2);font-weight:600;letter-spacing:.05em}
 /* Nov 11 3:30 PM (Dom): Controls framed like the other sections */
 #ctlBot.ctlsec{padding:16px 10px 10px}
 #ctlBot.ctlsec .ctl{margin:0 !important}
@@ -1264,9 +1269,9 @@ html body .mgrid.g-a .mxd2 .wln.wln2{display:grid !important;grid-template-colum
 html body .mgrid.g-a .mxd2 .wln2 > .wtr{grid-column:1 / -1}
 html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacing:.02em}
 @media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:9.5px !important}}
-html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !important;letter-spacing:.01em !important}
-@media (max-width:380px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:11.5px !important}}
-@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:20px !important}}
+
+
+
 </style>
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}
@@ -1719,7 +1724,7 @@ const igOf = (p) => { const I = M && M.ingame; if (!I || !I.players) return null
   return I.players[norm(p.name)] || null; };
 const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim()) || ((igOf(p) || {}).s === "out" && !isDone(p));
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
-const started = (p) => isDone(p) || isLive(p);
+const started = (p) => (isDone(p) && !/^(Bye|No game)/i.test((p.when || "").trim())) || isLive(p);   /* Nov 11 (Dom): a man on bye has not "started" - it was flipping DK4 to LIVE 0.0 TIED before kickoff */
 /* each source's projected final for one man: Yahoo's live projection, or the expert's number (pm: [Ratcliffe, Clay, Koerner, Vegas]) */
 const SRCI = {r: 0, c: 1, k: 2, v: 3, b: 4};   /* Nov 8: b = RotoBaller (testing) */   /* Nov 7 (Dom): v = Vegas props */
 function manFinal(p, src, pm){
@@ -2388,7 +2393,11 @@ function meters(){
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
-        <div class="sgx z-${ZN}"><div title="Chance to win this week - RANKED, the average of your top three sources by accuracy${RK ? " (" + RK.top.map(s3 => ({r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"})[s3] + " " + Math.round(X[s3]) + "%").join(", ") + ")" : ""} · Yahoo says ${y}%${wkP === null ? "" : " · " + (wk === wkP ? "no change" : (wk > wkP ? "up " : "down ") + Math.abs(wk - wkP)) + " since the " + esc(ptTime(prev.t)) + " read"}"><span>WEEK</span><b class="z-${ZN}">${wp2(wk)}%${wkP === null || wk === wkP ? "" : `<em class="${wk > wkP ? "up" : "dn"}">${wk > wkP ? "▲" : "▼"}${Math.abs(wk - wkP)}</em>`}</b></div>
+        <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
+          Win Probability now). Before kickoff = Yahoo's projected margin; once games start = the live margin; final = the final margin */
+          const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
+          const tip = done ? `Final margin: ${f1(me)} to ${f1(op)}` : goNow ? `Live margin: ${f1(me)} to ${f1(op)} · you have ${meL} left to play, he has ${opL}` : `Projected margin (Yahoo's projections): ${f1(F.me)} to ${f1(F.op)}`;
+          return `<div title="${esc(tip)}"><span>${goNow && !done ? "LIVE MARGIN" : done ? "FINAL MARGIN" : "MARGIN"}</span><b class="z-${mz}">${mt > 0 ? "+" : mt < 0 ? "−" : ""}${Math.abs(mt)}</b></div>`; })()}
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>${(() => { /* Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
