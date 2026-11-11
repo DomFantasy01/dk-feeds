@@ -1387,6 +1387,13 @@ function renderPickups(){
   if (!P || !P.leagues){ el.innerHTML = ""; if (TOP) TOP.innerHTML = ""; return; }
   const TO = {MUST: 0, HOT: 1, STASH: 2, WATCH: 3};
   const tierOf = (p) => p.tier || "WATCH";
+  /* Nov 11 (Dom: "Kiner should not be listed - I picked him up"): never list a man already on Dom's roster in that league -
+     the newest Yahoo roster read and this week's lineup both count, so a pickup drops off the list as soon as either sees it */
+  { const mine = (n) => { const k = KEYS[+n - 1], L = lgS(k), out = new Set();
+      for (const r of ((M && M.rosters && M.rosters.t && M.rosters.t[DKP[k]]) || [])) out.add(norm(r[0]).toLowerCase());
+      if (L) for (const q of L.players) out.add(norm(q.name).toLowerCase()); return out; };
+    for (const n of ["1", "2", "3", "4"]){ const Lp = P.leagues[n]; if (!Lp || !Lp.top) continue; const own = mine(n);
+      if (Lp.top.some(q => own.has(norm(q.name).toLowerCase()))) P.leagues[n] = Object.assign({}, Lp, {top: Lp.top.filter(q => !own.has(norm(q.name).toLowerCase()))}); } }
   const CHG = Object.fromEntries(["1", "2", "3", "4"].map(n => [n, pkChanged(n, (P.leagues[n] || {}).top)]));
   /* top line: each league's best pickup by tier - MUST blinks (Dom, Nov 9: "blink ... pick up asap") */
   {
