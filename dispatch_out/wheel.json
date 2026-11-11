@@ -1,13 +1,13 @@
 {
- "built": "Wed Nov 11 2026 9:19 AM PT",
+ "built": "Wed Nov 11 2026 9:38 AM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Wed Nov 11 2026 9:18 AM PT",
- "champ_built": "Wed Nov 11 2026 09:16 AM PT",
+ "pickups_built": "Wed Nov 11 2026 9:38 AM PT",
+ "champ_built": "Wed Nov 11 2026 09:35 AM PT",
  "leagues": {
   "1": {
-   "base": 0.279,
-   "week_win": 0.548,
+   "base": 0.314,
+   "week_win": 0.643,
    "picks": [
     {
      "name": "Caleb Douglas",
@@ -163,8 +163,8 @@
    ]
   },
   "2": {
-   "base": 0.153,
-   "week_win": 0.322,
+   "base": 0.184,
+   "week_win": 0.428,
    "picks": [
     {
      "name": "Caleb Douglas",
@@ -177,24 +177,24 @@
       "team": 7.2,
       "consensus": 7.2,
       "upside": 15.5,
-      "drop": 18.8,
-      "stakes": 11.7
+      "drop": 19.2,
+      "stakes": 12.0
      },
-     "total": 60,
+     "total": 61,
      "verdict": "LEAN",
-     "vwhy": "60/100",
+     "vwhy": "61/100",
      "why": {
       "team": "MIA offense 15.8 a game (#31), last 3 games 18.7 (#22); team 12% wins; workload 14/15",
       "consensus": "-4% vs Germie Bernard (top-3 average); 2 of 7 sources have him ahead",
       "upside": "85 pts rest of season; Weeks 15-17 W15 GB (#6), W16 LAC (#4), W17 BUF (#10); path to a bigger role",
-      "drop": "drop Alvin Kamara: his loss alone +0.2 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week +0.4; playoff odds for the season +0.4; this week's game swings the playoff odds 6% to 34%; 5 rivals would start him"
+      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.5; this week's game swings the playoff odds 7% to 34%; 5 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
-      "d_week": 0.004,
-      "d_playoff": 0.004,
-      "d_title": 0.0003,
+      "d_week": -0.001,
+      "d_playoff": 0.005,
+      "d_title": 0.0,
       "ppg": -0.2,
       "games": 6
      }
@@ -210,8 +210,8 @@
       "team": 19.1,
       "consensus": 7.7,
       "upside": 13.1,
-      "drop": 18.8,
-      "stakes": 8.9
+      "drop": 19.2,
+      "stakes": 9.2
      },
      "total": 68,
      "verdict": "LEAN",
@@ -220,16 +220,49 @@
       "team": "CIN offense 30.0 a game (#2), last 3 games 37.3 (#1) - trending up; team 75% wins; workload 15/15",
       "consensus": "-8% vs Audric Estime (top-3 average); 2 of 5 sources have him ahead",
       "upside": "65 pts rest of season; Weeks 15-17 W15 CAR (#2), W16 IND (#6), W17 BAL (#23); path to a bigger role",
-      "drop": "drop Alvin Kamara: his loss alone +0.2 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week +0.4; playoff odds for the season +0.2; this week's game swings the playoff odds 6% to 34%; 2 rivals would start him"
+      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 2 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
-      "d_week": 0.004,
-      "d_playoff": 0.002,
-      "d_title": 0.0002,
+      "d_week": -0.001,
+      "d_playoff": 0.003,
+      "d_title": -0.0002,
       "ppg": -0.7,
       "games": 5
+     }
+    },
+    {
+     "name": "Emmett Johnson",
+     "replaces": "Audric Estime",
+     "pos": "RB",
+     "team": "KC",
+     "tier": "HOT",
+     "grade": 58,
+     "spokes": {
+      "team": 11.7,
+      "consensus": 11.8,
+      "upside": 10.1,
+      "drop": 19.2,
+      "stakes": 10.8
+     },
+     "total": 64,
+     "verdict": "LEAN",
+     "vwhy": "64/100",
+     "why": {
+      "team": "KC offense 25.2 a game (#10), last 3 games 20.7 (#19) - trending down; team 75% wins; workload 8/15",
+      "consensus": "+11% vs Audric Estime (top-3 average); 2 of 4 sources have him ahead",
+      "upside": "66 pts rest of season; Weeks 15-17 W15 NE (#29), W16 SF (#16), W17 LAC (#12); path to a bigger role",
+      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.2; this week's game swings the playoff odds 7% to 34%; 3 rivals would start him"
+     },
+     "move": {
+      "drop": "Alvin Kamara",
+      "d_week": -0.001,
+      "d_playoff": 0.002,
+      "d_title": 0.0003,
+      "ppg": -0.3,
+      "games": 6
      }
     },
     {
@@ -243,59 +276,26 @@
       "team": 15.8,
       "consensus": 9.8,
       "upside": 12.0,
-      "drop": 18.8,
-      "stakes": 10.9
+      "drop": 19.2,
+      "stakes": 11.2
      },
-     "total": 67,
+     "total": 68,
      "verdict": "LEAN",
-     "vwhy": "67/100",
+     "vwhy": "68/100",
      "why": {
       "team": "JAX offense 28.6 a game (#4), last 3 games 35.3 (#2) - trending up; team 75% wins; workload 7/15",
       "consensus": "+5% vs Audric Estime (top-3 average); 2 of 5 sources have him ahead",
       "upside": "70 pts rest of season; Weeks 15-17 W15 HOU (#13), W16 DAL (#4), W17 WAS (#24); path to a bigger role",
-      "drop": "drop Alvin Kamara: his loss alone +0.2 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week +0.4; playoff odds for the season +0.2; this week's game swings the playoff odds 6% to 34%; 3 rivals would start him"
+      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 3 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
-      "d_week": 0.004,
-      "d_playoff": 0.002,
-      "d_title": 0.0002,
+      "d_week": -0.001,
+      "d_playoff": 0.003,
+      "d_title": -0.0002,
       "ppg": -0.7,
       "games": 5
-     }
-    },
-    {
-     "name": "Emmett Johnson",
-     "replaces": "Audric Estime",
-     "pos": "RB",
-     "team": "KC",
-     "tier": "STASH",
-     "grade": 57,
-     "spokes": {
-      "team": 11.7,
-      "consensus": 11.7,
-      "upside": 10.1,
-      "drop": 18.8,
-      "stakes": 10.9
-     },
-     "total": 63,
-     "verdict": "LEAN",
-     "vwhy": "63/100",
-     "why": {
-      "team": "KC offense 25.2 a game (#10), last 3 games 20.7 (#19) - trending down; team 75% wins; workload 8/15",
-      "consensus": "+10% vs Audric Estime (top-3 average); 2 of 4 sources have him ahead",
-      "upside": "66 pts rest of season; Weeks 15-17 W15 NE (#29), W16 SF (#16), W17 LAC (#12); path to a bigger role",
-      "drop": "drop Alvin Kamara: his loss alone +0.2 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week +0.4; playoff odds for the season +0.2; this week's game swings the playoff odds 6% to 34%; 3 rivals would start him"
-     },
-     "move": {
-      "drop": "Alvin Kamara",
-      "d_week": 0.004,
-      "d_playoff": 0.002,
-      "d_title": 0.0005,
-      "ppg": -0.3,
-      "games": 6
      }
     },
     {
@@ -309,8 +309,8 @@
       "team": 14.9,
       "consensus": 0.3,
       "upside": 11.7,
-      "drop": 18.8,
-      "stakes": 8.9
+      "drop": 19.2,
+      "stakes": 9.2
      },
      "total": 55,
      "verdict": "NO MOVE",
@@ -319,14 +319,14 @@
       "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 11/15",
       "consensus": "-28% vs Germie Bernard (top-3 average); 0 of 6 sources have him ahead",
       "upside": "65 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Alvin Kamara: his loss alone +0.2 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week +0.4; playoff odds for the season +0.2; this week's game swings the playoff odds 6% to 34%; 2 rivals would start him"
+      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 2 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
-      "d_week": 0.004,
-      "d_playoff": 0.002,
-      "d_title": 0.0002,
+      "d_week": -0.001,
+      "d_playoff": 0.003,
+      "d_title": -0.0002,
       "ppg": -0.7,
       "games": 5
      }
@@ -334,8 +334,8 @@
    ]
   },
   "3": {
-   "base": 0.017,
-   "week_win": 0.224,
+   "base": 0.019,
+   "week_win": 0.282,
    "picks": [
     {
      "name": "Xavier Hutchinson",
@@ -348,23 +348,23 @@
       "team": 14.9,
       "consensus": 6.7,
       "upside": 11.7,
-      "drop": 19.2,
-      "stakes": 9.2
+      "drop": 18.8,
+      "stakes": 8.8
      },
-     "total": 62,
+     "total": 61,
      "verdict": "LEAN",
-     "vwhy": "62/100",
+     "vwhy": "61/100",
      "why": {
       "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 11/15",
       "consensus": "+0% vs Josh Downs (top-3 average); 1 of 6 sources have him ahead",
       "upside": "65 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Kaleb Johnson: his loss alone -0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week -0.1; playoff odds for the season -0.2; this week's game swings the playoff odds 0% to 6%; 3 rivals would start him"
+      "drop": "drop Kaleb Johnson: his loss alone -0.3 playoff odds; no rival would start him",
+      "stakes": "chance to win this week -0.3; playoff odds for the season -0.3; this week's game swings the playoff odds 0% to 6%; 3 rivals would start him"
      },
      "move": {
       "drop": "Kaleb Johnson",
-      "d_week": -0.001,
-      "d_playoff": -0.002,
+      "d_week": -0.003,
+      "d_playoff": -0.003,
       "d_title": 0.0,
       "ppg": -3.2,
       "games": 3
@@ -407,8 +407,8 @@
       "team": 13.2,
       "consensus": 4.0,
       "upside": 10.7,
-      "drop": 19.2,
-      "stakes": 7.2
+      "drop": 18.8,
+      "stakes": 6.8
      },
      "total": 54,
      "verdict": "NO MOVE",
@@ -417,13 +417,13 @@
       "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 6/15",
       "consensus": "-16% vs Josh Downs (top-3 average); 1 of 6 sources have him ahead",
       "upside": "55 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Kaleb Johnson: his loss alone -0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week -0.1; playoff odds for the season -0.2; this week's game swings the playoff odds 0% to 6%; 2 rivals would start him"
+      "drop": "drop Kaleb Johnson: his loss alone -0.3 playoff odds; no rival would start him",
+      "stakes": "chance to win this week -0.3; playoff odds for the season -0.3; this week's game swings the playoff odds 0% to 6%; 2 rivals would start him"
      },
      "move": {
       "drop": "Kaleb Johnson",
-      "d_week": -0.001,
-      "d_playoff": -0.002,
+      "d_week": -0.003,
+      "d_playoff": -0.003,
       "d_title": 0.0,
       "ppg": -3.2,
       "games": 3
@@ -440,8 +440,8 @@
       "team": 11.8,
       "consensus": 1.5,
       "upside": 10.7,
-      "drop": 19.2,
-      "stakes": 7.2
+      "drop": 18.8,
+      "stakes": 6.8
      },
      "total": 50,
      "verdict": "NO MOVE",
@@ -450,13 +450,13 @@
       "team": "DEN offense 22.0 a game (#20), last 3 games 28.0 (#9) - trending up; team 78% wins; workload 8/15",
       "consensus": "-21% vs Josh Downs (top-3 average); 0 of 4 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 LV (#12), W16 BUF (#10), W17 NE (#2)",
-      "drop": "drop Kaleb Johnson: his loss alone -0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week -0.1; playoff odds for the season -0.2; this week's game swings the playoff odds 0% to 6%; 2 rivals would start him"
+      "drop": "drop Kaleb Johnson: his loss alone -0.3 playoff odds; no rival would start him",
+      "stakes": "chance to win this week -0.3; playoff odds for the season -0.3; this week's game swings the playoff odds 0% to 6%; 2 rivals would start him"
      },
      "move": {
       "drop": "Kaleb Johnson",
-      "d_week": -0.001,
-      "d_playoff": -0.002,
+      "d_week": -0.003,
+      "d_playoff": -0.003,
       "d_title": 0.0,
       "ppg": -3.2,
       "games": 3
@@ -473,33 +473,33 @@
       "team": 11.2,
       "consensus": 9.0,
       "upside": 11.5,
-      "drop": 19.2,
-      "stakes": 8.8
+      "drop": 12.4,
+      "stakes": 8.4
      },
-     "total": 60,
-     "verdict": "LEAN",
-     "vwhy": "60/100",
+     "total": 52,
+     "verdict": "PASS",
+     "vwhy": "52/100",
      "why": {
       "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 0/15",
       "consensus": "+4% vs Josh Downs (top-3 average); 2 of 6 sources have him ahead",
       "upside": "64 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Kaleb Johnson: his loss alone -0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week -0.2; playoff odds for the season -0.3; this week's game swings the playoff odds 0% to 6%; 4 rivals would start him"
+      "drop": "drop David Montgomery: his loss alone -0.4 playoff odds; a rival would start him (Maly\u2019s Better Half, Bad and Bougie 2.0)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season -0.4; this week's game swings the playoff odds 0% to 6%; 4 rivals would start him"
      },
      "move": {
-      "drop": "Kaleb Johnson",
-      "d_week": -0.002,
-      "d_playoff": -0.003,
-      "d_title": 0.0,
-      "ppg": -3.0,
-      "games": 3
+      "drop": "David Montgomery",
+      "d_week": 0.0,
+      "d_playoff": -0.004,
+      "d_title": -0.0002,
+      "ppg": -1.1,
+      "games": 4
      }
     }
    ]
   },
   "4": {
-   "base": 0.782,
-   "week_win": 0.708,
+   "base": 0.808,
+   "week_win": 0.794,
    "picks": [
     {
      "name": "Samaje Perine",
@@ -512,24 +512,24 @@
       "team": 19.1,
       "consensus": 0.0,
       "upside": 12.0,
-      "drop": 2.4,
+      "drop": 4.0,
       "stakes": 0.0
      },
-     "total": 34,
+     "total": 35,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts, Drop cost, Stakes & opponents",
      "why": {
       "team": "CIN offense 30.0 a game (#2), last 3 games 37.3 (#1) - trending up; team 75% wins; workload 15/15",
       "consensus": "-52% vs Ollie Gordon II (top-3 average); 0 of 7 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 CAR (#2), W16 IND (#6), W17 BAL (#23); path to a bigger role",
-      "drop": "drop Wan'Dale Robinson: his loss alone -3.9 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -3.9; this week's game swings the playoff odds 62% to 85%; 1 rivals would start him"
+      "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season -3.5; this week's game swings the playoff odds 61% to 86%; 1 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
-      "d_playoff": -0.039,
-      "d_title": -0.0037,
+      "d_playoff": -0.035,
+      "d_title": -0.0032,
       "ppg": -9.9,
       "games": 1
      }
@@ -545,24 +545,24 @@
       "team": 14.9,
       "consensus": 1.7,
       "upside": 11.5,
-      "drop": 2.4,
-      "stakes": 4.0
+      "drop": 4.0,
+      "stakes": 4.8
      },
-     "total": 34,
+     "total": 37,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts, Drop cost, Stakes & opponents",
      "why": {
       "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 11/15",
       "consensus": "-36% vs Omar Cooper Jr. (top-3 average); 1 of 6 sources have him ahead",
       "upside": "64 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Wan'Dale Robinson: his loss alone -3.9 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -1.0; this week's game swings the playoff odds 62% to 85%; 1 rivals would start him"
+      "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season -0.8; this week's game swings the playoff odds 61% to 86%; 1 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
-      "d_playoff": -0.01,
-      "d_title": -0.0008,
+      "d_playoff": -0.008,
+      "d_title": -0.0007,
       "ppg": -2.6,
       "games": 1
      }
@@ -578,8 +578,8 @@
       "team": 8.1,
       "consensus": 11.0,
       "upside": 13.3,
-      "drop": 2.4,
-      "stakes": 16.9
+      "drop": 4.0,
+      "stakes": 16.0
      },
      "total": 52,
      "verdict": "NO MOVE",
@@ -588,14 +588,14 @@
       "team": "PIT offense 22.5 a game (#17), last 3 games 23.0 (#17); team 75% wins; workload 0/15",
       "consensus": "-7% vs Omar Cooper Jr. (top-3 average); 5 of 7 sources have him ahead",
       "upside": "93 pts rest of season; Weeks 15-17 W15 BAL (#11), W16 CAR (#16), W17 TEN (#1)",
-      "drop": "drop Wan'Dale Robinson: his loss alone -3.9 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.3; playoff odds for the season +1.7; this week's game swings the playoff odds 62% to 85%; 3 rivals would start him"
+      "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
+      "stakes": "chance to win this week +0.1; playoff odds for the season +1.5; this week's game swings the playoff odds 61% to 86%; 3 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
-      "d_week": 0.003,
-      "d_playoff": 0.017,
-      "d_title": 0.002,
+      "d_week": 0.001,
+      "d_playoff": 0.015,
+      "d_title": 0.0015,
       "ppg": 1.5,
       "games": 4
      }
@@ -611,24 +611,24 @@
       "team": 10.1,
       "consensus": 4.4,
       "upside": 9.9,
-      "drop": 2.4,
+      "drop": 4.0,
       "stakes": 0.0
      },
-     "total": 27,
+     "total": 28,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts, Drop cost, Stakes & opponents",
      "why": {
       "team": "NYJ offense 20.2 a game (#25), last 3 games 23.3 (#16) - trending up; team 22% wins; workload 15/15",
       "consensus": "-21% vs Omar Cooper Jr. (top-3 average); 2 of 7 sources have him ahead",
       "upside": "69 pts rest of season; Weeks 15-17 W15 ARI (#15), W16 NE (#2), W17 MIN (#30)",
-      "drop": "drop Wan'Dale Robinson: his loss alone -3.9 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -3.4; this week's game swings the playoff odds 62% to 85%; 2 rivals would start him"
+      "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season -2.7; this week's game swings the playoff odds 61% to 86%; 2 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
-      "d_playoff": -0.034,
-      "d_title": -0.0035,
+      "d_playoff": -0.027,
+      "d_title": -0.0022,
       "ppg": -4.4,
       "games": 2
      }

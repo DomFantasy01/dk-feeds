@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Wed Nov 11 9:18 AM PT",
- "built_utc": "2026-11-11T17:18:33.217364+00:00",
+ "built": "Wed Nov 11 9:38 AM PT",
+ "built_utc": "2026-11-11T17:38:16.105191+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Wed Nov 11 9:12 AM PT",
-   "pulled_ago": "6 min ago",
-   "items": 2482,
+   "pulled": "Wed Nov 11 9:33 AM PT",
+   "pulled_ago": "5 min ago",
+   "items": 2486,
    "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Wed Nov 11 9:12 AM PT",
-   "pulled_ago": "6 min ago",
-   "items": 6966,
-   "newest": "6 min ago",
+   "pulled": "Wed Nov 11 9:33 AM PT",
+   "pulled_ago": "5 min ago",
+   "items": 6975,
+   "newest": "8 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Wed Nov 11 9:12 AM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Wed Nov 11 9:33 AM PT",
+   "pulled_ago": "5 min ago",
    "items": 1745,
-   "newest": "51 min ago",
+   "newest": "1.2 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Wed Nov 11 9:12 AM PT",
-   "pulled_ago": "6 min ago",
-   "items": 418,
-   "newest": "7 min ago",
+   "pulled": "Wed Nov 11 9:33 AM PT",
+   "pulled_ago": "5 min ago",
+   "items": 417,
+   "newest": "14 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Wed Nov 11 9:12 AM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Wed Nov 11 9:33 AM PT",
+   "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,16 +50,16 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Wed Nov 11 9:15 AM PT",
+   "pulled": "Wed Nov 11 9:35 AM PT",
    "pulled_ago": "3 min ago",
-   "items": 769,
+   "items": 768,
    "newest": null,
    "warn": null,
    "failed": null
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Wed Nov 11 2026 09:16 AM PT",
+   "pulled": "Wed Nov 11 2026 09:35 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Wed Nov 11 8:43 AM PT",
-   "pulled_ago": "36 min ago",
+   "pulled_ago": "55 min ago",
    "items": 364,
    "newest": null,
    "warn": null,
@@ -592,12 +592,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -630,7 +630,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #7 (910,917 in 24 h)"
+      "Sleeper adds #7 (870,831 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -667,7 +667,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (399,573 in 24 h)"
+      "Sleeper adds #12 (389,061 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -889,12 +889,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -994,26 +994,27 @@
      "pos": "WR",
      "team": "NYJ",
      "marker": {
-      "count": 1,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "caution"
+       "caution",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Wed Nov 11 9:02 AM PT",
-       "src": "ESPN injury report",
-       "title": "Omar Cooper Jr.: Questionable (Ankle)",
-       "text": "questionable",
+       "t": "Wed Nov 11 9:30 AM PT",
+       "src": "RotoWire news",
+       "title": "Omar Cooper: To be limited in Wednesday's practice",
+       "text": "Cooper (ankle) will be limited in Wednesday's practice, Brian Costello of the New York Post reports.",
        "grade": "caution"
       },
       {
-       "t": "Sun Nov 8 4:27 PM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper Jr.: Eight catches in Wilson's absence",
-       "text": "Cooper caught eight of 11 targets for 58 yards in Sunday's 35-12 loss to the Chiefs.",
+       "t": "Wed Nov 11 9:28 AM PT",
+       "src": "rotoballer",
+       "title": "Omar Cooper Jr. Will be \"Just Fine\"",
+       "text": "New York Jets rookie first-round wide receiver Omar Cooper Jr. (ankle) will be \"just fine,\" head coach Aaron Glenn told [&#8230;]",
        "grade": "note"
       }
      ],
@@ -1580,7 +1581,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #13 (337,770 in 24 h)"
+      "Sleeper adds #13 (321,786 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1839,12 +1840,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -1869,12 +1870,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -2527,7 +2528,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #16 (293,728 in 24 h)"
+      "Sleeper adds #16 (282,456 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2564,7 +2565,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #7 (910,917 in 24 h)"
+      "Sleeper adds #7 (870,831 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2638,7 +2639,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #4 (1,248,888 in 24 h)"
+      "Sleeper adds #4 (1,260,832 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2675,7 +2676,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #13 (337,770 in 24 h)"
+      "Sleeper adds #13 (321,786 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2860,12 +2861,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -2890,12 +2891,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -3002,34 +3003,35 @@
      "team": "NYJ",
      "slot": "WR",
      "marker": {
-      "count": 1,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "caution"
+       "caution",
+       "note"
       ]
      },
      "news": [
+      {
+       "t": "Wed Nov 11 9:30 AM PT",
+       "src": "RotoWire news",
+       "title": "Omar Cooper: To be limited in Wednesday's practice",
+       "text": "Cooper (ankle) will be limited in Wednesday's practice, Brian Costello of the New York Post reports.",
+       "grade": "caution"
+      },
+      {
+       "t": "Wed Nov 11 9:28 AM PT",
+       "src": "rotoballer",
+       "title": "Omar Cooper Jr. Will be \"Just Fine\"",
+       "text": "New York Jets rookie first-round wide receiver Omar Cooper Jr. (ankle) will be \"just fine,\" head coach Aaron Glenn told [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Wed Nov 11 9:02 AM PT",
        "src": "ESPN injury report",
        "title": "Omar Cooper Jr.: Questionable (Ankle)",
        "text": "questionable",
        "grade": "caution"
-      },
-      {
-       "t": "Sun Nov 8 4:27 PM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper Jr.: Eight catches in Wilson's absence",
-       "text": "Cooper caught eight of 11 targets for 58 yards in Sunday's 35-12 loss to the Chiefs.",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Nov 7 8:47 AM PT",
-       "src": "rotoballer",
-       "title": "Omar Cooper Jr. Has Rebound Potential in Week 9",
-       "text": "New York Jets wide receiver Omar Cooper Jr. played 50 of 64 offensive snaps against Las Vegas last week without [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 14.2,
@@ -3128,7 +3130,7 @@
      "team": "MIN",
      "slot": "WR",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -3136,6 +3138,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Wed Nov 11 9:13 AM PT",
+       "src": "RotoWire news",
+       "title": "Justin Jefferson: Gets QB upgrade at deadline",
+       "text": "Jefferson stands to benefit from Tuesday's acquisition of Kirk Cousins , who is expected to take over as the Vikings' starting quarterback beginning with Sunday's game against the Packers, Michael F. Florio of ESPN.com reports.",
+       "grade": "note"
+      },
       {
        "t": "Wed Nov 11 8:27 AM PT",
        "src": "ESPN news",
@@ -3148,13 +3157,6 @@
        "src": "pft",
        "title": "Justin Jefferson: Vikings' offense didn't get it done, we've got to figure it out",
        "text": "Jefferson finished with three catches for 58 yards in the Vikings' 23-6 loss to the Bills.",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 9 10:48 PM PT",
-       "src": "rotoballer",
-       "title": "Justin Jefferson Disappoints Again Despite Huge Volume",
-       "text": "Minnesota Vikings wide receiver Justin Jefferson caught three of 11 passes for 58 yards in his team's 23-6 loss to [&#8230;]",
        "grade": "note"
       }
      ],
@@ -3628,12 +3630,12 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
-      "opening: Omar Cooper Jr. \u2014 questionable/limited (ESPN injury report)"
+      "opening: Garrett Wilson \u2014 bad news (ESPN injury report)",
+      "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
        "opening"
@@ -3666,7 +3668,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #7 (910,917 in 24 h)"
+      "Sleeper adds #7 (870,831 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3703,7 +3705,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (399,573 in 24 h)"
+      "Sleeper adds #12 (389,061 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3740,7 +3742,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #13 (337,770 in 24 h)"
+      "Sleeper adds #13 (321,786 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4038,7 +4040,7 @@
      "pos": "WR",
      "team": "CLE",
      "marker": {
-      "count": 3,
+      "count": 4,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -4048,18 +4050,18 @@
      },
      "news": [
       {
+       "t": "Wed Nov 11 9:13 AM PT",
+       "src": "rotoballer",
+       "title": "Denzel Boston Not Expected to Practice on Wednesday",
+       "text": "Cleveland Browns rookie wide receiver Denzel Boston (toe) is not expected to participate in the team's first practice of the [&#8230;]",
+       "grade": "note"
+      },
+      {
        "t": "Wed Nov 11 9:12 AM PT",
        "src": "RotoWire news",
        "title": "Denzel Boston: Not in line to practice Wednesday",
        "text": "Boston isn't expected to practice Wednesday due to a toe injury, Daniel Oyefusi reports.",
        "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 9:12 AM PT",
-       "src": "ESPN injury report",
-       "title": "Denzel Boston: Questionable (Toe)",
-       "text": "Boston isn't expected to practice Wednesday due to a toe injury, Daniel Oyefusi reports.",
-       "grade": "caution"
       }
      ],
      "gotham": 7.7,
