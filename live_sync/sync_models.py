@@ -359,6 +359,13 @@ except Exception as _e: print('wheel skipped:', str(_e)[:120])
 # Size guard: keep the document under 250,000 bytes by shedding the least-needed riders first (the page falls back to live/pickups).
 def _size(o): return len(json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
 CAP = 250000
+if _size(cur) > CAP and cur.get('wheel'):   # Nov 11: trim the test wheel before dropping it - spoke reasons go first, the wheels stay
+    _w = cur['wheel']
+    for _L in (_w.get('leagues') or {}).values():
+        for _p in _L.get('picks', []):
+            _p.pop('why', None); _p.pop('team', None); _p.pop('grade', None)
+    if isinstance(_w.get('record'), dict): _w['record'].pop('rows', None)
+    print('size guard: wheel (test) trimmed to', _size(cur))
 if _size(cur) > CAP and cur.get('wheel'):
     cur.pop('wheel', None); print('size guard: wheel (test) left off Live')
 if _size(cur) > CAP and cur.get('pickups'):
