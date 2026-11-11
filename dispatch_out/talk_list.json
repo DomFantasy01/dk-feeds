@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Wed Nov 11 2026 01:41 PM PT",
+ "built": "Wed Nov 11 2026 02:18 PM PT",
  "ratcliffe_read": "Wed Nov 11 2026 12:26 PM PT",
  "koerner_read": "Wed Nov 11 2026 1:04 PM PT",
  "leagues": {
@@ -31,6 +31,19 @@
      "scout": true,
      "id": "talk:chasemclaughlin",
      "first_seen": "Wed Nov 11 2026 02:09 AM PT"
+    },
+    {
+     "name": "Dalton Kincaid",
+     "pos": "TE",
+     "team": "BUF",
+     "acq": "Waivers, clears Nov 14",
+     "over": "Jordan Addison",
+     "pct": 22,
+     "gain": 10.3,
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Kaelon Black: Ratcliffe 10.6 vs 10.8 \u00b7 Koerner 9.5 vs 7.2 \u00b7 Yahoo not read vs 8.1 \u00b7 Gotham 10.8 vs 8.2 - mixed - Ratcliffe says worse",
+     "scout": true,
+     "id": "talk:daltonkincaid",
+     "first_seen": "Wed Nov 11 2026 02:18 PM PT"
     },
     {
      "name": "Jason Sanders",
@@ -78,9 +91,11 @@
     {
      "title": "FLEX1, Week 11 Fill",
      "target": "Target 12.4 pts",
-     "mark": "gold",
+     "mark": "red",
      "why": "Full strength ~11.6 (Diggs). Wk 11 Etienne ~12.4 (Diggs moves up to WR2, Etienne slides in).",
-     "picks": [],
+     "picks": [
+      "Dalton Kincaid (Waivers, clears Nov 14)"
+     ],
      "id": "cover:flex1week11fill",
      "first_seen": "Mon Nov 09 2026 05:02 PM PT"
     },
@@ -114,7 +129,21 @@
      "first_seen": "Tue Nov 10 2026 03:34 AM PT"
     }
    ],
-   "block": [],
+   "block": [
+    {
+     "week": 11,
+     "opp": "Remember the Tutens",
+     "name": "Dalton Kincaid",
+     "pos": "TE",
+     "team": "BUF",
+     "acq": "waivers until Nov 14",
+     "would_start_over": "Dalton Schultz",
+     "rat_ros": 10.9,
+     "their_ros": 8.9,
+     "id": "block:daltonkincaid",
+     "first_seen": "Wed Nov 11 2026 02:18 PM PT"
+    }
+   ],
    "backup": [
     {
      "starter": "George Pickens",
