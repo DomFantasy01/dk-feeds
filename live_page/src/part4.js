@@ -1279,13 +1279,38 @@ function wheelRadar(sp, mini){
     ${WSP.map(([k], i) => { const [x, y] = pt(i, sp[k] || 0); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="${(sp[k] || 0) < 5 ? "#FF5252" : "#4FC3FF"}"/>`; }).join("")}
     ${mini ? "" : WSP.map(([, lab], i) => { const [x, y] = pt(i, 26.5); return `<text x="${x.toFixed(1)}" y="${(y + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="#9FB0CF" font-family="IBM Plex Sans,sans-serif">${lab.split(" ")[0]}</text>`; }).join("")}</svg>`;
 }
+/* Nov 10 5:13 PM (Dom): every player is a WHEEL - five spokes, each labeled with its name and number, and an orb in the
+   middle holding the total out of 100, colored by the call (green GO, amber LEAN, purple STASH, grey PASS, red NO MOVE) */
+const WVC = {GO: "#3DDC84", LEAN: "#FFB84D", STASH: "#A98BFF", PASS: "#8A94A8", "NO MOVE": "#FF5252"};
+const WLB = {team: "Team", consensus: "Experts", upside: "Upside", drop: "Drop", stakes: "Stakes"};
+const wSc = (v) => v < 5 ? "#FF5252" : v < 8 ? "#FFB84D" : v < 14 ? "#4FC3FF" : "#3DDC84";
+function bigWheel(w, uid){
+  const sp = w.spokes || {}, vc = WVC[w.verdict] || "#8A94A8", cx = 100, cy = 100, R0 = 27, R1 = 70;
+  const at = (i, r) => { const a = (-90 + i * 72) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+  const f = (n) => n.toFixed(1);
+  const spokes = WSP.map(([k], i) => { const v = Math.max(0, Math.min(20, sp[k] || 0)), [x0, y0] = at(i, R0), [x1, y1] = at(i, R1), [xv, yv] = at(i, R0 + (R1 - R0) * v / 20), c = wSc(v);
+    return `<line x1="${f(x0)}" y1="${f(y0)}" x2="${f(x1)}" y2="${f(y1)}" stroke="#22304D" stroke-width="7" stroke-linecap="round"/>
+      <line x1="${f(x0)}" y1="${f(y0)}" x2="${f(xv)}" y2="${f(yv)}" stroke="${c}" stroke-width="7" stroke-linecap="round" filter="url(#wg${uid})"/>`; }).join("");
+  const badges = WSP.map(([k], i) => { const v = sp[k] || 0, [x, y] = at(i, R1), side = i === 1 || i === 4, [lx, ly] = side ? [x + (i === 1 ? 14 : -14), y + 4] : at(i, 90), c = wSc(v);
+    return `<circle cx="${f(x)}" cy="${f(y)}" r="11" fill="#0B1226" stroke="${c}" stroke-width="2"/><text x="${f(x)}" y="${f(y + 4)}" text-anchor="middle" font-size="11.5" font-weight="700" fill="${c}" font-family="IBM Plex Mono,monospace">${Math.floor(v)}</text>
+      <text x="${f(lx)}" y="${f(ly + (i === 0 ? -1 : side ? 0 : 4))}" text-anchor="${i === 1 ? "start" : i === 4 ? "end" : "middle"}" font-size="10.5" font-weight="600" fill="#CFE6FF" font-family="IBM Plex Sans,sans-serif">${WLB[k]}</text>`; }).join("");
+  return `<svg class="bwh" viewBox="-22 0 244 196" role="img" aria-label="${esc(w.name)}: ${w.total} of 100, ${esc(w.verdict)}">
+    <defs><radialGradient id="wo${uid}" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".35" stop-color="${vc}" stop-opacity=".95"/><stop offset="1" stop-color="${vc}" stop-opacity=".45"/></radialGradient>
+      <filter id="wg${uid}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <circle cx="${cx}" cy="${cy}" r="${R1}" fill="rgba(79,195,255,.04)" stroke="#2A3A5C" stroke-width="3"/>
+    <circle cx="${cx}" cy="${cy}" r="${R0 + (R1 - R0) / 4}" fill="none" stroke="rgba(255,82,82,.35)" stroke-dasharray="2 3"/>
+    ${spokes}
+    <circle cx="${cx}" cy="${cy}" r="${R0 - 2}" fill="url(#wo${uid})" stroke="${vc}" stroke-width="2" filter="url(#wg${uid})"/>
+    <text x="${cx}" y="${cy + 7}" text-anchor="middle" font-size="21" font-weight="800" fill="#08101F" font-family="IBM Plex Sans,sans-serif">${w.total}</text>
+    ${badges}</svg>`;
+}
 function wheelBox(n, p){
   const W = M && M.wheel; if (!W || !W.leagues) return "";
   const w = ((W.leagues[n] || {}).picks || []).find(x => x.name === p.name);
   if (!w) return `<div class="whx"><div class="whh"><b>THE WHEEL</b><span class="wht">TEST</span><em>not run on this pick yet</em></div></div>`;
   const m = w.move, pc = (v) => (v >= 0 ? "+" : "") + (v * 100).toFixed(1);
   return `<div class="whx"><div class="whh"><b>THE WHEEL</b><span class="wht">TEST - not used for moves</span><span class="whv v-${w.verdict.replace(" ", "")}">${esc(w.verdict)}</span><span class="whs">${w.total}/100</span></div>
-    <div class="whb">${wheelRadar(w.spokes)}<ul>${WSP.map(([k, lab]) => `<li class="${(w.spokes[k] || 0) < 5 ? "red" : ""}"><b>${lab}</b><i>${Math.floor(w.spokes[k] || 0)}</i><span>${esc((w.why || {})[k] || "")}</span></li>`).join("")}</ul></div>
+    <div class="whb">${bigWheel(w, "b" + n + p.name.replace(/\W/g, ""))}<ul>${WSP.map(([k, lab]) => `<li class="${(w.spokes[k] || 0) < 5 ? "red" : ""}"><b>${lab}</b><i>${Math.floor(w.spokes[k] || 0)}</i><span>${esc((w.why || {})[k] || "")}</span></li>`).join("")}</ul></div>
     ${m ? `<div class="whm">Played out: add him, drop <b>${esc(m.drop)}</b> - chance to win this week <b>${pc(m.d_week)}</b> · playoff odds for the season <b>${pc(m.d_playoff)}</b> · ${m.ppg >= 0 ? "+" : ""}${m.ppg} pts a game in ${m.games} games he'd start</div>` : ""}
     <div class="whf">${esc(w.vwhy)} · run ${esc(String(W.built || "").replace(/^\w{3} /, "").replace(/ 2026/, ""))}</div></div>`;
 }
@@ -1294,7 +1319,7 @@ function wheelBox(n, p){
    every pick in all four leagues, the wheel's call beside the Diamonds tag, and its graded record once the games are played */
 const WYES = {GO: 1, LEAN: 1, MUST: 1, HOT: 1}, WNO = {PASS: 1, "NO MOVE": 1, WATCH: 1};
 const wAgree = (t, v) => (t === "STASH" || v === "STASH") ? t === v : !!WYES[t] === !!WYES[v];
-let WHL = store.get("whl") || "1";
+let WHL = store.get("whl") || "1", WHP = 0;
 function renderWheel(){
   const el = $("#wheel"); if (!el) return;
   const W = M && M.wheel; if (!W || !W.leagues){ el.innerHTML = ""; return; }
@@ -1303,15 +1328,18 @@ function renderWheel(){
   const cnt = (v) => all.filter(w => w.verdict === v).length;
   const tabs = ["1", "2", "3", "4"].map(n => { const P = (W.leagues[n] || {}).picks || []; const best = P.slice().sort((a, b) => b.total - a.total)[0];
     return `<button type="button" class="whtab${n === WHL ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-whl="${n}"><b>DK${n}</b>${best ? `<span class="whv v-${best.verdict.replace(" ", "")}">${esc(best.verdict)}</span><small>${esc(pkShort(best))} ${best.total}</small>` : "<small>none</small>"}</button>`; }).join("");
-  const L = W.leagues[WHL] || {picks: []};
-  const rows = (L.picks || []).map((w, i) => { const a = wAgree(w.tier, w.verdict), m = w.move, pc = (v) => (v >= 0 ? "+" : "") + (v * 100).toFixed(1);
-    return `<details class="whrow" data-fold="wh-${WHL}-${i}"${FOLDS["wh-" + WHL + "-" + i] ? " open" : ""}><summary>${wheelRadar(w.spokes, true)}
-      <span class="whn"><b>${esc(pkShort(w))}</b><em>${esc([w.pos, w.team].join(" · "))}${w.replaces ? " · vs " + esc(w.replaces) : ""}</em>
-      <span class="whcmp"><span class="tg t-${esc(w.tier)}">${esc(w.tier)}</span><span class="${a ? "ok" : "no"}">${a ? "= agree" : "≠ differ"}</span><span class="whv v-${w.verdict.replace(" ", "")}">${esc(w.verdict)}</span></span></span>
-      <span class="whs">${w.total}</span></summary>
-      <div class="whd"><ul>${WSP.map(([k, lab]) => `<li class="${(w.spokes[k] || 0) < 5 ? "red" : ""}"><b>${lab}</b><i>${Math.floor(w.spokes[k] || 0)}</i><span>${esc((w.why || {})[k] || "")}</span></li>`).join("")}</ul>
+  const L = W.leagues[WHL] || {picks: []}, P = L.picks || [];
+  if (WHP >= P.length) WHP = 0;
+  const cards = P.map((w, i) => { const a = wAgree(w.tier, w.verdict);
+    return `<button type="button" class="whcard${i === WHP ? " on" : ""}" data-whp="${i}" aria-pressed="${i === WHP}">${bigWheel(w, "s" + WHL + i)}
+      <span class="whn"><b>${esc(pkShort(w))}</b><em>${esc([w.pos, w.team].join(" · "))}</em></span>
+      <span class="whcmp"><span class="tg t-${esc(w.tier)}">${esc(w.tier)}</span><span class="${a ? "ok" : "no"}">${a ? "=" : "≠"}</span><span class="whv v-${w.verdict.replace(" ", "")}">${esc(w.verdict)}</span></span></button>`; }).join("");
+  const w = P[WHP], pc = (v) => (v >= 0 ? "+" : "") + (v * 100).toFixed(1), m = w && w.move;
+  const rows = w ? `<div class="whgrid">${cards}</div>
+    <div class="whd"><div class="whdh"><b>${esc(w.name)}</b> <em>${esc([w.pos, w.team].join(" · "))}${w.replaces ? " · vs " + esc(w.replaces) : ""}</em></div>
+      <ul>${WSP.map(([k, lab]) => `<li class="${(w.spokes[k] || 0) < 5 ? "red" : ""}"><b>${lab}</b><i>${Math.floor(w.spokes[k] || 0)}</i><span>${esc((w.why || {})[k] || "")}</span></li>`).join("")}</ul>
       ${m ? `<div class="whm">Played out: add him, drop <b>${esc(m.drop)}</b> - chance to win this week <b>${pc(m.d_week)}</b> · playoff odds for the season <b>${pc(m.d_playoff)}</b> · ${m.ppg >= 0 ? "+" : ""}${m.ppg} pts a game in ${m.games} games he'd start</div>` : `<div class="whm">Not in the season simulator's player pool - Drop cost and Stakes scored even (10).</div>`}
-      <div class="whf">${esc(w.vwhy)}</div></div></details>`; }).join("");
+      <div class="whf">${esc(w.vwhy)}</div></div>` : "";
   const gr = (R.rows || []).length ? `<ul class="whgr">${R.rows.map(r => `<li><b>Wk ${r.wk} DK${r.lg}</b> ${esc(r.name)} ${r.actual[0]} vs ${esc(r.replaces)} ${r.actual[1]} · wheel ${esc(r.wheel)} ${r.wheel_right === undefined ? "–" : r.wheel_right ? "✓" : "✗"} · Diamonds ${esc(r.tier)} ${r.tier_right === undefined ? "–" : r.tier_right ? "✓" : "✗"}</li>`).join("")}</ul>` : "";
   el.innerHTML = `<section class="frame msec whsec" id="msWheel"><span class="lab">The Wheel <i class="wht">TEST</i></span><span class="pkts">${esc(String(W.built || "").replace(/^\w{3} \w{3} \d+ 20\d\d /, "").replace(/ PT$/, ""))}</span>
     <div class="whtop"><div class="whk"><span>Test only</span><b>never used for moves</b></div>
@@ -1323,7 +1351,8 @@ function renderWheel(){
     ${gr}
     <p class="whnote">Five spokes, 20 each: Team (offense, last 3 games, record, workload) · Experts (top-3 average vs the starter he'd replace, sources ahead) · Upside (every game left, Weeks 15-17) · Drop cost (cheapest drop in the season simulator, rivals who'd start him) · Stakes &amp; opponents (this week's win chance weighted by how much the game matters, playoff odds, this week's opponent, rivals). Any spoke under 5 = NO MOVE.</p></section>`;
 }
-document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-whl]"); if (!b) return; WHL = b.dataset.whl; store.set("whl", WHL); renderWheel(); });
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-whl]"); if (!b) return; WHL = b.dataset.whl; WHP = 0; store.set("whl", WHL); renderWheel(); });
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-whp]"); if (!b) return; WHP = +b.dataset.whp; renderWheel(); });
 function renderPickups(){
   const el = $("#pickups"); if (!el) return;
   /* live/pickups is the list the 3-a-day check last sent Dom (so the page matches the notification); the build's copy only fills in before the first one */
