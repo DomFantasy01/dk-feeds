@@ -1,12 +1,12 @@
 {
- "built": "Wed Nov 11 2026 9:38 AM PT",
+ "built": "Wed Nov 11 2026 10:24 AM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Wed Nov 11 2026 9:38 AM PT",
- "champ_built": "Wed Nov 11 2026 09:35 AM PT",
+ "pickups_built": "Wed Nov 11 2026 10:24 AM PT",
+ "champ_built": "Wed Nov 11 2026 10:22 AM PT",
  "leagues": {
   "1": {
-   "base": 0.314,
+   "base": 0.312,
    "week_win": 0.643,
    "picks": [
     {
@@ -163,42 +163,9 @@
    ]
   },
   "2": {
-   "base": 0.184,
+   "base": 0.181,
    "week_win": 0.428,
    "picks": [
-    {
-     "name": "Caleb Douglas",
-     "replaces": "Germie Bernard",
-     "pos": "WR",
-     "team": "MIA",
-     "tier": "HOT",
-     "grade": 73,
-     "spokes": {
-      "team": 7.2,
-      "consensus": 7.2,
-      "upside": 15.5,
-      "drop": 19.2,
-      "stakes": 12.0
-     },
-     "total": 61,
-     "verdict": "LEAN",
-     "vwhy": "61/100",
-     "why": {
-      "team": "MIA offense 15.8 a game (#31), last 3 games 18.7 (#22); team 12% wins; workload 14/15",
-      "consensus": "-4% vs Germie Bernard (top-3 average); 2 of 7 sources have him ahead",
-      "upside": "85 pts rest of season; Weeks 15-17 W15 GB (#6), W16 LAC (#4), W17 BUF (#10); path to a bigger role",
-      "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week -0.1; playoff odds for the season +0.5; this week's game swings the playoff odds 7% to 34%; 5 rivals would start him"
-     },
-     "move": {
-      "drop": "Alvin Kamara",
-      "d_week": -0.001,
-      "d_playoff": 0.005,
-      "d_title": 0.0,
-      "ppg": -0.2,
-      "games": 6
-     }
-    },
     {
      "name": "Samaje Perine",
      "replaces": "Audric Estime",
@@ -221,13 +188,13 @@
       "consensus": "-8% vs Audric Estime (top-3 average); 2 of 5 sources have him ahead",
       "upside": "65 pts rest of season; Weeks 15-17 W15 CAR (#2), W16 IND (#6), W17 BAL (#23); path to a bigger role",
       "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 2 rivals would start him"
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 6% to 34%; 2 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
       "d_week": -0.001,
       "d_playoff": 0.003,
-      "d_title": -0.0002,
+      "d_title": -0.001,
       "ppg": -0.7,
       "games": 5
      }
@@ -244,26 +211,52 @@
       "consensus": 11.8,
       "upside": 10.1,
       "drop": 19.2,
-      "stakes": 10.8
+      "stakes": 10.4
      },
-     "total": 64,
+     "total": 63,
      "verdict": "LEAN",
-     "vwhy": "64/100",
+     "vwhy": "63/100",
      "why": {
       "team": "KC offense 25.2 a game (#10), last 3 games 20.7 (#19) - trending down; team 75% wins; workload 8/15",
       "consensus": "+11% vs Audric Estime (top-3 average); 2 of 4 sources have him ahead",
       "upside": "66 pts rest of season; Weeks 15-17 W15 NE (#29), W16 SF (#16), W17 LAC (#12); path to a bigger role",
       "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week -0.1; playoff odds for the season +0.2; this week's game swings the playoff odds 7% to 34%; 3 rivals would start him"
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.1; this week's game swings the playoff odds 6% to 34%; 3 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
       "d_week": -0.001,
-      "d_playoff": 0.002,
-      "d_title": 0.0003,
+      "d_playoff": 0.001,
+      "d_title": -0.0003,
       "ppg": -0.3,
       "games": 6
      }
+    },
+    {
+     "name": "J. Croskey-Merritt",
+     "replaces": "Audric Estime",
+     "pos": "RB",
+     "team": "WAS",
+     "tier": "HOT",
+     "grade": 58,
+     "spokes": {
+      "team": 5.2,
+      "consensus": 20.0,
+      "upside": 10.4,
+      "drop": 10,
+      "stakes": 10
+     },
+     "total": 56,
+     "verdict": "LEAN",
+     "vwhy": "56/100",
+     "why": {
+      "team": "WAS offense 21.5 a game (#21), last 3 games 19.0 (#21); team 31% wins; workload 0/15",
+      "consensus": "+127% vs Audric Estime (top-3 average); 1 of 1 sources have him ahead",
+      "upside": "98 pts rest of season; Weeks 15-17 W15 ATL (#8), W16 MIN (#28), W17 JAX (#31)",
+      "drop": "not in the simulator's pool - scored even",
+      "stakes": "not in the simulator's pool - scored even"
+     },
+     "move": null
     },
     {
      "name": "Chris Rodriguez Jr.",
@@ -287,13 +280,13 @@
       "consensus": "+5% vs Audric Estime (top-3 average); 2 of 5 sources have him ahead",
       "upside": "70 pts rest of season; Weeks 15-17 W15 HOU (#13), W16 DAL (#4), W17 WAS (#24); path to a bigger role",
       "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 3 rivals would start him"
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 6% to 34%; 3 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
       "d_week": -0.001,
       "d_playoff": 0.003,
-      "d_title": -0.0002,
+      "d_title": -0.001,
       "ppg": -0.7,
       "games": 5
      }
@@ -320,13 +313,13 @@
       "consensus": "-28% vs Germie Bernard (top-3 average); 0 of 6 sources have him ahead",
       "upside": "65 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "drop": "drop Alvin Kamara: his loss alone +0.3 playoff odds; a rival would start him (Rated PG-18)",
-      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 7% to 34%; 2 rivals would start him"
+      "stakes": "chance to win this week -0.1; playoff odds for the season +0.3; this week's game swings the playoff odds 6% to 34%; 1 rivals would start him"
      },
      "move": {
       "drop": "Alvin Kamara",
       "d_week": -0.001,
       "d_playoff": 0.003,
-      "d_title": -0.0002,
+      "d_title": -0.001,
       "ppg": -0.7,
       "games": 5
      }
@@ -334,7 +327,7 @@
    ]
   },
   "3": {
-   "base": 0.019,
+   "base": 0.02,
    "week_win": 0.282,
    "picks": [
     {
@@ -498,7 +491,7 @@
    ]
   },
   "4": {
-   "base": 0.808,
+   "base": 0.804,
    "week_win": 0.794,
    "picks": [
     {
@@ -523,13 +516,13 @@
       "consensus": "-52% vs Ollie Gordon II (top-3 average); 0 of 7 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 CAR (#2), W16 IND (#6), W17 BAL (#23); path to a bigger role",
       "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -3.5; this week's game swings the playoff odds 61% to 86%; 1 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season -3.5; this week's game swings the playoff odds 60% to 86%; 1 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
       "d_playoff": -0.035,
-      "d_title": -0.0032,
+      "d_title": -0.0015,
       "ppg": -9.9,
       "games": 1
      }
@@ -556,13 +549,13 @@
       "consensus": "-36% vs Omar Cooper Jr. (top-3 average); 1 of 6 sources have him ahead",
       "upside": "64 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -0.8; this week's game swings the playoff odds 61% to 86%; 1 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season -0.8; this week's game swings the playoff odds 60% to 86%; 1 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
       "d_playoff": -0.008,
-      "d_title": -0.0007,
+      "d_title": 0.0002,
       "ppg": -2.6,
       "games": 1
      }
@@ -579,9 +572,9 @@
       "consensus": 11.0,
       "upside": 13.3,
       "drop": 4.0,
-      "stakes": 16.0
+      "stakes": 16.4
      },
-     "total": 52,
+     "total": 53,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Drop cost",
      "why": {
@@ -589,13 +582,13 @@
       "consensus": "-7% vs Omar Cooper Jr. (top-3 average); 5 of 7 sources have him ahead",
       "upside": "93 pts rest of season; Weeks 15-17 W15 BAL (#11), W16 CAR (#16), W17 TEN (#1)",
       "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.1; playoff odds for the season +1.5; this week's game swings the playoff odds 61% to 86%; 3 rivals would start him"
+      "stakes": "chance to win this week +0.1; playoff odds for the season +1.6; this week's game swings the playoff odds 60% to 86%; 3 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.001,
-      "d_playoff": 0.015,
-      "d_title": 0.0015,
+      "d_playoff": 0.016,
+      "d_title": 0.0023,
       "ppg": 1.5,
       "games": 4
      }
@@ -622,13 +615,13 @@
       "consensus": "-21% vs Omar Cooper Jr. (top-3 average); 2 of 7 sources have him ahead",
       "upside": "69 pts rest of season; Weeks 15-17 W15 ARI (#15), W16 NE (#2), W17 MIN (#30)",
       "drop": "drop Wan'Dale Robinson: his loss alone -3.5 playoff odds; a rival would start him (Bad and Boujee)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -2.7; this week's game swings the playoff odds 61% to 86%; 2 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season -2.7; this week's game swings the playoff odds 60% to 86%; 2 rivals would start him"
      },
      "move": {
       "drop": "Wan'Dale Robinson",
       "d_week": 0.0,
       "d_playoff": -0.027,
-      "d_title": -0.0022,
+      "d_title": -0.0008,
       "ppg": -4.4,
       "games": 2
      }
@@ -671,7 +664,7 @@
    0,
    0
   ],
-  "logged": 32,
+  "logged": 33,
   "weeks": [
    10
   ],
