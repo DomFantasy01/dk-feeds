@@ -1230,11 +1230,19 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .acct tr.ref td{color:#8592AB}.acct tr.ref td.mi b{color:#AEB8CC;font-size:13px}.acct .ng{color:#6B7893}.acct td em .our{color:#E8C66A;font-weight:700}.acct tr.own td.en{color:#9FC3FF}
 .acct p{margin:6px 2px 0;font-size:10.5px;color:#8592AB;line-height:1.35}
 /* Nov 11 2:35 PM (Dom): Win Probability numbers shown clean - no glass orbs - so the controls fit on the first screen */
-.mgrid.g-a .wln2 .wo b.wpn{display:block;font:800 15px/1 var(--f-num, var(--f-body));letter-spacing:-.01em}
+.mgrid.g-a .wln2 .wo b.wpn{display:block;font:500 12.5px/1 var(--f-body);letter-spacing:.01em}
 .mgrid.g-a .wln2 .wo b.wpn.z-win{color:#3DDC84}.mgrid.g-a .wln2 .wo b.wpn.z-mid{color:#F7B32B}.mgrid.g-a .wln2 .wo b.wpn.z-lose{color:#FF4D57}
-@media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:13px}}
-@media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:26px}}
+@media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
+@media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+/* both numbers always side by side, trend line on its own row under them */
+html body .mgrid.g-a .mxd2 .wln.wln2{display:grid !important;grid-template-columns:1fr 1fr;column-gap:2px !important;row-gap:3px !important;justify-items:center}
+html body .mgrid.g-a .mxd2 .wln2 > .wtr{grid-column:1 / -1}
+html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacing:.02em}
+@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:9.5px !important}}
+html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !important;letter-spacing:.01em !important}
+@media (max-width:380px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:11.5px !important}}
+@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:20px !important}}
 </style>
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}

@@ -1230,11 +1230,19 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 .acct tr.ref td{color:#8592AB}.acct tr.ref td.mi b{color:#AEB8CC;font-size:13px}.acct .ng{color:#6B7893}.acct td em .our{color:#E8C66A;font-weight:700}.acct tr.own td.en{color:#9FC3FF}
 .acct p{margin:6px 2px 0;font-size:10.5px;color:#8592AB;line-height:1.35}
 /* Nov 11 2:35 PM (Dom): Win Probability numbers shown clean - no glass orbs - so the controls fit on the first screen */
-.mgrid.g-a .wln2 .wo b.wpn{display:block;font:800 15px/1 var(--f-num, var(--f-body));letter-spacing:-.01em}
+.mgrid.g-a .wln2 .wo b.wpn{display:block;font:500 12.5px/1 var(--f-body);letter-spacing:.01em}
 .mgrid.g-a .wln2 .wo b.wpn.z-win{color:#3DDC84}.mgrid.g-a .wln2 .wo b.wpn.z-mid{color:#F7B32B}.mgrid.g-a .wln2 .wo b.wpn.z-lose{color:#FF4D57}
-@media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:13px}}
-@media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:26px}}
+@media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
+@media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+/* both numbers always side by side, trend line on its own row under them */
+html body .mgrid.g-a .mxd2 .wln.wln2{display:grid !important;grid-template-columns:1fr 1fr;column-gap:2px !important;row-gap:3px !important;justify-items:center}
+html body .mgrid.g-a .mxd2 .wln2 > .wtr{grid-column:1 / -1}
+html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacing:.02em}
+@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:9.5px !important}}
+html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !important;letter-spacing:.01em !important}
+@media (max-width:380px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:11.5px !important}}
+@media (min-width:561px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:20px !important}}
 </style>
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}
@@ -1596,7 +1604,9 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 <div id="metersFrame" class="mwrap">
   <div id="meters"><div class="empty">Waiting for the first read.</div></div>
 </div>
-<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls come up right under Win Probability; Experts and Diamonds move down -->
+
+<div id="meters2"></div>
+<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls sit right under Experts & Sources, above Diamonds -->
 <nav class="ctl ctls" id="ctlTop">
     <a href="https://football.fantasysports.yahoo.com/" target="_blank" rel="noopener">Yahoo</a>
     <a href="https://leagueblitz.app/" target="_blank" rel="noopener">Blitz</a>
@@ -1606,7 +1616,6 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 </nav>
 <div class="find" id="findRow" hidden><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
 <p class="rmsg" id="rmsg" hidden></p></div>
-<div id="meters2"></div>
 <div id="pkTop"></div>
 <div id="pickups"></div>
 <div id="wheel"></div>
@@ -2085,31 +2094,50 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c",
   const top = (OCK || []).map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
   return top.length ? {v: top.reduce((a, s3) => a + X[s3], 0) / top.length, top} : null; }
 function bigDial(v, col, mark, id, v0, v2){
+  /* Nov 11 2:45 PM (Dom: "add more shine, more beauty to that gauge"): glass dial face lit in the league color, glowing gradient
+     arc with a gloss line, tapered needles with shadows, metal hub. Same meaning as before: white needle = Yahoo, blue needle =
+     RANKED (top three by accuracy), white tick = the experts' middle, dashed ghost needle + thin arc = where Yahoo started the week */
   v = Math.max(0, Math.min(100, +v || 0));
-  const cx = 60, cy = 60, r = 44, A = (p) => Math.PI * (1 - p / 100), P = (p, rr) => [cx + rr * Math.cos(A(p)), cy - rr * Math.sin(A(p))];
-  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${rr} ${rr} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
-  let ticks = ""; for (let t = 0; t <= 20; t++){ const [a0, b0] = P(t * 5, r + 8), [a1, b1] = P(t * 5, r + (t % 2 ? 10.5 : t % 10 ? 12 : 14)); ticks += `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="${t === 10 ? "#E3E7EF" : t % 2 ? "#2C3A5C" : "#4A5A80"}" stroke-width="${t % 10 ? .8 : 1.6}"/>`; }
-  const g = "bd" + id, [nx, ny] = P(v, r - 8), [tx, ty] = P(v, r);
-  let mk = ""; if (mark !== null && mark !== undefined && !isNaN(mark)){ const [a0, b0] = P(mark, r - 7.5), [a1, b1] = P(mark, r + 7.5);
-    mk = `<line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="#0B1222" stroke-width="4.5" stroke-linecap="round"/><line x1="${a0.toFixed(1)}" y1="${b0.toFixed(1)}" x2="${a1.toFixed(1)}" y2="${b1.toFixed(1)}" stroke="#fff" stroke-width="2" stroke-linecap="round"/>`; }
+  const cx = 60, cy = 60, r = 44, A = (q) => Math.PI * (1 - q / 100), P = (q, rr) => [cx + rr * Math.cos(A(q)), cy - rr * Math.sin(A(q))], f = (n) => n.toFixed(1);
+  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 0 1 ${f(x1)} ${f(y1)}`; };
+  const g = "bd" + id;
+  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 10 === 0, mid = t % 2 === 0, [a0, b0] = P(t * 5, r + 8.5), [a1, b1] = P(t * 5, r + (maj ? 14 : mid ? 12 : 10.5));
+    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${t === 10 ? "#F4F6FA" : maj ? "#AEB8CE" : mid ? "#56658A" : "#34415F"}" stroke-width="${maj ? 1.5 : mid ? .9 : .6}" stroke-linecap="round"/>`; }
+  /* tapered needle: a slim kite from a short tail behind the hub to a sharp tip */
+  const needle = (q, len, fill, w) => { const a = A(q), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 7, cy - uy * 7];
+    const l = [cx + px * w, cy + py * w], rr = [cx - px * w, cy - py * w];
+    return `<path d="M${f(tail[0])} ${f(tail[1])} L${f(l[0])} ${f(l[1])} L${f(tip[0])} ${f(tip[1])} L${f(rr[0])} ${f(rr[1])} Z" fill="${fill}"/>`; };
+  let mk = ""; if (mark !== null && mark !== undefined && !isNaN(mark)){ const [a0, b0] = P(mark, r - 7), [a1, b1] = P(mark, r + 7);
+    mk = `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#060A14" stroke-width="4" stroke-linecap="round" opacity=".8"/><line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>`; }
+  const ghost = v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = Math.max(0, Math.min(100, +v0)), [gx, gy] = P(w0, r - 9);
+    return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8.5)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".95"/>
+      <line x1="${cx}" y1="${cy}" x2="${f(gx)}" y2="${f(gy)}" stroke="#D9DEE8" stroke-width="1.3" stroke-dasharray="2.4 2.4" opacity=".7"/><circle cx="${f(gx)}" cy="${f(gy)}" r="2" fill="#0B1222" stroke="#D9DEE8" stroke-width="1"/>`; })() : "";
+  const rk = v2 !== null && v2 !== undefined && !isNaN(v2) ? `<g filter="url(#${g}d)">${needle(Math.max(0, Math.min(100, +v2)), r - 6, `url(#${g}nb)`, 2.3)}</g>` : "";
   return `<svg class="bdl" viewBox="0 0 120 66" aria-hidden="true"><defs>
-    <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#4FD08A"/></linearGradient>
-    <radialGradient id="${g}h" cx="50%" cy="100%" r="80%"><stop offset="0" stop-color="${col}" stop-opacity=".45"/><stop offset=".7" stop-color="${col}" stop-opacity=".05"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></radialGradient>
-    <linearGradient id="${g}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E7891"/><stop offset=".25" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#8E98AE"/><stop offset=".75" stop-color="#F4F6FA"/><stop offset="1" stop-color="#6E7891"/></linearGradient><linearGradient id="${g}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A70"/><stop offset="1" stop-color="#121A30"/></linearGradient>
-    <filter id="${g}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
-    <path d="${arc(0, 100, r + 16)}" stroke="url(#${g}s)" stroke-width="2.2" fill="none"/><path d="${arc(0, 100, r + 6)}" stroke="url(#${g}b)" stroke-width="1.4" fill="none"/>
+    <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
+    <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${col}" stop-opacity=".30"/><stop offset=".45" stop-color="#14203C" stop-opacity=".95"/><stop offset="1" stop-color="#0A1020"/></radialGradient>
+    <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="${g}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5D6780"/><stop offset=".22" stop-color="#EEF1F7"/><stop offset=".5" stop-color="#8590A8"/><stop offset=".78" stop-color="#F6F8FB"/><stop offset="1" stop-color="#5D6780"/></linearGradient>
+    <linearGradient id="${g}nw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9C2D4"/></linearGradient>
+    <linearGradient id="${g}nb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9BE0FF"/><stop offset="1" stop-color="#2E9BEA"/></linearGradient>
+    <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#3A4560"/></radialGradient>
+    <filter id="${g}f" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <filter id="${g}d" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy=".8" stdDeviation=".9" flood-color="#000" flood-opacity=".7"/></filter></defs>
+    <path d="M${cx - r - 17} ${cy} A${r + 17} ${r + 17} 0 0 1 ${cx + r + 17} ${cy} Z" fill="url(#${g}face)"/>
+    <path d="M${cx - r - 17} ${cy} A${r + 17} ${r + 17} 0 0 1 ${cx + r + 17} ${cy} Z" fill="url(#${g}gl)"/>
+    <path d="${arc(0, 100, r + 17)}" stroke="url(#${g}s)" stroke-width="1.8" fill="none"/>
+    <path d="${arc(0, 100, r + 6.5)}" stroke="#2A3656" stroke-width=".8" fill="none"/>
 ${ticks}
-    <path d="${arc(0, 100, r)}" stroke="#16203A" stroke-width="11" fill="none"/>
-    <path d="${arc(0, 100, r)}" stroke="url(#${g})" stroke-opacity=".22" stroke-width="11" fill="none"/>
-    <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="11" fill="none"/>
+    <path d="${arc(0, 100, r)}" stroke="#0C1426" stroke-width="10.5" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, 100, r)}" stroke="url(#${g})" stroke-opacity=".16" stroke-width="10.5" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="10.5" fill="none" stroke-linecap="round" filter="url(#${g}f)" opacity=".75"/>
+    <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, Math.max(1, v), r + 2.6)}" stroke="#fff" stroke-opacity=".38" stroke-width=".9" fill="none" stroke-linecap="round"/>
 ${mk}
-    ${v0 !== null && v0 !== undefined && !isNaN(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = Math.max(0, Math.min(100, +v0)), [gx, gy] = P(w0, r - 8), [ax, ay] = P(w0, r + 8);
-      return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
-      <line x1="${cx}" y1="${cy}" x2="${gx.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="#D9DEE8" stroke-width="1.6" stroke-dasharray="2.6 2.4" opacity=".85"/><circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="2.4" fill="#0B1222" stroke="#D9DEE8" stroke-width="1.2"/>`; })() : ""}
-    ${v2 !== null && v2 !== undefined && !isNaN(v2) ? (() => { const [qx, qy] = P(Math.max(0, Math.min(100, +v2)), r - 8);
-      return `<line x1="${cx}" y1="${cy}" x2="${qx.toFixed(1)}" y2="${qy.toFixed(1)}" stroke="#0B1222" stroke-width="4.4" stroke-linecap="round" opacity=".7"/><line x1="${cx}" y1="${cy}" x2="${qx.toFixed(1)}" y2="${qy.toFixed(1)}" stroke="#4FC3FF" stroke-width="2.4" stroke-linecap="round"/>`; })() : ""}
-    <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#F4F6FA" stroke-width="2.6" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="6.5" fill="#0B1222" stroke="#F4F6FA" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="${col}"/></svg>`;
+    ${ghost}
+    ${rk}
+    <g filter="url(#${g}d)">${needle(v, r - 4, `url(#${g}nw)`, 2.6)}</g>
+    <circle cx="${cx}" cy="${cy}" r="6.6" fill="#0B1222" stroke="url(#${g}s)" stroke-width="1.4"/><circle cx="${cx}" cy="${cy}" r="4.4" fill="url(#${g}hub)"/><circle cx="${cx}" cy="${cy}" r="1.7" fill="${col}"/></svg>`;
 }
 const isStarter = (p) => !/^(BN|IR|IR\+|NA)$/i.test((p.slot || "").trim());
 const isTrouble = (p) => /^(Q|D|GTD|DTD)$/i.test((p.status || "").trim()) || (igOf(p) || {}).s === "trbl";
