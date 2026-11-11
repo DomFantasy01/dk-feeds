@@ -36,6 +36,15 @@ SIG = {'QB': 8.0, 'RB': 8.0, 'WR': 8.5, 'TE': 6.5, 'K': 4.5, 'DEF': 6.5}; RHO = 
 SCORING = json.load(open(ROOT + 'yahoo/scoring/scoring_audit_oct1.json'))
 TEAMFIX = {'WSH': 'WAS', 'JAC': 'JAX', 'LA': 'LAR'}
 def T(t): t = str(t).upper(); return TEAMFIX.get(t, t)
+_DN = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals", "CLE": "Browns",
+       "DAL": "Cowboys", "DEN": "Broncos", "DET": "Lions", "GB": "Packers", "HOU": "Texans", "IND": "Colts", "JAX": "Jaguars", "KC": "Chiefs",
+       "LV": "Raiders", "LAC": "Chargers", "LAR": "Rams", "MIA": "Dolphins", "MIN": "Vikings", "NE": "Patriots", "NO": "Saints", "NYG": "Giants",
+       "NYJ": "Jets", "PHI": "Eagles", "PIT": "Steelers", "SF": "49ers", "SEA": "Seahawks", "TB": "Buccaneers", "TEN": "Titans", "WAS": "Commanders"}
+_DC = {"ARI": "Arizona", "ATL": "Atlanta", "BAL": "Baltimore", "BUF": "Buffalo", "CAR": "Carolina", "CHI": "Chicago", "CIN": "Cincinnati", "CLE": "Cleveland",
+       "DAL": "Dallas", "DEN": "Denver", "DET": "Detroit", "GB": "Green Bay", "HOU": "Houston", "IND": "Indianapolis", "JAX": "Jacksonville", "KC": "Kansas City",
+       "LV": "Las Vegas", "MIA": "Miami", "MIN": "Minnesota", "NE": "New England", "NO": "New Orleans", "PHI": "Philadelphia", "PIT": "Pittsburgh",
+       "SF": "San Francisco", "SEA": "Seattle", "TB": "Tampa Bay", "TEN": "Tennessee", "WAS": "Washington"}
+DEFNICK = {v: k for k, v in _DN.items()}; DEFNICK.update({v: k for k, v in _DC.items()})
 
 alarms, sources, notes = [], {}, []
 lineup = []   # Oct 21 (Dom): lineup problems on Dom's side (a starter on bye, an empty slot) - real, but not a broken data source
@@ -302,7 +311,12 @@ for lab, cfg in LEAGUES.items():
     for side in ('me', 'op'):
         L = []
         for p in MATCH[cfg['id']][side]:
-            k = norm(p['player']); pos = p['slot'] if p['slot'] in ('K', 'DEF') else POSMAP.get(k, p['slot'] if p['slot'] in SIG else 'WR')
+            # Nov 11 (found after Dom's claims): a defense on the BENCH has slot BN and no team, so it was read as a WR with no numbers
+            # (Ravens, Jaguars, Rams all showed blank). Spot a team name and treat it as that team's DEF.
+            if p['slot'] not in ('K', 'DEF') and DEFNICK.get(str(p['player']).strip()):
+                p = dict(p, team=DEFNICK[str(p['player']).strip()]); _isdef = True
+            else: _isdef = False
+            k = norm(p['player']); pos = 'DEF' if _isdef else p['slot'] if p['slot'] in ('K', 'DEF') else POSMAP.get(k, p['slot'] if p['slot'] in SIG else 'WR')
             if pos in ('K', 'DEF'):
                 sl = KD.get(('K', k)) if pos == 'K' else KD.get(('DEF', p['team']))
                 go, gsrc = sl, 'sleeper'
