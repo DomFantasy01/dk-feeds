@@ -130,7 +130,8 @@ def read_league(y, gk, lab, lid, me, log):
     for x in y.get(f"league/{lk}/standings").iterfind(".//y:team", NS):
         st.append(dict(id=int(t(x, "y:team_id")), name=t(x, "y:name"), rank=t(x, "y:team_standings/y:rank"),
                        w=t(x, "y:team_standings/y:outcome_totals/y:wins"), l=t(x, "y:team_standings/y:outcome_totals/y:losses"),
-                       tie=t(x, "y:team_standings/y:outcome_totals/y:ties"), pf=t(x, "y:team_points/y:total")))
+                       tie=t(x, "y:team_standings/y:outcome_totals/y:ties"), pf=t(x, "y:team_points/y:total"),
+                       faab=t(x, "y:faab_balance"), wp=t(x, "y:waiver_priority")))   # Nov 11 (Dom): FAAB left + waiver order for Live
     L["standings"] = st
     wv, start = [], 0
     while start < 400:

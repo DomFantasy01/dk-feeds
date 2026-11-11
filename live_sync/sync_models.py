@@ -85,6 +85,14 @@ try:
 except Exception as _e: print('sim on Live skipped:', _e)
 # Oct 13 5 PM (Dom): BEST LINEUP, BOTH SIDES - the meter now sets each team's best legal lineup from its whole roster.
 # Live gets the swaps (out man -> in man, per model) so its Gotham and Sleeper needles count the same best lineups.
+# Nov 11 3 PM (Dom): FAAB left (DK I-III) and waiver order (DK IV) on each Scoreboard tile - wire_budget.py, read every build
+try:
+    import os as _os
+    _wb = json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(sys.argv[2])), 'wire_budget.json')))
+    for lab, k in KEY.items():
+        if _wb.get(lab): cur['leagues'].setdefault(k, {})['wire'] = _wb[lab]
+    print('wire budget on Live:', {KEY[l]: (v.get('faab'), v.get('wp')) for l, v in _wb.items() if l in KEY})
+except Exception as _e: print('wire budget on Live skipped:', _e)
 best = {}
 for lab, k in KEY.items():
     L = M['leagues'][lab]; bm = L.get('best_moves') or {}
