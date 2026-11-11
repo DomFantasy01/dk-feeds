@@ -1235,6 +1235,10 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
 @media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+/* Nov 11 3:30 PM (Dom): Controls framed like the other sections */
+#ctlBot.ctlsec{padding:16px 10px 10px}
+#ctlBot.ctlsec .ctl{margin:0 !important}
+#ctlBot.ctlsec .find{margin-top:8px}
 /* Nov 11 3 PM (Dom): FAAB left / waiver order under WEEK and PLAYOFFS on each Scoreboard tile */
 .wbud{white-space:nowrap;display:flex;align-items:baseline;justify-content:center;gap:4px;margin:4px auto 0;padding:2px 6px;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);width:max-content;max-width:100%}
 .wbud span{font:700 6.4px/1 var(--f-body);letter-spacing:.08em;color:var(--ink2)}
@@ -1616,11 +1620,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !impo
 </div>
 
 <div id="meters2"></div>
-
-<div id="pkTop"></div>
-
-<div id="pickups"></div>
-<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls sit right under Diamonds in the Rough -->
+<section class="frame ctlsec" id="ctlBot"><span class="lab">Controls</span><!-- Nov 11 3:30 PM (Dom): Controls in their own framed box under Experts & Sources, Diamonds below -->
 <nav class="ctl ctls" id="ctlTop">
     <a href="https://football.fantasysports.yahoo.com/" target="_blank" rel="noopener">Yahoo</a>
     <a href="https://leagueblitz.app/" target="_blank" rel="noopener">Blitz</a>
@@ -1629,7 +1629,12 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !impo
     <button type="button" id="findBtn" class="fbtn" aria-label="Find a player" aria-expanded="false">&#128269;</button>
 </nav>
 <div class="find" id="findRow" hidden><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
-<p class="rmsg" id="rmsg" hidden></p></div>
+<p class="rmsg" id="rmsg" hidden></p></section>
+
+<div id="pkTop"></div>
+
+<div id="pickups"></div>
+
 <div id="wheel"></div>
 
 
