@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Wed Nov 11 2026 04:11 AM PT",
+ "built": "Wed Nov 11 2026 04:56 AM PT",
  "ratcliffe_read": "Wed Nov 11 2026 2:26 AM PT",
  "koerner_read": "Wed Nov 11 2026 3:10 AM PT",
  "leagues": {
@@ -53,7 +53,7 @@
      "over": "Jordan Addison",
      "pct": 20,
      "gain": 2.5,
-     "note": "Scout pick (rest of season): This week vs your FLEX2 Kaelon Black: Ratcliffe 9.7 vs 10.8 \u00b7 Koerner 9.6 vs 7.2 \u00b7 Yahoo 8.8 vs 8.2 \u00b7 Gotham 7.8 vs 7.7 - mixed - Ratcliffe says worse",
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Kaelon Black: Ratcliffe 9.7 vs 10.8 \u00b7 Koerner 9.6 vs 7.2 \u00b7 Yahoo 8.8 vs 8.2 \u00b7 Gotham 7.8 vs 8.2 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:kylepitts",
      "first_seen": "Wed Nov 11 2026 02:09 AM PT"
@@ -115,7 +115,67 @@
     }
    ],
    "block": [],
-   "backup": [],
+   "backup": [
+    {
+     "starter": "George Pickens",
+     "slot": "W/R/T",
+     "pos": "WR",
+     "team": "DAL",
+     "status": "Q",
+     "wk": 12.12,
+     "locks": "Sun 1:25 PM",
+     "lock_utc": "2026-11-15T21:25:00+00:00",
+     "bench": [
+      {
+       "name": "Kaelon Black",
+       "pos": "RB",
+       "team": "SF",
+       "wk": 10.83,
+       "locks": "Sun 1:25 PM",
+       "lock_utc": "2026-11-15T21:25:00+00:00"
+      },
+      {
+       "name": "Jordan Addison",
+       "pos": "WR",
+       "team": "MIN",
+       "wk": 9.25,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      }
+     ],
+     "fa": [
+      {
+       "name": "Tyler Higbee",
+       "pos": "TE",
+       "team": "LAR",
+       "wk": 9.3,
+       "koe": 9.32,
+       "locks": "Sun 1:05 PM",
+       "lock_utc": "2026-11-15T21:05:00+00:00"
+      },
+      {
+       "name": "Darren Waller",
+       "pos": "TE",
+       "team": "CAR",
+       "wk": 9.2,
+       "koe": 9.08,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Chig Okonkwo",
+       "pos": "TE",
+       "team": "WAS",
+       "wk": 8.8,
+       "koe": 9.42,
+       "locks": "Thu 5:15 PM",
+       "lock_utc": "2026-11-13T01:15:00+00:00"
+      }
+     ],
+     "id": "backup:georgepickens",
+     "first_seen": "Wed Nov 11 2026 04:56 AM PT"
+    }
+   ],
    "fa_tags": {
     "Adonai Mitchell": {
      "tag": "No action needed",
@@ -129,6 +189,40 @@
   },
   "DK II": {
    "talk": [
+    {
+     "name": "Jacory Croskey-Merritt",
+     "pos": "RB",
+     "team": "WAS",
+     "acq": "waivers until Nov 13",
+     "over": "Audric Estime",
+     "rat_ros": 11.4,
+     "over_ros": 8.8,
+     "pct": 29,
+     "gain": 2.6,
+     "rat_wk": 0.0,
+     "koe_wk": 0.0,
+     "rising": null,
+     "scout": false,
+     "id": "talk:jacorycroskeymerritt",
+     "first_seen": "Wed Nov 11 2026 04:56 AM PT"
+    },
+    {
+     "name": "Kenny Gainwell",
+     "pos": "RB",
+     "team": "TB",
+     "acq": "free agent",
+     "over": "Audric Estime",
+     "rat_ros": 11.0,
+     "over_ros": 8.8,
+     "pct": 25,
+     "gain": 2.2,
+     "rat_wk": 0.0,
+     "koe_wk": null,
+     "rising": null,
+     "scout": true,
+     "id": "talk:kennygainwell",
+     "first_seen": "Wed Nov 11 2026 02:09 AM PT"
+    },
     {
      "name": "Ka'imi Fairbairn",
      "pos": "K",
@@ -167,19 +261,6 @@
      "scout": true,
      "id": "talk:jasonsanders",
      "first_seen": "Tue Nov 10 2026 02:10 AM PT"
-    },
-    {
-     "name": "Kenny Gainwell",
-     "pos": "RB",
-     "team": "TB",
-     "acq": "Free agent",
-     "over": "J.J. McCarthy",
-     "pct": 17,
-     "gain": 3.7,
-     "note": "Scout pick (rest of season): This week: Kenny Gainwell has a bye - no help this week",
-     "scout": true,
-     "id": "talk:kennygainwell",
-     "first_seen": "Wed Nov 11 2026 02:09 AM PT"
     }
    ],
    "watch": [
@@ -195,6 +276,23 @@
      "scout": true,
      "id": "watch:kylepitts",
      "first_seen": "Wed Nov 11 2026 02:09 AM PT"
+    },
+    {
+     "name": "Bam Knight",
+     "pos": "RB",
+     "team": "ARI",
+     "acq": "free agent",
+     "over": "Audric Estime",
+     "rat_ros": 9.9,
+     "over_ros": 8.8,
+     "pct": 12,
+     "gain": 1.0,
+     "rat_wk": 0.0,
+     "koe_wk": null,
+     "rising": null,
+     "scout": false,
+     "id": "watch:bamknight",
+     "first_seen": "Wed Nov 11 2026 04:56 AM PT"
     }
    ],
    "cover": [
@@ -227,7 +325,67 @@
     }
    ],
    "block": [],
-   "backup": [],
+   "backup": [
+    {
+     "starter": "David Montgomery",
+     "slot": "RB",
+     "pos": "RB",
+     "team": "HOU",
+     "status": "Q",
+     "wk": 4.97,
+     "locks": "Sun 10:00 AM",
+     "lock_utc": "2026-11-15T18:00:00+00:00",
+     "bench": [
+      {
+       "name": "Alvin Kamara",
+       "pos": "RB",
+       "team": "NO",
+       "wk": 13.13,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Braelon Allen",
+       "pos": "RB",
+       "team": "NYJ",
+       "wk": 12.01,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      }
+     ],
+     "fa": [
+      {
+       "name": "Corey Kiner",
+       "pos": "RB",
+       "team": "NE",
+       "wk": 13.3,
+       "koe": 14.38,
+       "locks": "Sun 6:30 AM",
+       "lock_utc": "2026-11-15T14:30:00+00:00"
+      },
+      {
+       "name": "Kaleb Johnson",
+       "pos": "RB",
+       "team": "GB",
+       "wk": 11.0,
+       "koe": 8.36,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Chris Rodriguez Jr.",
+       "pos": "RB",
+       "team": "JAX",
+       "wk": 10.5,
+       "koe": 10.12,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      }
+     ],
+     "id": "backup:davidmontgomery",
+     "first_seen": "Wed Nov 11 2026 04:56 AM PT"
+    }
+   ],
    "fa_tags": {}
   },
   "DK III": {
@@ -288,65 +446,6 @@
    "block": [],
    "backup": [
     {
-     "starter": "David Montgomery",
-     "slot": "RB",
-     "pos": "RB",
-     "team": "HOU",
-     "status": "Q",
-     "wk": 4.97,
-     "locks": "Sun 10:00 AM",
-     "lock_utc": "2026-11-15T18:00:00+00:00",
-     "bench": [
-      {
-       "name": "Corey Kiner",
-       "pos": "RB",
-       "team": "NE",
-       "wk": 13.34,
-       "locks": "Sun 6:30 AM",
-       "lock_utc": "2026-11-15T14:30:00+00:00"
-      },
-      {
-       "name": "Kaleb Johnson",
-       "pos": "RB",
-       "team": "GB",
-       "wk": 11.0,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-15T18:00:00+00:00"
-      }
-     ],
-     "fa": [
-      {
-       "name": "Justice Hill",
-       "pos": "RB",
-       "team": "BAL",
-       "wk": 7.8,
-       "koe": 7.86,
-       "locks": "Mon 5:15 PM",
-       "lock_utc": "2026-11-17T01:15:00+00:00"
-      },
-      {
-       "name": "Kimani Vidal",
-       "pos": "RB",
-       "team": "LAC",
-       "wk": 7.5,
-       "koe": 7.63,
-       "locks": "Mon 5:15 PM",
-       "lock_utc": "2026-11-17T01:15:00+00:00"
-      },
-      {
-       "name": "MarShawn Lloyd",
-       "pos": "RB",
-       "team": "GB",
-       "wk": 6.8,
-       "koe": 6.48,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-15T18:00:00+00:00"
-      }
-     ],
-     "id": "backup:davidmontgomery",
-     "first_seen": "Tue Nov 10 2026 09:14 AM PT"
-    },
-    {
      "starter": "George Pickens",
      "slot": "WR",
      "pos": "WR",
@@ -355,7 +454,16 @@
      "wk": 12.12,
      "locks": "Sun 1:25 PM",
      "lock_utc": "2026-11-15T21:25:00+00:00",
-     "bench": [],
+     "bench": [
+      {
+       "name": "Josh Downs",
+       "pos": "WR",
+       "team": "IND",
+       "wk": 9.24,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      }
+     ],
      "fa": [
       {
        "name": "Tank Dell",
@@ -387,6 +495,65 @@
      ],
      "id": "backup:georgepickens",
      "first_seen": "Tue Nov 10 2026 09:14 AM PT"
+    },
+    {
+     "starter": "David Montgomery",
+     "slot": "W/R/T",
+     "pos": "RB",
+     "team": "HOU",
+     "status": "Q",
+     "wk": 4.97,
+     "locks": "Sun 10:00 AM",
+     "lock_utc": "2026-11-15T18:00:00+00:00",
+     "bench": [
+      {
+       "name": "Kaleb Johnson",
+       "pos": "RB",
+       "team": "GB",
+       "wk": 11.0,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Josh Downs",
+       "pos": "WR",
+       "team": "IND",
+       "wk": 9.24,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      }
+     ],
+     "fa": [
+      {
+       "name": "Tank Dell",
+       "pos": "WR",
+       "team": "HOU",
+       "wk": 9.5,
+       "koe": 8.66,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Darren Waller",
+       "pos": "TE",
+       "team": "CAR",
+       "wk": 9.2,
+       "koe": 9.08,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-15T18:00:00+00:00"
+      },
+      {
+       "name": "Konata Mumpfield",
+       "pos": "WR",
+       "team": "LAR",
+       "wk": 8.3,
+       "koe": 6.34,
+       "locks": "Sun 1:05 PM",
+       "lock_utc": "2026-11-15T21:05:00+00:00"
+      }
+     ],
+     "id": "backup:davidmontgomery",
+     "first_seen": "Tue Nov 10 2026 09:14 AM PT"
     }
    ],
    "fa_tags": {}
@@ -401,7 +568,7 @@
      "over": "Wan'Dale Robinson",
      "pct": 17,
      "gain": 6.8,
-     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 11.4 vs 10.1 \u00b7 Koerner 12.1 vs 10.6 \u00b7 Yahoo 11.9 vs 10.2 \u00b7 Gotham 11.5 vs 9.9 - better this week",
+     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 11.4 vs 10.1 \u00b7 Koerner 12.1 vs 10.6 \u00b7 Yahoo 11.9 vs 10.2 \u00b7 Gotham 11.5 vs 10.2 - better this week",
      "scout": true,
      "id": "talk:dkmetcalf",
      "first_seen": "Tue Nov 10 2026 09:35 PM PT"
@@ -438,7 +605,7 @@
    "fa_tags": {
     "Adonai Mitchell": {
      "tag": "No action needed",
-     "why": "The top-3 average has him at 10.0 a game, below your Jakobi Meyers (10.4)"
+     "why": "The top-3 average has him at 10.0 a game, below your Wan'Dale Robinson (10.0)"
     },
     "Malik Willis": {
      "tag": "No action needed",
