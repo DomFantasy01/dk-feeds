@@ -89,7 +89,7 @@ function liveModel(L, src){
 const finals = (L) => ({me: L.players.reduce((a, p) => a + manFinal(p, "y"), 0), op: L.oppPlayers.reduce((a, p) => a + manFinal(p, "y"), 0)});
 const score = (list) => list.reduce((a, p) => a + pts(p), 0);
 /* Nov 8 (Dom): only a seat he can still fix - a man whose game has kicked off can't be swapped, so he is not an empty-seat alert */
-const emptySeats = (L) => L.players.filter(p => !isDone(p) && !isLive(p) && !(teamKo(p.tm) && Date.now() >= teamKo(p.tm)) && (isOut(p) || /^D$/i.test(p.status || "") || ((+p.proj || 0) === 0 && !isLive(p))));
+const emptySeats = (L) => L.players.filter(p => !isDone(p) && !isLive(p) && !(teamKo(p.tm) && Date.now() >= teamKo(p.tm)) && (isOut(p) || /^D$/i.test(p.status || "") || ((+p.proj || 0) === 0 && !(expertProj(p) > 0) && !isLive(p))));
 const leftOf = (list) => list.filter(p => !isDone(p) && !isOut(p));
 const settled = (L) => leftOf(L.players).length === 0 && leftOf(L.oppPlayers).length === 0;
 function verdict(m){ const a = Math.abs(m);
@@ -501,6 +501,10 @@ const RINGC = {ok: "#3DDC84", live: "#3DDC84", trbl: "#F7B32B", trblon: "#F7B32B
 const SEGORD = {live: 0, trblon: 1, empty: 2, out: 3, trbl: 4, bye: 5, ok: 6, done: 7};
 const isEmptySpot = (p) => !(p.name || "").trim() || /^\(?\s*empty\s*\)?$/i.test((p.name || "").trim());
 const isByeMan = (p) => /bye/i.test(p.when || "");
+/* Nov 11 (Dom: ACTION red after the claims): Yahoo's per-player read has no number yet for men added after it ran (Estime, Kiner,
+   the new defenses), so they looked like empty seats. Any expert number for him in any league means he's a real starter. */
+function expertProj(p){ const PM = (M && M.pm) || {}, n = norm(p.name).toLowerCase().replace(/ (jr|sr|ii|iii|iv)$/, "");
+  let best = 0; for (const lg of Object.values(PM)){ const e = lg[n] || lg[norm(p.name).toLowerCase()]; if (e) for (const v of e) if (+v > best) best = +v; } return best; }
 const ringState = (p) => {
   if (isEmptySpot(p)) return "empty";
   if (isByeMan(p)) return "bye";
@@ -508,7 +512,7 @@ const ringState = (p) => {
   if (isDone(p)) return "done";
   if (isLive(p)) return isTrouble(p) ? "trblon" : "live";
   if (isTrouble(p)) return "trbl";
-  if ((+p.proj || 0) === 0) return "empty";   /* no projection and nobody knows why = a hole, same flash */
+  if ((+p.proj || 0) === 0 && !(expertProj(p) > 0)) return "empty";   /* no projection and nobody knows why = a hole, same flash (Nov 11: an expert number counts - a man added this morning has none from Yahoo yet) */
   return "ok"; };
 const POSAB = (sl) => { const t = (sl || "").toUpperCase().trim(); return /Q\/W\/R\/T|SUPER|^SF/.test(t) ? "SF" : /W\/R\/T|W\/R|FLEX|R\/W/.test(t) ? "FX" : /DEF|D\/ST|DST/.test(t) ? "DEF" : t.replace(/[^A-Z]/g, "").slice(0, 3) || "?"; };
 const STWORD = {ok: "fine, still to play", live: "playing now", trbl: "questionable / doubtful", trblon: "playing - questionable tag", out: "out", bye: "on bye", done: "game over", empty: "EMPTY SPOT / no projection - fill it"};
