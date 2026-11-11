@@ -2885,6 +2885,10 @@ const PKSEEN = store.get("pkseen", {});
 const pkSig = (p, i) => (p.tier || "WATCH") + "|" + (i + 1) + "|" + (p.grade == null ? "" : p.grade);
 /* Nov 9 noon (Dom): no MOVE/TIER codes - say it plainly: new, "WATCH → HOT", or "grade 63 → 70". A list spot changing on its own
    (because someone else moved) means nothing to him, so it isn't flagged - the stored mark just catches up quietly */
+/* Nov 11 (Dom: "reset Diamonds in the Rough"): a reset stamp in live/alert_marks (_pk_reset) clears this phone's change marks - every
+   pick on the list now counts as seen, and only changes after the reset light up again */
+function pkResetCheck(){ const r = MK && MK._pk_reset && MK._pk_reset.at; if (!r) return false;
+  if (store.get("pkreset", "") >= r) return false; for (const k of Object.keys(PKSEEN)) delete PKSEEN[k]; store.set("pkseen", PKSEEN); store.set("pkreset", r); return true; }
 function pkChanged(n, top){ const seen = PKSEEN[n]; if (!seen){ PKSEEN[n] = Object.fromEntries((top || []).map((p, i) => [p.key, pkSig(p, i)])); store.set("pkseen", PKSEEN); return {}; }
   const out = {}; let dirty = false;
   (top || []).forEach((p, i) => { const o = seen[p.key], sig = pkSig(p, i); if (o === sig) return;
@@ -3133,7 +3137,7 @@ setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
   const tm = setTimeout(() => { if (!S) $("#statTxt").innerHTML = `<span class="late">The live feed hasn't answered in 10 seconds.</span> It keeps trying.`; }, 10000);
   try { TR = val(await db.doc("live/trail").get()) || {entries: []}; } catch(_){ TR = {entries: []}; }
   if (!Array.isArray(TR.entries)) TR = {entries: []};
-  watch("live/alert_marks", v => { MK = Object.assign({}, v || {}); if (S) renderAll(); });
+  watch("live/alert_marks", v => { MK = Object.assign({}, v || {}); pkResetCheck(); if (S) renderAll(); renderPickups(); });
   watch("live/moves", v => { MV = v || null; if (S) renderAll(); });
   watch("live/pickups", v => { PK = v || null; renderPickups(); });
   watch("live/health", v => { H = v || null; renderStatus(); renderHealth(); });
