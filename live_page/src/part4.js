@@ -67,7 +67,7 @@ const phi = (z) => { const t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 
   const q = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - q : q; };
 function chance(L, src){
   const pm = (M && M.pm && M.pm[L.key]) || {};
-  const anyStarted = [...L.players, ...L.oppPlayers].some(started);
+  const anyStarted = [...L.players, ...L.oppPlayers].some(p => isLive(p) || /^(Fin|Final)/i.test((p.when || "").trim()));   /* Nov 11: a man on BYE is not a started game - it flipped DK4 to the as-set read (opponent's empty kicker) and showed 84% instead of 70% */
   if (!anyStarted && src !== "y"){
     const set = (M && M.best && M.best[L.key] && (M.best[L.key].bestn || M.best[L.key].set)) || {};   /* Nov 10 (Dom): best lineups, both sides */
     const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : src === "v" ? set.vegas : src === "b" ? set.rotoballer : src === "g" ? set.gotham : (set.clay ?? set.gotham);   /* the build's best-lineup number, both sides */
