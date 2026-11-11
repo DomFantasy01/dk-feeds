@@ -1,15 +1,15 @@
 {
- "built": "Tue Nov 10 4:12 PM PT",
+ "built": "Tue Nov 10 4:39 PM PT",
  "pieces_set": "Sun Oct 25",
  "leagues": {
   "DK I": {
-   "proj_read": "Tue Nov 10 2026 1:12 PM PT",
+   "proj_read": "Tue Nov 10 2026 4:12 PM PT",
    "roster_read": "?",
    "pieces": [],
    "gaps": []
   },
   "DK II": {
-   "proj_read": "Tue Nov 10 2026 1:12 PM PT",
+   "proj_read": "Tue Nov 10 2026 4:12 PM PT",
    "roster_read": "?",
    "pieces": [
     {
@@ -19,14 +19,17 @@
       10,
       11,
       12,
-      15
+      14,
+      15,
+      16,
+      17
      ],
      "test": {
       "need": 1,
       "min": 13,
       "start": 10
      },
-     "line": "A lead running back: still OPEN - short in Weeks 10, 11, 12, 15 (needs 1 RB at 13+; covering the other weeks: Travis Etienne Jr., Jadarian Price, David Montgomery)."
+     "line": "A lead running back: still OPEN - short in Weeks 10, 11, 12, 14, 15, 16, 17 (needs 1 RB at 13+; covering the other weeks: Jadarian Price)."
     },
     {
      "piece": "A wide receiver for Week 10 on",
@@ -45,28 +48,34 @@
    "gaps": []
   },
   "DK III": {
-   "proj_read": "Tue Nov 10 2026 1:12 PM PT",
+   "proj_read": "Tue Nov 10 2026 4:12 PM PT",
    "roster_read": "?",
    "pieces": [
     {
      "piece": "A lead running back - save the $91 for him",
-     "status": "open",
-     "short": [
-      15,
-      16
-     ],
+     "status": "filled",
+     "short": [],
      "test": {
       "need": 1,
       "min": 13,
       "start": 10
      },
-     "line": "A lead running back - save the $91 for him: still OPEN - short in Weeks 15, 16 (needs 1 RB at 13+; covering the other weeks: Jonah Coleman, David Montgomery, Rachaad White)."
+     "line": "A lead running back - save the $91 for him: looks FILLED - every week from 10 to 17 has 1 RB at 13+ (Jonah Coleman, Rachaad White). Confirm to close it."
     }
    ],
-   "gaps": []
+   "gaps": [
+    {
+     "pos": "WR",
+     "weeks": [
+      10,
+      14
+     ],
+     "line": "New gap at WR: Weeks 10, 14 - fewer than 2 WR projecting 10+ (byes or injuries). Not on the Missing Pieces list."
+    }
+   ]
   },
   "DK IV": {
-   "proj_read": "Tue Nov 10 2026 1:12 PM PT",
+   "proj_read": "Tue Nov 10 2026 4:12 PM PT",
    "roster_read": "?",
    "pieces": [
     {
