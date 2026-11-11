@@ -1238,7 +1238,17 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 /* Nov 11 3:30 PM (Dom): Controls framed like the other sections */
 #ctlBot.ctlsec{padding:16px 10px 10px}
 #ctlBot.ctlsec .ctl{margin:0 !important}
-#ctlBot.ctlsec .find{margin-top:8px}
+#ctlBot.ctlsec .find{margin-top:9px}
+/* Nov 11 3:35 PM (Dom): the four buttons back to their full size, the magnifier button gone - the search box is always open
+   on its own line underneath, glass inside it */
+html body #ctlBot.ctlsec .ctl.ctls{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:7px !important}
+html body #ctlBot.ctlsec .ctl.ctls a,html body #ctlBot.ctlsec .ctl.ctls button{padding:10px 2px !important;font-size:19px !important;border-radius:7px !important}
+html body #ctlBot.ctlsec #findBtn{display:none !important}
+#ctlBot.ctlsec #findRow{position:relative;display:flex !important}
+#ctlBot.ctlsec #findRow .fic{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.75;pointer-events:none}
+#ctlBot.ctlsec #findRow input{padding:9px 10px 9px 32px !important;font-size:13.5px}
+@media (max-width:380px){html body #ctlBot.ctlsec .ctl.ctls a,html body #ctlBot.ctlsec .ctl.ctls button{font-size:16.5px !important;padding:9px 1px !important}}
+@media (min-width:561px){html body #ctlBot.ctlsec .ctl.ctls a,html body #ctlBot.ctlsec .ctl.ctls button{font-size:22px !important;padding:12px 2px !important}}
 /* Nov 11 3 PM (Dom): FAAB left / waiver order under WEEK and PLAYOFFS on each Scoreboard tile */
 .wbud{white-space:nowrap;display:flex;align-items:baseline;justify-content:center;gap:4px;margin:4px auto 0;padding:2px 6px;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);width:max-content;max-width:100%}
 .wbud span{font:700 6.4px/1 var(--f-body);letter-spacing:.08em;color:var(--ink2)}
@@ -1628,7 +1638,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !impo
     <button type="button" id="refresh">Refresh</button>
     <button type="button" id="findBtn" class="fbtn" aria-label="Find a player" aria-expanded="false">&#128269;</button>
 </nav>
-<div class="find" id="findRow" hidden><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
+<div class="find" id="findRow"><span class="fic" aria-hidden="true">&#128269;</span><input id="findq" type="search" placeholder="Find a player - lineups, alerts, moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
 <p class="rmsg" id="rmsg" hidden></p></section>
 
 <div id="pkTop"></div>
