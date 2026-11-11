@@ -1,7 +1,7 @@
 {
  "week": 10,
- "built": "Tue Nov 10 2026 05:32 PM PT",
- "ratcliffe_read": "Tue Nov 10 2026 3:26 PM PT",
+ "built": "Tue Nov 10 2026 05:38 PM PT",
+ "ratcliffe_read": "Tue Nov 10 2026 5:26 PM PT",
  "koerner_read": "Tue Nov 10 2026 4:04 PM PT",
  "leagues": {
   "DK I": {
@@ -14,7 +14,7 @@
      "over": "Jordan Addison",
      "pct": 37,
      "gain": 7.5,
-     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 8.7 vs 9.8 \u00b7 Koerner 9.3 vs 8.0 \u00b7 Yahoo 8.7 vs 7.5 - mixed - Ratcliffe says worse",
+     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 8.9 vs 9.6 \u00b7 Koerner 9.3 vs 8.0 \u00b7 Yahoo 8.7 vs 7.5 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:bufdef",
      "first_seen": "Mon Nov 09 2026 09:34 PM PT"
@@ -102,9 +102,9 @@
      "team": "JAX",
      "acq": "Free agent",
      "over": "Chiefs",
-     "pct": 44,
-     "gain": 6.8,
-     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 12.4 vs 8.5 \u00b7 Koerner 8.4 vs 6.1 \u00b7 Yahoo 7.0 vs 5.6 - better this week",
+     "pct": 46,
+     "gain": 7.0,
+     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 12.4 vs 8.3 \u00b7 Koerner 8.4 vs 6.1 \u00b7 Yahoo 7.0 vs 5.6 - better this week",
      "scout": true,
      "id": "talk:jaxdef",
      "first_seen": "Wed Nov 04 2026 05:36 PM PT"
@@ -117,7 +117,7 @@
      "over": "David Montgomery",
      "pct": 35,
      "gain": 3.9,
-     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 7.5 vs 8.5 \u00b7 Koerner 7.5 vs 6.1 \u00b7 Yahoo 6.8 vs 5.6 - mixed - Ratcliffe says worse",
+     "note": "Scout pick (rest of season): This week vs your DEF Chiefs DEF: Ratcliffe 7.7 vs 8.3 \u00b7 Koerner 7.5 vs 6.1 \u00b7 Yahoo 6.8 vs 5.6 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:bufdef",
      "first_seen": "Mon Nov 09 2026 09:34 PM PT"
@@ -254,34 +254,10 @@
      "scout": true,
      "id": "talk:tbdef",
      "first_seen": "Tue Nov 10 2026 07:07 AM PT"
-    },
-    {
-     "name": "Hunter Henry",
-     "pos": "TE",
-     "team": "NE",
-     "acq": "Waivers, clears Nov 11",
-     "over": "Aaron Rodgers",
-     "pct": 29,
-     "gain": 2.2,
-     "note": "Scout pick (rest of season): This week vs your FLEX2 Josh Downs: Ratcliffe 10.0 vs 7.7 \u00b7 Koerner 9.2 vs 4.5 \u00b7 Yahoo 10.2 vs 5.4 \u00b7 Gotham 9.2 vs 6.2 - better this week",
-     "scout": true,
-     "id": "talk:hunterhenry",
-     "first_seen": "Tue Nov 10 2026 12:35 PM PT"
     }
    ],
    "watch": [],
    "cover": [
-    {
-     "title": "WR1, Weeks 10, 13-14 Fill",
-     "target": "Target 12.8 pts",
-     "mark": "red",
-     "why": "Full strength ~12.8 (Pickens). Wk 10 Pickens ~12.1 (hard matchup vs SF) \u00b7 Wk 13 Pickens ~13.2 (hard matchup vs SEA) \u00b7 Wk 14 Downs ~13.1 (Pickens on bye, Downs slides in).",
-     "picks": [
-      "Tank Dell (Waivers, clears Nov 11)"
-     ],
-     "id": "cover:wr1weeks101314fill",
-     "first_seen": "Tue Nov 10 2026 12:35 PM PT"
-    },
     {
      "title": "RB2, Week 10 Fill",
      "target": "Target 12.1 pts",
@@ -307,16 +283,22 @@
      "first_seen": "Mon Nov 09 2026 08:42 PM PT"
     },
     {
-     "title": "FLEX2, Week 10 Fill",
-     "target": "Target 7.7 pts",
-     "mark": "red",
-     "why": "Full strength ~10.5 (Douglas). Wk 10 Downs ~7.7 (Douglas moves up to WR2, Downs slides in).",
-     "picks": [
-      "Justice Hill (Waivers, clears Nov 11)",
-      "Kimani Vidal (Free agent)"
-     ],
-     "id": "cover:flex2week10fill",
+     "title": "WR1, Weeks 10, 13-14 Fill",
+     "target": "Target 12.8 pts",
+     "mark": "gold",
+     "why": "Full strength ~12.8 (Pickens). Wk 10 Pickens ~12.1 (hard matchup vs SF) \u00b7 Wk 13 Pickens ~13.2 (hard matchup vs SEA) \u00b7 Wk 14 Downs ~13.1 (Pickens on bye, Downs slides in).",
+     "picks": [],
+     "id": "cover:wr1weeks101314fill",
      "first_seen": "Tue Nov 10 2026 12:35 PM PT"
+    },
+    {
+     "title": "FLEX1, Week 12 Fill",
+     "target": "Target 11.7 pts",
+     "mark": "gold",
+     "why": "Full strength ~10.6 (Hockenson). Wk 12 Downs ~11.7 (Hockenson has a worse matchup).",
+     "picks": [],
+     "id": "cover:flex1week12fill",
+     "first_seen": "Tue Nov 10 2026 05:38 PM PT"
     }
    ],
    "block": [],
@@ -327,7 +309,7 @@
      "pos": "RB",
      "team": "HOU",
      "status": "Q",
-     "wk": 4.91,
+     "wk": 6.51,
      "locks": "Sun 10:00 AM",
      "lock_utc": "2026-11-15T18:00:00+00:00",
      "bench": [],
@@ -345,7 +327,7 @@
        "name": "Kaleb Johnson",
        "pos": "RB",
        "team": "GB",
-       "wk": 11.0,
+       "wk": 11.1,
        "koe": 8.36,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-15T18:00:00+00:00"
@@ -378,7 +360,7 @@
        "name": "Jordan Watkins",
        "pos": "WR",
        "team": "SF",
-       "wk": 8.9,
+       "wk": 8.8,
        "koe": 6.2,
        "locks": "Sun 1:25 PM",
        "lock_utc": "2026-11-15T21:25:00+00:00"
@@ -387,7 +369,7 @@
        "name": "Konata Mumpfield",
        "pos": "WR",
        "team": "LAR",
-       "wk": 8.3,
+       "wk": 8.7,
        "koe": 6.34,
        "locks": "Sun 1:05 PM",
        "lock_utc": "2026-11-15T21:05:00+00:00"
@@ -396,7 +378,7 @@
        "name": "Savion Williams",
        "pos": "WR",
        "team": "GB",
-       "wk": 7.3,
+       "wk": 7.2,
        "koe": 6.61,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-15T18:00:00+00:00"
@@ -430,8 +412,8 @@
      "acq": "Free agent",
      "over": "Bengals",
      "pct": 42,
-     "gain": 4.8,
-     "note": "Scout pick (rest of season): This week vs your DEF Bengals DEF: Ratcliffe 7.5 vs 7.0 \u00b7 Koerner 7.5 vs 6.6 \u00b7 Yahoo 6.8 vs 6.4 - better this week",
+     "gain": 5.0,
+     "note": "Scout pick (rest of season): This week vs your DEF Bengals DEF: Ratcliffe 7.7 vs 7.0 \u00b7 Koerner 7.5 vs 6.6 \u00b7 Yahoo 6.8 vs 6.4 - better this week",
      "scout": true,
      "id": "talk:bufdef",
      "first_seen": "Mon Nov 09 2026 09:34 PM PT"
@@ -445,8 +427,8 @@
      "acq": "Free agent",
      "over": "Bengals",
      "pct": 39,
-     "gain": 3.5,
-     "note": "Scout pick (rest of season): This week vs your DEF Bengals DEF: Ratcliffe 6.8 vs 7.0 \u00b7 Koerner 5.7 vs 6.6 \u00b7 Yahoo 5.3 vs 6.4 - WORSE this week",
+     "gain": 3.4,
+     "note": "Scout pick (rest of season): This week vs your DEF Bengals DEF: Ratcliffe 6.7 vs 7.0 \u00b7 Koerner 5.7 vs 6.6 \u00b7 Yahoo 5.3 vs 6.4 - WORSE this week",
      "scout": true,
      "id": "watch:pitdef",
      "first_seen": "Tue Nov 10 2026 02:36 AM PT"
@@ -459,7 +441,7 @@
      "over": "Wan'Dale Robinson",
      "pct": 26,
      "gain": 3.6,
-     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 9.8 vs 10.1 \u00b7 Koerner 9.8 vs 10.6 \u00b7 Yahoo 8.5 vs 10.2 \u00b7 Gotham 7.3 vs 9.9 - WORSE this week",
+     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 10.0 vs 10.1 \u00b7 Koerner 9.8 vs 10.6 \u00b7 Yahoo 8.5 vs 10.2 \u00b7 Gotham 7.3 vs 9.9 - WORSE this week",
      "scout": true,
      "id": "watch:antoniowilliams",
      "first_seen": "Tue Nov 10 2026 08:10 AM PT"
