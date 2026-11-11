@@ -1235,6 +1235,9 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
 @media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+html body .mgrid.g-a .wln2 .wo i.wch{display:block;font:700 8px/1 var(--f-body);font-style:normal;margin-top:2px;letter-spacing:.02em}
+html body .mgrid.g-a .wln2 .wo i.wch.up{color:#3DDC84}html body .mgrid.g-a .wln2 .wo i.wch.dn{color:#FF4D57}html body .mgrid.g-a .wln2 .wo i.wch.z{color:var(--ink2)}
+@media (min-width:561px){html body .mgrid.g-a .wln2 .wo i.wch{font-size:12px}}
 /* both numbers always side by side, trend line on its own row under them */
 html body .mgrid.g-a .mxd2 .wln.wln2{display:grid !important;grid-template-columns:1fr 1fr;column-gap:2px !important;row-gap:3px !important;justify-items:center}
 html body .mgrid.g-a .mxd2 .wln2 > .wtr{grid-column:1 / -1}
@@ -1606,7 +1609,11 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !impo
 </div>
 
 <div id="meters2"></div>
-<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls sit right under Experts & Sources, above Diamonds -->
+
+<div id="pkTop"></div>
+
+<div id="pickups"></div>
+<div id="ctlBot"><!-- Nov 11 2:35 PM (Dom): controls sit right under Diamonds in the Rough -->
 <nav class="ctl ctls" id="ctlTop">
     <a href="https://football.fantasysports.yahoo.com/" target="_blank" rel="noopener">Yahoo</a>
     <a href="https://leagueblitz.app/" target="_blank" rel="noopener">Blitz</a>
@@ -1616,8 +1623,6 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:500 12.5px/1 var(--f-body) !impo
 </nav>
 <div class="find" id="findRow" hidden><input id="findq" type="search" placeholder="Find a player across lineups, alerts and moves" aria-label="Find a player" autocomplete="off" enterkeyhint="search"></div><div class="fres" id="fres" aria-live="polite"></div>
 <p class="rmsg" id="rmsg" hidden></p></div>
-<div id="pkTop"></div>
-<div id="pickups"></div>
 <div id="wheel"></div>
 
 
@@ -2341,20 +2346,23 @@ function meters(){
         const RK = rankedOf(X, OCK), wk = RK ? Math.round(RK.v) : y, wkP = (() => { /* change since the last read, counted only over the top sources both reads have, so a source missing from the old read can't fake a jump */
           const P0 = prev && prev.lg[k]; if (!RK || !P0) return null; const cm = RK.top.filter(s3 => P0[s3] !== null && P0[s3] !== undefined && !isNaN(P0[s3])); if (!cm.length) return null;
           const a0 = cm.reduce((a, s3) => a + P0[s3], 0) / cm.length, a1 = cm.reduce((a, s3) => a + X[s3], 0) / cm.length; return wk - Math.round(a1 - a0); })();
+        /* Nov 11 2:50 PM (Dom): the little week line is gone - each number carries its own arrow: how far it has moved since the first
+           read of the week (green up, red down). RANKED counts only the top sources that also had a number at the start of the week */
+        const dY = (() => { const w0 = weekStart(k, "y"); return w0 === null || w0 === undefined || isNaN(w0) ? null : Math.round(y - w0); })();
+        const dR = (() => { if (!RK) return null; const cm = RK.top.map(s3 => [s3, weekStart(k, s3)]).filter(([, v0]) => v0 !== null && v0 !== undefined && !isNaN(v0)); if (!cm.length) return null;
+          return Math.round(cm.reduce((a, [s3]) => a + X[s3], 0) / cm.length - cm.reduce((a, [, v0]) => a + v0, 0) / cm.length); })();
+        const wkArrow = (d, who) => d === null ? "" : `<i class="wch ${d > 0 ? "up" : d < 0 ? "dn" : "z"}" title="${who}: ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d) + " points"} since the first read of the week">${d === 0 ? "– 0" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</i>`;
         const ZN = settled(L) ? (score(L.players) >= score(L.oppPlayers) ? "win" : "lose") : ZF(wk), PZ = ZF(po === null || po === undefined ? null : po * 100);
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b class="wpn z-${ZF(y)}">${wp2(y)}%</b><span class="ny">YAHOO</span></div>
-        ${(() => { const w0 = weekStart(k, "y"), tr = trailEntries().filter(e => S && e.w === S.week && e.lg[k] && e.lg[k].y !== undefined && e.lg[k].y !== null).map(e => e.lg[k].y);
-          const vals = [...(w0 !== null ? [w0] : []), ...tr, y].filter(v => v !== null && !isNaN(v)); if (vals.length < 2) return "";
-          const d = Math.round(y - vals[0]), zc = y >= 55 ? "#3DDC84" : y >= 45 ? "#F7B32B" : "#FF4D57";
-          return `<div class="wtr" title="Yahoo's chance to win this week, from the first read of the week to now"><span class="wl">WEEK</span>${spark(vals, zc)}<span class="wtd ${d > 0 ? "up" : d < 0 ? "dn" : ""}">${d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</span></div>`; })()}
+      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b class="wpn z-${ZF(y)}">${wp2(y)}%</b><span class="ny">YAHOO</span>${wkArrow(dY, "Yahoo")}</div>
+        
         ${(() => { /* Nov 10 8:31 AM (Dom): second orb = the average chance to win this week of the top three sources by accuracy (the checked ones) */
           const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, top = OCK.map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
           if (!top.length) return "";
           const t3 = top.reduce((a, s3) => a + X[s3], 0) / top.length, NM3 = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"};
-          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}"><b class="wpn z-${ZF(t3)}">${wp2(Math.round(t3))}%</b><span class="nr">RANKED</span></div>`; })()}
+          return `<div class="wo" title="RANKED = average chance to win this week of your top ${top.length} sources by accuracy (last graded week): ${top.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ")}"><b class="wpn z-${ZF(t3)}">${wp2(Math.round(t3))}%</b><span class="nr">RANKED</span>${wkArrow(dR, "RANKED")}</div>`; })()}
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
