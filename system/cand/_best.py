@@ -170,7 +170,7 @@ for _lab, _cfg in LEAGUES.items():
             lu = {}
             for _side in ("me", "op"):
                 if _sides[_side] is None: lu[_side] = [dict(p, _v=p.get(col) or 0) for p in _L["starters"][_side]]; _moves.setdefault(col, {})[_side] = []; continue
-                lu[_side], mv = _best_lineup(_PADDED.setdefault((_lab, _side), _pad(_lab, _L["starters"][_side])), _sides[_side], col)
+                lu[_side], mv = _best_lineup((_PADDED[(_lab, _side)] if (_lab, _side) in _PADDED else _PADDED.setdefault((_lab, _side), _pad(_lab, _L["starters"][_side]))), _sides[_side], col)
                 _moves.setdefault(col, {})[_side] = mv
             a, b, pct = chance([dict(p, **{col: p["_v"]}) for p in lu["me"]], [dict(p, **{col: p["_v"]}) for p in lu["op"]], col)
             _best[col] = (round(a, 2), round(b, 2), pct)
