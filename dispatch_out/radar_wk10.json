@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Wed Nov 11 3:53 PM PT",
- "built_utc": "2026-11-11T23:53:09.626868+00:00",
+ "built": "Wed Nov 11 4:12 PM PT",
+ "built_utc": "2026-11-12T00:12:03.421519+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Wed Nov 11 3:48 PM PT",
-   "pulled_ago": "4 min ago",
-   "items": 2545,
-   "newest": "5 min ago",
+   "pulled": "Wed Nov 11 4:07 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 2551,
+   "newest": "6 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Wed Nov 11 3:48 PM PT",
-   "pulled_ago": "4 min ago",
-   "items": 7077,
-   "newest": "12 min ago",
+   "pulled": "Wed Nov 11 4:07 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 7081,
+   "newest": "17 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Wed Nov 11 3:48 PM PT",
-   "pulled_ago": "4 min ago",
-   "items": 1761,
-   "newest": "1.1 h ago",
+   "pulled": "Wed Nov 11 4:07 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 1763,
+   "newest": "4 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Wed Nov 11 3:48 PM PT",
-   "pulled_ago": "4 min ago",
-   "items": 417,
-   "newest": "16 min ago",
+   "pulled": "Wed Nov 11 4:07 PM PT",
+   "pulled_ago": "5 min ago",
+   "items": 416,
+   "newest": "11 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Wed Nov 11 3:48 PM PT",
-   "pulled_ago": "4 min ago",
+   "pulled": "Wed Nov 11 4:07 PM PT",
+   "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Wed Nov 11 3:50 PM PT",
-   "pulled_ago": "3 min ago",
+   "pulled": "Wed Nov 11 4:10 PM PT",
+   "pulled_ago": "2 min ago",
    "items": 768,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Wed Nov 11 2026 03:50 PM PT",
+   "pulled": "Wed Nov 11 2026 04:10 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Wed Nov 11 3:44 PM PT",
-   "pulled_ago": "9 min ago",
+   "pulled_ago": "28 min ago",
    "items": 365,
    "newest": null,
    "warn": null,
@@ -662,7 +662,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #6 (766,161 in 24 h)"
+      "Sleeper adds #6 (772,389 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -699,7 +699,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (354,906 in 24 h)"
+      "Sleeper adds #13 (357,588 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1040,6 +1040,49 @@
    "unread": [],
    "own": [
     {
+     "name": "David Montgomery",
+     "pos": "RB",
+     "team": "HOU",
+     "slot": "BN",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "red",
+      "grades": [
+       "bad",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 11:05 AM PT",
+       "src": "rotoballer",
+       "title": "David Montgomery Out of Texans Practice on Wednesday",
+       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 11 11:04 AM PT",
+       "src": "ESPN injury report",
+       "title": "David Montgomery: Out (Groin)",
+       "text": "Montgomery (groin) remained sidelined at practice Wednesday, Aaron Wilson of KPRC 2 Houston reports.",
+       "grade": "bad"
+      },
+      {
+       "t": "Mon Nov 9 1:12 PM PT",
+       "src": "rotoballer",
+       "title": "David Montgomery Making Progress Toward Return to Practice",
+       "text": "Houston Texans running back David Montgomery (groin) could resume practicing this week or next, according to Aaron Wilson, who reported [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "gotham": 11.8,
+     "gotham_ros": 11.7,
+     "sleeper": 11.9,
+     "workload": "32/11/16/11/6",
+     "trend": -0.54
+    },
+    {
      "name": "Travis Etienne Jr.",
      "pos": "RB",
      "team": "NO",
@@ -1124,49 +1167,6 @@
      "sleeper": 6.6,
      "workload": "23/12/23/7/15/23/15",
      "trend": 0.06
-    },
-    {
-     "name": "David Montgomery",
-     "pos": "RB",
-     "team": "HOU",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 11:30 AM PT",
-       "src": "ESPN injury report",
-       "title": "David Montgomery: Questionable (Groin)",
-       "text": "questionable",
-       "grade": "caution"
-      },
-      {
-       "t": "Wed Nov 11 11:05 AM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Out of Texans Practice on Wednesday",
-       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 9 1:12 PM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Making Progress Toward Return to Practice",
-       "text": "Houston Texans running back David Montgomery (groin) could resume practicing this week or next, according to Aaron Wilson, who reported [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "gotham": 11.8,
-     "gotham_ros": 11.7,
-     "sleeper": 11.9,
-     "workload": "32/11/16/11/6",
-     "trend": -0.54
     },
     {
      "name": "Aaron Rodgers",
@@ -1591,7 +1591,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #15 (302,310 in 24 h)"
+      "Sleeper adds #15 (305,280 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1894,7 +1894,7 @@
      "pos": "WR",
      "team": "IND",
      "why": [
-      "Sleeper adds #24 (168,990 in 24 h)"
+      "Sleeper adds #24 (169,880 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1943,11 +1943,11 @@
      },
      "news": [
       {
-       "t": "Wed Nov 11 3:47 PM PT",
-       "src": "RotoWire news",
-       "title": "KaVontae Turpin: Still dealing with ribs injury",
-       "text": "Turpin (ribs) was limited in Wednesday's practice, Tommy Yarrish of the Cowboys' official site reports.",
-       "grade": "note"
+       "t": "Wed Nov 11 3:51 PM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
       }
      ],
      "floor": {
@@ -2043,6 +2043,49 @@
    "opponent": "Mr. Bobo",
    "unread": [],
    "own": [
+    {
+     "name": "David Montgomery",
+     "pos": "RB",
+     "team": "HOU",
+     "slot": "BN",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "red",
+      "grades": [
+       "bad",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 11:05 AM PT",
+       "src": "rotoballer",
+       "title": "David Montgomery Out of Texans Practice on Wednesday",
+       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 11 11:04 AM PT",
+       "src": "ESPN injury report",
+       "title": "David Montgomery: Out (Groin)",
+       "text": "Montgomery (groin) remained sidelined at practice Wednesday, Aaron Wilson of KPRC 2 Houston reports.",
+       "grade": "bad"
+      },
+      {
+       "t": "Mon Nov 9 1:12 PM PT",
+       "src": "rotoballer",
+       "title": "David Montgomery Making Progress Toward Return to Practice",
+       "text": "Houston Texans running back David Montgomery (groin) could resume practicing this week or next, according to Aaron Wilson, who reported [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "gotham": 11.8,
+     "gotham_ros": 11.7,
+     "sleeper": 11.9,
+     "workload": "32/11/16/11/6",
+     "trend": -0.54
+    },
     {
      "name": "T.J. Hockenson",
      "pos": "TE",
@@ -2172,49 +2215,6 @@
      "sleeper": 13.7,
      "workload": "6/9/12/3/14/12/7/4",
      "trend": -0.43
-    },
-    {
-     "name": "David Montgomery",
-     "pos": "RB",
-     "team": "HOU",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "caution",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 11:30 AM PT",
-       "src": "ESPN injury report",
-       "title": "David Montgomery: Questionable (Groin)",
-       "text": "questionable",
-       "grade": "caution"
-      },
-      {
-       "t": "Wed Nov 11 11:05 AM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Out of Texans Practice on Wednesday",
-       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 9 1:12 PM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Making Progress Toward Return to Practice",
-       "text": "Houston Texans running back David Montgomery (groin) could resume practicing this week or next, according to Aaron Wilson, who reported [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "gotham": 11.8,
-     "gotham_ros": 11.7,
-     "sleeper": 11.9,
-     "workload": "32/11/16/11/6",
-     "trend": -0.54
     },
     {
      "name": "Harold Fannin Jr.",
@@ -2562,7 +2562,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #17 (244,244 in 24 h)"
+      "Sleeper adds #17 (246,216 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2599,7 +2599,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #15 (302,310 in 24 h)"
+      "Sleeper adds #15 (305,280 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2673,7 +2673,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #6 (766,161 in 24 h)"
+      "Sleeper adds #6 (772,389 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2710,10 +2710,10 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #7 (755,560 in 24 h)"
+      "Sleeper adds #7 (759,840 in 24 h)"
      ],
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -2722,10 +2722,10 @@
      },
      "news": [
       {
-       "t": "Wed Nov 11 4:01 AM PT",
-       "src": "pft",
-       "title": "John Spytek: Fernando Mendoza passed every test, allowed us to make a hard decision",
-       "text": "It took longer than it has for most quarterbacks drafted first overall, but Fernando Mendoza's time has come in Las Vegas.",
+       "t": "Wed Nov 11 4:08 PM PT",
+       "src": "ESPN news",
+       "title": "Fernando Mendoza relishes 'once-in-a-lifetime' opportunity as Raiders' QB1",
+       "text": "No. 1 pick Fernando Mendoza said Wednesday it's a \"once-in-a-lifetime\" opportunity to be the Raiders' starting quarterback, while his teammates and coach expressed their confidence in his ability to lead the offense.",
        "grade": "note"
       }
      ],
@@ -2939,7 +2939,7 @@
      "pos": "WR",
      "team": "IND",
      "why": [
-      "Sleeper adds #24 (168,990 in 24 h)"
+      "Sleeper adds #24 (169,880 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2988,11 +2988,11 @@
      },
      "news": [
       {
-       "t": "Wed Nov 11 3:47 PM PT",
-       "src": "RotoWire news",
-       "title": "KaVontae Turpin: Still dealing with ribs injury",
-       "text": "Turpin (ribs) was limited in Wednesday's practice, Tommy Yarrish of the Cowboys' official site reports.",
-       "grade": "note"
+       "t": "Wed Nov 11 3:51 PM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
       }
      ],
      "floor": {
@@ -3797,7 +3797,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #6 (766,161 in 24 h)"
+      "Sleeper adds #6 (772,389 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3834,7 +3834,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (354,906 in 24 h)"
+      "Sleeper adds #13 (357,588 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3871,7 +3871,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #15 (302,310 in 24 h)"
+      "Sleeper adds #15 (305,280 in 24 h)"
      ],
      "marker": {
       "count": 1,
