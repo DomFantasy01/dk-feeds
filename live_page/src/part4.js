@@ -717,17 +717,20 @@ function meters(){
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
-        <div class="sgpl"><div title="Projected final, Yahoo: you ${f1(F.me)}, him ${f1(F.op)}"><span>PROJ</span><b><em class="me">${Math.round(F.me)}</em><i>·</i>${Math.round(F.op)}</b></div><div title="Players still to play: you ${meL}, him ${opL}"><span>LEFT</span><b><em class="me">${meL}</em><i>·</i>${opL}</b></div></div>
-        <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
-          Win Probability now). Before kickoff = Yahoo's projected margin; once games start = the live margin; final = the final margin */
-          const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
+        ${(() => { /* Nov 11 4:10 PM (Dom: "too much wasted space"): one compact ledger under the globe - MARGIN, PLAYOFFS, PROJ, LEFT
+          and FAAB (or waiver order) - readable labels, no boxes inside boxes. Two columns on a computer, one tight list on a phone */
+          const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg);
           const tip = done ? `Final margin: ${f1(me)} to ${f1(op)}` : goNow ? `Live margin: ${f1(me)} to ${f1(op)} · you have ${meL} left to play, he has ${opL}` : `Projected margin (Yahoo's projections): ${f1(F.me)} to ${f1(F.op)}`;
-          return `<div title="${esc(tip)}"><span>${goNow && !done ? "LIVE MARGIN" : done ? "FINAL MARGIN" : "MARGIN"}</span><b class="z-${mz}">${mt > 0 ? "+" : mt < 0 ? "−" : ""}${Math.abs(mt)}</b></div>`; })()}
-          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>${(() => { /* Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
-          const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
-          return wb.faab !== null && wb.faab !== undefined
-            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
-            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i class="wn">/${wb.n}</i></div>` : ""); })()}`),
+          const wb = m.wire, at = wb && wb.read ? " · Yahoo read " + esc(wb.read) : "";
+          const row = (lab, val, cls, title) => `<div class="lr" title="${esc(title)}"><span>${lab}</span><b class="${cls || ""}">${val}</b></div>`;
+          const rows = [
+            row(goNow && !done ? "LIVE MARGIN" : done ? "FINAL" : "MARGIN", (mt > 0 ? "+" : mt < 0 ? "−" : "") + Math.abs(mt), "z-" + mz, tip),
+            row("PLAYOFFS", pcs(po), "z-" + PZ, "Playoff odds for the season (championship simulator)"),
+            row("PROJ", `<em>${Math.round(F.me)}</em><i>·</i>${Math.round(F.op)}`, "pr", `Projected final, Yahoo: you ${f1(F.me)}, him ${f1(F.op)}`),
+            row("LEFT", `<em>${meL}</em><i>·</i>${opL}`, "pr", `Players still to play: you ${meL}, him ${opL}`)];
+          if (wb && wb.faab !== null && wb.faab !== undefined) rows.push(row("FAAB", "$" + wb.faab, "fb", `FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}`));
+          else if (wb && wb.wp) rows.push(row("WAIVER", `#${wb.wp}<i>/${wb.n}</i>`, "fb", `No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}`));
+          return `<div class="sled">${rows.join("")}</div>`; })()}`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
