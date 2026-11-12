@@ -577,9 +577,11 @@ function scoreGlobe(L, k, o){
   const arc = (r, f0, f1) => { f0 = Math.max(0, Math.min(1, f0)); f1 = Math.max(f0, Math.min(1, f1)); if (f1 - f0 < .002) return "";
     const d0 = A0 + SW * f0, d1 = A0 + SW * f1, [x0, y0] = pt(r, d0), [x1, y1] = pt(r, d1);
     return `M${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${d1 - d0 > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
-  let ticks = ""; for (let v = 0; v <= sc + .01; v += step / 5){ const f = v / sc, d = A0 + SW * f, maj = Math.abs(v % step) < .01 || Math.abs(v % step - step) < .01;
+  let ticks = "", tlab = ""; for (let v = 0; v <= sc + .01; v += step / 5){ const f = v / sc, d = A0 + SW * f, maj = Math.abs(v % step) < .01 || Math.abs(v % step - step) < .01;
     const [x0, y0] = pt(55.5, d), [x1, y1] = pt(maj ? 59.5 : 57.6, d); ticks += `<line x1="${x0.toFixed(2)}" y1="${y0.toFixed(2)}" x2="${x1.toFixed(2)}" y2="${y1.toFixed(2)}" stroke="${maj ? "#C9D1E2" : "#46557A"}" stroke-width="${maj ? 1.1 : .6}"/>`;
-    if (maj && v > 0 && (v % (step * 2) < .01 || sc / step <= 4)){ const [lx, ly] = pt(49.5, d); ticks += `<text x="${lx.toFixed(2)}" y="${(ly + 1.6).toFixed(2)}" text-anchor="middle" class="gtk">${Math.round(v)}</text>`; } }
+    /* Nov 11 6:40 PM (Dom: "score board meter is covering the graph numbers"): the scale numbers move out to the clear band between the
+       rings and the tick marks, and are drawn on top of everything with a dark halo so no ring can cover them */
+    if (maj && v > 0 && (v % (step * 2) < .01 || sc / step <= 4)){ const [lx, ly] = pt(52.4, d); tlab += `<text x="${lx.toFixed(2)}" y="${(ly + 1.55).toFixed(2)}" text-anchor="middle" class="gtk">${Math.round(v)}</text>`; } }
   /* Nov 9 noon (Dom): your ring starts in the league color and blends into your win color (green 55%+, gold 45-55, red under 45);
      his starts gray and blends into the mirror - green when he's winning, red when he's losing. True gray track, no blue */
   const ring = (r, sw, val, proj, col, side, c0) => { const [dk, md, lt] = PAL[col], fv = val / sc, fp = Math.max(proj, val) / sc, big = side === "m", on = big ? o.meOn : o.opOn;
@@ -625,6 +627,7 @@ function scoreGlobe(L, k, o){
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
     ${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}
+    ${tlab}
     <ellipse cx="${CX}" cy="${CY + 28.6}" rx="16" ry="2.2" fill="#000" opacity=".4"/>
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}ga)"/></g>
     <circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}gr)"/>
