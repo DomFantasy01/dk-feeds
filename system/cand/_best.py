@@ -59,6 +59,23 @@ def _team_of(k, names):
         x = l.split("|")
         if len(x) > 2 and norm(x[2]) in names: cnt[x[0]] = cnt.get(x[0], 0) + 1
     return max(cnt, key=cnt.get) if cnt else None
+# Nov 12 2026 (found 6:55 AM: an empty QB slot in DK I, TE in DK II, DEF in DK III, WR in DK IV): Yahoo's read leaves an EMPTY
+# starting seat out of the list, so the best lineup never filled it and every needle ran a man short. Pad the side with each
+# league's full set of starting seats first; an empty seat shows as "(empty)" and the best lineup fills it from the bench.
+_SEATS = {"DK I": "QB WR WR RB RB TE W/R/T W/R/T K DEF", "DK II": "QB WR WR WR RB RB TE W/R/T Q/W/R/T K DEF",
+          "DK III": "QB WR WR RB RB TE W/R/T W/R/T DEF", "DK IV": "QB WR WR WR RB RB TE W/R/T Q/W/R/T K DEF"}
+def _pad(lab, starters):
+    want = {}
+    for s_ in _SEATS.get(lab, "").split(): want[s_] = want.get(s_, 0) + 1
+    have = {}
+    for p in starters: have[p.get("slot")] = have.get(p.get("slot"), 0) + 1
+    extra = []
+    for s_, n_ in want.items():
+        for j in range(n_ - have.get(s_, 0)):
+            extra.append(dict(slot=s_, player=f"(empty {s_} {j + 1})", team="", pos=s_, status="", actual=None,
+                              yahoo=0.0, gotham=0.0, sleeper=0.0, ratcliffe=0.0, koerner=0.0))
+    if extra: notes.append(f"{lab}: {len(extra)} EMPTY starting seat(s) as set on Yahoo ({', '.join(e['slot'] for e in extra)}) - the best lineup fills them from the bench; the as-set needle counts them as zero")
+    return list(starters) + extra
 def _best_lineup(starters, pool, col):
     """starters: the side as set (slot order kept). pool: every man on the roster with values. Returns (lineup, moves)."""
     slots = [p["slot"] for p in starters]
@@ -95,6 +112,7 @@ def _best_lineup(starters, pool, col):
         moves.append(dict(out=a["player"] if a else None, out_v=round(float(a.get(col) or 0), 1) if a else None,
                           into=b["player"] if b else None, in_v=round(float(b["_v"]), 1) if b else None))
     return lineup, moves
+_PADDED = {}
 for _lab, _cfg in LEAGUES.items():
     if _lab not in LEAGUE_OUT: continue
     _L = LEAGUE_OUT[_lab]
@@ -152,7 +170,7 @@ for _lab, _cfg in LEAGUES.items():
             lu = {}
             for _side in ("me", "op"):
                 if _sides[_side] is None: lu[_side] = [dict(p, _v=p.get(col) or 0) for p in _L["starters"][_side]]; _moves.setdefault(col, {})[_side] = []; continue
-                lu[_side], mv = _best_lineup(_L["starters"][_side], _sides[_side], col)
+                lu[_side], mv = _best_lineup(_PADDED.setdefault((_lab, _side), _pad(_lab, _L["starters"][_side])), _sides[_side], col)
                 _moves.setdefault(col, {})[_side] = mv
             a, b, pct = chance([dict(p, **{col: p["_v"]}) for p in lu["me"]], [dict(p, **{col: p["_v"]}) for p in lu["op"]], col)
             _best[col] = (round(a, 2), round(b, 2), pct)
