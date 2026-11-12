@@ -16,7 +16,8 @@ GRADE (0-100), built for THIS team:
   fit       25  fills an OPEN Missing Piece or a new gap at his position (10, +2 if he plays in the short weeks), beats the man
                 he'd replace on Dom's roster (up to 10 at +30%; Dom's bar is +15%), depth (5 with no healthy bench man there,
                 2.5 with one; K/DEF: 5 if Dom's starter is on bye in Weeks 10-11, hurt, or missing)
-  workload  15  carries+targets and snap share, last 3 games played, rising = more (K/DEF: 7.5, not measured)
+  workload  15  carries+targets and snap share, last 3 games played, rising = more; OR (Nov 11) already holding the top role -
+                WR1/TE1 by targets (30%+) or the lead back (45%+ of carries, no split) = full 15, a clear #2 = 9; the higher counts (K/DEF: 7.5)
   playoffs  15  Weeks 15-17 matchups: opponents' points allowed to his position (RB/WR/TE); for DEF and K when the schedule
                 file carries this season's scores, opponents' points scored (DEF, fewer = better) / allowed (K, more = better),
                 otherwise 7.5
@@ -164,6 +165,7 @@ def role(key, tm, pos):
     tot = sum(v[0] for v in G.values()) or 1; order = sorted(G, key=lambda k: -G[k][0])
     return dict(rank=order.index(key) + 1, share=round(G[key][0] / tot, 2), split=False,
                 txt=f"{pos}{order.index(key) + 1} on his team: {G[key][0] / tot * 100:.0f}% of the {pos} targets last {len(RECENT)} games")
+ROLE_OF = role                                         # grade() has its own local 'role' text
 PPG = {t: sum(v) / len(v) for t, v in pf.items() if v}; L3 = {t: sum(v[-3:]) / len(v[-3:]) for t, v in pf.items() if v}
 ORANK = {t: i + 1 for i, t in enumerate(sorted(PPG, key=lambda t: -PPG[t]))}
 def team_line(key, tm, pos):
@@ -321,6 +323,13 @@ def grade(n, key, d, MY, NEED):
         if len(U) == 3:
             do = (o[2] - o[0]) / max(o[0], 3); dsn = (s[2] - s[0]) / 100
             g_work = max(0, min(1, 0.5 * max(0, do) + 1.5 * max(0, dsn) + (0.25 if o[2] >= 10 else 0))) * 15
+        # Nov 11 (Dom: Metcalf "only a 60"): a man who ALREADY holds the top role - WR1 / TE1 by targets, the lead back (not a split) -
+        # gets full workload credit; the climb still scores for everyone else. The higher of the two counts.
+        RW = ROLE_OF(key, tm, pos)
+        if RW and not RW.get("split"):
+            hold = 15 if RW["rank"] == 1 and RW["share"] >= (.45 if pos == "RB" else .30) else 9 if RW["rank"] <= 2 and RW["share"] >= .22 else 0
+            if hold and len(U) and (s[-1] if s else 0) < 50: hold = min(hold, 9)          # top of a thin group but on the field under half the snaps
+            g_work = max(g_work, hold)
     else: g_work = 7.5
     opp = [(w, sched.get(tm, {}).get(w)) for w in (15, 16, 17)]
     rk = [rank.get((op, pos)) for w, op in opp if op and rank.get((op, pos))]
