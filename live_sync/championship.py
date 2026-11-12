@@ -176,9 +176,15 @@ for lgk in LGS:
             ws = CL.get((p["pos"], k_))
             if not ws: continue
             fut = [w for w in range(now_ + 1, 18)]
-            tot_r = sum(p["wk"].get(str(w), 0.0) for w in fut); tot_c = sum(ws.get(w, 0.0) for w in fut)
-            if tot_r <= 0 or tot_c <= 0: continue
-            p["wk"] = dict(p["wk"], **{str(w): round(tot_r * ws.get(w, 0.0) / tot_c, 2) for w in fut}); shaped += 1
+            # Nov 12 (found on Bam Knight: Clay has him 0 in Weeks 15-17, when Jeremiyah Love is back): keeping Ratcliffe's whole
+            # rest-of-season TOTAL and moving it into Clay's non-zero weeks piled 7 games of points into 3 (+9 playoff points on a man
+            # who doesn't start). Now Ratcliffe's per-game RATE is kept over the weeks Clay has him playing, shaped by Clay's ups and
+            # downs, and a week Clay has at 0 (hurt, out of the role) is 0 - no points move from one week to another.
+            nz = [w for w in fut if ws.get(w, 0.0) > 0]
+            if not nz: continue
+            rate_r = sum(p["wk"].get(str(w), 0.0) for w in nz) / len(nz); rate_c = sum(ws[w] for w in nz) / len(nz)
+            if rate_r <= 0 or rate_c <= 0: continue
+            p["wk"] = dict(p["wk"], **{str(w): round(rate_r * ws.get(w, 0.0) / rate_c, 2) for w in fut}); shaped += 1
     E = Engine(L); S = E.S; me = E.me; now = E.now; names = L["names"]
     base_R = {t: list(v) for t, v in S["teams"].items()}
     B = E.run(base_R); Bm = B[me]
