@@ -1633,7 +1633,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacin
 .pknone{font-size:11px;color:#C9B27A;margin:2px 0 6px;padding:4px 6px;border:1px dashed #5A4A26;border-radius:6px}
 
 /* Nov 11 6:45 PM: Win probability dial scale */
-.bdl .bdsc{font:700 6.2px var(--f-num);fill:#C9D1E2;stroke:#0A1020;stroke-width:1.4px;paint-order:stroke;stroke-linejoin:round}
+.bdl .bdsc{font:700 5.4px var(--f-num);fill:#C9D1E2;stroke:#0A1020;stroke-width:1.4px;paint-order:stroke;stroke-linejoin:round}
 
 /* Nov 11 6:50 PM (Dom: "the font in the % is too large"): Win probability numbers smaller, % sign smaller still */
 html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
@@ -2167,9 +2167,12 @@ function bigDial(v, col, mark, id, v0, v2){
   const rk = v2 !== null && v2 !== undefined && !isNaN(v2) ? `<g filter="url(#${g}d)">${needle(Math.max(0, Math.min(100, +v2)), r - 6, `url(#${g}nb)`, 2.3)}</g>` : "";
   /* Nov 11 6:45 PM (Dom: "the scale is not visible ... part of the hub is cut off and the top of the meter"): the frame now holds the
      whole bezel and the hub, and the scale reads 0 · 25 · 50 · 75 · 100 just inside the arc, haloed so a needle can't hide it */
-  let scl = ""; for (const q of [0, 25, 50, 75, 100]){ const [lx, ly] = P(q, r - 12.5);
-    scl += `<text x="${f(lx + (q === 0 ? 2.5 : q === 100 ? -2.5 : 0))}" y="${f(ly + (q === 0 || q === 100 ? -1.2 : 2.4))}" text-anchor="middle" class="bdsc">${q}</text>`; }
-  return `<svg class="bdl" viewBox="0 -3 120 72" aria-hidden="true"><defs>
+  /* Nov 11 6:48 PM (Dom: "% should be outside the scale"): the 0-25-50-75-100 numbers sit OUTSIDE the tick ring, smaller */
+  let scl = ""; for (const q of [0, 25, 50, 75, 100]){
+    if (q === 0 || q === 100){ const [lx] = P(q, r + 17); scl += `<text x="${f(lx)}" y="69" text-anchor="middle" class="bdsc">${q}</text>`; continue; }
+    const [lx, ly] = P(q, r + 24.5), anc = q === 25 ? "end" : q === 75 ? "start" : "middle";
+    scl += `<text x="${f(lx + (q === 25 ? 1.5 : q === 75 ? -1.5 : 0))}" y="${f(ly + (q === 50 ? 1.5 : 2))}" text-anchor="${anc}" class="bdsc">${q}</text>`; }
+  return `<svg class="bdl" viewBox="-12 -16 144 87" aria-hidden="true"><defs>
     <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
     <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${col}" stop-opacity=".30"/><stop offset=".45" stop-color="#14203C" stop-opacity=".95"/><stop offset="1" stop-color="#0A1020"/></radialGradient>
     <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
