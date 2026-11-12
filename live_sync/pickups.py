@@ -17,7 +17,8 @@ GRADE (0-100), built for THIS team:
                 he'd replace on Dom's roster (up to 10 at +30%; Dom's bar is +15%), depth (5 with no healthy bench man there,
                 2.5 with one; K/DEF: 5 if Dom's starter is on bye in Weeks 10-11, hurt, or missing)
   workload  15  carries+targets and snap share, last 3 games played, rising = more; OR (Nov 11) already holding the top role -
-                WR1/TE1 by targets (30%+) or the lead back (45%+ of carries, no split) = full 15, a clear #2 = 9; the higher counts (K/DEF: 7.5)
+                WR1/TE1 by targets (30%+) or the lead back (45%+ of carries, no split) = full 15, a clear #2 = 9; the higher counts (K/DEF: 7.5).
+                Nov 12: no top-role credit when his snaps fell 10+ points over 3 games; at most 7 when he's on this week's injury report
   playoffs  15  Weeks 15-17 matchups: opponents' points allowed to his position (RB/WR/TE); for DEF and K when the schedule
                 file carries this season's scores, opponents' points scored (DEF, fewer = better) / allowed (K, more = better),
                 otherwise 7.5
@@ -356,6 +357,11 @@ def grade(n, key, d, MY, NEED):
         if RW and not RW.get("split"):
             hold = 15 if RW["rank"] == 1 and RW["share"] >= (.45 if pos == "RB" else .30) else 9 if RW["rank"] <= 2 and RW["share"] >= .22 else 0
             if hold and len(U) and (s[-1] if s else 0) < 50: hold = min(hold, 9)          # top of a thin group but on the field under half the snaps
+            # Nov 12 (Dom, Kincaid: "why were we going to use him?"): the top-role credit is for a role that is HOLDING. Snaps down
+            # 10+ points over his last 3 games = the role is slipping, no credit for it; on this week's injury report = half credit
+            if hold and len(s) >= 3 and s[0] - s[-1] >= 10: hold = 0
+            inj_ = INJ.get(key)
+            if hold and inj_ and inj_[0] >= START and inj_[1] in ("Questionable", "Doubtful", "Out"): hold = min(hold, 7)
             g_work = max(g_work, hold)
     else: g_work = 7.5
     opp = [(w, sched.get(tm, {}).get(w)) for w in (15, 16, 17)]
