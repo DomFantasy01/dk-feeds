@@ -183,13 +183,26 @@ def _a_pl(p):
     when = "Final" if gs == "final" else "Bye" if gs == "nogame" else "In progress" if gs == "playing" else (p.get("kickoff") or "")
     pr = a if gs == "final" and a is not None else (p.get("yahoo") or 0.0)
     return dict(slot=p["slot"], name=p["player"], tm=p.get("team") or "", proj=round(float(pr), 2), actual=a, when=when, status=p.get("status") or "")
+# Nov 12 2026 (Dom emptied one seat in every league to test the player lights - none lit): Yahoo's read leaves an EMPTY starting
+# seat out of the list, so Live never saw it. Rebuild each side in the league's seat order and put an "(Empty)" row in every
+# seat nobody fills - the page's yellow/red flash and ACTION light key off that row.
+_A_SEATS = {"DK I": "QB WR WR RB RB TE W/R/T W/R/T K DEF", "DK II": "QB WR WR WR RB RB TE W/R/T Q/W/R/T K DEF",
+            "DK III": "QB WR WR RB RB TE W/R/T W/R/T DEF", "DK IV": "QB WR WR WR RB RB TE W/R/T Q/W/R/T K DEF"}
+def _a_seats(lab, rows):
+    seats = _A_SEATS.get(lab, "").split()
+    if not seats: return rows
+    left = list(rows); out = []
+    for st in seats:
+        i = next((j for j, r in enumerate(left) if r.get("slot") == st), None)
+        out.append(left.pop(i) if i is not None else dict(slot=st, name="(Empty)", tm="", proj=0.0, actual=None, when="", status=""))
+    return out + left          # anything in a seat we don't know about stays, at the end
 _LS = dict(week=_AMW, stamp=_a_utc(_AM["sources"].get("yahoo_matchups", {}).get("pulled_pt", "")),
            source=f"Dispatch Yahoo read {_AM['sources'].get('yahoo_matchups', {}).get('pulled_pt')} (build {_AM.get('built_pt')})", leagues=[])
 _EXP = {}
 for _lab in _ALG:
     _L = _AM["leagues"].get(_lab)
     if not _L: continue
-    me, op = [_a_pl(p) for p in _L["starters"]["me"]], [_a_pl(p) for p in _L["starters"]["op"]]
+    me, op = _a_seats(_lab, [_a_pl(p) for p in _L["starters"]["me"]]), _a_seats(_lab, [_a_pl(p) for p in _L["starters"]["op"]])
     _pr, _opr = sum(p["proj"] for p in me), sum(p["proj"] for p in op)
     _LS["leagues"].append(dict(key=_AKEY[_lab], team=_L["me"], league=_L["league"], opp=_L.get("opp") or "", mgr="",
         score=round(sum(p["actual"] or 0 for p in me), 2), oppScore=round(sum(p["actual"] or 0 for p in op), 2),
