@@ -23,6 +23,11 @@ GRADE (0-100), built for THIS team:
   team       5  his NFL team's win percentage
   path      10  a coach on record about a bigger role (6), the starter ahead of him fading or hurt (4) - live_sync/pickup_notes.json
   Out or Doubtful on the latest injury report: minus 10.
+KIND (Nov 11, Dom): BUILD = Clay has him 12+ a game in Weeks 15-17 (this league's scoring); CLIMBING = 9.5+ there and his snaps
+  rose 10+ points over his last 3 games; 1-WEEK = a win-now fill (11+ this week, under 10 in the playoffs). Flags: split backfield,
+  his QB is out, hurt. BUILD and CLIMBING lead the top five; a flagged man never takes a top-five spot from a clean one.
+TEAM (Nov 11, Dom): last game's QB (flagged when he's out), his rank in his position group by targets (RB: carries, split flagged),
+  the offense's points a game (season and last 3), this week's opponent and matchup rank.
 EXPERT CHECK (noted, never used to drop anyone): each expert's number for him vs the man he'd replace, same expert, same scoring -
   Ratcliffe (rest of season per game), Clay (Weeks 10-17 per game), Koerner, Vegas and RotoBaller (their current week).
 
@@ -126,6 +131,55 @@ try:
         if isinstance(_v, dict) and str(_v.get("inj") or "").upper() in ("IR", "PUP", "NFI", "SUS", "SUSPENDED", "DNR"):
             SIDELINED[norm(_v.get("name", ""))] = f"{_v['inj']}" + (f" - {_v['inj_body']}" if _v.get("inj_body") else "") + (f" ({_v['inj_notes']})" if _v.get("inj_notes") else "")
 except Exception as _e: print("sidelined list skipped:", str(_e)[:100])
+
+# ---- TEAM FIRST (Dom, Nov 10-11: "you have to look at the whole team ... who the quarterback is and who the players are ... is this
+# guy a W1, a W2, a W3, a W4 ... the defense he faces"): every Diamond carries his team's quarterback (flagged when the starter is
+# out), where he sits in his own position group by targets (RB: share of the backfield's carries - a split backfield is flagged),
+# the offense's scoring (season and last 3 games), and this week's matchup rank.
+RECENT = sorted({int(x["week"]) for x in stats})[-3:]
+QB = {}
+for tm_ in {x["team"] for x in stats if x.get("team")}:
+    qs = [x for x in stats if x.get("team") == tm_ and x["position"] == "QB" and f(x.get("attempts")) > 0]
+    if not qs: continue
+    lw = max(int(x["week"]) for x in qs)
+    q = max((x for x in qs if int(x["week"]) == lw), key=lambda x: f(x["attempts"]))
+    nm = q["player_display_name"]; k_ = norm(nm); inj_ = INJ.get(k_)
+    out_ = SIDELINED.get(k_) or (f"{inj_[1]} ({inj_[2]})" if inj_ and inj_[0] >= last_week and inj_[1] in ("Out", "Doubtful") else "")
+    QB[tm_] = dict(name=nm, out=out_, starts=len({x["week"] for x in qs if x["player_display_name"] == nm and f(x["attempts"]) >= 15}))
+GRP = collections.defaultdict(lambda: collections.defaultdict(lambda: [0.0, 0.0]))   # (team, pos) -> player -> [targets, carries] last 3 weeks
+for x in stats:
+    if x["position"] in SKILL and int(x["week"]) in RECENT and x.get("team"):
+        g_ = GRP[(x["team"], x["position"])][norm(x["player_display_name"])]; g_[0] += f(x["targets"]); g_[1] += f(x["carries"])
+DNAME = {norm(x["player_display_name"]): x["player_display_name"] for x in stats}
+def role(key, tm, pos):
+    G = GRP.get((tm, pos)) or {}
+    if not G or key not in G: return None
+    if pos == "RB":
+        tot = sum(v[1] for v in G.values()) or 1; order = sorted(G, key=lambda k: -G[k][1]); me_ = G[key][1] / tot
+        other = [k for k in order if k != key]; o_ = G[other[0]][1] / tot if other else 0
+        split = me_ >= .25 and o_ >= .30 and abs(me_ - o_) < .30
+        lab = (f"RB{order.index(key) + 1}: {me_ * 100:.0f}% of the carries last {len(RECENT)} games"
+               + (f" - SPLIT with {DNAME.get(other[0], other[0])} ({o_ * 100:.0f}%)" if split else ""))
+        return dict(rank=order.index(key) + 1, share=round(me_, 2), split=split, txt=lab)
+    tot = sum(v[0] for v in G.values()) or 1; order = sorted(G, key=lambda k: -G[k][0])
+    return dict(rank=order.index(key) + 1, share=round(G[key][0] / tot, 2), split=False,
+                txt=f"{pos}{order.index(key) + 1} on his team: {G[key][0] / tot * 100:.0f}% of the {pos} targets last {len(RECENT)} games")
+PPG = {t: sum(v) / len(v) for t, v in pf.items() if v}; L3 = {t: sum(v[-3:]) / len(v[-3:]) for t, v in pf.items() if v}
+ORANK = {t: i + 1 for i, t in enumerate(sorted(PPG, key=lambda t: -PPG[t]))}
+def team_line(key, tm, pos):
+    q = QB.get(tm); r = role(key, tm, pos) if pos in SKILL else None; opp = sched.get(tm, {}).get(START)
+    bits = {}
+    if q: bits["qb"] = (f"QB {q['name']} is OUT - {q['out']}; a backup starts" if q["out"] else f"QB last game {q['name']}" + (f" ({q['starts']} starts)" if q["starts"] < 4 else ""))
+    if r: bits["role"] = r["txt"]
+    if tm in PPG: bits["offense"] = f"offense {PPG[tm]:.1f} a game (#{ORANK[tm]} of {len(PPG)}), last 3 games {L3[tm]:.1f}" + (" - falling" if L3[tm] < PPG[tm] - 3 else " - rising" if L3[tm] > PPG[tm] + 3 else "")
+    if opp: bits["week"] = f"Week {START} vs {opp}" + (f" (#{rank[(opp, pos)]} matchup)" if rank.get((opp, pos)) else "")
+    else: bits["week"] = f"Week {START}: BYE"
+    sh = []                                            # the one-line version for the row: "WR1 · QB Rodgers · vs CIN"
+    if r: sh.append(("RB%d" % r["rank"] if pos == "RB" else f"{pos}{r['rank']}") + (" split" if r.get("split") else ""))
+    if q: sh.append(("QB OUT" if q["out"] else "QB " + re.sub(r" (Jr\.?|Sr\.?|II|III|IV|V)$", "", q["name"]).split(" ")[-1]))
+    sh.append(f"vs {opp}" if opp else "bye")
+    bits["short"] = " · ".join(sh)
+    return bits, r, q
 
 # ---- the experts, every one already scored in each league's rules
 def load(fn):
@@ -274,6 +328,20 @@ def grade(n, key, d, MY, NEED):
     wp = winpct(tm); g_team = (wp if wp is not None else .5) * 5
     nt = notes["players"].get(key, {}); g_path = (6 if nt.get("coach") else 0) + (4 if nt.get("star") else 0)
     inj = INJ.get(key); hurt = bool(inj and inj[0] >= last_week and inj[1] in ("Out", "Doubtful"))
+    # Nov 11 (Dom): "a player that's going to give me more than 12 points ... sometime during the playoffs, or working his way up
+    # to that point with the additional workload" - and keep win-now rentals separate from build players.
+    TB, RL, QQ = team_line(key, tm, pos)
+    cw = d.get("_clay_wks") or {}; po_w = [cw.get(w) for w in (15, 16, 17) if cw.get(w)]
+    po = round(sum(po_w) / len(po_w), 1) if po_w else None
+    now_ = xval(n, key, "koerner") or xval(n, key, "vegas") or (cw.get(START) if cw else None)
+    rising = len(U) == 3 and (s[2] - s[0] >= 10) and s[2] >= 55
+    split = bool(RL and RL.get("split")); qb_out = bool(QQ and QQ.get("out"))
+    if pos not in SKILL: build = None
+    elif po is not None and po >= 12 and not split: build = "BUILD"
+    elif po is not None and po >= 9.5 and rising and not split: build = "CLIMBING"
+    elif now_ and po is not None and now_ >= 11 and po < 10: build = "1-WEEK"
+    else: build = None
+    flags = (["split backfield"] if split else []) + (["his QB is out"] if qb_out else []) + (["hurt"] if hurt else [])
     total = max(0, min(100, round(g_val + g_fit + g_work + g_play + g_team + g_path - (10 if hurt else 0))))
     # expert check - noted, never used to drop anyone
     xc, agree, had = [], 0, 0
@@ -295,10 +363,14 @@ def grade(n, key, d, MY, NEED):
     why.append("Playoffs: " + ", ".join(f"W{w} {op or 'BYE'}" + (f" (#{rank.get((op, pos))})" if op and rank.get((op, pos)) else "") for w, op in opp)
                + ("" if rk else " (matchup ranks need this season's scores - scored even)"))
     if wp is not None: why.append(f"{tm} {REC[tm]}")
+    why.insert(1, "Team: " + " · ".join(v for v in (TB.get("qb"), TB.get("role"), TB.get("offense"), TB.get("week")) if v))
+    if pos in SKILL: why.insert(1, (f"Playoffs (Clay, Weeks 15-17 in this league's scoring): {po:.1f} a game" if po is not None else "Playoffs: no Clay number for Weeks 15-17")
+                     + (" - meets the 12+ target" if build == "BUILD" else " - climbing toward it (snaps up 10+ points in 3 games)" if build == "CLIMBING"
+                        else " - a one-week fill, fades after this week" if build == "1-WEEK" else ""))
     # TIER (Dom, Nov 9: "top line indicators, must, hot, watch ... blink and alert to those to pick up asap")
     maj = had >= 2 and agree * 2 >= had
     clears = gain is not None and gain >= MUSTBAR
-    if not hurt and maj and ((clears and total >= 60) or (hit and total >= 70)):
+    if not hurt and not split and maj and ((clears and total >= 60) or (hit and total >= 70)):
         tier = "MUST"; tw = (f"+{gain * 100:.0f}% over {rep['name']}" if clears else "fills your missing piece") + f", {agree} of {had} sources agree, grade {total}"
     elif total >= 60 or clears:
         tier = "HOT"; tw = (f"grade {total}" if total >= 60 else f"+{gain * 100:.0f}% over {rep['name']}") + (f", but only {agree} of {had} sources agree" if had and not maj else f", {agree} of {had} sources agree" if had else "")
@@ -309,7 +381,8 @@ def grade(n, key, d, MY, NEED):
     if hurt: tw += f" ({inj[1]} on the injury report)"
     return dict(tier=tier, tier_why=tw, gain=round(gain * 100) if gain is not None else None, key=key, name=(TEAMNAME.get(tm, tm) + " DEF") if pos == "DST" else name, team=tm, pos=P,
                 pts=pts, grade=total, parts=dict(value=round(g_val), fit=round(g_fit), workload=round(g_work), playoffs=round(g_play), team=round(g_team), path=g_path),
-                why=why, experts=dict(verdict=verdict, agree=agree, of=had, lines=xc), replaces=rep["name"] if rep else "")
+                why=why, experts=dict(verdict=verdict, agree=agree, of=had, lines=xc), replaces=rep["name"] if rep else "",
+                build=build, po=po, flags=flags, teamctx=TB)
 
 out = {"built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT"),
        "panel": {"order": [PNAME[s] for s in PAN.ranked], "check": [PNAME[s] for s in PAN.members], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
@@ -333,8 +406,12 @@ for n in LEAGUES:
         else: g["status"] = (("Waivers until " + wv[key]) if key in wv else "Free agent") + f" (per {rpt} read - confirm live)"
         rows.append(g)
     TO = {"MUST": 0, "HOT": 1, "STASH": 2, "WATCH": 3}
+    BO = {"BUILD": 0, "CLIMBING": 1}
     rows.sort(key=lambda g: -g["grade"])
-    top = sorted(rows[:5], key=lambda g: (TO[g["tier"]], -g["grade"]))
+    # Nov 11 (Dom): the players he's looking for first - BUILD (12+ in the playoffs) and CLIMBING - then the best of the rest;
+    # a split backfield, a hurt man or one whose QB is out never takes a top-five spot from a clean one
+    rows.sort(key=lambda g: (BO.get(g.get("build"), 2), bool(g.get("flags")), -g["grade"]))
+    top = sorted(rows[:5], key=lambda g: (BO.get(g.get("build"), 2), TO[g["tier"]], -g["grade"]))
     musts = [g for g in rows[5:] if g["tier"] == "MUST"]       # a MUST is never cut off the list
     rows = top + musts + rows[5:]
     out["leagues"][str(n)] = {"read": rpt, "top": top + musts, "needs": [nd[2] + (f" (short Weeks {', '.join(map(str, nd[1]))})" if nd[1] else "") for nd in NEED],

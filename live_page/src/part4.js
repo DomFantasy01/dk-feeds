@@ -1288,6 +1288,13 @@ function pkVs(p){ try { const X = (p.experts && p.experts.lines) || [], parse = 
     const a = use.reduce((t, u) => t + u.a, 0) / use.length, b = use.reduce((t, u) => t + u.b, 0) / use.length, who = use[0].who;
     const sw = who.split(" "), sn = sw.length > 1 && !/DEF$/.test(who) ? sw[0][0] + ". " + sw.slice(1).join(" ").replace(/ (Jr\.|Sr\.|II|III|IV)$/, "") : who;
     return {up: a > b, txt: `${a.toFixed(1)} a game vs ${b.toFixed(1)} ${esc(sn)} <i>${lab}</i>`}; } catch (e) { return null; } }
+/* Nov 11 (Dom): "the player that's going to give me more than 12 points ... in the playoffs, or working his way up" - the row says
+   which kind he is: 12+ (Clay has him 12+ a game in Weeks 15-17), CLIMBING (snaps up 10+ points in 3 games, 9.5+ in the playoffs),
+   1 WEEK (a win-now fill that fades); red flags for what Dom won't take: a split backfield, a quarterback who is out, an injury */
+const PKB = {BUILD: ["b", "12+"], CLIMBING: ["c", "CLIMBING"], "1-WEEK": ["w", "1 WEEK"]};
+const pkBuild = (p) => { const b = PKB[p.build], fl = (p.flags || []).map(x => /split/.test(x) ? "SPLIT" : /QB/.test(x) ? "QB OUT" : "HURT");
+  return (b ? `<span class="pkbd ${b[0]}" title="${p.build === "BUILD" ? "12+ a game in Weeks 15-17 (Clay)" : p.build === "CLIMBING" ? "workload climbing toward 12+" : "a one-week fill"}">${b[1]}</span>` : "")
+    + fl.map(x => `<span class="pkbd x">${x}</span>`).join(""); };
 const pkOrb = (g) => { const r = 9, c = 2 * Math.PI * r, f = Math.max(0, Math.min(100, g || 0)) / 100, col = g >= 70 ? "#3FBF7F" : g >= 55 ? "#E5A93B" : "#8592AB";
   return `<svg class="pko" viewBox="0 0 24 24" aria-label="grade ${g} of 100"><circle cx="12" cy="12" r="${r}" fill="#0B1222" stroke="#1C2741" stroke-width="3"/><circle cx="12" cy="12" r="${r}" fill="none" stroke="${col}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 12 12)"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff" font-family="IBM Plex Mono,monospace">${g}</text></svg>`; };
 /* Nov 9 8:07 AM (Dom): "blink column when changes with recommended pickups" - each device remembers the list it last saw; a man who is new
@@ -1432,7 +1439,7 @@ function renderPickups(){
   const CHG = Object.fromEntries(["1", "2", "3", "4"].map(n => [n, pkChanged(n, (P.leagues[n] || {}).top)]));
   /* top line: each league's best pickup by tier - MUST blinks (Dom, Nov 9: "blink ... pick up asap") */
   {
-    const chips = ["1", "2", "3", "4"].map(n => { const t = ((P.leagues[n] || {}).top || []).slice().sort((a, b) => TO[tierOf(a)] - TO[tierOf(b)] || b.grade - a.grade)[0];
+    const chips = ["1", "2", "3", "4"].map(n => { const BO = {BUILD: 0, CLIMBING: 1}, t = ((P.leagues[n] || {}).top || []).slice().sort((a, b) => ((BO[a.build] ?? 2) - (BO[b.build] ?? 2)) || TO[tierOf(a)] - TO[tierOf(b)] || b.grade - a.grade)[0];
       if (!t) return `<button type="button" class="pkc${n === PKOPEN ? " on" : ""}" style="--lc:${LCOL[KEYS[+n - 1]]}" data-pkgo="${n}"><span class="r1"><span class="lg">DK${n}</span></span><span class="who none">none</span></button>`;
       const more = ((P.leagues[n] || {}).top || []).filter(x => tierOf(x) === tierOf(t)).length - 1;
       const nmT = t.pos === "DEF" || /DEF$/.test(t.name) ? (t.name.endsWith("DEF") ? t.name : t.team + " DEF") : t.name.replace(/ (Jr\.|Sr\.|II|III|IV)$/, "");
@@ -1450,7 +1457,7 @@ function renderPickups(){
   const C = CHG[PKL] || {};
   const rows = (L.top || []).map((p, i) => { const vs = pkVs(p), T = tierOf(p);
     return `<details class="pk2 t-${T}${C[p.key] ? " chg" : ""}" data-fold="pk-${PKL}-${i}" data-pkseen="${PKL}|${esc(p.key)}|${esc(pkSig(p, i))}"${FOLDS["pk-" + PKL + "-" + i] ? " open" : ""}>
-      <summary><span class="rk">${i + 1}</span><span class="nm"><b>${esc(pkShort(p))}<em>${esc([p.pos === "DEF" || p.pos === "DST" ? "" : p.pos, p.team].filter(Boolean).join(" · "))}</em></b><span class="pkl2">${vs ? `<span class="pkvs ${vs.up ? "up" : "dn"}">${vs.txt}</span>` : ""}${C[p.key] ? `<span class="pkch">${esc(C[p.key])}</span>` : ""}</span></span>${pkOrb(p.grade)}<span class="ic t-${T}" title="${PKW[T]}">${PKI[T]}</span></summary>
+      <summary><span class="rk">${i + 1}</span><span class="nm"><b>${esc(pkShort(p))}<em>${esc([p.pos === "DEF" || p.pos === "DST" ? "" : p.pos, p.team].filter(Boolean).join(" · "))}</em>${pkBuild(p)}</b><span class="pkl2">${vs ? `<span class="pkvs ${vs.up ? "up" : "dn"}">${vs.txt}</span>` : ""}${C[p.key] ? `<span class="pkch">${esc(C[p.key])}</span>` : ""}</span>${p.teamctx && p.teamctx.short ? `<span class="pkl3">${esc(p.teamctx.short)}${p.po != null && p.pos !== "DEF" && p.pos !== "K" ? ` · Wks 15-17 <span class="pon${p.po >= 12 ? " g" : ""}">${p.po.toFixed(1)}</span>` : ""}</span>` : ""}</span>${pkOrb(p.grade)}<span class="ic t-${T}" title="${PKW[T]}">${PKI[T]}</span></summary>
       <div class="pkb"><div class="pkid">${esc(p.name)} · ${esc(p.pos)} · ${esc(p.team)} · <b>${Math.round(p.pts)}</b> pts rest of season · ${esc(String(p.status || ""))}</div>
       <div class="parts">${PART.map(([k, lab, mx]) => `<div><span>${lab}</span><i><b style="width:${Math.round(100 * (p.parts[k] || 0) / mx)}%"></b></i><em>${k === "workload" && (p.pos === "K" || p.pos === "DEF") ? "n/a" : (p.parts[k] || 0) + "/" + mx}</em><small>${PEX[k]}</small></div>`).join("")}</div>
       ${wheelBox(PKL, p)}
@@ -1461,6 +1468,7 @@ function renderPickups(){
   el.innerHTML = `<section class="frame msec pkx" id="msPick"><span class="lab">Diamonds in the Rough</span><span class="pkts">${esc(PKT)}${NXT ? " · Next " + esc(NXT.replace(/ (AM|PM)$/, "")) : ""}</span>
     ${PKCHIPS}
     ${PKOPEN ? `<div class="pkopen" style="--lc:${LCOL[KEYS[+PKL - 1]]}"><div class="pkneed">${(L.needs || []).length ? `<b>${DK[KEYS[+PKL - 1]]} needs:</b> ${L.needs.map(esc).join(" · ")}` : `<b>${DK[KEYS[+PKL - 1]]}:</b> no open missing pieces`}${L.read ? ` <em>· rosters ${esc(L.read)}</em>` : ""}</div>
+    ${(L.top || []).length && !(L.top || []).some(q => q.build === "BUILD") ? `<div class="pknone">Nobody available projects 12+ a game in Weeks 15-17 here (Clay)${(L.top || []).some(q => q.build === "CLIMBING") ? " - CLIMBING players are the closest" : ""}.</div>` : ""}
     ${rows || `<div class="empty">Nothing graded for this league yet.</div>`}
     </div>` : ""}</section>`;
   renderWheel();
