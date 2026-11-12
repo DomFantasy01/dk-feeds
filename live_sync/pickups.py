@@ -99,7 +99,12 @@ def winpct(tm):
 stats = [x for x in csv.DictReader(open(os.path.join(NFL, "stats_player_week_2026.csv"))) if x["season_type"] == "REG"]
 snaps = {}
 for s in csv.DictReader(open(os.path.join(NFL, "snap_counts_2026.csv"))):
-    if s["game_type"] == "REG": snaps[(s["game_id"], norm(s["player"]))] = f(s["offense_pct"])
+    if s["game_type"] == "REG":
+        snaps[(s["game_id"], norm(s["player"]))] = f(s["offense_pct"])
+        # Nov 12: the snap file uses legal names (Zonovan Knight) where the stats use the playing name (Bam Knight) -
+        # also keep game + team + position + last name, used only when it points at one man
+        _sk = (s["game_id"], s["team"], s["position"], norm(s["player"]).split()[-1] if norm(s["player"]) else "")
+        snaps[_sk] = None if _sk in snaps else f(s["offense_pct"])
 last_week = max(int(x["week"]) for x in stats)
 gms = collections.defaultdict(set)
 for x in stats: gms[x["opponent_team"]].add(x["game_id"])
@@ -117,6 +122,8 @@ use = collections.defaultdict(list)
 for x in stats:
     if x["position"] not in SKILL: continue
     o = f(x["carries"]) + f(x["targets"]); sp = snaps.get((x["game_id"], norm(x["player_display_name"])))
+    if sp is None and norm(x["player_display_name"]):
+        sp = snaps.get((x["game_id"], x["team"], x["position"], norm(x["player_display_name"]).split()[-1]))
     if o > 0 or (sp or 0) > 0: use[norm(x["player_display_name"])].append((int(x["week"]), o, sp))
 INJ = {}
 try:
@@ -228,6 +235,17 @@ WKO, WKG = _wk_only_order()
 MUSTBAR = .10
 for (lg_, k_), (nm_, tm_, ps_) in PAN.meta.items():     # a man only Yahoo or Gotham sees still gets graded (Gotham is the early spotter)
     if ps_ in ALLPOS and (lg_, k_) not in EXP: EXP[(lg_, k_)] = {"_name": nm_, "_team": tm_, "_pos": ps_}
+# Nov 12 (Dom: "Go"): a source that writes a short first name ("J. Croskey-Merritt") made a second, Yahoo-only copy of the man -
+# priced on one source and shown as a free agent (the waiver list uses his full name). Fold each short name into the one full name it matches.
+ABBR = {}
+for (lg_, k_) in list(EXP):
+    t_ = k_.split()
+    if len(t_) < 2 or len(t_[0]) != 1: continue
+    c_ = [k2 for (l2, k2) in EXP if l2 == lg_ and k2 != k_ and len(k2.split()[0]) > 1 and k2.split()[0][0] == t_[0] and k2.split()[1:] == t_[1:]]
+    if len(c_) != 1: continue
+    for kk, vv in EXP[(lg_, k_)].items():
+        if kk[0] != "_": EXP[(lg_, c_[0])].setdefault(kk, vv)
+    ABBR[(lg_, c_[0])] = k_; del EXP[(lg_, k_)]
 XNAME = dict(PNAME, koerner="Koerner", vegas="Vegas", rotoballer="RotoBaller")
 # Nov 9 8:55 AM: all seven are ranked together in the panel now - its order IS the list, most to least accurate
 WKO = [x for x in WKO if x not in PAN.order]
@@ -236,7 +254,9 @@ SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks
 XREAD = dict(ratcliffe=READ.get("Ratcliffe", ""), clay=READ.get("Clay", ""), yahoo=PAN.read.get("yahoo", ""), gotham=PAN.read.get("gotham", ""),
              koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""))
 def xval(n, key, ex):
-    if ex in PAN.V and PAN.V[ex]: return PAN.V[ex].get((n, key))
+    if ex in PAN.V and PAN.V[ex]:
+        v = PAN.V[ex].get((n, key))
+        return v if v is not None or (n, key) not in ABBR else PAN.V[ex].get((n, ABBR[(n, key)]))
     return (EXP.get((n, key)) or {}).get(XNAME[ex])
 def xrank(ex):
     if ex in PAN.ranked:

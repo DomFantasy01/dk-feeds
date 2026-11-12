@@ -43,6 +43,11 @@ def scored(fn):
     except Exception: pass
     return out
 RAT, KOE = scored("ftn_scored.csv"), scored("koerner_scored.csv")
+SIDE = set()
+try:
+    for _v in (load(O(R, "feeds", "sleeper_injuries.json"), {}) or {}).get("players", {}).values():
+        if isinstance(_v, dict) and str(_v.get("inj") or "").upper() in ("IR", "PUP", "NFI", "SUS", "SUSPENDED", "DNR"): SIDE.add(nk(_v.get("name", "")))
+except Exception as _e: print("sidelined list skipped:", str(_e)[:100])
 RAT_AT = next((r.get("read_pt") for r in RAT.values()), "") or ""
 KOE_AT = next((r.get("read_pt") for r in KOE.values()), "") or ""
 # kickoffs this week, every team (Pacific) - from the NFL schedule the build downloads
@@ -114,6 +119,7 @@ for lab, key, lid, lgn, myid in LG:
         ros, wk = pan(lgn, r["name"], r["pos"], r["team"]) or fnum(r["ros_pg"]), fnum(r["wk"])
         if ros is None and wk is None: continue
         if k_ in OUTL: wk = 0.0   # Oct 31: an OUT man is a zero this week whatever the expert file says
+        if k_ in SIDE: continue   # Nov 12: on IR / PUP / suspended - can't help, never a pickup to talk about (Croskey-Merritt showed while on IR)
         pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=ros or 0.0, wk=wk or 0.0, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
     # Dom's weakest starter at each position (this week's lineup, Ratcliffe rest of season, his league's scoring)
     weak = {}
