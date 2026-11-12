@@ -1,5 +1,5 @@
 {
- "built": "Thu Nov 12 4:15 AM PT",
+ "built": "Thu Nov 12 6:01 AM PT",
  "week": 9,
  "panel": [
   "Ratcliffe",
@@ -13,26 +13,6 @@
  "leagues": {
   "DK I": {
    "players": [
-    {
-     "name": "Tyler Shough",
-     "team": "No",
-     "pos": "QB",
-     "slot": "QB",
-     "rank_now": "QB 11",
-     "pull": {
-      "now": 11.0,
-      "then": 11.0,
-      "d": 0.0,
-      "up": [],
-      "down": [],
-      "per": {
-       "Ratcliffe": "11->11",
-       "Koerner": "11->11"
-      },
-      "then_s": "QB 11",
-      "now_s": "QB 11"
-     }
-    },
     {
      "name": "Christian McCaffrey",
      "team": "Sf",
@@ -191,6 +171,26 @@
       },
       "then_s": "RB 48",
       "now_s": "RB 48"
+     }
+    },
+    {
+     "name": "Tyler Shough",
+     "team": "No",
+     "pos": "QB",
+     "slot": "BN",
+     "rank_now": "QB 11",
+     "pull": {
+      "now": 11.0,
+      "then": 11.0,
+      "d": 0.0,
+      "up": [],
+      "down": [],
+      "per": {
+       "Ratcliffe": "11->11",
+       "Koerner": "11->11"
+      },
+      "then_s": "QB 11",
+      "now_s": "QB 11"
      }
     },
     {
@@ -476,43 +476,6 @@
      "note": "not ranked this week (bye, hurt or off the lists)"
     },
     {
-     "name": "Travis Kelce",
-     "team": "Kc",
-     "pos": "TE",
-     "slot": "TE",
-     "rank_now": "TE 6",
-     "week": {
-      "now": 6.0,
-      "then": 7.0,
-      "d": 1.0,
-      "up": [
-       "Koerner"
-      ],
-      "down": [
-       "Ratcliffe"
-      ],
-      "per": {
-       "Ratcliffe": "5->6",
-       "Koerner": "9->6"
-      },
-      "then_s": "TE 7",
-      "now_s": "TE 6"
-     },
-     "pull": {
-      "now": 6.0,
-      "then": 6.0,
-      "d": 0.0,
-      "up": [],
-      "down": [],
-      "per": {
-       "Ratcliffe": "6->6",
-       "Koerner": "6->6"
-      },
-      "then_s": "TE 6",
-      "now_s": "TE 6"
-     }
-    },
-    {
      "name": "Audric Estime",
      "team": "No",
      "pos": "RB",
@@ -567,6 +530,43 @@
       },
       "then_s": "QB 9",
       "now_s": "QB 9"
+     }
+    },
+    {
+     "name": "Travis Kelce",
+     "team": "Kc",
+     "pos": "TE",
+     "slot": "BN",
+     "rank_now": "TE 6",
+     "week": {
+      "now": 6.0,
+      "then": 7.0,
+      "d": 1.0,
+      "up": [
+       "Koerner"
+      ],
+      "down": [
+       "Ratcliffe"
+      ],
+      "per": {
+       "Ratcliffe": "5->6",
+       "Koerner": "9->6"
+      },
+      "then_s": "TE 7",
+      "now_s": "TE 6"
+     },
+     "pull": {
+      "now": 6.0,
+      "then": 6.0,
+      "d": 0.0,
+      "up": [],
+      "down": [],
+      "per": {
+       "Ratcliffe": "6->6",
+       "Koerner": "6->6"
+      },
+      "then_s": "TE 6",
+      "now_s": "TE 6"
      }
     },
     {
@@ -1276,42 +1276,6 @@
      }
     },
     {
-     "name": "Omar Cooper Jr.",
-     "team": "Nyj",
-     "pos": "WR",
-     "slot": "WR",
-     "rank_now": "WR 28",
-     "week": {
-      "now": 28.0,
-      "then": 34.0,
-      "d": 6.0,
-      "up": [
-       "Ratcliffe",
-       "Koerner"
-      ],
-      "down": [],
-      "per": {
-       "Ratcliffe": "30->28",
-       "Koerner": "38->28"
-      },
-      "then_s": "WR 34",
-      "now_s": "WR 28"
-     },
-     "pull": {
-      "now": 28.0,
-      "then": 28.0,
-      "d": 0.0,
-      "up": [],
-      "down": [],
-      "per": {
-       "Ratcliffe": "28->28",
-       "Koerner": "28->28"
-      },
-      "then_s": "WR 28",
-      "now_s": "WR 28"
-     }
-    },
-    {
      "name": "Travis Kelce",
      "team": "Kc",
      "pos": "TE",
@@ -1418,6 +1382,42 @@
       },
       "then_s": "QB 7",
       "now_s": "QB 7"
+     }
+    },
+    {
+     "name": "Omar Cooper Jr.",
+     "team": "Nyj",
+     "pos": "WR",
+     "slot": "BN",
+     "rank_now": "WR 28",
+     "week": {
+      "now": 28.0,
+      "then": 34.0,
+      "d": 6.0,
+      "up": [
+       "Ratcliffe",
+       "Koerner"
+      ],
+      "down": [],
+      "per": {
+       "Ratcliffe": "30->28",
+       "Koerner": "38->28"
+      },
+      "then_s": "WR 34",
+      "now_s": "WR 28"
+     },
+     "pull": {
+      "now": 28.0,
+      "then": 28.0,
+      "d": 0.0,
+      "up": [],
+      "down": [],
+      "per": {
+       "Ratcliffe": "28->28",
+       "Koerner": "28->28"
+      },
+      "then_s": "WR 28",
+      "now_s": "WR 28"
      }
     },
     {
@@ -1548,7 +1548,7 @@
     {
      "name": "Omar Cooper Jr.",
      "d": 6.0,
-     "line": "Omar Cooper Jr. (WR): WR 34 \u2192 WR 28, up 6 spots since last week \u00b7 2 of 2 experts"
+     "line": "Omar Cooper Jr. (BN): WR 34 \u2192 WR 28, up 6 spots since last week \u00b7 2 of 2 experts"
     },
     {
      "name": "Jared Goff",

@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Thu Nov 12 4:15 AM PT",
- "built_utc": "2026-11-12T12:15:20.227684+00:00",
+ "built": "Thu Nov 12 6:01 AM PT",
+ "built_utc": "2026-11-12T14:01:55.621087+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Thu Nov 12 4:09 AM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Thu Nov 12 5:57 AM PT",
+   "pulled_ago": "4 min ago",
    "items": 2593,
-   "newest": "10.2 h ago",
+   "newest": "12.0 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Thu Nov 12 4:09 AM PT",
-   "pulled_ago": "6 min ago",
-   "items": 7126,
-   "newest": "14 min ago",
+   "pulled": "Thu Nov 12 5:57 AM PT",
+   "pulled_ago": "4 min ago",
+   "items": 7130,
+   "newest": "51 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Thu Nov 12 4:09 AM PT",
-   "pulled_ago": "6 min ago",
-   "items": 1775,
-   "newest": "32 min ago",
+   "pulled": "Thu Nov 12 5:57 AM PT",
+   "pulled_ago": "4 min ago",
+   "items": 1776,
+   "newest": "37 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Thu Nov 12 4:09 AM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Thu Nov 12 5:57 AM PT",
+   "pulled_ago": "4 min ago",
    "items": 406,
-   "newest": "2.2 h ago",
+   "newest": "4.0 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Thu Nov 12 4:09 AM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Thu Nov 12 5:57 AM PT",
+   "pulled_ago": "4 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Thu Nov 12 4:12 AM PT",
-   "pulled_ago": "3 min ago",
+   "pulled": "Thu Nov 12 6:00 AM PT",
+   "pulled_ago": "2 min ago",
    "items": 768,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Thu Nov 12 2026 04:13 AM PT",
+   "pulled": "Thu Nov 12 2026 06:00 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Thu Nov 12 2:44 AM PT",
-   "pulled_ago": "1.5 h ago",
+   "pulled_ago": "3.3 h ago",
    "items": 365,
    "newest": null,
    "warn": null,
@@ -216,7 +216,7 @@
      "name": "Tyler Shough",
      "pos": "QB",
      "team": "NO",
-     "slot": "QB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -532,16 +532,54 @@
        "grade": "good"
       }
      ],
-     "floor": {
-      "name": "Tyler Shough",
-      "gotham": 23.2
-     },
+     "floor": null,
      "beats_floor": false,
-     "gotham": 17.9,
+     "gotham": 0.0,
      "gotham_ros": 19.7,
      "sleeper": 16.6,
      "workload": "33/43/50/46/44/40/41/44",
      "trend": 0.02,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 6:13 AM PT",
+       "src": "rotoballer",
+       "title": "Deshaun Watson Will Start in Week 10 Over Shedeur Sanders",
+       "text": "The Cleveland Browns will start quarterback Deshaun Watson in Week 10 against the Houston Texans, according to Mary Kay Cabot. [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Sun Nov 8 8:33 AM PT",
+       "src": "pft",
+       "title": "Deshaun Watson is inactive for the Browns",
+       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
+       "grade": "good"
+      }
+     ],
+     "floor": null,
+     "beats_floor": false,
+     "gotham": 10.2,
+     "gotham_ros": 10.7,
+     "sleeper": null,
+     "workload": "1/2/49",
+     "trend": 19.13,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -625,7 +663,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (464,337 in 24 h)"
+      "Sleeper adds #4 (411,552 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -662,7 +700,7 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #22 (113,112 in 24 h)"
+      "Sleeper adds #22 (104,355 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -699,7 +737,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #14 (204,975 in 24 h)"
+      "Sleeper adds #14 (181,998 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -843,50 +881,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 2:10 PM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks Cleared to Play on Thursday",
-       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Treylon Burks: Cleared for TNF",
-       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Stefon Diggs",
-      "gotham": 10.0
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 7.0,
-     "sleeper": 4.8,
-     "workload": "1/3/3/6/7/5",
-     "trend": 0.49,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Elic Ayomanor",
      "pos": "WR",
      "team": "TEN",
@@ -924,27 +918,27 @@
      "acq": "unverified"
     },
     {
-     "name": "Laquon Treadwell",
+     "name": "KaVontae Turpin",
      "pos": "WR",
-     "team": "IND",
+     "team": "DAL",
      "why": [
-      "Sleeper adds #24 (103,515 in 24 h)"
+      "opening: George Pickens \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
-      "count": 2,
-      "recency": 2,
+      "count": 1,
+      "recency": 1,
       "color": "gold",
       "grades": [
-       "note"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Tue Nov 10 9:56 PM PT",
-       "src": "rotoballer",
-       "title": "Laquon Treadwell the New Featured Receiver in Indianapolis",
-       "text": "Indianapolis Colts wide receiver Laquon Treadwell has maintained a large snap share throughout the season, and he has emerged as [&#8230;]",
-       "grade": "note"
+       "t": "Wed Nov 11 3:51 PM PT",
+       "src": "ESPN injury report",
+       "title": "KaVontae Turpin: Questionable (Ribs)",
+       "text": "questionable",
+       "grade": "caution"
       }
      ],
      "floor": {
@@ -952,11 +946,11 @@
       "gotham": 10.0
      },
      "beats_floor": false,
-     "gotham": 3.9,
-     "gotham_ros": 4.0,
-     "sleeper": 5.3,
-     "workload": "1/3/1/7/9/5/2/2/1",
-     "trend": -0.63,
+     "gotham": 4.9,
+     "gotham_ros": 4.7,
+     "sleeper": 2.5,
+     "workload": "1/0/3/0/4/0",
+     "trend": 0.04,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1474,7 +1468,7 @@
      "name": "Travis Kelce",
      "pos": "TE",
      "team": "KC",
-     "slot": "TE",
+     "slot": "BN",
      "marker": {
       "count": 3,
       "recency": 4,
@@ -1543,7 +1537,7 @@
       "gotham": 18.2
      },
      "beats_floor": false,
-     "gotham": 17.9,
+     "gotham": 0.0,
      "gotham_ros": 19.7,
      "sleeper": 16.6,
      "workload": "33/43/50/46/44/40/41/44",
@@ -1552,11 +1546,55 @@
      "acq": "unverified"
     },
     {
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 6:13 AM PT",
+       "src": "rotoballer",
+       "title": "Deshaun Watson Will Start in Week 10 Over Shedeur Sanders",
+       "text": "The Cleveland Browns will start quarterback Deshaun Watson in Week 10 against the Houston Texans, according to Mary Kay Cabot. [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Sun Nov 8 8:33 AM PT",
+       "src": "pft",
+       "title": "Deshaun Watson is inactive for the Browns",
+       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 18.2
+     },
+     "beats_floor": false,
+     "gotham": 10.2,
+     "gotham_ros": 10.7,
+     "sleeper": null,
+     "workload": "1/2/49",
+     "trend": 19.13,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Justice Hill",
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #12 (231,606 in 24 h)"
+      "Sleeper adds #12 (210,762 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1593,7 +1631,7 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #22 (113,112 in 24 h)"
+      "Sleeper adds #22 (104,355 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1649,10 +1687,7 @@
        "grade": "good"
       }
      ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 12.0
-     },
+     "floor": null,
      "beats_floor": false,
      "gotham": 8.0,
      "gotham_ros": 8.2,
@@ -1686,10 +1721,7 @@
        "grade": "note"
       }
      ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 12.0
-     },
+     "floor": null,
      "beats_floor": false,
      "gotham": 7.9,
      "gotham_ros": 7.6,
@@ -1723,60 +1755,13 @@
        "grade": "note"
       }
      ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 12.0
-     },
+     "floor": null,
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 6.9,
      "sleeper": 7.6,
      "workload": "2/2/4/6/4/7/2/6",
      "trend": 0.05,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 2:10 PM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks Cleared to Play on Thursday",
-       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Treylon Burks: Cleared for TNF",
-       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 7.0,
-     "sleeper": 4.8,
-     "workload": "1/3/3/6/7/5",
-     "trend": 0.49,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1818,43 +1803,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Laquon Treadwell",
-     "pos": "WR",
-     "team": "IND",
-     "why": [
-      "Sleeper adds #24 (103,515 in 24 h)"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 10 9:56 PM PT",
-       "src": "rotoballer",
-       "title": "Laquon Treadwell the New Featured Receiver in Indianapolis",
-       "text": "Indianapolis Colts wide receiver Laquon Treadwell has maintained a large snap share throughout the season, and he has emerged as [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 3.9,
-     "gotham_ros": 4.0,
-     "sleeper": 5.3,
-     "workload": "1/3/1/7/9/5/2/2/1",
-     "trend": -0.63,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "KaVontae Turpin",
      "pos": "WR",
      "team": "DAL",
@@ -1888,6 +1836,50 @@
      "sleeper": 2.5,
      "workload": "1/0/3/0/4/0",
      "trend": 0.04,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 2,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 2:10 PM PT",
+       "src": "rotoballer",
+       "title": "Treylon Burks Cleared to Play on Thursday",
+       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Wed Nov 11 2:06 PM PT",
+       "src": "RotoWire news",
+       "title": "Treylon Burks: Cleared for TNF",
+       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Germie Bernard",
+      "gotham": 11.6
+     },
+     "beats_floor": false,
+     "gotham": 0.0,
+     "gotham_ros": 7.0,
+     "sleeper": 4.8,
+     "workload": "1/3/3/6/7/5",
+     "trend": 0.49,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2521,7 +2513,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #19 (163,396 in 24 h)"
+      "Sleeper adds #19 (142,176 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2558,7 +2550,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #12 (231,606 in 24 h)"
+      "Sleeper adds #12 (210,762 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2632,7 +2624,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (464,337 in 24 h)"
+      "Sleeper adds #4 (411,552 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2669,7 +2661,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #5 (333,272 in 24 h)"
+      "Sleeper adds #5 (290,680 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2698,6 +2690,50 @@
      "sleeper": 13.3,
      "workload": "10",
      "trend": null,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 6:13 AM PT",
+       "src": "rotoballer",
+       "title": "Deshaun Watson Will Start in Week 10 Over Shedeur Sanders",
+       "text": "The Cleveland Browns will start quarterback Deshaun Watson in Week 10 against the Houston Texans, according to Mary Kay Cabot. [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Sun Nov 8 8:33 AM PT",
+       "src": "pft",
+       "title": "Deshaun Watson is inactive for the Browns",
+       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 18.2
+     },
+     "beats_floor": false,
+     "gotham": 10.2,
+     "gotham_ros": 10.7,
+     "sleeper": null,
+     "workload": "1/2/49",
+     "trend": 19.13,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2776,50 +2812,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 2:10 PM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks Cleared to Play on Thursday",
-       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Treylon Burks: Cleared for TNF",
-       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 7.7
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 7.0,
-     "sleeper": 4.8,
-     "workload": "1/3/3/6/7/5",
-     "trend": 0.49,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Elic Ayomanor",
      "pos": "WR",
      "team": "TEN",
@@ -2857,43 +2849,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Laquon Treadwell",
-     "pos": "WR",
-     "team": "IND",
-     "why": [
-      "Sleeper adds #24 (103,515 in 24 h)"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 10 9:56 PM PT",
-       "src": "rotoballer",
-       "title": "Laquon Treadwell the New Featured Receiver in Indianapolis",
-       "text": "Indianapolis Colts wide receiver Laquon Treadwell has maintained a large snap share throughout the season, and he has emerged as [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 7.7
-     },
-     "beats_floor": false,
-     "gotham": 3.9,
-     "gotham_ros": 4.0,
-     "sleeper": 5.3,
-     "workload": "1/3/1/7/9/5/2/2/1",
-     "trend": -0.63,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "KaVontae Turpin",
      "pos": "WR",
      "team": "DAL",
@@ -2927,6 +2882,50 @@
      "sleeper": 2.5,
      "workload": "1/0/3/0/4/0",
      "trend": 0.04,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "team": "WAS",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 2,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 2:10 PM PT",
+       "src": "rotoballer",
+       "title": "Treylon Burks Cleared to Play on Thursday",
+       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Wed Nov 11 2:06 PM PT",
+       "src": "RotoWire news",
+       "title": "Treylon Burks: Cleared for TNF",
+       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 7.7
+     },
+     "beats_floor": false,
+     "gotham": 0.0,
+     "gotham_ros": 7.0,
+     "sleeper": 4.8,
+     "workload": "1/3/3/6/7/5",
+     "trend": 0.49,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3092,7 +3091,7 @@
      "name": "Omar Cooper Jr.",
      "pos": "WR",
      "team": "NYJ",
-     "slot": "WR",
+     "slot": "BN",
      "marker": {
       "count": 3,
       "recency": 1,
@@ -3639,6 +3638,50 @@
    ],
    "in": [
     {
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 6:13 AM PT",
+       "src": "rotoballer",
+       "title": "Deshaun Watson Will Start in Week 10 Over Shedeur Sanders",
+       "text": "The Cleveland Browns will start quarterback Deshaun Watson in Week 10 against the Houston Texans, according to Mary Kay Cabot. [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Sun Nov 8 8:33 AM PT",
+       "src": "pft",
+       "title": "Deshaun Watson is inactive for the Browns",
+       "text": "Watson cleared concussion protocol, but Shedeur Sanders will start for the first time this season.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jared Goff",
+      "gotham": 23.0
+     },
+     "beats_floor": false,
+     "gotham": 10.1,
+     "gotham_ros": 10.5,
+     "sleeper": null,
+     "workload": "1/2/44",
+     "trend": 17.13,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Mack Hollins",
      "pos": "WR",
      "team": "NE",
@@ -3755,7 +3798,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (464,337 in 24 h)"
+      "Sleeper adds #4 (411,552 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3792,7 +3835,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #14 (204,975 in 24 h)"
+      "Sleeper adds #14 (181,998 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3829,7 +3872,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #12 (231,606 in 24 h)"
+      "Sleeper adds #12 (210,762 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4043,43 +4086,6 @@
      "sleeper": 3.8,
      "workload": "2/6/3/4/5/4/2/6",
      "trend": 0.18,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Chris Rodriguez Jr.",
-     "pos": "RB",
-     "team": "JAX",
-     "why": [
-      "Sleeper adds #22 (113,112 in 24 h)"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "caution"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 1:20 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Rodriguez Jr.: Practices on limited basis",
-       "text": "Rodriguez (hand) was listed as limited in Wednesday's practice, Ryan O'Halloran of The Florida Times-Union reports.",
-       "grade": "caution"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 9.2
-     },
-     "beats_floor": false,
-     "gotham": 7.2,
-     "gotham_ros": 6.6,
-     "sleeper": 6.3,
-     "workload": "8/8/13/8/6/18/9/18",
-     "trend": 0.49,
      "yahoo": null,
      "acq": "unverified"
     }
