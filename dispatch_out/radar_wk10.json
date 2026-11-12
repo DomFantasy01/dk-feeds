@@ -1,47 +1,47 @@
 {
  "week": 10,
- "built": "Thu Nov 12 1:59 PM PT",
- "built_utc": "2026-11-12T21:59:20.970390+00:00",
+ "built": "Thu Nov 12 3:13 PM PT",
+ "built_utc": "2026-11-12T23:13:44.218094+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Thu Nov 12 1:54 PM PT",
+   "pulled": "Thu Nov 12 3:08 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 2631,
-   "newest": "14 min ago",
+   "items": 2643,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Thu Nov 12 1:54 PM PT",
+   "pulled": "Thu Nov 12 3:08 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 7220,
-   "newest": "11 min ago",
+   "items": 7229,
+   "newest": "7 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Thu Nov 12 1:54 PM PT",
+   "pulled": "Thu Nov 12 3:08 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 1804,
-   "newest": "7 min ago",
+   "items": 1808,
+   "newest": "29 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Thu Nov 12 1:54 PM PT",
+   "pulled": "Thu Nov 12 3:08 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 402,
-   "newest": "20 min ago",
+   "items": 400,
+   "newest": "16 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Thu Nov 12 1:54 PM PT",
+   "pulled": "Thu Nov 12 3:08 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Thu Nov 12 1:56 PM PT",
+   "pulled": "Thu Nov 12 3:11 PM PT",
    "pulled_ago": "2 min ago",
    "items": 767,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Thu Nov 12 2026 01:57 PM PT",
+   "pulled": "Thu Nov 12 2026 03:11 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,9 +68,9 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Thu Nov 12 1:44 PM PT",
-   "pulled_ago": "15 min ago",
-   "items": 364,
+   "pulled": "Thu Nov 12 2:45 PM PT",
+   "pulled_ago": "29 min ago",
+   "items": 366,
    "newest": null,
    "warn": null,
    "failed": null
@@ -142,10 +142,10 @@
      },
      "news": [
       {
-       "t": "Thu Nov 12 12:02 PM PT",
+       "t": "Thu Nov 12 2:13 PM PT",
        "src": "ESPN injury report",
        "title": "George Pickens: Questionable (Hamstring)",
-       "text": "questionable",
+       "text": "Pickens (hamstring) practiced in a limited fashion Thursday, Jon Machota of The Athletic reports.",
        "grade": "caution"
       },
       {
@@ -168,6 +168,48 @@
      "sleeper": 13.7,
      "workload": "6/9/12/3/14/12/7/4",
      "trend": -0.43
+    },
+    {
+     "name": "Christian McCaffrey",
+     "pos": "RB",
+     "team": "SF",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Nov 12 2:40 PM PT",
+       "src": "rotoballer",
+       "title": "NFL Best Bets for Week 10: Novig Sports Prediction Markets",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/08/Christian-McCaffrey-fantasy-football-rankings-nfl-dfs-picks-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"NFL Best Bets for Week 10: Novig Sports Prediction Markets\" styl",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 8 7:31 PM PT",
+       "src": "rotoballer",
+       "title": "Christian McCaffrey is a Dual Threat in Win",
+       "text": "San Francisco 49ers running back Christian McCaffrey did a little bit of everything during Sunday's game against the Las Vegas [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 8 9:30 AM PT",
+       "src": "rotoballer",
+       "title": "Christian McCaffrey Expected to Handle Full Workload Against Raiders",
+       "text": "San Francisco 49ers running back Christian McCaffrey (hamstring) is expected to handle his usual workload against the Las Vegas Raiders [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 26.8,
+     "gotham_ros": 24.5,
+     "sleeper": 26.2,
+     "workload": "27/24/28/29/19/43/23/30",
+     "trend": -0.01
     },
     {
      "name": "Jayden Daniels",
@@ -205,7 +247,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 18.8,
+     "gotham": 18.7,
      "gotham_ros": 21.3,
      "sleeper": 22.4,
      "workload": "43/30/41/47/33/42",
@@ -215,7 +257,7 @@
      "name": "Tyler Shough",
      "pos": "QB",
      "team": "NO",
-     "slot": "BN",
+     "slot": "QB",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -415,53 +457,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.0,
+     "gotham": 8.1,
      "gotham_ros": 8.4,
      "sleeper": 9.4,
      "workload": "3/5/9/6/3/8/3",
      "trend": -0.11
-    },
-    {
-     "name": "Christian McCaffrey",
-     "pos": "RB",
-     "team": "SF",
-     "slot": "RB",
-     "marker": {
-      "count": 2,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 8 7:31 PM PT",
-       "src": "rotoballer",
-       "title": "Christian McCaffrey is a Dual Threat in Win",
-       "text": "San Francisco 49ers running back Christian McCaffrey did a little bit of everything during Sunday's game against the Las Vegas [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 8 9:30 AM PT",
-       "src": "rotoballer",
-       "title": "Christian McCaffrey Expected to Handle Full Workload Against Raiders",
-       "text": "San Francisco 49ers running back Christian McCaffrey (hamstring) is expected to handle his usual workload against the Las Vegas Raiders [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Nov 7 2:23 AM PT",
-       "src": "rotoballer",
-       "title": "Christian McCaffrey Cleared For Cushy Matchup Against Las Vegas",
-       "text": "San Francisco 49ers running back Christian McCaffrey (hamstring) has no designation for this weekend after suffering a mild hamstring strain [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "gotham": 26.8,
-     "gotham_ros": 24.5,
-     "sleeper": 26.2,
-     "workload": "27/24/28/29/19/43/23/30",
-     "trend": -0.01
     },
     {
      "name": "Travis Kelce",
@@ -501,7 +501,7 @@
      ],
      "gotham": 12.0,
      "gotham_ros": 11.5,
-     "sleeper": 12.2,
+     "sleeper": 12.3,
      "workload": "5/12/3/4/6/8/7/7",
      "trend": 0.08
     }
@@ -531,11 +531,14 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 23.2
+     },
      "beats_floor": false,
      "gotham": 0.0,
      "gotham_ros": 19.7,
-     "sleeper": 17.4,
+     "sleeper": 17.5,
      "workload": "33/43/50/46/44/40/41/44",
      "trend": 0.02,
      "yahoo": null,
@@ -565,7 +568,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Tyler Shough",
+      "gotham": 23.2
+     },
      "beats_floor": false,
      "gotham": 10.1,
      "gotham_ros": 10.7,
@@ -580,23 +586,24 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #17 (113,634 in 24 h)"
+      "Sleeper adds #13 (123,966 in 24 h)"
      ],
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "caution"
+       "caution",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Thu Nov 12 1:38 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Rodriguez: Limited at practice Thursday",
-       "text": "Rodriguez (hand) was a limited practice participant Thursday, while Bhayshul Tuten (ankle/foot) didn't participate.",
-       "grade": "caution"
+       "t": "Thu Nov 12 1:59 PM PT",
+       "src": "rotoballer",
+       "title": "Chris Rodriguez Jr. Limited in Practice on Thursday",
+       "text": "Jacksonville Jaguars running back Chris Rodriguez Jr. (hand) was limited in practice on Thursday. The 26-year-old has been battling a [&#8230;]",
+       "grade": "note"
       }
      ],
      "floor": {
@@ -617,8 +624,8 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: A.J. Brown \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #23 (82,605 in 24 h)"
+      "opening: A.J. Brown \u2014 questionable/limited (pft)",
+      "Sleeper adds #22 (85,590 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -655,6 +662,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
       "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
@@ -692,7 +700,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (348,759 in 24 h)"
+      "Sleeper adds #4 (357,507 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -766,7 +774,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (134,712 in 24 h)"
+      "Sleeper adds #11 (133,461 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -866,46 +874,9 @@
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 6.9,
-     "sleeper": 7.5,
+     "sleeper": 7.6,
      "workload": "2/2/4/6/4/7/2/6",
      "trend": 0.05,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Elic Ayomanor",
-     "pos": "WR",
-     "team": "TEN",
-     "why": [
-      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 8:40 PM PT",
-       "src": "rotoballer",
-       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
-       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Stefon Diggs",
-      "gotham": 10.4
-     },
-     "beats_floor": false,
-     "gotham": 5.7,
-     "gotham_ros": 6.1,
-     "sleeper": 5.9,
-     "workload": "4/4/4/1/3/3/8/6",
-     "trend": 0.75,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -952,6 +923,43 @@
      "trend": 0.26,
      "yahoo": null,
      "acq": "unverified"
+    },
+    {
+     "name": "Isaac TeSlaa",
+     "pos": "WR",
+     "team": "DET",
+     "why": [
+      "opening: Amon-Ra St. Brown \u2014 questionable/limited (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Oct 31 7:16 AM PT",
+       "src": "rotoballer",
+       "title": "Isaac TeSlaa is Tough to Trust in Difficult Week 8 Matchup",
+       "text": "Across six games in 2026, Detroit Lions wide receiver Isaac TeSlaa has recorded 10 catches for 197 yards on 21 [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Stefon Diggs",
+      "gotham": 10.4
+     },
+     "beats_floor": false,
+     "gotham": 5.8,
+     "gotham_ros": 5.4,
+     "sleeper": 4.1,
+     "workload": "1/6/4/9/3/3/2",
+     "trend": -0.44,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -977,14 +985,14 @@
        "grade": "caution"
       },
       {
-       "t": "Thu Nov 12 11:00 AM PT",
-       "src": "rotoballer",
-       "title": "Omar Cooper Jr. Taking Part in Individual Drills on Thursday",
-       "text": "New York Jets wide receiver Omar Cooper Jr., believed to have aggravated an existing ankle injury in the team's Week [&#8230;]",
-       "grade": "note"
+       "t": "Thu Nov 12 1:45 PM PT",
+       "src": "ESPN injury report",
+       "title": "Omar Cooper Jr.: Questionable (Ankle)",
+       "text": "Cooper (ankle) was a limited participant at Thursday's practice.",
+       "grade": "caution"
       }
      ],
-     "gotham": 14.3,
+     "gotham": 14.2,
      "gotham_ros": 15.5,
      "sleeper": 8.7,
      "workload": "8/6/11",
@@ -1046,7 +1054,7 @@
      "team": "HOU",
      "slot": "BN",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -1056,10 +1064,17 @@
      },
      "news": [
       {
-       "t": "Thu Nov 12 10:01 AM PT",
+       "t": "Thu Nov 12 2:28 PM PT",
+       "src": "pft",
+       "title": "David Montgomery returns to Texans practice; Woody Marks, Marvin Harrison Jr. don't practice",
+       "text": "The Texans had running back David Montgomery back on the practice field on Thursday, but they were missing a couple of other key offensive players.",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Nov 12 2:25 PM PT",
        "src": "ESPN injury report",
        "title": "David Montgomery: Questionable (Groin)",
-       "text": "questionable",
+       "text": "Montgomery (groin) was limited at practice Thursday, Chris Easterling of the Akron Beacon Journal reports.",
        "grade": "caution"
       },
       {
@@ -1067,13 +1082,6 @@
        "src": "rotoballer",
        "title": "David Montgomery Back at Practice, Week 10 Status Unclear",
        "text": "Houston Texans running back David Montgomery (groin) is back at practice on Thursday, according to Jonathan M. Alexander of the [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 11:05 AM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Out of Texans Practice on Wednesday",
-       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
        "grade": "note"
       }
      ],
@@ -1087,7 +1095,7 @@
      "name": "Alvin Kamara",
      "pos": "RB",
      "team": "NO",
-     "slot": "BN",
+     "slot": "W/R/T",
      "marker": {
       "count": 2,
       "recency": 0,
@@ -1161,7 +1169,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 18.8,
+     "gotham": 18.7,
      "gotham_ros": 21.3,
      "sleeper": 22.4,
      "workload": "43/30/41/47/33/42",
@@ -1203,9 +1211,9 @@
        "grade": "caution"
       }
      ],
-     "gotham": 12.7,
+     "gotham": 12.6,
      "gotham_ros": 13.8,
-     "sleeper": 10.5,
+     "sleeper": 10.0,
      "workload": "13/13/20/33/22/35/31/13",
      "trend": -0.15
     },
@@ -1289,7 +1297,7 @@
      ],
      "gotham": 18.9,
      "gotham_ros": 18.7,
-     "sleeper": 21.1,
+     "sleeper": 21.2,
      "workload": "45/41/39/40/33/51/35/25",
      "trend": -0.28
     },
@@ -1373,7 +1381,7 @@
      ],
      "gotham": 7.8,
      "gotham_ros": 8.4,
-     "sleeper": 11.6,
+     "sleeper": 11.7,
      "workload": "8/3/5/2/1/6",
      "trend": 0.04
     },
@@ -1457,7 +1465,7 @@
      ],
      "gotham": 25.4,
      "gotham_ros": 23.7,
-     "sleeper": 19.8,
+     "sleeper": 19.9,
      "workload": "5/10/13/12/8/17/14",
      "trend": 0.42
     },
@@ -1465,7 +1473,7 @@
      "name": "Travis Kelce",
      "pos": "TE",
      "team": "KC",
-     "slot": "BN",
+     "slot": "TE",
      "marker": {
       "count": 3,
       "recency": 4,
@@ -1499,7 +1507,7 @@
      ],
      "gotham": 12.0,
      "gotham_ros": 11.5,
-     "sleeper": 12.2,
+     "sleeper": 12.3,
      "workload": "5/12/3/4/6/8/7/7",
      "trend": 0.08
     }
@@ -1531,7 +1539,7 @@
      ],
      "floor": {
       "name": "Jayden Daniels",
-      "gotham": 18.8
+      "gotham": 18.7
      },
      "beats_floor": false,
      "gotham": 10.1,
@@ -1547,7 +1555,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #7 (189,936 in 24 h)"
+      "Sleeper adds #7 (196,857 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1573,7 +1581,7 @@
      "beats_floor": false,
      "gotham": 9.7,
      "gotham_ros": 9.8,
-     "sleeper": 8.4,
+     "sleeper": 8.5,
      "workload": "8/6/5/7/12/6/12/21/15",
      "trend": 0.82,
      "yahoo": null,
@@ -1603,7 +1611,10 @@
        "grade": "good"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.0
+     },
      "beats_floor": false,
      "gotham": 8.1,
      "gotham_ros": 8.2,
@@ -1637,7 +1648,10 @@
        "grade": "note"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.0
+     },
      "beats_floor": false,
      "gotham": 7.9,
      "gotham_ros": 7.6,
@@ -1671,11 +1685,14 @@
        "grade": "note"
       }
      ],
-     "floor": null,
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.0
+     },
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 6.9,
-     "sleeper": 7.5,
+     "sleeper": 7.6,
      "workload": "2/2/4/6/4/7/2/6",
      "trend": 0.05,
      "yahoo": null,
@@ -1686,7 +1703,7 @@
      "pos": "WR",
      "team": "JAX",
      "why": [
-      "opening: Jakobi Meyers \u2014 questionable/limited (RotoWire news)"
+      "opening: Jakobi Meyers \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -1715,43 +1732,6 @@
      "sleeper": 4.4,
      "workload": "3/8/1/3/4/2/3",
      "trend": -0.32,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Elic Ayomanor",
-     "pos": "WR",
-     "team": "TEN",
-     "why": [
-      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 8:40 PM PT",
-       "src": "rotoballer",
-       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
-       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 5.7,
-     "gotham_ros": 6.1,
-     "sleeper": 5.9,
-     "workload": "4/4/4/1/3/3/8/6",
-     "trend": 0.75,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1853,11 +1833,11 @@
      },
      "news": [
       {
-       "t": "Wed Nov 11 3:51 PM PT",
-       "src": "ESPN injury report",
-       "title": "KaVontae Turpin: Questionable (Ribs)",
-       "text": "questionable",
-       "grade": "caution"
+       "t": "Wed Nov 11 3:47 PM PT",
+       "src": "RotoWire news",
+       "title": "KaVontae Turpin: Still dealing with ribs injury",
+       "text": "Turpin (ribs) was limited in Wednesday's practice, Tommy Yarrish of the Cowboys' official site reports.",
+       "grade": "note"
       }
      ],
      "floor": {
@@ -1904,7 +1884,7 @@
      "beats_floor": false,
      "gotham": 4.8,
      "gotham_ros": 4.9,
-     "sleeper": 3.4,
+     "sleeper": 3.5,
      "workload": "2/3/3/2/7/2/3/4",
      "trend": 0.14,
      "yahoo": null,
@@ -1915,6 +1895,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
       "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
@@ -1938,6 +1919,35 @@
      "trend": -0.73,
      "yahoo": null,
      "acq": "unverified"
+    },
+    {
+     "name": "Dawson Knox",
+     "pos": "TE",
+     "team": "BUF",
+     "why": [
+      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.0
+     },
+     "beats_floor": false,
+     "gotham": 4.7,
+     "gotham_ros": 4.4,
+     "sleeper": 3.7,
+     "workload": "1/3/1/3/4/1/2/6",
+     "trend": 1.1,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -1946,7 +1956,7 @@
      "pos": "QB",
      "team": "DET",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "green",
       "grades": [
@@ -1955,23 +1965,23 @@
      },
      "news": [
       {
+       "t": "Thu Nov 12 2:52 PM PT",
+       "src": "pft",
+       "title": "Jared Goff listed as full participant at Thursday's practice",
+       "text": "Lions quarterback Jared Goff was listed as a limited participant in practice on Wednesday, but it doesn't look like there will be an issue with his availability for Sunday's game against the Patriots.",
+       "grade": "good"
+      },
+      {
        "t": "Thu Nov 12 1:38 PM PT",
        "src": "rotoballer",
        "title": "Jared Goff Upgrades to Full Practice Participation on Thursday",
        "text": "Detroit Lions quarterback Jared Goff (chest) was upgraded to full participation in practice on Thursday. The veteran quarterback was limited [&#8230;]",
        "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:21 PM PT",
-       "src": "rotoballer",
-       "title": "Jared Goff Limited on Wednesday With Chest Injury",
-       "text": "Detroit Lions quarterback Jared Goff (chest) is on the team's Week 10 injury report and was listed as a limited [&#8230;]",
-       "grade": "caution"
       }
      ],
-     "gotham": 23.2,
+     "gotham": 23.1,
      "gotham_ros": 21.5,
-     "sleeper": 22.1,
+     "sleeper": 22.2,
      "workload": "43/43/39/52/32/36/30/32",
      "trend": -0.2
     }
@@ -2063,9 +2073,9 @@
        "grade": "bad"
       }
      ],
-     "gotham": 8.6,
+     "gotham": 9.0,
      "gotham_ros": 10.9,
-     "sleeper": 11.2,
+     "sleeper": 10.6,
      "workload": "6/4/4/15/6/6/7",
      "trend": -0.06
     },
@@ -2085,10 +2095,10 @@
      },
      "news": [
       {
-       "t": "Thu Nov 12 12:02 PM PT",
+       "t": "Thu Nov 12 2:13 PM PT",
        "src": "ESPN injury report",
        "title": "George Pickens: Questionable (Hamstring)",
-       "text": "questionable",
+       "text": "Pickens (hamstring) practiced in a limited fashion Thursday, Jon Machota of The Athletic reports.",
        "grade": "caution"
       },
       {
@@ -2118,7 +2128,7 @@
      "team": "HOU",
      "slot": "BN",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -2128,10 +2138,17 @@
      },
      "news": [
       {
-       "t": "Thu Nov 12 10:01 AM PT",
+       "t": "Thu Nov 12 2:28 PM PT",
+       "src": "pft",
+       "title": "David Montgomery returns to Texans practice; Woody Marks, Marvin Harrison Jr. don't practice",
+       "text": "The Texans had running back David Montgomery back on the practice field on Thursday, but they were missing a couple of other key offensive players.",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Nov 12 2:25 PM PT",
        "src": "ESPN injury report",
        "title": "David Montgomery: Questionable (Groin)",
-       "text": "questionable",
+       "text": "Montgomery (groin) was limited at practice Thursday, Chris Easterling of the Akron Beacon Journal reports.",
        "grade": "caution"
       },
       {
@@ -2139,13 +2156,6 @@
        "src": "rotoballer",
        "title": "David Montgomery Back at Practice, Week 10 Status Unclear",
        "text": "Houston Texans running back David Montgomery (groin) is back at practice on Thursday, according to Jonathan M. Alexander of the [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 11:05 AM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Out of Texans Practice on Wednesday",
-       "text": "Houston Texans running back David Montgomery (groin) remains sidelined at Wednesday's practice, according to Aaron Wilson of KPRC 2 Sports. [&#8230;]",
        "grade": "note"
       }
      ],
@@ -2161,40 +2171,39 @@
      "team": "CLE",
      "slot": "W/R/T",
      "marker": {
-      "count": 3,
-      "recency": 1,
+      "count": 2,
+      "recency": 0,
       "color": "gold",
       "grades": [
-       "caution",
-       "note"
+       "caution"
       ]
      },
      "news": [
+      {
+       "t": "Thu Nov 12 2:41 PM PT",
+       "src": "RotoWire news",
+       "title": "Harold Fannin Jr.: Limited Thursday",
+       "text": "Fannin (groin) was a limited participant in Thursday's practice, Chris Easterling of the Akron Beacon Journal reports.",
+       "grade": "caution"
+      },
+      {
+       "t": "Thu Nov 12 2:41 PM PT",
+       "src": "ESPN injury report",
+       "title": "Harold Fannin Jr.: Questionable (Groin)",
+       "text": "Fannin (groin) was a limited participant in Thursday's practice, Chris Easterling of the Akron Beacon Journal reports.",
+       "grade": "caution"
+      },
       {
        "t": "Wed Nov 11 9:44 PM PT",
        "src": "rotoballer",
        "title": "Harold Fannin Jr. Surging in Fantasy Football Amid Volume Spike",
        "text": "Cleveland Browns tight end Harold Fannin Jr. has seen a tremendous increase in volume lately, allowing him to rank as [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 2:39 PM PT",
-       "src": "RotoWire news",
-       "title": "Harold Fannin Jr.: Limited on Wednesday",
-       "text": "Fannin (groin) was limited in Wednesday's practice, Mary Kay Cabot of The Cleveland Plain Dealer reports.",
-       "grade": "caution"
-      },
-      {
-       "t": "Wed Nov 11 2:39 PM PT",
-       "src": "ESPN injury report",
-       "title": "Harold Fannin Jr.: Questionable (Groin)",
-       "text": "Fannin (groin) was limited in Wednesday's practice, Mary Kay Cabot of The Cleveland Plain Dealer reports.",
-       "grade": "caution"
       }
      ],
      "gotham": 7.9,
      "gotham_ros": 11.1,
-     "sleeper": 11.4,
+     "sleeper": 10.5,
      "workload": "3/6/10/6/4/3/9/13/2",
      "trend": -0.07
     },
@@ -2234,7 +2243,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 18.8,
+     "gotham": 18.7,
      "gotham_ros": 21.3,
      "sleeper": 22.4,
      "workload": "43/30/41/47/33/42",
@@ -2402,7 +2411,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 7.8,
+     "gotham": 7.7,
      "gotham_ros": 11.6,
      "sleeper": 8.9,
      "workload": "7/4/4/6/8",
@@ -2501,7 +2510,7 @@
      "pos": "QB",
      "team": "PIT",
      "why": [
-      "Sleeper adds #20 (99,224 in 24 h)"
+      "Sleeper adds #20 (97,844 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2522,12 +2531,12 @@
      ],
      "floor": {
       "name": "Jayden Daniels",
-      "gotham": 18.8
+      "gotham": 18.7
      },
      "beats_floor": true,
      "gotham": 18.9,
      "gotham_ros": 18.7,
-     "sleeper": 21.1,
+     "sleeper": 21.2,
      "workload": "45/41/39/40/33/51/35/25",
      "trend": -0.28,
      "yahoo": null,
@@ -2538,7 +2547,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #7 (189,936 in 24 h)"
+      "Sleeper adds #7 (196,857 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2564,7 +2573,7 @@
      "beats_floor": true,
      "gotham": 9.7,
      "gotham_ros": 9.8,
-     "sleeper": 8.4,
+     "sleeper": 8.5,
      "workload": "8/6/5/7/12/6/12/21/15",
      "trend": 0.82,
      "yahoo": null,
@@ -2575,7 +2584,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (348,759 in 24 h)"
+      "Sleeper adds #4 (357,507 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2649,7 +2658,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #8 (181,368 in 24 h)"
+      "Sleeper adds #8 (175,472 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2670,12 +2679,12 @@
      ],
      "floor": {
       "name": "Jayden Daniels",
-      "gotham": 18.8
+      "gotham": 18.7
      },
      "beats_floor": false,
      "gotham": 3.8,
      "gotham_ros": 4.3,
-     "sleeper": 13.3,
+     "sleeper": 13.4,
      "workload": "10",
      "trend": null,
      "yahoo": null,
@@ -2707,7 +2716,7 @@
      ],
      "floor": {
       "name": "Jayden Daniels",
-      "gotham": 18.8
+      "gotham": 18.7
      },
      "beats_floor": false,
      "gotham": 10.1,
@@ -2749,7 +2758,7 @@
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 6.9,
-     "sleeper": 7.5,
+     "sleeper": 7.6,
      "workload": "2/2/4/6/4/7/2/6",
      "trend": 0.05,
      "yahoo": null,
@@ -2760,7 +2769,7 @@
      "pos": "WR",
      "team": "JAX",
      "why": [
-      "opening: Jakobi Meyers \u2014 questionable/limited (RotoWire news)"
+      "opening: Jakobi Meyers \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -2781,7 +2790,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 7.8
+      "gotham": 7.7
      },
      "beats_floor": false,
      "gotham": 6.7,
@@ -2797,7 +2806,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #11 (139,624 in 24 h)"
+      "Sleeper adds #12 (131,112 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2818,7 +2827,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 7.8
+      "gotham": 7.7
      },
      "beats_floor": false,
      "gotham": null,
@@ -2826,43 +2835,6 @@
      "sleeper": 6.3,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Elic Ayomanor",
-     "pos": "WR",
-     "team": "TEN",
-     "why": [
-      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 6 8:40 PM PT",
-       "src": "rotoballer",
-       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
-       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 7.8
-     },
-     "beats_floor": false,
-     "gotham": 5.7,
-     "gotham_ros": 6.1,
-     "sleeper": 5.9,
-     "workload": "4/4/4/1/3/3/8/6",
-     "trend": 0.75,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2892,7 +2864,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 7.8
+      "gotham": 7.7
      },
      "beats_floor": false,
      "gotham": 5.8,
@@ -2936,7 +2908,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 7.8
+      "gotham": 7.7
      },
      "beats_floor": false,
      "gotham": 0.0,
@@ -2944,6 +2916,43 @@
      "sleeper": 5.5,
      "workload": "1/3/3/6/7/5",
      "trend": 0.49,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "KaVontae Turpin",
+     "pos": "WR",
+     "team": "DAL",
+     "why": [
+      "opening: George Pickens \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 11 3:47 PM PT",
+       "src": "RotoWire news",
+       "title": "KaVontae Turpin: Still dealing with ribs injury",
+       "text": "Turpin (ribs) was limited in Wednesday's practice, Tommy Yarrish of the Cowboys' official site reports.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 7.7
+     },
+     "beats_floor": false,
+     "gotham": 4.9,
+     "gotham_ros": 4.7,
+     "sleeper": 2.5,
+     "workload": "1/0/3/0/4/0",
+     "trend": 0.04,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2980,7 +2989,7 @@
      ],
      "gotham": 18.5,
      "gotham_ros": 16.7,
-     "sleeper": 18.3,
+     "sleeper": 17.5,
      "workload": "17/20/23/24/31/26/22/13",
      "trend": -0.29
     },
@@ -2989,7 +2998,7 @@
      "pos": "WR",
      "team": "NE",
      "marker": {
-      "count": 4,
+      "count": 5,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -2999,21 +3008,21 @@
      },
      "news": [
       {
+       "t": "Thu Nov 12 2:01 PM PT",
+       "src": "pft",
+       "title": "Rhamondre Stevenson returns to practice, A.J. Brown remains limited",
+       "text": "The Patriots had some positive news on their injury report from Thursday's reportedly light practice in Munich.",
+       "grade": "caution"
+      },
+      {
        "t": "Thu Nov 12 1:29 PM PT",
        "src": "rotoballer",
        "title": "A.J. Brown Limited in Practice on Thursday",
        "text": "New England Patriots wide receiver A.J. Brown (ankle, knee) was limited in practice on Thursday, per Doug Kyed of the [&#8230;]",
        "grade": "caution"
-      },
-      {
-       "t": "Thu Nov 12 1:17 PM PT",
-       "src": "ESPN injury report",
-       "title": "A.J. Brown: Questionable (Knee)",
-       "text": "questionable",
-       "grade": "caution"
       }
      ],
-     "gotham": 12.1,
+     "gotham": 12.0,
      "gotham_ros": 11.8,
      "sleeper": 14.4,
      "workload": "4/12/6",
@@ -3049,17 +3058,17 @@
        "grade": "caution"
       },
       {
+       "t": "Thu Nov 12 1:45 PM PT",
+       "src": "ESPN injury report",
+       "title": "Omar Cooper Jr.: Questionable (Ankle)",
+       "text": "Cooper (ankle) was a limited participant at Thursday's practice.",
+       "grade": "caution"
+      },
+      {
        "t": "Thu Nov 12 11:00 AM PT",
        "src": "rotoballer",
        "title": "Omar Cooper Jr. Taking Part in Individual Drills on Thursday",
        "text": "New York Jets wide receiver Omar Cooper Jr., believed to have aggravated an existing ankle injury in the team's Week [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Thu Nov 12 10:52 AM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper Jr.: Practicing Thursday",
-       "text": "Cooper (ankle) is participating in Thursday's practice, Antwan V. Staley of the New York Daily News reports.",
        "grade": "note"
       }
      ],
@@ -3073,9 +3082,9 @@
      "name": "Jakobi Meyers",
      "pos": "WR",
      "team": "JAX",
-     "slot": "BN",
+     "slot": "WR",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -3083,6 +3092,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Thu Nov 12 3:06 PM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers Upgrades to Limited Practice on Thursday",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) was listed as a limited participant in practice on Thursday. It is a [&#8230;]",
+       "grade": "caution"
+      },
       {
        "t": "Thu Nov 12 1:39 PM PT",
        "src": "RotoWire news",
@@ -3096,13 +3112,6 @@
        "title": "Jakobi Meyers: Questionable (Ankle)",
        "text": "Meyers (ankle) was a limited participant in Thursday's practice.",
        "grade": "caution"
-      },
-      {
-       "t": "Wed Nov 11 7:53 PM PT",
-       "src": "rotoballer",
-       "title": "Jakobi Meyers Remains Reliable Target for Jaguars",
-       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers remains involved in the passing game each week. He ranks second on the team [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 10.2,
@@ -3117,7 +3126,7 @@
      "team": "DET",
      "slot": "Q/W/R/T",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "green",
       "grades": [
@@ -3125,6 +3134,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Thu Nov 12 2:52 PM PT",
+       "src": "pft",
+       "title": "Jared Goff listed as full participant at Thursday's practice",
+       "text": "Lions quarterback Jared Goff was listed as a limited participant in practice on Wednesday, but it doesn't look like there will be an issue with his availability for Sunday's game against the Patriots.",
+       "grade": "good"
+      },
       {
        "t": "Thu Nov 12 1:38 PM PT",
        "src": "rotoballer",
@@ -3138,20 +3154,55 @@
        "title": "Jared Goff Limited on Wednesday With Chest Injury",
        "text": "Detroit Lions quarterback Jared Goff (chest) is on the team's Week 10 injury report and was listed as a limited [&#8230;]",
        "grade": "caution"
-      },
-      {
-       "t": "Wed Nov 11 1:17 PM PT",
-       "src": "pft",
-       "title": "Jared Goff listed as limited at Lions practice due to chest injury",
-       "text": "Quarterback Jared Goff landed on the Lions' first injury report of the week.",
-       "grade": "caution"
       }
      ],
-     "gotham": 23.1,
+     "gotham": 23.0,
      "gotham_ros": 21.4,
-     "sleeper": 22.0,
+     "sleeper": 22.1,
      "workload": "42/42/37/52/31/35/29/30",
      "trend": -0.22
+    },
+    {
+     "name": "Bijan Robinson",
+     "pos": "RB",
+     "team": "ATL",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Nov 12 2:44 PM PT",
+       "src": "ESPN news",
+       "title": "NFL rushing leaders in spotlight as Kenneth Walker III and Chiefs face Bijan Robinson and Falcons",
+       "text": "\u2014 The NFL's rushing leaders will be in the spotlight on Sunday when Bijan Robinson and the Atlanta Falcons face Kenneth Walker III and the Kansas City Chiefs.",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 11 8:06 AM PT",
+       "src": "ESPN news",
+       "title": "Sources: Giants called Falcons to ask about Bijan Robinson before trade deadline",
+       "text": "The Giants made a call to the Falcons before the NFL trade deadline inquiring about star running back Bijan Robinson, multiple sources told ESPN.",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 11 7:39 AM PT",
+       "src": "pft",
+       "title": "Report: Giants called Falcons about a potential Bijan Robinson trade",
+       "text": "The Giants didn't make any big deals at the trade deadline, but they tried to make a very big one.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 19.5,
+     "gotham_ros": 20.1,
+     "sleeper": 20.0,
+     "workload": "48/27/51/35/42/14/40/22/47",
+     "trend": 0.06
     },
     {
      "name": "Zay Flowers",
@@ -3189,7 +3240,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 13.8,
+     "gotham": 13.7,
      "gotham_ros": 14.5,
      "sleeper": 16.4,
      "workload": "11/10/11/12/5/6",
@@ -3231,9 +3282,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 10.9,
+     "gotham": 11.1,
      "gotham_ros": 11.1,
-     "sleeper": 11.0,
+     "sleeper": 10.6,
      "workload": "6/3/9/9/6/9/7/7/3",
      "trend": -0.35
     },
@@ -3273,7 +3324,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.3,
+     "gotham": 9.2,
      "gotham_ros": 13.3,
      "sleeper": 13.2,
      "workload": "30/17/32/41/26/25",
@@ -3322,48 +3373,6 @@
      "trend": -0.1
     },
     {
-     "name": "Bijan Robinson",
-     "pos": "RB",
-     "team": "ATL",
-     "slot": "RB",
-     "marker": {
-      "count": 3,
-      "recency": 1,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 8:06 AM PT",
-       "src": "ESPN news",
-       "title": "Sources: Giants called Falcons to ask about Bijan Robinson before trade deadline",
-       "text": "The Giants made a call to the Falcons before the NFL trade deadline inquiring about star running back Bijan Robinson, multiple sources told ESPN.",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 7:39 AM PT",
-       "src": "pft",
-       "title": "Report: Giants called Falcons about a potential Bijan Robinson trade",
-       "text": "The Giants didn't make any big deals at the trade deadline, but they tried to make a very big one.",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Nov 11 6:07 AM PT",
-       "src": "rotoballer",
-       "title": "Giants Called the Falcons About Acquiring Bijan Robinson",
-       "text": "The New York Giants reportedly called the Atlanta Falcons to inquire about trading for star running back Bijan Robinson, according [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": 19.5,
-     "gotham_ros": 20.1,
-     "sleeper": 20.0,
-     "workload": "48/27/51/35/42/14/40/22/47",
-     "trend": 0.06
-    },
-    {
      "name": "Justin Jefferson",
      "pos": "WR",
      "team": "MIN",
@@ -3399,9 +3408,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 11.7,
+     "gotham": 12.0,
      "gotham_ros": 14.1,
-     "sleeper": 17.5,
+     "sleeper": 17.6,
      "workload": "10/7/8/8/10/11",
      "trend": 0.26
     },
@@ -3569,7 +3578,7 @@
      ],
      "gotham": 12.0,
      "gotham_ros": 11.5,
-     "sleeper": 12.2,
+     "sleeper": 12.3,
      "workload": "5/12/3/4/6/8/7/7",
      "trend": 0.08
     },
@@ -3643,7 +3652,7 @@
      ],
      "floor": {
       "name": "Jared Goff",
-      "gotham": 23.1
+      "gotham": 23.0
      },
      "beats_floor": false,
      "gotham": 10.0,
@@ -3659,8 +3668,8 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "opening: A.J. Brown \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #23 (82,605 in 24 h)"
+      "opening: A.J. Brown \u2014 questionable/limited (pft)",
+      "Sleeper adds #22 (85,590 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3680,8 +3689,8 @@
       }
      ],
      "floor": {
-      "name": "Justin Jefferson",
-      "gotham": 11.7
+      "name": "Jakobi Meyers",
+      "gotham": 10.2
      },
      "beats_floor": false,
      "gotham": 9.4,
@@ -3717,8 +3726,8 @@
       }
      ],
      "floor": {
-      "name": "Justin Jefferson",
-      "gotham": 11.7
+      "name": "Jakobi Meyers",
+      "gotham": 10.2
      },
      "beats_floor": false,
      "gotham": 9.3,
@@ -3734,6 +3743,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)",
       "opening: Omar Cooper Jr. \u2014 questionable/limited (RotoWire news)"
      ],
      "marker": {
@@ -3754,8 +3764,8 @@
       }
      ],
      "floor": {
-      "name": "Justin Jefferson",
-      "gotham": 11.7
+      "name": "Jakobi Meyers",
+      "gotham": 10.2
      },
      "beats_floor": false,
      "gotham": 9.1,
@@ -3771,7 +3781,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #4 (348,759 in 24 h)"
+      "Sleeper adds #4 (357,507 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3792,10 +3802,10 @@
      ],
      "floor": {
       "name": "Tucker Kraft",
-      "gotham": 10.9
+      "gotham": 11.1
      },
      "beats_floor": false,
-     "gotham": 9.1,
+     "gotham": 9.0,
      "gotham_ros": 9.0,
      "sleeper": 9.0,
      "workload": "2/4/8/7/2/2/2/11",
@@ -3829,7 +3839,7 @@
      ],
      "floor": {
       "name": "Tucker Kraft",
-      "gotham": 10.9
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 8.1,
@@ -3845,7 +3855,7 @@
      "pos": "TE",
      "team": "LA",
      "why": [
-      "Sleeper adds #12 (134,712 in 24 h)"
+      "Sleeper adds #11 (133,461 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3866,7 +3876,7 @@
      ],
      "floor": {
       "name": "Tucker Kraft",
-      "gotham": 10.9
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 8.7,
@@ -3882,7 +3892,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #7 (189,936 in 24 h)"
+      "Sleeper adds #7 (196,857 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3903,7 +3913,7 @@
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 9.3
+      "gotham": 9.2
      },
      "beats_floor": false,
      "gotham": 8.6,
@@ -3940,7 +3950,7 @@
      ],
      "floor": {
       "name": "Tucker Kraft",
-      "gotham": 10.9
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 7.9,
@@ -3956,28 +3966,29 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #17 (113,634 in 24 h)"
+      "Sleeper adds #13 (123,966 in 24 h)"
      ],
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "caution"
+       "caution",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Thu Nov 12 1:38 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Rodriguez: Limited at practice Thursday",
-       "text": "Rodriguez (hand) was a limited practice participant Thursday, while Bhayshul Tuten (ankle/foot) didn't participate.",
-       "grade": "caution"
+       "t": "Thu Nov 12 1:59 PM PT",
+       "src": "rotoballer",
+       "title": "Chris Rodriguez Jr. Limited in Practice on Thursday",
+       "text": "Jacksonville Jaguars running back Chris Rodriguez Jr. (hand) was limited in practice on Thursday. The 26-year-old has been battling a [&#8230;]",
+       "grade": "note"
       }
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 9.3
+      "gotham": 9.2
      },
      "beats_floor": false,
      "gotham": 7.2,
@@ -4014,23 +4025,23 @@
      ],
      "floor": {
       "name": "Tucker Kraft",
-      "gotham": 10.9
+      "gotham": 11.1
      },
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 6.9,
-     "sleeper": 7.5,
+     "sleeper": 7.6,
      "workload": "2/2/4/6/4/7/2/6",
      "trend": 0.05,
      "yahoo": null,
      "acq": "unverified"
     },
     {
-     "name": "Elic Ayomanor",
+     "name": "Isaac TeSlaa",
      "pos": "WR",
-     "team": "TEN",
+     "team": "DET",
      "why": [
-      "opening: Carnell Tate \u2014 questionable/limited (ESPN injury report)"
+      "opening: Amon-Ra St. Brown \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -4042,23 +4053,23 @@
      },
      "news": [
       {
-       "t": "Fri Nov 6 8:40 PM PT",
+       "t": "Sat Oct 31 7:16 AM PT",
        "src": "rotoballer",
-       "title": "Elic Ayomanor's Volume Uptick an Encouraging Sign",
-       "text": "Tennessee Titans wide receiver Elic Ayomanor has been targeted 12 times across his last two games, converting those opportunities into [&#8230;]",
+       "title": "Isaac TeSlaa is Tough to Trust in Difficult Week 8 Matchup",
+       "text": "Across six games in 2026, Detroit Lions wide receiver Isaac TeSlaa has recorded 10 catches for 197 yards on 21 [&#8230;]",
        "grade": "note"
       }
      ],
      "floor": {
-      "name": "Justin Jefferson",
-      "gotham": 11.7
+      "name": "Jakobi Meyers",
+      "gotham": 10.2
      },
      "beats_floor": false,
-     "gotham": 5.6,
-     "gotham_ros": 6.1,
-     "sleeper": 5.9,
-     "workload": "4/4/4/1/3/3/8/6",
-     "trend": 0.75,
+     "gotham": 5.8,
+     "gotham_ros": 5.4,
+     "sleeper": 4.1,
+     "workload": "1/6/4/9/3/3/2",
+     "trend": -0.44,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -4130,7 +4141,7 @@
      ],
      "gotham": 7.4,
      "gotham_ros": 7.6,
-     "sleeper": 8.1,
+     "sleeper": 7.0,
      "workload": "7/7/5/7/7/3/4/5/2",
      "trend": -0.42
     }
