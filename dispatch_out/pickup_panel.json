@@ -1,47 +1,59 @@
 {
  "order": [
-  "gotham",
-  "vegas",
   "ratcliffe",
-  "koerner",
+  "rotoballer",
+  "vegas",
+  "gotham",
   "yahoo",
+  "koerner",
+  "clay"
+ ],
+ "accuracy_order": [
+  "gotham",
+  "yahoo",
+  "koerner",
+  "ratcliffe",
+  "vegas",
   "clay"
  ],
  "members": [
-  "gotham",
-  "vegas",
-  "ratcliffe"
+  "ratcliffe",
+  "rotoballer",
+  "vegas"
  ],
  "graded_weeks": [
+  6,
+  7,
+  8,
   9
  ],
- "players": 66,
+ "players": 293,
  "miss": {
-  "ratcliffe": 6.92,
-  "koerner": 6.96,
-  "clay": 7.28,
+  "ratcliffe": 6.72,
+  "koerner": 6.7,
+  "clay": 7.04,
   "vegas": 6.81,
-  "yahoo": 7.15,
-  "gotham": 6.67
+  "yahoo": 6.39,
+  "gotham": 6.12
  },
  "bias": {
-  "ratcliffe": 1.6,
-  "koerner": 1.72,
-  "clay": 2.54,
+  "ratcliffe": 1.39,
+  "koerner": 1.43,
+  "clay": 2.04,
   "vegas": 1.59,
-  "yahoo": 2.28,
-  "gotham": 1.02
+  "yahoo": 1.54,
+  "gotham": 0.23
  },
  "pct": {
-  "ratcliffe": 11.4,
-  "koerner": 12.3,
-  "clay": 18.0,
+  "ratcliffe": 9.8,
+  "koerner": 10.1,
+  "clay": 14.4,
   "vegas": 11.3,
-  "yahoo": 16.2,
-  "gotham": 7.2
+  "yahoo": 11.1,
+  "gotham": 1.7
  },
  "notes": [],
- "basis": "same players for every source",
- "rule": "all sources ranked by points missed per player, last graded week; the top 3 are the check; each man = average of the 3 most accurate that have a number for him",
- "built": "Thu Nov 12 2026 6:01 AM PT"
+ "basis": "last 4 graded weeks, each week on the players every source shared",
+ "rule": "Nov 12 (Dom): no averaging - check 1 Ratcliffe decides, check 2 RotoBaller and check 3 Vegas are the checks (2+ points off Ratcliffe = stop and talk); the rest are reference, ordered by accuracy over the last 4 graded weeks",
+ "built": "Thu Nov 12 2026 7:51 AM PT"
 }
