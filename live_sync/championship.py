@@ -241,26 +241,35 @@ for lgk in LGS:
         worth.append(dict(name=p["name"], pos=p["pos"], d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4), d_wins=round(r["wins"] - Bm["wins"], 2),
                           role=role(p), starts=starts_in.get(p["name"], []), helps=helps(p)))
     worth.sort(key=lambda x: x["d_playoff"] + x["d_title"])
-    cheap = [w["name"] for w in worth]          # Oct 31 (Dom): every bench man is tested as a drop - nobody off limits
+    # Nov 12 (Dom: "why would you not run the sims on my whole team?"): every man on the roster (IR aside) is tested as the drop for
+    # every pickup - starters too (the lineup re-sets around the hole) - so a pickup is never judged against only the 'cheapest' few
+    worth_st = []
+    for p in mine:
+        if p.get("slot") in ("BN", "IR"): continue
+        r = E.run(with_([p["name"]], []))[me]
+        worth_st.append(dict(name=p["name"], pos=p["pos"], starter=True, d_playoff=round(r["playoff"] - Bm["playoff"], 3), d_title=round(r["title"] - Bm["title"], 4),
+                             d_wins=round(r["wins"] - Bm["wins"], 2), role=role(p), starts=starts_in.get(p["name"], []), helps=helps(p)))
+    worth_all = worth + worth_st
+    cheap = [w["name"] for w in sorted(worth_all, key=lambda x: -(x["d_playoff"] + x["d_title"]))]   # every man, cheapest first
     # candidate adds: best rest of season, best in the title weeks (the 5-today-20-later men), best this week
     # Nov 10 (Dom): THE WHEEL - test only, runs beside the system and never decides a move. wheel.py hands over the Diamonds picks
     # (DK_WHEEL=in.json); each is played out against the cheapest drops and this file is left untouched (results go to DK_WHEEL_OUT).
     if os.environ.get("DK_WHEEL"):
         WIN_ = json.load(open(os.environ["DK_WHEEL"])).get(LAB[lgk], [])
         opp_now = next((names.get(b if a == me else a, b if a == me else a) for a, b in L["sched"].get(now, []) if me in (a, b)), None)
-        wres = dict(base=summ(Bm), week=round(B["_week"].get(now, 0), 3), worth=worth, picks=[])
+        wres = dict(base=summ(Bm), week=round(B["_week"].get(now, 0), 3), worth=worth, worth_starters=worth_st, picks=[])
         for want in WIN_:
             nm, pos_, tm_ = want["name"], want["pos"], (want.get("team") or "").upper()
             a = next((p for p in S["pool"] if (p["pos"] == "DEF" and pos_ == "DEF" and str(p.get("nfl") or "").upper() == tm_) or nk(p["name"]) == nk(nm)), None)
             if not a: wres["picks"].append(dict(name=nm, missing=True)); continue
-            cheap_ = sorted(worth, key=lambda w: -(w["d_playoff"] + 2 * w["d_title"]))         # cheapest first (worth is sorted dearest first)
-            drops = [w["name"] for w in cheap_[:3]] + [w["name"] for w in cheap_ if w["pos"] == a["pos"]][:1]
+            drops = json.loads(os.environ["DK_DROPS"]) if os.environ.get("DK_DROPS") else list(cheap)   # Nov 12: the whole roster, not the cheapest 3
             tried = []
             for d in dict.fromkeys(drops):
                 Rm = with_([d], [a]); rr_ = E.run(Rm); r = rr_[me]; tot, pg, ng = per_game(mine, Rm[me], ALLW)
                 tried.append(dict(drop=d, d_week=round(rr_["_week"].get(now, 0) - B["_week"].get(now, 0), 3), d_playoff=round(r["playoff"] - Bm["playoff"], 3),
                                   d_title=round(r["title"] - Bm["title"], 4), pts_total=tot, pts_per_game=pg, games_used=ng,
-                                  drop_cost=next((w["d_playoff"] for w in worth if w["name"] == d), 0), drop_helps=next((w["helps"] for w in worth if w["name"] == d), [])))
+                                  drop_cost=next((w["d_playoff"] for w in worth_all if w["name"] == d), 0), drop_helps=next((w["helps"] for w in worth_all if w["name"] == d), []),
+                                  drop_starter=d not in [w["name"] for w in worth]))
             tried.sort(key=lambda t_: -(t_["d_playoff"] + 2 * t_["d_title"] + 0.25 * t_["d_week"]))
             gains = []
             for t, Rt in base_R.items():
