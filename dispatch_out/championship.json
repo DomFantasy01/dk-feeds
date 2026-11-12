@@ -1,10 +1,10 @@
 {
- "built": "Thu Nov 12 2026 03:35 AM PT",
+ "built": "Thu Nov 12 2026 03:45 AM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 10,
-   "built": "Thu Nov 12 2026 03:35 AM PT",
+   "built": "Thu Nov 12 2026 03:45 AM PT",
    "standings": "Thu Nov 12 3:27 AM PT",
    "base": {
     "wins": 6.56,
@@ -1877,7 +1877,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 243 players",
    "plan": {
     "week": 10,
-    "built": "Thu Nov 12 2026 03:35 AM PT",
+    "built": "Thu Nov 12 2026 03:45 AM PT",
     "standings": "Thu Nov 12 3:27 AM PT",
     "playoff": 0.32566666666666666,
     "wins": 6.562333333333333,
@@ -2207,7 +2207,7 @@
   },
   "DK II": {
    "week": 10,
-   "built": "Thu Nov 12 2026 03:35 AM PT",
+   "built": "Thu Nov 12 2026 03:45 AM PT",
    "standings": "Thu Nov 12 3:27 AM PT",
    "base": {
     "wins": 6.14,
@@ -3673,6 +3673,94 @@
      }
     },
     {
+     "add": "Deshaun Watson",
+     "pos": "QB",
+     "nfl": "CLE",
+     "acq": "Free agent",
+     "drop": "Alvin Kamara",
+     "before": {
+      "wins": 6.14,
+      "playoff": 0.161,
+      "title": 0.0013,
+      "final": 0.005,
+      "semis": 0.038,
+      "seed": 9,
+      "seeds": [
+       0.0,
+       0.0,
+       0.001,
+       0.0113,
+       0.0432,
+       0.105,
+       0.1585,
+       0.183,
+       0.238,
+       0.2003,
+       0.0523,
+       0.0073
+      ],
+      "first": 0.0
+     },
+     "after": {
+      "wins": 6.21,
+      "playoff": 0.19,
+      "title": 0.0013,
+      "final": 0.007,
+      "semis": 0.045,
+      "seed": 9,
+      "seeds": [
+       0.0,
+       0.0,
+       0.0022,
+       0.0143,
+       0.054,
+       0.119,
+       0.1647,
+       0.1777,
+       0.2255,
+       0.1872,
+       0.0478,
+       0.0077
+      ],
+      "first": 0.0
+     },
+     "d_wins": 0.07,
+     "d_playoff": 0.029,
+     "d_title": 0.0,
+     "pts_total": 3.9,
+     "pts_per_game": 0.6,
+     "games_used": 6,
+     "wins_hist": [
+      0,
+      0,
+      0,
+      0,
+      229,
+      1253,
+      2188,
+      1730,
+      546,
+      54,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "this_week": 0.026,
+     "drop_helps": [
+      "Rated PG-18"
+     ],
+     "drop_role": "handcuff to Travis Etienne Jr.; starts for you in Weeks 10, 13, 14, 16, 17; would start for 1 rival (Rated PG-18)",
+     "block": {
+      "rival": "Hector Football",
+      "rival_pts": 40.0,
+      "rival_playoff": 0.042,
+      "my_playoff": -0.005,
+      "my_title": 0.0
+     }
+    },
+    {
      "add": "BUF defense",
      "pos": "DEF",
      "nfl": "BUF",
@@ -3759,104 +3847,16 @@
       "my_playoff": -0.011,
       "my_title": 0.0
      }
-    },
-    {
-     "add": "Jason Sanders",
-     "pos": "K",
-     "nfl": "NYJ",
-     "acq": "Free agent",
-     "drop": "Alvin Kamara",
-     "before": {
-      "wins": 6.14,
-      "playoff": 0.161,
-      "title": 0.0013,
-      "final": 0.005,
-      "semis": 0.038,
-      "seed": 9,
-      "seeds": [
-       0.0,
-       0.0,
-       0.001,
-       0.0113,
-       0.0432,
-       0.105,
-       0.1585,
-       0.183,
-       0.238,
-       0.2003,
-       0.0523,
-       0.0073
-      ],
-      "first": 0.0
-     },
-     "after": {
-      "wins": 6.18,
-      "playoff": 0.18,
-      "title": 0.0013,
-      "final": 0.007,
-      "semis": 0.045,
-      "seed": 9,
-      "seeds": [
-       0.0,
-       0.0,
-       0.001,
-       0.0132,
-       0.0537,
-       0.1127,
-       0.1525,
-       0.1832,
-       0.2313,
-       0.1955,
-       0.0498,
-       0.0072
-      ],
-      "first": 0.0
-     },
-     "d_wins": 0.04,
-     "d_playoff": 0.02,
-     "d_title": 0.0,
-     "pts_total": 1.2,
-     "pts_per_game": 0.1,
-     "games_used": 8,
-     "wins_hist": [
-      0,
-      0,
-      0,
-      0,
-      224,
-      1309,
-      2231,
-      1657,
-      533,
-      46,
-      0,
-      0,
-      0,
-      0,
-      0
-     ],
-     "this_week": 0.026,
-     "drop_helps": [
-      "Rated PG-18"
-     ],
-     "drop_role": "handcuff to Travis Etienne Jr.; starts for you in Weeks 10, 13, 14, 16, 17; would start for 1 rival (Rated PG-18)",
-     "block": {
-      "rival": "Rams house",
-      "rival_pts": 38.6,
-      "rival_playoff": 0.0,
-      "my_playoff": -0.011,
-      "my_title": 0.0002
-     }
     }
    ],
    "not_worth": [],
    "trades": [],
    "trades_screened": 11,
    "calls": [],
-   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 250 players",
+   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 249 players",
    "plan": {
     "week": 10,
-    "built": "Thu Nov 12 2026 03:35 AM PT",
+    "built": "Thu Nov 12 2026 03:45 AM PT",
     "standings": "Thu Nov 12 3:27 AM PT",
     "playoff": 0.1605,
     "wins": 6.1425,
@@ -4180,22 +4180,22 @@
       "helps": []
      },
      {
-      "add": "BUF defense",
-      "pos": "DEF",
-      "nfl": "BUF",
+      "add": "Deshaun Watson",
+      "pos": "QB",
+      "nfl": "CLE",
       "acq": "Free agent",
       "drop": "Alvin Kamara",
-      "d_playoff": 0.02,
+      "d_playoff": 0.029,
       "d_week": 0.026,
       "helps": []
      }
     ],
-    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 250 players"
+    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 249 players"
    }
   },
   "DK III": {
    "week": 10,
-   "built": "Thu Nov 12 2026 03:35 AM PT",
+   "built": "Thu Nov 12 2026 03:45 AM PT",
    "standings": "Thu Nov 12 3:27 AM PT",
    "base": {
     "wins": 4.79,
@@ -6368,7 +6368,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 228 players",
    "plan": {
     "week": 10,
-    "built": "Thu Nov 12 2026 03:35 AM PT",
+    "built": "Thu Nov 12 2026 03:45 AM PT",
     "standings": "Thu Nov 12 3:27 AM PT",
     "playoff": 0.0205,
     "wins": 4.785166666666667,
@@ -6755,7 +6755,7 @@
   },
   "DK IV": {
    "week": 10,
-   "built": "Thu Nov 12 2026 03:35 AM PT",
+   "built": "Thu Nov 12 2026 03:45 AM PT",
    "standings": "Thu Nov 12 3:27 AM PT",
    "base": {
     "wins": 14.23,
@@ -8851,7 +8851,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 234 players",
    "plan": {
     "week": 10,
-    "built": "Thu Nov 12 2026 03:35 AM PT",
+    "built": "Thu Nov 12 2026 03:45 AM PT",
     "standings": "Thu Nov 12 3:27 AM PT",
     "playoff": 0.7993333333333333,
     "wins": 14.234666666666667,
