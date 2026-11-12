@@ -473,7 +473,11 @@ function bigDial(v, col, mark, id, v0, v2){
     return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r + 8.5)}" stroke="${v > w0 ? "#4FD08A" : "#FF6B72"}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".95"/>
       <line x1="${cx}" y1="${cy}" x2="${f(gx)}" y2="${f(gy)}" stroke="#D9DEE8" stroke-width="1.3" stroke-dasharray="2.4 2.4" opacity=".7"/><circle cx="${f(gx)}" cy="${f(gy)}" r="2" fill="#0B1222" stroke="#D9DEE8" stroke-width="1"/>`; })() : "";
   const rk = v2 !== null && v2 !== undefined && !isNaN(v2) ? `<g filter="url(#${g}d)">${needle(Math.max(0, Math.min(100, +v2)), r - 6, `url(#${g}nb)`, 2.3)}</g>` : "";
-  return `<svg class="bdl" viewBox="0 0 120 66" aria-hidden="true"><defs>
+  /* Nov 11 6:45 PM (Dom: "the scale is not visible ... part of the hub is cut off and the top of the meter"): the frame now holds the
+     whole bezel and the hub, and the scale reads 0 · 25 · 50 · 75 · 100 just inside the arc, haloed so a needle can't hide it */
+  let scl = ""; for (const q of [0, 25, 50, 75, 100]){ const [lx, ly] = P(q, r - 12.5);
+    scl += `<text x="${f(lx + (q === 0 ? 2.5 : q === 100 ? -2.5 : 0))}" y="${f(ly + (q === 0 || q === 100 ? -1.2 : 2.4))}" text-anchor="middle" class="bdsc">${q}</text>`; }
+  return `<svg class="bdl" viewBox="0 -3 120 72" aria-hidden="true"><defs>
     <linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="#FF4D57"/><stop offset=".5" stop-color="#F7B32B"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
     <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${col}" stop-opacity=".30"/><stop offset=".45" stop-color="#14203C" stop-opacity=".95"/><stop offset="1" stop-color="#0A1020"/></radialGradient>
     <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
@@ -493,6 +497,7 @@ ${ticks}
     <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="10.5" fill="none" stroke-linecap="round" filter="url(#${g}f)" opacity=".75"/>
     <path d="${arc(0, Math.max(1, v), r)}" stroke="url(#${g})" stroke-width="9" fill="none" stroke-linecap="round"/>
     <path d="${arc(0, Math.max(1, v), r + 2.6)}" stroke="#fff" stroke-opacity=".38" stroke-width=".9" fill="none" stroke-linecap="round"/>
+${scl}
 ${mk}
     ${ghost}
     ${rk}
