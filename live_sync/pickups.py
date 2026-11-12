@@ -54,7 +54,9 @@ TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills
 NAME2TM = {v.lower(): k for k, v in TEAMNAME.items()}
 FIX = {"LAR": "LA", "WSH": "WAS", "JAC": "JAX"}
 
+import unicodedata as _ud   # Nov 12: accents stripped - "Audric Estimé" showed as a free agent while rostered as "Audric Estime"
 def norm(n):
+    n = "".join(c for c in _ud.normalize("NFKD", str(n)) if not _ud.combining(c))
     n = n.replace("-", " ").lower().replace(".", "").replace("'", "").replace("’", "")
     n = re.sub(r"\b(jr|sr|ii|iii|iv|v)\b", "", n)
     return re.sub(r"[^a-z ]", "", re.sub(r"\s+", " ", n)).strip()

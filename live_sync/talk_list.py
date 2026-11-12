@@ -25,7 +25,9 @@ O = os.path.join
 LG = [("DK I", "DKI", "269381", "1", 2), ("DK II", "DKII", "1519795", "2", 7), ("DK III", "DKIII", "1507991", "3", 2), ("DK IV", "DKIV", "864215", "4", 6)]
 BAR, MINPTS, WATCH_LO = 0.15, 2.0, 0.10
 
-def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", str(s).lower()))
+import unicodedata as _ud
+def _deacc(s): return "".join(c for c in _ud.normalize("NFKD", str(s)) if not _ud.combining(c))   # Nov 12: "Estimé" == "Estime"
+def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", _deacc(s).lower()))
 def load(p, d=None):
     try: return json.load(open(p))
     except Exception: return d

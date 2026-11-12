@@ -28,7 +28,9 @@ except Exception:
 LEAGUES = [("DK I", 1, "269381", 2), ("DK II", 2, "1519795", 7), ("DK III", 3, "1507991", 2), ("DK IV", 4, "864215", 6)]
 POS = ("QB", "RB", "WR", "TE")
 
+import unicodedata as _ud   # Nov 12: accents stripped - "Audric Estimé" showed as a free agent while rostered as "Audric Estime"
 def norm(n):
+    n = "".join(c for c in _ud.normalize("NFKD", str(n)) if not _ud.combining(c))
     n = (n or "").lower().replace("’", "'")
     n = re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", n)
     return re.sub(r"[^a-z]", "", n)

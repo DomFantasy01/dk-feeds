@@ -40,7 +40,9 @@ SLOTS=CF["slots"]; FLEXMAP={"FLEX":("RB","WR","TE"),"SUPERFLEX":("QB","RB","WR",
 def okfor(s): return FLEXMAP.get(s,(s,))
 TEAMFIX={"LAR":"LA"}
 def tm(t): t=t.upper(); return TEAMFIX.get(t,t)
+import unicodedata as _ud   # Nov 12: accents stripped - "Audric Estimé" showed as a free agent while rostered as "Audric Estime"
 def norm(n):
+    n = "".join(c for c in _ud.normalize("NFKD", str(n)) if not _ud.combining(c))
     n=re.sub(r"[.'’\-]"," ",str(n).lower()); n=re.sub(r"\b(jr|sr|ii|iii|iv|v)\b","",n); return re.sub(r"\b([a-z])\s+(?=[a-z]\b)",r"\1"," ".join(n.split()))   # Oct 14: "d k metcalf" -> "dk metcalf"
 NOWPT=dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
 QUIET="--quiet" in sys.argv
