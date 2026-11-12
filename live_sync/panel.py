@@ -17,6 +17,14 @@ dispatch_out/pickup_panel.json keeps the order and the grades.
 usage (module): P = Panel(REPO); P.rate(league_n, key, pos) -> (avg, {source: value}); P.compare(n, kA, posA, kB, posB)
 usage (CLI):    python3 live_sync/panel.py REPO   -> prints and saves the panel
 """
+# Nov 12 2026 6:47 AM (Dom, voice - replaces the Nov 9 top-3 average): NO MORE AVERAGING. Roles, not last week's order:
+#   check 1 = Ratcliffe - his number DECIDES (rest of season for pickups/drops; this week for lineups)
+#   check 2 = RotoBaller - the main check (this week; he caught the Week 9 Hall/Allen split nobody else did)
+#   check 3 = Vegas - the this-week check (betting market workload)
+# Everyone else (Koerner, Clay, Yahoo, Gotham) is reference only, listed under the three by accuracy over the last 4 graded weeks
+# (not one week - Week 9 had all six within half a point). Nobody is ever excluded because one source dislikes him; a check that
+# disagrees with Ratcliffe by 2+ points is a stop-and-talk flag, never a filter. If Ratcliffe has no number for a man, the most
+# accurate forward source that does stands in, and the row says so.
 import os, re, csv, json, glob, datetime
 from zoneinfo import ZoneInfo
 
@@ -28,7 +36,9 @@ NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "G
 ALL = ("ratcliffe", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
 WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read")}
 LAB = {1: "DKI", 2: "DKII", 3: "DKIII", 4: "DKIV"}
-WEEKS_BACK, SIZE = 1, 3
+WEEKS_BACK, SIZE = 4, 3
+ROLES = ("ratcliffe", "rotoballer", "vegas")      # Nov 12 (Dom): check 1, 2, 3 - fixed roles
+FWD_FALLBACK = ("ratcliffe", "yahoo", "clay", "gotham")   # who stands in for a rest-of-season number when Ratcliffe has none
 TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals",
     "CLE": "Browns", "DAL": "Cowboys", "DEN": "Broncos", "DET": "Lions", "GB": "Packers", "HOU": "Texans", "IND": "Colts", "JAX": "Jaguars",
     "KC": "Chiefs", "LV": "Raiders", "LAC": "Chargers", "LA": "Rams", "MIA": "Dolphins", "MIN": "Vikings", "NE": "Patriots", "NO": "Saints",
@@ -84,6 +94,30 @@ class Panel:
         try: G = list(csv.DictReader(open(os.path.join(self.R, "dispatch_out", "scoreboard", "graded.csv"))))
         except Exception: G = []
         weeks = sorted({int(r["week"]) for r in G}, reverse=True); out = {"weeks": [], "miss": {}, "players": 0, "basis": ""}
+        # Nov 12 (Dom): graded over the last WEEKS_BACK graded weeks, not one. Each week is scored on the players every source that
+        # week shares; a source's grade = its miss averaged over the weeks it was graded, weighted by players.
+        acc = {}
+        for w in weeks:
+            R = [r for r in G if int(r["week"]) == w and fnum(r.get("actual")) is not None]
+            srcs = [s for s in ALL if sum(fnum(r.get(s)) is not None for r in R) >= 20]
+            if not srcs: continue
+            com = [r for r in R if all(fnum(r.get(s)) is not None for s in srcs)]
+            if len(com) < 20: continue
+            tot = sum(fnum(r["actual"]) for r in com)
+            for s in srcs:
+                a = acc.setdefault(s, {"ab": 0.0, "e": 0.0, "n": 0, "t": 0.0, "w": []})
+                a["ab"] += sum(abs(fnum(r[s]) - fnum(r["actual"])) for r in com); a["e"] += sum(fnum(r[s]) - fnum(r["actual"]) for r in com)
+                a["n"] += len(com); a["t"] += tot; a["w"].append(w)
+            out["weeks"].append(w); out["players"] += len(com)
+            if len(out["weeks"]) >= WEEKS_BACK: break
+        if acc:
+            out["miss"] = {s: round(a["ab"] / a["n"], 2) for s, a in acc.items()}
+            out["bias"] = {s: round(a["e"] / a["n"], 2) for s, a in acc.items()}
+            out["pct"] = {s: (round(100 * a["e"] / a["t"], 1) if a["t"] > 0 else None) for s, a in acc.items()}
+            out["src_weeks"] = {s: sorted(a["w"]) for s, a in acc.items()}
+            out["basis"] = "last %d graded weeks, each week on the players every source shared" % len(out["weeks"])
+            out["weeks"] = sorted(out["weeks"])
+            return out
         for w in weeks:
             R = [r for r in G if int(r["week"]) == w and fnum(r.get("actual")) is not None]
             srcs = [s for s in ALL if sum(fnum(r.get(s)) is not None for r in R) >= 20]
@@ -109,16 +143,17 @@ class Panel:
         fp = os.path.join(self.R, "dispatch_out", "pickup_panel.json"); m = self.grades["miss"]
         if not m: self.notes.append("no graded week yet - order Ratcliffe, Yahoo, Gotham, Clay"); order = ["ratcliffe", "yahoo", "gotham", "clay"]
         else: order = sorted(m, key=lambda s: m[s])
-        self.order = order + [s for s in ALL if s not in order]          # ungraded sources last, never in the check
-        self.ranked = order
+        self.ranked = order                                               # accuracy order (last 4 graded weeks) - for the "#rank" labels
+        rest = [x for x in order if x not in ROLES] + [x for x in ALL if x not in order and x not in ROLES]
+        self.order = list(ROLES) + rest                                   # Nov 12 (Dom): the three checks by role on top, the rest by accuracy
         if save:
             try:
-                json.dump({"order": order, "members": order[:SIZE], "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "bias": self.grades.get("bias", {}), "pct": self.grades.get("pct", {}), "notes": self.notes,
+                json.dump({"order": self.order, "accuracy_order": order, "members": list(ROLES), "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "bias": self.grades.get("bias", {}), "pct": self.grades.get("pct", {}), "notes": self.notes,
                            "basis": self.grades.get("basis", ""),
-                           "rule": "all sources ranked by points missed per player, last graded week; the top 3 are the check; each man = average of the 3 most accurate that have a number for him",
+                           "rule": "Nov 12 (Dom): no averaging - check 1 Ratcliffe decides, check 2 RotoBaller and check 3 Vegas are the checks (2+ points off Ratcliffe = stop and talk); the rest are reference, ordered by accuracy over the last 4 graded weeks",
                            "built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT")}, open(fp, "w"), indent=1)
             except Exception: pass
-        return order[:SIZE]
+        return list(ROLES)
 
     # ---- each source's number a game for the weeks ahead, in each league's own scoring
     def _put(self, s, n, key, v, meta=None):
@@ -174,24 +209,28 @@ class Panel:
 
     # ---- the panel's number
     def rate(self, n, key, pos=None):
-        """(average, {source: value}) over the three most accurate sources that have a number for him."""
-        got = {}
-        for s in self.order:
+        """(number, {source: value}) - Nov 12 (Dom): Ratcliffe's rest-of-season number decides; no average. When he has none,
+        the most accurate forward source that does stands in (named, never hidden)."""
+        for s in sorted(FWD_FALLBACK, key=lambda x: (x != "ratcliffe", self.ranked.index(x) if x in self.ranked else 99)):
             v = self.V[s].get((int(n), key))
-            if v: got[s] = v
-            if len(got) >= SIZE: break
-        return (round(sum(got.values()) / len(got), 2) if got else None), got
+            if v: return round(v, 2), {s: v}
+        return None, {}
     def compare(self, n, ka, kb):
-        """(a, b, sources) - both men averaged over the three most accurate sources that have numbers for BOTH."""
-        both = [s for s in self.order if self.V[s].get((int(n), ka)) and self.V[s].get((int(n), kb))][:SIZE]
-        if not both: return None, None, []
-        return round(sum(self.V[s][(int(n), ka)] for s in both) / len(both), 2), round(sum(self.V[s][(int(n), kb)] for s in both) / len(both), 2), both
+        """(a, b, sources) - both men on the SAME source: Ratcliffe when he has both, else the most accurate forward source that does."""
+        for s in sorted(FWD_FALLBACK, key=lambda x: (x != "ratcliffe", self.ranked.index(x) if x in self.ranked else 99)):
+            a, b = self.V[s].get((int(n), ka)), self.V[s].get((int(n), kb))
+            if a and b: return round(a, 2), round(b, 2), [s]
+        return None, None, []
+    def checks(self, n, key):
+        """{source: this-week value} for the two checks (RotoBaller, Vegas) - shown beside Ratcliffe, never deciding."""
+        return {s: self.V[s][(int(n), key)] for s in ROLES[1:] if self.V[s].get((int(n), key))}
     def label(self, srcs=None):
-        return ("avg of " if len(srcs or self.members) > 1 else "") + " + ".join(NAME[s] for s in (srcs or self.members))
+        srcs = srcs or ["ratcliffe"]
+        return " + ".join(NAME[s] for s in srcs) + ("" if srcs == ["ratcliffe"] else " (Ratcliffe has no number - stand-in)")
     def summary(self):
         m = self.grades["miss"]
         if self.waiting: self.notes.append("; ".join(f"{NAME[s]} has Week {w} numbers only - waits for Week {self.start}, next source steps in" for s, w in self.waiting.items() if s in self.members))
-        return (f"Pickup panel: {', '.join(NAME[s] for s in self.members)} (points missed per player, same {self.grades['players']} players, "
+        return (f"Pickup panel: 1 {NAME[ROLES[0]]} decides, checks 2 {NAME[ROLES[1]]} and 3 {NAME[ROLES[2]]} (accuracy, points missed per player, {self.grades['players']} player-games, "
                 f"Week {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
 
 if __name__ == "__main__":
