@@ -1235,6 +1235,35 @@ footer{margin-top:18px;font-size:11.5px;color:var(--mute);line-height:1.5}
 @media (max-width:380px){.mgrid.g-a .wln2 .wo b.wpn{font-size:11.5px}}
 @media (min-width:561px){.mgrid.g-a .wln2 .wo b.wpn{font-size:20px}}
 #ctlBot{margin-top:8px}
+@media (min-width:561px){html body .mgrid.g-b .sgx > div:not(.sgbel):not(.x) > span{font-family:var(--f-disp) !important;font-weight:400 !important;font-size:13px !important;letter-spacing:.05em !important}}
+/* Nov 11 4 PM (Dom: "those fonts are getting too small to read") - a floor for the Scoreboard tile's small print */
+.sgpl{display:flex;margin:3px 6px 0;border:1px solid #24304C;border-radius:6px;background:#0A1122;padding:3px 0}
+.sgpl > div{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.sgpl > div + div{border-left:1px solid #24304C}
+.sgpl span{font:700 8px/1 var(--f-body);letter-spacing:.06em;color:#AEB6C8}
+.sgpl b{font:400 14px/1 var(--f-disp);color:#E8ECF4;letter-spacing:.02em;white-space:nowrap}
+.sgpl b em{font-style:normal;color:var(--lc)}.sgpl b i{font-style:normal;color:#6E7891;margin:0 2px}
+html body .mgrid.g-b .sgx span,html body .mgrid.g-b .sgx > div span,html body main .mgrid.g-b .sgx > div:not(.sgbel) > span,html body .mgrid.g-b .sgx > div:not(.sgbel):not(.x) > span{font-size:8px !important;letter-spacing:.02em !important;min-height:0 !important}
+html body .wbud span{font-size:8px !important}html body .wbud i{font-size:9px !important}html body .wbud b{font-size:13px !important}
+
+/* phone: MARGIN and PLAYOFFS stacked, label left / number right, so the labels can be a readable size */
+@media (max-width:560px){html body .mgrid.g-b .sgx{flex-direction:column !important;flex-wrap:nowrap !important;gap:3px !important;padding:4px 4px !important;align-items:stretch !important}
+  html body .mgrid.g-b .sgx > div:not(.sgbel){width:auto !important;flex:0 0 auto !important;align-self:stretch !important;box-sizing:border-box}
+  html body .mgrid.g-b .sgx > div:not(.sgbel){flex-direction:column !important;justify-content:center !important;align-items:center !important;border-left:0 !important;padding:0 2px !important;width:100%}
+  html body .mgrid.g-b .sgx > div:not(.sgbel) > span{width:100% !important;overflow:visible !important;justify-content:center !important;text-align:center !important}
+  html body .mgrid.g-b .sgx > div:not(.sgbel) > b{justify-content:center;width:100%;text-align:center}
+  html body .mgrid.g-b .sgx > div + div{border-top:1px solid rgba(255,255,255,.07) !important;padding-top:3px !important}
+  html body .mgrid.g-b .sgx b{font-size:13.5px !important;margin:0 !important}
+  html body .mgrid.g-b .sgx > div:not(.sgbel){padding:2px 2px !important;gap:1px}
+  .sgpl{flex-direction:column;padding:3px 2px;gap:3px}
+  .sgpl > div{flex-direction:column;align-items:center;gap:1px}
+  .sgpl > div + div{border-left:0;border-top:1px solid #24304C;padding-top:3px}
+  .sgpl b{font-size:12.5px !important}
+  .sgpl span,html body .mgrid.g-b .sgx > div:not(.sgbel):not(.x) > span{font-family:var(--f-disp) !important;font-weight:400 !important;font-size:10px !important;letter-spacing:.04em !important}
+  .sgpl b i{margin:0 1px}
+  html body .wbud{padding:2px 5px}
+  html body .wbud i.wn{display:none}}
+@media (min-width:561px){.sgpl span{font-size:10px}.sgpl b{font-size:17px}html body .mgrid.g-b .sgx span{font-size:10px !important}html body .wbud span{font-size:10px !important}html body .wbud b{font-size:17px !important}html body .wbud i{font-size:11px !important}}
 /* Nov 11 3:55 PM (Dom): Win Probability numbers in the Scoreboard's font */
 html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font:400 17px/1 var(--f-disp) !important;letter-spacing:.02em !important}
 @media (max-width:380px){html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:15px !important}}
@@ -2231,7 +2260,7 @@ const STWORD = {ok: "fine, still to play", live: "playing now", trbl: "questiona
    faint arcs to each side's Yahoo projected final with a notch. Center: LIVE/FINAL/PRE-GAME, your score (green ahead / red behind),
    his score. Under the dial: margin pill, projected finals, players left each side, and the two position strips. */
 function scoreGlobe(L, k, o){
-  const id = "sg" + SLUG[k], W = 124, H = 178, CX = 62, CY = 62, LC = HEX[k];
+  const id = "sg" + SLUG[k], W = 124, H = 162, CX = 62, CY = 62, LC = HEX[k];
   const top = Math.max(o.pMe, o.pOp, o.me, o.op, 1), step = top > 160 ? 50 : 25, sc = Math.ceil(top * 1.05 / step) * step;
   const fin = o.state === "FINAL", y = o.y, pre = o.state === "NOT STARTED", mg = o.me - o.op;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
@@ -2311,11 +2340,7 @@ function scoreGlobe(L, k, o){
     <path id="${id}c2" d="M${pt(48.5, 150).map(v => v.toFixed(2)).join(" ")} A 48.5 48.5 0 0 0 ${pt(48.5, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
     <text class="gcv fitarc" data-max="${(2 * Math.PI * 37 / 3 * .84).toFixed(1)}"><textPath href="#${id}c1" startOffset="50%" text-anchor="middle"><tspan class="gco">OPNT${pre ? " PROJ" : ""}</tspan> <tspan class="gcn">${f1(pre ? o.pOp : o.op)}</tspan> <tspan style="fill:${MC}">${mtxt.replace(/^PROJ /, "")}</tspan></textPath></text>
     <text class="gcl fitarc" data-max="${(2 * Math.PI * 48.5 / 3 * .8).toFixed(1)}"><textPath href="#${id}c2" startOffset="50%" text-anchor="middle">${gAll ? gAll + (gAll === 1 ? " GAME LEFT" : " GAMES LEFT") : "FINAL"}</textPath></text>
-    <rect x="3" y="${CY + 62}" width="${W - 6}" height="15" rx="4" fill="#0A1122" stroke="#24304C" stroke-width=".7"/>
-    <text x="${CX / 2 + 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${f1(o.pMe)}</tspan> · <tspan>${f1(o.pOp)}</tspan></text>
-    <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 74}" stroke="#24304C" stroke-width=".7"/>
-    <text x="${CX * 1.5 - 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">LEFT <tspan style="fill:${LC}">${lf(o.meL)}</tspan> · <tspan>${lf(o.opL)}</tspan></text>
-    ${strip(L.players, true, 147)}${strip(L.oppPlayers, false, 161)}</svg>`;
+    ${strip(L.players, true, 131)}${strip(L.oppPlayers, false, 145)}</svg>`;   /* Nov 11 4 PM (Dom: too small to read): PROJ / LEFT moved out of the drawing into a readable line under it */
 }
 /* Nov 8 (Dom): each league name on ONE line - shrink it until it fits its tile, never cut it off */
 /* Nov 10 8:00 AM (Dom): keep the four Experts boxes side by side; name + check + points on ONE line, centered - if a box is too
@@ -2393,6 +2418,7 @@ function meters(){
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
+        <div class="sgpl"><div title="Projected final, Yahoo: you ${f1(F.me)}, him ${f1(F.op)}"><span>PROJ</span><b><em class="me">${Math.round(F.me)}</em><i>·</i>${Math.round(F.op)}</b></div><div title="Players still to play: you ${meL}, him ${opL}"><span>LEFT</span><b><em class="me">${meL}</em><i>·</i>${opL}</b></div></div>
         <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
           Win Probability now). Before kickoff = Yahoo's projected margin; once games start = the live margin; final = the final margin */
           const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
@@ -2401,8 +2427,8 @@ function meters(){
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>${(() => { /* Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
-            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b>${wb.wp ? `<i>#${wb.wp}</i>` : ""}</div>`
-            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}`),
+            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
+            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i class="wn">/${wb.n}</i></div>` : ""); })()}`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;

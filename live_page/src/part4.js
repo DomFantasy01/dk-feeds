@@ -559,7 +559,7 @@ const STWORD = {ok: "fine, still to play", live: "playing now", trbl: "questiona
    faint arcs to each side's Yahoo projected final with a notch. Center: LIVE/FINAL/PRE-GAME, your score (green ahead / red behind),
    his score. Under the dial: margin pill, projected finals, players left each side, and the two position strips. */
 function scoreGlobe(L, k, o){
-  const id = "sg" + SLUG[k], W = 124, H = 178, CX = 62, CY = 62, LC = HEX[k];
+  const id = "sg" + SLUG[k], W = 124, H = 162, CX = 62, CY = 62, LC = HEX[k];
   const top = Math.max(o.pMe, o.pOp, o.me, o.op, 1), step = top > 160 ? 50 : 25, sc = Math.ceil(top * 1.05 / step) * step;
   const fin = o.state === "FINAL", y = o.y, pre = o.state === "NOT STARTED", mg = o.me - o.op;
   const zone = fin ? (o.me >= o.op ? "win" : "lose") : y === null || y === undefined || isNaN(y) ? "mid" : y >= 55 ? "win" : y >= 45 ? "mid" : "lose";
@@ -639,11 +639,7 @@ function scoreGlobe(L, k, o){
     <path id="${id}c2" d="M${pt(48.5, 150).map(v => v.toFixed(2)).join(" ")} A 48.5 48.5 0 0 0 ${pt(48.5, 30).map(v => v.toFixed(2)).join(" ")}" fill="none"/>
     <text class="gcv fitarc" data-max="${(2 * Math.PI * 37 / 3 * .84).toFixed(1)}"><textPath href="#${id}c1" startOffset="50%" text-anchor="middle"><tspan class="gco">OPNT${pre ? " PROJ" : ""}</tspan> <tspan class="gcn">${f1(pre ? o.pOp : o.op)}</tspan> <tspan style="fill:${MC}">${mtxt.replace(/^PROJ /, "")}</tspan></textPath></text>
     <text class="gcl fitarc" data-max="${(2 * Math.PI * 48.5 / 3 * .8).toFixed(1)}"><textPath href="#${id}c2" startOffset="50%" text-anchor="middle">${gAll ? gAll + (gAll === 1 ? " GAME LEFT" : " GAMES LEFT") : "FINAL"}</textPath></text>
-    <rect x="3" y="${CY + 62}" width="${W - 6}" height="15" rx="4" fill="#0A1122" stroke="#24304C" stroke-width=".7"/>
-    <text x="${CX / 2 + 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${f1(o.pMe)}</tspan> · <tspan>${f1(o.pOp)}</tspan></text>
-    <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 74}" stroke="#24304C" stroke-width=".7"/>
-    <text x="${CX * 1.5 - 1.5}" y="${CY + 72}" text-anchor="middle" class="gpj">LEFT <tspan style="fill:${LC}">${lf(o.meL)}</tspan> · <tspan>${lf(o.opL)}</tspan></text>
-    ${strip(L.players, true, 147)}${strip(L.oppPlayers, false, 161)}</svg>`;
+    ${strip(L.players, true, 131)}${strip(L.oppPlayers, false, 145)}</svg>`;   /* Nov 11 4 PM (Dom: too small to read): PROJ / LEFT moved out of the drawing into a readable line under it */
 }
 /* Nov 8 (Dom): each league name on ONE line - shrink it until it fits its tile, never cut it off */
 /* Nov 10 8:00 AM (Dom): keep the four Experts boxes side by side; name + check + points on ONE line, centered - if a box is too
@@ -721,6 +717,7 @@ function meters(){
         </div></div>`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
+        <div class="sgpl"><div title="Projected final, Yahoo: you ${f1(F.me)}, him ${f1(F.op)}"><span>PROJ</span><b><em class="me">${Math.round(F.me)}</em><i>·</i>${Math.round(F.op)}</b></div><div title="Players still to play: you ${meL}, him ${opL}"><span>LEFT</span><b><em class="me">${meL}</em><i>·</i>${opL}</b></div></div>
         <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
           Win Probability now). Before kickoff = Yahoo's projected margin; once games start = the live margin; final = the final margin */
           const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
@@ -729,8 +726,8 @@ function meters(){
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>${(() => { /* Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
-            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b>${wb.wp ? `<i>#${wb.wp}</i>` : ""}</div>`
-            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}`),
+            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
+            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i class="wn">/${wb.n}</i></div>` : ""); })()}`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
