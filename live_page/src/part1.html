@@ -1642,4 +1642,34 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .mgrid.g-a .wln2 .wo b.wpn small.pc{font-size:.62em;margin-left:1px;vertical-align:.18em;opacity:.9}
 /* Nov 12 6:47 AM (Dom): numbered checks - ✓1 Ratcliffe, ✓2 RotoBaller, ✓3 Vegas */
 #msExp .mgrid.g-c .xg .xo .okb.okn,#msExp .xo .okb.okn{width:auto !important;min-width:13px !important;height:10px !important;padding:0 2px !important;border-radius:5px !important;font-size:7px !important;line-height:10px !important;white-space:nowrap}
+
+/* Nov 12 4:05 PM (Dom): Win Probability redesign - glowing full-width dial, check 1's number in the middle, Yahoo + checks under it */
+.wpx{display:flex;flex-direction:column;align-items:stretch;gap:3px;padding-top:2px;container-type:inline-size}
+.wpx .wxd{display:block;width:100%;max-width:230px;margin:0 auto;overflow:visible}
+.wxd .wxs{font:700 7.5px var(--f-num);fill:#8C97B0}
+.wxd .wxl{font:700 8.6px var(--f-body);letter-spacing:.12em;fill:#4FC3FF}
+.wxd .wxl.wxc{fill:#9AA5BC;font-size:7.4px;letter-spacing:.14em}
+.wxd .wxn{font:400 50px var(--f-disp);letter-spacing:.01em;paint-order:stroke;stroke:#070B16;stroke-width:3px}
+.wxd .wxn .wxp{font-size:21px}
+.wxd .wxn.z-win{fill:#3DDC84;filter:drop-shadow(0 0 6px rgba(61,220,132,.55))}
+.wxd .wxn.z-mid{fill:#F7B32B;filter:drop-shadow(0 0 6px rgba(247,179,43,.5))}
+.wxd .wxn.z-lose{fill:#FF5A63;filter:drop-shadow(0 0 6px rgba(255,77,87,.5))}
+.wpx .wxm{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:-1px}
+.wpx .wxm span{font:600 7px/1 var(--f-body);letter-spacing:.04em;color:#8C97B0;white-space:nowrap}
+.wpx .wxm i.wch{font:700 9px/1 var(--f-num);font-style:normal}
+.wpx i.wch.up{color:#3DDC84}.wpx i.wch.dn{color:#FF5A63}.wpx i.wch.z{color:#8C97B0}
+.wpx .wxr{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:3px;background:rgba(6,10,20,.45);border:1px solid #22304C;border-radius:8px;padding:4px 2px;box-shadow:inset 0 2px 5px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.05)}
+.wpx .wxk{display:flex;flex-direction:column;align-items:center;min-width:0;gap:1px}
+.wpx .wxk + .wxk{border-left:1px solid rgba(255,255,255,.07)}
+.wpx .wxk span{font:700 6.6px/1.1 var(--f-body);letter-spacing:.05em;color:#C9CFDB;white-space:nowrap;overflow:hidden;max-width:100%}
+.wpx .wxk span.wy::before{content:"";display:inline-block;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:5px solid #F4F6FA;margin-right:2px;vertical-align:0}
+.wpx .wxk b{font:400 17px/1 var(--f-disp);letter-spacing:.02em}
+.wpx .wxk b small{font-size:.55em;margin-left:1px;vertical-align:.3em}
+.wpx .wxk b.z-win{color:#3DDC84}.wpx .wxk b.z-mid{color:#F7B32B}.wpx .wxk b.z-lose{color:#FF5A63}
+.wpx .wxk i.wch{font:700 7.5px/1 var(--f-num);font-style:normal}
+@media (min-width:561px){.wpx .wxk span{font-size:8.5px}.wpx .wxk b{font-size:24px}.wpx .wxk i.wch{font-size:10px}.wpx .wxm span{font-size:9px}.wpx .wxm i.wch{font-size:11px}}
+@media (max-width:560px){.wpx .wxk span{font-size:min(6px,7.6cqw);letter-spacing:0}.wpx .wxk span.wy::before{display:none}.wpx .wxk b{font-size:min(15px,17cqw)}.wpx .wxr{padding:3px 1px;gap:1px}.wpx .wxm span{font-size:min(7px,8.5cqw)}}
+.ms-a:has(.wpx.z-win){border-color:color-mix(in srgb,#3DDC84 55%,#22304C) !important;box-shadow:0 0 16px -6px #3DDC84,inset 0 0 18px -12px #3DDC84 !important}
+.ms-a:has(.wpx.z-mid){border-color:color-mix(in srgb,#F7B32B 55%,#22304C) !important;box-shadow:0 0 16px -6px #F7B32B,inset 0 0 18px -12px #F7B32B !important}
+.ms-a:has(.wpx.z-lose){border-color:color-mix(in srgb,#FF4D57 55%,#22304C) !important;box-shadow:0 0 16px -6px #FF4D57,inset 0 0 18px -12px #FF4D57 !important}
 </style>

@@ -454,6 +454,58 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c",
   /* Nov 12 6:47 AM (Dom): no more averaging - check 1 (Ratcliffe) decides; if he has no number, the next check stands in */
   const top = (OCK || []).map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3])).slice(0, 1);
   return top.length ? {v: X[top[0]], top} : null; }
+/* Nov 12 4:05 PM (Dom: "my win probability charts look really weak ... figure out how to dress them, look at the whole page"):
+   rebuilt to match the Scoreboard - a full-width glowing arc lit to check 1's chance (Ratcliffe decides), his number big in the
+   middle in the win/close/lose color, Yahoo as a white pointer on the rim, the experts' middle as a white tick, and a faint ring +
+   thin arc for where check 1 started the week. Under the dial: Yahoo and the two checks (RotoBaller, Vegas), each with its move
+   since the first read of the week. The card edge glows in the same color as the Scoreboard card. */
+function winDial(o){
+  const {k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp} = o;
+  const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, NM = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
+  const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
+  const R1 = rankedOf(X, OCK), main = R1 ? R1.v : y, who = R1 ? R1.top[0] : "y", z = ZF(main);
+  const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, zc = ZC[z], g = "wx" + SLUG[k];
+  const cx = 100, cy = 98, r = 76, A = (q) => Math.PI * (1 - q / 100), P = (q, rr) => [cx + rr * Math.cos(A(q)), cy - rr * Math.sin(A(q))], f = (n) => n.toFixed(1);
+  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 0 1 ${f(x1)} ${f(y1)}`; };
+  const v = cl(main);
+  /* zone band on the outside: red under 45, amber 45-55, green 55+ */
+  const band = [[0, 45, "#FF4D57"], [45, 55, "#F7B32B"], [55, 100, "#3DDC84"]].map(([a0, a1, c]) => `<path d="${arc(a0 + .6, a1 - .6, r + 13)}" stroke="${c}" stroke-width="2.6" fill="none" opacity="${z === (a0 === 0 ? "lose" : a0 === 45 ? "mid" : "win") ? .95 : .32}"/>`).join("");
+  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 5 === 0, [a0, b0] = P(t * 5, r + 9), [a1, b1] = P(t * 5, r + (maj ? 5 : 7));
+    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#AEB8CE" : "#3A4766"}" stroke-width="${maj ? 1.3 : .8}" stroke-linecap="round"/>`; }
+  const lit = v > .5 ? `<path d="${arc(0, v, r)}" stroke="${zc}" stroke-width="17" fill="none" stroke-linecap="round" opacity=".55" filter="url(#${g}b)"/>
+    <path d="${arc(0, v, r)}" stroke="url(#${g}a)" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, v, r + 4.5)}" stroke="#fff" stroke-opacity=".28" stroke-width="1.6" fill="none" stroke-linecap="round"/>` : "";
+  const [tx, ty] = P(v, r), tip = `<circle cx="${f(tx)}" cy="${f(ty)}" r="9" fill="${zc}" opacity=".45" filter="url(#${g}b)"/><circle cx="${f(tx)}" cy="${f(ty)}" r="5.4" fill="#fff" stroke="${zc}" stroke-width="2.4"/>`;
+  /* where check 1 started the week: faint ring + thin arc (green = up since, red = down) */
+  const v0 = weekStart(k, who), gh = ok(v0) && Math.round(v0) !== Math.round(v) ? (() => { const w0 = cl(v0), [gx, gy] = P(w0, r);
+    return `<path d="${arc(Math.min(w0, v), Math.max(w0, v), r - 13)}" stroke="${v > w0 ? "#3DDC84" : "#FF6B72"}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".9"/><circle cx="${f(gx)}" cy="${f(gy)}" r="4.2" fill="none" stroke="#D9DEE8" stroke-width="1.3" stroke-dasharray="1.6 1.4" opacity=".85"/>`; })() : "";
+  /* the experts' middle: white tick across the track */
+  const mk = ok(xmid) ? (() => { const [a0, b0] = P(cl(xmid), r - 10), [a1, b1] = P(cl(xmid), r + 10);
+    return `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#060A14" stroke-width="4.2" stroke-linecap="round" opacity=".85"/><line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>`; })() : "";
+  /* Yahoo: white pointer on the rim, aimed in */
+  const yp = ok(y) && who !== "y" ? (() => { const q = cl(y), a = A(q), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(q, r + 24), [qx, qy] = P(q, r + 15.5);
+    return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 4.6)} ${f(by + py * 4.6)} L${f(bx - px * 4.6)} ${f(by - py * 4.6)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width="1" stroke-linejoin="round"/>`; })() : "";
+  const scl = `<text x="${f(cx - r)}" y="${cy + 15}" text-anchor="middle" class="wxs">0</text><text x="${cx}" y="${f(cy - r - 18.5)}" text-anchor="middle" class="wxs">50</text><text x="${f(cx + r)}" y="${cy + 15}" text-anchor="middle" class="wxs">100</text>`;
+  const svg = `<svg class="wxd" viewBox="0 -6 200 122" aria-hidden="true"><defs>
+    <linearGradient id="${g}a" gradientUnits="userSpaceOnUse" x1="${cx - r}" y1="0" x2="${cx + r}" y2="0"><stop offset="0" stop-color="#FF4D57"/><stop offset=".45" stop-color="#FF8A3D"/><stop offset=".55" stop-color="#F7B32B"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
+    <radialGradient id="${g}f" cx="50%" cy="100%" r="95%"><stop offset="0" stop-color="${zc}" stop-opacity=".26"/><stop offset=".55" stop-color="#121C34" stop-opacity=".9"/><stop offset="1" stop-color="#0A1020" stop-opacity="0"/></radialGradient>
+    <filter id="${g}b" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.2"/></filter></defs>
+    <path d="M${cx - r - 10} ${cy} A${r + 10} ${r + 10} 0 0 1 ${cx + r + 10} ${cy} Z" fill="url(#${g}f)"/>
+    ${band}${ticks}
+    <path d="${arc(0, 100, r)}" stroke="#0B1324" stroke-width="17" fill="none" stroke-linecap="round"/>
+    <path d="${arc(0, 100, r)}" stroke="#1B2742" stroke-width="15" fill="none" stroke-linecap="round"/>
+    ${lit}${gh}${mk}${tip}${yp}${scl}
+    <text x="${cx}" y="${cy - 37}" text-anchor="middle" class="wxl">${SH[who]}${who === "r" ? " ✓1" : ""}</text>
+    <text x="${cx}" y="${cy + 1}" text-anchor="middle" class="wxn z-${z}">${wp2(main)}<tspan class="wxp" dy="-16">%</tspan></text>
+    <text x="${cx}" y="${cy + 15}" text-anchor="middle" class="wxl wxc">CHANCE TO WIN</text></svg>`;
+  /* under the dial: the move since the first read of the week for check 1, then Yahoo and the two checks */
+  const chip = (s3, lab, d, tipT) => ok(X[s3]) ? `<div class="wxk" title="${esc(tipT)}"><span${s3 === "y" ? ' class="wy"' : ""}>${lab}</span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b>${d === undefined ? "" : wkArrow(d, NM[s3])}</div>` : "";
+  const chk = OCK.slice(1).map(id => IDS[id]).filter(s3 => s3 && s3 !== who && ok(X[s3]));
+  const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (white pointer on the dial)${ok(xmid) ? ` · white tick = the experts' middle, ${Math.round(xmid)}%` : ""}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}`;
+  const chips = (who !== "y" ? chip("y", "YAHOO", dY, yTip) : "") + chk.map((s3, i) => chip(s3, SH[s3], undefined, `${NM[s3]} (check ${OCK.indexOf(SRCID[s3]) + 1}, checks Ratcliffe): ${Math.round(X[s3])}% chance to win this week`)).join("");
+  const mvT = dR === null || dR === undefined ? "" : `<div class="wxm">${wkArrow(dR, NM[who])}<span>this week</span></div>`;
+  return `<div class="wpx z-${z}" title="${esc(NM[who])} (check 1, decides): ${Math.round(main)}% chance to win this week">${svg}${mvT}<div class="wxr">${chips}</div></div>`;
+}
 function bigDial(v, col, mark, id, v0, v2){
   /* Nov 11 2:45 PM (Dom: "add more shine, more beauty to that gauge"): glass dial face lit in the league color, glowing gradient
      arc with a gloss line, tapered needles with shadows, metal hub. Same meaning as before: white needle = Yahoo, blue needle =
@@ -725,15 +777,7 @@ function meters(){
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      <div class="mxd mxd2">${bigDial(y, HEX[k], xmid, SLUG[k], weekStart(k, "y"), (rankedOf(X, OCK) || {}).v)}<div class="wln wln2"><div class="mxp wo" title="Yahoo's chance to win this week${xmid === null ? "" : ` · white tick = the experts' middle, ${Math.round(xmid)}%`}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}"><b class="wpn z-${ZF(y)}">${wp2(y)}<small class="pc">%</small></b><span class="ny">YAHOO</span>${wkArrow(dY, "Yahoo")}</div>
-        
-        ${(() => { /* Nov 10 8:31 AM (Dom): second orb = the average chance to win this week of the top three sources by accuracy (the checked ones) */
-          const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, NM3 = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"};
-          const R1 = rankedOf(X, OCK); if (!R1) return ""; const t3 = R1.v, who = NM3[R1.top[0]];
-          /* Nov 12 6:47 AM (Dom): the second orb is check 1's chance (Ratcliffe) - no average; the checks show beside it in the tooltip */
-          const chk = OCK.slice(1).map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3]));
-          return `<div class="wo" title="${who} (check 1, decides): ${Math.round(t3)}% chance to win this week${chk.length ? " · checks: " + chk.map(s3 => NM3[s3] + " " + Math.round(X[s3]) + "%").join(", ") : ""}"><b class="wpn z-${ZF(t3)}">${wp2(Math.round(t3))}<small class="pc">%</small></b><span class="nr">${who.toUpperCase()}</span>${wkArrow(dR, who)}</div>`; })()}
-        </div></div>`),
+      ${winDial({k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp})}`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
