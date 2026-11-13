@@ -275,6 +275,6 @@ if BRIEF:
     first, _, rest = s.partition("\n")
     rest = re.sub(r"\n*Players to talk about \(.*?\n\n", "\n\n", rest, count=1, flags=re.S)
     block_txt = (f"Players to talk about (every pickup to consider, the 10-15% watch list, holes in the next three weeks, and players to block; "
-                 f"priced on Ratcliffe (check 1, no averaging; RotoBaller and Vegas are the checks); Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
+                 f"priced on Ratcliffe's rest of season (check 1, no averaging; Clay's Weeks 15-17 is the check); Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
     open(bf, "w").write(first + "\n\n" + block_txt + rest.lstrip("\n"))
     print("TALK LIST added to the top of the brief")

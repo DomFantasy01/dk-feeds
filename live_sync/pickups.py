@@ -224,7 +224,7 @@ for fn, ex, rd in (("koerner_scored.csv", "Koerner", "read_pt"), ("vegas_scored.
         if f(r["wk"]) > 0: d[ex] = f(r["wk"])
         READ[ex] = r.get(rd, "")
 # Nov 9 8:07 AM (Dom): every pickup is priced on the TOP 3 by accuracy (last graded week), not Ratcliffe alone - live_sync/panel.py.
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from panel import Panel, NAME as PNAME, ROLES
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from panel import Panel, NAME as PNAME, ROLES, PO_ROLES
 PAN = Panel(ROOT)
 START = PAN.start                                  # first week still ahead
 # the expert check, listed by accuracy: the four forward sources in the panel's order, then the this-week-only experts by their own last grade
@@ -410,13 +410,20 @@ def grade(n, key, d, MY, NEED):
     if pos in SKILL: why.insert(1, (f"Playoffs (Clay, Weeks 15-17 in this league's scoring): {po:.1f} a game" if po is not None else "Playoffs: no Clay number for Weeks 15-17")
                      + (" - meets the 12+ target" if build == "BUILD" else " - climbing toward it (snaps up 10+ points in 3 games)" if build == "CLIMBING"
                         else " - a one-week fill, fades after this week" if build == "1-WEEK" else ""))
-    # Nov 12 (Dom): the checks - RotoBaller (2) and Vegas (3) against Ratcliffe THIS WEEK; 2+ points apart = stop and talk (never a filter)
-    rwk = RATWK.get((n, key)); ck = PAN.checks(n, key); chk_flag = None
+    # Nov 12 4:10 PM (Dom): a pickup is a playoff decision - Ratcliffe's rest-of-season number decides, Clay's Weeks 15-17 is the check;
+    # 2+ points apart = stop and talk (never a filter). The this-week checks (Koerner, Vegas) still show, for a one-week fill.
+    chk_flag = None; rros = PAN.V["ratcliffe"].get((int(n), key))
+    if pos in SKILL and rros and po is not None:
+        gap_ = po - rros
+        why.append(f"Playoff check: Ratcliffe rest of season {rros:.1f} a game · Clay Weeks 15-17 {po:.1f}"
+                   + (f" - STOP AND TALK: Clay {'higher' if gap_ > 0 else 'lower'} by {abs(gap_):.1f}" if abs(gap_) >= 2 else " - check agrees"))
+        chk_flag = abs(gap_) >= 2
+    rwk = RATWK.get((n, key)); ck = PAN.checks(n, key); wk_flag = None
     if rwk is not None and ck:
         far = {XNAME[s2]: v for s2, v in ck.items() if abs(v - rwk) >= 2}
-        why.append("Checks this week: Ratcliffe " + f"{rwk:.1f}" + "".join(f" · {XNAME[s2]} {v:.1f}" for s2, v in ck.items())
-                   + (" - STOP AND TALK: " + ", ".join(f"{k2} {'higher' if v > rwk else 'lower'} by {abs(v - rwk):.1f}" for k2, v in far.items()) if far else " - checks agree"))
-        chk_flag = bool(far)
+        why.append("This week: Ratcliffe " + f"{rwk:.1f}" + "".join(f" · {XNAME[s2]} {v:.1f}" for s2, v in ck.items())
+                   + (" - " + ", ".join(f"{k2} {'higher' if v > rwk else 'lower'} by {abs(v - rwk):.1f}" for k2, v in far.items()) if far else " - checks agree"))
+        wk_flag = bool(far)
     # TIER (Dom, Nov 9: "top line indicators, must, hot, watch ... blink and alert to those to pick up asap")
     maj = had >= 2 and agree * 2 >= had
     clears = gain is not None and gain >= MUSTBAR
@@ -432,10 +439,10 @@ def grade(n, key, d, MY, NEED):
     return dict(tier=tier, tier_why=tw, gain=round(gain * 100) if gain is not None else None, key=key, name=(TEAMNAME.get(tm, tm) + " DEF") if pos == "DST" else name, team=tm, pos=P,
                 pts=pts, grade=total, parts=dict(value=round(g_val), fit=round(g_fit), workload=round(g_work), playoffs=round(g_play), team=round(g_team), path=g_path),
                 why=why, experts=dict(verdict=verdict, agree=agree, of=had, lines=xc), replaces=rep["name"] if rep else "",
-                build=build, po=po, flags=flags, check_stop=chk_flag, teamctx=TB)
+                build=build, po=po, flags=flags, check_stop=chk_flag, week_stop=wk_flag, teamctx=TB)
 
 out = {"built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT"),
-       "panel": {"order": [PNAME[s] for s in PAN.ranked], "check": [PNAME[s] for s in PAN.members], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
+       "panel": {"order": [PNAME[s] for s in PAN.ranked], "check": [PNAME[s] for s in PAN.members], "check_po": [PNAME.get(s, s.title()) for s in PO_ROLES], "miss": {PNAME[s]: v for s, v in PAN.grades["miss"].items()},
                  "waiting": {PNAME[s]: w for s, w in PAN.waiting.items()}, "bias": {PNAME[s]: v for s, v in (PAN.grades.get("bias") or {}).items()}, "pct": {PNAME[s]: v for s, v in (PAN.grades.get("pct") or {}).items()}, "basis": PAN.grades.get("basis", ""), "ungraded": [PNAME[s] for s in PAN.order if s not in PAN.ranked],
                  "week": ("-".join(map(str, [PAN.grades["weeks"][0], PAN.grades["weeks"][-1]])) if PAN.grades["weeks"] else None), "players": PAN.grades["players"], "weeks_ahead": f"{START}-17", "notes": PAN.notes,
                  "others": [dict(name=XNAME[s], miss=WKG[s][0] if WKG[s][1] else None, week=WKG[s][1]) for s in WKO],
