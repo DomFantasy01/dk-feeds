@@ -1,6 +1,6 @@
 {
- "read_pt": "Thu Nov 12 5:01 PM PT",
- "read_utc": "2026-11-13T01:01:23+00:00",
+ "read_pt": "Thu Nov 12 5:29 PM PT",
+ "read_utc": "2026-11-13T01:29:18+00:00",
  "game_key": "470",
  "leagues_read": [
   "DKI",
@@ -8,12 +8,12 @@
   "DKIII",
   "DKIV"
  ],
- "calls": 30,
+ "calls": 41,
  "log": [
-  "DKI TheMostImportantThingInLife: week 10, 12 teams, 186 rostered, 6 matchups, 18 on waivers",
-  "DKII Winners and Sinners: week 10, 12 teams, 200 rostered, 6 matchups, 15 on waivers",
-  "DKIII Hers and His Version 2.0: week 10, 14 teams, 204 rostered, 7 matchups, 8 on waivers",
-  "DKIV Murrieta NextDoor: week 10, 10 teams, 177 rostered, 5 matchups, 14 on waivers"
+  "DKI TheMostImportantThingInLife: week 10, 12 teams, 186 rostered, 6 matchups, 85 on waivers",
+  "DKII Winners and Sinners: week 10, 12 teams, 201 rostered, 6 matchups, 79 on waivers",
+  "DKIII Hers and His Version 2.0: week 10, 14 teams, 204 rostered, 7 matchups, 67 on waivers",
+  "DKIV Murrieta NextDoor: week 10, 10 teams, 177 rostered, 5 matchups, 80 on waivers"
  ],
  "stat_names": {
   "0": "GP",
@@ -1721,16 +1721,16 @@
       {
        "id": 2,
        "name": "Dark Knight I",
-       "points": "0.00",
+       "points": "1.40",
        "proj": "150.38",
-       "win_probability": "0.61"
+       "win_probability": "0.59"
       },
       {
        "id": 4,
        "name": "Rolling With Romo",
-       "points": "0.00",
+       "points": "6.00",
        "proj": "134.93",
-       "win_probability": "0.39"
+       "win_probability": "0.41"
       }
      ]
     },
@@ -1763,14 +1763,14 @@
        "name": "Punching Bag",
        "points": "0.00",
        "proj": "153.01",
-       "win_probability": "0.5"
+       "win_probability": "0.51"
       },
       {
        "id": 8,
        "name": "Coin Toss Mike",
-       "points": "0.00",
+       "points": "0.55",
        "proj": "152.74",
-       "win_probability": "0.5"
+       "win_probability": "0.49"
       }
      ]
     },
@@ -1801,16 +1801,16 @@
       {
        "id": 10,
        "name": "RoadDogg",
-       "points": "0.00",
+       "points": "1.35",
        "proj": "125.18",
-       "win_probability": "0.28"
+       "win_probability": "0.27"
       },
       {
        "id": 12,
        "name": "Remember the Tutens",
-       "points": "0.00",
+       "points": "17.00",
        "proj": "159.16",
-       "win_probability": "0.72"
+       "win_probability": "0.73"
       }
      ]
     }
@@ -1867,8 +1867,12 @@
        "pos": "WR",
        "status": "",
        "key": "470.p.28534",
-       "points": "0.00",
-       "stats": {}
+       "points": "1.40",
+       "stats": {
+        "78": "1",
+        "11": "1",
+        "12": "4"
+       }
       },
       {
        "slot": "TE",
@@ -1917,8 +1921,10 @@
        "pos": "QB",
        "status": "",
        "key": "470.p.40896",
-       "points": "0.00",
-       "stats": {}
+       "points": "0.44",
+       "stats": {
+        "4": "11"
+       }
       },
       {
        "slot": "BN",
@@ -2043,8 +2049,12 @@
        "pos": "TE",
        "status": "",
        "key": "470.p.34095",
-       "points": "0.00",
-       "stats": {}
+       "points": "1.90",
+       "stats": {
+        "78": "2",
+        "11": "1",
+        "12": "9"
+       }
       },
       {
        "slot": "W/R/T",
@@ -2063,8 +2073,14 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.41922",
-       "points": "0.00",
-       "stats": {}
+       "points": "4.10",
+       "stats": {
+        "8": "2",
+        "9": "23",
+        "78": "1",
+        "11": "1",
+        "12": "3"
+       }
       },
       {
        "slot": "BN",
@@ -2285,9 +2301,29 @@
    ],
    "waivers": [
     {
+     "name": "Russell Wilson",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Cairo Santos",
      "pos": "K",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Chris Manhertz",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jameis Winston",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Marcus Mariota",
+     "pos": "QB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Demarcus Robinson",
@@ -2295,9 +2331,59 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Brandon Allen",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeff Driskel",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "JuJu Smith-Schuster",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Chris Godwin Jr.",
      "pos": "WR",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Jeremy McNichols",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Austin Ekeler",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Younghoe Koo",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Patrick Ricard",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "River Cracraft",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chase Edmonds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Braxton Berrios",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Kyler Murray",
@@ -2305,9 +2391,44 @@
      "clears": "2026-11-13"
     },
     {
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyree Jackson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Chase McLaughlin",
      "pos": "K",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Craig Reynolds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gunner Olszewski",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Van Jefferson",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Darnell Mooney",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Lawrence Cager",
+     "pos": "TE",
+     "clears": "2026-11-18"
     },
     {
      "name": "Kyle Pitts Sr.",
@@ -2315,9 +2436,49 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Najee Harris",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dyami Brown",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tre' McKitty",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "John Bates",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Jake Ferguson",
      "pos": "TE",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Calvin Austin III",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chig Okonkwo",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Montrell Washington",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Dalton Kincaid",
@@ -2330,9 +2491,29 @@
      "clears": "2026-11-13"
     },
     {
+     "name": "Jalin Hyatt",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jake Haener",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Charlie Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Chad Ryland",
      "pos": "K",
      "clears": "2026-11-15"
+    },
+    {
+     "name": "Eric Gray",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Chris Rodriguez Jr.",
@@ -2340,9 +2521,29 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Bryce Ford-Wheaton",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jason Brownlee",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dante Miller",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Bo Nix",
      "pos": "QB",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "J.J. McCarthy",
+     "pos": "QB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Adonai Mitchell",
@@ -2350,14 +2551,159 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Ben Sinnott",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Luke McCaffrey",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Theo Johnson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Colson Yankoff",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Sam Hartman",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jack Westover",
+     "pos": "RB,TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaxson Dart",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaylin Lane",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Jaydon Blue",
      "pos": "RB",
      "clears": "2026-11-14"
     },
     {
+     "name": "Devin Neal",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Thomas Fidone II",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Phil Mafah",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick Nash",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dalen Cambre",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dontae Fleming",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ben Sauls",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jacoby Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ja'Corey Brooks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Caleb Douglas",
      "pos": "WR",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Athan Kaliakmanis",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gregory Desrosiers",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Robert Henry Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaden Bradley",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Kevorian Barnes",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dominic Zvada",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Quentin Moore",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick DeGennaro",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Drew Stevens",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Grant Finley",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Lions",
@@ -2368,6 +2714,11 @@
      "name": "Patriots",
      "pos": "DEF",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Commanders",
+     "pos": "DEF",
+     "clears": "2026-11-18"
     },
     {
      "name": "Jaguars",
@@ -3839,6 +4190,14 @@
        "key": "470.p.40126"
       },
       {
+       "slot": "WR",
+       "name": "Tank Dell",
+       "team": "Hou",
+       "pos": "WR",
+       "status": "",
+       "key": "470.p.40097"
+      },
+      {
        "slot": "TE",
        "name": "Tucker Kraft",
        "team": "Gb",
@@ -3847,7 +4206,23 @@
        "key": "470.p.40102"
       },
       {
+       "slot": "W/R/T",
+       "name": "A.J. Brown",
+       "team": "Ne",
+       "pos": "WR",
+       "status": "Q",
+       "key": "470.p.31883"
+      },
+      {
        "slot": "Q/W/R/T",
+       "name": "Juwan Johnson",
+       "team": "No",
+       "pos": "TE",
+       "status": "",
+       "key": "470.p.33113"
+      },
+      {
+       "slot": "BN",
        "name": "Rome Odunze",
        "team": "Chi",
        "pos": "WR",
@@ -3872,14 +4247,6 @@
       },
       {
        "slot": "BN",
-       "name": "A.J. Brown",
-       "team": "Ne",
-       "pos": "WR",
-       "status": "Q",
-       "key": "470.p.31883"
-      },
-      {
-       "slot": "BN",
        "name": "RJ Harvey",
        "team": "Den",
        "pos": "RB",
@@ -3887,23 +4254,15 @@
        "key": "470.p.41845"
       },
       {
-       "slot": "BN",
-       "name": "Juwan Johnson",
-       "team": "No",
-       "pos": "TE",
-       "status": "",
-       "key": "470.p.33113"
-      },
-      {
-       "slot": "BN",
-       "name": "Tank Dell",
-       "team": "Hou",
-       "pos": "WR",
-       "status": "",
-       "key": "470.p.40097"
-      },
-      {
        "slot": "K",
+       "name": "Eddy Pineiro",
+       "team": "Sf",
+       "pos": "K",
+       "status": "",
+       "key": "470.p.31482"
+      },
+      {
+       "slot": "BN",
        "name": "Cairo Santos",
        "team": "Chi",
        "pos": "K",
@@ -3911,7 +4270,7 @@
        "key": "470.p.28227"
       },
       {
-       "slot": "BN",
+       "slot": "DEF",
        "name": "Packers",
        "team": "Gb",
        "pos": "DEF",
@@ -4083,16 +4442,16 @@
       {
        "id": 2,
        "name": "Diddys Booty Butter",
-       "points": "0.00",
+       "points": "4.10",
        "proj": "162.63",
-       "win_probability": "0.56"
+       "win_probability": "0.59"
       },
       {
        "id": 7,
        "name": "Dark Knight II",
-       "points": "0.00",
+       "points": "0.44",
        "proj": "154.31",
-       "win_probability": "0.44"
+       "win_probability": "0.41"
       }
      ]
     },
@@ -4105,14 +4464,14 @@
        "name": "FUCKING COWBOYS",
        "points": "0.00",
        "proj": "95.57",
-       "win_probability": "0.52"
+       "win_probability": "0.21"
       },
       {
        "id": 11,
        "name": "Hector Football",
-       "points": "0.00",
-       "proj": "92.57",
-       "win_probability": "0.48"
+       "points": "1.35",
+       "proj": "138.18",
+       "win_probability": "0.79"
       }
      ]
     },
@@ -4125,14 +4484,14 @@
        "name": "How \u2018Bout Them Points",
        "points": "0.00",
        "proj": "158.02",
-       "win_probability": "0.44"
+       "win_probability": "0.45"
       },
       {
        "id": 6,
        "name": "Trophy Hunter \ud83c\udfc6",
-       "points": "0.00",
+       "points": "1.40",
        "proj": "166.56",
-       "win_probability": "0.56"
+       "win_probability": "0.55"
       }
      ]
     },
@@ -4165,14 +4524,14 @@
        "name": "Rams house",
        "points": "0.00",
        "proj": "109.48",
-       "win_probability": "0.24"
+       "win_probability": "0.23"
       },
       {
        "id": 10,
        "name": "Rated PG-18",
-       "points": "0.00",
+       "points": "0.55",
        "proj": "149.08",
-       "win_probability": "0.76"
+       "win_probability": "0.77"
       }
      ]
     }
@@ -4259,8 +4618,14 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.41922",
-       "points": "0.00",
-       "stats": {}
+       "points": "4.10",
+       "stats": {
+        "8": "2",
+        "9": "23",
+        "78": "1",
+        "11": "1",
+        "12": "3"
+       }
       },
       {
        "slot": "Q/W/R/T",
@@ -4435,8 +4800,10 @@
        "pos": "QB",
        "status": "",
        "key": "470.p.40896",
-       "points": "0.00",
-       "stats": {}
+       "points": "0.44",
+       "stats": {
+        "4": "11"
+       }
       },
       {
        "slot": "BN",
@@ -4657,9 +5024,59 @@
    ],
    "waivers": [
     {
+     "name": "Russell Wilson",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chris Manhertz",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jameis Winston",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Brandon Allen",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeff Driskel",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "JuJu Smith-Schuster",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeremy McNichols",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Austin Ekeler",
      "pos": "RB",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Younghoe Koo",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Patrick Ricard",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "River Cracraft",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Sam Darnold",
@@ -4667,9 +5084,94 @@
      "clears": "2026-11-15"
     },
     {
+     "name": "Chase Edmonds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Braxton Berrios",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Kyler Murray",
      "pos": "QB",
      "clears": "2026-11-13"
+    },
+    {
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyree Jackson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Craig Reynolds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gunner Olszewski",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Van Jefferson",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Darnell Mooney",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Lawrence Cager",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Najee Harris",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dyami Brown",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tre' McKitty",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "John Bates",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Calvin Austin III",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chig Okonkwo",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Montrell Washington",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Michael Wilson",
@@ -4677,24 +5179,154 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Jalin Hyatt",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jake Haener",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Charlie Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Eric Gray",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Bryce Ford-Wheaton",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jason Brownlee",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Emanuel Wilson",
      "pos": "RB",
      "clears": "2026-11-13"
     },
     {
+     "name": "Dante Miller",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "J.J. McCarthy",
      "pos": "QB",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ben Sinnott",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Luke McCaffrey",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Theo Johnson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Colson Yankoff",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Sam Hartman",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jack Westover",
+     "pos": "RB,TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaxson Dart",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaylin Lane",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Devin Neal",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Thomas Fidone II",
+     "pos": "TE",
+     "clears": "2026-11-18"
     },
     {
      "name": "Jacory Croskey-Merritt",
      "pos": "RB",
-     "clears": "2026-11-13"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Phil Mafah",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick Nash",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dalen Cambre",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dontae Fleming",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ben Sauls",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jacoby Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Darius Cooper",
      "pos": "WR",
      "clears": "2026-11-13"
+    },
+    {
+     "name": "Ja'Corey Brooks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Kaelon Black",
@@ -4707,9 +5339,54 @@
      "clears": "2026-11-15"
     },
     {
+     "name": "Athan Kaliakmanis",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gregory Desrosiers",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Robert Henry Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaden Bradley",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Kevorian Barnes",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dominic Zvada",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Quentin Moore",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick DeGennaro",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Drew Stevens",
      "pos": "K",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Grant Finley",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Bears",
@@ -4730,6 +5407,16 @@
      "name": "Saints",
      "pos": "DEF",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Giants",
+     "pos": "DEF",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Commanders",
+     "pos": "DEF",
+     "clears": "2026-11-18"
     }
    ]
   },
@@ -5871,19 +6558,19 @@
       },
       {
        "slot": "RB",
-       "name": "D'Andre Swift",
-       "team": "Chi",
-       "pos": "RB",
-       "status": "",
-       "key": "470.p.32705"
-      },
-      {
-       "slot": "RB",
        "name": "Alvin Kamara",
        "team": "No",
        "pos": "RB",
        "status": "",
        "key": "470.p.30180"
+      },
+      {
+       "slot": "RB",
+       "name": "Rico Dowdle",
+       "team": "Pit",
+       "pos": "RB",
+       "status": "",
+       "key": "470.p.33100"
       },
       {
        "slot": "WR",
@@ -5903,11 +6590,11 @@
       },
       {
        "slot": "TE",
-       "name": "Jake Ferguson",
-       "team": "Dal",
+       "name": "Greg Dulcich",
+       "team": "Mia",
        "pos": "TE",
-       "status": "O",
-       "key": "470.p.34085"
+       "status": "",
+       "key": "470.p.34036"
       },
       {
        "slot": "W/R/T",
@@ -5927,11 +6614,19 @@
       },
       {
        "slot": "BN",
-       "name": "Rico Dowdle",
-       "team": "Pit",
+       "name": "Jake Ferguson",
+       "team": "Dal",
+       "pos": "TE",
+       "status": "O",
+       "key": "470.p.34085"
+      },
+      {
+       "slot": "BN",
+       "name": "D'Andre Swift",
+       "team": "Chi",
        "pos": "RB",
        "status": "",
-       "key": "470.p.33100"
+       "key": "470.p.32705"
       },
       {
        "slot": "BN",
@@ -5956,14 +6651,6 @@
        "pos": "QB",
        "status": "",
        "key": "470.p.30971"
-      },
-      {
-       "slot": "BN",
-       "name": "Greg Dulcich",
-       "team": "Mia",
-       "pos": "TE",
-       "status": "",
-       "key": "470.p.34036"
       },
       {
        "slot": "DEF",
@@ -6484,7 +7171,7 @@
       {
        "id": 2,
        "name": "Dark Knight III",
-       "points": "0.00",
+       "points": "1.79",
        "proj": "112.75",
        "win_probability": "0.29"
       },
@@ -6506,14 +7193,14 @@
        "name": "Bad and Bougie 2.0",
        "points": "0.00",
        "proj": "55.90",
-       "win_probability": "0.09"
+       "win_probability": "0.04"
       },
       {
        "id": 10,
        "name": "Derek\u2019s Better Half",
        "points": "0.00",
-       "proj": "115.75",
-       "win_probability": "0.91"
+       "proj": "135.64",
+       "win_probability": "0.96"
       }
      ]
     },
@@ -6526,14 +7213,14 @@
        "name": "Dawg Pound Eric",
        "points": "0.00",
        "proj": "119.79",
-       "win_probability": "0.48"
+       "win_probability": "0.49"
       },
       {
        "id": 9,
        "name": "Dominique by 6",
        "points": "0.00",
        "proj": "122.18",
-       "win_probability": "0.52"
+       "win_probability": "0.51"
       }
      ]
     },
@@ -6544,14 +7231,14 @@
       {
        "id": 6,
        "name": "The Deer Hunter Part Deux",
-       "points": "0.00",
+       "points": "1.90",
        "proj": "129.70",
        "win_probability": "0.6"
       },
       {
        "id": 12,
        "name": "And A Goedert To You Sir",
-       "points": "0.00",
+       "points": "1.40",
        "proj": "115.81",
        "win_probability": "0.4"
       }
@@ -6571,7 +7258,7 @@
       {
        "id": 11,
        "name": "Beachmom's Bench",
-       "points": "0.00",
+       "points": "0.55",
        "proj": "135.79",
        "win_probability": "0.56"
       }
@@ -6610,8 +7297,10 @@
        "pos": "QB",
        "status": "",
        "key": "470.p.40896",
-       "points": "0.00",
-       "stats": {}
+       "points": "0.44",
+       "stats": {
+        "4": "11"
+       }
       },
       {
        "slot": "RB",
@@ -6620,8 +7309,11 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.34047",
-       "points": "0.00",
-       "stats": {}
+       "points": "1.35",
+       "stats": {
+        "8": "3",
+        "9": "6"
+       }
       },
       {
        "slot": "RB",
@@ -7075,24 +7767,314 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Russell Wilson",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chris Manhertz",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jameis Winston",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Marcus Mariota",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Brandon Allen",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeff Driskel",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "JuJu Smith-Schuster",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Chris Godwin Jr.",
      "pos": "WR",
      "clears": "2026-11-15"
     },
     {
+     "name": "Jeremy McNichols",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Austin Ekeler",
      "pos": "RB",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Patrick Ricard",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "River Cracraft",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chase Edmonds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Braxton Berrios",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyree Jackson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Craig Reynolds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gunner Olszewski",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Van Jefferson",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Darnell Mooney",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Lawrence Cager",
+     "pos": "TE",
+     "clears": "2026-11-18"
     },
     {
      "name": "Najee Harris",
      "pos": "RB",
-     "clears": "2026-11-13"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dyami Brown",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tre' McKitty",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "John Bates",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Calvin Austin III",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Montrell Washington",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jalin Hyatt",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jake Haener",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Charlie Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Eric Gray",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Bryce Ford-Wheaton",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jason Brownlee",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dante Miller",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "J.J. McCarthy",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ben Sinnott",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Luke McCaffrey",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Theo Johnson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Colson Yankoff",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Sam Hartman",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jack Westover",
+     "pos": "RB,TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaxson Dart",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaylin Lane",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Devin Neal",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Thomas Fidone II",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Phil Mafah",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick Nash",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dalen Cambre",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dontae Fleming",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jacoby Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ja'Corey Brooks",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Malachi Fields",
      "pos": "WR",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Athan Kaliakmanis",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gregory Desrosiers",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Robert Henry Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaden Bradley",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Kevorian Barnes",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Quentin Moore",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick DeGennaro",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Grant Finley",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Saints",
@@ -7102,12 +8084,17 @@
     {
      "name": "Giants",
      "pos": "DEF",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
     },
     {
      "name": "Buccaneers",
      "pos": "DEF",
      "clears": "2026-11-13"
+    },
+    {
+     "name": "Commanders",
+     "pos": "DEF",
+     "clears": "2026-11-18"
     }
    ]
   },
@@ -8331,19 +9318,19 @@
       },
       {
        "slot": "WR",
-       "name": "Puka Nacua",
-       "team": "Lar",
-       "pos": "WR",
-       "status": "O",
-       "key": "470.p.40168"
-      },
-      {
-       "slot": "WR",
        "name": "Rashee Rice",
        "team": "Kc",
        "pos": "WR",
        "status": "",
        "key": "470.p.40084"
+      },
+      {
+       "slot": "WR",
+       "name": "Antonio Williams",
+       "team": "Was",
+       "pos": "WR",
+       "status": "",
+       "key": "470.p.42693"
       },
       {
        "slot": "TE",
@@ -8371,6 +9358,14 @@
       },
       {
        "slot": "BN",
+       "name": "Puka Nacua",
+       "team": "Lar",
+       "pos": "WR",
+       "status": "IR",
+       "key": "470.p.40168"
+      },
+      {
+       "slot": "BN",
        "name": "Colston Loveland",
        "team": "Chi",
        "pos": "TE",
@@ -8392,14 +9387,6 @@
        "pos": "WR",
        "status": "",
        "key": "470.p.31010"
-      },
-      {
-       "slot": "BN",
-       "name": "Antonio Williams",
-       "team": "Was",
-       "pos": "WR",
-       "status": "",
-       "key": "470.p.42693"
       },
       {
        "slot": "IR",
@@ -8602,16 +9589,16 @@
       {
        "id": 1,
        "name": "Brad's Ballers",
-       "points": "0.00",
+       "points": "0.44",
        "proj": "170.10",
-       "win_probability": "0.66"
+       "win_probability": "0.64"
       },
       {
        "id": 5,
        "name": "Team Other",
        "points": "0.00",
        "proj": "146.80",
-       "win_probability": "0.34"
+       "win_probability": "0.36"
       }
      ]
     },
@@ -8622,16 +9609,16 @@
       {
        "id": 2,
        "name": "Alan's Team",
-       "points": "0.00",
+       "points": "2.38",
        "proj": "165.58",
-       "win_probability": "0.61"
+       "win_probability": "0.54"
       },
       {
        "id": 10,
        "name": "Dream Killers",
        "points": "0.00",
-       "proj": "149.30",
-       "win_probability": "0.39"
+       "proj": "157.64",
+       "win_probability": "0.46"
       }
      ]
     },
@@ -8684,14 +9671,14 @@
        "name": "Bad and Boujee",
        "points": "0.00",
        "proj": "76.97",
-       "win_probability": "0.07"
+       "win_probability": "0.06"
       },
       {
        "id": 11,
        "name": "Killer Ko-Gees",
-       "points": "0.00",
+       "points": "1.40",
        "proj": "144.28",
-       "win_probability": "0.93"
+       "win_probability": "0.94"
       }
      ]
     }
@@ -8848,8 +9835,14 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.41922",
-       "points": "0.00",
-       "stats": {}
+       "points": "3.60",
+       "stats": {
+        "8": "2",
+        "9": "23",
+        "78": "1",
+        "11": "1",
+        "12": "3"
+       }
       },
       {
        "slot": "IR",
@@ -9194,9 +10187,79 @@
    ],
    "waivers": [
     {
+     "name": "Russell Wilson",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Cairo Santos",
      "pos": "K",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Chris Manhertz",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jameis Winston",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Marcus Mariota",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Brandon Allen",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeff Driskel",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "JuJu Smith-Schuster",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jeremy McNichols",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Austin Ekeler",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Younghoe Koo",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Patrick Ricard",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "River Cracraft",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chase Edmonds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Braxton Berrios",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Kyler Murray",
@@ -9211,7 +10274,67 @@
     {
      "name": "Devin Singletary",
      "pos": "RB",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyree Jackson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Craig Reynolds",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gunner Olszewski",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Van Jefferson",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Darnell Mooney",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Lawrence Cager",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Najee Harris",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dyami Brown",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tre' McKitty",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "John Bates",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "clears": "2026-11-18"
     },
     {
      "name": "Malik Willis",
@@ -9219,9 +10342,59 @@
      "clears": "2026-11-14"
     },
     {
+     "name": "Calvin Austin III",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Chig Okonkwo",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Montrell Washington",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jalin Hyatt",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jake Haener",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Charlie Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Eric Gray",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Bryce Ford-Wheaton",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jason Brownlee",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Jake Bates",
      "pos": "K",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Dante Miller",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Xavier Worthy",
@@ -9234,9 +10407,154 @@
      "clears": "2026-11-13"
     },
     {
+     "name": "Ben Sinnott",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Luke McCaffrey",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Theo Johnson",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Tyrone Tracy Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Colson Yankoff",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Sam Hartman",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jack Westover",
+     "pos": "RB,TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaxson Dart",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaylin Lane",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Devin Neal",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Thomas Fidone II",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Phil Mafah",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick Nash",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dalen Cambre",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dontae Fleming",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ben Sauls",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jacoby Jones",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Ja'Corey Brooks",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Malachi Fields",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
      "name": "Mike Washington Jr.",
      "pos": "RB",
      "clears": "2026-11-14"
+    },
+    {
+     "name": "Athan Kaliakmanis",
+     "pos": "QB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Gregory Desrosiers",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Robert Henry Jr.",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Jaden Bradley",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Kevorian Barnes",
+     "pos": "RB",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Dominic Zvada",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Quentin Moore",
+     "pos": "TE",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Nick DeGennaro",
+     "pos": "WR",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Drew Stevens",
+     "pos": "K",
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Grant Finley",
+     "pos": "RB",
+     "clears": "2026-11-18"
     },
     {
      "name": "Bengals",
@@ -9261,7 +10579,12 @@
     {
      "name": "Giants",
      "pos": "DEF",
-     "clears": "2026-11-14"
+     "clears": "2026-11-18"
+    },
+    {
+     "name": "Commanders",
+     "pos": "DEF",
+     "clears": "2026-11-18"
     }
    ]
   }
