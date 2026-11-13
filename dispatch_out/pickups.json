@@ -1,5 +1,5 @@
 {
- "built": "Thu Nov 12 2026 4:11 PM PT",
+ "built": "Thu Nov 12 2026 4:39 PM PT",
  "panel": {
   "order": [
    "Gotham",
@@ -11,8 +11,12 @@
   ],
   "check": [
    "Ratcliffe",
-   "RotoBaller",
+   "Koerner",
    "Vegas"
+  ],
+  "check_po": [
+   "Ratcliffe",
+   "Clay"
   ],
   "miss": {
    "Ratcliffe": 6.72,
@@ -50,22 +54,22 @@
   "others": [],
   "reads": {
    "Ratcliffe": "Thu Nov 12 2026 3:27 PM PT",
-   "RotoBaller": "Thu Nov 12 2026 4:08 PM PT",
-   "Vegas": "Thu Nov 12 2026 4:08 PM PT",
-   "Gotham": "Thu Nov 12 2026 04:08 PM PT",
-   "Yahoo": "Thu Nov 12 2026 1:12 PM PT",
    "Koerner": "Thu Nov 12 2026 4:04 PM PT",
-   "Clay": "Thu Nov 12 2026 4:08 PM PT"
+   "Vegas": "Thu Nov 12 2026 4:36 PM PT",
+   "Gotham": "Thu Nov 12 2026 04:36 PM PT",
+   "Yahoo": "Thu Nov 12 2026 4:12 PM PT",
+   "Clay": "Thu Nov 12 2026 4:36 PM PT",
+   "RotoBaller": "Thu Nov 12 2026 4:36 PM PT"
   }
  },
  "sources": {
   "ratcliffe_read": "Thu Nov 12 2026 3:27 PM PT",
   "expert_reads": {
    "Ratcliffe": "Thu Nov 12 2026 3:27 PM PT",
-   "Clay": "Thu Nov 12 2026 4:08 PM PT",
+   "Clay": "Thu Nov 12 2026 4:36 PM PT",
    "Koerner": "Thu Nov 12 2026 4:04 PM PT",
-   "Vegas": "Thu Nov 12 2026 4:08 PM PT",
-   "RotoBaller": "Thu Nov 12 2026 4:08 PM PT"
+   "Vegas": "Thu Nov 12 2026 4:36 PM PT",
+   "RotoBaller": "Thu Nov 12 2026 4:36 PM PT"
   },
   "nflverse_through_week": 9,
   "standings": "nflverse schedule, 136 games scored",
@@ -73,7 +77,7 @@
  },
  "leagues": {
   "1": {
-   "read": "Thu Nov 12 4:08 PM PT",
+   "read": "Thu Nov 12 4:36 PM PT",
    "top": [
     {
      "tier": "WATCH",
@@ -102,7 +106,8 @@
       "Workload last 3 games: touches 3 > 9 > 7, snaps 44% > 61% > 89%",
       "Playoffs: W15 ARI (#15), W16 NE (#2), W17 MIN (#30)",
       "NYJ 2-7",
-      "Checks this week: Ratcliffe 9.1 \u00b7 RotoBaller 9.1 \u00b7 Vegas 7.8 - checks agree"
+      "Playoff check: Ratcliffe rest of season 11.8 a game \u00b7 Clay Weeks 15-17 10.3 - check agrees",
+      "This week: Ratcliffe 9.1 \u00b7 Koerner 8.3 \u00b7 Vegas 7.6 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Stefon Diggs",
@@ -119,12 +124,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.1 vs Stefon Diggs 10.2 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "8.3 vs Stefon Diggs 9.5 (this week)",
         "ok": false
        },
        {
@@ -132,8 +137,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "7.8 vs Stefon Diggs 9.9 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.6 vs Stefon Diggs 9.9 (this week)",
         "ok": false
        },
        {
@@ -141,7 +146,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "9.3 vs Stefon Diggs 12.5 (a game ahead)",
         "ok": false
        },
@@ -150,17 +155,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.4 vs Stefon Diggs 12.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "8.3 vs Stefon Diggs 9.5 (this week)",
         "ok": false
        },
        {
@@ -168,8 +164,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "10.4 vs Stefon Diggs 11.3 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.1 vs Stefon Diggs 10.2 (this week)",
         "ok": false
        }
       ]
@@ -179,6 +184,7 @@
      "po": 10.3,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Geno Smith",
       "role": "WR1 on his team: 37% of the WR targets last 3 games",
@@ -186,7 +192,7 @@
       "week": "Week 10 vs BUF (#10 matchup)",
       "short": "WR1 \u00b7 QB Smith \u00b7 vs BUF"
      },
-     "status": "Waivers until Nov 14 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 14 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -216,7 +222,8 @@
       "Coach: OC Rees, Oct 3: \"I need to do the best job I can to make sure Kyle can play\"",
       "Playoffs: W15 WAS (#3), W16 TB (#11), W17 NO (#7)",
       "ATL 3-6",
-      "Checks this week: Ratcliffe 9.7 \u00b7 RotoBaller 8.2 \u00b7 Vegas 9.4 - checks agree"
+      "Playoff check: Ratcliffe rest of season 10.8 a game \u00b7 Clay Weeks 15-17 9.4 - check agrees",
+      "This week: Ratcliffe 9.7 \u00b7 Koerner 9.9 \u00b7 Vegas 9.4 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Travis Kelce",
@@ -233,12 +240,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "8.2 vs Travis Kelce 10.5 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "9.9 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -246,8 +253,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.4 vs Travis Kelce 11.0 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.4 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -255,7 +262,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "8.7 vs Travis Kelce 11.5 (a game ahead)",
         "ok": false
        },
@@ -264,17 +271,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.6 vs Travis Kelce 11.6 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "9.9 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -282,8 +280,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "9.3 vs Travis Kelce 11.0 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "8.2 vs Travis Kelce 10.5 (this week)",
         "ok": false
        }
       ]
@@ -293,6 +300,7 @@
      "po": 9.4,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Michael Penix Jr.",
       "role": "TE1 on his team: 62% of the TE targets last 3 games",
@@ -300,7 +308,7 @@
       "week": "Week 10 vs KC (#6 matchup)",
       "short": "TE1 \u00b7 QB Penix \u00b7 vs KC"
      },
-     "status": "Waivers until Nov 14 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 14 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -329,7 +337,8 @@
       "Workload last 3 games: touches 3 > 7 > 11, snaps 25% > 31% > 25%",
       "Playoffs: W15 SF (#16), W16 MIA (#10), W17 KC (#25)",
       "LAC 0-8",
-      "Checks this week: Ratcliffe 6.8 \u00b7 RotoBaller 6.3 - checks agree"
+      "Playoff check: Ratcliffe rest of season 9.3 a game \u00b7 Clay Weeks 15-17 7.6 - check agrees",
+      "This week: Ratcliffe 6.8 \u00b7 Koerner 7.1 - checks agree"
      ],
      "experts": {
       "verdict": "2 of 4 sources have him ahead of Audric Estime",
@@ -346,12 +355,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.3 vs Audric Estime 7.2 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "7.1 vs Audric Estime 11.8 (this week)",
         "ok": false
        },
        {
@@ -359,7 +368,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -368,7 +377,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.5 (a game ahead; no number for Audric Estime)",
         "ok": null
        },
@@ -377,27 +386,27 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "7.1 vs Audric Estime 5.3 (Wks 10-17)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "7.7 vs Audric Estime 5.3 (Wks 10-17)",
         "ok": true
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "7.1 vs Audric Estime 11.8 (this week)",
-        "ok": false
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "7.9 (Wks 10-17; no number for Audric Estime)",
         "ok": null
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.3 vs Audric Estime 7.2 (this week)",
+        "ok": false
        }
       ]
      },
@@ -406,6 +415,7 @@
      "po": 7.6,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Justin Herbert",
       "role": "RB3: 23% of the carries last 3 games",
@@ -413,7 +423,7 @@
       "week": "Week 10 vs BAL (#23 matchup)",
       "short": "RB3 \u00b7 QB Herbert \u00b7 vs BAL"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -442,7 +452,8 @@
       "Workload last 3 games: touches 8 > 6 > 3, snaps 72% > 57% > 50%",
       "Playoffs: W15 CHI (#23), W16 DEN (#2), W17 MIA (#4)",
       "BUF 7-1",
-      "Checks this week: Ratcliffe 10.6 \u00b7 RotoBaller 8.9 \u00b7 Vegas 9.7 - checks agree"
+      "Playoff check: Ratcliffe rest of season 13.1 a game \u00b7 Clay Weeks 15-17 8.6 - STOP AND TALK: Clay lower by 4.5",
+      "This week: Ratcliffe 10.6 \u00b7 Koerner 9.7 \u00b7 Vegas 9.7 - checks agree"
      ],
      "experts": {
       "verdict": "1 of 7 sources have him ahead of Travis Kelce",
@@ -459,12 +470,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "8.9 vs Travis Kelce 10.5 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "9.7 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -472,8 +483,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.7 vs Travis Kelce 11.0 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.7 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -481,7 +492,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "9.8 vs Travis Kelce 11.5 (a game ahead)",
         "ok": false
        },
@@ -490,17 +501,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "10.2 vs Travis Kelce 11.6 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "9.7 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -508,8 +510,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "8.7 vs Travis Kelce 11.0 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "8.9 vs Travis Kelce 10.5 (this week)",
         "ok": false
        }
       ]
@@ -518,7 +529,8 @@
      "build": null,
      "po": 8.6,
      "flags": [],
-     "check_stop": false,
+     "check_stop": true,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Josh Allen",
       "role": "TE1 on his team: 45% of the TE targets last 3 games",
@@ -526,7 +538,7 @@
       "week": "Week 10 vs NYJ (#12 matchup)",
       "short": "TE1 \u00b7 QB Allen \u00b7 vs NYJ"
      },
-     "status": "Waivers until Nov 14 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 14 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -555,7 +567,8 @@
       "Workload last 3 games: touches 2 > 3 > 2, snaps 58% > 56% > 53%",
       "Playoffs: W15 TB (#11), W16 ARI (#9), W17 ATL (#19)",
       "NO 3-5",
-      "Checks this week: Ratcliffe 8.3 \u00b7 RotoBaller 6.6 \u00b7 Vegas 6.9 - checks agree"
+      "Playoff check: Ratcliffe rest of season 8.7 a game \u00b7 Clay Weeks 15-17 7.0 - check agrees",
+      "This week: Ratcliffe 8.3 \u00b7 Koerner 7.4 \u00b7 Vegas 6.9 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Travis Kelce",
@@ -572,12 +585,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.6 vs Travis Kelce 10.5 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "7.4 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -585,8 +598,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.9 vs Travis Kelce 11.0 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.9 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -594,7 +607,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "9.8 vs Travis Kelce 11.5 (a game ahead)",
         "ok": false
        },
@@ -603,17 +616,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.6 vs Travis Kelce 11.6 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "7.4 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -621,8 +625,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "7.1 vs Travis Kelce 11.0 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.6 vs Travis Kelce 10.5 (this week)",
         "ok": false
        }
       ]
@@ -632,6 +645,7 @@
      "po": 7.0,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Tyler Shough",
       "role": "TE1 on his team: 50% of the TE targets last 3 games",
@@ -639,11 +653,11 @@
       "week": "Week 10 vs CAR (#16 matchup)",
       "short": "TE1 \u00b7 QB Shough \u00b7 vs CAR"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     }
    ],
    "needs": [],
-   "pieces_built": "Thu Nov 12 4:08 PM PT",
+   "pieces_built": "Thu Nov 12 4:36 PM PT",
    "kicker_slot": true,
    "pool": {
     "adonai mitchell": [
@@ -1763,7 +1777,7 @@
    }
   },
   "2": {
-   "read": "Thu Nov 12 4:08 PM PT",
+   "read": "Thu Nov 12 4:36 PM PT",
    "top": [
     {
      "tier": "HOT",
@@ -1793,7 +1807,8 @@
       "Path: Kenneth Walker carries 24 touches a game, yards per carry down 6.27 to 3.91",
       "Playoffs: W15 NE (#29), W16 SF (#16), W17 LAC (#12)",
       "KC 6-2",
-      "Checks this week: Ratcliffe 7.4 \u00b7 RotoBaller 6.3 - checks agree"
+      "Playoff check: Ratcliffe rest of season 11.2 a game \u00b7 Clay Weeks 15-17 7.0 - STOP AND TALK: Clay lower by 4.2",
+      "This week: Ratcliffe 7.4 \u00b7 Koerner 6.5 - checks agree"
      ],
      "experts": {
       "verdict": "2 of 5 sources have him ahead of Corey Kiner",
@@ -1810,12 +1825,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.3 vs Corey Kiner 10.7 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "6.5 vs Corey Kiner 14.3 (this week)",
         "ok": false
        },
        {
@@ -1823,7 +1838,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -1832,7 +1847,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.3 (a game ahead; no number for Corey Kiner)",
         "ok": null
        },
@@ -1841,17 +1856,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "6.6 vs Corey Kiner 9.7 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "6.5 vs Corey Kiner 14.3 (this week)",
         "ok": false
        },
        {
@@ -1859,9 +1865,18 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "6.9 vs Corey Kiner 4.8 (Wks 10-17)",
         "ok": true
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.3 vs Corey Kiner 10.7 (this week)",
+        "ok": false
        }
       ]
      },
@@ -1869,7 +1884,8 @@
      "build": null,
      "po": 7.0,
      "flags": [],
-     "check_stop": false,
+     "check_stop": true,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Patrick Mahomes",
       "role": "RB2: 11% of the carries last 3 games",
@@ -1877,7 +1893,7 @@
       "week": "Week 10 vs ATL (#8 matchup)",
       "short": "RB2 \u00b7 QB Mahomes \u00b7 vs ATL"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -1906,7 +1922,8 @@
       "Workload last 3 games: touches 7 > 25 > 6, snaps 26% > 60% > 34%",
       "Playoffs: W15 DEN (#11), W16 TEN (#14), W17 ARI (#17)",
       "LV 4-5",
-      "Checks this week: Ratcliffe 7.9 \u00b7 RotoBaller 6.6 \u00b7 Vegas 6.6 - checks agree"
+      "Playoff check: Ratcliffe rest of season 14.2 a game \u00b7 Clay Weeks 15-17 10.5 - STOP AND TALK: Clay lower by 3.7",
+      "This week: Ratcliffe 7.9 \u00b7 Koerner 7.6 \u00b7 Vegas 6.6 - checks agree"
      ],
      "experts": {
       "verdict": "2 of 6 sources have him ahead of Corey Kiner",
@@ -1923,12 +1940,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.6 vs Corey Kiner 10.7 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "7.6 vs Corey Kiner 14.3 (this week)",
         "ok": false
        },
        {
@@ -1936,8 +1953,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.6 vs Corey Kiner 13.7 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.6 vs Corey Kiner 13.9 (this week)",
         "ok": false
        },
        {
@@ -1945,7 +1962,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "9.4 (a game ahead; no number for Corey Kiner)",
         "ok": null
        },
@@ -1954,17 +1971,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.5 vs Corey Kiner 9.7 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "7.6 vs Corey Kiner 14.3 (this week)",
         "ok": false
        },
        {
@@ -1972,9 +1980,18 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "10.2 vs Corey Kiner 4.8 (Wks 10-17)",
         "ok": true
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.6 vs Corey Kiner 10.7 (this week)",
+        "ok": false
        }
       ]
      },
@@ -1982,7 +1999,8 @@
      "build": null,
      "po": 10.5,
      "flags": [],
-     "check_stop": false,
+     "check_stop": true,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Kirk Cousins",
       "role": "RB1: 70% of the carries last 3 games",
@@ -1990,7 +2008,7 @@
       "week": "Week 10 vs SEA (#19 matchup)",
       "short": "RB1 \u00b7 QB Cousins \u00b7 vs SEA"
      },
-     "status": "Waivers until Nov 15 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 15 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -2019,7 +2037,8 @@
       "Workload last 3 games: touches 3 > 7 > 11, snaps 25% > 31% > 25%",
       "Playoffs: W15 SF (#16), W16 MIA (#10), W17 KC (#25)",
       "LAC 0-8",
-      "Checks this week: Ratcliffe 6.8 \u00b7 RotoBaller 6.3 - checks agree"
+      "Playoff check: Ratcliffe rest of season 9.3 a game \u00b7 Clay Weeks 15-17 7.6 - check agrees",
+      "This week: Ratcliffe 6.8 \u00b7 Koerner 7.1 - checks agree"
      ],
      "experts": {
       "verdict": "2 of 5 sources have him ahead of Corey Kiner",
@@ -2036,12 +2055,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.3 vs Corey Kiner 10.7 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "7.1 vs Corey Kiner 14.3 (this week)",
         "ok": false
        },
        {
@@ -2049,7 +2068,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -2058,7 +2077,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.5 (a game ahead; no number for Corey Kiner)",
         "ok": null
        },
@@ -2067,17 +2086,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "7.1 vs Corey Kiner 9.7 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "7.1 vs Corey Kiner 14.3 (this week)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "7.7 vs Corey Kiner 9.7 (Wks 10-17)",
         "ok": false
        },
        {
@@ -2085,9 +2095,18 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "7.9 vs Corey Kiner 4.8 (Wks 10-17)",
         "ok": true
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.3 vs Corey Kiner 10.7 (this week)",
+        "ok": false
        }
       ]
      },
@@ -2096,6 +2115,7 @@
      "po": 7.6,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Justin Herbert",
       "role": "RB3: 23% of the carries last 3 games",
@@ -2103,7 +2123,7 @@
       "week": "Week 10 vs BAL (#23 matchup)",
       "short": "RB3 \u00b7 QB Herbert \u00b7 vs BAL"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -2133,7 +2153,8 @@
       "Coach: OC Rees, Oct 3: \"I need to do the best job I can to make sure Kyle can play\"",
       "Playoffs: W15 WAS (#3), W16 TB (#11), W17 NO (#7)",
       "ATL 3-6",
-      "Checks this week: Ratcliffe 9.7 \u00b7 RotoBaller 8.2 \u00b7 Vegas 9.4 - checks agree"
+      "Playoff check: Ratcliffe rest of season 10.8 a game \u00b7 Clay Weeks 15-17 9.4 - check agrees",
+      "This week: Ratcliffe 9.7 \u00b7 Koerner 9.9 \u00b7 Vegas 9.4 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Travis Kelce",
@@ -2150,12 +2171,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "8.2 vs Travis Kelce 10.5 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "9.9 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -2163,8 +2184,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.4 vs Travis Kelce 11.0 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.4 vs Travis Kelce 11.1 (this week)",
         "ok": false
        },
        {
@@ -2172,7 +2193,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "8.7 vs Travis Kelce 11.5 (a game ahead)",
         "ok": false
        },
@@ -2181,17 +2202,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "8.6 vs Travis Kelce 11.7 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "9.9 vs Travis Kelce 11.1 (this week)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "8.6 vs Travis Kelce 11.6 (Wks 10-17)",
         "ok": false
        },
        {
@@ -2199,8 +2211,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "9.3 vs Travis Kelce 11.0 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "8.2 vs Travis Kelce 10.5 (this week)",
         "ok": false
        }
       ]
@@ -2210,6 +2231,7 @@
      "po": 9.4,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Michael Penix Jr.",
       "role": "TE1 on his team: 62% of the TE targets last 3 games",
@@ -2217,7 +2239,7 @@
       "week": "Week 10 vs KC (#6 matchup)",
       "short": "TE1 \u00b7 QB Penix \u00b7 vs KC"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -2247,7 +2269,8 @@
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5",
-      "Checks this week: Ratcliffe 8.2 \u00b7 RotoBaller 6.0 \u00b7 Vegas 6.7 - STOP AND TALK: RotoBaller lower by 2.2"
+      "Playoff check: Ratcliffe rest of season 7.9 a game \u00b7 Clay Weeks 15-17 8.2 - check agrees",
+      "This week: Ratcliffe 8.2 \u00b7 Koerner 8.0 \u00b7 Vegas 7.1 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Germie Bernard",
@@ -2264,12 +2287,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.0 vs Germie Bernard 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "8.0 vs Germie Bernard 11.3 (this week)",
         "ok": false
        },
        {
@@ -2277,8 +2300,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.7 vs Germie Bernard 11.3 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.1 vs Germie Bernard 11.5 (this week)",
         "ok": false
        },
        {
@@ -2286,7 +2309,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "8.4 vs Germie Bernard 11.4 (a game ahead)",
         "ok": false
        },
@@ -2295,17 +2318,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "6.8 vs Germie Bernard 10.1 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "8.0 vs Germie Bernard 11.3 (this week)",
         "ok": false
        },
        {
@@ -2313,8 +2327,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "8.3 vs Germie Bernard 10.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.0 vs Germie Bernard 9.1 (this week)",
         "ok": false
        }
       ]
@@ -2323,7 +2346,8 @@
      "build": null,
      "po": 8.2,
      "flags": [],
-     "check_stop": true,
+     "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game C.J. Stroud",
       "role": "WR1 on his team: 24% of the WR targets last 3 games",
@@ -2331,14 +2355,14 @@
       "week": "Week 10 vs CLE (#22 matchup)",
       "short": "WR1 \u00b7 QB Stroud \u00b7 vs CLE"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     }
    ],
    "needs": [
     "A lead running back (short Weeks 12, 13, 14, 15, 16, 17)",
     "A wide receiver for Week 10 on (short Weeks 11)"
    ],
-   "pieces_built": "Thu Nov 12 4:08 PM PT",
+   "pieces_built": "Thu Nov 12 4:36 PM PT",
    "kicker_slot": true,
    "pool": {
     "emmett johnson": [
@@ -3454,7 +3478,7 @@
    }
   },
   "3": {
-   "read": "Thu Nov 12 4:08 PM PT",
+   "read": "Thu Nov 12 4:36 PM PT",
    "top": [
     {
      "tier": "WATCH",
@@ -3483,7 +3507,8 @@
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5",
-      "Checks this week: Ratcliffe 8.2 \u00b7 RotoBaller 6.0 \u00b7 Vegas 6.7 - STOP AND TALK: RotoBaller lower by 2.2"
+      "Playoff check: Ratcliffe rest of season 7.9 a game \u00b7 Clay Weeks 15-17 8.2 - check agrees",
+      "This week: Ratcliffe 8.2 \u00b7 Koerner 8.0 \u00b7 Vegas 7.1 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Caleb Douglas",
@@ -3500,12 +3525,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.0 vs Caleb Douglas 8.2 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "8.0 vs Caleb Douglas 9.7 (this week)",
         "ok": false
        },
        {
@@ -3513,8 +3538,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.7 vs Caleb Douglas 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.1 vs Caleb Douglas 9.1 (this week)",
         "ok": false
        },
        {
@@ -3522,7 +3547,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "8.4 vs Caleb Douglas 11.6 (a game ahead)",
         "ok": false
        },
@@ -3531,17 +3556,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "6.7 vs Caleb Douglas 8.8 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "8.0 vs Caleb Douglas 9.7 (this week)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "6.7 vs Caleb Douglas 9.3 (Wks 10-17)",
         "ok": false
        },
        {
@@ -3549,8 +3565,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "8.3 vs Caleb Douglas 8.6 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.0 vs Caleb Douglas 8.2 (this week)",
         "ok": false
        }
       ]
@@ -3559,7 +3584,8 @@
      "build": null,
      "po": 8.2,
      "flags": [],
-     "check_stop": true,
+     "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game C.J. Stroud",
       "role": "WR1 on his team: 24% of the WR targets last 3 games",
@@ -3567,7 +3593,7 @@
       "week": "Week 10 vs CLE (#22 matchup)",
       "short": "WR1 \u00b7 QB Stroud \u00b7 vs CLE"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3595,11 +3621,12 @@
       "vs your weakest WR starter Caleb Douglas (Ratcliffe: 11.3 a game vs 10.4): -8% - under the 10% MUST bar",
       "Workload last 3 games: touches 5 > 1 > 4, snaps 73% > 82% > 91%",
       "Playoffs: W15 NO (#17), W16 ATL (#13), W17 LA (#26)",
-      "TB 3-6"
+      "TB 3-6",
+      "Playoff check: Ratcliffe rest of season 10.4 a game \u00b7 Clay Weeks 15-17 7.2 - STOP AND TALK: Clay lower by 3.2"
      ],
      "experts": {
-      "verdict": "1 of 4 sources have him ahead of Caleb Douglas",
-      "agree": 1,
+      "verdict": "0 of 4 sources have him ahead of Caleb Douglas",
+      "agree": 0,
       "of": 4,
       "lines": [
        {
@@ -3612,11 +3639,11 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3625,7 +3652,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3634,7 +3661,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.3 vs Caleb Douglas 11.6 (a game ahead)",
         "ok": false
        },
@@ -3643,27 +3670,27 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "9.0 vs Caleb Douglas 8.8 (Wks 10-17)",
-        "ok": true
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "no number for him",
-        "ok": null
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "9.0 vs Caleb Douglas 9.3 (Wks 10-17)",
+        "ok": false
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "7.2 vs Caleb Douglas 8.6 (Wks 10-17)",
         "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "no number for him",
+        "ok": null
        }
       ]
      },
@@ -3671,7 +3698,8 @@
      "build": null,
      "po": 7.2,
      "flags": [],
-     "check_stop": null,
+     "check_stop": true,
+     "week_stop": null,
      "teamctx": {
       "qb": "QB last game Baker Mayfield",
       "role": "WR1 on his team: 38% of the WR targets last 3 games",
@@ -3679,7 +3707,7 @@
       "week": "Week 10: BYE",
       "short": "WR1 \u00b7 QB Mayfield \u00b7 bye"
      },
-     "status": "Waivers until Nov 15 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 15 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3707,7 +3735,8 @@
       "vs your weakest WR starter Caleb Douglas (Ratcliffe: 11.3 a game vs 7.4): -34% - under the 10% MUST bar",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5",
-      "Checks this week: Ratcliffe 9.5 \u00b7 RotoBaller 7.8 \u00b7 Vegas 7.1 - STOP AND TALK: Vegas lower by 2.4"
+      "Playoff check: Ratcliffe rest of season 7.4 a game \u00b7 Clay Weeks 15-17 8.4 - check agrees",
+      "This week: Ratcliffe 9.5 \u00b7 Koerner 8.6 \u00b7 Vegas 7.7 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 6 sources have him ahead of Caleb Douglas",
@@ -3724,12 +3753,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "7.8 vs Caleb Douglas 8.2 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "8.6 vs Caleb Douglas 9.7 (this week)",
         "ok": false
        },
        {
@@ -3737,8 +3766,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "7.1 vs Caleb Douglas 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.7 vs Caleb Douglas 9.1 (this week)",
         "ok": false
        },
        {
@@ -3746,7 +3775,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3755,17 +3784,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "8.6 vs Caleb Douglas 8.8 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "8.6 vs Caleb Douglas 9.7 (this week)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "8.6 vs Caleb Douglas 9.3 (Wks 10-17)",
         "ok": false
        },
        {
@@ -3773,8 +3793,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "8.5 vs Caleb Douglas 8.6 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.8 vs Caleb Douglas 8.2 (this week)",
         "ok": false
        }
       ]
@@ -3783,7 +3812,8 @@
      "build": null,
      "po": 8.4,
      "flags": [],
-     "check_stop": true,
+     "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game C.J. Stroud",
       "role": "WR2 on his team: 22% of the WR targets last 3 games",
@@ -3791,7 +3821,7 @@
       "week": "Week 10 vs CLE (#22 matchup)",
       "short": "WR2 \u00b7 QB Stroud \u00b7 vs CLE"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3820,7 +3850,8 @@
       "Workload last 3 games: touches 4 > 4 > 3, snaps 19% > 21% > 46%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5",
-      "Checks this week: Ratcliffe 5.5 \u00b7 RotoBaller 4.1 - checks agree"
+      "Playoff check: Ratcliffe rest of season 8.6 a game \u00b7 Clay Weeks 15-17 6.1 - STOP AND TALK: Clay lower by 2.5",
+      "This week: Ratcliffe 5.5 \u00b7 Koerner 5.6 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 6 sources have him ahead of Caleb Douglas",
@@ -3837,12 +3868,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "4.1 vs Caleb Douglas 8.2 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "5.6 vs Caleb Douglas 9.7 (this week)",
         "ok": false
        },
        {
@@ -3850,7 +3881,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3859,7 +3890,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "6.5 vs Caleb Douglas 11.6 (a game ahead)",
         "ok": false
        },
@@ -3868,17 +3899,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "5.2 vs Caleb Douglas 8.8 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "5.6 vs Caleb Douglas 9.7 (this week)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "5.2 vs Caleb Douglas 9.3 (Wks 10-17)",
         "ok": false
        },
        {
@@ -3886,8 +3908,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "6.2 vs Caleb Douglas 8.6 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "4.1 vs Caleb Douglas 8.2 (this week)",
         "ok": false
        }
       ]
@@ -3896,7 +3927,8 @@
      "build": null,
      "po": 6.1,
      "flags": [],
-     "check_stop": false,
+     "check_stop": true,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game C.J. Stroud",
       "role": "WR5 on his team: 15% of the WR targets last 3 games",
@@ -3904,7 +3936,7 @@
       "week": "Week 10 vs CLE (#22 matchup)",
       "short": "WR5 \u00b7 QB Stroud \u00b7 vs CLE"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -3932,7 +3964,8 @@
       "vs your weakest WR starter Caleb Douglas (Ratcliffe: 11.3 a game vs 6.7): -41% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#10), W16 GB (#6), W17 DET (#7)",
-      "CHI 7-2"
+      "CHI 7-2",
+      "Playoff check: Ratcliffe rest of season 6.7 a game \u00b7 Clay Weeks 15-17 6.4 - check agrees"
      ],
      "experts": {
       "verdict": "0 of 4 sources have him ahead of Caleb Douglas",
@@ -3949,11 +3982,11 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3962,7 +3995,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -3971,7 +4004,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.3 vs Caleb Douglas 11.6 (a game ahead)",
         "ok": false
        },
@@ -3980,27 +4013,27 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
-        "txt": "7.0 vs Caleb Douglas 8.8 (Wks 10-17)",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
+        "txt": "7.0 vs Caleb Douglas 9.3 (Wks 10-17)",
         "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "no number for him",
-        "ok": null
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "6.5 vs Caleb Douglas 8.6 (Wks 10-17)",
         "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "no number for him",
+        "ok": null
        }
       ]
      },
@@ -4008,7 +4041,8 @@
      "build": null,
      "po": 6.4,
      "flags": [],
-     "check_stop": null,
+     "check_stop": false,
+     "week_stop": null,
      "teamctx": {
       "qb": "QB last game Caleb Williams",
       "role": "WR3 on his team: 21% of the WR targets last 3 games",
@@ -4016,13 +4050,13 @@
       "week": "Week 10: BYE",
       "short": "WR3 \u00b7 QB Williams \u00b7 bye"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     }
    ],
    "needs": [
     "new gap at WR (short Weeks 10, 14)"
    ],
-   "pieces_built": "Thu Nov 12 4:08 PM PT",
+   "pieces_built": "Thu Nov 12 4:36 PM PT",
    "kicker_slot": false,
    "pool": {
     "xavier hutchinson": [
@@ -4991,7 +5025,7 @@
    }
   },
   "4": {
-   "read": "Thu Nov 12 4:08 PM PT",
+   "read": "Thu Nov 12 4:36 PM PT",
    "top": [
     {
      "tier": "MUST",
@@ -5020,7 +5054,8 @@
       "Workload last 3 games: touches 15 > 6 > 6, snaps 95% > 92% > 92%",
       "Playoffs: W15 BAL (#11), W16 CAR (#16), W17 TEN (#1)",
       "PIT 6-2",
-      "Checks this week: Ratcliffe 11.4 \u00b7 RotoBaller 9.9 \u00b7 Vegas 11.9 - checks agree"
+      "Playoff check: Ratcliffe rest of season 12.0 a game \u00b7 Clay Weeks 15-17 12.8 - check agrees",
+      "This week: Ratcliffe 11.4 \u00b7 Koerner 12.3 \u00b7 Vegas 11.8 - checks agree"
      ],
      "experts": {
       "verdict": "7 of 7 sources have him ahead of Jakobi Meyers",
@@ -5037,12 +5072,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.9 vs Jakobi Meyers 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "12.3 vs Jakobi Meyers 10.5 (this week)",
         "ok": true
        },
        {
@@ -5050,8 +5085,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "11.9 vs Jakobi Meyers 9.8 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "11.8 vs Jakobi Meyers 9.8 (this week)",
         "ok": true
        },
        {
@@ -5059,7 +5094,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "11.4 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": true
        },
@@ -5068,17 +5103,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "10.8 vs Jakobi Meyers 9.9 (Wks 10-17)",
-        "ok": true
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "12.3 vs Jakobi Meyers 10.5 (this week)",
         "ok": true
        },
        {
@@ -5086,8 +5112,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "12.3 vs Jakobi Meyers 10.9 (Wks 10-17)",
+        "ok": true
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.9 vs Jakobi Meyers 9.1 (this week)",
         "ok": true
        }
       ]
@@ -5097,6 +5132,7 @@
      "po": 12.8,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Aaron Rodgers",
       "role": "WR1 on his team: 48% of the WR targets last 3 games",
@@ -5104,7 +5140,7 @@
       "week": "Week 10 vs CIN (#18 matchup)",
       "short": "WR1 \u00b7 QB Rodgers \u00b7 vs CIN"
      },
-     "status": "Waivers until Nov 13 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 13 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "HOT",
@@ -5133,7 +5169,8 @@
       "Workload last 3 games: touches 3 > 9 > 7, snaps 44% > 61% > 89%",
       "Playoffs: W15 ARI (#15), W16 NE (#2), W17 MIN (#30)",
       "NYJ 2-7",
-      "Checks this week: Ratcliffe 9.0 \u00b7 RotoBaller 9.1 \u00b7 Vegas 7.8 - checks agree"
+      "Playoff check: Ratcliffe rest of season 11.8 a game \u00b7 Clay Weeks 15-17 10.3 - check agrees",
+      "This week: Ratcliffe 9.0 \u00b7 Koerner 8.3 \u00b7 Vegas 7.6 - checks agree"
      ],
      "experts": {
       "verdict": "1 of 7 sources have him ahead of Jakobi Meyers",
@@ -5150,12 +5187,12 @@
         "ok": true
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "9.1 vs Jakobi Meyers 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "8.3 vs Jakobi Meyers 10.5 (this week)",
         "ok": false
        },
        {
@@ -5163,8 +5200,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "7.8 vs Jakobi Meyers 9.8 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.6 vs Jakobi Meyers 9.8 (this week)",
         "ok": false
        },
        {
@@ -5172,7 +5209,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "9.3 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
@@ -5181,17 +5218,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.4 vs Jakobi Meyers 9.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "8.3 vs Jakobi Meyers 10.5 (this week)",
         "ok": false
        },
        {
@@ -5199,8 +5227,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "10.4 vs Jakobi Meyers 10.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "9.1 vs Jakobi Meyers 9.1 (this week)",
         "ok": false
        }
       ]
@@ -5210,6 +5247,7 @@
      "po": 10.3,
      "flags": [],
      "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game Geno Smith",
       "role": "WR1 on his team: 37% of the WR targets last 3 games",
@@ -5217,7 +5255,7 @@
       "week": "Week 10 vs BUF (#10 matchup)",
       "short": "WR1 \u00b7 QB Smith \u00b7 vs BUF"
      },
-     "status": "Waivers until Nov 13 (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Waivers until Nov 13 (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5245,7 +5283,8 @@
       "vs your weakest WR starter Jakobi Meyers (Ratcliffe: 11.5 a game vs 10.4): -10% - under the 10% MUST bar",
       "Workload last 3 games: touches 5 > 1 > 4, snaps 73% > 82% > 91%",
       "Playoffs: W15 NO (#17), W16 ATL (#13), W17 LA (#26)",
-      "TB 3-6"
+      "TB 3-6",
+      "Playoff check: Ratcliffe rest of season 10.4 a game \u00b7 Clay Weeks 15-17 7.1 - STOP AND TALK: Clay lower by 3.3"
      ],
      "experts": {
       "verdict": "0 of 4 sources have him ahead of Jakobi Meyers",
@@ -5262,11 +5301,11 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5275,7 +5314,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5284,7 +5323,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.3 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
@@ -5293,27 +5332,27 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "8.9 vs Jakobi Meyers 9.9 (Wks 10-17)",
         "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "no number for him",
-        "ok": null
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "7.1 vs Jakobi Meyers 10.9 (Wks 10-17)",
         "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "no number for him",
+        "ok": null
        }
       ]
      },
@@ -5321,7 +5360,8 @@
      "build": null,
      "po": 7.1,
      "flags": [],
-     "check_stop": null,
+     "check_stop": true,
+     "week_stop": null,
      "teamctx": {
       "qb": "QB last game Baker Mayfield",
       "role": "WR1 on his team: 38% of the WR targets last 3 games",
@@ -5329,7 +5369,7 @@
       "week": "Week 10: BYE",
       "short": "WR1 \u00b7 QB Mayfield \u00b7 bye"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5358,7 +5398,8 @@
       "Workload last 3 games: touches 3 > 8 > 5, snaps 54% > 56% > 81%",
       "Playoffs: W15 JAX (#14), W16 PHI (#3), W17 GB (#6)",
       "HOU 3-5",
-      "Checks this week: Ratcliffe 8.1 \u00b7 RotoBaller 6.0 \u00b7 Vegas 6.7 - STOP AND TALK: RotoBaller lower by 2.1"
+      "Playoff check: Ratcliffe rest of season 7.8 a game \u00b7 Clay Weeks 15-17 8.1 - check agrees",
+      "This week: Ratcliffe 8.1 \u00b7 Koerner 7.9 \u00b7 Vegas 7.0 - checks agree"
      ],
      "experts": {
       "verdict": "0 of 7 sources have him ahead of Jakobi Meyers",
@@ -5375,12 +5416,12 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.0 vs Jakobi Meyers 9.1 (this week)",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
+        "txt": "7.9 vs Jakobi Meyers 10.5 (this week)",
         "ok": false
        },
        {
@@ -5388,8 +5429,8 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
-        "txt": "6.7 vs Jakobi Meyers 9.8 (this week)",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "7.0 vs Jakobi Meyers 9.8 (this week)",
         "ok": false
        },
        {
@@ -5397,7 +5438,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "8.3 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
@@ -5406,17 +5447,8 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "6.7 vs Jakobi Meyers 9.9 (Wks 10-17)",
-        "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "7.9 vs Jakobi Meyers 10.5 (this week)",
         "ok": false
        },
        {
@@ -5424,8 +5456,17 @@
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "8.2 vs Jakobi Meyers 10.9 (Wks 10-17)",
+        "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "6.0 vs Jakobi Meyers 9.1 (this week)",
         "ok": false
        }
       ]
@@ -5434,7 +5475,8 @@
      "build": null,
      "po": 8.1,
      "flags": [],
-     "check_stop": true,
+     "check_stop": false,
+     "week_stop": false,
      "teamctx": {
       "qb": "QB last game C.J. Stroud",
       "role": "WR1 on his team: 24% of the WR targets last 3 games",
@@ -5442,7 +5484,7 @@
       "week": "Week 10 vs CLE (#22 matchup)",
       "short": "WR1 \u00b7 QB Stroud \u00b7 vs CLE"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     },
     {
      "tier": "WATCH",
@@ -5470,7 +5512,8 @@
       "vs your weakest WR starter Jakobi Meyers (Ratcliffe: 11.5 a game vs 6.7): -42% - under the 10% MUST bar",
       "Workload last 3 games: touches 2 > 4 > 7, snaps 70% > 69% > 70%",
       "Playoffs: W15 BUF (#10), W16 GB (#6), W17 DET (#7)",
-      "CHI 7-2"
+      "CHI 7-2",
+      "Playoff check: Ratcliffe rest of season 6.7 a game \u00b7 Clay Weeks 15-17 6.3 - check agrees"
      ],
      "experts": {
       "verdict": "0 of 4 sources have him ahead of Jakobi Meyers",
@@ -5487,11 +5530,11 @@
         "ok": false
        },
        {
-        "ex": "RotoBaller",
-        "rank": "not graded yet",
+        "ex": "Koerner",
+        "rank": "#3 (6.70 missed a player, Wks 8-9)",
         "check": true,
         "role": 2,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:04 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5500,7 +5543,7 @@
         "rank": "#5 (6.81 missed a player, Wk 9)",
         "check": true,
         "role": 3,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "no number for him",
         "ok": null
        },
@@ -5509,7 +5552,7 @@
         "rank": "#1 (6.12 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 04:08 PM PT",
+        "read": "Thu Nov 12 2026 04:36 PM PT",
         "txt": "7.2 vs Jakobi Meyers 9.4 (a game ahead)",
         "ok": false
        },
@@ -5518,27 +5561,27 @@
         "rank": "#2 (6.39 missed a player, Wks 6-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 1:12 PM PT",
+        "read": "Thu Nov 12 2026 4:12 PM PT",
         "txt": "7.0 vs Jakobi Meyers 9.9 (Wks 10-17)",
         "ok": false
-       },
-       {
-        "ex": "Koerner",
-        "rank": "#3 (6.70 missed a player, Wks 8-9)",
-        "check": false,
-        "role": null,
-        "read": "Thu Nov 12 2026 4:04 PM PT",
-        "txt": "no number for him",
-        "ok": null
        },
        {
         "ex": "Clay",
         "rank": "#6 (7.04 missed a player, Wks 8-9)",
         "check": false,
         "role": null,
-        "read": "Thu Nov 12 2026 4:08 PM PT",
+        "read": "Thu Nov 12 2026 4:36 PM PT",
         "txt": "6.4 vs Jakobi Meyers 10.9 (Wks 10-17)",
         "ok": false
+       },
+       {
+        "ex": "RotoBaller",
+        "rank": "not graded yet",
+        "check": false,
+        "role": null,
+        "read": "Thu Nov 12 2026 4:36 PM PT",
+        "txt": "no number for him",
+        "ok": null
        }
       ]
      },
@@ -5546,7 +5589,8 @@
      "build": null,
      "po": 6.3,
      "flags": [],
-     "check_stop": null,
+     "check_stop": false,
+     "week_stop": null,
      "teamctx": {
       "qb": "QB last game Caleb Williams",
       "role": "WR3 on his team: 21% of the WR targets last 3 games",
@@ -5554,13 +5598,13 @@
       "week": "Week 10: BYE",
       "short": "WR3 \u00b7 QB Williams \u00b7 bye"
      },
-     "status": "Free agent (per Thu Nov 12 4:08 PM PT read - confirm live)"
+     "status": "Free agent (per Thu Nov 12 4:36 PM PT read - confirm live)"
     }
    ],
    "needs": [
     "A steady second wide receiver (short Weeks 13)"
    ],
-   "pieces_built": "Thu Nov 12 4:08 PM PT",
+   "pieces_built": "Thu Nov 12 4:36 PM PT",
    "kicker_slot": true,
    "pool": {
     "dk metcalf": [
