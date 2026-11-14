@@ -50,6 +50,11 @@ RAT, KOE = scored("ftn_scored.csv"), scored("koerner_scored.csv")
 # a free agent goes on the talk list when ANY ONE of Ratcliffe (rest of season), Clay (rest of season), Koerner (this week) or
 # Vegas (this week) has him 15%+ and 2+ points ahead of the starter he'd replace, in this league's scoring. The row says who flagged him.
 CLAY, VEG = scored("clay_scored.csv"), scored("vegas_scored.csv")
+try: SHARP = (load(O(R, "dispatch_out", "sharp_totals.json"), {}) or {}).get("teams", {})   # Nov 14: playoff offense tag
+except Exception: SHARP = {}
+def sharp(team):
+    t = SHARP.get({"LA": "LAR", "JAC": "JAX", "WSH": "WAS"}.get(str(team or "").upper(), str(team or "").upper()))
+    return (t["po"], t["po_rank"]) if t else (None, None)
 SIDE = set()
 try:
     for _v in (load(O(R, "feeds", "sleeper_injuries.json"), {}) or {}).get("players", {}).values():
@@ -187,6 +192,7 @@ for lab, key, lid, lgn, myid in LG:
         row = dict(name=p["name"], pos=p["pos"], team=p["team"], acq=p["acq"], over=wn, rat_ros=(None if p.get("rat_missing") else round(p["ros"], 1)),
                    over_ros=(round(wv, 1) if wv else None), pct=round(100 * pct), gain=round(gain, 1), rat_wk=round(p["wk"], 1), koe_wk=mine_v["Koerner"],
                    clay_ros=mine_v["Clay"], vegas_wk=mine_v["Vegas"], flagged_by=[f["src"] for f in flags], flags=flags + nears,
+                   sharp_po=sharp(p["team"])[0], sharp_rank=sharp(p["team"])[1],
                    rising=(rr or {}).get("what"), scout=nk(p["name"]) in scout_adds)
         if flags:
             row["note"] = "Flagged by " + "; ".join(f"{f['src']} ({f['span']}: {f['his']} vs your {f['over']} {f['over_v']}, +{f['pct']}%)" for f in flags)
@@ -194,6 +200,7 @@ for lab, key, lid, lgn, myid in LG:
                 row["note"] += f"; Ratcliffe has him {row['rat_ros']} a game" + (f" vs {row['over_ros']}" if row["over_ros"] else "")
             if not wv:   # no Ratcliffe line - lead with the expert who flagged him
                 row.update(over=flags[0]["over"], pct=flags[0]["pct"], gain=flags[0]["gain"])
+            if row.get("sharp_rank"): row["note"] += f"; playoff offense #{row['sharp_rank']} of 32 (Sharp betting totals, Weeks 15-17)"
             talk.append(row)
         elif nears or (rr and pct >= 0) or (wv and pct >= WATCH_LO and gain >= 1.0):
             if nears and not wv: row.update(over=nears[0]["over"], pct=nears[0]["pct"], gain=nears[0]["gain"])

@@ -227,6 +227,8 @@ for fn, ex, rd in (("koerner_scored.csv", "Koerner", "read_pt"), ("vegas_scored.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from panel import Panel, NAME as PNAME, ROLES, PO_ROLES
 PAN = Panel(ROOT)
 START = PAN.start                                  # first week still ahead
+try: SHARP = (json.load(open(os.path.join(ROOT, "dispatch_out", "sharp_totals.json"))) or {}).get("teams", {})
+except Exception: SHARP = {}
 # the expert check, listed by accuracy: the four forward sources in the panel's order, then the this-week-only experts by their own last grade
 def _wk_only_order():
     try:
@@ -415,6 +417,11 @@ def grade(n, key, d, MY, NEED):
                         else " - a one-week fill, fades after this week" if build == "1-WEEK" else ""))
     # Nov 12 4:10 PM (Dom): a pickup is a playoff decision - Ratcliffe's rest-of-season number decides, Clay's Weeks 15-17 is the check;
     # 2+ points apart = stop and talk (never a filter). The this-week checks (Koerner, Vegas) still show, for a one-week fill.
+    # Nov 14 (Dom): Sharp's betting-market team totals - the offense he plays in during Weeks 15-17 (a tag, never a decider)
+    _st = SHARP.get({"LA": "LAR", "JAC": "JAX", "WSH": "WAS"}.get(str(tm).upper(), str(tm).upper()))
+    if _st and pos in SKILL + ("QB",):
+        why.append(f"Playoff offense (Sharp betting totals, Weeks 15-17): {tm} {_st['po']:.1f} points, #{_st['po_rank']} of 32"
+                   + (" - top-8 offense" if _st["po_rank"] <= 8 else " - bottom-8 offense, a caution" if _st["po_rank"] >= 25 else ""))
     chk_flag = None; rros = PAN.V["ratcliffe"].get((int(n), key))
     if pos in SKILL and rros and cros is not None:
         gr_ = cros - rros

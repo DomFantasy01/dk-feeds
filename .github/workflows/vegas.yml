@@ -8,7 +8,7 @@ on:
     - cron: '20 */2 * * *'
     - cron: '20 13-20 * * 0'          # Sunday 5 AM - 12 PM PT, hourly (after inactives props get pulled / re-posted)
   push:
-    paths: ['live_sync/vegas_points.py', '.github/workflows/vegas.yml']
+    paths: ['live_sync/vegas_points.py', 'live_sync/sharp_totals.py', '.github/workflows/vegas.yml']
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -31,6 +31,8 @@ jobs:
           W=$(ls dispatch_out/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
           python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" --read-only
           python3 live_sync/vegas_points.py "$GITHUB_WORKSPACE" "$W" "dispatch_out/meter_wk$W.json" --no-read
+      - name: read Sharp betting totals (Nov 14, Dom - playoff offense tag)
+        run: python3 live_sync/sharp_totals.py "$GITHUB_WORKSPACE" || true
       - name: save
         if: always()
         run: |
@@ -39,7 +41,7 @@ jobs:
           # Nov 8 (Dom): never commit the meter copy this job started from - a Dispatch build that finished meanwhile has a
           # newer meter, and "-X theirs" used to put the old one back (DK3 showed 6% again). Save the Vegas data, pull, then
           # lay the Vegas needle onto the CURRENT meter and commit that.
-          git add yahoo_drop/vegas dispatch_out/vegas_scored.csv dispatch_out/vegas_history 2>/dev/null || true
+          git add yahoo_drop/vegas dispatch_out/vegas_scored.csv dispatch_out/vegas_history dispatch_out/sharp_totals.json 2>/dev/null || true
           git checkout -- dispatch_out/meter_wk*.json 2>/dev/null || true
           git commit -m "vegas $(date -u +%Y-%m-%dT%H:%MZ)" || true
           for i in 1 2 3; do
