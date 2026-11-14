@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Sat Nov 14 8:11 AM PT",
- "built_utc": "2026-11-14T16:11:26.050452+00:00",
+ "built": "Sat Nov 14 8:43 AM PT",
+ "built_utc": "2026-11-14T16:43:39.019393+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sat Nov 14 8:05 AM PT",
-   "pulled_ago": "5 min ago",
-   "items": 2829,
-   "newest": "13.4 h ago",
-   "warn": "newest item over 12 h old",
+   "pulled": "Sat Nov 14 8:32 AM PT",
+   "pulled_ago": "11 min ago",
+   "items": 2830,
+   "newest": "35 min ago",
+   "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sat Nov 14 8:05 AM PT",
-   "pulled_ago": "5 min ago",
-   "items": 7614,
-   "newest": "7 min ago",
+   "pulled": "Sat Nov 14 8:32 AM PT",
+   "pulled_ago": "11 min ago",
+   "items": 7630,
+   "newest": "5 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sat Nov 14 8:05 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sat Nov 14 8:32 AM PT",
+   "pulled_ago": "11 min ago",
    "items": 1875,
-   "newest": "37 min ago",
+   "newest": "1.2 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sat Nov 14 8:05 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sat Nov 14 8:32 AM PT",
+   "pulled_ago": "11 min ago",
    "items": 392,
-   "newest": "1.8 h ago",
+   "newest": "36 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sat Nov 14 8:05 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sat Nov 14 8:32 AM PT",
+   "pulled_ago": "11 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sat Nov 14 8:09 AM PT",
+   "pulled": "Sat Nov 14 8:41 AM PT",
    "pulled_ago": "2 min ago",
    "items": 769,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sat Nov 14 2026 08:09 AM PT",
+   "pulled": "Sat Nov 14 2026 08:41 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,22 +69,64 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sat Nov 14 2:47 AM PT",
-   "pulled_ago": "5.4 h ago",
+   "pulled_ago": "5.9 h ago",
    "items": 355,
    "newest": null,
    "warn": null,
    "failed": null
   }
  },
- "alarms": [
-  "RotoWire news: newest item over 12 h old"
- ],
+ "alarms": [],
  "leagues": {
   "DK I": {
    "key": "MOST",
    "opponent": "SkeetSkeetSkeetabooo",
    "unread": [],
    "own": [
+    {
+     "name": "Travis Etienne Jr.",
+     "pos": "RB",
+     "team": "NO",
+     "slot": "IR",
+     "marker": {
+      "count": 5,
+      "recency": 0,
+      "color": "red",
+      "grades": [
+       "bad",
+       "good",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 8:30 AM PT",
+       "src": "rotoballer",
+       "title": "Travis Etienne Jr. Activated From Injured Reserve, Expected to Play Sunday",
+       "text": "New Orleans Saints running back Travis Etienne Jr. (hamstring) has been activated from injured reserve ahead of Sunday's Week 10 [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Nov 14 8:18 AM PT",
+       "src": "pft",
+       "title": "Report: Saints to activate RB Travis Etienne for Sunday's game",
+       "text": "The Saints are getting a key offensive player back.",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Nov 14 8:08 AM PT",
+       "src": "RotoWire news",
+       "title": "Travis Etienne Jr.: Expected to be activated from IR",
+       "text": "The Saints are expected to activate Etienne (hamstring) from injured reserve ahead of Sunday's NFC South tilt against the Panthers, Tom Pelissero of Netflix reports.",
+       "grade": "good"
+      }
+     ],
+     "gotham": 0.0,
+     "gotham_ros": 15.7,
+     "sleeper": 10.9,
+     "workload": "30/12/20",
+     "trend": -0.2
+    },
     {
      "name": "Jordan Addison",
      "pos": "WR",
@@ -253,48 +295,6 @@
      "gotham_ros": 9.8,
      "sleeper": 9.8,
      "workload": "6/9/3/2/2/11/7/3",
-     "trend": -0.2
-    },
-    {
-     "name": "Travis Etienne Jr.",
-     "pos": "RB",
-     "team": "NO",
-     "slot": "IR",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 14 6:40 AM PT",
-       "src": "rotoballer",
-       "title": "Travis Etienne Jr. Has an Appealing Matchup if Active in Week 10",
-       "text": "New Orleans Saints running back Travis Etienne Jr. (hamstring) is officially listed as questionable to play in Week 10 against [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Travis Etienne Jr.: May return in Week 10",
-       "text": "Etienne (hamstring) said Friday that \"the week of practice went well,\" and that he hopes to be active for Sunday's game against the Panthers, Jeff Nowak of WWL Radio reports.",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 11:38 AM PT",
-       "src": "ESPN injury report",
-       "title": "Travis Etienne Jr.: Injured Reserve (Hamstring)",
-       "text": "Etienne (hamstring) said Friday that \"the week of practice went well,\" and that he hopes to be active for Sunday's game against the Panthers, Jeff Nowak of WWL Radio reports.",
-       "grade": "bad"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 15.7,
-     "sleeper": 10.9,
-     "workload": "30/12/20",
      "trend": -0.2
     },
     {
@@ -636,7 +636,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #8 (72,396 in 24 h)"
+      "Sleeper adds #8 (73,314 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -674,7 +674,7 @@
      "team": "NE",
      "why": [
       "opening: A.J. Brown \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #23 (31,932 in 24 h)"
+      "Sleeper adds #23 (32,412 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -711,7 +711,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #2 (285,381 in 24 h)"
+      "Sleeper adds #2 (288,027 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -748,7 +748,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #19 (46,116 in 24 h)"
+      "Sleeper adds #19 (46,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -785,7 +785,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #15 (48,872 in 24 h)"
+      "Sleeper adds #15 (49,448 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -860,7 +860,7 @@
      "team": "LA",
      "why": [
       "good news",
-      "Sleeper adds #7 (83,754 in 24 h)"
+      "Sleeper adds #7 (84,987 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -1099,6 +1099,50 @@
    "unread": [],
    "own": [
     {
+     "name": "Travis Etienne Jr.",
+     "pos": "RB",
+     "team": "NO",
+     "slot": "IR",
+     "marker": {
+      "count": 5,
+      "recency": 0,
+      "color": "red",
+      "grades": [
+       "bad",
+       "good",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 8:30 AM PT",
+       "src": "rotoballer",
+       "title": "Travis Etienne Jr. Activated From Injured Reserve, Expected to Play Sunday",
+       "text": "New Orleans Saints running back Travis Etienne Jr. (hamstring) has been activated from injured reserve ahead of Sunday's Week 10 [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Nov 14 8:18 AM PT",
+       "src": "pft",
+       "title": "Report: Saints to activate RB Travis Etienne for Sunday's game",
+       "text": "The Saints are getting a key offensive player back.",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Nov 14 8:08 AM PT",
+       "src": "RotoWire news",
+       "title": "Travis Etienne Jr.: Expected to be activated from IR",
+       "text": "The Saints are expected to activate Etienne (hamstring) from injured reserve ahead of Sunday's NFC South tilt against the Panthers, Tom Pelissero of Netflix reports.",
+       "grade": "good"
+      }
+     ],
+     "gotham": 0.0,
+     "gotham_ros": 15.7,
+     "sleeper": 10.9,
+     "workload": "30/12/20",
+     "trend": -0.2
+    },
+    {
      "name": "Alvin Kamara",
      "pos": "RB",
      "team": "NO",
@@ -1227,6 +1271,48 @@
      "trend": -0.33
     },
     {
+     "name": "Braelon Allen",
+     "pos": "RB",
+     "team": "NYJ",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 8:38 AM PT",
+       "src": "rotoballer",
+       "title": "Braelon Allen's Carries Are Harder to Project Against Buffalo",
+       "text": "New York Jets running back Braelon Allen carried eight times for 33 yards at Kansas City after averaging 19.8 carries [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Nov 12 9:24 AM PT",
+       "src": "rotoballer",
+       "title": "Braelon Allen's Workload Shrinks in Return to Backup Role",
+       "text": "New York Jets running back Braelon Allen went from 23 touches against the Las Vegas Raiders to 10 against the [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 8 1:47 PM PT",
+       "src": "rotoballer",
+       "title": "Braelon Allen's Flex Value Takes a Hit",
+       "text": "New York Jets running back Braelon Allen got eight carries with Breece Hall (quad) back in the lineup Sunday. Allen [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 12.7,
+     "gotham_ros": 13.8,
+     "sleeper": 9.9,
+     "workload": "13/13/20/33/22/35/31/13",
+     "trend": -0.15
+    },
+    {
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
@@ -1267,48 +1353,6 @@
      "sleeper": 10.4,
      "workload": "32/11/16/11/6",
      "trend": -0.54
-    },
-    {
-     "name": "Travis Etienne Jr.",
-     "pos": "RB",
-     "team": "NO",
-     "slot": "IR",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 14 6:40 AM PT",
-       "src": "rotoballer",
-       "title": "Travis Etienne Jr. Has an Appealing Matchup if Active in Week 10",
-       "text": "New Orleans Saints running back Travis Etienne Jr. (hamstring) is officially listed as questionable to play in Week 10 against [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Travis Etienne Jr.: May return in Week 10",
-       "text": "Etienne (hamstring) said Friday that \"the week of practice went well,\" and that he hopes to be active for Sunday's game against the Panthers, Jeff Nowak of WWL Radio reports.",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 11:38 AM PT",
-       "src": "ESPN injury report",
-       "title": "Travis Etienne Jr.: Injured Reserve (Hamstring)",
-       "text": "Etienne (hamstring) said Friday that \"the week of practice went well,\" and that he hopes to be active for Sunday's game against the Panthers, Jeff Nowak of WWL Radio reports.",
-       "grade": "bad"
-      }
-     ],
-     "gotham": 0.0,
-     "gotham_ros": 15.7,
-     "sleeper": 10.9,
-     "workload": "30/12/20",
-     "trend": -0.2
     },
     {
      "name": "Jayden Daniels",
@@ -1521,48 +1565,6 @@
      "trend": 0.14
     },
     {
-     "name": "Braelon Allen",
-     "pos": "RB",
-     "team": "NYJ",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Nov 12 9:24 AM PT",
-       "src": "rotoballer",
-       "title": "Braelon Allen's Workload Shrinks in Return to Backup Role",
-       "text": "New York Jets running back Braelon Allen went from 23 touches against the Las Vegas Raiders to 10 against the [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 8 1:47 PM PT",
-       "src": "rotoballer",
-       "title": "Braelon Allen's Flex Value Takes a Hit",
-       "text": "New York Jets running back Braelon Allen got eight carries with Breece Hall (quad) back in the lineup Sunday. Allen [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 8 9:14 AM PT",
-       "src": "rotoballer",
-       "title": "Breece Hall Expected to Split Carries in Week 9 Return",
-       "text": "New York Jets running back Breece Hall (quad) is expected to split carries roughly evenly with Braelon Allen against the [&#8230;]",
-       "grade": "caution"
-      }
-     ],
-     "gotham": 12.7,
-     "gotham_ros": 13.8,
-     "sleeper": 9.9,
-     "workload": "13/13/20/33/22/35/31/13",
-     "trend": -0.15
-    },
-    {
      "name": "Travis Kelce",
      "pos": "TE",
      "team": "KC",
@@ -1611,7 +1613,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #1 (872,424 in 24 h)"
+      "Sleeper adds #1 (883,998 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1685,7 +1687,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #6 (85,392 in 24 h)"
+      "Sleeper adds #6 (86,544 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1722,7 +1724,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #19 (46,116 in 24 h)"
+      "Sleeper adds #19 (46,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2668,7 +2670,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #2 (285,381 in 24 h)"
+      "Sleeper adds #2 (288,027 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2705,7 +2707,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #19 (46,116 in 24 h)"
+      "Sleeper adds #19 (46,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2742,7 +2744,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (43,576 in 24 h)"
+      "Sleeper adds #20 (44,120 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3178,49 +3180,6 @@
      "trend": 0.33
     },
     {
-     "name": "Jakobi Meyers",
-     "pos": "WR",
-     "team": "JAX",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 4:00 PM PT",
-       "src": "rotoballer",
-       "title": "Jakobi Meyers Cleared to Face the Titans on Sunday",
-       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) was limited in practice on Friday but has been removed from the final [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Fri Nov 13 1:47 PM PT",
-       "src": "RotoWire news",
-       "title": "Jakobi Meyers: Good to go this week",
-       "text": "Myers (ankle) doesn't have an injury designation for Sunday's matchup with Tennessee, ESPN's Michael DiRocco reports.",
-       "grade": "note"
-      },
-      {
-       "t": "Thu Nov 12 3:08 PM PT",
-       "src": "pft",
-       "title": "Jaguars get Jakobi Meyers, Travon Walker back at practice",
-       "text": "The Jaguars got a couple of their top players back on the practice field on Thursday.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 10.2,
-     "gotham_ros": 9.4,
-     "sleeper": 9.7,
-     "workload": "2/1/9/5/4/11/4/7",
-     "trend": 0.07
-    },
-    {
      "name": "Justin Jefferson",
      "pos": "WR",
      "team": "MIN",
@@ -3388,6 +3347,48 @@
      "sleeper": 20.0,
      "workload": "48/27/51/35/42/14/40/22/47",
      "trend": 0.06
+    },
+    {
+     "name": "Jakobi Meyers",
+     "pos": "WR",
+     "team": "JAX",
+     "slot": "BN",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 8:21 AM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers an Interesting Flex Option in Juicy Matchup With Titans",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) has been cleared to play, making him an intriguing flex option in a [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Nov 13 4:00 PM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers Cleared to Face the Titans on Sunday",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) was limited in practice on Friday but has been removed from the final [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Fri Nov 13 1:47 PM PT",
+       "src": "RotoWire news",
+       "title": "Jakobi Meyers: Good to go this week",
+       "text": "Myers (ankle) doesn't have an injury designation for Sunday's matchup with Tennessee, ESPN's Michael DiRocco reports.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 10.2,
+     "gotham_ros": 9.4,
+     "sleeper": 9.7,
+     "workload": "2/1/9/5/4/11/4/7",
+     "trend": 0.07
     },
     {
      "name": "DK Metcalf",
@@ -3733,7 +3734,7 @@
      "team": "NE",
      "why": [
       "good news",
-      "Sleeper adds #16 (48,705 in 24 h)"
+      "Sleeper adds #16 (49,344 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3777,7 +3778,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #14 (49,476 in 24 h)"
+      "Sleeper adds #14 (50,084 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3852,7 +3853,7 @@
      "team": "NE",
      "why": [
       "opening: A.J. Brown \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #23 (31,932 in 24 h)"
+      "Sleeper adds #23 (32,412 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3889,7 +3890,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #2 (285,381 in 24 h)"
+      "Sleeper adds #2 (288,027 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3926,7 +3927,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #19 (46,116 in 24 h)"
+      "Sleeper adds #19 (46,744 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4001,7 +4002,7 @@
      "team": "LA",
      "why": [
       "good news",
-      "Sleeper adds #7 (83,754 in 24 h)"
+      "Sleeper adds #7 (84,987 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -4045,7 +4046,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #6 (85,392 in 24 h)"
+      "Sleeper adds #6 (86,544 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4083,7 +4084,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #8 (72,396 in 24 h)"
+      "Sleeper adds #8 (73,314 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4231,41 +4232,6 @@
      "sleeper": 10.3,
      "workload": "5/8/5/7/8/5/9/13/8",
      "trend": 0.34
-    },
-    {
-     "name": "Keenan Allen",
-     "pos": "WR",
-     "team": "IND",
-     "marker": {
-      "count": 3,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 10:12 PM PT",
-       "src": "rotoballer",
-       "title": "Temper Expectations For Keenan Allen In 49ers Debut",
-       "text": "San Francisco 49ers wide receiver Keenan Allen will make his team debut on Sunday against the Cowboys after being acquired [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Keenan Allen: Expected to play Sunday",
-       "text": "Allen will play for the 49ers in Sunday's game at Dallas after being acquired in a trade earlier this week, David Lombardi of The San Francisco Standard reports.",
-       "grade": "good"
-      }
-     ],
-     "gotham": 9.9,
-     "gotham_ros": 10.9,
-     "sleeper": 6.4,
-     "workload": "7/5/10/10/11/3/7/9",
-     "trend": 0.06
     }
    ]
   }
