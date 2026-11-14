@@ -2,8 +2,9 @@
 absolutely do, so we don't miss them"; "what if they're really 10% but their workload is growing"; "bye weeks";
 "my competitors, for blocking purposes"). One list per league, built every Dispatch build, four kinds:
 
-  TALK NOW  - clears Dom's bar: 15%+ AND 2+ points a week better (Ratcliffe rest of season, his league's scoring) than the
-              weakest starter at the position, or a Scout pick / before-lock flag. Says free agent or waivers-until.
+  TALK NOW  - clears Dom's bar: 15%+ AND 2+ points a week better than the weakest starter at the position, in his league's
+              scoring, by ANY ONE expert (Nov 14, Dom): Ratcliffe or Clay rest of season, Koerner or Vegas this week - the row
+              names who flagged him - or a Scout pick / before-lock flag. Says free agent or waivers-until.
   WATCH     - 10-15% better, or under the bar but RISING (workload/role news from the alert feed). Cheapest now.
   COVER     - a hole in the next three weeks (bye or injury) the Scout found, with the best fill it priced.
   BACKUP    - (Oct 31, Dom) for every starter of Dom's tagged Q / D / O whose game hasn't started: who on his own bench
@@ -45,6 +46,10 @@ def scored(fn):
     except Exception: pass
     return out
 RAT, KOE = scored("ftn_scored.csv"), scored("koerner_scored.csv")
+# Nov 14 (Dom: "shouldn't we automatically just discuss anytime any of these experts come in line"): every expert gets a vote -
+# a free agent goes on the talk list when ANY ONE of Ratcliffe (rest of season), Clay (rest of season), Koerner (this week) or
+# Vegas (this week) has him 15%+ and 2+ points ahead of the starter he'd replace, in this league's scoring. The row says who flagged him.
+CLAY, VEG = scored("clay_scored.csv"), scored("vegas_scored.csv")
 SIDE = set()
 try:
     for _v in (load(O(R, "feeds", "sleeper_injuries.json"), {}) or {}).get("players", {}).values():
@@ -86,6 +91,16 @@ def pan(lgn, name, pos, team):
     except Exception: return None
 def koe(lgn, name):
     r = KOE.get((lgn, nk(name))); return fnum(r["wk"]) if r else None
+def clay_ros(lgn, name):
+    r = CLAY.get((lgn, nk(name)))
+    if not r: return None
+    v = [fnum(r.get(f"w{w}")) for w in range(W + 1, 18)]; v = [x for x in v if x]
+    return round(sum(v) / len(v), 2) if v else None
+def veg(lgn, name):
+    r = VEG.get((lgn, nk(name))); return fnum(r["wk"]) if r else None
+EXP = (("Ratcliffe", "rest of season"), ("Clay", f"rest of season, Weeks {W + 1}-17"), ("Koerner", "this week"), ("Vegas", "this week"))
+def votes(lgn, name, ros_r):
+    return {"Ratcliffe": ros_r, "Clay": clay_ros(lgn, name), "Koerner": koe(lgn, name), "Vegas": veg(lgn, name)}
 
 out = {"week": W, "built": M.get("built_pt"), "ratcliffe_read": RAT_AT, "koerner_read": KOE_AT, "leagues": {}}
 brief = []
@@ -123,27 +138,66 @@ for lab, key, lid, lgn, myid in LG:
         if k_ in OUTL: wk = 0.0   # Oct 31: an OUT man is a zero this week whatever the expert file says
         if k_ in SIDE: continue   # Nov 12: on IR / PUP / suspended - can't help, never a pickup to talk about (Croskey-Merritt showed while on IR)
         pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=ros or 0.0, wk=wk or 0.0, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
+    _inpool = {nk(p["name"]) for p in pool}
+    for _src in (CLAY, KOE, VEG):
+        for (lg_, k_), r in _src.items():
+            if not owner or lg_ != lgn or k_ in owner or k_ in _inpool or k_ in SIDE: continue
+            _inpool.add(k_)
+            pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=0.0, wk=0.0, rat_missing=True, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
     # Dom's weakest starter at each position (this week's lineup, Ratcliffe rest of season, his league's scoring)
     weak = {}
     for s in me_st:
         pos = s.get("pos"); wk, ros, _, _ = rat(lgn, s.get("player")); ros = pan(lgn, s.get("player"), pos, s.get("team")) or ros
         v = ros if ros is not None else s.get("ratcliffe")
         if pos and v is not None and (pos not in weak or v < weak[pos][1]): weak[pos] = (s.get("player"), v, wk)
+    weakx = {}
+    for s in me_st:
+        pos = s.get("pos")
+        if not pos: continue
+        _, ros_, _, _ = rat(lgn, s.get("player")); ros_ = pan(lgn, s.get("player"), pos, s.get("team")) or ros_
+        for ex, v in votes(lgn, s.get("player"), ros_).items():
+            if v is None: continue
+            if (ex, pos) not in weakx or v < weakx[(ex, pos)][1]: weakx[(ex, pos)] = (s.get("player"), v)
     talk, watch, cover, block = [], [], [], []
     rising = {nk(a.get("who")): a for a in ALR if a.get("lg") == lab and a.get("kind") == "rising" and a.get("active") is not False}
     prek = [a for a in ALR if a.get("lg") == lab and a.get("kind") == "radar_prekick" and a.get("active") is not False]
     board = load(O(R, f"dispatch_out/scout_state/scout_board_{key}.json"), {}) or {}
     scout_adds = {nk(a.get("name")): a for a in board.get("adds") or []}
+    SPANS = dict(EXP)
     for p in pool:
-        if p["pos"] not in weak: continue
-        wn, wv, wwk = weak[p["pos"]]
-        if not wv: continue
-        gain = p["ros"] - wv; pct = gain / wv
-        row = dict(name=p["name"], pos=p["pos"], team=p["team"], acq=p["acq"], over=wn, rat_ros=round(p["ros"], 1), over_ros=round(wv, 1),
-                   pct=round(100 * pct), gain=round(gain, 1), rat_wk=round(p["wk"], 1), koe_wk=koe(lgn, p["name"]),
-                   rising=(rising.get(nk(p["name"])) or {}).get("what"), scout=nk(p["name"]) in scout_adds)
-        if pct >= BAR and gain >= MINPTS: talk.append(row)
-        elif (pct >= WATCH_LO and gain >= 1.0) or (row["rising"] and pct >= 0): watch.append(row)
+        flags, nears = [], []
+        mine_v = votes(lgn, p["name"], None if p.get("rat_missing") else p["ros"])
+        for ex, v in mine_v.items():
+            w_ = weakx.get((ex, p["pos"]))
+            if v is None or not w_ or not w_[1]: continue
+            g_ = v - w_[1]; pc_ = g_ / w_[1]
+            f_ = dict(src=ex, span=SPANS[ex], his=round(v, 1), over=w_[0], over_v=round(w_[1], 1), pct=round(100 * pc_), gain=round(g_, 1))
+            if pc_ >= BAR and g_ >= MINPTS: flags.append(f_)
+            elif pc_ >= WATCH_LO and g_ >= 1.0: nears.append(f_)
+        rr = rising.get(nk(p["name"]))
+        if p["pos"] in weak and not p.get("rat_missing"):
+            wn, wv, wwk = weak[p["pos"]]
+        else: wn, wv = (flags or nears or [{}])[0].get("over"), None
+        if wv:
+            gain = p["ros"] - wv; pct = gain / wv
+        else:
+            lead = (flags or nears or [None])[0]
+            if not lead and not rr: continue
+            gain, pct = ((lead["gain"], lead["pct"] / 100) if lead else (0.0, 0.0))
+        row = dict(name=p["name"], pos=p["pos"], team=p["team"], acq=p["acq"], over=wn, rat_ros=(None if p.get("rat_missing") else round(p["ros"], 1)),
+                   over_ros=(round(wv, 1) if wv else None), pct=round(100 * pct), gain=round(gain, 1), rat_wk=round(p["wk"], 1), koe_wk=mine_v["Koerner"],
+                   clay_ros=mine_v["Clay"], vegas_wk=mine_v["Vegas"], flagged_by=[f["src"] for f in flags], flags=flags + nears,
+                   rising=(rr or {}).get("what"), scout=nk(p["name"]) in scout_adds)
+        if flags:
+            row["note"] = "Flagged by " + "; ".join(f"{f['src']} ({f['span']}: {f['his']} vs your {f['over']} {f['over_v']}, +{f['pct']}%)" for f in flags)
+            if "Ratcliffe" not in row["flagged_by"] and row["rat_ros"] is not None:
+                row["note"] += f"; Ratcliffe has him {row['rat_ros']} a game" + (f" vs {row['over_ros']}" if row["over_ros"] else "")
+            if not wv:   # no Ratcliffe line - lead with the expert who flagged him
+                row.update(over=flags[0]["over"], pct=flags[0]["pct"], gain=flags[0]["gain"])
+            talk.append(row)
+        elif nears or (rr and pct >= 0) or (wv and pct >= WATCH_LO and gain >= 1.0):
+            if nears and not wv: row.update(over=nears[0]["over"], pct=nears[0]["pct"], gain=nears[0]["gain"])
+            watch.append(row)
     # before-lock flags have their own section right under this one in the brief - not repeated here
     for k_, a in scout_adds.items():   # a Scout pick the simple test above missed - shown, never dropped silently
         if not any(nk(t["name"]) == k_ for t in talk) and (a.get("bar_pct") or 0) >= 100 * BAR and (a.get("gain") or 0) >= MINPTS:
@@ -232,8 +286,7 @@ for lab, key, lid, lgn, myid in LG:
     parts = []
     for t in talk[:4]:
         if t.get("pct") is None: parts.append(f"TALK NOW: {t['name']}, {t['acq']}" + (f", locks {t['deadline']}" if t.get("deadline") else "")); continue
-        parts.append(f"TALK NOW: {t['name']} ({t['pos']}, {t['team']}, {t['acq']}) - {t['pct']}% better than your {t['over']} over the rest of the season "
-                     f"(Ratcliffe {t['rat_ros']} vs {t['over_ros']} a game, your league's scoring)" if t.get("over_ros") else f"TALK NOW: {t['name']} - {t.get('note','')}")
+        parts.append(f"TALK NOW: {t['name']} ({t['pos']}, {t['team']}, {t['acq']}) - " + (t.get("note") or f"{t['pct']}% better than your {t['over']}"))
     for t in watch[:3]:
         if t.get("rat_ros") is None:
             parts.append(f"WATCH: {t['name']} ({t['pos']}, {t['acq']}) - {t.get('note','')}"); continue
@@ -275,6 +328,6 @@ if BRIEF:
     first, _, rest = s.partition("\n")
     rest = re.sub(r"\n*Players to talk about \(.*?\n\n", "\n\n", rest, count=1, flags=re.S)
     block_txt = (f"Players to talk about (every pickup to consider, the 10-15% watch list, holes in the next three weeks, and players to block; "
-                 f"priced on Ratcliffe's rest of season (check 1, no averaging; Clay's rest of season and Weeks 15-17 are the check); Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
+                 f"anyone ONE expert likes - Ratcliffe or Clay rest of season, Koerner or Vegas this week - 15%+ and 2+ points over your starter, named on each line; Ratcliffe still decides; Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
     open(bf, "w").write(first + "\n\n" + block_txt + rest.lstrip("\n"))
     print("TALK LIST added to the top of the brief")
