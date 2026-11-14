@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Sat Nov 14 2026 09:11 AM PT",
+ "built": "Sat Nov 14 2026 09:35 AM PT",
  "ratcliffe_read": "Sat Nov 14 2026 8:27 AM PT",
  "koerner_read": "Sat Nov 14 2026 9:04 AM PT",
  "leagues": {
@@ -11,7 +11,7 @@
      "pos": "K",
      "team": "TB",
      "acq": "Free agent",
-     "over": "Audric Estime",
+     "over": "Jordan Addison",
      "pct": 25,
      "gain": 5.9,
      "note": "Scout pick (rest of season): This week: Chase McLaughlin has a bye - no help this week",
@@ -24,10 +24,10 @@
      "pos": "TE",
      "team": "ATL",
      "acq": "Free agent",
-     "over": "Audric Estime",
+     "over": "Jordan Addison",
      "pct": 20,
      "gain": 2.8,
-     "note": "Scout pick (rest of season): This week vs your FLEX2 Dalton Kincaid: Ratcliffe 9.5 vs 10.7 \u00b7 Koerner 9.9 vs 9.7 \u00b7 Yahoo 9.0 vs 10.2 \u00b7 Gotham 8.6 vs 10.8 - mixed - Ratcliffe says worse",
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Dalton Kincaid: Ratcliffe 9.5 vs 10.7 \u00b7 Koerner 9.9 vs 9.7 \u00b7 Yahoo 9.1 vs 10.2 \u00b7 Gotham 8.6 vs 10.8 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:kylepitts",
      "first_seen": "Sat Nov 14 2026 07:53 AM PT"
@@ -35,15 +35,6 @@
    ],
    "watch": [],
    "cover": [
-    {
-     "title": "FLEX1, Weeks 10-11 Fill",
-     "target": "Target 12.4 pts",
-     "mark": "gold",
-     "why": "Full strength ~13.3 (Estime). Wk 10 Diggs ~11.2 (Estime has a worse matchup) \u00b7 Wk 11 Kelce ~13.6 (Estime has a worse matchup).",
-     "picks": [],
-     "id": "cover:flex1weeks1011fill",
-     "first_seen": "Thu Nov 12 2026 05:40 PM PT"
-    },
     {
      "title": "RB1, Week 11 Fill",
      "target": "Target 25.4 pts",
@@ -91,6 +82,10 @@
    ],
    "backup": [],
    "fa_tags": {
+    "Audric Estime": {
+     "tag": "No action needed",
+     "why": "Ratcliffe has him at 5.2 a game, below your Travis Etienne Jr. (13.2)"
+    },
     "Caleb Douglas": {
      "tag": "No action needed",
      "why": "Ratcliffe has him at 11.3 a game, below your Stefon Diggs (13.2)"
@@ -246,9 +241,9 @@
      "pos": "K",
      "team": "NYJ",
      "acq": "Free agent",
-     "over": "Audric Estime",
+     "over": "Jadarian Price",
      "pct": 20,
-     "gain": 4.7,
+     "gain": 4.0,
      "note": "Scout pick (rest of season): This week vs your K Will Reichard: Ratcliffe 8.2 vs 9.0 \u00b7 Koerner 7.5 vs 7.5 \u00b7 Yahoo 7.3 vs 8.1 - WORSE this week",
      "scout": true,
      "id": "watch:jasonsanders",
@@ -277,7 +272,12 @@
    ],
    "block": [],
    "backup": [],
-   "fa_tags": {}
+   "fa_tags": {
+    "Audric Estime": {
+     "tag": "No action needed",
+     "why": "Ratcliffe has him at 5.2 a game, below your Corey Kiner (6.7)"
+    }
+   }
   },
   "DK III": {
    "talk": [
@@ -286,17 +286,51 @@
      "pos": "RB",
      "team": "LAC",
      "acq": "free agent",
-     "over": "Corey Kiner",
+     "over": "Kaleb Johnson",
      "rat_ros": 10.1,
-     "over_ros": 6.7,
-     "pct": 51,
-     "gain": 3.4,
+     "over_ros": 5.1,
+     "pct": 98,
+     "gain": 5.0,
      "rat_wk": 6.9,
      "koe_wk": 8.45,
      "rising": null,
      "scout": false,
      "id": "talk:kimanividal",
      "first_seen": "Wed Nov 11 2026 03:10 PM PT"
+    },
+    {
+     "name": "Emanuel Wilson",
+     "pos": "RB",
+     "team": "SEA",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 8.6,
+     "over_ros": 5.1,
+     "pct": 68,
+     "gain": 3.5,
+     "rat_wk": 0.9,
+     "koe_wk": 0.43,
+     "rising": null,
+     "scout": false,
+     "id": "talk:emanuelwilson",
+     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
+    },
+    {
+     "name": "Ray Davis",
+     "pos": "RB",
+     "team": "BUF",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 7.3,
+     "over_ros": 5.1,
+     "pct": 42,
+     "gain": 2.2,
+     "rat_wk": 4.4,
+     "koe_wk": 3.14,
+     "rising": null,
+     "scout": false,
+     "id": "talk:raydavis",
+     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
     },
     {
      "name": "TB DEF",
@@ -331,21 +365,55 @@
    ],
    "watch": [
     {
-     "name": "Emanuel Wilson",
+     "name": "Tyjae Spears",
      "pos": "RB",
-     "team": "SEA",
+     "team": "TEN",
      "acq": "free agent",
-     "over": "Corey Kiner",
-     "rat_ros": 8.6,
-     "over_ros": 6.7,
-     "pct": 28,
+     "over": "Kaleb Johnson",
+     "rat_ros": 6.4,
+     "over_ros": 5.1,
+     "pct": 25,
+     "gain": 1.3,
+     "rat_wk": 5.2,
+     "koe_wk": 5.11,
+     "rising": "no game since Week 6 (2 team games missed) - and an expert already projects him for real work",
+     "scout": false,
+     "id": "watch:tyjaespears",
+     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
+    },
+    {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 7.0,
+     "over_ros": 5.1,
+     "pct": 37,
      "gain": 1.9,
-     "rat_wk": 0.9,
-     "koe_wk": 0.43,
+     "rat_wk": 3.5,
+     "koe_wk": 3.5,
      "rising": null,
      "scout": false,
-     "id": "watch:emanuelwilson",
-     "first_seen": "Sat Nov 14 2026 08:09 AM PT"
+     "id": "watch:jaylenwright",
+     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
+    },
+    {
+     "name": "Kendre Miller",
+     "pos": "RB",
+     "team": "DAL",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 6.6,
+     "over_ros": 5.1,
+     "pct": 30,
+     "gain": 1.5,
+     "rat_wk": 1.3,
+     "koe_wk": 2.85,
+     "rising": null,
+     "scout": false,
+     "id": "watch:kendremiller",
+     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
     }
    ],
    "cover": [
@@ -395,59 +463,7 @@
     }
    ],
    "block": [],
-   "backup": [
-    {
-     "starter": "David Montgomery",
-     "slot": "RB",
-     "pos": "RB",
-     "team": "HOU",
-     "status": "Q",
-     "wk": 5.31,
-     "locks": "Sun 10:00 AM",
-     "lock_utc": "2026-11-15T18:00:00+00:00",
-     "bench": [
-      {
-       "name": "Kaleb Johnson",
-       "pos": "RB",
-       "team": "GB",
-       "wk": 10.52,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-15T18:00:00+00:00"
-      }
-     ],
-     "fa": [
-      {
-       "name": "Kimani Vidal",
-       "pos": "RB",
-       "team": "LAC",
-       "wk": 6.9,
-       "koe": 8.45,
-       "locks": "Mon 5:15 PM",
-       "lock_utc": "2026-11-17T01:15:00+00:00"
-      },
-      {
-       "name": "Lan Larison",
-       "pos": "RB",
-       "team": "NE",
-       "wk": 6.8,
-       "koe": 5.33,
-       "locks": "Sun 6:30 AM",
-       "lock_utc": "2026-11-15T14:30:00+00:00"
-      },
-      {
-       "name": "Pierre Strong Jr.",
-       "pos": "RB",
-       "team": "GB",
-       "wk": 5.5,
-       "koe": 6.12,
-       "locks": "Sun 10:00 AM",
-       "lock_utc": "2026-11-15T18:00:00+00:00"
-      }
-     ],
-     "id": "backup:davidmontgomery",
-     "first_seen": "Sat Nov 14 2026 08:09 AM PT"
-    }
-   ],
+   "backup": [],
    "fa_tags": {}
   },
   "DK IV": {

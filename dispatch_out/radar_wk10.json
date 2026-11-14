@@ -1,48 +1,48 @@
 {
  "week": 10,
- "built": "Sat Nov 14 9:14 AM PT",
- "built_utc": "2026-11-14T17:14:23.335366+00:00",
+ "built": "Sat Nov 14 9:37 AM PT",
+ "built_utc": "2026-11-14T17:37:49.958949+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sat Nov 14 9:05 AM PT",
-   "pulled_ago": "9 min ago",
-   "items": 2830,
-   "newest": "1.1 h ago",
+   "pulled": "Sat Nov 14 9:32 AM PT",
+   "pulled_ago": "5 min ago",
+   "items": 2834,
+   "newest": "13 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sat Nov 14 9:05 AM PT",
-   "pulled_ago": "9 min ago",
-   "items": 7648,
-   "newest": "10 min ago",
+   "pulled": "Sat Nov 14 9:32 AM PT",
+   "pulled_ago": "5 min ago",
+   "items": 7653,
+   "newest": "8 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sat Nov 14 9:05 AM PT",
-   "pulled_ago": "9 min ago",
+   "pulled": "Sat Nov 14 9:32 AM PT",
+   "pulled_ago": "5 min ago",
    "items": 1876,
-   "newest": "29 min ago",
+   "newest": "53 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sat Nov 14 9:05 AM PT",
-   "pulled_ago": "9 min ago",
+   "pulled": "Sat Nov 14 9:32 AM PT",
+   "pulled_ago": "5 min ago",
    "items": 392,
-   "newest": "37 min ago",
+   "newest": "16 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sat Nov 14 9:05 AM PT",
-   "pulled_ago": "9 min ago",
+   "pulled": "Sat Nov 14 9:32 AM PT",
+   "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,16 +50,16 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sat Nov 14 9:11 AM PT",
+   "pulled": "Sat Nov 14 9:35 AM PT",
    "pulled_ago": "3 min ago",
-   "items": 769,
+   "items": 767,
    "newest": null,
    "warn": null,
    "failed": null
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sat Nov 14 2026 09:11 AM PT",
+   "pulled": "Sat Nov 14 2026 09:35 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sat Nov 14 8:45 AM PT",
-   "pulled_ago": "29 min ago",
+   "pulled_ago": "53 min ago",
    "items": 354,
    "newest": null,
    "warn": null,
@@ -87,7 +87,7 @@
      "name": "Travis Etienne Jr.",
      "pos": "RB",
      "team": "NO",
-     "slot": "IR",
+     "slot": "W/R/T",
      "marker": {
       "count": 5,
       "recency": 0,
@@ -258,7 +258,7 @@
      "name": "Dalton Kincaid",
      "pos": "TE",
      "team": "BUF",
-     "slot": "W/R/T",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -593,6 +593,236 @@
    ],
    "in": [
     {
+     "name": "Chris Rodriguez Jr.",
+     "pos": "RB",
+     "team": "JAX",
+     "why": [
+      "good news",
+      "Sleeper adds #7 (97,821 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 1:53 PM PT",
+       "src": "RotoWire news",
+       "title": "Chris Rodriguez: Cleared to face Titans on Sunday",
+       "text": "Rodriguez (hand) doesn't carry an injury designation for Sunday's game against the Titans, Michael DiRocco of ESPN.com reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 9.1,
+     "gotham_ros": 8.4,
+     "sleeper": 9.7,
+     "workload": "7/7/11/7/5/16/8/16",
+     "trend": 0.46,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Chris Brooks",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 4:22 PM PT",
+       "src": "RotoWire news",
+       "title": "Chris Brooks: Questionable to return for Week 10",
+       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 6.4,
+     "gotham_ros": 4.9,
+     "sleeper": 5.0,
+     "workload": "10/11/2/8",
+     "trend": -0.27,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 12:43 PM PT",
+       "src": "RotoWire news",
+       "title": "Tyjae Spears: Questionable after full practice",
+       "text": "Spears (knee) is listed as questionable for Sunday's game against the Jaguars after upgrading to full practice participation Friday, Jim Wyatt of the Titans' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 6.3,
+     "gotham_ros": 6.8,
+     "sleeper": 4.3,
+     "workload": "11/12/3/5/19/3",
+     "trend": -0.05,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jonathon Brooks",
+     "pos": "RB",
+     "team": "CAR",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 2,
+      "recency": 2,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Thu Nov 12 12:59 PM PT",
+       "src": "rotoballer",
+       "title": "Jonathon Brooks Completes Full Practice on Thursday",
+       "text": "Carolina Panthers running back Jonathon Brooks (groin) completed a full practice Thursday, according to Sheena Quick. The Panthers opened his [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Thu Nov 12 12:54 PM PT",
+       "src": "RotoWire news",
+       "title": "Jonathon Brooks: Full practice participant Thursday",
+       "text": "Brooks (groin) was a full practice participant Thursday.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 1.7,
+     "gotham_ros": 6.6,
+     "sleeper": 6.0,
+     "workload": "8/11",
+     "trend": 0.26,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 6:10 PM PT",
+       "src": "rotoballer",
+       "title": "Jaylen Wright is Cleared for Week 10",
+       "text": "Miami Dolphins running back Jaylen Wright (quad) doesn't carry an injury designation into Sunday's Week 10 matchup against the Indianapolis [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 3.6,
+     "gotham_ros": 3.9,
+     "sleeper": 3.6,
+     "workload": "1/4/5/6/10/4",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyler Goodson",
+     "pos": "RB",
+     "team": "DAL",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 1:33 PM PT",
+       "src": "RotoWire news",
+       "title": "Israel Abanikanda: Prepping for RB2 job",
+       "text": "Cowboys coach Brian Schottenheimer said Friday that Abanikanda likely will be promoted from the practice squad to replace Tyler Goodson (knee) as the No. 2 running back ahead of Sunday's matchup with San Francisco, Joe Hoyt of The Dallas Morning News reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 0.0,
+     "gotham_ros": 6.5,
+     "sleeper": null,
+     "workload": "9/5/10/14/14/17",
+     "trend": 0.53,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Deshaun Watson",
      "pos": "QB",
      "team": "CLE",
@@ -630,49 +860,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Chris Rodriguez Jr.",
-     "pos": "RB",
-     "team": "JAX",
-     "why": [
-      "good news",
-      "Sleeper adds #8 (91,404 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 1:53 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Rodriguez: Cleared to face Titans on Sunday",
-       "text": "Rodriguez (hand) doesn't carry an injury designation for Sunday's game against the Titans, Michael DiRocco of ESPN.com reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jaylen Warren",
-      "gotham": 20.2
-     },
-     "beats_floor": false,
-     "gotham": 9.1,
-     "gotham_ros": 8.4,
-     "sleeper": 9.7,
-     "workload": "7/7/11/7/5/16/8/16",
-     "trend": 0.46,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Mack Hollins",
      "pos": "WR",
      "team": "NE",
      "why": [
-      "Sleeper adds #25 (32,703 in 24 h)"
+      "Sleeper adds #25 (33,585 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -705,11 +897,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Adonai Mitchell",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 9:21 AM PT",
+       "src": "rotoballer",
+       "title": "Adonai Mitchell Expected to Play vs. Bills",
+       "text": "New York Jets wide receiver Adonai Mitchell (knee), who is listed as questionable for the Week 10 contest against the [&#8230;]",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Drake London",
+      "gotham": 13.7
+     },
+     "beats_floor": false,
+     "gotham": 9.1,
+     "gotham_ros": 9.3,
+     "sleeper": 7.7,
+     "workload": "3/13/4/10/8",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darren Waller",
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (293,157 in 24 h)"
+      "Sleeper adds #3 (299,331 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -729,8 +958,8 @@
       }
      ],
      "floor": {
-      "name": "Dalton Kincaid",
-      "gotham": 10.8
+      "name": "Travis Kelce",
+      "gotham": 12.1
      },
      "beats_floor": false,
      "gotham": 9.1,
@@ -746,7 +975,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #17 (50,768 in 24 h)"
+      "Sleeper adds #17 (52,256 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -783,7 +1012,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #16 (51,496 in 24 h)"
+      "Sleeper adds #16 (52,936 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -814,246 +1043,46 @@
      "trend": 0.42,
      "yahoo": null,
      "acq": "unverified"
-    },
+    }
+   ],
+   "opp": [
     {
-     "name": "Chig Okonkwo",
-     "pos": "TE",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 10 3:56 PM PT",
-       "src": "RotoWire news",
-       "title": "Chig Okonkwo: Turns in full practice",
-       "text": "Okonkwo (hip) was a full participant in Tuesday's practice.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Dalton Kincaid",
-      "gotham": 10.8
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 8.4,
-     "sleeper": 8.7,
-     "workload": "3/4/6/7/5/7/8",
-     "trend": 0.44,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyler Higbee",
-     "pos": "TE",
-     "team": "LA",
-     "why": [
-      "good news",
-      "Sleeper adds #7 (91,782 in 24 h)"
-     ],
+     "name": "Omar Cooper Jr.",
+     "pos": "WR",
+     "team": "NYJ",
      "marker": {
       "count": 3,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 4:31 PM PT",
-       "src": "rotoballer",
-       "title": "Tyler Higbee Cleared to Play Sunday",
-       "text": "Los Angeles Rams tight end Tyler Higbee (illness) was limited in practice on Friday but has been removed from the [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Fri Nov 13 1:59 PM PT",
-       "src": "RotoWire news",
-       "title": "Colby Parkinson: Ready to play",
-       "text": "Colby Parkinson (rib) and Tyler Higbee (illness) have been cleared to play in Sunday's game against the Cardinals, while fellow tight end Davis Allen (oblique) is listed as questionable, Sarah Barshop of ESPN.com reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Dalton Kincaid",
-      "gotham": 10.8
-     },
-     "beats_floor": false,
-     "gotham": 8.7,
-     "gotham_ros": 8.4,
-     "sleeper": 8.6,
-     "workload": "12/6/6/4/3/2/6",
-     "trend": -0.24,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Colby Parkinson",
-     "pos": "TE",
-     "team": "LA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 5:12 PM PT",
-       "src": "rotoballer",
-       "title": "Colby Parkinson Cleared to Play in Week 10",
-       "text": "Los Angeles Rams tight end Colby Parkinson (ribs) practiced in full on Friday and has been cleared to play in [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Fri Nov 13 1:54 PM PT",
-       "src": "RotoWire news",
-       "title": "Tyler Higbee: Cleared for action",
-       "text": "Higbee (illness) and Colby Parkinson (rib) have both been cleared to play in Sunday's game against the Cardinals, while fellow tight end Davis Allen (oblique) is listed as questionable, Sarah Barshop of ESPN.com reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Dalton Kincaid",
-      "gotham": 10.8
-     },
-     "beats_floor": false,
-     "gotham": 6.9,
-     "gotham_ros": 6.7,
-     "sleeper": 7.4,
-     "workload": "3/2/2/2/8/6/5",
-     "trend": 0.51,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 6:05 AM PT",
-       "src": "rotoballer",
-       "title": "Rashid Shaheed Logs Another Full Practice on Thursday",
-       "text": "Seattle Seahawks wide receiver Rashid Shaheed (knee) was a full participant in Thursday's practice and appears on track to return [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 13.7
-     },
-     "beats_floor": false,
-     "gotham": 7.2,
-     "gotham_ros": 7.1,
-     "sleeper": 6.6,
-     "workload": "3/6/3/3/5/8/4",
-     "trend": 0.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Laquon Treadwell",
-     "pos": "WR",
-     "team": "IND",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 11:36 AM PT",
-       "src": "rotoballer",
-       "title": "Laquon Treadwell Primed for Bigger Role Starting in Week 10",
-       "text": "Indianapolis wide receiver Laquon Treadwell should have a bigger offensive role beginning in Week 10 against Miami, so his fantasy [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Drake London",
-      "gotham": 13.7
-     },
-     "beats_floor": false,
-     "gotham": 3.9,
-     "gotham_ros": 4.0,
-     "sleeper": 6.5,
-     "workload": "1/3/1/7/9/5/2/2/1",
-     "trend": -0.63,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Chris Brooks",
-     "pos": "RB",
-     "team": "GB",
-     "why": [
-      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "gold",
       "grades": [
-       "opening"
+       "caution",
+       "good",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Fri Nov 13 4:22 PM PT",
+       "t": "Sat Nov 14 9:15 AM PT",
        "src": "RotoWire news",
-       "title": "Chris Brooks: Questionable to return for Week 10",
-       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
+       "title": "Omar Cooper Jr.: Expected to play Sunday",
+       "text": "Cooper (ankle), who is listed as questionable for Sunday's game against the Bills, is expected to be available, Matt Zenitz of CBS Sports reports.",
+       "grade": "good"
+      },
+      {
+       "t": "Sat Nov 14 9:15 AM PT",
+       "src": "ESPN injury report",
+       "title": "Omar Cooper Jr.: Questionable (Ankle)",
+       "text": "Cooper (ankle), who is listed as questionable for Sunday's game against the Bills, is expected to be available, Matt Zenitz of CBS Sports reports.",
        "grade": "caution"
       }
      ],
-     "floor": {
-      "name": "Jaylen Warren",
-      "gotham": 20.2
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 4.9,
-     "sleeper": 5.0,
-     "workload": "10/11/2/8",
-     "trend": -0.27,
-     "yahoo": null,
-     "acq": "unverified"
+     "gotham": 14.3,
+     "gotham_ros": 15.5,
+     "sleeper": 8.6,
+     "workload": "8/6/11",
+     "trend": 0.33
     }
-   ],
-   "opp": []
+   ]
   },
   "DK II": {
    "key": "WINNERS",
@@ -1064,7 +1093,7 @@
      "name": "Travis Etienne Jr.",
      "pos": "RB",
      "team": "NO",
-     "slot": "IR",
+     "slot": "RB",
      "marker": {
       "count": 5,
       "recency": 0,
@@ -1488,7 +1517,7 @@
      "name": "Jadarian Price",
      "pos": "RB",
      "team": "SEA",
-     "slot": "RB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 1,
@@ -1575,7 +1604,7 @@
      "pos": "RB",
      "team": "KC",
      "why": [
-      "Sleeper adds #1 (1,219,671 in 24 h)"
+      "Sleeper adds #1 (1,319,787 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1595,8 +1624,8 @@
       }
      ],
      "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.9
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
      },
      "beats_floor": true,
      "gotham": 7.7,
@@ -1626,14 +1655,14 @@
       {
        "t": "Sat Nov 14 9:02 AM PT",
        "src": "rotoballer",
-       "title": "Kaleb Johnson a Top Pick-Up for Fantasy Managers Ahead of Week 10",
+       "title": "Kaleb Johnson a Top Pickup for Fantasy Managers Ahead of Week 10",
        "text": "Green Bay Packers running back Kaleb Johnson is a very appealing waiver wire target with the potential to operate as [&#8230;]",
        "grade": "note"
       }
      ],
      "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.9
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
      },
      "beats_floor": true,
      "gotham": 1.9,
@@ -1649,7 +1678,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #5 (109,872 in 24 h)"
+      "Sleeper adds #5 (117,684 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1669,10 +1698,10 @@
       }
      ],
      "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.9
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
      },
-     "beats_floor": false,
+     "beats_floor": true,
      "gotham": 9.7,
      "gotham_ros": 9.8,
      "sleeper": 8.5,
@@ -1682,11 +1711,159 @@
      "acq": "unverified"
     },
     {
+     "name": "Chris Brooks",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 4:22 PM PT",
+       "src": "RotoWire news",
+       "title": "Chris Brooks: Questionable to return for Week 10",
+       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 6.4,
+     "gotham_ros": 4.9,
+     "sleeper": 5.0,
+     "workload": "10/11/2/8",
+     "trend": -0.27,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 12:43 PM PT",
+       "src": "RotoWire news",
+       "title": "Tyjae Spears: Questionable after full practice",
+       "text": "Spears (knee) is listed as questionable for Sunday's game against the Jaguars after upgrading to full practice participation Friday, Jim Wyatt of the Titans' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 6.3,
+     "gotham_ros": 6.8,
+     "sleeper": 4.3,
+     "workload": "11/12/3/5/19/3",
+     "trend": -0.05,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 6:10 PM PT",
+       "src": "rotoballer",
+       "title": "Jaylen Wright is Cleared for Week 10",
+       "text": "Miami Dolphins running back Jaylen Wright (quad) doesn't carry an injury designation into Sunday's Week 10 matchup against the Indianapolis [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 3.6,
+     "gotham_ros": 3.9,
+     "sleeper": 3.6,
+     "workload": "1/4/5/6/10/4",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyler Goodson",
+     "pos": "RB",
+     "team": "DAL",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 1:33 PM PT",
+       "src": "RotoWire news",
+       "title": "Israel Abanikanda: Prepping for RB2 job",
+       "text": "Cowboys coach Brian Schottenheimer said Friday that Abanikanda likely will be promoted from the practice squad to replace Tyler Goodson (knee) as the No. 2 running back ahead of Sunday's matchup with San Francisco, Joe Hoyt of The Dallas Morning News reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 0.0,
+     "gotham_ros": 6.5,
+     "sleeper": null,
+     "workload": "9/5/10/14/14/17",
+     "trend": 0.53,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Elic Ayomanor",
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #17 (50,768 in 24 h)"
+      "Sleeper adds #17 (52,256 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1800,80 +1977,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Chris Brooks",
-     "pos": "RB",
-     "team": "GB",
-     "why": [
-      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 4:22 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Brooks: Questionable to return for Week 10",
-       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
-       "grade": "caution"
-      }
-     ],
-     "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.9
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 4.9,
-     "sleeper": 5.0,
-     "workload": "10/11/2/8",
-     "trend": -0.27,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyjae Spears",
-     "pos": "RB",
-     "team": "TEN",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 12:43 PM PT",
-       "src": "RotoWire news",
-       "title": "Tyjae Spears: Questionable after full practice",
-       "text": "Spears (knee) is listed as questionable for Sunday's game against the Jaguars after upgrading to full practice participation Friday, Jim Wyatt of the Titans' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jadarian Price",
-      "gotham": 9.9
-     },
-     "beats_floor": false,
-     "gotham": 6.3,
-     "gotham_ros": 6.8,
-     "sleeper": 4.3,
-     "workload": "11/12/3/5/19/3",
-     "trend": -0.05,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Tre' Harris",
      "pos": "WR",
      "team": "LAC",
@@ -1944,94 +2047,6 @@
      "sleeper": 5.4,
      "workload": "1/10/4/2/6/4/3/2",
      "trend": -0.43,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Xavier Legette",
-     "pos": "WR",
-     "team": "CAR",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Nov 12 1:09 PM PT",
-       "src": "rotoballer",
-       "title": "Xavier Legette Moves Closer to Return With Full Practice",
-       "text": "Carolina Panthers wide receiver Xavier Legette (knee) practiced in full Thursday, Sheena Quick reported. Legette last played in Week 2 [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Thu Nov 12 12:59 PM PT",
-       "src": "RotoWire news",
-       "title": "Xavier Legette: Logs full practice",
-       "text": "Legette (knee) was a full practice participant Thursday.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 5.6,
-     "gotham_ros": 5.5,
-     "sleeper": 3.3,
-     "workload": "2/5",
-     "trend": 0.8,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 2:10 PM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks Cleared to Play on Thursday",
-       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Treylon Burks: Cleared for TNF",
-       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Germie Bernard",
-      "gotham": 11.6
-     },
-     "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 6.7,
-     "sleeper": 5.5,
-     "workload": "1/3/3/6/7/5/3",
-     "trend": -0.05,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2211,7 +2226,7 @@
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
-     "slot": "RB",
+     "slot": "BN",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -2337,7 +2352,7 @@
      "name": "Kaleb Johnson",
      "pos": "RB",
      "team": "GB",
-     "slot": "BN",
+     "slot": "RB",
      "marker": {
       "count": 1,
       "recency": 0,
@@ -2350,7 +2365,7 @@
       {
        "t": "Sat Nov 14 9:02 AM PT",
        "src": "rotoballer",
-       "title": "Kaleb Johnson a Top Pick-Up for Fantasy Managers Ahead of Week 10",
+       "title": "Kaleb Johnson a Top Pickup for Fantasy Managers Ahead of Week 10",
        "text": "Green Bay Packers running back Kaleb Johnson is a very appealing waiver wire target with the potential to operate as [&#8230;]",
        "grade": "note"
       },
@@ -2614,8 +2629,8 @@
       }
      ],
      "floor": {
-      "name": "Rachaad White",
-      "gotham": 8.9
+      "name": "Kaleb Johnson",
+      "gotham": 1.9
      },
      "beats_floor": true,
      "gotham": 9.3,
@@ -2631,7 +2646,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (293,157 in 24 h)"
+      "Sleeper adds #3 (299,331 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2668,7 +2683,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #17 (50,768 in 24 h)"
+      "Sleeper adds #17 (52,256 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2701,11 +2716,122 @@
      "acq": "unverified"
     },
     {
+     "name": "Chris Brooks",
+     "pos": "RB",
+     "team": "GB",
+     "why": [
+      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 4:22 PM PT",
+       "src": "RotoWire news",
+       "title": "Chris Brooks: Questionable to return for Week 10",
+       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
+       "grade": "caution"
+      }
+     ],
+     "floor": {
+      "name": "Kaleb Johnson",
+      "gotham": 1.9
+     },
+     "beats_floor": true,
+     "gotham": 6.4,
+     "gotham_ros": 4.9,
+     "sleeper": 5.0,
+     "workload": "10/11/2/8",
+     "trend": -0.27,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 12:43 PM PT",
+       "src": "RotoWire news",
+       "title": "Tyjae Spears: Questionable after full practice",
+       "text": "Spears (knee) is listed as questionable for Sunday's game against the Jaguars after upgrading to full practice participation Friday, Jim Wyatt of the Titans' official site reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Kaleb Johnson",
+      "gotham": 1.9
+     },
+     "beats_floor": true,
+     "gotham": 6.3,
+     "gotham_ros": 6.8,
+     "sleeper": 4.3,
+     "workload": "11/12/3/5/19/3",
+     "trend": -0.05,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 6:10 PM PT",
+       "src": "rotoballer",
+       "title": "Jaylen Wright is Cleared for Week 10",
+       "text": "Miami Dolphins running back Jaylen Wright (quad) doesn't carry an injury designation into Sunday's Week 10 matchup against the Indianapolis [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Kaleb Johnson",
+      "gotham": 1.9
+     },
+     "beats_floor": true,
+     "gotham": 3.6,
+     "gotham_ros": 3.9,
+     "sleeper": 3.6,
+     "workload": "1/4/5/6/10/4",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Fernando Mendoza",
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #20 (44,104 in 24 h)"
+      "Sleeper adds #20 (45,264 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2815,80 +2941,6 @@
      "sleeper": 6.5,
      "workload": "1/3/1/7/9/5/2/2/1",
      "trend": -0.63,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Chris Brooks",
-     "pos": "RB",
-     "team": "GB",
-     "why": [
-      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 4:22 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Brooks: Questionable to return for Week 10",
-       "text": "Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, Wes Hodkiewicz of the Packers' official site reports.",
-       "grade": "caution"
-      }
-     ],
-     "floor": {
-      "name": "Rachaad White",
-      "gotham": 8.9
-     },
-     "beats_floor": false,
-     "gotham": 6.4,
-     "gotham_ros": 4.9,
-     "sleeper": 5.0,
-     "workload": "10/11/2/8",
-     "trend": -0.27,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyjae Spears",
-     "pos": "RB",
-     "team": "TEN",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 12:43 PM PT",
-       "src": "RotoWire news",
-       "title": "Tyjae Spears: Questionable after full practice",
-       "text": "Spears (knee) is listed as questionable for Sunday's game against the Jaguars after upgrading to full practice participation Friday, Jim Wyatt of the Titans' official site reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Rachaad White",
-      "gotham": 8.9
-     },
-     "beats_floor": false,
-     "gotham": 6.3,
-     "gotham_ros": 6.8,
-     "sleeper": 4.3,
-     "workload": "11/12/3/5/19/3",
-     "trend": -0.05,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3009,50 +3061,6 @@
      "trend": 0.8,
      "yahoo": null,
      "acq": "unverified"
-    },
-    {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 11 2:10 PM PT",
-       "src": "rotoballer",
-       "title": "Treylon Burks Cleared to Play on Thursday",
-       "text": "Washington Commanders wide receiver Treylon Burks (foot) did not practice on Wednesday, but he was cleared to play on Thursday [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Wed Nov 11 2:06 PM PT",
-       "src": "RotoWire news",
-       "title": "Treylon Burks: Cleared for TNF",
-       "text": "Burks (foot) doesn't have an injury designation for Thursday night's game against the Giants.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.3
-     },
-     "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 6.7,
-     "sleeper": 5.5,
-     "workload": "1/3/3/6/7/5/3",
-     "trend": -0.05,
-     "yahoo": null,
-     "acq": "unverified"
     }
    ],
    "opp": []
@@ -3062,6 +3070,50 @@
    "opponent": "Lin's Team \ud83c\udfc8",
    "unread": [],
    "own": [
+    {
+     "name": "Omar Cooper Jr.",
+     "pos": "WR",
+     "team": "NYJ",
+     "slot": "BN",
+     "marker": {
+      "count": 3,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution",
+       "good",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 9:15 AM PT",
+       "src": "RotoWire news",
+       "title": "Omar Cooper Jr.: Expected to play Sunday",
+       "text": "Cooper (ankle), who is listed as questionable for Sunday's game against the Bills, is expected to be available, Matt Zenitz of CBS Sports reports.",
+       "grade": "good"
+      },
+      {
+       "t": "Sat Nov 14 9:15 AM PT",
+       "src": "ESPN injury report",
+       "title": "Omar Cooper Jr.: Questionable (Ankle)",
+       "text": "Cooper (ankle), who is listed as questionable for Sunday's game against the Bills, is expected to be available, Matt Zenitz of CBS Sports reports.",
+       "grade": "caution"
+      },
+      {
+       "t": "Sat Nov 14 8:41 AM PT",
+       "src": "rotoballer",
+       "title": "Omar Cooper Jr. Is a Conditional Flex in Deep PPR Leagues",
+       "text": "New York Jets wide receiver Omar Cooper Jr. (ankle) caught both passes that moved the chains on third down at [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 14.2,
+     "gotham_ros": 15.4,
+     "sleeper": 8.5,
+     "workload": "8/6/11",
+     "trend": 0.33
+    },
     {
      "name": "Justin Jefferson",
      "pos": "WR",
@@ -3272,48 +3324,6 @@
      "sleeper": 20.0,
      "workload": "48/27/51/35/42/14/40/22/47",
      "trend": 0.06
-    },
-    {
-     "name": "Omar Cooper Jr.",
-     "pos": "WR",
-     "team": "NYJ",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 14 8:41 AM PT",
-       "src": "rotoballer",
-       "title": "Omar Cooper Jr. Is a Conditional Flex in Deep PPR Leagues",
-       "text": "New York Jets wide receiver Omar Cooper Jr. (ankle) caught both passes that moved the chains on third down at [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 3:47 PM PT",
-       "src": "rotoballer",
-       "title": "Omar Cooper Jr. Questionable to Play in Week 10",
-       "text": "New York Jets rookie first-round wide receiver Omar Cooper Jr. (ankle) is listed as questionable for Sunday's Week 10 game [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 13 1:19 PM PT",
-       "src": "RotoWire news",
-       "title": "Omar Cooper Jr.: Deemed questionable for Sunday",
-       "text": "Cooper (ankle), who was a full participant in Friday's practice, is listed as questionable for Sunday's game against the Bills.",
-       "grade": "caution"
-      }
-     ],
-     "gotham": 14.2,
-     "gotham_ros": 15.4,
-     "sleeper": 8.5,
-     "workload": "8/6/11",
-     "trend": 0.33
     },
     {
      "name": "Jakobi Meyers",
@@ -3659,7 +3669,7 @@
      "team": "NE",
      "why": [
       "good news",
-      "Sleeper adds #13 (52,578 in 24 h)"
+      "Sleeper adds #13 (53,919 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3703,7 +3713,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #14 (52,216 in 24 h)"
+      "Sleeper adds #14 (53,604 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3777,7 +3787,7 @@
      "pos": "WR",
      "team": "NE",
      "why": [
-      "Sleeper adds #25 (32,703 in 24 h)"
+      "Sleeper adds #25 (33,585 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3810,11 +3820,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Adonai Mitchell",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "opening: Garrett Wilson \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 14 9:21 AM PT",
+       "src": "rotoballer",
+       "title": "Adonai Mitchell Expected to Play vs. Bills",
+       "text": "New York Jets wide receiver Adonai Mitchell (knee), who is listed as questionable for the Week 10 contest against the [&#8230;]",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "DK Metcalf",
+      "gotham": 11.5
+     },
+     "beats_floor": false,
+     "gotham": 9.1,
+     "gotham_ros": 9.3,
+     "sleeper": 7.7,
+     "workload": "3/13/4/10/8",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darren Waller",
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (293,157 in 24 h)"
+      "Sleeper adds #3 (299,331 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3851,7 +3898,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #17 (50,768 in 24 h)"
+      "Sleeper adds #17 (52,256 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3926,7 +3973,7 @@
      "team": "LA",
      "why": [
       "good news",
-      "Sleeper adds #7 (91,782 in 24 h)"
+      "Sleeper adds #8 (95,058 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -3970,7 +4017,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #5 (109,872 in 24 h)"
+      "Sleeper adds #5 (117,684 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4008,7 +4055,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #8 (91,404 in 24 h)"
+      "Sleeper adds #7 (97,821 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4081,43 +4128,6 @@
      "sleeper": 7.4,
      "workload": "3/2/2/2/8/6/5",
      "trend": 0.51,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Kaleb Johnson",
-     "pos": "RB",
-     "team": "GB",
-     "why": [
-      "opening: MarShawn Lloyd \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 14 9:02 AM PT",
-       "src": "rotoballer",
-       "title": "Kaleb Johnson a Top Pick-Up for Fantasy Managers Ahead of Week 10",
-       "text": "Green Bay Packers running back Kaleb Johnson is a very appealing waiver wire target with the potential to operate as [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 9.3
-     },
-     "beats_floor": false,
-     "gotham": 1.4,
-     "gotham_ros": 4.2,
-     "sleeper": 7.4,
-     "workload": "0/8/12/11/7/1/17",
-     "trend": 0.63,
      "yahoo": null,
      "acq": "unverified"
     }
