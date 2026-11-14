@@ -40,7 +40,7 @@ WEEKS_BACK, SIZE = 4, 3
 # Nov 12 4:10 PM (Dom: "I'll rely on you to make the adjustment ... put the check marks so I know which ones we're actually using"):
 # TWO LISTS, one per job. RotoBaller and Vegas only look at this week, and RotoBaller has no graded track record yet (first read Nov 8):
 #   LINEUPS (this week):          1 Ratcliffe decides, checks 2 Koerner (FantasyPros #2, our 3rd best Wks 6-9) and 3 Vegas (the market)
-#   PICKUPS / DROPS / PLAYOFFS:   1 Ratcliffe's rest-of-season number decides, check 2 Clay's Weeks 15-17 (the only playoff-week numbers)
+#   PICKUPS / DROPS / PLAYOFFS:   1 Ratcliffe's rest-of-season number decides, check 2 Clay's rest of season and Weeks 15-17 (Nov 14, Dom: Clay is the full rest-of-season second opinion)
 # Either list: a check 2+ points off Ratcliffe = stop and talk, never a filter. RotoBaller stays on the page as a test source.
 ROLES = ("ratcliffe", "koerner", "vegas")         # lineups: check 1, 2, 3
 PO_ROLES = ("ratcliffe", "clay")                  # pickups and playoffs: check 1 (rest of season), check 2 (Clay Weeks 15-17)
@@ -158,7 +158,7 @@ class Panel:
             try:
                 json.dump({"order": self.order, "accuracy_order": order, "members": list(ROLES), "members_po": list(PO_ROLES), "graded_weeks": self.grades["weeks"], "players": self.grades["players"], "miss": m, "bias": self.grades.get("bias", {}), "pct": self.grades.get("pct", {}), "notes": self.notes,
                            "basis": self.grades.get("basis", ""),
-                           "rule": "Nov 12 4:10 PM (Dom): no averaging, two lists - LINEUPS: 1 Ratcliffe decides, checks 2 Koerner and 3 Vegas; PICKUPS/PLAYOFFS: 1 Ratcliffe rest of season decides, check 2 Clay Weeks 15-17. A check 2+ points off Ratcliffe = stop and talk; the rest are reference, ordered by accuracy over the last 4 graded weeks",
+                           "rule": "Nov 12 4:10 PM (Dom): no averaging, two lists - LINEUPS: 1 Ratcliffe decides, checks 2 Koerner and 3 Vegas; PICKUPS/PLAYOFFS: 1 Ratcliffe rest of season decides, check 2 Clay rest of season and Weeks 15-17 (Nov 14). A check 2+ points off Ratcliffe = stop and talk; the rest are reference, ordered by accuracy over the last 4 graded weeks",
                            "built": datetime.datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%a %b %-d %Y %-I:%M %p PT")}, open(fp, "w"), indent=1)
             except Exception: pass
         return list(ROLES)
@@ -238,7 +238,7 @@ class Panel:
     def summary(self):
         m = self.grades["miss"]
         if self.waiting: self.notes.append("; ".join(f"{NAME[s]} has Week {w} numbers only - waits for Week {self.start}, next source steps in" for s, w in self.waiting.items() if s in self.members))
-        return (f"Panel: lineups 1 {NAME[ROLES[0]]} decides, checks 2 {NAME[ROLES[1]]} and 3 {NAME[ROLES[2]]}; pickups/playoffs 1 {NAME[PO_ROLES[0]]} rest of season, check 2 {NAME[PO_ROLES[1]]} Weeks 15-17 (accuracy, points missed per player, {self.grades['players']} player-games, "
+        return (f"Panel: lineups 1 {NAME[ROLES[0]]} decides, checks 2 {NAME[ROLES[1]]} and 3 {NAME[ROLES[2]]}; pickups/playoffs 1 {NAME[PO_ROLES[0]]} rest of season, check 2 {NAME[PO_ROLES[1]]} rest of season + Weeks 15-17 (accuracy, points missed per player, {self.grades['players']} player-games, "
                 f"Week {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
 
 if __name__ == "__main__":

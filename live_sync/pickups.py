@@ -375,6 +375,9 @@ def grade(n, key, d, MY, NEED):
     TB, RL, QQ = team_line(key, tm, pos)
     cw = d.get("_clay_wks") or {}; po_w = [cw.get(w) for w in (15, 16, 17) if cw.get(w)]
     po = round(sum(po_w) / len(po_w), 1) if po_w else None
+    # Nov 14 (Dom): Clay is the full rest-of-season second opinion next to Ratcliffe, not only Weeks 15-17
+    ros_w = [cw.get(w) for w in range(START, 18) if cw.get(w)]
+    cros = round(sum(ros_w) / len(ros_w), 1) if ros_w else None
     now_ = xval(n, key, "koerner") or xval(n, key, "vegas") or (cw.get(START) if cw else None)
     rising = len(U) == 3 and (s[2] - s[0] >= 10) and s[2] >= 55
     split = bool(RL and RL.get("split")); qb_out = bool(QQ and QQ.get("out"))
@@ -413,11 +416,16 @@ def grade(n, key, d, MY, NEED):
     # Nov 12 4:10 PM (Dom): a pickup is a playoff decision - Ratcliffe's rest-of-season number decides, Clay's Weeks 15-17 is the check;
     # 2+ points apart = stop and talk (never a filter). The this-week checks (Koerner, Vegas) still show, for a one-week fill.
     chk_flag = None; rros = PAN.V["ratcliffe"].get((int(n), key))
+    if pos in SKILL and rros and cros is not None:
+        gr_ = cros - rros
+        why.append(f"Rest-of-season check: Ratcliffe {rros:.1f} a game · Clay {cros:.1f} (Weeks {START}-17)"
+                   + (f" - STOP AND TALK: Clay {'higher' if gr_ > 0 else 'lower'} by {abs(gr_):.1f}" if abs(gr_) >= 2 else " - check agrees"))
+        chk_flag = abs(gr_) >= 2
     if pos in SKILL and rros and po is not None:
         gap_ = po - rros
         why.append(f"Playoff check: Ratcliffe rest of season {rros:.1f} a game · Clay Weeks 15-17 {po:.1f}"
                    + (f" - STOP AND TALK: Clay {'higher' if gap_ > 0 else 'lower'} by {abs(gap_):.1f}" if abs(gap_) >= 2 else " - check agrees"))
-        chk_flag = abs(gap_) >= 2
+        chk_flag = bool(chk_flag) or abs(gap_) >= 2
     rwk = RATWK.get((n, key)); ck = PAN.checks(n, key); wk_flag = None
     if rwk is not None and ck:
         far = {XNAME[s2]: v for s2, v in ck.items() if abs(v - rwk) >= 2}
