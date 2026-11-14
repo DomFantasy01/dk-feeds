@@ -1,47 +1,47 @@
 {
  "week": 10,
- "built": "Sat Nov 14 12:38 PM PT",
- "built_utc": "2026-11-14T20:38:40.268025+00:00",
+ "built": "Sat Nov 14 1:12 PM PT",
+ "built_utc": "2026-11-14T21:12:10.191654+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sat Nov 14 12:33 PM PT",
+   "pulled": "Sat Nov 14 1:06 PM PT",
    "pulled_ago": "5 min ago",
    "items": 2853,
-   "newest": "30 min ago",
+   "newest": "1.1 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sat Nov 14 12:33 PM PT",
+   "pulled": "Sat Nov 14 1:06 PM PT",
    "pulled_ago": "5 min ago",
-   "items": 7687,
-   "newest": "8 min ago",
+   "items": 7689,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sat Nov 14 12:33 PM PT",
+   "pulled": "Sat Nov 14 1:06 PM PT",
    "pulled_ago": "5 min ago",
    "items": 1879,
-   "newest": "7 min ago",
+   "newest": "40 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sat Nov 14 12:33 PM PT",
+   "pulled": "Sat Nov 14 1:06 PM PT",
    "pulled_ago": "5 min ago",
    "items": 396,
-   "newest": "31 min ago",
+   "newest": "1.1 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sat Nov 14 12:33 PM PT",
+   "pulled": "Sat Nov 14 1:06 PM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sat Nov 14 12:36 PM PT",
+   "pulled": "Sat Nov 14 1:10 PM PT",
    "pulled_ago": "2 min ago",
    "items": 767,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sat Nov 14 2026 12:36 PM PT",
+   "pulled": "Sat Nov 14 2026 01:10 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,9 +68,9 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Sat Nov 14 11:13 AM PT",
-   "pulled_ago": "1.4 h ago",
-   "items": 352,
+   "pulled": "Sat Nov 14 12:45 PM PT",
+   "pulled_ago": "27 min ago",
+   "items": 351,
    "newest": null,
    "warn": null,
    "failed": null
@@ -166,7 +166,7 @@
      ],
      "gotham": 8.1,
      "gotham_ros": 8.5,
-     "sleeper": 9.8,
+     "sleeper": 10.0,
      "workload": "3/5/9/6/3/8/3",
      "trend": -0.11
     },
@@ -292,7 +292,7 @@
      ],
      "gotham": 10.8,
      "gotham_ros": 9.8,
-     "sleeper": 9.8,
+     "sleeper": 9.7,
      "workload": "6/9/3/2/2/11/7/3",
      "trend": -0.2
     },
@@ -598,7 +598,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #6 (117,108 in 24 h)"
+      "Sleeper adds #7 (117,324 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -705,6 +705,43 @@
      "acq": "unverified"
     },
     {
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 13 6:10 PM PT",
+       "src": "rotoballer",
+       "title": "Jaylen Wright is Cleared for Week 10",
+       "text": "Miami Dolphins running back Jaylen Wright (quad) doesn't carry an injury designation into Sunday's Week 10 matchup against the Indianapolis [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 0.0
+     },
+     "beats_floor": true,
+     "gotham": 3.6,
+     "gotham_ros": 3.9,
+     "sleeper": 3.6,
+     "workload": "1/4/5/6/10/4",
+     "trend": 0.22,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Jonathon Brooks",
      "pos": "RB",
      "team": "CAR",
@@ -742,46 +779,9 @@
      "beats_floor": true,
      "gotham": 1.7,
      "gotham_ros": 6.6,
-     "sleeper": 6.0,
+     "sleeper": null,
      "workload": "8/11",
      "trend": 0.26,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Jaylen Wright",
-     "pos": "RB",
-     "team": "MIA",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 13 6:10 PM PT",
-       "src": "rotoballer",
-       "title": "Jaylen Wright is Cleared for Week 10",
-       "text": "Miami Dolphins running back Jaylen Wright (quad) doesn't carry an injury designation into Sunday's Week 10 matchup against the Indianapolis [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Etienne Jr.",
-      "gotham": 0.0
-     },
-     "beats_floor": true,
-     "gotham": 3.6,
-     "gotham_ros": 3.9,
-     "sleeper": 3.6,
-     "workload": "1/4/5/6/10/4",
-     "trend": 0.22,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -901,7 +901,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (300,420 in 24 h)"
+      "Sleeper adds #3 (294,579 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -938,7 +938,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #18 (49,636 in 24 h)"
+      "Sleeper adds #19 (48,476 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -975,7 +975,7 @@
      "pos": "WR",
      "team": "MIA",
      "why": [
-      "Sleeper adds #16 (50,784 in 24 h)"
+      "Sleeper adds #16 (49,632 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1300,7 +1300,7 @@
      ],
      "gotham": 18.9,
      "gotham_ros": 18.7,
-     "sleeper": 21.1,
+     "sleeper": 21.0,
      "workload": "45/41/39/40/33/51/35/25",
      "trend": -0.28
     },
@@ -1384,7 +1384,7 @@
      ],
      "gotham": 13.1,
      "gotham_ros": 13.8,
-     "sleeper": 9.9,
+     "sleeper": 10.0,
      "workload": "13/13/20/33/22/35/31/13",
      "trend": -0.15
     },
@@ -1606,7 +1606,7 @@
      "team": "KC",
      "why": [
       "opening: Kenneth Walker III \u2014 bad news (pft)",
-      "Sleeper adds #1 (1,576,944 in 24 h)"
+      "Sleeper adds #1 (1,501,479 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1632,7 +1632,7 @@
      "beats_floor": true,
      "gotham": 7.8,
      "gotham_ros": 7.3,
-     "sleeper": 21.0,
+     "sleeper": 19.7,
      "workload": "13/6/6/2/11/6/10/8",
      "trend": 0.18,
      "yahoo": null,
@@ -1680,7 +1680,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (145,359 in 24 h)"
+      "Sleeper adds #4 (145,026 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1865,7 +1865,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #18 (49,636 in 24 h)"
+      "Sleeper adds #19 (48,476 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1940,7 +1940,7 @@
      "team": "PIT",
      "why": [
       "opening: Pat Freiermuth \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #23 (42,075 in 24 h)"
+      "Sleeper adds #22 (42,885 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2516,7 +2516,7 @@
      ],
      "gotham": 9.0,
      "gotham_ros": 9.2,
-     "sleeper": 6.4,
+     "sleeper": 7.3,
      "workload": "4/10/12/4/6/9/4/6/6",
      "trend": -0.15
     },
@@ -2648,7 +2648,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (300,420 in 24 h)"
+      "Sleeper adds #3 (294,579 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2685,7 +2685,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #18 (49,636 in 24 h)"
+      "Sleeper adds #19 (48,476 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2833,7 +2833,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #22 (44,088 in 24 h)"
+      "Sleeper adds #23 (42,344 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2871,7 +2871,7 @@
      "team": "PIT",
      "why": [
       "opening: Pat Freiermuth \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #23 (42,075 in 24 h)"
+      "Sleeper adds #22 (42,885 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3317,7 +3317,7 @@
      ],
      "gotham": 20.0,
      "gotham_ros": 20.1,
-     "sleeper": 20.0,
+     "sleeper": 20.4,
      "workload": "48/27/51/35/42/14/40/22/47",
      "trend": 0.06
     },
@@ -3665,7 +3665,7 @@
      "team": "NE",
      "why": [
       "good news",
-      "Sleeper adds #12 (61,668 in 24 h)"
+      "Sleeper adds #12 (61,887 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3709,7 +3709,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #13 (61,580 in 24 h)"
+      "Sleeper adds #13 (61,808 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3772,7 +3772,7 @@
      "beats_floor": false,
      "gotham": 9.4,
      "gotham_ros": 9.0,
-     "sleeper": 8.0,
+     "sleeper": 8.2,
      "workload": "7/9/2/7/7/6/7/7",
      "trend": 0.14,
      "yahoo": null,
@@ -3820,7 +3820,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #3 (300,420 in 24 h)"
+      "Sleeper adds #3 (294,579 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3857,7 +3857,7 @@
      "pos": "WR",
      "team": "TEN",
      "why": [
-      "Sleeper adds #18 (49,636 in 24 h)"
+      "Sleeper adds #19 (48,476 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3932,7 +3932,7 @@
      "team": "LA",
      "why": [
       "good news",
-      "Sleeper adds #7 (115,128 in 24 h)"
+      "Sleeper adds #6 (117,585 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -3976,7 +3976,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (145,359 in 24 h)"
+      "Sleeper adds #4 (145,026 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4014,7 +4014,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #6 (117,108 in 24 h)"
+      "Sleeper adds #7 (117,324 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4052,7 +4052,7 @@
      "team": "PIT",
      "why": [
       "opening: Pat Freiermuth \u2014 questionable/limited (ESPN injury report)",
-      "Sleeper adds #23 (42,075 in 24 h)"
+      "Sleeper adds #22 (42,885 in 24 h)"
      ],
      "marker": {
       "count": 1,
