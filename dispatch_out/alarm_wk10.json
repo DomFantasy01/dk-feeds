@@ -1,7 +1,10 @@
 {
  "week": 10,
- "built_pt": "Fri Nov 13 2026 11:51 PM PT",
- "alarms": [],
+ "built_pt": "Sat Nov 14 2026 02:11 AM PT",
+ "alarms": [
+  "yahoo_matchups: SHORT - 40 of 41",
+  "DK I: starters 9/10 - league starts 10"
+ ],
  "lineup": [],
  "notes": [
   "DK I: experts split on your W/R/T Audric Estime - Ratcliffe 7.1 vs Koerner 11.8 (Yahoo 11.2)",
@@ -9,32 +12,33 @@
   "DK III: Sleeper lists T.J. Hockenson with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle",
   "DK III: no Ratcliffe number for T.J. Hockenson - Yahoo used on the Ratcliffe needle",
   "DK III: Gotham 1.9 vs Yahoo 6.9 / Sleeper 10.2 on Kaleb Johnson - check role/news",
-  "DK IV: Gotham 12.3 vs Yahoo 18.3 / Sleeper 18.4 on Justin Jefferson - check role/news",
-  "DK IV: opponent starter Chase McLaughlin (TB) has no game this week"
+  "DK IV: Gotham 12.3 vs Yahoo 18.3 / Sleeper 18.3 on Justin Jefferson - check role/news",
+  "DK IV: opponent starter Chase McLaughlin (TB) has no game this week",
+  "DK I: 1 EMPTY starting seat(s) as set on Yahoo (DEF) - the best lineup fills them from the bench; the as-set needle counts them as zero"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Fri Nov 13 11:51 PM PT",
+   "pulled_pt": "Sat Nov 14 02:10 AM PT",
    "age_h": 0.0,
    "rows": 14,
    "need": 14,
    "note": "week 10: 14 games"
   },
   "yahoo_matchups": {
-   "status": "OK",
+   "status": "SHORT",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/dom_matchups_api.txt",
-   "pulled_pt": "Fri Nov 13 11:51 PM PT",
+   "pulled_pt": "Sat Nov 14 02:10 AM PT",
    "age_h": 0.0,
-   "rows": 41,
+   "rows": 40,
    "need": 41,
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/league_windows_api.txt",
-   "pulled_pt": "Fri Nov 13 11:51 PM PT",
+   "pulled_pt": "Sat Nov 14 02:10 AM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -44,7 +48,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/standings_fri2126.txt",
    "pulled_pt": "Fri Nov 13 09:26 PM PT",
-   "age_h": 2.4,
+   "age_h": 4.8,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -52,50 +56,50 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Fri Nov 13 11:51 PM PT",
+   "pulled_pt": "Sat Nov 14 02:11 AM PT",
    "age_h": 0.0,
    "rows": 10,
    "need": 10,
-   "note": "Gotham run Fri Nov 13 2026 11:51 PM PT for week 10"
+   "note": "Gotham run Sat Nov 14 2026 02:11 AM PT for week 10"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Fri Nov 13 2026 5:26 PM PT",
-   "age_h": 6.4,
+   "age_h": 8.8,
    "rows": 2244,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   "koerner": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
-   "pulled_pt": "Fri Nov 13 2026 6:04 PM PT",
-   "age_h": 5.8,
+   "pulled_pt": "Sat Nov 14 2026 2:05 AM PT",
+   "age_h": 0.1,
    "rows": 2608,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk10_2026-11-14T0543Z.csv",
-   "pulled_pt": "Fri Nov 13 09:43 PM PT",
-   "age_h": 2.1,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk10_2026-11-14T0845Z.csv",
+   "pulled_pt": "Sat Nov 14 12:45 AM PT",
+   "age_h": 1.4,
    "rows": 3117,
    "need": 400,
-   "note": "GitHub job checked 0.1 h ago (unchanged 3117 rows)"
+   "note": "GitHub job checked 0.3 h ago (unchanged 3117 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk10_2026-11-14T0543Z.csv",
-   "pulled_pt": "Fri Nov 13 09:43 PM PT",
-   "age_h": 2.1,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk10_2026-11-14T0845Z.csv",
+   "pulled_pt": "Sat Nov 14 12:45 AM PT",
+   "age_h": 1.4,
    "rows": 185,
    "need": 60,
-   "note": "GitHub job checked 0.1 h ago (unchanged 185 rows)"
+   "note": "GitHub job checked 0.3 h ago (unchanged 185 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk10/dom_rosters.json",
-   "pulled_pt": "Fri Nov 13 11:51 PM PT",
+   "pulled_pt": "Sat Nov 14 02:10 AM PT",
    "age_h": 0.0,
    "rows": 66,
    "need": null,
