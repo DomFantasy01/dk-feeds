@@ -95,7 +95,7 @@ def latest_pull(need=None):
     return None
 
 def standings(lid, names):
-    d = latest_pull("standings"); rec = {}; divs = {}
+    d = latest_pull("standings"); rec = {}; divs = {}; miss = []
     if not d: return rec, divs, "no standings file"
     f = next((v for k, v in d["files"].items() if "standings" in k), "")
     inv = {v.replace("’", "'"): k for k, v in names.items()}
@@ -107,10 +107,16 @@ def standings(lid, names):
             if len(x) < 4: div = item.strip(); continue
             nm = x[1].replace("’", "'"); tid = inv.get(nm)
             if tid is None and nm.startswith("Dark Knight"): tid = next((k for k, v in names.items() if v.startswith("Dark Knight")), None)
-            if tid is None: continue
             w, l, t = (int(a) for a in x[2].split("-"))
             pf = float(x[4] if lid != "864215" else x[3])
+            if tid is None: miss.append((nm, w, l, t, pf, div)); continue
             rec[tid] = dict(w=w, l=l, t=t, pf=pf, name=names[tid]); divs[tid] = div
+    # Nov 14 (DK1 "Rolling With Romo" renamed itself "SkeetSkeetSkeetabooo" - the sim lost a 5-4 team's record and division):
+    # a renamed team is matched by elimination when exactly one standings row and one team id are left over
+    left = [k for k in names if k not in rec]
+    if len(miss) == 1 and len(left) == 1:
+        nm, w, l, t, pf, div = miss[0]; rec[left[0]] = dict(w=w, l=l, t=t, pf=pf, name=nm); divs[left[0]] = div
+    elif miss: print(f"STANDINGS {lid}: unmatched team names {[m[0] for m in miss]} vs ids {left}")
     return rec, divs, d.get("read_pt", "")
 
 def load_league(lgk):
