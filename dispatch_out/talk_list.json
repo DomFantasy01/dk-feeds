@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Sat Nov 14 2026 11:09 AM PT",
+ "built": "Sat Nov 14 2026 11:51 AM PT",
  "ratcliffe_read": "Sat Nov 14 2026 8:27 AM PT",
  "koerner_read": "Sat Nov 14 2026 11:04 AM PT",
  "leagues": {
@@ -33,7 +33,101 @@
      "first_seen": "Sat Nov 14 2026 07:53 AM PT"
     }
    ],
-   "watch": [],
+   "watch": [
+    {
+     "name": "Brandon McManus",
+     "pos": "K",
+     "team": "LAR",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 7.2,
+     "over_ros": 7.7,
+     "pct": -8,
+     "gain": -0.6,
+     "rat_wk": 7.5,
+     "koe_wk": 7.54,
+     "clay_ros": 6.71,
+     "vegas_wk": 9.86,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Vegas",
+       "span": "this week",
+       "his": 9.9,
+       "over": "Will Reichard",
+       "over_v": 8.8,
+       "pct": 12,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:brandonmcmanus",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Harrison Butker",
+     "pos": "K",
+     "team": "KC",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 7.2,
+     "over_ros": 7.7,
+     "pct": -8,
+     "gain": -0.6,
+     "rat_wk": 7.3,
+     "koe_wk": 7.86,
+     "clay_ros": 8.74,
+     "vegas_wk": 8.83,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 7.9,
+       "over": "Will Reichard",
+       "over_v": 6.8,
+       "pct": 15,
+       "gain": 1.0
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:harrisonbutker",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Charlie Smyth",
+     "pos": "K",
+     "team": "NO",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 6.2,
+     "over_ros": 7.7,
+     "pct": -20,
+     "gain": -1.5,
+     "rat_wk": 8.0,
+     "koe_wk": 7.94,
+     "clay_ros": 7.63,
+     "vegas_wk": 9.66,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 7.9,
+       "over": "Will Reichard",
+       "over_v": 6.8,
+       "pct": 16,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:charliesmyth",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    }
+   ],
    "cover": [
     {
      "title": "RB1, Week 11 Fill",
@@ -110,8 +204,35 @@
      "gain": 3.0,
      "rat_wk": 7.5,
      "koe_wk": 7.62,
+     "clay_ros": 10.25,
+     "vegas_wk": 6.85,
+     "flagged_by": [
+      "Ratcliffe",
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 14.2,
+       "over": "Emmett Johnson",
+       "over_v": 11.2,
+       "pct": 27,
+       "gain": 3.0
+      },
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 10.2,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 50,
+       "gain": 3.4
+      }
+     ],
      "rising": null,
      "scout": true,
+     "note": "Flagged by Ratcliffe (rest of season: 14.2 vs your Emmett Johnson 11.2, +27%); Clay (rest of season, Weeks 11-17: 10.2 vs your Emmett Johnson 6.8, +50%)",
      "id": "talk:mikewashington",
      "first_seen": "Thu Nov 12 2026 07:50 AM PT"
     },
@@ -120,9 +241,9 @@
      "pos": "K",
      "team": "TB",
      "acq": "Free agent",
-     "over": "David Montgomery",
+     "over": "Justin Herbert",
      "pct": 23,
-     "gain": 3.4,
+     "gain": 3.0,
      "note": "Scout pick (rest of season): This week: Chase McLaughlin has a bye - no help this week",
      "scout": true,
      "id": "talk:chasemclaughlin",
@@ -142,34 +263,6 @@
      "first_seen": "Sat Nov 14 2026 11:09 AM PT"
     },
     {
-     "name": "Kenny Gainwell",
-     "pos": "RB",
-     "team": "TB",
-     "acq": "Free agent",
-     "over": "David Montgomery",
-     "pct": 20,
-     "gain": 2.8,
-     "note": "Scout pick (rest of season): This week: Kenny Gainwell has a bye - no help this week",
-     "scout": true,
-     "id": "talk:kennygainwell",
-     "first_seen": "Wed Nov 11 2026 02:09 AM PT"
-    }
-   ],
-   "watch": [
-    {
-     "name": "Jason Sanders",
-     "pos": "K",
-     "team": "NYJ",
-     "acq": "Free agent",
-     "over": "David Montgomery",
-     "pct": 20,
-     "gain": 2.7,
-     "note": "Scout pick (rest of season): This week vs your K Will Reichard: Ratcliffe 8.2 vs 9.0 \u00b7 Koerner 7.5 vs 7.5 \u00b7 Yahoo 7.3 vs 8.1 - WORSE this week",
-     "scout": true,
-     "id": "watch:jasonsanders",
-     "first_seen": "Wed Nov 11 2026 04:10 PM PT"
-    },
-    {
      "name": "Kaelon Black",
      "pos": "RB",
      "team": "SF",
@@ -181,13 +274,288 @@
      "gain": 1.2,
      "rat_wk": 8.4,
      "koe_wk": 7.07,
+     "clay_ros": 8.9,
+     "vegas_wk": 8.01,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 8.9,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 30,
+       "gain": 2.1
+      },
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 12.4,
+       "over": "Emmett Johnson",
+       "over_v": 11.2,
+       "pct": 11,
+       "gain": 1.2
+      }
+     ],
      "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 11-17: 8.9 vs your Emmett Johnson 6.8, +30%); Ratcliffe has him 12.4 a game vs 11.2",
+     "id": "talk:kaelonblack",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Bam Knight",
+     "pos": "RB",
+     "team": "ARI",
+     "acq": "free agent",
+     "over": "Emmett Johnson",
+     "rat_ros": 10.9,
+     "over_ros": 11.2,
+     "pct": -2,
+     "gain": -0.2,
+     "rat_wk": 10.2,
+     "koe_wk": null,
+     "clay_ros": 9.92,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 9.9,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 45,
+       "gain": 3.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 11-17: 9.9 vs your Emmett Johnson 6.8, +45%); Ratcliffe has him 10.9 a game vs 11.2",
+     "id": "talk:bamknight",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "free agent",
+     "over": "Emmett Johnson",
+     "rat_ros": 10.1,
+     "over_ros": 11.2,
+     "pct": -10,
+     "gain": -1.1,
+     "rat_wk": 6.9,
+     "koe_wk": 8.45,
+     "clay_ros": 9.63,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 9.6,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 41,
+       "gain": 2.8
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 11-17: 9.6 vs your Emmett Johnson 6.8, +41%); Ratcliffe has him 10.1 a game vs 11.2",
+     "id": "talk:kimanividal",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    }
+   ],
+   "watch": [
+    {
+     "name": "Jason Sanders",
+     "pos": "K",
+     "team": "NYJ",
+     "acq": "Free agent",
+     "over": "Justin Herbert",
+     "pct": 20,
+     "gain": 2.3,
+     "note": "Scout pick (rest of season): This week vs your K Will Reichard: Ratcliffe 8.2 vs 9.0 \u00b7 Koerner 7.5 vs 7.5 \u00b7 Yahoo 7.3 vs 8.1 - WORSE this week",
      "scout": true,
-     "id": "watch:kaelonblack",
-     "first_seen": "Sat Nov 14 2026 11:09 AM PT"
+     "id": "watch:jasonsanders",
+     "first_seen": "Wed Nov 11 2026 04:10 PM PT"
+    },
+    {
+     "name": "Brandon McManus",
+     "pos": "K",
+     "team": "LAR",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 7.9,
+     "over_ros": 8.6,
+     "pct": -8,
+     "gain": -0.7,
+     "rat_wk": 8.1,
+     "koe_wk": 8.21,
+     "clay_ros": 7.33,
+     "vegas_wk": 9.86,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Vegas",
+       "span": "this week",
+       "his": 9.9,
+       "over": "Will Reichard",
+       "over_v": 8.8,
+       "pct": 12,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:brandonmcmanus",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Samaje Perine",
+     "pos": "RB",
+     "team": "CIN",
+     "acq": "free agent",
+     "over": "Emmett Johnson",
+     "rat_ros": 9.2,
+     "over_ros": 11.2,
+     "pct": -17,
+     "gain": -1.9,
+     "rat_wk": 7.1,
+     "koe_wk": 7.16,
+     "clay_ros": 8.59,
+     "vegas_wk": 6.71,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 8.6,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 26,
+       "gain": 1.8
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:samajeperine",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Keaton Mitchell",
+     "pos": "RB",
+     "team": "LAC",
+     "acq": "free agent",
+     "over": "Emmett Johnson",
+     "rat_ros": 9.3,
+     "over_ros": 11.2,
+     "pct": -17,
+     "gain": -1.9,
+     "rat_wk": 7.1,
+     "koe_wk": 7.11,
+     "clay_ros": 7.89,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 7.9,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 16,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:keatonmitchell",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "TreVeyon Henderson",
+     "pos": "RB",
+     "team": "NE",
+     "acq": "free agent",
+     "over": "Emmett Johnson",
+     "rat_ros": 9.1,
+     "over_ros": 11.2,
+     "pct": -18,
+     "gain": -2.1,
+     "rat_wk": 0.0,
+     "koe_wk": 0.0,
+     "clay_ros": 7.84,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 7.8,
+       "over": "Emmett Johnson",
+       "over_v": 6.8,
+       "pct": 15,
+       "gain": 1.0
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:treveyonhenderson",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Charlie Smyth",
+     "pos": "K",
+     "team": "NO",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 6.9,
+     "over_ros": 8.6,
+     "pct": -20,
+     "gain": -1.7,
+     "rat_wk": 8.7,
+     "koe_wk": 8.66,
+     "clay_ros": 8.43,
+     "vegas_wk": 9.66,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 8.7,
+       "over": "Will Reichard",
+       "over_v": 7.5,
+       "pct": 15,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:charliesmyth",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
     }
    ],
    "cover": [
+    {
+     "title": "FLEX, Week 10 Fill",
+     "target": "Target 9.0 pts",
+     "mark": "red",
+     "why": "Full strength ~12.2 (Kamara). Wk 10 McConkey ~9.0 (Kamara moves up to RB1, McConkey slides in).",
+     "picks": [
+      "Jadarian Price (Waivers, clears Nov 18)"
+     ],
+     "id": "cover:flexweek10fill",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
     {
      "title": "WR2, Week 11 Fill",
      "target": "Target 11.7 pts",
@@ -211,8 +579,8 @@
    "backup": [],
    "fa_tags": {
     "Audric Estime": {
-     "tag": "No action needed",
-     "why": "Ratcliffe has him at 5.2 a game, below your Emmett Johnson (11.2)"
+     "tag": "Pick up now",
+     "why": "-54% better than your Emmett Johnson over the rest of the season (Ratcliffe 5.2 vs 11.2 a game)"
     }
    }
   },
@@ -230,8 +598,35 @@
      "gain": 5.0,
      "rat_wk": 6.9,
      "koe_wk": 8.45,
+     "clay_ros": 9.63,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Ratcliffe",
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 10.1,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 98,
+       "gain": 5.0
+      },
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 9.6,
+       "over": "Corey Kiner",
+       "over_v": 4.8,
+       "pct": 99,
+       "gain": 4.8
+      }
+     ],
      "rising": null,
      "scout": false,
+     "note": "Flagged by Ratcliffe (rest of season: 10.1 vs your Kaleb Johnson 5.1, +98%); Clay (rest of season, Weeks 11-17: 9.6 vs your Corey Kiner 4.8, +99%)",
      "id": "talk:kimanividal",
      "first_seen": "Wed Nov 11 2026 03:10 PM PT"
     },
@@ -247,8 +642,25 @@
      "gain": 3.5,
      "rat_wk": 0.9,
      "koe_wk": 0.43,
+     "clay_ros": null,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Ratcliffe"
+     ],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 8.6,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 68,
+       "gain": 3.5
+      }
+     ],
      "rising": null,
      "scout": false,
+     "note": "Flagged by Ratcliffe (rest of season: 8.6 vs your Kaleb Johnson 5.1, +68%)",
      "id": "talk:emanuelwilson",
      "first_seen": "Sat Nov 14 2026 09:35 AM PT"
     },
@@ -264,8 +676,25 @@
      "gain": 2.2,
      "rat_wk": 4.4,
      "koe_wk": 3.14,
+     "clay_ros": 2.15,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Ratcliffe"
+     ],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 7.3,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 42,
+       "gain": 2.2
+      }
+     ],
      "rising": null,
      "scout": false,
+     "note": "Flagged by Ratcliffe (rest of season: 7.3 vs your Kaleb Johnson 5.1, +42%)",
      "id": "talk:raydavis",
      "first_seen": "Sat Nov 14 2026 09:35 AM PT"
     },
@@ -274,30 +703,90 @@
      "pos": "DEF",
      "team": "TB",
      "acq": "Free agent",
-     "over": "David Montgomery",
-     "pct": 27,
-     "gain": 6.7,
+     "over": "Darren Waller",
+     "pct": 41,
+     "gain": 11.0,
      "note": "Scout pick (rest of season): This week: TB DEF has a bye - no help this week",
      "scout": true,
      "id": "talk:tbdef",
      "first_seen": "Thu Nov 12 2026 05:40 PM PT"
     },
     {
-     "name": "Rome Odunze",
-     "pos": "WR",
-     "team": "CHI",
-     "acq": "waivers until Nov 15",
-     "over": "Josh Downs",
-     "rat_ros": 13.5,
-     "over_ros": 10.7,
+     "name": "Michael Mayer",
+     "pos": "TE",
+     "team": "LV",
+     "acq": "waivers until Nov 16",
+     "over": "Darren Waller",
+     "rat_ros": 9.8,
+     "over_ros": 7.7,
      "pct": 26,
-     "gain": 2.8,
-     "rat_wk": 0.0,
-     "koe_wk": null,
+     "gain": 2.0,
+     "rat_wk": 6.7,
+     "koe_wk": 6.44,
+     "clay_ros": 7.79,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Ratcliffe"
+     ],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 9.8,
+       "over": "Darren Waller",
+       "over_v": 7.7,
+       "pct": 26,
+       "gain": 2.0
+      }
+     ],
      "rising": null,
-     "scout": true,
-     "id": "talk:romeodunze",
-     "first_seen": "Thu Nov 12 2026 07:35 PM PT"
+     "scout": false,
+     "note": "Flagged by Ratcliffe (rest of season: 9.8 vs your Darren Waller 7.7, +26%)",
+     "id": "talk:michaelmayer",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 6.4,
+     "over_ros": 5.1,
+     "pct": 25,
+     "gain": 1.3,
+     "rat_wk": 5.2,
+     "koe_wk": 5.11,
+     "clay_ros": 7.52,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 7.5,
+       "over": "Corey Kiner",
+       "over_v": 4.8,
+       "pct": 55,
+       "gain": 2.7
+      },
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 6.4,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 25,
+       "gain": 1.3
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 11-17: 7.5 vs your Corey Kiner 4.8, +55%); Ratcliffe has him 6.4 a game vs 5.1",
+     "id": "talk:tyjaespears",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
     }
    ],
    "watch": [
@@ -313,7 +802,21 @@
      "gain": 1.9,
      "rat_wk": 3.5,
      "koe_wk": 3.5,
-     "rising": null,
+     "clay_ros": 4.41,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 7.0,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 37,
+       "gain": 1.9
+      }
+     ],
+     "rising": "his work is climbing: 7 a game the last two vs 4 before (snaps/targets/touches, last games 1/4/5/6/10/4)",
      "scout": false,
      "id": "watch:jaylenwright",
      "first_seen": "Sat Nov 14 2026 09:35 AM PT"
@@ -330,27 +833,148 @@
      "gain": 1.5,
      "rat_wk": 1.3,
      "koe_wk": 2.85,
+     "clay_ros": null,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 6.6,
+       "over": "Kaleb Johnson",
+       "over_v": 5.1,
+       "pct": 30,
+       "gain": 1.5
+      }
+     ],
      "rising": null,
      "scout": false,
      "id": "watch:kendremiller",
      "first_seen": "Sat Nov 14 2026 09:35 AM PT"
     },
     {
-     "name": "Tyjae Spears",
+     "name": "Israel Abanikanda",
      "pos": "RB",
-     "team": "TEN",
+     "team": "DAL",
      "acq": "free agent",
      "over": "Kaleb Johnson",
-     "rat_ros": 6.4,
+     "rat_ros": 4.7,
      "over_ros": 5.1,
-     "pct": 25,
-     "gain": 1.3,
-     "rat_wk": 5.2,
-     "koe_wk": 5.11,
+     "pct": -7,
+     "gain": -0.4,
+     "rat_wk": 0.8,
+     "koe_wk": 0.87,
+     "clay_ros": 6.59,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 6.6,
+       "over": "Corey Kiner",
+       "over_v": 4.8,
+       "pct": 36,
+       "gain": 1.8
+      }
+     ],
      "rising": null,
      "scout": false,
-     "id": "watch:tyjaespears",
-     "first_seen": "Sat Nov 14 2026 09:35 AM PT"
+     "id": "watch:israelabanikanda",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Colby Parkinson",
+     "pos": "TE",
+     "team": "LAR",
+     "acq": "free agent",
+     "over": "Darren Waller",
+     "rat_ros": 7.0,
+     "over_ros": 7.7,
+     "pct": -10,
+     "gain": -0.8,
+     "rat_wk": 8.1,
+     "koe_wk": 9.28,
+     "clay_ros": 6.46,
+     "vegas_wk": 8.46,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Vegas",
+       "span": "this week",
+       "his": 8.5,
+       "over": "Darren Waller",
+       "over_v": 7.0,
+       "pct": 20,
+       "gain": 1.4
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:colbyparkinson",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Treylon Burks",
+     "pos": "WR",
+     "team": "WAS",
+     "acq": "waivers until Nov 18",
+     "over": "Caleb Douglas",
+     "rat_ros": 7.1,
+     "over_ros": 11.3,
+     "pct": -37,
+     "gain": -4.2,
+     "rat_wk": 6.4,
+     "koe_wk": 6.14,
+     "clay_ros": 9.64,
+     "vegas_wk": 6.1,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 9.6,
+       "over": "Caleb Douglas",
+       "over_v": 8.6,
+       "pct": 12,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:treylonburks",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Elijah Mitchell",
+     "pos": "RB",
+     "team": "PHI",
+     "acq": "free agent",
+     "over": "Kaleb Johnson",
+     "rat_ros": 1.9,
+     "over_ros": 5.1,
+     "pct": -63,
+     "gain": -3.2,
+     "rat_wk": 0.0,
+     "koe_wk": null,
+     "clay_ros": 6.37,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 11-17",
+       "his": 6.4,
+       "over": "Corey Kiner",
+       "over_v": 4.8,
+       "pct": 32,
+       "gain": 1.5
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:elijahmitchell",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
     }
    ],
    "cover": [
@@ -377,17 +1001,6 @@
      "first_seen": "Fri Nov 13 2026 03:39 AM PT"
     },
     {
-     "title": "FLEX2, Week 10 Fill",
-     "target": "Target 7.2 pts",
-     "mark": "red",
-     "why": "Full strength ~10.5 (Douglas). Wk 10 Downs ~7.2 (Douglas moves up to WR2, Downs slides in).",
-     "picks": [
-      "Austin Ekeler (Waivers, clears Nov 18)"
-     ],
-     "id": "cover:flex2week10fill",
-     "first_seen": "Fri Nov 13 2026 03:35 PM PT"
-    },
-    {
      "title": "WR1, Weeks 13-14 Fill",
      "target": "Target 13.0 pts",
      "mark": "gold",
@@ -397,6 +1010,15 @@
      ],
      "id": "cover:wr1weeks1314fill",
      "first_seen": "Thu Nov 12 2026 05:40 PM PT"
+    },
+    {
+     "title": "TE, Weeks 10-11 Fill",
+     "target": "Target 10.3 pts",
+     "mark": "gold",
+     "why": "Full strength ~12.7 (Fannin). Wk 10 Fannin ~10.2 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~10.4 (Fannin on bye, Hockenson slides in).",
+     "picks": [],
+     "id": "cover:teweeks1011fill",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
     }
    ],
    "block": [],
@@ -405,7 +1027,132 @@
   },
   "DK IV": {
    "talk": [],
-   "watch": [],
+   "watch": [
+    {
+     "name": "Jake Bates",
+     "pos": "K",
+     "team": "DET",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 8.5,
+     "over_ros": 8.6,
+     "pct": -2,
+     "gain": -0.1,
+     "rat_wk": 9.2,
+     "koe_wk": 8.7,
+     "clay_ros": 9.34,
+     "vegas_wk": 9.02,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 8.7,
+       "over": "Will Reichard",
+       "over_v": 7.5,
+       "pct": 16,
+       "gain": 1.2
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:jakebates",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Harrison Butker",
+     "pos": "K",
+     "team": "KC",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 8.0,
+     "over_ros": 8.6,
+     "pct": -7,
+     "gain": -0.6,
+     "rat_wk": 7.9,
+     "koe_wk": 8.58,
+     "clay_ros": 9.61,
+     "vegas_wk": 8.83,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 8.6,
+       "over": "Will Reichard",
+       "over_v": 7.5,
+       "pct": 14,
+       "gain": 1.0
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:harrisonbutker",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Brandon McManus",
+     "pos": "K",
+     "team": "LAR",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 7.9,
+     "over_ros": 8.6,
+     "pct": -8,
+     "gain": -0.7,
+     "rat_wk": 8.1,
+     "koe_wk": 8.21,
+     "clay_ros": 7.33,
+     "vegas_wk": 9.86,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Vegas",
+       "span": "this week",
+       "his": 9.9,
+       "over": "Will Reichard",
+       "over_v": 8.8,
+       "pct": 12,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:brandonmcmanus",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    },
+    {
+     "name": "Charlie Smyth",
+     "pos": "K",
+     "team": "NO",
+     "acq": "free agent",
+     "over": "Will Reichard",
+     "rat_ros": 6.9,
+     "over_ros": 8.6,
+     "pct": -20,
+     "gain": -1.7,
+     "rat_wk": 8.7,
+     "koe_wk": 8.66,
+     "clay_ros": 8.43,
+     "vegas_wk": 9.66,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 8.7,
+       "over": "Will Reichard",
+       "over_v": 7.5,
+       "pct": 15,
+       "gain": 1.1
+      }
+     ],
+     "rising": null,
+     "scout": false,
+     "id": "watch:charliesmyth",
+     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+    }
+   ],
    "cover": [
     {
      "title": "RB2, Week 10 Fill",
