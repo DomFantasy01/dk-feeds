@@ -25,19 +25,21 @@ on:
     # Nov 12 (Dom): the off-day games - each window starts 30+ min before kickoff (UTC dates; PST = UTC-8).
     #   Wed Nov 25 GB-LA 5:00 PM PT; Thanksgiving Nov 26 10:00 AM, 1:30 PM, 5:20 PM PT; Fri Nov 27 DEN-PIT noon PT;
     #   Sat Dec 19 2:00 and 5:20 PM PT; Christmas Fri Dec 25 10:00 AM, 1:30 PM, 5:15 PM PT.
-    - cron: '30,50 0 26 11 *'
-    - cron: '10,30,50 1-4 26 11 *'
-    - cron: '30,50 17 26 11 *'
-    - cron: '10,30,50 18-23 26 11 *'
-    - cron: '10,30,50 0-4 27 11 *'
-    - cron: '30,50 19 27 11 *'
-    - cron: '10,30,50 20-23 27 11 *'
-    - cron: '30,50 21 19 12 *'
-    - cron: '10,30,50 22-23 19 12 *'
-    - cron: '10,30,50 0-4 20 12 *'
-    - cron: '30,50 17 25 12 *'
-    - cron: '10,30,50 18-23 25 12 *'
-    - cron: '10,30,50 0-4 26 12 *'
+    # Nov 15 (Dom: "add Saturdays"): off-day windows moved onto the 15-minute beat (:08 :23 :38 :53) so the off-day Live syncs
+    #   (:05 :20 :35 :50 PT) land right after each build, same as Sundays. Was every 20 min at :10 :30 :50.
+    - cron: '23,38,53 0 26 11 *'      # Wed Nov 25 GB-LA 5:00 PM PT
+    - cron: '8,23,38,53 1-4 26 11 *'
+    - cron: '23,38,53 17 26 11 *'     # Thanksgiving Nov 26 10:00 AM, 1:30 PM PT (5:20 PM rides the Thursday crons)
+    - cron: '8,23,38,53 18-23 26 11 *'
+    - cron: '8,23,38 0 27 11 *'
+    - cron: '23,38,53 19 27 11 *'     # Fri Nov 27 DEN-PIT noon PT
+    - cron: '8,23,38,53 20-23 27 11 *'
+    - cron: '23,38,53 21 19 12 *'     # Sat Dec 19 2:00 and 5:20 PM PT (playoff week 15)
+    - cron: '8,23,38,53 22-23 19 12 *'
+    - cron: '8,23,38,53 0-4 20 12 *'
+    - cron: '23,38,53 17 25 12 *'     # Christmas Fri Dec 25 10:00 AM, 1:30 PM, 5:15 PM PT
+    - cron: '8,23,38,53 18-23 25 12 *'
+    - cron: '8,23,38,53 0-4 26 12 *'
     # Oct 30 (Dom: the brief must be current by 4 AM, last night's games included - "do it at 4 a.m., not 4:30"):
     # 11:00 UTC = 4 AM PDT until Nov 1; 12:00 UTC = 4 AM PST after (the other one lands 5 AM / 3 AM - harmless)
     - cron: '0 11,12 * * *'

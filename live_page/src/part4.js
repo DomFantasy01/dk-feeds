@@ -383,8 +383,16 @@ const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly
      Sunday :45 (9:45 AM-8:45 PM) and :05 (10:05 AM-9:05 PM); Monday and Thursday :45 (4:45-8:45 PM) and :05 (5:05-9:05 PM) */
   sync(d){ const R = (a, b, m) => Array.from({length: b - a + 1}, (_, i) => [a + i, m]);
     /* Nov 15 (Dom): game windows every 15 minutes - syncs at :05 :20 :35 :50, each right after a build (builds :08 :23 :38 :53) */
-    return [...R(4, 23, 25), ...(d === 0 ? ((h0) => [...R(h0, 20, 20), ...R(h0, 20, 35), ...R(h0, 20, 50), ...R(h0 + 1, 21, 5)])(((M && M.kicks) || []).some(x => { const t = new Date(Array.isArray(x) ? x[0] : x), n = new Date(); return !isNaN(t) && t.toDateString() === n.toDateString() && t.getHours() < 10; }) ? 6 : 9) : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : [])]; }
+    return [...R(4, 23, 25), ...(d === 0 ? ((h0) => [...R(h0, 20, 20), ...R(h0, 20, 35), ...R(h0, 20, 50), ...R(h0 + 1, 21, 5)])(((M && M.kicks) || []).some(x => { const t = new Date(Array.isArray(x) ? x[0] : x), n = new Date(); return !isNaN(t) && t.toDateString() === n.toDateString() && t.getHours() < 10; }) ? 6 : 9) : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : []), ...offDay(d)]; }
 };
+/* Nov 15 (Dom: "add Saturdays"): off-day games (Sat, Wed, Fri, Thanksgiving/Christmas day games) get the 15-minute syncs too,
+   from 40 min before the first kickoff that day to 3h50m after the last - except where the Sun/Mon/Thu syncs already run */
+function offDay(d){ if (d === 0) return []; const f = new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}), now = Date.now();
+  const ms = ((M && M.kicks) || []).map(x => new Date(Array.isArray(x) ? x[0] : x)).filter(t => !isNaN(t) && t - now > -864e5 && t - now < 6 * 864e5).map(t => Object.fromEntries(f.formatToParts(t).map(x => [x.type, x.value])))
+    .filter(p => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday) === d).map(p => (+p.hour % 24) * 60 + (+p.minute));
+  if (!ms.length) return []; const a = Math.min(...ms) - 40, b = Math.max(...ms) + 230, out = [];
+  for (let h = 0; h < 24; h++) for (const mi of [5, 20, 35, 50]){ const m = h * 60 + mi; if (m >= a && m <= b && !((d === 1 || d === 4) && h >= 17)) out.push([h, mi]); }
+  return out; }
 function pacNow(){ const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}).formatToParts(new Date()).map(x => [x.type, x.value]));
   return {d: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), m: (+p.hour % 24) * 60 + (+p.minute)}; }
 function nextRun(){ const n = pacNow(); let best = null;
