@@ -1521,6 +1521,15 @@ html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacin
 .bk[class*="lt-"]{animation:none!important;opacity:1!important;box-shadow:none}
 @media (prefers-reduced-motion:no-preference){.bk.lt-live,.bk.lt-trblon{animation:dkOnBlink 1.3s ease-in-out infinite!important}.bk.lt-empty:not(.sm){animation:dkEmptyBg .9s steps(1) infinite!important}}
 .pkey .bk.sm.lt-empty{background:linear-gradient(90deg,#F7C52B 50%,#FF4D57 50%)}
+/* Nov 15 (Dom, voice): "fine, still to play" goes quiet gray - green now means only playing (bright, blinking) or done (dark).
+   Orange ring = swap? (Ratcliffe has a bench man 2+ better). */
+.sgauge .seg.ok .rb,.sgauge .seg.swap .rb{fill:#6E788C}.sgauge .seg.swap .rb{stroke:#FF8A1F;stroke-width:1.6}
+.sgauge .gpz.ok,.sgauge .gpz.swap{fill:#F1F3F7 !important}
+.gpr.ok i,.gpr.swap i,.gst.ok i,.gst.swap i{background:#6E788C}.gpr.swap i,.gst.swap i,.ldot.swap{box-shadow:0 0 0 2px #FF8A1F}
+.gst.ok{color:#C9CFDB}.gst.swap{color:#FFAA55}.gpr.swap{background:rgba(255,138,31,.08)}
+.ldot.ok{background:#6E788C;color:#6E788C;box-shadow:none}.ldot.swap{background:#6E788C;color:#6E788C}
+.bk.lt-ok,.bk.lt-swap{background:#6E788C;color:#F1F3F7}.bk.lt-swap{outline:2px solid #FF8A1F;outline-offset:-2px}
+.sgauge .seg.swap{animation:none!important;opacity:1!important}
 /* Nov 10 (Dom): expert's miss as a percent with direction, right after the name and check */
 .opc{font:700 8px/1 var(--f-num);font-style:normal;margin-left:3px;padding:1px 3px;border-radius:3px;letter-spacing:0;white-space:nowrap;vertical-align:1px}
 .opc.hi{color:#FFB37A;background:rgba(255,154,31,.12)}.opc.lo{color:#8CC8FF;background:rgba(91,155,245,.14)}
@@ -1654,7 +1663,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wxd .wxn.z-win{fill:#3DDC84;filter:drop-shadow(0 0 6px rgba(61,220,132,.55))}
 .wxd .wxn.z-mid{fill:#F7B32B;filter:drop-shadow(0 0 6px rgba(247,179,43,.5))}
 .wxd .wxn.z-lose{fill:#FF5A63;filter:drop-shadow(0 0 6px rgba(255,77,87,.5))}
-.wpx .wxm{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:-1px}
+.wpx .wxm{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:-1px;flex-wrap:wrap;row-gap:2px}
 .wpx .wxm span{font:600 7px/1 var(--f-body);letter-spacing:.04em;color:#8C97B0;white-space:nowrap}
 .wpx .wxm i.wch{font:700 9px/1 var(--f-num);font-style:normal}
 .wpx i.wch.up{color:#3DDC84}.wpx i.wch.dn{color:#FF5A63}.wpx i.wch.z{color:#8C97B0}

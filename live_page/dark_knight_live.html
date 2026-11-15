@@ -1521,6 +1521,15 @@ html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacin
 .bk[class*="lt-"]{animation:none!important;opacity:1!important;box-shadow:none}
 @media (prefers-reduced-motion:no-preference){.bk.lt-live,.bk.lt-trblon{animation:dkOnBlink 1.3s ease-in-out infinite!important}.bk.lt-empty:not(.sm){animation:dkEmptyBg .9s steps(1) infinite!important}}
 .pkey .bk.sm.lt-empty{background:linear-gradient(90deg,#F7C52B 50%,#FF4D57 50%)}
+/* Nov 15 (Dom, voice): "fine, still to play" goes quiet gray - green now means only playing (bright, blinking) or done (dark).
+   Orange ring = swap? (Ratcliffe has a bench man 2+ better). */
+.sgauge .seg.ok .rb,.sgauge .seg.swap .rb{fill:#6E788C}.sgauge .seg.swap .rb{stroke:#FF8A1F;stroke-width:1.6}
+.sgauge .gpz.ok,.sgauge .gpz.swap{fill:#F1F3F7 !important}
+.gpr.ok i,.gpr.swap i,.gst.ok i,.gst.swap i{background:#6E788C}.gpr.swap i,.gst.swap i,.ldot.swap{box-shadow:0 0 0 2px #FF8A1F}
+.gst.ok{color:#C9CFDB}.gst.swap{color:#FFAA55}.gpr.swap{background:rgba(255,138,31,.08)}
+.ldot.ok{background:#6E788C;color:#6E788C;box-shadow:none}.ldot.swap{background:#6E788C;color:#6E788C}
+.bk.lt-ok,.bk.lt-swap{background:#6E788C;color:#F1F3F7}.bk.lt-swap{outline:2px solid #FF8A1F;outline-offset:-2px}
+.sgauge .seg.swap{animation:none!important;opacity:1!important}
 /* Nov 10 (Dom): expert's miss as a percent with direction, right after the name and check */
 .opc{font:700 8px/1 var(--f-num);font-style:normal;margin-left:3px;padding:1px 3px;border-radius:3px;letter-spacing:0;white-space:nowrap;vertical-align:1px}
 .opc.hi{color:#FFB37A;background:rgba(255,154,31,.12)}.opc.lo{color:#8CC8FF;background:rgba(91,155,245,.14)}
@@ -1654,7 +1663,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wxd .wxn.z-win{fill:#3DDC84;filter:drop-shadow(0 0 6px rgba(61,220,132,.55))}
 .wxd .wxn.z-mid{fill:#F7B32B;filter:drop-shadow(0 0 6px rgba(247,179,43,.5))}
 .wxd .wxn.z-lose{fill:#FF5A63;filter:drop-shadow(0 0 6px rgba(255,77,87,.5))}
-.wpx .wxm{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:-1px}
+.wpx .wxm{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:-1px;flex-wrap:wrap;row-gap:2px}
 .wpx .wxm span{font:600 7px/1 var(--f-body);letter-spacing:.04em;color:#8C97B0;white-space:nowrap}
 .wpx .wxm i.wch{font:700 9px/1 var(--f-num);font-style:normal}
 .wpx i.wch.up{color:#3DDC84}.wpx i.wch.dn{color:#FF5A63}.wpx i.wch.z{color:#8C97B0}
@@ -2210,7 +2219,7 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c",
    thin arc for where check 1 started the week. Under the dial: Yahoo and the two lineup checks (Koerner, Vegas), each with its move
    since the first read of the week. The card edge glows in the same color as the Scoreboard card. */
 function winDial(o){
-  const {k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp} = o;
+  const {k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp, prev} = o;
   const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, NM = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
   const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
   const R1 = rankedOf(X, OCK), main = R1 ? R1.v : y, who = R1 ? R1.top[0] : "y", z = ZF(main);
@@ -2253,7 +2262,10 @@ function winDial(o){
   const chk = OCK.slice(1).map(id => IDS[id]).filter(s3 => s3 && s3 !== who && ok(X[s3]));
   const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (white pointer on the dial)${ok(xmid) ? ` · white tick = the experts' middle, ${Math.round(xmid)}%` : ""}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}`;
   const chips = (who !== "y" ? chip("y", "YAHOO", dY, yTip) : "") + chk.map((s3, i) => chip(s3, SH[s3], undefined, `${NM[s3]} (check ${OCK.indexOf(SRCID[s3]) + 1}, checks Ratcliffe): ${Math.round(X[s3])}% chance to win this week`)).join("");
-  const mvT = dR === null || dR === undefined ? "" : `<div class="wxm">${wkArrow(dR, NM[who])}<span>this week</span></div>`;
+  /* Nov 15 (Dom, voice): beside the week's move, the move since the last update - so he can see at a glance whether today is helping */
+  const P0 = prev && prev.lg && prev.lg[k], lst = (s3) => { const v0 = P0 ? P0[s3] : null; return ok(v0) && ok(X[s3]) ? Math.round(X[s3] - v0) : null; }, dL = lst(who);
+  const lastArrow = (d, nm) => d === null ? "" : `<i class="wch ${d > 0 ? "up" : d < 0 ? "dn" : "z"}" title="${nm}: ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d) + " points"} since the ${esc(ptTime(prev.t))} update">${d === 0 ? "– 0" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</i>`;
+  const mvT = (dR === null || dR === undefined) && dL === null ? "" : `<div class="wxm">${dR === null || dR === undefined ? "" : `${wkArrow(dR, NM[who])}<span>this week</span>`}${dL === null ? "" : `${lastArrow(dL, NM[who])}<span>since ${esc(PT(prev.t, {hour: "numeric", minute: "2-digit"}))}</span>`}</div>`;
   return `<div class="wpx z-${z}" title="${esc(NM[who])} (check 1, decides): ${Math.round(main)}% chance to win this week">${svg}${mvT}<div class="wxr">${chips}</div></div>`;
 }
 function bigDial(v, col, mark, id, v0, v2){
@@ -2327,15 +2339,22 @@ const dots = (list) => list.filter(isStarter).map(p => `<i class="${dotState(p)}
    green = fine · amber = questionable/doubtful · red = out/IR/suspended/inactive · pink = bye · empty spot or no projection = yellow/red two-tone flash all week
    (and the ACTION light comes on) · solid dark green = his game is over. A light blinks ONLY while that man's game is on (the empty-spot flash is the one exception).
    Statuses come from each Yahoo read. */
-const RINGC = {ok: "#3DDC84", live: "#3DDC84", trbl: "#F7B32B", trblon: "#F7B32B", out: "#FF4D57", bye: "#FF7EC8", done: "#1C7A45", empty: "#F7C52B"};
-const SEGORD = {live: 0, trblon: 1, empty: 2, out: 3, trbl: 4, bye: 5, ok: 6, done: 7};
+const RINGC = {ok: "#6E788C", swap: "#6E788C", live: "#3DDC84", trbl: "#F7B32B", trblon: "#F7B32B", out: "#FF4D57", bye: "#FF7EC8", done: "#1C7A45", empty: "#F7C52B"};
+const SEGORD = {swap: 5.5, live: 0, trblon: 1, empty: 2, out: 3, trbl: 4, bye: 5, ok: 6, done: 7};
 const isEmptySpot = (p) => !(p.name || "").trim() || /^\(?\s*empty\s*\)?$/i.test((p.name || "").trim());
 const isByeMan = (p) => /bye/i.test(p.when || "");
 /* Nov 11 (Dom: ACTION red after the claims): Yahoo's per-player read has no number yet for men added after it ran (Estime, Kiner,
    the new defenses), so they looked like empty seats. Any expert number for him in any league means he's a real starter. */
 function expertProj(p){ const PM = (M && M.pm) || {}, n = norm(p.name).toLowerCase().replace(/ (jr|sr|ii|iii|iv)$/, "");
   let best = 0; for (const lg of Object.values(PM)){ const e = lg[n] || lg[norm(p.name).toLowerCase()]; if (e) for (const v of e) if (+v > best) best = +v; } return best; }
-const ringState = (p) => {
+/* Nov 15 (Dom, voice): lights redesign - gray = fine, still to play (nothing to do) · green blinking = playing now · dark green = done ·
+   amber Q/D · red out · pink bye · yellow/red flash = empty spot. An ORANGE RING on a gray light = he can play, but Ratcliffe has a
+   bench man 2+ points better at a spot he could fill (from the build's best-lineup swaps) - tap it for the swap. */
+function swapNames(k){ const B = M && M.best && M.best[k], g = B && B.g && B.g.me, pm = (M && M.pm && M.pm[k]) || {}, out = new Set();
+  if (!g) return out;
+  for (const [n, inv] of Object.entries(g)){ const cur = pm[n] ? +pm[n][0] : NaN; if (!isNaN(cur) && +inv - cur >= 2) out.add(n); }
+  return out; }
+const ringState = (p, k) => {
   if (isEmptySpot(p)) return "empty";
   if (isByeMan(p)) return "bye";
   if (isOut(p)) return "out";
@@ -2343,9 +2362,9 @@ const ringState = (p) => {
   if (isLive(p)) return isTrouble(p) ? "trblon" : "live";
   if (isTrouble(p)) return "trbl";
   if ((+p.proj || 0) === 0 && !(expertProj(p) > 0)) return "empty";   /* no projection and nobody knows why = a hole, same flash (Nov 11: an expert number counts - a man added this morning has none from Yahoo yet) */
-  return "ok"; };
+  return k && swapNames(k).has(norm(p.name)) ? "swap" : "ok"; };
 const POSAB = (sl) => { const t = (sl || "").toUpperCase().trim(); return /Q\/W\/R\/T|SUPER|^SF/.test(t) ? "SF" : /W\/R\/T|W\/R|FLEX|R\/W/.test(t) ? "FX" : /DEF|D\/ST|DST/.test(t) ? "DEF" : t.replace(/[^A-Z]/g, "").slice(0, 3) || "?"; };
-const STWORD = {ok: "fine, still to play", live: "playing now", trbl: "questionable / doubtful", trblon: "playing - questionable tag", out: "out", bye: "on bye", done: "game over", empty: "EMPTY SPOT / no projection - fill it"};
+const STWORD = {swap: "fine, but a bench player projects 2+ more (Ratcliffe) - swap?", ok: "fine, still to play", live: "playing now", trbl: "questionable / doubtful", trblon: "playing - questionable tag", out: "out", bye: "on bye", done: "game over", empty: "EMPTY SPOT / no projection - fill it"};
 /* Nov 8 2:50 PM (Dom: "maybe we're better making it a box rather than a circle... be creative"): the scoreboard TANKS.
    One card per league: two tall glass tanks side by side - yours fills in your win color (green 55%+, amber 45-55, red under 45 on
    Yahoo's chance to win this week), his in gray. Solid fluid = points scored (gentle wave, rising bubbles, soft glowing edge on top);
@@ -2409,7 +2428,7 @@ function scoreGlobe(L, k, o){
       ${on ? `<circle class="gcap on" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .6).toFixed(2)}" fill="#fff" fill-opacity=".92"/>` : ""}` : ""}
       <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="${big ? 1.6 : 1.1}" stroke-linecap="round"/>`; };
   const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 22.5, x1 = W - 3, g = 1, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
-    return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "TEAM" : "OPNT"}</text>` + st.map((p, i) => { const s = ringState(p), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
+    return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "TEAM" : "OPNT"}</text>` + st.map((p, i) => { const s = ringState(p, k), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
       return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .42).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
         ${bw >= 6 ? `<text class="gpz ${s}" x="${(bx + bw / 2).toFixed(2)}" y="${(yy + 7.2).toFixed(1)}" text-anchor="middle">${POSAB(p.slot)}</text>` : ""}</g>`; }).join(""); };
@@ -2527,7 +2546,7 @@ function meters(){
         const T = (sec, body) => `<div class="mx ms-${sec}${fl ? " flash" : ""}" style="--lc:${LCOL[k]}" data-jump="${SLUG[k]}" role="button" tabindex="0" aria-label="${esc(say)}">${body}</div>`;
         const tag = `<div class="mtag"><b>${DK[k]}</b><span>${esc(LGSHORT[k])}</span></div>`;
         return {k, a: T("a", `<div class="mxh wph"><div class="r1"><b>${DK[k]}</b>${BELL}</div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div>
-      ${winDial({k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp})}`),
+      ${winDial({k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp, prev})}`),
           b: T("b", `<div class="sbh"><b>${DK[k]}</b><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxs sgw z-${ZN}${onField ? " on" : ""}" data-sheet="${SLUG[k]}" role="button" title="Tap for both lineups and the week's trend. ${goNow ? "Live points (Yahoo). Your fluid color = chance to win this week: green 55%+, amber 45-55%, red under 45%; his is always gray. Solid fluid = points scored; lighter shade above = rest of the projected final. Ring = every starter by position (yours left, his right); a pulsing segment = playing (green), problem (amber) or unknown (red)." : "Not started · projected " + f1(F.me) + " vs " + f1(F.op)}">
         ${scoreGlobe(L, k, {y: wk, meOn: L.players.some(p => isStarter(p) && isLive(p)), opOn: L.oppPlayers.some(p => isStarter(p) && isLive(p)), me: goNow ? me : 0, op: goNow ? op : 0, pMe: F.me, pOp: F.op, meL, opL, state: done ? "FINAL" : goNow ? (onField ? "LIVE" : "IN PROGRESS") : "NOT STARTED"})}</div>
         <div class="sgx z-${ZN}">${(() => { /* Nov 11 3:55 PM (Dom): the Scoreboard tells the score's story - MARGIN replaces WEEK (the chance to win lives only in
@@ -2827,7 +2846,7 @@ function boxHtml(k, L){
   const isBench = (r) => /^(BN|IR)/.test(r.slot || "");
   /* Nov 10 (Dom): the same player light beside every name in the box score */
   const lightOf = (r, s) => ringState({name: r.name, status: r.status, proj: r.yp === null || r.yp === undefined ? 1 : r.yp, slot: r.slot,
-    when: /bye/i.test(r.when || "") || r.gs === "bye" ? "Bye" : s.g === "live" ? "In progress" : s.g === "done" ? "Final" : (r.when || "")});
+    when: /bye/i.test(r.when || "") || r.gs === "bye" ? "Bye" : s.g === "live" ? "In progress" : s.g === "done" ? "Final" : (r.when || "")}, k);
   const blocks = (rows) => rows.filter(r => !isBench(r)).map(r => { const s = bxState(r, L), lt = lightOf(r, s);
     return `<i class="bk lt-${lt}" title="${esc(r.name)} · ${esc(STW[lt] || "")} · ${esc(s.when)}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
   const fid = "bx-" + SLUG[k], open = !!FOLDS[fid];
@@ -2859,7 +2878,7 @@ function boxHtml(k, L){
   return `<details class="bxd" data-fold="${fid}"${open ? " open" : ""}><summary aria-label="Box score for both teams">
       <div class="pr"><span class="who">YOU</span><div class="blks">${blocks(sides.me)}</div></div>
       <div class="pr"><span class="who op">OPP</span><div class="blks">${blocks(sides.op)}</div></div>
-      <div class="pkey"><span><i class="bk sm lt-ok"></i>Fine</span><span><i class="bk sm lt-trbl"></i>Q / D</span><span><i class="bk sm lt-out"></i>Out</span><span><i class="bk sm lt-bye"></i>Bye</span><span><i class="bk sm lt-done"></i>Done</span><span><i class="bk sm lt-empty"></i>Empty</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
+      <div class="pkey"><span><i class="bk sm lt-ok"></i>To play</span><span><i class="bk sm lt-live"></i>Playing</span><span><i class="bk sm lt-done"></i>Done</span><span><i class="bk sm lt-trbl"></i>Q / D</span><span><i class="bk sm lt-out"></i>Out</span><span><i class="bk sm lt-bye"></i>Bye</span><span><i class="bk sm lt-empty"></i>Empty</span><span><i class="bk sm lt-swap"></i>Swap?</span>${nfl ? `<span class="hot">${nfl} bench flag${nfl > 1 ? "s" : ""}</span>` : ""}<b>Box score ${open ? "▴" : "▾"}</b></div></summary>
     <div class="bxb">${team(sides.me, L.team || "Dark Knight", true)}${team(sides.op, L.opp || "Opponent", false)}
       <p class="note">Points: Yahoo, league scoring${B ? `, Yahoo API read ${esc(B.read || "")}` : ""}. Projections: Yahoo's weekly projection (league scoring) and Ratcliffe's where the meter has him. Live status follows the latest Yahoo read.</p></div></details>`;
 }
@@ -3395,7 +3414,7 @@ const whenKey = (w) => { const m = /^(\w{3})\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i.exe
 function nextUp(L){ const pre = [...L.players, ...L.oppPlayers].filter(p => isStarter(p) && !started(p) && !isOut(p) && whenKey(p.when) !== null);
   if (!pre.length) return ""; pre.sort((a, b) => whenKey(a.when) - whenKey(b.when)); const w = pre[0].when, today = PT(new Date().toISOString(), {weekday: "short"});
   return w.startsWith(today + " ") ? w.slice(today.length + 1) : w; }
-const STW = {ok: "Fine · still to play", live: "Playing now", trbl: "Questionable / doubtful", trblon: "Playing · questionable tag", out: "Out", bye: "On bye", done: "Game over", empty: "Empty spot / no projection - fill it"};
+const STW = {swap: "Fine · bench man projects 2+ more (Ratcliffe) - swap?", ok: "Fine · still to play", live: "Playing now", trbl: "Questionable / doubtful", trblon: "Playing · questionable tag", out: "Out", bye: "On bye", done: "Game over", empty: "Empty spot / no projection - fill it"};
 function sheetHost(){ let b = $("#gback"); if (!b){ b = document.createElement("div"); b.id = "gback"; b.hidden = true; document.body.appendChild(b);
     const sh = document.createElement("div"); sh.id = "gsheet"; sh.setAttribute("role", "dialog"); sh.setAttribute("aria-modal", "true"); sh.hidden = true; document.body.appendChild(sh); }
   return $("#gsheet"); }
@@ -3403,13 +3422,13 @@ function showSheet(html, lc){ const sh = sheetHost(); sh.innerHTML = `<div class
   requestAnimationFrame(() => { sh.classList.add("up"); $("#gback").classList.add("up"); }); }
 function closeSheet(){ const sh = $("#gsheet"), b = $("#gback"); if (!sh) return; sh.classList.remove("up"); b.classList.remove("up"); setTimeout(() => { sh.hidden = true; b.hidden = true; }, 220); }
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
-function plRow(p){ const s = ringState(p), f = manFinal(p, "y");
+function plRow(p, k){ const s = ringState(p, k), f = manFinal(p, "y");
   return `<div class="gpr ${s}"><i></i><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc([p.tm, p.status].filter(Boolean).join(" · "))}</em></span><span class="pp">${f1(pts(p))}<em>${started(p) && !isDone(p) ? "→ " + f1(f) : isDone(p) ? "final" : "proj " + f1(f)}</em></span></div>`; }
 function plPop(key){ const [slug, side, idx] = key.split("|"), k = KEYOF[slug], L = lgS(k); if (!L) return;
-  const list = (side === "m" ? L.players : L.oppPlayers).filter(isStarter), p = list[+idx]; if (!p) return; const s = ringState(p), ig = igOf(p);
+  const list = (side === "m" ? L.players : L.oppPlayers).filter(isStarter), p = list[+idx]; if (!p) return; const s = ringState(p, k), ig = igOf(p);
   showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${side === "m" ? "Your" : esc(L.opp) + "'s"} ${esc(p.slot || "")}</span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
     <div class="gpl"><div class="gpn">${esc(p.name)}<em>${esc(p.tm || "")}</em></div>
-      <div class="gst ${s}"><i></i>${STW[s]}${p.status ? " · " + esc(p.status) : ""}</div>
+      <div class="gst ${s}"><i></i>${STW[s]}${p.status ? " · " + esc(p.status) : ""}</div>${s === "swap" ? `<div class="gwh">Ratcliffe best lineup: <b>${esc((((M.best || {})[k] || {}).lines || {}).me ? M.best[k].lines.me.join(" · ") : "")}</b></div>` : ""}
       <div class="gnums"><div><span>POINTS</span><b>${f1(pts(p))}</b></div><div><span>YAHOO PROJ</span><b>${f1(+p.proj || 0)}</b></div><div><span>PROJ FINAL</span><b>${f1(manFinal(p, "y"))}</b></div></div>
       <div class="gwh">Game: <b>${esc(p.when || "-")}</b>${ig ? `<br>${esc(ig.note)} <span class="mute">(RotoWire)</span>` : ""}</div>
       <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}</div></div>
@@ -3433,7 +3452,7 @@ function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; con
     <div class="gsc"><div><span>YOU</span><b>${f1(me)}</b><em>proj ${f1(F.me)}</em></div><div class="gm2"><span>GAP</span><b class="${Math.abs(mg) < .05 ? "" : mg > 0 ? "up" : "dn"}">${Math.abs(mg) < .05 ? "EVEN" : (mg > 0 ? "▲ " : "▼ ") + Math.abs(mg).toFixed(1)}</b><em>proj gap ${(F.me - F.op >= 0 ? "+" : "") + (F.me - F.op).toFixed(1)}</em></div><div><span>HIM</span><b>${f1(op)}</b><em>proj ${f1(F.op)}</em></div></div>
     <div class="gsec">YAHOO WIN THIS WEEK · READ BY READ</div>${trendSvg(k, y)}
     <div class="gsec">LINEUPS · ${leftOf(L.players).length} OF YOURS LEFT · ${leftOf(L.oppPlayers).length} OF HIS</div>
-    <div class="glu"><div>${a.map(plRow).join("")}</div><div>${b.map(plRow).join("")}</div></div>
+    <div class="glu"><div>${a.map(p => plRow(p, k)).join("")}</div><div>${b.map(p => plRow(p, k)).join("")}</div></div>
     <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}${nextUp(L) ? " · next kick " + esc(nextUp(L)) : ""}</div>
     <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>Alerts${live.length ? " (" + live.length + ")" : ""}</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }
