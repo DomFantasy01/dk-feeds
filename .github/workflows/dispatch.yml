@@ -13,12 +13,14 @@ on:
     # ... every 30 minutes Sunday morning before the games (6:00-8:30 AM PT: overseas game at 6:30 + inactives) ...
     # Nov 12 (Dom: "start that process 30 minutes before the game starts"): was 6:10.
     - cron: '0,30 14-16 * * 0'
+    # Nov 15 (Dom: every 15 minutes, page update right after each build): builds at :08 :23 :38 :53, landing ~:20 :35 :50 :05,
+    #   when the Live syncs run (:05, :20, :35, :50). Was: every 20 minutes.
     # ... and every 20 minutes while games are on (Nov 8, Dom: start 20 min before the first kickoff, run to 20 min after the last game):
     #   Sun 9:10 AM-8:50 PM PT, Mon and Thu 4:45-8:50 PM PT. Builds land ~12 min later; the Live syncs run at :05, :25, :45.
-    - cron: '10,30,50 17-23 * * 0'
-    - cron: '10,30,50 0-4 * * 1'
+    - cron: '8,23,38,53 17-23 * * 0'
+    - cron: '8,23,38,53 0-4 * * 1'
     - cron: '45 0 * * 2,5'           # Nov 12 (Dom): Mon/Thu first build 4:45 PM PT = 30 min before the 5:15 kickoff (was 4:50)
-    - cron: '10,30,50 1-4 * * 2,5'
+    - cron: '8,23,38,53 1-4 * * 2,5'
     # Nov 12 (Dom): the off-day games - each window starts 30+ min before kickoff (UTC dates; PST = UTC-8).
     #   Wed Nov 25 GB-LA 5:00 PM PT; Thanksgiving Nov 26 10:00 AM, 1:30 PM, 5:20 PM PT; Fri Nov 27 DEN-PIT noon PT;
     #   Sat Dec 19 2:00 and 5:20 PM PT; Christmas Fri Dec 25 10:00 AM, 1:30 PM, 5:15 PM PT.
