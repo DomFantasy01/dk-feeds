@@ -383,7 +383,7 @@ const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly
      Sunday :45 (9:45 AM-8:45 PM) and :05 (10:05 AM-9:05 PM); Monday and Thursday :45 (4:45-8:45 PM) and :05 (5:05-9:05 PM) */
   sync(d){ const R = (a, b, m) => Array.from({length: b - a + 1}, (_, i) => [a + i, m]);
     /* Nov 15 (Dom): game windows every 15 minutes - syncs at :05 :20 :35 :50, each right after a build (builds :08 :23 :38 :53) */
-    return [...R(4, 23, 25), ...(d === 0 ? [...R(6, 20, 20), ...R(6, 20, 35), ...R(6, 20, 50), ...R(7, 21, 5)] : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : [])]; }
+    return [...R(4, 23, 25), ...(d === 0 ? ((h0) => [...R(h0, 20, 20), ...R(h0, 20, 35), ...R(h0, 20, 50), ...R(h0 + 1, 21, 5)])(((M && M.kicks) || []).some(x => { const t = new Date(Array.isArray(x) ? x[0] : x), n = new Date(); return !isNaN(t) && t.toDateString() === n.toDateString() && t.getHours() < 10; }) ? 6 : 9) : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : [])]; }
 };
 function pacNow(){ const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}).formatToParts(new Date()).map(x => [x.type, x.value]));
   return {d: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), m: (+p.hour % 24) * 60 + (+p.minute)}; }
