@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Sun Nov 15 2026 08:40 AM PT",
+ "built": "Sun Nov 15 2026 09:02 AM PT",
  "ratcliffe_read": "Sun Nov 15 2026 3:02 AM PT",
  "koerner_read": "Sun Nov 15 2026 8:04 AM PT",
  "leagues": {
@@ -182,7 +182,7 @@
      "rat_wk": 7.4,
      "koe_wk": 7.55,
      "clay_ros": 10.25,
-     "vegas_wk": 6.85,
+     "vegas_wk": 6.83,
      "flagged_by": [
       "Ratcliffe",
       "Clay"
@@ -228,7 +228,7 @@
      "rat_wk": 8.4,
      "koe_wk": 7.28,
      "clay_ros": 8.9,
-     "vegas_wk": 7.77,
+     "vegas_wk": 7.98,
      "flagged_by": [
       "Clay"
      ],
@@ -309,7 +309,7 @@
      "rat_wk": 6.9,
      "koe_wk": 8.45,
      "clay_ros": 9.65,
-     "vegas_wk": 7.54,
+     "vegas_wk": 7.52,
      "flagged_by": [
       "Clay"
      ],
@@ -345,7 +345,7 @@
      "rat_wk": 13.9,
      "koe_wk": 11.52,
      "clay_ros": 12.7,
-     "vegas_wk": 12.26,
+     "vegas_wk": 12.22,
      "flagged_by": [
       "Clay",
       "Vegas"
@@ -363,18 +363,18 @@
       {
        "src": "Vegas",
        "span": "this week",
-       "his": 12.3,
+       "his": 12.2,
        "over": "Braelon Allen",
-       "over_v": 9.9,
-       "pct": 23,
-       "gain": 2.3
+       "over_v": 9.6,
+       "pct": 27,
+       "gain": 2.6
       }
      ],
      "sharp_po": 68.0,
      "sharp_rank": 16,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Clay (rest of season, Weeks 11-17: 12.7 vs your Emmett Johnson 6.8, +86%); Vegas (this week: 12.3 vs your Braelon Allen 9.9, +23%); Ratcliffe has him 9.3 a game vs 11.2; playoff offense #16 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Clay (rest of season, Weeks 11-17: 12.7 vs your Emmett Johnson 6.8, +86%); Vegas (this week: 12.2 vs your Braelon Allen 9.6, +27%); Ratcliffe has him 9.3 a game vs 11.2; playoff offense #16 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:jadarianprice",
      "first_seen": "Sun Nov 15 2026 03:14 AM PT"
     },
@@ -588,7 +588,7 @@
      "rat_wk": 6.9,
      "koe_wk": 8.45,
      "clay_ros": 9.65,
-     "vegas_wk": 7.54,
+     "vegas_wk": 7.52,
      "flagged_by": [
       "Ratcliffe",
       "Clay"
@@ -616,7 +616,7 @@
      "sharp_po": 73.75,
      "sharp_rank": 6,
      "rising": null,
-     "scout": false,
+     "scout": true,
      "note": "Flagged by Ratcliffe (rest of season: 10.1 vs your Kaleb Johnson 5.1, +98%); Clay (rest of season, Weeks 11-17: 9.7 vs your Kaleb Johnson 4.9, +97%); playoff offense #6 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:kimanividal",
      "first_seen": "Wed Nov 11 2026 03:10 PM PT"
@@ -792,9 +792,9 @@
        "span": "this week",
        "his": 10.0,
        "over": "Kaleb Johnson",
-       "over_v": 8.9,
-       "pct": 13,
-       "gain": 1.1
+       "over_v": 8.6,
+       "pct": 17,
+       "gain": 1.4
       }
      ],
      "sharp_po": 67.25,
@@ -835,7 +835,7 @@
      ],
      "sharp_po": 55.25,
      "sharp_rank": 31,
-     "rising": "his work is climbing: 7 a game the last two vs 4 before (snaps/targets/touches, last games 1/4/5/6/10/4)",
+     "rising": null,
      "scout": false,
      "id": "watch:jaylenwright",
      "first_seen": "Sat Nov 14 2026 09:35 AM PT"
@@ -1008,40 +1008,52 @@
    ],
    "cover": [
     {
-     "title": "WR1, Weeks 13-14 Fill",
-     "target": "Target 13.2 pts",
-     "mark": "gold",
-     "why": "Full strength ~12.8 (Pickens). Wk 13 Odunze ~13.6 (Pickens moves up to WR2, Odunze slides in) \u00b7 Wk 14 Waddle ~12.8 (Pickens on bye, Waddle slides in).",
-     "picks": [],
-     "id": "cover:wr1weeks1314fill",
-     "first_seen": "Thu Nov 12 2026 05:40 PM PT"
-    },
-    {
      "title": "RB1, Weeks 10, 12 Fill",
      "target": "Target 15.8 pts",
-     "mark": "gold",
+     "mark": "red",
      "why": "Full strength ~18.7 (Coleman). Wk 10 White ~12.9 (Coleman on bye, White slides in) \u00b7 Wk 12 Coleman ~18.6 (hard matchup vs PIT).",
-     "picks": [],
+     "picks": [
+      "Austin Ekeler (Waivers, clears Nov 18)",
+      "Kimani Vidal (Free agent)"
+     ],
      "id": "cover:rb1weeks1012fill",
      "first_seen": "Mon Nov 09 2026 08:42 PM PT"
     },
     {
      "title": "RB2, Week 10 Fill",
-     "target": "Target 10.1 pts",
-     "mark": "gold",
-     "why": "Full strength ~10.8 (White). Wk 10 Johnson ~10.1 (White moves up to RB1, Johnson slides in).",
-     "picks": [],
+     "target": "Target 10.8 pts",
+     "mark": "red",
+     "why": "Slot empty; ideally ~11 (Rachaad White's level) \u2014 anything beats zero.",
+     "picks": [
+      "Austin Ekeler (Waivers, clears Nov 18)",
+      "Kimani Vidal (Free agent)"
+     ],
      "id": "cover:rb2week10fill",
      "first_seen": "Fri Nov 13 2026 03:39 AM PT"
     },
     {
-     "title": "TE, Weeks 10-11 Fill",
-     "target": "Target 10.3 pts",
-     "mark": "gold",
-     "why": "Full strength ~12.7 (Fannin). Wk 10 Fannin ~10.2 (hard matchup vs HOU) \u00b7 Wk 11 Hockenson ~10.4 (Fannin on bye, Hockenson slides in).",
-     "picks": [],
-     "id": "cover:teweeks1011fill",
-     "first_seen": "Sat Nov 14 2026 11:51 AM PT"
+     "title": "FLEX1, Week 10 Fill",
+     "target": "Target 8.7 pts",
+     "mark": "red",
+     "why": "Full strength ~11.3 (Waddle). Wk 10 Waller ~8.7 (Waddle on bye, Waller slides in).",
+     "picks": [
+      "Austin Ekeler (Waivers, clears Nov 18)",
+      "Kimani Vidal (Free agent)"
+     ],
+     "id": "cover:flex1week10fill",
+     "first_seen": "Sun Nov 15 2026 09:02 AM PT"
+    },
+    {
+     "title": "FLEX2, Week 10 Fill",
+     "target": "Target 8.1 pts",
+     "mark": "red",
+     "why": "Full strength ~10.6 (Hockenson). Wk 10 Parkinson ~8.1 (Hockenson out, Parkinson slides in).",
+     "picks": [
+      "Austin Ekeler (Waivers, clears Nov 18)",
+      "Kimani Vidal (Free agent)"
+     ],
+     "id": "cover:flex2week10fill",
+     "first_seen": "Sun Nov 15 2026 09:02 AM PT"
     }
    ],
    "block": [],
