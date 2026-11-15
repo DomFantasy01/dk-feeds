@@ -382,7 +382,8 @@ const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly
   /* Nov 8 8:30 PM: the real Live syncs - hourly at :25 (4:25 AM-11:25 PM), plus game-window syncs every 20 min with it:
      Sunday :45 (9:45 AM-8:45 PM) and :05 (10:05 AM-9:05 PM); Monday and Thursday :45 (4:45-8:45 PM) and :05 (5:05-9:05 PM) */
   sync(d){ const R = (a, b, m) => Array.from({length: b - a + 1}, (_, i) => [a + i, m]);
-    return [...R(4, 23, 25), ...(d === 0 ? [...R(9, 20, 45), ...R(10, 21, 5)] : d === 1 || d === 4 ? [...R(16, 20, 45), ...R(17, 21, 5)] : [])]; }
+    /* Nov 15 (Dom): game windows every 15 minutes - syncs at :05 :20 :35 :50, each right after a build (builds :08 :23 :38 :53) */
+    return [...R(4, 23, 25), ...(d === 0 ? [...R(9, 20, 20), ...R(9, 20, 35), ...R(9, 20, 50), ...R(10, 21, 5)] : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : [])]; }
 };
 function pacNow(){ const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false}).formatToParts(new Date()).map(x => [x.type, x.value]));
   return {d: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), m: (+p.hour % 24) * 60 + (+p.minute)}; }
