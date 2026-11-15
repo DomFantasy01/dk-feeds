@@ -1,9 +1,9 @@
 {
- "built": "Sat Nov 14 2026 6:42 PM PT",
+ "built": "Sat Nov 14 2026 7:55 PM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Sat Nov 14 2026 6:41 PM PT",
- "champ_built": "Sat Nov 14 2026 06:38 PM PT",
+ "pickups_built": "Sat Nov 14 2026 7:54 PM PT",
+ "champ_built": "Sat Nov 14 2026 07:52 PM PT",
  "leagues": {
   "1": {
    "base": 0.315,
@@ -170,7 +170,7 @@
    ]
   },
   "2": {
-   "base": 0.209,
+   "base": 0.208,
    "week_win": 0.403,
    "picks": [
     {
@@ -218,7 +218,7 @@
       "consensus": 15.2,
       "upside": 11.7,
       "drop": 13.2,
-      "stakes": 16.4
+      "stakes": 16.0
      },
      "total": 69,
      "verdict": "LEAN",
@@ -228,12 +228,12 @@
       "consensus": "+27% vs Emmett Johnson (top-3 average); 4 of 7 sources have him ahead",
       "upside": "85 pts rest of season; Weeks 15-17 W15 DEN (#11), W16 TEN (#14), W17 ARI (#17)",
       "drop": "drop Kenny Gainwell: his loss alone -0.7 playoff odds; a rival would start him (RFFR, Rated PG-18)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +1.1; this week's game swings the playoff odds 8% to 40%; keeps him from this week's opponent Diddys Booty Butter; 5 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season +1.0; this week's game swings the playoff odds 8% to 40%; keeps him from this week's opponent Diddys Booty Butter; 5 rivals would start him"
      },
      "move": {
       "drop": "Kenny Gainwell",
       "d_week": 0.0,
-      "d_playoff": 0.011,
+      "d_playoff": 0.01,
       "d_title": 0.001,
       "ppg": 1.5,
       "games": 7
@@ -498,8 +498,8 @@
    ]
   },
   "4": {
-   "base": 0.832,
-   "week_win": 0.854,
+   "base": 0.833,
+   "week_win": 0.85,
    "picks": [
     {
      "name": "Adonai Mitchell",
@@ -529,9 +529,42 @@
       "drop": "Rams",
       "d_week": 0.002,
       "d_playoff": 0.004,
-      "d_title": -0.0002,
+      "d_title": 0.0005,
       "ppg": -5.1,
       "games": 2
+     }
+    },
+    {
+     "name": "Keenan Allen",
+     "replaces": "Jakobi Meyers",
+     "pos": "WR",
+     "team": "SF",
+     "tier": "HOT",
+     "grade": 65,
+     "spokes": {
+      "team": 17.0,
+      "consensus": 6.3,
+      "upside": 10.9,
+      "drop": 20.0,
+      "stakes": 8.9
+     },
+     "total": 63,
+     "verdict": "LEAN",
+     "vwhy": "63/100",
+     "why": {
+      "team": "SF offense 29.4 a game (#3), last 3 games 27.0 (#11); team 88% wins; workload 14/15",
+      "consensus": "-4% vs Jakobi Meyers (top-3 average); 1 of 5 sources have him ahead",
+      "upside": "77 pts rest of season; Weeks 15-17 W15 LAC (#4), W16 KC (#31), W17 PHI (#3)",
+      "drop": "drop Rams: his loss alone +0.2 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.2; playoff odds for the season +0.2; this week's game swings the playoff odds 67% to 86%; 1 rivals would start him"
+     },
+     "move": {
+      "drop": "Rams",
+      "d_week": 0.002,
+      "d_playoff": 0.002,
+      "d_title": 0.0012,
+      "ppg": -10.7,
+      "games": 1
      }
     },
     {
@@ -546,7 +579,7 @@
       "consensus": 14.0,
       "upside": 11.2,
       "drop": 20.0,
-      "stakes": 14.5
+      "stakes": 14.1
      },
      "total": 71,
      "verdict": "GO",
@@ -556,13 +589,13 @@
       "consensus": "+47% vs Will Reichard (top-3 average); 2 of 5 sources have him ahead",
       "upside": "88 pts rest of season; Weeks 15-17 W15 NE (#18), W16 SF (#27), W17 LAC (#5)",
       "drop": "drop Rams: his loss alone +0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.2; playoff odds for the season +1.1; this week's game swings the playoff odds 67% to 86%; 4 rivals would start him"
+      "stakes": "chance to win this week +0.2; playoff odds for the season +1.0; this week's game swings the playoff odds 67% to 86%; 4 rivals would start him"
      },
      "move": {
       "drop": "Rams",
       "d_week": 0.002,
-      "d_playoff": 0.011,
-      "d_title": 0.0045,
+      "d_playoff": 0.01,
+      "d_title": 0.0067,
       "ppg": -0.8,
       "games": 7
      }
@@ -618,39 +651,6 @@
       "stakes": "not in the simulator's pool - scored even"
      },
      "move": null
-    },
-    {
-     "name": "Xavier Hutchinson",
-     "replaces": "Jakobi Meyers",
-     "pos": "WR",
-     "team": "HOU",
-     "tier": "WATCH",
-     "grade": 56,
-     "spokes": {
-      "team": 14.9,
-      "consensus": 0.0,
-      "upside": 10.7,
-      "drop": 20.0,
-      "stakes": 8.9
-     },
-     "total": 54,
-     "verdict": "NO MOVE",
-     "vwhy": "red flag (under 5): Experts",
-     "why": {
-      "team": "HOU offense 26.1 a game (#9), last 3 games 33.0 (#3) - trending up; team 38% wins; workload 11/15",
-      "consensus": "-32% vs Jakobi Meyers (top-3 average); 0 of 7 sources have him ahead",
-      "upside": "54 pts rest of season; Weeks 15-17 W15 JAX (#13), W16 PHI (#3), W17 GB (#6)",
-      "drop": "drop Rams: his loss alone +0.2 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.2; playoff odds for the season +0.2; this week's game swings the playoff odds 67% to 86%; 1 rivals would start him"
-     },
-     "move": {
-      "drop": "Rams",
-      "d_week": 0.002,
-      "d_playoff": 0.002,
-      "d_title": 0.0007,
-      "ppg": -10.7,
-      "games": 1
-     }
     }
    ]
   }
@@ -664,7 +664,7 @@
    0,
    0
   ],
-  "logged": 61,
+  "logged": 62,
   "weeks": [
    10
   ],
