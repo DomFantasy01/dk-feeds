@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-11-16T21:05:25+00:00",
+ "pulled_utc": "2026-11-16T21:09:03+00:00",
  "probes": {
   "espn_injuries_team1": {
    "answered": true,
@@ -30,8 +30,8 @@
    "answered": true,
    "kind": "rss",
    "items": 50,
-   "newest_utc": "2026-11-16T21:00+00:00",
-   "bytes": 324263
+   "newest_utc": "2026-11-16T21:04+00:00",
+   "bytes": 304140
   },
   "pft_rss_old": {
    "answered": true,
@@ -45,11 +45,8 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   "google_news_nfl_injury": {
-   "answered": true,
-   "kind": "rss",
-   "items": 23,
-   "newest_utc": "2026-11-16T20:38+00:00",
-   "bytes": 31439
+   "answered": false,
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   "rotowire_mirror": {
    "answered": false,
