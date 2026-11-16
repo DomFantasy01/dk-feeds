@@ -918,6 +918,8 @@ cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=7)).isoformat()   #
 cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=1)).isoformat()   # Oct 29 (Dom): resolved cards are kept one day, then dropped
 for i, o in old.items():
     if i in seen: continue
+    if o.get("kind") == "sweep":   # Nov 16 (Dom): news-sweep cards stay until he deletes or separates them - the build never resolves them
+        out.append(o); continue
     if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
     if o.get("kind") == "feed" and not FEEDS and o.get("active"):
         pass                                          # a run without the feeds can't judge feed alerts; leave them as they are
@@ -933,7 +935,7 @@ for i, o in old.items():
         if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}, "news_checked": PREV.get("news_checked")}
 # Oct 20 (Dom): SIZE GUARD - the Live database refuses a document over 262,144 bytes, and every hourly run with the
 # news feeds came out ~274 KB, so its write was refused and the page sat on the 7:13 AM feeds. Drop the oldest archived
 # cards (never an active one) until the document fits with room to spare, and write it compact.
