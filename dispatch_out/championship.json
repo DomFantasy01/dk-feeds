@@ -1,10 +1,10 @@
 {
- "built": "Mon Nov 16 2026 08:13 AM PT",
+ "built": "Mon Nov 16 2026 08:35 AM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 10,
-   "built": "Mon Nov 16 2026 08:13 AM PT",
+   "built": "Mon Nov 16 2026 08:35 AM PT",
    "standings": "Sun Nov 15 8:52 PM PT",
    "base": {
     "wins": 7.36,
@@ -1503,12 +1503,6 @@
      "d_playoff": 0.002
     },
     {
-     "add": "Bo Nix",
-     "drop": "Jordan Addison",
-     "d_wins": 0.01,
-     "d_playoff": 0.002
-    },
-    {
      "add": "Michael Penix Jr.",
      "drop": "Jordan Addison",
      "d_wins": 0.0,
@@ -1534,6 +1528,12 @@
     },
     {
      "add": "Charlie Smyth",
+     "drop": "Jordan Addison",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
+     "add": "Dominic Zvada",
      "drop": "Jordan Addison",
      "d_wins": 0.0,
      "d_playoff": 0.0
@@ -1772,7 +1772,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 244 players",
    "plan": {
     "week": 10,
-    "built": "Mon Nov 16 2026 08:13 AM PT",
+    "built": "Mon Nov 16 2026 08:35 AM PT",
     "standings": "Sun Nov 15 8:52 PM PT",
     "playoff": 0.6233333333333333,
     "wins": 7.362333333333333,
@@ -2108,7 +2108,7 @@
   },
   "DK II": {
    "week": 10,
-   "built": "Mon Nov 16 2026 08:13 AM PT",
+   "built": "Mon Nov 16 2026 08:35 AM PT",
    "standings": "Sun Nov 15 8:52 PM PT",
    "base": {
     "wins": 5.92,
@@ -2123,10 +2123,10 @@
      0.0,
      0.0017,
      0.0188,
-     0.0523,
+     0.0525,
      0.1195,
      0.1953,
-     0.2685,
+     0.2683,
      0.3337,
      0.01,
      0.0002
@@ -2145,8 +2145,8 @@
     0,
     0,
     325,
-    1586,
-    2562,
+    1585,
+    2563,
     1321,
     206,
     0,
@@ -2334,7 +2334,7 @@
      "wk": 12,
      "opp": "Daejon Love",
      "win": 0.21,
-     "po_w": 0.209,
+     "po_w": 0.21,
      "po_l": 0.037,
      "ti_w": 0.004,
      "ti_l": 0.001
@@ -2343,7 +2343,7 @@
      "wk": 13,
      "opp": "How \u2018Bout Them Points",
      "win": 0.73,
-     "po_w": 0.098,
+     "po_w": 0.099,
      "po_l": 0.004,
      "ti_w": 0.003,
      "ti_l": 0.0
@@ -2900,7 +2900,7 @@
       [
        "K",
        "Ka'imi Fairbairn",
-       9.2,
+       9.3,
        ""
       ],
       [
@@ -3330,10 +3330,10 @@
        0.0,
        0.0017,
        0.0188,
-       0.0523,
+       0.0525,
        0.1195,
        0.1953,
-       0.2685,
+       0.2683,
        0.3337,
        0.01,
        0.0002
@@ -3352,10 +3352,10 @@
        0.0,
        0.0,
        0.0077,
-       0.0355,
+       0.0357,
        0.0663,
-       0.126,
-       0.1885,
+       0.1262,
+       0.1882,
        0.2607,
        0.306,
        0.0092,
@@ -3377,8 +3377,8 @@
       272,
       1423,
       2462,
-      1455,
-      364,
+      1454,
+      365,
       24,
       0,
       0,
@@ -3401,95 +3401,6 @@
      }
     },
     {
-     "add": "Geno Smith",
-     "pos": "QB",
-     "nfl": "NYJ",
-     "acq": "Waivers, clears Nov 18",
-     "drop": "Aaron Rodgers",
-     "before": {
-      "wins": 5.92,
-      "playoff": 0.073,
-      "title": 0.0018,
-      "final": 0.005,
-      "semis": 0.024,
-      "seed": 10,
-      "seeds": [
-       0.0,
-       0.0,
-       0.0,
-       0.0017,
-       0.0188,
-       0.0523,
-       0.1195,
-       0.1953,
-       0.2685,
-       0.3337,
-       0.01,
-       0.0002
-      ],
-      "first": 0.0
-     },
-     "after": {
-      "wins": 6.02,
-      "playoff": 0.107,
-      "title": 0.0018,
-      "final": 0.01,
-      "semis": 0.041,
-      "seed": 10,
-      "seeds": [
-       0.0,
-       0.0002,
-       0.0,
-       0.007,
-       0.0342,
-       0.066,
-       0.1253,
-       0.1905,
-       0.2502,
-       0.316,
-       0.0105,
-       0.0002
-      ],
-      "first": 0.0
-     },
-     "d_wins": 0.1,
-     "d_playoff": 0.035,
-     "d_title": 0.0,
-     "pts_total": -2.8,
-     "pts_per_game": -0.4,
-     "games_used": 8,
-     "wins_hist": [
-      0,
-      0,
-      0,
-      0,
-      322,
-      1498,
-      2338,
-      1451,
-      363,
-      28,
-      0,
-      0,
-      0,
-      0,
-      0
-     ],
-     "this_week": 0.129,
-     "drop_helps": [
-      "Diddys Booty Butter",
-      "Rated PG-18"
-     ],
-     "drop_role": "starts for you in Weeks 10, 11, 12, 13, 15, 16, 17; would start for 2 rivals (Diddys Booty Butter, Rated PG-18)",
-     "block": {
-      "rival": "Ground Game evan",
-      "rival_pts": 77.8,
-      "rival_playoff": 0.0,
-      "my_playoff": 0.007,
-      "my_title": 0.0003
-     }
-    },
-    {
      "add": "Joe Milton III",
      "pos": "QB",
      "nfl": "PHI",
@@ -3508,10 +3419,10 @@
        0.0,
        0.0017,
        0.0188,
-       0.0523,
+       0.0525,
        0.1195,
        0.1953,
-       0.2685,
+       0.2683,
        0.3337,
        0.01,
        0.0002
@@ -3530,19 +3441,19 @@
        0.0,
        0.0,
        0.0077,
-       0.035,
-       0.0617,
-       0.126,
-       0.1868,
+       0.0352,
+       0.0615,
+       0.1263,
+       0.1867,
        0.2582,
-       0.3135,
+       0.3133,
        0.011,
        0.0002
       ],
       "first": 0.0
      },
      "d_wins": 0.1,
-     "d_playoff": 0.032,
+     "d_playoff": 0.031,
      "d_title": -0.0003,
      "pts_total": -21.4,
      "pts_per_game": -3.1,
@@ -3554,8 +3465,8 @@
       0,
       322,
       1435,
-      2460,
-      1406,
+      2458,
+      1408,
       349,
       28,
       0,
@@ -3597,10 +3508,10 @@
        0.0,
        0.0017,
        0.0188,
-       0.0523,
+       0.0525,
        0.1195,
        0.1953,
-       0.2685,
+       0.2683,
        0.3337,
        0.01,
        0.0002
@@ -3618,13 +3529,13 @@
        0.0,
        0.0,
        0.0,
-       0.0068,
+       0.007,
        0.0362,
        0.0598,
-       0.1267,
+       0.1265,
        0.185,
-       0.2498,
-       0.3247,
+       0.25,
+       0.3245,
        0.0108,
        0.0002
       ],
@@ -3643,9 +3554,9 @@
       0,
       315,
       1509,
-      2408,
+      2407,
       1382,
-      362,
+      363,
       24,
       0,
       0,
@@ -3668,6 +3579,94 @@
      }
     },
     {
+     "add": "Geno Smith",
+     "pos": "QB",
+     "nfl": "NYJ",
+     "acq": "Waivers, clears Nov 18",
+     "drop": "Justin Herbert",
+     "before": {
+      "wins": 5.92,
+      "playoff": 0.073,
+      "title": 0.0018,
+      "final": 0.005,
+      "semis": 0.024,
+      "seed": 10,
+      "seeds": [
+       0.0,
+       0.0,
+       0.0,
+       0.0017,
+       0.0188,
+       0.0525,
+       0.1195,
+       0.1953,
+       0.2683,
+       0.3337,
+       0.01,
+       0.0002
+      ],
+      "first": 0.0
+     },
+     "after": {
+      "wins": 5.99,
+      "playoff": 0.092,
+      "title": 0.002,
+      "final": 0.007,
+      "semis": 0.034,
+      "seed": 10,
+      "seeds": [
+       0.0,
+       0.0,
+       0.0,
+       0.003,
+       0.0223,
+       0.0665,
+       0.1237,
+       0.2058,
+       0.2638,
+       0.3055,
+       0.0092,
+       0.0002
+      ],
+      "first": 0.0
+     },
+     "d_wins": 0.07,
+     "d_playoff": 0.019,
+     "d_title": 0.0002,
+     "pts_total": 18.4,
+     "pts_per_game": 3.7,
+     "games_used": 5,
+     "wins_hist": [
+      0,
+      0,
+      0,
+      0,
+      287,
+      1483,
+      2519,
+      1444,
+      267,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "this_week": 0.0,
+     "drop_helps": [
+      "Rated PG-18"
+     ],
+     "drop_role": "backup QB behind Aaron Rodgers; starts for you in Week 14; would start for 1 rival (Rated PG-18)",
+     "block": {
+      "rival": "Ground Game evan",
+      "rival_pts": 87.2,
+      "rival_playoff": 0.0,
+      "my_playoff": 0.007,
+      "my_title": 0.0003
+     }
+    },
+    {
      "add": "KC defense",
      "pos": "DEF",
      "nfl": "KC",
@@ -3686,10 +3685,10 @@
        0.0,
        0.0017,
        0.0188,
-       0.0523,
+       0.0525,
        0.1195,
        0.1953,
-       0.2685,
+       0.2683,
        0.3337,
        0.01,
        0.0002
@@ -3730,10 +3729,10 @@
       0,
       0,
       0,
-      372,
-      1539,
-      2380,
-      1363,
+      371,
+      1540,
+      2379,
+      1364,
       324,
       22,
       0,
@@ -3783,10 +3782,10 @@
        0.0,
        0.0017,
        0.0188,
-       0.0523,
+       0.0525,
        0.1195,
        0.1953,
-       0.2685,
+       0.2683,
        0.3337,
        0.01,
        0.0002
@@ -3805,12 +3804,12 @@
        0.0,
        0.0002,
        0.01,
-       0.0357,
+       0.0358,
        0.0615,
-       0.128,
+       0.1278,
        0.1828,
-       0.2602,
-       0.3117,
+       0.2603,
+       0.3115,
        0.0097,
        0.0003
       ],
@@ -3844,7 +3843,7 @@
       "playoff": 0.324,
       "title": 0.0173,
       "final": 0.048,
-      "semis": 0.137,
+      "semis": 0.138,
       "seed": 7,
       "seeds": [
        0.0,
@@ -3852,11 +3851,11 @@
        0.0017,
        0.033,
        0.1132,
-       0.1758,
-       0.2065,
-       0.1907,
+       0.176,
+       0.2063,
+       0.1905,
        0.136,
-       0.1423,
+       0.1425,
        0.0007,
        0.0
       ],
@@ -3867,7 +3866,7 @@
      "d_title": 0.0005,
      "them_d_playoff": 0.072,
      "them_d_title": 0.005,
-     "them_d_wins": 0.21,
+     "them_d_wins": 0.2,
      "pitch": "Jayden Daniels for Chuba Hubbard. On 6,000 simulated seasons your playoff odds go 25% to 32% and your title odds 1.2% to 1.7%, and you add about +0.2 wins - Jayden Daniels starts for you the rest of the way."
     }
    ],
@@ -3876,10 +3875,10 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 249 players",
    "plan": {
     "week": 10,
-    "built": "Mon Nov 16 2026 08:13 AM PT",
+    "built": "Mon Nov 16 2026 08:35 AM PT",
     "standings": "Sun Nov 15 8:52 PM PT",
-    "playoff": 0.07283333333333333,
-    "wins": 5.916166666666666,
+    "playoff": 0.073,
+    "wins": 5.916333333333333,
     "first": 0.0,
     "rank": 10,
     "teams": 12,
@@ -4182,22 +4181,12 @@
       "helps": []
      },
      {
-      "add": "Geno Smith",
-      "pos": "QB",
-      "nfl": "NYJ",
-      "acq": "Waivers, clears Nov 18",
-      "drop": "Aaron Rodgers",
-      "d_playoff": 0.035,
-      "d_week": 0.129,
-      "helps": []
-     },
-     {
       "add": "Joe Milton III",
       "pos": "QB",
       "nfl": "PHI",
       "acq": "Free agent",
       "drop": "Aaron Rodgers",
-      "d_playoff": 0.032,
+      "d_playoff": 0.031,
       "d_week": 0.129,
       "helps": []
      },
@@ -4210,6 +4199,16 @@
       "d_playoff": 0.03,
       "d_week": 0.129,
       "helps": []
+     },
+     {
+      "add": "Geno Smith",
+      "pos": "QB",
+      "nfl": "NYJ",
+      "acq": "Waivers, clears Nov 18",
+      "drop": "Justin Herbert",
+      "d_playoff": 0.019,
+      "d_week": 0.0,
+      "helps": []
      }
     ],
     "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 249 players"
@@ -4217,7 +4216,7 @@
   },
   "DK III": {
    "week": 10,
-   "built": "Mon Nov 16 2026 08:13 AM PT",
+   "built": "Mon Nov 16 2026 08:35 AM PT",
    "standings": "Sun Nov 15 8:52 PM PT",
    "base": {
     "wins": 4.94,
@@ -5588,7 +5587,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players",
    "plan": {
     "week": 10,
-    "built": "Mon Nov 16 2026 08:13 AM PT",
+    "built": "Mon Nov 16 2026 08:35 AM PT",
     "standings": "Sun Nov 15 8:52 PM PT",
     "playoff": 0.027333333333333334,
     "wins": 4.9446666666666665,
@@ -5991,7 +5990,7 @@
   },
   "DK IV": {
    "week": 10,
-   "built": "Mon Nov 16 2026 08:13 AM PT",
+   "built": "Mon Nov 16 2026 08:35 AM PT",
    "standings": "Sun Nov 15 8:52 PM PT",
    "base": {
     "wins": 15.42,
@@ -7750,7 +7749,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players",
    "plan": {
     "week": 10,
-    "built": "Mon Nov 16 2026 08:13 AM PT",
+    "built": "Mon Nov 16 2026 08:35 AM PT",
     "standings": "Sun Nov 15 8:52 PM PT",
     "playoff": 0.9055,
     "wins": 15.422666666666666,
