@@ -59,6 +59,25 @@ for l in open(f"{H}/dk{CF['n']}_waivers.txt"):
     if l.startswith("#"): continue
     for it in l.strip().split("|"):
         if "/" in it: n,c=it.rsplit("/",1); WAIV[norm(n)]=c
+# Nov 17 (Dom): Yahoo's API waiver list stops at 400 names. After a week's games EVERY unrostered player is on waivers until the
+# weekly run (Yahoo live Mon night: all 'W (Nov 18)'), but anyone past the 400 was called a "free agent - add with no bid".
+# A capped list that all clears on one future day = that blanket period: every unrostered man clears that day.
+class _Blanket(dict):
+    def __init__(s,d,day): super().__init__(d); s.day=day
+    def __contains__(s,k): return True
+    def __missing__(s,k): return s.day
+    def get(s,k,default=None): return dict.get(s,k,s.day)
+try:
+    import collections as _co
+    if len(WAIV)>=300:
+        _d,_n=_co.Counter(WAIV.values()).most_common(1)[0]
+        _np=dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
+        _dd=dt.datetime.strptime(f"{_d} {_np.year}","%b %d %Y").date()
+        if _n>=0.9*len(WAIV) and _np.date()<_dd:
+            WAIV=_Blanket(WAIV,_d)
+            if not QUIET: print(f"Waivers: Yahoo's weekly waiver period - every unrostered player clears {_d}")
+except Exception as _e:
+    pass
 for _nn,_aa in {"cardinals":"ARI","falcons":"ATL","ravens":"BAL","bills":"BUF","panthers":"CAR","bears":"CHI","bengals":"CIN","browns":"CLE","cowboys":"DAL","broncos":"DEN","lions":"DET","packers":"GB","texans":"HOU","colts":"IND","jaguars":"JAX","chiefs":"KC","raiders":"LV","chargers":"LAC","rams":"LA","dolphins":"MIA","vikings":"MIN","patriots":"NE","saints":"NO","giants":"NYG","jets":"NYJ","eagles":"PHI","steelers":"PIT","49ers":"SF","seahawks":"SEA","buccaneers":"TB","titans":"TEN","commanders":"WAS"}.items():   # Oct 17 (Dom): a defense on waivers is found by its nickname
     if _nn in WAIV: WAIV["def "+_aa.lower()]=WAIV[_nn]
 # Oct 28 (Dom, DK IV Josh Downs): Yahoo won't let you claim back a man YOU dropped while he sits on waivers. The Scout told

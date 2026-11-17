@@ -151,12 +151,30 @@ for lg_, n_ in LGN.items():
         for e in l.split("|"):
             if "/" in e: nm_, dte = e.rsplit("/", 1); wl_[_nm(nm_)] = dte.strip()
     OWN[lg_] = (taken, wl_, stamp)
+def blanket(lg):
+    """Nov 17 (Dom): Yahoo's API waiver list stops at 400 names. After a week's games every unrostered player is on waivers until
+    the weekly run (Yahoo live Mon night: all 'W (Nov 18)'), so a man missing from the capped list is NOT a free agent. A full list
+    that all clears on one future day = that blanket period."""
+    if lg not in OWN: return None
+    wl_ = OWN[lg][1]
+    if len(wl_) < 300: return None
+    import collections
+    d, n = collections.Counter(wl_.values()).most_common(1)[0]
+    if n < 0.9 * len(wl_): return None
+    try:
+        nowpt = dt.datetime.now(__import__("zoneinfo").ZoneInfo("America/Los_Angeles"))
+        dd = dt.datetime.strptime(f"{d} {nowpt.year}", "%b %d %Y").date()
+        if dd < nowpt.date() - dt.timedelta(days=30): dd = dd.replace(year=dd.year + 1)
+    except Exception: return None
+    return d if nowpt.date() < dd else None
 def ownership(lg, name):
     if lg not in OWN: return None
     taken, wl_, stamp = OWN[lg]; k = _nm(name)
     if k in taken: return ("taken", "", f"rostered by another team, read {stamp}")
     if k in wl_: return ("waivers", wl_[k], f"on waivers until {wl_[k]}, read {stamp}")
-    return ("free", "", f"not rostered and not on the waiver list (it shows the top 15), read {stamp}")
+    b_ = blanket(lg)
+    if b_: return ("waivers", b_, f"on waivers until {b_} - Yahoo's weekly waiver period (every unrostered player clears {b_}; the API list stops at 400 names), read {stamp}")
+    return ("free", "", f"not rostered and not on Yahoo's waiver list (the list stops at 400 names - confirm on Yahoo live), read {stamp}")
 def agree(ws, fs, wy, fy):   # wire/bench man vs your starter on the two sources that only show, never vote
     parts, votes = [], 0
     for lab, a, b in (("Sleeper", ws, fs), ("Yahoo", wy, fy)):
@@ -270,6 +288,7 @@ def own_tag(lg, name, hint=None):
     elif t and t[0] == t[3]: base = "Your player" + (" (IR)" if t[2] == "IR" else " (bench)" if t[2] == "BN" else "")
     elif t and opp and t[1] == opp: base = f"Opponent this week: {opp}"
     elif t: base = f"Another team's player: {t[1]}"
+    elif YA and blanket(lg): base = f"On waivers until {blanket(lg)}"   # Nov 17: weekly waiver period - nobody is a free agent
     elif YA: base = "Free agent"
     else: base = "Owner unknown (no Yahoo read)"
     return base + (f" · {hint}" if hint else "")

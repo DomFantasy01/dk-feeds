@@ -139,6 +139,20 @@ def waivers(R, n):
             if ln.startswith("#"): continue
             for x in ln.strip().split("|"):
                 if "/" in x: nm, c = x.rsplit("/", 1); W[norm(nm)] = c
+    # Nov 17 (Dom): the API list stops at 400 names; a full list all clearing one future day = Yahoo's weekly waiver period,
+    # when EVERY unrostered player is on waivers - so nobody missing from it is a free agent.
+    try:
+        import collections as _co, datetime as _dt2, zoneinfo as _zi2
+        if len(W) >= 300:
+            _d, _n = _co.Counter(W.values()).most_common(1)[0]
+            _np = _dt2.datetime.now(_zi2.ZoneInfo("America/Los_Angeles"))
+            if _n >= 0.9 * len(W) and _np.date() < _dt2.datetime.strptime(f"{_d} {_np.year}", "%b %d %Y").date():
+                class _Blanket(dict):
+                    def __contains__(s, k): return True
+                    def __missing__(s, k): return _d
+                    def get(s, k, default=None): return dict.get(s, k, _d)
+                W = _Blanket(W)
+    except Exception: pass
     return W
 
 def yahoo_ros(R, n, week):
