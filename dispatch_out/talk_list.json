@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Mon Nov 16 2026 09:33 PM PT",
+ "built": "Mon Nov 16 2026 09:52 PM PT",
  "ratcliffe_read": "Mon Nov 16 2026 5:26 PM PT",
  "koerner_read": "",
  "leagues": {
@@ -100,7 +100,7 @@
      "acq": "Free agent",
      "over": "Jordan Addison",
      "pct": 22,
-     "gain": 6.6,
+     "gain": 6.7,
      "note": "Scout pick (rest of season): This week vs your FLEX2 Travis Etienne Jr.: Ratcliffe 8.4 vs 8.9 \u00b7 Yahoo 8.8 vs 9.6 \u00b7 Gotham not read vs not read - WORSE this week",
      "scout": true,
      "id": "watch:adonaimitchell",
@@ -263,7 +263,7 @@
      "team": "DEN",
      "acq": "Free agent",
      "over": "Justin Herbert",
-     "pct": 8950,
+     "pct": 8951,
      "gain": 9.0,
      "note": "Scout pick (rest of season): This week: your WR3 seat has nobody playing (Ladd McConkey out), so any healthy WR who plays helps this week",
      "scout": true,
@@ -359,7 +359,7 @@
      "acq": "Waivers, clears Nov 18",
      "over": "Justin Herbert",
      "pct": 26,
-     "gain": 20.3,
+     "gain": 20.8,
      "note": "Scout pick (rest of season): This week vs your SUPERFLEX Aaron Rodgers: Ratcliffe 16.6 vs 18.6 \u00b7 Yahoo 20.1 vs 20.0 \u00b7 Gotham not read vs not read - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:genosmith",
@@ -757,8 +757,8 @@
      "team": "TB",
      "acq": "Free agent",
      "over": "Caleb Douglas",
-     "pct": 44,
-     "gain": 23.3,
+     "pct": 42,
+     "gain": 20.5,
      "note": "Scout pick (rest of season): This week vs your DEF Steelers DEF: Ratcliffe not read vs 6.1 \u00b7 Yahoo 7.2 vs 10.9 - WORSE this week",
      "scout": true,
      "id": "watch:tbdef",
@@ -771,7 +771,7 @@
      "acq": "Free agent",
      "over": "Caleb Douglas",
      "pct": 22,
-     "gain": 4.7,
+     "gain": 4.8,
      "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 17.5 vs 20.1 \u00b7 Yahoo 17.3 vs 25.3 \u00b7 Gotham not read vs not read - WORSE this week",
      "scout": true,
      "id": "watch:jjmccarthy",
@@ -949,6 +949,32 @@
   "DK IV": {
    "talk": [
     {
+     "name": "KC DEF",
+     "pos": "DEF",
+     "team": "KC",
+     "acq": "Free agent",
+     "over": "Rams",
+     "pct": 59,
+     "gain": 3.7,
+     "note": "Scout pick (rest of season): This week vs your DEF Buccaneers DEF: Ratcliffe 8.1 vs not read \u00b7 Yahoo 9.2 vs 5.0 - better this week",
+     "scout": true,
+     "id": "talk:kcdef",
+     "first_seen": "Mon Nov 16 2026 09:52 PM PT"
+    },
+    {
+     "name": "DEN DEF",
+     "pos": "DEF",
+     "team": "DEN",
+     "acq": "Free agent",
+     "over": "Rams",
+     "pct": 50,
+     "gain": 2.1,
+     "note": "Scout pick (rest of season): This week vs your DEF Buccaneers DEF: Ratcliffe not read vs not read \u00b7 Yahoo 7.6 vs 5.0 - better this week",
+     "scout": true,
+     "id": "talk:dendef",
+     "first_seen": "Mon Nov 16 2026 09:52 PM PT"
+    },
+    {
      "name": "Harrison Butker",
      "pos": "K",
      "team": "KC",
@@ -987,17 +1013,30 @@
    ],
    "watch": [
     {
-     "name": "Keenan Allen",
-     "pos": "WR",
-     "team": "SF",
-     "acq": "Waivers, clears Nov 18",
+     "name": "NYG DEF",
+     "pos": "DEF",
+     "team": "NYG",
+     "acq": "Free agent",
      "over": "Rams",
-     "pct": 20,
-     "gain": 2.1,
-     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 7.2 vs 10.8 \u00b7 Yahoo 6.1 vs 8.8 \u00b7 Gotham not read vs not read - WORSE this week",
+     "pct": 67,
+     "gain": 3.0,
+     "note": "Scout pick (rest of season): This week vs your DEF Buccaneers DEF: Ratcliffe 8.6 vs not read \u00b7 Yahoo 4.9 vs 5.0 - WORSE this week",
      "scout": true,
-     "id": "watch:keenanallen",
-     "first_seen": "Mon Nov 16 2026 08:39 PM PT"
+     "id": "watch:nygdef",
+     "first_seen": "Mon Nov 16 2026 09:52 PM PT"
+    },
+    {
+     "name": "WAS DEF",
+     "pos": "DEF",
+     "team": "WAS",
+     "acq": "Free agent",
+     "over": "Rams",
+     "pct": 57,
+     "gain": 2.5,
+     "note": "Scout pick (rest of season): This week vs your DEF Buccaneers DEF: Ratcliffe 8.1 vs not read \u00b7 Yahoo 4.4 vs 5.0 - WORSE this week",
+     "scout": true,
+     "id": "watch:wasdef",
+     "first_seen": "Mon Nov 16 2026 09:52 PM PT"
     },
     {
      "name": "Chase McLaughlin",
@@ -1040,6 +1079,15 @@
      "picks": [],
      "id": "cover:rb2week11fill",
      "first_seen": "Mon Nov 16 2026 08:39 PM PT"
+    },
+    {
+     "title": "WR3, Week 13 Fill",
+     "target": "Target 10.1 pts",
+     "mark": "gold",
+     "why": "Full strength ~12.5 (Flowers). Wk 13 Meyers ~10.1 (Flowers on bye, Meyers slides in).",
+     "picks": [],
+     "id": "cover:wr3week13fill",
+     "first_seen": "Mon Nov 16 2026 09:52 PM PT"
     }
    ],
    "block": [
