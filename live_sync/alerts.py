@@ -273,6 +273,12 @@ def own_tag(lg, name, hint=None):
     elif YA: base = "Free agent"
     else: base = "Owner unknown (no Yahoo read)"
     return base + (f" · {hint}" if hint else "")
+# Nov 17 (Dom: the Action light went red for handled items - "Drake London Clears Concussion Protocol" came out RED and
+# "Travis Kelce: Back in Sunday's game" GOLD on his own starters). A headline saying the player cleared / was activated /
+# is back is good news even though it names the injury; unless it also says not / ruled out / setback etc.
+RESOLVED = re.compile(r"\b(clears|cleared|clear(?:s|ed)? (?:the )?(?:concussion )?protocol|activated|reinstated|returns? to (?:practice|the lineup|action|game)|back in (?:sunday's |monday's |thursday's |the )?(?:game|lineup|practice)|back at practice|full(?:y)? participa\w*|removed from (?:the )?injury report|no injury designation|will play|is active|good to go|off (?:of )?(?:the )?ir)\b", re.I)
+NEGATE = re.compile(r"\b(not|n't|no longer|fails?|failed|ruled out|won't|doubtful|setback|re-?aggravat\w*|carted|leaves?|left|exits?|exited|out for)\b", re.I)
+def resolved_news(title): return bool(RESOLVED.search(title or "")) and not NEGATE.search(title or "")
 RISERS = []    # (lg, radar item, his numbers, starter's numbers, starter) - under the bar this week; the RISING check weighs them
 BENCH_BEATS = {}
 
@@ -284,6 +290,7 @@ for lg, RL in R.get("leagues", {}).items():
         mk, n0 = p.get("marker", {}), p["news"][0]
         grades = mk.get("grades", [])
         starter = p.get("slot") not in ("BN", "IR")
+        if resolved_news(n0.get("title")): continue    # Nov 17 (Dom): "Kelce: Back in Sunday's game" on his own starter needs nothing - no card
         if "bad" in grades and mk.get("color") == "red":
             color = "red" if starter else "grey"
         elif "caution" in grades and mk.get("color") in ("red", "gold"):
@@ -438,6 +445,7 @@ if FEEDS:
             # ruled out. The headline is written about its subject: when it carries opportunity language and no bad or
             # caution words of its own, the bad words belong to someone else and this is good news for our man.
             good = bool(GOOD.search(n["title"])) and not BAD.search(n["title"]) and not CAUTION.search(n["title"])
+            if role != "opp" and resolved_news(n["title"]): good = True    # Nov 17: "Clears Concussion Protocol" is good news, not a red alert
             if good: bad = caut = False
             if not (bad or caut or (good and role != "opp")): continue     # Oct 14 (Dom): a name in a start/sit list is not news - no 'worth knowing' cards
             sev = 2 if bad else 1 if caut else 0
