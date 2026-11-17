@@ -1,0 +1,118 @@
+{
+ "week": 11,
+ "built_pt": "Tue Nov 17 2026 03:35 AM PT",
+ "alarms": [
+  "DK II: starters 11/10 - league starts 11"
+ ],
+ "lineup": [
+  "DK I: YOUR starter Drake London (ATL) has no game this week",
+  "DK II: YOUR starter Drake London (ATL) has no game this week",
+  "DK III: YOUR starter Kaleb Johnson (GB) has no game this week",
+  "DK III: YOUR starter Harold Fannin Jr. (CLE) has no game this week",
+  "DK III: YOUR starter Colby Parkinson (LAR) has no game this week",
+  "DK III: YOUR starter Packers (GB) has no game this week",
+  "DK IV: YOUR starter Bijan Robinson (ATL) has no game this week",
+  "DK IV: YOUR starter Rams (LAR) has no game this week"
+ ],
+ "notes": [
+  "DK I: Sleeper lists Woody Marks with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle",
+  "DK I: opponent starter Jaxon Smith-Njigba (SEA) has no game this week",
+  "DK II: no Ratcliffe number for Tyler Loop - Yahoo used on the Ratcliffe needle",
+  "DK II: Gotham 50.0 vs Yahoo 11.4 / Sleeper 12.7 on Emmett Johnson - check role/news",
+  "DK II: experts split on your W/R/T Emmett Johnson - Ratcliffe 18.4 vs Koerner 27.3 (Yahoo 11.4)",
+  "DK II: opponent starter Rhamondre Stevenson (NE) has no game this week",
+  "DK IV: opponent starter Jaxon Smith-Njigba (SEA) has no game this week",
+  "DK IV: opponent starter Drew Lock (SEA) has no game this week",
+  "DK II: 1 EMPTY starting seat(s) as set on Yahoo (Q/W/R/T) - the best lineup fills them from the bench; the as-set needle counts them as zero"
+ ],
+ "sources": {
+  "nfl_schedule": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/games.csv",
+   "pulled_pt": "Tue Nov 17 03:35 AM PT",
+   "age_h": 0.0,
+   "rows": 13,
+   "need": 13,
+   "note": "week 11: 13 games"
+  },
+  "yahoo_matchups": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk11/dom_matchups_api.txt",
+   "pulled_pt": "Tue Nov 17 03:34 AM PT",
+   "age_h": 0.0,
+   "rows": 41,
+   "need": 41,
+   "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
+  },
+  "yahoo_all_teams": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk11/league_windows_api.txt",
+   "pulled_pt": "Tue Nov 17 03:34 AM PT",
+   "age_h": 0.0,
+   "rows": 48,
+   "need": 48,
+   "note": "every team in all four leagues: Yahoo win %, record"
+  },
+  "yahoo_standings": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk11/standings_tue0326.txt",
+   "pulled_pt": "Tue Nov 17 03:26 AM PT",
+   "age_h": 0.2,
+   "rows": 48,
+   "need": 48,
+   "note": "rank, division rank, points for"
+  },
+  "gotham": {
+   "status": "OK",
+   "path": "/home/claude/dksys/engine/gotham_status.json",
+   "pulled_pt": "Tue Nov 17 03:35 AM PT",
+   "age_h": 0.0,
+   "rows": 11,
+   "need": 11,
+   "note": "Gotham run Tue Nov 17 2026 03:35 AM PT for week 11"
+  },
+  "ratcliffe": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
+   "pulled_pt": "Tue Nov 17 2026 2:26 AM PT",
+   "age_h": 1.2,
+   "rows": 2007,
+   "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
+  },
+  "koerner": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
+   "pulled_pt": "Tue Nov 17 2026 3:08 AM PT",
+   "age_h": 0.5,
+   "rows": 2386,
+   "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
+  },
+  "sleeper_skill": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk11_2026-11-17T1046Z.csv",
+   "pulled_pt": "Tue Nov 17 02:46 AM PT",
+   "age_h": 0.8,
+   "rows": 3118,
+   "need": 400,
+   "note": "GitHub job checked 0.8 h ago (saved 3118 rows)"
+  },
+  "sleeper_kdef": {
+   "status": "OK",
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk11_2026-11-17T1046Z.csv",
+   "pulled_pt": "Tue Nov 17 02:46 AM PT",
+   "age_h": 0.8,
+   "rows": 183,
+   "need": 60,
+   "note": "GitHub job checked 0.8 h ago (saved 183 rows)"
+  },
+  "yahoo_rosters": {
+   "status": "OK",
+   "path": "/home/claude/dksys/data/latest/yahoo/wk11/dom_rosters.json",
+   "pulled_pt": "Tue Nov 17 03:34 AM PT",
+   "age_h": 0.0,
+   "rows": 65,
+   "need": null,
+   "note": "Dom's four rosters"
+  }
+ }
+}
