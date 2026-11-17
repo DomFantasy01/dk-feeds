@@ -88,7 +88,11 @@ except Exception as _e: print('sim on Live skipped:', _e)
 # Nov 11 3 PM (Dom): FAAB left (DK I-III) and waiver order (DK IV) on each Scoreboard tile - wire_budget.py, read every build
 try:
     import os as _os
-    _wb = json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(sys.argv[2])), 'wire_budget.json')))
+    _wbp = _os.path.join(_os.path.dirname(_os.path.abspath(sys.argv[2])), 'wire_budget.json')
+    if _os.path.exists(_wbp): _wb = json.load(open(_wbp))
+    else:  # Nov 17 (Dom: "Fix"): the game-window task prompts never download it - fetch it from the repo ourselves
+        import urllib.request, time as _tm
+        _wb = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/wire_budget.json?t={int(_tm.time())}", timeout=30).read())
     for lab, k in KEY.items():
         if _wb.get(lab): cur['leagues'].setdefault(k, {})['wire'] = _wb[lab]
     print('wire budget on Live:', {KEY[l]: (v.get('faab'), v.get('wp')) for l, v in _wb.items() if l in KEY})
