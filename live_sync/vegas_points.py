@@ -215,7 +215,13 @@ if __name__ == "__main__":
     if data is None:
         try: data = json.load(open(SAVE))
         except Exception: print("VEGAS: no saved file - Vegas is missing this build"); sys.exit(0)
-        if int(data.get("week") or 0) != NOW: print(f"VEGAS: saved file is Week {data.get('week')}, this is Week {NOW} - not used"); sys.exit(0)
+        if int(data.get("week") or 0) != NOW:
+            # Nov 17 (Dom: "make sure all my experts' information is completely up to date"): the Week 10 vegas_scored.csv stayed in
+            # place into Week 11, and the pickup list, talk list, panel and alerts read it as "this week". Last week's copy is already
+            # in vegas_history/; the live file is emptied so nobody can take an old week for the new one.
+            with open(O(R, "dispatch_out/vegas_scored.csv"), "w", newline="") as fh:
+                csv.writer(fh).writerow(["lg", "key", "name", "team", "pos", "wk", "rank", "ecr_gap", "status", "rush_att", "rec", "read", "site_updated", "vegas_share", "model_fill", "week"])
+            print(f"VEGAS: saved file is Week {data.get('week')}, this is Week {NOW} - not used; dispatch_out/vegas_scored.csv emptied until Week {NOW} posts"); sys.exit(0)
 
     SCF = [p for p in (O(R, "system/dksys/data/latest/yahoo/scoring/scoring_audit_oct1.json"), "/home/claude/dksys/data/latest/yahoo/scoring/scoring_audit_oct1.json") if os.path.exists(p)]
     SC = json.load(open(SCF[0])); LGK = {1: "DK I 269381", 2: "DK II 1519795", 3: "DK III 1507991", 4: "DK IV 864215"}
@@ -228,10 +234,10 @@ if __name__ == "__main__":
             k_ = nk(p["name"]); val[(lg, k_)] = round(v, 2); info[k_] = p
             rows.append([lg, k_, p["name"], p["team"], p["pos"], round(v, 2), p["rank"], p["ecr_gap"], p.get("status", ""),
                          p["st"].get("rush_att", ""), p["st"].get("rec", ""), data["read"], data.get("site_updated", ""),
-                         "" if p.get("vegas_share") is None else p["vegas_share"], " ".join(p.get("model_fill") or [])])
+                         "" if p.get("vegas_share") is None else p["vegas_share"], " ".join(p.get("model_fill") or []), data.get("week") or NOW])
     os.makedirs(O(R, "dispatch_out/vegas_history"), exist_ok=True)
     with open(O(R, "dispatch_out/vegas_scored.csv"), "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(["lg", "key", "name", "team", "pos", "wk", "rank", "ecr_gap", "status", "rush_att", "rec", "read", "site_updated", "vegas_share", "model_fill"])
+        w = csv.writer(fh); w.writerow(["lg", "key", "name", "team", "pos", "wk", "rank", "ecr_gap", "status", "rush_att", "rec", "read", "site_updated", "vegas_share", "model_fill", "week"])
         w.writerows(rows)
     try:
         import shutil; shutil.copy(O(R, "dispatch_out/vegas_scored.csv"), O(R, f"dispatch_out/vegas_history/vegas_wk{NOW}.csv"))
