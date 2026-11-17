@@ -153,7 +153,15 @@ def _src(t):
     if "chain" in t: return "Chain"
     return "Yahoo"
 fails = [r for r in recent if _done_bad(r)]
-healed = [r for r in fails if any(x.get("task") == r.get("task") and x.get("status") == "ok" and (x.get("started") or "") > (r.get("started") or "") for x in runs)]
+# Nov 16 (Dom: "Fix"): a read whose data saved and was confirmed but whose LAST step (starting the Dispatch build) failed
+# is fixed once any Dispatch build finishes after it - that build used the saved file, so nothing is missing.
+_me0 = load("dispatch_out/meter_wk%s.json" % ((ls or {}).get("week", "")))
+_bt0 = ptstr(_me0.get("built_pt")) if _me0 else None
+def _build_only(r):
+    t = f"{r.get('step') or ''} {r.get('error') or ''}"
+    return "save OK and confirmed" in t and "Dispatch build not started" in t
+healed = [r for r in fails if any(x.get("task") == r.get("task") and x.get("status") == "ok" and (x.get("started") or "") > (r.get("started") or "") for x in runs)
+          or (_build_only(r) and _bt0 and iso(r.get("started")) and _bt0 > iso(r["started"]))]
 open_f = [r for r in fails if r not in healed]
 if not recent: row("Yahoo", "Read run log", "yellow", "no scheduled read logged in the last 30 h")
 else:
