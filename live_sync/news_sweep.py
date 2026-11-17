@@ -11,7 +11,7 @@ there until Dom deletes or separates it. Ratcliffe still decides; nothing here i
   python3 news_sweep.py owners REPO_OR_RAW_BASE names.json out.json
       who owns each name in DK1-DK4: yours / this week's opponent / an upcoming opponent (week) / rival team N /
       on waivers until <date> / not on a roster (free agent - confirm on Yahoo live). names.json = ["Name", ...]
-  python3 news_sweep.py merge alerts.json alert_marks.json flags.json out.json
+  python3 news_sweep.py merge alerts.json alert_marks.json flags.json out.json [sources.json]
       folds the run's flags into the Live alerts document. flags.json = [{lg: "DK I".."DK IV", who, color: red|gold|grey,
       title, tie, fix, own, receipts: [..], src, feed}]. Same player + league + still open -> the card updates (first_seen
       kept, receipts merged). A card Dom deleted or separated comes back only when the headline is new.
@@ -66,7 +66,7 @@ def owners(base, names_f, out_f):
     print("OWNERS", len(names), "names | week", W, "|", "; ".join(f"{k} rosters read {v}" for k, v in read_at.items()))
 
 RANK = {"red": 0, "gold": 1, "grey": 2}
-def merge(al_f, mk_f, fl_f, out_f):
+def merge(al_f, mk_f, fl_f, out_f, src_f=None):
     A = json.load(open(al_f)); A = A.get("data", A)
     try: MK = json.load(open(mk_f)); MK = MK.get("data", MK)
     except Exception: MK = {}
@@ -98,6 +98,12 @@ def merge(al_f, mk_f, fl_f, out_f):
         else: new += 1
     items.sort(key=lambda x: (not x.get("active"), RANK.get(x.get("color"), 3), x.get("lg", ""), x.get("who", "")))
     A["items"] = items; A["news_checked"] = NOW
+    # Nov 17 (Dom): every sweep saves its site checklist, so the morning system check can say which sites were really read.
+    # sources.json = {"RotoBaller": {"status": "read" | "nothing new" | "not signed in" | "blocked" | "failed", "items": n, "note": ""}, ...}
+    if src_f:
+        try: A["news_sources"] = json.load(open(src_f))
+        except Exception as e: A["news_sources"] = {"checklist": {"status": "failed", "note": f"sources file unreadable: {e}"}}
+    else: A.pop("news_sources", None)
     LIMIT = 240000
     sz = lambda d: len(json.dumps({"id": "alerts", "data": d}, separators=(",", ":")).encode())
     while sz(A) > LIMIT:
@@ -110,5 +116,5 @@ def merge(al_f, mk_f, fl_f, out_f):
 
 if __name__ == "__main__":
     if sys.argv[1] == "owners": owners(*sys.argv[2:5])
-    elif sys.argv[1] == "merge": merge(*sys.argv[2:6])
+    elif sys.argv[1] == "merge": merge(*sys.argv[2:7])
     else: print(__doc__)

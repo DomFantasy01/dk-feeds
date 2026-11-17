@@ -943,7 +943,7 @@ for i, o in old.items():
         if (o.get("last_seen") or "") >= cut: out.append(o)
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}, "news_checked": PREV.get("news_checked")}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}, "news_checked": PREV.get("news_checked"), **({"news_sources": PREV["news_sources"]} if PREV.get("news_sources") else {})}
 # Oct 20 (Dom): SIZE GUARD - the Live database refuses a document over 262,144 bytes, and every hourly run with the
 # news feeds came out ~274 KB, so its write was refused and the page sat on the 7:13 AM feeds. Drop the oldest archived
 # cards (never an active one) until the document fits with room to spare, and write it compact.

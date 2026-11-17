@@ -302,6 +302,21 @@ else:
     row("Alerts", "Alerts use the latest build", "green" if linked else "yellow", f"alerts built on {al.get('built')}")
     act = sum(1 for x in al.get("items", []) if x.get("active"))
     row("Alerts", "Live alerts", "grey", f"{act} live alerts on the page")
+    # Nov 17 (Dom: "make sure that's all up to date and it should be part of our checks every morning"): the news sweep
+    # (4 AM, 10 AM, 2 PM, 7 PM PT) - late = red; any site it could not read = yellow, named.
+    nc = iso(al.get("news_checked")); ns = al.get("news_sources") or {}
+    _sl = [dt.datetime(NPT.year, NPT.month, NPT.day, h, 0, tzinfo=PT) - dt.timedelta(days=dd) for dd in (0, 1) for h in (4, 10, 14, 19)]
+    _due = max([t for t in _sl if t + dt.timedelta(minutes=50) <= NPT], default=None)
+    _late = nc is None or (_due is not None and nc < _due.astimezone(dt.timezone.utc) - dt.timedelta(minutes=10))
+    _bad = {k: v for k, v in ns.items() if (v.get("status") if isinstance(v, dict) else str(v)) not in ("read", "nothing new")}
+    if _late:
+        row("Alerts", "News sweep", "red", f"the {_due.strftime('%-I %p') if _due else ''} sweep has not written the Live page (last: {at(nc)})", nc)
+    elif not ns:
+        row("Alerts", "News sweep", "yellow", "ran, but saved no site-by-site checklist - can't confirm which sites were read", nc)
+    elif _bad:
+        row("Alerts", "News sweep", "yellow", f"{len(ns) - len(_bad)} of {len(ns)} sites read; not read: " + "; ".join(f"{k} ({(v.get('status') if isinstance(v, dict) else v)}{(' - ' + v.get('note')) if isinstance(v, dict) and v.get('note') else ''})" for k, v in _bad.items()), nc)
+    else:
+        row("Alerts", "News sweep", "green", f"all {len(ns)} sites read: " + ", ".join(ns), nc)
 
 # ---------- 10. Dark Knight Live ----------
 sd = load("live/state.json", D); md = load("live/models.json", D)
