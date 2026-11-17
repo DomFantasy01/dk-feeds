@@ -1,35 +1,39 @@
-DARK KNIGHT STATE - Week 10 - built Tue Nov 17, 2:37 AM PT from the Dispatch build of Tue Nov 17 2026 02:33 AM PT
-Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before deciding) - tripped by: yahoo_all_teams: build marked it STALE: every team in all four leagues: Yahoo win %, record | rotoballer: build marked it TESTING: RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads | Meter alarm: yahoo_all_teams: STALE - 29.7 h 
+DARK KNIGHT STATE - Week 10 - built Tue Nov 17, 3:14 AM PT from the Dispatch build of Tue Nov 17 2026 03:12 AM PT
+Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before deciding) - tripped by: yahoo_all_teams: build marked it STALE: every team in all four leagues: Yahoo win %, record | yahoo_standings: build marked it STALE: rank, division rank, points for | yahoo_rosters: build marked it STALE: Dom's four rosters | rotoballer: build marked it TESTING: RotoBaller Staff projections (free),
 
 == SYSTEM HEALTH (broken first)
   [RED] yahoo_all_teams: build marked it STALE: every team in all four leagues: Yahoo win %, record
+  [RED] yahoo_standings: build marked it STALE: rank, division rank, points for
+  [RED] yahoo_rosters: build marked it STALE: Dom's four rosters
   [RED] rotoballer: build marked it TESTING: RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads
-  [RED] Meter alarm: yahoo_all_teams: STALE - 29.7 h old (limit 26 h)
-  [GOLD] Yahoo win % (all teams): as of Sun Nov 15, 8:52 PM PT (29.8 hr ago) - every team in all four leagues: Yahoo win %, record; build says STALE; older than its 24-hour schedule
-  [GOLD] Yahoo standings: as of Sun Nov 15, 8:52 PM PT (29.8 hr ago) - rank, division rank, points for; older than its 24-hour schedule
+  [RED] Meter alarm: yahoo_all_teams: STALE - 30.3 h old (limit 26 h)
+  [RED] Meter alarm: yahoo_standings: STALE - 30.3 h old (limit 30 h)
+  [RED] Meter alarm: yahoo_rosters: STALE - 30.3 h old (limit 30 h)
+  [GOLD] Yahoo win % (all teams): as of Sun Nov 15, 8:52 PM PT (30.4 hr ago) - every team in all four leagues: Yahoo win %, record; build says STALE; older than its 24-hour schedule
+  [GOLD] Yahoo standings: as of Sun Nov 15, 8:52 PM PT (30.4 hr ago) - rank, division rank, points for; build says STALE; older than its 24-hour schedule
   [GOLD] rotowire_pages: 2 watched players have no RotoWire id: Kyle Juszczyk, Michael Burton
   -- sources and their age --
-  green NFL schedule: as of Tue Nov 17, 2:33 AM PT (4 min ago) - week 10: 14 games
-  green Yahoo matchups (scores, starters): as of Mon Nov 16, 9:27 PM PT (5.2 hr ago) - Dom's four matchup pages, both sides, Yahoo proj + points
-  gold  Yahoo win % (all teams): as of Sun Nov 15, 8:52 PM PT (29.8 hr ago) - every team in all four leagues: Yahoo win %, record; build says STALE; older than its 24-hour schedule
-  gold  Yahoo standings: as of Sun Nov 15, 8:52 PM PT (29.8 hr ago) - rank, division rank, points for; older than its 24-hour schedule
-  green Gotham projections: as of Tue Nov 17, 2:33 AM PT (4 min ago) - Gotham run Tue Nov 17 2026 02:33 AM PT for week 10
-  green ratcliffe: as of Tue Nov 17, 2:26 AM PT (11 min ago) - Jeff Ratcliffe (FTN), scored in each league's rules
-  green koerner: as of Tue Nov 17, 2:05 AM PT (32 min ago) - Sean Koerner (FantasyLabs), scored in each league's rules
-  green Sleeper projections: as of Mon Nov 16, 8:31 PM PT (6.1 hr ago) - GitHub job checked 0.7 h ago ()
-  green Sleeper K/DEF projections: as of Mon Nov 16, 4:47 PM PT (9.8 hr ago) - GitHub job checked 0.7 h ago ()
-  grey  Yahoo rosters (all teams): as of Sun Nov 15, 8:52 PM PT (29.8 hr ago) - Dom's four rosters; older than the Mon 4:50 PM scheduled read; the newer live roster read matches it
-  green clay: as of Tue Nov 17, 2:33 AM PT (4 min ago) - Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17
-  green vegas: as of Mon Nov 16, 8:04 PM PT (6.6 hr ago) - Vegas player props (First Down Studio), stat lines scored in each league's own rules; a check beside the experts - Ratcliffe leads
-  green rotoballer: as of Tue Nov 17, 2:33 AM PT (4 min ago) - RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads; build says TESTING
-  green RotoWire news: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green Sleeper injuries/trending: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green rotowire_pages: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green Game weather: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green ESPN news: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green PFT + RotoBaller news: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green ESPN injury report: as of Tue Nov 17, 2:31 AM PT (5 min ago)
-  green injury_overlay: as of Tue Nov 17, 2:31 AM PT (5 min ago)
+  green NFL schedule: as of Tue Nov 17, 3:12 AM PT (2 min ago) - week 10: 14 games
+  green Yahoo matchups (scores, starters): as of Mon Nov 16, 9:27 PM PT (5.8 hr ago) - Dom's four matchup pages, both sides, Yahoo proj + points
+  gold  Yahoo win % (all teams): as of Sun Nov 15, 8:52 PM PT (30.4 hr ago) - every team in all four leagues: Yahoo win %, record; build says STALE; older than its 24-hour schedule
+  gold  Yahoo standings: as of Sun Nov 15, 8:52 PM PT (30.4 hr ago) - rank, division rank, points for; build says STALE; older than its 24-hour schedule
+  green Gotham projections: as of Tue Nov 17, 3:12 AM PT (2 min ago) - Gotham run Tue Nov 17 2026 03:12 AM PT for week 10
+  green ratcliffe: as of Tue Nov 17, 2:26 AM PT (48 min ago) - Jeff Ratcliffe (FTN), scored in each league's rules
+  green koerner: as of Tue Nov 17, 3:08 AM PT (6 min ago) - Sean Koerner (FantasyLabs), scored in each league's rules
+  green Sleeper projections: as of Mon Nov 16, 8:31 PM PT (6.7 hr ago) - GitHub job checked 0.4 h ago ()
+  green Sleeper K/DEF projections: as of Mon Nov 16, 4:47 PM PT (10.5 hr ago) - GitHub job checked 0.4 h ago ()
+  grey  Yahoo rosters (all teams): as of Sun Nov 15, 8:52 PM PT (30.4 hr ago) - Dom's four rosters; build says STALE; older than the Mon 4:50 PM scheduled read; the newer live roster read matches it
+  green clay: as of Tue Nov 17, 3:12 AM PT (2 min ago) - Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17
+  green vegas: as of Mon Nov 16, 8:04 PM PT (7.2 hr ago) - Vegas player props (First Down Studio), stat lines scored in each league's own rules; a check beside the experts - Ratcliffe leads
+  green rotoballer: as of Tue Nov 17, 3:12 AM PT (2 min ago) - RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads; build says TESTING
+  green RotoWire news: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green Sleeper injuries/trending: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green rotowire_pages: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green Game weather: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green ESPN news: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green PFT + RotoBaller news: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green ESPN injury report: as of Tue Nov 17, 3:09 AM PT (5 min ago)
+  green injury_overlay: as of Tue Nov 17, 3:09 AM PT (5 min ago)
 
 == DK I - TheMostImportantThingInLife - Dark Knight I (4-5-0, #8 of 12) vs SkeetSkeetSkeetabooo (5-4-0)
   Score now 184.38 to 174.45 | 20 of 20 starters done, 20 games kicked off | win %: Yahoo 99, Gotham 100, Sleeper 100
@@ -43,7 +47,7 @@ Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before decid
     BN  Jordan Addison (WR MIN) - played [OUT]
     BN  Buccaneers (DEF TB) - no game
   ALERT [gold]: Travis Kelce: Back in Sunday's game
-  (roster read Tue Nov 17, 2:33 AM PT)
+  (roster read Tue Nov 17, 3:11 AM PT)
 
 == DK II - Winners and Sinners - Dark Knight II (4-5-0, #9 of 12) vs Diddys Booty Butter (5-4-0)
   Score now 183.98 to 193.94 | 22 of 22 starters done, 22 games kicked off | win %: Yahoo None, Gotham 0, Sleeper 0
@@ -62,7 +66,7 @@ Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before decid
   ALERT [gold]: Scout pickup: Geno Smith (QB, NYJ) adds ~2.5 pts a week (~20 through Week 17), 25% over the man he'd replace
   ALERT [gold]: Scout pickup: Jadarian Price (RB, SEA) adds ~2.4 pts a week (~19 through Week 17), 25% over the man he'd replace
   ALERT [gold]: Travis Kelce: Back in Sunday's game
-  (roster read Tue Nov 17, 2:33 AM PT)
+  (roster read Tue Nov 17, 3:11 AM PT)
 
 == DK III - Hers and His Version 2.0 - Dark Knight III (3-6-0, #14 of 14) vs Mr. Bobo (5-4-0)
   Score now 124.36 to 118.56 | 18 of 18 starters done, 18 games kicked off | win %: Yahoo 46, Gotham 100, Sleeper 100
@@ -77,7 +81,7 @@ Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before decid
     IR  David Montgomery (RB HOU) - played [OUT]
     BN  Steelers (DEF PIT) - played
   ALERT [gold]: Scout pickup: TB DEF (DEF, TB) adds ~2.5 pts a week (~20 through Week 17), 42% over the man he'd replace
-  (roster read Tue Nov 17, 2:33 AM PT)
+  (roster read Tue Nov 17, 3:11 AM PT)
 
 == DK IV - Murrieta NextDoor - Dark Knight IV (8-10-0, #7 of 10) vs Lin's Team 🏈 (6-12-0)
   Score now 189.64 to 125.52 | 22 of 22 starters done, 22 games kicked off | win %: Yahoo 99, Gotham 100, Sleeper 100
@@ -94,7 +98,7 @@ Data verdict: NO-GO  (NO-GO = a data source is broken or stale; fix before decid
     BN  Buccaneers (DEF TB) - no game
   ALERT [gold]: Travis Kelce: Back in Sunday's game
   ALERT [gold]: Zay Flowers Bounces Back, Loses Critical Fumble Late
-  (roster read Tue Nov 17, 2:33 AM PT)
+  (roster read Tue Nov 17, 3:11 AM PT)
 
 == EXPOSURE (one injury, several teams)
   Travis Kelce: starts DK I, DK II, DK IV
