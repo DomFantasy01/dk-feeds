@@ -288,7 +288,16 @@ def weather():
     except Exception as e:
         mark('weather', False, error=f'schedule not reached: {e}'[:200]); return
     today, horizon = NOW.date(), NOW.date() + dt.timedelta(days=8)
-    out, problems = [], []
+    out, problems, kept = [], [], []
+    # Nov 17 (Dom: "Fix"): one game's forecast timing out turned the whole weather feed red three times (Nov 14 x2, Nov 17).
+    # Now a failed game keeps its last good forecast (under 12 h old, clearly marked) and only counts as failed if there is none.
+    try:
+        _prev = json.load(open(os.path.join(MAIN, 'weather.json')))
+        _pt = dt.datetime.fromisoformat(_prev.get('pulled_utc'))
+        PREV = {x['game_id']: dict(x, kept_from_utc=x.get('kept_from_utc') or _prev['pulled_utc']) for x in _prev.get('games', [])
+                if 'wind_mph_max' in x and (NOW - dt.datetime.fromisoformat(x.get('kept_from_utc') or _prev['pulled_utc'])).total_seconds() < 12 * 3600}
+    except Exception:
+        PREV = {}
     for g in games:
         try: day = dt.date.fromisoformat(g['gameday'])
         except Exception: continue
@@ -317,13 +326,16 @@ def weather():
                         'precip_in_total_mm': pick('precipitation', sum),
                         'kickoff_utc': kick.isoformat(timespec='minutes'), 'note': 'nflverse kick time is US Eastern; converted to UTC; window = kickoff to +3h'})
         except Exception as e:
+            if g['game_id'] in PREV:
+                kept.append(f"{g['game_id']}: {type(e).__name__} - kept the {PREV[g['game_id']]['kept_from_utc'][11:16]} UTC forecast"[:200])
+                out.append({**PREV[g['game_id']], 'note': 'this pull timed out - last good forecast kept'}); continue
             problems.append(f"{g['game_id']}: {type(e).__name__}: {e}"[:200])
             out.append({**row, 'weather': 'PULL FAILED'})
     write('weather.json', {'pulled_utc': NOW.isoformat(timespec='seconds'), 'games': out})
     pulled = sum(1 for o in out if 'wind_mph_max' in o)
     need = sum(1 for o in out if o.get('weather') != 'indoors — not pulled')
     mark('weather', pulled == need and need > 0 or (need == 0 and len(out) > 0),
-         games_in_window=len(out), outdoor_needed=need, outdoor_pulled=pulled, problems=problems)
+         games_in_window=len(out), outdoor_needed=need, outdoor_pulled=pulled, problems=problems, **({'warning': '; '.join(kept)} if kept else {}))
 
 # ---------- 4. ESPN NFL news (free JSON; items carry ESPN athlete ids, matched to nflverse espn_id) ----------
 def espn():
