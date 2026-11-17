@@ -310,13 +310,13 @@ else:
     _late = nc is None or (_due is not None and nc < _due.astimezone(dt.timezone.utc) - dt.timedelta(minutes=10))
     _bad = {k: v for k, v in ns.items() if (v.get("status") if isinstance(v, dict) else str(v)) not in ("read", "nothing new")}
     if _late:
-        row("Alerts", "Player News", "red", f"the {_due.strftime('%-I %p') if _due else ''} sweep has not written the Live page (last: {at(nc)})", nc)
+        row("Alerts", "Feeds", "red", f"the {_due.strftime('%-I %p') if _due else ''} sweep has not written the Live page (last: {at(nc)})", nc)
     elif not ns:
-        row("Alerts", "Player News", "yellow", "ran, but saved no site-by-site checklist - can't confirm which sites were read", nc)
+        row("Alerts", "Feeds", "yellow", "ran, but saved no site-by-site checklist - can't confirm which sites were read", nc)
     elif _bad:
-        row("Alerts", "Player News", "yellow", f"{len(ns) - len(_bad)} of {len(ns)} sites read; not read: " + "; ".join(f"{k} ({(v.get('status') if isinstance(v, dict) else v)}{(' - ' + v.get('note')) if isinstance(v, dict) and v.get('note') else ''})" for k, v in _bad.items()), nc)
+        row("Alerts", "Feeds", "yellow", f"{len(ns) - len(_bad)} of {len(ns)} sites read; not read: " + "; ".join(f"{k} ({(v.get('status') if isinstance(v, dict) else v)}{(' - ' + v.get('note')) if isinstance(v, dict) and v.get('note') else ''})" for k, v in _bad.items()), nc)
     else:
-        row("Alerts", "Player News", "green", f"all {len(ns)} sites read: " + ", ".join(ns), nc)
+        row("Alerts", "Feeds", "green", f"all {len(ns)} sites read: " + ", ".join(ns), nc)
 
 # ---------- 10. Dark Knight Live ----------
 sd = load("live/state.json", D); md = load("live/models.json", D)

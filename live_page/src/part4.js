@@ -419,7 +419,7 @@ function lights(){
   const d = H ? (H.worst === "red" ? "red" : H.worst === "yellow" ? "yellow" : "green") : "grey";
   return {y, d, late: S && since !== null && age > since + 75};
 }
-/* Nov 17 (Dom): the PLAYER NEWS light - the news sweep that reads ten sites four times a day (4 AM, 10 AM, 2 PM, 7 PM PT).
+/* Nov 17 (Dom): the FEEDS light (renamed from Player News at his call; order Yahoo, Data, Feeds, Action) - the news sweep that reads ten sites four times a day (4 AM, 10 AM, 2 PM, 7 PM PT).
    red = a sweep is late; yellow = a site wasn't read (named) or the sweep saved no site checklist; green = all ten read on time. */
 function playerNews(){
   const nc = A && A.news_checked ? new Date(A.news_checked) : null, ns = (A && A.news_sources) || {};
@@ -438,7 +438,7 @@ function playerNews(){
 }
 function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
-  { const pn = playerNews(), e = $("#ltP"); if (e){ e.className = "lt " + pn.c; e.title = "Player News: " + pn.t; } }
+  { const pn = playerNews(), e = $("#ltP"); if (e){ e.className = "lt " + pn.c; e.title = "Feeds: " + pn.t; } }
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
     : `<b>${esc(PT(S.stamp, {weekday: "short"}))}, ${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>`;
