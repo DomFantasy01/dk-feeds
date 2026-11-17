@@ -1,6 +1,6 @@
 {
  "week": 10,
- "built": "Mon Nov 16 2026 06:16 PM PT",
+ "built": "Mon Nov 16 2026 06:34 PM PT",
  "ratcliffe_read": "Mon Nov 16 2026 5:26 PM PT",
  "koerner_read": "Mon Nov 16 2026 6:04 PM PT",
  "leagues": {
@@ -346,19 +346,6 @@
      "first_seen": "Sun Nov 15 2026 04:01 PM PT"
     },
     {
-     "name": "Geno Smith",
-     "pos": "QB",
-     "team": "NYJ",
-     "acq": "Waivers, clears Nov 18",
-     "over": "Justin Herbert",
-     "pct": 21,
-     "gain": 18.1,
-     "note": "Scout pick (rest of season): This week: Geno Smith is out (due back Wk 11) - no help this week",
-     "scout": true,
-     "id": "talk:genosmith",
-     "first_seen": "Mon Nov 16 2026 06:16 PM PT"
-    },
-    {
      "name": "Sam Darnold",
      "pos": "QB",
      "team": "SEA",
@@ -523,6 +510,39 @@
      "first_seen": "Mon Nov 16 2026 03:39 PM PT"
     },
     {
+     "name": "Geno Smith",
+     "pos": "QB",
+     "team": "NYJ",
+     "acq": "waivers until Nov 18",
+     "over": "Aaron Rodgers",
+     "rat_ros": 20.2,
+     "over_ros": 18.0,
+     "pct": 12,
+     "gain": 2.2,
+     "rat_wk": 16.6,
+     "koe_wk": 16.57,
+     "clay_ros": 16.86,
+     "vegas_wk": 16.91,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 20.2,
+       "over": "Aaron Rodgers",
+       "over_v": 18.0,
+       "pct": 12,
+       "gain": 2.2
+      }
+     ],
+     "sharp_po": 55.25,
+     "sharp_rank": 30,
+     "rising": null,
+     "scout": true,
+     "id": "watch:genosmith",
+     "first_seen": "Mon Nov 16 2026 06:34 PM PT"
+    },
+    {
      "name": "Kaelon Black",
      "pos": "RB",
      "team": "SF",
@@ -587,39 +607,6 @@
      "scout": false,
      "id": "watch:kimanividal",
      "first_seen": "Mon Nov 16 2026 07:57 AM PT"
-    },
-    {
-     "name": "Austin Ekeler",
-     "pos": "RB",
-     "team": "WAS",
-     "acq": "waivers until Nov 18",
-     "over": "Alvin Kamara",
-     "rat_ros": 5.5,
-     "over_ros": 9.3,
-     "pct": -41,
-     "gain": -3.9,
-     "rat_wk": 10.3,
-     "koe_wk": 10.46,
-     "clay_ros": 10.5,
-     "vegas_wk": null,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 11-17",
-       "his": 10.5,
-       "over": "Emmett Johnson",
-       "over_v": 8.6,
-       "pct": 22,
-       "gain": 1.9
-      }
-     ],
-     "sharp_po": 69.75,
-     "sharp_rank": 13,
-     "rising": null,
-     "scout": false,
-     "id": "watch:austinekeler",
-     "first_seen": "Mon Nov 16 2026 06:16 PM PT"
     }
    ],
    "cover": [
@@ -698,9 +685,9 @@
      "pos": "DEF",
      "team": "TB",
      "acq": "Free agent",
-     "over": "Steelers",
+     "over": "Colby Parkinson",
      "pct": 43,
-     "gain": 16.2,
+     "gain": 20.5,
      "note": "Scout pick (rest of season): This week: TB DEF has a bye - no help this week",
      "scout": true,
      "id": "talk:tbdef",
@@ -863,7 +850,7 @@
      "sharp_po": 69.75,
      "sharp_rank": 13,
      "rising": null,
-     "scout": true,
+     "scout": false,
      "note": "Flagged by Clay (rest of season, Weeks 11-17: 10.5 vs your Kaleb Johnson 4.0, +163%); Ratcliffe has him 5.5 a game vs 10.1; playoff offense #13 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:austinekeler",
      "first_seen": "Sun Nov 15 2026 09:15 AM PT"
@@ -875,13 +862,26 @@
      "pos": "DEF",
      "team": "DET",
      "acq": "Free agent",
-     "over": "Packers",
+     "over": "Colby Parkinson",
      "pct": 35,
-     "gain": 3.9,
+     "gain": 6.8,
      "note": "Scout pick (rest of season): This week vs your DEF Packers DEF: Ratcliffe 8.4 vs 11.3 \u00b7 Koerner 8.3 vs 10.1 \u00b7 Yahoo not read vs 10.1 - WORSE this week",
      "scout": true,
      "id": "watch:detdef",
      "first_seen": "Sun Nov 15 2026 09:53 PM PT"
+    },
+    {
+     "name": "J.J. McCarthy",
+     "pos": "QB",
+     "team": "NYG",
+     "acq": "Free agent",
+     "over": "Colby Parkinson",
+     "pct": 22,
+     "gain": 4.2,
+     "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 17.5 vs 20.1 \u00b7 Koerner 17.6 vs 20.0 \u00b7 Yahoo not read vs 22.3 \u00b7 Gotham not read vs 22.3 - WORSE this week",
+     "scout": true,
+     "id": "watch:jjmccarthy",
+     "first_seen": "Mon Nov 16 2026 06:34 PM PT"
     },
     {
      "name": "Cade Otton",
@@ -988,10 +988,10 @@
      "team": "DAL",
      "acq": "waivers until Nov 18",
      "over": "Kaleb Johnson",
-     "rat_ros": 5.4,
+     "rat_ros": 5.3,
      "over_ros": 10.1,
      "pct": -47,
-     "gain": -4.7,
+     "gain": -4.8,
      "rat_wk": 0.9,
      "koe_wk": 3.21,
      "clay_ros": 5.0,
@@ -1014,85 +1014,47 @@
      "scout": false,
      "id": "watch:israelabanikanda",
      "first_seen": "Mon Nov 16 2026 07:57 AM PT"
-    },
-    {
-     "name": "Ty Johnson",
-     "pos": "RB",
-     "team": "BUF",
-     "acq": "waivers until Nov 18",
-     "over": "Kaleb Johnson",
-     "rat_ros": 4.4,
-     "over_ros": 10.1,
-     "pct": -57,
-     "gain": -5.7,
-     "rat_wk": 6.4,
-     "koe_wk": 5.59,
-     "clay_ros": 5.16,
-     "vegas_wk": null,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 11-17",
-       "his": 5.2,
-       "over": "Kaleb Johnson",
-       "over_v": 4.0,
-       "pct": 29,
-       "gain": 1.2
-      }
-     ],
-     "sharp_po": 79.0,
-     "sharp_rank": 1,
-     "rising": null,
-     "scout": false,
-     "id": "watch:tyjohnson",
-     "first_seen": "Mon Nov 16 2026 06:16 PM PT"
     }
    ],
    "cover": [
     {
+     "title": "WR1, Weeks 10, 13-15 Fill",
+     "target": "Target 12.6 pts",
+     "mark": "gold",
+     "why": "Full strength ~16.1 (Pickens). Wk 10 Pickens ~13.3 \u00b7 Wk 13 Pickens ~12.4 (hard matchup vs SEA) \u00b7 Wk 14 Waddle ~11.5 (Pickens on bye, Waddle slides in) \u00b7 Wk 15 Pickens ~13.4 (hard matchup vs LA).",
+     "picks": [],
+     "id": "cover:wr1weeks101315fill",
+     "first_seen": "Mon Nov 16 2026 06:34 PM PT"
+    },
+    {
+     "title": "DEF, Weeks 12-14 Fill",
+     "target": "Target 8.3 pts",
+     "mark": "gold",
+     "why": "Full strength ~12.9 (Steelers). Wk 12 Steelers ~8.6 (hard matchup vs DEN) \u00b7 Wk 13 Steelers ~8.8 (hard matchup vs HOU) \u00b7 Wk 14 Steelers ~7.4 (hard matchup vs JAX).",
+     "picks": [
+      "TB DEF (Free agent)",
+      "DET DEF (Free agent)"
+     ],
+     "id": "cover:defweeks1214fill",
+     "first_seen": "Mon Nov 16 2026 06:34 PM PT"
+    },
+    {
      "title": "RB2, Week 10 Fill",
      "target": "Target 10.2 pts",
-     "mark": "red",
+     "mark": "gold",
      "why": "Full strength ~10.8 (White). Wk 10 Johnson ~10.2 (White moves up to RB1, Johnson slides in).",
-     "picks": [
-      "Austin Ekeler (Waivers, clears Nov 18)"
-     ],
+     "picks": [],
      "id": "cover:rb2week10fill",
      "first_seen": "Sun Nov 15 2026 05:29 PM PT"
     },
     {
      "title": "RB1, Week 10 Fill",
      "target": "Target 12.9 pts",
-     "mark": "red",
+     "mark": "gold",
      "why": "Full strength ~18.8 (Coleman). Wk 10 White ~12.9 (Coleman on bye, White slides in).",
-     "picks": [
-      "Austin Ekeler (Waivers, clears Nov 18)"
-     ],
+     "picks": [],
      "id": "cover:rb1week10fill",
      "first_seen": "Sun Nov 15 2026 09:53 PM PT"
-    },
-    {
-     "title": "FLEX2, Week 10 Fill",
-     "target": "Target 8.4 pts",
-     "mark": "red",
-     "why": "Full strength ~11.3 (Douglas). Wk 10 Parkinson ~8.4 (Douglas moves up to WR2, Parkinson slides in).",
-     "picks": [
-      "Austin Ekeler (Waivers, clears Nov 18)"
-     ],
-     "id": "cover:flex2week10fill",
-     "first_seen": "Mon Nov 16 2026 06:16 PM PT"
-    },
-    {
-     "title": "FLEX1, Week 10 Fill",
-     "target": "Target 8.9 pts",
-     "mark": "red",
-     "why": "Full strength ~11.3 (Waddle). Wk 10 Waller ~8.9 (Waddle on bye, Waller slides in).",
-     "picks": [
-      "Austin Ekeler (Waivers, clears Nov 18)"
-     ],
-     "id": "cover:flex1week10fill",
-     "first_seen": "Mon Nov 16 2026 06:16 PM PT"
     }
    ],
    "block": [],
