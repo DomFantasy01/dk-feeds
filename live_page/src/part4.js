@@ -419,8 +419,26 @@ function lights(){
   const d = H ? (H.worst === "red" ? "red" : H.worst === "yellow" ? "yellow" : "green") : "grey";
   return {y, d, late: S && since !== null && age > since + 75};
 }
+/* Nov 17 (Dom): the PLAYER NEWS light - the news sweep that reads ten sites four times a day (4 AM, 10 AM, 2 PM, 7 PM PT).
+   red = a sweep is late; yellow = a site wasn't read (named) or the sweep saved no site checklist; green = all ten read on time. */
+function playerNews(){
+  const nc = A && A.news_checked ? new Date(A.news_checked) : null, ns = (A && A.news_sources) || {};
+  if (!A) return {c: "grey", t: "no alerts read yet"};
+  const pt = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})), off = new Date() - pt;
+  let due = null;
+  for (let dd = 0; dd < 2; dd++) for (const h of [4, 10, 14, 19]){ const t = new Date(pt); t.setDate(t.getDate() - dd); t.setHours(h, 0, 0, 0);
+    if (t.getTime() + 50 * 6e4 <= pt.getTime() && (!due || t > due)) due = t; }
+  const dueReal = due ? new Date(due.getTime() + off) : null;
+  if (!nc || (dueReal && nc < new Date(dueReal.getTime() - 10 * 6e4)))
+    return {c: "red", t: `the ${due ? due.toLocaleTimeString("en-US", {hour: "numeric"}) : ""} read is late - last ${nc ? ptTime(nc.toISOString()) : "never"}`};
+  const ks = Object.keys(ns), bad = ks.filter(k => !["read", "nothing new"].includes((ns[k] || {}).status || ns[k]));
+  if (!ks.length) return {c: "yellow", t: `read ${ptTime(nc.toISOString())}, but no site checklist saved`};
+  if (bad.length) return {c: "yellow", t: `read ${ptTime(nc.toISOString())} - ${ks.length - bad.length} of ${ks.length} sites; not read: ` + bad.map(k => `${k} (${(ns[k] || {}).status || ns[k]})`).join(", ")};
+  return {c: "green", t: `all ${ks.length} sites read ${ptTime(nc.toISOString())}`};
+}
 function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
+  { const pn = playerNews(), e = $("#ltP"); if (e){ e.className = "lt " + pn.c; e.title = "Player News: " + pn.t; } }
   if (!S){ $("#statTxt").innerHTML = "Waiting for the first read."; return; }
   $("#statTxt").innerHTML = l.late ? `<span class="late">Late · ${esc(ptTime(S.stamp))} · ${esc(ago(S.stamp))}</span>`
     : `<b>${esc(PT(S.stamp, {weekday: "short"}))}, ${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>`;
@@ -1651,7 +1669,7 @@ setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
   watch("live/moves", v => { MV = v || null; if (S) renderAll(); });
   watch("live/pickups", v => { PK = v || null; renderPickups(); });
   watch("live/health", v => { H = v || null; renderStatus(); renderHealth(); });
-  watch("live/alerts", v => { A = v || null; if (S) renderAll(); });
+  watch("live/alerts", v => { A = v || null; renderStatus(); if (S) renderAll(); });
   watch("live/models", v => { if (v){ M = v; if (S){ renderAll(); trailAdd(); } } });
   watch("live/state", v => { if (v && v.leagues){ clearTimeout(tm); S = v; renderAll(); if (M) trailAdd();
     if (!HASHED){ HASHED = true; const h = location.hash.slice(1); if (/^dk[1-4]$/.test(h)) setTimeout(() => document.getElementById(h)?.scrollIntoView({block: "start"}), 60); } } });
