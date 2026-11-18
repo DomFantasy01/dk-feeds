@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-11-18T00:39:15+00:00",
+ "pulled_utc": "2026-11-18T00:59:17+00:00",
  "probes": {
   "espn_injuries_team1": {
    "answered": true,
@@ -45,11 +45,8 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   "google_news_nfl_injury": {
-   "answered": true,
-   "kind": "rss",
-   "items": 27,
-   "newest_utc": "2026-11-17T22:01+00:00",
-   "bytes": 34621
+   "answered": false,
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   "rotowire_mirror": {
    "answered": false,
