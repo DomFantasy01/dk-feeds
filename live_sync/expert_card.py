@@ -93,7 +93,8 @@ for lab, L in (M.get("leagues") or {}).items():
             if x: r_[short] = x[1]; pos = pos or x[0]
         rkm = rk.get(deft(name, team) + "DEF" if pos == "DEF" else k_) or {}
         o_, ra_ = rkm.get("Tyler Orginski"), rkm.get("Jeff Ratcliffe")
-        if o_ and ra_ and abs(ra_[1] - o_[1]) >= 8:   # Nov 18: the flag - Orginski 8+ spots away from Ratcliffe at the position = look closer
+        GAP = {"QB": 4, "TE": 4, "RB": 6, "WR": 8}   # Nov 18 (Dom): flag gap by position - QB/TE 4 spots, RB 6, WR 8 (K/DEF 4)
+        if o_ and ra_ and abs(ra_[1] - o_[1]) >= GAP.get(str(o_[0]).upper(), 4):   # Orginski that far from Ratcliffe at the position = look closer
             ofl = f"Orginski {o_[0]}{o_[1]} vs Ratcliffe {ra_[0]}{ra_[1]} ({'higher' if o_[1] < ra_[1] else 'lower'} on him)"
         else: ofl = None
         if not p and not r_: continue
