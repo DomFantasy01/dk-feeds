@@ -1,9 +1,9 @@
 {
- "built": "Wed Nov 18 2026 5:43 AM PT",
+ "built": "Wed Nov 18 2026 6:39 AM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Wed Nov 18 2026 5:43 AM PT",
- "champ_built": "Wed Nov 18 2026 05:40 AM PT",
+ "pickups_built": "Wed Nov 18 2026 6:38 AM PT",
+ "champ_built": "Wed Nov 18 2026 06:35 AM PT",
  "leagues": {
   "1": {
    "base": 0.69,
@@ -338,12 +338,45 @@
    "week_win": 0.311,
    "picks": [
     {
+     "name": "Michael Mayer",
+     "replaces": "Darren Waller",
+     "pos": "TE",
+     "team": "LV",
+     "tier": "HOT",
+     "grade": 42,
+     "spokes": {
+      "team": 11.7,
+      "consensus": 12.9,
+      "upside": 10.1,
+      "drop": 20.0,
+      "stakes": 9.6
+     },
+     "total": 64,
+     "verdict": "LEAN",
+     "vwhy": "64/100",
+     "why": {
+      "team": "LV offense 25.1 a game (#10), last 3 games 22.7 (#15); team 40% wins; workload 9/15",
+      "consensus": "+13% vs Darren Waller (top-3 average); 4 of 7 sources have him ahead",
+      "upside": "53 pts rest of season; Weeks 15-17 W15 DEN (#3), W16 TEN (#19), W17 ARI (#5)",
+      "drop": "drop Packers: his loss alone +0.0 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.1; playoff odds for the season -0.1; this week's game swings the playoff odds 1% to 12%; 6 rivals would start him"
+     },
+     "move": {
+      "drop": "Packers",
+      "d_week": 0.001,
+      "d_playoff": -0.001,
+      "d_title": -0.0002,
+      "ppg": -0.4,
+      "games": 2
+     }
+    },
+    {
      "name": "Kalif Raymond",
      "replaces": "Caleb Douglas",
      "pos": "WR",
      "team": "CHI",
      "tier": "WATCH",
-     "grade": 46,
+     "grade": 44,
      "spokes": {
       "team": 16.2,
       "consensus": 0.2,
@@ -364,45 +397,12 @@
      "move": null
     },
     {
-     "name": "Xavier Hutchinson",
-     "replaces": "Caleb Douglas",
-     "pos": "WR",
-     "team": "HOU",
-     "tier": "WATCH",
-     "grade": 45,
-     "spokes": {
-      "team": 13.1,
-      "consensus": 3.5,
-      "upside": 10.9,
-      "drop": 20.0,
-      "stakes": 10.0
-     },
-     "total": 58,
-     "verdict": "NO MOVE",
-     "vwhy": "red flag (under 5): Experts",
-     "why": {
-      "team": "HOU offense 25.9 a game (#9), last 3 games 29.7 (#8) - trending up; team 33% wins; workload 9/15",
-      "consensus": "-9% vs Caleb Douglas (top-3 average); 0 of 7 sources have him ahead",
-      "upside": "57 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
-      "drop": "drop Packers: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 12%; 4 rivals would start him"
-     },
-     "move": {
-      "drop": "Packers",
-      "d_week": 0.0,
-      "d_playoff": 0.0,
-      "d_title": -0.0002,
-      "ppg": -1.1,
-      "games": 1
-     }
-    },
-    {
      "name": "Pat Bryant",
      "replaces": "Caleb Douglas",
      "pos": "WR",
      "team": "DEN",
      "tier": "WATCH",
-     "grade": 45,
+     "grade": 43,
      "spokes": {
       "team": 11.8,
       "consensus": 3.0,
@@ -430,12 +430,45 @@
      }
     },
     {
+     "name": "Xavier Hutchinson",
+     "replaces": "Caleb Douglas",
+     "pos": "WR",
+     "team": "HOU",
+     "tier": "WATCH",
+     "grade": 42,
+     "spokes": {
+      "team": 13.1,
+      "consensus": 3.5,
+      "upside": 10.9,
+      "drop": 20.0,
+      "stakes": 10.0
+     },
+     "total": 58,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Experts",
+     "why": {
+      "team": "HOU offense 25.9 a game (#9), last 3 games 29.7 (#8) - trending up; team 33% wins; workload 9/15",
+      "consensus": "-9% vs Caleb Douglas (top-3 average); 0 of 7 sources have him ahead",
+      "upside": "57 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
+      "drop": "drop Packers: his loss alone +0.0 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 12%; 4 rivals would start him"
+     },
+     "move": {
+      "drop": "Packers",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
+      "d_title": -0.0002,
+      "ppg": -1.1,
+      "games": 1
+     }
+    },
+    {
      "name": "Brian Thomas Jr.",
      "replaces": "Caleb Douglas",
      "pos": "WR",
      "team": "JAX",
      "tier": "WATCH",
-     "grade": 45,
+     "grade": 42,
      "spokes": {
       "team": 17.2,
       "consensus": 0.3,
@@ -454,39 +487,6 @@
       "stakes": "not in the simulator's pool - scored even"
      },
      "move": null
-    },
-    {
-     "name": "Tre' Harris",
-     "replaces": "Caleb Douglas",
-     "pos": "WR",
-     "team": "LAC",
-     "tier": "WATCH",
-     "grade": 42,
-     "spokes": {
-      "team": 6.7,
-      "consensus": 3.7,
-      "upside": 6.7,
-      "drop": 13.6,
-      "stakes": 10.4
-     },
-     "total": 41,
-     "verdict": "NO MOVE",
-     "vwhy": "red flag (under 5): Experts",
-     "why": {
-      "team": "LAC offense 16.0 a game (#32), last 3 games 18.0 (#25); team 11% wins; workload 15/15",
-      "consensus": "-8% vs Caleb Douglas (top-3 average); 0 of 7 sources have him ahead",
-      "upside": "58 pts rest of season; Weeks 15-17 W15 SF (#11), W16 MIA (#30), W17 KC (#31)",
-      "drop": "drop Jaylen Waddle: his loss alone -0.1 playoff odds; a rival would start him (Bad and Bougie 2.0, Press Coverage steph)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.1; this week's game swings the playoff odds 1% to 12%; 4 rivals would start him"
-     },
-     "move": {
-      "drop": "Jaylen Waddle",
-      "d_week": 0.0,
-      "d_playoff": 0.001,
-      "d_title": 0.0,
-      "ppg": -0.8,
-      "games": 4
-     }
     }
    ]
   },
@@ -515,7 +515,7 @@
       "team": "SF offense 31.2 a game (#2), last 3 games 34.7 (#3) - trending up; team 89% wins; workload 9/15",
       "consensus": "+17% vs Jakobi Meyers (top-3 average); 2 of 7 sources have him ahead",
       "upside": "79 pts rest of season; Weeks 15-17 W15 LAC (#6), W16 KC (#31), W17 PHI (#3)",
-      "drop": "drop Omar Cooper Jr.: his loss alone -0.1 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
+      "drop": "drop Omar Cooper Jr.: his loss alone -0.1 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Bad and Boujee)",
       "stakes": "chance to win this week +2.2; playoff odds for the season +1.8; this week's game swings the playoff odds 74% to 92%; keeps him from this week's opponent Dream Killers; 4 rivals would start him"
      },
      "move": {
