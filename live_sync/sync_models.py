@@ -387,6 +387,25 @@ if _size(cur) > CAP and cur.get('pickups'):
 if _size(cur) > CAP and cur.get('pickups'):
     cur['pickups'] = {k_: cur['pickups'].get(k_) for k_ in ('built', 'sources', 'panel')}
     print('size guard: pickups reduced to the expert panel (page uses live/pickups)')
+# Nov 18 (Dom: "check that everything's working"): two Tue chains failed with live/models at 262,867-264,111 bytes - the
+# four leagues' history lists (sim_hist up to 400 entries, po_hist 200) had grown to ~115 KB. Last guard: thin the history,
+# never the current numbers - keep every entry from the last 48 hours, then one entry per 6 hours before that (the 7-day
+# tick and the Season odds chart keep their shape), and as a final step one per 12 hours.
+def _thin(hist, step_h):
+    import datetime as _dt
+    _n = _dt.datetime.now(_dt.timezone.utc); out, last = [], None
+    for x in hist:
+        try: t = _dt.datetime.strptime(x[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=_dt.timezone.utc)
+        except Exception: continue
+        if (_n - t).total_seconds() <= 48 * 3600 or last is None or (t - last).total_seconds() >= step_h * 3600:
+            out.append(x); last = t
+    return out
+for _step in (6, 12):
+    if _size(cur) <= CAP: break
+    for _lg in (cur.get('leagues') or {}).values():
+        for _key in ('sim_hist', 'po_hist'):
+            if isinstance(_lg.get(_key), list): _lg[_key] = _thin(_lg[_key], _step)
+    print(f'size guard: odds history thinned to one per {_step} h (last 48 h kept whole) ->', _size(cur))
 if _size(cur) > CAP: print('SIZE WARNING: live/models still', _size(cur), 'bytes')
 print('live/models size:', _size(cur), 'bytes (cap 262144)')
 json.dump(cur, open(sys.argv[3], 'w'), ensure_ascii=False, separators=(',', ':'))
