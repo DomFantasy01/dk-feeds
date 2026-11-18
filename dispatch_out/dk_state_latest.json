@@ -1,9 +1,9 @@
 {
  "what": "Dark Knight state file - read this before answering anything about Dom's four teams",
- "built_utc": "2026-11-18T21:38:39+00:00",
- "built_pt": "Wed Nov 18, 1:38 PM PT",
+ "built_utc": "2026-11-18T22:46:45+00:00",
+ "built_pt": "Wed Nov 18, 2:46 PM PT",
  "week": 11,
- "dispatch_built_pt": "Wed Nov 18 2026 01:36 PM PT",
+ "dispatch_built_pt": "Wed Nov 18 2026 02:44 PM PT",
  "leagues": [
   {
    "dk": "DK I",
@@ -27,11 +27,11 @@
    },
    "totals_projected": {
     "gotham": [
-     151.59,
-     132.94
+     151.66,
+     132.99
     ],
     "sleeper": [
-     147.33,
+     147.35,
      134.54
     ],
     "yahoo": [
@@ -90,7 +90,38 @@
      "projected_margin": 12.9
     }
    },
-   "late_swap_risks": [],
+   "late_swap_risks": [
+    {
+     "starter": "Dalton Kincaid",
+     "slot": "W/R/T",
+     "why": "questionable",
+     "kickoff": "Sun Nov 22, 10:00 AM PT",
+     "inactives_list_at": "Sun Nov 22, 8:30 AM PT",
+     "proj": {
+      "yahoo": 10.0,
+      "gotham": 9.8,
+      "sleeper": 9.7
+     },
+     "bench_options": [
+      {
+       "name": "Kaelon Black",
+       "pos": "RB",
+       "nfl": "SF",
+       "kickoff": "Sun Nov 22, 5:20 PM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 7.2,
+        "gotham": 8.5,
+        "sleeper": 6.3,
+        "yahoo_from": "Yahoo projections read Wed Nov 18, 1:11 PM PT"
+       },
+       "decide_by": "Sun Nov 22, 5:20 PM PT"
+      }
+     ],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "plan": "If Dalton Kincaid is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 2.8 pts. Decision due when the inactives post, about 8:30 AM PT."
+    }
+   ],
    "still_to_play": {
     "me": [
      {
@@ -123,13 +154,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 10:50 AM PT",
-        "age": "2.8 hr ago",
+        "age": "3.9 hr ago",
         "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:57 AM PT",
-        "age": "5.7 hr ago",
+        "age": "6.8 hr ago",
         "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
        }
       ]
@@ -164,7 +195,7 @@
        {
         "src": "ProFootballTalk",
         "at": "Mon Nov 16, 6:17 PM PT",
-        "age": "43.4 hr ago",
+        "age": "44.5 hr ago",
         "line": "Von Miller blames himself, not the play call, for Christian McCaffrey's late TD"
        },
        {
@@ -205,13 +236,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:50 AM PT",
-        "age": "5.8 hr ago",
+        "age": "6.9 hr ago",
         "line": "Jaylen Warren's Week 11 fantasy outlook"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        }
       ]
@@ -246,13 +277,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 8:28 AM PT",
-        "age": "5.2 hr ago",
+        "age": "6.3 hr ago",
         "line": "Fantasy buzz: Kirk Cousins, Stefon Diggs bring reliability to fantasy lineups"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        }
       ]
@@ -287,7 +318,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 6:43 AM PT",
-        "age": "6.9 hr ago",
+        "age": "8.1 hr ago",
         "line": "George Pickens Prefers to Stay in Dallas Long Term"
        },
        {
@@ -328,7 +359,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 3:00 AM PT",
-        "age": "10.6 hr ago",
+        "age": "11.8 hr ago",
         "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
        }
       ]
@@ -341,7 +372,7 @@
       "kickoff": "Sun Nov 22, 10:00 AM PT",
       "ko_utc": "2026-11-22T18:00:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 10.0,
@@ -357,20 +388,21 @@
        "wk17": 10.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
+       "ESPN": "Questionable (Thumb), posted 78 min ago",
+       "Sleeper": "Questionable"
       },
       "news": [
        {
-        "src": "RotoBaller",
-        "at": "Wed Nov 18, 9:01 AM PT",
-        "age": "4.6 hr ago",
-        "line": "Dalton Kincaid's Declining Usage Raises Fantasy Concerns"
+        "src": "ProFootballTalk",
+        "at": "Wed Nov 18, 2:02 PM PT",
+        "age": "44 min ago",
+        "line": "Dalton Kincaid, Christian Benford listed as out of Bills practice"
        },
        {
-        "src": "RotoWire",
-        "at": "Tue Nov 17, 5:29 PM PT",
-        "age": "20.2 hr ago",
-        "line": "Dalton Kincaid: Does not practice Wednesday"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 9:01 AM PT",
+        "age": "5.8 hr ago",
+        "line": "Dalton Kincaid's Declining Usage Raises Fantasy Concerns"
        }
       ]
      },
@@ -433,13 +465,13 @@
        "wk17": 7.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 42.6 hr ago"
+       "ESPN": "Active, posted 43.7 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 7:05 PM PT",
-        "age": "42.6 hr ago",
+        "age": "43.7 hr ago",
         "line": "Will Reichard: Makes all six kicks in blowout win"
        }
       ]
@@ -471,13 +503,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 1:25 PM PT",
-        "age": "13 min ago",
+        "age": "81 min ago",
         "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 9:21 AM PT",
-        "age": "4.3 hr ago",
+        "age": "5.4 hr ago",
         "line": "Cam Little is AFC special teams player of the week for second week in a row"
        }
       ]
@@ -500,19 +532,19 @@
        "sleeper": 19.9
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.9 hr ago"
+       "ESPN": "Active, posted 41.1 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Mon Nov 16, 10:03 PM PT",
-        "age": "39.6 hr ago",
+        "age": "40.7 hr ago",
         "line": "Justin Herbert, defense help lift Chargers past Ravens on MNF"
        },
        {
         "src": "ESPN",
         "at": "Mon Nov 16, 8:32 PM PT",
-        "age": "41.1 hr ago",
+        "age": "42.2 hr ago",
         "line": "Chargers bully the Ravens at the line of scrimmage and earn their first win of the season, 23-20"
        }
       ]
@@ -532,21 +564,12 @@
        "gotham": 11.9,
        "sleeper": 14.8
       },
-      "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
-      },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:42 AM PT",
-        "age": "5.9 hr ago",
+        "age": "7.1 hr ago",
         "line": "Ollie Gordon II Cools Off Despite Heavy Workload"
-       },
-       {
-        "src": "RotoWire",
-        "at": "Sun Nov 15, 2:46 PM PT",
-        "age": "3 days ago",
-        "line": "Ollie Gordon II: Productive with 24 touches"
        }
       ]
      },
@@ -566,20 +589,20 @@
        "sleeper": 19.4
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Ankle), posted 28 min ago",
+       "ESPN": "Questionable (Ankle), posted 85 min ago",
        "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 1:25 PM PT",
-        "age": "13 min ago",
+        "age": "81 min ago",
         "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
        },
        {
         "src": "RotoWire",
         "at": "Tue Nov 17, 5:23 PM PT",
-        "age": "20.3 hr ago",
+        "age": "21.4 hr ago",
         "line": "Bhayshul Tuten: Logs limited practice Wednesday"
        }
       ]
@@ -601,15 +624,7 @@
       },
       "injury_feeds": {
        "ESPN": "Active, posted 3 days ago"
-      },
-      "news": [
-       {
-        "src": "RotoWire",
-        "at": "Sun Nov 15, 2:31 PM PT",
-        "age": "3 days ago",
-        "line": "Rashee Rice: Productive with five catches in win"
-       }
-      ]
+      }
      },
      {
       "slot": "WR",
@@ -626,14 +641,11 @@
        "gotham": 6.9,
        "sleeper": 9.2
       },
-      "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
-      },
       "news": [
        {
         "src": "ESPN",
         "at": "Tue Nov 17, 8:48 AM PT",
-        "age": "28.8 hr ago",
+        "age": "30.0 hr ago",
         "line": "Miami Dolphins backup QB Kyle McCord showed poise in debut vs. Indianapolis Colts"
        },
        {
@@ -660,19 +672,19 @@
        "sleeper": 7.3
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.8 hr ago"
+       "ESPN": "Active, posted 41.0 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Mon Nov 16, 10:05 PM PT",
-        "age": "39.6 hr ago",
+        "age": "40.7 hr ago",
         "line": "Mark Andrews Comes Alive in Narrow Defeat"
        },
        {
         "src": "RotoBaller",
         "at": "Mon Nov 16, 6:22 PM PT",
-        "age": "43.3 hr ago",
+        "age": "44.4 hr ago",
         "line": "Mark Andrews has Been Playing Through a Broken Hand Since Week 3"
        }
       ]
@@ -699,7 +711,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Aaron Jones Sr. Finds the End Zone Against Green Bay"
        }
       ]
@@ -720,14 +732,14 @@
        "sleeper": 22.2
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Groin), posted 3.6 hr ago",
+       "ESPN": "Questionable (Groin), posted 4.7 hr ago",
        "Sleeper": "Questionable (Groin)"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 4:10 AM PT",
-        "age": "9.5 hr ago",
+        "age": "10.6 hr ago",
         "line": "When Is Kenneth Walker III Coming Back - Week 11 Fantasy Football Injury Return Update (2026)"
        },
        {
@@ -754,13 +766,13 @@
        "sleeper": 8.9
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 41.9 hr ago"
+       "ESPN": "Active, posted 43.0 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 7:47 PM PT",
-        "age": "41.9 hr ago",
+        "age": "43.0 hr ago",
         "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
        }
       ]
@@ -784,13 +796,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 1:09 PM PT",
-        "age": "29 min ago",
+        "age": "1.6 hr ago",
         "line": "Jets QB Geno Smith (ankle) intends to play vs. Chargers: 'That's the plan'"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 11:59 AM PT",
-        "age": "1.7 hr ago",
+        "age": "2.8 hr ago",
         "line": "After earning their first win, Chargers are favored to win their second vs. Jets"
        }
       ]
@@ -828,13 +840,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 10:50 AM PT",
-       "age": "2.8 hr ago",
+       "age": "3.9 hr ago",
        "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:57 AM PT",
-       "age": "5.7 hr ago",
+       "age": "6.8 hr ago",
        "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
       }
      ]
@@ -869,7 +881,7 @@
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 16, 6:17 PM PT",
-       "age": "43.4 hr ago",
+       "age": "44.5 hr ago",
        "line": "Von Miller blames himself, not the play call, for Christian McCaffrey's late TD"
       },
       {
@@ -910,13 +922,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:50 AM PT",
-       "age": "5.8 hr ago",
+       "age": "6.9 hr ago",
        "line": "Jaylen Warren's Week 11 fantasy outlook"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       }
      ]
@@ -951,13 +963,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 8:28 AM PT",
-       "age": "5.2 hr ago",
+       "age": "6.3 hr ago",
        "line": "Fantasy buzz: Kirk Cousins, Stefon Diggs bring reliability to fantasy lineups"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       }
      ]
@@ -992,7 +1004,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 6:43 AM PT",
-       "age": "6.9 hr ago",
+       "age": "8.1 hr ago",
        "line": "George Pickens Prefers to Stay in Dallas Long Term"
       },
       {
@@ -1033,7 +1045,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 3:00 AM PT",
-       "age": "10.6 hr ago",
+       "age": "11.8 hr ago",
        "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
       }
      ]
@@ -1046,7 +1058,7 @@
      "kickoff": "Sun Nov 22, 10:00 AM PT",
      "ko_utc": "2026-11-22T18:00:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 10.0,
@@ -1062,20 +1074,21 @@
       "wk17": 10.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
+      "ESPN": "Questionable (Thumb), posted 78 min ago",
+      "Sleeper": "Questionable"
      },
      "news": [
       {
-       "src": "RotoBaller",
-       "at": "Wed Nov 18, 9:01 AM PT",
-       "age": "4.6 hr ago",
-       "line": "Dalton Kincaid's Declining Usage Raises Fantasy Concerns"
+       "src": "ProFootballTalk",
+       "at": "Wed Nov 18, 2:02 PM PT",
+       "age": "44 min ago",
+       "line": "Dalton Kincaid, Christian Benford listed as out of Bills practice"
       },
       {
-       "src": "RotoWire",
-       "at": "Tue Nov 17, 5:29 PM PT",
-       "age": "20.2 hr ago",
-       "line": "Dalton Kincaid: Does not practice Wednesday"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 9:01 AM PT",
+       "age": "5.8 hr ago",
+       "line": "Dalton Kincaid's Declining Usage Raises Fantasy Concerns"
       }
      ]
     },
@@ -1138,13 +1151,13 @@
       "wk17": 7.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 42.6 hr ago"
+      "ESPN": "Active, posted 43.7 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 7:05 PM PT",
-       "age": "42.6 hr ago",
+       "age": "43.7 hr ago",
        "line": "Will Reichard: Makes all six kicks in blowout win"
       }
      ]
@@ -1176,13 +1189,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 1:25 PM PT",
-       "age": "13 min ago",
+       "age": "81 min ago",
        "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 9:21 AM PT",
-       "age": "4.3 hr ago",
+       "age": "5.4 hr ago",
        "line": "Cam Little is AFC special teams player of the week for second week in a row"
       }
      ]
@@ -1244,7 +1257,7 @@
      "proj": {
       "yahoo": 21.1,
       "gotham": 19.8,
-      "sleeper": 18.6,
+      "sleeper": 18.9,
       "yahoo_from": "Yahoo projections read Wed Nov 18, 1:11 PM PT"
      },
      "yahoo_weeks_ahead": {
@@ -1290,13 +1303,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 3:09 AM PT",
-       "age": "10.5 hr ago",
+       "age": "11.6 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 11 (2026): Fantasy Football Pickups for Emari Demercado, Kaelon Black, Elic Ayomanor, Jauan Jennings, Gunnar Helm, more"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 10:34 AM PT",
-       "age": "27.1 hr ago",
+       "age": "28.2 hr ago",
        "line": "Week 11 Waiver Wire Pickups - Kaelon Black, Mike Washington Jr., Seth McGowan"
       }
      ]
@@ -1326,20 +1339,20 @@
       "wk17": 9.8
      },
      "injury_feeds": {
-      "ESPN": "Out (Thumb), posted 2.2 hr ago",
+      "ESPN": "Out (Thumb), posted 3.4 hr ago",
       "Sleeper": "Out (Thumb)"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 12:42 PM PT",
-       "age": "56 min ago",
+       "age": "2.1 hr ago",
        "line": "Vikings won't put Jordan Addison on IR"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:37 AM PT",
-       "age": "2.0 hr ago",
+       "age": "3.2 hr ago",
        "line": "Jordan Addison Won't Go on Injured Reserve"
       }
      ]
@@ -1372,13 +1385,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 11:30 AM PT",
-       "age": "2.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Todd Bowles: Baker Mayfield's made progress, decision on playing to come on Friday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:03 AM PT",
-       "age": "2.6 hr ago",
+       "age": "3.7 hr ago",
        "line": "Baker Mayfield Making Progress, Decision to Come in Next 48 Hours"
       }
      ]
@@ -1401,19 +1414,19 @@
       "sleeper": 19.9
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.9 hr ago"
+      "ESPN": "Active, posted 41.1 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Mon Nov 16, 10:03 PM PT",
-       "age": "39.6 hr ago",
+       "age": "40.7 hr ago",
        "line": "Justin Herbert, defense help lift Chargers past Ravens on MNF"
       },
       {
        "src": "ESPN",
        "at": "Mon Nov 16, 8:32 PM PT",
-       "age": "41.1 hr ago",
+       "age": "42.2 hr ago",
        "line": "Chargers bully the Ravens at the line of scrimmage and earn their first win of the season, 23-20"
       }
      ]
@@ -1433,21 +1446,12 @@
       "gotham": 11.9,
       "sleeper": 14.8
      },
-     "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
-     },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:42 AM PT",
-       "age": "5.9 hr ago",
+       "age": "7.1 hr ago",
        "line": "Ollie Gordon II Cools Off Despite Heavy Workload"
-      },
-      {
-       "src": "RotoWire",
-       "at": "Sun Nov 15, 2:46 PM PT",
-       "age": "3 days ago",
-       "line": "Ollie Gordon II: Productive with 24 touches"
       }
      ]
     },
@@ -1467,20 +1471,20 @@
       "sleeper": 19.4
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 28 min ago",
+      "ESPN": "Questionable (Ankle), posted 85 min ago",
       "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 1:25 PM PT",
-       "age": "13 min ago",
+       "age": "81 min ago",
        "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
       },
       {
        "src": "RotoWire",
        "at": "Tue Nov 17, 5:23 PM PT",
-       "age": "20.3 hr ago",
+       "age": "21.4 hr ago",
        "line": "Bhayshul Tuten: Logs limited practice Wednesday"
       }
      ]
@@ -1502,15 +1506,7 @@
      },
      "injury_feeds": {
       "ESPN": "Active, posted 3 days ago"
-     },
-     "news": [
-      {
-       "src": "RotoWire",
-       "at": "Sun Nov 15, 2:31 PM PT",
-       "age": "3 days ago",
-       "line": "Rashee Rice: Productive with five catches in win"
-      }
-     ]
+     }
     },
     {
      "slot": "WR",
@@ -1527,14 +1523,11 @@
       "gotham": 6.9,
       "sleeper": 9.2
      },
-     "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
-     },
      "news": [
       {
        "src": "ESPN",
        "at": "Tue Nov 17, 8:48 AM PT",
-       "age": "28.8 hr ago",
+       "age": "30.0 hr ago",
        "line": "Miami Dolphins backup QB Kyle McCord showed poise in debut vs. Indianapolis Colts"
       },
       {
@@ -1561,19 +1554,19 @@
       "sleeper": 7.3
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.8 hr ago"
+      "ESPN": "Active, posted 41.0 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Mon Nov 16, 10:05 PM PT",
-       "age": "39.6 hr ago",
+       "age": "40.7 hr ago",
        "line": "Mark Andrews Comes Alive in Narrow Defeat"
       },
       {
        "src": "RotoBaller",
        "at": "Mon Nov 16, 6:22 PM PT",
-       "age": "43.3 hr ago",
+       "age": "44.4 hr ago",
        "line": "Mark Andrews has Been Playing Through a Broken Hand Since Week 3"
       }
      ]
@@ -1600,7 +1593,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Aaron Jones Sr. Finds the End Zone Against Green Bay"
       }
      ]
@@ -1621,14 +1614,14 @@
       "sleeper": 22.2
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Groin), posted 3.6 hr ago",
+      "ESPN": "Questionable (Groin), posted 4.7 hr ago",
       "Sleeper": "Questionable (Groin)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 4:10 AM PT",
-       "age": "9.5 hr ago",
+       "age": "10.6 hr ago",
        "line": "When Is Kenneth Walker III Coming Back - Week 11 Fantasy Football Injury Return Update (2026)"
       },
       {
@@ -1655,13 +1648,13 @@
       "sleeper": 8.9
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 41.9 hr ago"
+      "ESPN": "Active, posted 43.0 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 7:47 PM PT",
-       "age": "41.9 hr ago",
+       "age": "43.0 hr ago",
        "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
       }
      ]
@@ -1685,26 +1678,32 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 1:09 PM PT",
-       "age": "29 min ago",
+       "age": "1.6 hr ago",
        "line": "Jets QB Geno Smith (ankle) intends to play vs. Chargers: 'That's the plan'"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 11:59 AM PT",
-       "age": "1.7 hr ago",
+       "age": "2.8 hr ago",
        "line": "After earning their first win, Chargers are favored to win their second vs. Jets"
       }
      ]
     }
    ],
-   "actions": [],
+   "actions": [
+    {
+     "what": "Dalton Kincaid is questionable - latest (ESPN, Nov 18): Kincaid (thumb/ankle) did not practice Wednesday, David Furones of the Sun Sentinel reports. Check his status",
+     "by": "before his Sun 10:00 AM kickoff",
+     "kind": "check"
+    }
+   ],
    "alerts": [
     {
      "color": "gold",
-     "title": "Dalton Kincaid: Does not practice Wednesday",
+     "title": "Dalton Kincaid: Questionable (Thumb)",
      "who": "Dalton Kincaid",
      "kind": "feed",
-     "src": "RotoWire (raw feed, pulled every 30 minutes)"
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     },
     {
      "color": "gold",
@@ -1756,7 +1755,7 @@
      "src": "PFT (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Nov 18, 1:36 PM PT"
+   "roster_read_pt": "Wed Nov 18, 2:44 PM PT"
   },
   {
    "dk": "DK II",
@@ -1780,12 +1779,12 @@
    },
    "totals_projected": {
     "gotham": [
-     158.72,
-     121.8
+     158.71,
+     121.68
     ],
     "sleeper": [
      157.99,
-     139.84
+     139.93
     ],
     "yahoo": [
      165.35,
@@ -1833,14 +1832,14 @@
      "projected_margin": 35.8
     },
     "gotham": {
-     "my_remaining": 158.8,
-     "their_remaining": 113.0,
+     "my_remaining": 158.7,
+     "their_remaining": 112.9,
      "projected_margin": 45.8
     },
     "sleeper": {
      "my_remaining": 157.9,
-     "their_remaining": 130.2,
-     "projected_margin": 27.7
+     "their_remaining": 130.3,
+     "projected_margin": 27.6
     }
    },
    "late_swap_risks": [
@@ -1892,7 +1891,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 7:56 AM PT",
-        "age": "29.7 hr ago",
+        "age": "30.8 hr ago",
         "line": "Aaron Rodgers Retains Streaming Value Despite Some Week 10 Struggles"
        },
        {
@@ -1915,7 +1914,7 @@
       "actual": null,
       "proj": {
        "yahoo": 18.5,
-       "gotham": 12.7,
+       "gotham": 12.6,
        "sleeper": 17.7
       },
       "yahoo_weeks_ahead": {
@@ -1927,20 +1926,20 @@
        "wk17": 13.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 1.7 hr ago"
+       "ESPN": "Active, posted 2.8 hr ago"
       },
       "news": [
        {
-        "src": "RotoWire",
-        "at": "Wed Nov 18, 1:33 PM PT",
-        "age": "5 min ago",
-        "line": "Emari Demercado: Set to complement Montgomery in Week 11"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 2:14 PM PT",
+        "age": "32 min ago",
+        "line": "David Montgomery Off the Injury Report, Good to Go for TNF"
        },
        {
-        "src": "ProFootballTalk",
-        "at": "Wed Nov 18, 12:54 PM PT",
-        "age": "44 min ago",
-        "line": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
+        "src": "RotoWire",
+        "at": "Wed Nov 18, 1:32 PM PT",
+        "age": "74 min ago",
+        "line": "Emari Demercado: Set to complement Montgomery in Week 11"
        }
       ]
      },
@@ -2044,19 +2043,19 @@
        "wk17": 9.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 44.0 hr ago"
+       "ESPN": "Active, posted 45.2 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 6:53 PM PT",
-        "age": "18.7 hr ago",
+        "age": "19.9 hr ago",
         "line": "Germie Bernard's Slump Continues With Reinforcements Coming"
        },
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 5:36 PM PT",
-        "age": "44.0 hr ago",
+        "age": "45.2 hr ago",
         "line": "Germie Bernard: No catches in blowout loss"
        }
       ]
@@ -2085,7 +2084,7 @@
        "wk17": 10.1
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Back), posted 33.3 hr ago",
+       "ESPN": "Questionable (Back), posted 34.5 hr ago",
        "Sleeper": "Questionable (Back)"
       },
       "news": [
@@ -2133,7 +2132,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 3:00 AM PT",
-        "age": "10.6 hr ago",
+        "age": "11.8 hr ago",
         "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
        }
       ]
@@ -2168,13 +2167,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Tue Nov 17, 7:08 AM PT",
-        "age": "30.5 hr ago",
+        "age": "31.6 hr ago",
         "line": "Andy Reid on Emmett Johnson: My hat goes off to him"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 17, 3:45 AM PT",
-        "age": "33.9 hr ago",
+        "age": "35.0 hr ago",
         "line": "Emmett Johnson, Jaxon Smith-Njigba shine in big offensive week for Africa's NFL stars"
        }
       ]
@@ -2209,13 +2208,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 10:50 AM PT",
-        "age": "2.8 hr ago",
+        "age": "3.9 hr ago",
         "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:57 AM PT",
-        "age": "5.7 hr ago",
+        "age": "6.8 hr ago",
         "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
        }
       ]
@@ -2244,13 +2243,13 @@
        "wk17": 7.7
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 41.9 hr ago"
+       "ESPN": "Active, posted 43.0 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 7:47 PM PT",
-        "age": "41.9 hr ago",
+        "age": "43.0 hr ago",
         "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
        }
       ]
@@ -2282,13 +2281,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 1:25 PM PT",
-        "age": "13 min ago",
+        "age": "81 min ago",
         "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 9:21 AM PT",
-        "age": "4.3 hr ago",
+        "age": "5.4 hr ago",
         "line": "Cam Little is AFC special teams player of the week for second week in a row"
        }
       ]
@@ -2317,7 +2316,7 @@
        {
         "src": "ProFootballTalk",
         "at": "Mon Nov 16, 4:55 PM PT",
-        "age": "44.7 hr ago",
+        "age": "45.9 hr ago",
         "line": "Andy Reid defends Xavier Worthy, who had no catches in 57 snaps"
        },
        {
@@ -2350,13 +2349,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 8:19 AM PT",
-        "age": "5.3 hr ago",
+        "age": "6.5 hr ago",
         "line": "Elijah Mitchell's Fantasy Value Diminishing Amid Backfield Uncertainty"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 9:33 PM PT",
-        "age": "16.1 hr ago",
+        "age": "17.2 hr ago",
         "line": "Saquon Barkley Trending Down as Eagles' Offense Struggles"
        }
       ]
@@ -2383,7 +2382,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 6:52 PM PT",
-        "age": "18.8 hr ago",
+        "age": "19.9 hr ago",
         "line": "J.K. Dobbins No Longer the Lead Back in Denver"
        }
       ]
@@ -2400,7 +2399,7 @@
       "actual": null,
       "proj": {
        "yahoo": 12.2,
-       "gotham": 10.8,
+       "gotham": 10.9,
        "sleeper": 12.7
       },
       "injury_feeds": {
@@ -2412,12 +2411,6 @@
         "at": "Sun Nov 15, 8:22 PM PT",
         "age": "3 days ago",
         "line": "Jalen Coker: Goose egg in Week 10 win"
-       },
-       {
-        "src": "RotoBaller",
-        "at": "Sun Nov 15, 1:45 PM PT",
-        "age": "3 days ago",
-        "line": "Jalen Coker a Massive Bust in Week 10 Win"
        }
       ]
      },
@@ -2467,7 +2460,7 @@
       "proj": {
        "yahoo": 15.5,
        "gotham": 13.2,
-       "sleeper": 15.3
+       "sleeper": 15.4
       },
       "injury_feeds": {
        "ESPN": "Active, posted 3 days ago"
@@ -2476,7 +2469,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        },
        {
@@ -2499,7 +2492,7 @@
       "actual": null,
       "proj": {
        "yahoo": 12.4,
-       "gotham": 7.0,
+       "gotham": 6.8,
        "sleeper": 10.8
       },
       "injury_feeds": {
@@ -2509,13 +2502,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 11:32 AM PT",
-        "age": "2.1 hr ago",
+        "age": "3.2 hr ago",
         "line": "Tyler Warren Hoping to Replicate Last Showing Against Houston"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 4:30 AM PT",
-        "age": "9.1 hr ago",
+        "age": "10.3 hr ago",
         "line": "Colts vs. Texans TNF Start 'Em, Sit 'Em: Jonathan Taylor, Tyler Warren, Daniel Jones, Nico Collins, David Montgomery, Xavier Hutchinson, CJ Stroud"
        }
       ]
@@ -2542,13 +2535,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 6:09 AM PT",
-        "age": "7.5 hr ago",
+        "age": "8.6 hr ago",
         "line": "Malik Nabers' Week 11 fantasy outlook"
        }
       ]
@@ -2586,16 +2579,16 @@
       },
       "news": [
        {
-        "src": "ESPN",
-        "at": "Wed Nov 18, 11:45 AM PT",
-        "age": "1.9 hr ago",
-        "line": "Titans WR Wan'Dale Robinson out for season with ankle injury"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 2:30 PM PT",
+        "age": "16 min ago",
+        "line": "Tyjae Spears Does Not Practice on Wednesday"
        },
        {
-        "src": "ProFootballTalk",
-        "at": "Wed Nov 18, 9:59 AM PT",
-        "age": "3.7 hr ago",
-        "line": "Wan'Dale Robinson out for season with ankle injury"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 2:22 PM PT",
+        "age": "25 min ago",
+        "line": "Carnell Tate Limited in Wednesday's Practice"
        }
       ]
      }
@@ -2632,7 +2625,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 7:56 AM PT",
-       "age": "29.7 hr ago",
+       "age": "30.8 hr ago",
        "line": "Aaron Rodgers Retains Streaming Value Despite Some Week 10 Struggles"
       },
       {
@@ -2655,7 +2648,7 @@
      "actual": null,
      "proj": {
       "yahoo": 18.5,
-      "gotham": 12.7,
+      "gotham": 12.6,
       "sleeper": 17.7
      },
      "yahoo_weeks_ahead": {
@@ -2667,20 +2660,20 @@
       "wk17": 13.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 1.7 hr ago"
+      "ESPN": "Active, posted 2.8 hr ago"
      },
      "news": [
       {
-       "src": "RotoWire",
-       "at": "Wed Nov 18, 1:33 PM PT",
-       "age": "5 min ago",
-       "line": "Emari Demercado: Set to complement Montgomery in Week 11"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 2:14 PM PT",
+       "age": "32 min ago",
+       "line": "David Montgomery Off the Injury Report, Good to Go for TNF"
       },
       {
-       "src": "ProFootballTalk",
-       "at": "Wed Nov 18, 12:54 PM PT",
-       "age": "44 min ago",
-       "line": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
+       "src": "RotoWire",
+       "at": "Wed Nov 18, 1:32 PM PT",
+       "age": "74 min ago",
+       "line": "Emari Demercado: Set to complement Montgomery in Week 11"
       }
      ]
     },
@@ -2784,19 +2777,19 @@
       "wk17": 9.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 44.0 hr ago"
+      "ESPN": "Active, posted 45.2 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 6:53 PM PT",
-       "age": "18.7 hr ago",
+       "age": "19.9 hr ago",
        "line": "Germie Bernard's Slump Continues With Reinforcements Coming"
       },
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 5:36 PM PT",
-       "age": "44.0 hr ago",
+       "age": "45.2 hr ago",
        "line": "Germie Bernard: No catches in blowout loss"
       }
      ]
@@ -2825,7 +2818,7 @@
       "wk17": 10.1
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Back), posted 33.3 hr ago",
+      "ESPN": "Questionable (Back), posted 34.5 hr ago",
       "Sleeper": "Questionable (Back)"
      },
      "news": [
@@ -2873,7 +2866,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 3:00 AM PT",
-       "age": "10.6 hr ago",
+       "age": "11.8 hr ago",
        "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
       }
      ]
@@ -2908,13 +2901,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 17, 7:08 AM PT",
-       "age": "30.5 hr ago",
+       "age": "31.6 hr ago",
        "line": "Andy Reid on Emmett Johnson: My hat goes off to him"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 17, 3:45 AM PT",
-       "age": "33.9 hr ago",
+       "age": "35.0 hr ago",
        "line": "Emmett Johnson, Jaxon Smith-Njigba shine in big offensive week for Africa's NFL stars"
       }
      ]
@@ -2949,13 +2942,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 10:50 AM PT",
-       "age": "2.8 hr ago",
+       "age": "3.9 hr ago",
        "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:57 AM PT",
-       "age": "5.7 hr ago",
+       "age": "6.8 hr ago",
        "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
       }
      ]
@@ -2984,13 +2977,13 @@
       "wk17": 7.7
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 41.9 hr ago"
+      "ESPN": "Active, posted 43.0 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 7:47 PM PT",
-       "age": "41.9 hr ago",
+       "age": "43.0 hr ago",
        "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
       }
      ]
@@ -3022,13 +3015,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 1:25 PM PT",
-       "age": "13 min ago",
+       "age": "81 min ago",
        "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 9:21 AM PT",
-       "age": "4.3 hr ago",
+       "age": "5.4 hr ago",
        "line": "Cam Little is AFC special teams player of the week for second week in a row"
       }
      ]
@@ -3172,13 +3165,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 3:09 AM PT",
-       "age": "10.5 hr ago",
+       "age": "11.6 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 11 (2026): Fantasy Football Pickups for Emari Demercado, Kaelon Black, Elic Ayomanor, Jauan Jennings, Gunnar Helm, more"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 10:34 AM PT",
-       "age": "27.1 hr ago",
+       "age": "28.2 hr ago",
        "line": "Week 11 Waiver Wire Pickups - Kaelon Black, Mike Washington Jr., Seth McGowan"
       }
      ]
@@ -3211,13 +3204,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 11:30 AM PT",
-       "age": "2.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Todd Bowles: Baker Mayfield's made progress, decision on playing to come on Friday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:03 AM PT",
-       "age": "2.6 hr ago",
+       "age": "3.7 hr ago",
        "line": "Baker Mayfield Making Progress, Decision to Come in Next 48 Hours"
       }
      ]
@@ -3246,7 +3239,7 @@
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 16, 4:55 PM PT",
-       "age": "44.7 hr ago",
+       "age": "45.9 hr ago",
        "line": "Andy Reid defends Xavier Worthy, who had no catches in 57 snaps"
       },
       {
@@ -3279,13 +3272,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 8:19 AM PT",
-       "age": "5.3 hr ago",
+       "age": "6.5 hr ago",
        "line": "Elijah Mitchell's Fantasy Value Diminishing Amid Backfield Uncertainty"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 9:33 PM PT",
-       "age": "16.1 hr ago",
+       "age": "17.2 hr ago",
        "line": "Saquon Barkley Trending Down as Eagles' Offense Struggles"
       }
      ]
@@ -3312,7 +3305,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 6:52 PM PT",
-       "age": "18.8 hr ago",
+       "age": "19.9 hr ago",
        "line": "J.K. Dobbins No Longer the Lead Back in Denver"
       }
      ]
@@ -3329,7 +3322,7 @@
      "actual": null,
      "proj": {
       "yahoo": 12.2,
-      "gotham": 10.8,
+      "gotham": 10.9,
       "sleeper": 12.7
      },
      "injury_feeds": {
@@ -3341,12 +3334,6 @@
        "at": "Sun Nov 15, 8:22 PM PT",
        "age": "3 days ago",
        "line": "Jalen Coker: Goose egg in Week 10 win"
-      },
-      {
-       "src": "RotoBaller",
-       "at": "Sun Nov 15, 1:45 PM PT",
-       "age": "3 days ago",
-       "line": "Jalen Coker a Massive Bust in Week 10 Win"
       }
      ]
     },
@@ -3396,7 +3383,7 @@
      "proj": {
       "yahoo": 15.5,
       "gotham": 13.2,
-      "sleeper": 15.3
+      "sleeper": 15.4
      },
      "injury_feeds": {
       "ESPN": "Active, posted 3 days ago"
@@ -3405,7 +3392,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       },
       {
@@ -3428,7 +3415,7 @@
      "actual": null,
      "proj": {
       "yahoo": 12.4,
-      "gotham": 7.0,
+      "gotham": 6.8,
       "sleeper": 10.8
      },
      "injury_feeds": {
@@ -3438,13 +3425,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:32 AM PT",
-       "age": "2.1 hr ago",
+       "age": "3.2 hr ago",
        "line": "Tyler Warren Hoping to Replicate Last Showing Against Houston"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 4:30 AM PT",
-       "age": "9.1 hr ago",
+       "age": "10.3 hr ago",
        "line": "Colts vs. Texans TNF Start 'Em, Sit 'Em: Jonathan Taylor, Tyler Warren, Daniel Jones, Nico Collins, David Montgomery, Xavier Hutchinson, CJ Stroud"
       }
      ]
@@ -3471,13 +3458,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 6:09 AM PT",
-       "age": "7.5 hr ago",
+       "age": "8.6 hr ago",
        "line": "Malik Nabers' Week 11 fantasy outlook"
       }
      ]
@@ -3531,16 +3518,16 @@
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Wed Nov 18, 11:45 AM PT",
-       "age": "1.9 hr ago",
-       "line": "Titans WR Wan'Dale Robinson out for season with ankle injury"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 2:30 PM PT",
+       "age": "16 min ago",
+       "line": "Tyjae Spears Does Not Practice on Wednesday"
       },
       {
-       "src": "ProFootballTalk",
-       "at": "Wed Nov 18, 9:59 AM PT",
-       "age": "3.7 hr ago",
-       "line": "Wan'Dale Robinson out for season with ankle injury"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 2:22 PM PT",
+       "age": "25 min ago",
+       "line": "Carnell Tate Limited in Wednesday's Practice"
       }
      ]
     }
@@ -3555,10 +3542,10 @@
    "alerts": [
     {
      "color": "red",
-     "title": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out",
+     "title": "David Montgomery: Emari Demercado: Set to complement Montgomery in Week 11",
      "who": "David Montgomery",
-     "kind": "feed",
-     "src": "PFT (raw feed, pulled every 30 minutes)"
+     "kind": "news",
+     "src": "Dark Knight Dispatch"
     },
     {
      "color": "gold",
@@ -3610,7 +3597,7 @@
      "src": "the rising-player check (Radar, workload, Ratcliffe rest of season)"
     }
    ],
-   "roster_read_pt": "Wed Nov 18, 1:36 PM PT"
+   "roster_read_pt": "Wed Nov 18, 2:44 PM PT"
   },
   {
    "dk": "DK III",
@@ -3634,11 +3621,11 @@
    },
    "totals_projected": {
     "gotham": [
-     122.74,
-     141.67
+     122.78,
+     141.61
     ],
     "sleeper": [
-     131.03,
+     131.11,
      141.04
     ],
     "yahoo": [
@@ -3673,7 +3660,7 @@
     "koerner": 50,
     "yahoo": 45,
     "yahoo_best": true,
-    "yahoo_posted": 44,
+    "yahoo_posted": 45,
     "yahoo_from_spread": 44,
     "clay": 44,
     "vegas": 46,
@@ -3688,8 +3675,8 @@
     },
     "gotham": {
      "my_remaining": 117.3,
-     "their_remaining": 139.7,
-     "projected_margin": -22.4
+     "their_remaining": 139.8,
+     "projected_margin": -22.5
     },
     "sleeper": {
      "my_remaining": 128.6,
@@ -3791,13 +3778,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 10:50 AM PT",
-        "age": "2.8 hr ago",
+        "age": "3.9 hr ago",
         "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:57 AM PT",
-        "age": "5.7 hr ago",
+        "age": "6.8 hr ago",
         "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
        }
       ]
@@ -3832,13 +3819,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:09 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Fantasy football matchup ranks: Upgrade Jonah Coleman, downgrade Brock Purdy"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 9:42 AM PT",
-        "age": "27.9 hr ago",
+        "age": "29.1 hr ago",
         "line": "Jonah Coleman Primed for Big Second Half of Rookie Season"
        }
       ]
@@ -3855,7 +3842,7 @@
       "actual": null,
       "proj": {
        "yahoo": 18.4,
-       "gotham": 12.7,
+       "gotham": 12.6,
        "sleeper": 17.7
       },
       "yahoo_weeks_ahead": {
@@ -3867,20 +3854,20 @@
        "wk17": 13.0
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 1.7 hr ago"
+       "ESPN": "Active, posted 2.8 hr ago"
       },
       "news": [
        {
-        "src": "RotoWire",
-        "at": "Wed Nov 18, 1:33 PM PT",
-        "age": "5 min ago",
-        "line": "Emari Demercado: Set to complement Montgomery in Week 11"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 2:14 PM PT",
+        "age": "32 min ago",
+        "line": "David Montgomery Off the Injury Report, Good to Go for TNF"
        },
        {
-        "src": "ProFootballTalk",
-        "at": "Wed Nov 18, 12:54 PM PT",
-        "age": "44 min ago",
-        "line": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
+        "src": "RotoWire",
+        "at": "Wed Nov 18, 1:32 PM PT",
+        "age": "74 min ago",
+        "line": "Emari Demercado: Set to complement Montgomery in Week 11"
        }
       ]
      },
@@ -3908,21 +3895,21 @@
        "wk17": 10.0
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Shoulder), posted 72 min ago",
+       "ESPN": "Questionable (Shoulder), posted 39 min ago",
        "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Wed Nov 18, 4:28 AM PT",
-        "age": "9.2 hr ago",
+        "age": "10.3 hr ago",
         "line": "Caleb Douglas: On track to be available Sunday"
        },
        {
-        "src": "RotoBaller",
-        "at": "Tue Nov 17, 10:18 AM PT",
-        "age": "27.3 hr ago",
-        "line": "Week 11 Waiver Wire Pickups - Jordyn Tyson, Antonio Williams, Caleb Douglas"
+        "src": "RotoWire",
+        "at": "Tue Nov 17, 6:09 PM PT",
+        "age": "20.6 hr ago",
+        "line": "Caleb Douglas: Nursing shoulder injury"
        }
       ]
      },
@@ -3956,7 +3943,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 6:43 AM PT",
-        "age": "6.9 hr ago",
+        "age": "8.1 hr ago",
         "line": "George Pickens Prefers to Stay in Dallas Long Term"
        },
        {
@@ -3991,20 +3978,20 @@
        "wk17": 7.4
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Knee), posted 88 min ago",
+       "ESPN": "Questionable (Knee), posted 2.6 hr ago",
        "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 1:18 PM PT",
-        "age": "20 min ago",
+        "age": "88 min ago",
         "line": "Darren Waller Misses Practice on Wednesday with Knee Injury"
        },
        {
         "src": "RotoWire",
         "at": "Wed Nov 18, 12:11 PM PT",
-        "age": "87 min ago",
+        "age": "2.6 hr ago",
         "line": "Darren Waller: DNP due to knee injury"
        }
       ]
@@ -4021,7 +4008,7 @@
       "actual": null,
       "proj": {
        "yahoo": 10.7,
-       "gotham": 11.0,
+       "gotham": 11.1,
        "sleeper": 11.4
       },
       "yahoo_weeks_ahead": {
@@ -4039,7 +4026,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 11:51 AM PT",
-        "age": "25.8 hr ago",
+        "age": "26.9 hr ago",
         "line": "Rome Odunze Hoping to Maintain Momentum Coming Off the Bye"
        }
       ]
@@ -4074,7 +4061,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:46 AM PT",
-        "age": "5.9 hr ago",
+        "age": "7.0 hr ago",
         "line": "Rachaad White's Value Tumbling After Week 10"
        }
       ]
@@ -4106,13 +4093,13 @@
        {
         "src": "RotoWire",
         "at": "Wed Nov 18, 12:12 PM PT",
-        "age": "87 min ago",
+        "age": "2.6 hr ago",
         "line": "Tanner McKee: Sticking as backup for Week 11"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 11:59 AM PT",
-        "age": "1.7 hr ago",
+        "age": "2.8 hr ago",
         "line": "Steelers Open 21-Day Practice Window for Roman Wilson"
        }
       ]
@@ -4143,12 +4130,6 @@
         "at": "Sun Nov 15, 8:00 PM PT",
         "age": "3 days ago",
         "line": "Trevor Lawrence Airs the Ball Out in Week 10 Win"
-       },
-       {
-        "src": "ESPN",
-        "at": "Sun Nov 15, 2:35 PM PT",
-        "age": "3 days ago",
-        "line": "Adam Rank: Trevor Lawrence needs to be a must-start fantasy QB every week"
        }
       ]
      },
@@ -4174,13 +4155,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 9:09 AM PT",
-        "age": "4.5 hr ago",
+        "age": "5.6 hr ago",
         "line": "Jahmyr Gibbs wins second NFC offensive player of the week award of the season"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 1:27 AM PT",
-        "age": "12.2 hr ago",
+        "age": "13.3 hr ago",
         "line": "Jahmyr Gibbs is on pace to break the NFL record for yards from scrimmage in a season"
        }
       ]
@@ -4197,7 +4178,7 @@
       "actual": null,
       "proj": {
        "yahoo": 17.0,
-       "gotham": 14.8,
+       "gotham": 14.9,
        "sleeper": 15.6
       },
       "injury_feeds": {
@@ -4207,7 +4188,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:20 AM PT",
-        "age": "6.3 hr ago",
+        "age": "7.4 hr ago",
         "line": "Breece Hall Sees Increased Involvement Against Bills"
        }
       ]
@@ -4255,21 +4236,21 @@
        "sleeper": 12.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Hamstring), posted 80 min ago",
+       "ESPN": "Questionable (Hamstring), posted 29 min ago",
        "Sleeper": "Questionable (Hamstring)"
       },
       "news": [
        {
         "src": "RotoBaller",
-        "at": "Wed Nov 18, 10:01 AM PT",
-        "age": "3.6 hr ago",
-        "line": "Eagles \"Feel Good\" About DeVonta Smith Returning This Week"
+        "at": "Wed Nov 18, 1:58 PM PT",
+        "age": "48 min ago",
+        "line": "DeVonta Smith Back at Practice Wednesday"
        },
        {
-        "src": "RotoWire",
-        "at": "Wed Nov 18, 4:20 AM PT",
-        "age": "9.3 hr ago",
-        "line": "DeVonta Smith: Back at practice Wednesday"
+        "src": "RotoBaller",
+        "at": "Wed Nov 18, 10:01 AM PT",
+        "age": "4.8 hr ago",
+        "line": "Eagles \"Feel Good\" About DeVonta Smith Returning This Week"
        }
       ]
      },
@@ -4289,19 +4270,19 @@
        "sleeper": 7.3
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.8 hr ago"
+       "ESPN": "Active, posted 41.0 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Mon Nov 16, 10:05 PM PT",
-        "age": "39.6 hr ago",
+        "age": "40.7 hr ago",
         "line": "Mark Andrews Comes Alive in Narrow Defeat"
        },
        {
         "src": "RotoBaller",
         "at": "Mon Nov 16, 6:22 PM PT",
-        "age": "43.3 hr ago",
+        "age": "44.4 hr ago",
         "line": "Mark Andrews has Been Playing Through a Broken Hand Since Week 3"
        }
       ]
@@ -4355,7 +4336,7 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Aaron Jones Sr. Finds the End Zone Against Green Bay"
        }
       ]
@@ -4379,13 +4360,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 10:12 AM PT",
-        "age": "3.4 hr ago",
+        "age": "4.6 hr ago",
         "line": "Kenneth Walker Will Not Practice Wednesday"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:07 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.7 hr ago",
         "line": "Josh Downs Trending Up After Trade to Chiefs"
        }
       ]
@@ -4423,13 +4404,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 10:50 AM PT",
-       "age": "2.8 hr ago",
+       "age": "3.9 hr ago",
        "line": "Sources: Brandon Aiyuk contacted Jayden Daniels to mend friendship with star QB"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:57 AM PT",
-       "age": "5.7 hr ago",
+       "age": "6.8 hr ago",
        "line": "Brandon Aiyuk and Daniels Reconcile Amid Reunion Talks"
       }
      ]
@@ -4464,13 +4445,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:09 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Fantasy football matchup ranks: Upgrade Jonah Coleman, downgrade Brock Purdy"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 9:42 AM PT",
-       "age": "27.9 hr ago",
+       "age": "29.1 hr ago",
        "line": "Jonah Coleman Primed for Big Second Half of Rookie Season"
       }
      ]
@@ -4487,7 +4468,7 @@
      "actual": null,
      "proj": {
       "yahoo": 18.4,
-      "gotham": 12.7,
+      "gotham": 12.6,
       "sleeper": 17.7
      },
      "yahoo_weeks_ahead": {
@@ -4499,20 +4480,20 @@
       "wk17": 13.0
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 1.7 hr ago"
+      "ESPN": "Active, posted 2.8 hr ago"
      },
      "news": [
       {
-       "src": "RotoWire",
-       "at": "Wed Nov 18, 1:33 PM PT",
-       "age": "5 min ago",
-       "line": "Emari Demercado: Set to complement Montgomery in Week 11"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 2:14 PM PT",
+       "age": "32 min ago",
+       "line": "David Montgomery Off the Injury Report, Good to Go for TNF"
       },
       {
-       "src": "ProFootballTalk",
-       "at": "Wed Nov 18, 12:54 PM PT",
-       "age": "44 min ago",
-       "line": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
+       "src": "RotoWire",
+       "at": "Wed Nov 18, 1:32 PM PT",
+       "age": "74 min ago",
+       "line": "Emari Demercado: Set to complement Montgomery in Week 11"
       }
      ]
     },
@@ -4540,21 +4521,21 @@
       "wk17": 10.0
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Shoulder), posted 72 min ago",
+      "ESPN": "Questionable (Shoulder), posted 39 min ago",
       "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Nov 18, 4:28 AM PT",
-       "age": "9.2 hr ago",
+       "age": "10.3 hr ago",
        "line": "Caleb Douglas: On track to be available Sunday"
       },
       {
-       "src": "RotoBaller",
-       "at": "Tue Nov 17, 10:18 AM PT",
-       "age": "27.3 hr ago",
-       "line": "Week 11 Waiver Wire Pickups - Jordyn Tyson, Antonio Williams, Caleb Douglas"
+       "src": "RotoWire",
+       "at": "Tue Nov 17, 6:09 PM PT",
+       "age": "20.6 hr ago",
+       "line": "Caleb Douglas: Nursing shoulder injury"
       }
      ]
     },
@@ -4588,7 +4569,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 6:43 AM PT",
-       "age": "6.9 hr ago",
+       "age": "8.1 hr ago",
        "line": "George Pickens Prefers to Stay in Dallas Long Term"
       },
       {
@@ -4623,20 +4604,20 @@
       "wk17": 7.4
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Knee), posted 88 min ago",
+      "ESPN": "Questionable (Knee), posted 2.6 hr ago",
       "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 1:18 PM PT",
-       "age": "20 min ago",
+       "age": "88 min ago",
        "line": "Darren Waller Misses Practice on Wednesday with Knee Injury"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 18, 12:11 PM PT",
-       "age": "87 min ago",
+       "age": "2.6 hr ago",
        "line": "Darren Waller: DNP due to knee injury"
       }
      ]
@@ -4653,7 +4634,7 @@
      "actual": null,
      "proj": {
       "yahoo": 10.7,
-      "gotham": 11.0,
+      "gotham": 11.1,
       "sleeper": 11.4
      },
      "yahoo_weeks_ahead": {
@@ -4671,7 +4652,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 11:51 AM PT",
-       "age": "25.8 hr ago",
+       "age": "26.9 hr ago",
        "line": "Rome Odunze Hoping to Maintain Momentum Coming Off the Bye"
       }
      ]
@@ -4706,7 +4687,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:46 AM PT",
-       "age": "5.9 hr ago",
+       "age": "7.0 hr ago",
        "line": "Rachaad White's Value Tumbling After Week 10"
       }
      ]
@@ -4738,13 +4719,13 @@
       {
        "src": "RotoWire",
        "at": "Wed Nov 18, 12:12 PM PT",
-       "age": "87 min ago",
+       "age": "2.6 hr ago",
        "line": "Tanner McKee: Sticking as backup for Week 11"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:59 AM PT",
-       "age": "1.7 hr ago",
+       "age": "2.8 hr ago",
        "line": "Steelers Open 21-Day Practice Window for Roman Wilson"
       }
      ]
@@ -4776,14 +4757,20 @@
       "wk17": 11.2
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Concussion), posted 10 days ago",
+      "ESPN": "Questionable (Concussion), posted 57 min ago",
       "Sleeper": "Questionable (Concussion)"
      },
      "news": [
       {
+       "src": "RotoWire",
+       "at": "Tue Nov 17, 5:50 PM PT",
+       "age": "20.9 hr ago",
+       "line": "Jaylen Waddle: Practices Wednesday"
+      },
+      {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 8:59 AM PT",
-       "age": "28.7 hr ago",
+       "age": "29.8 hr ago",
        "line": "Jaylen Waddle's Fantasy Value Continues to Plummet Amid Limited Opportunities"
       }
      ]
@@ -4848,20 +4835,20 @@
       "wk17": 10.5
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Wrist), posted 1.7 hr ago",
+      "ESPN": "Questionable (Wrist), posted 37 min ago",
       "Sleeper": "Questionable (Wrist)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 1:09 PM PT",
-       "age": "29 min ago",
+       "age": "1.6 hr ago",
        "line": "Vikings Hope T.J. Hockenson Can Play Sunday"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 18, 3:57 AM PT",
-       "age": "9.7 hr ago",
+       "age": "10.8 hr ago",
        "line": "T.J. Hockenson: Chance to return in Week 11"
       }
      ]
@@ -4893,13 +4880,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 6:21 AM PT",
-       "age": "7.3 hr ago",
+       "age": "8.4 hr ago",
        "line": "Why Packers can't protect Jordan Love or rush successfully"
       },
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 17, 11:15 AM PT",
-       "age": "26.4 hr ago",
+       "age": "27.5 hr ago",
        "line": "Packers players will get their mandatory four days off after Week 12 game"
       }
      ]
@@ -4932,13 +4919,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 11:30 AM PT",
-       "age": "2.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Todd Bowles: Baker Mayfield's made progress, decision on playing to come on Friday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:03 AM PT",
-       "age": "2.6 hr ago",
+       "age": "3.7 hr ago",
        "line": "Baker Mayfield Making Progress, Decision to Come in Next 48 Hours"
       }
      ]
@@ -4969,12 +4956,6 @@
        "at": "Sun Nov 15, 8:00 PM PT",
        "age": "3 days ago",
        "line": "Trevor Lawrence Airs the Ball Out in Week 10 Win"
-      },
-      {
-       "src": "ESPN",
-       "at": "Sun Nov 15, 2:35 PM PT",
-       "age": "3 days ago",
-       "line": "Adam Rank: Trevor Lawrence needs to be a must-start fantasy QB every week"
       }
      ]
     },
@@ -5000,13 +4981,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 9:09 AM PT",
-       "age": "4.5 hr ago",
+       "age": "5.6 hr ago",
        "line": "Jahmyr Gibbs wins second NFC offensive player of the week award of the season"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 1:27 AM PT",
-       "age": "12.2 hr ago",
+       "age": "13.3 hr ago",
        "line": "Jahmyr Gibbs is on pace to break the NFL record for yards from scrimmage in a season"
       }
      ]
@@ -5023,7 +5004,7 @@
      "actual": null,
      "proj": {
       "yahoo": 17.0,
-      "gotham": 14.8,
+      "gotham": 14.9,
       "sleeper": 15.6
      },
      "injury_feeds": {
@@ -5033,7 +5014,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:20 AM PT",
-       "age": "6.3 hr ago",
+       "age": "7.4 hr ago",
        "line": "Breece Hall Sees Increased Involvement Against Bills"
       }
      ]
@@ -5081,21 +5062,21 @@
       "sleeper": 12.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Hamstring), posted 80 min ago",
+      "ESPN": "Questionable (Hamstring), posted 29 min ago",
       "Sleeper": "Questionable (Hamstring)"
      },
      "news": [
       {
        "src": "RotoBaller",
-       "at": "Wed Nov 18, 10:01 AM PT",
-       "age": "3.6 hr ago",
-       "line": "Eagles \"Feel Good\" About DeVonta Smith Returning This Week"
+       "at": "Wed Nov 18, 1:58 PM PT",
+       "age": "48 min ago",
+       "line": "DeVonta Smith Back at Practice Wednesday"
       },
       {
-       "src": "RotoWire",
-       "at": "Wed Nov 18, 4:20 AM PT",
-       "age": "9.3 hr ago",
-       "line": "DeVonta Smith: Back at practice Wednesday"
+       "src": "RotoBaller",
+       "at": "Wed Nov 18, 10:01 AM PT",
+       "age": "4.8 hr ago",
+       "line": "Eagles \"Feel Good\" About DeVonta Smith Returning This Week"
       }
      ]
     },
@@ -5115,19 +5096,19 @@
       "sleeper": 7.3
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.8 hr ago"
+      "ESPN": "Active, posted 41.0 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Mon Nov 16, 10:05 PM PT",
-       "age": "39.6 hr ago",
+       "age": "40.7 hr ago",
        "line": "Mark Andrews Comes Alive in Narrow Defeat"
       },
       {
        "src": "RotoBaller",
        "at": "Mon Nov 16, 6:22 PM PT",
-       "age": "43.3 hr ago",
+       "age": "44.4 hr ago",
        "line": "Mark Andrews has Been Playing Through a Broken Hand Since Week 3"
       }
      ]
@@ -5181,7 +5162,7 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Aaron Jones Sr. Finds the End Zone Against Green Bay"
       }
      ]
@@ -5205,13 +5186,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 10:12 AM PT",
-       "age": "3.4 hr ago",
+       "age": "4.6 hr ago",
        "line": "Kenneth Walker Will Not Practice Wednesday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:07 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.7 hr ago",
        "line": "Josh Downs Trending Up After Trade to Chiefs"
       }
      ]
@@ -5219,7 +5200,7 @@
    ],
    "actions": [
     {
-     "what": "Caleb Douglas is questionable - latest (ESPN, Nov 18): Douglas (undisclosed) practiced Wednesday in a non-contact jersey, but he said he will play Sunday against  the Bills, C. Check his status",
+     "what": "Caleb Douglas is questionable - latest (ESPN, Nov 18): Douglas was a limited participant in Wednesday's practice due to a shoulder injury, David Furones of the South Florida Sun Sentinel reports. Check his status",
      "by": "before his Sun 10:00 AM kickoff",
      "kind": "check"
     },
@@ -5232,10 +5213,10 @@
    "alerts": [
     {
      "color": "red",
-     "title": "David Montgomery has no injury designation for Thursday; Woody Marks ruled out",
+     "title": "David Montgomery: Emari Demercado: Set to complement Montgomery in Week 11",
      "who": "David Montgomery",
-     "kind": "feed",
-     "src": "PFT (raw feed, pulled every 30 minutes)"
+     "kind": "news",
+     "src": "Dark Knight Dispatch"
     },
     {
      "color": "gold",
@@ -5243,13 +5224,6 @@
      "who": "Caleb Douglas",
      "kind": "feed",
      "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
-    },
-    {
-     "color": "gold",
-     "title": "Darren Waller Misses Practice on Wednesday with Knee Injury",
-     "who": "Darren Waller",
-     "kind": "feed",
-     "src": "RotoBaller (raw feed, pulled every 30 minutes)"
     },
     {
      "color": "gold",
@@ -5285,9 +5259,16 @@
      "who": "T.J. Hockenson",
      "kind": "bench",
      "src": "your bench vs your starters, Ratcliffe, Koerner, Yahoo and Gotham"
+    },
+    {
+     "color": "grey",
+     "title": "Caleb Douglas is questionable - latest (ESPN, Nov 18): Douglas (undisclosed) practiced Wednesday in a non-contact jersey, but he said he will play Sunday against  the Bills, C.",
+     "who": "Caleb Douglas",
+     "kind": "check",
+     "src": "Dark Knight Dispatch"
     }
    ],
-   "roster_read_pt": "Wed Nov 18, 1:36 PM PT"
+   "roster_read_pt": "Wed Nov 18, 2:44 PM PT"
   },
   {
    "dk": "DK IV",
@@ -5311,12 +5292,12 @@
    },
    "totals_projected": {
     "gotham": [
-     153.71,
-     156.8
+     153.8,
+     156.89
     ],
     "sleeper": [
-     159.25,
-     151.31
+     159.44,
+     151.38
     ],
     "yahoo": [
      159.03,
@@ -5364,14 +5345,14 @@
      "projected_margin": 22.4
     },
     "gotham": {
-     "my_remaining": 153.0,
-     "their_remaining": 140.4,
+     "my_remaining": 153.1,
+     "their_remaining": 140.5,
      "projected_margin": 12.6
     },
     "sleeper": {
-     "my_remaining": 157.8,
-     "their_remaining": 138.1,
-     "projected_margin": 19.7
+     "my_remaining": 158.0,
+     "their_remaining": 138.2,
+     "projected_margin": 19.8
     }
    },
    "late_swap_risks": [
@@ -5395,7 +5376,7 @@
        "status": "questionable",
        "proj": {
         "yahoo": 9.5,
-        "gotham": 12.6,
+        "gotham": 12.7,
         "sleeper": 10.2,
         "yahoo_from": "Yahoo projections read Wed Nov 18, 1:11 PM PT"
        },
@@ -5438,7 +5419,7 @@
        {
         "src": "ESPN",
         "at": "Tue Nov 17, 2:15 PM PT",
-        "age": "23.4 hr ago",
+        "age": "24.5 hr ago",
         "line": "Why fantasy managers should utilize Dak Prescott in Week 11"
        },
        {
@@ -5472,21 +5453,12 @@
        "wk16": 13.1,
        "wk17": 12.7
       },
-      "injury_feeds": {
-       "ESPN": "Active, posted 3 days ago"
-      },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 7:42 AM PT",
-        "age": "5.9 hr ago",
+        "age": "7.1 hr ago",
         "line": "Ollie Gordon II Cools Off Despite Heavy Workload"
-       },
-       {
-        "src": "RotoWire",
-        "at": "Sun Nov 15, 2:46 PM PT",
-        "age": "3 days ago",
-        "line": "Ollie Gordon II: Productive with 24 touches"
        }
       ]
      },
@@ -5502,8 +5474,8 @@
       "actual": null,
       "proj": {
        "yahoo": 16.2,
-       "gotham": 17.7,
-       "sleeper": 19.2
+       "gotham": 17.8,
+       "sleeper": 19.4
       },
       "yahoo_weeks_ahead": {
        "wk12": 14.6,
@@ -5520,7 +5492,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 8:39 AM PT",
-        "age": "29.0 hr ago",
+        "age": "30.1 hr ago",
         "line": "D'Andre Swift's Fantasy Ceiling Could Take a Hit With Kyle Monangai's Return"
        }
       ]
@@ -5537,7 +5509,7 @@
       "actual": null,
       "proj": {
        "yahoo": 15.1,
-       "gotham": 12.5,
+       "gotham": 12.6,
        "sleeper": 15.2
       },
       "yahoo_weeks_ahead": {
@@ -5549,19 +5521,19 @@
        "wk17": 16.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 40.3 hr ago"
+       "ESPN": "Active, posted 41.4 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 12:29 PM PT",
-        "age": "69 min ago",
+        "age": "2.3 hr ago",
         "line": "Ravens' Flowers 'super frustrated' by latest late-game fumble"
        },
        {
         "src": "RotoBaller",
         "at": "Mon Nov 16, 10:36 PM PT",
-        "age": "39.0 hr ago",
+        "age": "40.2 hr ago",
         "line": "Zay Flowers Bounces Back, Loses Critical Fumble Late"
        }
       ]
@@ -5666,7 +5638,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 3:00 AM PT",
-        "age": "10.6 hr ago",
+        "age": "11.8 hr ago",
         "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
        }
       ]
@@ -5695,14 +5667,14 @@
        "wk17": 10.3
       },
       "injury_feeds": {
-       "ESPN": "Questionable, posted 23 min ago",
+       "ESPN": "Questionable (Ankle), posted 1.5 hr ago",
        "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Tue Nov 17, 5:16 PM PT",
-        "age": "20.4 hr ago",
+        "age": "21.5 hr ago",
         "line": "Jakobi Meyers: Limited in Wednesday's practice"
        }
       ]
@@ -5719,7 +5691,7 @@
       "actual": null,
       "proj": {
        "yahoo": 25.3,
-       "gotham": 24.7,
+       "gotham": 24.6,
        "sleeper": 24.1
       },
       "yahoo_weeks_ahead": {
@@ -5737,13 +5709,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 10:58 AM PT",
-        "age": "2.7 hr ago",
+        "age": "3.8 hr ago",
         "line": "Stroud: Texans' home skid and 17-point collapse fuel 'scary' urgency vs Colts"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 7:02 AM PT",
-        "age": "6.6 hr ago",
+        "age": "7.7 hr ago",
         "line": "C.J. Stroud: \"There's still a lot of ball to be played\""
        }
       ]
@@ -5772,13 +5744,13 @@
        "wk17": 8.4
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 42.6 hr ago"
+       "ESPN": "Active, posted 43.7 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 7:05 PM PT",
-        "age": "42.6 hr ago",
+        "age": "43.7 hr ago",
         "line": "Will Reichard: Makes all six kicks in blowout win"
        }
       ]
@@ -5810,13 +5782,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 11:30 AM PT",
-        "age": "2.1 hr ago",
+        "age": "3.3 hr ago",
         "line": "Todd Bowles: Baker Mayfield's made progress, decision on playing to come on Friday"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 18, 11:03 AM PT",
-        "age": "2.6 hr ago",
+        "age": "3.7 hr ago",
         "line": "Baker Mayfield Making Progress, Decision to Come in Next 48 Hours"
        }
       ]
@@ -5835,7 +5807,7 @@
       "actual": null,
       "proj": {
        "yahoo": 25.7,
-       "gotham": 24.8,
+       "gotham": 24.9,
        "sleeper": 26.3
       },
       "injury_feeds": {
@@ -5845,7 +5817,7 @@
        {
         "src": "ProFootballTalk",
         "at": "Mon Nov 16, 4:55 PM PT",
-        "age": "44.7 hr ago",
+        "age": "45.9 hr ago",
         "line": "Andy Reid defends Xavier Worthy, who had no catches in 57 snaps"
        },
        {
@@ -5905,13 +5877,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:50 AM PT",
-        "age": "5.8 hr ago",
+        "age": "6.9 hr ago",
         "line": "Jaylen Warren's Week 11 fantasy outlook"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        }
       ]
@@ -5933,15 +5905,7 @@
       },
       "injury_feeds": {
        "ESPN": "Active, posted 3 days ago"
-      },
-      "news": [
-       {
-        "src": "RotoWire",
-        "at": "Sun Nov 15, 2:31 PM PT",
-        "age": "3 days ago",
-        "line": "Rashee Rice: Productive with five catches in win"
-       }
-      ]
+      }
      },
      {
       "slot": "WR",
@@ -5965,7 +5929,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 10:18 AM PT",
-        "age": "27.3 hr ago",
+        "age": "28.5 hr ago",
         "line": "Week 11 Waiver Wire Pickups - Jordyn Tyson, Antonio Williams, Caleb Douglas"
        },
        {
@@ -5998,13 +5962,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 8:03 AM PT",
-        "age": "5.6 hr ago",
+        "age": "6.7 hr ago",
         "line": "Yates and Clay debate Ryan Flournoy vs. Courtland Sutton in Week 11"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 11:00 AM PT",
-        "age": "26.6 hr ago",
+        "age": "27.8 hr ago",
         "line": "Courtland Sutton Working Back into Flex Conversation"
        }
       ]
@@ -6022,7 +5986,7 @@
       "proj": {
        "yahoo": 11.6,
        "gotham": 11.2,
-       "sleeper": 11.0
+       "sleeper": 11.1
       },
       "injury_feeds": {
        "ESPN": "Active, posted 10 days ago"
@@ -6031,13 +5995,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 18, 7:08 AM PT",
-        "age": "6.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 10:49 AM PT",
-        "age": "26.8 hr ago",
+        "age": "28.0 hr ago",
         "line": "Table Set for Colston Loveland to Emerge as a Second-Half League-Winner"
        }
       ]
@@ -6064,7 +6028,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 17, 9:52 AM PT",
-        "age": "27.8 hr ago",
+        "age": "28.9 hr ago",
         "line": "Bucky Irving Positioned for Another Heavy Workload in Week 11"
        }
       ]
@@ -6085,13 +6049,13 @@
        "sleeper": 10.0
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 41.9 hr ago"
+       "ESPN": "Active, posted 43.0 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 16, 7:47 PM PT",
-        "age": "41.9 hr ago",
+        "age": "43.0 hr ago",
         "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
        }
       ]
@@ -6115,13 +6079,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 1:25 PM PT",
-        "age": "13 min ago",
+        "age": "81 min ago",
         "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 18, 9:21 AM PT",
-        "age": "4.3 hr ago",
+        "age": "5.4 hr ago",
         "line": "Cam Little is AFC special teams player of the week for second week in a row"
        }
       ]
@@ -6159,7 +6123,7 @@
       {
        "src": "ESPN",
        "at": "Tue Nov 17, 2:15 PM PT",
-       "age": "23.4 hr ago",
+       "age": "24.5 hr ago",
        "line": "Why fantasy managers should utilize Dak Prescott in Week 11"
       },
       {
@@ -6193,21 +6157,12 @@
       "wk16": 13.1,
       "wk17": 12.7
      },
-     "injury_feeds": {
-      "ESPN": "Active, posted 3 days ago"
-     },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 7:42 AM PT",
-       "age": "5.9 hr ago",
+       "age": "7.1 hr ago",
        "line": "Ollie Gordon II Cools Off Despite Heavy Workload"
-      },
-      {
-       "src": "RotoWire",
-       "at": "Sun Nov 15, 2:46 PM PT",
-       "age": "3 days ago",
-       "line": "Ollie Gordon II: Productive with 24 touches"
       }
      ]
     },
@@ -6223,8 +6178,8 @@
      "actual": null,
      "proj": {
       "yahoo": 16.2,
-      "gotham": 17.7,
-      "sleeper": 19.2
+      "gotham": 17.8,
+      "sleeper": 19.4
      },
      "yahoo_weeks_ahead": {
       "wk12": 14.6,
@@ -6241,7 +6196,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 8:39 AM PT",
-       "age": "29.0 hr ago",
+       "age": "30.1 hr ago",
        "line": "D'Andre Swift's Fantasy Ceiling Could Take a Hit With Kyle Monangai's Return"
       }
      ]
@@ -6258,7 +6213,7 @@
      "actual": null,
      "proj": {
       "yahoo": 15.1,
-      "gotham": 12.5,
+      "gotham": 12.6,
       "sleeper": 15.2
      },
      "yahoo_weeks_ahead": {
@@ -6270,19 +6225,19 @@
       "wk17": 16.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 40.3 hr ago"
+      "ESPN": "Active, posted 41.4 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 12:29 PM PT",
-       "age": "69 min ago",
+       "age": "2.3 hr ago",
        "line": "Ravens' Flowers 'super frustrated' by latest late-game fumble"
       },
       {
        "src": "RotoBaller",
        "at": "Mon Nov 16, 10:36 PM PT",
-       "age": "39.0 hr ago",
+       "age": "40.2 hr ago",
        "line": "Zay Flowers Bounces Back, Loses Critical Fumble Late"
       }
      ]
@@ -6387,7 +6342,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 3:00 AM PT",
-       "age": "10.6 hr ago",
+       "age": "11.8 hr ago",
        "line": "Kansas City Chiefs tight end Travis Kelce's top moments at Arrowhead Stadium"
       }
      ]
@@ -6416,14 +6371,14 @@
       "wk17": 10.3
      },
      "injury_feeds": {
-      "ESPN": "Questionable, posted 23 min ago",
+      "ESPN": "Questionable (Ankle), posted 1.5 hr ago",
       "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Tue Nov 17, 5:16 PM PT",
-       "age": "20.4 hr ago",
+       "age": "21.5 hr ago",
        "line": "Jakobi Meyers: Limited in Wednesday's practice"
       }
      ]
@@ -6440,7 +6395,7 @@
      "actual": null,
      "proj": {
       "yahoo": 25.3,
-      "gotham": 24.7,
+      "gotham": 24.6,
       "sleeper": 24.1
      },
      "yahoo_weeks_ahead": {
@@ -6458,13 +6413,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 10:58 AM PT",
-       "age": "2.7 hr ago",
+       "age": "3.8 hr ago",
        "line": "Stroud: Texans' home skid and 17-point collapse fuel 'scary' urgency vs Colts"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 7:02 AM PT",
-       "age": "6.6 hr ago",
+       "age": "7.7 hr ago",
        "line": "C.J. Stroud: \"There's still a lot of ball to be played\""
       }
      ]
@@ -6493,13 +6448,13 @@
       "wk17": 8.4
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 42.6 hr ago"
+      "ESPN": "Active, posted 43.7 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 7:05 PM PT",
-       "age": "42.6 hr ago",
+       "age": "43.7 hr ago",
        "line": "Will Reichard: Makes all six kicks in blowout win"
       }
      ]
@@ -6531,13 +6486,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 11:30 AM PT",
-       "age": "2.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Todd Bowles: Baker Mayfield's made progress, decision on playing to come on Friday"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 11:03 AM PT",
-       "age": "2.6 hr ago",
+       "age": "3.7 hr ago",
        "line": "Baker Mayfield Making Progress, Decision to Come in Next 48 Hours"
       }
      ]
@@ -6575,14 +6530,8 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 12:16 PM PT",
-       "age": "25.4 hr ago",
+       "age": "26.5 hr ago",
        "line": "Isaac TeSlaa's Red-Zone Looks Lift His Week 11 Outlook"
-      },
-      {
-       "src": "ESPN",
-       "at": "Sun Nov 15, 2:41 PM PT",
-       "age": "3 days ago",
-       "line": "Should Jared Goff be in fantasy lineups each and every week?"
       }
      ]
     },
@@ -6660,7 +6609,7 @@
      "actual": null,
      "proj": {
       "yahoo": 9.5,
-      "gotham": 12.6,
+      "gotham": 12.7,
       "sleeper": 10.2,
       "yahoo_from": "Yahoo projections read Wed Nov 18, 1:11 PM PT"
      },
@@ -6673,20 +6622,20 @@
       "wk17": 8.2
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Ankle), posted 4.5 hr ago",
+      "ESPN": "Questionable (Ankle), posted 5.7 hr ago",
       "Sleeper": "Questionable (Ankle)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 9:17 AM PT",
-       "age": "4.4 hr ago",
+       "age": "5.5 hr ago",
        "line": "Omar Cooper Jr. Not Practicing on Wednesday"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 18, 9:06 AM PT",
-       "age": "4.5 hr ago",
+       "age": "5.7 hr ago",
        "line": "Omar Cooper Jr.: Won't practice Wednesday"
       }
      ]
@@ -6716,21 +6665,21 @@
       "wk17": 7.1
      },
      "injury_feeds": {
-      "ESPN": "Injured Reserve (Foot), posted 28.8 hr ago",
+      "ESPN": "Injured Reserve (Foot), posted 67 min ago",
       "Sleeper": "IR (Foot)"
      },
      "news": [
       {
-       "src": "RotoBaller",
-       "at": "Tue Nov 17, 11:32 AM PT",
-       "age": "26.1 hr ago",
-       "line": "James Conner Remains Without a Clear Timeline to Return"
+       "src": "RotoWire",
+       "at": "Wed Nov 18, 1:40 PM PT",
+       "age": "66 min ago",
+       "line": "James Conner: Without clear timeline for return"
       },
       {
-       "src": "RotoWire",
-       "at": "Tue Nov 17, 8:52 AM PT",
-       "age": "28.8 hr ago",
-       "line": "James Conner: Still lacking clear timeline"
+       "src": "RotoBaller",
+       "at": "Tue Nov 17, 11:32 AM PT",
+       "age": "27.2 hr ago",
+       "line": "James Conner Remains Without a Clear Timeline to Return"
       }
      ]
     },
@@ -6789,13 +6738,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 18, 6:29 AM PT",
-       "age": "7.2 hr ago",
+       "age": "8.3 hr ago",
        "line": "There Could Be a Scenario in Which the Rams Let Puka Nacua Hit Free Agency"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 3:00 AM PT",
-       "age": "10.6 hr ago",
+       "age": "11.8 hr ago",
        "line": "A Rams bye means time for rest and ramping up"
       }
      ]
@@ -6814,7 +6763,7 @@
      "actual": null,
      "proj": {
       "yahoo": 25.7,
-      "gotham": 24.8,
+      "gotham": 24.9,
       "sleeper": 26.3
      },
      "injury_feeds": {
@@ -6824,7 +6773,7 @@
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 16, 4:55 PM PT",
-       "age": "44.7 hr ago",
+       "age": "45.9 hr ago",
        "line": "Andy Reid defends Xavier Worthy, who had no catches in 57 snaps"
       },
       {
@@ -6884,13 +6833,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:50 AM PT",
-       "age": "5.8 hr ago",
+       "age": "6.9 hr ago",
        "line": "Jaylen Warren's Week 11 fantasy outlook"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       }
      ]
@@ -6912,15 +6861,7 @@
      },
      "injury_feeds": {
       "ESPN": "Active, posted 3 days ago"
-     },
-     "news": [
-      {
-       "src": "RotoWire",
-       "at": "Sun Nov 15, 2:31 PM PT",
-       "age": "3 days ago",
-       "line": "Rashee Rice: Productive with five catches in win"
-      }
-     ]
+     }
     },
     {
      "slot": "WR",
@@ -6944,7 +6885,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 10:18 AM PT",
-       "age": "27.3 hr ago",
+       "age": "28.5 hr ago",
        "line": "Week 11 Waiver Wire Pickups - Jordyn Tyson, Antonio Williams, Caleb Douglas"
       },
       {
@@ -6977,13 +6918,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 8:03 AM PT",
-       "age": "5.6 hr ago",
+       "age": "6.7 hr ago",
        "line": "Yates and Clay debate Ryan Flournoy vs. Courtland Sutton in Week 11"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 11:00 AM PT",
-       "age": "26.6 hr ago",
+       "age": "27.8 hr ago",
        "line": "Courtland Sutton Working Back into Flex Conversation"
       }
      ]
@@ -7001,7 +6942,7 @@
      "proj": {
       "yahoo": 11.6,
       "gotham": 11.2,
-      "sleeper": 11.0
+      "sleeper": 11.1
      },
      "injury_feeds": {
       "ESPN": "Active, posted 10 days ago"
@@ -7010,13 +6951,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 18, 7:08 AM PT",
-       "age": "6.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Facts vs. Feelings: Bye-mageddon means getting comfortable with the uncomfortable"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 10:49 AM PT",
-       "age": "26.8 hr ago",
+       "age": "28.0 hr ago",
        "line": "Table Set for Colston Loveland to Emerge as a Second-Half League-Winner"
       }
      ]
@@ -7043,7 +6984,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 17, 9:52 AM PT",
-       "age": "27.8 hr ago",
+       "age": "28.9 hr ago",
        "line": "Bucky Irving Positioned for Another Heavy Workload in Week 11"
       }
      ]
@@ -7080,13 +7021,13 @@
       "sleeper": 10.0
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 41.9 hr ago"
+      "ESPN": "Active, posted 43.0 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 16, 7:47 PM PT",
-       "age": "41.9 hr ago",
+       "age": "43.0 hr ago",
        "line": "Ka'imi Fairbairn: Makes sole field goal in loss"
       }
      ]
@@ -7110,13 +7051,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 1:25 PM PT",
-       "age": "13 min ago",
+       "age": "81 min ago",
        "line": "Jaguars RBs Bhayshul Tuten, Chris Rodriguez were limited in practice Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 18, 9:21 AM PT",
-       "age": "4.3 hr ago",
+       "age": "5.4 hr ago",
        "line": "Cam Little is AFC special teams player of the week for second week in a row"
       }
      ]
@@ -7167,7 +7108,7 @@
     },
     {
      "color": "grey",
-     "title": "Jakobi Meyers is questionable - latest (RotoWire, Nov 15): Three grabs in Week 10 win - Meyers caught three of six targets for 34 yards in Sunday's 40-23 win over the Titans.",
+     "title": "Jakobi Meyers is questionable - latest (ESPN, Nov 18): Meyers (ankle) was a limited participant in Wednesday's practice.",
      "who": "Jakobi Meyers",
      "kind": "check",
      "src": "Dark Knight Dispatch"
@@ -7181,13 +7122,13 @@
     },
     {
      "color": "grey",
-     "title": "Omar Cooper Jr. Not Practicing on Wednesday",
-     "who": "Omar Cooper Jr.",
-     "kind": "news",
-     "src": "Dark Knight Dispatch"
+     "title": "James Conner: Injured Reserve (Foot)",
+     "who": "James Conner",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Nov 18, 1:36 PM PT"
+   "roster_read_pt": "Wed Nov 18, 2:44 PM PT"
   }
  ],
  "health": [
@@ -7200,6 +7141,11 @@
    "level": "red",
    "piece": "DK II",
    "what": "Ladd McConkey (WR) questionable, kickoff Sun Nov 22, 1:05 PM PT - NO legal bench swap left - only a free-agent add (needs a drop) can cover a zero"
+  },
+  {
+   "level": "gold",
+   "piece": "DK I",
+   "what": "Dalton Kincaid (W/R/T) questionable, kickoff Sun Nov 22, 10:00 AM PT - If Dalton Kincaid is ruled out, start Kaelon Black (RB, SF) - no drop needed. Yahoo gap if he sits: about 2.8 pts. Decision due when the inactives post, about 8:30 AM PT."
   },
   {
    "level": "gold",
@@ -7270,21 +7216,21 @@
  "sources": [
   {
    "source": "NFL schedule",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "week 11: 13 games"
   },
   {
    "source": "Yahoo matchups (scores, starters)",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   {
    "source": "Yahoo win % (all teams)",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "every team in all four leagues: Yahoo win %, record"
@@ -7292,125 +7238,125 @@
   {
    "source": "Yahoo standings",
    "as_of": "Wed Nov 18, 1:27 PM PT",
-   "age": "12 min ago",
+   "age": "80 min ago",
    "level": "green",
    "note": "rank, division rank, points for"
   },
   {
    "source": "Gotham projections",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
-   "note": "Gotham run Wed Nov 18 2026 01:36 PM PT for week 11"
+   "note": "Gotham run Wed Nov 18 2026 02:44 PM PT for week 11"
   },
   {
    "source": "ratcliffe",
    "as_of": "Wed Nov 18, 12:26 PM PT",
-   "age": "73 min ago",
+   "age": "2.3 hr ago",
    "level": "green",
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   {
    "source": "koerner",
    "as_of": "Wed Nov 18, 1:10 PM PT",
-   "age": "29 min ago",
+   "age": "1.6 hr ago",
    "level": "green",
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   {
    "source": "Sleeper projections",
-   "as_of": "Wed Nov 18, 12:42 PM PT",
-   "age": "57 min ago",
+   "as_of": "Wed Nov 18, 1:43 PM PT",
+   "age": "64 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.9 h ago (saved 3118 rows)"
+   "note": "GitHub job checked 0.8 h ago (unchanged 3118 rows)"
   },
   {
    "source": "Sleeper K/DEF projections",
-   "as_of": "Wed Nov 18, 12:42 PM PT",
-   "age": "57 min ago",
+   "as_of": "Wed Nov 18, 1:43 PM PT",
+   "age": "64 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.9 h ago (saved 183 rows)"
+   "note": "GitHub job checked 0.8 h ago (unchanged 183 rows)"
   },
   {
    "source": "Yahoo rosters (all teams)",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "Dom's four rosters"
   },
   {
    "source": "clay",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17"
   },
   {
    "source": "vegas",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "Vegas player props (First Down Studio), stat lines scored in each league's own rules; a check beside the experts - Ratcliffe leads"
   },
   {
    "source": "rotoballer",
-   "as_of": "Wed Nov 18, 1:36 PM PT",
+   "as_of": "Wed Nov 18, 2:44 PM PT",
    "age": "3 min ago",
    "level": "green",
    "note": "RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads; build says TESTING"
   },
   {
    "source": "RotoWire news",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Sleeper injuries/trending",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "rotowire_pages",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Game weather",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN news",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "PFT + RotoBaller news",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN injury report",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "injury_overlay",
-   "as_of": "Wed Nov 18, 1:33 PM PT",
+   "as_of": "Wed Nov 18, 2:42 PM PT",
    "age": "5 min ago",
    "level": "green",
    "note": ""
