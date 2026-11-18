@@ -1,0 +1,36 @@
+name: Draft Sharks scoring
+# Nov 18 2026 (Dom approved): Draft Sharks' free weekly projections (read in Chrome by dk_ds_read.js, committed to
+# yahoo_drop/draftsharks/ds_weekly.json) converted to each league's scoring with Clay's volume -> dispatch_out/draftsharks_scored.csv.
+# A look-ahead CHECK beside Clay (weeks through 18); never decides a move. The next Dispatch build puts it on the Live expert cards.
+on:
+  push:
+    paths: ['yahoo_drop/draftsharks/**', 'live_sync/ds_points.py', '.github/workflows/draftsharks.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  actions: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: dk-feeds
+  cancel-in-progress: false
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: score Draft Sharks in league scoring
+        run: python3 live_sync/ds_points.py "$GITHUB_WORKSPACE"
+      - name: save
+        run: |
+          git config user.name dk-feed-bot
+          git config user.email dk-feed-bot@users.noreply.github.com
+          git add dispatch_out/draftsharks_scored.csv
+          git commit -m "draftsharks $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main || { git rebase --abort 2>/dev/null; sleep 5; continue; }
+            bash .github/wait_pages.sh; git push && exit 0; sleep 5
+          done; exit 1

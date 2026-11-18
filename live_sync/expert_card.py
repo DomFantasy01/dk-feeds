@@ -18,7 +18,7 @@ def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?",
 def fnum(x):
     try: return round(float(x), 1)
     except Exception: return None
-RANKERS = []   # Nov 4 (Dom, Nov 3: the five ranking experts are "all useless"): Brenton, Ciallela, Orginski, Jahnke, Thorman removed
+RANKERS = [("Tyler Orginski", "Orginski", 3)]   # Nov 18 (Dom approved): Orginski back as a FLAG source only (FantasyPros 2026 #3, ranks not points). Was: RANKERS = []   # Nov 4 (Dom, Nov 3: the five ranking experts are "all useless"): Brenton, Ciallela, Orginski, Jahnke, Thorman removed
 pts = {}   # (lg, key) -> dict
 def put(lg, key, **kw): pts.setdefault((lg, key), {}).update({k: v for k, v in kw.items() if v is not None})
 for r in csv.DictReader(open(O(R, "dispatch_out/ftn_scored.csv"))) if os.path.exists(O(R, "dispatch_out/ftn_scored.csv")) else []:
@@ -32,6 +32,13 @@ for r in csv.DictReader(open(O(R, "dispatch_out/clay_scored.csv"))) if os.path.e
 for r in csv.DictReader(open(O(R, "dispatch_out/vegas_scored.csv"))) if os.path.exists(O(R, "dispatch_out/vegas_scored.csv")) else []:   # Nov 7 (Dom): Vegas props
     put(r["lg"], nk(r["name"]), v=fnum(r.get("wk")), vrk=int(r["rank"]) if (r.get("rank") or "").isdigit() else None, vgap=int(r["ecr_gap"]) if re.fullmatch(r"-?\d+", r.get("ecr_gap") or "") else None,
         vsh=fnum(r.get("vegas_share")), vfill=(r.get("model_fill") or None))
+for r in csv.DictReader(open(O(R, "dispatch_out/draftsharks_scored.csv"))) if os.path.exists(O(R, "dispatch_out/draftsharks_scored.csv")) else []:
+    # Nov 18 (Dom): Draft Sharks - free look-ahead CHECK (PPR 3D converted with Clay's volume, approximate). d = this week, dr = weeks-ahead average
+    fut = [float(v) for k, v in r.items() if re.fullmatch(r"w\d+", k or "") and v not in ("", None)]
+    put(r["lg"], r["key"] if r["pos"] == "DEF" else nk(r["name"]), d=fnum(r.get("wk")), dr=round(sum(fut) / len(fut), 1) if fut else None)
+DS_READ = ""
+try: DS_READ = next(csv.DictReader(open(O(R, "dispatch_out/draftsharks_scored.csv")))).get("read", "")
+except Exception: pass
 rk, rk_read = {}, ""
 try:
     for ln in open(O(R, "yahoo_drop/morning/expert_rankings.txt")):
@@ -84,13 +91,18 @@ for lab, L in (M.get("leagues") or {}).items():
         for full, short, fp in RANKERS:
             x = (rk.get(deft(name, team) + "DEF" if pos == "DEF" else k_) or {}).get(full)
             if x: r_[short] = x[1]; pos = pos or x[0]
+        rkm = rk.get(deft(name, team) + "DEF" if pos == "DEF" else k_) or {}
+        o_, ra_ = rkm.get("Tyler Orginski"), rkm.get("Jeff Ratcliffe")
+        if o_ and ra_ and abs(ra_[1] - o_[1]) >= 8:   # Nov 18: the flag - Orginski 8+ spots away from Ratcliffe at the position = look closer
+            ofl = f"Orginski {o_[0]}{o_[1]} vs Ratcliffe {ra_[0]}{ra_[1]} ({'higher' if o_[1] < ra_[1] else 'lower'} on him)"
+        else: ofl = None
         if not p and not r_: continue
         p = dict(p)
         if nk(name) in OUTL:   # Oct 31 (Dom): ruled out = zero this week for every expert, until their files catch up
-            p.update({x: 0.0 for x in ("r", "k", "c", "v") if x in p or x != "v"}); p["out"] = OUTL[nk(name)]
-        out[name] = dict(pos=pos, why=meta["why"], **p, rk=r_)
-    L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read,
-                   points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring; Vegas: prop stat lines, same scoring (a check, not an expert)")
+            p.update({x: 0.0 for x in ("r", "k", "c", "v", "d") if x in p or x not in ("v", "d")}); p["out"] = OUTL[nk(name)]
+        out[name] = dict(pos=pos, why=meta["why"], **p, rk=r_, **({"ofl": ofl} if ofl else {}))
+    L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read, ds_read=DS_READ,
+                   points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring; Vegas: prop stat lines, same scoring (a check, not an expert); Draft Sharks: free PPR projection converted with Clay's volume (approximate, a look-ahead check)")
     n_all += len(out)
     for side in ("me", "op"):   # the meter's own copies too, so no page shows a stale number for a man who is out
         for s in (L.get("starters") or {}).get(side) or []:
