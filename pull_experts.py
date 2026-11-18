@@ -14,7 +14,9 @@ def week():
     s = json.loads(urllib.request.urlopen(urllib.request.Request("https://api.sleeper.app/v1/state/nfl", headers=UA), timeout=30).read())
     return int(s["week"])
 
+NETERR = []   # Nov 18: a real outage (network/HTTP error) vs a feed that answered but has no list for this week yet
 def get(eid, pos, w):
+    err = None
     for scoring in (("PPR", "STD") if pos == "QB" else ("PPR",)):
         url = f"{API}?id={eid}&scoring={scoring}&type=WEEKLY&position={pos}&sport=NFL&year=2026&week={w}"
         for a in range(3):
@@ -24,6 +26,7 @@ def get(eid, pos, w):
                 break
             except Exception as e:
                 err = e; time.sleep(3 * (a + 1))
+    if err is not None: NETERR.append(f"{eid}/{pos}: {err}")
     return None
 
 def main(repo="."):
@@ -61,7 +64,11 @@ def main(repo="."):
         note = f" - {'/'.join(kept)} kept from the {prev_stamp} pull (feed empty right now)" if kept else ""
         log.append(f"{name}: {'/'.join(counts)}, last updated {max(pubs) if pubs else 'none'} (FantasyPros time)" + ("" if ok else " - INCOMPLETE") + note)
     if not got:
-        print("EXPERT PULL FAILED - no expert came back; old file left in place"); print("\n".join(log)); sys.exit(1)
+        print("\n".join(log))
+        if not NETERR:   # Nov 18 (Dom: "Fix this"): the feed answered for every expert, the Week list just isn't posted yet (Tue/Wed) - not a failure
+            print(f"EXPERT PULL: Week {w} lists not posted yet by any expert - old file left in place, nothing to do (not an error)")
+            open(os.environ.get("GITHUB_OUTPUT", os.devnull), "a").write("skip=1\n"); sys.exit(0)
+        print("EXPERT PULL FAILED - feed could not be reached; old file left in place"); print("\n".join(NETERR[:6])); sys.exit(1)
     od = f"{repo}/yahoo_drop/morning"; os.makedirs(od, exist_ok=True)
     head = (f"# Named expert weekly rankings, week {w}. FantasyPros partner feed, read live {stamp} (GitHub read). "
             f"site|expert|list|rank|player|nflteam|pos\n" + "".join(f"# {l}\n" for l in log))

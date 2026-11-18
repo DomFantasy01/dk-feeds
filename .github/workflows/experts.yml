@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - name: pull the experts' rankings
+        id: pull
         run: python pull_experts.py .
       - name: save to the repo
         run: |
@@ -39,5 +40,6 @@ jobs:
           for i in 1 2 3; do git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0; sleep 5; done
           echo "save failed"; exit 1
       - name: start a Dispatch build so the panel uses them
+        if: steps.pull.outputs.skip != '1'
         env: { GH_TOKEN: "${{ github.token }}" }
         run: gh workflow run dispatch.yml --ref main
