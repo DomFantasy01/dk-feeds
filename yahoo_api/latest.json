@@ -1,6 +1,6 @@
 {
- "read_pt": "Wed Nov 18 3:34 AM PT",
- "read_utc": "2026-11-18T11:35:07+00:00",
+ "read_pt": "Wed Nov 18 3:54 AM PT",
+ "read_utc": "2026-11-18T11:54:24+00:00",
  "game_key": "470",
  "leagues_read": [
   "DKI",
@@ -13,7 +13,7 @@
   "DKI TheMostImportantThingInLife: week 11, 12 teams, 186 rostered, 6 matchups, 11 on waivers",
   "DKII Winners and Sinners: week 11, 12 teams, 200 rostered, 6 matchups, 4 on waivers",
   "DKIII Hers and His Version 2.0: week 11, 14 teams, 205 rostered, 7 matchups, 6 on waivers",
-  "DKIV Murrieta NextDoor: week 11, 10 teams, 169 rostered, 5 matchups, 14 on waivers"
+  "DKIV Murrieta NextDoor: week 11, 10 teams, 169 rostered, 5 matchups, 15 on waivers"
  ],
  "stat_names": {
   "0": "GP",
@@ -5265,11 +5265,11 @@
      "players": [
       {
        "slot": "QB",
-       "name": "Jordan Love",
-       "team": "Gb",
+       "name": "Cam Ward",
+       "team": "Ten",
        "pos": "QB",
        "status": "",
-       "key": "470.p.32696"
+       "key": "470.p.41786"
       },
       {
        "slot": "RB",
@@ -5329,6 +5329,14 @@
       },
       {
        "slot": "BN",
+       "name": "Jordan Love",
+       "team": "Gb",
+       "pos": "QB",
+       "status": "",
+       "key": "470.p.32696"
+      },
+      {
+       "slot": "BN",
        "name": "Matthew Golden",
        "team": "Gb",
        "pos": "WR",
@@ -5366,14 +5374,6 @@
        "pos": "RB",
        "status": "",
        "key": "470.p.32725"
-      },
-      {
-       "slot": "BN",
-       "name": "Cam Ward",
-       "team": "Ten",
-       "pos": "QB",
-       "status": "",
-       "key": "470.p.41786"
       }
      ]
     },
@@ -6444,14 +6444,14 @@
        "name": "Dawg Pound Eric",
        "points": "0.00",
        "proj": "89.46",
-       "win_probability": "0.38"
+       "win_probability": "0.23"
       },
       {
        "id": 6,
        "name": "The Deer Hunter Part Deux",
        "points": "0.00",
-       "proj": "104.59",
-       "win_probability": "0.62"
+       "proj": "126.82",
+       "win_probability": "0.77"
       }
      ]
     },
@@ -7887,14 +7887,6 @@
       },
       {
        "slot": "WR",
-       "name": "Mike Evans",
-       "team": "Sf",
-       "pos": "WR",
-       "status": "Q",
-       "key": "470.p.27535"
-      },
-      {
-       "slot": "W/R/T",
        "name": "Josh Downs",
        "team": "Kc",
        "pos": "WR",
@@ -7902,7 +7894,31 @@
        "key": "470.p.40126"
       },
       {
+       "slot": "TE",
+       "name": "Michael Mayer",
+       "team": "Lv",
+       "pos": "TE",
+       "status": "",
+       "key": "470.p.40065"
+      },
+      {
+       "slot": "W/R/T",
+       "name": "Mike Evans",
+       "team": "Sf",
+       "pos": "WR",
+       "status": "Q",
+       "key": "470.p.27535"
+      },
+      {
        "slot": "Q/W/R/T",
+       "name": "Justin Herbert",
+       "team": "Lac",
+       "pos": "QB",
+       "status": "",
+       "key": "470.p.32676"
+      },
+      {
+       "slot": "BN",
        "name": "Michael Penix Jr.",
        "team": "Atl",
        "pos": "QB",
@@ -7950,14 +7966,6 @@
        "key": "470.p.31856"
       },
       {
-       "slot": "BN",
-       "name": "Michael Mayer",
-       "team": "Lv",
-       "pos": "TE",
-       "status": "",
-       "key": "470.p.40065"
-      },
-      {
        "slot": "IR",
        "name": "De'Zhaun Stribling",
        "team": "Sf",
@@ -7972,14 +7980,6 @@
        "pos": "K",
        "status": "",
        "key": "470.p.41062"
-      },
-      {
-       "slot": "DEF",
-       "name": "Colts",
-       "team": "Ind",
-       "pos": "DEF",
-       "status": "",
-       "key": "470.p.100011"
       }
      ]
     },
@@ -8507,15 +8507,15 @@
        "id": 8,
        "name": "Mr. Irrelevant",
        "points": "0.00",
-       "proj": "114.51",
-       "win_probability": "0.28"
+       "proj": "138.39",
+       "win_probability": "0.46"
       },
       {
        "id": 11,
        "name": "Killer Ko-Gees",
        "points": "0.00",
        "proj": "143.52",
-       "win_probability": "0.72"
+       "win_probability": "0.54"
       }
      ]
     }
@@ -9054,6 +9054,11 @@
     },
     {
      "name": "Packers",
+     "pos": "DEF",
+     "clears": "2026-11-21"
+    },
+    {
+     "name": "Colts",
      "pos": "DEF",
      "clears": "2026-11-21"
     },
