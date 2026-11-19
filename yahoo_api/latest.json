@@ -1,6 +1,6 @@
 {
- "read_pt": "Wed Nov 18 8:33 PM PT",
- "read_utc": "2026-11-19T04:33:33+00:00",
+ "read_pt": "Wed Nov 18 9:35 PM PT",
+ "read_utc": "2026-11-19T05:36:06+00:00",
  "game_key": "470",
  "leagues_read": [
   "DKI",
@@ -10,7 +10,7 @@
  ],
  "calls": 30,
  "log": [
-  "DKI TheMostImportantThingInLife: week 11, 12 teams, 186 rostered, 6 matchups, 18 on waivers",
+  "DKI TheMostImportantThingInLife: week 11, 12 teams, 186 rostered, 6 matchups, 19 on waivers",
   "DKII Winners and Sinners: week 11, 12 teams, 200 rostered, 6 matchups, 6 on waivers",
   "DKIII Hers and His Version 2.0: week 11, 14 teams, 202 rostered, 7 matchups, 14 on waivers",
   "DKIV Murrieta NextDoor: week 11, 10 teams, 170 rostered, 5 matchups, 18 on waivers"
@@ -918,11 +918,11 @@
      "players": [
       {
        "slot": "QB",
-       "name": "Drew Lock",
-       "team": "Sea",
+       "name": "Fernando Mendoza",
+       "team": "Lv",
        "pos": "QB",
        "status": "",
-       "key": "470.p.31874"
+       "key": "470.p.42623"
       },
       {
        "slot": "RB",
@@ -982,6 +982,14 @@
       },
       {
        "slot": "BN",
+       "name": "Drew Lock",
+       "team": "Sea",
+       "pos": "QB",
+       "status": "",
+       "key": "470.p.31874"
+      },
+      {
+       "slot": "BN",
        "name": "Kenny Gainwell",
        "team": "Tb",
        "pos": "RB",
@@ -1006,11 +1014,11 @@
       },
       {
        "slot": "BN",
-       "name": "Fernando Mendoza",
-       "team": "Lv",
-       "pos": "QB",
-       "status": "",
-       "key": "470.p.42623"
+       "name": "Darren Waller",
+       "team": "Car",
+       "pos": "TE",
+       "status": "Q",
+       "key": "470.p.28592"
       },
       {
        "slot": "IR",
@@ -1030,14 +1038,6 @@
       },
       {
        "slot": "DEF",
-       "name": "Raiders",
-       "team": "Lv",
-       "pos": "DEF",
-       "status": "",
-       "key": "470.p.100013"
-      },
-      {
-       "slot": "BN",
        "name": "Broncos",
        "team": "Den",
        "pos": "DEF",
@@ -1620,6 +1620,14 @@
       },
       {
        "slot": "W/R/T",
+       "name": "Tank Dell",
+       "team": "Hou",
+       "pos": "WR",
+       "status": "",
+       "key": "470.p.40097"
+      },
+      {
+       "slot": "BN",
        "name": "Kenneth Walker III",
        "team": "Kc",
        "pos": "RB",
@@ -1649,14 +1657,6 @@
        "pos": "WR",
        "status": "IR-R",
        "key": "470.p.32704"
-      },
-      {
-       "slot": "BN",
-       "name": "Tank Dell",
-       "team": "Hou",
-       "pos": "WR",
-       "status": "",
-       "key": "470.p.40097"
       },
       {
        "slot": "BN",
@@ -1723,14 +1723,14 @@
        "name": "Dark Knight I",
        "points": "0.00",
        "proj": "145.04",
-       "win_probability": "0.56"
+       "win_probability": "0.65"
       },
       {
        "id": 12,
        "name": "Remember the Tutens",
        "points": "0.00",
-       "proj": "137.17",
-       "win_probability": "0.44"
+       "proj": "125.02",
+       "win_probability": "0.35"
       }
      ]
     },
@@ -1763,14 +1763,14 @@
        "name": "Punching Bag",
        "points": "0.00",
        "proj": "151.35",
-       "win_probability": "0.89"
+       "win_probability": "0.79"
       },
       {
        "id": 7,
        "name": "Raider nation",
        "points": "0.00",
-       "proj": "90.46",
-       "win_probability": "0.11"
+       "proj": "109.53",
+       "win_probability": "0.21"
       }
      ]
     },
@@ -2048,6 +2048,16 @@
       },
       {
        "slot": "W/R/T",
+       "name": "Tank Dell",
+       "team": "Hou",
+       "pos": "WR",
+       "status": "",
+       "key": "470.p.40097",
+       "points": "0.00",
+       "stats": {}
+      },
+      {
+       "slot": "BN",
        "name": "Kenneth Walker III",
        "team": "Kc",
        "pos": "RB",
@@ -2083,16 +2093,6 @@
        "pos": "WR",
        "status": "IR-R",
        "key": "470.p.32704",
-       "points": "0.00",
-       "stats": {}
-      },
-      {
-       "slot": "BN",
-       "name": "Tank Dell",
-       "team": "Hou",
-       "pos": "WR",
-       "status": "",
-       "key": "470.p.40097",
        "points": "0.00",
        "stats": {}
       },
@@ -2351,6 +2351,11 @@
     },
     {
      "name": "Colts",
+     "pos": "DEF",
+     "clears": "2026-11-21"
+    },
+    {
+     "name": "Raiders",
      "pos": "DEF",
      "clears": "2026-11-21"
     },
@@ -5420,19 +5425,19 @@
       },
       {
        "slot": "RB",
-       "name": "Bijan Robinson",
-       "team": "Atl",
-       "pos": "RB",
-       "status": "",
-       "key": "470.p.40055"
-      },
-      {
-       "slot": "RB",
        "name": "Mike Washington Jr.",
        "team": "Lv",
        "pos": "RB",
        "status": "",
        "key": "470.p.42744"
+      },
+      {
+       "slot": "RB",
+       "name": "Kenny Gainwell",
+       "team": "Tb",
+       "pos": "RB",
+       "status": "",
+       "key": "470.p.33538"
       },
       {
        "slot": "WR",
@@ -5460,6 +5465,14 @@
       },
       {
        "slot": "W/R/T",
+       "name": "Xavier Hutchinson",
+       "team": "Hou",
+       "pos": "WR",
+       "status": "",
+       "key": "470.p.40232"
+      },
+      {
+       "slot": "W/R/T",
        "name": "Jordan Addison",
        "team": "Min",
        "pos": "WR",
@@ -5467,12 +5480,12 @@
        "key": "470.p.40042"
       },
       {
-       "slot": "W/R/T",
-       "name": "Kenny Gainwell",
-       "team": "Tb",
+       "slot": "BN",
+       "name": "Bijan Robinson",
+       "team": "Atl",
        "pos": "RB",
        "status": "",
-       "key": "470.p.33538"
+       "key": "470.p.40055"
       },
       {
        "slot": "BN",
@@ -5505,14 +5518,6 @@
        "pos": "QB",
        "status": "",
        "key": "470.p.40875"
-      },
-      {
-       "slot": "BN",
-       "name": "Xavier Hutchinson",
-       "team": "Hou",
-       "pos": "WR",
-       "status": "",
-       "key": "470.p.40232"
       },
       {
        "slot": "DEF",
@@ -6484,15 +6489,15 @@
        "id": 7,
        "name": "Press Coverage steph",
        "points": "0.00",
-       "proj": "83.57",
-       "win_probability": "0.24"
+       "proj": "92.36",
+       "win_probability": "0.31"
       },
       {
        "id": 10,
        "name": "Derek\u2019s Better Half",
        "points": "0.00",
        "proj": "116.16",
-       "win_probability": "0.76"
+       "win_probability": "0.69"
       }
      ]
     },
