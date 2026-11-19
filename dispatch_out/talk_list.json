@@ -1,7 +1,7 @@
 {
  "week": 11,
- "built": "Thu Nov 19 2026 03:09 PM PT",
- "ratcliffe_read": "Thu Nov 19 2026 12:26 PM PT",
+ "built": "Thu Nov 19 2026 03:35 PM PT",
+ "ratcliffe_read": "Thu Nov 19 2026 3:26 PM PT",
  "koerner_read": "Thu Nov 19 2026 3:04 PM PT",
  "leagues": {
   "DK I": {
@@ -43,13 +43,26 @@
      "first_seen": "Wed Nov 18 2026 07:43 PM PT"
     },
     {
+     "name": "Omar Cooper Jr.",
+     "pos": "WR",
+     "team": "NYJ",
+     "acq": "Waivers, clears Nov 21",
+     "over": "Dalton Kincaid",
+     "pct": 40,
+     "gain": 3.8,
+     "note": "Scout pick (rest of season): This week vs your FLEX2 Dalton Kincaid: Ratcliffe not read vs 8.8 \u00b7 Koerner 0.0 vs 8.7 \u00b7 Yahoo 8.7 vs 10.0 \u00b7 Gotham 12.6 vs 10.5 - mixed this week",
+     "scout": true,
+     "id": "talk:omarcooper",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
+    },
+    {
      "name": "Kyle Pitts",
      "pos": "TE",
      "team": "ATL",
      "acq": "Free agent",
-     "over": null,
-     "pct": 30,
-     "gain": 6.9,
+     "over": "Dalton Kincaid",
+     "pct": 34,
+     "gain": 7.4,
      "note": "Scout pick (rest of season): This week: Kyle Pitts has a bye - no help this week",
      "scout": true,
      "id": "talk:kylepitts",
@@ -63,9 +76,9 @@
      "over": "Kaelon Black",
      "rat_ros": 5.8,
      "over_ros": 12.8,
-     "pct": -54,
-     "gain": -6.9,
-     "rat_wk": 9.6,
+     "pct": -55,
+     "gain": -7.0,
+     "rat_wk": 9.9,
      "koe_wk": 10.19,
      "clay_ros": 4.99,
      "vegas_wk": null,
@@ -136,7 +149,7 @@
      "over_ros": 7.7,
      "pct": -9,
      "gain": -0.7,
-     "rat_wk": 9.6,
+     "rat_wk": 9.7,
      "koe_wk": 9.2,
      "clay_ros": 8.47,
      "vegas_wk": 10.2,
@@ -163,41 +176,45 @@
    "cover": [
     {
      "title": "FLEX1, Week 11 Fill",
-     "target": "Target 10.6 pts",
-     "mark": "gold",
-     "why": "Full strength ~14.7 (Etienne). Wk 11 Etienne ~10.6 (hard matchup vs CHI).",
-     "picks": [],
+     "target": "Target 10.7 pts",
+     "mark": "red",
+     "why": "Full strength ~14.7 (Etienne). Wk 11 Etienne ~10.7 (hard matchup vs CHI).",
+     "picks": [
+      "Omar Cooper Jr. (Waivers, clears Nov 21)"
+     ],
      "id": "cover:flex1week11fill",
      "first_seen": "Tue Nov 17 2026 07:51 AM PT"
     },
     {
      "title": "FLEX2, Week 11 Fill",
-     "target": "Target 10.4 pts",
-     "mark": "gold",
-     "why": "Full strength ~13.3 (Diggs). Wk 11 Black ~10.4 (Diggs moves up to WR2, Black slides in).",
-     "picks": [],
+     "target": "Target 8.8 pts",
+     "mark": "red",
+     "why": "Full strength ~13.3 (Diggs). Wk 11 Kincaid ~8.8 (Diggs moves up to WR2, Kincaid slides in).",
+     "picks": [
+      "Omar Cooper Jr. (Waivers, clears Nov 21)"
+     ],
      "id": "cover:flex2week11fill",
      "first_seen": "Wed Nov 18 2026 02:34 AM PT"
     },
     {
      "title": "WR2, Week 11 Fill",
-     "target": "Target 11.8 pts",
-     "mark": "gold",
-     "why": "Full strength ~14.6 (London). Wk 11 Diggs ~11.8 (London on bye, Diggs slides in).",
-     "picks": [],
+     "target": "Target 11.0 pts",
+     "mark": "red",
+     "why": "Full strength ~14.6 (London). Wk 11 Diggs ~11.0 (London on bye, Diggs slides in).",
+     "picks": [
+      "Omar Cooper Jr. (Waivers, clears Nov 21)"
+     ],
      "id": "cover:wr2week11fill",
      "first_seen": "Wed Nov 18 2026 02:34 AM PT"
     },
     {
-     "title": "TE, Week 13 Fill",
-     "target": "Target 10.6 pts",
+     "title": "RB1, Week 11 Fill",
+     "target": "Target 21.4 pts",
      "mark": "gold",
-     "why": "Full strength ~12.3 (Kelce). Wk 13 Kelce ~10.6 (hard matchup vs LA).",
-     "picks": [
-      "Kyle Pitts (Free agent)"
-     ],
-     "id": "cover:teweek13fill",
-     "first_seen": "Tue Nov 17 2026 02:33 AM PT"
+     "why": "Full strength ~26.9 (McCaffrey). Wk 11 McCaffrey ~21.4 (hard matchup vs MIN).",
+     "picks": [],
+     "id": "cover:rb1week11fill",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
     }
    ],
    "block": [
@@ -209,8 +226,8 @@
      "team": "NYJ",
      "acq": "free agent",
      "would_start_over": "Justin Herbert",
-     "rat_ros": 21.7,
-     "their_ros": 15.3,
+     "rat_ros": 21.9,
+     "their_ros": 15.1,
      "id": "block:genosmith",
      "first_seen": "Wed Nov 18 2026 02:14 AM PT"
     },
@@ -222,8 +239,8 @@
      "team": "CLE",
      "acq": "free agent",
      "would_start_over": "Justin Herbert",
-     "rat_ros": 21.3,
-     "their_ros": 15.3,
+     "rat_ros": 21.1,
+     "their_ros": 15.1,
      "id": "block:deshaunwatson",
      "first_seen": "Wed Nov 18 2026 02:14 AM PT"
     },
@@ -235,8 +252,8 @@
      "team": "BAL",
      "acq": "waivers until Nov 21",
      "would_start_over": "Justin Herbert",
-     "rat_ros": 20.0,
-     "their_ros": 15.3,
+     "rat_ros": 19.9,
+     "their_ros": 15.1,
      "id": "block:jacobybrissett",
      "first_seen": "Wed Nov 18 2026 02:14 AM PT"
     },
@@ -248,7 +265,7 @@
      "team": "NYJ",
      "acq": "waivers until Nov 21",
      "would_start_over": "Tank Dell",
-     "rat_ros": 11.4,
+     "rat_ros": 11.5,
      "their_ros": 9.2,
      "id": "block:omarcooper",
      "first_seen": "Wed Nov 18 2026 08:35 AM PT"
@@ -265,10 +282,10 @@
      "team": "SEA",
      "acq": "free agent",
      "over": "David Montgomery",
-     "rat_ros": 15.2,
+     "rat_ros": 15.3,
      "over_ros": 11.2,
-     "pct": 35,
-     "gain": 4.0,
+     "pct": 37,
+     "gain": 4.1,
      "rat_wk": 0.0,
      "koe_wk": null,
      "clay_ros": 10.98,
@@ -281,11 +298,11 @@
       {
        "src": "Ratcliffe",
        "span": "rest of season",
-       "his": 15.2,
+       "his": 15.3,
        "over": "David Montgomery",
        "over_v": 11.2,
-       "pct": 35,
-       "gain": 4.0
+       "pct": 37,
+       "gain": 4.1
       },
       {
        "src": "Clay",
@@ -301,7 +318,7 @@
      "sharp_rank": 16,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 15.2 vs your David Montgomery 11.2, +35%); Clay (rest of season, Weeks 12-17: 11.0 vs your Emmett Johnson 8.4, +31%); playoff offense #16 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 15.3 vs your David Montgomery 11.2, +37%); Clay (rest of season, Weeks 12-17: 11.0 vs your Emmett Johnson 8.4, +31%); playoff offense #16 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:jadarianprice",
      "first_seen": "Sun Nov 15 2026 03:14 AM PT"
     },
@@ -311,9 +328,9 @@
      "team": "NYJ",
      "acq": "Free agent",
      "over": "Jaguars",
-     "pct": 24,
-     "gain": 16.2,
-     "note": "Scout pick (rest of season): This week vs your SUPERFLEX Aaron Rodgers: Ratcliffe 16.8 vs 18.6 \u00b7 Koerner 16.8 vs 16.5 \u00b7 Yahoo 19.4 vs 18.9 \u00b7 Gotham 15.5 vs 18.2 - mixed - Ratcliffe says worse",
+     "pct": 28,
+     "gain": 19.4,
+     "note": "Scout pick (rest of season): This week vs your SUPERFLEX Aaron Rodgers: Ratcliffe 16.0 vs 17.5 \u00b7 Koerner 16.8 vs 16.5 \u00b7 Yahoo 19.4 vs 18.9 \u00b7 Gotham 15.5 vs 18.2 - mixed - Ratcliffe says worse",
      "scout": true,
      "id": "talk:genosmith",
      "first_seen": "Wed Nov 18 2026 01:36 PM PT"
@@ -324,10 +341,10 @@
      "team": "NYG",
      "acq": "free agent",
      "over": "Aaron Rodgers",
-     "rat_ros": 19.9,
-     "over_ros": 19.7,
-     "pct": 1,
-     "gain": 0.2,
+     "rat_ros": 19.8,
+     "over_ros": 19.2,
+     "pct": 3,
+     "gain": 0.5,
      "rat_wk": 17.7,
      "koe_wk": 17.8,
      "clay_ros": 18.5,
@@ -350,7 +367,7 @@
      "sharp_rank": 20,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Vegas (this week: 18.3 vs your Aaron Rodgers 15.8, +16%); Ratcliffe has him 19.9 a game vs 19.7; playoff offense #20 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Vegas (this week: 18.3 vs your Aaron Rodgers 15.8, +16%); Ratcliffe has him 19.8 a game vs 19.2; playoff offense #20 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:jjmccarthy",
      "first_seen": "Tue Nov 17 2026 05:02 PM PT"
     },
@@ -361,10 +378,10 @@
      "acq": "free agent",
      "over": "Germie Bernard",
      "rat_ros": 8.9,
-     "over_ros": 9.0,
-     "pct": -1,
-     "gain": -0.1,
-     "rat_wk": 8.6,
+     "over_ros": 9.1,
+     "pct": -2,
+     "gain": -0.2,
+     "rat_wk": 8.0,
      "koe_wk": 5.96,
      "clay_ros": 6.12,
      "vegas_wk": 7.64,
@@ -386,9 +403,45 @@
      "sharp_rank": 8,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Clay (rest of season, Weeks 12-17: 6.1 vs your Germie Bernard 3.3, +84%); Ratcliffe has him 8.9 a game vs 9.0; playoff offense #8 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Clay (rest of season, Weeks 12-17: 6.1 vs your Germie Bernard 3.3, +84%); Ratcliffe has him 8.9 a game vs 9.1; playoff offense #8 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:jakobilane",
      "first_seen": "Tue Nov 17 2026 05:02 PM PT"
+    },
+    {
+     "name": "Bam Knight",
+     "pos": "RB",
+     "team": "ARI",
+     "acq": "free agent",
+     "over": "David Montgomery",
+     "rat_ros": 10.6,
+     "over_ros": 11.2,
+     "pct": -5,
+     "gain": -0.6,
+     "rat_wk": 10.3,
+     "koe_wk": null,
+     "clay_ros": 12.12,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 12.1,
+       "over": "Emmett Johnson",
+       "over_v": 8.4,
+       "pct": 44,
+       "gain": 3.7
+      }
+     ],
+     "sharp_po": 60.0,
+     "sharp_rank": 27,
+     "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 12-17: 12.1 vs your Emmett Johnson 8.4, +44%); Ratcliffe has him 10.6 a game vs 11.2; playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
+     "id": "talk:bamknight",
+     "first_seen": "Wed Nov 18 2026 02:14 AM PT"
     },
     {
      "name": "Konata Mumpfield",
@@ -396,10 +449,10 @@
      "team": "LAR",
      "acq": "free agent",
      "over": "Germie Bernard",
-     "rat_ros": 8.8,
-     "over_ros": 9.0,
-     "pct": -2,
-     "gain": -0.2,
+     "rat_ros": 8.6,
+     "over_ros": 9.1,
+     "pct": -5,
+     "gain": -0.5,
      "rat_wk": 0.0,
      "koe_wk": null,
      "clay_ros": 8.35,
@@ -422,45 +475,9 @@
      "sharp_rank": 2,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Clay (rest of season, Weeks 12-17: 8.3 vs your Germie Bernard 3.3, +152%); Ratcliffe has him 8.8 a game vs 9.0; playoff offense #2 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Clay (rest of season, Weeks 12-17: 8.3 vs your Germie Bernard 3.3, +152%); Ratcliffe has him 8.6 a game vs 9.1; playoff offense #2 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:konatamumpfield",
      "first_seen": "Tue Nov 17 2026 05:02 PM PT"
-    },
-    {
-     "name": "Bam Knight",
-     "pos": "RB",
-     "team": "ARI",
-     "acq": "free agent",
-     "over": "David Montgomery",
-     "rat_ros": 10.5,
-     "over_ros": 11.2,
-     "pct": -6,
-     "gain": -0.7,
-     "rat_wk": 10.2,
-     "koe_wk": null,
-     "clay_ros": 12.12,
-     "vegas_wk": null,
-     "flagged_by": [
-      "Clay"
-     ],
-     "flags": [
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 12.1,
-       "over": "Emmett Johnson",
-       "over_v": 8.4,
-       "pct": 44,
-       "gain": 3.7
-      }
-     ],
-     "sharp_po": 60.0,
-     "sharp_rank": 27,
-     "rising": null,
-     "scout": false,
-     "note": "Flagged by Clay (rest of season, Weeks 12-17: 12.1 vs your Emmett Johnson 8.4, +44%); Ratcliffe has him 10.5 a game vs 11.2; playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
-     "id": "talk:bamknight",
-     "first_seen": "Wed Nov 18 2026 02:14 AM PT"
     }
    ],
    "watch": [
@@ -471,10 +488,10 @@
      "acq": "free agent",
      "over": "Aaron Rodgers",
      "rat_ros": 14.0,
-     "over_ros": 19.7,
-     "pct": -29,
-     "gain": -5.7,
-     "rat_wk": 17.4,
+     "over_ros": 19.2,
+     "pct": -27,
+     "gain": -5.3,
+     "rat_wk": 17.0,
      "koe_wk": 17.35,
      "clay_ros": 16.55,
      "vegas_wk": 17.68,
@@ -504,10 +521,10 @@
      "acq": "free agent",
      "over": "Travis Kelce",
      "rat_ros": 10.7,
-     "over_ros": 11.4,
-     "pct": -7,
-     "gain": -0.8,
-     "rat_wk": 7.6,
+     "over_ros": 11.1,
+     "pct": -4,
+     "gain": -0.4,
+     "rat_wk": 11.0,
      "koe_wk": 10.4,
      "clay_ros": 11.66,
      "vegas_wk": 10.8,
@@ -536,10 +553,10 @@
      "team": "SEA",
      "acq": "free agent",
      "over": "Germie Bernard",
-     "rat_ros": 7.4,
-     "over_ros": 9.0,
+     "rat_ros": 7.5,
+     "over_ros": 9.1,
      "pct": -17,
-     "gain": -1.6,
+     "gain": -1.5,
      "rat_wk": 0.0,
      "koe_wk": null,
      "clay_ros": 5.18,
@@ -569,11 +586,11 @@
      "team": "MIA",
      "acq": "free agent",
      "over": "Germie Bernard",
-     "rat_ros": 7.2,
-     "over_ros": 9.0,
-     "pct": -20,
-     "gain": -1.8,
-     "rat_wk": 2.0,
+     "rat_ros": 7.3,
+     "over_ros": 9.1,
+     "pct": -19,
+     "gain": -1.7,
+     "rat_wk": 4.8,
      "koe_wk": 4.76,
      "clay_ros": 5.28,
      "vegas_wk": null,
@@ -603,8 +620,8 @@
      "acq": "free agent",
      "over": "Germie Bernard",
      "rat_ros": 7.0,
-     "over_ros": 9.0,
-     "pct": -22,
+     "over_ros": 9.1,
+     "pct": -23,
      "gain": -2.0,
      "rat_wk": 7.1,
      "koe_wk": 7.58,
@@ -635,10 +652,10 @@
      "team": "CLE",
      "acq": "free agent",
      "over": "Germie Bernard",
-     "rat_ros": 6.6,
-     "over_ros": 9.0,
-     "pct": -26,
-     "gain": -2.4,
+     "rat_ros": 6.8,
+     "over_ros": 9.1,
+     "pct": -25,
+     "gain": -2.3,
      "rat_wk": 0.0,
      "koe_wk": null,
      "clay_ros": 4.77,
@@ -666,9 +683,9 @@
    "cover": [
     {
      "title": "RB1, Weeks 12, 14 Fill",
-     "target": "Target 16.3 pts",
+     "target": "Target 16.2 pts",
      "mark": "red",
-     "why": "Full strength ~14.7 (Etienne). Wk 12 Allen ~16.5 (Etienne has a worse matchup) \u00b7 Wk 14 Allen ~16.1 (Etienne moves up to RB2, Allen slides in).",
+     "why": "Full strength ~14.7 (Etienne). Wk 12 Allen ~16.4 (Etienne moves up to FLEX, Allen slides in) \u00b7 Wk 14 Allen ~16.0 (Etienne moves up to RB2, Allen slides in).",
      "picks": [
       "Jadarian Price (Free agent)"
      ],
@@ -676,21 +693,10 @@
      "first_seen": "Tue Nov 17 2026 03:35 AM PT"
     },
     {
-     "title": "WR2, Week 11 Fill",
-     "target": "Target 10.0 pts",
-     "mark": "red",
-     "why": "Full strength ~14.6 (London). Wk 11 Bernard ~10.0 (London on bye, Bernard slides in).",
-     "picks": [
-      "Tre Harris (Free agent)"
-     ],
-     "id": "cover:wr2week11fill",
-     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
-    },
-    {
      "title": "WR3, Weeks 11, 13 Fill",
-     "target": "Target 7.8 pts",
+     "target": "Target 9.0 pts",
      "mark": "gold",
-     "why": "Full strength ~8.7 (McConkey). Wk 11 McConkey ~6.3 (hard matchup vs NYJ) \u00b7 Wk 13 Bernard ~9.2 (McConkey has a worse matchup).",
+     "why": "Full strength ~8.7 (McConkey). Wk 11 McConkey ~8.7 (hard matchup vs NYJ) \u00b7 Wk 13 Bernard ~9.3 (McConkey has a worse matchup).",
      "picks": [],
      "id": "cover:wr3weeks1113fill",
      "first_seen": "Wed Nov 18 2026 02:34 AM PT"
@@ -705,6 +711,15 @@
      ],
      "id": "cover:flexweek14fill",
      "first_seen": "Wed Nov 18 2026 05:40 AM PT"
+    },
+    {
+     "title": "WR2, Week 11 Fill",
+     "target": "Target 9.8 pts",
+     "mark": "gold",
+     "why": "Full strength ~14.6 (London). Wk 11 Bernard ~9.8 (London on bye, Bernard slides in).",
+     "picks": [],
+     "id": "cover:wr2week11fill",
+     "first_seen": "Sat Oct 31 2026 08:51 AM PT"
     }
    ],
    "block": [],
@@ -715,7 +730,7 @@
      "pos": "WR",
      "team": "LAC",
      "status": "Q",
-     "wk": 6.32,
+     "wk": 8.74,
      "locks": "Sun 1:05 PM",
      "lock_utc": "2026-11-22T21:05:00+00:00",
      "bench": [],
@@ -724,26 +739,26 @@
        "name": "Tre' Harris",
        "pos": "WR",
        "team": "LAC",
-       "wk": 9.5,
+       "wk": 9.7,
        "koe": 8.74,
        "locks": "Sun 1:05 PM",
        "lock_utc": "2026-11-22T21:05:00+00:00"
       },
       {
-       "name": "Ja'Kobi Lane",
+       "name": "Elic Ayomanor",
        "pos": "WR",
-       "team": "BAL",
-       "wk": 8.6,
-       "koe": 5.96,
+       "team": "TEN",
+       "wk": 9.0,
+       "koe": 9.02,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-22T18:00:00+00:00"
       },
       {
-       "name": "Elic Ayomanor",
+       "name": "Ja'Kobi Lane",
        "pos": "WR",
-       "team": "TEN",
-       "wk": 8.5,
-       "koe": 9.02,
+       "team": "BAL",
+       "wk": 8.0,
+       "koe": 5.96,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-22T18:00:00+00:00"
       }
@@ -762,11 +777,11 @@
      "team": "ARI",
      "acq": "waivers until Nov 21",
      "over": "David Montgomery",
-     "rat_ros": 10.5,
+     "rat_ros": 10.6,
      "over_ros": 11.2,
-     "pct": -6,
-     "gain": -0.7,
-     "rat_wk": 10.2,
+     "pct": -5,
+     "gain": -0.6,
+     "rat_wk": 10.3,
      "koe_wk": null,
      "clay_ros": 12.12,
      "vegas_wk": null,
@@ -788,37 +803,37 @@
      "sharp_rank": 27,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Clay (rest of season, Weeks 12-17: 12.1 vs your Rachaad White 9.3, +30%); Ratcliffe has him 10.5 a game vs 11.2; playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Clay (rest of season, Weeks 12-17: 12.1 vs your Rachaad White 9.3, +30%); Ratcliffe has him 10.6 a game vs 11.2; playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:bamknight",
      "first_seen": "Wed Nov 18 2026 07:43 PM PT"
     }
    ],
    "watch": [
     {
-     "name": "Geno Smith",
-     "pos": "QB",
-     "team": "NYJ",
-     "acq": "Waivers, clears Nov 21",
-     "over": "Packers",
-     "pct": 31,
-     "gain": 5.8,
-     "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 16.8 vs 23.3 \u00b7 Koerner 16.8 vs 23.9 \u00b7 Yahoo 19.3 vs 25.9 \u00b7 Gotham 15.5 vs 22.7 - WORSE this week",
-     "scout": true,
-     "id": "watch:genosmith",
-     "first_seen": "Wed Nov 18 2026 05:40 AM PT"
-    },
-    {
      "name": "J.J. McCarthy",
      "pos": "QB",
      "team": "NYG",
      "acq": "Free agent",
-     "over": "Packers",
-     "pct": 19,
-     "gain": 7.2,
+     "over": "Darren Waller",
+     "pct": 23,
+     "gain": 8.3,
      "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 17.7 vs 23.3 \u00b7 Koerner 17.8 vs 23.9 \u00b7 Yahoo 17.7 vs 25.9 \u00b7 Gotham not read vs 22.7 - WORSE this week",
      "scout": true,
      "id": "watch:jjmccarthy",
      "first_seen": "Mon Nov 16 2026 06:34 PM PT"
+    },
+    {
+     "name": "Geno Smith",
+     "pos": "QB",
+     "team": "NYJ",
+     "acq": "Waivers, clears Nov 21",
+     "over": "Darren Waller",
+     "pct": 19,
+     "gain": 7.6,
+     "note": "Scout pick (rest of season): This week vs your QB Jayden Daniels: Ratcliffe 16.0 vs 23.3 \u00b7 Koerner 16.8 vs 23.9 \u00b7 Yahoo 19.3 vs 25.9 \u00b7 Gotham 15.5 vs 22.7 - WORSE this week",
+     "scout": true,
+     "id": "watch:genosmith",
+     "first_seen": "Wed Nov 18 2026 05:40 AM PT"
     },
     {
      "name": "Chris Godwin Jr.",
@@ -827,10 +842,10 @@
      "acq": "free agent",
      "over": "Caleb Douglas",
      "rat_ros": 8.1,
-     "over_ros": 9.0,
-     "pct": -10,
-     "gain": -0.9,
-     "rat_wk": 7.7,
+     "over_ros": 8.8,
+     "pct": -8,
+     "gain": -0.7,
+     "rat_wk": 8.4,
      "koe_wk": 10.76,
      "clay_ros": 7.06,
      "vegas_wk": 8.09,
@@ -857,36 +872,27 @@
    "cover": [
     {
      "title": "WR1, Weeks 13-14 Fill",
-     "target": "Target 12.1 pts",
+     "target": "Target 12.2 pts",
      "mark": "gold",
-     "why": "Full strength ~16.1 (Pickens). Wk 13 Pickens ~14.1 (hard matchup vs SEA) \u00b7 Wk 14 Waddle ~10.1 (Pickens on bye, Waddle slides in).",
+     "why": "Full strength ~16.1 (Pickens). Wk 13 Pickens ~14.2 (hard matchup vs SEA) \u00b7 Wk 14 Waddle ~10.2 (Pickens on bye, Waddle slides in).",
      "picks": [],
      "id": "cover:wr1weeks1314fill",
      "first_seen": "Tue Nov 17 2026 02:33 AM PT"
     },
     {
-     "title": "TE, Week 11 Fill",
-     "target": "Target 8.3 pts",
-     "mark": "gold",
-     "why": "Full strength ~11.9 (Fannin). Wk 11 Waller ~8.3 (Fannin on bye, Waller slides in).",
-     "picks": [],
-     "id": "cover:teweek11fill",
-     "first_seen": "Mon Nov 16 2026 08:39 PM PT"
-    },
-    {
      "title": "WR2, Week 14 Fill",
-     "target": "Target 9.4 pts",
+     "target": "Target 9.5 pts",
      "mark": "gold",
-     "why": "Full strength ~11.8 (Odunze). Wk 14 Odunze ~9.4 (hard matchup vs MIA).",
+     "why": "Full strength ~11.8 (Odunze). Wk 14 Odunze ~9.5 (hard matchup vs MIA).",
      "picks": [],
      "id": "cover:wr2week14fill",
      "first_seen": "Wed Nov 18 2026 05:40 AM PT"
     },
     {
      "title": "FLEX2, Week 14 Fill",
-     "target": "Target 8.9 pts",
+     "target": "Target 9.0 pts",
      "mark": "gold",
-     "why": "Full strength ~11.3 (Douglas). Wk 14 Hockenson ~8.9 (Douglas has a worse matchup).",
+     "why": "Full strength ~11.3 (Douglas). Wk 14 Hockenson ~9.0 (Douglas has a worse matchup).",
      "picks": [],
      "id": "cover:flex2week14fill",
      "first_seen": "Wed Nov 18 2026 08:35 AM PT"
@@ -900,7 +906,7 @@
      "pos": "WR",
      "team": "MIA",
      "status": "Q",
-     "wk": 10.89,
+     "wk": 10.84,
      "locks": "Sun 10:00 AM",
      "lock_utc": "2026-11-22T18:00:00+00:00",
      "bench": [
@@ -908,7 +914,7 @@
        "name": "Jaylen Waddle",
        "pos": "WR",
        "team": "DEN",
-       "wk": 11.03,
+       "wk": 11.01,
        "locks": "Sun 1:25 PM",
        "lock_utc": "2026-11-22T21:25:00+00:00"
       }
@@ -918,28 +924,28 @@
        "name": "Tre' Harris",
        "pos": "WR",
        "team": "LAC",
-       "wk": 9.5,
+       "wk": 9.7,
        "koe": 8.74,
        "locks": "Sun 1:05 PM",
        "lock_utc": "2026-11-22T21:05:00+00:00"
       },
       {
+       "name": "Chris Godwin Jr.",
+       "pos": "WR",
+       "team": "TB",
+       "wk": 8.4,
+       "koe": 10.76,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-22T18:00:00+00:00"
+      },
+      {
        "name": "Pat Bryant",
        "pos": "WR",
        "team": "DEN",
-       "wk": 8.6,
+       "wk": 8.3,
        "koe": 7.64,
        "locks": "Sun 1:25 PM",
        "lock_utc": "2026-11-22T21:25:00+00:00"
-      },
-      {
-       "name": "Laquon Treadwell",
-       "pos": "WR",
-       "team": "IND",
-       "wk": 7.8,
-       "koe": 6.44,
-       "locks": "Thu 5:15 PM",
-       "lock_utc": "2026-11-20T01:15:00+00:00"
       }
      ],
      "id": "backup:calebdouglas",
@@ -951,7 +957,7 @@
      "pos": "TE",
      "team": "MIN",
      "status": "Q",
-     "wk": 7.59,
+     "wk": 11.01,
      "locks": "Sun 5:20 PM",
      "lock_utc": "2026-11-23T01:20:00+00:00",
      "bench": [
@@ -966,19 +972,10 @@
      ],
      "fa": [
       {
-       "name": "Darnell Washington",
-       "pos": "TE",
-       "team": "PIT",
-       "wk": 6.9,
-       "koe": 6.38,
-       "locks": "Sun 1:25 PM",
-       "lock_utc": "2026-11-22T21:25:00+00:00"
-      },
-      {
        "name": "Cade Otton",
        "pos": "TE",
        "team": "TB",
-       "wk": 6.9,
+       "wk": 7.3,
        "koe": 8.74,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-22T18:00:00+00:00"
@@ -987,8 +984,17 @@
        "name": "Brevyn Spann-Ford",
        "pos": "TE",
        "team": "DAL",
-       "wk": 6.6,
+       "wk": 6.7,
        "koe": 7.32,
+       "locks": "Sun 10:00 AM",
+       "lock_utc": "2026-11-22T18:00:00+00:00"
+      },
+      {
+       "name": "Gunnar Helm",
+       "pos": "TE",
+       "team": "TEN",
+       "wk": 6.3,
+       "koe": 5.7,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-22T18:00:00+00:00"
       }
@@ -1007,11 +1013,11 @@
      "team": "DET",
      "acq": "free agent",
      "over": "Travis Kelce",
-     "rat_ros": 11.5,
-     "over_ros": 11.4,
-     "pct": 0,
-     "gain": 0.0,
-     "rat_wk": 10.8,
+     "rat_ros": 11.8,
+     "over_ros": 11.1,
+     "pct": 6,
+     "gain": 0.6,
+     "rat_wk": 11.3,
      "koe_wk": 10.64,
      "clay_ros": 10.36,
      "vegas_wk": 9.3,
@@ -1033,25 +1039,45 @@
      "sharp_rank": 5,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Koerner (this week: 10.6 vs your Travis Kelce 8.6, +24%); Ratcliffe has him 11.5 a game vs 11.4; playoff offense #5 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Koerner (this week: 10.6 vs your Travis Kelce 8.6, +24%); Ratcliffe has him 11.8 a game vs 11.1; playoff offense #5 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:samlaporta",
      "first_seen": "Tue Nov 17 2026 02:16 AM PT"
-    },
+    }
+   ],
+   "watch": [
     {
      "name": "Keenan Allen",
      "pos": "WR",
      "team": "SF",
-     "acq": "Free agent",
-     "over": "Lions",
-     "pct": 28,
-     "gain": 3.8,
-     "note": "Scout pick (rest of season): This week vs your FLEX Jakobi Meyers: Ratcliffe 9.9 vs 10.4 \u00b7 Koerner 7.3 vs 10.4 \u00b7 Yahoo 6.5 vs 9.3 \u00b7 Gotham 9.8 vs 9.0 - mixed - Ratcliffe says worse",
+     "acq": "free agent",
+     "over": "Jakobi Meyers",
+     "rat_ros": 11.2,
+     "over_ros": 9.9,
+     "pct": 13,
+     "gain": 1.3,
+     "rat_wk": 9.1,
+     "koe_wk": 7.28,
+     "clay_ros": 7.45,
+     "vegas_wk": 9.17,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Ratcliffe",
+       "span": "rest of season",
+       "his": 11.2,
+       "over": "Jakobi Meyers",
+       "over_v": 9.9,
+       "pct": 13,
+       "gain": 1.3
+      }
+     ],
+     "sharp_po": 68.5,
+     "sharp_rank": 15,
+     "rising": null,
      "scout": true,
-     "id": "talk:keenanallen",
-     "first_seen": "Thu Nov 19 2026 02:34 AM PT"
-    }
-   ],
-   "watch": [
+     "id": "watch:keenanallen",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
+    },
     {
      "name": "Tyler Bass",
      "pos": "K",
@@ -1104,7 +1130,7 @@
      "over_ros": 8.6,
      "pct": -9,
      "gain": -0.8,
-     "rat_wk": 10.7,
+     "rat_wk": 10.8,
      "koe_wk": 10.22,
      "clay_ros": 9.33,
      "vegas_wk": 10.2,
@@ -1131,45 +1157,69 @@
    "cover": [
     {
      "title": "WR1, Week 12 Fill",
-     "target": "Target 18.5 pts",
+     "target": "Target 18.4 pts",
      "mark": "gold",
-     "why": "Full strength ~13.2 (Jefferson). Wk 12 Flowers ~18.5 (Jefferson moves up to WR2, Flowers slides in).",
+     "why": "Full strength ~13.2 (Jefferson). Wk 12 Flowers ~18.4 (Jefferson moves up to WR2, Flowers slides in).",
      "picks": [],
      "id": "cover:wr1week12fill",
      "first_seen": "Sun Nov 15 2026 02:07 PM PT"
     },
     {
      "title": "RB1, Week 11 Fill",
-     "target": "Target 15.6 pts",
+     "target": "Target 14.6 pts",
      "mark": "gold",
-     "why": "Full strength ~20.8 (Robinson). Wk 11 Swift ~15.6 (Robinson on bye, Swift slides in).",
+     "why": "Full strength ~20.8 (Robinson). Wk 11 Swift ~14.6 (Robinson on bye, Swift slides in).",
      "picks": [],
      "id": "cover:rb1week11fill",
      "first_seen": "Wed Nov 18 2026 03:36 PM PT"
     },
     {
-     "title": "WR2, Weeks 13-14 Fill",
-     "target": "Target 13.9 pts",
+     "title": "WR2, Week 14 Fill",
+     "target": "Target 16.6 pts",
      "mark": "gold",
-     "why": "Full strength ~13.1 (Cooper). Wk 13 Metcalf ~10.9 (Cooper on bye, Metcalf slides in) \u00b7 Wk 14 Flowers ~16.8 (Cooper moves up to WR3, Flowers slides in).",
-     "picks": [
-      "Keenan Allen (Free agent)",
-      "DeMario Douglas (Waivers, clears Nov 20)"
-     ],
-     "id": "cover:wr2weeks1314fill",
-     "first_seen": "Tue Nov 17 2026 03:36 PM PT"
+     "why": "Full strength ~13.1 (Cooper). Wk 14 Flowers ~16.6 (Cooper moves up to WR3, Flowers slides in).",
+     "picks": [],
+     "id": "cover:wr2week14fill",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
     },
     {
-     "title": "FLEX, Week 11 Fill",
-     "target": "Target 10.4 pts",
+     "title": "WR3, Week 13 Fill",
+     "target": "Target 9.2 pts",
      "mark": "gold",
-     "why": "Full strength ~13.4 (Gordon). Wk 11 Meyers ~10.4 (Gordon moves up to RB2, Meyers slides in).",
+     "why": "Full strength ~12.5 (Flowers). Wk 13 Meyers ~9.2 (Flowers on bye, Meyers slides in).",
      "picks": [],
-     "id": "cover:flexweek11fill",
-     "first_seen": "Thu Nov 19 2026 12:36 PM PT"
+     "id": "cover:wr3week13fill",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
     }
    ],
-   "block": [],
+   "block": [
+    {
+     "week": 12,
+     "opp": "Bad and Boujee",
+     "name": "Sam LaPorta",
+     "pos": "TE",
+     "team": "DET",
+     "acq": "free agent",
+     "would_start_over": "Tyler Higbee",
+     "rat_ros": 11.8,
+     "their_ros": 9.5,
+     "id": "block:samlaporta",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
+    },
+    {
+     "week": 12,
+     "opp": "Bad and Boujee",
+     "name": "Kyle Pitts Sr.",
+     "pos": "TE",
+     "team": "ATL",
+     "acq": "waivers until Nov 21",
+     "would_start_over": "Tyler Higbee",
+     "rat_ros": 11.5,
+     "their_ros": 9.5,
+     "id": "block:kylepitts",
+     "first_seen": "Thu Nov 19 2026 03:35 PM PT"
+    }
+   ],
    "backup": [
     {
      "starter": "Jakobi Meyers",
@@ -1177,7 +1227,7 @@
      "pos": "WR",
      "team": "JAX",
      "status": "Q",
-     "wk": 10.38,
+     "wk": 10.44,
      "locks": "Sun 10:00 AM",
      "lock_utc": "2026-11-22T18:00:00+00:00",
      "bench": [
@@ -1185,7 +1235,7 @@
        "name": "Omar Cooper Jr.",
        "pos": "WR",
        "team": "NYJ",
-       "wk": 3.78,
+       "wk": null,
        "locks": "Sun 1:05 PM",
        "lock_utc": "2026-11-22T21:05:00+00:00"
       }
@@ -1195,28 +1245,28 @@
        "name": "Sam LaPorta",
        "pos": "TE",
        "team": "DET",
-       "wk": 10.8,
+       "wk": 11.3,
        "koe": 10.64,
        "locks": "Sun 10:00 AM",
        "lock_utc": "2026-11-22T18:00:00+00:00"
       },
       {
-       "name": "Keenan Allen",
-       "pos": "WR",
-       "team": "SF",
-       "wk": 9.9,
-       "koe": 7.28,
-       "locks": "Sun 5:20 PM",
-       "lock_utc": "2026-11-23T01:20:00+00:00"
+       "name": "Rico Dowdle",
+       "pos": "RB",
+       "team": "PIT",
+       "wk": 10.7,
+       "koe": 10.7,
+       "locks": "Sun 1:25 PM",
+       "lock_utc": "2026-11-22T21:25:00+00:00"
       },
       {
-       "name": "Xavier Hutchinson",
+       "name": "Tre' Harris",
        "pos": "WR",
-       "team": "HOU",
-       "wk": 9.5,
-       "koe": 9.63,
-       "locks": "Thu 5:15 PM",
-       "lock_utc": "2026-11-20T01:15:00+00:00"
+       "team": "LAC",
+       "wk": 9.7,
+       "koe": 8.74,
+       "locks": "Sun 1:05 PM",
+       "lock_utc": "2026-11-22T21:05:00+00:00"
       }
      ],
      "id": "backup:jakobimeyers",
