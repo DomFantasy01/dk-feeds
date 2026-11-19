@@ -368,6 +368,8 @@ try:
             runs = json.loads(_sp.run(["gh", "api", "repos/DomFantasy01/dk-feeds/actions/runs?per_page=100"], capture_output=True, text=True, timeout=60, check=True).stdout).get("workflow_runs", []); _src = "gh"
         except Exception:   # last resort: the copy every Dispatch build saves (up to ~2 hours old)
             _g = load("dispatch_out/gh_runs.json")
+            if not _g:   # Nov 19: the scheduled check doesn't have the build's files on disk - read the saved copy from GitHub
+                _g = json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/gh_runs.json?t=%d" % int(NOW.timestamp()), timeout=30).read())
             if not _g: raise
             runs = _g.get("workflow_runs", []); _src = "saved"
     day = [r for r in runs if iso(r.get("created_at")) and iso(r["created_at"]) >= NOW - dt.timedelta(hours=24) and r.get("status") == "completed"]
