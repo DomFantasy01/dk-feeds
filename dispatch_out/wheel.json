@@ -1,47 +1,14 @@
 {
- "built": "Wed Nov 18 2026 5:54 PM PT",
+ "built": "Wed Nov 18 2026 7:46 PM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Wed Nov 18 2026 5:54 PM PT",
- "champ_built": "Wed Nov 18 2026 05:53 PM PT",
+ "pickups_built": "Wed Nov 18 2026 7:45 PM PT",
+ "champ_built": "Wed Nov 18 2026 07:43 PM PT",
  "leagues": {
   "1": {
    "base": 0.671,
-   "week_win": 0.662,
+   "week_win": 0.661,
    "picks": [
-    {
-     "name": "Kyle Pitts Sr.",
-     "replaces": "Dalton Kincaid",
-     "pos": "TE",
-     "team": "ATL",
-     "tier": "MUST",
-     "grade": 71,
-     "spokes": {
-      "team": 7.4,
-      "consensus": 15.0,
-      "upside": 14.4,
-      "drop": 20.0,
-      "stakes": 14.0
-     },
-     "total": 71,
-     "verdict": "GO",
-     "vwhy": "71/100, every spoke 5+",
-     "why": {
-      "team": "ATL offense 20.1 a game (#24), last 3 games 10.0 (#32) - trending down; team 30% wins; workload 15/15",
-      "consensus": "+31% vs Dalton Kincaid (top-3 average); 2 of 4 sources have him ahead",
-      "upside": "69 pts rest of season; Weeks 15-17 W15 WAS (#2), W16 TB (#10), W17 NO (#7); path to a bigger role",
-      "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.5; this week's game swings the playoff odds 45% to 78%; keeps him from this week's opponent Remember the Tutens; 6 rivals would start him"
-     },
-     "move": {
-      "drop": "Dalton Kincaid",
-      "d_week": 0.0,
-      "d_playoff": 0.005,
-      "d_title": 0.002,
-      "ppg": 0.9,
-      "games": 3
-     }
-    },
     {
      "name": "Harrison Butker",
      "replaces": "Will Reichard",
@@ -54,50 +21,83 @@
       "consensus": 14.0,
       "upside": 11.5,
       "drop": 20.0,
-      "stakes": 7.2
+      "stakes": 7.6
      },
-     "total": 67,
+     "total": 68,
      "verdict": "LEAN",
-     "vwhy": "67/100",
+     "vwhy": "68/100",
      "why": {
       "team": "KC offense 26.3 a game (#8), last 3 games 31.3 (#5) - trending up; team 78% wins; workload 8/15",
-      "consensus": "+47% vs Will Reichard (top-3 average); 2 of 5 sources have him ahead",
+      "consensus": "+46% vs Will Reichard (top-3 average); 2 of 5 sources have him ahead",
       "upside": "79 pts rest of season; Weeks 15-17 W15 NE (#16), W16 SF (#21), W17 LAC (#6)",
       "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season -0.7; this week's game swings the playoff odds 45% to 78%; 6 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season -0.6; this week's game swings the playoff odds 45% to 78%; 6 rivals would start him"
      },
      "move": {
       "drop": "Dalton Kincaid",
       "d_week": 0.0,
-      "d_playoff": -0.007,
-      "d_title": 0.0045,
+      "d_playoff": -0.006,
+      "d_title": 0.0055,
       "ppg": 0.6,
       "games": 5
      }
     },
     {
+     "name": "Kyle Pitts Sr.",
+     "replaces": "Travis Kelce",
+     "pos": "TE",
+     "team": "ATL",
+     "tier": "STASH",
+     "grade": 58,
+     "spokes": {
+      "team": 7.4,
+      "consensus": 7.5,
+      "upside": 14.4,
+      "drop": 20.0,
+      "stakes": 14.0
+     },
+     "total": 63,
+     "verdict": "LEAN",
+     "vwhy": "63/100",
+     "why": {
+      "team": "ATL offense 20.1 a game (#24), last 3 games 10.0 (#32) - trending down; team 30% wins; workload 15/15",
+      "consensus": "+0% vs Travis Kelce (top-3 average); 1 of 4 sources have him ahead",
+      "upside": "69 pts rest of season; Weeks 15-17 W15 WAS (#2), W16 TB (#10), W17 NO (#7); path to a bigger role",
+      "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.5; this week's game swings the playoff odds 45% to 78%; keeps him from this week's opponent Remember the Tutens; 6 rivals would start him"
+     },
+     "move": {
+      "drop": "Dalton Kincaid",
+      "d_week": 0.0,
+      "d_playoff": 0.005,
+      "d_title": 0.0015,
+      "ppg": 0.9,
+      "games": 3
+     }
+    },
+    {
      "name": "Chris Rodriguez Jr.",
-     "replaces": "Travis Etienne Jr.",
+     "replaces": "Kaelon Black",
      "pos": "RB",
      "team": "JAX",
      "tier": "STASH",
-     "grade": 49,
+     "grade": 52,
      "spokes": {
       "team": 16.6,
-      "consensus": 0.3,
+      "consensus": 2.1,
       "upside": 12.3,
       "drop": 20.0,
-      "stakes": 10.0
+      "stakes": 8.0
      },
      "total": 59,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts",
      "why": {
       "team": "JAX offense 29.9 a game (#4), last 3 games 38.3 (#2) - trending up; team 78% wins; workload 9/15",
-      "consensus": "-28% vs Travis Etienne Jr. (top-3 average); 0 of 7 sources have him ahead",
+      "consensus": "-26% vs Kaelon Black (top-3 average); 1 of 7 sources have him ahead",
       "upside": "66 pts rest of season; Weeks 15-17 W15 HOU (#15), W16 DAL (#1), W17 WAS (#19); path to a bigger role",
       "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 45% to 78%; 3 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 45% to 78%; 2 rivals would start him"
      },
      "move": {
       "drop": "Dalton Kincaid",
@@ -109,61 +109,54 @@
      }
     },
     {
+     "name": "Kalif Raymond",
+     "replaces": "Stefon Diggs",
+     "pos": "WR",
+     "team": "CHI",
+     "tier": "WATCH",
+     "grade": 44,
+     "spokes": {
+      "team": 16.2,
+      "consensus": 0.0,
+      "upside": 9.3,
+      "drop": 10,
+      "stakes": 10
+     },
+     "total": 46,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Experts",
+     "why": {
+      "team": "CHI offense 26.8 a game (#7), last 3 games 30.3 (#6) - trending up; team 78% wins; workload 12/15",
+      "consensus": "-52% vs Stefon Diggs (top-3 average); 0 of 7 sources have him ahead",
+      "upside": "45 pts rest of season; Weeks 15-17 W15 BUF (#10), W16 GB (#4), W17 DET (#12)",
+      "drop": "not in the simulator's pool - scored even",
+      "stakes": "not in the simulator's pool - scored even"
+     },
+     "move": null
+    },
+    {
      "name": "Juwan Johnson",
-     "replaces": "Dalton Kincaid",
+     "replaces": "Travis Kelce",
      "pos": "TE",
      "team": "NO",
      "tier": "WATCH",
-     "grade": 47,
+     "grade": 44,
      "spokes": {
       "team": 10.1,
-      "consensus": 2.7,
+      "consensus": 0.0,
       "upside": 9.6,
       "drop": 20.0,
-      "stakes": 12.0
+      "stakes": 10.0
      },
-     "total": 54,
+     "total": 50,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts",
      "why": {
       "team": "NO offense 22.4 a game (#16), last 3 games 16.7 (#27) - trending down; team 33% wins; workload 15/15",
-      "consensus": "-14% vs Dalton Kincaid (top-3 average); 0 of 6 sources have him ahead",
+      "consensus": "-34% vs Travis Kelce (top-3 average); 0 of 6 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 TB (#10), W16 ARI (#5), W17 ATL (#22)",
       "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 45% to 78%; keeps him from this week's opponent Remember the Tutens; 3 rivals would start him"
-     },
-     "move": {
-      "drop": "Dalton Kincaid",
-      "d_week": 0.0,
-      "d_playoff": 0.0,
-      "d_title": 0.0,
-      "ppg": 0.0,
-      "games": 0
-     }
-    },
-    {
-     "name": "Darren Waller",
-     "replaces": "Dalton Kincaid",
-     "pos": "TE",
-     "team": "CAR",
-     "tier": "WATCH",
-     "grade": 46,
-     "spokes": {
-      "team": 12.5,
-      "consensus": 4.6,
-      "upside": 8.0,
-      "drop": 20.0,
-      "stakes": 12.0
-     },
-     "total": 57,
-     "verdict": "NO MOVE",
-     "vwhy": "red flag (under 5): Experts",
-     "why": {
-      "team": "CAR offense 24.3 a game (#12), last 3 games 20.0 (#20) - trending down; team 44% wins; workload 15/15",
-      "consensus": "-11% vs Dalton Kincaid (top-3 average); 1 of 7 sources have him ahead",
-      "upside": "54 pts rest of season; Weeks 15-17 W15 CIN (#9), W16 PIT (#18), W17 SEA (#26)",
-      "drop": "drop Dalton Kincaid: his loss alone +0.0 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 45% to 78%; keeps him from this week's opponent Remember the Tutens; 4 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 45% to 78%; keeps him from this week's opponent Remember the Tutens; 2 rivals would start him"
      },
      "move": {
       "drop": "Dalton Kincaid",
@@ -177,8 +170,8 @@
    ]
   },
   "2": {
-   "base": 0.063,
-   "week_win": 0.741,
+   "base": 0.061,
+   "week_win": 0.74,
    "picks": [
     {
      "name": "Kalif Raymond",
@@ -243,26 +236,26 @@
       "team": 6.7,
       "consensus": 8.0,
       "upside": 6.7,
-      "drop": 20.0,
-      "stakes": 10.5
+      "drop": 18.0,
+      "stakes": 10.0
      },
-     "total": 52,
+     "total": 49,
      "verdict": "PASS",
-     "vwhy": "52/100",
+     "vwhy": "49/100",
      "why": {
       "team": "LAC offense 16.0 a game (#32), last 3 games 18.0 (#25); team 11% wins; workload 15/15",
       "consensus": "-8% vs Germie Bernard (top-3 average); 3 of 7 sources have him ahead",
       "upside": "58 pts rest of season; Weeks 15-17 W15 SF (#11), W16 MIA (#30), W17 KC (#31)",
-      "drop": "drop Jaguars: his loss alone +0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.6; playoff odds for the season +0.1; this week's game swings the playoff odds 1% to 8%; 4 rivals would start him"
+      "drop": "drop Kenny Gainwell: his loss alone +0.0 playoff odds; a rival would start him (Rams house)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 8%; 4 rivals would start him"
      },
      "move": {
-      "drop": "Jaguars",
-      "d_week": 0.006,
-      "d_playoff": 0.001,
-      "d_title": -0.0005,
-      "ppg": -6.4,
-      "games": 1
+      "drop": "Kenny Gainwell",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
+      "d_title": 0.0,
+      "ppg": 0.0,
+      "games": 0
      }
     },
     {
@@ -276,26 +269,26 @@
       "team": 8.3,
       "consensus": 9.1,
       "upside": 7.5,
-      "drop": 20.0,
-      "stakes": 10.5
+      "drop": 18.0,
+      "stakes": 10.0
      },
-     "total": 55,
-     "verdict": "LEAN",
-     "vwhy": "55/100",
+     "total": 53,
+     "verdict": "PASS",
+     "vwhy": "53/100",
      "why": {
       "team": "BAL offense 20.9 a game (#22), last 3 games 13.3 (#31) - trending down; team 40% wins; workload 15/15",
       "consensus": "-1% vs Germie Bernard (top-3 average); 3 of 7 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 PIT (#17), W16 CLE (#19), W17 CIN (#24)",
-      "drop": "drop Jaguars: his loss alone +0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.6; playoff odds for the season +0.1; this week's game swings the playoff odds 1% to 8%; 3 rivals would start him"
+      "drop": "drop Kenny Gainwell: his loss alone +0.0 playoff odds; a rival would start him (Rams house)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 8%; 3 rivals would start him"
      },
      "move": {
-      "drop": "Jaguars",
-      "d_week": 0.006,
-      "d_playoff": 0.001,
-      "d_title": -0.0005,
-      "ppg": -6.4,
-      "games": 1
+      "drop": "Kenny Gainwell",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
+      "d_title": 0.0,
+      "ppg": 0.0,
+      "games": 0
      }
     },
     {
@@ -309,33 +302,33 @@
       "team": 12.1,
       "consensus": 6.2,
       "upside": 10.7,
-      "drop": 20.0,
-      "stakes": 8.5
+      "drop": 18.0,
+      "stakes": 8.0
      },
-     "total": 58,
+     "total": 55,
      "verdict": "LEAN",
-     "vwhy": "58/100",
+     "vwhy": "55/100",
      "why": {
       "team": "HOU offense 25.9 a game (#9), last 3 games 29.7 (#8) - trending up; team 33% wins; workload 6/15",
       "consensus": "-13% vs Germie Bernard (top-3 average); 1 of 3 sources have him ahead",
       "upside": "55 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
-      "drop": "drop Jaguars: his loss alone +0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.6; playoff odds for the season +0.1; this week's game swings the playoff odds 1% to 8%"
+      "drop": "drop Kenny Gainwell: his loss alone +0.0 playoff odds; a rival would start him (Rams house)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 8%"
      },
      "move": {
-      "drop": "Jaguars",
-      "d_week": 0.006,
-      "d_playoff": 0.001,
-      "d_title": -0.0005,
-      "ppg": -6.4,
-      "games": 1
+      "drop": "Kenny Gainwell",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
+      "d_title": 0.0,
+      "ppg": 0.0,
+      "games": 0
      }
     }
    ]
   },
   "3": {
-   "base": 0.062,
-   "week_win": 0.424,
+   "base": 0.063,
+   "week_win": 0.426,
    "picks": [
     {
      "name": "Kalif Raymond",
@@ -374,26 +367,26 @@
       "team": 11.8,
       "consensus": 3.0,
       "upside": 10.9,
-      "drop": 19.6,
-      "stakes": 9.7
+      "drop": 20.0,
+      "stakes": 10.0
      },
-     "total": 55,
+     "total": 56,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts",
      "why": {
       "team": "DEN offense 22.0 a game (#20), last 3 games 28.0 (#9) - trending up; team 78% wins; workload 8/15",
       "consensus": "-12% vs Caleb Douglas (top-3 average); 0 of 6 sources have him ahead",
       "upside": "56 pts rest of season; Weeks 15-17 W15 LV (#9), W16 BUF (#10), W17 NE (#2)",
-      "drop": "drop Steelers: his loss alone -0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.5; playoff odds for the season -0.1; this week's game swings the playoff odds 1% to 13%; 4 rivals would start him"
+      "drop": "drop Packers: his loss alone +0.0 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 13%; 4 rivals would start him"
      },
      "move": {
-      "drop": "Steelers",
-      "d_week": 0.005,
-      "d_playoff": -0.001,
+      "drop": "Packers",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
       "d_title": 0.0,
-      "ppg": -2.5,
-      "games": 2
+      "ppg": -1.0,
+      "games": 1
      }
     },
     {
@@ -407,26 +400,26 @@
       "team": 13.1,
       "consensus": 3.5,
       "upside": 10.9,
-      "drop": 19.6,
-      "stakes": 9.7
+      "drop": 20.0,
+      "stakes": 10.0
      },
-     "total": 57,
+     "total": 58,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts",
      "why": {
       "team": "HOU offense 25.9 a game (#9), last 3 games 29.7 (#8) - trending up; team 33% wins; workload 9/15",
       "consensus": "-9% vs Caleb Douglas (top-3 average); 0 of 7 sources have him ahead",
       "upside": "57 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
-      "drop": "drop Steelers: his loss alone -0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.5; playoff odds for the season -0.1; this week's game swings the playoff odds 1% to 13%; 4 rivals would start him"
+      "drop": "drop Packers: his loss alone +0.0 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 1% to 13%; 4 rivals would start him"
      },
      "move": {
-      "drop": "Steelers",
-      "d_week": 0.005,
-      "d_playoff": -0.001,
+      "drop": "Packers",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
       "d_title": 0.0,
-      "ppg": -2.5,
-      "games": 2
+      "ppg": -1.0,
+      "games": 1
      }
     },
     {
@@ -456,43 +449,36 @@
      "move": null
     },
     {
-     "name": "Hunter Henry",
-     "replaces": "Darren Waller",
-     "pos": "TE",
-     "team": "NE",
+     "name": "Bam Knight",
+     "replaces": "David Montgomery",
+     "pos": "RB",
+     "team": "ARI",
      "tier": "WATCH",
-     "grade": 41,
+     "grade": 39,
      "spokes": {
-      "team": 10.3,
-      "consensus": 10.8,
-      "upside": 10.4,
-      "drop": 19.6,
-      "stakes": 11.7
+      "team": 2.1,
+      "consensus": 4.0,
+      "upside": 12.0,
+      "drop": 10,
+      "stakes": 10
      },
-     "total": 63,
-     "verdict": "LEAN",
-     "vwhy": "63/100",
+     "total": 38,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Team, Experts",
      "why": {
-      "team": "NE offense 22.1 a game (#18), last 3 games 20.3 (#18); team 50% wins; workload 10/15",
-      "consensus": "+5% vs Darren Waller (top-3 average); 2 of 4 sources have him ahead",
-      "upside": "49 pts rest of season; Weeks 15-17 W15 KC (#6), W16 NYJ (#11), W17 DEN (#3)",
-      "drop": "drop Steelers: his loss alone -0.1 playoff odds; no rival would start him",
-      "stakes": "chance to win this week +0.5; playoff odds for the season -0.1; this week's game swings the playoff odds 1% to 13%; keeps him from this week's opponent Rushin Roulette \ud83c\udfc8; 3 rivals would start him"
+      "team": "ARI offense 18.4 a game (#29), last 3 games 14.0 (#29) - trending down; team 30% wins; workload 0/15",
+      "consensus": "-6% vs David Montgomery (top-3 average); 0 of 3 sources have him ahead",
+      "upside": "63 pts rest of season; Weeks 15-17 no Clay number for Weeks 15-17",
+      "drop": "not in the simulator's pool - scored even",
+      "stakes": "not in the simulator's pool - scored even"
      },
-     "move": {
-      "drop": "Steelers",
-      "d_week": 0.005,
-      "d_playoff": -0.001,
-      "d_title": 0.0,
-      "ppg": -2.5,
-      "games": 2
-     }
+     "move": null
     }
    ]
   },
   "4": {
-   "base": 0.837,
-   "week_win": 0.528,
+   "base": 0.84,
+   "week_win": 0.526,
    "picks": [
     {
      "name": "Keenan Allen",
@@ -505,26 +491,26 @@
       "team": 17.1,
       "consensus": 10.7,
       "upside": 11.2,
-      "drop": 10.4,
-      "stakes": 18.2
+      "drop": 0.0,
+      "stakes": 15.6
      },
-     "total": 68,
-     "verdict": "LEAN",
-     "vwhy": "68/100",
+     "total": 55,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Drop cost",
      "why": {
       "team": "SF offense 31.2 a game (#2), last 3 games 34.7 (#3) - trending up; team 89% wins; workload 9/15",
       "consensus": "+17% vs Jakobi Meyers (top-3 average); 2 of 7 sources have him ahead",
       "upside": "79 pts rest of season; Weeks 15-17 W15 LAC (#6), W16 KC (#31), W17 PHI (#3)",
-      "drop": "drop Omar Cooper Jr.: his loss alone -0.9 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Bad and Boujee)",
-      "stakes": "chance to win this week +0.7; playoff odds for the season +1.5; this week's game swings the playoff odds 75% to 91%; keeps him from this week's opponent Dream Killers; 4 rivals would start him"
+      "drop": "drop Jakobi Meyers: his loss alone -3.8 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Bad and Boujee)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.9; this week's game swings the playoff odds 76% to 92%; keeps him from this week's opponent Dream Killers; 4 rivals would start him"
      },
      "move": {
-      "drop": "Omar Cooper Jr.",
-      "d_week": 0.007,
-      "d_playoff": 0.015,
-      "d_title": -0.0007,
-      "ppg": -0.1,
-      "games": 7
+      "drop": "Jakobi Meyers",
+      "d_week": 0.0,
+      "d_playoff": 0.009,
+      "d_title": 0.0062,
+      "ppg": 0.7,
+      "games": 4
      }
     },
     {
@@ -538,24 +524,24 @@
       "team": 7.4,
       "consensus": 7.5,
       "upside": 14.4,
-      "drop": 15.2,
-      "stakes": 11.1
+      "drop": 14.0,
+      "stakes": 10.4
      },
-     "total": 56,
-     "verdict": "LEAN",
-     "vwhy": "56/100",
+     "total": 54,
+     "verdict": "STASH",
+     "vwhy": "big upside, cheap drop",
      "why": {
       "team": "ATL offense 20.1 a game (#24), last 3 games 10.0 (#32) - trending down; team 30% wins; workload 15/15",
       "consensus": "+0% vs Travis Kelce (top-3 average); 1 of 4 sources have him ahead",
       "upside": "69 pts rest of season; Weeks 15-17 W15 WAS (#2), W16 TB (#10), W17 NO (#7); path to a bigger role",
-      "drop": "drop Travis Kelce: his loss alone +0.3 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
-      "stakes": "chance to win this week -0.4; playoff odds for the season +0.3; this week's game swings the playoff odds 75% to 91%; 5 rivals would start him"
+      "drop": "drop Travis Kelce: his loss alone +0.0 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
+      "stakes": "chance to win this week +0.2; playoff odds for the season +0.1; this week's game swings the playoff odds 76% to 92%; 5 rivals would start him"
      },
      "move": {
       "drop": "Travis Kelce",
-      "d_week": -0.004,
-      "d_playoff": 0.003,
-      "d_title": 0.0033,
+      "d_week": 0.002,
+      "d_playoff": 0.001,
+      "d_title": 0.0047,
       "ppg": -2.5,
       "games": 4
      }
@@ -571,24 +557,24 @@
       "team": 15.2,
       "consensus": 1.3,
       "upside": 10.7,
-      "drop": 15.2,
-      "stakes": 9.1
+      "drop": 14.0,
+      "stakes": 8.0
      },
-     "total": 52,
+     "total": 49,
      "verdict": "NO MOVE",
      "vwhy": "red flag (under 5): Experts",
      "why": {
       "team": "KC offense 26.3 a game (#8), last 3 games 31.3 (#5) - trending up; team 78% wins; workload 9/15",
       "consensus": "-22% vs Jakobi Meyers (top-3 average); 0 of 7 sources have him ahead",
       "upside": "53 pts rest of season; Weeks 15-17 W15 NE (#2), W16 SF (#11), W17 LAC (#6)",
-      "drop": "drop Travis Kelce: his loss alone +0.3 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
-      "stakes": "chance to win this week -0.4; playoff odds for the season +0.3; this week's game swings the playoff odds 75% to 91%"
+      "drop": "drop Travis Kelce: his loss alone +0.0 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
+      "stakes": "chance to win this week +0.2; playoff odds for the season +0.0; this week's game swings the playoff odds 76% to 92%"
      },
      "move": {
       "drop": "Travis Kelce",
-      "d_week": -0.004,
-      "d_playoff": 0.003,
-      "d_title": 0.0002,
+      "d_week": 0.002,
+      "d_playoff": -0.0,
+      "d_title": -0.0007,
       "ppg": -5.8,
       "games": 2
      }
@@ -630,24 +616,24 @@
       "team": 13.1,
       "consensus": 5.0,
       "upside": 10.9,
-      "drop": 15.2,
-      "stakes": 11.1
+      "drop": 14.0,
+      "stakes": 10.0
      },
-     "total": 55,
-     "verdict": "LEAN",
-     "vwhy": "55/100",
+     "total": 53,
+     "verdict": "PASS",
+     "vwhy": "53/100",
      "why": {
       "team": "HOU offense 25.9 a game (#9), last 3 games 29.7 (#8) - trending up; team 33% wins; workload 9/15",
       "consensus": "-17% vs Jakobi Meyers (top-3 average); 2 of 7 sources have him ahead",
       "upside": "56 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
-      "drop": "drop Travis Kelce: his loss alone +0.3 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
-      "stakes": "chance to win this week -0.4; playoff odds for the season +0.3; this week's game swings the playoff odds 75% to 91%; keeps him from this week's opponent Dream Killers; 1 rivals would start him"
+      "drop": "drop Travis Kelce: his loss alone +0.0 playoff odds; a rival would start him (Lin's Team \ud83c\udfc8, Team Other)",
+      "stakes": "chance to win this week +0.2; playoff odds for the season +0.0; this week's game swings the playoff odds 76% to 92%; keeps him from this week's opponent Dream Killers; 1 rivals would start him"
      },
      "move": {
       "drop": "Travis Kelce",
-      "d_week": -0.004,
-      "d_playoff": 0.003,
-      "d_title": 0.0002,
+      "d_week": 0.002,
+      "d_playoff": -0.0,
+      "d_title": -0.0007,
       "ppg": -5.8,
       "games": 2
      }
@@ -664,7 +650,7 @@
    23,
    44
   ],
-  "logged": 106,
+  "logged": 108,
   "weeks": [
    10,
    11
