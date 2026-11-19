@@ -465,6 +465,15 @@ if FEEDS:
             # caution words of its own, the bad words belong to someone else and this is good news for our man.
             good = bool(GOOD.search(n["title"])) and not BAD.search(n["title"]) and not CAUTION.search(n["title"])
             if role != "opp" and resolved_news(n["title"]): good = True    # Nov 17: "Clears Concussion Protocol" is good news, not a red alert
+            # Nov 19 (Dom's DK II/III): "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
+            # came out RED on Montgomery - the "ruled out" belongs to Marks. When the headline has several clauses, judge
+            # the clause that names our man: if HIS clause is clean good news, the bad words elsewhere are about someone else.
+            _cl = [c for c in re.split(r"\s*(?:;|\||\u2014|\s-\s|,\s*(?:while|but|with|and)\s|\.\s)\s*", n["title"]) if c.strip()]
+            if len(_cl) > 1:
+                _mine = [c for c in _cl if nn.split()[-1] in _norm(c).split()]
+                if len(_mine) == 1 and not BAD.search(_mine[0]) and not CAUTION.search(_mine[0]) and (
+                        resolved_news(_mine[0]) or GOOD.search(_mine[0])):
+                    good = True
             if good: bad = caut = False
             if not (bad or caut or (good and role != "opp")): continue     # Oct 14 (Dom): a name in a start/sit list is not news - no 'worth knowing' cards
             sev = 2 if bad else 1 if caut else 0
