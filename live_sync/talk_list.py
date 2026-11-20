@@ -301,7 +301,8 @@ for lab, key, lid, lgn, myid in LG:
     try:
         from expert_split import load as _xs_load, check as _xs_check, ros_ranks as _xs_rr
         _XS = globals().get("_XS") or _xs_load(R); globals()["_XS"] = _XS
-        _RR, _RRAT = globals().get("_RR") or _xs_rr(R); globals()["_RR"] = (_RR, _RRAT)
+        if "_RR_CACHE" not in globals(): globals()["_RR_CACHE"] = _xs_rr(R)
+        _RR, _RRAT = globals()["_RR_CACHE"]
         _seen = set()
         for _m in (rost.get(str(myid)) or []) + [dict(name=t_["name"], pos=t_.get("pos"), team=t_.get("team"), slot="free agent") for t_ in talk[:2]]:   # top 2 of the talk list only - the rest are not being considered yet (Nov 20 test: 7 marks on fringe DK II receivers)
             _n = _m.get("name"); _p = (_m.get("pos") or "").split(",")[0]
