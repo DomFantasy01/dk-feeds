@@ -9,7 +9,7 @@ A split counts when it is 2+ points AND 25%+ of the bigger number. Tested Nov 20
 39 players (nearly every starter - 2 points is normal noise on a 25-point QB); 2 points + 25% marked 10, all real splits
 (Allen, Emmett Johnson, Price, Kiner, Fannin, White ...). Zeros are left out: a 0 is an injury/bye status, not an opinion.
 """
-import csv, os, re, statistics, unicodedata as _ud
+import csv, json, os, re, statistics, unicodedata as _ud
 
 PTS, PCT = 2.0, 0.25
 EXPERTS = (("Ratcliffe", "ftn_scored.csv"), ("Koerner", "koerner_scored.csv"), ("Clay", "clay_scored.csv"),
@@ -60,3 +60,12 @@ def check(S, lg, name):
                 out.append(dict(span="rest of season", expert="Ratcliffe", his=round(rp, 1), others=round(ca, 1),
                                 note=f"Ratcliffe {rp:.1f} a game vs Clay {ca:.1f} for the rest of the season"))
     return out
+
+
+def ros_ranks(R):
+    """{(pos, key): rank} from yahoo_drop/morning/ros_ranks.json (FantasyPros consensus, rest of season). Nov 20 (Dom)."""
+    try:
+        j = json.load(open(os.path.join(R, "yahoo_drop", "morning", "ros_ranks.json")))
+        return {(p, _nk(r["name"])): r["rank"] for p, rows in (j.get("pos") or {}).items() for r in rows if r.get("rank")}, j.get("updated") or j.get("read_utc")
+    except Exception:
+        return {}, None

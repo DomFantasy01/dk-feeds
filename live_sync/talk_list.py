@@ -299,14 +299,16 @@ for lab, key, lid, lgn, myid in LG:
     # Nov 20 (Dom): mark any player where one of our experts is 2+ points (and 25%+) off the others - a mark to talk about, never a number change
     splits = []
     try:
-        from expert_split import load as _xs_load, check as _xs_check
+        from expert_split import load as _xs_load, check as _xs_check, ros_ranks as _xs_rr
         _XS = globals().get("_XS") or _xs_load(R); globals()["_XS"] = _XS
+        _RR, _RRAT = globals().get("_RR") or _xs_rr(R); globals()["_RR"] = (_RR, _RRAT)
         _seen = set()
         for _m in (rost.get(str(myid)) or []) + [dict(name=t_["name"], pos=t_.get("pos"), team=t_.get("team"), slot="free agent") for t_ in talk[:2]]:   # top 2 of the talk list only - the rest are not being considered yet (Nov 20 test: 7 marks on fringe DK II receivers)
             _n = _m.get("name"); _p = (_m.get("pos") or "").split(",")[0]
             if not _n or _n in _seen or _p in ("DEF", "DST", "K") or (_m.get("status") or "") in ("O", "IR", "IR-R"): continue
             _seen.add(_n); _h = _xs_check(_XS, lgn, _n)
-            if _h: splits.append(dict(name=_n, pos=_p, team=_m.get("team"), slot=_m.get("slot"), splits=_h))
+            if _h: splits.append(dict(name=_n, pos=_p, team=_m.get("team"), slot=_m.get("slot"), splits=_h,
+                                      ros_rank=_RR.get((_p, nk(_n))), ros_rank_at=_RRAT))
     except Exception as _e: print(f"!! {lab}: expert split check skipped: {type(_e).__name__}: {_e}")
     out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup, fa_tags=fa_tags, splits=splits)
     # the brief, built to be heard

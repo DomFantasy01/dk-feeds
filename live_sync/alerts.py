@@ -933,7 +933,7 @@ try:
             fa = sp.get("slot") == "free agent"
             add(id=slug("split", W, lg, sp["name"]), color="grey", lg=lg, who=sp["name"], kind="split",
                 title=f"Experts split on {sp['name']}" + (" (free agent)" if fa else ""),
-                what="; ".join(notes) + ". Converted to this league's scoring.",
+                what="; ".join(notes) + ". Converted to this league's scoring." + (f" FantasyPros rest-of-season rank: {sp.get('pos')}{sp['ros_rank']}." if sp.get("ros_rank") else ""),
                 tie=("A free agent on your talk or watch list." if fa else f"On your {lg} roster ({sp.get('slot') or 'bench'})."),
                 fix="Talk it through before any move with him - find out which expert is right and why (stale season line, new role, injury news). This mark changes no numbers.",
                 receipts=[f"{x['expert']} {x['his']} vs {x['others']} ({x['span']})" for x in sp.get("splits") or []],

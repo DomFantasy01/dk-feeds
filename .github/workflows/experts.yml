@@ -12,6 +12,7 @@ on:
     - cron: '13 17 * * 0'    # Sun 9:13 AM PT - last check before the 10 AM games
     - cron: '31 17 * * 0'    # Sun 9:31 AM PT (Oct 25, Dom) - the experts' final pass lands after the inactives (~8:30-9:15)
     - cron: '7 23 * * 1'     # Mon 3:07 PM PT - before Monday night's game
+    - cron: '7 15 * * 3'     # Wed 7:07 AM PT (Nov 20, Dom) - rest-of-season rankings refresh after the Tuesday updates
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -31,11 +32,13 @@ jobs:
       - name: pull the experts' rankings
         id: pull
         run: python pull_experts.py .
+      - name: pull rest-of-season rankings (Nov 20, Dom - ranks as a playoff check)
+        run: python pull_ros_ranks.py . || echo "ROS ranks skipped"
       - name: save to the repo
         run: |
           git config user.name dk-feed-bot
           git config user.email dk-feed-bot@users.noreply.github.com
-          git add yahoo_drop/morning/expert_rankings.txt yahoo_drop/morning/expert_history
+          git add yahoo_drop/morning/expert_rankings.txt yahoo_drop/morning/expert_history; git add yahoo_drop/morning/ros_ranks.json 2>/dev/null || true
           git commit -m "expert rankings $(date -u +%Y-%m-%dT%H:%MZ)" || { echo "nothing changed"; exit 0; }
           for i in 1 2 3; do git pull --rebase -X theirs origin main && { bash .github/wait_pages.sh; git push; } && exit 0; sleep 5; done
           echo "save failed"; exit 1
