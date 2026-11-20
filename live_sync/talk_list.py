@@ -29,6 +29,14 @@ BAR, MINPTS, WATCH_LO = 0.15, 2.0, 0.10
 import unicodedata as _ud
 def _deacc(s): return "".join(c for c in _ud.normalize("NFKD", str(s)) if not _ud.combining(c))   # Nov 12: "Estimé" == "Estime"
 def nk(s): return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", _deacc(s).lower()))
+# Nov 20 (Dom asked about "Zonovan Knight"): Koerner/Clay/Vegas use legal first names where Yahoo uses the playing name
+# ("Bam Knight"), so a rostered man looked like a free agent and was put on the talk list. Second check: last name +
+# team + position, same as the meter's Sleeper fallback.
+_TM = {"ARZ": "ARI", "JAC": "JAX", "WSH": "WAS", "LA": "LAR", "GNB": "GB", "KAN": "KC", "NWE": "NE", "NOR": "NO", "SFO": "SF", "TAM": "TB", "LVR": "LV", "OAK": "LV"}
+def lk(name, team, pos):
+    n = re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", _deacc(name).lower()).split()
+    t = (team or "").upper().strip(); t = _TM.get(t, t)
+    return ((n[-1] if n else ""), t, (pos or "").split(",")[0].upper())
 def load(p, d=None):
     try: return json.load(open(p))
     except Exception: return d
@@ -113,12 +121,12 @@ for lab, key, lid, lgn, myid in LG:
     L = (M.get("leagues") or {}).get(lab) or {}
     me_st = (L.get("starters") or {}).get("me") or []
     # rosters: every team in the league, from the latest roster read
-    rost, owner = {}, {}
+    rost, owner, owner2 = {}, {}, {}
     try:
         for ln in open(O(R, f"yahoo_drop/scout/dk{lgn}_rosters_live.txt")):
             if ln.startswith("#") or "|" not in ln: continue
             t, slot, name, tm, pos, st = (ln.rstrip("\n").split("|") + [""] * 6)[:6]
-            rost.setdefault(t, []).append(dict(slot=slot, name=name, team=tm, pos=pos, status=st)); owner[nk(name)] = t
+            rost.setdefault(t, []).append(dict(slot=slot, name=name, team=tm, pos=pos, status=st)); owner[nk(name)] = t; owner2[lk(name, tm, pos)] = t
             if pos.split(",")[0] in ("DEF", "DST"): owner[nk(f"{tm.upper()} DEF")] = t   # Oct 31 fix: Yahoo says "Jaguars", Ratcliffe says "JAX DEF" - rostered defenses were showing as free
     except Exception: pass
     waiv = {}
@@ -137,7 +145,7 @@ for lab, key, lid, lgn, myid in LG:
     except Exception: OUTL = {}
     if not owner: print(f"!! {lab}: no roster read - no pickups, backups or blocks this build")
     for (lg_, k_), r in RAT.items():
-        if not owner or lg_ != lgn or k_ in owner: continue
+        if not owner or lg_ != lgn or k_ in owner or lk(r["name"], r["team"], r["pos"]) in owner2: continue
         ros, wk = pan(lgn, r["name"], r["pos"], r["team"]) or fnum(r["ros_pg"]), fnum(r["wk"])
         if ros is None and wk is None: continue
         if k_ in OUTL: wk = 0.0   # Oct 31: an OUT man is a zero this week whatever the expert file says
@@ -146,7 +154,7 @@ for lab, key, lid, lgn, myid in LG:
     _inpool = {nk(p["name"]) for p in pool}
     for _src in (CLAY, KOE, VEG):
         for (lg_, k_), r in _src.items():
-            if not owner or lg_ != lgn or k_ in owner or k_ in _inpool or k_ in SIDE: continue
+            if not owner or lg_ != lgn or k_ in owner or k_ in _inpool or k_ in SIDE or lk(r["name"], r.get("team"), r.get("pos")) in owner2: continue
             _inpool.add(k_)
             pool.append(dict(name=r["name"], pos=r["pos"], team=r["team"], ros=0.0, wk=0.0, rat_missing=True, acq=(f"waivers until {waiv[k_]}" if k_ in waiv else "free agent")))
     # Dom's weakest starter at each position (this week's lineup, Ratcliffe rest of season, his league's scoring)
