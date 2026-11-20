@@ -600,6 +600,8 @@ try:
     else: print("Scout: no Ratcliffe file - the engine's numbers stand alone")
 except Exception as _e: print("Scout: Ratcliffe skipped:", _e)
 def rc_has(p): return _ypk(p) in _RCW or _ypk(p) in _RCT
+_RCW_POS={}
+for _kk in _RCW: _RCW_POS[_kk[0]]=_RCW_POS.get(_kk[0],0)+1   # how many weekly lines Ratcliffe gave at each position
 # Oct 29 (Dom): SEAN KOERNER (FantasyLabs) beside Ratcliffe - this week only (FantasyLabs has no rest-of-season numbers).
 # A second opinion: it never sets a value or makes a pick; it is shown on every pick and every this-week comparison,
 # and a split between the two experts is called out.
@@ -625,6 +627,11 @@ def rc_weekly(p,x,ytag=""):
     if x in byes.get(p["team"],[]) or x<back(p,ytag): return 0.0 if rc_has(p) else None
     k=_ypk(p)
     if x==NOW and k in _RCW: return _RCW[k]
+    # Nov 19 (DK I, Kenneth Walker - groin, two DNPs): Ratcliffe kept Walker's rest-of-season line but dropped him from
+    # THIS week's list - his way of saying "out this week". The code below spread his season total into this week anyway
+    # (~23 points), handing Dom's DK I opponent a starter Ratcliffe doesn't expect to play (win chance 69% -> 50%).
+    # Rule: this week, a man Ratcliffe projects for the season but leaves off his weekly list (that position read) = 0.
+    if x==NOW and k in _RCT and _RCW_POS.get(k[0],0)>=10: return 0.0
     if k in _RCT:
         # Oct 28 (Dom): spread his rest-of-season total across the weeks by matchup - each week weighted by how that
         # opponent defends the position (the engine's RATIO, ~0.9-1.1), rescaled so the weeks still add to his total
