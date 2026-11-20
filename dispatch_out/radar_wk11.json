@@ -1,47 +1,47 @@
 {
  "week": 11,
- "built": "Fri Nov 20 2:28 PM PT",
- "built_utc": "2026-11-20T22:28:20.025701+00:00",
+ "built": "Fri Nov 20 2:54 PM PT",
+ "built_utc": "2026-11-20T22:54:54.522499+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Fri Nov 20 2:20 PM PT",
+   "pulled": "Fri Nov 20 2:46 PM PT",
    "pulled_ago": "8 min ago",
-   "items": 3498,
-   "newest": "10 min ago",
+   "items": 3504,
+   "newest": "9 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Fri Nov 20 2:20 PM PT",
+   "pulled": "Fri Nov 20 2:46 PM PT",
    "pulled_ago": "8 min ago",
-   "items": 8808,
-   "newest": "8 min ago",
+   "items": 8810,
+   "newest": "14 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Fri Nov 20 2:20 PM PT",
+   "pulled": "Fri Nov 20 2:46 PM PT",
    "pulled_ago": "8 min ago",
    "items": 2204,
-   "newest": "5 min ago",
+   "newest": "32 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Fri Nov 20 2:20 PM PT",
+   "pulled": "Fri Nov 20 2:46 PM PT",
    "pulled_ago": "8 min ago",
    "items": 396,
-   "newest": "28 min ago",
+   "newest": "21 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Fri Nov 20 2:20 PM PT",
+   "pulled": "Fri Nov 20 2:46 PM PT",
    "pulled_ago": "8 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Fri Nov 20 2:25 PM PT",
+   "pulled": "Fri Nov 20 2:51 PM PT",
    "pulled_ago": "3 min ago",
    "items": 764,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Fri Nov 20 2026 02:25 PM PT",
+   "pulled": "Fri Nov 20 2026 02:52 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,8 +68,8 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Fri Nov 20 1:47 PM PT",
-   "pulled_ago": "41 min ago",
+   "pulled": "Fri Nov 20 2:41 PM PT",
+   "pulled_ago": "14 min ago",
    "items": 356,
    "newest": null,
    "warn": null,
@@ -290,7 +290,7 @@
      ],
      "gotham": 17.5,
      "gotham_ros": 19.3,
-     "sleeper": 18.5,
+     "sleeper": 18.6,
      "workload": "24/19/28/31/26/23/29/25/18",
      "trend": -0.17
     },
@@ -374,7 +374,7 @@
      ],
      "gotham": 13.9,
      "gotham_ros": 14.7,
-     "sleeper": 11.0,
+     "sleeper": 11.1,
      "workload": "30/12/20/19",
      "trend": -0.07
     },
@@ -640,7 +640,7 @@
      "why": [
       "good news",
       "opening: Rachaad White \u2014 questionable/limited (pft)",
-      "Sleeper adds #16 (105,426 in 24 h)"
+      "Sleeper adds #16 (99,729 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -839,7 +839,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -876,7 +876,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -1143,7 +1143,7 @@
      "team": "LAC",
      "slot": "WR",
      "marker": {
-      "count": 2,
+      "count": 3,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -1151,6 +1151,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Fri Nov 20 2:41 PM PT",
+       "src": "rotoballer",
+       "title": "Ladd McConkey Questionable to Face the Jets",
+       "text": "Los Angeles Chargers wide receiver Ladd McConkey (back) is listed as questionable for the team's game on Sunday at home [&#8230;]",
+       "grade": "caution"
+      },
       {
        "t": "Fri Nov 20 1:48 PM PT",
        "src": "pft",
@@ -1163,13 +1170,6 @@
        "src": "ESPN injury report",
        "title": "Ladd McConkey: Questionable (Back)",
        "text": "McConkey (back) is listed as questionable for Sunday's game against the Jets.",
-       "grade": "caution"
-      },
-      {
-       "t": "Thu Nov 19 4:53 PM PT",
-       "src": "rotoballer",
-       "title": "Ladd McConkey Remains Limited on Thursday",
-       "text": "Updating a previous report, Los Angeles Chargers wide receiver Ladd McConkey (back) was wearing a non-contact jersey in practice on [&#8230;]",
        "grade": "caution"
       }
      ],
@@ -1386,7 +1386,7 @@
      ],
      "gotham": 13.9,
      "gotham_ros": 14.7,
-     "sleeper": 11.0,
+     "sleeper": 11.1,
      "workload": "30/12/20/19",
      "trend": -0.07
     },
@@ -1554,7 +1554,7 @@
      ],
      "gotham": 18.0,
      "gotham_ros": 18.7,
-     "sleeper": 20.8,
+     "sleeper": 20.7,
      "workload": "45/41/39/40/33/51/35/25/33",
      "trend": -0.24
     },
@@ -1778,7 +1778,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -1817,7 +1817,7 @@
      "why": [
       "good news",
       "opening: Rachaad White \u2014 questionable/limited (pft)",
-      "Sleeper adds #16 (105,426 in 24 h)"
+      "Sleeper adds #16 (99,729 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1854,7 +1854,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #25 (83,896 in 24 h)"
+      "Sleeper adds #25 (80,576 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1965,7 +1965,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #5 (216,234 in 24 h)"
+      "Sleeper adds #5 (210,078 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2003,7 +2003,7 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #7 (208,791 in 24 h)"
+      "Sleeper adds #8 (184,977 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2040,7 +2040,7 @@
      "pos": "TE",
      "team": "BAL",
      "why": [
-      "Sleeper adds #9 (188,370 in 24 h)"
+      "Sleeper adds #9 (180,684 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2263,11 +2263,11 @@
        "grade": "caution"
       },
       {
-       "t": "Fri Nov 20 9:34 AM PT",
-       "src": "ESPN injury report",
-       "title": "Darren Waller: Questionable (Knee)",
-       "text": "Waller (knee) is listed as questionable for Sunday's game against the Ravens, Joseph Person of The Athletic reports.",
-       "grade": "caution"
+       "t": "Fri Nov 20 8:38 AM PT",
+       "src": "RotoWire news",
+       "title": "Darren Waller: Present for practice Friday",
+       "text": "Waller (knee) is practicing again Friday, Joseph Person of The Athletic reports.",
+       "grade": "note"
       }
      ],
      "gotham": 10.9,
@@ -2315,7 +2315,7 @@
      ],
      "gotham": 6.7,
      "gotham_ros": 12.5,
-     "sleeper": 8.9,
+     "sleeper": 8.8,
      "workload": "7/4/4/6/8/8",
      "trend": 0.41
     },
@@ -2523,7 +2523,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 18.8,
+     "gotham": 18.9,
      "gotham_ros": 17.8,
      "sleeper": 20.6,
      "workload": "0/19/13/28/28",
@@ -2651,7 +2651,7 @@
      ],
      "gotham": 11.3,
      "gotham_ros": 10.3,
-     "sleeper": 11.4,
+     "sleeper": 11.3,
      "workload": "3/4/7/7/10/4/6/6/8",
      "trend": 0.25
     },
@@ -2704,7 +2704,7 @@
      "pos": "WR",
      "team": "DEN",
      "why": [
-      "Sleeper adds #8 (203,448 in 24 h)"
+      "Sleeper adds #6 (195,224 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2741,7 +2741,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -2822,7 +2822,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #23 (85,688 in 24 h)"
+      "Sleeper adds #23 (82,480 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2861,7 +2861,7 @@
      "why": [
       "good news",
       "opening: Rachaad White \u2014 questionable/limited (pft)",
-      "Sleeper adds #16 (105,426 in 24 h)"
+      "Sleeper adds #16 (99,729 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2882,7 +2882,7 @@
      ],
      "floor": {
       "name": "Jonah Coleman",
-      "gotham": 18.8
+      "gotham": 18.9
      },
      "beats_floor": false,
      "gotham": 0.0,
@@ -2919,7 +2919,7 @@
      ],
      "floor": {
       "name": "Jonah Coleman",
-      "gotham": 18.8
+      "gotham": 18.9
      },
      "beats_floor": false,
      "gotham": 6.6,
@@ -3177,7 +3177,7 @@
      ],
      "gotham": 11.3,
      "gotham_ros": 15.5,
-     "sleeper": 12.5,
+     "sleeper": 12.4,
      "workload": "6/14/9/15",
      "trend": 0.3
     }
@@ -3438,7 +3438,7 @@
      ],
      "gotham": 10.1,
      "gotham_ros": 11.5,
-     "sleeper": 9.7,
+     "sleeper": 9.6,
      "workload": "10/9/6/9/4/16/7/7/6",
      "trend": -0.26
     },
@@ -3606,7 +3606,7 @@
      ],
      "gotham": 12.3,
      "gotham_ros": 14.1,
-     "sleeper": 15.2,
+     "sleeper": 15.1,
      "workload": "11/10/11/12/5/6/7",
      "trend": -0.28
     },
@@ -3786,7 +3786,7 @@
      "team": "TEN",
      "why": [
       "opening: Carnell Tate \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #10 (172,484 in 24 h)"
+      "Sleeper adds #10 (162,876 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3847,7 +3847,7 @@
       "gotham": 7.7
      },
      "beats_floor": true,
-     "gotham": 8.3,
+     "gotham": 8.4,
      "gotham_ros": 8.0,
      "sleeper": 8.1,
      "workload": "8/15/27/16/31/27/8/7/10",
@@ -3860,7 +3860,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #25 (83,896 in 24 h)"
+      "Sleeper adds #25 (80,576 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3941,7 +3941,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #24 (85,086 in 24 h)"
+      "Sleeper adds #24 (82,278 in 24 h)"
      ],
      "marker": {
       "count": 4,
@@ -4016,7 +4016,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -4053,7 +4053,7 @@
      "pos": "WR",
      "team": "LAC",
      "why": [
-      "opening: Ladd McConkey \u2014 questionable/limited (pft)"
+      "opening: Ladd McConkey \u2014 questionable/limited (rotoballer)"
      ],
      "marker": {
       "count": 1,
@@ -4090,7 +4090,7 @@
      "pos": "WR",
      "team": "HOU",
      "why": [
-      "Sleeper adds #6 (210,182 in 24 h)"
+      "Sleeper adds #7 (186,718 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4129,7 +4129,7 @@
      "why": [
       "good news",
       "opening: Rachaad White \u2014 questionable/limited (pft)",
-      "Sleeper adds #16 (105,426 in 24 h)"
+      "Sleeper adds #16 (99,729 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4203,7 +4203,7 @@
      "pos": "RB",
      "team": "CIN",
      "why": [
-      "Sleeper adds #19 (99,540 in 24 h)"
+      "Sleeper adds #19 (95,780 in 24 h)"
      ],
      "marker": {
       "count": 2,
