@@ -962,6 +962,8 @@ for i, o in old.items():
         _yours = re.search(_ln + r"\s*\(your (?!week\b|opponent)", o.get("title") or "", re.I)   # "(your ...)" right after HIS name
         if o.get("active") and _yours and o.get("lg") in MINE and MINE[o["lg"]] and _nm(o.get("who")) not in MINE[o["lg"]]:
             o = dict(o, active=False, resolved_at=NOW, resolved_why="he's no longer on your roster")   # the one exception: Dom dropped him
+        elif o.get("active") and o.get("lg") in MINE and _nm(o.get("who")) in MINE[o["lg"]] and re.search(r"free agent|on waivers|waivers until", (o.get("title") or "") + " " + (o.get("own") or ""), re.I):
+            o = dict(o, active=False, resolved_at=NOW, resolved_why="you picked him up")   # Nov 20: a pickup card goes once he's on Dom's roster (Croskey-Merritt)
         out.append(o); continue
     if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
     if o.get("kind") == "feed" and not FEEDS and o.get("active"):
