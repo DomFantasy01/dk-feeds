@@ -917,6 +917,32 @@ try:
 except Exception as e:
     INACT_NOTE = f"inactive check skipped: {type(e).__name__}: {e}"
 
+# ---------- Nov 20 (Dom): experts split - one of our experts 2+ points (and 25%+) off the others on a player. A mark to talk about. ----------
+SPLIT_NOTE = ""
+try:
+    _tl2 = None
+    _p2 = _o2.path.join(_HERE, "dispatch_out", "talk_list.json")
+    if _o2.path.exists(_p2): _tl2 = json.load(open(_p2))
+    if _tl2 is None:
+        _t = _rawtxt("dispatch_out/talk_list.json"); _tl2 = json.loads(_t) if _t else {}
+    _ns = 0
+    for lg, TL in (_tl2.get("leagues") or {}).items():
+        for sp in TL.get("splits") or []:
+            notes = [x["note"] for x in sp.get("splits") or []]
+            if not notes: continue
+            fa = sp.get("slot") == "free agent"
+            add(id=slug("split", W, lg, sp["name"]), color="grey", lg=lg, who=sp["name"], kind="split",
+                title=f"Experts split on {sp['name']}" + (" (free agent)" if fa else ""),
+                what="; ".join(notes) + ". Converted to this league's scoring.",
+                tie=("A free agent on your talk or watch list." if fa else f"On your {lg} roster ({sp.get('slot') or 'bench'})."),
+                fix="Talk it through before any move with him - find out which expert is right and why (stale season line, new role, injury news). This mark changes no numbers.",
+                receipts=[f"{x['expert']} {x['his']} vs {x['others']} ({x['span']})" for x in sp.get("splits") or []],
+                by=None, src="expert split check (2+ points and 25%+)")
+            _ns += 1
+    SPLIT_NOTE = f"expert splits: {_ns}"
+except Exception as e:
+    SPLIT_NOTE = f"expert split check skipped: {type(e).__name__}: {e}"
+
 _rpk = {(x["lg"], x["who"]) for x in ITEMS if x.get("kind") == "radar_prekick"}
 ITEMS[:] = [x for x in ITEMS if not (x.get("kind") == "wire" and (x["lg"], x["who"]) in _rpk)]
 # ---------- Oct 29 (Dom): every card says whose man he is, what it means for him, and where the numbers came from ----------
@@ -996,4 +1022,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)

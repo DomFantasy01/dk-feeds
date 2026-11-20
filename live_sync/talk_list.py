@@ -296,7 +296,19 @@ for lab, key, lid, lgn, myid in LG:
         wn, wv, _ = weak[p["pos"]]; pct = round(100 * (p["ros"] - wv) / wv) if wv else 0
         fa_tags[_nm] = dict(tag="No action needed", why=(f"Ratcliffe has him at {p['ros']:.1f} a game, below your {wn} ({wv:.1f})" if pct <= 0
                             else f"only {pct}% better than your {wn} ({p['ros']:.1f} vs {wv:.1f} a game, Ratcliffe) - under your 15% bar"))
-    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup, fa_tags=fa_tags)
+    # Nov 20 (Dom): mark any player where one of our experts is 2+ points (and 25%+) off the others - a mark to talk about, never a number change
+    splits = []
+    try:
+        from expert_split import load as _xs_load, check as _xs_check
+        _XS = globals().get("_XS") or _xs_load(R); globals()["_XS"] = _XS
+        _seen = set()
+        for _m in (rost.get(str(myid)) or []) + [dict(name=t_["name"], pos=t_.get("pos"), team=t_.get("team"), slot="free agent") for t_ in talk[:2]]:   # top 2 of the talk list only - the rest are not being considered yet (Nov 20 test: 7 marks on fringe DK II receivers)
+            _n = _m.get("name"); _p = (_m.get("pos") or "").split(",")[0]
+            if not _n or _n in _seen or _p in ("DEF", "DST", "K") or (_m.get("status") or "") in ("O", "IR", "IR-R"): continue
+            _seen.add(_n); _h = _xs_check(_XS, lgn, _n)
+            if _h: splits.append(dict(name=_n, pos=_p, team=_m.get("team"), slot=_m.get("slot"), splits=_h))
+    except Exception as _e: print(f"!! {lab}: expert split check skipped: {type(_e).__name__}: {_e}")
+    out["leagues"][lab] = dict(talk=talk[:6], watch=watch[:6], cover=cover[:4], block=block[:4], backup=backup, fa_tags=fa_tags, splits=splits)
     # the brief, built to be heard
     parts = []
     for t in talk[:4]:
