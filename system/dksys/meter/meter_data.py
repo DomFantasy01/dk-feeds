@@ -167,6 +167,13 @@ try:
         for _r in _fd.itertuples():
             if pd.isna(_r.wk): continue
             RC[(int(_r.lg), ('DEF', T(_r.team)) if _r.pos == 'DST' else ('K', _r.key) if _r.pos == 'K' else _r.key)] = float(_r.wk)
+        # Nov 19 (Dom: the Ratcliffe dial said 51% for DK1 because the opponent's best lineup started Kenneth Walker - Q, left OFF
+        # Ratcliffe's weekly list - at Yahoo's 18.2). Same rule as the Scout fix: a skill player Ratcliffe projects for the season
+        # but leaves off this week's list (when that position's weekly list is full) is 0 this week, never a Yahoo stand-in.
+        _wkpos = _fd[_fd.wk.notna()].groupby(['lg', 'pos']).size().to_dict()
+        for _r in _fd[_fd.wk.isna() & _fd.ros_total.notna()].itertuples():
+            if _r.pos in ('DST', 'K') or _wkpos.get((_r.lg, _r.pos), 0) < 10: continue
+            RC.setdefault((int(_r.lg), _r.key), 0.0)
         _rp = str(_fd.read_pt.dropna().iloc[0]) if _fd.read_pt.notna().any() else ''
         _rt = None
         try: _rt = dt.datetime.strptime(_rp.replace(' PT', ''), '%a %b %d %Y %I:%M %p').replace(tzinfo=PT)
