@@ -718,7 +718,14 @@ try:
     for k,p in _fa[:80]:
         if (CF["kick"] is None and p["pos"]=="K"): continue
         if k[0] in MYDROPS and WAIV.get(k[0]): continue   # his own drop, still on waivers - Yahoo blocks the claim
-        _r=_simrow(k,p["name"],p["pos"],"",""); _r["acq"]=(f"Waivers, clears {WAIV[k[0]]}" if WAIV.get(k[0]) else "Free agent"); _SIM["pool"].append(_r)
+        _r=_simrow(k,p["name"],p["pos"],"","")
+        # Nov 20 (Dom: "problem after problem"): a free agent no outside source projects - off Ratcliffe's list and with
+        # no Yahoo number any week - kept the engine's old-history rate. Kendre Miller (Cowboys practice squad) rode that
+        # to ~12 a week and showed up as a pickup move while Ratcliffe, Koerner and Clay all had him at 0. Same class as
+        # the Walker fix: nobody projecting him means 0, so a number no expert backs can't steer a pickup.
+        if p["pos"] not in ("K","DEF") and not _r["yb"] and not _r["rc"]:
+            _r["wk"]={x:0.0 for x in _r["wk"]}; _r["unproj"]=True
+        _r["acq"]=(f"Waivers, clears {WAIV[k[0]]}" if WAIV.get(k[0]) else "Free agent"); _SIM["pool"].append(_r)
     # Oct 28: how Ratcliffe's level compares with the engine's on rostered men he projects (by position) - a check that
     # teams aren't helped or hurt just by how many of their men he lists
     _lvl=collections.defaultdict(lambda:[0.0,0.0,0])
