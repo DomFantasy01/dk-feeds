@@ -139,7 +139,7 @@ _NICK = {"zonovan knight": "bam knight"}
 def _nm(s):
     k = re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
     return _NICK.get(k, k)
-OWN = {}
+OWN, MINE = {}, {}
 for lg_, n_ in LGN.items():
     ro, wv = _rd(n_, "rosters_live"), _rd(n_, "waivers")
     if not ro: continue
@@ -151,6 +151,9 @@ for lg_, n_ in LGN.items():
         for e in l.split("|"):
             if "/" in e: nm_, dte = e.rsplit("/", 1); wl_[_nm(nm_)] = dte.strip()
     OWN[lg_] = (taken, wl_, stamp)
+    # Nov 19 (Dom): a "your player" news card must go away once he's off Dom's roster (Gainwell kept showing as "your bench RB" after the drop)
+    _me = {"DK I": 2, "DK II": 7, "DK III": 2, "DK IV": 6}.get(lg_)
+    MINE[lg_] = {_nm(l.split("|")[2]) for l in ro.splitlines() if l and not l.startswith("#") and l.count("|") >= 4 and l.split("|")[0].strip() == str(_me)}
 def blanket(lg):
     """Nov 17 (Dom): Yahoo's API waiver list stops at 400 names. After a week's games every unrostered player is on waivers until
     the weekly run (Yahoo live Mon night: all 'W (Nov 18)'), so a man missing from the capped list is NOT a free agent. A full list
@@ -955,6 +958,10 @@ cut7 = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=1)).isoformat()   #
 for i, o in old.items():
     if i in seen: continue
     if o.get("kind") == "sweep":   # Nov 16 (Dom): news-sweep cards stay until he deletes or separates them - the build never resolves them
+        _ln = re.escape(((o.get("who") or "").replace(" Jr.", "").replace(" Sr.", "").split() or ["~"])[-1])
+        _yours = re.search(_ln + r"\s*\(your (?!week\b|opponent)", o.get("title") or "", re.I)   # "(your ...)" right after HIS name
+        if o.get("active") and _yours and o.get("lg") in MINE and MINE[o["lg"]] and _nm(o.get("who")) not in MINE[o["lg"]]:
+            o = dict(o, active=False, resolved_at=NOW, resolved_why="he's no longer on your roster")   # the one exception: Dom dropped him
         out.append(o); continue
     if o.get("kind") == "feed" and (o.get("fix") or "").startswith("Worth knowing"): continue   # Oct 14 (Dom): retired card type
     if o.get("kind") == "feed" and not FEEDS and o.get("active"):
