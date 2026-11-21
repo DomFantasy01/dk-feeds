@@ -395,7 +395,14 @@ try:   # Oct 21 (Dom): SEASON-ENDING NEWS - ESPN's injury report + the news feed
             _m=None
             for _x in _parts:
                 for _mm in _SOR.finditer(_x):
-                    if not re.search(r"(\bnot\b|n't\b|\bavoid\w*|\bno\b|\bnon\b)[^.]{0,20}$",_x[max(0,_mm.start()-25):_mm.start()],re.I): _m=_mm; break
+                    if re.search(r"(\bnot\b|n't\b|\bavoid\w*|\bno\b|\bnon\b)[^.]{0,20}$",_x[max(0,_mm.start()-25):_mm.start()],re.I): continue
+                    # Nov 21 (Dom): backstory about ANOTHER man is not news about this one - "Ollie Gordon II ... has taken over as
+                    # the team's primary running back since the season-ending injury [to Achane]" put Gordon out for the year and
+                    # the brief told Dom to move his starting RB to IR. "since / after / following / filling in for ... season-
+                    # ending", or "season-ending injury to <Name>", is about someone else.
+                    if re.search(r"\b(since|after|following|due to|because of|replac\w*|in place of|filling in for|in the absence of|with)\b[^.]{0,30}$",_x[max(0,_mm.start()-40):_mm.start()],re.I): continue
+                    if re.match(r"[^.]{0,25}?\b(to|of|for|suffered by)\s+[A-Z][a-z'.]+",_x[_mm.end():_mm.end()+40]): continue
+                    _m=_mm; break
                 if _m: break
             if not _m: continue
             try: _w=dt.datetime.fromisoformat(_ts.replace("Z","+00:00"))
