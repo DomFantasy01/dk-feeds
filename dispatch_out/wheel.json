@@ -1,9 +1,9 @@
 {
- "built": "Fri Nov 20 2026 9:40 PM PT",
+ "built": "Fri Nov 20 2026 11:55 PM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Fri Nov 20 2026 9:39 PM PT",
- "champ_built": "Fri Nov 20 2026 09:36 PM PT",
+ "pickups_built": "Fri Nov 20 2026 11:54 PM PT",
+ "champ_built": "Fri Nov 20 2026 11:53 PM PT",
  "leagues": {
   "1": {
    "base": 0.675,
@@ -37,7 +37,7 @@
       "drop": "Jaguars",
       "d_week": 0.003,
       "d_playoff": 0.011,
-      "d_title": 0.0032,
+      "d_title": 0.0033,
       "ppg": -0.3,
       "games": 6
      }
@@ -535,32 +535,6 @@
      }
     },
     {
-     "name": "Omar Cooper Jr.",
-     "replaces": "Jakobi Meyers",
-     "pos": "WR",
-     "team": "NYJ",
-     "tier": "HOT",
-     "grade": 56,
-     "spokes": {
-      "team": 7.1,
-      "consensus": 12.7,
-      "upside": 8.8,
-      "drop": 10,
-      "stakes": 10
-     },
-     "total": 49,
-     "verdict": "PASS",
-     "vwhy": "49/100",
-     "why": {
-      "team": "NYJ offense 19.4 a game (#25), last 3 games 19.0 (#21); team 20% wins; workload 9/15",
-      "consensus": "+16% vs Jakobi Meyers (top-3 average); 2 of 4 sources have him ahead",
-      "upside": "57 pts rest of season; Weeks 15-17 W15 ARI (#16), W16 NE (#2), W17 MIN (#28)",
-      "drop": "not in the simulator's pool - scored even",
-      "stakes": "not in the simulator's pool - scored even"
-     },
-     "move": null
-    },
-    {
      "name": "Kyle Pitts Sr.",
      "replaces": "Travis Kelce",
      "pos": "TE",
@@ -651,6 +625,39 @@
       "stakes": "not in the simulator's pool - scored even"
      },
      "move": null
+    },
+    {
+     "name": "Xavier Hutchinson",
+     "replaces": "Jakobi Meyers",
+     "pos": "WR",
+     "team": "HOU",
+     "tier": "WATCH",
+     "grade": 54,
+     "spokes": {
+      "team": 13.9,
+      "consensus": 3.3,
+      "upside": 10.1,
+      "drop": 20.0,
+      "stakes": 14.5
+     },
+     "total": 62,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Experts",
+     "why": {
+      "team": "HOU offense 25.9 a game (#9), last 3 games 31.3 (#5) - trending up; team 40% wins; workload 9/15",
+      "consensus": "-19% vs Jakobi Meyers (top-3 average); 1 of 7 sources have him ahead",
+      "upside": "48 pts rest of season; Weeks 15-17 W15 JAX (#14), W16 PHI (#3), W17 GB (#4)",
+      "drop": "drop Lions: his loss alone +0.6 playoff odds; no rival would start him",
+      "stakes": "chance to win this week +0.4; playoff odds for the season +0.6; this week's game swings the playoff odds 69% to 88%; keeps him from this week's opponent Dream Killers; 3 rivals would start him"
+     },
+     "move": {
+      "drop": "Lions",
+      "d_week": 0.004,
+      "d_playoff": 0.006,
+      "d_title": -0.0007,
+      "ppg": -1.2,
+      "games": 2
+     }
     }
    ]
   }
