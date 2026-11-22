@@ -1018,8 +1018,27 @@ while _sz(doc) > LIMIT:
     if not _old: break
     _i = min(_old, key=lambda i: doc["items"][i].get("resolved_at") or doc["items"][i].get("last_seen") or "")
     doc["items"].pop(_i); _dropped += 1
+# Nov 22 9:22 AM (Dom: the :05 sync's alerts write was refused at 266,637 bytes even after every archived card was dropped).
+# The news-sweep cards (kept until Dom clears them) now fill ~210 KB. Second guard: shorten the long text on grey (FYI)
+# cards, oldest first - receipts and the tie-in cut to 180 characters; the card, its title and what-to-do stay whole.
+# Last guard: drop the oldest grey sweep cards (never red or gold) and say how many.
+_trimmed = _gdrop = 0
+def _cut(v, n=180): return v if not isinstance(v, str) or len(v) <= n else v[:n].rstrip() + "…"
+if _sz(doc) > LIMIT:
+    _gi = sorted([i for i, x in enumerate(doc["items"]) if x.get("color") == "grey"], key=lambda i: doc["items"][i].get("first_seen") or "")
+    for _i in _gi:
+        if _sz(doc) <= LIMIT: break
+        x = doc["items"][_i]; _b = json.dumps(x)
+        for _f in ("receipts", "tie", "what", "own"):
+            if isinstance(x.get(_f), str): x[_f] = _cut(x[_f])
+            elif isinstance(x.get(_f), list): x[_f] = [_cut(v) for v in x[_f][:3]]
+        if json.dumps(x) != _b: _trimmed += 1
+while _sz(doc) > LIMIT:
+    _gs = [i for i, x in enumerate(doc["items"]) if x.get("color") == "grey" and x.get("kind") in ("sweep", "split", "news", "feed")]
+    if not _gs: break
+    doc["items"].pop(min(_gs, key=lambda i: doc["items"][i].get("first_seen") or "")); _gdrop += 1
 json.dump(doc, open(out_f, "w"), separators=(",", ":"))
-SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
+SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (f", {_trimmed} grey cards shortened" if _trimmed else "") + (f", {_gdrop} oldest grey cards dropped" if _gdrop else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
       "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)
