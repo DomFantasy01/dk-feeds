@@ -65,6 +65,17 @@ def one_pass(now, R, fired, log):
         if qwait:
             log(f"{now:%H:%MZ} {wf}: slot {S:%H:%MZ} missed, but a run is waiting in the queue - trying next pass")
             continue
+        # Nov 22 1:22 PM (Dom: GitHub's "Run failed: No jobs were run" email): the clock and the Ratcliffe/Koerner chain both
+        # started a build within 21 seconds at 1:05 PM; the second start replaced the first while it waited, and GitHub
+        # marks the replaced run as failed. GitHub's run list can lag ~30 s, so look again before starting.
+        if not DRY:
+            time.sleep(40)
+            try:
+                R2 = runs()
+                if any(r.get("path", "").endswith("/" + wf) and ts(r["created_at"]) >= S - dt.timedelta(minutes=EARLY.get(wf, 3)) for r in R2) \
+                   or any(r.get("path", "").split("/")[-1] in WATCH and r.get("status") in WAITING for r in R2):
+                    log(f"{now:%H:%MZ} {wf}: slot {S:%H:%MZ} - another start just showed up, not starting a second"); fired.add((wf, S)); continue
+            except Exception as e: log(f"re-check failed: {e}")
         fired.add((wf, S))
         if DRY:
             log(f"{now:%H:%MZ} {wf}: slot {S:%H:%MZ} missed ({age:.0f} min) - WOULD START")
