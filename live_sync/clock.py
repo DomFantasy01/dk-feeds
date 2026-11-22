@@ -77,17 +77,20 @@ def one_pass(now, R, fired, log):
 # 45 minutes and quits, so from Nov 10 to Nov 22 it never actually watched. The clock now starts it itself, sized to run
 # until 25 minutes after the list, whenever a list is 5-40 minutes out and no inactives run has started for it.
 INACT = {3: ["15:45"], 0: ["15:45"], 6: ["05:00", "08:30", "11:35", "11:55", "15:50"]}   # Mon=0 Thu=3 Sun=6, Pacific
+# Nov 22 (Dom): holiday weeks - inactives lists on odd days, by date (Pacific; kickoff minus 90 min)
+INACT_DATES = {"2026-11-25": ["15:30"], "2026-11-26": ["08:30", "12:00", "15:50"], "2026-11-27": ["10:30"]}
 def inactives_pass(now, R, fired, log):
     from zoneinfo import ZoneInfo
     PT = ZoneInfo("America/Los_Angeles"); n = now.astimezone(PT)
     due = []
-    for hm in INACT.get(n.weekday(), []):
+    lists = INACT_DATES.get(n.strftime("%Y-%m-%d"), INACT.get(n.weekday(), []))
+    for hm in lists:
         h, m = map(int, hm.split(":")); t = n.replace(hour=h, minute=m, second=0, microsecond=0)
         if dt.timedelta(minutes=5) <= t - n <= dt.timedelta(minutes=40): due.append(t)
     if not due: return
     first = min(due)
     # one watch covers every list within 30 minutes of the first (Sunday 11:35 + 11:55)
-    last = max([first] + [n.replace(hour=int(hm[:2]), minute=int(hm[3:]), second=0, microsecond=0) for hm in INACT.get(n.weekday(), [])
+    last = max([first] + [n.replace(hour=int(hm[:2]), minute=int(hm[3:]), second=0, microsecond=0) for hm in lists
                           if dt.timedelta(0) <= n.replace(hour=int(hm[:2]), minute=int(hm[3:]), second=0, microsecond=0) - first <= dt.timedelta(minutes=30)])
     if ("inactives.yml", first) in fired: return
     mine = [r for r in R if r.get("path", "").endswith("/inactives.yml")]

@@ -47,7 +47,8 @@ jobs:
           if f: print(int((now + dt.timedelta(minutes=f)).timestamp())); raise SystemExit
           LISTS = {3: ["15:45"], 0: ["15:45"], 6: ["05:00", "08:30", "11:35", "11:55", "15:50"]}   # Mon=0 Thu=3 Sun=6
           due = []
-          for hm in LISTS.get(now.weekday(), []):
+          DATES = {"2026-11-25": ["15:30"], "2026-11-26": ["08:30", "12:00", "15:50"], "2026-11-27": ["10:30"]}   # Nov 22: Thanksgiving week
+          for hm in DATES.get(now.strftime("%Y-%m-%d"), LISTS.get(now.weekday(), [])):
               h, m = map(int, hm.split(":")); t = now.replace(hour=h, minute=m, second=0, microsecond=0)
               if dt.timedelta(minutes=-10) <= t - now <= dt.timedelta(minutes=45): due.append(t)
           print(int((max(due) + dt.timedelta(minutes=25)).timestamp()) if due else 0)
