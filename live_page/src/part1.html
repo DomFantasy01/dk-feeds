@@ -1710,4 +1710,15 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .al .nwt{display:inline-block;font-size:.66em;font-weight:800;letter-spacing:.08em;padding:1px 6px;margin-right:6px;border-radius:4px;background:var(--gold,#c9a227);color:#111;vertical-align:2px}
 /* Nov 17 (Dom): four lights (Yahoo, Data, Feeds, Action) - on phones the lights take their own row so the date is never cut */
 @media (max-width:430px){.stat{flex-wrap:wrap!important;row-gap:6px}.stat .lights{width:100%;justify-content:space-between;margin-left:0!important}#statTxt{flex:1 1 100%}}
+/* Nov 22 (Dom): weather marks - yellow worth noting, orange likely to matter, red a real problem for passing */
+.wmk{display:inline-flex;align-items:center;gap:1px;margin-left:5px;padding:1px 4px;border-radius:4px;font:700 10px/1.25 var(--f-body);vertical-align:1px;border:1px solid currentColor}
+.wmk.y,.wmkl.y,.recl .wmkc.y{color:#F7C531}.wmk.o,.wmkl.o,.recl .wmkc.o{color:#FF9A1F}.wmk.r,.wmkl.r,.recl .wmkc.r{color:#FF5A63}
+.wmk.y{background:rgba(247,197,49,.12)}.wmk.o{background:rgba(255,154,31,.14)}.wmk.r{background:rgba(255,77,87,.16)}
+.wmkl{font-size:11.5px;font-weight:600;margin:3px 0 0 41px;line-height:1.35}
+.bk.wx-y,.bk.wx-o,.bk.wx-r{position:relative}
+.bk.wx-y::after,.bk.wx-o::after,.bk.wx-r::after{content:"";position:absolute;top:0;right:0;border-top:7px solid var(--wxc);border-left:7px solid transparent}
+.bk.wx-y{--wxc:#F7C531}.bk.wx-o{--wxc:#FF9A1F}.bk.wx-r{--wxc:#FF4D57}
+.recl .wmkc{border-color:currentColor;background:rgba(255,255,255,.04);font-weight:700}.recl .wmkc b{color:inherit}
+.wc.y{border-color:#F7C531;background:#2A2716}.wc.o{border-color:#FF9A1F;background:#2A2116}.wc.r{border-color:var(--dn);background:#2A1A26}
+.wc.y .why{color:#F7C531}.wc.o .why{color:#FF9A1F}.wc.r .why{color:var(--dn)}
 </style>

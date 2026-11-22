@@ -42,6 +42,36 @@ const KEYOF = {dk1: "MOST", dk2: "WINNERS", dk3: "HERS&HIS", dk4: "NEXTDOOR"};
 const lgS = (k) => S && S.leagues ? S.leagues.find(L => L.key === k) : null;
 const lgM = (k) => (M && M.leagues && M.leagues[k]) || {};
 
+
+/* Nov 22 (Dom, voice): WEATHER MARKS on players. Color = how bad: yellow = worth noting (rain chance 30%+, wind 15+, gusts 25+),
+   orange = likely to matter (rain 60%+, wind 20+, gusts 30+), red = a real problem for passing (snow, heavy rain, wind 25+, gusts 38+).
+   Arrow = what it does to this player: down for QB/WR/TE/K (passing and kicking suffer), up for RB and defense (teams run more,
+   offenses make mistakes). Domes and retractable roofs get no mark. More than 48 hours out = "early forecast". A direction, not points. */
+const WXLV = {y: "Worth noting", o: "Likely to matter", r: "Real problem for passing"};
+function wxMk(tm, pos){
+  const w = wxOf(tm);
+  if (!w || w.roof === "dome" || w.roof === "retract" || w.temp === undefined || w.temp === null) return null;
+  const pop = +w.pop || 0, wind = +w.wind || 0, gust = +w.gust || 0, snow = +w.snow || 0, rain = +w.rain || 0;
+  const lv = snow > 0 || wind >= 25 || gust >= 38 || (pop >= 70 && rain >= 0.1) ? "r" : pop >= 60 || wind >= 20 || gust >= 30 ? "o" : pop >= 30 || wind >= 15 || gust >= 25 ? "y" : null;
+  if (!lv) return null;
+  const P = String(pos || "").toUpperCase();
+  const dir = /^(RB|DEF|DST|D\/ST|D)$/.test(P) ? "up" : /^(QB|WR|TE|K)$/.test(P) ? "dn" : "";
+  const bits = [snow > 0 ? "snow" : "", pop >= 30 ? `rain ${Math.round(pop)}%` : "", wind >= 15 ? `wind ${Math.round(wind)} mph` : "", gust >= 25 ? `gusts ${Math.round(gust)}` : ""].filter(Boolean);
+  const eff = dir === "dn" ? (P === "K" ? "hurts kicking" : "hurts passing") : dir === "up" ? (P === "RB" ? "more running - helps him" : "offenses make mistakes - helps defense") : "";
+  const early = w.ko ? (new Date(w.ko) - Date.now()) > 48 * 3600e3 : false;
+  return {lv, dir, txt: bits.join(", "), eff, early, game: w.game || ""};
+}
+const wxArrow = (x) => x.dir === "up" ? "▲" : x.dir === "dn" ? "▼" : "";
+const wxTag = (x) => x ? `<span class="wmk ${x.lv}" title="${esc(WXLV[x.lv] + " - " + x.txt + (x.eff ? " - " + x.eff : ""))}">☂${wxArrow(x)}</span>` : "";
+const wxLine = (x) => x ? `<div class="wmkl ${x.lv}">☂ ${esc(x.game)}: ${esc(x.txt)}${x.eff ? ` · ${wxArrow(x)} ${esc(x.eff)}` : ""}${x.early ? " · early forecast" : ""}</div>` : "";
+/* Nov 22 (Dom): the league card says up front when your starters are in weather - worst color, and how many it hurts or helps */
+function wxChip(L){
+  const st = (L.box && L.box.me ? L.box.me : (L.players || [])).filter(r => !/^(BN|IR)/.test(r.slot || "") && !isDone(r) && !isLive(r));
+  const xs = st.map(r => wxMk(r.tm, r.pos || r.slot)).filter(Boolean); if (!xs.length) return "";
+  const worst = xs.some(x => x.lv === "r") ? "r" : xs.some(x => x.lv === "o") ? "o" : "y";
+  const dn = xs.filter(x => x.dir === "dn").length, up = xs.filter(x => x.dir === "up").length;
+  return `<span class="wmkc ${worst}" title="${esc(WXLV[worst])}">☂ <b>${xs.length}</b> starter${xs.length > 1 ? "s" : ""} in weather${dn ? ` · ${dn}▼` : ""}${up ? ` · ${up}▲` : ""}</span>`;
+}
 /* ---------- game state of a man ---------- */
 const isDone = (p) => /^(Fin|Final|Bye|No game)/i.test((p.when || "").trim());
 const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d|In progress|Playing)/i.test(p.when || "");   /* Nov 8: the Dispatch read says "In progress" */
@@ -1117,7 +1147,8 @@ function boxHtml(k, L){
   const lightOf = (r, s) => ringState({name: r.name, status: r.status, proj: r.yp === null || r.yp === undefined ? 1 : r.yp, slot: r.slot,
     when: /bye/i.test(r.when || "") || r.gs === "bye" ? "Bye" : s.g === "live" ? "In progress" : s.g === "done" ? "Final" : (r.when || "")}, k);
   const blocks = (rows) => rows.filter(r => !isBench(r)).map(r => { const s = bxState(r, L), lt = lightOf(r, s);
-    return `<i class="bk lt-${lt}" title="${esc(r.name)} · ${esc(STW[lt] || "")} · ${esc(s.when)}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
+    const wx = s.g === "pre" ? wxMk(r.tm, r.pos || r.slot) : null;
+    return `<i class="bk lt-${lt}${wx ? " wx-" + wx.lv : ""}" title="${esc(r.name)} · ${esc(STW[lt] || "")} · ${esc(s.when)}${wx ? " · weather: " + esc(wx.txt) : ""}">${esc(SLOTLAB(r.slot))}</i>`; }).join("");
   const fid = "bx-" + SLUG[k], open = !!FOLDS[fid];
   /* bench flags, your side only */
   const flags = {};
@@ -1129,15 +1160,15 @@ function boxHtml(k, L){
       else if (sb.g === "done"){ const dn = same.filter(s => bxState(s, L).g === "done");
         if (dn.length){ const w = dn.reduce((a, c) => bxState(c, L).pts < bxState(a, L).pts ? c : a); const d = sb.pts - bxState(w, L).pts;
           if (d >= 2) flags[b.name] = {c: "r", t: `Outscored ${w.name} (${SLOTLAB(w.slot)}) by ${d.toFixed(1)} · left on the bench`}; } } } }
-  const row = (r, mine) => { const s = bxState(r, L), f = mine ? flags[r.name] : null, gotPts = s.g !== "pre";
+  const row = (r, mine) => { const s = bxState(r, L), f = mine ? flags[r.name] : null, gotPts = s.g !== "pre", wxR = s.g === "pre" ? wxMk(r.tm, r.pos || r.slot) : null;
     const proj = [r.yp !== null && r.yp !== undefined ? `Yahoo ${f1(r.yp)}` : "", r.rp !== null && r.rp !== undefined ? `Ratcliffe ${f1(r.rp)}` : ""].filter(Boolean).join(" · ") || "no projection";
     const vs = gotPts && r.yp !== null && r.yp !== undefined && s.g === "done" ? ` <em class="${s.pts - r.yp >= 0 ? "up" : "dn"}">${sgn(s.pts - r.yp)}</em>` : "";
     return `<div class="bxr${f ? " fl " + f.c : ""}"><div class="bx1"><i class="bk sm ${s.g}">${esc(SLOTLAB(r.slot))}</i>
-      <span class="nm"><i class="ldot ${lightOf(r, s)}" title="${esc(STW[lightOf(r, s)] || "")}"></i><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}</span>
+      <span class="nm"><i class="ldot ${lightOf(r, s)}" title="${esc(STW[lightOf(r, s)] || "")}"></i><b>${esc(r.name)}</b> <span class="mute">${esc(r.tm || "")}${r.pos && r.pos !== r.slot ? " " + esc(r.pos) : ""}</span>${r.status ? ` <span class="chip r">${esc(r.status)}</span>` : ""}${wxTag(wxR)}</span>
       <span class="pt">${gotPts ? f1(s.pts) : "–"}${vs}</span></div>
       <div class="bx2"><span>${esc(s.g === "live" ? (/^(In progress|Playing)$/i.test(s.when || "") ? "Playing" : "Playing · " + s.when) : s.g === "done" ? (s.when && !/^Final$/i.test(s.when) ? s.when : "Final") : s.when)}</span><span>${proj}</span></div>
       ${r.line ? `<div class="bx3">${esc(r.line)}</div>` : gotPts && B && s.pts ? `<div class="bx3 mute">No stat line in the last Yahoo API read.</div>` : ""}
-      ${f ? `<div class="bxf">${esc(f.t)}</div>` : ""}</div>`; };
+      ${wxLine(wxR)}${f ? `<div class="bxf">${esc(f.t)}</div>` : ""}</div>`; };
   const team = (rows, name, mine) => { const st = rows.filter(r => !isBench(r)), bn = rows.filter(isBench);
     const tot = st.reduce((a, r) => a + (bxState(r, L).g !== "pre" ? bxState(r, L).pts : 0), 0), ytot = st.reduce((a, r) => a + (+r.yp || 0), 0);
     return `<div class="bxt"><div class="bxh"><b>${esc(name)}</b><span>${f1(tot)} pts · Yahoo proj ${f1(ytot)}</span></div>
@@ -1241,7 +1272,7 @@ function card(k){
   const sky = (w) => w.roof === "dome" ? `<svg viewBox="0 0 26 20"><path d="M3 17a10 10 0 0 1 20 0z" fill="#5C677D"/></svg>` : w.snow > 0 ? `<svg viewBox="0 0 26 20"><circle cx="13" cy="9" r="6" fill="#DDE6F5"/><text x="13" y="19" font-size="7" text-anchor="middle" fill="#DDE6F5">✶✶</text></svg>`
     : /rain/.test(w.sky) || w.pop >= 60 ? `<svg viewBox="0 0 26 20"><ellipse cx="13" cy="8" rx="9" ry="5" fill="#8A93A6"/><path d="M8 14l-1 4M13 14l-1 4M18 14l-1 4" stroke="#5B9BF5" stroke-width="1.6"/></svg>`
     : /cloud/.test(w.sky) ? `<svg viewBox="0 0 26 20"><ellipse cx="13" cy="11" rx="10" ry="6" fill="#9AA2B5"/></svg>` : `<svg viewBox="0 0 26 20"><circle cx="13" cy="10" r="6" fill="#F7C531"/></svg>`;
-  const wx = wxs.length ? `<div class="wxg">${wxs.map(w => `<div class="wc${w.flag ? " bad" : ""}">${sky(w)}<div class="t"><b>${esc(w.game)}</b><br>${w.roof === "dome" ? "Dome" : `${Math.round(w.temp)}°F · wind ${Math.round(w.wind)} mph · rain ${w.pop}%`}${w.flag ? `<br><span class="why">${esc((w.why || []).join(", ") || "can move the game")}</span>` : ""}</div></div>`).join("")}</div><p class="note">Kickoff forecast, Open-Meteo, pulled ${esc(M.wx ? ptTime(M.wx.pulled) : "")}. Red = weather that can move the game.</p>` : `<div class="empty">No weather for games still to play.</div>`;
+  const wx = wxs.length ? `<div class="wxg">${wxs.map(w => { const gx = wxMk(Object.keys(WX).find(t => WX[t] === w), ""); return `<div class="wc${gx ? " " + gx.lv : ""}">${sky(w)}<div class="t"><b>${esc(w.game)}</b><br>${w.roof === "dome" ? "Dome" : `${Math.round(w.temp)}°F · wind ${Math.round(w.wind)} mph · rain ${w.pop}%`}${gx ? `<br><span class="why">${esc(WXLV[gx.lv])}${gx.early ? " · early forecast" : ""}</span>` : ""}</div></div>`; }).join("")}</div><p class="note">Kickoff forecast, Open-Meteo, pulled ${esc(M.wx ? ptTime(M.wx.pulled) : "")}. Yellow = worth noting, orange = likely to matter, red = a real problem for passing. On each player: ▼ hurts him (QB, WR, TE, K), ▲ helps him (RB, defense). Domes and retractable roofs get no mark. More than 2 days out = early forecast.</p>` : `<div class="empty">No weather for games still to play.</div>`;
 
   /* clear this league */
   const al = aFor(k, aLive), notes = movesItems(k);
@@ -1252,7 +1283,7 @@ function card(k){
   const rec = [m.rec ? "Record " + m.rec : "", (m.std || []).map(x => x.join(" ")).join(" · "), m.oppRec ? "opponent " + m.oppRec : ""].filter(Boolean).join(" · ");
   return `<article class="card" id="${SLUG[k]}" style="--lc:${LCOL[k]}">
     <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
-    <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : ""].join("")}</div>
+    <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : "", wxChip(L)].join("")}</div>
     ${scoreHtml}${seatHtml}
     ${fold("num-" + SLUG[k], "The numbers", `Ratcliffe ${chance(L, "r")}% · Vegas ${chance(L, "v")}%${splitHtml ? " · sources split" : ""}`,
       `${takes}<div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${whyDiffer(L, k)}${vegHtml(L, m, k, yv)}`, !!splitHtml)}
@@ -1263,7 +1294,7 @@ function card(k){
     ${fold("pic-" + SLUG[k], "Playoff picture", b.playoff !== undefined ? pcs(b.playoff) + " playoffs · " + pcs(b.title) + " title" : "", picture)}
     ${fold("ana-" + SLUG[k], "Season odds", hist.length + " runs", season)}
     ${fold("xp-" + SLUG[k], "Experts", xpc.filter(x => x.sp >= 3).length + " splits", experts)}
-    ${fold("wx-" + SLUG[k], "Game weather", wxs.filter(w => w.flag).length ? wxs.filter(w => w.flag).length + " red" : wxs.length + " games", wx, wxs.some(w => w.flag))}
+    ${(() => { const gl = wxs.map(w => wxMk(Object.keys(WX).find(t => WX[t] === w), "")).filter(Boolean); return fold("wx-" + SLUG[k], "Game weather", gl.length ? gl.length + " in weather" + (gl.some(x => x.lv === "r") ? " · red" : gl.some(x => x.lv === "o") ? " · orange" : "") : wxs.length + " games", wx, gl.some(x => x.lv !== "y")); })()}
     ${fold("clr-" + SLUG[k], "Clear " + DK[k], "", clr)}
   </article>`;
 }

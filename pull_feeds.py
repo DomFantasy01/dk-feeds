@@ -275,7 +275,7 @@ PLACE = {'Lambeau Field':'Green Bay','Gillette Stadium':'Foxborough','MetLife St
  'Acrisure Stadium':'Pittsburgh','Nissan Stadium':'Nashville','Northwest Stadium':'Landover','Lumen Field':'Seattle',
  'Hard Rock Stadium':'Miami Gardens','Empower Field at Mile High':'Denver','Huntington Bank Field':'Cleveland',
  'Lincoln Financial Field':'Philadelphia','Raymond James Stadium':'Tampa','GEHA Field at Arrowhead Stadium':'Kansas City',
- "Levi's Stadium":'Santa Clara','Highmark Stadium':'Orchard Park','Soldier Field':'Chicago','M&T Bank Stadium':'Baltimore',
+ "Levi's Stadium":'Santa Clara, California','Highmark Stadium':'Orchard Park','Soldier Field':'Chicago','M&T Bank Stadium':'Baltimore',
  'Paycor Stadium':'Cincinnati','EverBank Stadium':'Jacksonville','Bank of America Stadium':'Charlotte',
  'AT&T Stadium':'Arlington, Texas','State Farm Stadium':'Glendale, Arizona',
  'Mercedes-Benz Stadium':'Atlanta','Lucas Oil Stadium':'Indianapolis','NRG Stadium':'Houston',
