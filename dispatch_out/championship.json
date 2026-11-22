@@ -1,10 +1,10 @@
 {
- "built": "Sat Nov 21 2026 11:49 PM PT",
+ "built": "Sun Nov 22 2026 12:49 AM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 11,
-   "built": "Sat Nov 21 2026 11:49 PM PT",
+   "built": "Sun Nov 22 2026 12:49 AM PT",
    "standings": "Sat Nov 21 9:27 PM PT",
    "base": {
     "wins": 7.58,
@@ -1210,7 +1210,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 249 players",
    "plan": {
     "week": 11,
-    "built": "Sat Nov 21 2026 11:49 PM PT",
+    "built": "Sun Nov 22 2026 12:49 AM PT",
     "standings": "Sat Nov 21 9:27 PM PT",
     "playoff": 0.658,
     "wins": 7.580166666666667,
@@ -1537,7 +1537,7 @@
   },
   "DK II": {
    "week": 11,
-   "built": "Sat Nov 21 2026 11:49 PM PT",
+   "built": "Sun Nov 22 2026 12:49 AM PT",
    "standings": "Sat Nov 21 9:27 PM PT",
    "base": {
     "wins": 6.1,
@@ -2618,6 +2618,12 @@
      "d_playoff": 0.004
     },
     {
+     "add": "Germie Bernard",
+     "drop": "Jaguars",
+     "d_wins": 0.02,
+     "d_playoff": 0.004
+    },
+    {
      "add": "Romeo Doubs",
      "drop": "Jaguars",
      "d_wins": 0.02,
@@ -2627,12 +2633,6 @@
      "add": "T.J. Hockenson",
      "drop": "Jaguars",
      "d_wins": 0.02,
-     "d_playoff": 0.002
-    },
-    {
-     "add": "Konata Mumpfield",
-     "drop": "Jaguars",
-     "d_wins": 0.01,
      "d_playoff": 0.002
     },
     {
@@ -2903,6 +2903,44 @@
      "week_now": 0.887,
      "options": [
       {
+       "add": "Germie Bernard",
+       "drop": "Tre' Harris",
+       "drop_pos": "WR",
+       "drop_role": "starts for you in Week 11; would start for 2 rivals (FUCKING COWBOYS, Ground Game evan)",
+       "drop_helps": [
+        "FUCKING COWBOYS",
+        "Ground Game evan"
+       ],
+       "after": {
+        "wins": 6.11,
+        "playoff": 0.076,
+        "title": 0.0012,
+        "final": 0.004,
+        "semis": 0.02,
+        "seed": 9,
+        "seeds": [
+         0.0,
+         0.0,
+         0.0,
+         0.0017,
+         0.0163,
+         0.0583,
+         0.1757,
+         0.2562,
+         0.2732,
+         0.2178,
+         0.0008,
+         0.0
+        ],
+        "first": 0.0
+       },
+       "week": 0.886,
+       "d_week": -0.001,
+       "d_playoff": 0.004,
+       "d_title": -0.0002,
+       "d_wins": 0.02
+      },
+      {
        "add": "Ja'Kobi Lane",
        "drop": "Tre' Harris",
        "drop_pos": "WR",
@@ -2941,81 +2979,39 @@
        "d_wins": 0.0
       },
       {
-       "add": "Malachi Fields",
-       "drop": "Tre' Harris",
-       "drop_pos": "WR",
-       "drop_role": "starts for you in Week 11; would start for 2 rivals (FUCKING COWBOYS, Ground Game evan)",
-       "drop_helps": [
-        "FUCKING COWBOYS",
-        "Ground Game evan"
-       ],
+       "add": "Germie Bernard",
+       "drop": "Buccaneers",
+       "drop_pos": "DEF",
+       "drop_role": "backup defense behind Jaguars; starts for you in Weeks 12, 13, 14, 15, 16, 17",
+       "drop_helps": [],
        "after": {
-        "wins": 6.09,
-        "playoff": 0.072,
-        "title": 0.0013,
-        "final": 0.004,
-        "semis": 0.019,
+        "wins": 6.01,
+        "playoff": 0.057,
+        "title": 0.0007,
+        "final": 0.003,
+        "semis": 0.012,
         "seed": 9,
         "seeds": [
          0.0,
          0.0,
          0.0,
-         0.0013,
-         0.0172,
-         0.054,
-         0.1763,
-         0.2533,
-         0.2708,
-         0.2258,
          0.0012,
+         0.0125,
+         0.0432,
+         0.1622,
+         0.244,
+         0.281,
+         0.255,
+         0.001,
          0.0
         ],
         "first": 0.0
        },
        "week": 0.884,
        "d_week": -0.003,
-       "d_playoff": 0.0,
-       "d_title": 0.0,
-       "d_wins": -0.0
-      },
-      {
-       "add": "Malachi Fields",
-       "drop": "J.J. McCarthy",
-       "drop_pos": "QB",
-       "drop_role": "backup QB behind Aaron Rodgers; starts for you in Weeks 11, 12, 16, 17; would start for 3 rivals (Diddys Booty Butter, Rams house, Ground Game evan)",
-       "drop_helps": [
-        "Diddys Booty Butter",
-        "Rams house",
-        "Ground Game evan"
-       ],
-       "after": {
-        "wins": 6.06,
-        "playoff": 0.068,
-        "title": 0.001,
-        "final": 0.003,
-        "semis": 0.016,
-        "seed": 9,
-        "seeds": [
-         0.0,
-         0.0,
-         0.0,
-         0.0008,
-         0.0163,
-         0.051,
-         0.1703,
-         0.2528,
-         0.277,
-         0.23,
-         0.0017,
-         0.0
-        ],
-        "first": 0.0
-       },
-       "week": 0.883,
-       "d_week": -0.004,
-       "d_playoff": -0.004,
-       "d_title": -0.0003,
-       "d_wins": -0.03
+       "d_playoff": -0.015,
+       "d_title": -0.0007,
+       "d_wins": -0.08
       },
       {
        "add": "Ja'Kobi Lane",
@@ -3057,42 +3053,46 @@
        "d_wins": -0.03
       },
       {
-       "add": "Ja'Kobi Lane",
-       "drop": "Buccaneers",
-       "drop_pos": "DEF",
-       "drop_role": "backup defense behind Jaguars; starts for you in Weeks 12, 13, 14, 15, 16, 17",
-       "drop_helps": [],
+       "add": "Germie Bernard",
+       "drop": "J.J. McCarthy",
+       "drop_pos": "QB",
+       "drop_role": "backup QB behind Aaron Rodgers; starts for you in Weeks 11, 12, 16, 17; would start for 3 rivals (Diddys Booty Butter, Rams house, Ground Game evan)",
+       "drop_helps": [
+        "Diddys Booty Butter",
+        "Rams house",
+        "Ground Game evan"
+       ],
        "after": {
-        "wins": 5.99,
-        "playoff": 0.053,
-        "title": 0.0007,
+        "wins": 6.08,
+        "playoff": 0.069,
+        "title": 0.001,
         "final": 0.003,
-        "semis": 0.012,
+        "semis": 0.017,
         "seed": 9,
         "seeds": [
          0.0,
          0.0,
          0.0,
-         0.0012,
-         0.012,
-         0.0402,
-         0.1583,
-         0.242,
-         0.2848,
-         0.2603,
-         0.0012,
+         0.0013,
+         0.0163,
+         0.0515,
+         0.1738,
+         0.2545,
+         0.276,
+         0.2255,
+         0.001,
          0.0
         ],
         "first": 0.0
        },
-       "week": 0.887,
-       "d_week": 0.0,
-       "d_playoff": -0.019,
-       "d_title": -0.0007,
-       "d_wins": -0.1
+       "week": 0.88,
+       "d_week": -0.007,
+       "d_playoff": -0.003,
+       "d_title": -0.0003,
+       "d_wins": -0.02
       },
       {
-       "add": "Malachi Fields",
+       "add": "Ja'Kobi Lane",
        "drop": "Buccaneers",
        "drop_pos": "DEF",
        "drop_role": "backup defense behind Jaguars; starts for you in Weeks 12, 13, 14, 15, 16, 17",
@@ -3130,10 +3130,10 @@
      "tested": 10
     }
    ],
-   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 253 players",
+   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 255 players",
    "plan": {
     "week": 11,
-    "built": "Sat Nov 21 2026 11:49 PM PT",
+    "built": "Sun Nov 22 2026 12:49 AM PT",
     "standings": "Sat Nov 21 9:27 PM PT",
     "playoff": 0.07216666666666667,
     "wins": 6.095666666666666,
@@ -3478,12 +3478,12 @@
       "helps": []
      }
     ],
-    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 253 players"
+    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 255 players"
    }
   },
   "DK III": {
    "week": 11,
-   "built": "Sat Nov 21 2026 11:49 PM PT",
+   "built": "Sun Nov 22 2026 12:49 AM PT",
    "standings": "Sat Nov 21 9:27 PM PT",
    "base": {
     "wins": 5.58,
@@ -4629,7 +4629,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 231 players",
    "plan": {
     "week": 11,
-    "built": "Sat Nov 21 2026 11:49 PM PT",
+    "built": "Sun Nov 22 2026 12:49 AM PT",
     "standings": "Sat Nov 21 9:27 PM PT",
     "playoff": 0.05316666666666667,
     "wins": 5.581666666666667,
@@ -5001,7 +5001,7 @@
   },
   "DK IV": {
    "week": 11,
-   "built": "Sat Nov 21 2026 11:49 PM PT",
+   "built": "Sun Nov 22 2026 12:49 AM PT",
    "standings": "Sat Nov 21 9:27 PM PT",
    "base": {
     "wins": 15.08,
@@ -6599,7 +6599,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 231 players",
    "plan": {
     "week": 11,
-    "built": "Sat Nov 21 2026 11:49 PM PT",
+    "built": "Sun Nov 22 2026 12:49 AM PT",
     "standings": "Sat Nov 21 9:27 PM PT",
     "playoff": 0.8575,
     "wins": 15.0805,
