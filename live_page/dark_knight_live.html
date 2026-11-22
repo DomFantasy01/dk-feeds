@@ -1888,8 +1888,17 @@ function manFinal(p, src, pm){
   if (src === "y") return Math.max(pts(p), +p.proj || 0);
   const e = pm && pm[norm(p.name)] ? pm[norm(p.name)][SRCI[src]] : null;
   const base = (e === null || e === undefined) ? (+p.proj || 0) : +e;
-  return isLive(p) ? pts(p) + Math.max(0, base - pts(p)) : base;
+  if (!isLive(p)) return base;
+  /* Nov 22 3:54 PM (Dom: "DK3 win probability looks off" - Ratcliffe 36% while up ~15 with Daniels still to play): a man in a
+     game still had his WHOLE pregame number counted (pts + what's left of it), so Lawrence at 4 points late in the 4th was
+     still worth 23. Now: how much of his game is left comes from Yahoo's own live projection against its morning number
+     (Yahoo ticks that down with the clock), and the expert's number is scaled to it. */
+  const y0 = pj0Of(p.name), yl = +p.proj;
+  if (y0 > 0 && !isNaN(yl)) return pts(p) + Math.max(0, yl - pts(p)) * (base / y0);
+  return pts(p) + Math.max(0, base - pts(p));
 }
+function pj0Of(name){ const g = M && M.pj0 && S && M.pj0.w === S.week && M.pj0.lg; if (!g) return 0;
+  for (const k in g){ const v = g[k][name]; if (v !== undefined) return +v; } return 0; }
 const phi = (z) => { const t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2);
   const q = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - q : q; };
 function chance(L, src){
