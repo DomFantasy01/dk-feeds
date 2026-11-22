@@ -329,9 +329,15 @@ cur['status'] = ST
 def _ingame():
     import os, datetime as _dt
     from zoneinfo import ZoneInfo
-    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'feeds', 'fast', 'rotowire_players.json')
-    try: R = json.load(open(f))
-    except Exception: return None
+    # Nov 22: read whichever copy is newer - the fast copy (inactives watch, every 5 min in its windows) or the regular
+    # feed pull's copy (every 30 min all day). Reading only the fast copy left in-game status stuck on Nov 10.
+    base = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'feeds')
+    R = None
+    for f in (os.path.join(base, 'fast', 'rotowire_players.json'), os.path.join(base, 'rotowire_players.json')):
+        try: x = json.load(open(f))
+        except Exception: continue
+        if R is None or (x.get('pulled_utc') or '') > (R.get('pulled_utc') or ''): R = x
+    if R is None: return None
     today = _dt.datetime.now(ZoneInfo("America/Los_Angeles")); day = f"{today.strftime('%B')} {today.day}, {today.year}"
     OUT = re.compile(r"ruled out for (the )?(rest|remainder)|won't return|will not return|not return to|out for (the )?(rest|remainder)", re.I)
     TRB = re.compile(r"questionable to return|doubtful to return|being evaluated|evaluated for|checked for|exits|left (the|sunday's|monday's|thursday's|today's) (game|contest)|left the field|carted|injured during|headed to the locker room|went to the locker room", re.I)

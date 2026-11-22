@@ -73,16 +73,43 @@ def one_pass(now, R, fired, log):
         log(f"{now:%H:%MZ} {wf}: slot {S:%H:%MZ} missed ({age:.0f} min) - started: " + ("ok" if r.returncode == 0 else r.stderr.strip()[:200]))
         qwait = [1]   # what we just started now waits in the queue; the next job waits for the next pass
 
+# Nov 22 (Dom): the inactives watch has the same problem worse - GitHub starts it late, it finds no list due in the next
+# 45 minutes and quits, so from Nov 10 to Nov 22 it never actually watched. The clock now starts it itself, sized to run
+# until 25 minutes after the list, whenever a list is 5-40 minutes out and no inactives run has started for it.
+INACT = {3: ["15:45"], 0: ["15:45"], 6: ["05:00", "08:30", "11:35", "11:55", "15:50"]}   # Mon=0 Thu=3 Sun=6, Pacific
+def inactives_pass(now, R, fired, log):
+    from zoneinfo import ZoneInfo
+    PT = ZoneInfo("America/Los_Angeles"); n = now.astimezone(PT)
+    due = []
+    for hm in INACT.get(n.weekday(), []):
+        h, m = map(int, hm.split(":")); t = n.replace(hour=h, minute=m, second=0, microsecond=0)
+        if dt.timedelta(minutes=5) <= t - n <= dt.timedelta(minutes=40): due.append(t)
+    if not due: return
+    first = min(due)
+    # one watch covers every list within 30 minutes of the first (Sunday 11:35 + 11:55)
+    last = max([first] + [n.replace(hour=int(hm[:2]), minute=int(hm[3:]), second=0, microsecond=0) for hm in INACT.get(n.weekday(), [])
+                          if dt.timedelta(0) <= n.replace(hour=int(hm[:2]), minute=int(hm[3:]), second=0, microsecond=0) - first <= dt.timedelta(minutes=30)])
+    if ("inactives.yml", first) in fired: return
+    mine = [r for r in R if r.get("path", "").endswith("/inactives.yml")]
+    if any(r.get("status") in WAITING | {"in_progress"} or ts(r["created_at"]) >= first - dt.timedelta(minutes=45) for r in mine
+           if ts(r["created_at"]) >= first - dt.timedelta(minutes=45)): return
+    fired.add(("inactives.yml", first))
+    mins = int((last - n).total_seconds() // 60) + 25
+    if DRY: log(f"{now:%H:%MZ} inactives.yml: {first:%I:%M %p} PT list, no watch started - WOULD START for {mins} min"); return
+    r = gh("workflow", "run", "inactives.yml", "-R", REPO, "--ref", "main", "-f", f"minutes={mins}")
+    log(f"{now:%H:%MZ} inactives.yml: {first:%I:%M %p} PT list, no watch started - started for {mins} min: " + ("ok" if r.returncode == 0 else r.stderr.strip()[:200]))
+
 def main():
     log = lambda m: print(m, flush=True)
     fired = set()
     if DRY:
         now = ts(A[A.index("--now") + 1]) if "--now" in A else dt.datetime.now(UTC)
-        one_pass(now, runs(), fired, log); return
+        R = runs(); one_pass(now, R, fired, log); inactives_pass(now, R, fired, log); return
     t0 = time.time()
     log(f"clock awake {dt.datetime.now(UTC):%Y-%m-%d %H:%MZ}; watching {', '.join(WATCH)}")
     while (time.time() - t0) / 60 < LIFE:
-        try: one_pass(dt.datetime.now(UTC), runs(), fired, log)
+        try:
+            now, R = dt.datetime.now(UTC), runs(); one_pass(now, R, fired, log); inactives_pass(now, R, fired, log)
         except Exception as e: log(f"pass failed: {e}")
         time.sleep(PASS * 60)
     r = gh("workflow", "run", "clock.yml", "-R", REPO, "--ref", "main")   # hand off to the next clock
