@@ -759,9 +759,14 @@ function scoreGlobe(L, k, o){
       /* Nov 22 9:23 AM (Dom: "some of the umbrellas are in the middle"): fixed spots in every box - umbrella bottom-left, number bottom-right */
       const BY = (yy + 11.8).toFixed(1), LX = (bx + 1).toFixed(2), RX = (bx + bw - .9).toFixed(2);
       let bot = "";
-      if (played){ const v = pts(p), rp = rPre(p), d = rp === null ? 0 : (isDone(p) ? v : Math.max(v, +p.proj || 0)) - rp; bot = `<text class="gnm ${s}" x="${RX}" y="${BY}" text-anchor="end">${ARW(d)}${NUM(v)}</text>`; }
+      /* Nov 22 9:43 AM (Dom: "make it clear what the hell's going on"): a plain word in the box when something's wrong -
+         OUT / IR / Q / D / BYE, ZERO (in the lineup but projected 0 - e.g. a backup QB), EMPTY (nobody in the slot) */
+      const ST = String(p.status || "").toUpperCase(), sw = s === "out" ? (/IR/.test(ST) ? "IR" : "OUT") : (s === "trbl" || s === "trblon") ? (/^D/.test(ST) ? "D" : /^O/.test(ST) ? "OUT" : "Q") : s === "bye" ? "BYE" : s === "empty" ? (p.name ? "ZERO" : "EMPTY") : "";
+      if (sw && (s === "out" || s === "bye" || s === "empty")) bot = `<text class="gsw ${s}" x="${tx}" y="${BY}" text-anchor="middle">${sw}</text>`;
+      else if (played){ const v = pts(p), rp = rPre(p), d = rp === null ? 0 : (isDone(p) ? v : Math.max(v, +p.proj || 0)) - rp; bot = `<text class="gnm ${s}" x="${RX}" y="${BY}" text-anchor="end">${ARW(d)}${NUM(v)}</text>`; }
       else { const dv = pj0 && pj0[p.name] !== undefined && p.proj !== undefined && p.proj !== null ? +p.proj - pj0[p.name] : 0, mv = Math.abs(dv) >= 1;
-        if (w) bot += `<text class="gnm pre" x="${LX}" y="${BY}" text-anchor="start"><tspan class="gwxi" style="fill:${WXC[w.lv]}">☂</tspan>${!mv && w.dir ? `<tspan class="gwxi gwxa" style="fill:${WXC[w.lv]}">${w.dir === "up" ? "▲" : "▼"}</tspan>` : ""}</text>`;
+        if (sw) bot += `<text class="gsw ${s}" x="${LX}" y="${BY}" text-anchor="start">${sw}</text>`;
+        else if (w) bot += `<text class="gnm pre" x="${LX}" y="${BY}" text-anchor="start"><tspan class="gwxi" style="fill:${WXC[w.lv]}">☂</tspan>${!mv && w.dir ? `<tspan class="gwxi gwxa" style="fill:${WXC[w.lv]}">${w.dir === "up" ? "▲" : "▼"}</tspan>` : ""}</text>`;
         if (mv) bot += `<text class="gnm pre" x="${RX}" y="${BY}" text-anchor="end">${ARW(dv)}${NUM(Math.abs(dv))}</text>`; }
       const ln = (y) => `<line x1="${(bx + 1.2).toFixed(2)}" x2="${(bx + bw - 1.2).toFixed(2)}" y1="${y}" y2="${y}" class="grw"/>`;
       const ttl = [w ? w.game + ": " + w.txt + (w.eff ? " · " + w.eff : "") : "", played ? `${f1(pts(p))} pts${rPre(p) !== null ? ", Ratcliffe had " + f1(rPre(p)) : ""}${isLive(p) ? ", Yahoo now projects " + f1(+p.proj || 0) : ""}` : "", !played && pj0 && pj0[p.name] !== undefined ? `Yahoo proj ${f1(+p.proj || 0)} (morning ${f1(pj0[p.name])})` : ""].filter(Boolean).join(" · ");
