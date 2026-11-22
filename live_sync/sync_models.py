@@ -373,6 +373,22 @@ try:
         cur['wheel'] = json.loads(_u.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/wheel.json?t={int(_t.time())}", timeout=30).read())
     print('wheel on Live:', cur['wheel'].get('built'))
 except Exception as _e: print('wheel skipped:', str(_e)[:120])
+# Nov 22 (Dom: show in each square whether a player is "up or down"): pj0 = every starter's Yahoo projection at the day's
+# first sync (PT date), kept all day, so Live can mark who moved since the morning (late news, inactives, weather).
+try:
+    import datetime as _d9, zoneinfo as _z9
+    _ls9 = json.load(open(sys.argv[5])) if len(sys.argv) >= 6 else None
+    if _ls9 and _ls9.get('leagues'):
+        _today9 = _d9.datetime.now(_z9.ZoneInfo('America/Los_Angeles')).date().isoformat()
+        _o9 = cur.get('pj0') or {}
+        if _o9.get('d') != _today9 or _o9.get('w') != _ls9.get('week'):
+            cur['pj0'] = _o9 = {'d': _today9, 'w': _ls9.get('week'), 't': _ls9.get('stamp'), 'lg': {}}
+        for _L9 in _ls9['leagues']:
+            _g9 = _o9['lg'].setdefault(_L9['key'], {})
+            for _p9 in (_L9.get('players') or []) + (_L9.get('oppPlayers') or []):
+                if _p9.get('proj') is not None: _g9.setdefault(_p9['name'], round(float(_p9['proj']), 2))
+        print('pj0: morning projections from', _o9.get('t'), '-', sum(len(v) for v in _o9['lg'].values()), 'players')
+except Exception as _e9: print('pj0 skipped:', str(_e9)[:120])
 # Nov 10 10:05 AM (Dom: "Fix" - the 8:55 AM chain failed: live/models came to 276,313 bytes, the database caps a document at 262,144).
 # Size guard: keep the document under 250,000 bytes by shedding the least-needed riders first (the page falls back to live/pickups).
 def _size(o): return len(json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
