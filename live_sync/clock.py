@@ -22,11 +22,11 @@ REPO = os.environ.get("GITHUB_REPOSITORY", "DomFantasy01/dk-feeds")
 WATCH = ["pull.yml", "proj.yml", "dispatch.yml"]   # the jobs whose schedules GitHub drops
 GRACE = 26          # minutes: on Nov 4 GitHub started the scheduled runs it did keep 10-25 minutes late - wait that out first
 LOOKBACK = 55       # minutes: only catch a slot this recent (an older miss is covered by the next slot)
-EARLY = {"dispatch.yml": 8}    # minutes: a build started up to 8 min before the slot covers it (others: 3)
+EARLY = {"dispatch.yml": 5}    # Nov 22: 5 (was 8) - Sunday builds now every 10 minutes    # minutes: a build started up to 8 min before the slot covers it (others: 3)
 # Nov 8 (Dom: "the page should update every 20 minutes in games"): with the 20-minute game-window builds, a 26-minute grace
 # meant the newest slot was ALWAYS younger than the grace, so the clock never caught a missed 20-minute build - Sunday night
 # the page went about an hour between builds. The Dispatch build now gets its own short grace.
-GRACE_WF = {"dispatch.yml": 7}
+GRACE_WF = {"dispatch.yml": 5}   # Nov 22: 5 (was 7) for the 10-minute Sunday beat
 PASS = 4            # minutes between passes
 LIFE = 345          # minutes this run stays awake (GitHub's limit is 360)
 WAITING = {"queued", "waiting", "pending", "requested"}

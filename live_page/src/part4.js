@@ -425,8 +425,9 @@ const SCHED = {   /* Pacific schedule the page knows: Yahoo reads and the hourly
   /* Nov 8 8:30 PM: the real Live syncs - hourly at :25 (4:25 AM-11:25 PM), plus game-window syncs every 20 min with it:
      Sunday :45 (9:45 AM-8:45 PM) and :05 (10:05 AM-9:05 PM); Monday and Thursday :45 (4:45-8:45 PM) and :05 (5:05-9:05 PM) */
   sync(d){ const R = (a, b, m) => Array.from({length: b - a + 1}, (_, i) => [a + i, m]);
-    /* Nov 15 (Dom): game windows every 15 minutes - syncs at :05 :20 :35 :50, each right after a build (builds :08 :23 :38 :53) */
-    return [...R(4, 23, 25), ...(d === 0 ? ((h0) => [...R(h0, 20, 20), ...R(h0, 20, 35), ...R(h0, 20, 50), ...R(h0 + 1, 21, 5)])(((M && M.kicks) || []).some(x => { const t = new Date(Array.isArray(x) ? x[0] : x), n = new Date(); return !isNaN(t) && t.toDateString() === n.toDateString() && t.getHours() < 10; }) ? 6 : 9) : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : []), ...offDay(d)]; }
+    /* Nov 22 (Dom): Sundays every 10 minutes, 7:55 AM-9:05 PM - :05 :15 :25(hourly) :35 :45 :55. Mon/Thu nights stay every 15.
+       Nov 15 (Dom): game windows every 15 minutes - syncs at :05 :20 :35 :50, each right after a build (builds :08 :23 :38 :53) */
+    return [...R(4, 23, 25), ...(d === 0 ? [...R(8, 21, 5), ...R(8, 20, 15), ...R(8, 20, 35), ...R(8, 20, 45), ...R(7, 20, 55), ...(((M && M.kicks) || []).some(x => { const t = new Date(Array.isArray(x) ? x[0] : x), n = new Date(); return !isNaN(t) && t.toDateString() === n.toDateString() && t.getHours() < 10; }) ? [...R(6, 7, 20), ...R(6, 7, 35), ...R(6, 6, 50), ...R(7, 7, 5)] : [])] : d === 1 || d === 4 ? [...R(17, 20, 20), ...R(17, 20, 35), ...R(17, 20, 50), ...R(17, 21, 5)] : []), ...offDay(d)]; }
 };
 /* Nov 15 (Dom: "add Saturdays"): off-day games (Sat, Wed, Fri, Thanksgiving/Christmas day games) get the 15-minute syncs too,
    from 40 min before the first kickoff that day to 3h50m after the last - except where the Sun/Mon/Thu syncs already run */
@@ -738,17 +739,16 @@ function scoreGlobe(L, k, o){
       ${big ? `<path d="${arc(r + sw * .28, 0, fv)}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="${(sw * .16).toFixed(2)}" stroke-linecap="round"/>` : ""}
       ${on ? `<circle class="gcap on" cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="${(sw / 2 - .6).toFixed(2)}" fill="#fff" fill-opacity=".92"/>` : ""}` : ""}
       <line x1="${tx0.toFixed(2)}" y1="${ty0.toFixed(2)}" x2="${tx1.toFixed(2)}" y2="${ty1.toFixed(2)}" stroke="#fff" stroke-width="${big ? 1.6 : 1.1}" stroke-linecap="round"/>`; };
-  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 22.5, x1 = W - 3, g = 1, bw = (x1 - x0 - g * (n - 1)) / n, bh = 11;
-    return `<text x="3" y="${(yy + 7.8).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "TEAM" : "OPNT"}</text>` + st.map((p, i) => { const s = ringState(p, k), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
+  /* Nov 22 8:53 AM (Dom: "I don't want anything blinking... the umbrella up and down... added to that box... make them slightly bigger"):
+     taller squares (15 tall, was 11); a square in weather shows his position on top and the umbrella + arrow under it, both steady */
+  const strip = (list, mine, yy) => { const st = list.filter(isStarter), n = st.length; if (!n) return ""; const x0 = 22.5, x1 = W - 3, g = 1, bw = (x1 - x0 - g * (n - 1)) / n, bh = 15;
+    return `<text x="3" y="${(yy + 9.6).toFixed(1)}" class="gsl${mine ? " me" : ""}" style="${mine ? `fill:${LC}` : ""}">${mine ? "TEAM" : "OPNT"}</text>` + st.map((p, i) => { const s = ringState(p, k), bx = x0 + i * (bw + g), dp = `${SLUG[k]}|${mine ? "m" : "o"}|${i}`;
       const tip = esc((mine ? "Yours: " : "His: ") + (p.slot || "") + " " + p.name + " · " + STWORD[s] + (p.when ? " · " + p.when : ""));
-      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .42).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
-        ${(() => { const w = !isDone(p) && !isLive(p) ? wxMk(p.tm, wxPos(L, p)) : null, tx = (bx + bw / 2).toFixed(2), ty = (yy + 7.2).toFixed(1), pz = bw >= 6 ? POSAB(p.slot) : "";
-          if (!w) return pz ? `<text class="gpz ${s}" x="${tx}" y="${ty}" text-anchor="middle">${pz}</text>` : "";
-          /* Nov 22 (Dom: "put the badge actually in that green area"): weather inside the square - outline + bottom bar in the weather color,
-             the square flips between his position and the umbrella with the helps/hurts arrow */
+      return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .38).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
+        ${(() => { const w = !isDone(p) && !isLive(p) ? wxMk(p.tm, wxPos(L, p)) : null, tx = (bx + bw / 2).toFixed(2), pz = bw >= 6 ? POSAB(p.slot) : "";
+          if (!w) return pz ? `<text class="gpz ${s}" x="${tx}" y="${(yy + 9.3).toFixed(1)}" text-anchor="middle">${pz}</text>` : "";
           const wc = WXC[w.lv], ar = w.dir === "up" ? "▲" : w.dir === "dn" ? "▼" : "";
-          /* Nov 22 6:32 AM (Dom): no outline or stripe - the square keeps its color and flashes position <-> umbrella+arrow, the umbrella in the weather color */
-          return `${pz ? `<text class="gpz ${s} wxa" x="${tx}" y="${ty}" text-anchor="middle">${pz}</text>` : ""}<text class="gwxs wxb" x="${tx}" y="${(yy + 7.9).toFixed(1)}" text-anchor="middle" style="fill:${wc}">☂${ar ? `<tspan class="gwxa">${ar}</tspan>` : ""}</text><title>${esc(w.txt + (w.eff ? " · " + w.eff : ""))}</title>`; })()}</g>`; }).join(""); };
+          return `${pz ? `<text class="gpz ${s}" x="${tx}" y="${(yy + 5.6).toFixed(1)}" text-anchor="middle">${pz}</text>` : ""}<text class="gwxs" x="${tx}" y="${(yy + 12.9).toFixed(1)}" text-anchor="middle" style="fill:${wc}">☂${ar ? `<tspan class="gwxa">${ar}</tspan>` : ""}</text><title>${esc(w.game + ": " + w.txt + (w.eff ? " · " + w.eff : ""))}</title>`; })()}</g>`; }).join(""); };
   /* Nov 22 (Dom): weather badge on the dial - worst weather among both lineups' starters still to play, count of yours */
   const wxB = (() => { const one = (list) => list.filter(isStarter).filter(p => !isDone(p) && !isLive(p)).map(p => wxMk(p.tm, wxPos(L, p))).filter(Boolean);
     const mw = one(L.players), ow = one(L.oppPlayers), all = [...mw, ...ow]; if (!all.length) return "";
@@ -802,7 +802,7 @@ function scoreGlobe(L, k, o){
     <text x="${CX / 2 + 1.5}" y="${CY + 77}" text-anchor="middle" class="gpj">PROJ <tspan style="fill:${ZC}">${Math.round(o.pMe)}</tspan>·<tspan>${Math.round(o.pOp)}</tspan></text>
     <line x1="${CX}" y1="${CY + 65}" x2="${CX}" y2="${CY + 80}" stroke="#24304C" stroke-width=".7"/>
     <text x="${CX * 1.5 - 1.5}" y="${CY + 77}" text-anchor="middle" class="gpj">LEFT <tspan style="fill:${LC}">${lf(o.meL)}</tspan>·<tspan>${lf(o.opL)}</tspan></text>
-    ${strip(L.players, true, 153)}${strip(L.oppPlayers, false, 167)}${wxB}</svg>`;
+    ${strip(L.players, true, 152)}${strip(L.oppPlayers, false, 168)}${wxB}</svg>`;
 }
 /* Nov 8 (Dom): each league name on ONE line - shrink it until it fits its tile, never cut it off */
 /* Nov 10 8:00 AM (Dom): keep the four Experts boxes side by side; name + check + points on ONE line, centered - if a box is too
@@ -1752,6 +1752,15 @@ function closeSheet(){ const sh = $("#gsheet"), b = $("#gback"); if (!sh) return
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
 function plRow(p, k){ const s = ringState(p, k), f = manFinal(p, "y");
   return `<div class="gpr ${s}"><i></i><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc([p.tm, p.status].filter(Boolean).join(" · "))}</em></span><span class="pp">${f1(pts(p))}<em>${started(p) && !isDone(p) ? "→ " + f1(f) : isDone(p) ? "final" : "proj " + f1(f)}</em></span></div>`; }
+/* Nov 22 8:53 AM (Dom: "when I clicked into it, there's nothing there that told me anything about the weather"):
+   the player sheet spells out his game's weather - game, rain, temperature, wind/gusts, and what it does to him */
+function plWx(L, p){ const w = wxOf(p.tm); if (!w) return "";
+  if (w.roof === "dome" || w.roof === "retract") return `<div class="gwh">Weather: <b>${esc(w.game || "")}</b> · ${w.roof === "dome" ? "dome" : "retractable roof"} - no weather effect</div>`;
+  if (w.temp === undefined || w.temp === null) return "";
+  const x = (isDone(p) || isLive(p)) ? null : wxMk(p.tm, wxPos(L, p)), c = x ? WXC[x.lv] : "#8E98AE";
+  const parts = [`rain ${Math.round(+w.pop || 0)}%`, `${Math.round(+w.temp)}°`, `wind ${Math.round(+w.wind || 0)} mph`, (+w.gust || 0) >= 20 ? `gusts ${Math.round(+w.gust)}` : "", (+w.snow || 0) > 0 ? "snow" : ""].filter(Boolean);
+  const eff = x ? (x.eff ? (x.dir === "dn" ? "▼ " : x.dir === "up" ? "▲ " : "") + x.eff : WXLV[x.lv]) : "no real weather effect";
+  return `<div class="gwh gwxl" style="border-left:3px solid ${c};padding-left:6px"><span style="color:${c}">☂</span> <b>${esc(w.game || "")}</b>, ${esc(parts.join(", "))} - <b style="color:${c}">${esc(eff)}</b>${x ? ` <span class="mute">(${esc(WXLV[x.lv].toLowerCase())})</span>` : ""}${x && x.early ? ` <span class="mute">· early forecast</span>` : ""}</div>`; }
 function plPop(key){ const [slug, side, idx] = key.split("|"), k = KEYOF[slug], L = lgS(k); if (!L) return;
   const list = (side === "m" ? L.players : L.oppPlayers).filter(isStarter), p = list[+idx]; if (!p) return; const s = ringState(p, k), ig = igOf(p);
   showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${side === "m" ? "Your" : esc(L.opp) + "'s"} ${esc(p.slot || "")}</span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
@@ -1759,6 +1768,7 @@ function plPop(key){ const [slug, side, idx] = key.split("|"), k = KEYOF[slug], 
       <div class="gst ${s}"><i></i>${STW[s]}${p.status ? " · " + esc(p.status) : ""}</div>${s === "swap" ? `<div class="gwh">Ratcliffe best lineup: <b>${esc((((M.best || {})[k] || {}).lines || {}).me ? M.best[k].lines.me.join(" · ") : "")}</b></div>` : ""}
       <div class="gnums"><div><span>POINTS</span><b>${f1(pts(p))}</b></div><div><span>YAHOO PROJ</span><b>${f1(+p.proj || 0)}</b></div><div><span>PROJ FINAL</span><b>${f1(manFinal(p, "y"))}</b></div></div>
       <div class="gwh">Game: <b>${esc(p.when || "-")}</b>${ig ? `<br>${esc(ig.note)} <span class="mute">(RotoWire)</span>` : ""}</div>
+      ${plWx(L, p)}
       <div class="gft">Yahoo read ${esc(PT(S.stamp, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}</div></div>
     <div class="gbt"><button type="button" data-sheet="${slug}">Both lineups</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }

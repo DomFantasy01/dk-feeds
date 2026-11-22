@@ -13,13 +13,16 @@ on:
     # ... every 30 minutes Sunday morning before the games (6:00-8:30 AM PT: overseas game at 6:30 + inactives) ...
     # Nov 12 (Dom: "start that process 30 minutes before the game starts"): was 6:10.
     # Nov 15 (Dom: cover the overseas games too): Sunday 6:08-8:53 AM PT every 15 minutes, same :08 :23 :38 :53 beat
-    - cron: '8,23,38,53 14-16 * * 0'
+    - cron: '8,23,38 14-15 * * 0'
+    # Nov 22 (Dom: "this stuff needs to be updated more frequently"): Sundays every 10 minutes from 7:51 AM PT to 8:51 PM PT
+    #   (builds :01 :11 :21 :31 :41 :51; the Live syncs at :05 :15 :25 :35 :45 :55 push them). Was every 15 min at :08 :23 :38 :53.
+    - cron: '51 15 * * 0'
+    - cron: '1,11,21,31,41,51 16-23 * * 0'
+    - cron: '1,11,21,31,41,51 0-4 * * 1'
     # Nov 15 (Dom: every 15 minutes, page update right after each build): builds at :08 :23 :38 :53, landing ~:20 :35 :50 :05,
     #   when the Live syncs run (:05, :20, :35, :50). Was: every 20 minutes.
     # ... and every 20 minutes while games are on (Nov 8, Dom: start 20 min before the first kickoff, run to 20 min after the last game):
     #   Sun 9:10 AM-8:50 PM PT, Mon and Thu 4:45-8:50 PM PT. Builds land ~12 min later; the Live syncs run at :05, :25, :45.
-    - cron: '8,23,38,53 17-23 * * 0'
-    - cron: '8,23,38,53 0-4 * * 1'
     - cron: '45 0 * * 2,5'           # Nov 12 (Dom): Mon/Thu first build 4:45 PM PT = 30 min before the 5:15 kickoff (was 4:50)
     - cron: '8,23,38,53 1-4 * * 2,5'
     # Nov 12 (Dom): the off-day games - each window starts 30+ min before kickoff (UTC dates; PST = UTC-8).
