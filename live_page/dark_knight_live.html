@@ -2555,7 +2555,7 @@ function scoreGlobe(L, k, o){
     /* Nov 22 6:32 AM (Dom): the number counts only YOUR starters in orange or red weather - the weather that actually matters */
     const nb = mw.filter(x => x.lv !== "y").length;
     const tip = `Weather: ${nb} of yours in orange/red (${mw.length} of yours in any weather, ${ow.length} of his)${mw.length ? ` · yours: ${dn} hurt, ${up} helped` : ""} · worst: ${WXLV[lv]}${all.every(x => x.early) ? " · early forecast" : ""}`;
-    return `<g class="gwx"><title>${esc(tip)}</title><circle cx="110.5" cy="13" r="11.4" fill="${WXC[lv]}" stroke="#0A1020" stroke-width="1.4"/>
+    return `<g class="gwx tap" data-wxl="${SLUG[k]}" role="button" aria-label="${esc(tip)}"><title>${esc(tip)}</title><circle cx="110.5" cy="13" r="11.4" fill="${WXC[lv]}" stroke="#0A1020" stroke-width="1.4"/>
       <text x="110.5" y="17.6" text-anchor="middle" class="gwxu">☂</text>${nb ? `<circle cx="119" cy="5.4" r="5" fill="#0A1020" stroke="${WXC[lv]}" stroke-width="1.2"/><text x="119" y="8.1" text-anchor="middle" class="gwxn" style="fill:${WXC[lv]}">${nb}</text>` : ""}</g>`; })();
   const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲" : "▼") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲" : "▼") + f1(Math.abs(mg));
   const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n;
@@ -3448,6 +3448,7 @@ document.addEventListener("click", async (e) => {
   const ga = t.closest("[data-goal]"); if (ga){ e.preventDefault(); await goAlert(ga.dataset.goal); return; }
   const ab = t.closest("[data-alerts]"); if (ab){ e.preventDefault(); e.stopPropagation(); const id = "al-" + ab.dataset.alerts, d = document.querySelector(`details[data-fold="${id}"]`);
     if (d){ d.open = true; try { FOLDS[id] = true; } catch(_){} d.scrollIntoView({behavior: SMOOTH(), block: "start"}); } else jumpTo(ab.dataset.alerts); return; }
+  const wl = t.closest("[data-wxl]"); if (wl){ e.preventDefault(); e.stopPropagation(); wxPop(wl.dataset.wxl); return; }
   const pl = t.closest("[data-pl]"); if (pl){ e.preventDefault(); e.stopPropagation(); plPop(pl.dataset.pl); return; }
   const sh = t.closest("[data-sheet]"); if (sh && (sh.tagName === "BUTTON" || !t.closest("#gsheet"))){ e.preventDefault(); e.stopPropagation(); openSheet(sh.dataset.sheet); return; }
   if (t.closest("[data-shclose]") || t.id === "gback"){ e.preventDefault(); closeSheet(); return; }
@@ -3560,6 +3561,18 @@ function plWx(L, p){ const w = wxOf(p.tm); if (!w) return "";
   const parts = [`rain ${Math.round(+w.pop || 0)}%`, `${Math.round(+w.temp)}°`, `wind ${Math.round(+w.wind || 0)} mph`, (+w.gust || 0) >= 20 ? `gusts ${Math.round(+w.gust)}` : "", (+w.snow || 0) > 0 ? "snow" : ""].filter(Boolean);
   const eff = x ? (x.eff ? (x.dir === "dn" ? "▼ " : x.dir === "up" ? "▲ " : "") + x.eff : WXLV[x.lv]) : "no real weather effect";
   return `<div class="gwh gwxl" style="border-left:3px solid ${c};padding-left:6px"><span style="color:${c}">☂</span> <b>${esc(w.game || "")}</b>, ${esc(parts.join(", "))} - <b style="color:${c}">${esc(eff)}</b>${x ? ` <span class="mute">(${esc(WXLV[x.lv].toLowerCase())})</span>` : ""}${x && x.early ? ` <span class="mute">· early forecast</span>` : ""}</div>`; }
+/* Nov 22 9:40 AM (Dom: "I tapped the three umbrellas but I don't see anything"): tapping the dial's umbrella badge lists
+   every starter (yours, then his) whose game has weather - game, rain, temperature, wind, and what it does to him */
+function wxPop(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return;
+  const rows = (list, mine) => list.filter(isStarter).filter(p => !isDone(p) && !isLive(p)).map(p => ({p, x: wxMk(p.tm, wxPos(L, p)), w: wxOf(p.tm)})).filter(r => r.x)
+    .sort((a, b) => ({r: 0, o: 1, y: 2}[a.x.lv] - {r: 0, o: 1, y: 2}[b.x.lv]))
+    .map(({p, x, w}) => `<div class="gwh" style="border-left:3px solid ${WXC[x.lv]};padding-left:6px;margin:6px 0"><b>${esc(p.name)}</b> <span class="mute">${esc(p.slot || "")} · ${esc(p.tm || "")}</span><br><span style="color:${WXC[x.lv]}">☂</span> ${esc(w.game || "")}, rain ${Math.round(+w.pop || 0)}%, ${Math.round(+w.temp)}°, wind ${Math.round(+w.wind || 0)} mph${(+w.gust || 0) >= 20 ? ", gusts " + Math.round(+w.gust) : ""} - <b style="color:${WXC[x.lv]}">${x.dir === "dn" ? "▼ " : x.dir === "up" ? "▲ " : ""}${esc(x.eff || WXLV[x.lv])}</b> <span class="mute">(${esc(WXLV[x.lv].toLowerCase())}${x.early ? ", early forecast" : ""})</span></div>`).join("");
+  const me = rows(L.players, true), op = rows(L.oppPlayers, false);
+  showSheet(`<div class="gsh"><b>${DK[k]}</b><span>Weather · starters still to play</span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
+    <div class="gpl"><div class="gsec">YOURS</div>${me || `<div class="gwh mute">None of yours in weather.</div>`}
+    <div class="gsec">${esc(L.opp || "HIS")}</div>${op || `<div class="gwh mute">None of his in weather.</div>`}
+    <div class="gft">Red = real problem for passing (snow, wind 25+, gusts 38+, or heavy rain likely) · orange = likely to matter · yellow = worth noting. The number on the badge counts your orange and red. Forecast pulled ${esc(M.wx ? ptTime(M.wx.pulled) : "")}.</div></div>`, HEX[k]);
+}
 function plPop(key){ const [slug, side, idx] = key.split("|"), k = KEYOF[slug], L = lgS(k); if (!L) return;
   const list = (side === "m" ? L.players : L.oppPlayers).filter(isStarter), p = list[+idx]; if (!p) return; const s = ringState(p, k), ig = igOf(p);
   showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${side === "m" ? "Your" : esc(L.opp) + "'s"} ${esc(p.slot || "")}</span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
