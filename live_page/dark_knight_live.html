@@ -1754,7 +1754,6 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 
 <div id="pkTop"></div>
 
-<div id="pickups"></div>
 
 <div id="wheel"></div>
 
@@ -1768,7 +1767,6 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 
 <div id="cards"></div>
 
-<details class="fold" id="f-alall" data-fold="alall"><summary>All alerts, every league <span class="cnt" id="alCnt"></span></summary><div class="fb" id="astrip"></div></details>
 
 <details class="fold" id="f-sep" data-fold="sep"><summary>Separated alerts <span class="cnt" id="sepCnt"></span></summary><div class="fb" id="sep"></div></details>
 
@@ -1807,7 +1805,12 @@ const norm = (n) => (n || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(
   .replace(/\s+(jr|sr|ii|iii|iv|v)\.?$/i, "").toLowerCase().split(/\s+/).join(" ");
 const store = {get(k, d){ try { const v = localStorage.getItem("dkl:" + k); return v === null ? d : JSON.parse(v); } catch(_){ return d; } },
                set(k, v){ try { localStorage.setItem("dkl:" + k, JSON.stringify(v)); } catch(_){} }};
-const PT = (iso, o) => { try { return new Date(iso).toLocaleString("en-US", {timeZone: "America/Los_Angeles", ...o}); } catch(_){ return ""; } };
+/* Nov 22 (Dom: "make it faster"): one formatter per option set, reused - building a new one on every call was most of the page's redraw time */
+const PTF = new Map(), PTK = ["weekday", "era", "year", "month", "day", "dayPeriod", "hour", "minute", "second", "fractionalSecondDigits", "timeStyle", "dateStyle"];
+const PT = (iso, o) => { try { const k = JSON.stringify(o || {}); let f = PTF.get(k);
+  if (!f){ const op = {timeZone: "America/Los_Angeles", ...o}; if (!PTK.some(x => x in op)) Object.assign(op, {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric"});
+    f = new Intl.DateTimeFormat("en-US", op); PTF.set(k, f); }
+  const d = new Date(iso); return isNaN(d) ? "Invalid Date" : f.format(d); } catch(_){ return ""; } };
 const ptTime = (iso) => PT(iso, {weekday: "short", hour: "numeric", minute: "2-digit"});
 const ago = (iso) => { const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
   if (!(m >= 0)) return ""; if (m < 1) return "just now"; if (m < 60) return m + " min ago"; const h = Math.floor(m / 60);
@@ -1858,8 +1861,10 @@ const isDone = (p) => /^(Fin|Final|Bye|No game)/i.test((p.when || "").trim());
 const isLive = (p) => !isDone(p) && /(1st|2nd|3rd|4th|Half|OT|End|Q\d|In progress|Playing)/i.test(p.when || "");   /* Nov 8: the Dispatch read says "In progress" */
 /* Nov 8 (Dom, Waddle): in-game status from the fast RotoWire news (models.ingame, written by sync_models.py) - "out" = ruled out
    mid-game (red, no more points counted), "trbl" = questionable to return / being checked (amber). Today's items only. */
+const IGD = {m: -1, d: ""};
 const igOf = (p) => { const I = M && M.ingame; if (!I || !I.players) return null;
-  const d = PT(new Date().toISOString(), {month: "long", day: "numeric", year: "numeric"}); if (I.day && I.day !== d) return null;
+  const mi = Math.floor(Date.now() / 6e4); if (IGD.m !== mi){ IGD.m = mi; IGD.d = PT(new Date().toISOString(), {month: "long", day: "numeric", year: "numeric"}); }
+  if (I.day && I.day !== IGD.d) return null;
   return I.players[norm(p.name)] || null; };
 const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim()) || ((igOf(p) || {}).s === "out" && !isDone(p));
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
@@ -1916,7 +1921,9 @@ function alertsAll(){ return (A && A.items) || []; }
 function aLive(x){ const m = mk(x.id); if (m.deleted || m.cleared) return false;
   /* Nov 16 (Dom): news-sweep cards stay until he deletes or separates them */
   if (x.kind !== "sweep" && Date.now() - new Date(x.first_seen).getTime() > WEEK) return false; return x.active !== false || x.color === "green"; }
-function aSep(x){ const m = mk(x.id); return !m.deleted && m.cleared && Date.now() - new Date(m.cleared).getTime() <= WEEK; }
+/* Nov 22 (Dom): separated alerts are kept 2 days (was 7) */
+const SEPKEEP = 2 * 864e5;
+function aSep(x){ const m = mk(x.id); return !m.deleted && m.cleared && Date.now() - new Date(m.cleared).getTime() <= SEPKEEP; }
 const aSort = (a, b) => (AL_ORD[a.color] - AL_ORD[b.color]) || (new Date(b.first_seen) - new Date(a.first_seen));
 const aFor = (k, fn) => alertsAll().filter(x => BYPRINT[x.lg] === k && fn(x)).sort(aSort);
 function worst(list){ return list.length ? list.slice().sort(aSort)[0].color : "none"; }
@@ -3045,7 +3052,8 @@ function card(k){
     ${seedChart(c, k) ? `<div class="chartbox"><div class="ct">Where you finish</div>${seedChart(c, k)}</div>` : ""}
     ${winsChart(c, k) ? `<div class="chartbox"><div class="ct">How many wins</div>${winsChart(c, k)}</div>` : ""}
     ${(c.race || []).length ? `<div class="sub">The race</div><div class="scroll"><table class="tbl"><tr><th>Team</th><th>Record</th><th>Playoffs</th><th>Title</th></tr>${c.race.map(r => `<tr class="${r.me ? "me" : ""}"><td>${esc(r.team)}</td><td>${esc(r.rec)}</td><td>${pcs(r.playoff)}</td><td>${pcs(r.title)}</td></tr>`).join("")}</table></div>` : ""}`;
-  const season = `${hist.length >= 2 ? `<div class="chartbox"><div class="ct">Playoff odds over time</div>${areaChart([{col: HEX[k], w: 2.6, pts: hist.map((h, i) => [i, h[1] * 100])}], hist.map(h => PT(h[0], {weekday: "short", hour: "numeric"}).replace(" ", "")), 120, v => Math.round(v) + "%")}<p class="note">Playoff odds for the season after every simulator run.</p></div>` : `<p class="note">Playoff odds history: ${hist.length} point${hist.length === 1 ? "" : "s"} so far (${hist.length ? pcs(hist[0][1]) : "–"}); the line draws from the second run on.</p>`}
+  /* Nov 22 (Dom): the "Season odds" fold is gone - its playoff-odds-over-time chart repeated Playoff picture; the road ahead, next game and byes moved into Playoff picture */
+  const season = `
     <div class="chartbox"><div class="ct">The road ahead · chance to win each game</div>${roadTiles(c, m)}${b.wins ? `<p class="note">${b.wins.toFixed(1)} expected wins${b.seed ? " · likeliest seed " + b.seed : ""}.</p>` : ""}</div>
     ${sw1 ? `<div class="sub">Week ${sw1.wk} next up</div><div class="pk">vs ${esc(sw1.opp)}: ${pc(sw1.win)} chance to win that game · playoff odds <span class="up">${pc(sw1.po_w)}</span> with a win, <span class="dn">${pc(sw1.po_l)}</span> with a loss.</div>` : ""}
     ${Object.keys(byes).length ? `<div class="sub">Byes ahead</div>${Object.entries(byes).sort((a, b) => a[0] - b[0]).map(([w, ns]) => `<div class="mv"><span class="k">Wk ${w}</span><span class="t">${esc(ns.join(", "))}</span></div>`).join("")}` : ""}`;
@@ -3087,8 +3095,7 @@ function card(k){
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
     ${fold("road-" + SLUG[k], "Recommendations", roadCnt, road + `<div class="sub">Your moves (${notes.length})</div>` + movesHtml(k), calls.length > 0)}
     ${fold("al-" + SLUG[k], "Alerts", al.length ? `${al.filter(x => x.color === "red").length} act now · ${al.filter(x => x.color === "gold").length} monitor · ${al.filter(x => x.color === "grey").length} noted` : "none", `<div id="alb-${SLUG[k]}">${alertsBlock(k)}</div>`, al.some(x => x.color === "red"))}
-    ${fold("pic-" + SLUG[k], "Playoff picture", b.playoff !== undefined ? pcs(b.playoff) + " playoffs · " + pcs(b.title) + " title" : "", picture)}
-    ${fold("ana-" + SLUG[k], "Season odds", hist.length + " runs", season)}
+    ${fold("pic-" + SLUG[k], "Playoff picture", b.playoff !== undefined ? pcs(b.playoff) + " playoffs · " + pcs(b.title) + " title" : "", picture + season)}
     ${fold("xp-" + SLUG[k], "Experts", xpc.filter(x => x.sp >= 3).length + " splits", experts)}
     ${(() => { const gl = wxs.map(w => wxMk(Object.keys(WX).find(t => WX[t] === w), "")).filter(Boolean); return fold("wx-" + SLUG[k], "Game weather", gl.length ? gl.length + " in weather" + (gl.some(x => x.lv === "r") ? " · red" : gl.some(x => x.lv === "o") ? " · orange" : "") : wxs.length + " games", wx, gl.some(x => x.lv !== "y")); })()}
     ${fold("clr-" + SLUG[k], "Clear " + DK[k], "", clr)}
@@ -3157,17 +3164,18 @@ function astrip(){
   const live = alertsAll().filter(aLive), cnt = (c) => live.filter(x => x.color === c).length;
   const newest = A ? A.generated || A.built : "", unread = live.filter(x => !mk(x.id).read), loud = live.filter(x => x.color !== "grey").sort((a, b) => (b.deadline_utc && dueMin(b.deadline_utc) > 0 ? 1 : 0) - (a.deadline_utc && dueMin(a.deadline_utc) > 0 ? 1 : 0) || aSort(a, b));
   { const ac = $("#alCnt"); if (ac) { ac.textContent = live.length ? `${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted` : "none"; ac.className = "cnt" + (cnt("red") ? " hot" : ""); } }
+  if (!$("#astrip")) return;   /* Nov 22 (Dom): the "All alerts, every league" fold is gone - each league card has its own */
   $("#astrip").innerHTML = `<div class="astrip"><span class="ttl" style="color:${live.length ? (cnt("red") ? "var(--red)" : cnt("gold") ? "var(--amber)" : "var(--ink)") : "var(--up)"}">${live.length}</span>
     <span class="tal">${cnt("red")} act now · ${cnt("gold")} monitor · ${cnt("grey")} noted${unread.length ? ` · <span class="unr">${unread.length} unread</span>` : ""}${newest ? " · checked " + esc(ago(newest)) : ""}</span>
     ${unread.length ? `<button type="button" class="abtn sep" data-markread="1">Mark all read</button>` : ""}
     <button type="button" class="abtn${ARM === "del:ALL" ? " arm" : ""}" data-abulk="del:ALL">${ARM === "del:ALL" ? "Tap again: delete " + live.length : "Delete all"}</button>
     <button type="button" class="abtn sep${ARM === "sep:ALL" ? " arm" : ""}" data-abulk="sep:ALL">${ARM === "sep:ALL" ? "Tap again: separate " + live.length : "Separate all"}</button></div>
-    <div class="note">${KEYS.map(k => { const n = aFor(k, aLive); return `<a href="#${SLUG[k]}" data-jump="${SLUG[k]}" style="color:${LCOL[k]};text-decoration:none;font-weight:700">${DK[k]} ${n.length}</a>`; }).join(" · ")} · Each alert sits in its league's card. Separate keeps it for 7 days at the bottom of the page.</div>
+    <div class="note">${KEYS.map(k => { const n = aFor(k, aLive); return `<a href="#${SLUG[k]}" data-jump="${SLUG[k]}" style="color:${LCOL[k]};text-decoration:none;font-weight:700">${DK[k]} ${n.length}</a>`; }).join(" · ")} · Each alert sits in its league's card. Separate keeps it for 2 days at the bottom of the page.</div>
     ${loud.length ? `<div class="prev">${loud.slice(0, 4).map(alertRow).join("")}</div>${loud.length > 4 ? `<p class="note">${loud.length - 4} more act-now and monitor alerts in the league cards.</p>` : ""}` : ""}`;
 }
 function separated(){
   const xs = alertsAll().filter(aSep).sort(aSort);
-  $("#sepCnt").textContent = xs.length ? xs.length + " kept 7 days" : "none";
+  $("#sepCnt").textContent = xs.length ? xs.length + " kept 2 days" : "none";
   $("#sep").innerHTML = xs.length ? `<div class="ahd"><span class="tal">Delete for good:</span><button type="button" class="abtn${ARM === "delsep:ALL" ? " arm" : ""}" data-abulk="delsep:ALL">${ARM === "delsep:ALL" ? "Tap again: delete " + xs.length : "Delete all " + xs.length}</button>
     ${KEYS.map(k => { const n = xs.filter(x => BYPRINT[x.lg] === k).length; return n ? `<button type="button" class="abtn${ARM === "delsep:" + k ? " arm" : ""}" data-abulk="delsep:${k}">${ARM === "delsep:" + k ? "Tap again" : DK[k] + " · " + n}</button>` : ""; }).join("")}</div>
     <div class="alist">${xs.map(x => alertCard(x, true)).join("")}</div>` : `<div class="empty">Nothing separated.</div>`;
