@@ -756,12 +756,13 @@ function scoreGlobe(L, k, o){
       const rPre = (p) => { const r = (M && M.pm && M.pm[L.key] && M.pm[L.key][norm(p.name)]) || null, e = r ? r[0] : null; return e === null || e === undefined ? (pj0 && pj0[p.name] !== undefined ? pj0[p.name] : null) : +e; };
       const NUM = (v) => Math.abs(v) >= 10 ? String(Math.round(v)) : v.toFixed(1).replace(/\.0$/, "");
       const ARW = (d) => d >= 1 ? `<tspan class="ga up">▲</tspan>` : d <= -1 ? `<tspan class="ga dn">▼</tspan>` : "";
+      /* Nov 22 9:23 AM (Dom: "some of the umbrellas are in the middle"): fixed spots in every box - umbrella bottom-left, number bottom-right */
+      const BY = (yy + 11.8).toFixed(1), LX = (bx + 1).toFixed(2), RX = (bx + bw - .9).toFixed(2);
       let bot = "";
-      if (played){ const v = pts(p), rp = rPre(p), d = rp === null ? 0 : (isDone(p) ? v : Math.max(v, +p.proj || 0)) - rp; bot = `<text class="gnm ${s}" x="${tx}" y="${(yy + 11.6).toFixed(1)}" text-anchor="middle">${ARW(d)}${NUM(v)}</text>`; }
+      if (played){ const v = pts(p), rp = rPre(p), d = rp === null ? 0 : (isDone(p) ? v : Math.max(v, +p.proj || 0)) - rp; bot = `<text class="gnm ${s}" x="${RX}" y="${BY}" text-anchor="end">${ARW(d)}${NUM(v)}</text>`; }
       else { const dv = pj0 && pj0[p.name] !== undefined && p.proj !== undefined && p.proj !== null ? +p.proj - pj0[p.name] : 0, mv = Math.abs(dv) >= 1;
-        /* bottom row before his game: the weather umbrella with its helps/hurts arrow; if his projection also moved, the umbrella and the move */
-        const um = w ? `<tspan class="gwxi" style="fill:${WXC[w.lv]}">☂</tspan>${!mv && w.dir ? `<tspan class="gwxi gwxa" style="fill:${WXC[w.lv]}">${w.dir === "up" ? "▲" : "▼"}</tspan>` : ""}` : "";
-        if (um || mv) bot = `<text class="gnm pre" x="${tx}" y="${(yy + 11.8).toFixed(1)}" text-anchor="middle">${um}${mv ? ARW(dv) + NUM(Math.abs(dv)) : ""}</text>`; }
+        if (w) bot += `<text class="gnm pre" x="${LX}" y="${BY}" text-anchor="start"><tspan class="gwxi" style="fill:${WXC[w.lv]}">☂</tspan>${!mv && w.dir ? `<tspan class="gwxi gwxa" style="fill:${WXC[w.lv]}">${w.dir === "up" ? "▲" : "▼"}</tspan>` : ""}</text>`;
+        if (mv) bot += `<text class="gnm pre" x="${RX}" y="${BY}" text-anchor="end">${ARW(dv)}${NUM(Math.abs(dv))}</text>`; }
       const ln = (y) => `<line x1="${(bx + 1.2).toFixed(2)}" x2="${(bx + bw - 1.2).toFixed(2)}" y1="${y}" y2="${y}" class="grw"/>`;
       const ttl = [w ? w.game + ": " + w.txt + (w.eff ? " · " + w.eff : "") : "", played ? `${f1(pts(p))} pts${rPre(p) !== null ? ", Ratcliffe had " + f1(rPre(p)) : ""}${isLive(p) ? ", Yahoo now projects " + f1(+p.proj || 0) : ""}` : "", !played && pj0 && pj0[p.name] !== undefined ? `Yahoo proj ${f1(+p.proj || 0)} (morning ${f1(pj0[p.name])})` : ""].filter(Boolean).join(" · ");
       return `<g class="tap seg ${s}" data-pl="${dp}" role="button" aria-label="${tip}"><rect class="rb" x="${bx.toFixed(2)}" y="${yy}" width="${bw.toFixed(2)}" height="${bh}" rx="2" fill="${RINGC[s]}" filter="url(#${id}ab)"/><rect x="${(bx + .6).toFixed(2)}" y="${yy + .5}" width="${(bw - 1.2).toFixed(2)}" height="${(bh * .3).toFixed(2)}" rx="1.4" fill="#fff" fill-opacity=".22" pointer-events="none"/>
