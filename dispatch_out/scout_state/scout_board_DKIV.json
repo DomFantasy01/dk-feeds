@@ -1,8 +1,8 @@
 {
  "league": "DK IV",
- "run": "2026-11-23T03:34:04.464105-08:00",
- "run_str": "Mon Nov 23, 3:34 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Mon Nov 23, 3:32 AM PT (API) \u00b7 stats nflverse Mon 3:33 AM PT",
+ "run": "2026-11-23T03:50:46.451455-08:00",
+ "run_str": "Mon Nov 23, 3:50 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Mon Nov 23, 3:49 AM PT (API) \u00b7 stats nflverse Mon 3:50 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -726,6 +726,7 @@
  "moves": [],
  "prekick": [],
  "watch": [
+  "Can't claim: DK Metcalf (PIT WR) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 25 and you can add him then.",
   "Can't claim: Marvin Harrison Jr. (HOU WR) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 25 and you can add him then.",
   "Can't claim: Omar Cooper Jr. (NYJ WR) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 25 and you can add him then.",
   "Can't claim: CIN defense (CIN DEF) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 25 and you can add him then.",
@@ -748,7 +749,7 @@
    "Koerner"
   ],
   "read": [
-   "pulled Mon Nov 23 2026 3:32 AM PT",
+   "pulled Mon Nov 23 2026 3:49 AM PT",
    "Jeff Ratcliffe updated 2026-11-22 09:57:55",
    "Sean Koerner updated 2026-11-22 09:32:10",
    "Tyler Orginski updated 2026-11-22 09:56:16"
@@ -897,6 +898,26 @@
  },
  "arrivals": [
   {
+   "name": "DK Metcalf",
+   "pos": "WR",
+   "why": "dropped by Dark Knight IV Sun Nov 22 7:19 AM",
+   "boone": 31,
+   "beats": "Jauan Jennings",
+   "how": "on waivers until Nov 25",
+   "yahoo_ros": 73.8,
+   "line": "DK Metcalf (WR) - dropped by Dark Knight IV Sun Nov 22 7:19 AM. Experts: panel WR31, ahead of your Jauan Jennings (WR66). Yahoo rest of season 74. on waivers until Nov 25. VERDICT: STARTER UPGRADE over your Jauan Jennings the rest of the season (11.0 vs 4.9 a game, Ratcliffe). Ratcliffe 10.6 this week / 11.0 a game rest of season; Koerner 10.5; Yahoo 10.2. Playoffs: Wk15 vs BAL (Yahoo 11.0), Wk16 vs CAR (Yahoo 10.5), Wk17 at TEN (Yahoo 11.4)."
+  },
+  {
+   "name": "Alec Pierce",
+   "pos": "WR",
+   "why": "dropped by Alan's Team Sun Nov 22 8:12 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 25",
+   "yahoo_ros": null,
+   "line": "Alec Pierce (WR) - dropped by Alan's Team Sun Nov 22 8:12 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). on waivers until Nov 25. VERDICT: NOT AN UPGRADE: would not start or beat your bench (5.9 a game vs your weakest Jauan Jennings 4.9). Ratcliffe - this week / 5.9 a game rest of season; Koerner 0.0; Yahoo -. Playoffs: Wk15 at TEN, Wk16 vs CIN, Wk17 at CLE."
+  },
+  {
    "name": "Woody Marks",
    "pos": "RB",
    "why": "dropped by Alan's Team Sat Nov 21 8:40 AM",
@@ -908,13 +929,17 @@
   }
  ],
  "txn_review": {
-  "yours": [],
+  "yours": [
+   "You added Jauan Jennings (Min WR), Sun Nov 22 7:19 AM (Free Agent).",
+   "You dropped DK Metcalf (Pit WR), Sun Nov 22 7:19 AM (To Waivers). If any pending waiver claim listed DK Metcalf as its drop, Yahoo cancelled that claim - re-enter it with a new drop."
+  ],
   "hurts": [],
   "missed": [],
   "openings": [],
   "others": [
+   "Killer Ko-Gees took Kenyon Sadiq (NYJ TE), Sun Nov 22 12:13 PM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (6.2 a game vs your weakest Jakobi Meyers 10.2). Ratcliffe 5.8 this week / 6.2 a game rest of season; Koerner 5.6; Yahoo -. Playoffs: Wk15 at ARI, Wk16 vs NE, Wk17 vs MIN. No alert fired on him in this league before he was taken.",
    "Alan's Team took Rico Dowdle (Pit RB), Sat Nov 21 8:40 AM (Free Agent). VERDICT: NOT AN UPGRADE: would not start or beat your bench (10.0 a game vs your weakest Jakobi Meyers 10.2). Ratcliffe 9.2 this week / 10.0 a game rest of season; Koerner 9.9; Yahoo -. Playoffs: Wk15 vs BAL, Wk16 vs CAR, Wk17 at TEN. No alert fired on him in this league before he was taken."
   ],
-  "quiet": 1
+  "quiet": 2
  }
 }
