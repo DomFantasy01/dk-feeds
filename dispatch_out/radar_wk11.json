@@ -1,48 +1,48 @@
 {
  "week": 11,
- "built": "Mon Nov 23 12:38 PM PT",
- "built_utc": "2026-11-23T20:38:13.387798+00:00",
+ "built": "Mon Nov 23 1:13 PM PT",
+ "built_utc": "2026-11-23T21:13:26.486067+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Mon Nov 23 12:33 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 3816,
-   "newest": "14 min ago",
+   "pulled": "Mon Nov 23 1:06 PM PT",
+   "pulled_ago": "7 min ago",
+   "items": 3819,
+   "newest": "19 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Mon Nov 23 12:33 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 9377,
-   "newest": "7 min ago",
+   "pulled": "Mon Nov 23 1:06 PM PT",
+   "pulled_ago": "7 min ago",
+   "items": 9382,
+   "newest": "10 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Mon Nov 23 12:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 23 1:06 PM PT",
+   "pulled_ago": "7 min ago",
    "items": 2322,
-   "newest": "6 min ago",
+   "newest": "42 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Mon Nov 23 12:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 23 1:06 PM PT",
+   "pulled_ago": "7 min ago",
    "items": 401,
-   "newest": "14 min ago",
+   "newest": "36 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Mon Nov 23 12:33 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Mon Nov 23 1:06 PM PT",
+   "pulled_ago": "7 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Mon Nov 23 12:36 PM PT",
-   "pulled_ago": "2 min ago",
+   "pulled": "Mon Nov 23 1:10 PM PT",
+   "pulled_ago": "3 min ago",
    "items": 763,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Mon Nov 23 2026 12:36 PM PT",
+   "pulled": "Mon Nov 23 2026 01:10 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,8 +68,8 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Mon Nov 23 8:46 AM PT",
-   "pulled_ago": "3.9 h ago",
+   "pulled": "Mon Nov 23 12:43 PM PT",
+   "pulled_ago": "30 min ago",
    "items": 338,
    "newest": null,
    "warn": null,
@@ -89,34 +89,35 @@
      "team": "MIN",
      "slot": "IR",
      "marker": {
-      "count": 1,
+      "count": 3,
       "recency": 0,
       "color": "red",
       "grades": [
-       "bad"
+       "bad",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 7:41 AM PT",
+       "t": "Mon Nov 23 12:54 PM PT",
+       "src": "pft",
+       "title": "Vikings \"don't necessarily expect\" Jordan Addison back this week",
+       "text": "The Vikings didn't have wide receiver Jordan Addison in the lineup for Sunday night's game against the 49ers and his availability for Week 12 came up during head coach Kevin O'Connell's Monday press conference.",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 12:53 PM PT",
+       "src": "rotoballer",
+       "title": "Jordan Addison Unlikely to Play Against Falcons",
+       "text": "Minnesota Vikings wide receiver Jordan Addison (thumb) is unlikely to play Sunday against the Atlanta Falcons, head coach Kevin O'Connell [&#8230;]",
+       "grade": "bad"
+      },
+      {
+       "t": "Mon Nov 23 12:30 PM PT",
        "src": "ESPN injury report",
        "title": "Jordan Addison: Out (Thumb)",
-       "text": "out",
+       "text": "Vikings head coach Kevin O'Connell said Monday that Addison is \"progressing really well\" in his recovery from thumb surgery, though the wide receiver isn't expected to be available in Week 12 versus the Falcons, Ben Goessling of The Minnesota Star Tribune repo",
        "grade": "bad"
-      },
-      {
-       "t": "Fri Nov 20 11:53 AM PT",
-       "src": "rotoballer",
-       "title": "Jordan Addison Ruled Out for Week 11",
-       "text": "Minnesota Vikings wide receiver Jordan Addison (thumb) has officially been ruled out for the Week 11 contest on Sunday night [&#8230;]",
-       "grade": "bad"
-      },
-      {
-       "t": "Thu Nov 19 3:41 PM PT",
-       "src": "rotoballer",
-       "title": "Jordan Addison Does Not Practice on Thursday",
-       "text": "As expected, Minnesota Vikings wide receiver Jordan Addison (thumb) missed a second straight day of practice on Thursday. Although Addison [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 0.0,
@@ -719,23 +720,24 @@
      "pos": "WR",
      "team": "TB",
      "why": [
-      "Sleeper adds #14 (48,270 in 24 h)"
+      "good news",
+      "Sleeper adds #12 (49,836 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "gold",
+      "recency": 0,
+      "color": "green",
       "grades": [
-       "note"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 9:00 AM PT",
+       "t": "Mon Nov 23 12:40 PM PT",
        "src": "rotoballer",
-       "title": "Wide Receiver Waiver Wire Pickups - Top Fantasy Football WR Adds for Week 12 Include Elic Ayomanor, Antonio Williams, Adonai Mitchell",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Wide Receiver Waiver Wire Pickups - Top Fantasy Footb",
-       "grade": "mention"
+       "title": "Ted Hurst III's Expanded Role Makes Him a Week 12 Stash",
+       "text": "Tampa Bay Buccaneers wide receiver Ted Hurst III is worth stashing in 12-team leagues that start three receivers after taking [&#8230;]",
+       "grade": "good"
       }
      ],
      "floor": {
@@ -789,29 +791,65 @@
      "acq": "unverified"
     },
     {
-     "name": "Jacory Croskey-Merritt",
-     "pos": "RB",
-     "team": "WAS",
+     "name": "Devaughn Vele",
+     "pos": "WR",
+     "team": "NO",
      "why": [
-      "good news",
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (33,822 in 24 h)"
+      "Sleeper adds #20 (28,084 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 1,
+      "color": "gold",
       "grades": [
-       "good"
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Thu Nov 19 1:09 PM PT",
+       "t": "Sun Nov 22 5:51 PM PT",
        "src": "RotoWire news",
-       "title": "Jacory Croskey-Merritt: Full practice Thursday",
-       "text": "Croskey-Merritt (groin) was a full participant in Thursday's practice.",
-       "grade": "good"
+       "title": "Devaughn Vele: Seven grabs in loss to Chicago",
+       "text": "Vele caught seven passes for 76 yards on seven targets in Sunday's 21-13 loss to the Bears.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Stefon Diggs",
+      "gotham": 13.5
+     },
+     "beats_floor": true,
+     "gotham": 14.6,
+     "gotham_ros": 10.7,
+     "sleeper": 5.4,
+     "workload": "10/8/7/11/6/6/6/4/2/8",
+     "trend": -0.17,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jacory Croskey-Merritt",
+     "pos": "RB",
+     "team": "WAS",
+     "why": [
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "Sleeper adds #17 (30,879 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 23 12:24 PM PT",
+       "src": "ESPN injury report",
+       "title": "Jacory Croskey-Merritt: Injured Reserve (Groin)",
+       "text": "Croskey-Merritt (groin) remains listed as questionable for Monday's game against the Bengals but \"is looking good\" to return from injured reserve and play, John Keim of ESPN.com reports.",
+       "grade": "bad"
       }
      ],
      "floor": {
@@ -819,7 +857,7 @@
       "gotham": 4.0
      },
      "beats_floor": true,
-     "gotham": 0.0,
+     "gotham": 12.3,
      "gotham_ros": 12.0,
      "sleeper": 9.8,
      "workload": "19/15/24/19/11",
@@ -832,7 +870,9 @@
      "pos": "RB",
      "team": "WAS",
      "why": [
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)"
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "opening: Jacory Croskey-Merritt \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #24 (22,136 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -943,7 +983,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #7 (94,040 in 24 h)"
+      "Sleeper adds #8 (58,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -980,7 +1020,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (94,965 in 24 h)"
+      "Sleeper adds #22 (26,705 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1018,7 +1058,8 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #20 (36,855 in 24 h)"
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #16 (32,580 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1054,43 +1095,6 @@
      "sleeper": 5.3,
      "workload": "6/6/6/7/1/7",
      "trend": -0.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Treylon Burks",
-     "pos": "WR",
-     "team": "WAS",
-     "why": [
-      "Sleeper adds #10 (64,169 in 24 h)"
-     ],
-     "marker": {
-      "count": 2,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 10:27 AM PT",
-       "src": "rotoballer",
-       "title": "Who Should I Start for Fantasy Football Week 11? Stefon Diggs, Antonio Williams, Jacory Croskey-Merritt, Rachaad White, Chase Brown, Mike Gesicki, Chig Okonkwo, Tee Higgins, Treylon Burks",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/10/Chig-Okonkwo-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 11? Stefo",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Stefon Diggs",
-      "gotham": 13.5
-     },
-     "beats_floor": false,
-     "gotham": 6.9,
-     "gotham_ros": 6.7,
-     "sleeper": 7.1,
-     "workload": "1/3/3/6/7/5/3",
-     "trend": -0.05,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1731,23 +1735,24 @@
      "pos": "WR",
      "team": "TB",
      "why": [
-      "Sleeper adds #14 (48,270 in 24 h)"
+      "good news",
+      "Sleeper adds #12 (49,836 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "gold",
+      "recency": 0,
+      "color": "green",
       "grades": [
-       "note"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 9:00 AM PT",
+       "t": "Mon Nov 23 12:40 PM PT",
        "src": "rotoballer",
-       "title": "Wide Receiver Waiver Wire Pickups - Top Fantasy Football WR Adds for Week 12 Include Elic Ayomanor, Antonio Williams, Adonai Mitchell",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Wide Receiver Waiver Wire Pickups - Top Fantasy Footb",
-       "grade": "mention"
+       "title": "Ted Hurst III's Expanded Role Makes Him a Week 12 Stash",
+       "text": "Tampa Bay Buccaneers wide receiver Ted Hurst III is worth stashing in 12-team leagues that start three receivers after taking [&#8230;]",
+       "grade": "good"
       }
      ],
      "floor": {
@@ -1768,7 +1773,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #2 (233,442 in 24 h)"
+      "Sleeper adds #1 (226,683 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1838,12 +1843,88 @@
      "acq": "unverified"
     },
     {
+     "name": "Jacory Croskey-Merritt",
+     "pos": "RB",
+     "team": "WAS",
+     "why": [
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "Sleeper adds #17 (30,879 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 23 12:24 PM PT",
+       "src": "ESPN injury report",
+       "title": "Jacory Croskey-Merritt: Injured Reserve (Groin)",
+       "text": "Croskey-Merritt (groin) remains listed as questionable for Monday's game against the Bengals but \"is looking good\" to return from injured reserve and play, John Keim of ESPN.com reports.",
+       "grade": "bad"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 11.1
+     },
+     "beats_floor": true,
+     "gotham": 12.3,
+     "gotham_ros": 12.0,
+     "sleeper": 9.8,
+     "workload": "19/15/24/19/11",
+     "trend": -0.26,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Germie Bernard",
+     "pos": "WR",
+     "team": "PIT",
+     "why": [
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 3:05 AM PT",
+       "src": "rotoballer",
+       "title": "Who Should I Start for Fantasy Football Week 11? Emmett Johnson, Germie Bernard, Keon Coleman, Antonio Williams, Kenny Gainwell, Devaughn Vele, Devin Singletary, Chimere Dike, Luther Burden",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/07/Luther-Burden-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 11? ",
+       "grade": "mention"
+      }
+     ],
+     "floor": {
+      "name": "Jauan Jennings",
+      "gotham": 5.0
+     },
+     "beats_floor": true,
+     "gotham": 10.0,
+     "gotham_ros": 10.6,
+     "sleeper": 7.5,
+     "workload": "9/3/10/14/5/6/3/12",
+     "trend": 0.21,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Roman Wilson",
      "pos": "WR",
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #20 (36,855 in 24 h)"
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #16 (32,580 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1887,7 +1968,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #10 (64,169 in 24 h)"
+      "Sleeper adds #9 (55,937 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1924,7 +2005,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #7 (94,040 in 24 h)"
+      "Sleeper adds #8 (58,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1961,7 +2042,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #22 (35,008 in 24 h)"
+      "Sleeper adds #21 (26,840 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1994,50 +2075,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Jacory Croskey-Merritt",
-     "pos": "RB",
-     "team": "WAS",
-     "why": [
-      "good news",
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (33,822 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Nov 19 1:09 PM PT",
-       "src": "RotoWire news",
-       "title": "Jacory Croskey-Merritt: Full practice Thursday",
-       "text": "Croskey-Merritt (groin) was a full participant in Thursday's practice.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Etienne Jr.",
-      "gotham": 11.1
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 12.0,
-     "sleeper": 9.8,
-     "workload": "19/15/24/19/11",
-     "trend": -0.26,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Mike Gesicki",
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #13 (55,868 in 24 h)"
+      "Sleeper adds #19 (28,368 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2074,7 +2116,9 @@
      "pos": "RB",
      "team": "WAS",
      "why": [
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)"
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "opening: Jacory Croskey-Merritt \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #24 (22,136 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2103,43 +2147,6 @@
      "sleeper": 5.5,
      "workload": "8/7/6/9/14/17",
      "trend": 0.77,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Mason Taylor",
-     "pos": "TE",
-     "team": "NYJ",
-     "why": [
-      "Sleeper adds #6 (94,965 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 22 8:48 PM PT",
-       "src": "RotoWire news",
-       "title": "Mason Taylor: Tow grabs against Chargers",
-       "text": "Taylor caught two passes for 25 yards on two targets in Sunday's 27-24 win over the Chargers.",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 25.4
-     },
-     "beats_floor": false,
-     "gotham": 4.5,
-     "gotham_ros": 7.1,
-     "sleeper": 8.0,
-     "workload": "3/3/7/8/6/2/4/2",
-     "trend": -0.39,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2658,7 +2665,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #4 (105,232 in 24 h)"
+      "Sleeper adds #4 (101,624 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2739,23 +2746,24 @@
      "pos": "WR",
      "team": "TB",
      "why": [
-      "Sleeper adds #14 (48,270 in 24 h)"
+      "good news",
+      "Sleeper adds #12 (49,836 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "gold",
+      "recency": 0,
+      "color": "green",
       "grades": [
-       "note"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 9:00 AM PT",
+       "t": "Mon Nov 23 12:40 PM PT",
        "src": "rotoballer",
-       "title": "Wide Receiver Waiver Wire Pickups - Top Fantasy Football WR Adds for Week 12 Include Elic Ayomanor, Antonio Williams, Adonai Mitchell",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Wide Receiver Waiver Wire Pickups - Top Fantasy Footb",
-       "grade": "mention"
+       "title": "Ted Hurst III's Expanded Role Makes Him a Week 12 Stash",
+       "text": "Tampa Bay Buccaneers wide receiver Ted Hurst III is worth stashing in 12-team leagues that start three receivers after taking [&#8230;]",
+       "grade": "good"
       }
      ],
      "floor": {
@@ -2813,7 +2821,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #7 (94,040 in 24 h)"
+      "Sleeper adds #8 (58,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2846,27 +2854,27 @@
      "acq": "unverified"
     },
     {
-     "name": "Pat Bryant",
+     "name": "Germie Bernard",
      "pos": "WR",
-     "team": "DEN",
+     "team": "PIT",
      "why": [
-      "Sleeper adds #23 (33,984 in 24 h)"
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
       "recency": 0,
       "color": "gold",
       "grades": [
-       "note"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 7:37 AM PT",
+       "t": "Sat Nov 21 3:05 AM PT",
        "src": "rotoballer",
-       "title": "Pat Bryant Offers Stash Upside After Injury Return",
-       "text": "Denver Broncos wide receiver Pat Bryant has shown some promise since returning from injured reserve, catching seven passes for 88 [&#8230;]",
-       "grade": "note"
+       "title": "Who Should I Start for Fantasy Football Week 11? Emmett Johnson, Germie Bernard, Keon Coleman, Antonio Williams, Kenny Gainwell, Devaughn Vele, Devin Singletary, Chimere Dike, Luther Burden",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/07/Luther-Burden-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Fantasy Football Week 11? ",
+       "grade": "mention"
       }
      ],
      "floor": {
@@ -2874,11 +2882,11 @@
       "gotham": 5.0
      },
      "beats_floor": true,
-     "gotham": 6.2,
-     "gotham_ros": 7.1,
-     "sleeper": 8.4,
-     "workload": "6/1/3/3/6/4",
-     "trend": 0.27,
+     "gotham": 10.0,
+     "gotham_ros": 10.6,
+     "sleeper": 7.5,
+     "workload": "9/3/10/14/5/6/3/12",
+     "trend": 0.21,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2925,7 +2933,8 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #20 (36,855 in 24 h)"
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #16 (32,580 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2969,7 +2978,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #10 (64,169 in 24 h)"
+      "Sleeper adds #9 (55,937 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3006,25 +3015,24 @@
      "pos": "RB",
      "team": "WAS",
      "why": [
-      "good news",
       "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (33,822 in 24 h)"
+      "Sleeper adds #17 (30,879 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 2,
+      "color": "gold",
       "grades": [
-       "good"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Thu Nov 19 1:09 PM PT",
-       "src": "RotoWire news",
-       "title": "Jacory Croskey-Merritt: Full practice Thursday",
-       "text": "Croskey-Merritt (groin) was a full participant in Thursday's practice.",
-       "grade": "good"
+       "t": "Mon Nov 23 12:24 PM PT",
+       "src": "ESPN injury report",
+       "title": "Jacory Croskey-Merritt: Injured Reserve (Groin)",
+       "text": "Croskey-Merritt (groin) remains listed as questionable for Monday's game against the Bengals but \"is looking good\" to return from injured reserve and play, John Keim of ESPN.com reports.",
+       "grade": "bad"
       }
      ],
      "floor": {
@@ -3032,7 +3040,7 @@
       "gotham": 21.9
      },
      "beats_floor": false,
-     "gotham": 0.0,
+     "gotham": 12.3,
      "gotham_ros": 12.0,
      "sleeper": 9.8,
      "workload": "19/15/24/19/11",
@@ -3078,39 +3086,40 @@
      "acq": "unverified"
     },
     {
-     "name": "Kenyon Sadiq",
-     "pos": "TE",
-     "team": "NYJ",
+     "name": "Kaytron Allen",
+     "pos": "RB",
+     "team": "WAS",
      "why": [
-      "Sleeper adds #18 (39,258 in 24 h)"
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "opening: Jacory Croskey-Merritt \u2014 bad news (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
-       "note"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Sun Nov 22 8:32 PM PT",
+       "t": "Mon Nov 16 5:46 PM PT",
        "src": "RotoWire news",
-       "title": "Kenyon Sadiq: Three snags in victory",
-       "text": "Sadiq caught all three of his targets for 30 yards during Sunday's 27-24 win over the Chargers.",
+       "title": "Kaytron Allen: Does little with two touches",
+       "text": "Allen turned his lone carry into zero yards and hauled in his lone target for minus-four yards during the Dolphins' 24-22 loss to the Colts on Sunday.",
        "grade": "note"
       }
      ],
      "floor": {
-      "name": "T.J. Hockenson",
-      "gotham": 11.5
+      "name": "David Montgomery",
+      "gotham": 21.9
      },
      "beats_floor": false,
-     "gotham": 6.0,
-     "gotham_ros": 5.7,
-     "sleeper": 6.5,
-     "workload": "3/3/8/4/4/3/1/3/4/3/3",
-     "trend": -0.18,
+     "gotham": 0.0,
+     "gotham_ros": 3.0,
+     "sleeper": 3.0,
+     "workload": "7/5/4/0/3/3/0",
+     "trend": -0.68,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3592,23 +3601,24 @@
      "pos": "WR",
      "team": "TB",
      "why": [
-      "Sleeper adds #14 (48,270 in 24 h)"
+      "good news",
+      "Sleeper adds #12 (49,836 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "gold",
+      "recency": 0,
+      "color": "green",
       "grades": [
-       "note"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 9:00 AM PT",
+       "t": "Mon Nov 23 12:40 PM PT",
        "src": "rotoballer",
-       "title": "Wide Receiver Waiver Wire Pickups - Top Fantasy Football WR Adds for Week 12 Include Elic Ayomanor, Antonio Williams, Adonai Mitchell",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Wide Receiver Waiver Wire Pickups - Top Fantasy Footb",
-       "grade": "mention"
+       "title": "Ted Hurst III's Expanded Role Makes Him a Week 12 Stash",
+       "text": "Tampa Bay Buccaneers wide receiver Ted Hurst III is worth stashing in 12-team leagues that start three receivers after taking [&#8230;]",
+       "grade": "good"
       }
      ],
      "floor": {
@@ -3629,7 +3639,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #2 (233,442 in 24 h)"
+      "Sleeper adds #1 (226,683 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3703,7 +3713,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #22 (35,008 in 24 h)"
+      "Sleeper adds #21 (26,840 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3732,6 +3742,81 @@
      "sleeper": 7.9,
      "workload": "8/16/18/10/15/6/16/28/20/18",
      "trend": 0.21,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "DK Metcalf",
+     "pos": "WR",
+     "team": "PIT",
+     "why": [
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 23 9:59 AM PT",
+       "src": "pft",
+       "title": "DK Metcalf: I didn't try to poke Cooper DeJean in the eye",
+       "text": "Metcalf was ejected from Sunday's game after an altercation with the Eagles defensive back.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jauan Jennings",
+      "gotham": 5.0
+     },
+     "beats_floor": true,
+     "gotham": 1.2,
+     "gotham_ros": 10.4,
+     "sleeper": 9.7,
+     "workload": "10/9/6/9/4/16/7/7/6/4",
+     "trend": -0.41,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jacory Croskey-Merritt",
+     "pos": "RB",
+     "team": "WAS",
+     "why": [
+      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
+      "Sleeper adds #17 (30,879 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Mon Nov 23 12:24 PM PT",
+       "src": "ESPN injury report",
+       "title": "Jacory Croskey-Merritt: Injured Reserve (Groin)",
+       "text": "Croskey-Merritt (groin) remains listed as questionable for Monday's game against the Bengals but \"is looking good\" to return from injured reserve and play, John Keim of ESPN.com reports.",
+       "grade": "bad"
+      }
+     ],
+     "floor": {
+      "name": "Ollie Gordon II",
+      "gotham": 8.7
+     },
+     "beats_floor": true,
+     "gotham": 9.1,
+     "gotham_ros": 8.9,
+     "sleeper": 7.6,
+     "workload": "20/16/26/23/11",
+     "trend": -0.26,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3778,7 +3863,8 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #20 (36,855 in 24 h)"
+      "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
+      "Sleeper adds #16 (32,580 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3822,7 +3908,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #10 (64,169 in 24 h)"
+      "Sleeper adds #9 (55,937 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3896,7 +3982,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #7 (94,040 in 24 h)"
+      "Sleeper adds #8 (58,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3933,7 +4019,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (94,965 in 24 h)"
+      "Sleeper adds #22 (26,705 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3962,82 +4048,6 @@
      "sleeper": 8.0,
      "workload": null,
      "trend": null,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Samaje Perine",
-     "pos": "RB",
-     "team": "CIN",
-     "why": [
-      "Sleeper adds #11 (60,600 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 7:55 AM PT",
-       "src": "rotoballer",
-       "title": "Samaje Perine Offers Waiver Wire Value With Red-Zone Role",
-       "text": "Cincinnati Bengals running back Samaje Perine continues to get opportunities in scoring situations despite playing a secondary role behind Chase [&#8230;]",
-       "grade": "mention"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 8.7
-     },
-     "beats_floor": false,
-     "gotham": 6.9,
-     "gotham_ros": 6.3,
-     "sleeper": 7.7,
-     "workload": "15/5/13/7/27/7/11/11/22",
-     "trend": 0.45,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Jacory Croskey-Merritt",
-     "pos": "RB",
-     "team": "WAS",
-     "why": [
-      "good news",
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)",
-      "Sleeper adds #24 (33,822 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Nov 19 1:09 PM PT",
-       "src": "RotoWire news",
-       "title": "Jacory Croskey-Merritt: Full practice Thursday",
-       "text": "Croskey-Merritt (groin) was a full participant in Thursday's practice.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 8.7
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 8.9,
-     "sleeper": 7.6,
-     "workload": "20/16/26/23/11",
-     "trend": -0.26,
      "yahoo": null,
      "acq": "unverified"
     }
