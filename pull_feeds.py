@@ -437,6 +437,44 @@ def extra_news():
     mark('news_extra', all(per.values()), per_source=per, items=len(items), new_items=len(new),
          newest_item_utc=newest, errors=errs)
 
+# ---------- 6b. NBC Rotoworld player news (Nov 23, Dom: "add Rotoworld - and keep RotoWire too") ----------
+# RotoWire's RSS stopped updating Sun ~1 AM PT. Rotoworld's player-news page is server-rendered; items are read from the
+# page's player-news blocks (headline, blurb, time). If the page shape changes, this marks itself failed and keeps the
+# last good file - the news sweep still reads Rotoworld in Chrome. A raw copy of the page head is kept for one run to fix it.
+RTW = 'https://www.nbcsports.com/fantasy/football/player-news'
+def rotoworld():
+    raw = get(RTW, 30).decode('utf-8', 'replace'); items = []
+    # 1) server-rendered blocks
+    for blk in _re.findall(r'<(?:div|article|li)[^>]*class="[^"]*PlayerNewsPost[^"]*"[^>]*>(.*?)</(?:article|li)>', raw, _re.S)[:120]:
+        h = _re.search(r'class="[^"]*PlayerNewsPost-headline[^"]*"[^>]*>(.*?)</', blk, _re.S)
+        t = _re.search(r'class="[^"]*PlayerNewsPost-analysis[^"]*"[^>]*>(.*?)</div>', blk, _re.S) or _re.search(r'<p[^>]*>(.*?)</p>', blk, _re.S)
+        w = _re.search(r'data-date="([^"]+)"|datetime="([^"]+)"', blk)
+        nm = _re.search(r'class="[^"]*PlayerNewsPost-name[^"]*"[^>]*>(.*?)</', blk, _re.S)
+        if h: items.append({'title': _strip(h.group(1)), 'player': _strip(nm.group(1)) if nm else None, 'text': _strip(t.group(1))[:600] if t else '',
+                            'published_utc': (w.group(1) or w.group(2)) if w else None, 'source': 'rotoworld', 'link': RTW})
+    # 2) embedded JSON fallback ("headline":"..." pairs)
+    if not items:
+        for m in _re.finditer(r'"headline"\s*:\s*"((?:[^"\\]|\\.){8,300})"', raw):
+            items.append({'title': json.loads('"' + m.group(1) + '"'), 'text': '', 'published_utc': None, 'source': 'rotoworld', 'link': RTW})
+            if len(items) >= 80: break
+    if not items:
+        open(os.path.join(OUT, 'rotoworld_probe.html'), 'w').write(raw[:250000])
+        mark('rotoworld', False, error='page read but no news items found - shape unknown, raw copy saved to rotoworld_probe.html', bytes=len(raw)); return
+    hp = os.path.join(OUT, 'rotoworld_history.jsonl'); seen = set(); first = {}
+    if os.path.exists(hp):
+        for line in open(hp):
+            try: j = json.loads(line); seen.add(j.get('title')); first.setdefault(j.get('title'), j.get('first_seen_utc'))
+            except Exception: pass
+    for i in items:
+        if not i['published_utc']: i['published_utc'] = first.get(i['title']) or NOW.isoformat(timespec='seconds'); i['time_from'] = 'first_seen'
+    new = [i for i in items if i['title'] not in seen]
+    with open(hp, 'a') as f:
+        for i in new: f.write(json.dumps({**i, 'first_seen_utc': NOW.isoformat(timespec='seconds')}) + '\n')
+    write('rotoworld_latest.json', {'source': RTW, 'pulled_utc': NOW.isoformat(timespec='seconds'), 'items': items})
+    try: os.remove(os.path.join(OUT, 'rotoworld_probe.html'))
+    except Exception: pass
+    mark('rotoworld', True, items=len(items), new_items=len(new), newest_item_utc=max((i['published_utc'] for i in items if i['published_utc']), default=None))
+
 # ---------- 7. ESPN injury list, all teams (one league-wide call; probe said team pages answer) ----------
 def espn_injuries():
     try:
@@ -531,7 +569,7 @@ def injury_overlay():
         mark('injury_overlay', False, error=f'{type(e).__name__}: {e}'[:200])
 
 if __name__ == '__main__':
-    jobs = (rotowire, rotowire_pages, espn, extra_news, espn_injuries) if FAST else (rotowire, sleeper, rotowire_pages, weather, espn, extra_news, espn_injuries, injury_overlay, probe)
+    jobs = (rotowire, rotowire_pages, rotoworld, espn, extra_news, espn_injuries) if FAST else (rotowire, sleeper, rotowire_pages, rotoworld, weather, espn, extra_news, espn_injuries, injury_overlay, probe)
     for fn in jobs:   # pages after Sleeper: it needs the id table
         try: fn()
         except Exception as e: mark(fn.__name__, False, error=f'crashed: {e}'[:200])
