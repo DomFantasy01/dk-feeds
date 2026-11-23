@@ -1018,6 +1018,17 @@ while _sz(doc) > LIMIT:
     if not _old: break
     _i = min(_old, key=lambda i: doc["items"][i].get("resolved_at") or doc["items"][i].get("last_seen") or "")
     doc["items"].pop(_i); _dropped += 1
+# Nov 23 4:01 AM (Dom: "check DK Live for everything"): a red news-sweep card means "needs you before a deadline" - Sunday
+# morning's McConkey card was still red Monday at 4 AM, long after the game. Red sweep cards older than 20 hours drop to gold
+# (still on the list until Dom clears them), with a note why.
+try:
+    _nowr = dt.datetime.now(dt.timezone.utc)
+    for _x in doc["items"]:
+        if _x.get("kind") == "sweep" and _x.get("color") == "red" and _x.get("first_seen"):
+            _fs = dt.datetime.fromisoformat(str(_x["first_seen"]).replace("Z", "+00:00"))
+            if (_nowr - _fs).total_seconds() > 20 * 3600:
+                _x["color"] = "gold"; _x["aged"] = "red until its game passed - now gold, still on your list"
+except Exception as _e: print("red-age skipped:", _e)
 # Nov 22 9:22 AM (Dom: the :05 sync's alerts write was refused at 266,637 bytes even after every archived card was dropped).
 # The news-sweep cards (kept until Dom clears them) now fill ~210 KB. Second guard: shorten the long text on grey (FYI)
 # cards, oldest first - receipts and the tie-in cut to 180 characters; the card, its title and what-to-do stay whole.

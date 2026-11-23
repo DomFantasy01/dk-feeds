@@ -175,7 +175,7 @@ else:
         # or one failed chain would turn every later chain's system check red forever
         row(src, name, ("grey" if src == "Chain" else "red") if of else "green",
             f"{len(rr)} runs, {len(of)} failed and not yet redone" + (f"; last good {at(iso(last_ok))}" if last_ok and of else "")
-            + (" - " + "; ".join(f"{r.get('task')} {r.get('step')}: {r.get('error')}"[:160] for r in of[-2:]) if of else "")
+            + (" - " + "; ".join((f"{r.get('task')}" + (f" {r['step']}" if r.get('step') else "") + f": {r.get('error') or 'reason not logged yet (run still writing)'}")[:160] for r in of[-2:]) if of else "")
             + (f" ({len(hl)} earlier failure{'s' if len(hl) > 1 else ''} already fixed by a later good run)" if hl else ""),
             iso(rr[-1].get("finished")))
 
