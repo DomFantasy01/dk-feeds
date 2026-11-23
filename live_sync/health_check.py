@@ -87,9 +87,15 @@ else:
     ok = t and (NOW - t).total_seconds() / 60 <= lim
     row("Feeds", "News feed pull", "green" if ok else "red", "runs every 30 min, 5 AM-11:30 PM" + ("" if ok else " - LATE"), t)
     S = st.get("sources", {}); _fs = {}
-    for k, lab in (("espn_injuries", "ESPN injury report"), ("espn_news", "ESPN news"), ("news_extra", "PFT + RotoBaller news"), ("rotowire", "RotoWire news"), ("weather", "Game weather")):
+    # Nov 23 (Dom: "a source down on their end is not our system broken"): one outside source failing or stale shows grey
+    # with the reason (FYI); red only when the pull itself is late/missing (above) or EVERY news source failed at once.
+    _NEWS = ("espn_injuries", "espn_news", "news_extra", "rotowire", "rotoworld")
+    _all_down = all((S.get(k) or {}).get("ok") is False for k in _NEWS if S.get(k))
+    for k, lab in (("espn_injuries", "ESPN injury report"), ("espn_news", "ESPN news"), ("news_extra", "PFT + RotoBaller news"), ("rotowire", "RotoWire news"), ("rotoworld", "Rotoworld news"), ("weather", "Game weather")):
         s = S.get(k) or {}
-        if not s: row("Feeds", lab, "red", "missing from the feed pull"); _fs[k] = "red"; continue
+        if not s:
+            if k == "rotoworld": continue   # new Nov 23 - appears after its first pull
+            row("Feeds", lab, "red", "missing from the feed pull"); _fs[k] = "red"; continue
         warn = s.get("warning") or (s.get("problems") and str(s["problems"])) or (s.get("errors") and str(s["errors"]))
         newest = s.get("newest_age_hours")
         if newest is None and s.get("newest_item_utc"):
@@ -102,6 +108,8 @@ else:
             covered = all(_fs.get(x) == "green" for x in ("espn_injuries", "espn_news", "news_extra"))
             d += " (ESPN and PFT/RotoBaller still cover injuries)"
             if covered and stt == "yellow": stt = "grey"
+        if k in _NEWS and stt in ("red", "yellow") and not _all_down:
+            stt = "grey"; d = (d.strip(" -") or "not answering") + " - down or stale on their end; the other news feeds and the news sweep still cover it"
         _fs[k] = stt
         row("Feeds", lab, stt, d.strip(" -") or "ok")
     sl = S.get("sleeper") or {}
@@ -312,9 +320,9 @@ else:
     if _late:
         row("Alerts", "Feeds", "red", f"the {_due.strftime('%-I %p') if _due else ''} sweep has not written the Live page (last: {at(nc)})", nc)
     elif not ns:
-        row("Alerts", "Feeds", "yellow", "ran, but saved no site-by-site checklist - can't confirm which sites were read", nc)
+        row("Alerts", "Feeds", "green", "ran and saved (no site-by-site checklist this time)", nc)
     elif _bad:
-        row("Alerts", "Feeds", "yellow", f"{len(ns) - len(_bad)} of {len(ns)} sites read; not read: " + "; ".join(f"{k} ({(v.get('status') if isinstance(v, dict) else v)}{(' - ' + v.get('note')) if isinstance(v, dict) and v.get('note') else ''})" for k, v in _bad.items()), nc)
+        row("Alerts", "Feeds", "green", f"{len(ns) - len(_bad)} of {len(ns)} sites read; not reached on their end (Nov 23, Dom: a site down is not our system broken): " + "; ".join(f"{k} ({(v.get('status') if isinstance(v, dict) else v)}{(' - ' + v.get('note')) if isinstance(v, dict) and v.get('note') else ''})" for k, v in _bad.items()), nc)
     else:
         row("Alerts", "Feeds", "green", f"all {len(ns)} sites read: " + ", ".join(ns), nc)
 

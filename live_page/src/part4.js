@@ -483,10 +483,13 @@ function playerNews(){
   const dueReal = due ? new Date(due.getTime() + off) : null;
   if (!nc || (dueReal && nc < new Date(dueReal.getTime() - 10 * 6e4)))
     return {c: "red", t: `the ${due ? due.toLocaleTimeString("en-US", {hour: "numeric"}) : ""} read is late - last ${nc ? ptTime(nc.toISOString()) : "never"}`};
+  /* Nov 23 4:09 AM (Dom: "there's a difference between reading sources and being broken"): red only when OUR system is
+     broken (the sweep didn't run, crashed or couldn't save - caught above). A site down or locked on their end keeps the
+     light green; the light names each one and why, so we know. */
   const ks = Object.keys(ns), bad = ks.filter(k => !["read", "nothing new"].includes((ns[k] || {}).status || ns[k]));
-  if (!ks.length) return {c: "yellow", t: `read ${ptTime(nc.toISOString())}, but no site checklist saved`};
-  if (bad.length) return {c: "yellow", t: `read ${ptTime(nc.toISOString())} - ${ks.length - bad.length} of ${ks.length} sites; not read: ` + bad.map(k => `${k} (${(ns[k] || {}).status || ns[k]})`).join(", ")};
-  return {c: "green", t: `all ${ks.length} sites read ${ptTime(nc.toISOString())}`};
+  if (!ks.length) return {c: "green", t: `read ${ptTime(nc.toISOString())} (no site checklist saved)`, miss: []};
+  const miss = bad.map(k => `${k} (${(ns[k] || {}).status || ns[k]}${(ns[k] || {}).note ? ": " + String(ns[k].note).slice(0, 80) : ""})`);
+  return {c: "green", t: `${ks.length - bad.length} of ${ks.length} sites read ${ptTime(nc.toISOString())}` + (miss.length ? ` · not reached on their end: ${miss.join("; ")}` : ""), miss};
 }
 function renderStatus(){
   const l = lights(); $("#ltY").className = "lt " + l.y; $("#ltD").className = "lt " + l.d;
@@ -496,6 +499,7 @@ function renderStatus(){
     : `<b>${esc(PT(S.stamp, {weekday: "short"}))}, ${esc(PT(S.stamp, {month: "short", day: "numeric"}))} · ${esc(PT(S.stamp, {hour: "numeric", minute: "2-digit"}))}</b>`;
   const kk = nextKick(), hn = $("#hcNext"); if (hn) hn.innerHTML = `Next update ${esc(nextRun())}${kk ? ` · next kickoff in <b>${esc(kk)}</b>` : ""}.`;
   if (FEED_ERR.size) $("#statTxt").innerHTML += ` · <span class="late">Live feed dropped, reconnecting</span>`;
+  { const pn = playerNews(); if (pn.miss && pn.miss.length) $("#statTxt").innerHTML += `<div class="fmiss">Feeds ok · not reached on their end: ${esc(pn.miss.map(x => x.split(" (")[0]).join(", "))}</div>`; }
   $("#wk").textContent = "NFL WEEK " + (S.week || "");
   const fb = $("#sfail"), AL = S.alert;
   if (AL && (typeof AL === "string" ? AL.trim() : (AL.msg || AL.message || AL.text || AL.error))){
