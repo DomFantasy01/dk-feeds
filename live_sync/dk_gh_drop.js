@@ -18,7 +18,7 @@ async drop(msg){if(!/github\.com$/.test(location.host)||!/\/upload\//.test(locat
  if(window.__dkgUsed)throw new Error('this upload page was already used - load it fresh (add ?t=<time> to the address) and run again');
  const F=P.F;msg=P.msg||msg||('Chrome read: '+Object.keys(F).join(', '));P.msg=msg;
  const names=Object.keys(F),sizes=names.join(', ')+' ('+Object.values(F).map(t=>t.length).join('+')+' chars)',tree='https://github.com/DomFantasy01/dk-feeds/tree/main/'+folder;
- const done=(how)=>{sessionStorage.removeItem(this.K);setTimeout(()=>{location.href=tree},300);return 'committed '+sizes+' - '+how+(P.errs.length?' (earlier: '+P.errs.join(', ')+')':'')};
+ const done=(how)=>{sessionStorage.removeItem(this.K);return 'committed '+sizes+' - '+how+(P.errs.length?' (earlier: '+P.errs.join(', ')+')':'')};
  if(P.tries>0&&await this.landed(folder,msg,P.since))return done('it had landed after all');
  sessionStorage.setItem(this.K,JSON.stringify(P));history.replaceState(null,'',location.pathname);
  const inp=document.querySelector('input[type=file]');if(!inp)throw new Error('no upload box');const dt=new DataTransfer();
