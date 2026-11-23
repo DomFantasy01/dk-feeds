@@ -417,6 +417,12 @@ def extra_news():
             per[src] = n
         except Exception as e:
             per[src] = 0; errs.append(f'{src}: {type(e).__name__}: {e}'[:150])
+    # Nov 23: Rotoworld's items ride along in news_extra.json, so every reader (alerts, Radar, Scout, brief) gets them
+    try:
+        rw = json.load(open(os.path.join(OUT, 'rotoworld_latest.json')))
+        for i in rw.get('items', []): items.append({'source': 'rotoworld', 'title': i.get('title'), 'published_utc': i.get('published_utc'), 'text': i.get('text', ''), 'link': i.get('link')})
+        per['rotoworld'] = len(rw.get('items', []))
+    except Exception as e: errs.append(f'rotoworld: {e}'[:120])
     hp = os.path.join(OUT, 'news_extra_history.jsonl'); seen = set(); first = {}
     def _key(j): return (j.get('source'), j.get('link') or j.get('title'))
     if os.path.exists(hp):
