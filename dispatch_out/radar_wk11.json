@@ -1,48 +1,48 @@
 {
  "week": 11,
- "built": "Sun Nov 22 5:04 PM PT",
- "built_utc": "2026-11-23T01:04:27.062953+00:00",
+ "built": "Sun Nov 22 5:23 PM PT",
+ "built_utc": "2026-11-23T01:23:57.971034+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Nov 22 4:59 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 3743,
+   "pulled": "Sun Nov 22 5:17 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 3745,
    "newest": "8 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Nov 22 4:59 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sun Nov 22 5:17 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 9225,
-   "newest": "9 min ago",
+   "newest": "29 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Nov 22 4:59 PM PT",
-   "pulled_ago": "5 min ago",
-   "items": 2272,
-   "newest": "5 min ago",
+   "pulled": "Sun Nov 22 5:17 PM PT",
+   "pulled_ago": "6 min ago",
+   "items": 2274,
+   "newest": "15 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Nov 22 4:59 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sun Nov 22 5:17 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 379,
-   "newest": "8 min ago",
+   "newest": "18 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Nov 22 4:59 PM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Sun Nov 22 5:17 PM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Nov 22 5:02 PM PT",
-   "pulled_ago": "2 min ago",
+   "pulled": "Sun Nov 22 5:20 PM PT",
+   "pulled_ago": "3 min ago",
    "items": 763,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Nov 22 2026 05:02 PM PT",
+   "pulled": "Sun Nov 22 2026 05:21 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Nov 22 4:44 PM PT",
-   "pulled_ago": "20 min ago",
+   "pulled_ago": "40 min ago",
    "items": 340,
    "newest": null,
    "warn": null,
@@ -208,7 +208,7 @@
      "gotham_ros": 12.6,
      "sleeper": 13.0,
      "workload": "5/12/3/4/6/8/7/7/8",
-     "trend": 0.14
+     "trend": 0.15
     },
     {
      "name": "George Pickens",
@@ -250,7 +250,7 @@
      "gotham_ros": 16.8,
      "sleeper": 14.7,
      "workload": "6/9/12/3/14/12/7/4/19/12",
-     "trend": 0.54
+     "trend": 0.55
     },
     {
      "name": "Tyler Shough",
@@ -331,7 +331,7 @@
       }
      ],
      "gotham": 11.1,
-     "gotham_ros": 12.3,
+     "gotham_ros": 12.4,
      "sleeper": 12.9,
      "workload": "30/12/20/19/18",
      "trend": -0.09
@@ -372,7 +372,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.6,
+     "gotham": 8.5,
      "gotham_ros": 8.2,
      "sleeper": 6.3,
      "workload": "16/9/8/9/6/12/21/11/15",
@@ -456,7 +456,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 27.4,
+     "gotham": 27.2,
      "gotham_ros": 26.5,
      "sleeper": 23.7,
      "workload": "27/24/28/29/19/43/23/30/24",
@@ -634,6 +634,50 @@
    ],
    "in": [
     {
+     "name": "Geno Smith",
+     "pos": "QB",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 2,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 20 12:53 PM PT",
+       "src": "pft",
+       "title": "Geno Smith had a full practice Friday, has no injury designation",
+       "text": "Jets quarterback Geno Smith (ankle) was a full participant at Friday's practice and has no injury designation.",
+       "grade": "good"
+      },
+      {
+       "t": "Fri Nov 20 12:44 PM PT",
+       "src": "RotoWire news",
+       "title": "Geno Smith: Cleared to play Week 11",
+       "text": "Smith (ankle) doesn't have an injury designation for Sunday's game against the Chargers.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 22.8
+     },
+     "beats_floor": true,
+     "gotham": 25.7,
+     "gotham_ros": 17.2,
+     "sleeper": 19.3,
+     "workload": "35/50/41/15/39/34/34/34/34/21/23",
+     "trend": -0.34,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Baker Mayfield",
      "pos": "QB",
      "team": "TB",
@@ -674,6 +718,43 @@
      "sleeper": 18.3,
      "workload": "37/41/38/13/10/34/44",
      "trend": 0.38,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Sterling Shepard",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 11:36 AM PT",
+       "src": "RotoWire news",
+       "title": "Sterling Shepard: Elevated from practice squad",
+       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Stefon Diggs",
+      "gotham": 13.6
+     },
+     "beats_floor": true,
+     "gotham": 16.4,
+     "gotham_ros": 3.6,
+     "sleeper": 0.7,
+     "workload": "1/2/3",
+     "trend": 0.99,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -744,8 +825,8 @@
       "gotham": 7.2
      },
      "beats_floor": true,
-     "gotham": 8.6,
-     "gotham_ros": 8.4,
+     "gotham": 8.7,
+     "gotham_ros": 8.5,
      "sleeper": 5.6,
      "workload": "8/7/6/9/14/17",
      "trend": 0.77,
@@ -753,46 +834,39 @@
      "acq": "unverified"
     },
     {
-     "name": "Geno Smith",
-     "pos": "QB",
-     "team": "NYJ",
+     "name": "Evan Engram",
+     "pos": "TE",
+     "team": "DEN",
      "why": [
-      "good news"
+      "Sleeper adds #20 (101,424 in 24 h)"
      ],
      "marker": {
-      "count": 3,
-      "recency": 2,
-      "color": "green",
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
       "grades": [
-       "good"
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Fri Nov 20 12:53 PM PT",
-       "src": "pft",
-       "title": "Geno Smith had a full practice Friday, has no injury designation",
-       "text": "Jets quarterback Geno Smith (ankle) was a full participant at Friday's practice and has no injury designation.",
-       "grade": "good"
-      },
-      {
-       "t": "Fri Nov 20 12:44 PM PT",
-       "src": "RotoWire news",
-       "title": "Geno Smith: Cleared to play Week 11",
-       "text": "Smith (ankle) doesn't have an injury designation for Sunday's game against the Chargers.",
-       "grade": "good"
+       "t": "Sat Nov 21 8:00 PM PT",
+       "src": "rotoballer",
+       "title": "Evan Engram is a Shaky Starting Option",
+       "text": "Denver Broncos tight end Evan Engram has been a lackluster fantasy option throughout most of the season. The veteran tight [&#8230;]",
+       "grade": "note"
       }
      ],
      "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 22.8
+      "name": "Travis Kelce",
+      "gotham": 25.4
      },
      "beats_floor": false,
-     "gotham": 15.8,
-     "gotham_ros": 16.6,
-     "sleeper": 19.3,
-     "workload": "35/50/41/15/39/34/34/34/34/21",
-     "trend": -0.25,
+     "gotham": 13.4,
+     "gotham_ros": 6.0,
+     "sleeper": 5.9,
+     "workload": "6/1/2/5/5/2/3/3/6/8",
+     "trend": 1.02,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -801,7 +875,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (199,540 in 24 h)"
+      "Sleeper adds #6 (199,620 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -825,11 +899,11 @@
       "gotham": 25.4
      },
      "beats_floor": false,
-     "gotham": 7.0,
-     "gotham_ros": 7.4,
+     "gotham": 4.5,
+     "gotham_ros": 7.1,
      "sleeper": 8.0,
-     "workload": "3/3/7/8/6/2/4",
-     "trend": -0.32,
+     "workload": "3/3/7/8/6/2/4/2",
+     "trend": -0.39,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -838,7 +912,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #22 (93,674 in 24 h)"
+      "Sleeper adds #22 (93,702 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -876,7 +950,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (189,747 in 24 h)"
+      "Sleeper adds #7 (190,638 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -920,7 +994,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (95,690 in 24 h)"
+      "Sleeper adds #21 (97,636 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1025,85 +1099,11 @@
       "gotham": 7.2
      },
      "beats_floor": false,
-     "gotham": 6.6,
+     "gotham": 6.7,
      "gotham_ros": 6.5,
      "sleeper": null,
      "workload": "11/12/3/5/19/3/6",
      "trend": -0.46,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dawson Knox",
-     "pos": "TE",
-     "team": "BUF",
-     "why": [
-      "Sleeper adds #2 (412,122 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 8:31 AM PT",
-       "src": "rotoballer",
-       "title": "Dawson Knox Could Have Larger Role",
-       "text": "Buffalo Bills tight end Dawson Knox could take on a more significant role in the passing game when Buffalo takes [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 25.4
-     },
-     "beats_floor": false,
-     "gotham": 5.1,
-     "gotham_ros": 4.0,
-     "sleeper": 6.2,
-     "workload": "1/3/1/3/4/1/2/6/3/4",
-     "trend": 0.35,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Evan Engram",
-     "pos": "TE",
-     "team": "DEN",
-     "why": [
-      "Sleeper adds #20 (100,296 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 8:00 PM PT",
-       "src": "rotoballer",
-       "title": "Evan Engram is a Shaky Starting Option",
-       "text": "Denver Broncos tight end Evan Engram has been a lackluster fantasy option throughout most of the season. The veteran tight [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 25.4
-     },
-     "beats_floor": false,
-     "gotham": 5.8,
-     "gotham_ros": 5.5,
-     "sleeper": 5.9,
-     "workload": "6/1/2/5/5/2/3/3/6",
-     "trend": 0.51,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1138,11 +1138,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 17.0,
-     "gotham_ros": 16.9,
+     "gotham": 28.4,
+     "gotham_ros": 16.4,
      "sleeper": 20.5,
-     "workload": "36/32/41/42/35/46/39/25/31",
-     "trend": -0.24
+     "workload": "36/32/41/42/35/46/39/25/31/35",
+     "trend": -0.08
     }
    ]
   },
@@ -1188,11 +1188,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.5,
-     "gotham_ros": 8.4,
+     "gotham": 20.7,
+     "gotham_ros": 9.1,
      "sleeper": 12.2,
-     "workload": "8/3/5/2/1/6",
-     "trend": 0.04
+     "workload": "8/3/5/2/1/6/9",
+     "trend": 0.89
     },
     {
      "name": "Emmett Johnson",
@@ -1276,7 +1276,7 @@
      "gotham_ros": 12.6,
      "sleeper": 13.0,
      "workload": "5/12/3/4/6/8/7/7/8",
-     "trend": 0.14
+     "trend": 0.15
     },
     {
      "name": "Aaron Rodgers",
@@ -1357,7 +1357,7 @@
       }
      ],
      "gotham": 11.1,
-     "gotham_ros": 12.3,
+     "gotham_ros": 12.4,
      "sleeper": 12.9,
      "workload": "30/12/20/19/18",
      "trend": -0.09
@@ -1609,7 +1609,7 @@
       }
      ],
      "gotham": null,
-     "gotham_ros": 19.4,
+     "gotham_ros": 19.5,
      "sleeper": null,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
@@ -1737,11 +1737,11 @@
       "gotham": 19.2
      },
      "beats_floor": true,
-     "gotham": 15.8,
-     "gotham_ros": 16.6,
+     "gotham": 25.7,
+     "gotham_ros": 17.2,
      "sleeper": 19.3,
-     "workload": "35/50/41/15/39/34/34/34/34/21",
-     "trend": -0.25,
+     "workload": "35/50/41/15/39/34/34/34/34/21/23",
+     "trend": -0.34,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1750,7 +1750,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (328,266 in 24 h)"
+      "Sleeper adds #4 (333,585 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1783,12 +1783,49 @@
      "acq": "unverified"
     },
     {
+     "name": "Sterling Shepard",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 11:36 AM PT",
+       "src": "RotoWire news",
+       "title": "Sterling Shepard: Elevated from practice squad",
+       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jauan Jennings",
+      "gotham": 4.8
+     },
+     "beats_floor": true,
+     "gotham": 16.4,
+     "gotham_ros": 3.6,
+     "sleeper": 0.7,
+     "workload": "1/2/3",
+     "trend": 0.99,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Roman Wilson",
      "pos": "WR",
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (189,747 in 24 h)"
+      "Sleeper adds #7 (190,638 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1832,7 +1869,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (95,690 in 24 h)"
+      "Sleeper adds #21 (97,636 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1897,7 +1934,44 @@
      "gotham_ros": 2.8,
      "sleeper": 5.5,
      "workload": "4/1",
-     "trend": -0.43,
+     "trend": -0.44,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Evan Engram",
+     "pos": "TE",
+     "team": "DEN",
+     "why": [
+      "Sleeper adds #20 (101,424 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 8:00 PM PT",
+       "src": "rotoballer",
+       "title": "Evan Engram is a Shaky Starting Option",
+       "text": "Denver Broncos tight end Evan Engram has been a lackluster fantasy option throughout most of the season. The veteran tight [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 25.4
+     },
+     "beats_floor": false,
+     "gotham": 13.4,
+     "gotham_ros": 6.0,
+     "sleeper": 5.9,
+     "workload": "6/1/2/5/5/2/3/3/6/8",
+     "trend": 1.02,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1906,7 +1980,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #8 (186,208 in 24 h)"
+      "Sleeper adds #8 (186,824 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1934,7 +2008,7 @@
      "gotham_ros": 9.1,
      "sleeper": 9.3,
      "workload": "7/12/14/8/12/5/15/27/15/14",
-     "trend": 0.12,
+     "trend": 0.11,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1981,7 +2055,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #14 (133,224 in 24 h)"
+      "Sleeper adds #14 (133,904 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2014,43 +2088,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Kaelon Black",
-     "pos": "RB",
-     "team": "SF",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 1:57 AM PT",
-       "src": "rotoballer",
-       "title": "Kaelon Black Could Maintain Increased Role In High Altitude Venue",
-       "text": "San Francisco 49ers running back Kaelon Black had a solid showing in Week 10 in a barnburner against the Cowboys [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Etienne Jr.",
-      "gotham": 11.1
-     },
-     "beats_floor": false,
-     "gotham": 8.6,
-     "gotham_ros": 8.2,
-     "sleeper": 6.3,
-     "workload": "16/9/8/9/6/12/21/11/15",
-     "trend": 0.15,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Austin Ekeler",
      "pos": "RB",
      "team": "WAS",
@@ -2079,8 +2116,8 @@
       "gotham": 11.1
      },
      "beats_floor": false,
-     "gotham": 8.6,
-     "gotham_ros": 8.4,
+     "gotham": 8.7,
+     "gotham_ros": 8.5,
      "sleeper": 5.6,
      "workload": "8/7/6/9/14/17",
      "trend": 0.77,
@@ -2088,16 +2125,15 @@
      "acq": "unverified"
     },
     {
-     "name": "Chris Rodriguez Jr.",
+     "name": "Kaelon Black",
      "pos": "RB",
-     "team": "JAX",
+     "team": "SF",
      "why": [
-      "good news",
-      "Sleeper adds #23 (86,490 in 24 h)"
+      "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -2105,10 +2141,10 @@
      },
      "news": [
       {
-       "t": "Fri Nov 20 1:35 PM PT",
-       "src": "RotoWire news",
-       "title": "Chris Rodriguez: Cleared for Week 11",
-       "text": "Rodriguez (hand) doesn't have an injury designation for Sunday's game against the Giants.",
+       "t": "Sat Nov 21 1:57 AM PT",
+       "src": "rotoballer",
+       "title": "Kaelon Black Could Maintain Increased Role In High Altitude Venue",
+       "text": "San Francisco 49ers running back Kaelon Black had a solid showing in Week 10 in a barnburner against the Cowboys [&#8230;]",
        "grade": "good"
       }
      ],
@@ -2117,48 +2153,11 @@
       "gotham": 11.1
      },
      "beats_floor": false,
-     "gotham": 8.2,
-     "gotham_ros": 7.8,
-     "sleeper": 7.3,
-     "workload": "7/7/11/7/5/16/8/16/4",
-     "trend": -0.09,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Mason Taylor",
-     "pos": "TE",
-     "team": "NYJ",
-     "why": [
-      "Sleeper adds #6 (199,540 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 7:57 AM PT",
-       "src": "rotoballer",
-       "title": "Mason Taylor Is a Deep-League Option in Week 11",
-       "text": "New York Jets tight end Mason Taylor caught all four of his targets for 20 yards against Buffalo while playing [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Travis Kelce",
-      "gotham": 25.4
-     },
-     "beats_floor": false,
-     "gotham": 7.0,
-     "gotham_ros": 7.4,
-     "sleeper": 8.0,
-     "workload": "3/3/7/8/6/2/4",
-     "trend": -0.32,
+     "gotham": 8.5,
+     "gotham_ros": 8.2,
+     "sleeper": 6.3,
+     "workload": "16/9/8/9/6/12/21/11/15",
+     "trend": 0.15,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2279,11 +2278,53 @@
        "grade": "caution"
       }
      ],
-     "gotham": 11.6,
-     "gotham_ros": 11.3,
+     "gotham": 11.7,
+     "gotham_ros": 11.4,
      "sleeper": 10.1,
-     "workload": "13/21/12/9/18/20/13/17",
+     "workload": "13/20/12/9/18/20/13/17",
      "trend": 0.01
+    },
+    {
+     "name": "Jonah Coleman",
+     "pos": "RB",
+     "team": "DEN",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Nov 22 4:59 PM PT",
+       "src": "ESPN news",
+       "title": "Jonah Coleman powers Broncos past Raiders 38-24 as Denver honors the late Tom Jackson",
+       "text": "\u2014 Rookie Jonah Coleman ran for a season-best 111 yards and three touchdowns and the Denver Broncos beat the Las Vegas Raiders 38-24 on a solemn Sunday in the Mile High City as they honored \u201cOrange Crush\u201d and ESPN great",
+       "grade": "note"
+      },
+      {
+       "t": "Sat Nov 21 7:13 PM PT",
+       "src": "rotoballer",
+       "title": "Jonah Coleman Offers RB1 Upside for Week 11",
+       "text": "Denver Broncos running back Jonah Coleman has quickly become the clear-cut RB1 on this roster. He has posted back-to-back strong [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Wed Nov 18 4:17 AM PT",
+       "src": "ESPN news",
+       "title": "Fantasy football matchup ranks: Upgrade Jonah Coleman, downgrade Brock Purdy",
+       "text": "The most and least favorable matchups in the NFL for this week's games at the four key fantasy positions.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 40.9,
+     "gotham_ros": 22.0,
+     "sleeper": 21.0,
+     "workload": "0/19/13/28/28/39",
+     "trend": 0.96
     },
     {
      "name": "George Pickens",
@@ -2325,49 +2366,7 @@
      "gotham_ros": 16.8,
      "sleeper": 14.7,
      "workload": "6/9/12/3/14/12/7/4/19/12",
-     "trend": 0.54
-    },
-    {
-     "name": "Jonah Coleman",
-     "pos": "RB",
-     "team": "DEN",
-     "slot": "RB",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 22 4:59 PM PT",
-       "src": "ESPN news",
-       "title": "Jonah Coleman powers Broncos past Raiders 38-24 as Denver honors the late Tom Jackson",
-       "text": "\u2014 Rookie Jonah Coleman ran for a season-best 111 yards and three touchdowns and the Denver Broncos beat the Las Vegas Raiders 38-24 on a solemn Sunday in the Mile High City as they honored \u201cOrange Crush\u201d and ESPN great",
-       "grade": "note"
-      },
-      {
-       "t": "Sat Nov 21 7:13 PM PT",
-       "src": "rotoballer",
-       "title": "Jonah Coleman Offers RB1 Upside for Week 11",
-       "text": "Denver Broncos running back Jonah Coleman has quickly become the clear-cut RB1 on this roster. He has posted back-to-back strong [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Wed Nov 18 4:17 AM PT",
-       "src": "ESPN news",
-       "title": "Fantasy football matchup ranks: Upgrade Jonah Coleman, downgrade Brock Purdy",
-       "text": "The most and least favorable matchups in the NFL for this week's games at the four key fantasy positions.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 19.2,
-     "gotham_ros": 17.8,
-     "sleeper": 21.0,
-     "workload": "0/19/13/28/28",
-     "trend": 0.87
+     "trend": 0.55
     },
     {
      "name": "Caleb Douglas",
@@ -2447,11 +2446,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 11.3,
-     "gotham_ros": 10.7,
+     "gotham": 9.1,
+     "gotham_ros": 10.3,
      "sleeper": 11.1,
-     "workload": "3/11/7/7/6/7/8/7",
-     "trend": 0.04
+     "workload": "3/11/7/7/6/7/8/7/7",
+     "trend": -0.02
     },
     {
      "name": "Harold Fannin Jr.",
@@ -2573,7 +2572,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.2,
+     "gotham": 8.9,
      "gotham_ros": 10.9,
      "sleeper": 9.0,
      "workload": "6/4/4/15/6/6/7",
@@ -2658,7 +2657,7 @@
       }
      ],
      "gotham": null,
-     "gotham_ros": 19.4,
+     "gotham_ros": 19.5,
      "sleeper": null,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
@@ -2708,11 +2707,166 @@
    ],
    "in": [
     {
+     "name": "Fernando Mendoza",
+     "pos": "QB",
+     "team": "LV",
+     "why": [
+      "Sleeper adds #19 (106,016 in 24 h)"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Nov 22 4:48 PM PT",
+       "src": "pft",
+       "title": "Broncos move to 8-2 with 38-24 victory over Raiders",
+       "text": "A pick-six off of Fernando Mendoza late in the fourth quarter sealed Denver's win.",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 22.8
+     },
+     "beats_floor": true,
+     "gotham": 29.9,
+     "gotham_ros": 16.2,
+     "sleeper": 13.8,
+     "workload": "10/40/44",
+     "trend": 0.71,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Geno Smith",
+     "pos": "QB",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 3,
+      "recency": 2,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 20 12:53 PM PT",
+       "src": "pft",
+       "title": "Geno Smith had a full practice Friday, has no injury designation",
+       "text": "Jets quarterback Geno Smith (ankle) was a full participant at Friday's practice and has no injury designation.",
+       "grade": "good"
+      },
+      {
+       "t": "Fri Nov 20 12:44 PM PT",
+       "src": "RotoWire news",
+       "title": "Geno Smith: Cleared to play Week 11",
+       "text": "Smith (ankle) doesn't have an injury designation for Sunday's game against the Chargers.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jayden Daniels",
+      "gotham": 22.8
+     },
+     "beats_floor": true,
+     "gotham": 25.7,
+     "gotham_ros": 17.2,
+     "sleeper": 19.3,
+     "workload": "35/50/41/15/39/34/34/34/34/21/23",
+     "trend": -0.34,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Sterling Shepard",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 11:36 AM PT",
+       "src": "RotoWire news",
+       "title": "Sterling Shepard: Elevated from practice squad",
+       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 5.0
+     },
+     "beats_floor": true,
+     "gotham": 16.4,
+     "gotham_ros": 3.6,
+     "sleeper": 0.7,
+     "workload": "1/2/3",
+     "trend": 0.99,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Evan Engram",
+     "pos": "TE",
+     "team": "DEN",
+     "why": [
+      "Sleeper adds #20 (101,424 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 8:00 PM PT",
+       "src": "rotoballer",
+       "title": "Evan Engram is a Shaky Starting Option",
+       "text": "Denver Broncos tight end Evan Engram has been a lackluster fantasy option throughout most of the season. The veteran tight [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "T.J. Hockenson",
+      "gotham": 8.9
+     },
+     "beats_floor": true,
+     "gotham": 13.4,
+     "gotham_ros": 6.0,
+     "sleeper": 5.9,
+     "workload": "6/1/2/5/5/2/3/3/6/8",
+     "trend": 1.02,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Pat Bryant",
      "pos": "WR",
      "team": "DEN",
      "why": [
-      "Sleeper adds #12 (134,000 in 24 h)"
+      "Sleeper adds #13 (134,120 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2736,11 +2890,11 @@
       "gotham": 5.0
      },
      "beats_floor": true,
-     "gotham": 7.1,
-     "gotham_ros": 6.7,
+     "gotham": 6.2,
+     "gotham_ros": 7.1,
      "sleeper": 8.4,
-     "workload": "6/1/3/3/6",
-     "trend": 0.45,
+     "workload": "6/1/3/3/6/4",
+     "trend": 0.27,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2787,7 +2941,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (189,747 in 24 h)"
+      "Sleeper adds #7 (190,638 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2831,7 +2985,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (95,690 in 24 h)"
+      "Sleeper adds #21 (97,636 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2896,88 +3050,7 @@
      "gotham_ros": 2.8,
      "sleeper": 5.5,
      "workload": "4/1",
-     "trend": -0.43,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Geno Smith",
-     "pos": "QB",
-     "team": "NYJ",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 3,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 20 12:53 PM PT",
-       "src": "pft",
-       "title": "Geno Smith had a full practice Friday, has no injury designation",
-       "text": "Jets quarterback Geno Smith (ankle) was a full participant at Friday's practice and has no injury designation.",
-       "grade": "good"
-      },
-      {
-       "t": "Fri Nov 20 12:44 PM PT",
-       "src": "RotoWire news",
-       "title": "Geno Smith: Cleared to play Week 11",
-       "text": "Smith (ankle) doesn't have an injury designation for Sunday's game against the Chargers.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 22.8
-     },
-     "beats_floor": false,
-     "gotham": 15.8,
-     "gotham_ros": 16.6,
-     "sleeper": 19.3,
-     "workload": "35/50/41/15/39/34/34/34/34/21",
-     "trend": -0.25,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Fernando Mendoza",
-     "pos": "QB",
-     "team": "LV",
-     "why": [
-      "Sleeper adds #19 (102,456 in 24 h)"
-     ],
-     "marker": {
-      "count": 3,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 22 4:48 PM PT",
-       "src": "pft",
-       "title": "Broncos move to 8-2 with 38-24 victory over Raiders",
-       "text": "A pick-six off of Fernando Mendoza late in the fourth quarter sealed Denver's win.",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Jayden Daniels",
-      "gotham": 22.8
-     },
-     "beats_floor": false,
-     "gotham": 12.7,
-     "gotham_ros": 14.4,
-     "sleeper": 13.8,
-     "workload": "10/40",
-     "trend": 1.84,
+     "trend": -0.44,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3007,8 +3080,8 @@
       }
      ],
      "floor": {
-      "name": "Jonah Coleman",
-      "gotham": 19.2
+      "name": "David Montgomery",
+      "gotham": 21.9
      },
      "beats_floor": false,
      "gotham": 0.0,
@@ -3024,10 +3097,10 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #10 (143,433 in 24 h)"
+      "Sleeper adds #10 (143,820 in 24 h)"
      ],
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -3036,16 +3109,16 @@
      },
      "news": [
       {
-       "t": "Sun Nov 22 9:00 AM PT",
-       "src": "rotoballer",
-       "title": "Darren Waller Active for Panthers",
-       "text": "Carolina Panthers tight ends Darren Waller (knee) and Tommy Tremble (knee) are both officially active on Sunday for the Week [&#8230;]",
+       "t": "Sun Nov 22 5:00 PM PT",
+       "src": "RotoWire news",
+       "title": "Darren Waller: Three grabs in Week 11 win",
+       "text": "Waller caught all three of his targets for 42 yards in Sunday's 35-33 win over the Ravens.",
        "grade": "note"
       }
      ],
      "floor": {
       "name": "T.J. Hockenson",
-      "gotham": 9.2
+      "gotham": 8.9
      },
      "beats_floor": false,
      "gotham": 7.2,
@@ -3061,7 +3134,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #22 (93,674 in 24 h)"
+      "Sleeper adds #22 (93,702 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3082,7 +3155,7 @@
      ],
      "floor": {
       "name": "T.J. Hockenson",
-      "gotham": 9.2
+      "gotham": 8.9
      },
      "beats_floor": false,
      "gotham": 3.4,
@@ -3090,80 +3163,6 @@
      "sleeper": 7.8,
      "workload": "6/3/5/1/1/4/9/4/3",
      "trend": -0.15,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Tyjae Spears",
-     "pos": "RB",
-     "team": "TEN",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 20 1:01 PM PT",
-       "src": "RotoWire news",
-       "title": "Tyjae Spears: Questionable despite full practice",
-       "text": "Spears (knee) is questionable for Sunday's game against Dallas.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jonah Coleman",
-      "gotham": 19.2
-     },
-     "beats_floor": false,
-     "gotham": 6.6,
-     "gotham_ros": 6.5,
-     "sleeper": null,
-     "workload": "11/12/3/5/19/3/6",
-     "trend": -0.46,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dawson Knox",
-     "pos": "TE",
-     "team": "BUF",
-     "why": [
-      "Sleeper adds #2 (412,122 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 8:31 AM PT",
-       "src": "rotoballer",
-       "title": "Dawson Knox Could Have Larger Role",
-       "text": "Buffalo Bills tight end Dawson Knox could take on a more significant role in the passing game when Buffalo takes [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "T.J. Hockenson",
-      "gotham": 9.2
-     },
-     "beats_floor": false,
-     "gotham": 5.1,
-     "gotham_ros": 4.0,
-     "sleeper": 6.2,
-     "workload": "1/3/1/3/4/1/2/6/3/4",
-     "trend": 0.35,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -3199,7 +3198,7 @@
       }
      ],
      "gotham": 33.5,
-     "gotham_ros": 33.2,
+     "gotham_ros": 33.3,
      "sleeper": 28.1,
      "workload": "47/37/46/33/46/48/34/29/40/40",
      "trend": 0.0
@@ -3328,7 +3327,7 @@
      "gotham_ros": 12.5,
      "sleeper": 13.0,
      "workload": "5/12/3/4/6/8/7/7/8",
-     "trend": 0.14
+     "trend": 0.15
     },
     {
      "name": "Jared Goff",
@@ -3495,7 +3494,7 @@
      "gotham": 11.9,
      "gotham_ros": 16.5,
      "sleeper": 19.0,
-     "workload": "30/34/38/28/26/39/36/48/19/22",
+     "workload": "30/34/37/28/26/39/36/48/19/22",
      "trend": -0.37
     },
     {
@@ -3618,11 +3617,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 12.8,
+     "gotham": 12.5,
      "gotham_ros": 14.7,
      "sleeper": 18.0,
      "workload": "10/7/8/8/10/11/14",
-     "trend": 0.46
+     "trend": 0.45
     },
     {
      "name": "Jauan Jennings",
@@ -3800,7 +3799,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (328,266 in 24 h)"
+      "Sleeper adds #4 (333,585 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3833,11 +3832,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Sterling Shepard",
+     "pos": "WR",
+     "team": "NYJ",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 11:36 AM PT",
+       "src": "RotoWire news",
+       "title": "Sterling Shepard: Elevated from practice squad",
+       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jauan Jennings",
+      "gotham": 4.8
+     },
+     "beats_floor": true,
+     "gotham": 16.4,
+     "gotham_ros": 3.6,
+     "sleeper": 0.7,
+     "workload": "1/2/3",
+     "trend": 0.99,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Kenny Gainwell",
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #8 (186,208 in 24 h)"
+      "Sleeper adds #8 (186,824 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3912,7 +3948,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (189,747 in 24 h)"
+      "Sleeper adds #7 (190,638 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3956,7 +3992,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (95,690 in 24 h)"
+      "Sleeper adds #21 (97,636 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -4070,14 +4106,51 @@
      "acq": "unverified"
     },
     {
+     "name": "Evan Engram",
+     "pos": "TE",
+     "team": "DEN",
+     "why": [
+      "Sleeper adds #20 (101,424 in 24 h)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "gold",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 8:00 PM PT",
+       "src": "rotoballer",
+       "title": "Evan Engram is a Shaky Starting Option",
+       "text": "Denver Broncos tight end Evan Engram has been a lackluster fantasy option throughout most of the season. The veteran tight [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 25.4
+     },
+     "beats_floor": false,
+     "gotham": 13.4,
+     "gotham_ros": 6.0,
+     "sleeper": 5.9,
+     "workload": "6/1/2/5/5/2/3/3/6/8",
+     "trend": 1.02,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Darren Waller",
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #10 (143,433 in 24 h)"
+      "Sleeper adds #10 (143,820 in 24 h)"
      ],
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -4086,10 +4159,10 @@
      },
      "news": [
       {
-       "t": "Sun Nov 22 9:00 AM PT",
-       "src": "rotoballer",
-       "title": "Darren Waller Active for Panthers",
-       "text": "Carolina Panthers tight ends Darren Waller (knee) and Tommy Tremble (knee) are both officially active on Sunday for the Week [&#8230;]",
+       "t": "Sun Nov 22 5:00 PM PT",
+       "src": "RotoWire news",
+       "title": "Darren Waller: Three grabs in Week 11 win",
+       "text": "Waller caught all three of his targets for 42 yards in Sunday's 35-33 win over the Ravens.",
        "grade": "note"
       }
      ],
@@ -4111,7 +4184,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (199,540 in 24 h)"
+      "Sleeper adds #6 (199,620 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4148,7 +4221,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #22 (93,674 in 24 h)"
+      "Sleeper adds #22 (93,702 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4177,81 +4250,6 @@
      "sleeper": 7.8,
      "workload": "6/3/5/1/1/4/9/4/3",
      "trend": -0.15,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Jacory Croskey-Merritt",
-     "pos": "RB",
-     "team": "WAS",
-     "why": [
-      "good news",
-      "opening: Rachaad White \u2014 questionable/limited (rotoballer)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Thu Nov 19 1:09 PM PT",
-       "src": "RotoWire news",
-       "title": "Jacory Croskey-Merritt: Full practice Thursday",
-       "text": "Croskey-Merritt (groin) was a full participant in Thursday's practice.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 8.7
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 8.9,
-     "sleeper": 7.7,
-     "workload": "20/16/26/23/11",
-     "trend": -0.26,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Samaje Perine",
-     "pos": "RB",
-     "team": "CIN",
-     "why": [
-      "Sleeper adds #11 (137,208 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 9:13 PM PT",
-       "src": "rotoballer",
-       "title": "Samaje Perine Could Score At Washington",
-       "text": "Cincinnati Bengals running back Samaje Perine has taken a back seat to Chase Brown in recent weeks, but has still [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 8.7
-     },
-     "beats_floor": false,
-     "gotham": 6.9,
-     "gotham_ros": 6.3,
-     "sleeper": 7.6,
-     "workload": "15/5/13/7/27/7/11/11/22",
-     "trend": 0.45,
      "yahoo": null,
      "acq": "unverified"
     }
