@@ -47,6 +47,6 @@ window.DKS = {
     sessionStorage.setItem('dks_files',JSON.stringify(F)); this.F=F; return at+' | '+rep.join(' | ');
   },
   handoff(){ const F=this.F||JSON.parse(sessionStorage.getItem('dks_files')||'null'); if(!F) throw new Error('run DKS.run() first');
-    const enc=encodeURIComponent(JSON.stringify(F)); setTimeout(()=>{location.href='https://github.com/DomFantasy01/dk-feeds/upload/main/yahoo_drop/scout#F='+enc;},300); return 'to GitHub, '+enc.length+' chars'; }
+    const enc=encodeURIComponent(JSON.stringify(F)); setTimeout(()=>{location.href='https://github.com/DomFantasy01/dk-feeds/upload/main/yahoo_drop/scout?t='+Date.now()+'#F='+enc;},300); return 'to GitHub, '+enc.length+' chars'; }
 };
 'DKS loaded';

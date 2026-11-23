@@ -23,4 +23,4 @@ async grab(){if(!/draftsharks\.com$/.test(location.host))throw new Error('run on
  return `Week ${w}: ${P.length} of ${n} rows | weeks so far ${Object.keys(S.weeks).join(',')} | next: ${nx}`},
 handoff(){const S=this.store();if(!S||!Object.keys(S.weeks).length)throw new Error('nothing read - run DKD.grab() on each week first');
  const F={'ds_weekly.json':JSON.stringify(Object.assign({scoring:'PPR (Draft Sharks default)',source:'Draft Sharks weekly rankings, free public page (Rankings tab): floor/consensus/DS/ceiling/3D'},S))};
- const e=encodeURIComponent(JSON.stringify(F));sessionStorage.removeItem('dkd_store');setTimeout(()=>{location.href='https://github.com/DomFantasy01/dk-feeds/upload/main/yahoo_drop/draftsharks#F='+e},300);return 'to GitHub, '+e.length+' chars, weeks '+Object.keys(S.weeks).join(',')}};
+ const e=encodeURIComponent(JSON.stringify(F));sessionStorage.removeItem('dkd_store');setTimeout(()=>{location.href='https://github.com/DomFantasy01/dk-feeds/upload/main/yahoo_drop/draftsharks?t='+Date.now()+'#F='+e},300);return 'to GitHub, '+e.length+' chars, weeks '+Object.keys(S.weeks).join(',')}};
