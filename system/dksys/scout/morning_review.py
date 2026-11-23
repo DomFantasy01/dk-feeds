@@ -2,7 +2,7 @@
 workload filters can never throw a name out of them. Built after the Marvin Harrison Jr. miss (DK III, Oct 21-23):
 the Scout only looks for climbing workload, Harrison failed that test, and nothing else was watching.
 
-  1. EXPERT CHECK   - every available player the named-expert panel (Ratcliffe and Koerner since Nov 4; median rank) puts ahead of someone on Dom's roster
+  1. EXPERT CHECK   - every available player the named-expert panel (Ratcliffe decides since Nov 12; Koerner only where Ratcliffe has no rank) puts ahead of someone on Dom's roster
                       at the same position. Each flag carries the expert's name and both ranks. No workload test.
   2. NEW-ARRIVAL GATE - every player traded, signed, released or dropped in the last 72 hours who is available in one of
                       Dom's leagues gets a full line the day it happens: expert rank, Yahoo rest-of-season, how he can be had.
@@ -59,10 +59,15 @@ def load_boone(R):
     for k, d in ranks.items():
         v = [x for e, x in d.items() if e in EP.active_panel(ranks)]
         if not v: continue
-        pos = max(set(x[0] for x in v), key=[x[0] for x in v].count)
-        rs = sorted(x[1] for x in v if x[0] == pos)
-        B[norm(d["_name"])] = dict(name=d["_name"], pos=pos, rank=rs[len(rs) // 2], team="")
-    head = "named-expert panel (median of " + ", ".join(EP.SHOW[e] for e in EP.active_panel(ranks)) + "), read live " + (stamps[0].replace("pulled ", "") if stamps else "?")
+        # Nov 23 (Dom's Nov 12 rule - no averaging, Ratcliffe decides): Ratcliffe's own rank when he has one; Koerner's only
+        # when Ratcliffe doesn't rank the man (was the median of the two)
+        r = d.get("Jeff Ratcliffe")
+        if r: pos, rk, who = r[0], r[1], "R"
+        else:
+            pos = max(set(x[0] for x in v), key=[x[0] for x in v].count)
+            rk, who = sorted(x[1] for x in v if x[0] == pos)[0], "K"
+        B[norm(d["_name"])] = dict(name=d["_name"], pos=pos, rank=rk, team="", by=who)
+    head = "Ratcliffe decides (Koerner only where Ratcliffe has no rank), read live " + (stamps[0].replace("pulled ", "") if stamps else "?")
     return B, head
 
 def load_txns(R, n):
