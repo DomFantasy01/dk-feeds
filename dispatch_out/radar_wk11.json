@@ -1,48 +1,48 @@
 {
  "week": 11,
- "built": "Sun Nov 22 6:34 PM PT",
- "built_utc": "2026-11-23T02:34:40.619546+00:00",
+ "built": "Sun Nov 22 7:00 PM PT",
+ "built_utc": "2026-11-23T03:00:32.712002+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Sun Nov 22 6:28 PM PT",
-   "pulled_ago": "6 min ago",
-   "items": 3762,
-   "newest": "8 min ago",
+   "pulled": "Sun Nov 22 6:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 3766,
+   "newest": "15 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Sun Nov 22 6:28 PM PT",
-   "pulled_ago": "6 min ago",
-   "items": 9244,
+   "pulled": "Sun Nov 22 6:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 9250,
    "newest": "9 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Sun Nov 22 6:28 PM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Sun Nov 22 6:50 PM PT",
+   "pulled_ago": "10 min ago",
    "items": 2279,
-   "newest": "20 min ago",
+   "newest": "46 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Sun Nov 22 6:28 PM PT",
-   "pulled_ago": "6 min ago",
-   "items": 382,
-   "newest": "9 min ago",
+   "pulled": "Sun Nov 22 6:50 PM PT",
+   "pulled_ago": "10 min ago",
+   "items": 383,
+   "newest": "21 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Sun Nov 22 6:28 PM PT",
-   "pulled_ago": "6 min ago",
+   "pulled": "Sun Nov 22 6:50 PM PT",
+   "pulled_ago": "10 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Sun Nov 22 6:31 PM PT",
+   "pulled": "Sun Nov 22 6:57 PM PT",
    "pulled_ago": "3 min ago",
    "items": 763,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Sun Nov 22 2026 06:31 PM PT",
+   "pulled": "Sun Nov 22 2026 06:57 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Sun Nov 22 5:45 PM PT",
-   "pulled_ago": "50 min ago",
+   "pulled_ago": "1.3 h ago",
    "items": 340,
    "newest": null,
    "warn": null,
@@ -216,7 +216,7 @@
      "team": "DAL",
      "slot": "WR",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -224,6 +224,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 22 6:51 PM PT",
+       "src": "rotoballer",
+       "title": "George Pickens Continues to Roll in Win Over Titans",
+       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 22 2:17 PM PT",
        "src": "RotoWire news",
@@ -237,17 +244,10 @@
        "title": "George Pickens Fantasy Upside Improved For Week 11",
        "text": "Dallas Cowboys wide receiver George Pickens finally looked more like the 2025 version of himself in Week 10, when he [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Wed Nov 18 6:43 AM PT",
-       "src": "rotoballer",
-       "title": "George Pickens Prefers to Stay in Dallas Long Term",
-       "text": "Dallas Cowboys wide receiver George Pickens prefers to remain with the team long term, according to ESPN's Jeremy Fowler. Pickens [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 24.1,
-     "gotham_ros": 16.8,
+     "gotham_ros": 16.7,
      "sleeper": 14.7,
      "workload": "6/9/12/3/14/12/7/4/19/12",
      "trend": 0.55
@@ -498,11 +498,11 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.2,
-     "gotham_ros": 7.8,
+     "gotham": 6.1,
+     "gotham_ros": 7.2,
      "sleeper": 7.3,
-     "workload": "7/7/11/7/5/16/8/16/4",
-     "trend": -0.09
+     "workload": "7/7/11/7/5/16/8/16/4/7",
+     "trend": -0.36
     },
     {
      "name": "Jayden Daniels",
@@ -582,7 +582,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 13.6,
+     "gotham": 13.5,
      "gotham_ros": 13.2,
      "sleeper": 13.4,
      "workload": "10/8/7/9/8/7/5/11",
@@ -747,7 +747,7 @@
      ],
      "floor": {
       "name": "Stefon Diggs",
-      "gotham": 13.6
+      "gotham": 13.5
      },
      "beats_floor": true,
      "gotham": 16.4,
@@ -826,7 +826,7 @@
      },
      "beats_floor": true,
      "gotham": 8.7,
-     "gotham_ros": 8.5,
+     "gotham_ros": 8.4,
      "sleeper": 5.6,
      "workload": "8/7/6/9/14/17",
      "trend": 0.77,
@@ -838,7 +838,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #20 (103,648 in 24 h)"
+      "Sleeper adds #20 (104,112 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -875,7 +875,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (198,425 in 24 h)"
+      "Sleeper adds #6 (196,960 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -912,7 +912,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #23 (91,623 in 24 h)"
+      "Sleeper adds #23 (89,131 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -950,7 +950,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (186,912 in 24 h)"
+      "Sleeper adds #7 (180,891 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -978,7 +978,7 @@
      ],
      "floor": {
       "name": "Stefon Diggs",
-      "gotham": 13.6
+      "gotham": 13.5
      },
      "beats_floor": false,
      "gotham": 7.3,
@@ -994,7 +994,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (100,373 in 24 h)"
+      "Sleeper adds #21 (99,855 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1015,7 +1015,7 @@
      ],
      "floor": {
       "name": "Stefon Diggs",
-      "gotham": 13.6
+      "gotham": 13.5
      },
      "beats_floor": false,
      "gotham": 6.9,
@@ -1099,7 +1099,7 @@
       "gotham": 7.2
      },
      "beats_floor": false,
-     "gotham": 6.7,
+     "gotham": 6.6,
      "gotham_ros": 6.5,
      "sleeper": null,
      "workload": "11/12/3/5/19/3/6",
@@ -1368,7 +1368,7 @@
      "team": "TEN",
      "slot": "WR",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -1376,6 +1376,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 22 6:31 PM PT",
+       "src": "rotoballer",
+       "title": "Elic Ayomanor Takes a Step Back in Blowout Loss",
+       "text": "Tennessee Titans wide receiver Elic Ayomanor caught all three of his targets for 27 yards in Sunday's 51-30 loss to [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 22 6:49 AM PT",
        "src": "rotoballer",
@@ -1389,17 +1396,10 @@
        "title": "Elic Ayomanor Has Flex Appeal After Encouraging Week 10 Performance",
        "text": "Tennessee Titans wide receiver Elic Ayomanor is coming off one of his most productive performances of the season, catching five [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Mon Nov 16 7:39 AM PT",
-       "src": "rotoballer",
-       "title": "Elic Ayomanor Drawing Interest After Increased Workload",
-       "text": "Tennessee Titans wide receiver Elic Ayomanor caught five passes for 79 yards in Sunday's 40-23 loss to Jacksonville. He was [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 5.7,
-     "gotham_ros": 6.6,
+     "gotham_ros": 6.5,
      "sleeper": 10.1,
      "workload": "4/4/4/1/3/3/8/6/10/3",
      "trend": 0.23
@@ -1609,7 +1609,7 @@
       }
      ],
      "gotham": null,
-     "gotham_ros": 19.5,
+     "gotham_ros": 19.4,
      "sleeper": null,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
@@ -1750,7 +1750,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (339,561 in 24 h)"
+      "Sleeper adds #4 (335,016 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1825,7 +1825,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (186,912 in 24 h)"
+      "Sleeper adds #7 (180,891 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1869,7 +1869,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (100,373 in 24 h)"
+      "Sleeper adds #21 (99,855 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1943,7 +1943,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #20 (103,648 in 24 h)"
+      "Sleeper adds #20 (104,112 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1980,7 +1980,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #8 (183,312 in 24 h)"
+      "Sleeper adds #8 (177,624 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2055,7 +2055,7 @@
      "pos": "TE",
      "team": "CIN",
      "why": [
-      "Sleeper adds #12 (133,920 in 24 h)"
+      "Sleeper adds #12 (132,600 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2117,7 +2117,7 @@
      },
      "beats_floor": false,
      "gotham": 8.7,
-     "gotham_ros": 8.5,
+     "gotham_ros": 8.4,
      "sleeper": 5.6,
      "workload": "8/7/6/9/14/17",
      "trend": 0.77,
@@ -2168,7 +2168,7 @@
      "pos": "RB",
      "team": "PHI",
      "marker": {
-      "count": 6,
+      "count": 7,
       "recency": 0,
       "color": "gold",
       "grades": [
@@ -2178,18 +2178,18 @@
      },
      "news": [
       {
+       "t": "Sun Nov 22 6:39 PM PT",
+       "src": "rotoballer",
+       "title": "Saquon Barkley Says He Won't be 100% for the Rest of the Season",
+       "text": "Philadelphia Eagles running back Saquon Barkley (arm) doesn't expect to be healthy for the rest of the 2026 season, according [&#8230;]",
+       "grade": "note"
+      },
+      {
        "t": "Sun Nov 22 3:08 PM PT",
        "src": "rotoballer",
        "title": "Saquon Barkley Thinks he'll be Ready for Thanksgiving Game",
        "text": "Philadelphia Eagles running back Saquon Barkley (arm) told reporters that he \"believes\" he'll be good to go for Week 12's [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Sun Nov 22 2:41 PM PT",
-       "src": "ESPN injury report",
-       "title": "Saquon Barkley: Questionable (Arm)",
-       "text": "Barkley (left arm) said after Sunday's 19-16 win over the Steelers that he believes he'll play in Thursday's game at Dallas, Johnny McGonigal of PennLive.com reports.",
-       "grade": "caution"
       }
      ],
      "gotham": 17.8,
@@ -2278,8 +2278,8 @@
        "grade": "caution"
       }
      ],
-     "gotham": 11.7,
-     "gotham_ros": 11.4,
+     "gotham": 11.6,
+     "gotham_ros": 11.3,
      "sleeper": 10.1,
      "workload": "13/20/12/9/18/20/13/17",
      "trend": 0.01
@@ -2332,7 +2332,7 @@
      "team": "DAL",
      "slot": "WR",
      "marker": {
-      "count": 1,
+      "count": 2,
       "recency": 0,
       "color": "grey",
       "grades": [
@@ -2340,6 +2340,13 @@
       ]
      },
      "news": [
+      {
+       "t": "Sun Nov 22 6:51 PM PT",
+       "src": "rotoballer",
+       "title": "George Pickens Continues to Roll in Win Over Titans",
+       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
+       "grade": "note"
+      },
       {
        "t": "Sun Nov 22 2:17 PM PT",
        "src": "RotoWire news",
@@ -2353,17 +2360,10 @@
        "title": "George Pickens Fantasy Upside Improved For Week 11",
        "text": "Dallas Cowboys wide receiver George Pickens finally looked more like the 2025 version of himself in Week 10, when he [&#8230;]",
        "grade": "note"
-      },
-      {
-       "t": "Wed Nov 18 6:43 AM PT",
-       "src": "rotoballer",
-       "title": "George Pickens Prefers to Stay in Dallas Long Term",
-       "text": "Dallas Cowboys wide receiver George Pickens prefers to remain with the team long term, according to ESPN's Jeremy Fowler. Pickens [&#8230;]",
-       "grade": "note"
       }
      ],
      "gotham": 24.1,
-     "gotham_ros": 16.8,
+     "gotham_ros": 16.7,
      "sleeper": 14.7,
      "workload": "6/9/12/3/14/12/7/4/19/12",
      "trend": 0.55
@@ -2447,7 +2447,7 @@
       }
      ],
      "gotham": 9.1,
-     "gotham_ros": 10.3,
+     "gotham_ros": 10.2,
      "sleeper": 11.1,
      "workload": "3/11/7/7/6/7/8/7/7",
      "trend": -0.02
@@ -2657,7 +2657,7 @@
       }
      ],
      "gotham": null,
-     "gotham_ros": 19.5,
+     "gotham_ros": 19.4,
      "sleeper": null,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
@@ -2711,7 +2711,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #19 (111,568 in 24 h)"
+      "Sleeper adds #19 (112,024 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -2736,7 +2736,7 @@
      },
      "beats_floor": true,
      "gotham": 29.9,
-     "gotham_ros": 16.2,
+     "gotham_ros": 16.1,
      "sleeper": 13.8,
      "workload": "10/40/44",
      "trend": 0.71,
@@ -2829,7 +2829,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #20 (103,648 in 24 h)"
+      "Sleeper adds #20 (104,112 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2866,7 +2866,7 @@
      "pos": "WR",
      "team": "DEN",
      "why": [
-      "Sleeper adds #14 (129,600 in 24 h)"
+      "Sleeper adds #14 (124,056 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2941,7 +2941,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (186,912 in 24 h)"
+      "Sleeper adds #7 (180,891 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2985,7 +2985,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (100,373 in 24 h)"
+      "Sleeper adds #21 (99,855 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3097,7 +3097,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #10 (142,785 in 24 h)"
+      "Sleeper adds #10 (140,859 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3134,7 +3134,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #23 (91,623 in 24 h)"
+      "Sleeper adds #23 (89,131 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3421,6 +3421,48 @@
      "trend": 0.14
     },
     {
+     "name": "Jakobi Meyers",
+     "pos": "WR",
+     "team": "JAX",
+     "slot": "W/R/T",
+     "marker": {
+      "count": 1,
+      "recency": 1,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 8:34 AM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers a Low-Ceiling FLEX Option Against Giants",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers remains a decent-at-best fantasy starter heading into Week 11 against the New York Giants. [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Nov 20 3:22 PM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers Off the Injury Report",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) was limited in practice all week but was removed from the final injury [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Thu Nov 19 2:19 PM PT",
+       "src": "rotoballer",
+       "title": "Jakobi Meyers Remains Limited on Thursday",
+       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) remained limited in practice on Thursday with an ankle injury. Meyers continues to [&#8230;]",
+       "grade": "caution"
+      }
+     ],
+     "gotham": 12.5,
+     "gotham_ros": 9.6,
+     "sleeper": 8.7,
+     "workload": "2/1/9/5/4/11/4/7/7/13",
+     "trend": 0.88
+    },
+    {
      "name": "D'Andre Swift",
      "pos": "RB",
      "team": "CHI",
@@ -3461,48 +3503,6 @@
      "sleeper": 19.0,
      "workload": "30/34/37/28/26/39/36/48/19/22",
      "trend": -0.37
-    },
-    {
-     "name": "Jakobi Meyers",
-     "pos": "WR",
-     "team": "JAX",
-     "slot": "W/R/T",
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 8:34 AM PT",
-       "src": "rotoballer",
-       "title": "Jakobi Meyers a Low-Ceiling FLEX Option Against Giants",
-       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers remains a decent-at-best fantasy starter heading into Week 11 against the New York Giants. [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 20 3:22 PM PT",
-       "src": "rotoballer",
-       "title": "Jakobi Meyers Off the Injury Report",
-       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) was limited in practice all week but was removed from the final injury [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Thu Nov 19 2:19 PM PT",
-       "src": "rotoballer",
-       "title": "Jakobi Meyers Remains Limited on Thursday",
-       "text": "Jacksonville Jaguars wide receiver Jakobi Meyers (ankle) remained limited in practice on Thursday with an ankle injury. Meyers continues to [&#8230;]",
-       "grade": "caution"
-      }
-     ],
-     "gotham": 9.8,
-     "gotham_ros": 9.3,
-     "sleeper": 8.7,
-     "workload": "2/1/9/5/4/11/4/7/7",
-     "trend": 0.26
     },
     {
      "name": "C.J. Stroud",
@@ -3624,7 +3624,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 4.8,
+     "gotham": 4.7,
      "gotham_ros": 4.9,
      "sleeper": 4.9,
      "workload": "1/2/1/2/3/2",
@@ -3764,7 +3764,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (339,561 in 24 h)"
+      "Sleeper adds #4 (335,016 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3822,7 +3822,7 @@
      ],
      "floor": {
       "name": "Jauan Jennings",
-      "gotham": 4.8
+      "gotham": 4.7
      },
      "beats_floor": true,
      "gotham": 16.4,
@@ -3838,7 +3838,7 @@
      "pos": "RB",
      "team": "TB",
      "why": [
-      "Sleeper adds #8 (183,312 in 24 h)"
+      "Sleeper adds #8 (177,624 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3896,11 +3896,11 @@
      ],
      "floor": {
       "name": "Jauan Jennings",
-      "gotham": 4.8
+      "gotham": 4.7
      },
      "beats_floor": true,
      "gotham": 8.3,
-     "gotham_ros": 8.5,
+     "gotham_ros": 8.4,
      "sleeper": null,
      "workload": "3/5/4",
      "trend": 0.1,
@@ -3913,7 +3913,7 @@
      "team": "PIT",
      "why": [
       "good news",
-      "Sleeper adds #7 (186,912 in 24 h)"
+      "Sleeper adds #7 (180,891 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3941,11 +3941,11 @@
      ],
      "floor": {
       "name": "Jauan Jennings",
-      "gotham": 4.8
+      "gotham": 4.7
      },
      "beats_floor": true,
      "gotham": 7.3,
-     "gotham_ros": 8.8,
+     "gotham_ros": 8.7,
      "sleeper": 5.3,
      "workload": "6/6/6/7/1/7",
      "trend": -0.17,
@@ -3957,7 +3957,7 @@
      "pos": "WR",
      "team": "WAS",
      "why": [
-      "Sleeper adds #21 (100,373 in 24 h)"
+      "Sleeper adds #21 (99,855 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3978,7 +3978,7 @@
      ],
      "floor": {
       "name": "Jauan Jennings",
-      "gotham": 4.8
+      "gotham": 4.7
      },
      "beats_floor": true,
      "gotham": null,
@@ -4015,7 +4015,7 @@
      ],
      "floor": {
       "name": "Jauan Jennings",
-      "gotham": 4.8
+      "gotham": 4.7
      },
      "beats_floor": true,
      "gotham": null,
@@ -4075,7 +4075,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #20 (103,648 in 24 h)"
+      "Sleeper adds #20 (104,112 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -4112,7 +4112,7 @@
      "pos": "TE",
      "team": "CAR",
      "why": [
-      "Sleeper adds #10 (142,785 in 24 h)"
+      "Sleeper adds #10 (140,859 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -4149,7 +4149,7 @@
      "pos": "TE",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #6 (198,425 in 24 h)"
+      "Sleeper adds #6 (196,960 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -4186,7 +4186,7 @@
      "pos": "TE",
      "team": "TEN",
      "why": [
-      "Sleeper adds #23 (91,623 in 24 h)"
+      "Sleeper adds #23 (89,131 in 24 h)"
      ],
      "marker": {
       "count": 1,
