@@ -385,7 +385,10 @@ try:
             row("GitHub jobs", nm, "red", f"latest run FAILED at {at(iso(last['created_at']))}{side}; {len(fails)} failure(s) in 24 h", iso(last["created_at"]))
         else:
             f0 = fails[-1]
-            row("GitHub jobs", nm, "yellow", f"failed {len(fails)}x in 24 h, last at {at(iso(f0['created_at']))} - fixed itself, latest run OK at {at(iso(last['created_at']))}{side}", iso(f0["created_at"]))
+            # Nov 23 3:52 AM (Dom: "I want all the lights green"): one failure that fixed itself (newer runs all OK) more than
+            # 2 hours ago is history, not a warning - green with the note. Still yellow when it's recent or it keeps happening.
+            _old1 = len(fails) == 1 and iso(f0["created_at"]) < NOW - dt.timedelta(hours=2)
+            row("GitHub jobs", nm, "green" if _old1 else "yellow", f"failed {len(fails)}x in 24 h, last at {at(iso(f0['created_at']))} - fixed itself, latest run OK at {at(iso(last['created_at']))}{side}", iso(f0["created_at"]))
     _lt = max((r.get("created_at") or "" for r in runs), default="")
     _note = "" if _src == "live" else f" (from the build's saved run list, newest run {at(iso(_lt)) if _lt else '?'})"
     if not bad: row("GitHub jobs", "Every GitHub job", "green", f"{len(day)} runs in the last 24 hours, no failures{_note}")
