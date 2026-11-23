@@ -1,6 +1,6 @@
 {
  "week": 11,
- "built": "Mon Nov 23 2026 05:40 AM PT",
+ "built": "Mon Nov 23 2026 07:50 AM PT",
  "ratcliffe_read": "Mon Nov 23 2026 2:27 AM PT",
  "koerner_read": "Mon Nov 23 2026 3:08 AM PT",
  "leagues": {
@@ -148,6 +148,23 @@
    },
    "splits": [
     {
+     "name": "Kaelon Black",
+     "pos": "RB",
+     "team": "Sf",
+     "slot": "W/R/T",
+     "splits": [
+      {
+       "span": "rest of season",
+       "expert": "Ratcliffe",
+       "his": 12.8,
+       "others": 9.1,
+       "note": "Ratcliffe 12.8 a game vs Clay 9.1 for the rest of the season"
+      }
+     ],
+     "ros_rank": 40,
+     "ros_rank_at": "11/20"
+    },
+    {
      "name": "Chris Rodriguez Jr.",
      "pos": "RB",
      "team": "Jax",
@@ -162,23 +179,6 @@
       }
      ],
      "ros_rank": 57,
-     "ros_rank_at": "11/20"
-    },
-    {
-     "name": "Kyle Pitts",
-     "pos": "TE",
-     "team": "ATL",
-     "slot": "free agent",
-     "splits": [
-      {
-       "span": "rest of season",
-       "expert": "Ratcliffe",
-       "his": 11.4,
-       "others": 8.5,
-       "note": "Ratcliffe 11.4 a game vs Clay 8.5 for the rest of the season"
-      }
-     ],
-     "ros_rank": 16,
      "ros_rank_at": "11/20"
     }
    ]
@@ -197,10 +197,11 @@
      "gain": 4.4,
      "rat_wk": 9.3,
      "koe_wk": 8.23,
-     "clay_ros": 6.07,
+     "clay_ros": 6.73,
      "vegas_wk": 7.82,
      "flagged_by": [
       "Ratcliffe",
+      "Clay",
       "Koerner"
      ],
      "flags": [
@@ -214,6 +215,15 @@
        "gain": 4.4
       },
       {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 6.7,
+       "over": "Jauan Jennings",
+       "over_v": 4.0,
+       "pct": 69,
+       "gain": 2.7
+      },
+      {
        "src": "Koerner",
        "span": "this week",
        "his": 8.2,
@@ -221,22 +231,13 @@
        "over_v": 5.7,
        "pct": 44,
        "gain": 2.5
-      },
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 6.1,
-       "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 29,
-       "gain": 1.4
       }
      ],
      "sharp_po": 63.25,
      "sharp_rank": 24,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 9.3 vs your Jauan Jennings 4.9, +89%); Koerner (this week: 8.2 vs your Jauan Jennings 5.7, +44%); playoff offense #24 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 9.3 vs your Jauan Jennings 4.9, +89%); Clay (rest of season, Weeks 12-17: 6.7 vs your Jauan Jennings 4.0, +69%); Koerner (this week: 8.2 vs your Jauan Jennings 5.7, +44%); playoff offense #24 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:germiebernard",
      "first_seen": "Thu Nov 19 2026 05:51 PM PT"
     },
@@ -252,10 +253,11 @@
      "gain": 3.8,
      "rat_wk": 0.0,
      "koe_wk": null,
-     "clay_ros": 6.64,
+     "clay_ros": 6.69,
      "vegas_wk": null,
      "flagged_by": [
-      "Ratcliffe"
+      "Ratcliffe",
+      "Clay"
      ],
      "flags": [
       {
@@ -270,18 +272,18 @@
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 6.6,
+       "his": 6.7,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 41,
-       "gain": 1.9
+       "over_v": 4.0,
+       "pct": 68,
+       "gain": 2.7
       }
      ],
      "sharp_po": 78.0,
      "sharp_rank": 2,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Ratcliffe (rest of season: 8.8 vs your Jauan Jennings 4.9, +79%); playoff offense #2 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 8.8 vs your Jauan Jennings 4.9, +79%); Clay (rest of season, Weeks 12-17: 6.7 vs your Jauan Jennings 4.0, +68%); playoff offense #2 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:konatamumpfield",
      "first_seen": "Tue Nov 17 2026 05:02 PM PT"
     },
@@ -297,7 +299,7 @@
      "gain": 3.8,
      "rat_wk": 7.7,
      "koe_wk": 8.0,
-     "clay_ros": 4.7,
+     "clay_ros": 4.89,
      "vegas_wk": 7.57,
      "flagged_by": [
       "Ratcliffe",
@@ -343,10 +345,11 @@
      "gain": 3.4,
      "rat_wk": 9.3,
      "koe_wk": 9.2,
-     "clay_ros": 6.65,
+     "clay_ros": 6.45,
      "vegas_wk": 9.15,
      "flagged_by": [
       "Ratcliffe",
+      "Clay",
       "Koerner"
      ],
      "flags": [
@@ -360,6 +363,15 @@
        "gain": 3.4
       },
       {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 6.5,
+       "over": "Jauan Jennings",
+       "over_v": 4.0,
+       "pct": 62,
+       "gain": 2.5
+      },
+      {
        "src": "Koerner",
        "span": "this week",
        "his": 9.2,
@@ -367,22 +379,13 @@
        "over_v": 5.7,
        "pct": 61,
        "gain": 3.5
-      },
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 6.7,
-       "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 41,
-       "gain": 1.9
       }
      ],
      "sharp_po": 73.75,
      "sharp_rank": 6,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Ratcliffe (rest of season: 8.3 vs your Jauan Jennings 4.9, +69%); Koerner (this week: 9.2 vs your Jauan Jennings 5.7, +61%); playoff offense #6 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 8.3 vs your Jauan Jennings 4.9, +69%); Clay (rest of season, Weeks 12-17: 6.5 vs your Jauan Jennings 4.0, +62%); Koerner (this week: 9.2 vs your Jauan Jennings 5.7, +61%); playoff offense #6 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:treharris",
      "first_seen": "Sun Nov 22 2026 07:23 AM PT"
     },
@@ -392,13 +395,13 @@
      "team": "ARI",
      "acq": "free agent",
      "over": "Jauan Jennings",
-     "rat_ros": 7.9,
+     "rat_ros": 7.7,
      "over_ros": 4.9,
-     "pct": 62,
-     "gain": 3.0,
+     "pct": 58,
+     "gain": 2.8,
      "rat_wk": 1.4,
      "koe_wk": 1.3,
-     "clay_ros": 7.92,
+     "clay_ros": 7.73,
      "vegas_wk": null,
      "flagged_by": [
       "Ratcliffe",
@@ -408,27 +411,27 @@
       {
        "src": "Ratcliffe",
        "span": "rest of season",
-       "his": 7.9,
+       "his": 7.7,
        "over": "Jauan Jennings",
        "over_v": 4.9,
-       "pct": 62,
-       "gain": 3.0
+       "pct": 58,
+       "gain": 2.8
       },
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 7.9,
+       "his": 7.7,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 68,
-       "gain": 3.2
+       "over_v": 4.0,
+       "pct": 94,
+       "gain": 3.7
       }
      ],
      "sharp_po": 60.0,
      "sharp_rank": 27,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Ratcliffe (rest of season: 7.9 vs your Jauan Jennings 4.9, +62%); Clay (rest of season, Weeks 12-17: 7.9 vs your Jauan Jennings 4.7, +68%); playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 7.7 vs your Jauan Jennings 4.9, +58%); Clay (rest of season, Weeks 12-17: 7.7 vs your Jauan Jennings 4.0, +94%); playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:harrisonwallace",
      "first_seen": "Sun Nov 22 2026 08:12 PM PT"
     },
@@ -444,10 +447,11 @@
      "gain": 2.8,
      "rat_wk": 0.0,
      "koe_wk": 0.0,
-     "clay_ros": 6.54,
+     "clay_ros": 6.49,
      "vegas_wk": null,
      "flagged_by": [
-      "Ratcliffe"
+      "Ratcliffe",
+      "Clay"
      ],
      "flags": [
       {
@@ -464,16 +468,16 @@
        "span": "rest of season, Weeks 12-17",
        "his": 6.5,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 39,
-       "gain": 1.8
+       "over_v": 4.0,
+       "pct": 63,
+       "gain": 2.5
       }
      ],
      "sharp_po": 59.25,
      "sharp_rank": 28,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Ratcliffe (rest of season: 7.7 vs your Jauan Jennings 4.9, +56%); playoff offense #28 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 7.7 vs your Jauan Jennings 4.9, +56%); Clay (rest of season, Weeks 12-17: 6.5 vs your Jauan Jennings 4.0, +63%); playoff offense #28 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:marvinharrison",
      "first_seen": "Thu Nov 19 2026 05:51 PM PT"
     }
@@ -491,7 +495,7 @@
      "gain": 2.0,
      "rat_wk": 6.5,
      "koe_wk": 5.21,
-     "clay_ros": 2.79,
+     "clay_ros": 2.84,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -524,7 +528,7 @@
      "gain": 1.9,
      "rat_wk": 5.5,
      "koe_wk": 4.89,
-     "clay_ros": 5.18,
+     "clay_ros": 5.43,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -536,6 +540,15 @@
        "over_v": 4.9,
        "pct": 39,
        "gain": 1.9
+      },
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 5.4,
+       "over": "Jauan Jennings",
+       "over_v": 4.0,
+       "pct": 36,
+       "gain": 1.4
       }
      ],
      "sharp_po": 70.0,
@@ -544,48 +557,6 @@
      "scout": false,
      "id": "watch:brianthomas",
      "first_seen": "Thu Nov 19 2026 05:51 PM PT"
-    },
-    {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "acq": "waivers until Nov 25",
-     "over": "Jauan Jennings",
-     "rat_ros": 6.7,
-     "over_ros": 4.9,
-     "pct": 37,
-     "gain": 1.8,
-     "rat_wk": 0.0,
-     "koe_wk": null,
-     "clay_ros": 6.3,
-     "vegas_wk": null,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Ratcliffe",
-       "span": "rest of season",
-       "his": 6.7,
-       "over": "Jauan Jennings",
-       "over_v": 4.9,
-       "pct": 37,
-       "gain": 1.8
-      },
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 6.3,
-       "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 33,
-       "gain": 1.6
-      }
-     ],
-     "sharp_po": 68.0,
-     "sharp_rank": 16,
-     "rising": null,
-     "scout": false,
-     "id": "watch:rashidshaheed",
-     "first_seen": "Sat Nov 21 2026 03:11 PM PT"
     },
     {
      "name": "Jerry Jeudy",
@@ -645,7 +616,7 @@
      "gain": 1.4,
      "rat_wk": 5.2,
      "koe_wk": 4.42,
-     "clay_ros": 1.53,
+     "clay_ros": 1.54,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -665,6 +636,19 @@
      "scout": false,
      "id": "watch:reggievirgil",
      "first_seen": "Sun Nov 22 2026 08:12 PM PT"
+    },
+    {
+     "name": "SF DEF",
+     "pos": "DEF",
+     "team": "SF",
+     "acq": "Waivers, clears Nov 25",
+     "over": "Jauan Jennings",
+     "pct": 25,
+     "gain": 3.2,
+     "note": "Scout pick (rest of season): This week vs your DEF Jaguars DEF: Ratcliffe 7.6 vs 9.5 \u00b7 Koerner 6.6 vs 7.5 \u00b7 Yahoo 6.4 vs 7.6 - WORSE this week",
+     "scout": true,
+     "id": "watch:sfdef",
+     "first_seen": "Mon Nov 23 2026 07:50 AM PT"
     }
    ],
    "cover": [
@@ -732,8 +716,8 @@
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 5.0,
-       "others": 7.6,
-       "note": "Ratcliffe 5.0 a game vs Clay 7.6 for the rest of the season"
+       "others": 7.3,
+       "note": "Ratcliffe 5.0 a game vs Clay 7.3 for the rest of the season"
       }
      ],
      "ros_rank": 63,
@@ -749,8 +733,8 @@
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 15.4,
-       "others": 11.0,
-       "note": "Ratcliffe 15.4 a game vs Clay 11.0 for the rest of the season"
+       "others": 10.9,
+       "note": "Ratcliffe 15.4 a game vs Clay 10.9 for the rest of the season"
       }
      ],
      "ros_rank": 54,
@@ -766,8 +750,8 @@
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 9.3,
-       "others": 6.1,
-       "note": "Ratcliffe 9.3 a game vs Clay 6.1 for the rest of the season"
+       "others": 6.7,
+       "note": "Ratcliffe 9.3 a game vs Clay 6.7 for the rest of the season"
       }
      ],
      "ros_rank": 41,
@@ -790,18 +774,18 @@
      "gain": 0.0,
      "rat_wk": 0.0,
      "koe_wk": 0.0,
-     "clay_ros": 12.21,
+     "clay_ros": 11.58,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 12.2,
+       "his": 11.6,
        "over": "Caleb Douglas",
-       "over_v": 10.3,
-       "pct": 18,
-       "gain": 1.9
+       "over_v": 10.0,
+       "pct": 16,
+       "gain": 1.6
       }
      ],
      "sharp_po": 67.5,
@@ -854,6 +838,23 @@
    "backup": [],
    "fa_tags": {},
    "splits": [
+    {
+     "name": "Jonah Coleman",
+     "pos": "RB",
+     "team": "Den",
+     "slot": "RB",
+     "splits": [
+      {
+       "span": "rest of season",
+       "expert": "Ratcliffe",
+       "his": 17.6,
+       "others": 23.7,
+       "note": "Ratcliffe 17.6 a game vs Clay 23.7 for the rest of the season"
+      }
+     ],
+     "ros_rank": 17,
+     "ros_rank_at": "11/20"
+    },
     {
      "name": "T.J. Hockenson",
      "pos": "TE",
@@ -922,8 +923,8 @@
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 10.8,
-       "others": 7.4,
-       "note": "Ratcliffe 10.8 a game vs Clay 7.4 for the rest of the season"
+       "others": 7.5,
+       "note": "Ratcliffe 10.8 a game vs Clay 7.5 for the rest of the season"
       }
      ],
      "ros_rank": 50,
@@ -945,7 +946,7 @@
      "gain": 7.0,
      "rat_wk": 0.0,
      "koe_wk": 0.0,
-     "clay_ros": 9.19,
+     "clay_ros": 9.01,
      "vegas_wk": null,
      "flagged_by": [
       "Ratcliffe",
@@ -964,18 +965,18 @@
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 9.2,
+       "his": 9.0,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 95,
-       "gain": 4.5
+       "over_v": 4.0,
+       "pct": 126,
+       "gain": 5.0
       }
      ],
      "sharp_po": 55.25,
      "sharp_rank": 30,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 11.9 vs your Jauan Jennings 4.9, +142%); Clay (rest of season, Weeks 12-17: 9.2 vs your Jauan Jennings 4.7, +95%); playoff offense #30 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 11.9 vs your Jauan Jennings 4.9, +142%); Clay (rest of season, Weeks 12-17: 9.0 vs your Jauan Jennings 4.0, +126%); playoff offense #30 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:omarcooper",
      "first_seen": "Sat Nov 21 2026 05:50 AM PT"
     },
@@ -991,7 +992,7 @@
      "gain": 6.6,
      "rat_wk": 8.7,
      "koe_wk": 6.88,
-     "clay_ros": 7.47,
+     "clay_ros": 7.14,
      "vegas_wk": 6.74,
      "flagged_by": [
       "Ratcliffe",
@@ -1010,11 +1011,11 @@
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 7.5,
+       "his": 7.1,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 58,
-       "gain": 2.8
+       "over_v": 4.0,
+       "pct": 79,
+       "gain": 3.1
       },
       {
        "src": "Koerner",
@@ -1030,7 +1031,7 @@
      "sharp_rank": 15,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 11.5 vs your Jauan Jennings 4.9, +134%); Clay (rest of season, Weeks 12-17: 7.5 vs your Jauan Jennings 4.7, +58%); playoff offense #15 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 11.5 vs your Jauan Jennings 4.9, +134%); Clay (rest of season, Weeks 12-17: 7.1 vs your Jauan Jennings 4.0, +79%); playoff offense #15 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:keenanallen",
      "first_seen": "Sat Nov 21 2026 05:50 AM PT"
     },
@@ -1068,9 +1069,9 @@
        "span": "rest of season, Weeks 12-17",
        "his": 11.0,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 132,
-       "gain": 6.2
+       "over_v": 4.0,
+       "pct": 175,
+       "gain": 7.0
       },
       {
        "src": "Koerner",
@@ -1086,7 +1087,7 @@
      "sharp_rank": 24,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 11.0 vs your Jauan Jennings 4.9, +125%); Clay (rest of season, Weeks 12-17: 11.0 vs your Jauan Jennings 4.7, +132%); Koerner (this week: 10.5 vs your Jauan Jennings 5.7, +84%); playoff offense #24 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 11.0 vs your Jauan Jennings 4.9, +125%); Clay (rest of season, Weeks 12-17: 11.0 vs your Jauan Jennings 4.0, +175%); Koerner (this week: 10.5 vs your Jauan Jennings 5.7, +84%); playoff offense #24 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:dkmetcalf",
      "first_seen": "Sun Nov 22 2026 07:23 AM PT"
     },
@@ -1102,7 +1103,7 @@
      "gain": 4.8,
      "rat_wk": 0.0,
      "koe_wk": null,
-     "clay_ros": 8.08,
+     "clay_ros": 7.59,
      "vegas_wk": null,
      "flagged_by": [
       "Ratcliffe",
@@ -1121,18 +1122,18 @@
       {
        "src": "Clay",
        "span": "rest of season, Weeks 12-17",
-       "his": 8.1,
+       "his": 7.6,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 71,
-       "gain": 3.4
+       "over_v": 4.0,
+       "pct": 90,
+       "gain": 3.6
       }
      ],
      "sharp_po": 67.25,
      "sharp_rank": 18,
      "rising": null,
      "scout": false,
-     "note": "Flagged by Ratcliffe (rest of season: 9.8 vs your Jauan Jennings 4.9, +99%); Clay (rest of season, Weeks 12-17: 8.1 vs your Jauan Jennings 4.7, +71%); playoff offense #18 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 9.8 vs your Jauan Jennings 4.9, +99%); Clay (rest of season, Weeks 12-17: 7.6 vs your Jauan Jennings 4.0, +90%); playoff offense #18 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:demariodouglas",
      "first_seen": "Sun Nov 22 2026 07:23 AM PT"
     },
@@ -1148,7 +1149,7 @@
      "gain": 3.8,
      "rat_wk": 7.7,
      "koe_wk": 8.0,
-     "clay_ros": 4.7,
+     "clay_ros": 4.89,
      "vegas_wk": 7.56,
      "flagged_by": [
       "Ratcliffe",
@@ -1194,10 +1195,11 @@
      "gain": 3.4,
      "rat_wk": 9.3,
      "koe_wk": 9.2,
-     "clay_ros": 6.65,
+     "clay_ros": 6.45,
      "vegas_wk": 9.12,
      "flagged_by": [
       "Ratcliffe",
+      "Clay",
       "Koerner"
      ],
      "flags": [
@@ -1211,6 +1213,15 @@
        "gain": 3.4
       },
       {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 6.5,
+       "over": "Jauan Jennings",
+       "over_v": 4.0,
+       "pct": 62,
+       "gain": 2.5
+      },
+      {
        "src": "Koerner",
        "span": "this week",
        "his": 9.2,
@@ -1218,22 +1229,13 @@
        "over_v": 5.7,
        "pct": 61,
        "gain": 3.5
-      },
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 6.7,
-       "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 41,
-       "gain": 1.9
       }
      ],
      "sharp_po": 73.75,
      "sharp_rank": 6,
      "rising": null,
      "scout": true,
-     "note": "Flagged by Ratcliffe (rest of season: 8.3 vs your Jauan Jennings 4.9, +69%); Koerner (this week: 9.2 vs your Jauan Jennings 5.7, +61%); playoff offense #6 of 32 (Sharp betting totals, Weeks 15-17)",
+     "note": "Flagged by Ratcliffe (rest of season: 8.3 vs your Jauan Jennings 4.9, +69%); Clay (rest of season, Weeks 12-17: 6.5 vs your Jauan Jennings 4.0, +62%); Koerner (this week: 9.2 vs your Jauan Jennings 5.7, +61%); playoff offense #6 of 32 (Sharp betting totals, Weeks 15-17)",
      "id": "talk:treharris",
      "first_seen": "Sun Nov 22 2026 07:23 AM PT"
     }
@@ -1251,7 +1253,7 @@
      "gain": 2.0,
      "rat_wk": 6.5,
      "koe_wk": 5.16,
-     "clay_ros": 2.77,
+     "clay_ros": 2.81,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -1306,48 +1308,6 @@
      "first_seen": "Sun Nov 22 2026 07:23 AM PT"
     },
     {
-     "name": "Rashid Shaheed",
-     "pos": "WR",
-     "team": "SEA",
-     "acq": "free agent",
-     "over": "Jauan Jennings",
-     "rat_ros": 6.5,
-     "over_ros": 4.9,
-     "pct": 33,
-     "gain": 1.6,
-     "rat_wk": 0.0,
-     "koe_wk": null,
-     "clay_ros": 6.16,
-     "vegas_wk": null,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Ratcliffe",
-       "span": "rest of season",
-       "his": 6.5,
-       "over": "Jauan Jennings",
-       "over_v": 4.9,
-       "pct": 33,
-       "gain": 1.6
-      },
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 12-17",
-       "his": 6.2,
-       "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 31,
-       "gain": 1.4
-      }
-     ],
-     "sharp_po": 68.0,
-     "sharp_rank": 16,
-     "rising": null,
-     "scout": false,
-     "id": "watch:rashidshaheed",
-     "first_seen": "Sun Nov 22 2026 07:23 AM PT"
-    },
-    {
      "name": "Reggie Virgil",
      "pos": "WR",
      "team": "ARI",
@@ -1359,7 +1319,7 @@
      "gain": 1.4,
      "rat_wk": 5.2,
      "koe_wk": 4.42,
-     "clay_ros": 1.53,
+     "clay_ros": 1.54,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -1392,7 +1352,7 @@
      "gain": 1.3,
      "rat_wk": 6.6,
      "koe_wk": 6.58,
-     "clay_ros": 5.58,
+     "clay_ros": 5.77,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -1404,6 +1364,15 @@
        "over_v": 4.9,
        "pct": 27,
        "gain": 1.3
+      },
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 12-17",
+       "his": 5.8,
+       "over": "Jauan Jennings",
+       "over_v": 4.0,
+       "pct": 45,
+       "gain": 1.8
       }
      ],
      "sharp_po": 70.75,
@@ -1425,7 +1394,7 @@
      "gain": 1.1,
      "rat_wk": 6.8,
      "koe_wk": 6.62,
-     "clay_ros": 5.77,
+     "clay_ros": 5.79,
      "vegas_wk": null,
      "flagged_by": [],
      "flags": [
@@ -1443,9 +1412,9 @@
        "span": "rest of season, Weeks 12-17",
        "his": 5.8,
        "over": "Jauan Jennings",
-       "over_v": 4.7,
-       "pct": 22,
-       "gain": 1.0
+       "over_v": 4.0,
+       "pct": 45,
+       "gain": 1.8
       }
      ],
      "sharp_po": 73.75,
@@ -1454,6 +1423,39 @@
      "scout": false,
      "id": "watch:quentinjohnston",
      "first_seen": "Sun Nov 22 2026 08:12 PM PT"
+    },
+    {
+     "name": "Sam LaPorta",
+     "pos": "TE",
+     "team": "DET",
+     "acq": "waivers until Nov 25",
+     "over": "Travis Kelce",
+     "rat_ros": 11.9,
+     "over_ros": 11.1,
+     "pct": 8,
+     "gain": 0.9,
+     "rat_wk": 10.2,
+     "koe_wk": 9.96,
+     "clay_ros": 10.97,
+     "vegas_wk": 9.14,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Koerner",
+       "span": "this week",
+       "his": 10.0,
+       "over": "Travis Kelce",
+       "over_v": 8.8,
+       "pct": 13,
+       "gain": 1.1
+      }
+     ],
+     "sharp_po": 75.0,
+     "sharp_rank": 5,
+     "rising": null,
+     "scout": false,
+     "id": "watch:samlaporta",
+     "first_seen": "Mon Nov 23 2026 07:50 AM PT"
     }
    ],
    "cover": [
@@ -1561,8 +1563,8 @@
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 11.5,
-       "others": 7.5,
-       "note": "Ratcliffe 11.5 a game vs Clay 7.5 for the rest of the season"
+       "others": 7.1,
+       "note": "Ratcliffe 11.5 a game vs Clay 7.1 for the rest of the season"
       }
      ],
      "ros_rank": 57,
