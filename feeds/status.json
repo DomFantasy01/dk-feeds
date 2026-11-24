@@ -1,5 +1,5 @@
 {
- "run_utc": "2026-11-24T23:39:30+00:00",
+ "run_utc": "2026-11-24T23:45:58+00:00",
  "sources": {
   "rotowire": {
    "source": "merged",
@@ -10,16 +10,16 @@
     "https://rss-parrot.net/web/feeds/rotowire.com": 0
    },
    "items": 5,
-   "new_items": 2,
+   "new_items": 0,
    "newest_item_utc": "2026-11-24T03:13:00+00:00",
-   "newest_age_hours": 20.4,
+   "newest_age_hours": 20.5,
    "fallbacks_failed": [
     "https://www.rotowire.com/rss/news.htm?sport=nfl: HTTPError: HTTP Error 404: Not Found",
     "https://rss-parrot.net/web/feeds/rotowire.com: ParseError: not well-formed (invalid token): line 12, column 16"
    ],
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00",
-   "rss_note": "newest item 20.4 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
+   "checked_utc": "2026-11-24T23:45:58+00:00",
+   "rss_note": "newest item 20.5 hr old \u2014 feed may be stale; only 5 items across all addresses \u2014 thin",
    "warning": null,
    "note": "RSS is thin by design (5 items); RotoWire news now comes from the news pages and player pages - see rotowire_pages"
   },
@@ -31,45 +31,44 @@
    "player_db_refreshed": false,
    "note": "trust the ORDER; raw counts are Sleeper-wide and may not respect the 24h window",
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "rotowire_pages": {
    "news_page_items": 50,
    "players_watched": 124,
    "player_pages_read": 72,
    "wire_pages_skipped_this_run": 52,
-   "new_items": 2,
-   "exact_times_set": 2,
+   "new_items": 0,
+   "exact_times_set": 0,
    "exact_times_still_missing": 2,
    "exact_time_failures": 0,
    "failures": [],
    "warning": "2 watched players have no RotoWire id: Kyle Juszczyk, Michael Burton",
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "rotoworld": {
    "items": 10,
-   "new_items": 1,
+   "new_items": 0,
    "newest_item_utc": "2026-11-24T23:24:36.108Z",
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "weather": {
    "games_in_window": 16,
    "outdoor_needed": 12,
    "outdoor_pulled": 12,
    "problems": [],
-   "warning": "2026_12_PHI_DAL: HTTPError - kept the 23:05 UTC forecast; 2026_12_KC_BUF: HTTPError - kept the 23:05 UTC forecast; 2026_12_DEN_PIT: HTTPError - kept the 23:05 UTC forecast; 2026_12_NO_CIN: HTTPError - kept the 23:05 UTC forecast; 2026_12_BAL_HOU: HTTPError - kept the 23:05 UTC forecast; 2026_12_NYG_IND: HTTPError - kept the 23:05 UTC forecast; 2026_12_TEN_JAX: HTTPError - kept the 23:05 UTC forecast; 2026_12_NYJ_MIA: HTTPError - kept the 23:05 UTC forecast; 2026_12_WAS_ARI: HTTPError - kept the 23:05 UTC forecast; 2026_12_SEA_SF: HTTPError - kept the 23:05 UTC forecast; 2026_12_LV_CLE: HTTPError - kept the 23:05 UTC forecast; 2026_12_CAR_TB: HTTPError - kept the 23:05 UTC forecast",
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "espn_news": {
    "items": 50,
-   "new_items": 3,
+   "new_items": 0,
    "newest_item_utc": "2026-11-24T23:30:46Z",
    "with_player_tag": 21,
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "news_extra": {
    "per_source": {
@@ -78,24 +77,24 @@
     "rotoworld": 10
    },
    "items": 55,
-   "new_items": 3,
+   "new_items": 0,
    "newest_item_utc": "2026-11-24T23:24:36.108Z",
    "errors": [],
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "espn_injuries": {
    "players": 447,
    "teams": 32,
    "warning": null,
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "injury_overlay": {
    "changes": 28,
    "note": "ESPN entries newer than the Sleeper pull override its injury tags",
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   },
   "probe": {
    "answered": [
@@ -112,7 +111,7 @@
     "rotowire_mirror"
    ],
    "ok": true,
-   "checked_utc": "2026-11-24T23:39:30+00:00"
+   "checked_utc": "2026-11-24T23:45:58+00:00"
   }
  }
 }
