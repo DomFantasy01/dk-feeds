@@ -1,17 +1,21 @@
 {
  "week": 11,
- "built_pt": "Mon Nov 23 2026 04:10 PM PT",
+ "built_pt": "Mon Nov 23 2026 04:34 PM PT",
  "alarms": [],
  "lineup": [],
  "notes": [
   "DK II: Sleeper lists Marcus Mariota with no projection (it blanks players it doubts) - Yahoo used on the Sleeper needle",
-  "DK II: no Ratcliffe number for Tyler Loop - Yahoo used on the Ratcliffe needle"
+  "DK II: no Ratcliffe number for Tyler Loop - Yahoo used on the Ratcliffe needle",
+  "DK I: no Yahoo numbers for the benches this week - the Yahoo needle uses the lineups as set (Ratcliffe, Koerner and Gotham still use best lineups)",
+  "DK II: no Yahoo numbers for the benches this week - the Yahoo needle uses the lineups as set (Ratcliffe, Koerner and Gotham still use best lineups)",
+  "DK III: no Yahoo numbers for the benches this week - the Yahoo needle uses the lineups as set (Ratcliffe, Koerner and Gotham still use best lineups)",
+  "DK IV: no Yahoo numbers for the benches this week - the Yahoo needle uses the lineups as set (Ratcliffe, Koerner and Gotham still use best lineups)"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Mon Nov 23 04:09 PM PT",
+   "pulled_pt": "Mon Nov 23 04:33 PM PT",
    "age_h": 0.0,
    "rows": 13,
    "need": 13,
@@ -20,7 +24,7 @@
   "yahoo_matchups": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk11/dom_matchups_api.txt",
-   "pulled_pt": "Mon Nov 23 04:09 PM PT",
+   "pulled_pt": "Mon Nov 23 04:33 PM PT",
    "age_h": 0.0,
    "rows": 41,
    "need": 41,
@@ -29,7 +33,7 @@
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk11/league_windows_api.txt",
-   "pulled_pt": "Mon Nov 23 04:09 PM PT",
+   "pulled_pt": "Mon Nov 23 04:33 PM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -39,7 +43,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk11/standings_sun2052.txt",
    "pulled_pt": "Sun Nov 22 08:52 PM PT",
-   "age_h": 19.3,
+   "age_h": 19.7,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -47,17 +51,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Mon Nov 23 04:10 PM PT",
+   "pulled_pt": "Mon Nov 23 04:34 PM PT",
    "age_h": 0.0,
    "rows": 11,
    "need": 11,
-   "note": "Gotham run Mon Nov 23 2026 04:10 PM PT for week 11"
+   "note": "Gotham run Mon Nov 23 2026 04:34 PM PT for week 11"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Mon Nov 23 2026 3:26 PM PT",
-   "age_h": 0.7,
+   "age_h": 1.1,
    "rows": 2098,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -65,7 +69,7 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Mon Nov 23 2026 4:04 PM PT",
-   "age_h": 0.1,
+   "age_h": 0.5,
    "rows": 2454,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
@@ -73,24 +77,24 @@
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk11_2026-11-23T2342Z.csv",
    "pulled_pt": "Mon Nov 23 03:42 PM PT",
-   "age_h": 0.5,
+   "age_h": 0.9,
    "rows": 3118,
    "need": 400,
-   "note": "GitHub job checked 0.5 h ago (saved 3118 rows)"
+   "note": "GitHub job checked 0.9 h ago (saved 3118 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
    "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk11_2026-11-23T2243Z.csv",
    "pulled_pt": "Mon Nov 23 02:43 PM PT",
-   "age_h": 1.5,
+   "age_h": 1.9,
    "rows": 183,
    "need": 60,
-   "note": "GitHub job checked 0.5 h ago (unchanged 183 rows)"
+   "note": "GitHub job checked 0.9 h ago (unchanged 183 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk11/dom_rosters.json",
-   "pulled_pt": "Mon Nov 23 04:09 PM PT",
+   "pulled_pt": "Mon Nov 23 04:33 PM PT",
    "age_h": 0.0,
    "rows": 67,
    "need": null,
