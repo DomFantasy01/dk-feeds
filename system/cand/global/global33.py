@@ -3122,7 +3122,15 @@ for _l in open(_SF):
         if len(f_)==1: dv_=f_[0]; continue
         out.append(dict(rank=int(''.join(c for c in f_[0] if c.isdigit()) or 0),team=f_[1],div=dv_))
     _STD[lg_]=out
-def _avg(lists): return [sum(x)/len(lists) for x in zip(*lists)] if lists else [0.0]*NW
+def _fit(v):
+    # Nov 24 (Thanksgiving week): Yahoo's windows sweep always has 6 windows (THU, SUN x4, MON) but this week's kickoff
+    # windows include Wednesday and Friday - stretch the league/division background ridges to this week's window count
+    v=list(v)
+    if len(v)==NW or not v: return v if v else [0.0]*NW
+    if NW==1: return [sum(v)]
+    tot=sum(v); r=[v[min(len(v)-1,int(round(i*(len(v)-1)/(NW-1))))] for i in range(NW)]; s_=sum(r)
+    return [x*tot/s_ for x in r] if s_ else [0.0]*NW
+def _avg(lists): return _fit([sum(x)/len(lists) for x in zip(*lists)]) if lists else [0.0]*NW
 def ordn(n): return f"{n}{'th' if 10<=n%100<=20 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
 def prep(lab):
     L=MTR["leagues"][lab]; lg=_LBL[lab]; tb=_STD[lg]; aw=_AW[lg]
