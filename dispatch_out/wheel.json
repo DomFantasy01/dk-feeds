@@ -1,9 +1,9 @@
 {
- "built": "Tue Nov 24 2026 11:56 AM PT",
+ "built": "Tue Nov 24 2026 12:15 PM PT",
  "test": true,
  "note": "TEST ONLY - runs beside the system; never used for pickups, drops, claims or MUST/HOT tags",
- "pickups_built": "Tue Nov 24 2026 11:55 AM PT",
- "champ_built": "Tue Nov 24 2026 11:51 AM PT",
+ "pickups_built": "Tue Nov 24 2026 12:14 PM PT",
+ "champ_built": "Tue Nov 24 2026 12:12 PM PT",
  "leagues": {
   "1": {
    "base": 0.706,
@@ -182,24 +182,24 @@
    "picks": [
     {
      "name": "Germie Bernard",
-     "replaces": "Jauan Jennings",
+     "replaces": "Ladd McConkey",
      "pos": "WR",
      "team": "PIT",
-     "tier": "MUST",
-     "grade": 70,
+     "tier": "HOT",
+     "grade": 63,
      "spokes": {
       "team": 11.1,
-      "consensus": 20.0,
+      "consensus": 6.3,
       "upside": 10.7,
       "drop": 10,
       "stakes": 10
      },
-     "total": 62,
-     "verdict": "LEAN",
-     "vwhy": "62/100",
+     "total": 48,
+     "verdict": "PASS",
+     "vwhy": "48/100",
      "why": {
       "team": "PIT offense 21.4 a game (#22), last 3 games 20.3 (#20); team 60% wins; workload 15/15",
-      "consensus": "+91% vs Jauan Jennings (top-3 average); 7 of 7 sources have him ahead",
+      "consensus": "-18% vs Ladd McConkey (top-3 average); 3 of 7 sources have him ahead",
       "upside": "66 pts rest of season; Weeks 15-17 W15 BAL (#17), W16 CAR (#15), W17 TEN (#1)",
       "drop": "not in the simulator's pool - scored even",
       "stakes": "not in the simulator's pool - scored even"
@@ -207,45 +207,12 @@
      "move": null
     },
     {
-     "name": "Ted Hurst III",
-     "replaces": "Jauan Jennings",
-     "pos": "WR",
-     "team": "TB",
-     "tier": "MUST",
-     "grade": 61,
-     "spokes": {
-      "team": 11.3,
-      "consensus": 18.3,
-      "upside": 7.5,
-      "drop": 18.0,
-      "stakes": 8.0
-     },
-     "total": 63,
-     "verdict": "LEAN",
-     "vwhy": "63/100",
-     "why": {
-      "team": "TB offense 22.3 a game (#17), last 3 games 20.3 (#19); team 30% wins; workload 15/15",
-      "consensus": "+58% vs Jauan Jennings (top-3 average); 5 of 6 sources have him ahead",
-      "upside": "55 pts rest of season; Weeks 15-17 W15 NO (#25), W16 ATL (#6), W17 LA (#30)",
-      "drop": "drop Elic Ayomanor: his loss alone +0.0 playoff odds; a rival would start him (Ground Game evan)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 4% to 20%; 2 rivals would start him"
-     },
-     "move": {
-      "drop": "Elic Ayomanor",
-      "d_week": 0.0,
-      "d_playoff": 0.0,
-      "d_title": 0.0,
-      "ppg": 0.0,
-      "games": 0
-     }
-    },
-    {
      "name": "Chris Rodriguez Jr.",
      "replaces": "Emmett Johnson",
      "pos": "RB",
      "team": "JAX",
-     "tier": "HOT",
-     "grade": 61,
+     "tier": "STASH",
+     "grade": 58,
      "spokes": {
       "team": 15.0,
       "consensus": 2.4,
@@ -273,12 +240,45 @@
      }
     },
     {
+     "name": "Bam Knight",
+     "replaces": "Emmett Johnson",
+     "pos": "RB",
+     "team": "ARI",
+     "tier": "WATCH",
+     "grade": 57,
+     "spokes": {
+      "team": 4.7,
+      "consensus": 6.2,
+      "upside": 12.5,
+      "drop": 18.0,
+      "stakes": 10.0
+     },
+     "total": 51,
+     "verdict": "NO MOVE",
+     "vwhy": "red flag (under 5): Team",
+     "why": {
+      "team": "ARI offense 17.4 a game (#29), last 3 games 5.3 (#32) - trending down; team 27% wins; workload 10/15",
+      "consensus": "-8% vs Emmett Johnson (top-3 average); 1 of 4 sources have him ahead",
+      "upside": "68 pts rest of season; Weeks 15-17 no Clay number for Weeks 15-17",
+      "drop": "drop Elic Ayomanor: his loss alone +0.0 playoff odds; a rival would start him (Ground Game evan)",
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 4% to 20%; 5 rivals would start him"
+     },
+     "move": {
+      "drop": "Elic Ayomanor",
+      "d_week": 0.0,
+      "d_playoff": 0.0,
+      "d_title": 0.0,
+      "ppg": 0.0,
+      "games": 0
+     }
+    },
+    {
      "name": "Kaleb Johnson",
      "replaces": "Emmett Johnson",
      "pos": "RB",
      "team": "GB",
      "tier": "WATCH",
-     "grade": 59,
+     "grade": 56,
      "spokes": {
       "team": 14.3,
       "consensus": 0.0,
@@ -306,28 +306,28 @@
      }
     },
     {
-     "name": "Bam Knight",
-     "replaces": "Emmett Johnson",
-     "pos": "RB",
-     "team": "ARI",
+     "name": "Ted Hurst III",
+     "replaces": "Ladd McConkey",
+     "pos": "WR",
+     "team": "TB",
      "tier": "WATCH",
-     "grade": 59,
+     "grade": 53,
      "spokes": {
-      "team": 4.7,
-      "consensus": 6.2,
-      "upside": 12.5,
+      "team": 11.3,
+      "consensus": 1.4,
+      "upside": 7.5,
       "drop": 18.0,
-      "stakes": 10.0
+      "stakes": 8.0
      },
-     "total": 51,
+     "total": 46,
      "verdict": "NO MOVE",
-     "vwhy": "red flag (under 5): Team",
+     "vwhy": "red flag (under 5): Experts",
      "why": {
-      "team": "ARI offense 17.4 a game (#29), last 3 games 5.3 (#32) - trending down; team 27% wins; workload 10/15",
-      "consensus": "-8% vs Emmett Johnson (top-3 average); 1 of 4 sources have him ahead",
-      "upside": "68 pts rest of season; Weeks 15-17 no Clay number for Weeks 15-17",
+      "team": "TB offense 22.3 a game (#17), last 3 games 20.3 (#19); team 30% wins; workload 15/15",
+      "consensus": "-32% vs Ladd McConkey (top-3 average); 1 of 7 sources have him ahead",
+      "upside": "55 pts rest of season; Weeks 15-17 W15 NO (#25), W16 ATL (#6), W17 LA (#30)",
       "drop": "drop Elic Ayomanor: his loss alone +0.0 playoff odds; a rival would start him (Ground Game evan)",
-      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 4% to 20%; 5 rivals would start him"
+      "stakes": "chance to win this week +0.0; playoff odds for the season +0.0; this week's game swings the playoff odds 4% to 20%; 2 rivals would start him"
      },
      "move": {
       "drop": "Elic Ayomanor",
