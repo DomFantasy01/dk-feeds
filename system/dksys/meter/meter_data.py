@@ -138,7 +138,7 @@ if SF:
             if len(f) == 1: div = f[0]; pos_in_div = 0; continue
             pos_in_div += 1
             nd = lg == '864215'
-            tbl.append(dict(rank=int(f[0]), team=f[1], rec=f[2], div=div, div_rank=pos_in_div if div else None,
+            tbl.append(dict(rank=int(re.sub(r'\D', '', f[0]) or 0), clinched=f[0].strip().startswith('*'), team=f[1], rec=f[2], div=div, div_rank=pos_in_div if div else None,
                             pf=float(f[3] if nd else f[4]), pa=float(f[4] if nd else f[5])))
         tb = pd.DataFrame(tbl); tb['pf_rank'] = tb.pf.rank(ascending=False, method='min').astype(int)
         STAND[lg] = tb

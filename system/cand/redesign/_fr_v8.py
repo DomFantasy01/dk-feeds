@@ -84,7 +84,7 @@ def _stand_file8(lid, f):
             for it in line.rstrip("\n").split("#", 1)[1].split("|"):
                 fz = it.split("^")
                 if len(fz) < 4: continue
-                nd = lid == "864215"; rows.append(dict(rank=int(fz[0]), team=fz[1], rec=fz[2], pf=float(fz[3] if nd else fz[4])))
+                nd = lid == "864215"; rows.append(dict(rank=int(''.join(c for c in fz[0] if c.isdigit()) or 0), team=fz[1], rec=fz[2], pf=float(fz[3] if nd else fz[4])))
             return rows
     return []
 def _hdr8(path):

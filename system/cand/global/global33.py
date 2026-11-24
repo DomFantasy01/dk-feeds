@@ -3120,7 +3120,7 @@ for _l in open(_SF):
     for it in rest.split("|"):
         f_=it.split("^")
         if len(f_)==1: dv_=f_[0]; continue
-        out.append(dict(rank=int(f_[0]),team=f_[1],div=dv_))
+        out.append(dict(rank=int(''.join(c for c in f_[0] if c.isdigit()) or 0),team=f_[1],div=dv_))
     _STD[lg_]=out
 def _avg(lists): return [sum(x)/len(lists) for x in zip(*lists)] if lists else [0.0]*NW
 def ordn(n): return f"{n}{'th' if 10<=n%100<=20 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"

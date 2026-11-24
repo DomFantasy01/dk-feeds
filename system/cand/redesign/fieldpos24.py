@@ -282,7 +282,7 @@ def _stand(lab):
             for it in line.rstrip("\n").split("#",1)[1].split("|"):
                 fz=it.split("^")
                 if len(fz)==1: div=fz[0]; continue
-                nd=lid=="864215"; rows.append(dict(rank=int(fz[0]),team=fz[1],rec=fz[2],pf=float(fz[3] if nd else fz[4]),div=div))
+                nd=lid=="864215"; rows.append(dict(rank=int(''.join(c for c in fz[0] if c.isdigit()) or 0),team=fz[1],rec=fz[2],pf=float(fz[3] if nd else fz[4]),div=div))
             return rows
     return []
 _TEAMS={"DK I":"Most Important","DK II":"Winners Sinners","DK III":"Hers His Ver 2.0","DK IV":"Murrieta NXTDR"}   # Oct 11 (Dom): short one-line names, same as Dark Knight Live
