@@ -177,7 +177,7 @@ def block(D,top,h,VMAX):
     c.setFillColor(col); c.rect(x0+2,top-3,x1-x0-4,3,fill=1,stroke=0)
     # --- the mountain: projected points by game window; its key sits at its own left edge ---
     pb=bot+42; mh=38; mx0=x0+8; mx1=x1-8; rx0=mx0+52
-    xs=[mx0+(mx1-mx0)*(.17+.77*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.17+.77*i/max(1,NW-1)) for i in range(NW)]
     tint={"league":(mix(col,BG2,.66),.65),"division":(mix(col,BG2,.45),.55),"top six":(mix(col,BG2,.45),.55),"opp":(OPPC,.48),"you":(col,.70)}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -317,7 +317,7 @@ def block(D,top,h,VMAX,GX):
     c.setFillColor(col); c.rect(x0+2,top-3,x1-x0-4,3,fill=1,stroke=0)
     # --- the mountain ---
     pb=bot+46; mh=40; mx0=x0+8; mx1=x1-8; rx0=mx0+52
-    xs=[mx0+(mx1-mx0)*(.17+.77*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.17+.77*i/max(1,NW-1)) for i in range(NW)]
     tint={"league":(mix(col,BG2,.66),.65),"division":(mix(col,BG2,.45),.55),"top six":(mix(col,BG2,.45),.55),"opp":(OPPC,.48),"you":(col,.70)}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -518,7 +518,7 @@ def block(D,top,h,VMAX,GX):
     for x,l in ((dvx,dlab),(lgx,"LEAGUE")): txt(x,TL-6.4*CAP,l,"PopB",6.4,TXT,"c")
     # --- the mountain, down into the room the players stacks gave back ---
     pb=bot+31; mh=min(46,(gy-31)-pb); mx0=x0+8; mx1=x1-8; rx0=mx0+54
-    xs=[mx0+(mx1-mx0)*(.18+.76*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.18+.76*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -665,7 +665,7 @@ def block(D,top,h,VMAX,GX):
     # --- the mountain first, so every mark above it lands on top ---
     gr=30; sw=gr*20/78; gy=TL-(5.2*CAP)-(gr+sw/2+5.5-2)
     pb=bot+31; mh=min(46,(gy-31)-pb); mx0=x0+8; mx1=x1-8; rx0=mx0+54
-    xs=[mx0+(mx1-mx0)*(.18+.76*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.18+.76*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -875,7 +875,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=30; sw=gr*20/78; gy=TL-(5.2*CAP)-(gr+sw/2+GLAB-2)
     pb=bot+31; mh=min(46,(gy-31)-pb); mx0=x0+8; mx1=x1-8; rx0=mx0+54
-    xs=[mx0+(mx1-mx0)*(.18+.76*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.18+.76*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -1277,7 +1277,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=30; sw=gr*20/78; gy=TL-(5.2*CAP)-(gr+sw/2+GLAB-2)
     pb=bot+31; mh=min(46,(gy-31)-pb); mx0=x0+8; mx1=x1-8; rx0=mx0+54
-    xs=[mx0+(mx1-mx0)*(.18+.76*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.18+.76*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -1448,7 +1448,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=30; sw=gr*20/78; gy=TL-(5.2*CAP)-(gr+sw/2+GLAB-2)
     pb=bot+31; mh=min(46,(gy-31)-pb); mx0=x0+8; mx1=x1-8; rx0=mx0+54
-    xs=[mx0+(mx1-mx0)*(.18+.76*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.18+.76*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -1845,7 +1845,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+31; mh=(top-10)-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -2018,7 +2018,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+34; mh=(top-10)-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -2199,7 +2199,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+34; CEIL=TL; mh=CEIL-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
     for k,v in D["bands"]:
@@ -2418,7 +2418,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+34; CEIL=TL; mh=CEIL-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     # ---- layer 3 (back): mountain fills, then every ridge line over every fill ----
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
@@ -2577,7 +2577,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+34; CEIL=TL; mh=CEIL-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     # ---- layer 3 (back): mountain fills, then every ridge line over every fill ----
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
@@ -2825,7 +2825,7 @@ def block(D,top,h,VMAX,GX):
     lx=x0+12; TL=top-12
     gr=38; sw=gr*20/78; ro=gr+sw/2; gy=top-14-GLAB-ro
     pb=bot+34; CEIL=TL; mh=CEIL-pb; mx0=x0+4; mx1=x1-4; rx0=mx0
-    xs=[mx0+(mx1-mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]
+    xs=[mx0+(mx1-mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]
     PS={}
     # ---- layer 3 (back): mountain fills, then every ridge line over every fill ----
     c.saveState(); p=c.beginPath(); p.roundRect(x0,bot,x1-x0,h,5); c.clipPath(p,stroke=0)
@@ -2959,7 +2959,7 @@ def build(fn):
     # v47 (Dom): the meter moves out of the now-edge's way, all four together, inside a fenced lane --
     # left wall = the nameplate stack (clear), right wall = the standings globes. Overlap is accepted only when the lane runs out.
     _HW=max(R_,54.0); _lo=clear; _hi=(W-M-40-50-19-2-5)-_HW-6
-    _mx0=M+4; _mx1=W-M-4; _xs=[_mx0+(_mx1-_mx0)*(.12+.83*i/(NW-1)) for i in range(NW)]; _d=globals().get("TESTDONE") or DONE
+    _mx0=M+4; _mx1=W-M-4; _xs=[_mx0+(_mx1-_mx0)*(.12+.83*i/max(1,NW-1)) for i in range(NW)]; _d=globals().get("TESTDONE") or DONE
     _bx=(_xs[_d-1]+_xs[_d])/2 if 0<_d<NW else (_mx0+_xs[0])/2 if _d==0 else (_xs[-1]+_mx1)/2
     _PR,_PL=26.0,26.0+FADE                     # room for his mark right of the edge; yours plus the edge's shadow on the left
     def _clr(g): return max(g-_HW-_bx-_PR if g>=_bx else _bx-_PL-(g+_HW),-999)
