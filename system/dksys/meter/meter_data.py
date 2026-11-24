@@ -78,8 +78,8 @@ GW = G[G.week == WEEK]
 stamp('nfl_schedule', ROOT + 'games.csv', 30, rows=len(GW), need=len(GW), note=f'week {WEEK}: {len(GW)} games')
 
 # game windows from this week's real kickoffs (nflverse gametime is Eastern); same rules as the page always used
-DORD = {'Thursday': 0, 'Friday': 1, 'Saturday': 2, 'Sunday': 3, 'Monday': 4}
-DAB = {'Thursday': 'THU', 'Friday': 'FRI', 'Saturday': 'SAT', 'Sunday': 'SUN', 'Monday': 'MON'}
+DORD = {'Tuesday': -2, 'Wednesday': -1, 'Thursday': 0, 'Friday': 1, 'Saturday': 2, 'Sunday': 3, 'Monday': 4}  # Nov 24: Thanksgiving week has a Wednesday game
+DAB = {'Tuesday': 'TUE', 'Wednesday': 'WED', 'Thursday': 'THU', 'Friday': 'FRI', 'Saturday': 'SAT', 'Sunday': 'SUN', 'Monday': 'MON'}
 def mins(t): return int(t[:2]) * 60 + int(t[3:5])
 slots = sorted({(r.weekday, r.gametime) for r in GW.itertuples()}, key=lambda k: (DORD[k[0]], mins(k[1])))
 WINS = []

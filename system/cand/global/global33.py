@@ -3070,7 +3070,7 @@ for _lb,_L in MTR["leagues"].items():                       # implied by Yahoo's
 _LBL={"DK I":"269381","DK II":"1519795","DK III":"1507991","DK IV":"864215"}
 # ---- kickoff windows and the clock (qlit lights the quarter pips from these) ----
 G=pd.read_csv("/home/claude/dksys/data/latest/games.csv",low_memory=False); G=G[(G.season==2026)&(G.game_type=="REG")&(G.week==MW)]
-_DO={"Thursday":0,"Friday":1,"Saturday":2,"Sunday":3,"Monday":4}
+_DO={"Tuesday":-2,"Wednesday":-1,"Thursday":0,"Friday":1,"Saturday":2,"Sunday":3,"Monday":4}
 def _mn(t): return int(t[:2])*60+int(t[3:5])
 _sl=sorted({(r.weekday,r.gametime) for r in G.itertuples()},key=lambda k:(_DO[k[0]],_mn(k[1]))); _WS=[]
 for d_,t_ in _sl:

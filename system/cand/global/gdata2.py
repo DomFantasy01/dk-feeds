@@ -9,8 +9,8 @@ SIG={"QB":8.0,"RB":8.0,"WR":8.5,"TE":6.5,"K":4.5,"DEF":6.5}; RHO=.14
 B=pd.read_csv(ROOT+"blend.csv"); ST=pd.read_csv(ROOT+"yahoo/standings.csv")
 G=pd.read_csv(ROOT+"games.csv",low_memory=False); G=G[(G.season==2026)&(G.week==4)]
 # ---- game windows built from this week's real kickoffs (nflverse gametime is Eastern) ----
-DORD={"Thursday":0,"Friday":1,"Saturday":2,"Sunday":3,"Monday":4}
-DAB={"Thursday":"THU","Friday":"FRI","Saturday":"SAT","Monday":"MON"}   # Sunday prints the time alone
+DORD={"Tuesday":-2,"Wednesday":-1,"Thursday":0,"Friday":1,"Saturday":2,"Sunday":3,"Monday":4}
+DAB={"Tuesday":"TUE","Wednesday":"WED","Thursday":"THU","Friday":"FRI","Saturday":"SAT","Monday":"MON"}   # Sunday prints the time alone
 MERGE=45     # kickoffs on the same day within 45 minutes are one window (Sunday 4:05 and 4:25 ET)
 def _mins(t): return int(t[:2])*60+int(t[3:5])
 _slots=sorted({(r.weekday,r.gametime) for r in G.itertuples()},key=lambda k:(DORD[k[0]],_mins(k[1])))
