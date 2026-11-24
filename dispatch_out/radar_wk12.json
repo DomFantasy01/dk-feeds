@@ -1,48 +1,48 @@
 {
  "week": 12,
- "built": "Tue Nov 24 1:54 PM PT",
- "built_utc": "2026-11-24T21:54:41.205239+00:00",
+ "built": "Tue Nov 24 3:14 PM PT",
+ "built_utc": "2026-11-24T23:14:48.168028+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Tue Nov 24 1:47 PM PT",
-   "pulled_ago": "7 min ago",
-   "items": 3919,
-   "newest": "18 min ago",
+   "pulled": "Tue Nov 24 3:05 PM PT",
+   "pulled_ago": "9 min ago",
+   "items": 3925,
+   "newest": "20 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Tue Nov 24 1:47 PM PT",
-   "pulled_ago": "7 min ago",
-   "items": 9554,
-   "newest": "13 min ago",
+   "pulled": "Tue Nov 24 3:05 PM PT",
+   "pulled_ago": "9 min ago",
+   "items": 9573,
+   "newest": "14 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Tue Nov 24 1:47 PM PT",
-   "pulled_ago": "7 min ago",
-   "items": 2376,
-   "newest": "46 min ago",
+   "pulled": "Tue Nov 24 3:05 PM PT",
+   "pulled_ago": "9 min ago",
+   "items": 2378,
+   "newest": "33 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Tue Nov 24 1:47 PM PT",
-   "pulled_ago": "7 min ago",
+   "pulled": "Tue Nov 24 3:05 PM PT",
+   "pulled_ago": "9 min ago",
    "items": 415,
-   "newest": "26 min ago",
+   "newest": "28 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Tue Nov 24 1:47 PM PT",
-   "pulled_ago": "7 min ago",
+   "pulled": "Tue Nov 24 3:05 PM PT",
+   "pulled_ago": "9 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Tue Nov 24 1:50 PM PT",
-   "pulled_ago": "4 min ago",
+   "pulled": "Tue Nov 24 3:09 PM PT",
+   "pulled_ago": "5 min ago",
    "items": 754,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Tue Nov 24 2026 01:51 PM PT",
+   "pulled": "Tue Nov 24 2026 03:10 PM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,9 +68,9 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Tue Nov 24 1:16 PM PT",
-   "pulled_ago": "39 min ago",
-   "items": 426,
+   "pulled": "Tue Nov 24 2:42 PM PT",
+   "pulled_ago": "33 min ago",
+   "items": 425,
    "newest": null,
    "warn": null,
    "failed": null
@@ -132,19 +132,27 @@
      "team": "BUF",
      "slot": "BN",
      "marker": {
-      "count": 3,
-      "recency": 1,
+      "count": 2,
+      "recency": 0,
       "color": "gold",
       "grades": [
-       "caution"
+       "caution",
+       "note"
       ]
      },
      "news": [
       {
-       "t": "Mon Nov 23 2:53 PM PT",
+       "t": "Tue Nov 24 2:32 PM PT",
+       "src": "rotoballer",
+       "title": "Dalton Kincaid Says he's \"Most Likely Playing\" on Thursday",
+       "text": "Buffalo Bills tight end Dalton Kincaid (thumb) said that he is \"most likely playing\" in the Thanksgiving Day matchup against [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 24 2:25 PM PT",
        "src": "ESPN injury report",
        "title": "Dalton Kincaid: Questionable (Thumb)",
-       "text": "Kincaid (thumb/ankle) was listed as a limited participant on Monday's practice estimate.",
+       "text": "The Bills listed Kincaid (thumb/ankle) as a limited participant in Thursday's practice.",
        "grade": "caution"
       },
       {
@@ -152,13 +160,6 @@
        "src": "rotoballer",
        "title": "Dalton Kincaid Limited at Monday's Practice",
        "text": "Buffalo Bills tight end Dalton Kincaid (thumb, ankle) was listed as a non-participant on the team's estimated injury report on [&#8230;]",
-       "grade": "caution"
-      },
-      {
-       "t": "Mon Nov 23 2:33 PM PT",
-       "src": "pft",
-       "title": "Bills list Greg Rousseau, Dalton Kincaid as limited on Monday's practice report",
-       "text": "The Bills did not hold a practice on Monday, but they did issue an estimated injury report ahead of Thursday's game against the Chiefs.",
        "grade": "caution"
       }
      ],
@@ -206,7 +207,7 @@
      ],
      "gotham": 23.2,
      "gotham_ros": 22.1,
-     "sleeper": 27.6,
+     "sleeper": 27.1,
      "workload": "43/30/41/47/33/42/53/46",
      "trend": 0.18
     },
@@ -248,7 +249,7 @@
      ],
      "gotham": 13.6,
      "gotham_ros": 12.9,
-     "sleeper": 13.3,
+     "sleeper": 13.1,
      "workload": "10/8/7/9/8/7/5/11/7",
      "trend": 0.09
     },
@@ -290,7 +291,7 @@
      ],
      "gotham": 12.5,
      "gotham_ros": 16.2,
-     "sleeper": 17.7,
+     "sleeper": 17.6,
      "workload": "24/19/28/31/26/23/29/25/18/16",
      "trend": -0.32
     },
@@ -374,7 +375,7 @@
      ],
      "gotham": 8.4,
      "gotham_ros": 7.7,
-     "sleeper": 10.6,
+     "sleeper": 10.7,
      "workload": "7/7/11/7/5/16/8/16/4/7",
      "trend": -0.36
     },
@@ -498,9 +499,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 20.5,
+     "gotham": 20.6,
      "gotham_ros": 21.4,
-     "sleeper": 20.2,
+     "sleeper": 20.1,
      "workload": "63/50/44/52/25/39/43/53/46/47",
      "trend": 0.01
     },
@@ -542,7 +543,7 @@
      ],
      "gotham": 13.8,
      "gotham_ros": 14.2,
-     "sleeper": 14.7,
+     "sleeper": 14.8,
      "workload": "30/12/20/19/18",
      "trend": -0.09
     },
@@ -595,7 +596,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #24 (64,000 in 24 h)"
+      "Sleeper adds #24 (68,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -617,12 +618,12 @@
      ],
      "floor": {
       "name": "Drake London",
-      "gotham": 10.3
+      "gotham": 10.4
      },
      "beats_floor": true,
      "gotham": 15.3,
      "gotham_ros": 15.5,
-     "sleeper": 10.9,
+     "sleeper": 10.8,
      "workload": "8/6/11",
      "trend": 0.33,
      "yahoo": null,
@@ -633,7 +634,7 @@
      "pos": "QB",
      "team": "CLE",
      "why": [
-      "Sleeper adds #13 (173,216 in 24 h)"
+      "Sleeper adds #13 (189,384 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -645,10 +646,10 @@
      },
      "news": [
       {
-       "t": "Mon Nov 23 4:30 AM PT",
+       "t": "Tue Nov 24 2:07 PM PT",
        "src": "rotoballer",
-       "title": "Quarterback Fantasy Football Waiver Wire Pickups - Top QB Adds for Week 12 Include Deshaun Watson, Cam Ward, Anthony Richardson Sr., and more",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/07/Deshaun-Watson-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer_edited.jpg\" class=\"wp-post-image\" alt=\"Quarterback Fantasy Football Waiver Wire Pick",
+       "title": "Sneaky Starts, Pivot Plays, and Waiver Wire Streamers for Week 12 Fantasy Football",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/04/Deshaun-Watson-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer_edited.jpg\" class=\"wp-post-image\" alt=\"Sneaky Starts, Pivot Plays, and Waiver Wire S",
        "grade": "mention"
       }
      ],
@@ -657,9 +658,9 @@
       "gotham": 23.2
      },
      "beats_floor": false,
-     "gotham": 20.6,
+     "gotham": 20.4,
      "gotham_ros": 20.3,
-     "sleeper": 19.9,
+     "sleeper": 19.7,
      "workload": "33/43/50/46/44/40/41/44/54",
      "trend": 0.18,
      "yahoo": null,
@@ -744,7 +745,7 @@
      "pos": "WR",
      "team": "NO",
      "why": [
-      "Sleeper adds #23 (67,403 in 24 h)"
+      "Sleeper adds #23 (71,001 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -765,12 +766,12 @@
      ],
      "floor": {
       "name": "Drake London",
-      "gotham": 10.3
+      "gotham": 10.4
      },
      "beats_floor": false,
-     "gotham": 8.7,
+     "gotham": 8.8,
      "gotham_ros": 10.2,
-     "sleeper": 6.0,
+     "sleeper": 5.9,
      "workload": "10/8/7/11/6/6/6/4/2/8",
      "trend": -0.17,
      "yahoo": null,
@@ -781,7 +782,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #14 (147,546 in 24 h)"
+      "Sleeper adds #14 (162,696 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -802,7 +803,7 @@
      ],
      "floor": {
       "name": "Drake London",
-      "gotham": 10.3
+      "gotham": 10.4
      },
      "beats_floor": false,
      "gotham": 7.0,
@@ -846,12 +847,12 @@
      ],
      "floor": {
       "name": "Drake London",
-      "gotham": 10.3
+      "gotham": 10.4
      },
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 7.7,
-     "sleeper": 4.9,
+     "sleeper": 3.9,
      "workload": "6/6/6/7/1/7",
      "trend": -0.17,
      "yahoo": null,
@@ -863,7 +864,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (192,198 in 24 h)"
+      "Sleeper adds #11 (206,418 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -884,7 +885,7 @@
      ],
      "floor": {
       "name": "Drake London",
-      "gotham": 10.3
+      "gotham": 10.4
      },
      "beats_floor": false,
      "gotham": 6.5,
@@ -974,7 +975,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #18 (100,128 in 24 h)"
+      "Sleeper adds #18 (105,264 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1035,7 +1036,7 @@
       "gotham": 12.5
      },
      "beats_floor": false,
-     "gotham": 3.8,
+     "gotham": 3.7,
      "gotham_ros": 3.8,
      "sleeper": 5.6,
      "workload": "10/11/2/8/5",
@@ -1074,7 +1075,7 @@
        "grade": "good"
       }
      ],
-     "gotham": 20.2,
+     "gotham": 20.1,
      "gotham_ros": 19.8,
      "sleeper": 18.7,
      "workload": "21/19/30/47/38/23/23/20/27/23",
@@ -1126,7 +1127,7 @@
      ],
      "gotham": 18.8,
      "gotham_ros": 19.0,
-     "sleeper": 18.2,
+     "sleeper": 18.3,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
     },
@@ -1212,7 +1213,7 @@
      ],
      "gotham": 13.4,
      "gotham_ros": 12.8,
-     "sleeper": 9.4,
+     "sleeper": 9.2,
      "workload": "19/15/24/19/11/22",
      "trend": -0.0
     },
@@ -1253,9 +1254,9 @@
        "grade": "good"
       }
      ],
-     "gotham": 7.0,
+     "gotham": 7.1,
      "gotham_ros": 9.6,
-     "sleeper": 11.3,
+     "sleeper": 11.2,
      "workload": "8/3/5/2/1/6/9",
      "trend": 0.89
     },
@@ -1297,7 +1298,7 @@
      ],
      "gotham": 23.2,
      "gotham_ros": 22.1,
-     "sleeper": 27.6,
+     "sleeper": 27.1,
      "workload": "43/30/41/47/33/42/53/46",
      "trend": 0.18
     },
@@ -1339,7 +1340,7 @@
      ],
      "gotham": 22.7,
      "gotham_ros": 20.6,
-     "sleeper": 20.1,
+     "sleeper": 20.0,
      "workload": "5/10/13/12/8/17/14/15/9",
      "trend": -0.03
     },
@@ -1350,13 +1351,20 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 0,
       "color": "grey",
       "grades": [
        "note"
       ]
      },
      "news": [
+      {
+       "t": "Tue Nov 24 2:30 PM PT",
+       "src": "rotoballer",
+       "title": "Running Back Snap Count Risers and Fallers - Fantasy Football Breakout Watch for Week 12",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/David-Montgomery-fantasy-football-rankings-nfl-dfs-lineup-picks-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Running Back Snap Count Risers and Fallers - Fantasy Footbal",
+       "grade": "note"
+      },
       {
        "t": "Mon Nov 23 11:30 AM PT",
        "src": "rotoballer",
@@ -1370,13 +1378,6 @@
        "title": "David Montgomery credits the offensive line after his first big game as a Texan",
        "text": "Montgomery totaled 124 yards as the Texans beat the Colts, 26-3.",
        "grade": "note"
-      },
-      {
-       "t": "Thu Nov 19 10:32 PM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Returns to Workhorse Volume on TNF",
-       "text": "Houston Texans running back David Montgomery rushed for 107 yards on 26 carries in the team's 26-3 win over the [&#8230;]",
-       "grade": "good"
       }
      ],
      "gotham": 14.2,
@@ -1421,7 +1422,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 24.4,
+     "gotham": 24.5,
      "gotham_ros": 24.4,
      "sleeper": 7.5,
      "workload": "13/6/6/2/11/6/10/8/40/37",
@@ -1465,7 +1466,7 @@
      ],
      "gotham": 13.8,
      "gotham_ros": 14.2,
-     "sleeper": 14.7,
+     "sleeper": 14.8,
      "workload": "30/12/20/19/18",
      "trend": -0.09
     },
@@ -1518,7 +1519,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #14 (147,546 in 24 h)"
+      "Sleeper adds #14 (162,696 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1539,7 +1540,7 @@
      ],
      "floor": {
       "name": "Ladd McConkey",
-      "gotham": 7.0
+      "gotham": 7.1
      },
      "beats_floor": true,
      "gotham": 7.0,
@@ -1551,55 +1552,11 @@
      "acq": "unverified"
     },
     {
-     "name": "Roman Wilson",
-     "pos": "WR",
-     "team": "PIT",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sun Nov 22 8:54 AM PT",
-       "src": "rotoballer",
-       "title": "Roman Wilson Expected to Play Against Eagles",
-       "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 21 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Activated from IR",
-       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Ladd McConkey",
-      "gotham": 7.0
-     },
-     "beats_floor": true,
-     "gotham": 7.0,
-     "gotham_ros": 7.7,
-     "sleeper": 4.9,
-     "workload": "6/6/6/7/1/7",
-     "trend": -0.17,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Chris Rodriguez Jr.",
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #1 (991,224 in 24 h)"
+      "Sleeper adds #1 (1,069,641 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1625,7 +1582,7 @@
      "beats_floor": false,
      "gotham": 8.4,
      "gotham_ros": 7.7,
-     "sleeper": 10.6,
+     "sleeper": 10.7,
      "workload": "7/7/11/7/5/16/8/16/4/7",
      "trend": -0.36,
      "yahoo": null,
@@ -1710,7 +1667,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #3 (398,205 in 24 h)"
+      "Sleeper adds #3 (421,263 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1743,12 +1700,56 @@
      "acq": "unverified"
     },
     {
+     "name": "Roman Wilson",
+     "pos": "WR",
+     "team": "PIT",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 2,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sun Nov 22 8:54 AM PT",
+       "src": "rotoballer",
+       "title": "Roman Wilson Expected to Play Against Eagles",
+       "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
+       "grade": "good"
+      },
+      {
+       "t": "Sat Nov 21 11:38 AM PT",
+       "src": "RotoWire news",
+       "title": "Roman Wilson: Activated from IR",
+       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Ladd McConkey",
+      "gotham": 7.1
+     },
+     "beats_floor": false,
+     "gotham": 7.0,
+     "gotham_ros": 7.7,
+     "sleeper": 3.9,
+     "workload": "6/6/6/7/1/7",
+     "trend": -0.17,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Ted Hurst III",
      "pos": "WR",
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (192,198 in 24 h)"
+      "Sleeper adds #11 (206,418 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1769,7 +1770,7 @@
      ],
      "floor": {
       "name": "Ladd McConkey",
-      "gotham": 7.0
+      "gotham": 7.1
      },
      "beats_floor": false,
      "gotham": 6.5,
@@ -1822,7 +1823,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #18 (100,128 in 24 h)"
+      "Sleeper adds #18 (105,264 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1883,7 +1884,7 @@
       "gotham": 13.8
      },
      "beats_floor": false,
-     "gotham": 3.8,
+     "gotham": 3.7,
      "gotham_ros": 3.8,
      "sleeper": 5.6,
      "workload": "10/11/2/8/5",
@@ -1917,7 +1918,7 @@
      ],
      "floor": {
       "name": "Ladd McConkey",
-      "gotham": 7.0
+      "gotham": 7.1
      },
      "beats_floor": false,
      "gotham": 4.7,
@@ -1929,39 +1930,39 @@
      "acq": "unverified"
     },
     {
-     "name": "Dawson Knox",
-     "pos": "TE",
-     "team": "BUF",
+     "name": "Raheim Sanders",
+     "pos": "RB",
+     "team": "CLE",
      "why": [
-      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
+      "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
-      "color": "gold",
+      "recency": 0,
+      "color": "green",
       "grades": [
-       "opening"
+       "good"
       ]
      },
      "news": [
       {
-       "t": "Tue Nov 24 7:52 AM PT",
-       "src": "rotoballer",
-       "title": "Dawson Knox Worth Some Deep-League Attention",
-       "text": "Buffalo tight end Dawson Knox has produced enough offensively of late to try in a few more deep fantasy leagues [&#8230;]",
-       "grade": "note"
+       "t": "Tue Nov 24 7:58 AM PT",
+       "src": "RotoWire news",
+       "title": "Raheim Sanders: Cleared to practice",
+       "text": "The Browns designated Sanders (hip) for return from injured reserve Tuesday.",
+       "grade": "good"
       }
      ],
      "floor": {
-      "name": "Travis Kelce",
-      "gotham": 12.4
+      "name": "Travis Etienne Jr.",
+      "gotham": 13.8
      },
      "beats_floor": false,
-     "gotham": 4.6,
-     "gotham_ros": 4.4,
-     "sleeper": 2.8,
-     "workload": "1/3/1/3/4/1/2/6/3/4",
-     "trend": 0.35,
+     "gotham": 0.0,
+     "gotham_ros": 4.8,
+     "sleeper": 1.4,
+     "workload": "7/4/10/6/5",
+     "trend": -0.22,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -2048,7 +2049,7 @@
      ],
      "gotham": 18.8,
      "gotham_ros": 19.0,
-     "sleeper": 18.2,
+     "sleeper": 18.3,
      "workload": "47/27/31/55/32/38",
      "trend": -0.08
     },
@@ -2090,9 +2091,51 @@
      ],
      "gotham": 23.2,
      "gotham_ros": 22.1,
-     "sleeper": 27.6,
+     "sleeper": 27.1,
      "workload": "43/30/41/47/33/42/53/46",
      "trend": 0.18
+    },
+    {
+     "name": "David Montgomery",
+     "pos": "RB",
+     "team": "HOU",
+     "slot": "RB",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 2:30 PM PT",
+       "src": "rotoballer",
+       "title": "Running Back Snap Count Risers and Fallers - Fantasy Football Breakout Watch for Week 12",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/David-Montgomery-fantasy-football-rankings-nfl-dfs-lineup-picks-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Running Back Snap Count Risers and Fallers - Fantasy Footbal",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 11:30 AM PT",
+       "src": "rotoballer",
+       "title": "Texans Plan to Share Work Between David Montgomery, Woody Marks",
+       "text": "Houston Texans offensive coordinator Nick Caley said on Monday that the team plans to share the backfield work between running [&#8230;]",
+       "grade": "note"
+      },
+      {
+       "t": "Fri Nov 20 1:07 AM PT",
+       "src": "pft",
+       "title": "David Montgomery credits the offensive line after his first big game as a Texan",
+       "text": "Montgomery totaled 124 yards as the Texans beat the Colts, 26-3.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 14.2,
+     "gotham_ros": 13.2,
+     "sleeper": 13.3,
+     "workload": "32/11/16/11/6/38",
+     "trend": 0.66
     },
     {
      "name": "George Pickens",
@@ -2174,51 +2217,9 @@
      ],
      "gotham": 20.5,
      "gotham_ros": 22.0,
-     "sleeper": 17.7,
+     "sleeper": 21.8,
      "workload": "0/19/13/28/28/39",
      "trend": 0.96
-    },
-    {
-     "name": "David Montgomery",
-     "pos": "RB",
-     "team": "HOU",
-     "slot": "RB",
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 11:30 AM PT",
-       "src": "rotoballer",
-       "title": "Texans Plan to Share Work Between David Montgomery, Woody Marks",
-       "text": "Houston Texans offensive coordinator Nick Caley said on Monday that the team plans to share the backfield work between running [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Fri Nov 20 1:07 AM PT",
-       "src": "pft",
-       "title": "David Montgomery credits the offensive line after his first big game as a Texan",
-       "text": "Montgomery totaled 124 yards as the Texans beat the Colts, 26-3.",
-       "grade": "note"
-      },
-      {
-       "t": "Thu Nov 19 10:32 PM PT",
-       "src": "rotoballer",
-       "title": "David Montgomery Returns to Workhorse Volume on TNF",
-       "text": "Houston Texans running back David Montgomery rushed for 107 yards on 26 carries in the team's 26-3 win over the [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "gotham": 14.2,
-     "gotham_ros": 13.2,
-     "sleeper": 13.3,
-     "workload": "32/11/16/11/6/38",
-     "trend": 0.66
     },
     {
      "name": "Rachaad White",
@@ -2256,7 +2257,7 @@
        "grade": "caution"
       }
      ],
-     "gotham": 11.9,
+     "gotham": 12.0,
      "gotham_ros": 11.4,
      "sleeper": 9.6,
      "workload": "13/21/12/9/18/20/13/17/0",
@@ -2298,7 +2299,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.1,
+     "gotham": 8.2,
      "gotham_ros": 10.9,
      "sleeper": 9.8,
      "workload": "7/4/4/6/8/8/12",
@@ -2342,7 +2343,7 @@
      ],
      "gotham": 11.6,
      "gotham_ros": 11.5,
-     "sleeper": 11.8,
+     "sleeper": 11.7,
      "workload": "3/6/10/6/4/3/9/13/2/10",
      "trend": 0.07
     },
@@ -2384,7 +2385,7 @@
      ],
      "gotham": 10.3,
      "gotham_ros": 10.6,
-     "sleeper": 11.1,
+     "sleeper": 11.0,
      "workload": "3/11/7/7/6/7/8/7/7",
      "trend": -0.02
     },
@@ -2465,7 +2466,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #9 (204,800 in 24 h)"
+      "Sleeper adds #10 (214,072 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2489,9 +2490,9 @@
       "gotham": 23.2
      },
      "beats_floor": false,
-     "gotham": 19.5,
+     "gotham": 19.3,
      "gotham_ros": 21.4,
-     "sleeper": 16.3,
+     "sleeper": 16.1,
      "workload": "40/44",
      "trend": 0.07,
      "yahoo": null,
@@ -2539,7 +2540,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #14 (147,546 in 24 h)"
+      "Sleeper adds #14 (162,696 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2560,7 +2561,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 8.1
+      "gotham": 8.2
      },
      "beats_floor": false,
      "gotham": 7.0,
@@ -2604,12 +2605,12 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 8.1
+      "gotham": 8.2
      },
      "beats_floor": false,
      "gotham": 7.0,
      "gotham_ros": 7.7,
-     "sleeper": 4.9,
+     "sleeper": 3.9,
      "workload": "6/6/6/7/1/7",
      "trend": -0.17,
      "yahoo": null,
@@ -2621,7 +2622,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (192,198 in 24 h)"
+      "Sleeper adds #11 (206,418 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2642,7 +2643,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 8.1
+      "gotham": 8.2
      },
      "beats_floor": false,
      "gotham": 6.5,
@@ -2650,6 +2651,43 @@
      "sleeper": 2.2,
      "workload": "3/8/3/3/7/2/1/1/8",
      "trend": 0.56,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Michael Pittman Jr.",
+     "pos": "WR",
+     "team": "PIT",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 1:36 PM PT",
+       "src": "RotoWire news",
+       "title": "Michael Pittman: Logs another full practice Tuesday",
+       "text": "Pittman (foot) was listed as a full participant in Tuesday's walkthrough practice.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Caleb Douglas",
+      "gotham": 8.2
+     },
+     "beats_floor": false,
+     "gotham": 0.0,
+     "gotham_ros": 6.2,
+     "sleeper": 6.4,
+     "workload": "3/5/4",
+     "trend": 0.1,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2695,7 +2733,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #18 (100,128 in 24 h)"
+      "Sleeper adds #18 (105,264 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2756,7 +2794,7 @@
       "gotham": 14.2
      },
      "beats_floor": false,
-     "gotham": 3.8,
+     "gotham": 3.7,
      "gotham_ros": 3.8,
      "sleeper": 5.6,
      "workload": "10/11/2/8/5",
@@ -2790,7 +2828,7 @@
      ],
      "floor": {
       "name": "Caleb Douglas",
-      "gotham": 8.1
+      "gotham": 8.2
      },
      "beats_floor": false,
      "gotham": 4.7,
@@ -2798,43 +2836,6 @@
      "sleeper": 0.9,
      "workload": "1/2/3",
      "trend": 0.99,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Dawson Knox",
-     "pos": "TE",
-     "team": "BUF",
-     "why": [
-      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "gold",
-      "grades": [
-       "opening"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 24 7:52 AM PT",
-       "src": "rotoballer",
-       "title": "Dawson Knox Worth Some Deep-League Attention",
-       "text": "Buffalo tight end Dawson Knox has produced enough offensively of late to try in a few more deep fantasy leagues [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "T.J. Hockenson",
-      "gotham": 11.4
-     },
-     "beats_floor": false,
-     "gotham": 4.6,
-     "gotham_ros": 4.4,
-     "sleeper": 2.8,
-     "workload": "1/3/1/3/4/1/2/6/3/4",
-     "trend": 0.35,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3040,9 +3041,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 15.5,
+     "gotham": 15.6,
      "gotham_ros": 20.0,
-     "sleeper": 18.3,
+     "sleeper": 18.0,
      "workload": "48/27/52/36/42/14/40/22/48/38",
      "trend": 0.14
     },
@@ -3082,7 +3083,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.7,
+     "gotham": 9.4,
      "gotham_ros": 10.5,
      "sleeper": 10.7,
      "workload": "6/3/9/9/6/9/7/7/3/5",
@@ -3092,7 +3093,7 @@
      "name": "Jared Goff",
      "pos": "QB",
      "team": "DET",
-     "slot": "Q/W/R/T",
+     "slot": "BN",
      "marker": {
       "count": 2,
       "recency": 2,
@@ -3124,7 +3125,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 23.4,
+     "gotham": 23.5,
      "gotham_ros": 21.8,
      "sleeper": 23.2,
      "workload": "42/42/37/52/31/35/29/30/32/34",
@@ -3168,7 +3169,7 @@
      ],
      "gotham": 15.2,
      "gotham_ros": 14.6,
-     "sleeper": 18.3,
+     "sleeper": 18.2,
      "workload": "10/7/8/8/10/11/14/10",
      "trend": 0.19
     },
@@ -3250,7 +3251,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 12.3,
+     "gotham": 12.4,
      "gotham_ros": 12.3,
      "sleeper": 10.4,
      "workload": "5/12/3/4/6/8/7/7/8",
@@ -3292,7 +3293,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 10.0,
+     "gotham": 10.1,
      "gotham_ros": 13.0,
      "sleeper": 12.7,
      "workload": "30/18/32/41/26/25/35/19",
@@ -3336,7 +3337,7 @@
      ],
      "gotham": 5.4,
      "gotham_ros": 5.3,
-     "sleeper": 4.7,
+     "sleeper": 4.6,
      "workload": "1/2/1/2/3/2/7",
      "trend": 1.7
     },
@@ -3386,7 +3387,7 @@
      "name": "C.J. Stroud",
      "pos": "QB",
      "team": "HOU",
-     "slot": "BN",
+     "slot": "Q/W/R/T",
      "marker": {
       "count": 2,
       "recency": 4,
@@ -3473,7 +3474,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #24 (64,000 in 24 h)"
+      "Sleeper adds #24 (68,920 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3498,11 +3499,48 @@
       "gotham": 10.8
      },
      "beats_floor": true,
-     "gotham": 15.2,
+     "gotham": 15.3,
      "gotham_ros": 15.4,
      "sleeper": 10.8,
      "workload": "8/6/11",
      "trend": 0.33,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Sam LaPorta",
+     "pos": "TE",
+     "team": "DET",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 2:39 PM PT",
+       "src": "rotoballer",
+       "title": "Sam LaPorta Upgrades to Full Practice on Tuesday",
+       "text": "Detroit Lions tight end Sam LaPorta (ankle) was listed as a full participant in practice on Tuesday, according to the [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.4
+     },
+     "beats_floor": true,
+     "gotham": 11.7,
+     "gotham_ros": 10.9,
+     "sleeper": 12.7,
+     "workload": "9/8/5/16/5/3/6/6/5/6",
+     "trend": -0.2,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -3531,8 +3569,8 @@
       }
      ],
      "floor": {
-      "name": "Jared Goff",
-      "gotham": 23.4
+      "name": "C.J. Stroud",
+      "gotham": 24.6
      },
      "beats_floor": false,
      "gotham": 15.6,
@@ -3548,7 +3586,7 @@
      "pos": "RB",
      "team": "CLE",
      "why": [
-      "Sleeper adds #17 (129,575 in 24 h)"
+      "Sleeper adds #17 (142,870 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3569,7 +3607,7 @@
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 10.0
+      "gotham": 10.1
      },
      "beats_floor": false,
      "gotham": null,
@@ -3585,7 +3623,7 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #1 (991,224 in 24 h)"
+      "Sleeper adds #1 (1,069,641 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3606,7 +3644,7 @@
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 10.0
+      "gotham": 10.1
      },
      "beats_floor": false,
      "gotham": 6.6,
@@ -3622,7 +3660,7 @@
      "pos": "RB",
      "team": "CIN",
      "why": [
-      "Sleeper adds #15 (146,240 in 24 h)"
+      "Sleeper adds #15 (156,124 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3643,7 +3681,7 @@
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 10.0
+      "gotham": 10.1
      },
      "beats_floor": false,
      "gotham": 7.5,
@@ -3659,7 +3697,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #3 (398,205 in 24 h)"
+      "Sleeper adds #3 (421,263 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3680,10 +3718,10 @@
      ],
      "floor": {
       "name": "Ollie Gordon II",
-      "gotham": 10.0
+      "gotham": 10.1
      },
      "beats_floor": false,
-     "gotham": 7.3,
+     "gotham": 7.4,
      "gotham_ros": 7.6,
      "sleeper": 6.8,
      "workload": "9/7/5/9/15/8/15/28/17/25/23",
@@ -3696,7 +3734,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #14 (147,546 in 24 h)"
+      "Sleeper adds #14 (162,696 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3766,7 +3804,7 @@
      "beats_floor": false,
      "gotham": 6.9,
      "gotham_ros": 7.6,
-     "sleeper": 4.9,
+     "sleeper": 3.9,
      "workload": "6/6/6/7/1/7",
      "trend": -0.17,
      "yahoo": null,
@@ -3778,7 +3816,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (192,198 in 24 h)"
+      "Sleeper adds #11 (206,418 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3811,11 +3849,48 @@
      "acq": "unverified"
     },
     {
+     "name": "Michael Pittman Jr.",
+     "pos": "WR",
+     "team": "PIT",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "green",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 1:36 PM PT",
+       "src": "RotoWire news",
+       "title": "Michael Pittman: Logs another full practice Tuesday",
+       "text": "Pittman (foot) was listed as a full participant in Tuesday's walkthrough practice.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Jakobi Meyers",
+      "gotham": 10.8
+     },
+     "beats_floor": false,
+     "gotham": 0.0,
+     "gotham_ros": 6.2,
+     "sleeper": 6.4,
+     "workload": "3/5/4",
+     "trend": 0.1,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
      "name": "Evan Engram",
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #18 (100,128 in 24 h)"
+      "Sleeper adds #18 (105,264 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3836,7 +3911,7 @@
      ],
      "floor": {
       "name": "Travis Kelce",
-      "gotham": 12.3
+      "gotham": 12.4
      },
      "beats_floor": false,
      "gotham": 5.9,
@@ -3844,80 +3919,6 @@
      "sleeper": 5.6,
      "workload": "6/1/2/5/5/2/3/3/6/8",
      "trend": 1.02,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Jonathon Brooks",
-     "pos": "RB",
-     "team": "CAR",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Fri Nov 20 7:38 PM PT",
-       "src": "rotoballer",
-       "title": "Jonathon Brooks Unlikely to Have Meaningful Role if Activated",
-       "text": "Carolina Panthers running back Jonathon Brooks (abdomen) has been on the injured reserve since after Week 2, and he only [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 10.0
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 5.4,
-     "sleeper": 4.9,
-     "workload": "9/14",
-     "trend": 0.3,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Sterling Shepard",
-     "pos": "WR",
-     "team": "NYJ",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 3,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 11:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Sterling Shepard: Elevated from practice squad",
-       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jakobi Meyers",
-      "gotham": 10.8
-     },
-     "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 4.7,
-     "sleeper": 0.9,
-     "workload": "1/2/3",
-     "trend": 0.99,
      "yahoo": null,
      "acq": "unverified"
     }
