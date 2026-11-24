@@ -1,10 +1,10 @@
 {
- "built": "Mon Nov 23 2026 09:36 PM PT",
+ "built": "Mon Nov 23 2026 09:49 PM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 12,
-   "built": "Mon Nov 23 2026 09:36 PM PT",
+   "built": "Mon Nov 23 2026 09:49 PM PT",
    "standings": "Sun Nov 22 8:52 PM PT",
    "base": {
     "wins": 6.93,
@@ -56,7 +56,7 @@
     {
      "team": "DIKFORE",
      "playoff": 1.0,
-     "title": 0.4248,
+     "title": 0.4243,
      "me": false,
      "left": false,
      "rec": "8-2"
@@ -64,7 +64,7 @@
     {
      "team": "Remember the Tutens",
      "playoff": 0.986,
-     "title": 0.0297,
+     "title": 0.0295,
      "me": false,
      "left": false,
      "rec": "7-3"
@@ -96,7 +96,7 @@
     {
      "team": "World Of Pain",
      "playoff": 0.547,
-     "title": 0.0818,
+     "title": 0.082,
      "me": false,
      "left": false,
      "rec": "4-6"
@@ -104,7 +104,7 @@
     {
      "team": "Mr. Rodgers\u2019 Neighborhood",
      "playoff": 0.413,
-     "title": 0.0933,
+     "title": 0.0935,
      "me": false,
      "left": false,
      "rec": "5-5"
@@ -120,7 +120,7 @@
     {
      "team": "Rolling With Romo",
      "playoff": 0.221,
-     "title": 0.0063,
+     "title": 0.0067,
      "me": false,
      "left": false,
      "rec": "5-5"
@@ -203,7 +203,7 @@
      "po_w": 0.761,
      "po_l": 0.289,
      "ti_w": 0.056,
-     "ti_l": 0.022
+     "ti_l": 0.021
     },
     {
      "wk": 13,
@@ -247,7 +247,7 @@
      },
      {
       "team": "Punching Bag",
-      "p": 0.07
+      "p": 0.071
      },
      {
       "team": "Remember the Tutens",
@@ -261,7 +261,7 @@
      },
      {
       "team": "Punching Bag",
-      "p": 0.025
+      "p": 0.024
      },
      {
       "team": "World Of Pain",
@@ -749,7 +749,7 @@
      "name": "Drake London",
      "pos": "WR",
      "d_playoff": -0.052,
-     "d_title": -0.0132,
+     "d_title": -0.013,
      "d_wins": -0.1,
      "role": "starts for you in Weeks 13, 14, 15, 16, 17; would start for 11 rivals (JD, DIKFORE, Rolling With Romo)",
      "starts": [
@@ -777,7 +777,7 @@
      "name": "Buccaneers",
      "pos": "DEF",
      "d_playoff": -0.023,
-     "d_title": -0.0073,
+     "d_title": -0.0075,
      "d_wins": -0.04,
      "role": "backup defense behind Jaguars; starts for you in Weeks 13, 15, 16",
      "starts": [
@@ -858,7 +858,7 @@
      "after": {
       "wins": 6.95,
       "playoff": 0.643,
-      "title": 0.0522,
+      "title": 0.052,
       "final": 0.119,
       "semis": 0.373,
       "seed": 4,
@@ -880,7 +880,7 @@
      },
      "d_wins": 0.02,
      "d_playoff": 0.011,
-     "d_title": 0.0053,
+     "d_title": 0.0052,
      "pts_total": 5.3,
      "pts_per_game": 1.1,
      "games_used": 5,
@@ -995,7 +995,7 @@
       "rival_pts": 24.0,
       "rival_playoff": 0.009,
       "my_playoff": 0.003,
-      "my_title": 0.0015
+      "my_title": 0.0017
      }
     },
     {
@@ -1116,7 +1116,7 @@
      "after": {
       "wins": 6.94,
       "playoff": 0.64,
-      "title": 0.051,
+      "title": 0.0512,
       "final": 0.118,
       "semis": 0.369,
       "seed": 4,
@@ -1138,7 +1138,7 @@
      },
      "d_wins": 0.01,
      "d_playoff": 0.008,
-     "d_title": 0.0042,
+     "d_title": 0.0043,
      "pts_total": 3.1,
      "pts_per_game": 0.6,
      "games_used": 5,
@@ -1247,16 +1247,17 @@
      ],
      "this_week": 0.0,
      "drop_helps": [],
-     "drop_role": "doesn't start for you any week on current projections"
+     "drop_role": "doesn't start for you any week on current projections",
+     "block": {
+      "rival": "Remember the Tutens",
+      "rival_pts": 20.5,
+      "rival_playoff": 0.003,
+      "my_playoff": 0.001,
+      "my_title": -0.0008
+     }
     }
    ],
    "not_worth": [
-    {
-     "add": "CAR defense",
-     "drop": "Dalton Kincaid",
-     "d_wins": 0.02,
-     "d_playoff": 0.01
-    },
     {
      "add": "Chase McLaughlin",
      "drop": "Dalton Kincaid",
@@ -1295,6 +1296,12 @@
     },
     {
      "add": "CLE defense",
+     "drop": "Dalton Kincaid",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
+     "add": "NE defense",
      "drop": "Dalton Kincaid",
      "d_wins": 0.0,
      "d_playoff": 0.0
@@ -1340,7 +1347,7 @@
      "me_after": {
       "wins": 7.04,
       "playoff": 0.691,
-      "title": 0.0498,
+      "title": 0.0497,
       "final": 0.127,
       "semis": 0.424,
       "seed": 4,
@@ -1363,14 +1370,14 @@
      "them_before": {
       "wins": 8.08,
       "playoff": 0.986,
-      "title": 0.0297,
+      "title": 0.0295,
       "final": 0.144,
       "semis": 0.509,
       "seed": 4,
       "seeds": [
-       0.0058,
-       0.2992,
-       0.2242,
+       0.0063,
+       0.299,
+       0.2238,
        0.3122,
        0.0933,
        0.0513,
@@ -1386,13 +1393,13 @@
      "them_after": {
       "wins": 8.06,
       "playoff": 0.982,
-      "title": 0.045,
+      "title": 0.0453,
       "final": 0.167,
       "semis": 0.482,
       "seed": 2,
       "seeds": [
-       0.0045,
-       0.2967,
+       0.0063,
+       0.2948,
        0.2432,
        0.2855,
        0.0993,
@@ -1404,15 +1411,15 @@
        0.0,
        0.0
       ],
-      "first": 0.004
+      "first": 0.006
      },
      "d_wins": 0.12,
      "d_playoff": 0.059,
-     "d_title": 0.003,
+     "d_title": 0.0028,
      "them_d_playoff": -0.004,
-     "them_d_title": 0.0153,
+     "them_d_title": 0.0158,
      "them_d_wins": -0.02,
-     "pitch": "Drake London and Tyler Shough for Jaxon Smith-Njigba. On 6,000 simulated seasons your playoff odds go 99% to 98% and your title odds 3.0% to 4.5%, and you add about -0.0 wins - Drake London and Tyler Shough start for you the rest of the way."
+     "pitch": "Drake London and Tyler Shough for Jaxon Smith-Njigba. On 6,000 simulated seasons your playoff odds go 99% to 98% and your title odds 2.9% to 4.5%, and you add about -0.0 wins - Drake London and Tyler Shough start for you the rest of the way."
     }
    ],
    "trades_screened": 5,
@@ -1420,7 +1427,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 247 players",
    "plan": {
     "week": 12,
-    "built": "Mon Nov 23 2026 09:36 PM PT",
+    "built": "Mon Nov 23 2026 09:49 PM PT",
     "standings": "Sun Nov 22 8:52 PM PT",
     "playoff": 0.632,
     "wins": 6.9271666666666665,
@@ -1431,7 +1438,7 @@
      {
       "team": "DIKFORE",
       "playoff": 1.0,
-      "title": 0.4248,
+      "title": 0.4243,
       "me": false,
       "left": false,
       "rec": "8-2"
@@ -1439,7 +1446,7 @@
      {
       "team": "Remember the Tutens",
       "playoff": 0.986,
-      "title": 0.0297,
+      "title": 0.0295,
       "me": false,
       "left": false,
       "rec": "7-3"
@@ -1471,7 +1478,7 @@
      {
       "team": "World Of Pain",
       "playoff": 0.547,
-      "title": 0.0818,
+      "title": 0.082,
       "me": false,
       "left": false,
       "rec": "4-6"
@@ -1479,7 +1486,7 @@
      {
       "team": "Mr. Rodgers\u2019 Neighborhood",
       "playoff": 0.413,
-      "title": 0.0933,
+      "title": 0.0935,
       "me": false,
       "left": false,
       "rec": "5-5"
@@ -1495,7 +1502,7 @@
      {
       "team": "Rolling With Romo",
       "playoff": 0.221,
-      "title": 0.0063,
+      "title": 0.0067,
       "me": false,
       "left": false,
       "rec": "5-5"
@@ -1610,7 +1617,7 @@
       "name": "Drake London",
       "pos": "WR",
       "d_playoff": -0.052,
-      "d_title": -0.0132,
+      "d_title": -0.013,
       "d_wins": -0.1,
       "role": "starts for you in Weeks 13, 14, 15, 16, 17; would start for 11 rivals (JD, DIKFORE, Rolling With Romo)",
       "starts": [
@@ -1639,7 +1646,7 @@
       "name": "Buccaneers",
       "pos": "DEF",
       "d_playoff": -0.023,
-      "d_title": -0.0073,
+      "d_title": -0.0075,
       "d_wins": -0.04,
       "role": "backup defense behind Jaguars; starts for you in Weeks 13, 15, 16",
       "starts": [
@@ -1738,7 +1745,7 @@
   },
   "DK II": {
    "week": 12,
-   "built": "Mon Nov 23 2026 09:36 PM PT",
+   "built": "Mon Nov 23 2026 09:49 PM PT",
    "standings": "Sun Nov 22 8:52 PM PT",
    "base": {
     "wins": 5.48,
@@ -1753,8 +1760,8 @@
      0.0,
      0.0005,
      0.0108,
-     0.05,
-     0.0965,
+     0.0498,
+     0.0967,
      0.2622,
      0.2818,
      0.297,
@@ -1806,7 +1813,7 @@
     {
      "team": "Daejon Love",
      "playoff": 1.0,
-     "title": 0.268,
+     "title": 0.2682,
      "me": false,
      "left": true,
      "rec": "9-1"
@@ -1814,7 +1821,7 @@
     {
      "team": "RFFR",
      "playoff": 0.959,
-     "title": 0.1765,
+     "title": 0.1763,
      "me": false,
      "left": false,
      "rec": "5-5"
@@ -1897,8 +1904,8 @@
      0,
      0,
      0,
-     1173,
-     4382,
+     1172,
+     4383,
      445,
      0,
      0,
@@ -1934,7 +1941,7 @@
      "wk": 12,
      "opp": "Daejon Love",
      "win": 0.592,
-     "po_w": 0.097,
+     "po_w": 0.096,
      "po_l": 0.01,
      "ti_w": 0.003,
      "ti_l": 0.0
@@ -2568,9 +2575,24 @@
      ]
     },
     {
+     "name": "Buccaneers",
+     "pos": "DEF",
+     "d_playoff": -0.005,
+     "d_title": -0.0003,
+     "d_wins": -0.04,
+     "role": "backup defense behind Jaguars; starts for you in Weeks 13, 14, 15, 16",
+     "starts": [
+      13,
+      14,
+      15,
+      16
+     ],
+     "helps": []
+    },
+    {
      "name": "Jadarian Price",
      "pos": "RB",
-     "d_playoff": -0.006,
+     "d_playoff": -0.005,
      "d_title": -0.0002,
      "d_wins": -0.05,
      "role": "starts for you in Weeks 13, 14, 15; would start for 4 rivals (Diddys Booty Butter, RFFR, Rams house)",
@@ -2587,24 +2609,9 @@
      ]
     },
     {
-     "name": "Buccaneers",
-     "pos": "DEF",
-     "d_playoff": -0.005,
-     "d_title": -0.0003,
-     "d_wins": -0.04,
-     "role": "backup defense behind Jaguars; starts for you in Weeks 13, 14, 15, 16",
-     "starts": [
-      13,
-      14,
-      15,
-      16
-     ],
-     "helps": []
-    },
-    {
      "name": "J.J. McCarthy",
      "pos": "QB",
-     "d_playoff": -0.002,
+     "d_playoff": -0.003,
      "d_title": -0.0003,
      "d_wins": -0.02,
      "role": "backup QB behind Aaron Rodgers; starts for you in Weeks 12, 14, 15, 16, 17; would start for 5 rivals (Diddys Booty Butter, Rams house, Rated PG-18)",
@@ -2702,8 +2709,8 @@
        0.0,
        0.0005,
        0.0108,
-       0.05,
-       0.0965,
+       0.0498,
+       0.0967,
        0.2622,
        0.2818,
        0.297,
@@ -2726,8 +2733,8 @@
        0.0015,
        0.018,
        0.0758,
-       0.1313,
-       0.2895,
+       0.1312,
+       0.2897,
        0.2572,
        0.2257,
        0.001,
@@ -2744,13 +2751,13 @@
       "seed": 4,
       "seeds": [
        0.0,
-       0.0205,
-       0.1957,
+       0.0207,
+       0.1962,
        0.328,
-       0.2523,
+       0.252,
        0.1337,
-       0.0537,
-       0.0117,
+       0.0535,
+       0.0115,
        0.004,
        0.0005,
        0.0,
@@ -2768,12 +2775,12 @@
       "seeds": [
        0.0,
        0.0233,
-       0.2135,
-       0.3425,
-       0.2532,
+       0.2143,
+       0.343,
+       0.2522,
        0.1113,
-       0.0402,
-       0.011,
+       0.04,
+       0.0108,
        0.004,
        0.001,
        0.0,
@@ -2795,9 +2802,9 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 246 players",
    "plan": {
     "week": 12,
-    "built": "Mon Nov 23 2026 09:36 PM PT",
+    "built": "Mon Nov 23 2026 09:49 PM PT",
     "standings": "Sun Nov 22 8:52 PM PT",
-    "playoff": 0.06133333333333333,
+    "playoff": 0.06116666666666667,
     "wins": 5.475666666666666,
     "first": 0.0,
     "rank": 8,
@@ -2822,7 +2829,7 @@
      {
       "team": "Daejon Love",
       "playoff": 1.0,
-      "title": 0.268,
+      "title": 0.2682,
       "me": false,
       "left": true,
       "rec": "9-1"
@@ -2830,7 +2837,7 @@
      {
       "team": "RFFR",
       "playoff": 0.959,
-      "title": 0.1765,
+      "title": 0.1763,
       "me": false,
       "left": false,
       "rec": "5-5"
@@ -3034,9 +3041,25 @@
       "d_po": 0
      },
      {
+      "name": "Buccaneers",
+      "pos": "DEF",
+      "d_playoff": -0.005,
+      "d_title": -0.0003,
+      "d_wins": -0.04,
+      "role": "backup defense behind Jaguars; starts for you in Weeks 13, 14, 15, 16",
+      "starts": [
+       13,
+       14,
+       15,
+       16
+      ],
+      "helps": [],
+      "d_po": 0
+     },
+     {
       "name": "Jadarian Price",
       "pos": "RB",
-      "d_playoff": -0.006,
+      "d_playoff": -0.005,
       "d_title": -0.0002,
       "d_wins": -0.05,
       "role": "starts for you in Weeks 13, 14, 15; would start for 4 rivals (Diddys Booty Butter, RFFR, Rams house)",
@@ -3054,25 +3077,9 @@
       "d_po": 0
      },
      {
-      "name": "Buccaneers",
-      "pos": "DEF",
-      "d_playoff": -0.005,
-      "d_title": -0.0003,
-      "d_wins": -0.04,
-      "role": "backup defense behind Jaguars; starts for you in Weeks 13, 14, 15, 16",
-      "starts": [
-       13,
-       14,
-       15,
-       16
-      ],
-      "helps": [],
-      "d_po": 0
-     },
-     {
       "name": "J.J. McCarthy",
       "pos": "QB",
-      "d_playoff": -0.002,
+      "d_playoff": -0.003,
       "d_title": -0.0003,
       "d_wins": -0.02,
       "role": "backup QB behind Aaron Rodgers; starts for you in Weeks 12, 14, 15, 16, 17; would start for 5 rivals (Diddys Booty Butter, Rams house, Rated PG-18)",
@@ -3140,7 +3147,7 @@
   },
   "DK III": {
    "week": 12,
-   "built": "Mon Nov 23 2026 09:36 PM PT",
+   "built": "Mon Nov 23 2026 09:49 PM PT",
    "standings": "Sun Nov 22 8:52 PM PT",
    "base": {
     "wins": 5.2,
@@ -3154,14 +3161,14 @@
      0.0,
      0.0,
      0.0025,
-     0.0145,
-     0.0233,
-     0.0252,
-     0.0807,
+     0.0147,
+     0.0232,
+     0.0253,
+     0.082,
      0.1202,
-     0.099,
-     0.1453,
-     0.2043
+     0.0978,
+     0.1475,
+     0.202
     ],
     "first": 0.0
    },
@@ -3192,7 +3199,7 @@
     {
      "team": "Dominique by 6",
      "playoff": 1.0,
-     "title": 0.2587,
+     "title": 0.2583,
      "me": false,
      "left": false,
      "rec": "9-1"
@@ -3200,7 +3207,7 @@
     {
      "team": "The Deer Hunter Part Deux",
      "playoff": 1.0,
-     "title": 0.203,
+     "title": 0.204,
      "me": false,
      "left": true,
      "rec": "8-2"
@@ -3208,23 +3215,23 @@
     {
      "team": "Derek\u2019s Better Half",
      "playoff": 0.95,
-     "title": 0.235,
+     "title": 0.2343,
      "me": false,
      "left": false,
      "rec": "6-4"
     },
     {
      "team": "Rushin Roulette \ud83c\udfc8",
-     "playoff": 0.757,
-     "title": 0.0922,
+     "playoff": 0.759,
+     "title": 0.0918,
      "me": false,
      "left": false,
      "rec": "5-5"
     },
     {
      "team": "Maly\u2019s Better Half",
-     "playoff": 0.731,
-     "title": 0.101,
+     "playoff": 0.733,
+     "title": 0.1008,
      "me": false,
      "left": false,
      "rec": "5-5"
@@ -3232,30 +3239,30 @@
     {
      "team": "And A Goedert To You Sir",
      "playoff": 0.495,
-     "title": 0.0448,
+     "title": 0.0447,
      "me": false,
      "left": true,
      "rec": "5-5"
     },
     {
      "team": "Mr. Bobo",
-     "playoff": 0.452,
-     "title": 0.0268,
+     "playoff": 0.456,
+     "title": 0.0273,
      "me": false,
      "left": false,
      "rec": "5-5"
     },
     {
      "team": "Dawg Pound Eric",
-     "playoff": 0.356,
-     "title": 0.0342,
+     "playoff": 0.357,
+     "title": 0.0343,
      "me": false,
      "left": true,
      "rec": "4-6"
     },
     {
      "team": "Mrs. Bobo",
-     "playoff": 0.075,
+     "playoff": 0.067,
      "title": 0.0007,
      "me": false,
      "left": false,
@@ -3263,7 +3270,7 @@
     },
     {
      "team": "Benchdad's Beach",
-     "playoff": 0.06,
+     "playoff": 0.061,
      "title": 0.0015,
      "me": false,
      "left": false,
@@ -3271,7 +3278,7 @@
     },
     {
      "team": "Bad and Bougie 2.0",
-     "playoff": 0.041,
+     "playoff": 0.042,
      "title": 0.0003,
      "me": false,
      "left": false,
@@ -3315,8 +3322,8 @@
      0,
      0,
      0,
-     2017,
-     3950,
+     2053,
+     3914,
      33,
      0,
      0,
@@ -3883,9 +3890,27 @@
      "helps": []
     },
     {
+     "name": "Rachaad White",
+     "pos": "RB",
+     "d_playoff": -0.002,
+     "d_title": 0.0003,
+     "d_wins": -0.01,
+     "role": "starts for you in Weeks 13, 15; would start for 4 rivals (Bad and Bougie 2.0, Dawg Pound Eric, Beachmom's Bench)",
+     "starts": [
+      13,
+      15
+     ],
+     "helps": [
+      "Bad and Bougie 2.0",
+      "Dawg Pound Eric",
+      "Beachmom's Bench",
+      "And A Goedert To You Sir"
+     ]
+    },
+    {
      "name": "Harold Fannin Jr.",
      "pos": "TE",
-     "d_playoff": -0.002,
+     "d_playoff": -0.001,
      "d_title": 0.0,
      "d_wins": -0.02,
      "role": "starts for you in Weeks 13, 14, 16; would start for 7 rivals (Benchdad's Beach, Maly\u2019s Better Half, Bad and Bougie 2.0)",
@@ -3902,24 +3927,6 @@
       "Derek\u2019s Better Half",
       "And A Goedert To You Sir",
       "Mrs. Bobo"
-     ]
-    },
-    {
-     "name": "Rachaad White",
-     "pos": "RB",
-     "d_playoff": -0.002,
-     "d_title": 0.0003,
-     "d_wins": -0.01,
-     "role": "starts for you in Weeks 13, 15; would start for 4 rivals (Bad and Bougie 2.0, Dawg Pound Eric, Beachmom's Bench)",
-     "starts": [
-      13,
-      15
-     ],
-     "helps": [
-      "Bad and Bougie 2.0",
-      "Dawg Pound Eric",
-      "Beachmom's Bench",
-      "And A Goedert To You Sir"
      ]
     },
     {
@@ -3965,7 +3972,7 @@
      "add": "Fernando Mendoza",
      "drop": "J.J. McCarthy",
      "d_wins": -0.0,
-     "d_playoff": 0.001
+     "d_playoff": 0.002
     },
     {
      "add": "NO defense",
@@ -3986,6 +3993,12 @@
      "d_playoff": 0.0
     },
     {
+     "add": "NE defense",
+     "drop": "J.J. McCarthy",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
      "add": "Joe Milton III",
      "drop": "J.J. McCarthy",
      "d_wins": 0.0,
@@ -3996,21 +4009,15 @@
      "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.0
-    },
-    {
-     "add": "Will Shipley",
-     "drop": "J.J. McCarthy",
-     "d_wins": 0.0,
-     "d_playoff": 0.0
     }
    ],
    "trades": [],
    "trades_screened": 42,
    "calls": [],
-   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 225 players",
+   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players",
    "plan": {
     "week": 12,
-    "built": "Mon Nov 23 2026 09:36 PM PT",
+    "built": "Mon Nov 23 2026 09:49 PM PT",
     "standings": "Sun Nov 22 8:52 PM PT",
     "playoff": 0.04033333333333333,
     "wins": 5.195833333333334,
@@ -4021,7 +4028,7 @@
      {
       "team": "Dominique by 6",
       "playoff": 1.0,
-      "title": 0.2587,
+      "title": 0.2583,
       "me": false,
       "left": false,
       "rec": "9-1"
@@ -4029,7 +4036,7 @@
      {
       "team": "The Deer Hunter Part Deux",
       "playoff": 1.0,
-      "title": 0.203,
+      "title": 0.204,
       "me": false,
       "left": true,
       "rec": "8-2"
@@ -4037,23 +4044,23 @@
      {
       "team": "Derek\u2019s Better Half",
       "playoff": 0.95,
-      "title": 0.235,
+      "title": 0.2343,
       "me": false,
       "left": false,
       "rec": "6-4"
      },
      {
       "team": "Rushin Roulette \ud83c\udfc8",
-      "playoff": 0.757,
-      "title": 0.0922,
+      "playoff": 0.759,
+      "title": 0.0918,
       "me": false,
       "left": false,
       "rec": "5-5"
      },
      {
       "team": "Maly\u2019s Better Half",
-      "playoff": 0.731,
-      "title": 0.101,
+      "playoff": 0.733,
+      "title": 0.1008,
       "me": false,
       "left": false,
       "rec": "5-5"
@@ -4061,30 +4068,30 @@
      {
       "team": "And A Goedert To You Sir",
       "playoff": 0.495,
-      "title": 0.0448,
+      "title": 0.0447,
       "me": false,
       "left": true,
       "rec": "5-5"
      },
      {
       "team": "Mr. Bobo",
-      "playoff": 0.452,
-      "title": 0.0268,
+      "playoff": 0.456,
+      "title": 0.0273,
       "me": false,
       "left": false,
       "rec": "5-5"
      },
      {
       "team": "Dawg Pound Eric",
-      "playoff": 0.356,
-      "title": 0.0342,
+      "playoff": 0.357,
+      "title": 0.0343,
       "me": false,
       "left": true,
       "rec": "4-6"
      },
      {
       "team": "Mrs. Bobo",
-      "playoff": 0.075,
+      "playoff": 0.067,
       "title": 0.0007,
       "me": false,
       "left": false,
@@ -4092,7 +4099,7 @@
      },
      {
       "team": "Benchdad's Beach",
-      "playoff": 0.06,
+      "playoff": 0.061,
       "title": 0.0015,
       "me": false,
       "left": false,
@@ -4100,7 +4107,7 @@
      },
      {
       "team": "Bad and Bougie 2.0",
-      "playoff": 0.041,
+      "playoff": 0.042,
       "title": 0.0003,
       "me": false,
       "left": false,
@@ -4237,9 +4244,28 @@
       "d_po": 0
      },
      {
+      "name": "Rachaad White",
+      "pos": "RB",
+      "d_playoff": -0.002,
+      "d_title": 0.0003,
+      "d_wins": -0.01,
+      "role": "starts for you in Weeks 13, 15; would start for 4 rivals (Bad and Bougie 2.0, Dawg Pound Eric, Beachmom's Bench)",
+      "starts": [
+       13,
+       15
+      ],
+      "helps": [
+       "Bad and Bougie 2.0",
+       "Dawg Pound Eric",
+       "Beachmom's Bench",
+       "And A Goedert To You Sir"
+      ],
+      "d_po": 0
+     },
+     {
       "name": "Harold Fannin Jr.",
       "pos": "TE",
-      "d_playoff": -0.002,
+      "d_playoff": -0.001,
       "d_title": 0.0,
       "d_wins": -0.02,
       "role": "starts for you in Weeks 13, 14, 16; would start for 7 rivals (Benchdad's Beach, Maly\u2019s Better Half, Bad and Bougie 2.0)",
@@ -4256,25 +4282,6 @@
        "Derek\u2019s Better Half",
        "And A Goedert To You Sir",
        "Mrs. Bobo"
-      ],
-      "d_po": 0
-     },
-     {
-      "name": "Rachaad White",
-      "pos": "RB",
-      "d_playoff": -0.002,
-      "d_title": 0.0003,
-      "d_wins": -0.01,
-      "role": "starts for you in Weeks 13, 15; would start for 4 rivals (Bad and Bougie 2.0, Dawg Pound Eric, Beachmom's Bench)",
-      "starts": [
-       13,
-       15
-      ],
-      "helps": [
-       "Bad and Bougie 2.0",
-       "Dawg Pound Eric",
-       "Beachmom's Bench",
-       "And A Goedert To You Sir"
       ],
       "d_po": 0
      },
@@ -4328,7 +4335,7 @@
       "nfl": "LV",
       "acq": "Waivers, clears Nov 25",
       "drop": "J.J. McCarthy",
-      "d_playoff": 0.001,
+      "d_playoff": 0.002,
       "d_week": 0.0,
       "helps": []
      },
@@ -4353,12 +4360,12 @@
       "helps": []
      }
     ],
-    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 225 players"
+    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 226 players"
    }
   },
   "DK IV": {
    "week": 12,
-   "built": "Mon Nov 23 2026 09:36 PM PT",
+   "built": "Mon Nov 23 2026 09:49 PM PT",
    "standings": "Sun Nov 22 8:52 PM PT",
    "base": {
     "wins": 13.7,
@@ -6054,7 +6061,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 227 players",
    "plan": {
     "week": 12,
-    "built": "Mon Nov 23 2026 09:36 PM PT",
+    "built": "Mon Nov 23 2026 09:49 PM PT",
     "standings": "Sun Nov 22 8:52 PM PT",
     "playoff": 0.772,
     "wins": 13.701166666666667,
