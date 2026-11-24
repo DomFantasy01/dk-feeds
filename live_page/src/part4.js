@@ -1,7 +1,7 @@
 
 var XACC = {r: {rk: 4, lead: true}, k: {rk: 2}, c: {}, v: {}, b: {test: true}}, XACC_ASOF = "Nov 8, 9:10 PM PT";
 /* Nov 8 (Dom): Clay and Vegas aren't in FantasyPros' contest, so their spot shows our own grade - average points missed per player in the latest graded week (lower is better) */
-function xGrade(s2){ try { const nm = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer"}[s2], src = (typeof M !== "undefined" && M && M.acc && M.acc.src) || {}, wk = src[nm] || {};
+function xGrade(s2){ try { const nm = {r: "ratcliffe", d: "draftsharks", k: "koerner", c: "clay", v: "vegas", b: "rotoballer"}[s2], src = (typeof M !== "undefined" && M && M.acc && M.acc.src) || {}, wk = src[nm] || {};
   const ws = Object.keys(wk).map(Number).sort((a, b) => a - b); if (!ws.length) return null; const w = ws[ws.length - 1]; return {w, miss: wk[String(w)][0], n: wk[String(w)][1]}; } catch (e) { return null; } }
 /* Dark Knight Live - rebuilt Nov 4-5 2026 after the old page was lost. Nov 5: needs-you panel, alert preview + finder, deadline chips, deep links, keys. Source of truth: dk-feeds/live_page/dark_knight_live.html */
 "use strict";
@@ -94,7 +94,7 @@ const isOut = (p) => /^(O|IR|IR-R|NA|SUSP|PUP|COV)$/i.test((p.status || "").trim
 const pts = (p) => (p.actual === null || p.actual === undefined) ? 0 : +p.actual;
 const started = (p) => (isDone(p) && !/^(Bye|No game)/i.test((p.when || "").trim())) || isLive(p);   /* Nov 11 (Dom): a man on bye has not "started" - it was flipping DK4 to LIVE 0.0 TIED before kickoff */
 /* each source's projected final for one man: Yahoo's live projection, or the expert's number (pm: [Ratcliffe, Clay, Koerner, Vegas]) */
-const SRCI = {r: 0, c: 1, k: 2, v: 3, b: 4};   /* Nov 8: b = RotoBaller (testing) */   /* Nov 7 (Dom): v = Vegas props */
+const SRCI = {r: 0, c: 1, k: 2, v: 3, b: 4, d: 5};   /* Nov 24 (Dom): d = Draft Sharks, lineup check 2 in Koerner's place */   /* Nov 8: b = RotoBaller (testing) */   /* Nov 7 (Dom): v = Vegas props */
 function manFinal(p, src, pm){
   if (isDone(p)) return pts(p);
   if (isOut(p)) return pts(p);
@@ -119,7 +119,7 @@ function chance(L, src){
   const anyStarted = [...L.players, ...L.oppPlayers].some(p => isLive(p) || /^(Fin|Final)/i.test((p.when || "").trim()));   /* Nov 11: a man on BYE is not a started game - it flipped DK4 to the as-set read (opponent's empty kicker) and showed 84% instead of 70% */
   if (!anyStarted && src !== "y"){
     const set = (M && M.best && M.best[L.key] && (M.best[L.key].bestn || M.best[L.key].set)) || {};   /* Nov 10 (Dom): best lineups, both sides */
-    const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : src === "v" ? set.vegas : src === "b" ? set.rotoballer : src === "g" ? set.gotham : (set.clay ?? set.gotham);   /* the build's best-lineup number, both sides */
+    const v = src === "r" ? set.ratcliffe : src === "k" ? set.koerner : src === "v" ? set.vegas : src === "b" ? set.rotoballer : src === "d" ? set.draftsharks : src === "g" ? set.gotham : (set.clay ?? set.gotham);   /* the build's best-lineup number, both sides */
     if (v !== null && v !== undefined) return +v;
   }
   if (src === "y") return +L.pct;
@@ -213,7 +213,7 @@ function snap(){
   const e = {t: S.stamp, w: S.week, lg: {}};
   for (const L of S.leagues){
     const pl = {}; for (const p of [...L.players, ...L.oppPlayers]) pl[p.name] = Math.round(pts(p) * 100) / 100;
-    e.lg[L.key] = {y: chance(L, "y"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c"), v: chance(L, "v"), me: +score(L.players).toFixed(2), op: +score(L.oppPlayers).toFixed(2), pl};
+    e.lg[L.key] = {y: chance(L, "y"), r: chance(L, "r"), k: chance(L, "k"), d: chance(L, "d"), c: chance(L, "c"), v: chance(L, "v"), me: +score(L.players).toFixed(2), op: +score(L.oppPlayers).toFixed(2), pl};
   }
   return e;
 }
@@ -537,7 +537,7 @@ const LASTY = {};
 const LGSHORT = {MOST: "Most Important", WINNERS: "Winners & Sinners", "HERS&HIS": "Hers & His", NEXTDOOR: "NextDoor"};
 const LGFULL = {MOST: "The Most Important Thing in Life", WINNERS: "Winners & Sinners", "HERS&HIS": "Hers and His Version 2.0", NEXTDOOR: "Murrieta NextDoor"};
 /* Nov 10 (Dom): RANKED = average chance to win this week of the top three sources by accuracy (the checked ones) */
-function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"};
+function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", draftsharks: "d", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"};
   /* Nov 12 6:47 AM (Dom): no more averaging - check 1 (Ratcliffe) decides; if he has no number, the next check stands in */
   const top = (OCK || []).map(id => IDS[id]).filter(s3 => X[s3] !== null && X[s3] !== undefined && !isNaN(X[s3])).slice(0, 1);
   return top.length ? {v: X[top[0]], top} : null; }
@@ -548,7 +548,7 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", koerner: "k", clay: "c",
    since the first read of the week. The card edge glows in the same color as the Scoreboard card. */
 function winDial(o){
   const {k, X, OCK, y, xmid, dY, dR, ZF, wkArrow, off, F, imp, prev} = o;
-  const IDS = {ratcliffe: "r", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, NM = {r: "Ratcliffe", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
+  const IDS = {ratcliffe: "r", draftsharks: "d", koerner: "k", clay: "c", vegas: "v", rotoballer: "b", yahoo: "y", gotham: "g"}, NM = {r: "Ratcliffe", d: "Draft Sharks", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", d: "DRAFTSHRK", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
   const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
   const R1 = rankedOf(X, OCK), main = R1 ? R1.v : y, who = R1 ? R1.top[0] : "y", z = ZF(main);
   const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, zc = ZC[z], g = "wx" + SLUG[k];
@@ -586,7 +586,7 @@ function winDial(o){
     <text x="${cx}" y="${cy + 1}" text-anchor="middle" class="wxn z-${z}">${wp2(main)}<tspan class="wxp" dy="-16">%</tspan></text>
     <text x="${cx}" y="${cy + 15}" text-anchor="middle" class="wxl wxc">CHANCE TO WIN</text></svg>`;
   /* under the dial: the move since the first read of the week for check 1, then Yahoo and the two checks */
-  const chip = (s3, lab, d, tipT) => ok(X[s3]) ? `<div class="wxk" title="${esc(tipT)}"><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b>${d === undefined ? "" : wkArrow(d, NM[s3])}</div>` : "";
+  const chip = (s3, lab, d, tipT) => ok(X[s3]) ? `<div class="wxk" title="${esc(tipT)}"><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b>${d === undefined ? "" : wkArrow(d, NM[s3])}</div>` : "";
   const chk = OCK.slice(1).map(id => IDS[id]).filter(s3 => s3 && s3 !== who && ok(X[s3]));
   const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (white pointer on the dial)${ok(xmid) ? ` · white tick = the experts' middle, ${Math.round(xmid)}%` : ""}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}`;
   const chips = (who !== "y" ? chip("y", "YAHOO", dY, yTip) : "") + chk.map((s3, i) => chip(s3, SH[s3], undefined, `${NM[s3]} (check ${OCK.indexOf(SRCID[s3]) + 1}, checks Ratcliffe): ${Math.round(X[s3])}% chance to win this week`)).join("");
@@ -873,14 +873,14 @@ function meters(){
   const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck(), PCK = ourCheckPO(), OBIAS = ourBias(), OPCT = ourPct();
   /* Nov 9 9:56 AM (Dom): every league's Experts box lists the sources in accuracy order - #1 on top down to #7 - with a green check on the
      top three and nothing under the names; tap the box for the detail (How far off they were) */
-  const OLAB = {g: "GOTHAM", v: "VEGAS", r: "RATCLIFFE", k: "KOERNER", y: "YAHOO", c: "CLAY", b: "ROTOBALLER"};
+  const OLAB = {g: "GOTHAM", v: "VEGAS", r: "RATCLIFFE", d: "DRAFT SHARKS", y: "YAHOO", c: "CLAY", b: "ROTOBALLER"};   /* Nov 24 (Dom: "Get rid of Koerner"): Draft Sharks in his place */
   /* Nov 12 4:10 PM (Dom): by role - lineups ✓1 Ratcliffe (decides), ✓2 Koerner, ✓3 Vegas (checks); pickups/playoffs P✓1 Ratcliffe, P✓2 Clay; then the rest by accuracy */
   const CKI = (s2) => { const i = OCK.indexOf(SRCID[s2]); if (i >= 0) return i; const j = PCK.indexOf(SRCID[s2]); return j < 0 ? 99 : 10 + j; };
   const ORBS = Object.keys(OLAB).sort((a, b) => CKI(a) - CKI(b) || (ORK[SRCID[a]] || 99) - (ORK[SRCID[b]] || 99)).map(s2 => [s2, OLAB[s2]]);
   const TILES = KEYS.map(k => { const L = lgS(k); if (!L) return null;
     const m = lgM(k), y = chance(L, "y"), live = aFor(k, aLive);
     const nA = {red: live.filter(x => x.color === "red").length, gold: live.filter(x => x.color === "gold").length}; nA.grey = live.length - nA.red - nA.gold;
-    const X = {v: chance(L, "v"), r: chance(L, "r"), k: chance(L, "k"), c: chance(L, "c"), b: chance(L, "b"), g: chance(L, "g"), y: chance(L, "y")};
+    const X = {v: chance(L, "v"), r: chance(L, "r"), d: chance(L, "d"), c: chance(L, "c"), b: chance(L, "b"), g: chance(L, "g"), y: chance(L, "y")};
     const xs = Object.entries(X).filter(([s3]) => !["b", "g", "y"].includes(s3)).map(([, v]) => v).filter(v => v !== null && !isNaN(v)).sort((a, b) => a - b), xmid = xs.length ? (xs[(xs.length - 1) >> 1] + xs[xs.length >> 1]) / 2 : null;
     const mid5 = [y, ...xs].sort((a, b) => a - b)[2];
     const F = finals(L), imp = liveModel(L, "y"), off = Math.abs(y - imp) >= 20;
@@ -889,11 +889,11 @@ function meters(){
     const onField = L.players.some(isLive), done = settled(L), meL = leftOf(L.players).length, opL = leftOf(L.oppPlayers).length;
     const outs = L.players.filter(isStarter).filter(p => dotState(p) === "out").length;
     const fl = LASTY[k] !== undefined && LASTY[k] !== y; LASTY[k] = y;
-    const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Koerner ${X.k === null ? "not posted" : X.k + "%"}, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
+    const say = `${DK[k]}, ${LGFULL[k]}: ${y}% win probability this week on Yahoo; experts Vegas ${X.v}%, Ratcliffe ${X.r}%, Draft Sharks ${X.d === null ? "not posted" : X.d + "%"}, Clay ${X.c}%. Score ${f1(me)} to ${f1(op)}${goNow ? "" : " (not started)"}, ${meL} and ${opL} players left. Playoff odds for the season ${pcs(po)}. Alerts: ${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted${outs ? ". " + outs + " starter" + (outs > 1 ? "s" : "") + " out" : ""}. Opens the league card.`;
     const orb = ([s2, nm]) => { if (X[s2] === null || X[s2] === undefined || isNaN(X[s2])) return `<div class="xo xoff" title="${nm}: no numbers for this week yet - the site hasn't posted them. Left out of every number on this page until it does."><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.2" fill="#121B31" stroke="#3A4560" stroke-width="2.4" stroke-dasharray="3 3"/><text x="18" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#8A93A6" font-family="IBM Plex Mono,monospace">–</text></svg><span class="xtx"><b>${nm}</b><span class="ckw"><i class="okb nil" aria-hidden="true"></i></span><i class="opc npost">NOT POSTED</i></span></div>`;
       const v = X[s2], gap = v - mid5, lvl = Math.abs(gap) >= 5 ? 2 : Math.abs(gap) >= 3 ? 1 : 0, p0 = prev && prev.lg[k] ? prev.lg[k][s2] : null, d = p0 === null || p0 === undefined ? null : Math.round(v - p0);
       return `<div class="xo${lvl ? ` neo ${gap > 0 ? "hi" : "lo"}${lvl === 2 ? " pulse" : ""}` : ""}" title="${nm}: ${ORK[SRCID[s2]] ? "our accuracy rank #" + ORK[SRCID[s2]] + " of " + Object.keys(ORK).length + " (last graded week) · " : ""}${(XACC[s2] || {}).rk ? "FantasyPros 2026 in-season accuracy #" + XACC[s2].rk + " (as of " + XACC_ASOF + ")" : "not in FantasyPros' accuracy contest - our grade: " + (xGrade(s2) ? "missed by " + xGrade(s2).miss.toFixed(1) + " points per player in Week " + xGrade(s2).w + " (" + xGrade(s2).n + " players)" : "not graded yet")} · ${v}% win probability this week${d === null ? "" : ` · ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d)} since the ${esc(ptTime(prev.t))} read`}${lvl ? ` · ${Math.abs(Math.round(gap))} points ${gap > 0 ? "above" : "below"} the middle of the five sources` : ""}">
-        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="xtx"><b${s2 === "b" ? ' class="lng"' : ""}>${nm}</b><span class="ckw">${OCK.includes(SRCID[s2]) ? `<i class="okb okn" aria-label="${CKI(s2) === 0 ? "check 1 - decides" : "check " + (CKI(s2) + 1) + " - checks Ratcliffe"}">&#10003;${CKI(s2) + 1}</i>` : `<i class="okb nil" aria-hidden="true"></i>`}${PCK.includes(SRCID[s2]) ? `<i class="okb okp" title="Pickups and playoffs: ${PCK.indexOf(SRCID[s2]) === 0 ? "P✓1 - rest of season decides" : "P✓" + (PCK.indexOf(SRCID[s2]) + 1) + " - Weeks 15-17 checks Ratcliffe"}"><s>P</s>&#10003;${PCK.indexOf(SRCID[s2]) + 1}</i>` : ""}</span>${OMISS[SRCID[s2]] !== undefined ? `<i class="opc ${(OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]] ?? 0) >= 0 ? "hi" : "lo"}" title="missed by ${OMISS[SRCID[s2]].toFixed(2)} points per player last graded week, ${(OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]] ?? 0) >= 0 ? "too high" : "too low"}" data-f2="${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]])}" data-f1="${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]]).slice(0, 1) + OMISS[SRCID[s2]].toFixed(1)}">${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]])}</i>` : ""}</span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
+        ${glassOrb(v, null, HEX[k], SLUG[k] + s2, s2 === "v")}<span class="xtx"><b${s2 === "b" || s2 === "d" ? ' class="lng"' : ""}>${nm}</b><span class="ckw">${OCK.includes(SRCID[s2]) ? `<i class="okb okn" aria-label="${CKI(s2) === 0 ? "check 1 - decides" : "check " + (CKI(s2) + 1) + " - checks Ratcliffe"}">&#10003;${CKI(s2) + 1}</i>` : `<i class="okb nil" aria-hidden="true"></i>`}${PCK.includes(SRCID[s2]) ? `<i class="okb okp" title="Pickups and playoffs: ${PCK.indexOf(SRCID[s2]) === 0 ? "P✓1 - rest of season decides" : "P✓" + (PCK.indexOf(SRCID[s2]) + 1) + " - Weeks 15-17 checks Ratcliffe"}"><s>P</s>&#10003;${PCK.indexOf(SRCID[s2]) + 1}</i>` : ""}</span>${OMISS[SRCID[s2]] !== undefined ? `<i class="opc ${(OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]] ?? 0) >= 0 ? "hi" : "lo"}" title="missed by ${OMISS[SRCID[s2]].toFixed(2)} points per player last graded week, ${(OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]] ?? 0) >= 0 ? "too high" : "too low"}" data-f2="${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]])}" data-f1="${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]]).slice(0, 1) + OMISS[SRCID[s2]].toFixed(1)}">${pmSign(OMISS[SRCID[s2]], OBIAS[SRCID[s2]] ?? OPCT[SRCID[s2]])}</i>` : ""}</span><em class="${d > 0 ? "up" : d < 0 ? "dn" : "z"}">${d === null || d === 0 ? "–" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</em></div>`; };
         const BELL = `<button type="button" class="bel sbel ${live.length ? (nA.red ? "red" : nA.gold ? "gold" : "grey") : "none"}" data-alerts="${SLUG[k]}" aria-label="${DK[k]} alerts: ${live.length ? `${nA.red} act now, ${nA.gold} monitor, ${nA.grey} noted` : "none open"}. Opens the alerts." title="${live.length ? `${nA.red} act now · ${nA.gold} monitor · ${nA.grey} noted - tap to open` : "No open alerts"}">${bellSvg}${live.length ? `<i>${live.length}</i>` : ""}</button>`;
         const yPrev = prev && prev.lg[k] && prev.lg[k].y !== undefined && prev.lg[k].y !== null ? Math.round(prev.lg[k].y) : null;
         const ZF = (v) => v === null || v === undefined || isNaN(v) ? "mid" : v >= 55 ? "win" : v >= 45 ? "mid" : "lose";
@@ -934,7 +934,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ const NMX = {ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ const NMX = {ratcliffe: "Ratcliffe", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Koerner or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free, Weeks ahead through 18, a check beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -949,7 +949,7 @@ function meters(){
    each number frozen before kickoff: rank among the panel by last graded week, points missed per player and % off, change vs the week before. */
 /* Nov 9 8:20 AM (Dom): "add our rank behind name" - our accuracy rank (same order as the How far off table) behind every source's name */
 /* Nov 9 8:55 AM (Dom): one ranking everywhere - the pickup panel ranks all seven on the same players; its top three are the check */
-const PNID = {Ratcliffe: "ratcliffe", Koerner: "koerner", Clay: "clay", Vegas: "vegas", RotoBaller: "rotoballer", Yahoo: "yahoo", Gotham: "gotham"};
+const PNID = {Ratcliffe: "ratcliffe", "Draft Sharks": "draftsharks", Koerner: "koerner", Clay: "clay", Vegas: "vegas", RotoBaller: "rotoballer", Yahoo: "yahoo", Gotham: "gotham"};
 function panelQ(){ const Q = ((PK || (M && M.pickups) || {}).panel) || null; return Q && Q.order && Q.miss && Object.keys(Q.miss).length ? Q : null; }
 function ourRanks(){ const Q = panelQ();
   if (Q) return Object.fromEntries(Q.order.filter(n => Q.miss[n] !== undefined).map((n, i) => [PNID[n] || n.toLowerCase(), i + 1]));
@@ -969,7 +969,7 @@ const pctWhy = (v) => v === undefined || v === null ? "" : Math.round(v) === 0 ?
 function ourCheck(){ const Q = panelQ(); return Q ? (Q.check || []).map(n => PNID[n] || n.toLowerCase()) : []; }
 /* Nov 12 4:10 PM (Dom): the second list - pickups, drops and playoffs: P✓1 Ratcliffe's rest of season decides, P✓2 Clay's Weeks 15-17 checks */
 function ourCheckPO(){ const Q = panelQ(); return Q ? (Q.check_po || []).map(n => PNID[n] || n.toLowerCase()) : []; }
-const SRCID = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
+const SRCID = {r: "ratcliffe", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", d: "draftsharks", y: "yahoo", g: "gotham"};
 function accTable(){
   /* Nov 9 8:55 AM (Dom): "How far off they were" folds up into Experts & Sources (closed until tapped); 1-7 best on top,
      "1, Gotham" then points off to two decimals; green check on the top three = the three this week's pickups are averaged on;
@@ -983,7 +983,7 @@ function accTable(){
     rows = ranked.map((n, i) => ({n, r: i + 1, m: Q.miss[n], b: (Q.bias || {})[n], pc: (Q.pct || {})[n], ck: (Q.check || []).includes(n), pk: (Q.check_po || []).indexOf(n), wait: (Q.waiting || {})[n]})).concat(rest.map(n => ({n, r: null})));
   } else { const src = A.src || {}; if (!Object.keys(src).length) return "";
     const lastOf = (w) => { const ws = Object.keys(w || {}).map(Number).sort((a, b) => a - b); return ws.length ? [ws[ws.length - 1], w[String(ws[ws.length - 1])]] : [null, null]; };
-    const IDN = {ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"};
+    const IDN = {ratcliffe: "Ratcliffe", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"};
     const g = Object.entries(IDN).map(([id, n]) => { const [w, v] = lastOf(src[id]); if (w !== null) wk = w; return {n, m: v ? v[0] : null}; });
     const gr = g.filter(x => x.m !== null).sort((a, b) => a.m - b.m); rows = gr.map((x, i) => ({n: x.n, r: i + 1, m: x.m, ck: false})).concat(g.filter(x => x.m === null).map(x => ({n: x.n, r: null}))); basis = "each source on its own players"; }
   const li = rows.map(x => x.r === null
@@ -1266,9 +1266,9 @@ function card(k){
   const seats = emptySeats(L);
   const seatHtml = seats.length ? `<div class="seat"><div class="h">EMPTY SEAT</div>${seats.map(p => `<div><b>${esc(p.slot)} ${esc(p.name)}</b> ${p.status ? `<span class="chip r">${esc(p.status)}</span>` : ""} · Yahoo ${f1(p.proj)} · locks ${esc(p.when || "?")}</div>`).join("")}</div>` : "";
   /* the four needles with their move since the last read */
-  const xr = [["y", "YAHOO"], ["v", "VEGAS"], ["r", "RATCLIFFE"], ["k", "KOERNER"], ["c", "CLAY"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
+  const xr = [["y", "YAHOO"], ["v", "VEGAS"], ["r", "RATCLIFFE"], ["d", "DRAFT SHARKS"], ["c", "CLAY"]].map(([s, lab]) => { const v = chance(L, s), p0 = pv ? pv[s] : null;
     const mv = p0 === null || p0 === undefined || p0 === v ? "" : `<em class="${v > p0 ? "up" : "dn"}">${v > p0 ? "▲" : "▼"}${Math.abs(v - p0)}</em>`; return v === null ? `<div><b>–</b><span>${lab}</span> <em class="z">not posted</em></div>` : `<div><b>${wp2(v)}%</b><span>${lab}</span> ${mv}</div>`; }).join("");
-  const ys = [chance(L, "y"), chance(L, "r"), chance(L, "k"), chance(L, "c")].filter(v => v !== null && !isNaN(v)), yv = chance(L, "v"), split = Math.max(...ys) - Math.min(...ys);
+  const ys = [chance(L, "y"), chance(L, "r"), chance(L, "d"), chance(L, "c")].filter(v => v !== null && !isNaN(v)), yv = chance(L, "v"), split = Math.max(...ys) - Math.min(...ys);
   const anyStart = [...L.players, ...L.oppPlayers].some(started);
   const splitHtml = split >= 20 && opL.length + meL.length > 0 ? `<div class="warn">The sources split by ${split} points on this game${anyStart ? "" : " - check why before kickoff"}.</div>` : "";
   /* points since the last read */
@@ -1280,7 +1280,7 @@ function card(k){
       (moved.length ? `<div class="sub">Who moved</div>` + moved.map(x => `<div class="mv"><span class="k">${x.side === "you" ? "You" : '<span class="mute">Opp</span>'}</span><span class="t">${esc(x.n)}</span><span class="num ${x.d >= 0 ? "up" : "dn"}">${sgn(x.d)}</span></div>`).join("") : `<p class="note">Nobody moved half a point or more.</p>`)); }
   /* read-by-read chance */
   const es = trailEntries().filter(e => e.w === S.week && e.lg[k]);
-  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["k", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"], ["v", "#E0A84A", "1 2"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
+  const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["d", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"], ["v", "#E0A84A", "1 2"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
       <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span><span><i class="dot" style="border-color:#E0A84A"></i>Vegas</span></div></div>` : "";
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */

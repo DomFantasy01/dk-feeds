@@ -32,15 +32,16 @@ for lab, k in KEY.items():
         # Brenton is ranking-only now (brenton_flags), never a number.
         if s.get('clay') is not None: g = s['clay']
         if rc is None and g is None: continue
-        ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
+        ko = s.get('koerner') if s.get('koerner_src') == 'flabs' else None
+        ds = s.get('draftsharks') if s.get('draftsharks_src') == 'draftsharks' else (rc if rc is not None else g)   # Nov 24 (Dom): Draft Sharks = lineup check 2 (slot 5)   # Oct 29 (Dom): Koerner (FantasyLabs) is slot 2
         # Nov 24 (Dom: "how do we know his numbers aren't being used?"): no FantasyLabs number = an empty slot, never Ratcliffe's
         # (or Yahoo's) number shown under Koerner's name - the page then marks Koerner NOT POSTED and leaves him out
         vg = s.get('vegas') if s.get('vegas_src') == 'props' else None   # Nov 7 (Dom): Vegas props are slot 3 (Ratcliffe where no prop)
         rb = s.get('rotoballer') if s.get('rotoballer_src') == 'rotoballer' else None   # Nov 8 (Dom): RotoBaller on trial - slot 4 (Ratcliffe where not listed)
-        d[norm(s['player'])] = [rc if rc is not None else g, g, ko, vg if vg is not None else (rc if rc is not None else g), rb if rb is not None else (rc if rc is not None else g)]
+        d[norm(s['player'])] = [rc if rc is not None else g, g, ko, vg if vg is not None else (rc if rc is not None else g), rb if rb is not None else (rc if rc is not None else g), ds]
     # Nov 24: same rule for Vegas and RotoBaller - they stand in Ratcliffe's number only for a man they don't list; when they list
     # NOBODY in this league this week (props not posted yet), the whole slot is empty and the page shows them NOT POSTED
-    for _i, _col, _src in ((3, 'vegas', 'props'), (4, 'rotoballer', 'rotoballer')):
+    for _i, _col, _src in ((3, 'vegas', 'props'), (4, 'rotoballer', 'rotoballer'), (5, 'draftsharks', 'draftsharks')):
         _real = [s for s in L['starters']['me'] + L['starters']['op'] + L.get('bench', []) if s.get(_col + '_src') == _src and s.get(_col) is not None]
         if not _real:
             for _v in d.values(): _v[_i] = None
@@ -127,7 +128,7 @@ for lab, k in KEY.items():
     # 'set' (the as-set needles) dropped Nov 10: the live/models document sits right at the 256 KB cap, and the page reads 'bestn' now
     # Nov 10 8:41 AM (Dom): "everything ... based on our opponent's best players - and the same with me, not the players I have in":
     # the page's pre-kickoff needles read 'bestn' = each source's chance with BOTH teams' best legal lineups (L['needles']);
-    ent['bestn'] = {s_: (L.get('needles') or {}).get(s_) for s_ in ('ratcliffe', 'gotham', 'koerner', 'clay', 'vegas', 'rotoballer')}
+    ent['bestn'] = {s_: (L.get('needles') or {}).get(s_) for s_ in ('ratcliffe', 'gotham', 'koerner', 'clay', 'vegas', 'rotoballer', 'draftsharks')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)

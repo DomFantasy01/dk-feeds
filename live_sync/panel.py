@@ -29,12 +29,12 @@ import os, re, csv, json, glob, datetime
 from zoneinfo import ZoneInfo
 
 FORWARD = ("ratcliffe", "clay", "yahoo", "gotham")
-NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham", "koerner": "Koerner", "vegas": "Vegas", "rotoballer": "RotoBaller"}
+NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham", "koerner": "Koerner", "vegas": "Vegas", "rotoballer": "RotoBaller", "draftsharks": "Draft Sharks"}
 # Nov 9 8:55 AM (Dom): "the top three that we have listed are the ones that we want to use this week in pickups" - all seven
 # sources are ranked together (same players, last graded week); the top three are the check, whoever they are. Koerner, Vegas and
 # RotoBaller post one week at a time: they count only once their numbers are for the week ahead (Dom: "every week it's going to change").
-ALL = ("ratcliffe", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
-WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read")}
+ALL = ("ratcliffe", "draftsharks", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
+WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read"), "draftsharks": ("draftsharks_scored.csv", "_ds", "read")}
 LAB = {1: "DKI", 2: "DKII", 3: "DKIII", 4: "DKIV"}
 WEEKS_BACK, SIZE = 4, 3
 # Nov 12 4:10 PM (Dom: "I'll rely on you to make the adjustment ... put the check marks so I know which ones we're actually using"):
@@ -42,7 +42,7 @@ WEEKS_BACK, SIZE = 4, 3
 #   LINEUPS (this week):          1 Ratcliffe decides, checks 2 Koerner (FantasyPros #2, our 3rd best Wks 6-9) and 3 Vegas (the market)
 #   PICKUPS / DROPS / PLAYOFFS:   1 Ratcliffe's rest-of-season number decides, check 2 Clay's rest of season and Weeks 15-17 (Nov 14, Dom: Clay is the full rest-of-season second opinion)
 # Either list: a check 2+ points off Ratcliffe = stop and talk, never a filter. RotoBaller stays on the page as a test source.
-ROLES = ("ratcliffe", "koerner", "vegas")         # lineups: check 1, 2, 3
+ROLES = ("ratcliffe", "draftsharks", "vegas")     # lineups: check 1, 2, 3 - Nov 24 (Dom: "Get rid of Koerner"): Draft Sharks (Smola) replaces Koerner as check 2
 PO_ROLES = ("ratcliffe", "clay")                  # pickups and playoffs: check 1 (rest of season), check 2 (Clay Weeks 15-17)
 FWD_FALLBACK = ("ratcliffe", "yahoo", "clay", "gotham")   # who stands in for a rest-of-season number when Ratcliffe has none
 TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals",
@@ -207,6 +207,13 @@ class Panel:
         for s, (fn, wkcol, rdcol) in WEEKLY.items():
             rows = self._csv(fn)
             if not rows: continue
+            if s == "draftsharks":   # Nov 24: Draft Sharks' file has one column per week (wk = its first week, then w13..w18) - take the week ahead's column
+                _cols = [c for c in rows[0] if re.fullmatch(r"w\d+", c)]; _first = min([int(c[1:]) for c in _cols] or [99]) - 1
+                _col = "wk" if _first == self.start else (f"w{self.start}" if f"w{self.start}" in rows[0] else None)
+                self.read[s] = rows[0].get(rdcol, "")
+                if not _col: self.waiting[s] = _first; continue
+                for r in rows: self._put(s, r["lg"], pkey(r["name"], r["pos"], r["team"]), fnum(r.get(_col)))
+                continue
             if wkcol: wk = int(fnum(rows[0].get(wkcol)) or 0)
             else:
                 try: wk = int(json.load(open(os.path.join(self.R, "yahoo_drop", s, f"{s}_weekly.json"))).get("week") or 0)

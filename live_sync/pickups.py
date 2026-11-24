@@ -258,9 +258,9 @@ XNAME = dict(PNAME, koerner="Koerner", vegas="Vegas", rotoballer="RotoBaller")
 # Nov 9 8:55 AM: all seven are ranked together in the panel now - its order IS the list, most to least accurate
 WKO = [x for x in WKO if x not in PAN.order]
 EXPERTS = tuple(PAN.order) + tuple(WKO)
-SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks {START}-17", "gotham": "a game ahead", "koerner": "this week", "vegas": "this week", "rotoballer": "this week"}
+SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks {START}-17", "gotham": "a game ahead", "koerner": "this week", "vegas": "this week", "rotoballer": "this week", "draftsharks": f"Wk {START}"}
 XREAD = dict(ratcliffe=READ.get("Ratcliffe", ""), clay=READ.get("Clay", ""), yahoo=PAN.read.get("yahoo", ""), gotham=PAN.read.get("gotham", ""),
-             koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""))
+             koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""), draftsharks=PAN.read.get("draftsharks", ""))
 def xval(n, key, ex):
     if ex in PAN.V and PAN.V[ex]:
         v = PAN.V[ex].get((n, key))
