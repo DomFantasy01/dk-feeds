@@ -180,6 +180,11 @@ def live_week(lid, now, lab, me, opp):
             el = (nowu - k).total_seconds() / 60
             f = 0.0 if not pd.isna(r.result) else 1.0 if el <= 0 else 0.0 if el >= 240 else max(0.03, 1 - el / 195)
             for tm in (r.home_team, r.away_team): frac[tm] = f; frac[fixT.get(tm, tm)] = f
+        # Nov 24 2026 (Dom: "Fix it"): Yahoo marks the new week "midevent" with 0.00 points as soon as it opens on Tuesday,
+        # so the sim treated Week 12 as under way before any game, used Yahoo's as-set lineups (empty slots and all) and
+        # skipped the lineup check - DK I read 84% to win. Live only once at least one of this week's games has kicked off.
+        if not frac or all(v >= 1.0 for v in frac.values()):
+            return {}
         left = {}
         mf = next((f for f in (os.path.join(os.environ.get("DK_METER", ""), f"meter_wk{now}.json"), f"{REPO}/dispatch_out/meter_wk{now}.json") if f and os.path.exists(f)), None)
         if mf and opp:
