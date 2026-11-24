@@ -1,47 +1,47 @@
 {
  "week": 11,
- "built": "Mon Nov 23 11:53 PM PT",
- "built_utc": "2026-11-24T07:53:29.256888+00:00",
+ "built": "Tue Nov 24 2:32 AM PT",
+ "built_utc": "2026-11-24T10:32:11.099275+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Mon Nov 23 11:48 PM PT",
+   "pulled": "Tue Nov 24 2:26 AM PT",
    "pulled_ago": "5 min ago",
    "items": 3903,
-   "newest": "3.1 h ago",
+   "newest": "5.8 h ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Mon Nov 23 11:48 PM PT",
+   "pulled": "Tue Nov 24 2:26 AM PT",
    "pulled_ago": "5 min ago",
-   "items": 9444,
-   "newest": "3.2 h ago",
+   "items": 9446,
+   "newest": "29 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Mon Nov 23 11:48 PM PT",
+   "pulled": "Tue Nov 24 2:26 AM PT",
    "pulled_ago": "5 min ago",
    "items": 2338,
-   "newest": "20 min ago",
+   "newest": "3.0 h ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Mon Nov 23 11:48 PM PT",
+   "pulled": "Tue Nov 24 2:26 AM PT",
    "pulled_ago": "5 min ago",
    "items": 412,
-   "newest": "2.7 h ago",
+   "newest": "5.3 h ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Mon Nov 23 11:48 PM PT",
+   "pulled": "Tue Nov 24 2:26 AM PT",
    "pulled_ago": "5 min ago",
    "items": 50,
    "newest": null,
@@ -50,7 +50,7 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Mon Nov 23 11:51 PM PT",
+   "pulled": "Tue Nov 24 2:29 AM PT",
    "pulled_ago": "2 min ago",
    "items": 763,
    "newest": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Mon Nov 23 2026 11:51 PM PT",
+   "pulled": "Tue Nov 24 2026 02:29 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -69,7 +69,7 @@
   "sleeper_proj": {
    "label": "Sleeper projections",
    "pulled": "Mon Nov 23 4:44 PM PT",
-   "pulled_ago": "7.2 h ago",
+   "pulled_ago": "9.8 h ago",
    "items": 331,
    "newest": null,
    "warn": "over 6 h old",
@@ -92,7 +92,7 @@
      "slot": "IR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "red",
       "grades": [
        "bad",
@@ -135,7 +135,7 @@
      "slot": "BN",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "red",
       "grades": [
        "bad",
@@ -172,13 +172,55 @@
      "trend": -0.35
     },
     {
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "team": "WAS",
+     "slot": "QB",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 2:02 AM PT",
+       "src": "pft",
+       "title": "Jayden Daniels passed for 146 yards in fourth quarter after totaling 143 in first three",
+       "text": "When the fourth quarter started on Monday night, the Commanders trailed the Bengals 17-13.",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 24 1:18 AM PT",
+       "src": "pft",
+       "title": "Dan Quinn: Scars from our late-game losses run deep, glad Jayden Daniels won it for us",
+       "text": "\"I couldn't have been more proud of Jayden at the end of the game,\" Quinn said after the Commanders' 22-20 win.",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 11:33 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
+       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 18.6,
+     "gotham_ros": 22.5,
+     "sleeper": 26.1,
+     "workload": "43/30/41/47/33/42/53/46",
+     "trend": 0.18
+    },
+    {
      "name": "George Pickens",
      "pos": "WR",
      "team": "DAL",
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -214,55 +256,13 @@
      "trend": 0.55
     },
     {
-     "name": "Jayden Daniels",
-     "pos": "QB",
-     "team": "WAS",
-     "slot": "QB",
-     "marker": {
-      "count": 4,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 11:33 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
-       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 9:17 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "text": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 8:45 PM PT",
-       "src": "RotoWire news",
-       "title": "Jayden Daniels: Leads Commanders to comeback win",
-       "text": "Daniels completed 23 of 35 passes for 289 yards with no touchdowns or interceptions and added six carries for 55 yards in the Commanders' 22-20 win over the Bengals on Monday night.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 18.6,
-     "gotham_ros": 22.5,
-     "sleeper": 26.1,
-     "workload": "43/30/41/47/33/42/53/46",
-     "trend": 0.18
-    },
-    {
      "name": "Stefon Diggs",
      "pos": "WR",
      "team": "WAS",
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -304,7 +304,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -346,7 +346,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -388,7 +388,7 @@
      "slot": "TE",
      "marker": {
       "count": 5,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -430,7 +430,7 @@
      "slot": "RB",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -472,7 +472,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -514,7 +514,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -556,7 +556,7 @@
      "slot": "RB",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -590,49 +590,6 @@
      "sleeper": 19.6,
      "workload": "24/19/28/31/26/23/29/25/18/16",
      "trend": -0.32
-    },
-    {
-     "name": "Drake London",
-     "pos": "WR",
-     "team": "ATL",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "good",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 16 11:04 AM PT",
-       "src": "rotoballer",
-       "title": "Drake London Clears Concussion Protocol",
-       "text": "Atlanta Falcons wide receiver Drake London (head) was evaluated for a head injury after exiting late in Sunday's Week 10 [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 16 11:03 AM PT",
-       "src": "ESPN news",
-       "title": "Falcons WR Drake London cleared after being checked for concussion",
-       "text": "Falcons wide receiver Drake London has been cleared after being removed from Sunday's game against the Chiefs late with a possible concussion.",
-       "grade": "good"
-      },
-      {
-       "t": "Sun Nov 15 4:16 PM PT",
-       "src": "rotoballer",
-       "title": "Drake London Tops 100 Yards Before Late Exit",
-       "text": "Atlanta Falcons wide receiver Drake London (head) drew 12 of Atlanta's 42 targets in Sunday's 35-13 loss to the Kansas [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 14.2,
-     "sleeper": null,
-     "workload": "4/5/10/6/11/11/11/6/5/13",
-     "trend": 0.24
     }
    ],
    "in": [
@@ -645,7 +602,7 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -689,7 +646,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -723,11 +680,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #8 (80,058 in 24 h)"
+      "Sleeper adds #9 (89,874 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -761,11 +718,11 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #3 (167,283 in 24 h)"
+      "Sleeper adds #3 (184,320 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -809,8 +766,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -842,11 +799,11 @@
      "pos": "WR",
      "team": "NO",
      "why": [
-      "Sleeper adds #17 (33,208 in 24 h)"
+      "Sleeper adds #18 (36,561 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -879,11 +836,11 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #16 (35,634 in 24 h)"
+      "Sleeper adds #16 (42,660 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -920,7 +877,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -957,7 +914,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -990,11 +947,11 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #13 (50,496 in 24 h)"
+      "Sleeper adds #14 (54,656 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -1029,11 +986,11 @@
      "why": [
       "good news",
       "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #23 (27,297 in 24 h)"
+      "Sleeper adds #24 (29,133 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -1077,8 +1034,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -1113,7 +1070,7 @@
      "team": "LAC",
      "marker": {
       "count": 4,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "caution",
@@ -1148,7 +1105,7 @@
      "team": "JAX",
      "marker": {
       "count": 4,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "caution",
@@ -1192,7 +1149,7 @@
      "slot": "IR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "red",
       "grades": [
        "bad",
@@ -1235,7 +1192,7 @@
      "slot": "WR",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "caution",
@@ -1278,7 +1235,7 @@
      "slot": "BN",
      "marker": {
       "count": 4,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good",
@@ -1315,13 +1272,55 @@
      "trend": 0.89
     },
     {
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "team": "WAS",
+     "slot": "Q/W/R/T",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 2:02 AM PT",
+       "src": "pft",
+       "title": "Jayden Daniels passed for 146 yards in fourth quarter after totaling 143 in first three",
+       "text": "When the fourth quarter started on Monday night, the Commanders trailed the Bengals 17-13.",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 24 1:18 AM PT",
+       "src": "pft",
+       "title": "Dan Quinn: Scars from our late-game losses run deep, glad Jayden Daniels won it for us",
+       "text": "\"I couldn't have been more proud of Jayden at the end of the game,\" Quinn said after the Commanders' 22-20 win.",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 11:33 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
+       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 18.6,
+     "gotham_ros": 22.5,
+     "sleeper": 26.1,
+     "workload": "43/30/41/47/33/42/53/46",
+     "trend": 0.18
+    },
+    {
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1363,7 +1362,7 @@
      "slot": "QB",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1399,55 +1398,13 @@
      "trend": 0.18
     },
     {
-     "name": "Jayden Daniels",
-     "pos": "QB",
-     "team": "WAS",
-     "slot": "Q/W/R/T",
-     "marker": {
-      "count": 4,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 11:33 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
-       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 9:17 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "text": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 8:45 PM PT",
-       "src": "RotoWire news",
-       "title": "Jayden Daniels: Leads Commanders to comeback win",
-       "text": "Daniels completed 23 of 35 passes for 289 yards with no touchdowns or interceptions and added six carries for 55 yards in the Commanders' 22-20 win over the Bengals on Monday night.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 18.6,
-     "gotham_ros": 22.5,
-     "sleeper": 26.1,
-     "workload": "43/30/41/47/33/42/53/46",
-     "trend": 0.18
-    },
-    {
      "name": "Ja'Marr Chase",
      "pos": "WR",
      "team": "CIN",
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -1489,7 +1446,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -1531,7 +1488,7 @@
      "slot": "TE",
      "marker": {
       "count": 5,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -1573,7 +1530,7 @@
      "slot": "RB",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -1615,7 +1572,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -1649,49 +1606,6 @@
      "sleeper": 4.9,
      "workload": "1/2/1/2/3/2/7",
      "trend": 1.7
-    },
-    {
-     "name": "Drake London",
-     "pos": "WR",
-     "team": "ATL",
-     "slot": "BN",
-     "marker": {
-      "count": 2,
-      "recency": 7,
-      "color": "grey",
-      "grades": [
-       "good",
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 16 11:04 AM PT",
-       "src": "rotoballer",
-       "title": "Drake London Clears Concussion Protocol",
-       "text": "Atlanta Falcons wide receiver Drake London (head) was evaluated for a head injury after exiting late in Sunday's Week 10 [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 16 11:03 AM PT",
-       "src": "ESPN news",
-       "title": "Falcons WR Drake London cleared after being checked for concussion",
-       "text": "Falcons wide receiver Drake London has been cleared after being removed from Sunday's game against the Chiefs late with a possible concussion.",
-       "grade": "good"
-      },
-      {
-       "t": "Sun Nov 15 4:16 PM PT",
-       "src": "rotoballer",
-       "title": "Drake London Tops 100 Yards Before Late Exit",
-       "text": "Atlanta Falcons wide receiver Drake London (head) drew 12 of Atlanta's 42 targets in Sunday's 35-13 loss to the Kansas [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "gotham": null,
-     "gotham_ros": 14.2,
-     "sleeper": null,
-     "workload": "4/5/10/6/11/11/11/6/5/13",
-     "trend": 0.24
     }
    ],
    "in": [
@@ -1704,7 +1618,7 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -1745,11 +1659,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #8 (80,058 in 24 h)"
+      "Sleeper adds #9 (89,874 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -1782,11 +1696,11 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #2 (210,465 in 24 h)"
+      "Sleeper adds #2 (226,053 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -1820,11 +1734,11 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #3 (167,283 in 24 h)"
+      "Sleeper adds #3 (184,320 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -1868,8 +1782,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -1901,11 +1815,11 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #16 (35,634 in 24 h)"
+      "Sleeper adds #16 (42,660 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -1942,7 +1856,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -1977,11 +1891,11 @@
      "why": [
       "good news",
       "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #23 (27,297 in 24 h)"
+      "Sleeper adds #24 (29,133 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -2021,11 +1935,11 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #13 (50,496 in 24 h)"
+      "Sleeper adds #14 (54,656 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -2054,53 +1968,16 @@
      "acq": "unverified"
     },
     {
-     "name": "Kenny Gainwell",
-     "pos": "RB",
-     "team": "TB",
-     "why": [
-      "Sleeper adds #25 (25,936 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 7:19 AM PT",
-       "src": "rotoballer",
-       "title": "Kenny Gainwell Worth Stashing for Receiving Upside",
-       "text": "Tampa Bay Buccaneers running back Kenny Gainwell has been productive in the passing game despite playing a limited role behind [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Travis Etienne Jr.",
-      "gotham": 11.1
-     },
-     "beats_floor": false,
-     "gotham": 10.9,
-     "gotham_ros": 9.1,
-     "sleeper": 9.3,
-     "workload": "7/12/14/8/12/5/15/27/15/14",
-     "trend": 0.12,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "Chris Rodriguez Jr.",
      "pos": "RB",
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #1 (344,169 in 24 h)"
+      "Sleeper adds #1 (385,155 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -2137,7 +2014,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -2164,6 +2041,43 @@
      "trend": -0.46,
      "yahoo": null,
      "acq": "unverified"
+    },
+    {
+     "name": "Kaelon Black",
+     "pos": "RB",
+     "team": "SF",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 3,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Sat Nov 21 1:57 AM PT",
+       "src": "rotoballer",
+       "title": "Kaelon Black Could Maintain Increased Role In High Altitude Venue",
+       "text": "San Francisco 49ers running back Kaelon Black had a solid showing in Week 10 in a barnburner against the Cowboys [&#8230;]",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Travis Etienne Jr.",
+      "gotham": 11.1
+     },
+     "beats_floor": false,
+     "gotham": 4.0,
+     "gotham_ros": 7.8,
+     "sleeper": 6.4,
+     "workload": "16/9/8/9/6/12/21/11/15/8",
+     "trend": -0.1,
+     "yahoo": null,
+     "acq": "unverified"
     }
    ],
    "opp": [
@@ -2173,7 +2087,7 @@
      "team": "PHI",
      "marker": {
       "count": 5,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "caution",
@@ -2208,7 +2122,7 @@
      "team": "CAR",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good",
@@ -2251,7 +2165,7 @@
      "slot": "IR",
      "marker": {
       "count": 3,
-      "recency": 0,
+      "recency": 1,
       "color": "red",
       "grades": [
        "bad",
@@ -2288,13 +2202,55 @@
      "trend": -0.08
     },
     {
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "team": "WAS",
+     "slot": "QB",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 2:02 AM PT",
+       "src": "pft",
+       "title": "Jayden Daniels passed for 146 yards in fourth quarter after totaling 143 in first three",
+       "text": "When the fourth quarter started on Monday night, the Commanders trailed the Bengals 17-13.",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 24 1:18 AM PT",
+       "src": "pft",
+       "title": "Dan Quinn: Scars from our late-game losses run deep, glad Jayden Daniels won it for us",
+       "text": "\"I couldn't have been more proud of Jayden at the end of the game,\" Quinn said after the Commanders' 22-20 win.",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 11:33 PM PT",
+       "src": "ESPN news",
+       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
+       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
+       "grade": "note"
+      }
+     ],
+     "gotham": 18.6,
+     "gotham_ros": 22.5,
+     "sleeper": 26.1,
+     "workload": "43/30/41/47/33/42/53/46",
+     "trend": 0.18
+    },
+    {
      "name": "Jonah Coleman",
      "pos": "RB",
      "team": "DEN",
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2336,7 +2292,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2378,7 +2334,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2414,55 +2370,13 @@
      "trend": 0.66
     },
     {
-     "name": "Jayden Daniels",
-     "pos": "QB",
-     "team": "WAS",
-     "slot": "QB",
-     "marker": {
-      "count": 4,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 11:33 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels again delivers in 'high-pressure' situation for Commanders",
-       "text": "After failing multiple times in late-game situations earlier this season, Commanders quarterback Jayden Daniels put together a second consecutive game-winning drive Monday night as Washington kicked a last-second field goal to beat Cincinnati 22-20.",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 9:17 PM PT",
-       "src": "ESPN news",
-       "title": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "text": "Jayden Daniels reacts to Countdown crew picking Bengals over Commanders",
-       "grade": "note"
-      },
-      {
-       "t": "Mon Nov 23 8:45 PM PT",
-       "src": "RotoWire news",
-       "title": "Jayden Daniels: Leads Commanders to comeback win",
-       "text": "Daniels completed 23 of 35 passes for 289 yards with no touchdowns or interceptions and added six carries for 55 yards in the Commanders' 22-20 win over the Bengals on Monday night.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 18.6,
-     "gotham_ros": 22.5,
-     "sleeper": 26.1,
-     "workload": "43/30/41/47/33/42/53/46",
-     "trend": 0.18
-    },
-    {
      "name": "Caleb Douglas",
      "pos": "WR",
      "team": "MIA",
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2504,7 +2418,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "grey",
       "grades": [
        "note"
@@ -2546,7 +2460,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -2588,7 +2502,7 @@
      "slot": "BN",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -2630,7 +2544,7 @@
      "slot": "TE",
      "marker": {
       "count": 3,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "note"
@@ -2672,7 +2586,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 6,
+      "recency": 7,
       "color": "grey",
       "grades": [
        "note"
@@ -2700,11 +2614,11 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #5 (112,712 in 24 h)"
+      "Sleeper adds #5 (120,512 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -2741,7 +2655,7 @@
      ],
      "marker": {
       "count": 3,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -2782,11 +2696,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #8 (80,058 in 24 h)"
+      "Sleeper adds #9 (89,874 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -2823,8 +2737,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -2856,11 +2770,11 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #13 (50,496 in 24 h)"
+      "Sleeper adds #14 (54,656 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -2893,11 +2807,11 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #16 (35,634 in 24 h)"
+      "Sleeper adds #16 (42,660 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -2934,7 +2848,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -2969,11 +2883,11 @@
      "why": [
       "good news",
       "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #23 (27,297 in 24 h)"
+      "Sleeper adds #24 (29,133 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -3014,11 +2928,11 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #3 (167,283 in 24 h)"
+      "Sleeper adds #3 (184,320 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -3062,7 +2976,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -3099,8 +3013,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -3136,7 +3050,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -3179,7 +3093,7 @@
      "slot": "QB",
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good",
@@ -3222,7 +3136,7 @@
      "slot": "TE",
      "marker": {
       "count": 5,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3264,7 +3178,7 @@
      "slot": "BN",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3306,7 +3220,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3348,7 +3262,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3390,7 +3304,7 @@
      "slot": "RB",
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3432,7 +3346,7 @@
      "slot": "WR",
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "grey",
       "grades": [
        "note"
@@ -3474,7 +3388,7 @@
      "slot": "W/R/T",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -3516,7 +3430,7 @@
      "slot": "RB",
      "marker": {
       "count": 1,
-      "recency": 2,
+      "recency": 3,
       "color": "grey",
       "grades": [
        "note"
@@ -3558,7 +3472,7 @@
      "slot": "Q/W/R/T",
      "marker": {
       "count": 2,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "note"
@@ -3600,7 +3514,7 @@
      "slot": "IR",
      "marker": {
       "count": 1,
-      "recency": 5,
+      "recency": 6,
       "color": "grey",
       "grades": [
        "note"
@@ -3643,11 +3557,11 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #8 (80,058 in 24 h)"
+      "Sleeper adds #9 (89,874 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -3680,11 +3594,11 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #2 (210,465 in 24 h)"
+      "Sleeper adds #2 (226,053 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "note"
@@ -3721,8 +3635,8 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "green",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "good"
       ]
@@ -3755,11 +3669,11 @@
      "team": "WAS",
      "why": [
       "good news",
-      "Sleeper adds #3 (167,283 in 24 h)"
+      "Sleeper adds #3 (184,320 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 0,
+      "recency": 1,
       "color": "green",
       "grades": [
        "good"
@@ -3799,12 +3713,12 @@
      "pos": "RB",
      "team": "CIN",
      "why": [
-      "Sleeper adds #11 (63,044 in 24 h)"
+      "Sleeper adds #11 (69,176 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 2,
-      "color": "gold",
+      "recency": 3,
+      "color": "grey",
       "grades": [
        "note"
       ]
@@ -3836,11 +3750,11 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #16 (35,634 in 24 h)"
+      "Sleeper adds #16 (42,660 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -3869,43 +3783,6 @@
      "acq": "unverified"
     },
     {
-     "name": "Kenny Gainwell",
-     "pos": "RB",
-     "team": "TB",
-     "why": [
-      "Sleeper adds #25 (25,936 in 24 h)"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "gold",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 7:19 AM PT",
-       "src": "rotoballer",
-       "title": "Kenny Gainwell Worth Stashing for Receiving Upside",
-       "text": "Tampa Bay Buccaneers running back Kenny Gainwell has been productive in the passing game despite playing a limited role behind [&#8230;]",
-       "grade": "note"
-      }
-     ],
-     "floor": {
-      "name": "Ollie Gordon II",
-      "gotham": 8.7
-     },
-     "beats_floor": true,
-     "gotham": 9.9,
-     "gotham_ros": 7.4,
-     "sleeper": 7.9,
-     "workload": "8/16/18/10/15/6/16/28/20/18",
-     "trend": 0.21,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
      "name": "DK Metcalf",
      "pos": "WR",
      "team": "PIT",
@@ -3914,7 +3791,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 0,
+      "recency": 1,
       "color": "gold",
       "grades": [
        "opening"
@@ -3949,11 +3826,11 @@
      "why": [
       "good news",
       "opening: Michael Pittman Jr. \u2014 bad news (ESPN injury report)",
-      "Sleeper adds #23 (27,297 in 24 h)"
+      "Sleeper adds #24 (29,133 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -3997,7 +3874,7 @@
      ],
      "marker": {
       "count": 1,
-      "recency": 1,
+      "recency": 2,
       "color": "green",
       "grades": [
        "good"
@@ -4030,11 +3907,11 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #13 (50,496 in 24 h)"
+      "Sleeper adds #14 (54,656 in 24 h)"
      ],
      "marker": {
       "count": 2,
-      "recency": 1,
+      "recency": 2,
       "color": "gold",
       "grades": [
        "note"
@@ -4068,11 +3945,11 @@
      "team": "JAX",
      "why": [
       "good news",
-      "Sleeper adds #1 (344,169 in 24 h)"
+      "Sleeper adds #1 (385,155 in 24 h)"
      ],
      "marker": {
       "count": 1,
-      "recency": 3,
+      "recency": 4,
       "color": "grey",
       "grades": [
        "good"
@@ -4097,6 +3974,43 @@
      "sleeper": 5.8,
      "workload": "8/8/13/8/6/18/9/19/4/8",
      "trend": -0.35,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "why": [
+      "good news"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 4,
+      "color": "grey",
+      "grades": [
+       "good"
+      ]
+     },
+     "news": [
+      {
+       "t": "Fri Nov 20 1:01 PM PT",
+       "src": "RotoWire news",
+       "title": "Tyjae Spears: Questionable despite full practice",
+       "text": "Spears (knee) is questionable for Sunday's game against Dallas.",
+       "grade": "good"
+      }
+     ],
+     "floor": {
+      "name": "Ollie Gordon II",
+      "gotham": 8.7
+     },
+     "beats_floor": false,
+     "gotham": 5.6,
+     "gotham_ros": 5.5,
+     "sleeper": null,
+     "workload": "14/14/3/6/26/4/7",
+     "trend": -0.51,
      "yahoo": null,
      "acq": "unverified"
     }
