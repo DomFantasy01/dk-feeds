@@ -38,10 +38,11 @@ for lab, k in KEY.items():
         # (or Yahoo's) number shown under Koerner's name - the page then marks Koerner NOT POSTED and leaves him out
         vg = s.get('vegas') if s.get('vegas_src') == 'props' else None   # Nov 7 (Dom): Vegas props are slot 3 (Ratcliffe where no prop)
         rb = s.get('rotoballer') if s.get('rotoballer_src') == 'rotoballer' else None   # Nov 8 (Dom): RotoBaller on trial - slot 4 (Ratcliffe where not listed)
-        d[norm(s['player'])] = [rc if rc is not None else g, g, ko, vg if vg is not None else (rc if rc is not None else g), rb if rb is not None else (rc if rc is not None else g), ds]
+        dr = s.get('drroto') if s.get('drroto_src') == 'drroto' else (rc if rc is not None else g)   # Nov 24 (Dom): Dr. Roto = pillar 2 beside Ratcliffe (slot 6)
+        d[norm(s['player'])] = [rc if rc is not None else g, g, ko, vg if vg is not None else (rc if rc is not None else g), rb if rb is not None else (rc if rc is not None else g), ds, dr]
     # Nov 24: same rule for Vegas and RotoBaller - they stand in Ratcliffe's number only for a man they don't list; when they list
     # NOBODY in this league this week (props not posted yet), the whole slot is empty and the page shows them NOT POSTED
-    for _i, _col, _src in ((3, 'vegas', 'props'), (4, 'rotoballer', 'rotoballer'), (5, 'draftsharks', 'draftsharks')):
+    for _i, _col, _src in ((3, 'vegas', 'props'), (4, 'rotoballer', 'rotoballer'), (5, 'draftsharks', 'draftsharks'), (6, 'drroto', 'drroto')):
         _real = [s for s in L['starters']['me'] + L['starters']['op'] + L.get('bench', []) if s.get(_col + '_src') == _src and s.get(_col) is not None]
         if not _real:
             for _v in d.values(): _v[_i] = None
@@ -128,7 +129,7 @@ for lab, k in KEY.items():
     # 'set' (the as-set needles) dropped Nov 10: the live/models document sits right at the 256 KB cap, and the page reads 'bestn' now
     # Nov 10 8:41 AM (Dom): "everything ... based on our opponent's best players - and the same with me, not the players I have in":
     # the page's pre-kickoff needles read 'bestn' = each source's chance with BOTH teams' best legal lineups (L['needles']);
-    ent['bestn'] = {s_: (L.get('needles') or {}).get(s_) for s_ in ('ratcliffe', 'gotham', 'koerner', 'clay', 'vegas', 'rotoballer', 'draftsharks')}
+    ent['bestn'] = {s_: (L.get('needles') or {}).get(s_) for s_ in ('ratcliffe', 'gotham', 'koerner', 'clay', 'vegas', 'rotoballer', 'draftsharks', 'drroto')}
     best[k] = ent
 cur['best'] = best
 # stamp = when the Dispatch built these numbers (Pacific text in meter -> UTC ISO)
@@ -253,6 +254,7 @@ ST = {'checked': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
       'ratcliffe': {'last': _pt2utc((SRC.get('ratcliffe') or {}).get('pulled_pt')), 'ok': (SRC.get('ratcliffe') or {}).get('status') == 'OK'},
       'koerner': {'last': _pt2utc((SRC.get('koerner') or {}).get('pulled_pt')), 'ok': (SRC.get('koerner') or {}).get('status') == 'OK'},
       'draftsharks': {'last': _pt2utc((SRC.get('draftsharks') or {}).get('pulled_pt')), 'ok': (SRC.get('draftsharks') or {}).get('status') == 'OK'},
+      'drroto': {'last': _pt2utc((SRC.get('drroto') or {}).get('pulled_pt')), 'ok': (SRC.get('drroto') or {}).get('status') == 'OK'},
       'build': {'last': cur.get('stamp'), 'alarms': len(M.get('alarms') or []), 'failed': (H.get('build_failed') or {}).get('at') if isinstance(H.get('build_failed'), dict) else None},
       'sync': {'last': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}}
 try:
@@ -328,7 +330,7 @@ try:
     if _ws is None or _ws.get('week') != M.get('week'):
         _ws = json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/week_start.json', timeout=20).read())
     if _ws and _ws.get('week') == M.get('week'):
-        cur['wk0'] = dict(week=_ws['week'], at=_ws.get('at'), lg={KEY[lab]: v for lab, v in _ws.get('leagues', {}).items() if lab in KEY})
+        cur['wk0'] = dict(week=_ws['week'], at=_ws.get('at'), at_src=_ws.get('at_src') or {}, lg={KEY[lab]: v for lab, v in _ws.get('leagues', {}).items() if lab in KEY})
     print('week start on Live:', cur.get('wk0', {}).get('at'))
 except Exception as _e: print('week start skipped:', str(_e)[:120])
 cur['status'] = ST
@@ -469,7 +471,7 @@ if len(sys.argv) >= 7:
             for _L8 in ls['leagues']:
                 _bn = ((cur.get('best') or {}).get(_L8['key']) or {}).get('bestn') or {}
                 _e8['lg'][_L8['key']] = {'y': _L8.get('pct'), 'r': _bn.get('ratcliffe'), 'd': _bn.get('draftsharks'), 'c': _bn.get('clay'),
-                                         'v': _bn.get('vegas'), 'b': _bn.get('rotoballer'), 'me': _L8.get('score'), 'op': _L8.get('oppScore')}
+                                         'v': _bn.get('vegas'), 'b': _bn.get('rotoballer'), 'o': _bn.get('drroto'), 'me': _L8.get('score'), 'op': _L8.get('oppScore')}
             ls['trail_srv'] = sorted(_tr8 + [_e8], key=lambda x: x['t'])[-40:]
             print('trail_srv:', len(ls['trail_srv']), 'reads this week')
         except Exception as _e8x: print('trail_srv skipped:', str(_e8x)[:120])

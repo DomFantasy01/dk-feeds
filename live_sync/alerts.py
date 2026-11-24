@@ -40,8 +40,25 @@ def srcname(x): return SRCN.get((x or "").strip().lower(), x or "")
 def feedline(n0): return f"{srcname(n0.get('src'))}, {n0.get('t')}" if n0 else ""
 
 ITEMS = []
+# Nov 24 (Dom: click an expert's number on the dial -> that expert's alert cards; "color them differently or name them differently so
+# we know ... what these alert cards are"): every card carries xs = the experts it came from (the bar's "Clears the bar ... on A, B"
+# line, else experts named in its source/feed), and lab = a short source label shown on the card ("Dr. Roto numbers", "News")
+_XN = {"Ratcliffe": "ratcliffe", "Dr. Roto": "drroto", "Draft Sharks": "draftsharks", "Koerner": "koerner", "Clay": "clay", "Vegas": "vegas",
+       "RotoBaller": "rotoballer", "Yahoo": "yahoo", "Gotham": "gotham"}
+def _xs_of(k):
+    rc = " ".join(str(x) for x in (k.get("receipts") or []))
+    m = re.search(r"Clears the bar \(15% and 2\+ points this week\) on ([^.]+)\.", rc)
+    if m: return [_XN[x.strip()] for x in re.split(r",| only", m.group(1)) if x.strip() in _XN]
+    t = " ".join(str(k.get(f) or "") for f in ("src", "feed", "feed_title"))
+    return [v for n_, v in _XN.items() if n_ in t and n_ not in ("Yahoo",)]
 def add(**k):
     k.setdefault("src", SRC); k.setdefault("built", BUILT)
+    try:
+        k.setdefault("xs", _xs_of(k))
+        if not k.get("lab"):
+            xs_ = k["xs"]; NM_ = {v: n_ for n_, v in _XN.items()}; k["lab"] = (" + ".join(NM_.get(x, x) for x in xs_[:2]) + " numbers") if xs_ and "Clears the bar" in " ".join(map(str, k.get("receipts") or [])) else \
+                ((NM_.get(xs_[0], xs_[0]) + " article") if xs_ else ("News" if k.get("feed") else "System"))
+    except Exception: pass
     if k.get("ba") and k["ba"].get("after") is None: k["ba"] = None     # Oct 14 (Dom): "before -> unknown" tells him nothing
     k["what"] = clean(k.get("what"))
     ITEMS.append(k)
@@ -221,6 +238,9 @@ for r in _ldcsv("koerner_scored.csv"):
 CLY, CLY_AT = {}, ""   # Oct 31 (Dom): Mike Clay (ESPN) is an alert source too - if he spots a man the others miss, Dom hears about it
 for r in _ldcsv("clay_scored.csv"):
     CLY[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); CLY_AT = r.get("read") or CLY_AT
+DRO, DRO_AT = {}, ""   # Nov 24 (Dom: "All our experts should be in there for alerts"): Dr. Roto, pillar 2 beside Ratcliffe
+for r in _ldcsv("drroto_scored.csv"):
+    DRO[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); DRO_AT = r.get("read") or DRO_AT
 VEG, VEG_AT = {}, ""   # Nov 7 (Dom): Vegas props are an alert source too - a disagreement gets flagged so we talk it through
 for r in _ldcsv("vegas_scored.csv"):
     VEG[(str(r.get("lg")), _nm(r.get("name")))] = _fl(r.get("wk")); VEG_AT = r.get("read") or VEG_AT
@@ -251,8 +271,9 @@ def nums(lg, name, p=None):
             "yahoo": pick(p.get("yahoo"), YPJ.get((n, k))),
             "gotham": pick(p.get("gotham"), GOT.get((n, k))),
             "clay": pick(p.get("clay"), CLY.get((n, k))),
-            "vegas": pick(p.get("vegas") if p.get("vegas_src", "props") == "props" else None, VEG.get((n, k)))}
-NAMES = {"ratcliffe": "Ratcliffe", "koerner": "Koerner", "clay": "Clay", "vegas": "Vegas", "yahoo": "Yahoo", "gotham": "Gotham"}
+            "vegas": pick(p.get("vegas") if p.get("vegas_src", "props") == "props" else None, VEG.get((n, k))),
+            "drroto": pick(p.get("drroto") if p.get("drroto_src", "drroto") == "drroto" else None, DRO.get((n, k)))}
+NAMES = {"ratcliffe": "Ratcliffe", "drroto": "Dr. Roto", "koerner": "Koerner", "clay": "Clay", "vegas": "Vegas", "yahoo": "Yahoo", "gotham": "Gotham"}
 def bar(cn, sn):
     """Sources where the candidate clears 15% AND 2 points a week over the starter. [] = he doesn't reach Dom."""
     out = []
@@ -266,7 +287,7 @@ def numline(cn, sn, sname="your starter"):
 def barline(ok_):
     return ("Clears the bar (15% and 2+ points this week) on " + ", ".join(NAMES[s] for s in ok_) + ("" if len(ok_) > 1 else " only - one source is enough to talk it through") + ".") if ok_ else ""
 def srcages():
-    return f"Numbers: Ratcliffe read {RAT_AT or 'unknown'} · Koerner read {KOR_AT or 'unknown'} · Clay read {CLY_AT or 'unknown'} · Vegas read {VEG_AT or 'unknown'} · Yahoo read {YP_AT or 'unknown'} · Gotham built {BUILT or 'unknown'}"
+    return f"Numbers: Ratcliffe read {RAT_AT or 'unknown'} · Koerner read {KOR_AT or 'unknown'} · Dr. Roto read {DRO_AT or 'unknown'} · Clay read {CLY_AT or 'unknown'} · Vegas read {VEG_AT or 'unknown'} · Yahoo read {YP_AT or 'unknown'} · Gotham built {BUILT or 'unknown'}"
 # whose player: Yahoo's API read (yahoo_api/latest.json) names every team in every league
 YA = {}
 for _d2 in [_o2.path.join(_o2.path.dirname(_o2.path.abspath(radar_f)), "..", "yahoo_api", "latest.json")]:

@@ -5,7 +5,7 @@ The same season simulator (sim.py), run once per expert, side by side:
   Ratcliffe   this week + his rest-of-season per-game number for Weeks 13-17 (ftn_scored.csv, each league's scoring)
   Clay        week by week through Week 17 (clay_scored.csv)
   DraftSharks week by week (draftsharks_scored.csv)
-  Koerner, Vegas, RotoBaller   this week only (they publish nothing later); later weeks use the system's number
+  Koerner, Vegas, RotoBaller, DrRoto   this week only (DrRoto = Dr. Roto, pillar 2 beside Ratcliffe since Nov 24) (they publish nothing later); later weeks use the system's number
 Every player on every roster and on the wire takes that expert's number; where the expert has no number for a man,
 the system's own value (the Scout's, Ratcliffe-led) fills in, and the report says how many were filled.
 
@@ -71,7 +71,7 @@ def expert_tables(lgk):
             for w in WEEKS[1:]: v[w] = ros if ros == ros else None       # bye weeks are zeroed later from the system's calendar
             T[(key, pos)] = v
         out["Ratcliffe"] = T; read["Ratcliffe"] = str(F.read_pt.iloc[0])
-    for nm, f in (("Koerner", "koerner_scored.csv"), ("Vegas", "vegas_scored.csv"), ("RotoBaller", "rotoballer_scored.csv")):
+    for nm, f in (("Koerner", "koerner_scored.csv"), ("Vegas", "vegas_scored.csv"), ("RotoBaller", "rotoballer_scored.csv"), ("DrRoto", "drroto_scored.csv")):   # Nov 24 (Dom): Dr. Roto, pillar 2, this week only
         X = _read(f)
         if len(X):
             T = {}
@@ -168,7 +168,7 @@ def run_league(lgk, noise, n=N, scan=True, top=None):
     L = sim.load_league(lgk); L["live"] = L.get("live") or {}
     S = L["S"]; me = str(S["me"])
     tables, read = expert_tables(lgk)
-    order = ["Ratcliffe", "Clay", "DraftSharks", "Koerner", "Vegas", "RotoBaller"]
+    order = ["Ratcliffe", "Clay", "DraftSharks", "Koerner", "Vegas", "RotoBaller", "DrRoto"]
     tables = {k: tables[k] for k in order if k in tables}
     res = dict(league=sim.LAB[lgk], read=read, experts={}, moves=[])
     built = {}

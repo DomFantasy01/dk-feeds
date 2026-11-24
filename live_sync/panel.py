@@ -29,12 +29,12 @@ import os, re, csv, json, glob, datetime
 from zoneinfo import ZoneInfo
 
 FORWARD = ("ratcliffe", "clay", "yahoo", "gotham")
-NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham", "koerner": "Koerner", "vegas": "Vegas", "rotoballer": "RotoBaller", "draftsharks": "Draft Sharks"}
+NAME = {"ratcliffe": "Ratcliffe", "clay": "Clay", "yahoo": "Yahoo", "gotham": "Gotham", "koerner": "Koerner", "vegas": "Vegas", "rotoballer": "RotoBaller", "draftsharks": "Draft Sharks", "drroto": "Dr. Roto"}
 # Nov 9 8:55 AM (Dom): "the top three that we have listed are the ones that we want to use this week in pickups" - all seven
 # sources are ranked together (same players, last graded week); the top three are the check, whoever they are. Koerner, Vegas and
 # RotoBaller post one week at a time: they count only once their numbers are for the week ahead (Dom: "every week it's going to change").
-ALL = ("ratcliffe", "draftsharks", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
-WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read"), "draftsharks": ("draftsharks_scored.csv", "_ds", "read")}
+ALL = ("ratcliffe", "drroto", "draftsharks", "koerner", "clay", "vegas", "rotoballer", "yahoo", "gotham")
+WEEKLY = {"koerner": ("koerner_scored.csv", "read_week", "read_pt"), "vegas": ("vegas_scored.csv", None, "read"), "rotoballer": ("rotoballer_scored.csv", None, "read"), "draftsharks": ("draftsharks_scored.csv", "_ds", "read"), "drroto": ("drroto_scored.csv", None, "read")}
 LAB = {1: "DKI", 2: "DKII", 3: "DKIII", 4: "DKIV"}
 WEEKS_BACK, SIZE = 4, 3
 # Nov 12 4:10 PM (Dom: "I'll rely on you to make the adjustment ... put the check marks so I know which ones we're actually using"):
@@ -42,7 +42,7 @@ WEEKS_BACK, SIZE = 4, 3
 #   LINEUPS (this week):          1 Ratcliffe decides, checks 2 Koerner (FantasyPros #2, our 3rd best Wks 6-9) and 3 Vegas (the market)
 #   PICKUPS / DROPS / PLAYOFFS:   1 Ratcliffe's rest-of-season number decides, check 2 Clay's rest of season and Weeks 15-17 (Nov 14, Dom: Clay is the full rest-of-season second opinion)
 # Either list: a check 2+ points off Ratcliffe = stop and talk, never a filter. RotoBaller stays on the page as a test source.
-ROLES = ("ratcliffe", "draftsharks", "vegas")     # lineups: check 1, 2, 3 - Nov 24 (Dom: "Get rid of Koerner"): Draft Sharks (Smola) replaces Koerner as check 2
+ROLES = ("ratcliffe", "drroto", "draftsharks", "vegas")     # lineups: check 1, 2, 3, 4 - Nov 24 PM (Dom: "Ratcliffe and Dr. Roto as the top pillars ... when they disagree, we're going to talk about it"): Dr. Roto = check 2 - Nov 24 (Dom: "Get rid of Koerner"): Draft Sharks (Smola) replaces Koerner as check 2
 PO_ROLES = ("ratcliffe", "clay")                  # pickups and playoffs: check 1 (rest of season), check 2 (Clay Weeks 15-17)
 FWD_FALLBACK = ("ratcliffe", "yahoo", "clay", "gotham")   # who stands in for a rest-of-season number when Ratcliffe has none
 TEAMNAME = {"ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills", "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals",
@@ -245,7 +245,7 @@ class Panel:
     def summary(self):
         m = self.grades["miss"]
         if self.waiting: self.notes.append("; ".join(f"{NAME[s]} has Week {w} numbers only - waits for Week {self.start}, next source steps in" for s, w in self.waiting.items() if s in self.members))
-        return (f"Panel: lineups 1 {NAME[ROLES[0]]} decides, checks 2 {NAME[ROLES[1]]} and 3 {NAME[ROLES[2]]}; pickups/playoffs 1 {NAME[PO_ROLES[0]]} rest of season, check 2 {NAME[PO_ROLES[1]]} rest of season + Weeks 15-17 (accuracy, points missed per player, {self.grades['players']} player-games, "
+        return (f"Panel: lineups 1 {NAME[ROLES[0]]} decides, checks 2 {NAME[ROLES[1]]}, 3 {NAME[ROLES[2]]} and 4 {NAME[ROLES[3]]}; pickups/playoffs 1 {NAME[PO_ROLES[0]]} rest of season, check 2 {NAME[PO_ROLES[1]]} rest of season + Weeks 15-17 (accuracy, points missed per player, {self.grades['players']} player-games, "
                 f"Week {', '.join(map(str, sorted(self.grades['weeks'])))}: " + ", ".join(f"{NAME[s]} {m[s]:.2f}" for s in sorted(m, key=m.get)) + ")") if m else "Pickup panel: default (no grades)"
 
 if __name__ == "__main__":

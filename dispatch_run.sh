@@ -60,6 +60,7 @@ python3 "$REPO/live_sync/clay_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/
 python3 "$REPO/live_sync/vegas_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! VEGAS skipped - the meters print without the Vegas needle"   # Nov 7 (Dom): the Vegas needle - prop stat lines scored in each league's rules
 python3 "$REPO/live_sync/rotoballer_points.py" "$REPO" "$WB" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! ROTOBALLER skipped - the meters print without the RotoBaller needle"   # Nov 8 (Dom): RotoBaller on trial ("use it and evaluate later")
 python3 "$REPO/live_sync/ds_meter.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! DRAFT SHARKS needle skipped"   # Nov 24 (Dom): Draft Sharks replaces Koerner as lineup check 2
+python3 "$REPO/live_sync/drroto_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" || echo "!! DR. ROTO needle skipped"   # Nov 24 (Dom): Dr. Roto = pillar 2 beside Ratcliffe on the big dial
 # Nov 4: Brenton removed (Dom) - python3 "$REPO/live_sync/brenton_points.py" "$REPO" "$ROOT/dksys/data/latest/meter/meter_wk$WB.json" "$ROOT/dksys/data/latest/ftn_scored.csv" || echo "!! BRENTON ranking check skipped"   # Brenton: ranking check only
 echo "== 4b expert moves (Oct 25, Dom): who the named experts moved up or down since the last pull and since last week"
 WM=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
@@ -115,10 +116,25 @@ python3 - "$REPO/dispatch_out/meter_wk$W.json" "$REPO/dispatch_out/week_start.js
 import json, sys, os
 m = json.load(open(sys.argv[1])); out = sys.argv[2]
 old = json.load(open(out)) if os.path.exists(out) else {}
+S = {'yahoo': 'y', 'ratcliffe': 'r', 'koerner': 'k', 'clay': 'c', 'vegas': 'v', 'rotoballer': 'b', 'draftsharks': 'd', 'drroto': 'o'}
 if old.get('week') != m['week']:
-    S = {'yahoo': 'y', 'ratcliffe': 'r', 'koerner': 'k', 'clay': 'c', 'vegas': 'v', 'rotoballer': 'b'}
-    json.dump({'week': m['week'], 'at': m['built_pt'], 'leagues': {lab: {S[s]: L['needles'].get(s) for s in S} for lab, L in m['leagues'].items()}}, open(out, 'w'), indent=1)
+    lg = {lab: {S[s]: L['needles'].get(s) for s in S} for lab, L in m['leagues'].items()}
+    at_src = {S[s]: m['built_pt'] for s in S if any(v.get(S[s]) is not None for v in lg.values())}
+    json.dump({'week': m['week'], 'at': m['built_pt'], 'at_src': at_src, 'leagues': lg}, open(out, 'w'), indent=1)
     print('week start set:', m['built_pt'])
+else:
+    # Nov 24 (Dom: "a point in time since posting"): a source that posts its week AFTER the week's first build (Dr. Roto on Tuesday,
+    # Vegas props mid-week) gets its starting mark at the first build that has it, with its own time - never a blank, never moved after
+    ch = []; A = old.setdefault('at_src', {})
+    for s, c in S.items():
+        if A.get(c): continue
+        if any((L or {}).get(c) is not None for L in old['leagues'].values()): A[c] = old['at']; continue   # it had a mark at the first build
+        vals = {lab: L['needles'].get(s) for lab, L in m['leagues'].items()}
+        if all(v is None for v in vals.values()): continue                                             # still not posted
+        for lab, v in vals.items(): old['leagues'].setdefault(lab, {})[c] = v
+        A[c] = m['built_pt']; ch.append(c)
+    json.dump(old, open(out, 'w'), indent=1)
+    if ch: print('week start added for', ch, m['built_pt'])
 PYWS
 cp "$ROOT/dksys/data/latest/ftn_scored.csv" "$ROOT/dksys/data/latest/koerner_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no scored expert files this build"   # Oct 29: the hourly alert pass reads Ratcliffe and Koerner from here
 cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null || echo "no weather file this build"   # game weather for Dark Knight Live (Oct 11)
@@ -153,6 +169,7 @@ python3 "$REPO/live_sync/clay_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_
 python3 "$REPO/live_sync/vegas_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! VEGAS (Live copy) skipped"
 python3 "$REPO/live_sync/rotoballer_points.py" "$REPO" "$W" "$REPO/dispatch_out/meter_wk$W.json" --no-read || echo "!! ROTOBALLER (Live copy) skipped"
 python3 "$REPO/live_sync/ds_meter.py" "$REPO" "$REPO/dispatch_out/meter_wk$W.json" || echo "!! DRAFT SHARKS (Live copy) skipped"
+python3 "$REPO/live_sync/drroto_points.py" "$REPO" "$REPO/dispatch_out/meter_wk$W.json" || echo "!! DR. ROTO (Live copy) skipped"
 # Nov 4: Brenton removed (Dom) - python3 "$REPO/live_sync/brenton_points.py" "$REPO" || echo "!! BRENTON ranking check skipped"
 python3 "$REPO/live_sync/talk_list.py" "$REPO" --brief || echo "!! PLAYERS TO TALK ABOUT section skipped"   # Oct 31 (Dom): pickups, watch list, holes, blocks - first thing in the brief and on Live
 python3 "$REPO/live_sync/championship.py" "$REPO" || echo "!! ROAD TO THE CHAMPIONSHIP skipped - Live keeps the last plan"   # Oct 31 (Dom): the playoff plan, DK I first
