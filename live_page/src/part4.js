@@ -208,9 +208,11 @@ const moveId = (k, m) => `mv:${k}:${m.add}`, callId = (k, c) => `call:${k}:${c.s
 
 /* ---------- the trail: one entry per Yahoo read, written by the page ---------- */
 function trailEntries(){ const a = (TR && TR.entries) || [], b = (S && S.trail_srv) || [];   /* Nov 24: the sync's own points merged in (reads made while the page was closed) */
-  if (!b.length) return a; const seen = new Set(a.map(e => e.t)); return a.concat(b.filter(e => !seen.has(e.t))).sort((x, y) => x.t < y.t ? -1 : x.t > y.t ? 1 : 0); }
+  if (!b.length) return a; const seen = new Set(b.map(e => e.t)); return a.filter(e => !seen.has(e.t)).concat(b).sort((x, y) => x.t < y.t ? -1 : x.t > y.t ? 1 : 0); }   /* the sync's point wins over the page's for the same read */
 function snap(){
   if (!S || !S.leagues) return null;
+  /* Nov 24: a point taken while the experts' data was still last week's (new week's read, old models) recorded 100% for everyone - skip it */
+  const mw = /Week (\d+)/.exec((M && M.source) || ""); if (!mw || +mw[1] !== +S.week) return null;
   const e = {t: S.stamp, w: S.week, lg: {}};
   for (const L of S.leagues){
     const pl = {}; for (const p of [...L.players, ...L.oppPlayers]) pl[p.name] = Math.round(pts(p) * 100) / 100;
@@ -587,10 +589,10 @@ function winDial(o){
     <text x="${cx}" y="${cy + 1}" text-anchor="middle" class="wxn z-${z}">${wp2(main)}<tspan class="wxp" dy="-16">%</tspan></text>
     <text x="${cx}" y="${cy + 15}" text-anchor="middle" class="wxl wxc">CHANCE TO WIN</text></svg>`;
   /* under the dial: the move since the first read of the week for check 1, then Yahoo and the two checks */
-  const chip = (s3, lab, d, tipT) => ok(X[s3]) ? `<div class="wxk" title="${esc(tipT)}"><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b>${d === undefined ? "" : wkArrow(d, NM[s3])}</div>` : "";
-  const chk = OCK.slice(1).map(id => IDS[id]).filter(s3 => s3 && s3 !== who && ok(X[s3]));
+  const chip = (s3, lab, d, tipT) => ok(X[s3]) ? `<div class="wxk" title="${esc(tipT)}"><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b>${d === undefined ? "" : wkArrow(d, NM[s3])}</div>` : `<div class="wxk wxn" title="${esc(NM[s3] || lab)}: Week ${S ? S.week : ""} numbers not posted yet - left out until they are"><span><i class="lf">${lab}</i><i class="ls">${({VEGAS: "VEGAS", DRAFTSHRK: "DSHRK", ROTO: "ROTO", CLAY: "CLAY"})[lab] || lab}</i></span><b>–</b><em>NOT POSTED</em></div>`;
+  const chk = ["d", "c", "b", "v"].filter(s3 => s3 !== who && X[s3] !== undefined);   /* Nov 24 (Dom: "We had our other experts on there"): every expert under the dial - Draft Sharks, Clay, RotoBaller, Vegas (NOT POSTED until it is) */
   const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (white pointer on the dial)${ok(xmid) ? ` · white tick = the experts' middle, ${Math.round(xmid)}%` : ""}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}`;
-  const chips = (who !== "y" ? chip("y", "YAHOO", dY, yTip) : "") + chk.map((s3, i) => chip(s3, SH[s3], undefined, `${NM[s3]} (check ${OCK.indexOf(SRCID[s3]) + 1}, checks Ratcliffe): ${Math.round(X[s3])}% chance to win this week`)).join("");
+  const chips = (who !== "y" ? chip("y", "YAHOO", dY, yTip) : "") + chk.map((s3, i) => chip(s3, SH[s3], undefined, `${NM[s3]}${OCK.includes(SRCID[s3]) ? ` (check ${OCK.indexOf(SRCID[s3]) + 1}, checks Ratcliffe)` : ""}: ${Math.round(X[s3])}% chance to win this week`)).join("");
   /* Nov 15 (Dom, voice): beside the week's move, the move since the last update - so he can see at a glance whether today is helping */
   const P0 = prev && prev.lg && prev.lg[k], lst = (s3) => { const v0 = P0 ? P0[s3] : null; return ok(v0) && ok(X[s3]) ? Math.round(X[s3] - v0) : null; }, dL = lst(who);
   const lastArrow = (d, nm) => d === null ? "" : `<i class="wch ${d > 0 ? "up" : d < 0 ? "dn" : "z"}" title="${nm}: ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d) + " points"} since the ${esc(ptTime(prev.t))} update">${d === 0 ? "– 0" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</i>`;
