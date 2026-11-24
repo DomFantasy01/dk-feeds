@@ -351,13 +351,14 @@ try:   # Oct 12 (Dom): news that he will miss time keeps him out - only news wri
             _n=_nweeks(_tx); _ph=_NEWSRE.search(_tx).group(0)
             if _k not in NEWSOUT or _n>NEWSOUT[_k][0]: NEWSOUT[_k]=(_n,f'{_src}: "{_ph}" ({_when.astimezone(NOWPT.tzinfo).strftime("%b %d")})')
 except Exception as _e: print('Scout news check skipped:',_e)
-EXTINJ={}
+EXTINJ={}; EXTACTIVE=set()   # Nov 24 2026: ESPN 'Active' names - clears a stale nflverse Reserve tag
 try:   # Oct 14 (Dom): ESPN + Sleeper injury lists, so a hurt free agent is never ranked as available
     _FDX=globals().get("_FD","/home/claude/domfantasy01/dk-feeds/feeds/"); _SEV={"O":1,"IR":2,"NA":3}
     def _xadd(nm,pos,t):
         if t and nm: k=(norm(nm),str(pos).upper()); EXTINJ[k]=t if _SEV[t]>_SEV.get(EXTINJ.get(k),0) else EXTINJ[k]
     for _x in json.load(open(_FDX+"espn_injuries.json")).get("players",[]):
         _s=str(_x.get("status","")).lower()
+        if _s=="active" and _x.get("name"): EXTACTIVE.add(norm(_x.get("name")))
         _xadd(_x.get("name"),_x.get("pos"),"NA" if "ret" in _s else "IR" if ("reserve" in _s or "pup" in _s or "physically" in _s) else "O" if _s in ("out","doubtful","suspension","suspended") else "")
     _sl=json.load(open(_FDX+"sleeper_injuries.json")).get("players",{}); _sl=_sl.values() if isinstance(_sl,dict) else _sl
     for _x in _sl:
@@ -438,10 +439,18 @@ except Exception as _e: print('Scout IR placement read skipped:',_e)
 def _newsback(p):
     n=NEWSOUT.get(norm(p['name']))
     return _gafter(p['team'],int(p['last']),n[0]+1) if n else 0
+def _res(p):
+    """Nov 24 2026 (Dom: Croskey-Merritt read as out through Week 15 after playing Monday night): nflverse's weekly roster keeps
+    a man on Reserve until its next file, so an activated player was priced as on IR for five more games. Reserve counts only
+    if ESPN doesn't list him Active and he did not play his team's last game."""
+    if p.get("nflstat")!="RES": return False
+    if norm(p["name"]) in EXTACTIVE: return False
+    if int(p.get("last") or 0)>=TEAMLAST.get(p["team"],99): return False
+    return True
 def back(p,ytag=""):
     if not ytag: ytag=EXTINJ.get((norm(p["name"]),p.get("pos","")),"")   # Oct 14: no Yahoo tag -> ESPN/Sleeper status
     if ytag in ("NA","CEL") or norm(p["name"]) in SEASON_OUT: return 99
-    if ytag in ("IR","IR-R","PUP-R") or p.get("nflstat")=="RES":
+    if ytag in ("IR","IR-R","PUP-R") or _res(p):
         _pl=IRPL.get(norm(p["name"]))
         return max(_gafter(p["team"],int(p["last"]),5),_gafter(p["team"],_pl[0]-1,5) if _pl else 0,NOW+1,_newsback(p))
     if ytag=="O" or p.get("rep") in ("Out","Doubtful"): return max(NOW+1,_newsback(p))
@@ -471,19 +480,19 @@ skill={k:p for k,p in PL.items() if p["pos"] in ("QB","RB","WR","TE")}
 for k,p in skill.items():
     o=owner(k); yt=o[2] if o else ""; bw=back(p,yt); why=""
     if bw==99: continue
-    if bw>NOW: why=("on IR" if (yt in ("IR","IR-R","PUP-R") or p["nflstat"]=="RES") else "listed Out")+(f" ({p['inj']})" if p["inj"] else "")
-    elif p["last"]<TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES" and p["inj"]: bw=NOW; why=f"missed his last game{' ('+p['inj']+')' if p['inj'] else ''}, practicing this week ({(p['prac'] or 'no report').replace(' Participation in Practice','').lower()})"
+    if bw>NOW: why=("on IR" if (yt in ("IR","IR-R","PUP-R") or _res(p)) else "listed Out")+(f" ({p['inj']})" if p["inj"] else "")
+    elif p["last"]<TEAMLAST.get(p["team"],0) and not _res(p) and p["inj"]: bw=NOW; why=f"missed his last game{' ('+p['inj']+')' if p['inj'] else ''}, practicing this week ({(p['prac'] or 'no report').replace(' Participation in Practice','').lower()})"
     # Oct 28 (Dom, Pierce): the starter is ALREADY back - he played his team's last game. The backup who filled in while
     # he was out keeps only what he did alongside him (Pierce was priced as Philadelphia's lead back after Barkley returned)
     # Only a backfield or a QB room (one man's work is the other's), only a starter who MISSED games in the last four
     # weeks and then played the last one - a normal healthy starter, or two receivers sharing targets, never trips this.
-    elif (p["pos"] in ("RB","QB") and p["last"]==TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES"
+    elif (p["pos"] in ("RB","QB") and p["last"]==TEAMLAST.get(p["team"],0) and not _res(p)
           and any(w not in p["wks"] for w in range(max(1,p["last"]-4),p["last"]))
           and len([w for w in p["wks"] if w<p["last"]-4])>=1): bw=NOW; why=f"back - played Week {p['last']} after missing games"
     # Oct 29 (Dom, Pierre Strong): a proven starter whose FIRST 2026 game came in the last two weeks (Josh Jacobs, off the
     # exempt list in Week 7) missed the rule above - he had no early games. Same treatment: the fill-in keeps only his work
     # alongside him.
-    elif (p["pos"] in ("RB","QB") and p.get("proven") and p["last"]==TEAMLAST.get(p["team"],0) and p["nflstat"]!="RES"
+    elif (p["pos"] in ("RB","QB") and p.get("proven") and p["last"]==TEAMLAST.get(p["team"],0) and not _res(p)
           and min(p["wks"])>=TEAMLAST.get(p["team"],0)-1 and min(p["wks"])>2): bw=NOW; why=f"back - first game of the season in Week {min(p['wks'])}"
     else: continue
     full=[w for w in p["wks"] if SNAP.get((k[0],p["team"],w),1)>=.35]
