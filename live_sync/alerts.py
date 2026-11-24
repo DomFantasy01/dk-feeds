@@ -247,7 +247,7 @@ def nums(lg, name, p=None):
     n, k, p = _LGN.get(lg), _nm(name), p or {}
     pick = lambda a, b: a if isinstance(a, (int, float)) else b
     return {"ratcliffe": pick(p.get("ratcliffe"), (RAT.get((n, k)) or (None, None))[0]),
-            "koerner": pick(p.get("koerner"), KOR.get((n, k))),
+            "koerner": pick(p.get("koerner") if p.get("koerner_src", "flabs") == "flabs" else None, KOR.get((n, k))),   # Nov 24: the build fills Yahoo in when Koerner has no number - never count that as Koerner
             "yahoo": pick(p.get("yahoo"), YPJ.get((n, k))),
             "gotham": pick(p.get("gotham"), GOT.get((n, k))),
             "clay": pick(p.get("clay"), CLY.get((n, k))),
