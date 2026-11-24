@@ -2790,8 +2790,8 @@ const fold = (id, title, cnt, body, hot) => `<details class="fold" data-fold="${
 
 /* Nov 5 v9 (Dom): the page-wide boards (Climb, On the line, ride, Who's left, Rooting guide, Next up) are gone - each
    league card now carries its own version, and the Rooting guide is dropped. */
-function whenRank(w){ const m = /(Thu|Fri|Sat|Sun|Mon|Tue)\s+(\d+):(\d+)\s*(am|pm)/i.exec(w || ""); if (!m) return 9999;
-  const d = {Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4, Tue: 5}[m[1].slice(0, 1).toUpperCase() + m[1].slice(1, 3).toLowerCase()];
+function whenRank(w){ const m = /(Wed|Thu|Fri|Sat|Sun|Mon|Tue)\s+(\d+):(\d+)\s*(am|pm)/i.exec(w || ""); if (!m) return 9999;
+  const d = {Wed: -1, Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4, Tue: 5}[m[1].slice(0, 1).toUpperCase() + m[1].slice(1, 3).toLowerCase()];
   return d * 1440 + ((+m[2] % 12) + (/pm/i.test(m[4]) ? 12 : 0)) * 60 + (+m[3]); }
 
 /* ---------- your moves ---------- */
@@ -3562,7 +3562,7 @@ setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
 /* ---------- Nov 8 2:30 PM (Dom: "make these four 20x better"): globe taps ----------
    Tap a ring segment or position: that player's line in a bottom sheet. Tap the globe: both lineups side by side,
    the week's Yahoo win-chance trend read by read, the gap and projections, with buttons to the alerts and the full card. */
-const DORD = {Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4, Tue: 5, Wed: 6};
+const DORD = {Tue: -2, Wed: -1, Thu: 0, Fri: 1, Sat: 2, Sun: 3, Mon: 4};
 const whenKey = (w) => { const m = /^(\w{3})\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(w || ""); if (!m) return null; let h = +m[2] % 12; if (/pm/i.test(m[4])) h += 12; return (DORD[m[1]] ?? 9) * 1440 + h * 60 + +m[3]; };
 function nextUp(L){ const pre = [...L.players, ...L.oppPlayers].filter(p => isStarter(p) && !started(p) && !isOut(p) && whenKey(p.when) !== null);
   if (!pre.length) return ""; pre.sort((a, b) => whenKey(a.when) - whenKey(b.when)); const w = pre[0].when, today = PT(new Date().toISOString(), {weekday: "short"});
