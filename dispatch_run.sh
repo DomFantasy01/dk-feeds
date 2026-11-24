@@ -77,6 +77,9 @@ done
 echo "== 5b2 THE SIMULATOR (Oct 28, Dom): every remaining game played 10,000 times, lineup swaps and move tests"
 WS=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
 DK_REPO="$REPO" DK_SCOUT_DIR="$ROOT/dksys/scout" DK_METER="$ROOT/dksys/data/latest/meter" python3 "$ROOT/dksys/sim/sim.py" > "$ROOT/sim.log" 2>&1 && head -2 "$ROOT/sim.log" || { echo "!! SIMULATOR FAILED - the brief prints without it"; tail -5 "$ROOT/sim.log"; }
+# Nov 24 2026 (Dom: "If he's off, the whole thing's done ... we need a comparison"): the same simulator under each expert
+# side by side (Ratcliffe, Clay, Draft Sharks; Koerner/Vegas/RotoBaller this week only), playoffs Weeks 15-17 played, whole wire scanned
+DK_REPO="$REPO" DK_SCOUT_DIR="$ROOT/dksys/scout" DK_METER="$ROOT/dksys/data/latest/meter" DK_SIMS=3000 python3 "$ROOT/dksys/sim/sim_experts.py" > "$ROOT/sim_experts.log" 2>&1 && grep -E "this week" "$ROOT/sim_experts.log" | head -24 || { echo "!! EXPERT SIMULATOR FAILED"; tail -5 "$ROOT/sim_experts.log"; }
 mkdir -p "$REPO/dispatch_out/sim/inputs"; cp "$ROOT"/dksys/scout/sim_input_DK*.json "$REPO/dispatch_out/sim/inputs/" 2>/dev/null || true   # Oct 31 (Dom: the playoff plan) - the sim's inputs saved so move-by-move playoff tests can be rerun
 echo "== 5c alerts for the Field Report's alert mark (Oct 14, Dom): same code and feeds as Live's alerts, kept build to build"
 WA=$(ls "$ROOT"/dksys/data/latest/meter/meter_wk*.json | sed 's/.*_wk\([0-9]*\)\.json/\1/' | sort -n | tail -1)
