@@ -89,7 +89,8 @@ def one_pass(now, R, fired, log):
 # until 25 minutes after the list, whenever a list is 5-40 minutes out and no inactives run has started for it.
 INACT = {3: ["15:45"], 0: ["15:45"], 6: ["05:00", "08:30", "11:35", "11:55", "15:50"]}   # Mon=0 Thu=3 Sun=6, Pacific
 # Nov 22 (Dom): holiday weeks - inactives lists on odd days, by date (Pacific; kickoff minus 90 min)
-INACT_DATES = {"2026-11-25": ["15:30"], "2026-11-26": ["08:30", "12:00", "15:50"], "2026-11-27": ["10:30"]}
+INACT_DATES = {"2026-11-25": ["15:30"], "2026-11-26": ["08:30", "12:00", "15:50"], "2026-11-27": ["10:30"],
+               "2026-12-19": ["12:30", "15:50"], "2026-12-25": ["08:30", "12:00", "15:45"]}   # Nov 24: Week 15 Saturday and Christmas Friday added (checked against the schedule)
 def inactives_pass(now, R, fired, log):
     from zoneinfo import ZoneInfo
     PT = ZoneInfo("America/Los_Angeles"); n = now.astimezone(PT)

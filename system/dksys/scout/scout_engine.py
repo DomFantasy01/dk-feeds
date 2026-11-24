@@ -1136,8 +1136,10 @@ def guard(e):
     """Oct 21 (Dom): late kickoff (the Sunday bench locks first) and a starter who could come back and take the work"""
     p=e["p"]; k=e["k"]; out=[]
     t_=_gd_ko(p["team"])
-    if t_ is not None and t_.weekday() in (0,3):
+    if t_ is not None and t_.weekday()==0:
         out.append(f"plays {t_:%A} night ({t_.hour%12 or 12}:{t_:%M} PM PT) - if you start him and he sits, your Sunday players have already locked")
+    elif t_ is not None and t_.weekday() in (2,3,4,5):   # Nov 24: Wednesday (Thanksgiving), Thursday, Friday, Saturday games lock early
+        out.append(f"plays {t_:%A} ({t_.hour%12 or 12}:{t_:%M} {'PM' if t_.hour>=12 else 'AM'} PT) - he locks before Sunday: decide on him before then")
     if k in CLOSE:
         c_=CLOSE[k]; out.append(f"his role shrinks to ~{c_['after']:.1f} from Wk {c_['week']} when {c_['who']} is back ({c_['why']})")
     for r_ in e.get("why") or []:

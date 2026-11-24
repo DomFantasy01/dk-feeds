@@ -89,7 +89,7 @@ def main():
         # API's actual points so far (windows: THU, SUN early, SUN 10a, SUN 1p, SUN night, MON).
         K = kickoffs(games, wk); starts = [None] * 6
         for k in K.values():
-            i = 0 if k.weekday() == 3 else 5 if k.weekday() == 0 else (1 if k.hour < 9 else 2 if k.hour < 12 else 3 if k.hour < 16 else 4) if k.weekday() == 6 else None
+            i = 0 if k.weekday() in (2, 3, 4, 5) else 5 if k.weekday() in (0, 1) else (1 if k.hour < 9 else 2 if k.hour < 12 else 3 if k.hour < 16 else 4) if k.weekday() == 6 else None
             if i is not None and (starts[i] is None or k < starts[i]): starts[i] = k
         passed = [s is not None and now >= s for s in starts]
         for lab, L in A["leagues"].items():

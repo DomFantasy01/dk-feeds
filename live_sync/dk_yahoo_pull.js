@@ -89,11 +89,11 @@ function readMatchup(names,D=document,LOC=location){
   return {me,op,recs,fav:fav?[fav[2],fav[3]]:['',''],mine:mine?mine[1]:(big[0]||''),opp:opp?opp[1]:(big[1]||''),oppId:opp?opp[0]:null,
           week:(body.match(/Week (\d+):/)||[])[1]};}
 
-// kickoff windows: 0 THU/FRI/SAT · 1 SUN before 9am · 2 SUN 9-12 · 3 SUN 12-4pm · 4 SUN night · 5 MON/TUE (same as the method of record)
-function win(p){const m=(p.ko||'').match(/(Thu|Fri|Sat|Sun|Mon|Tue) (\d+):(\d+) (am|pm)/i);
-  if(!m&&(p.game==='final'||p.game==='live')&&!p.gdate&&['thu','fri','sat'].includes(pt().day))return 0;
-  if(!m){if(p.gdate){const d=new Date(Date.UTC(+p.gdate.slice(0,4),+p.gdate.slice(4,6)-1,+p.gdate.slice(6,8))).getUTCDay();if(d>=4&&d<=6)return 0;if(d===1||d===2)return 5;}return -1;}
-  const h=+m[2]%12+(m[4].toLowerCase()==='pm'?12:0),d=m[1];if(d=='Thu'||d=='Fri'||d=='Sat')return 0;if(d=='Mon'||d=='Tue')return 5;if(h<9)return 1;if(h<12)return 2;if(h<16)return 3;return 4;}
+// kickoff windows: 0 WED/THU/FRI/SAT (Nov 24: Thanksgiving-week Wednesday game) · 1 SUN before 9am · 2 SUN 9-12 · 3 SUN 12-4pm · 4 SUN night · 5 MON/TUE (same as the method of record)
+function win(p){const m=(p.ko||'').match(/(Wed|Thu|Fri|Sat|Sun|Mon|Tue) (\d+):(\d+) (am|pm)/i);
+  if(!m&&(p.game==='final'||p.game==='live')&&!p.gdate&&['wed','thu','fri','sat'].includes(pt().day))return 0;
+  if(!m){if(p.gdate){const d=new Date(Date.UTC(+p.gdate.slice(0,4),+p.gdate.slice(4,6)-1,+p.gdate.slice(6,8))).getUTCDay();if(d>=3&&d<=6)return 0;if(d===1||d===2)return 5;}return -1;}
+  const h=+m[2]%12+(m[4].toLowerCase()==='pm'?12:0),d=m[1];if(d=='Wed'||d=='Thu'||d=='Fri'||d=='Sat')return 0;if(d=='Mon'||d=='Tue')return 5;if(h<9)return 1;if(h<12)return 2;if(h<16)return 3;return 4;}
 function winLine(lg,team,rec,pct,S){const w=[0,0,0,0,0,0],c=[0,0,0,0,0,0];let tot=0,nog=0;
   S.forEach(r=>{if(/^(BN|IR)/.test(r.slot))return;const v=parseFloat(r.game==='final'?r.pts:(r.game==='live'?r.projLive:r.proj))||0,x=win(r);if(x<0){nog++;return;}w[x]+=v;c[x]++;tot+=v;});
   return [lg,team,rec,pct,w.map(v=>v.toFixed(2)).join(' '),c.join(' '),tot.toFixed(2),nog].join('~');}
