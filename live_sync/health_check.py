@@ -170,7 +170,17 @@ def _build_only(r):
     return "save OK and confirmed" in t and "Dispatch build not started" in t
 healed = [r for r in fails if any(x.get("task") == r.get("task") and x.get("status") == "ok" and (x.get("started") or "") > (r.get("started") or "") for x in runs)
           or (_build_only(r) and _bt0 and iso(r.get("started")) and _bt0 > iso(r["started"]))]
-open_f = [r for r in fails if r not in healed]
+# Nov 24 (Dom: "Fix" - 2 and 3 AM Koerner pushes): FantasyLabs saying the new week "is not currently available" is the
+# site not having posted yet, not our read failing - the last good file is kept. That is WAITING (grey), and only turns
+# red if the site still has not posted by Thursday noon PT (same rule as the Vegas props read).
+def _site_waiting(r):
+    t = f"{r.get('error') or ''} {r.get('step') or ''}".lower()
+    return ("not currently available" in t or "has no week" in t or ("says week" in t and "fantasylabs" in t)) and not (NPT.weekday() in (3, 4, 5, 6) and (NPT.weekday() > 3 or NPT.hour >= 12))
+waiting = [r for r in fails if r not in healed and _site_waiting(r)]
+open_f = [r for r in fails if r not in healed and r not in waiting]
+for _src_name in sorted({_src(r.get("task")) for r in waiting}):
+    _w = [r for r in waiting if _src(r.get("task")) == _src_name]
+    row(_src_name, "Waiting on the site", "grey", f"{len(_w)} read(s) found the new week not posted yet - last good file kept; red only if still not posted by Thu noon PT", iso(_w[-1].get("finished")))
 if not recent: row("Yahoo", "Read run log", "yellow", "no scheduled read logged in the last 30 h")
 else:
     for src in ["Yahoo", "Ratcliffe (FTN)", "Koerner (FantasyLabs)", "Chain"]:
