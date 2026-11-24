@@ -217,7 +217,7 @@ for r in load("clay_scored.csv"):
     played = [v for v in wks.values() if v]
     if played: d["_clay_wks"] = wks; d["Clay"] = round(sum(played) / len(played), 2)
     READ["Clay"] = r["read"]
-for fn, ex, rd in (("koerner_scored.csv", "Koerner", "read_pt"), ("vegas_scored.csv", "Vegas", "read"), ("rotoballer_scored.csv", "RotoBaller", "read")):
+for fn, ex, rd in (("koerner_scored.csv", "Koerner", "read_pt"), ("vegas_scored.csv", "Vegas", "read"), ("rotoballer_scored.csv", "RotoBaller", "read"), ("drroto_scored.csv", "Dr. Roto", "read")):   # Nov 24 (Dom): Dr. Roto, pillar 2
     for r in load(fn):
         d = slot(r)
         if d is None: continue
@@ -258,9 +258,9 @@ XNAME = dict(PNAME, koerner="Koerner", vegas="Vegas", rotoballer="RotoBaller")
 # Nov 9 8:55 AM: all seven are ranked together in the panel now - its order IS the list, most to least accurate
 WKO = [x for x in WKO if x not in PAN.order]
 EXPERTS = tuple(PAN.order) + tuple(WKO)
-SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks {START}-17", "gotham": "a game ahead", "koerner": "this week", "vegas": "this week", "rotoballer": "this week", "draftsharks": f"Wk {START}"}
+SPAN = {"ratcliffe": "rest of season", "clay": f"Wks {START}-17", "yahoo": f"Wks {START}-17", "gotham": "a game ahead", "koerner": "this week", "vegas": "this week", "rotoballer": "this week", "draftsharks": f"Wk {START}", "drroto": "this week"}
 XREAD = dict(ratcliffe=READ.get("Ratcliffe", ""), clay=READ.get("Clay", ""), yahoo=PAN.read.get("yahoo", ""), gotham=PAN.read.get("gotham", ""),
-             koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""), draftsharks=PAN.read.get("draftsharks", ""))
+             koerner=READ.get("Koerner", ""), vegas=READ.get("Vegas", ""), rotoballer=READ.get("RotoBaller", ""), draftsharks=PAN.read.get("draftsharks", ""), drroto=PAN.read.get("drroto", ""))
 def xval(n, key, ex):
     if ex in PAN.V and PAN.V[ex]:
         v = PAN.V[ex].get((n, key))
