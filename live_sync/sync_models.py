@@ -252,6 +252,7 @@ ST = {'checked': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                 'ok': (SRC.get('yahoo_matchups') or {}).get('status') == 'OK'},
       'ratcliffe': {'last': _pt2utc((SRC.get('ratcliffe') or {}).get('pulled_pt')), 'ok': (SRC.get('ratcliffe') or {}).get('status') == 'OK'},
       'koerner': {'last': _pt2utc((SRC.get('koerner') or {}).get('pulled_pt')), 'ok': (SRC.get('koerner') or {}).get('status') == 'OK'},
+      'draftsharks': {'last': _pt2utc((SRC.get('draftsharks') or {}).get('pulled_pt')), 'ok': (SRC.get('draftsharks') or {}).get('status') == 'OK'},
       'build': {'last': cur.get('stamp'), 'alarms': len(M.get('alarms') or []), 'failed': (H.get('build_failed') or {}).get('at') if isinstance(H.get('build_failed'), dict) else None},
       'sync': {'last': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}}
 try:
@@ -459,5 +460,18 @@ if len(sys.argv) >= 7:
                 if L.get('sigma') is None: L['sigma'] = p.get('sigma')
             if L.get('sigma') is None: L['sigma'] = 0
         ls.pop('alert', None)
+        # Nov 24 (Dom: "the win probability charts only have one measurement ... boring"): the read-by-read trail was written only by
+        # the page, so reads made while Live was closed (overnight, early morning) never reached the charts. Every new read now carries
+        # the week's points (Yahoo's chance as set, each expert's best-lineup chance) in live/state as trail_srv; the page merges them in.
+        try:
+            _tr8 = [x for x in (st.get('trail_srv') or []) if x.get('w') == new_w and x.get('t') != new_t]
+            _e8 = {'t': new_t, 'w': new_w, 'lg': {}}
+            for _L8 in ls['leagues']:
+                _bn = ((cur.get('best') or {}).get(_L8['key']) or {}).get('bestn') or {}
+                _e8['lg'][_L8['key']] = {'y': _L8.get('pct'), 'r': _bn.get('ratcliffe'), 'd': _bn.get('draftsharks'), 'c': _bn.get('clay'),
+                                         'v': _bn.get('vegas'), 'b': _bn.get('rotoballer'), 'me': _L8.get('score'), 'op': _L8.get('oppScore')}
+            ls['trail_srv'] = sorted(_tr8 + [_e8], key=lambda x: x['t'])[-40:]
+            print('trail_srv:', len(ls['trail_srv']), 'reads this week')
+        except Exception as _e8x: print('trail_srv skipped:', str(_e8x)[:120])
         json.dump(ls, open(sys.argv[6], 'w'), ensure_ascii=False)
         print(f'STATE WRITE - week {new_w} read {new_t} replaces week {old_w} read {old_t}')

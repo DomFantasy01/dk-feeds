@@ -207,7 +207,8 @@ const sigTrade = (t) => `${(t.give || []).join("+")}>${t.get}|${Math.round((t.d_
 const moveId = (k, m) => `mv:${k}:${m.add}`, callId = (k, c) => `call:${k}:${c.starter}`, tradeId = (k, t) => `tr:${k}:${t.get}`;
 
 /* ---------- the trail: one entry per Yahoo read, written by the page ---------- */
-function trailEntries(){ return (TR && TR.entries) || []; }
+function trailEntries(){ const a = (TR && TR.entries) || [], b = (S && S.trail_srv) || [];   /* Nov 24: the sync's own points merged in (reads made while the page was closed) */
+  if (!b.length) return a; const seen = new Set(a.map(e => e.t)); return a.concat(b.filter(e => !seen.has(e.t))).sort((x, y) => x.t < y.t ? -1 : x.t > y.t ? 1 : 0); }
 function snap(){
   if (!S || !S.leagues) return null;
   const e = {t: S.stamp, w: S.week, lg: {}};
@@ -520,7 +521,7 @@ function renderHealth(){
   const groups = {}; for (const r of H.rows || []) (groups[r.group] = groups[r.group] || []).push(r);
   const st = (M && M.status) || {};
   box.innerHTML = `<div class="hh">System check ${esc(H.checked_pt || "")}: ${esc(H.headline || "")}</div>
-    <div class="note">Yahoo read ${esc(S ? ptTime(S.stamp) : "–")} · Ratcliffe ${esc(st.ratcliffe ? ptTime(st.ratcliffe.last) : "–")} · Koerner ${esc(st.koerner ? ptTime(st.koerner.last) : "–")} · build ${esc(st.build ? ptTime(st.build.last) : "–")} · Radar ${esc(st.radar ? ptTime(st.radar.last) : "–")}</div>
+    <div class="note">Yahoo read ${esc(S ? ptTime(S.stamp) : "–")} · Ratcliffe ${esc(st.ratcliffe ? ptTime(st.ratcliffe.last) : "–")} · Draft Sharks ${esc(st.draftsharks ? ptTime(st.draftsharks.last) : "–")} · build ${esc(st.build ? ptTime(st.build.last) : "–")} · Radar ${esc(st.radar ? ptTime(st.radar.last) : "–")}</div>
     ${Object.entries(groups).map(([g, rs]) => `<div class="hg">${esc(g)}</div>` + rs.map(r =>
       `<div class="hr ${esc(r.status)}"><i></i><div class="row2"><b>${esc(r.name)}</b> <em>${esc([r.when, r.age].filter(Boolean).join(" · "))}</em><br>${esc(cut(r.detail, 160))}</div></div>`).join("")).join("")}
     ${(H.first || []).length ? (HC_ALL ? `<div class="hg">Known issues</div>` + H.first.map(t => `<div class="hr yellow"><i></i><div class="row2">${esc(t)}</div></div>`).join("") : "") : ""}
@@ -936,7 +937,7 @@ function meters(){
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
   $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ const NMX = {ratcliffe: "Ratcliffe", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
-      if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Koerner or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free, Weeks ahead through 18, a check beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
+      if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
   const kick = nextKick();
   $("#sch").innerHTML = KEYS.map(k => { const L = lgS(k); if (!L) return ""; const y = chance(L, "y"), pv = prev && prev.lg[k] ? prev.lg[k].y : null;
@@ -1113,28 +1114,29 @@ function roadTiles(c, m){
 /* every expert, every starter: five thin bars per man - Yahoo, Ratcliffe, Koerner, Clay, Vegas - in this league's scoring */
 function expertBars(L, m, k){
   const xp = (m.xp && m.xp.players) || {}, rows = [];
-  for (const p of L.players){ const v = xp[p.name] || {}; const vals = {y: +p.proj || null, r: v.r ?? null, k: v.k ?? null, c: v.c ?? null, v: v.v ?? null};
+  for (const p of L.players){ const v = xp[p.name] || {}; const vals = {y: +p.proj || null, r: v.r ?? null, k: v.d ?? null, c: v.c ?? null, v: v.v ?? null};   /* Nov 24: the k bar is Draft Sharks now (Koerner removed) */
     if ([vals.r, vals.k, vals.c].every(x => x === null)) continue; const ns = [vals.y, vals.r, vals.k, vals.c].filter(x => x !== null); rows.push({n: p.name, slot: p.slot, ...vals, sp: Math.max(...ns) - Math.min(...ns)}); }
   if (!rows.length) return "";
   const mx = Math.max(...rows.flatMap(r => [r.y, r.r, r.k, r.c, r.v]).filter(x => x !== null), 5), W = 340, rh = 48, nl = 104, bx = nl + 4, bwid = W - bx - 34;
-  const S4 = [["y", "#EEF1F6", "Y"], ["r", HEX[k], "R"], ["k", HEX[k] + "AA", "K"], ["c", "#8A93A6", "C"], ["v", "#E0A84A", "V"]];
+  const S4 = [["y", "#EEF1F6", "Y"], ["r", HEX[k], "R"], ["k", HEX[k] + "AA", "DS"], ["c", "#8A93A6", "C"], ["v", "#E0A84A", "V"]];
   let g = "";
   rows.forEach((r, i) => { const y0 = 4 + i * rh;
     if (i % 2 === 0) g += `<rect x="0" y="${y0 - 2}" width="${W}" height="${rh}" fill="#ffffff" opacity=".025" rx="4"/>`;
     g += `<text x="4" y="${y0 + 11}" font-size="9.5" fill="#fff" font-family="Poppins,sans-serif" font-weight="600">${esc(r.n.length > 17 ? r.n.slice(0, 16) + "…" : r.n)}</text><text x="4" y="${y0 + 22}" font-size="7.5" fill="#8A93A6" font-family="Poppins,sans-serif">${esc(r.slot || "")}${r.sp >= 3 ? ' · <tspan fill="#EFD23E" font-weight="700">SPLIT ' + r.sp.toFixed(1) + "</tspan>" : ""}</text>`;
     S4.forEach(([s, col], j) => { const v = r[s]; if (v === null) return; const y = y0 + 1 + j * 8.6, w = Math.max(1.5, bwid * v / mx);
       g += `<rect x="${bx}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="5.6" rx="2.8" fill="${col}"/><text x="${(bx + w + 3).toFixed(1)}" y="${(y + 5.6).toFixed(1)}" font-size="7.4" fill="#C9CFDB" font-family="IBM Plex Mono,monospace">${v.toFixed(1)}</text>`; }); });
-  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Koerner</span><span><i style="border-color:#8A93A6"></i>Clay</span><span><i style="border-color:#E0A84A"></i>Vegas</span></div>`;
+  return `<svg viewBox="0 0 ${W} ${rows.length * rh + 6}" role="img">${g}</svg><div class="key"><span><i style="border-color:#EEF1F6"></i>Yahoo</span><span><i style="border-color:${HEX[k]}"></i>Ratcliffe (leads)</span><span><i style="border-color:${HEX[k]}AA"></i>Draft Sharks</span><span><i style="border-color:#8A93A6"></i>Clay</span><span><i style="border-color:#E0A84A"></i>Vegas</span></div>`;
 }
 /* Nov 7 (Dom: "wherever there's a discrepancy maybe we should automatically list the players so we know what the hell is really
    going on"; trigger 5 points): when any source's chance to win this week sits 5+ points from the middle of the five, name the
    men behind it - each man's number from that source against the middle of the other sources, both sides, the biggest first. */
 function whyDiffer(L, k){
   if (settled(L)) return "";
-  const pm = (M && M.pm && M.pm[L.key]) || {}, S5 = [["y", "Yahoo"], ["v", "Vegas"], ["r", "Ratcliffe"], ["k", "Koerner"], ["c", "Clay"]];
+  const pm = (M && M.pm && M.pm[L.key]) || {}, S5 = [["y", "Yahoo"], ["v", "Vegas"], ["r", "Ratcliffe"], ["d", "Draft Sharks"], ["c", "Clay"]];
   const ch = Object.fromEntries(S5.map(([s]) => [s, chance(L, s)])), med = (a) => { const b = a.filter(x => x !== null && !isNaN(x)).sort((x, y) => x - y); return b.length ? (b.length % 2 ? b[(b.length - 1) / 2] : (b[b.length / 2 - 1] + b[b.length / 2]) / 2) : null; };
   const mid = med(Object.values(ch)), out = [];
   for (const [s, nm] of S5){
+    if (ch[s] === null || ch[s] === undefined || isNaN(ch[s]) || mid === null) continue;   /* Nov 24: a source that hasn't posted is no split */
     const gap = ch[s] - mid; if (Math.abs(gap) < 5) continue;
     const rows = [];
     for (const [list, mine] of [[L.players, true], [L.oppPlayers, false]]) for (const p of list){
@@ -1166,7 +1168,7 @@ function vegHtml(L, m, k, yv){
 }
 /* who's been closest: season average points missed per man, shortest bar wins */
 function accBars(){
-  const acc = (M && M.acc && M.acc.src) || {}, rows = Object.entries(acc).map(([s, wk]) => { const ws = Object.values(wk); const n = ws.reduce((a, v) => a + (v[1] || 1), 0);
+  const acc = (M && M.acc && M.acc.src) || {}, rows = Object.entries(acc).filter(([s]) => s !== "koerner").map(([s, wk]) => {   /* Nov 24 (Dom): Koerner removed */ const ws = Object.values(wk); const n = ws.reduce((a, v) => a + (v[1] || 1), 0);
     return {s, avg: ws.reduce((a, v) => a + v[0] * (v[1] || 1), 0) / (n || 1), wks: ws.length, men: n}; }).sort((a, b) => a.avg - b.avg);
   if (!rows.length) return ""; const W = 340, rh = 22, lo = Math.floor(Math.min(...rows.map(r => r.avg)) - 1), hi = Math.ceil(Math.max(...rows.map(r => r.avg)) + .3), X = (v) => 86 + (W - 130) * (v - lo) / (hi - lo);
   const NM = {yahoo: "Yahoo", gotham: "Gotham", ratcliffe: "Ratcliffe", koerner: "Koerner", clay: "Clay", vegas: "Vegas", sleeper: "Sleeper"};
@@ -1260,7 +1262,7 @@ function card(k){
     const top = meL.slice().sort((a, b) => manFinal(b, "y") - manFinal(a, "y"))[0];
     takes = `<div class="takes">To pass the opponent's projected <b>${f1(F.op)}</b> you need <b>${f1(Math.max(0, need))}</b> more from ${meL.length} men left (Yahoo projects ${f1(rest)}).`;
     if (top && need > 0){ const others = rest - Math.max(0, manFinal(top, "y") - pts(top)), be = need - others + pts(top);
-      takes += ` Breakeven: if the rest hit their numbers, <b>${esc(top.name)}</b> has to score <b>${f1(Math.max(0, be))}</b> (Yahoo has him at ${f1(manFinal(top, "y"))}).`; }
+      takes += be <= 0 ? ` If the rest hit their numbers you win even if <b>${esc(top.name)}</b> scores nothing (Yahoo has him at ${f1(manFinal(top, "y"))}).` : ` Breakeven: if the rest hit their numbers, <b>${esc(top.name)}</b> has to score <b>${f1(be)}</b> (Yahoo has him at ${f1(manFinal(top, "y"))}).`; }
     takes += `</div>`; }
   /* empty seats: a starter who can't score */
   const seats = emptySeats(L);
@@ -1281,7 +1283,7 @@ function card(k){
   /* read-by-read chance */
   const es = trailEntries().filter(e => e.w === S.week && e.lg[k]);
   const rbr = es.length >= 2 ? `<div class="chartbox"><div class="ct">Today's ride · chance to win this week, read by read</div>${areaChart([["y", HEX[k], ""], ["r", "#EEF1F6", ""], ["d", "#C9CFDB", "4 3"], ["c", "#8A93A6", "2 3"], ["v", "#E0A84A", "1 2"]].map(([s, col, dash]) => ({col, dash, w: s === "y" ? 2.6 : 1.4, pts: es.map((e, i) => [i, e.lg[k][s]])})), es.map(e => PT(e.t, {weekday: "short", hour: "numeric"}).replace(" ", "")), 130, v => Math.round(v) + "%")}
-      <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Koerner</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span><span><i class="dot" style="border-color:#E0A84A"></i>Vegas</span></div></div>` : "";
+      <div class="key"><span><i style="border-color:${HEX[k]}"></i>Yahoo</span><span><i style="border-color:#EEF1F6"></i>Ratcliffe</span><span><i class="dot" style="border-color:#C9CFDB"></i>Draft Sharks</span><span><i class="dot" style="border-color:#8A93A6"></i>Clay</span><span><i class="dot" style="border-color:#E0A84A"></i>Vegas</span></div></div>` : "";
   const rng = m.viz && m.viz.scores ? `<div class="chartbox"><div class="ct">Score range · simulator</div>${rangeChart(m.viz.scores, {me, op})}<p class="note">Bar = the middle 80% of ${esc(m.sim ? (m.sim.sims || "").toLocaleString() : "")} simulated games, tick = the median final. ${esc(m.viz.run || "")}.</p></div>` : "";
   /* played bar */
   const bar = (list) => list.map(p => `<i class="${isLive(p) ? "on" : isDone(p) ? "done" : ""}"></i>`).join("");
@@ -1328,7 +1330,7 @@ function card(k){
     return {n, v, sp}; }).filter((x, i, arr) => arr.findIndex(y => y.v.pos === x.v.pos && y.v.r === x.v.r && y.v.k === x.v.k && y.v.c === x.v.c) === i).sort((a, b) => b.sp - a.sp);
   const eb = expertBars(L, m, k);
   const experts = (eb ? `<div class="chartbox"><div class="ct">Your starters · every expert · ${DK[k]} scoring</div>${eb}</div>` : "") + (accBars() ? `<div class="chartbox"><div class="ct">Who's been closest</div>${accBars()}</div>` : "") + (xpc.length ? `<div class="sub">Every player the experts cover</div><div class="xpc">${xpc.map(({n, v, sp}) => `<div class="c${sp >= 3 ? " split" : ""}"><b>${esc(n)}</b><div class="why">${esc(v.pos || "")} · ${esc(v.why || "")}${sp >= 3 ? " · split " + sp.toFixed(1) : ""}</div>
-      <div class="ns"><span>R ${f1(v.r)}</span><span>K ${f1(v.k)}</span><span>C ${f1(v.c)}</span><span title="${v.vrk ? "Vegas rank " + v.vrk + (v.vgap ? " (" + (v.vgap > 0 ? "+" : "") + v.vgap + " vs experts)" : "") : "no Vegas prop"}">V ${f1(v.v)}</span><span title="Draft Sharks (free page, converted to ${DK[k]} scoring with Clay's volume - approximate): this week; weeks-ahead average ${f1(v.dr)}">DS ${f1(v.d)}</span>${(v.rk || {}).Orginski ? `<span title="Orginski (FTN) position rank - a flag, not points">O #${v.rk.Orginski}</span>` : ""}</div>${v.ofl ? `<div class="why" style="color:#E0A84A">&#9873; ${esc(v.ofl)}</div>` : ""}</div>`).join("")}</div><p class="note">This week in ${DK[k]} scoring: R = Ratcliffe (FTN, leads), K = Koerner (FantasyLabs), C = Clay (ESPN), V = Vegas (player props, a check - not an expert), DS = Draft Sharks (free projection converted with Clay's volume - a look-ahead check, tap for his weeks-ahead average), O = Orginski's position rank (FTN, a flag only: &#9873; when he's 4+ spots away from Ratcliffe at QB/TE, 6+ at RB, 8+ at WR). Gold edge = the experts split by 3+ points. ${esc((m.experts || {}).read ? "Ranks read " + m.experts.read : "")}${(m.xp || {}).ds_read ? " · Draft Sharks read " + esc(m.xp.ds_read) : ""}</p>
+      <div class="ns"><span>R ${f1(v.r)}</span>${v.k !== null && v.k !== undefined ? `<span>K ${f1(v.k)}</span>` : ""}<span>C ${f1(v.c)}</span><span title="${v.vrk ? "Vegas rank " + v.vrk + (v.vgap ? " (" + (v.vgap > 0 ? "+" : "") + v.vgap + " vs experts)" : "") : "no Vegas prop"}">V ${f1(v.v)}</span><span title="Draft Sharks (free page, converted to ${DK[k]} scoring with Clay's volume - approximate): this week; weeks-ahead average ${f1(v.dr)}">DS ${f1(v.d)}</span>${(v.rk || {}).Orginski ? `<span title="Orginski (FTN) position rank - a flag, not points">O #${v.rk.Orginski}</span>` : ""}</div>${v.ofl ? `<div class="why" style="color:#E0A84A">&#9873; ${esc(v.ofl)}</div>` : ""}</div>`).join("")}</div><p class="note">This week in ${DK[k]} scoring: R = Ratcliffe (FTN, leads), C = Clay (ESPN), V = Vegas (player props, a check - not an expert), DS = Draft Sharks (free projection converted with Clay's volume - a look-ahead check, tap for his weeks-ahead average), O = Orginski's position rank (FTN, a flag only: &#9873; when he's 4+ spots away from Ratcliffe at QB/TE, 6+ at RB, 8+ at WR). Gold edge = the experts split by 3+ points. ${esc((m.experts || {}).read ? "Ranks read " + m.experts.read : "")}${(m.xp || {}).ds_read ? " · Draft Sharks read " + esc(m.xp.ds_read) : ""}</p>
       ${((m.experts || {}).rising || []).length ? `<div class="sub">Moving up</div>${m.experts.rising.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}
       ${((m.experts || {}).sliding || []).length ? `<div class="sub">Sliding</div>${m.experts.sliding.map(t => `<div class="pk">${esc(t)}</div>`).join("")}` : ""}` : (eb ? "" : `<div class="empty">No expert numbers for this league yet.</div>`));
 
@@ -1353,7 +1355,7 @@ function card(k){
     <div class="chd"><span class="dkb">${DK[k]}</span><span class="lgname">${esc(LGN[k])}</span><span class="vs">vs</span><span class="opp">${esc(L.opp)}</span></div>
     <div class="recl">${[m.rec ? `<span><b>${esc(m.rec)}</b></span>` : "", ...(m.std || []).map(x => `<span>${esc(x[0].toLowerCase())} <b>${esc(x.slice(1).join(" "))}</b></span>`), m.oppRec ? `<span>opp <b>${esc(m.oppRec)}</b></span>` : "", wxChip(L)].join("")}</div>
     ${scoreHtml}${seatHtml}
-    ${fold("num-" + SLUG[k], "The numbers", `Ratcliffe ${chance(L, "r")}% · Vegas ${chance(L, "v")}%${splitHtml ? " · sources split" : ""}`,
+    ${fold("num-" + SLUG[k], "The numbers", `Ratcliffe ${chance(L, "r")}% · Draft Sharks ${chance(L, "d") ?? "–"}%${chance(L, "v") === null ? " · Vegas not posted" : " · Vegas " + chance(L, "v") + "%"}${splitHtml ? " · sources split" : ""}`,
       `${takes}<div class="xrow">${xr}</div><p class="note">Chance to win this week, best lineup both sides. Ratcliffe leads every decision number; Vegas is a check.</p>${splitHtml}${whyDiffer(L, k)}${vegHtml(L, m, k, yv)}`, !!splitHtml)}
     ${fold("gm-" + SLUG[k], "Games", `${meL.length} / ${opL.length} left`, progress(L, k))}
     ${fold("wk-" + SLUG[k], "This week", rbr ? "today's ride" : meL.length + opL.length + " left", `${rbr}${rng}${sw0 ? `<div class="chartbox"><div class="ct">On the line · playoff odds for the season</div>${swingChart(c, k)}<p class="note">Title odds ${pcs(sw0.ti_w)} with a win, ${pcs(sw0.ti_l)} with a loss.</p></div>` : ""}${since}<div class="sub">Who's left</div>${leftHere(L)}`)}
@@ -1448,7 +1450,7 @@ function renderAlertsOnly(){ astrip(); separated(); needs(); for (const k of KEY
 
 function footer(){
   const st = (M && M.status) || {};
-  $("#foot").innerHTML = `Yahoo read ${esc(S ? ptTime(S.stamp) + " (" + ago(S.stamp) + ")" : "–")} · Dispatch build ${esc(st.build ? ptTime(st.build.last) : "–")} · Ratcliffe ${esc(st.ratcliffe ? ptTime(st.ratcliffe.last) : "–")} · Koerner ${esc(st.koerner ? ptTime(st.koerner.last) : "–")} · alerts ${esc(A ? ago(A.generated || A.built) : "–")} · system check ${esc(H ? H.checked_pt : "–")}.<br>
+  $("#foot").innerHTML = `Yahoo read ${esc(S ? ptTime(S.stamp) + " (" + ago(S.stamp) + ")" : "–")} · Dispatch build ${esc(st.build ? ptTime(st.build.last) : "–")} · Ratcliffe ${esc(st.ratcliffe ? ptTime(st.ratcliffe.last) : "–")} · Draft Sharks ${esc(st.draftsharks ? ptTime(st.draftsharks.last) : "–")} · alerts ${esc(A ? ago(A.generated || A.built) : "–")} · system check ${esc(H ? H.checked_pt : "–")}.<br>
     Every chance on this page is the chance to win this week unless it says playoff odds or title odds. The page's code is saved in the dk-feeds repo (live_page/) so it can always be restored.`;
 }
 

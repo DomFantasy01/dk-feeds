@@ -3,7 +3,7 @@ absolutely do, so we don't miss them"; "what if they're really 10% but their wor
 "my competitors, for blocking purposes"). One list per league, built every Dispatch build, four kinds:
 
   TALK NOW  - clears Dom's bar: 15%+ AND 2+ points a week better than the weakest starter at the position, in his league's
-              scoring, by ANY ONE expert (Nov 14, Dom): Ratcliffe or Clay rest of season, Koerner or Vegas this week - the row
+              scoring, by ANY ONE expert (Nov 14, Dom): Ratcliffe or Clay rest of season, Draft Sharks or Vegas this week - the row
               names who flagged him - or a Scout pick / before-lock flag. Says free agent or waivers-until.
   WATCH     - 10-15% better, or under the bar but RISING (workload/role news from the alert feed). Cheapest now.
   COVER     - a hole in the next three weeks (bye or injury) the Scout found, with the best fill it priced.
@@ -53,7 +53,7 @@ def scored(fn):
             out[(r["lg"], nk(r["name"]))] = r
     except Exception: pass
     return out
-RAT, KOE = scored("ftn_scored.csv"), scored("koerner_scored.csv")
+RAT, KOE = scored("ftn_scored.csv"), scored("draftsharks_scored.csv")   # Nov 24 (Dom: "Get rid of Koerner"): Draft Sharks this week in his place
 # Nov 14 (Dom: "shouldn't we automatically just discuss anytime any of these experts come in line"): every expert gets a vote -
 # a free agent goes on the talk list when ANY ONE of Ratcliffe (rest of season), Clay (rest of season), Koerner (this week) or
 # Vegas (this week) has him 15%+ and 2+ points ahead of the starter he'd replace, in this league's scoring. The row says who flagged him.
@@ -69,7 +69,7 @@ try:
         if isinstance(_v, dict) and str(_v.get("inj") or "").upper() in ("IR", "PUP", "NFI", "SUS", "SUSPENDED", "DNR"): SIDE.add(nk(_v.get("name", "")))
 except Exception as _e: print("sidelined list skipped:", str(_e)[:100])
 RAT_AT = next((r.get("read_pt") for r in RAT.values()), "") or ""
-KOE_AT = next((r.get("read_pt") for r in KOE.values()), "") or ""
+KOE_AT = next((r.get("read") for r in KOE.values()), "") or ""
 # kickoffs this week, every team (Pacific) - from the NFL schedule the build downloads
 import datetime as _dt
 from zoneinfo import ZoneInfo as _ZI
@@ -111,9 +111,9 @@ def clay_ros(lgn, name):
     return round(sum(v) / len(v), 2) if v else None
 def veg(lgn, name):
     r = VEG.get((lgn, nk(name))); return fnum(r["wk"]) if r else None
-EXP = (("Ratcliffe", "rest of season"), ("Clay", f"rest of season, Weeks {W + 1}-17"), ("Koerner", "this week"), ("Vegas", "this week"))
+EXP = (("Ratcliffe", "rest of season"), ("Clay", f"rest of season, Weeks {W + 1}-17"), ("Draft Sharks", "this week"), ("Vegas", "this week"))
 def votes(lgn, name, ros_r):
-    return {"Ratcliffe": ros_r, "Clay": clay_ros(lgn, name), "Koerner": koe(lgn, name), "Vegas": veg(lgn, name)}
+    return {"Ratcliffe": ros_r, "Clay": clay_ros(lgn, name), "Draft Sharks": koe(lgn, name), "Vegas": veg(lgn, name)}
 
 out = {"week": W, "built": M.get("built_pt"), "ratcliffe_read": RAT_AT, "koerner_read": KOE_AT, "leagues": {}}
 brief = []
@@ -198,7 +198,7 @@ for lab, key, lid, lgn, myid in LG:
             if not lead and not rr: continue
             gain, pct = ((lead["gain"], lead["pct"] / 100) if lead else (0.0, 0.0))
         row = dict(name=p["name"], pos=p["pos"], team=p["team"], acq=p["acq"], over=wn, rat_ros=(None if p.get("rat_missing") else round(p["ros"], 1)),
-                   over_ros=(round(wv, 1) if wv else None), pct=round(100 * pct), gain=round(gain, 1), rat_wk=round(p["wk"], 1), koe_wk=mine_v["Koerner"],
+                   over_ros=(round(wv, 1) if wv else None), pct=round(100 * pct), gain=round(gain, 1), rat_wk=round(p["wk"], 1), koe_wk=mine_v["Draft Sharks"],
                    clay_ros=mine_v["Clay"], vegas_wk=mine_v["Vegas"], flagged_by=[f["src"] for f in flags], flags=flags + nears,
                    sharp_po=sharp(p["team"])[0], sharp_rank=sharp(p["team"])[1],
                    rising=(rr or {}).get("what"), scout=nk(p["name"]) in scout_adds)
@@ -358,6 +358,6 @@ if BRIEF:
     first, _, rest = s.partition("\n")
     rest = re.sub(r"\n*Players to talk about \(.*?\n\n", "\n\n", rest, count=1, flags=re.S)
     block_txt = (f"Players to talk about (every pickup to consider, the 10-15% watch list, holes in the next three weeks, and players to block; "
-                 f"anyone ONE expert likes - Ratcliffe or Clay rest of season, Koerner or Vegas this week - 15%+ and 2+ points over your starter, named on each line; Ratcliffe still decides; Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
+                 f"anyone ONE expert likes - Ratcliffe or Clay rest of season, Draft Sharks or Vegas this week - 15%+ and 2+ points over your starter, named on each line; Ratcliffe still decides; Ratcliffe read {RAT_AT}; nothing is added without your go):\n" + "\n".join(brief) + "\n\n")
     open(bf, "w").write(first + "\n\n" + block_txt + rest.lstrip("\n"))
     print("TALK LIST added to the top of the brief")
