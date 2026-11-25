@@ -1837,6 +1837,11 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx4 .wgph{animation:wgphp 1.6s ease-in-out infinite}
 @keyframes wgphp{0%,100%{transform:scale(1);box-shadow:0 0 0 2px rgba(230,30,40,.22),0 0 6px 1px rgba(255,45,55,.55),inset 0 1px 1px rgba(255,255,255,.45)}
   50%{transform:scale(1.18);box-shadow:0 0 0 5px rgba(230,30,40,.18),0 0 16px 5px rgba(255,45,55,.95),inset 0 1px 1px rgba(255,255,255,.45)}}
+/* Nov 25 ~4:09 AM (Dom: "make it a little smaller"): phone 18px -> 15px, icon 10px -> 8px */
+html body .wpx4 .wgph{width:15px;height:15px}html body .wpx4 .wgph svg{width:8px;height:8px}
+/* Nov 25 ~4:10 AM: phone badge inside the dial, matched to the scoreboard umbrella badge */
+.wpx4 svg.wgd4{overflow:visible}.wpx4 .wgphb{cursor:pointer}.wpx4 .wgphn{font:800 11.8px var(--f-num);fill:#FF4D57}
+
 /* Nov 25 3:51 AM (Dom: Ratcliffe's and Roto's numbers "are bigger than everything else on the whole page ... come down a little",
    and the six-box numbers "reduced a little bit" too) */
 html body .wpx .wgr .wgn b{font-size:calc(min(100cqw, 290px) * .205)}
@@ -2496,6 +2501,7 @@ function winDial(o){
   const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const t = TH(cl(X[s3])), tx = cx + Math.cos(t) * len, ty = cy - Math.sin(t) * len;
     return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 2.7).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 8 : 7}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
   const RF = R + BW / 2 + 12;   /* face + bezel radius */
+  const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
   const svg = `<svg class="wgd wgd4" viewBox="0 0 200 165" aria-hidden="true"><defs>
     <clipPath id="${g}cp"><rect x="0" y="-10" width="200" height="${cy + 72}"/></clipPath>
     <linearGradient id="${g}sc" gradientUnits="userSpaceOnUse" x1="${cx - R}" y1="0" x2="${cx + R}" y2="0"><stop offset="0" stop-color="#FF4D57"/><stop offset=".42" stop-color="#FF8A3D"/><stop offset=".5" stop-color="#F7B32B"/><stop offset=".58" stop-color="#B8D94A"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
@@ -2512,9 +2518,9 @@ function winDial(o){
     ${(() => { const hw = Math.sqrt((RF + 5.5) ** 2 - 62 ** 2); return `<rect x="${f(cx - hw)}" y="${cy + 60}" width="${f(2 * hw)}" height="4.5" rx="2.2" fill="url(#${g}bz)"/>`; })()}
     <g class="wgkey"><path d="M${cx - 21} ${cy + 39.5} l3.6 -4.4 l3.6 4.4 l-3.6 4.4 Z" fill="${GOLD}" stroke="#050912" stroke-width=".7"/><text x="${cx - 13}" y="${cy + 42.6}">YAHOO</text>
       <path d="M${cx - 27} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.r}" stroke="#050912" stroke-width=".6"/><path d="M${cx - 19} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.o}" stroke="#050912" stroke-width=".6"/><text x="${cx - 9}" y="${cy + 53.2}">STARTED</text></g>
+    ${talk ? `<g class="wgphb tap" data-xal="${SLUG[k]}" data-xe="${XID.o}" role="button" tabindex="0" aria-label="${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Talk it through.`)}"><title>${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Time to talk it through. Tap for both experts' numbers side by side.`)}</title><circle cx="177.7" cy="20.3" r="18.2" fill="#FF4D57" stroke="#0A1020" stroke-width="2.2"/><g transform="translate(167.2 9.8) scale(.875)"><path fill="#0A1020" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></g><circle cx="191.3" cy="8.4" r="7.9" fill="#0A1020" stroke="#FF4D57" stroke-width="1.9"/><text x="191.3" y="12.6" text-anchor="middle" class="wgphn">${Math.abs(split)}</text></g>` : ""}
     ${st("o")}${st("r")}${yd}${nd("o", R + 1, 8, true)}${nd("r", R + 1, 8)}
     <circle cx="${cx}" cy="${cy}" r="14" fill="${ZC[z]}" opacity=".45" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="11.5" fill="none" stroke="${ZC[z]}" stroke-width="1.8"/><circle cx="${cx}" cy="${cy}" r="10" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="3" fill="#0A0F1C"/></svg>`;
-  const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
   /* Nov 25 3:45 AM (Dom: "I was trying to remove the Talk 9 ... do something cool ... a phone ... in red ... above the gauge"):
      no words - a red, lit phone badge centered above the gauge. Steady glow, no blinking (Dom, Nov 22: "stop everything from blinking").
      Tapping it opens Dr. Roto's sheet: his number beside Ratcliffe's for every starter, so the split is right there. */
@@ -2535,8 +2541,10 @@ function winDial(o){
   const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (the gold diamond on the gauge)${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
   const chips = chip("y", "YAHOO", yTip) + chk.map(s3 => chip(s3, SH[s3], `${NM[s3]}: ${Math.round(X[s3])}% chance to win this week.`)).join("");
   const say = `${ok(X.r) ? "Ratcliffe " + Math.round(X.r) + "%" : "Ratcliffe not posted"}, ${ok(X.o) ? "Dr. Roto " + Math.round(X.o) + "%" : "Dr. Roto not posted"}, Yahoo ${Math.round(y)}% chance to win this week${talk ? " - Ratcliffe and Dr. Roto split by " + Math.abs(split) + " points: talk it through" : ""}`;
-  /* Nov 25 ~4:08 AM (Dom, voice: "Should we still have the talk phone?" - "might as well" take it off): the red phone is gone - Dr. Roto's
-     own number now blinks on the same 8-point split, and tapping it opens the side-by-side sheet. (tag is still built, just not shown.) */
+  /* Nov 25 ~4:10 AM (Dom, voice: "do the exact same thing [as the umbrella badge on the scoreboard] ... but the phone ... same size ...
+     touch the gauge exactly the same way"): the talk phone is now a badge drawn inside the dial - same on-screen size and spot as the
+     scoreboard's weather badge (red circle touching the bezel top-right, phone inside), with the split in points in the small dark
+     circle beside it. Steady, like the umbrella. Shows only on an 8+ point Ratcliffe/Dr. Roto split; tap opens Dr. Roto's sheet. */
   return `<div class="wpx wpx4 z-${z}" title="${esc(say)}">${svg}${nums}<div class="wxr wxr6">${chips}</div></div>`;
 }
 /* Nov 24 PM (Dom: "If I'm clicking on Dr. Roto, I want to see Dr. Roto's alerts ... I want to see his numbers"): tapping an expert's
