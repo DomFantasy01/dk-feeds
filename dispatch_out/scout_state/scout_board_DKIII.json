@@ -1,8 +1,8 @@
 {
  "league": "DK III",
- "run": "2026-11-25T03:34:58.773891-08:00",
- "run_str": "Wed Nov 25, 3:34 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 25, 3:34 AM PT (API) \u00b7 stats nflverse Wed 3:34 AM PT",
+ "run": "2026-11-25T03:46:35.739865-08:00",
+ "run_str": "Wed Nov 25, 3:46 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 25, 3:45 AM PT (API) \u00b7 stats nflverse Wed 3:45 AM PT",
  "gate1": [
   {
    "mark": "gold",
@@ -157,7 +157,9 @@
  "moves": [],
  "prekick": [],
  "watch": [
+  "Can't claim: Rachaad White (WAS RB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 28 and you can add him then.",
   "Can't claim: Corey Kiner (NE RB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 27 and you can add him then.",
+  "Can't claim: PIT defense (PIT DEF) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 28 and you can add him then.",
   "Stash: Seth McGowan (IND RB, waivers, clears Nov 28) - 29% of the IND backfield's touches the last three games behind Jonathan Taylor (~19.3 a game, 68%); the lead job is his if Taylor goes down; his own level now ~6.3",
   "Stash: Corey Kiner (NE RB, waivers, clears Nov 27) - 34% of the NE backfield's touches the last three games behind Rhamondre Stevenson (~12.8 a game, 53%); the lead job is his if Stevenson goes down; his own level now ~6.0",
   "Rising: Tai Felton (MIN WR, free agent) - workload jumped to 19.7 expected points last game from 2.3 before; season level ~4.6, not on the Scout's pickup list yet - one more game like it and he is",
@@ -180,13 +182,43 @@
   "flags": [],
   "failed": []
  },
- "arrivals": [],
+ "arrivals": [
+  {
+   "name": "Seth McGowan",
+   "pos": "RB",
+   "why": "dropped by Benchdad's Beach Wed Nov 25 1:38 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 28",
+   "yahoo_ros": 33.0,
+   "line": "Seth McGowan (RB) - dropped by Benchdad's Beach Wed Nov 25 1:38 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). Yahoo rest of season 33. on waivers until Nov 28. VERDICT: NOT AN UPGRADE: would not start or beat your bench (9.7 a game vs your weakest Rome Odunze 11.5). Ratcliffe - this week / 9.7 a game rest of season; Koerner 0.0; Yahoo -. Playoffs: Wk15 at TEN (Yahoo 8.5), Wk16 vs CIN (Yahoo 8.5), Wk17 at CLE (Yahoo 8.1)."
+  },
+  {
+   "name": "Juwan Johnson",
+   "pos": "TE",
+   "why": "dropped by Benchdad's Beach Wed Nov 25 1:38 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 28",
+   "yahoo_ros": 47.7,
+   "line": "Juwan Johnson (TE) - dropped by Benchdad's Beach Wed Nov 25 1:38 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). Yahoo rest of season 48. on waivers until Nov 28. VERDICT: NOT AN UPGRADE: would not start or beat your bench (7.3 a game vs your weakest T.J. Hockenson 10.7). Ratcliffe 4.1 this week / 7.3 a game rest of season; Koerner 5.9; Yahoo 6.8. Playoffs: Wk15 at TB (Yahoo 7.9), Wk16 vs ARI (Yahoo 8.9), Wk17 at ATL (Yahoo 8.1)."
+  }
+ ],
  "txn_review": {
-  "yours": [],
+  "yours": [
+   "You added Brandon Aiyuk (SF WR), Wed Nov 25 1:38 AM ($1 Waiver).",
+   "You dropped Rachaad White (Was RB), Wed Nov 25 1:38 AM (To Waivers).",
+   "You added Commanders (Was DEF), Wed Nov 25 1:38 AM ($2 Waiver).",
+   "You dropped Steelers (Pit DEF), Wed Nov 25 1:38 AM (To Waivers).",
+   "You dropped Corey Kiner (NE RB), Tue Nov 24 12:12 PM (To Waivers). If any pending waiver claim listed Corey Kiner as its drop, Yahoo cancelled that claim - re-enter it with a new drop."
+  ],
   "hurts": [],
   "missed": [],
   "openings": [],
-  "others": [],
-  "quiet": 0
+  "others": [
+   "Mrs. Bobo took Geno Smith (NYJ QB), Wed Nov 25 1:38 AM ($0 Waiver). VERDICT: BENCH DEPTH only: better than your Sam Darnold (23.0 vs 15.4 a game) but would not start. Ratcliffe 17.1 this week / 23.0 a game rest of season; Koerner 17.0; Yahoo -. Playoffs: Wk15 at ARI, Wk16 vs NE, Wk17 vs MIN. We showed him to you first: DK II wire alert Tue Nov 24 4:35 AM.",
+   "Benchdad's Beach took Darren Waller (Car TE), Wed Nov 25 1:38 AM ($3 Waiver). VERDICT: NOT AN UPGRADE: would not start or beat your bench (7.7 a game vs your weakest T.J. Hockenson 10.7). Ratcliffe 7.4 this week / 7.7 a game rest of season; Koerner 7.6; Yahoo -. Playoffs: Wk15 vs CIN, Wk16 at PIT, Wk17 vs SEA. No alert fired on him in this league before he was taken."
+  ],
+  "quiet": 5
  }
 }

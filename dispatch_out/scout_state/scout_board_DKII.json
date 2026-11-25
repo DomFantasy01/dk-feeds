@@ -1,8 +1,8 @@
 {
  "league": "DK II",
- "run": "2026-11-25T03:34:50.250771-08:00",
- "run_str": "Wed Nov 25, 3:34 AM PT",
- "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 25, 3:34 AM PT (API) \u00b7 stats nflverse Wed 3:34 AM PT",
+ "run": "2026-11-25T03:46:20.274854-08:00",
+ "run_str": "Wed Nov 25, 3:46 AM PT",
+ "depth": "Built from real points and workload \u2014 Weeks 1-11 of 2026 data, so read it as a direction \u00b7 rosters Yahoo Wed Nov 25, 3:45 AM PT (API) \u00b7 stats nflverse Wed 3:45 AM PT",
  "gate1": [
   {
    "mark": "red",
@@ -207,7 +207,9 @@
  "moves": [],
  "prekick": [],
  "watch": [
+  "Can't claim: Aaron Rodgers (PIT QB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 27 and you can add him then.",
   "Can't claim: Jacoby Brissett (BAL QB) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 28 and you can add him then.",
+  "Can't claim: Elic Ayomanor (TEN WR) - you dropped him, and Yahoo blocks claiming back your own drop while he's on waivers. If nobody claims him he's a free agent after Nov 28 and you can add him then.",
   "Stash: Kaelon Black (SF RB, free agent) - 35% of the SF backfield's touches the last three games behind Christian McCaffrey (~24.5 a game, 60%); the lead job is his if McCaffrey goes down; his own level now ~8.2",
   "Stash: Justice Hill (BAL RB, free agent) - 40% of the BAL backfield's touches the last three games behind Derrick Henry (~20.7 a game, 60%); the lead job is his if Henry goes down; his own level now ~10.9",
   "Rising: Tai Felton (MIN WR, free agent) - workload jumped to 19.7 expected points last game from 2.3 before; season level ~4.6, not on the Scout's pickup list yet - one more game like it and he is",
@@ -228,13 +230,42 @@
   "flags": [],
   "failed": []
  },
- "arrivals": [],
+ "arrivals": [
+  {
+   "name": "Jacoby Brissett",
+   "pos": "QB",
+   "why": "dropped by How \u2018Bout Them Points Wed Nov 25 1:41 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 28",
+   "yahoo_ros": 88.1,
+   "line": "Jacoby Brissett (QB) - dropped by How \u2018Bout Them Points Wed Nov 25 1:41 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). Yahoo rest of season 88. on waivers until Nov 28. VERDICT: BENCH DEPTH only: better than your Sam Darnold (22.1 vs 15.4 a game) but would not start. Ratcliffe 17.7 this week / 22.1 a game rest of season; Koerner 17.4; Yahoo 17.5. Playoffs: Wk15 at PIT (Yahoo 17.4), Wk16 vs CLE (Yahoo 16.9), Wk17 at CIN (Yahoo 18.5)."
+  },
+  {
+   "name": "Michael Mayer",
+   "pos": "TE",
+   "why": "dropped by RAIDER FAN \u2620\ufe0f Wed Nov 25 1:41 AM",
+   "boone": null,
+   "beats": null,
+   "how": "on waivers until Nov 28",
+   "yahoo_ros": 36.8,
+   "line": "Michael Mayer (TE) - dropped by RAIDER FAN \u2620\ufe0f Wed Nov 25 1:41 AM. Experts: not ranked by the expert panel this week (bye, hurt or deep). Yahoo rest of season 37. on waivers until Nov 28. VERDICT: NOT AN UPGRADE: would not start or beat your bench (9.4 a game vs your weakest Travis Kelce 13.0). Ratcliffe 6.5 this week / 9.4 a game rest of season; Koerner 5.7; Yahoo 6.0. Playoffs: Wk15 vs DEN (Yahoo 7.0), Wk16 vs TEN (Yahoo 8.1), Wk17 at ARI (Yahoo 7.8)."
+  }
+ ],
  "txn_review": {
-  "yours": [],
+  "yours": [
+   "You added Konata Mumpfield (LAR WR), Wed Nov 25 1:41 AM ($4 Waiver).",
+   "You dropped Elic Ayomanor (Ten WR), Wed Nov 25 1:41 AM (To Waivers).",
+   "You dropped Aaron Rodgers (Pit QB), Tue Nov 24 1:04 PM (To Waivers). If any pending waiver claim listed Aaron Rodgers as its drop, Yahoo cancelled that claim - re-enter it with a new drop.",
+   "You dropped Jauan Jennings (Min WR), Tue Nov 24 12:07 PM (To Waivers). If any pending waiver claim listed Jauan Jennings as its drop, Yahoo cancelled that claim - re-enter it with a new drop."
+  ],
   "hurts": [],
   "missed": [],
   "openings": [],
-  "others": [],
-  "quiet": 0
+  "others": [
+   "How \u2018Bout Them Points took Geno Smith (NYJ QB), Wed Nov 25 1:41 AM ($4 Waiver). VERDICT: BENCH DEPTH only: better than your Sam Darnold (23.0 vs 15.4 a game) but would not start. Ratcliffe 17.1 this week / 23.0 a game rest of season; Koerner 17.0; Yahoo -. Playoffs: Wk15 at ARI, Wk16 vs NE, Wk17 vs MIN. We showed him to you first: DK II wire alert Tue Nov 24 4:35 AM.",
+   "RAIDER FAN \u2620\ufe0f took Braelon Allen (NYJ RB), Wed Nov 25 1:41 AM ($11 Waiver). VERDICT: BENCH DEPTH only: better than your Jacory Croskey-Merritt (16.4 vs 11.3 a game) but would not start. Ratcliffe 11.2 this week / 16.4 a game rest of season; Koerner 10.8; Yahoo -. Playoffs: Wk15 at ARI, Wk16 vs NE, Wk17 vs MIN. We showed him to you first: DK II split alert Tue Nov 24 12:37 PM."
+  ],
+  "quiet": 9
  }
 }

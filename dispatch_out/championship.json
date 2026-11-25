@@ -1,10 +1,10 @@
 {
- "built": "Wed Nov 25 2026 03:34 AM PT",
+ "built": "Wed Nov 25 2026 03:45 AM PT",
  "sims": 6000,
  "leagues": {
   "DK I": {
    "week": 12,
-   "built": "Wed Nov 25 2026 03:34 AM PT",
+   "built": "Wed Nov 25 2026 03:45 AM PT",
    "standings": "Wed Nov 25 3:27 AM PT",
    "base": {
     "wins": 7.91,
@@ -1301,7 +1301,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 251 players",
    "plan": {
     "week": 12,
-    "built": "Wed Nov 25 2026 03:34 AM PT",
+    "built": "Wed Nov 25 2026 03:45 AM PT",
     "standings": "Wed Nov 25 3:27 AM PT",
     "playoff": 0.7511666666666666,
     "wins": 7.913333333333333,
@@ -1607,7 +1607,7 @@
   },
   "DK II": {
    "week": 12,
-   "built": "Wed Nov 25 2026 03:34 AM PT",
+   "built": "Wed Nov 25 2026 03:45 AM PT",
    "standings": "Wed Nov 25 3:27 AM PT",
    "base": {
     "wins": 6.37,
@@ -2497,13 +2497,13 @@
      "d_playoff": 0.0
     },
     {
-     "add": "Aaron Rodgers",
+     "add": "Kaelon Black",
      "drop": "Jaguars",
      "d_wins": -0.0,
      "d_playoff": -0.0
     },
     {
-     "add": "Kaelon Black",
+     "add": "Anthony Richardson",
      "drop": "Jaguars",
      "d_wins": -0.0,
      "d_playoff": -0.0
@@ -2512,10 +2512,10 @@
    "trades": [],
    "trades_screened": 141,
    "calls": [],
-   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 256 players",
+   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 254 players",
    "plan": {
     "week": 12,
-    "built": "Wed Nov 25 2026 03:34 AM PT",
+    "built": "Wed Nov 25 2026 03:45 AM PT",
     "standings": "Wed Nov 25 3:27 AM PT",
     "playoff": 0.12916666666666668,
     "wins": 6.368666666666667,
@@ -2820,12 +2820,12 @@
       "helps": []
      }
     ],
-    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 256 players"
+    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 254 players"
    }
   },
   "DK III": {
    "week": 12,
-   "built": "Wed Nov 25 2026 03:34 AM PT",
+   "built": "Wed Nov 25 2026 03:45 AM PT",
    "standings": "Wed Nov 25 3:27 AM PT",
    "base": {
     "wins": 6.23,
@@ -3559,11 +3559,27 @@
    ],
    "worth": [
     {
+     "name": "Buccaneers",
+     "pos": "DEF",
+     "d_playoff": -0.024,
+     "d_title": -0.0015,
+     "d_wins": -0.08,
+     "role": "backup defense behind Commanders; starts for you in Weeks 13, 14, 15, 16, 17",
+     "starts": [
+      13,
+      14,
+      15,
+      16,
+      17
+     ],
+     "helps": []
+    },
+    {
      "name": "Jaylen Waddle",
      "pos": "WR",
-     "d_playoff": -0.038,
-     "d_title": -0.0007,
-     "d_wins": -0.11,
+     "d_playoff": -0.011,
+     "d_title": -0.0005,
+     "d_wins": -0.03,
      "role": "starts for you in Weeks 13, 14, 15, 16, 17; would start for 6 rivals (Benchdad's Beach, Bad and Bougie 2.0, Dawg Pound Eric)",
      "starts": [
       13,
@@ -3582,22 +3598,6 @@
      ]
     },
     {
-     "name": "Buccaneers",
-     "pos": "DEF",
-     "d_playoff": -0.024,
-     "d_title": -0.0015,
-     "d_wins": -0.08,
-     "role": "backup defense behind Commanders; starts for you in Weeks 13, 14, 15, 16, 17",
-     "starts": [
-      13,
-      14,
-      15,
-      16,
-      17
-     ],
-     "helps": []
-    },
-    {
      "name": "J.J. McCarthy",
      "pos": "QB",
      "d_playoff": 0.0,
@@ -3611,63 +3611,67 @@
      "helps": []
     },
     {
-     "name": "Sam Darnold",
-     "pos": "QB",
+     "name": "Jordan Addison",
+     "pos": "WR",
      "d_playoff": 0.0,
      "d_title": 0.0,
      "d_wins": 0.0,
-     "role": "backup QB behind Jayden Daniels; doesn't start for you any week on current projections",
+     "role": "doesn't start for you any week on current projections; would start for 3 rivals (Press Coverage steph, Beachmom's Bench, Mrs. Bobo)",
      "starts": [],
-     "helps": []
+     "helps": [
+      "Press Coverage steph",
+      "Beachmom's Bench",
+      "Mrs. Bobo"
+     ]
     }
    ],
    "moves": [],
    "not_worth": [
     {
      "add": "Fernando Mendoza",
-     "drop": "Sam Darnold",
+     "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.006
     },
     {
-     "add": "DET defense",
-     "drop": "Sam Darnold",
-     "d_wins": 0.0,
-     "d_playoff": 0.001
-    },
-    {
-     "add": "PIT defense",
-     "drop": "Sam Darnold",
-     "d_wins": 0.0,
-     "d_playoff": 0.0
-    },
-    {
-     "add": "CLE defense",
-     "drop": "Sam Darnold",
+     "add": "NO defense",
+     "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.0
     },
     {
      "add": "NE defense",
-     "drop": "Sam Darnold",
-     "d_wins": 0.0,
-     "d_playoff": 0.0
-    },
-    {
-     "add": "Michael Penix Jr.",
-     "drop": "Sam Darnold",
+     "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.0
     },
     {
      "add": "Joe Milton III",
-     "drop": "Sam Darnold",
+     "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.0
     },
     {
      "add": "Anthony Richardson",
-     "drop": "Sam Darnold",
+     "drop": "J.J. McCarthy",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
+     "add": "Kaleb Johnson",
+     "drop": "J.J. McCarthy",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
+     "add": "Will Shipley",
+     "drop": "J.J. McCarthy",
+     "d_wins": 0.0,
+     "d_playoff": 0.0
+    },
+    {
+     "add": "Seth McGowan",
+     "drop": "J.J. McCarthy",
      "d_wins": 0.0,
      "d_playoff": 0.0
     }
@@ -3900,12 +3904,12 @@
      "pitch": "George Pickens and Harold Fannin Jr. for D'Andre Swift. On 6,000 simulated seasons your playoff odds go 100% to 100% and your title odds 28.2% to 30.1%, and you add about +0.0 wins - George Pickens and Harold Fannin Jr. start for you the rest of the way."
     }
    ],
-   "trades_screened": 28,
+   "trades_screened": 41,
    "calls": [],
-   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 230 players",
+   "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 228 players",
    "plan": {
     "week": 12,
-    "built": "Wed Nov 25 2026 03:34 AM PT",
+    "built": "Wed Nov 25 2026 03:45 AM PT",
     "standings": "Wed Nov 25 3:27 AM PT",
     "playoff": 0.15433333333333332,
     "wins": 6.23,
@@ -4118,11 +4122,28 @@
     ],
     "worth": [
      {
+      "name": "Buccaneers",
+      "pos": "DEF",
+      "d_playoff": -0.024,
+      "d_title": -0.0015,
+      "d_wins": -0.08,
+      "role": "backup defense behind Commanders; starts for you in Weeks 13, 14, 15, 16, 17",
+      "starts": [
+       13,
+       14,
+       15,
+       16,
+       17
+      ],
+      "helps": [],
+      "d_po": 0
+     },
+     {
       "name": "Jaylen Waddle",
       "pos": "WR",
-      "d_playoff": -0.038,
-      "d_title": -0.0007,
-      "d_wins": -0.11,
+      "d_playoff": -0.011,
+      "d_title": -0.0005,
+      "d_wins": -0.03,
       "role": "starts for you in Weeks 13, 14, 15, 16, 17; would start for 6 rivals (Benchdad's Beach, Bad and Bougie 2.0, Dawg Pound Eric)",
       "starts": [
        13,
@@ -4142,23 +4163,6 @@
       "d_po": 0
      },
      {
-      "name": "Buccaneers",
-      "pos": "DEF",
-      "d_playoff": -0.024,
-      "d_title": -0.0015,
-      "d_wins": -0.08,
-      "role": "backup defense behind Commanders; starts for you in Weeks 13, 14, 15, 16, 17",
-      "starts": [
-       13,
-       14,
-       15,
-       16,
-       17
-      ],
-      "helps": [],
-      "d_po": 0
-     },
-     {
       "name": "J.J. McCarthy",
       "pos": "QB",
       "d_playoff": 0.0,
@@ -4173,14 +4177,18 @@
       "d_po": 0
      },
      {
-      "name": "Sam Darnold",
-      "pos": "QB",
+      "name": "Jordan Addison",
+      "pos": "WR",
       "d_playoff": 0.0,
       "d_title": 0.0,
       "d_wins": 0.0,
-      "role": "backup QB behind Jayden Daniels; doesn't start for you any week on current projections",
+      "role": "doesn't start for you any week on current projections; would start for 3 rivals (Press Coverage steph, Beachmom's Bench, Mrs. Bobo)",
       "starts": [],
-      "helps": [],
+      "helps": [
+       "Press Coverage steph",
+       "Beachmom's Bench",
+       "Mrs. Bobo"
+      ],
       "d_po": 0
      }
     ],
@@ -4190,48 +4198,48 @@
       "pos": "QB",
       "nfl": "LV",
       "acq": "Free agent",
-      "drop": "Sam Darnold",
+      "drop": "J.J. McCarthy",
       "d_playoff": 0.006,
       "d_week": 0.0,
       "helps": []
      },
      {
-      "add": "DET defense",
+      "add": "NO defense",
       "pos": "DEF",
-      "nfl": "DET",
-      "acq": "Waivers, clears Nov 27",
-      "drop": "Sam Darnold",
-      "d_playoff": 0.001,
-      "d_week": 0.0,
-      "helps": []
-     },
-     {
-      "add": "PIT defense",
-      "pos": "DEF",
-      "nfl": "PIT",
-      "acq": "Waivers, clears Nov 28",
-      "drop": "Sam Darnold",
+      "nfl": "NO",
+      "acq": "Free agent",
+      "drop": "J.J. McCarthy",
       "d_playoff": 0.0,
       "d_week": 0.0,
       "helps": []
      },
      {
-      "add": "CLE defense",
+      "add": "NE defense",
       "pos": "DEF",
-      "nfl": "CLE",
+      "nfl": "NE",
       "acq": "Free agent",
-      "drop": "Sam Darnold",
+      "drop": "J.J. McCarthy",
+      "d_playoff": 0.0,
+      "d_week": 0.0,
+      "helps": []
+     },
+     {
+      "add": "Joe Milton III",
+      "pos": "QB",
+      "nfl": "PHI",
+      "acq": "Free agent",
+      "drop": "J.J. McCarthy",
       "d_playoff": 0.0,
       "d_week": 0.0,
       "helps": []
      }
     ],
-    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 230 players"
+    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 228 players"
    }
   },
   "DK IV": {
    "week": 12,
-   "built": "Wed Nov 25 2026 03:34 AM PT",
+   "built": "Wed Nov 25 2026 03:45 AM PT",
    "standings": "Wed Nov 25 3:27 AM PT",
    "base": {
     "wins": 15.74,
@@ -5820,7 +5828,7 @@
    "note": "6,000 seasons + the playoff bracket per test, paired draws (each man's luck is the same in every test); future weeks shaped by Mike Clay (ESPN) for 236 players",
    "plan": {
     "week": 12,
-    "built": "Wed Nov 25 2026 03:34 AM PT",
+    "built": "Wed Nov 25 2026 03:45 AM PT",
     "standings": "Wed Nov 25 3:27 AM PT",
     "playoff": 0.93,
     "wins": 15.743666666666666,
