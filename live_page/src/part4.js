@@ -1116,8 +1116,12 @@ function battleChart(){
         <span class="btn l">${L1}</span><span class="btn r">${R1}</span></div>
       ${chip(top(r.lo), false)}
       <span class="btv"><b style="color:${zc(started ? r.mn - r.on : pmg)}">${started ? ((r.mn - r.on) >= 0 ? "▲" : "▼") + f1(Math.abs(r.mn - r.on)) : (pmg >= 0 ? "▲" : "▼") + f1(Math.abs(pmg))}</b><em>${started ? `proj ${pmg >= 0 ? "▲" : "▼"}${f1(Math.abs(pmg))}` : "projected"}</em></span></div>`; };
-  const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "";
-  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${esc(stamp)}${stamp ? " · " : ""}Ratcliffe's projected final · actual score once games start</span><div class="btlw">${rows.map(row).join("")}</div></section>`;
+  /* Nov 25 8:11 AM (Dom: "it should say 7:19 and next one it's going to read" + "the explanation can go underneath it"):
+     same "time · Next time" stamp as every other section; a small how-to-read note under the bars */
+  const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
+  const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
+  const how = `<div class="bthow"><b>How to read it:</b> a tug of war in points, one line per league. Your side fills from the left in your league color, his from the right in grey; the dashed gold line is dead even - past it, you're ahead. <b>Before kickoff</b> the bar and its two numbers are Ratcliffe's projected final. <b>Once games start</b> the bright bar is the actual score and the faded ghost behind it is the projected final (points already scored plus Ratcliffe's numbers for players still to play). Left box = your player with the most points still to come; right box = his. Far right = the margin. Your side pulses while your players are on the field. Updates when a Yahoo read lands (every 10-15 min on game days), not play-by-play. The win dials above are the odds; this is the scoreboard.</div>`;
+  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${sub}</span><div class="btlw">${rows.map(row).join("")}</div>${how}</section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
