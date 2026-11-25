@@ -1922,33 +1922,36 @@ html body .mh .wk{animation:none !important;background:none !important;-webkit-t
 /* Nov 25: the talk phone pulses softly when its split is new or changed in the last 24 h */
 @media (prefers-reduced-motion:no-preference){html body .wpx4 .wgphb.phnew{animation:phnp 2.6s ease-in-out infinite}}
 @keyframes phnp{0%,100%{opacity:1}50%{opacity:.5}}
-/* Nov 25: Battle Meter */
-.btlw{margin:6px 0 10px;padding:10px 10px 8px;border-radius:12px;background:linear-gradient(180deg,rgba(28,40,70,.78),rgba(10,15,30,.9));border:1px solid rgba(140,160,210,.22);box-shadow:inset 0 0 30px rgba(67,184,255,.05)}
-.btlw .xhd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-.btlw .xhd b{font:800 13px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(90deg,#F2C230,#FFF4C2,#F2C230);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.btlw .xhd span{font-size:10px;color:#8C97B0}
-.btr{padding:6px 4px 8px;border-top:1px solid rgba(255,255,255,.06);cursor:pointer}.btr:first-of-type{border-top:0}
-.bth{display:flex;align-items:baseline;gap:10px}.bth b{font:800 14px/1 var(--f-body);letter-spacing:.04em}.bth .btm{font:800 13px/1 var(--f-num,monospace)}.bth .btn{margin-left:auto;font:600 11px/1 var(--f-num,monospace);color:#AEB6C8}.bth .btn em{font-style:normal;color:#6C7790;font-size:9px}
-.btbar{position:relative;height:16px;margin:6px 0 6px;border-radius:9px;background:rgba(255,255,255,.05);box-shadow:inset 0 1px 3px rgba(0,0,0,.6)}
-.btA{display:flex;height:100%;border-radius:9px;overflow:hidden}
+/* Nov 25 7:51 AM: Battle Meter - its own section, one thin line per league */
+.btsec .btlw{padding:4px 2px 2px}
+.btr{display:grid;grid-template-columns:34px 1fr 64px 228px;align-items:center;gap:8px;padding:5px 2px;border-top:1px solid rgba(255,255,255,.05);cursor:pointer}.btr:first-child{border-top:0}
+.btk{font:800 13px/1 var(--f-body);letter-spacing:.03em}
+.btbar{position:relative;height:14px;border-radius:8px;background:rgba(255,255,255,.04);box-shadow:inset 0 1px 3px rgba(0,0,0,.6)}
+.btG,.btA{position:absolute;inset:0;display:flex;border-radius:8px;overflow:hidden}
+.btG{opacity:.3}.btA{inset:3px 0;border-radius:6px}
 .btme,.btop{position:relative;display:block;height:100%}
-.btme{background:linear-gradient(90deg,color-mix(in srgb,var(--lc) 35%,#0A1020),var(--lc));box-shadow:0 0 12px color-mix(in srgb,var(--lc) 55%,transparent)}
-.btop{background:linear-gradient(90deg,#5A6684,#2A3350)}
-.btme i,.btop i{position:absolute;top:4px;bottom:4px;border-radius:4px;background:rgba(255,255,255,.75);box-shadow:0 0 6px rgba(255,255,255,.7)}.btme i{left:3px}.btop i{right:3px;background:rgba(220,228,245,.55)}
-.btseam{position:absolute;top:-4px;bottom:-4px;width:3px;margin-left:-1.5px;border-radius:2px;background:var(--zc);box-shadow:0 0 10px 2px var(--zc)}
-.btmid{position:absolute;left:50%;top:-3px;bottom:-3px;border-left:1px dashed rgba(242,194,48,.55)}
-.btl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btsd{display:flex;flex-wrap:wrap;gap:3px}.btsd.op{justify-content:flex-end}
-.btc{display:inline-flex;align-items:center;gap:3px;padding:2px 5px;border-radius:6px;font:600 9.5px/1.2 var(--f-body);color:#C9CFDB;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);white-space:nowrap}
-.btc.me{border-color:color-mix(in srgb,var(--lc) 45%,transparent)}.btc i{font-style:normal;font-size:8px;color:#7C88A3}.btc b{font:700 9.5px var(--f-num,monospace);color:#EEF1F6}
-.btc.sw{border-color:#F2C230;color:#FFF4C2;box-shadow:0 0 8px rgba(242,194,48,.5)}.btc.sw b{color:#F2C230}
-.btdone{font-size:9.5px;color:#6C7790}
+.btme{background:linear-gradient(90deg,color-mix(in srgb,var(--lc) 30%,#0A1020),var(--lc))}.btop{background:linear-gradient(90deg,#5A6684,#2A3350)}
+.btA .btme{box-shadow:0 0 10px color-mix(in srgb,var(--lc) 60%,transparent)}
+.btseam{position:absolute;top:-3px;bottom:-3px;width:3px;margin-left:-1.5px;border-radius:2px;background:var(--zc);box-shadow:0 0 9px 2px var(--zc)}
+.btgseam{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:rgba(255,255,255,.55)}
+.btmid{position:absolute;left:50%;top:-3px;bottom:-3px;border-left:1px dashed rgba(242,194,48,.6)}
+.btv{display:flex;flex-direction:column;align-items:flex-end;line-height:1.05}.btv b{font:800 12.5px var(--f-num,monospace);white-space:nowrap}.btv em{font-style:normal;font-size:8.5px;color:#7C88A3;white-space:nowrap}
+.btsw{display:flex;gap:3px;justify-content:flex-start;flex-wrap:nowrap;min-width:0}
+.btc{display:inline-flex;align-items:center;gap:3px;padding:2px 5px;border-radius:6px;font:600 9.5px/1.2 var(--f-body);color:#FFF4C2;background:rgba(242,194,48,.08);border:1px solid #F2C230;box-shadow:0 0 7px rgba(242,194,48,.4);white-space:nowrap}
+.btc i{font-style:normal;font-size:7.5px;color:#C9A43A}.btc.me i{color:var(--lc)}.btc b{font:700 9.5px var(--f-num,monospace);color:#F2C230}
 @media (prefers-reduced-motion:no-preference){
-  .btA.sw{animation:btin 3.6s cubic-bezier(.25,.8,.3,1) var(--d) both}
-  .btseam{animation:btglow 4.8s ease-in-out infinite}.btr:nth-of-type(2) .btseam{animation-delay:1.2s}.btr:nth-of-type(3) .btseam{animation-delay:2.4s}.btr:nth-of-type(4) .btseam{animation-delay:3.6s}
-  .btme::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(255,255,255,.28) 50%,transparent 100%);background-size:40% 100%;background-repeat:no-repeat;animation:btrun 6s linear infinite}}
+  .btG.sw{animation:btfade 2.4s ease-out var(--d) both}
+  .btA.sw{animation:btin 3.6s cubic-bezier(.25,.8,.3,1) calc(var(--d) + .8s) both}
+  .btr.live .btA .btme{animation:btlivep 2.8s ease-in-out infinite}
+  .btA .btme::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(255,255,255,.28) 50%,transparent 100%);background-size:40% 100%;background-repeat:no-repeat;animation:btrun 6s linear infinite}
+  .btseam{animation:btglow 4.8s ease-in-out infinite}}
+@keyframes btfade{from{opacity:0}to{opacity:.3}}
 @keyframes btin{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
-@keyframes btglow{0%,100%{box-shadow:0 0 6px 1px var(--zc)}50%{box-shadow:0 0 16px 4px var(--zc)}}
+@keyframes btglow{0%,100%{box-shadow:0 0 5px 1px var(--zc)}50%{box-shadow:0 0 14px 4px var(--zc)}}
 @keyframes btrun{0%{background-position:-60% 0}100%{background-position:160% 0}}
-@media (max-width:560px){.btl{grid-template-columns:1fr}.btsd.op{justify-content:flex-start}}
+@keyframes btlivep{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45) drop-shadow(0 0 6px var(--lc))}}
+@media (max-width:560px){.btr{grid-template-columns:30px 1fr 64px}.btsw{grid-column:2/4;justify-content:flex-start}}
+
 .btmore{font:700 9px/1.6 var(--f-body);color:#7C88A3;padding:2px 3px}
 </style>
 
@@ -3027,7 +3030,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = battleChart(); } catch(e){ console.error("battleChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = (() => { try { return battleChart(); } catch(e){ console.error("battleChart", e); return ""; } })() + SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){  const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -3082,29 +3085,36 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    it (biggest projections left, either side) glow gold. Rebuilds with every sync; the bars sweep in on the page's motion tour and a
    slow light runs along each seam. Tap a league to open it. */
 function battleChart(){
-  const ok = (v) => v !== null && v !== undefined && !isNaN(v);
+  /* Nov 25 7:51 AM (Dom: "everything on one screen"; "would it make sense that we actually have the battle meter being actual";
+     "pulse when there's actually any of our players playing ... so we know it's active"): one thin line per league. SOLID bar = the
+     actual score (you from the left in your league color, him from the right in steel; they meet at the glowing seam). Faded GHOST
+     behind it = where Ratcliffe's projections say it ends up (points scored + what's left). Before kickoff only the ghost shows. The
+     dashed gold line = dead even. Your side softly pulses while any of your starters is in a live game. The two men most likely to
+     swing it sit at the end of the line in gold. Not play-by-play: it moves when a build lands (hourly, every 10-15 min on game days). */
   const rows = KEYS.map(k => { const L = lgS(k); if (!L) return null; const pm = M && M.pm ? M.pm[L.key] : null;
     const st = (list) => list.filter(isStarter);
     const fin = (list) => st(list).reduce((a, p) => a + (manFinal(p, "r", pm) || 0), 0), now = (list) => st(list).reduce((a, p) => a + pts(p), 0);
     const left = (list, mine) => st(list).filter(p => !isDone(p) && !isOut(p)).map(p => ({p, mine, v: Math.max(0, (manFinal(p, "r", pm) || 0) - pts(p))}));
-    const me = fin(L.players), op = fin(L.oppPlayers), mn = now(L.players), on = now(L.oppPlayers);
-    const lm = left(L.players, true), lo = left(L.oppPlayers, false);
-    const swing = [...lm, ...lo].sort((a, b) => b.v - a.v).slice(0, 2).map(x => x.p.name + "|" + x.mine);
-    return {k, L, me, op, mn, on, lm, lo, swing}; }).filter(Boolean);
+    const me = fin(L.players), op = fin(L.oppPlayers), mn = now(L.players), on = now(L.oppPlayers), lm = left(L.players, true), lo = left(L.oppPlayers, false);
+    return {k, me, op, mn, on, lm, lo, live: st(L.players).some(isLive), swing: [...lm, ...lo].sort((a, b) => b.v - a.v).slice(0, 2)}; }).filter(Boolean);
   if (!rows.length) return "";
   const anim = !window.__btSwept; if (anim && !window.__btT) window.__btT = setTimeout(() => { window.__btSwept = true; window.__btT = 0; }, 6500);
-  const chip = (x, sw) => `<span class="btc${x.mine ? " me" : ""}${sw ? " sw" : ""}" title="${esc(`${x.mine ? "Yours" : "His"}: ${x.p.name} (${x.p.slot || ""}) - Ratcliffe has ${f1(x.v)} still to come${x.p.when ? " · " + x.p.when : ""}${sw ? " · one of the two most likely to swing this game" : ""}`)}"><i>${esc(POSAB(x.p.slot))}</i>${esc((x.p.name || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0])}<b>${Math.round(x.v)}</b></span>`;
-  const row = (r, i) => { const tot = Math.max(1, r.me + r.op), sh = Math.max(4, Math.min(96, 100 * r.me / tot)), mg = r.me - r.op;
-    const nowMe = Math.min(sh, 100 * r.mn / tot), nowOp = Math.min(100 - sh, 100 * r.on / tot), c = HEX[r.k];
-    const zc = Math.abs(mg) < 3 ? "#F7B32B" : mg > 0 ? "#3DDC84" : "#FF4D57";
-    const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(r.me)} to ${f1(r.op)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))}) · on the board ${f1(r.mn)} to ${f1(r.on)} · ${r.lm.length} of yours and ${r.lo.length} of his still to play`;
-    return `<div class="btr" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--zc:${zc};--d:${(i * .45).toFixed(2)}s">
-      <div class="bth"><b style="color:${c}">${DK[r.k]}</b><span class="btm" style="color:${zc}">${mg >= 0 ? "▲" : "▼"} ${f1(Math.abs(mg))}</span><span class="btn">${f1(r.me)} <em>vs</em> ${f1(r.op)}</span></div>
-      <div class="btbar"><div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${sh.toFixed(1)}%"><i style="width:${(100 * nowMe / sh).toFixed(1)}%"></i></span><span class="btop" style="width:${(100 - sh).toFixed(1)}%"><i style="width:${(100 * nowOp / (100 - sh)).toFixed(1)}%"></i></span></div>
-        <span class="btseam" style="left:${sh.toFixed(1)}%"></span><span class="btmid"></span></div>
-      <div class="btl"><div class="btsd">${r.lm.sort((a, b) => b.v - a.v).slice(0, 5).map(x => chip(x, r.swing.includes(x.p.name + "|true"))).join("")}${r.lm.length > 5 ? `<span class="btmore">+${r.lm.length - 5}</span>` : ""}${r.lm.length ? "" : `<span class="btdone">all yours have played</span>`}</div>
-        <div class="btsd op">${r.lo.length > 5 ? `<span class="btmore">+${r.lo.length - 5}</span>` : ""}${r.lo.sort((a, b) => b.v - a.v).slice(0, 5).map(x => chip(x, r.swing.includes(x.p.name + "|false"))).join("")}${r.lo.length ? "" : `<span class="btdone">all his have played</span>`}</div></div></div>`; };
-  return `<div class="btlw"><div class="xhd"><b>Battle Meter</b><span>projected final · Ratcliffe's numbers + points on the board · gold = the two most likely to swing it</span></div>${rows.map(row).join("")}</div>`;
+  const LN = (n) => (n || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0];
+  const row = (r, i) => { const sh = (a, b) => Math.max(3, Math.min(97, 100 * a / Math.max(1, a + b)));
+    const gS = sh(r.me, r.op), started = r.mn + r.on > 0, aS = started ? sh(r.mn, r.on) : 50, c = HEX[r.k];
+    const mg = started ? r.mn - r.op * 0 - r.on : r.me - r.op, pmg = r.me - r.op;
+    const zc = (v) => Math.abs(v) < 3 ? "#F7B32B" : v > 0 ? "#3DDC84" : "#FF4D57";
+    const tip = `${DK[r.k]}: ${started ? `actual score ${f1(r.mn)} to ${f1(r.on)} · ` : "not started · "}Ratcliffe's projected final ${f1(r.me)} to ${f1(r.op)} (${pmg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(pmg))}) · ${r.lm.length} of yours and ${r.lo.length} of his still to play${r.live ? " · YOUR PLAYERS ARE ON THE FIELD NOW" : ""} · tap for the league`;
+    const sw = r.swing.map(x => `<span class="btc sw${x.mine ? " me" : ""}" title="${esc(`${x.mine ? "Yours" : "His"}: ${x.p.name} - Ratcliffe has ${f1(x.v)} still to come`)}"><i>${x.mine ? "YOU" : "HIM"}</i>${esc(LN(x.p.name))}<b>${Math.round(x.v)}</b></span>`).join("");
+    return `<div class="btr${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(i * .45).toFixed(2)}s">
+      <b class="btk" style="color:${c}">${DK[r.k]}</b>
+      <div class="btbar"><div class="btG${anim ? " sw" : ""}"><span class="btme" style="width:${gS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - gS).toFixed(1)}%"></span></div>
+        ${started ? `<div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${aS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - aS).toFixed(1)}%"></span></div><span class="btseam" style="left:${aS.toFixed(1)}%;--zc:${zc(r.mn - r.on)}"></span>` : ""}
+        <span class="btgseam" style="left:${gS.toFixed(1)}%"></span><span class="btmid"></span></div>
+      <span class="btv"><b style="color:${zc(started ? r.mn - r.on : pmg)}">${started ? f1(r.mn) + "–" + f1(r.on) : (pmg >= 0 ? "▲" : "▼") + f1(Math.abs(pmg))}</b><em>${started ? `proj ${pmg >= 0 ? "▲" : "▼"}${f1(Math.abs(pmg))}` : "projected"}</em></span>
+      <span class="btsw">${sw}</span></div>`; };
+  const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "";
+  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${esc(stamp)}${stamp ? " · " : ""}solid = actual · ghost = Ratcliffe's projected final</span><div class="btlw">${rows.map(row).join("")}</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
@@ -3953,9 +3963,9 @@ document.addEventListener("click", async (e) => {
    to the Scoreboard. Each area moves about every 75 seconds, so something is always alive without everything moving at once.
    Paused while the page is in the background. (The numbers themselves change when a new build syncs - about hourly, every 10-15
    minutes during games.) */
-window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA"); if (!ns.length) return;
+window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA, .btlw .btG"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
-(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA"]; let i = 0;
+(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG"]; let i = 0;
   setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {
