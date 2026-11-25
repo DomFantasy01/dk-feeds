@@ -1028,9 +1028,43 @@ for i, o in old.items():
                                }.get(o.get("kind"), "the latest build no longer raises it"))
     if o.get("active") or not o.get("resolved_at") or o["resolved_at"] >= cut7:
         if (o.get("last_seen") or "") >= cut: out.append(o)
+# Nov 25 7:32 AM (Dom: "set those alert cards to zero every morning unless there's important items ... only the important items,
+# recycle it every morning"; "cards that pass a deadline or ... are not that important shouldn't be in there for more than a day").
+# THE MORNING RESET: every card first seen before today's 3 AM PT reset is archived (off the list, out of the counts) unless it is
+# still IMPORTANT = red with a deadline still ahead. A card past its deadline is archived right away. reset_at (set once by hand to
+# start fresh) moves the line later for that day. Cards first seen after the line stay - those are today's news.
+try:
+    from zoneinfo import ZoneInfo as _ZI
+    _P = _ZI("America/Los_Angeles"); _now = dt.datetime.now(dt.timezone.utc); _lp = _now.astimezone(_P)
+    _line = _lp.replace(hour=3, minute=0, second=0, microsecond=0)
+    if _lp < _line: _line -= dt.timedelta(days=1)
+    _line = _line.astimezone(dt.timezone.utc)
+    RESET_AT = PREV.get("reset_at")
+    if RESET_AT:
+        _ra = dt.datetime.fromisoformat(str(RESET_AT).replace("Z", "+00:00"))
+        if _ra > _line and _ra <= _now: _line = _ra
+    def _dl(x):
+        v = x.get("deadline_utc")
+        try: return dt.datetime.fromisoformat(str(v).replace("Z", "+00:00")) if v else None
+        except Exception: return None
+    _reset = 0
+    for _j, _x in enumerate(out):
+        if not _x.get("active"): continue
+        _d = _dl(_x)
+        if _d is not None and _d <= _now:
+            out[_j] = dict(_x, active=False, resolved_at=NOW, resolved_why="its deadline passed"); _reset += 1; continue
+        _fs = max(str(_x.get("first_seen") or ""), str(_x.get("updated_at") or "")) or None
+        try: _fsd = dt.datetime.fromisoformat(str(_fs).replace("Z", "+00:00")) if _fs else None
+        except Exception: _fsd = None
+        if _fsd is None or _fsd >= _line: continue
+        if _x.get("color") == "red" and _d is not None and _d > _now: continue   # still important - stays
+        out[_j] = dict(_x, active=False, resolved_at=NOW, resolved_why="morning reset - older than today's 3 AM list (Dom, Nov 25)"); _reset += 1
+    RESET_NOTE = f"morning reset: {_reset} archived (line {_line.astimezone(_P).strftime('%a %-I:%M %p')} PT)"
+except Exception as _e:
+    RESET_NOTE = f"morning reset skipped: {_e}"
 RANK = {"red": 0, "gold": 1, "grey": 2}
 out.sort(key=lambda x: (not x.get("active"), RANK.get(x["color"], 3), x["lg"], x["who"]))
-doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}, "news_checked": PREV.get("news_checked"), **({"news_sources": PREV["news_sources"]} if PREV.get("news_sources") else {})}
+doc = {"week": W, "built": BUILT, "generated": NOW, "feeds_checked": NOW if FEEDS else PREV.get("feeds_checked"), "source": SRC, "items": out[:300], "online_check": ONLINE_NOTE, "ftn_seen": FTN_SEEN or PREV.get("ftn_seen") or {}, "news_checked": PREV.get("news_checked"), **({"reset_at": PREV["reset_at"]} if PREV.get("reset_at") else {}), **({"news_sources": PREV["news_sources"]} if PREV.get("news_sources") else {})}
 # Oct 20 (Dom): SIZE GUARD - the Live database refuses a document over 262,144 bytes, and every hourly run with the
 # news feeds came out ~274 KB, so its write was refused and the page sat on the 7:13 AM feeds. Drop the oldest archived
 # cards (never an active one) until the document fits with room to spare, and write it compact.
@@ -1076,4 +1110,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (f", {_trimmed} grey cards shortened" if _trimmed else "") + (f", {_gdrop} oldest grey cards dropped" if _gdrop else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", RESET_NOTE, "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)

@@ -189,7 +189,8 @@ function xLab(x){ if (x.lab) return x.lab; const xs = xsOf(x); if (x.kind === "s
 function alertCard(x, sep){
   const m = mk(x.id), op = OPEN.has(x.id), d = Math.floor((Date.now() - new Date(x.first_seen).getTime()) / 864e5);
   const age = d >= 1 ? d + (d === 1 ? " DAY" : " DAYS") : "NEW";
-  return `<div class="al ${x.color}${m.read ? " read" : ""}${op ? " open" : ""}" data-aid="${esc(x.id)}" tabindex="0" role="button" aria-expanded="${op}">
+  const fresh = !m.read && (Date.now() - Date.parse(x.updated_at || x.first_seen || 0)) < 864e5;   /* Nov 25 (Dom): new or updated cards softly pulse until he opens them */
+  return `<div class="al ${x.color}${m.read ? " read" : ""}${fresh ? " alnew" : ""}${op ? " open" : ""}" data-aid="${esc(x.id)}" tabindex="0" role="button" aria-expanded="${op}">
     <div class="row"><div class="tag">${AL_TAG[x.color] || "NOTED"}</div>
       <div class="main"><div class="w"><span class="age">${age}</span>${esc(PT(x.first_seen, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}))}${x.deadline_utc && dueMin(x.deadline_utc) > 0 ? `<span class="dl${dueMin(x.deadline_utc) < 180 ? " hot" : ""}">${DUE(x.deadline_utc)} LEFT</span>` : ""}</div><div class="t"><span class="xlb x-${esc(xsOf(x)[0] || (x.kind === "sweep" || x.feed ? "news" : "sys"))}">${esc(xLab(x))}</span>${esc(x.title)}</div><div class="w">${esc(x.own || "")}${x.by ? " · " + esc(x.by) : ""}</div></div></div>
     <div class="b">${x.tie ? `<p><b>What it means:</b> ${esc(x.tie)}</p>` : ""}${x.fix ? `<p><b>Next:</b> ${esc(x.fix)}</p>` : ""}
@@ -876,7 +877,11 @@ function scoreGlobe(L, k, o){
     /* Nov 22 6:32 AM (Dom): the number counts only YOUR starters in orange or red weather - the weather that actually matters */
     const nb = mw.filter(x => x.lv !== "y").length;
     const tip = `Weather: ${nb} of yours in orange/red (${mw.length} of yours in any weather, ${ow.length} of his)${mw.length ? ` · yours: ${dn} hurt, ${up} helped` : ""} · worst: ${WXLV[lv]}${all.every(x => x.early) ? " · early forecast" : ""}`;
-    return `<g class="gwx tap" data-wxl="${SLUG[k]}" role="button" aria-label="${esc(tip)}"><title>${esc(tip)}</title><circle cx="110.5" cy="13" r="11.4" fill="${WXC[lv]}" stroke="#0A1020" stroke-width="1.4"/>
+    /* Nov 25 (Dom: "have them blink if anything's been updated on them in the last 24 hours"): this browser remembers each league's
+       weather picture; when it changes, the umbrella softly pulses for 24 hours, then sits still until it changes again */
+    const wxNew = (() => { try { const all0 = store.get("wxsig", {}), sig = tip.replace(/ · early forecast/, ""), cur = all0[k];
+      if (!cur || cur.sig !== sig){ all0[k] = {sig, at: Date.now()}; store.set("wxsig", all0); return true; } return Date.now() - cur.at < 864e5; } catch(_){ return false; } })();
+    return `<g class="gwx tap${wxNew ? " wxnew" : ""}" data-wxl="${SLUG[k]}" role="button" aria-label="${esc(tip)}"><title>${esc(tip)}</title><circle cx="110.5" cy="13" r="11.4" fill="${WXC[lv]}" stroke="#0A1020" stroke-width="1.4"/>
       <text x="110.5" y="17.6" text-anchor="middle" class="gwxu">☂</text>${nb ? `<circle cx="119" cy="5.4" r="5" fill="#0A1020" stroke="${WXC[lv]}" stroke-width="1.2"/><text x="119" y="8.1" text-anchor="middle" class="gwxn" style="fill:${WXC[lv]}">${nb}</text>` : ""}</g>`; })();
   const pmg = o.pMe - o.pOp, sv = f1(o.me), mtxt = pre ? "PROJ " + (Math.abs(pmg) < .05 ? "EVEN" : (pmg > 0 ? "▲" : "▼") + f1(Math.abs(pmg))) : Math.abs(mg) < .05 ? "TIED" : (mg > 0 ? "▲" : "▼") + f1(Math.abs(mg));
   const pw = Math.max(42, mtxt.length * 6.4 + 14), lf = (n) => n === 0 ? "DONE" : n;
@@ -1007,11 +1012,11 @@ function meters(){
           const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
           const tip = done ? `Final margin: ${f1(me)} to ${f1(op)}` : goNow ? `Live margin: ${f1(me)} to ${f1(op)} · you have ${meL} left to play, he has ${opL}` : `Projected margin (Yahoo's projections): ${f1(F.me)} to ${f1(F.op)}`;
           return `<div title="${esc(tip)}"><span>${goNow && !done ? "LIVE MARGIN" : done ? "FINAL MARGIN" : "MARGIN"}</span><b class="z-${mz}">${mt > 0 ? "+" : mt < 0 ? "−" : ""}${Math.abs(mt)}</b></div>`; })()}
-          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div></div>${(() => { /* Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
+          <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>${(() => { /* Nov 25 (Dom: "move all three things in that one box"): FAAB/waiver is now the third cell. Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
-            ? `<div class="wbud" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b>${wb.wp ? `<i>#${wb.wp}</i>` : ""}</div>`
-            : (wb.wp ? `<div class="wbud" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}`),
+            ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b>${wb.wp ? `<i>#${wb.wp}</i>` : ""}</div>`
+            : (wb.wp ? `<div class="sgfa" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}</div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
@@ -1021,7 +1026,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = ridgeChart(); } catch(e){ console.error("ridgeChart", e); } try { xc += xChart(); } catch(e){ console.error("xChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = ridgeChart(); } catch(e){ console.error("ridgeChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -1069,39 +1074,52 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    gold diamond on the base line, and the gold peak line marks where most experts land (the top of the mountain, not an average).
    The ridges roll in left to right, DK1 first, and replay every 15 minutes with the needles. Tap a league's ridge for its card. */
 function ridgeChart(){
+  /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
+     mountain range - DK1 in front, DK4 at the back, each in its league color, standing on a floor marked 0-100% chance to win this
+     week, with the 50% coin-flip line glowing gold across the floor. Every expert adds a hill at his number; tall narrow peak = they
+     agree, low wide ridge = they're split. Gold pin + % = where most experts land (the top of the mountain, not an average); blue line =
+     Ratcliffe's own hill; gold diamond = Yahoo. The ranges rise up back to front and replay on the page's motion tour. */
   const EX = [["r", "Ratcliffe"], ["o", "Dr. Roto"], ["d", "Draft Sharks"], ["c", "Clay"], ["v", "Vegas"], ["b", "RotoBaller"]];
-  const ok = (v) => v !== null && v !== undefined && !isNaN(v), W = 340, L0 = 70, R0 = 330, RH = 44, OV = 26, SG = 6.5;
-  const xp = (q) => L0 + (R0 - L0) * Math.max(0, Math.min(100, q)) / 100;
+  const ok = (v) => v !== null && v !== undefined && !isNaN(v), SG = 6.5, hill = (c, q) => Math.exp(-((q - c) ** 2) / (2 * SG * SG));
   const rows = KEYS.map(k => { const L = lgS(k); if (!L) return null; const X = Object.fromEntries(EX.map(([s3]) => [s3, chance(L, s3)]));
     const have = EX.filter(([s3]) => ok(X[s3])); if (have.length < 2) return null; return {k, X, have, y: chance(L, "y")}; }).filter(Boolean);
   if (!rows.length) return "";
-  const TOP = 36, H = TOP + rows.length * RH + 22, anim = !window.__rdSwept;
+  const W = 600, H = 246, Y0 = 224, DY = 40, n = rows.length, anim = !window.__rdSwept;   /* Nov 25 7:32 AM (Dom): turned more sideways - the leagues march up and to the right so no mountain hides another; the 50% line runs lower-left to upper-right */
   if (anim && !window.__rdT) window.__rdT = setTimeout(() => { window.__rdSwept = true; window.__rdT = 0; }, 6500);
-  const hill = (c, q) => Math.exp(-((q - c) ** 2) / (2 * SG * SG));
-  let body = "";
-  rows.forEach((r, i) => { const base = TOP + (i + 1) * RH, tall = RH + OV - 6;
-    const dens = []; for (let q = 0; q <= 100; q += 1) dens.push(r.have.reduce((a, [s3]) => a + hill(r.X[s3], q), 0));
-    const mx = Math.max(...dens), sc = tall / Math.max(mx, 2.2), pk = dens.indexOf(mx);
-    const path = (vals, s) => `M${xp(0).toFixed(1)} ${base} ` + vals.map((v, q) => `L${xp(q).toFixed(1)} ${(base - v * s).toFixed(1)}`).join(" ") + ` L${xp(100).toFixed(1)} ${base} Z`;
-    const one = (s3) => { const c = r.X[s3], pts = []; for (let q = Math.max(0, Math.floor(c - 3 * SG)); q <= Math.min(100, Math.ceil(c + 3 * SG)); q++) pts.push(`${xp(q).toFixed(1)} ${(base - hill(c, q) * sc).toFixed(1)}`); return "M" + pts.join(" L"); };
-    const spread = Math.max(...r.have.map(([s3]) => r.X[s3])) - Math.min(...r.have.map(([s3]) => r.X[s3]));
+  const geo = (d) => { const xl = 58 + d * 92, xr = 318 + d * 92, by = Y0 - d * DY, s = 1 - d * .04; return {xl, xr, by, s, X: (q) => xl + (xr - xl) * Math.max(0, Math.min(100, q)) / 100}; };
+  const back = geo(n - 1), front = geo(0);
+  let floor = `<polygon points="${front.xl},${front.by} ${front.xr},${front.by} ${back.xr},${back.by} ${back.xl},${back.by}" fill="url(#rdfl)" stroke="rgba(140,170,230,.25)" stroke-width=".8"/>`;
+  [0, 25, 50, 75, 100].forEach(q => { const g50 = q === 50; floor += `<line x1="${front.X(q).toFixed(1)}" y1="${front.by}" x2="${back.X(q).toFixed(1)}" y2="${back.by}" stroke="${g50 ? "#F2C230" : "rgba(160,185,235,.18)"}" stroke-width="${g50 ? 1.6 : .7}" ${g50 ? 'filter="url(#rdglow)"' : 'stroke-dasharray="2 3"'}/><text x="${front.X(q).toFixed(1)}" y="${front.by + 13}" text-anchor="middle" class="rdax${g50 ? " g" : ""}">${g50 ? "50% COIN FLIP" : q + "%"}</text>`; });
+  for (let d = 0; d < n; d++){ const G = geo(d); floor += `<line x1="${G.xl}" y1="${G.by}" x2="${G.xr}" y2="${G.by}" stroke="rgba(160,185,235,.14)" stroke-width=".7"/>`; }
+  let body = "", defs = "";
+  rows.map((r, i) => ({r, d: i})).reverse().forEach(({r, d}) => { const G = geo(d), c = HEX[r.k], gid = "rd3" + SLUG[r.k];
+    const dens = []; for (let q = 0; q <= 100; q++) dens.push(r.have.reduce((a, [s3]) => a + hill(r.X[s3], q), 0));
+    const mx = Math.max(...dens), pk = dens.indexOf(mx), sc = 74 * G.s / Math.max(mx, 2.2);
+    const top = (vals) => vals.map((v, q) => `${G.X(q).toFixed(1)} ${(G.by - v * sc).toFixed(1)}`).join(" L");
+    const area = `M${G.xl} ${G.by} L${top(dens)} L${G.xr} ${G.by} Z`;
+    const one = (s3) => { const cc = r.X[s3], pts = []; for (let q = Math.max(0, Math.floor(cc - 3 * SG)); q <= Math.min(100, Math.ceil(cc + 3 * SG)); q++) pts.push(`${G.X(q).toFixed(1)} ${(G.by - hill(cc, q) * sc).toFixed(1)}`); return "M" + pts.join(" L"); };
+    const vs = r.have.map(([s3]) => r.X[s3]), spread = Math.max(...vs) - Math.min(...vs);
     const word = spread <= 8 ? "AGREE" : spread <= 16 ? "MIXED" : "SPLIT", wc = spread <= 8 ? "#3DDC84" : spread <= 16 ? "#F7B32B" : "#FF4D57";
-    const tip = `${DK[r.k]} - chance to win this week, by expert: ` + r.have.map(([s3, n]) => `${n} ${Math.round(r.X[s3])}%`).join(", ") + (ok(r.y) ? `, Yahoo ${Math.round(r.y)}%` : "") + `. Most experts land near ${pk}%. Spread ${Math.round(spread)} points (${word.toLowerCase()}).`;
-    const gid = "rdg" + SLUG[r.k], c = HEX[r.k];
-    body += `<g class="rdgA${anim ? " sw" : ""}" style="--d:${(i * .5).toFixed(2)}s" data-jump="${SLUG[r.k]}" role="button" tabindex="0"><title>${esc(tip)}</title>
-      <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset="1" stop-color="${c}" stop-opacity=".12"/></linearGradient>
-      <line x1="${L0}" x2="${R0}" y1="${base}" y2="${base}" stroke="rgba(255,255,255,.14)" stroke-width=".8"/>
-      <path d="${path(dens, sc)}" fill="url(#${gid})" stroke="${c}" stroke-width="1.2" stroke-linejoin="round"/>
-      ${ok(r.X.r) ? `<path d="${one("r")}" fill="none" stroke="#43B8FF" stroke-width="1.6" stroke-linejoin="round" filter="drop-shadow(0 0 2px #43B8FF)"/>` : ""}
-      ${ok(r.X.o) ? `<path d="${one("o")}" fill="none" stroke="#F4F6FA" stroke-width="1.2" stroke-dasharray="3 2" stroke-linejoin="round"/>` : ""}
-      <line x1="${xp(pk).toFixed(1)}" x2="${xp(pk).toFixed(1)}" y1="${(base - mx * sc - 4).toFixed(1)}" y2="${base}" stroke="#F2C230" stroke-width="1.4"/>
-      <text x="${xp(pk).toFixed(1)}" y="${(base - mx * sc - 6).toFixed(1)}" text-anchor="middle" class="rdpk">${pk}%</text>
-      ${ok(r.y) ? `<path d="M${xp(r.y).toFixed(1)} ${base - 4} l4 4 l-4 4 l-4 -4 Z" fill="#F2C230" stroke="#0A1020" stroke-width=".8"/>` : ""}
-      <text x="4" y="${base - 14}" class="rdlg" fill="${c}">${DK[r.k]}</text><text x="4" y="${base - 3}" class="rdwd" fill="${wc}">${word} ${Math.round(spread)}</text></g>`; });
-  const ticks = [0, 25, 50, 75, 100].map(q => `<line x1="${xp(q).toFixed(1)}" x2="${xp(q).toFixed(1)}" y1="20" y2="${H - 18}" data-y="${TOP}" stroke="rgba(255,255,255,${q === 50 ? .22 : .07})" stroke-width="${q === 50 ? 1 : .6}" stroke-dasharray="${q === 50 ? "none" : "2 3"}"/><text x="${xp(q).toFixed(1)}" y="${H - 6}" text-anchor="middle" class="rdax">${q === 50 ? "50% · COIN FLIP" : q + "%"}</text>`).join("");
-  return `<div class="rdg"><div class="xhd"><b>Expert Ridge</b><span>chance to win this week · every expert, every league</span></div>
-    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Expert ridge: how the experts' chances to win this week stack up in each league">${ticks}${body}</svg>
-    <p class="xft"><i style="color:#43B8FF">━</i> Ratcliffe · <i style="color:#F4F6FA">┅</i> Dr. Roto · <i style="color:#F2C230">◆</i> Yahoo · <i style="color:#F2C230">│</i> where most experts land · tall narrow peak = the experts agree, low wide ridge = they're split (AGREE within 8 points, MIXED 9-16, SPLIT 17+). Tap a ridge for that league.</p></div>`;
+    const tip = `${DK[r.k]} - chance to win this week, by expert: ` + r.have.map(([s3, nm]) => `${nm} ${Math.round(r.X[s3])}%`).join(", ") + (ok(r.y) ? `, Yahoo ${Math.round(r.y)}%` : "") + `. Most experts land near ${pk}%. Spread ${Math.round(spread)} points (${word.toLowerCase()}).`;
+    defs += `<linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".98"/><stop offset=".55" stop-color="${c}" stop-opacity=".55"/><stop offset="1" stop-color="${c}" stop-opacity=".08"/></linearGradient>`;
+    const px = G.X(pk), py = G.by - mx * sc;
+    body += `<g class="rdgA${anim ? " sw" : ""}" style="--d:${((n - 1 - d) * .45).toFixed(2)}s" data-jump="${SLUG[r.k]}" role="button" tabindex="0"><title>${esc(tip)}</title>
+      <path d="${area}" transform="translate(2.5 3.5)" fill="#05080F" opacity=".55"/>
+      <path d="${area}" fill="url(#${gid})"/>
+      <path d="M${top(dens)}" fill="none" stroke="${c}" stroke-width="1.8" stroke-linejoin="round" filter="url(#rdglow)"/>
+      <path d="M${top(dens)}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".6" stroke-linejoin="round"/>
+      ${ok(r.X.r) ? `<path d="${one("r")}" fill="none" stroke="#43B8FF" stroke-width="1.5" stroke-linejoin="round" filter="url(#rdglow)"/>` : ""}
+      <line x1="${px.toFixed(1)}" y1="${(py - 7).toFixed(1)}" x2="${px.toFixed(1)}" y2="${G.by}" stroke="#F2C230" stroke-width="1.1" stroke-opacity=".9"/>
+      <circle cx="${px.toFixed(1)}" cy="${(py - 8).toFixed(1)}" r="2.2" fill="#F2C230" filter="url(#rdglow)"/>
+      <text x="${px.toFixed(1)}" y="${(py - 22).toFixed(1)}" text-anchor="middle" class="rdlg" fill="${c}">${DK[r.k]} <tspan class="rdpk">${pk}%</tspan></text><text x="${px.toFixed(1)}" y="${(py - 13).toFixed(1)}" text-anchor="middle" class="rdwd" fill="${wc}">${word} ${Math.round(spread)}</text>
+      ${ok(r.y) ? `<path d="M${G.X(r.y).toFixed(1)} ${G.by - 3.5} l3.5 3.5 l-3.5 3.5 l-3.5 -3.5 Z" fill="#F2C230" stroke="#0A1020" stroke-width=".7"/>` : ""}
+      </g>`; });
+  return `<div class="rdg rd3"><div class="xhd"><b>Expert Range</b><span>chance to win this week · every expert · all four leagues</span></div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Expert mountain range: how the experts' chances to win this week stack up in each league"><defs>${defs}
+      <linearGradient id="rdfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1B2A4C" stop-opacity=".9"/><stop offset="1" stop-color="#0A1222" stop-opacity=".4"/></linearGradient>
+      <filter id="rdglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      ${floor}${body}</svg>
+    <p class="xft"><i style="color:#43B8FF">━</i> Ratcliffe · <i style="color:#F2C230">◆</i> Yahoo · <i style="color:#F2C230">●</i> where most experts land · tall narrow peak = the experts agree, low wide ridge = they're split (AGREE within 8 points, MIXED 9-16, SPLIT 17+). Tap a mountain for that league.</p></div>`;
 }
 function xChart(){
   const Q = panelQ(), A = (M && M.acc) || {}; if (!Q) return "";
@@ -1897,11 +1915,15 @@ document.addEventListener("click", async (e) => {
     { const sc = document.querySelector(`#gsheet .al[data-aid="${CSS.escape(id)}"]`); if (sc){ sc.classList.toggle("open", OPEN.has(id)); sc.classList.add("read"); } }   /* the expert sheet's copy opens in place; the read mark reaches the main list */
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
-/* Nov 25 (Dom): replay the staggered needle sweep every 15 minutes; if the page is in the background, replay when it comes back. */
-window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN, .sgauge .sgF, .rdg .rdgA"); if (!ns.length) return;
+/* Nov 25 7:15 AM (Dom: "I want action ... go from one area maybe to another, come back"): the MOTION TOUR. Every 25 seconds the
+   page replays one area's animation, in turn: Scoreboard meters fill -> Win Probability needles sweep -> Expert mountains rise -> back
+   to the Scoreboard. Each area moves about every 75 seconds, so something is always alive without everything moving at once.
+   Paused while the page is in the background. (The numbers themselves change when a new build syncs - about hourly, every 10-15
+   minutes during games.) */
+window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .rdg .rdgA"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
-(() => { let due = false; setInterval(() => { if (document.hidden) due = true; else window.wgReplay(); }, 15 * 60 * 1000);
-  document.addEventListener("visibilitychange", () => { if (!document.hidden && due){ due = false; window.wgReplay(); } }); })();
+(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".rdg .rdgA"]; let i = 0;
+  setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;

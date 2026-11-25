@@ -1891,4 +1891,29 @@ html body .mh h1{background:linear-gradient(100deg,#8A6A12 0%,#D4A62A 22%,#F2C23
 .rdg .rdgA{cursor:pointer}.rdg .xft{margin:4px 2px 0;font-size:9.5px;color:#6C7790;line-height:1.4}.rdg .xft i{font-style:normal;font-weight:800}
 @media (prefers-reduced-motion:no-preference){.rdg .rdgA.sw{animation:rdroll 3.2s cubic-bezier(.3,.1,.25,1) var(--d) both}}
 @keyframes rdroll{from{clip-path:inset(0 100% 0 0);opacity:.35}to{clip-path:inset(0 0 0 0);opacity:1}}
+
+/* Nov 25 7:32 AM (Dom: "I don't want you to put the circle around it ... don't need to make it bigger or smaller ... glow and come back
+   to normal ... every so often"; "blue-white ... like the Bat-Signal"): no ring, no size change - every 24 s a cool blue-white glow
+   swells around the bat and fades back to normal */
+html body .mh img{box-shadow:none !important;transform:none !important}
+@media (prefers-reduced-motion:no-preference){html body .mh img{animation:dkbat 24s ease-in-out infinite}}
+@keyframes dkbat{0%,78%,100%{filter:drop-shadow(0 0 0 rgba(190,225,255,0))}86%{filter:drop-shadow(0 0 6px rgba(225,242,255,.95)) drop-shadow(0 0 16px rgba(120,190,255,.75)) brightness(1.18)}}
+html body .mh img{position:relative;z-index:2}
+/* Nov 25: margin, playoffs and FAAB in one box, three across */
+html body .mgrid.g-b .sgx{flex-wrap:nowrap !important}html body .mgrid.g-b .sgx > div{flex:1 1 0 !important;min-width:0}
+html body .mgrid.g-b .sgx .sgfa b{color:#F2C14E}html body .mgrid.g-b .sgx .sgfa b + i,html body .mgrid.g-b .sgx .sgfa i{font-style:normal;font-size:9px;color:var(--ink2);display:block;line-height:1}
+/* Nov 25: 3D expert mountain range */
+.rd3 svg{max-height:420px}.rd3 .rdlg{font:800 11px var(--f-body);letter-spacing:.04em}.rd3 .rdwd{font:800 7px var(--f-body);letter-spacing:.08em}
+.rd3 .rdax{font:600 7px var(--f-body);fill:#7C88A3}.rd3 .rdax.g{fill:#F2C230;font-weight:800}
+.rd3 .rdgA{transform-box:fill-box;transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){.rd3 .rdgA.sw{animation:rdrise 2.6s cubic-bezier(.2,.9,.25,1.05) var(--d) both}}
+@keyframes rdrise{0%{transform:scaleY(.02);opacity:0}25%{opacity:1}100%{transform:scaleY(1);opacity:1}}
+
+/* Nov 25: soft pulses - a weather umbrella whose forecast changed in the last 24 h, and alert cards that are new since he looked */
+@media (prefers-reduced-motion:no-preference){
+  html body .sgauge .gwx.wxnew{animation:wxnp 2.6s ease-in-out infinite}
+  html body .al.alnew{animation:alnp 2.6s ease-in-out infinite}}
+@keyframes wxnp{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes alnp{0%,100%{box-shadow:0 0 0 0 rgba(242,194,48,0)}50%{box-shadow:0 0 0 2px rgba(242,194,48,.55),0 0 14px rgba(242,194,48,.35)}}
+html body .rd3 svg{max-height:300px}
 </style>

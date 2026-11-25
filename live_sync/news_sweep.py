@@ -84,6 +84,8 @@ def merge(al_f, mk_f, fl_f, out_f, src_f=None):
             for k in ("title", "tie", "fix", "own", "src", "feed", "by"):
                 if f.get(k): cur[k] = f[k]
             if RANK.get(f.get("color"), 2) < RANK.get(cur.get("color"), 2): cur["color"] = f["color"]
+            if not cur.get("active"): cur["first_seen"] = NOW   # Nov 25 (Dom): news on an archived card brings it back as today's news
+            cur["updated_at"] = NOW   # the morning reset and the page's soft pulse go by the latest news, not the first
             cur["what"] = cur["title"]; cur["last_seen"] = NOW; cur["built"] = f.get("built") or cur.get("built"); cur["active"] = True
             upd += 1; continue
         if cur and gone and (cur.get("title") or "").strip().lower() == (f.get("title") or "").strip().lower():
