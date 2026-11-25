@@ -1677,7 +1677,18 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wxd2 .wxd3{font:700 10px var(--f-num);paint-order:stroke;stroke:#070B16;stroke-width:2px}
 .wxd2 .wxs{font:600 7px var(--f-num);fill:#8C97B0}
 /* Nov 24 PM (Dom: "exactly the same size in those other six boxes"): the six expert boxes use the dial's number size - 40 of the dial's 216 units */
-.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * 37 / 224)}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
+.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .19)}
+/* Nov 24 PM v3: the polished gauge, two needles, numbers under it */
+.wpx .wgd{display:block;width:100%;max-width:290px;margin:0 auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.wgd .wgs{font:600 7px var(--f-num);fill:#AEB8CE}
+.wpx .wgr{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:2px 0 4px}
+.wpx .wgn{display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 0 4px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.08);cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.wpx .wgn:hover{border-color:rgba(255,255,255,.25)}
+.wpx .wgn b{font:400 calc(min(100cqw, 290px) * .19)/1 var(--f-disp);letter-spacing:.01em;text-shadow:0 0 10px currentColor}
+.wpx .wgn b small{font-size:.4em;margin-left:1px;vertical-align:.95em}
+.wpx .wgn b.z-win{color:#3DDC84}.wpx .wgn b.z-mid{color:#F7B32B}.wpx .wgn b.z-lose{color:#FF5A63}
+.wpx .wgn span{display:flex;align-items:center;gap:4px;font:700 calc(min(100cqw, 290px) * .042)/1 var(--f-body);letter-spacing:.1em;color:#C9CFDB}
+.wpx .wgn span i{display:inline-block;width:10px;height:3px;border-radius:2px;box-shadow:0 0 4px rgba(255,255,255,.4)}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
 .wpx .wxt2{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px}
 .wpx .wxt2 b{font:700 8px/1 var(--f-body);letter-spacing:.16em;color:#9AA5BC}
 .wpx .wxt2 .wxtk{font:800 7px/1 var(--f-body);letter-spacing:.1em;color:#1A1405;background:#FFD166;border-radius:6px;padding:2px 5px}

@@ -567,69 +567,59 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", drroto: "o", draftsharks
    Under the dial, ONE line: how far each pillar has moved since he first posted this week (Dom: "a point in time since posting" -
    never read-to-read, which can drift), e.g. "RATCLIFFE ▼4 · DR. ROTO ▲2 since Tue 4:22 AM". Then the other experts' chips. */
 function winDial(o){
-  const {k, X, OCK, y, xmid, ZF, off, F, imp} = o;
+  /* Nov 24 PM v3 (Dom: "make them look really good ... shiny and super cool"; "use the needles"; "be careful, one of those boxes is the
+     color of my team" - DK3 is purple, so Dr. Roto's needle is WHITE; "the pluses and minuses ... take them off"). One polished gauge:
+     glass face, metal bezel, red-amber-green scale, Ratcliffe = blue needle (decides), Dr. Roto = white needle (pillar 2), metal hub.
+     Their two numbers sit under the gauge, name under each; tap either for that expert's alerts. TALK lights when they split by 8+. */
+  const {k, X, y, ZF, off, F, imp} = o;
   const NM = {r: "Ratcliffe", o: "Dr. Roto", d: "Draft Sharks", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", o: "DR. ROTO", d: "DRAFTSHRK", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
   const XID = {r: "ratcliffe", o: "drroto", d: "draftsharks", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
   const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
-  const PC = {r: "#4FC3FF", o: "#B58CFF"};   /* pillar colors: Ratcliffe ice blue, Dr. Roto violet */
-  const lead = ok(X.r) ? "r" : ok(X.o) ? "o" : "y", main = lead === "y" ? y : X[lead], z = ZF(main);
-  const ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, g = "wx" + SLUG[k];
-  const cx = 100, cy = 100, R1 = 86, R2 = 67, A = (q) => Math.PI * (1 - q / 100), P = (q, rr) => [cx + rr * Math.cos(A(q)), cy - rr * Math.sin(A(q))], f = (n) => n.toFixed(1);
+  const NC = {r: "#43B8FF", o: "#F4F6FA"};
+  const lead = ok(X.r) ? X.r : ok(X.o) ? X.o : y, z = ZF(lead), ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, g = "wg" + SLUG[k];
+  const cx = 100, cy = 92, R = 78, A = (q) => Math.PI * (1 - q / 100), P = (q, rr) => [cx + rr * Math.cos(A(q)), cy - rr * Math.sin(A(q))], f = (n) => n.toFixed(1);
   const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 0 1 ${f(x1)} ${f(y1)}`; };
-  const zr = R1 + 9.5;   /* zone band on the outside: red under 45, amber 45-55, green 55+ */
-  const band = [[0, 45, "#FF4D57"], [45, 55, "#F7B32B"], [55, 100, "#3DDC84"]].map(([a0, a1, c]) => `<path d="${arc(a0 + .6, a1 - .6, zr)}" stroke="${c}" stroke-width="2.6" fill="none" opacity="${z === (a0 === 0 ? "lose" : a0 === 45 ? "mid" : "win") ? .95 : .32}"/>`).join("");
-  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 5 === 0, [a0, b0] = P(t * 5, R1 + 8.2), [a1, b1] = P(t * 5, R1 + (maj ? 5 : 6.8));
-    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#AEB8CE" : "#3A4766"}" stroke-width="${maj ? 1.3 : .8}" stroke-linecap="round"/>`; }
-  /* ONE line, one time: both pillars measured from the same moment - the first read this week where BOTH had posted (Dr. Roto
-     posts later than Ratcliffe some weeks; a shared start keeps the two moves comparable). Before that, each from his own first post. */
-  const tsh = (iso) => { try { const d = new Date(iso); return {d: d.toLocaleDateString("en-US", {weekday: "short", timeZone: "America/Los_Angeles"}), t: d.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles"}).replace(/ ([AP])M$/, (m0, a) => a.toLowerCase())}; } catch(_){ return null; } };
-  const base = (() => { const e0 = trailEntries().find(e => S && e.w === S.week && e.lg && e.lg[k] && ok(e.lg[k].r) && ok(e.lg[k].o)); if (e0) return {r: e0.lg[k].r, o: e0.lg[k].o, at: tsh(e0.t)};
-    const W0 = (M && M.wk0) || {}, m = /^(\w{3}) \w{3} \d+ \d{4} (\d+):(\d{2}) ([AP])M/.exec((W0.at_src || {}).o || (W0.at_src || {}).r || W0.at || "");
-    return {r: weekStart(k, "r"), o: weekStart(k, "o"), at: m ? {d: m[1], t: `${+m[2]}:${m[3]}${m[4].toLowerCase()}`} : null}; })();
-  /* one pillar band: dark track, glowing fill to his chance, bright cap at the end, a dotted ring where he started the week */
-  const pill = (s3, rr, w) => {
-    const c = PC[s3], track = `<path d="${arc(0, 100, rr)}" stroke="#0B1324" stroke-width="${w + 2}" fill="none" stroke-linecap="round"/><path d="${arc(0, 100, rr)}" stroke="#18233D" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
-    if (!ok(X[s3])) return track + `<path d="${arc(0, 100, rr)}" stroke="${c}" stroke-opacity=".35" stroke-width="1.2" fill="none" stroke-dasharray="2 3"/>`;
-    const v = cl(X[s3]), [tx, ty] = P(v, rr), v0 = base[s3];
-    const fill = v > .5 ? `<path d="${arc(0, v, rr)}" stroke="${c}" stroke-width="${w + 3}" fill="none" stroke-linecap="round" opacity=".45" filter="url(#${g}b)"/>
-      <path d="${arc(0, v, rr)}" stroke="url(#${g}${s3})" stroke-width="${w}" fill="none" stroke-linecap="round"/>
-      <path d="${arc(0, v, rr + w / 2 - 1.2)}" stroke="#fff" stroke-opacity=".3" stroke-width="1.1" fill="none" stroke-linecap="round"/>` : "";
-    const st = ok(v0) && Math.round(v0) !== Math.round(v) ? (() => { const [gx, gy] = P(cl(v0), rr); return `<circle cx="${f(gx)}" cy="${f(gy)}" r="${(w / 2 + 1.2).toFixed(1)}" fill="none" stroke="#E6EAF2" stroke-width="1.1" stroke-dasharray="1.6 1.4" opacity=".85"/>`; })() : "";
-    return track + fill + st + `<circle cx="${f(tx)}" cy="${f(ty)}" r="${(w / 2 - .5).toFixed(1)}" fill="#fff" stroke="${c}" stroke-width="2"/>`; };
+  /* the scale band: one smooth red-amber-green sweep, the part where the lead expert sits glowing */
+  const band = `<path d="${arc(0, 100, R)}" stroke="url(#${g}sc)" stroke-width="9" fill="none" opacity=".35"/>` +
+    (ok(lead) ? `<path d="${arc(0, Math.max(.6, cl(lead)), R)}" stroke="url(#${g}sc)" stroke-width="9" fill="none"/><path d="${arc(0, Math.max(.6, cl(lead)), R + 3.2)}" stroke="#fff" stroke-opacity=".35" stroke-width="1" fill="none"/>` : "");
+  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 5 === 0, [a0, b0] = P(t * 5, R - 7), [a1, b1] = P(t * 5, R - (maj ? 15 : 11));
+    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#DDE3EE" : "#56658A"}" stroke-width="${maj ? 1.6 : .9}" stroke-linecap="round"/>`; }
+  const scl = [0, 25, 50, 75, 100].map(q => { const [lx, ly] = P(q, R - 23); return `<text x="${f(lx)}" y="${f(q === 0 || q === 100 ? ly - 5 : ly + 3)}" text-anchor="middle" class="wgs">${q}</text>`; }).join("");
+  /* tapered needle with a drop shadow */
+  const needle = (q, len, fill, w) => { const a = A(cl(q)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 12, cy - uy * 12];
+    return `<path d="M${f(tail[0])} ${f(tail[1])} L${f(cx + px * w)} ${f(cy + py * w)} L${f(tip[0])} ${f(tip[1])} L${f(cx - px * w)} ${f(cy - py * w)} Z" fill="${fill}"/>`; };
+  const nd = (s3, len, w) => ok(X[s3]) ? `<g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w)}</g>` : "";
+  /* Yahoo: a small white pointer on the outer rim */
+  const yp = ok(y) ? (() => { const a = A(cl(y)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(cl(y), R + 13), [qx, qy] = P(cl(y), R + 6);
+    return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 3.8)} ${f(by + py * 3.8)} L${f(bx - px * 3.8)} ${f(by - py * 3.8)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width=".8"/>`; })() : "";
+  const svg = `<svg class="wgd" viewBox="0 0 200 104" aria-hidden="true"><defs>
+    <linearGradient id="${g}sc" gradientUnits="userSpaceOnUse" x1="${cx - R}" y1="0" x2="${cx + R}" y2="0"><stop offset="0" stop-color="#FF4D57"/><stop offset=".42" stop-color="#FF8A3D"/><stop offset=".5" stop-color="#F7B32B"/><stop offset=".58" stop-color="#B8D94A"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
+    <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".22"/><stop offset=".5" stop-color="#16223F"/><stop offset="1" stop-color="#0A1121"/></radialGradient>
+    <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".45" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="${g}bz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4A5470"/><stop offset=".2" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#7C88A2"/><stop offset=".8" stop-color="#F4F6FA"/><stop offset="1" stop-color="#4A5470"/></linearGradient>
+    <linearGradient id="${g}nr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9BE0FF"/><stop offset="1" stop-color="#1E8FE0"/></linearGradient>
+    <linearGradient id="${g}no" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9C2D4"/></linearGradient>
+    <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#2E3852"/></radialGradient>
+    <filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#000" flood-opacity=".75"/></filter></defs>
+    <path d="M${cx - R - 9} ${cy} A${R + 9} ${R + 9} 0 0 1 ${cx + R + 9} ${cy} Z" fill="url(#${g}bz)"/>
+    <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}face)"/>
+    ${band}${ticks}${scl}
+    <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}gl)"/>
+    ${yp}${nd("o", R - 4, 2.6)}${nd("r", R - 1, 3.2)}
+    <circle cx="${cx}" cy="${cy}" r="8.5" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#0A0F1C"/>
+    <rect x="${cx - R - 9}" y="${cy}" width="${2 * R + 18}" height="2.2" fill="url(#${g}bz)"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
-  const gap = talk ? `<path d="${arc(Math.min(cl(X.r), cl(X.o)), Math.max(cl(X.r), cl(X.o)), (R1 + R2) / 2)}" stroke="#FFD166" stroke-width="1.6" fill="none" stroke-dasharray="3 2" opacity=".95"/>` : "";
-  /* the experts' middle: white tick across both bands; Yahoo: white pointer on the rim */
-  /* Nov 24 PM (Dom: "that's not needed"): no experts'-middle tick, no center divider - Yahoo keeps its small pointer */
-  const yp = ok(y) ? (() => { const q = cl(y), a = A(q), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(q, zr + 8), [qx, qy] = P(q, zr + 1.5);
-    return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 4.4)} ${f(by + py * 4.4)} L${f(bx - px * 4.4)} ${f(by - py * 4.4)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width="1" stroke-linejoin="round"/>`; })() : "";
-  /* the scale (Dom: "There should be a 25, 50, 75, and 100"): 0 · 25 · 50 · 75 · 100 just outside the zone ring; a label under Yahoo's pointer steps aside */
-  const scl = [0, 25, 50, 75, 100].filter(q => !(ok(y) && Math.abs(y - q) < 6 && q > 0 && q < 100)).map(q => { const [lx, ly] = q === 0 || q === 100 ? [q === 0 ? cx - R1 : cx + R1, cy + 15] : P(q, zr + 7);
-    return `<text x="${f(lx)}" y="${f(q === 0 || q === 100 ? ly : ly + 2)}" text-anchor="${q === 25 ? "end" : q === 75 ? "start" : "middle"}" class="wxs">${q}</text>`; }).join("");
-  /* the two numbers, side by side, each a button to that expert's alert cards */
-  const mv = (s3) => ok(X[s3]) && ok(base[s3]) ? Math.round(X[s3] - base[s3]) : null, mr = mv("r"), mo = mv("o");
-  /* each pillar (Dom: "the 61% should go under his name"): name, his chance right under it, and under that his move in his own color - taps to his alerts */
-  const num = (s3, x0) => { const has = ok(X[s3]), zz = has ? ZF(X[s3]) : "mid", d = s3 === "r" ? mr : mo;
-    const tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides)" : " (pillar 2 - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week${d === null ? "" : `, ${d === 0 ? "no change" : (d > 0 ? "up " : "down ") + Math.abs(d) + " points"} since ${base.at ? base.at.d + " " + base.at.t : "his first posting"}`}. Tap for ${NM[s3]}'s alerts.` : `${NM[s3]}: Week numbers not posted yet - left out until they are. Tap for ${NM[s3]}'s alerts.`;
-    return `<g class="wxh" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" aria-label="${esc(tip)}"><title>${esc(tip)}</title><rect x="${x0 - 25}" y="${cy - 52}" width="50" height="64" rx="7" fill="transparent"/>
-      <text x="${x0}" y="${cy + 9}" text-anchor="middle" class="wxl wxl2" style="fill:${PC[s3]}">${s3 === "r" ? "RATCLIFFE" : "DR. ROTO"}</text>
-      ${has ? `<text x="${x0}" y="${cy - 5}" text-anchor="middle" class="wxn wxn2 z-${zz}">${wp2(X[s3])}<tspan class="wxp" dy="-10">%</tspan></text>` : `<text x="${x0}" y="${cy - 14}" text-anchor="middle" class="wxl wxc">NOT POSTED</text>`}
-      ${has && d !== null ? `<text x="${x0}" y="${cy - 39}" text-anchor="middle" class="wxd3" style="fill:${PC[s3]}">${d === 0 ? "±0" : (d > 0 ? "▲" : "▼") + Math.abs(d)}</text>` : ""}</g>`; };
-  const grad = (s3) => `<linearGradient id="${g}${s3}" gradientUnits="userSpaceOnUse" x1="${cx - R1}" y1="0" x2="${cx + R1}" y2="0"><stop offset="0" stop-color="${PC[s3]}" stop-opacity=".55"/><stop offset="1" stop-color="${PC[s3]}"/></linearGradient>`;
-  const svg = `<svg class="wxd wxd2" viewBox="-12 -10 224 130"><defs>${grad("r")}${grad("o")}
-    <radialGradient id="${g}f" cx="50%" cy="100%" r="95%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".22"/><stop offset=".55" stop-color="#121C34" stop-opacity=".9"/><stop offset="1" stop-color="#0A1020" stop-opacity="0"/></radialGradient>
-    <filter id="${g}b" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.8"/></filter></defs>
-    <path d="M${cx - zr} ${cy} A${zr} ${zr} 0 0 1 ${cx + zr} ${cy} Z" fill="url(#${g}f)"/>
-    ${band}${ticks}${pill("r", R1, 15)}${pill("o", R2, 12)}${gap}${yp}${scl}${num("r", cx - 27)}${num("o", cx + 27)}</svg>`;
-  /* title above the arch (Dom: "chance to win ... maybe that needs to go above"), with the TALK tag when the pillars split; one small line under the arch says when the moves count from */
   const head = `<div class="wxt2"><b>CHANCE TO WIN</b>${talk ? `<span class="wxtk" title="Ratcliffe and Dr. Roto split by ${Math.abs(split)} points - talk it through">TALK ${Math.abs(split)}</span>` : ""}</div>`;
-  const mvT = "";   /* Nov 24 PM (Dom: "I don't think that's necessary ... get rid of that"): the moves' start time lives in each number's tap tip */
-  /* under that: Yahoo and every other expert, each tappable to its own alerts */
+  /* the two numbers under the gauge, name under each, needle color beside the name */
+  const num = (s3) => { const has = ok(X[s3]), tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides, blue needle)" : " (pillar 2, white needle - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week. Tap for ${NM[s3]}'s alerts.` : `${NM[s3]}: this week's numbers not posted yet. Tap for ${NM[s3]}'s alerts.`;
+    return `<div class="wgn" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tip)}"><b class="z-${has ? ZF(X[s3]) : "mid"}">${has ? wp2(X[s3]) + "<small>%</small>" : "–"}</b><span><i style="background:${NC[s3]}"></i>${SH[s3]}</span></div>`; };
+  const nums = `<div class="wgr">${num("r")}${num("o")}</div>`;
   const chip = (s3, lab, tipT) => ok(X[s3]) ? `<div class="wxk" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tipT)} Tap for ${esc(NM[s3])}'s alerts."><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b></div>` : `<div class="wxk wxn" title="${esc(NM[s3] || lab)}: Week ${S ? S.week : ""} numbers not posted yet - left out until they are"><span><i class="lf">${lab}</i><i class="ls">${({VEGAS: "VEGAS", DRAFTSHRK: "DSHRK", ROTO: "ROTO", CLAY: "CLAY", KOERNER: "KOERN"})[lab] || lab}</i></span><b>–</b><em>NOT<br>POSTED</em></div>`;
   const chk = ["d", "c", "b", "v", "k"].filter(s3 => X[s3] !== undefined);
-  const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (white pointer on the dial)${ok(xmid) ? `` : ""}${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
+  const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (small white pointer on the rim)${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
   const chips = chip("y", "YAHOO", yTip) + chk.map(s3 => chip(s3, SH[s3], `${NM[s3]}: ${Math.round(X[s3])}% chance to win this week.`)).join("");
   const say = `${ok(X.r) ? "Ratcliffe " + Math.round(X.r) + "%" : "Ratcliffe not posted"}, ${ok(X.o) ? "Dr. Roto " + Math.round(X.o) + "%" : "Dr. Roto not posted"} chance to win this week${talk ? " - they split by " + Math.abs(split) + " points: talk it through" : ""}`;
-  return `<div class="wpx z-${z}" title="${esc(say)}">${head}${svg}${mvT}<div class="wxr">${chips}</div></div>`;
+  return `<div class="wpx z-${z}" title="${esc(say)}">${head}${svg}${nums}<div class="wxr">${chips}</div></div>`;
 }
 function bigDial(v, col, mark, id, v0, v2){
   /* Nov 11 2:45 PM (Dom: "add more shine, more beauty to that gauge"): glass dial face lit in the league color, glowing gradient
