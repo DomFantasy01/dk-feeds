@@ -1016,7 +1016,7 @@ function meters(){
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
             ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
-            : (wb.wp ? `<div class="sgfa" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}</div>`),
+            : ""; /* Nov 25 2:12 PM (Dom): DK4's "WAIVER #5/10" cell taken off the front - no FAAB there, the box keeps just MARGIN and PLAYOFFS */ })()}</div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
