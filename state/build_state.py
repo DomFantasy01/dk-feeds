@@ -203,9 +203,9 @@ for k, v in (M.get("sources") or {}).items():
             "yahoo_all_teams": "Yahoo win % (all teams)", "yahoo_standings": "Yahoo standings", "nfl_schedule": "NFL schedule",
             "gotham": "Gotham projections", "sleeper_skill": "Sleeper projections", "sleeper_kdef": "Sleeper K/DEF projections"}.get(k, k),
            ptstr(v.get("pulled_pt") or v.get("read")), hrs,   # Nov 4: Clay/Brenton write their time as "read", not "pulled_pt" - that blank tripped a false NO-GO
-           (v.get("note") or "") + ("" if st in ("OK", "") else f"; build says {st}"), lvl_old,
+           (v.get("note") or "") + ("" if st in ("OK", "", "TESTING") else f"; build says {st}"), lvl_old,
            by_read=k in ("yahoo_matchups", "yahoo_rosters"))
-    if st not in ("OK", ""): HEALTH.append(("red", k, f"build marked it {st}: {v.get('note', '')}"))
+    if st not in ("OK", "", "TESTING"): HEALTH.append(("red", k, f"build marked it {st}: {v.get('note', '')}"))   # Nov 25: TESTING = on trial, not broken - it had tripped a false NO-GO
 FS = load(os.path.join(FEEDS, "status.json"), {}) or {}
 run = iso(FS.get("run_utc"))
 _fs = load(os.path.join(FAST, "status.json"), {}) or {}
