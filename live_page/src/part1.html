@@ -1835,4 +1835,7 @@ html body .wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .16)}
 /* Nov 25 3:56 AM (Dom: "soft blink"): six-box number 8+ points off Ratcliffe fades softly - never fully dark */
 html body .wpx .wxr6 .wxk.wxph b{animation:wxsb 2.2s ease-in-out infinite}
 @keyframes wxsb{0%,100%{opacity:1}50%{opacity:.4}}
+/* Nov 25 ~4 AM (Dom): Dr. Roto's big number softly fades the same way - only when he breaks from Ratcliffe by 8+ points */
+html body .wpx .wgr .wgn.wgsb b{animation:wxsb 2.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){html body .wpx .wgr .wgn.wgsb b{animation:none;text-decoration:underline dotted}}
 </style>
