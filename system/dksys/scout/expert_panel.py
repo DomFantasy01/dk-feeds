@@ -222,7 +222,21 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
     ranks, stamps = resolved_ranks(R)
     global PANEL_NOW
     PANEL_NOW = active_panel(ranks)
-    inbox = newest_inbox(R); ROS = rosters(inbox)
+    inbox = newest_inbox(R); ROS = rosters(inbox) if inbox else {}
+    # Nov 25: the Chrome inbox can miss a team page (DK II team 4 "FUCKING COWBOYS") and its players then read as free agents
+    # (Watson, DJ Moore, Bo Nix were flagged as pickups). The Yahoo API roster file covers every team - it wins when present.
+    api_read = None
+    for _lab, _n, _lid, _me in LEAGUES:
+        _rows = scout_rows(R, _n)
+        if _rows:
+            _t = {}
+            for _r in _rows: _t.setdefault(int(_r["team"]), []).append(_r["name"])
+            ROS[_n] = _t
+            try:
+                _h = open(f"{R}/yahoo_drop/scout/dk{_n}_rosters_live.txt").readline()
+                api_read = api_read or (re.search(r"read (\w{3} \w{3} \d{1,2} \d{1,2}:\d{2} [AP]M PT)", _h) or [None, None])[1]
+            except Exception: pass
+    inbox = dict(inbox or {}); inbox["read_pt"] = api_read or inbox.get("read_pt")
     ef = f"{R}/yahoo_drop/morning/expert_rankings.txt"
     hd = open(ef).readline() if os.path.exists(ef) else ""
     week = int((re.search(r"week (\d+)", hd) or [0, 0])[1] or 0) if hd else 0
@@ -230,7 +244,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
     sl = json.load(open(f"{R}/feeds/sleeper_players_min.json")).get("players", {}) if os.path.exists(f"{R}/feeds/sleeper_players_min.json") else {}
     INJ = {K(p.get("name")): p for p in sl.values() if p.get("name")}
     rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=inbox.get("read_pt"), experts_read=stamps, experts_stale=EXPERT_STALE,
-               panel=[SHOW.get(e, e) for e in PANEL_NOW], rule=f"{NEED} of {len(PANEL_NOW)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
+               panel=[SHOW.get(e, e) for e in PANEL_NOW], rule=f"{min(NEED, len(PANEL_NOW))} of {len(PANEL_NOW)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
     for lab, n, lid, me in LEAGUES:
         teams = ROS.get(n, {}); rostered = {K(p) for ps in teams.values() for p in ps}
         srows = scout_rows(R, n); W = waivers(R, n)
@@ -246,7 +260,7 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
                     if e in cr and e in dr and cr[e][0] == dr[e][0]:
                         det[SHOW[e]] = f"{cr[e][0]}{cr[e][1]} v {dr[e][0]}{dr[e][1]}"
                         (yes if dr[e][1] - cr[e][1] >= EDGE else no).append(SHOW[e])
-                if len(yes) >= NEED:
+                if len(yes) >= min(NEED, len(PANEL_NOW)):   # Nov 25: Ratcliffe posts his FantasyPros ranks Thursday - with one expert in, "2 of 1" could never flag anyone
                     b = best.get(c)
                     if not b or len(yes) > len(b["yes"]): best[c] = dict(d=d, yes=yes, no=no, det=det)
         def worst_rank(d):   # higher number = weaker in the experts' eyes; unranked counts as weakest

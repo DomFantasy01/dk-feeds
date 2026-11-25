@@ -62,7 +62,7 @@ def main(repo="."):
         ok = all(int(re.sub(r"^[A-Z]+", "", c)) > 0 for c in counts)   # Nov 5 fix: was c[2:], which read "K30" as 0 and failed complete lists
         got += ok
         note = f" - {'/'.join(kept)} kept from the {prev_stamp} pull (feed empty right now)" if kept else ""
-        log.append(f"{name}: {'/'.join(counts)}, last updated {max(pubs) if pubs else 'none'} (FantasyPros time)" + ("" if ok else " - INCOMPLETE") + note)
+        log.append(f"{name}: {'/'.join(counts)}, last updated {max(pubs) if pubs else 'not posted yet this week'} (FantasyPros time)" + ("" if ok else " - INCOMPLETE") + note)
     if not got:
         print("\n".join(log))
         if not NETERR:   # Nov 18 (Dom: "Fix this"): the feed answered for every expert, the Week list just isn't posted yet (Tue/Wed) - not a failure
