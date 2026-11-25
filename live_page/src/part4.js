@@ -902,7 +902,13 @@ function scoreGlobe(L, k, o){
     <circle cx="${CX}" cy="${CY}" r="53.6" fill="none" stroke="#24304C" stroke-width=".6"/>
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
-    ${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}
+    ${(() => { /* Nov 25 6:57 AM (Dom: "have the score meter fill in from 0 to 100 every 15 minutes staggered and slow"): each ring is
+       revealed from the 0 end around to the top of the scale (a mask drawn on over 3.2 s) - DK1 first, then DK2, DK3, DK4 0.5 s apart,
+       your outer ring first and his inner ring 0.4 s behind. Plays on first paint and replays every 15 minutes with the needles (wgReplay). */
+      const sgi = Math.max(0, (parseInt(String(SLUG[k] || "").replace(/\D/g, ""), 10) || 1) - 1), anim = !window.__sgSwept;
+      if (anim && !window.__sgT) window.__sgT = setTimeout(() => { window.__sgSwept = true; window.__sgT = 0; }, 6500);
+      const mk = (nm, r, w, dl) => `<mask id="${id}${nm}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><path class="sgF${anim ? " sw" : ""}" d="${arc(r, 0, 1)}" fill="none" stroke="#fff" stroke-width="${w}" stroke-linecap="round" pathLength="100" style="--d:${dl.toFixed(2)}s"/></mask>`;
+      return `${mk("mkm", 44, 17, sgi * .5)}${mk("mko", 32.5, 11, sgi * .5 + .4)}<g mask="url(#${id}mkm)">${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}</g><g mask="url(#${id}mko)">${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}</g>`; })()}
     ${tlab}
     <ellipse cx="${CX}" cy="${CY + 28.6}" rx="16" ry="2.2" fill="#000" opacity=".4"/>
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}ga)"/></g>
@@ -1820,7 +1826,7 @@ document.addEventListener("click", async (e) => {
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
 /* Nov 25 (Dom): replay the staggered needle sweep every 15 minutes; if the page is in the background, replay when it comes back. */
-window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN"); if (!ns.length) return;
+window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN, .sgauge .sgF"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
 (() => { let due = false; setInterval(() => { if (document.hidden) due = true; else window.wgReplay(); }, 15 * 60 * 1000);
   document.addEventListener("visibilitychange", () => { if (!document.hidden && due){ due = false; window.wgReplay(); } }); })();

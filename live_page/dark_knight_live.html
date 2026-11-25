@@ -1693,7 +1693,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx .wgn::before{content:"";position:absolute;inset:0 0 auto;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.09),transparent);pointer-events:none}
 .wpx .wgn::after{content:"";position:absolute;top:-2px;left:50%;width:40%;height:2px;transform:translateX(-50%);background:var(--nc);box-shadow:0 0 8px var(--nc);opacity:.9}
 .wgd .wgN{transform-box:view-box;transform-origin:100px 92px}.wgd4 .wgN{transform-origin:100px 98px}
-@media (prefers-reduced-motion:no-preference){.wgd .wgN.sw{animation:wgsw 3.2s cubic-bezier(.25,.8,.3,1.06) var(--d) both}@keyframes wgsw{from{transform:rotate(var(--r0))}to{transform:rotate(0deg)}}}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
+@media (prefers-reduced-motion:no-preference){.wgd .wgN.sw{animation:wgsw 3.2s cubic-bezier(.25,.8,.3,1.06) var(--d) both}.sgauge .sgF{stroke-dasharray:101 101;stroke-dashoffset:0}.sgauge .sgF.sw{animation:sgfill 3.2s cubic-bezier(.33,.1,.25,1) var(--d) both}@keyframes sgfill{from{stroke-dashoffset:101}to{stroke-dashoffset:0}}@keyframes wgsw{from{transform:rotate(var(--r0))}to{transform:rotate(0deg)}}}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
 .wpx .wxt2{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px}
 .wpx .wxt2 b{font:700 8px/1 var(--f-body);letter-spacing:.16em;color:#9AA5BC}
 .wpx .wxt2 .wxtk{font:800 7px/1 var(--f-body);letter-spacing:.1em;color:#1A1405;background:#FFD166;border-radius:6px;padding:2px 5px}
@@ -2805,7 +2805,13 @@ function scoreGlobe(L, k, o){
     <circle cx="${CX}" cy="${CY}" r="53.6" fill="none" stroke="#24304C" stroke-width=".6"/>
     ${ticks}
     <circle cx="${CX}" cy="${CY}" r="26" fill="url(#${id}zg)"/>
-    ${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}
+    ${(() => { /* Nov 25 6:57 AM (Dom: "have the score meter fill in from 0 to 100 every 15 minutes staggered and slow"): each ring is
+       revealed from the 0 end around to the top of the scale (a mask drawn on over 3.2 s) - DK1 first, then DK2, DK3, DK4 0.5 s apart,
+       your outer ring first and his inner ring 0.4 s behind. Plays on first paint and replays every 15 minutes with the needles (wgReplay). */
+      const sgi = Math.max(0, (parseInt(String(SLUG[k] || "").replace(/\D/g, ""), 10) || 1) - 1), anim = !window.__sgSwept;
+      if (anim && !window.__sgT) window.__sgT = setTimeout(() => { window.__sgSwept = true; window.__sgT = 0; }, 6500);
+      const mk = (nm, r, w, dl) => `<mask id="${id}${nm}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><path class="sgF${anim ? " sw" : ""}" d="${arc(r, 0, 1)}" fill="none" stroke="#fff" stroke-width="${w}" stroke-linecap="round" pathLength="100" style="--d:${dl.toFixed(2)}s"/></mask>`;
+      return `${mk("mkm", 44, 17, sgi * .5)}${mk("mko", 32.5, 11, sgi * .5 + .4)}<g mask="url(#${id}mkm)">${ring(44, 9.5, o.me, o.pMe, ZC, "m", LC)}</g><g mask="url(#${id}mko)">${ring(32.5, 5, o.op, o.pOp, {win: "#FF4D57", mid: "#F7B32B", lose: "#3DDC84"}[zone], "o", "#8E9196")}</g>`; })()}
     ${tlab}
     <ellipse cx="${CX}" cy="${CY + 28.6}" rx="16" ry="2.2" fill="#000" opacity=".4"/>
     <g filter="url(#${id}ds)"><circle cx="${CX}" cy="${CY + 1}" r="26.5" fill="url(#${id}ga)"/></g>
@@ -3723,7 +3729,7 @@ document.addEventListener("click", async (e) => {
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
 /* Nov 25 (Dom): replay the staggered needle sweep every 15 minutes; if the page is in the background, replay when it comes back. */
-window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN"); if (!ns.length) return;
+window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN, .sgauge .sgF"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
 (() => { let due = false; setInterval(() => { if (document.hidden) due = true; else window.wgReplay(); }, 15 * 60 * 1000);
   document.addEventListener("visibilitychange", () => { if (!document.hidden && due){ due = false; window.wgReplay(); } }); })();
