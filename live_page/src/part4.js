@@ -1021,7 +1021,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { const g = xs.querySelector(".mgrid"), xc = xChart(); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -1057,6 +1057,37 @@ function ourCheck(){ const Q = panelQ(); return Q ? (Q.check || []).map(n => PNI
 /* Nov 12 4:10 PM (Dom): the second list - pickups, drops and playoffs: P✓1 Ratcliffe's rest of season decides, P✓2 Clay's Weeks 15-17 checks */
 function ourCheckPO(){ const Q = panelQ(); return Q ? (Q.check_po || []).map(n => PNID[n] || n.toLowerCase()) : []; }
 const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", d: "draftsharks", y: "yahoo", g: "gotham"};
+/* Nov 25 6:59 AM (Dom: "How about an expert chart at the top of experts and sources"): the expert scorecard - one row per source,
+   best on top. Bar = points missed per player over the last four graded weeks, every source graded on the SAME players
+   (shorter = closer); ▲ = usually projects too high, ▼ = too low; the little line = his miss week by week (lower = better);
+   chips = his job (✓1 decides lineups, Pillar 2, ✓ lineup check, P✓ pickups/playoffs check); right = when we last read him.
+   Ratcliffe in his needle blue, Dr. Roto in his needle white. Dr. Roto and Draft Sharks are not on the weekly grade yet. */
+function xChart(){
+  const Q = panelQ(), A = (M && M.acc) || {}; if (!Q) return "";
+  const ID = {Ratcliffe: "ratcliffe", "Dr. Roto": "drroto", "Draft Sharks": "draftsharks", Clay: "clay", Vegas: "vegas", RotoBaller: "rotoballer", Yahoo: "yahoo", Gotham: "gotham"};
+  const ranked = (Q.order || []).filter(n => ID[n] && Q.miss[n] !== undefined), wait = ["Dr. Roto", "Draft Sharks"].filter(n => !ranked.includes(n));
+  if (!ranked.length) return "";
+  const mv = ranked.map(n => Q.miss[n]), lo = Math.min(...mv), hi = Math.max(...mv), base = Math.max(0, Math.floor((lo - .6) * 2) / 2), span = Math.max(.5, hi - base);
+  const W = (v) => (14 + 86 * (v - base) / span).toFixed(1);
+  const chk = Q.check || [], po = Q.check_po || [], reads = Q.reads || {};
+  const chips = (n) => { const out = []; const i = chk.indexOf(n);
+    if (i === 0) out.push(`<i class="xc1" title="Lineups: he decides">&#10003;1 DECIDES</i>`); else if (n === "Dr. Roto") out.push(`<i class="xcp" title="Pillar 2 - when he and Ratcliffe split by 8+ points, we talk it through">PILLAR 2</i>`); else if (i > 0) out.push(`<i class="xck" title="Lineup check ${i + 1}">&#10003;${i + 1}</i>`);
+    const j = po.indexOf(n); if (j >= 0) out.push(`<i class="xpo" title="${j === 0 ? "Pickups, drops and playoffs: his rest of season decides" : "Pickups and playoffs check: rest of season and Weeks 15-17"}">P&#10003;${j + 1}</i>`); return out.join(""); };
+  const spark = (n) => { const wk = (A.src || {})[ID[n]] || {}, ws = Object.keys(wk).map(Number).filter(w => w >= 8).sort((a, b) => a - b); if (ws.length < 2) return `<svg class="xsp" viewBox="0 0 64 20"></svg>`;
+    const vs = ws.map(w => wk[String(w)][0]), a = 5, b = 9, x = (i) => 4 + 56 * i / (ws.length - 1), y = (v) => 3 + 14 * (v - a) / (b - a);
+    const col = n === "Ratcliffe" ? NC.r : "#8FA0C4";
+    return `<svg class="xsp" viewBox="0 0 64 20" role="img" aria-label="${esc(n + " points missed by week: " + ws.map((w, i) => "Week " + w + " " + vs[i].toFixed(2)).join(", "))}"><title>${esc(ws.map((w, i) => "Wk " + w + ": " + vs[i].toFixed(2)).join(" · "))}</title><polyline points="${vs.map((v, i) => x(i).toFixed(1) + "," + Math.min(18, Math.max(2, y(v))).toFixed(1)).join(" ")}" fill="none" stroke="${col}" stroke-width="1.4" stroke-linejoin="round"/>${vs.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${Math.min(18, Math.max(2, y(v))).toFixed(1)}" r="1.7" fill="${col}"/>`).join("")}</svg>`; };
+  const tm = (n) => { const r = reads[n]; const m = r && /(\w{3}) \w{3} \d+(?: \d{4})? (\d+:\d+ [AP]M)/.exec(r); return m ? `${m[1]} ${m[2]}` : (r ? esc(r) : "–"); };
+  const row = (n, i) => { const v = Q.miss[n], bi = (Q.bias || {})[n], cls = n === "Ratcliffe" ? " xr" : n === "Dr. Roto" ? " xo" : "";
+    return `<div class="xrow${cls}${i === 0 ? " xbest" : ""}" data-xal="dk1" data-xe="${ID[n]}" role="button" tabindex="0" title="${esc(`${n}: #${i + 1} of ${ranked.length}, ${v.toFixed(2)} points missed per player (Weeks ${Q.week}, ${Q.players} players)${bi === undefined ? "" : bi >= 0 ? ", usually projects a little high" : ", usually projects a little low"}. Last read ${reads[n] || "-"}. Tap for his numbers.`)}">
+      <span class="xn"><b>${i + 1}</b>${esc(n)}</span><span class="xch">${chips(n)}</span>
+      <span class="xbar"><span style="width:${W(v)}%"></span></span><span class="xv">${v.toFixed(2)}${bi === undefined ? "" : `<em class="${bi >= 0 ? "hi" : "lo"}">${bi >= 0 ? "▲" : "▼"}</em>`}</span>${spark(n)}<span class="xt">${tm(n)}</span></div>`; };
+  const wrow = (n) => `<div class="xrow xwait${n === "Dr. Roto" ? " xo" : ""}" data-xal="dk1" data-xe="${ID[n]}" role="button" tabindex="0" title="${esc(n + ": not on the weekly grade yet. Last read " + (reads[n] || "-") + ". Tap for his numbers.")}"><span class="xn"><b>–</b>${esc(n)}</span><span class="xch">${chips(n)}</span><span class="xwt">${n === "Dr. Roto" ? "First weekly grade after Week 12 · hand-graded Wks 8-11: start/sit right 69% (Ratcliffe 72%), same typical miss" : "Weekly grade starts after Week 12 · look-ahead check beside Clay"}</span><span class="xt">${tm(n)}</span></div>`;
+  return `<div class="xchart"><div class="xhd"><b>Expert scorecard</b><span>Weeks ${esc(String(Q.week))} · same ${esc(String(Q.players))} players · graded ${esc((A.graded || "").replace(/ 2026/, ""))}</span></div>
+    <div class="xcols"><span>Points missed per player · shorter = closer</span><span>Wk 8→11</span><span>Last read</span></div>
+    ${ranked.map(row).join("")}${wait.map(wrow).join("")}
+    <p class="xft">▲ usually projects high · ▼ usually low · &#10003;1 decides lineups · Pillar 2 = Dr. Roto, talk when he splits from Ratcliffe by 8+ · ✓ lineup check · P✓ pickups &amp; playoffs</p></div>`;
+}
 function accTable(){
   /* Nov 9 8:55 AM (Dom): "How far off they were" folds up into Experts & Sources (closed until tapped); 1-7 best on top,
      "1, Gotham" then points off to two decimals; green check on the top three = the three this week's pickups are averaged on;

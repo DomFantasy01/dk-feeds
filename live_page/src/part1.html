@@ -1852,4 +1852,31 @@ html body .wpx .wxr6 .wxk.wxph b{animation:wxsb 2.2s ease-in-out infinite}
 /* Nov 25 ~4 AM (Dom): Dr. Roto's big number softly fades the same way - only when he breaks from Ratcliffe by 8+ points */
 html body .wpx .wgr .wgn.wgsb b{animation:wxsb 2.2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){html body .wpx .wgr .wgn.wgsb b{animation:none;text-decoration:underline dotted}}
+
+/* Nov 25 (Dom): expert scorecard chart at the top of Experts & Sources */
+.xchart{margin:6px 0 10px;padding:10px 10px 8px;border-radius:12px;background:linear-gradient(180deg,rgba(28,40,70,.75),rgba(12,18,34,.85));border:1px solid rgba(140,160,210,.22)}
+.xchart .xhd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.xchart .xhd b{font:800 13px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:#EEF1F6}.xchart .xhd span{font-size:10.5px;color:#8C97B0}
+.xchart .xcols,.xchart .xrow{display:grid;grid-template-columns:minmax(92px,1.1fr) minmax(70px,auto) minmax(60px,2fr) 46px 64px 64px;align-items:center;gap:6px}
+.xchart .xcols{font:600 9px/1.2 var(--f-body);color:#6C7790;letter-spacing:.05em;text-transform:uppercase;padding:0 4px 3px;border-bottom:1px solid rgba(255,255,255,.07)}
+.xchart .xcols span:first-child{grid-column:1/5}.xchart .xcols span:nth-child(2){grid-column:5;text-align:center}.xchart .xcols span:nth-child(3){grid-column:6;text-align:right}
+.xchart .xrow{padding:5px 4px;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer;border-radius:6px}.xchart .xrow:hover{background:rgba(255,255,255,.04)}
+.xchart .xn{font:600 12.5px/1.1 var(--f-body);color:#EEF1F6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xchart .xn b{display:inline-block;width:16px;color:#6C7790;font-weight:700}
+.xchart .xch{display:flex;gap:3px;flex-wrap:wrap}.xchart .xch i{font:800 8px/1 var(--f-body);font-style:normal;letter-spacing:.06em;padding:3px 5px;border-radius:5px;white-space:nowrap}
+.xchart .xc1{background:#43B8FF;color:#04121F}.xchart .xcp{background:#F4F6FA;color:#0A1020}.xchart .xck{background:rgba(61,220,132,.18);color:#3DDC84;border:1px solid rgba(61,220,132,.4)}.xchart .xpo{background:rgba(242,194,48,.16);color:#F2C230;border:1px solid rgba(242,194,48,.4)}
+.xchart .xbar{height:10px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden}.xchart .xbar span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#2C3F66,#5C77AE)}
+.xchart .xr .xbar span{background:linear-gradient(90deg,#1A6FA8,#43B8FF);box-shadow:0 0 8px rgba(67,184,255,.55)}.xchart .xr .xn{color:#7FD0FF}
+.xchart .xbest .xn b{color:#EFD23E}.xchart .xbest .xbar span{background:linear-gradient(90deg,#9C7D12,#EFD23E)}
+.xchart .xv{font:700 12px/1 var(--f-num,monospace);color:#C9CFDB;text-align:right;white-space:nowrap}.xchart .xv em{font-style:normal;font-size:9px;margin-left:2px}.xchart .xv .hi{color:#FF8A8F}.xchart .xv .lo{color:#7FD0FF}
+.xchart .xsp{width:64px;height:20px}.xchart .xt{font-size:10px;color:#8C97B0;text-align:right;white-space:nowrap}
+.xchart .xwait .xwt{grid-column:3/6;font-size:10.5px;color:#AEB6C8;line-height:1.25}.xchart .xo .xn{color:#FFFFFF}
+.xchart .xft{margin:6px 2px 0;font-size:9.5px;color:#6C7790;line-height:1.35}
+@media (max-width:560px){.xchart .xcols,.xchart .xrow{grid-template-columns:minmax(80px,1fr) minmax(54px,1.4fr) 44px 56px}.xchart .xch,.xchart .xt,.xchart .xcols span:nth-child(3){display:none}.xchart .xcols span:first-child{grid-column:1/4}.xchart .xcols span:nth-child(2){grid-column:4}.xchart .xwait .xwt{grid-column:2/5}}
+
+/* Nov 25 7:01 AM (Dom: "Shimmer the dark knight live in gold"): the title is gold, and a soft band of light glides across it
+   every few seconds - a shimmer, never a blink (the gold never goes away) */
+html body .mh h1{background:linear-gradient(100deg,#8A6A12 0%,#D4A62A 22%,#F2C230 38%,#FFF4C2 50%,#F2C230 62%,#D4A62A 78%,#8A6A12 100%);background-size:250% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#F2C230;filter:drop-shadow(0 0 6px rgba(242,194,48,.35))}
+@media (prefers-reduced-motion:no-preference){html body .mh h1{animation:dkshim 4.5s ease-in-out infinite}}
+@keyframes dkshim{0%{background-position:100% 0}55%,100%{background-position:0% 0}}
 </style>
