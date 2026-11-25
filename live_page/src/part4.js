@@ -594,9 +594,13 @@ function winDial(o){
   const needle = (q, len, fill, w, knob) => { const t = TH(cl(q)), ux = Math.cos(t), uy = -Math.sin(t), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 13, cy - uy * 13], nk = [cx + ux * len * .55, cy + uy * len * .55];
     const body = `M${f(tail[0] + px * w * .55)} ${f(tail[1] + py * w * .55)} L${f(cx + px * w)} ${f(cy + py * w)} L${f(nk[0] + px * w * .42)} ${f(nk[1] + py * w * .42)} L${f(tip[0] + px * (knob ? 1.1 : 0))} ${f(tip[1] + py * (knob ? 1.1 : 0))} L${f(tip[0] - px * (knob ? 1.1 : 0))} ${f(tip[1] - py * (knob ? 1.1 : 0))} L${f(nk[0] - px * w * .42)} ${f(nk[1] - py * w * .42)} L${f(cx - px * w)} ${f(cy - py * w)} L${f(tail[0] - px * w * .55)} ${f(tail[1] - py * w * .55)} Z`;
     return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1.1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="5.2" fill="${fill}" stroke="#050912" stroke-width="1.1"/>` : ""); };
-  const anim = !window.__wgSwept; if (anim) setTimeout(() => { window.__wgSwept = true; }, 1700);
+  /* Nov 25 6:53 AM (Dom: "slow the needles down and stagger them ... resetting every 15 minutes"): a 3.2 s sweep; DK1 first, then
+     DK2, DK3, DK4 0.5 s apart; inside each gauge Ratcliffe's blue needle leads and Dr. Roto's white one follows 0.7 s later.
+     The sweep replays every 15 minutes (wgReplay below). */
+  const anim = !window.__wgSwept; if (anim && !window.__wgT) window.__wgT = setTimeout(() => { window.__wgSwept = true; window.__wgT = 0; }, 6500);
+  const gi = Math.max(0, (parseInt(String(SLUG[k] || "").replace(/\D/g, ""), 10) || 1) - 1);
   const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const t = TH(cl(X[s3])), tx = cx + Math.cos(t) * len, ty = cy - Math.sin(t) * len;
-    return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 2.7).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 8 : 7}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
+    return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 2.7).toFixed(1)}deg;--d:${(gi * .5 + (s3 === "o" ? .7 : 0)).toFixed(2)}s"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 8 : 7}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
   const RF = R + BW / 2 + 12;   /* face + bezel radius */
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
   const svg = `<svg class="wgd wgd4" viewBox="0 0 200 165" aria-hidden="true"><defs>
@@ -1815,6 +1819,11 @@ document.addEventListener("click", async (e) => {
     { const sc = document.querySelector(`#gsheet .al[data-aid="${CSS.escape(id)}"]`); if (sc){ sc.classList.toggle("open", OPEN.has(id)); sc.classList.add("read"); } }   /* the expert sheet's copy opens in place; the read mark reaches the main list */
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
+/* Nov 25 (Dom): replay the staggered needle sweep every 15 minutes; if the page is in the background, replay when it comes back. */
+window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN"); if (!ns.length) return;
+  ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
+(() => { let due = false; setInterval(() => { if (document.hidden) due = true; else window.wgReplay(); }, 15 * 60 * 1000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && due){ due = false; window.wgReplay(); } }); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
