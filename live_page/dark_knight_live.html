@@ -1954,7 +1954,9 @@ html body .mh .wk{animation:none !important;background:none !important;-webkit-t
 
 .btmore{font:700 9px/1.6 var(--f-body);color:#7C88A3;padding:2px 3px}
 /* Nov 25 8:00 AM (Dom: win probability dials looked smaller than the score rings): dial bezel scaled to match the ring's outer size */
-.wpx4 svg.wgd4{width:calc(100% + 14px);max-width:none;margin-left:-7px;margin-right:-7px}
+/* Nov 25 1:56 PM (Dom: the win gauges "are touching the borders" - make them the same size as the score rings above): +14px overshot;
+   +2px puts the bezel at the ring's outer size (81px on a phone) with the same air to the card edge */
+.wpx4 svg.wgd4{width:calc(100% + 2px);max-width:none;margin-left:-1px;margin-right:-1px}
 /* Nov 25 8:00 AM: Battle Meter v3 - your chip | bar with scores | his chip | margin */
 .btr{grid-template-columns:34px 104px 1fr 104px 58px !important}
 .btbar{height:18px;border-radius:9px}
