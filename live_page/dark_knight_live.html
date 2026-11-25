@@ -1677,18 +1677,23 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wxd2 .wxd3{font:700 10px var(--f-num);paint-order:stroke;stroke:#070B16;stroke-width:2px}
 .wxd2 .wxs{font:600 7px var(--f-num);fill:#8C97B0}
 /* Nov 24 PM (Dom: "exactly the same size in those other six boxes"): the six expert boxes use the dial's number size - 40 of the dial's 216 units */
-.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .19)}
+.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .19)}.wpx .wxr{opacity:.82}.wpx .wxr .wxk b{text-shadow:none}
 /* Nov 24 PM v3: the polished gauge, two needles, numbers under it */
 .wpx .wgd{display:block;width:100%;max-width:290px;margin:0 auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
 .wgd .wgs{font:600 7px var(--f-num);fill:#AEB8CE}
 .wpx .wgr{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:2px 0 4px}
 .wpx .wgn{display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 0 4px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.08);cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .wpx .wgn:hover{border-color:rgba(255,255,255,.25)}
-.wpx .wgn b{font:400 calc(min(100cqw, 290px) * .19)/1 var(--f-disp);letter-spacing:.01em;text-shadow:0 0 10px currentColor}
+.wpx .wgn b{font:400 calc(min(100cqw, 290px) * .26)/1 var(--f-disp);letter-spacing:.01em;text-shadow:0 0 12px currentColor,0 0 2px rgba(0,0,0,.8)}
 .wpx .wgn b small{font-size:.4em;margin-left:1px;vertical-align:.95em}
 .wpx .wgn b.z-win{color:#3DDC84}.wpx .wgn b.z-mid{color:#F7B32B}.wpx .wgn b.z-lose{color:#FF5A63}
 .wpx .wgn span{display:flex;align-items:center;gap:4px;font:700 calc(min(100cqw, 290px) * .042)/1 var(--f-body);letter-spacing:.1em;color:#C9CFDB}
-.wpx .wgn span i{display:inline-block;width:10px;height:3px;border-radius:2px;box-shadow:0 0 4px rgba(255,255,255,.4)}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
+.wpx .wgn span i{display:inline-block;width:10px;height:3px;border-radius:2px;box-shadow:0 0 4px rgba(255,255,255,.4)}
+.wpx .wgn{position:relative;overflow:hidden;padding:5px 0 6px;border-top:2px solid var(--nc,#fff)}.wpx .wgn-r{--nc:#43B8FF}.wpx .wgn-o{--nc:#F4F6FA}
+.wpx .wgn::before{content:"";position:absolute;inset:0 0 auto;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.09),transparent);pointer-events:none}
+.wpx .wgn::after{content:"";position:absolute;top:-2px;left:50%;width:40%;height:2px;transform:translateX(-50%);background:var(--nc);box-shadow:0 0 8px var(--nc);opacity:.9}
+.wgd .wgN{transform-box:view-box;transform-origin:100px 92px}
+@media (prefers-reduced-motion:no-preference){.wgd .wgN.sw{animation:wgsw 1.25s cubic-bezier(.2,.85,.25,1.12) var(--d) both}@keyframes wgsw{from{transform:rotate(var(--r0))}to{transform:rotate(0deg)}}}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
 .wpx .wxt2{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px}
 .wpx .wxt2 b{font:700 8px/1 var(--f-body);letter-spacing:.16em;color:#9AA5BC}
 .wpx .wxt2 .wxtk{font:800 7px/1 var(--f-body);letter-spacing:.1em;color:#1A1405;background:#FFD166;border-radius:6px;padding:2px 5px}
@@ -2419,8 +2424,16 @@ function winDial(o){
      tapering to the tip, dark outline. Ratcliffe = LONG blue needle to a sharp point; Dr. Roto = SHORTER white needle ending in a round knob */
   const needle = (q, len, fill, w, knob) => { const a = A(cl(q)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 10, cy - uy * 10], nk = [cx + ux * len * .55, cy + uy * len * .55];
     const body = `M${f(tail[0] + px * w * .55)} ${f(tail[1] + py * w * .55)} L${f(cx + px * w)} ${f(cy + py * w)} L${f(nk[0] + px * w * .42)} ${f(nk[1] + py * w * .42)} L${f(tip[0] + px * (knob ? .9 : 0))} ${f(tip[1] + py * (knob ? .9 : 0))} L${f(tip[0] - px * (knob ? .9 : 0))} ${f(tip[1] - py * (knob ? .9 : 0))} L${f(nk[0] - px * w * .42)} ${f(nk[1] - py * w * .42)} L${f(cx - px * w)} ${f(cy - py * w)} L${f(tail[0] - px * w * .55)} ${f(tail[1] - py * w * .55)} Z`;
-    return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="3.6" fill="${fill}" stroke="#050912" stroke-width="1"/>` : ""); };
-  const nd = (s3, len, w, knob) => ok(X[s3]) ? `<g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g>` : "";
+    return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="4.4" fill="${fill}" stroke="#050912" stroke-width="1"/>` : ""); };
+  /* Nov 24 PM (Dom: "use your free liberty ... dazzle me"): a soft glow at each tip in the needle's color, and on the page's first paint
+     the needles sweep up from 0 into place like a gauge starting up (skipped for anyone who has reduced motion turned on) */
+  const anim = !window.__wgSwept; if (anim) setTimeout(() => { window.__wgSwept = true; }, 1600);
+  const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const a = A(cl(X[s3])), tx = cx + Math.cos(a) * len, ty = cy - Math.sin(a) * len;
+    return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 1.8).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 7 : 6}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
+  /* Nov 24 PM (Dom: "put a ticker line in the color of where they started at the top of the circumference"): where each pillar
+     started the week, a short tick across the rim in his needle color - needle away from his tick = his number moved that way */
+  const st = (s3) => { const v0 = weekStart(k, s3); if (!ok(v0)) return ""; const [a0, b0] = P(cl(v0), R - 6), [a1, b1] = P(cl(v0), R + 9);
+    return `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#050912" stroke-width="4.4" stroke-linecap="round"/><line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${NC[s3]}" stroke-width="2.4" stroke-linecap="round"><title>${NM[s3]} started the week at ${Math.round(v0)}%</title></line>`; };
   /* Yahoo: a small white pointer on the outer rim */
   const yp = ok(y) ? (() => { const a = A(cl(y)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(cl(y), R + 13), [qx, qy] = P(cl(y), R + 6);
     return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 3.8)} ${f(by + py * 3.8)} L${f(bx - px * 3.8)} ${f(by - py * 3.8)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width=".8"/>`; })() : "";
@@ -2432,19 +2445,19 @@ function winDial(o){
     <linearGradient id="${g}nr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD6FF"/><stop offset="1" stop-color="#1478D4"/></linearGradient>
     <linearGradient id="${g}no" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9C2D4"/></linearGradient>
     <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#2E3852"/></radialGradient>
-    <filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#000" flood-opacity=".75"/></filter></defs>
+    <filter id="${g}gw" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.6"/></filter><filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#000" flood-opacity=".75"/></filter></defs>
     <path d="M${cx - R - 9} ${cy} A${R + 9} ${R + 9} 0 0 1 ${cx + R + 9} ${cy} Z" fill="url(#${g}bz)"/>
     <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}face)"/>
     ${band}${ticks}${scl}
     <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}gl)"/>
-    ${yp}${nd("o", R - 22, 4.2, true)}${nd("r", R - 2, 6)}
-    <circle cx="${cx}" cy="${cy}" r="8.5" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#0A0F1C"/>
+    ${st("o")}${st("r")}${yp}${nd("o", R - 21, 5.2, true)}${nd("r", R - 1, 7.4)}
+    <circle cx="${cx}" cy="${cy}" r="12" fill="${ZC[z]}" opacity=".5" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="10" fill="none" stroke="${ZC[z]}" stroke-width="1.6"/><circle cx="${cx}" cy="${cy}" r="8.5" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#0A0F1C"/>
     <rect x="${cx - R - 9}" y="${cy}" width="${2 * R + 18}" height="2.2" fill="url(#${g}bz)"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
   const head = `<div class="wxt2"><b>CHANCE TO WIN</b>${talk ? `<span class="wxtk" title="Ratcliffe and Dr. Roto split by ${Math.abs(split)} points - talk it through">TALK ${Math.abs(split)}</span>` : ""}</div>`;
   /* the two numbers under the gauge, name under each, needle color beside the name */
   const num = (s3) => { const has = ok(X[s3]), tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides, blue needle)" : " (pillar 2, white needle - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week. Tap for ${NM[s3]}'s alerts.` : `${NM[s3]}: this week's numbers not posted yet. Tap for ${NM[s3]}'s alerts.`;
-    return `<div class="wgn" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tip)}"><b class="z-${has ? ZF(X[s3]) : "mid"}">${has ? wp2(X[s3]) + "<small>%</small>" : "–"}</b><span><i style="background:${NC[s3]}"></i>${SH[s3]}</span></div>`; };
+    return `<div class="wgn wgn-${s3}" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tip)}"><b class="z-${has ? ZF(X[s3]) : "mid"}">${has ? wp2(X[s3]) + "<small>%</small>" : "–"}</b><span><i style="background:${NC[s3]}"></i>${SH[s3]}</span></div>`; };
   const nums = `<div class="wgr">${num("r")}${num("o")}</div>`;
   const chip = (s3, lab, tipT) => ok(X[s3]) ? `<div class="wxk" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tipT)} Tap for ${esc(NM[s3])}'s alerts."><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b></div>` : `<div class="wxk wxn" title="${esc(NM[s3] || lab)}: Week ${S ? S.week : ""} numbers not posted yet - left out until they are"><span><i class="lf">${lab}</i><i class="ls">${({VEGAS: "VEGAS", DRAFTSHRK: "DSHRK", ROTO: "ROTO", CLAY: "CLAY", KOERNER: "KOERN"})[lab] || lab}</i></span><b>–</b><em>NOT<br>POSTED</em></div>`;
   const chk = ["d", "c", "b", "v", "k"].filter(s3 => X[s3] !== undefined);
