@@ -577,7 +577,7 @@ function winDial(o){
   const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
   const NC = {r: "#43B8FF", o: "#F4F6FA"}, GOLD = "#F2C230";
   const lead = ok(X.r) ? X.r : ok(X.o) ? X.o : y, z = ZF(lead), ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, g = "wg" + SLUG[k];
-  const cx = 100, cy = 91, R = 72, BW = 13, TH = (q) => (225 - 2.7 * q) * Math.PI / 180, P = (q, rr) => [cx + rr * Math.cos(TH(q)), cy - rr * Math.sin(TH(q))], f = (n) => n.toFixed(1);
+  const cx = 100, cy = 98, R = 72, BW = 13, TH = (q) => (225 - 2.7 * q) * Math.PI / 180, P = (q, rr) => [cx + rr * Math.cos(TH(q)), cy - rr * Math.sin(TH(q))], f = (n) => n.toFixed(1);
   const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 ${(p1 - p0) * 2.7 > 180 ? 1 : 0} 1 ${f(x1)} ${f(y1)}`; };
   const band = `<path d="${arc(0, 100, R)}" stroke="#0A0F1C" stroke-width="${BW + 3}" fill="none" stroke-linecap="butt"/><path d="${arc(0, 100, R)}" stroke="url(#${g}sc)" stroke-width="${BW}" fill="none" opacity=".3"/>` +
     (ok(lead) ? `<path d="${arc(0, Math.max(.8, cl(lead)), R)}" stroke="url(#${g}sc)" stroke-width="${BW}" fill="none"/><path d="${arc(0, Math.max(.8, cl(lead)), R + BW / 2 - 1.4)}" stroke="#fff" stroke-opacity=".38" stroke-width="1.1" fill="none"/>` : "");
@@ -598,8 +598,8 @@ function winDial(o){
   const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const t = TH(cl(X[s3])), tx = cx + Math.cos(t) * len, ty = cy - Math.sin(t) * len;
     return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 2.7).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 8 : 7}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
   const RF = R + BW / 2 + 12;   /* face + bezel radius */
-  const svg = `<svg class="wgd wgd4" viewBox="0 0 200 157" aria-hidden="true"><defs>
-    <clipPath id="${g}cp"><rect x="0" y="0" width="200" height="${cy + 62}"/></clipPath>
+  const svg = `<svg class="wgd wgd4" viewBox="0 0 200 165" aria-hidden="true"><defs>
+    <clipPath id="${g}cp"><rect x="0" y="-10" width="200" height="${cy + 72}"/></clipPath>
     <linearGradient id="${g}sc" gradientUnits="userSpaceOnUse" x1="${cx - R}" y1="0" x2="${cx + R}" y2="0"><stop offset="0" stop-color="#FF4D57"/><stop offset=".42" stop-color="#FF8A3D"/><stop offset=".5" stop-color="#F7B32B"/><stop offset=".58" stop-color="#B8D94A"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
     <radialGradient id="${g}face" cx="50%" cy="58%" r="60%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".24"/><stop offset=".55" stop-color="#16223F"/><stop offset="1" stop-color="#0A1121"/></radialGradient>
     <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".15"/><stop offset=".42" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
@@ -609,11 +609,11 @@ function winDial(o){
     <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#2E3852"/></radialGradient>
     <filter id="${g}gw" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.8"/></filter>
     <filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".75"/></filter></defs>
-    <g clip-path="url(#${g}cp)"><circle cx="${cx}" cy="${cy}" r="${RF + 3}" fill="url(#${g}bz)"/><circle cx="${cx}" cy="${cy}" r="${RF}" fill="url(#${g}face)"/>
+    <g clip-path="url(#${g}cp)"><circle cx="${cx}" cy="${cy}" r="${RF + 5.5}" fill="url(#${g}bz)"/><circle cx="${cx}" cy="${cy}" r="${RF + .6}" fill="none" stroke="#0A0F1C" stroke-width="1.2"/><circle cx="${cx}" cy="${cy}" r="${RF}" fill="url(#${g}face)"/>
     ${band}${ticks}${scl}<circle cx="${cx}" cy="${cy}" r="${RF}" fill="url(#${g}gl)"/></g>
-    ${(() => { const hw = Math.sqrt((RF + 3) ** 2 - 62 ** 2); return `<rect x="${f(cx - hw)}" y="${cy + 60.5}" width="${f(2 * hw)}" height="3" rx="1.5" fill="url(#${g}bz)"/>`; })()}
-    <g class="wgkey"><path d="M${cx - 37} ${cy + 49} l3 -3.6 l3 3.6 l-3 3.6 Z" fill="${GOLD}" stroke="#050912" stroke-width=".6"/><text x="${cx - 31.5}" y="${cy + 51.3}">YAHOO</text>
-      <path d="M${cx + 1} ${cy + 46.5} l5.6 0 l-2.8 4.6 Z" fill="${NC.r}" stroke="#050912" stroke-width=".5"/><path d="M${cx + 7.5} ${cy + 46.5} l5.6 0 l-2.8 4.6 Z" fill="${NC.o}" stroke="#050912" stroke-width=".5"/><text x="${cx + 15}" y="${cy + 51.3}">STARTED</text></g>
+    ${(() => { const hw = Math.sqrt((RF + 5.5) ** 2 - 62 ** 2); return `<rect x="${f(cx - hw)}" y="${cy + 60}" width="${f(2 * hw)}" height="4.5" rx="2.2" fill="url(#${g}bz)"/>`; })()}
+    <g class="wgkey"><path d="M${cx - 21} ${cy + 39.5} l3.6 -4.4 l3.6 4.4 l-3.6 4.4 Z" fill="${GOLD}" stroke="#050912" stroke-width=".7"/><text x="${cx - 13}" y="${cy + 42.6}">YAHOO</text>
+      <path d="M${cx - 27} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.r}" stroke="#050912" stroke-width=".6"/><path d="M${cx - 19} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.o}" stroke="#050912" stroke-width=".6"/><text x="${cx - 9}" y="${cy + 53.2}">STARTED</text></g>
     ${st("o")}${st("r")}${yd}${nd("o", R + 1, 8, true)}${nd("r", R + 1, 8)}
     <circle cx="${cx}" cy="${cy}" r="14" fill="${ZC[z]}" opacity=".45" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="11.5" fill="none" stroke="${ZC[z]}" stroke-width="1.8"/><circle cx="${cx}" cy="${cy}" r="10" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="3" fill="#0A0F1C"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
