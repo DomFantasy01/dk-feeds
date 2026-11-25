@@ -637,7 +637,9 @@ function winDial(o){
   const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (the gold diamond on the gauge)${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
   const chips = chip("y", "YAHOO", yTip) + chk.map(s3 => chip(s3, SH[s3], `${NM[s3]}: ${Math.round(X[s3])}% chance to win this week.`)).join("");
   const say = `${ok(X.r) ? "Ratcliffe " + Math.round(X.r) + "%" : "Ratcliffe not posted"}, ${ok(X.o) ? "Dr. Roto " + Math.round(X.o) + "%" : "Dr. Roto not posted"}, Yahoo ${Math.round(y)}% chance to win this week${talk ? " - Ratcliffe and Dr. Roto split by " + Math.abs(split) + " points: talk it through" : ""}`;
-  return `<div class="wpx wpx4 z-${z}" title="${esc(say)}">${tag}${svg}${nums}<div class="wxr wxr6">${chips}</div></div>`;
+  /* Nov 25 ~4:08 AM (Dom, voice: "Should we still have the talk phone?" - "might as well" take it off): the red phone is gone - Dr. Roto's
+     own number now blinks on the same 8-point split, and tapping it opens the side-by-side sheet. (tag is still built, just not shown.) */
+  return `<div class="wpx wpx4 z-${z}" title="${esc(say)}">${svg}${nums}<div class="wxr wxr6">${chips}</div></div>`;
 }
 /* Nov 24 PM (Dom: "If I'm clicking on Dr. Roto, I want to see Dr. Roto's alerts ... I want to see his numbers"): tapping an expert's
    number (or any of the six boxes) opens that expert's own sheet for the league - his chance to win and where he started, his alert
