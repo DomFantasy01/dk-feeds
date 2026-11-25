@@ -1823,4 +1823,9 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx .wgr{margin:0 0 2px;gap:3px}
 .wpx .wgn{padding:3px 0 4px}
 .wpx .wxr6 .wxk{padding:3px 1px 3px}
+/* Nov 25 3:50 AM (Dom: "make that phone pulse ... let's see it pulse"): the one thing on the page that pulses - a red glow that
+   swells and fades with a slight grow, every 1.6 s. It never goes dark (a pulse, not a blink). */
+.wpx4 .wgph{animation:wgphp 1.6s ease-in-out infinite}
+@keyframes wgphp{0%,100%{transform:scale(1);box-shadow:0 0 0 2px rgba(230,30,40,.22),0 0 6px 1px rgba(255,45,55,.55),inset 0 1px 1px rgba(255,255,255,.45)}
+  50%{transform:scale(1.18);box-shadow:0 0 0 5px rgba(230,30,40,.18),0 0 16px 5px rgba(255,45,55,.95),inset 0 1px 1px rgba(255,255,255,.45)}}
 </style>
