@@ -86,10 +86,22 @@ WEEK = M.get("week")
 BUILT = ptstr(M.get("built_pt"))
 # kickoff per NFL team from the nflverse schedule the build just pulled; window labels are the fallback
 KO_TEAM = {}
-games = os.path.join(ROOT, "dksys/data/latest/games.csv")
-if WEEK and os.path.exists(games):
+# Nov 25: the file was often missing here, so every 1:25 PM PT game fell back to the "SUN 1:05 PM" window
+# (Diggs showed 1:05 / inactives 11:35 instead of 1:25 / 11:55). Look in every place the build saves it,
+# then pull nflverse straight; a miss is a health line, never silent.
+games = next((g for g in (os.path.join(ROOT, "dksys/data/latest/games.csv"), os.path.join(ROOT, "dksys/gate/fresh/games.csv"))
+              if os.path.exists(g)), None)
+_rows = None
+if WEEK and not games:
+    try:
+        import urllib.request, io
+        _raw = urllib.request.urlopen("https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv", timeout=60).read().decode()
+        import csv; _rows = list(csv.DictReader(io.StringIO(_raw)))
+    except Exception as e:
+        HEALTH.append(("gold", "NFL schedule", f"kickoff times could not be read ({type(e).__name__}) - Yahoo's window labels used, a 1:25 PM game may show as 1:05 PM"))
+if WEEK and (games or _rows):
     import csv
-    for r in csv.DictReader(open(games)):
+    for r in (_rows if _rows is not None else csv.DictReader(open(games))):
         if r.get("week") == str(WEEK) and r.get("season") == str(NOW.astimezone(PT).year) and r.get("game_type", "REG") == "REG":
             try:
                 t = dt.datetime.strptime(f"{r['gameday']} {r['gametime'] or '13:00'}", "%Y-%m-%d %H:%M").replace(tzinfo=ZoneInfo("America/New_York")).astimezone(UTC)
