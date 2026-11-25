@@ -49,8 +49,10 @@ def _xs_of(k):
     rc = " ".join(str(x) for x in (k.get("receipts") or []))
     m = re.search(r"Clears the bar \(15% and 2\+ points this week\) on ([^.]+)\.", rc)
     if m: return [_XN[x.strip()] for x in re.split(r",| only", m.group(1)) if x.strip() in _XN]
-    t = " ".join(str(k.get(f) or "") for f in ("src", "feed", "feed_title"))
-    return [v for n_, v in _XN.items() if n_ in t and n_ not in ("Yahoo",)]
+    if k.get("kind") != "sweep" and not k.get("feed"): return []      # a system card naming several sources is nobody's card
+    t = " ".join(str(k.get(f) or "") for f in ("src", "feed", "feed_title")).replace("Dr Roto", "Dr. Roto")
+    if re.search(r"\bFTN\b", t): t += " Ratcliffe"
+    return [v for n_, v in _XN.items() if n_ in t and n_ not in ("Yahoo", "Gotham")]
 def add(**k):
     k.setdefault("src", SRC); k.setdefault("built", BUILT)
     try:

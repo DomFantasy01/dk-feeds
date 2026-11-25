@@ -180,8 +180,10 @@ const OPEN = new Set(), SHOWNOTED = new Set();
 const XPAT = {ratcliffe: /Ratcliffe|\bFTN\b/, drroto: /Dr\.? ?Roto|DrRoto/i, draftsharks: /Draft Sharks|Smola/, koerner: /Koerner|FantasyLabs/, clay: /\bClay\b|\bESPN\b/, vegas: /Vegas|props?\b/, rotoballer: /RotoBaller/, yahoo: /Yahoo/, gotham: /Gotham|engine/};
 const XNMS = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"};
 const XF = {};   /* league -> expert filter on the Alerts fold (null = all) */
-function xsOf(x){ if (Array.isArray(x.xs) && x.xs.length) return x.xs; const t = [x.src, x.feed, x.feed_title].filter(Boolean).join(" ");
-  return Object.keys(XPAT).filter(e => e !== "yahoo" && XPAT[e].test(t)); }
+function xsOf(x){ if (Array.isArray(x.xs)) return x.xs; const rc = (x.receipts || []).join(" "), m = /Clears the bar \(15% and 2\+ points this week\) on ([^.]+)\./.exec(rc);
+  if (m) return Object.keys(XNMS).filter(e => m[1].includes(XNMS[e]));
+  if (x.kind !== "sweep" && !x.feed) return [];   /* a system card naming several sources is nobody's card */
+  const t = [x.src, x.feed, x.feed_title].filter(Boolean).join(" "); return Object.keys(XPAT).filter(e => e !== "yahoo" && e !== "gotham" && XPAT[e].test(t)); }
 function xMatch(x, e){ return xsOf(x).includes(e); }
 function xLab(x){ if (x.lab) return x.lab; const xs = xsOf(x); if (x.kind === "sweep") return xs.length ? XNMS[xs[0]] + " article" : "News"; return xs.length ? XNMS[xs[0]] + " numbers" : (x.feed ? "News" : "System"); }
 function alertCard(x, sep){
