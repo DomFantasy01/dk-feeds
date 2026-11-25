@@ -1280,8 +1280,10 @@ html body .mgrid.g-a .mxd2 .wln2 .wo span{font-size:6px !important;letter-spacin
 /* Nov 25 3:05 PM (Dom: "my battery's going down a lot quicker" on his phone): BATTERY SAVER - one tap in Controls stops every pulse,
    blink, sweep and glow on THIS device (remembered there until tapped again). Nothing is hidden: red/orange/gold warnings keep their
    colors, they just stay lit instead of flashing. */
-html.calm *,html.calm *::before,html.calm *::after{animation:none!important;transition:none!important}
-#calmBtn[aria-pressed="true"]{background:color-mix(in srgb,#8EDBAE 22%,transparent);border-color:#8EDBAE;color:#CFF5DD}
+html.calm *:not(#_c),html.calm *:not(#_c)::before,html.calm *:not(#_c)::after{animation:none!important;transition:none!important}   /* the :not(#_c) outranks every page rule that forces its own animation */
+html.calm .sgauge .gwxf{visibility:hidden!important}   /* Nov 25 3:10 PM (Dom: "it's blinking the umbrellas back and forth"): the player box stays on its normal look with the steady umbrella */
+html body #ctlBot.ctlsec .ctl.ctls #calmBtn{grid-column:1/-1;font-size:15px !important;padding:8px 2px !important;letter-spacing:.03em}   /* Nov 25 (Dom: "doesn't fit in the box"): its own full-width row */
+html body #ctlBot.ctlsec .ctl.ctls #calmBtn[aria-pressed="true"]{background:linear-gradient(180deg,#9EE6BC,#4FB07E) !important;border-color:#2E7A52 !important;color:#06210F !important}
 </style>
 <style>/* Nov 9: chips inside the section act as the league tabs */
 #msPick .pktop{margin:2px 0 8px;padding:0;border:0;background:none}#msPick .pkth{margin-bottom:5px}
