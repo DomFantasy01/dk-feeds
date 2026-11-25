@@ -1096,21 +1096,28 @@ function battleChart(){
   if (!rows.length) return "";
   const anim = !window.__btSwept; if (anim && !window.__btT) window.__btT = setTimeout(() => { window.__btSwept = true; window.__btT = 0; }, 6500);
   const LN = (n) => (n || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0];
+  /* Nov 25 8:00 AM (Dom: "no color or nothing in it ... before games"; "they look like his players"): before kickoff the
+     projection IS the bright bar, with both projected scores printed on it; once games start the actual score takes the bright bar
+     and the projection drops back to a ghost. Your biggest still-to-come player sits on your end in your league color, his on his
+     end in grey - never mixed. */
   const row = (r, i) => { const sh = (a, b) => Math.max(3, Math.min(97, 100 * a / Math.max(1, a + b)));
-    const gS = sh(r.me, r.op), started = r.mn + r.on > 0, aS = started ? sh(r.mn, r.on) : 50, c = HEX[r.k];
-    const mg = started ? r.mn - r.op * 0 - r.on : r.me - r.op, pmg = r.me - r.op;
+    const gS = sh(r.me, r.op), started = r.mn + r.on > 0, aS = started ? sh(r.mn, r.on) : gS, c = HEX[r.k], pmg = r.me - r.op;
     const zc = (v) => Math.abs(v) < 3 ? "#F7B32B" : v > 0 ? "#3DDC84" : "#FF4D57";
     const tip = `${DK[r.k]}: ${started ? `actual score ${f1(r.mn)} to ${f1(r.on)} · ` : "not started · "}Ratcliffe's projected final ${f1(r.me)} to ${f1(r.op)} (${pmg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(pmg))}) · ${r.lm.length} of yours and ${r.lo.length} of his still to play${r.live ? " · YOUR PLAYERS ARE ON THE FIELD NOW" : ""} · tap for the league`;
-    const sw = r.swing.map(x => `<span class="btc sw${x.mine ? " me" : ""}" title="${esc(`${x.mine ? "Yours" : "His"}: ${x.p.name} - Ratcliffe has ${f1(x.v)} still to come`)}"><i>${x.mine ? "YOU" : "HIM"}</i>${esc(LN(x.p.name))}<b>${Math.round(x.v)}</b></span>`).join("");
-    return `<div class="btr${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(i * .45).toFixed(2)}s">
+    const top = (list) => list.slice().sort((a, b) => b.v - a.v)[0];
+    const chip = (x, mine) => x ? `<span class="btc${mine ? " me" : " op"}" title="${esc(`${mine ? "Your" : "His"} biggest still to come: ${x.p.name} - Ratcliffe has ${f1(x.v)} more points`)}">${esc(LN(x.p.name))}<b>${Math.round(x.v)}</b></span>` : `<span class="btc nil">${mine ? "you're done" : "he's done"}</span>`;
+    const L1 = started ? f1(r.mn) : f1(r.me), R1 = started ? f1(r.on) : f1(r.op);
+    return `<div class="btr${r.live ? " live" : ""}${started ? "" : " pre"}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(i * .45).toFixed(2)}s">
       <b class="btk" style="color:${c}">${DK[r.k]}</b>
-      <div class="btbar"><div class="btG${anim ? " sw" : ""}"><span class="btme" style="width:${gS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - gS).toFixed(1)}%"></span></div>
-        ${started ? `<div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${aS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - aS).toFixed(1)}%"></span></div><span class="btseam" style="left:${aS.toFixed(1)}%;--zc:${zc(r.mn - r.on)}"></span>` : ""}
-        <span class="btgseam" style="left:${gS.toFixed(1)}%"></span><span class="btmid"></span></div>
-      <span class="btv"><b style="color:${zc(started ? r.mn - r.on : pmg)}">${started ? f1(r.mn) + "–" + f1(r.on) : (pmg >= 0 ? "▲" : "▼") + f1(Math.abs(pmg))}</b><em>${started ? `proj ${pmg >= 0 ? "▲" : "▼"}${f1(Math.abs(pmg))}` : "projected"}</em></span>
-      <span class="btsw">${sw}</span></div>`; };
+      ${chip(top(r.lm), true)}
+      <div class="btbar">${started ? `<div class="btG${anim ? " sw" : ""}"><span class="btme" style="width:${gS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - gS).toFixed(1)}%"></span></div><span class="btgseam" style="left:${gS.toFixed(1)}%"></span>` : ""}
+        <div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${aS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - aS).toFixed(1)}%"></span></div>
+        <span class="btseam" style="left:${aS.toFixed(1)}%;--zc:${zc(started ? r.mn - r.on : pmg)}"></span><span class="btmid"></span>
+        <span class="btn l">${L1}</span><span class="btn r">${R1}</span></div>
+      ${chip(top(r.lo), false)}
+      <span class="btv"><b style="color:${zc(started ? r.mn - r.on : pmg)}">${started ? ((r.mn - r.on) >= 0 ? "▲" : "▼") + f1(Math.abs(r.mn - r.on)) : (pmg >= 0 ? "▲" : "▼") + f1(Math.abs(pmg))}</b><em>${started ? `proj ${pmg >= 0 ? "▲" : "▼"}${f1(Math.abs(pmg))}` : "projected"}</em></span></div>`; };
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "";
-  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${esc(stamp)}${stamp ? " · " : ""}solid = actual · ghost = Ratcliffe's projected final</span><div class="btlw">${rows.map(row).join("")}</div></section>`;
+  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${esc(stamp)}${stamp ? " · " : ""}Ratcliffe's projected final · actual score once games start</span><div class="btlw">${rows.map(row).join("")}</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
