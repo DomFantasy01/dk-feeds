@@ -1655,7 +1655,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 
 /* Nov 12 4:05 PM (Dom): Win Probability redesign - glowing full-width dial, check 1's number in the middle, Yahoo + checks under it */
 .wpx{display:flex;flex-direction:column;align-items:stretch;gap:3px;padding-top:2px;container-type:inline-size}
-.wpx .wxd{display:block;width:100%;max-width:230px;margin:0 auto;overflow:visible}
+.wpx .wxd{display:block;width:100%;max-width:290px;margin:0 auto;overflow:visible}
 .wxd .wxs{font:700 7.5px var(--f-num);fill:#8C97B0}
 .wxd .wxl{font:700 8.6px var(--f-body);letter-spacing:.12em;fill:#4FC3FF}
 .wxd .wxl.wxc{fill:#9AA5BC;font-size:7.4px;letter-spacing:.14em}
@@ -1672,8 +1672,15 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx .wxk{display:flex;flex-direction:column;align-items:center;min-width:0;gap:1px}
 .wpx .wxk + .wxk{border-left:1px solid rgba(255,255,255,.07)}
 /* Nov 24 PM: the two-pillar dial (Ratcliffe outer blue, Dr. Roto inner violet), one since-posting line, tappable numbers */
-.wxd2 .wxn.wxn2{font-size:31px;stroke-width:2.4px}.wxd2 .wxn.wxn2 .wxp{font-size:13px}
-.wxd2 .wxl{font-size:7.4px;letter-spacing:.1em}
+.wxd2 .wxn.wxn2{font-size:34px;stroke-width:2px}.wxd2 .wxn.wxn2 .wxp{font-size:12px}
+.wxd2 .wxl.wxl2{font-size:7px;letter-spacing:.08em}
+.wxd2 .wxd3{font:700 9px var(--f-num);paint-order:stroke;stroke:#070B16;stroke-width:2px}
+.wxd2 .wxs{font:600 6.6px var(--f-num);fill:#8C97B0}
+.wpx .wxt2{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px}
+.wpx .wxt2 b{font:700 8px/1 var(--f-body);letter-spacing:.16em;color:#9AA5BC}
+.wpx .wxt2 .wxtk{font:800 7px/1 var(--f-body);letter-spacing:.1em;color:#1A1405;background:#FFD166;border-radius:6px;padding:2px 5px}
+@media (min-width:561px){.wpx .wxt2 b{font-size:9px}.wpx .wxt2 .wxtk{font-size:8.5px}}
+
 .wxd2 .wxt{font:800 6.6px var(--f-body);letter-spacing:.12em;fill:#1A1405}
 .wxd2 .wxh{cursor:pointer;outline:none}.wxd2 .wxh:hover rect,.wxd2 .wxh:focus rect{fill:rgba(255,255,255,.06)}
 .wpx .wxk[data-xal]{cursor:pointer}.wpx .wxk[data-xal]:hover b{text-decoration:underline;text-underline-offset:2px}
