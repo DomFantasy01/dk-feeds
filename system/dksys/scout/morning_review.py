@@ -51,24 +51,28 @@ def pt_str(t):
 
 # ------------------------------------------------------------------ loaders
 def load_boone(R):
-    """Oct 24 (Dom): named experts only. Was Boone's list alone; now the panel's median rank (Ciallela, Ratcliffe,
-    Thorman, Koerner) from expert_panel.resolved_ranks, so one expert never decides a line on his own."""
+    """Nov 25 (Dom: "everything should be based on the point projections"): no FantasyPros ranking lists. Each man's
+    position rank comes from Ratcliffe's own POINT projections (rest of season per game; this week where he has no season
+    line), read from the build's ftn_scored.csv. Same shape as before so every line below keeps working."""
+    import csv
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import expert_panel as EP
-    ranks, stamps = EP.resolved_ranks(R); B = {}
-    for k, d in ranks.items():
-        v = [x for e, x in d.items() if e in EP.active_panel(ranks)]
-        if not v: continue
-        # Nov 23 (Dom's Nov 12 rule - no averaging, Ratcliffe decides): Ratcliffe's own rank when he has one; Koerner's only
-        # when Ratcliffe doesn't rank the man (was the median of the two)
-        r = d.get("Jeff Ratcliffe")
-        if r: pos, rk, who = r[0], r[1], "R"
-        else:
-            pos = max(set(x[0] for x in v), key=[x[0] for x in v].count)
-            rk, who = sorted(x[1] for x in v if x[0] == pos)[0], "K"
-        B[norm(d["_name"])] = dict(name=d["_name"], pos=pos, rank=rk, team="", by=who)
-    head = "Ratcliffe decides (Koerner only where Ratcliffe has no rank), read live " + (stamps[0].replace("pulled ", "") if stamps else "?")
-    return B, head
+    fp = os.path.join(R, "dispatch_out", "ftn_scored.csv"); rows, read = [], "?"
+    if os.path.exists(fp):
+        for r in csv.DictReader(open(fp)):
+            if r.get("lg") != "1" or r.get("pos") not in ("QB", "RB", "WR", "TE"): continue
+            v = None
+            for c in ("ros_pg", "wk"):
+                try:
+                    v = float(r[c]) if str(r.get(c, "")).strip() not in ("", "nan") else None
+                except Exception: v = None
+                if v is not None: break
+            if v is None: continue
+            rows.append((r["pos"], v, r["name"], r.get("team", ""))); read = r.get("read_pt") or read
+    B = {}
+    for pos in ("QB", "RB", "WR", "TE"):
+        for i, (_, v, name, team) in enumerate(sorted((x for x in rows if x[0] == pos), key=lambda x: -x[1]), 1):
+            B[norm(name)] = dict(name=name, pos=pos, rank=i, team=team, by="R", pts=round(v, 1))
+    return B, f"Ratcliffe's point projections (rest of season per game), ranked by position, read live {str(read).replace(' PT', '')} PT"
 
 def load_txns(R, n):
     f = f"{R}/yahoo_drop/morning/txn_dk{n}.txt"
@@ -250,7 +254,7 @@ def run(R, since, asof, out_dir, write_brief):
         b = B.get(norm(nm)); return b.get("rank") if b else None
     def rtxt(nm):
         b = B.get(norm(nm))
-        return f"panel {b['pos']}{b['rank']}" if b and b.get("rank") else "not ranked by the expert panel this week (bye, hurt or deep)"
+        return f"Ratcliffe {b['pos']}{b['rank']} by points" if b and b.get("rank") else "no Ratcliffe points this week (bye, hurt or deep)"
 
     news = news_arrivals(R, since)
     RAT, KOR = expert_nums(R); GS = sched(R)
@@ -316,7 +320,7 @@ def run(R, since, asof, out_dir, write_brief):
             w = beats(b["name"])
             if w: L["expert"].append(dict(name=b["name"], team=b["team"], pos=b["pos"], boone=b["rank"], over=w[0], over_rank=w[1],
                                           margin=w[1] - b["rank"], how=how(b["name"]), yahoo_ros=round(Y[key], 1) if key in Y else None,
-                                          line=f"The expert panel ranks {b['name']} ({b['team']} {b['pos']}) {b['pos']}{b['rank']} this week, ahead of your {w[0]} ({b['pos']}{w[1]}). {how(b['name'])}."))
+                                          line=f"Ratcliffe's points rank {b['name']} ({b['team']} {b['pos']}) {b['pos']}{b['rank']} this week, ahead of your {w[0]} ({b['pos']}{w[1]}). {how(b['name'])}."))
         L["expert"].sort(key=lambda x: -x["margin"]); L["expert"] = L["expert"][:8]
         # 2 NEW-ARRIVAL GATE (dropped in a league, or traded/signed/released in the news, in the window, and available here)
         cand = {}
@@ -351,11 +355,11 @@ def run(R, since, asof, out_dir, write_brief):
                 if opp and x["team"] == opp:
                     L["review"]["hurts"].append(f"Your opponent {opp} added {who}, {pt_str(x['t'])} ({x['detail']}). Experts: {rtxt(x['player'])}. {vd}")
                 elif w and ("STARTER UPGRADE" in vd or "ONE-WEEK FILL" in vd):   # Oct 30: 'we missed' only when he'd have started for Dom
-                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}). {vd}")
+                    L["review"]["missed"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). Ratcliffe's points have him {x['pos']}{rk(x['player'])}, ahead of your {w[0]} ({x['pos']}{w[1]}). {vd}")
                 else: L["review"]["others"].append(f"{x['team']} took {who}, {pt_str(x['t'])} ({x['detail']}). {vd}")   # Oct 30 (Dom): no more silent 'quiet' adds
             elif x["action"] == "Dropped" and x["pos"] in POS and norm(x["player"]) not in rostered:
                 w = beats(x["player"])
-                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. the expert panel has him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}. {verdict(x['player'], x['pos'])}")
+                if w: L["review"]["openings"].append(f"{x['team']} dropped {who}, {pt_str(x['t'])}. Ratcliffe's points have him {x['pos']}{rk(x['player'])}, ahead of your {w[0]}. {how(x['player'])}. {verdict(x['player'], x['pos'])}")
                 else: L["review"]["quiet"] += 1
             else: L["review"]["quiet"] += 1
         report["leagues"][lab] = L
@@ -365,7 +369,7 @@ def run(R, since, asof, out_dir, write_brief):
         a = read_age(load_txns(R, n_)[1], asof)
         if a is None or a > 30: stale.append(f"{lab_} transaction read is " + ("missing" if a is None else f"{a:.0f} hours old")); 
     a = read_age(bhead, asof)
-    if a is None or a > 36: stale.append("expert rankings are " + ("missing" if a is None else f"{a:.0f} hours old"))
+    if a is None or a > 36: stale.append("Ratcliffe's point projections are " + ("missing" if a is None else f"{a:.0f} hours old"))
     report["stale"] = stale
     os.makedirs(out_dir, exist_ok=True)
     json.dump(report, open(f"{out_dir}/morning_review.json", "w"), indent=1)

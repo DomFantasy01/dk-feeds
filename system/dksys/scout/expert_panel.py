@@ -1,4 +1,6 @@
-"""EXPERT PANEL (Oct 24 2026, Dom). NAMED EXPERTS ONLY - no projection sites, no consensus averages
+"""EXPERT PANEL - since Nov 25 2026 (Dom): built on POINT PROJECTIONS, not ranking lists - see load_points/run below.
+The history below is the Oct 24 ranking design, kept for the record (resolved_ranks still feeds expert_moves).
+(Oct 24 2026, Dom). NAMED EXPERTS ONLY - no projection sites, no consensus averages
 ("you're just going to give me an average crappy team"). The panel's job is flags for analysis: show us what we
 didn't see so we can dig in and learn. It never picks up a player; every add and drop is talked through with Dom.
 
@@ -218,12 +220,43 @@ def active_panel(ranks):
     if len(act) < len(PANEL) and BACKUP in have: act.append(BACKUP)
     return act
 
+# ------------------------------------------------------------------ POINTS, not rankings (Nov 25, Dom: "everything should be
+# based on the point projections"). Each expert's own projected points, already converted to each league's scoring by the
+# build (dispatch_out/*_scored.csv). Ratcliffe decides (his rest-of-season points per game, and this week); the others are
+# shown beside him, never averaged. Any expert 2+ points off Ratcliffe on a flagged man = TALK mark (Nov 20 rule).
+BAR_PTS, BAR_PCT = 2.0, 0.10   # flag: 2+ points AND 10%+ better than one of Dom's men at the position (value bar, Nov 9)
+def _f(v):
+    try: return float(v) if str(v).strip() not in ("", "nan", "None") else None
+    except Exception: return None
+def _avg(xs):
+    xs = [x for x in xs if x is not None]; return sum(xs) / len(xs) if xs else None
+def load_points(R):
+    """{league n: {K(name): {'_name','_pos','_team', 'R': (wk, ros), 'Clay': (wk, ros), 'Draft Sharks': (wk, ros), 'Dr. Roto': (wk, None), 'Koerner': (wk, None)}}}"""
+    import csv
+    D, reads = {}, {}
+    def put(n, name, team, pos, who, wk, ros):
+        if pos not in POS or not name: return
+        d = D.setdefault(int(n), {}).setdefault(K(name), {"_name": name, "_pos": pos, "_team": TEAM_FIX.get(str(team).upper(), str(team).upper())})
+        d[who] = (wk, ros)
+    src = [("ftn", "R", "read_pt"), ("clay", "Clay", "read"), ("draftsharks", "Draft Sharks", "read"), ("drroto", "Dr. Roto", "read"), ("koerner", "Koerner", "read_pt")]
+    for f, who, rk in src:
+        fp = f"{R}/dispatch_out/{f}_scored.csv"
+        if not os.path.exists(fp): continue
+        for r in csv.DictReader(open(fp)):
+            wk = _f(r.get("wk"))
+            if who == "R": ros = _f(r.get("ros_pg"))
+            elif who in ("Clay", "Draft Sharks"): ros = _avg([_f(r.get(f"w{w}")) for w in range(13, 18)])
+            else: ros = None
+            put(r.get("lg"), r.get("name"), r.get("team"), r.get("pos"), who, wk, ros)
+            reads.setdefault(who, r.get(rk))
+    return D, reads
+
 def run(R, stats_f, snaps_f, games_f, out_dir):
-    ranks, stamps = resolved_ranks(R)
     global PANEL_NOW
-    PANEL_NOW = active_panel(ranks)
+    PANEL_NOW = ["Ratcliffe"]
+    PTS, reads = load_points(R)
     inbox = newest_inbox(R); ROS = rosters(inbox) if inbox else {}
-    # Nov 25: the Chrome inbox can miss a team page (DK II team 4 "FUCKING COWBOYS") and its players then read as free agents
+    # Nov 25: the Chrome inbox can miss a team page (DK II team 4) and its players then read as free agents
     # (Watson, DJ Moore, Bo Nix were flagged as pickups). The Yahoo API roster file covers every team - it wins when present.
     api_read = None
     for _lab, _n, _lid, _me in LEAGUES:
@@ -236,69 +269,78 @@ def run(R, stats_f, snaps_f, games_f, out_dir):
                 _h = open(f"{R}/yahoo_drop/scout/dk{_n}_rosters_live.txt").readline()
                 api_read = api_read or (re.search(r"read (\w{3} \w{3} \d{1,2} \d{1,2}:\d{2} [AP]M PT)", _h) or [None, None])[1]
             except Exception: pass
-    inbox = dict(inbox or {}); inbox["read_pt"] = api_read or inbox.get("read_pt")
-    ef = f"{R}/yahoo_drop/morning/expert_rankings.txt"
-    hd = open(ef).readline() if os.path.exists(ef) else ""
-    week = int((re.search(r"week (\d+)", hd) or [0, 0])[1] or 0) if hd else 0
+    week = nfl_week_now()
     F = Facts(stats_f, snaps_f, games_f, week)
     sl = json.load(open(f"{R}/feeds/sleeper_players_min.json")).get("players", {}) if os.path.exists(f"{R}/feeds/sleeper_players_min.json") else {}
     INJ = {K(p.get("name")): p for p in sl.values() if p.get("name")}
-    rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=inbox.get("read_pt"), experts_read=stamps, experts_stale=EXPERT_STALE,
-               panel=[SHOW.get(e, e) for e in PANEL_NOW], rule=f"{min(NEED, len(PANEL_NOW))} of {len(PANEL_NOW)} experts rank him {EDGE}+ spots above one of your men at his position", leagues={})
+    stale = "" if reads.get("R") else "Ratcliffe's points file is missing - no flags until it is read"
+    rep = dict(built=pt_str(dt.datetime.now(PT)), week=week, yahoo_read=api_read or (inbox or {}).get("read_pt"),
+               experts_read=[f"{'Ratcliffe' if k == 'R' else k} {v}" for k, v in reads.items()], experts_stale=stale,
+               panel=["Ratcliffe (points)"], basis="points",
+               rule=f"Ratcliffe has him {BAR_PTS:.0f}+ points AND {BAR_PCT:.0%}+ better than one of your men at his position - rest of season per game, or this week - in this league's scoring; the other experts are shown beside him, never averaged",
+               leagues={})
+    fmt = lambda v: "-" if v is None else f"{v:.1f}"
     for lab, n, lid, me in LEAGUES:
+        P = PTS.get(n, {})
         teams = ROS.get(n, {}); rostered = {K(p) for ps in teams.values() for p in ps}
         srows = scout_rows(R, n); W = waivers(R, n)
         slots = {K(r["name"]): r["slot"] for r in srows if r["team"] == str(me)}
-        mine = [K(p) for p in teams.get(me, []) if slots.get(K(p), "BN") != "IR"]
-        nm = lambda k: (ranks.get(k, {}).get("_name") or next((p for p in teams.get(me, []) if K(p) == k), k))
-        best = {}
-        for c, cr in ranks.items():
-            if c in rostered: continue
-            for d in mine:
-                dr = ranks.get(d, {}); yes, no, det = [], [], {}
-                for e in PANEL_NOW:
-                    if e in cr and e in dr and cr[e][0] == dr[e][0]:
-                        det[SHOW[e]] = f"{cr[e][0]}{cr[e][1]} v {dr[e][0]}{dr[e][1]}"
-                        (yes if dr[e][1] - cr[e][1] >= EDGE else no).append(SHOW[e])
-                if len(yes) >= min(NEED, len(PANEL_NOW)):   # Nov 25: Ratcliffe posts his FantasyPros ranks Thursday - with one expert in, "2 of 1" could never flag anyone
-                    b = best.get(c)
-                    if not b or len(yes) > len(b["yes"]): best[c] = dict(d=d, yes=yes, no=no, det=det)
-        def worst_rank(d):   # higher number = weaker in the experts' eyes; unranked counts as weakest
-            v = [x[1] for k, x in ranks.get(d, {}).items() if k != "_name"]
-            return sum(v) / len(v) if v else 999
+        mine = [K(p) for p in teams.get(me, []) if slots.get(K(p), "BN") not in ("IR", "IR-R")]
+        nm = lambda k: (P.get(k, {}).get("_name") or next((p for p in teams.get(me, []) if K(p) == k), k))
+        rv = lambda k, i: (P.get(k, {}).get("R") or (None, None))[i]
         items = []
-        for c, f in best.items():
-            pos = next(v[0] for k, v in ranks[c].items() if k != "_name")
-            fact = F.done(c); team = fact.get("team", "")
+        for c, cd in P.items():
+            if c in rostered or "R" not in cd: continue
+            pos = cd["_pos"]; c_wk, c_ros = cd["R"]
+            same = [d for d in mine if P.get(d, {}).get("_pos") == pos]
+            best = None
+            for d in same:
+                d_wk, d_ros = rv(d, 0), rv(d, 1)
+                why = []
+                if c_ros is not None and d_ros is not None and c_ros - d_ros >= BAR_PTS and c_ros >= d_ros * (1 + BAR_PCT): why.append("rest of season")
+                if c_wk is not None and d_wk is not None and c_wk - d_wk >= BAR_PTS and c_wk >= d_wk * (1 + BAR_PCT): why.append("this week")
+                if not why: continue
+                gain = (c_ros - d_ros) if "rest of season" in why else (c_wk - d_wk)
+                if not best or gain > best["gain"]: best = dict(d=d, why=why, gain=gain)
+            if not best: continue
+            d = best["d"]
+            others, talk = {}, []
+            for who in ("Clay", "Draft Sharks", "Dr. Roto", "Koerner"):
+                if who not in cd: continue
+                wk, ros = cd[who]; dw, dr = (P.get(d, {}).get(who) or (None, None))
+                others[who] = f"this week {fmt(wk)} v {fmt(dw)}" + (f", rest of season {fmt(ros)} v {fmt(dr)}" if ros is not None else "")
+                if wk is not None and c_wk is not None and abs(wk - c_wk) >= 2: talk.append(f"{who} {wk:.1f} vs Ratcliffe {c_wk:.1f} this week")
+                if ros is not None and c_ros is not None and abs(ros - c_ros) >= 2: talk.append(f"{who} {ros:.1f} vs Ratcliffe {c_ros:.1f} rest of season")
+            fact = F.done(c); team = fact.get("team") or cd["_team"]
             sch = F.schedule(team, pos); tag = (INJ.get(c) or {}).get("inj") or ""
-            # likely drop: the bench man the experts rank lowest - same position first; a bench man they don't rank at all
-            # (on bye, hurt) is left out, because "unranked this week" is not the same as "worst"
-            bench = [d for d in mine if slots.get(d) == "BN" and worst_rank(d) < 999]
-            same = [d for d in bench if any(k != "_name" and v[0] == pos for k, v in ranks.get(d, {}).items())]
-            drop = max(same or bench, key=worst_rank, default=None)
+            bench = [b for b in mine if slots.get(b) == "BN" and rv(b, 1) is not None]
+            same_b = [b for b in bench if P.get(b, {}).get("_pos") == pos]
+            drop = min(same_b or bench, key=lambda b: rv(b, 1), default=None)
             stops, notes = [], []
             if tag in ("Out", "IR", "Doubtful", "Suspended", "PUP"): stops.append(f"tagged {tag}")
             if sch.get("monday"): notes.append("plays Monday night - once Sunday's games lock, nobody on your bench can replace him")
-            if drop and f["d"] == drop: notes.append(f"the man he beats, {nm(drop)}, is also your weakest bench player")
-            others = {SHOW.get(e, e): f"{v[0]}{v[1]}" for e, v in ranks[c].items() if e != "_name" and e not in PANEL_NOW}
-            items.append(dict(name=nm(c), pos=pos, team=team, beats=nm(f["d"]), agree=f"{len(f['yes'])} of {len(f['yes'])+len(f['no'])}",
-                              yes=f["yes"], no=f["no"], votes=f["det"], other_experts=others,
+            if drop and d == drop: notes.append(f"the man he beats, {nm(drop)}, is also your weakest bench player")
+            if talk: notes.append("TALK - experts split: " + "; ".join(talk))
+            items.append(dict(name=cd["_name"], pos=pos, team=team, beats=nm(d), basis=best["why"], gain=round(best["gain"], 1),
+                              agree="Ratcliffe", yes=["Ratcliffe"], no=[],
+                              votes={"Ratcliffe": f"this week {fmt(c_wk)} v {fmt(rv(d, 0))}, rest of season {fmt(c_ros)} v {fmt(rv(d, 1))} a game"},
+                              other_experts=others, talk=bool(talk),
                               available=f"on waivers until {W[c]} - takes a claim" if c in W else "free agent - instant add",
                               injury=tag, done=fact.get("line"), trend=fact.get("trend"), bye=sch.get("bye"), playoffs=sch.get("playoffs"),
                               this_week=sch.get("this_week"), drop_candidate=nm(drop) if drop else None, notes=notes, stops=stops,
                               verdict=("flag - worth analyzing" if not stops else "fails the workup: " + "; ".join(stops))))
-        items.sort(key=lambda x: (bool(x["stops"]), -len(x["yes"]), x["name"]))
-        rep["leagues"][lab] = dict(passed=[x for x in items if not x["stops"]][:4], failed=[x for x in items if x["stops"]][:4])
+        items.sort(key=lambda x: (bool(x["stops"]), -x["gain"], x["name"]))
+        rep["leagues"][lab] = dict(passed=[x for x in items if not x["stops"]][:8], failed=[x for x in items if x["stops"]][:4])
     os.makedirs(out_dir, exist_ok=True)
     json.dump(rep, open(f"{out_dir}/expert_panel.json", "w"), indent=1, default=str)
     txt = render(rep); open(f"{out_dir}/expert_panel.txt", "w").write(txt + "\n"); print(txt)
     return rep
 
 def card(x):
-    o = ", ".join(f"{k} {v}" for k, v in x["other_experts"].items())
+    o = "; ".join(f"{k} {v}" for k, v in x["other_experts"].items())
     return "\n".join([
-        f"  {x['name']} ({x['team']} {x['pos']}) over your {x['beats']} - {x['agree']} panel experts agree",
-        f"     Panel (him v yours): " + "; ".join(f"{k} {v}" for k, v in x["votes"].items()) + "." + (f" Off-panel experts on him: {o}." if o else ""),
+        f"  {x['name']} ({x['team']} {x['pos']}) over your {x['beats']} - Ratcliffe +{x['gain']:.1f} a game ({' and '.join(x['basis'])})" + ("  [TALK]" if x.get("talk") else ""),
+        f"     Ratcliffe (him v yours): {x['votes']['Ratcliffe']}." + (f" Beside him: {o}." if o else ""),
         f"     Available: {x['available']}." + (f" Injury tag: {x['injury']}." if x["injury"] else ""),
         f"     Done: {x['done'] or 'no stats found'}" + (f" | workload {x['trend']}" if x["trend"] else "") + ".",
         f"     This week: {x['this_week']}. Bye: {', '.join('Wk'+str(b) for b in (x['bye'] or [])) or 'none left'}. Playoffs: {', '.join(x['playoffs'] or []) or '?'}.",
@@ -306,15 +348,15 @@ def card(x):
         f"     {x['verdict'][0].upper() + x['verdict'][1:]}."])
 
 def render(rep):
-    o = [f"EXPERT PANEL (named experts only) - Week {rep['week']}, built {rep['built']} PT. Rosters: Yahoo read {rep['yahoo_read']}.",
+    o = [f"EXPERT PANEL (point projections, each league's scoring) - Week {rep['week']}, built {rep['built']} PT. Rosters: Yahoo read {rep['yahoo_read']}.",
          *([f"NOT CURRENT: {rep['experts_stale']}."] if rep.get("experts_stale") else []),
-         f"Panel: {', '.join(rep['panel'])}. Experts read: {'; '.join(rep['experts_read']) or 'MISSING'}.",
-         f"A flag needs {rep['rule']}. Flags are for analysis - nothing here is a pickup order."]
+         f"Ratcliffe decides; beside him: Clay, Draft Sharks, Dr. Roto, Koerner. Read: {'; '.join(rep['experts_read']) or 'MISSING'}.",
+         f"A flag needs: {rep['rule']}. Flags are for analysis - nothing here is a pickup order."]
     for lab, L in rep["leagues"].items():
         o.append(f"\n{lab}")
-        if not L["passed"]: o.append("  No flags: " + (rep["experts_stale"] + "." if rep.get("experts_stale") else "the panel doesn't rank anyone available clearly above your men."))
+        if not L["passed"]: o.append("  No flags: " + (rep["experts_stale"] + "." if rep.get("experts_stale") else "Ratcliffe has nobody available clearly above your men."))
         for x in L["passed"]: o.append(card(x))
-        for x in L["failed"]: o.append(f"  (Panel liked {x['name']} over {x['beats']}, but he {x['verdict'].replace('fails the workup: ', 'fails: ')}.)")
+        for x in L["failed"]: o.append(f"  (Ratcliffe liked {x['name']} over {x['beats']}, but he {x['verdict'].replace('fails the workup: ', 'fails: ')}.)")
     return "\n".join(o)
 
 if __name__ == "__main__":
