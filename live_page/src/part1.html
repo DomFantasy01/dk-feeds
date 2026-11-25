@@ -1879,4 +1879,16 @@ html body .mh h1{background:linear-gradient(100deg,#8A6A12 0%,#D4A62A 22%,#F2C23
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#F2C230;filter:drop-shadow(0 0 6px rgba(242,194,48,.35))}
 @media (prefers-reduced-motion:no-preference){html body .mh h1{animation:dkshim 4.5s ease-in-out infinite}}
 @keyframes dkshim{0%{background-position:100% 0}55%,100%{background-position:0% 0}}
+
+/* Nov 25 (Dom): Expert Ridge - one mountain per league, rolls in left to right */
+.rdg{margin:6px 0 10px;padding:10px 10px 6px;border-radius:12px;background:linear-gradient(180deg,rgba(28,40,70,.75),rgba(12,18,34,.85));border:1px solid rgba(140,160,210,.22)}
+.rdg .xhd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:2px}
+.rdg .xhd b{font:800 13px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(90deg,#F2C230,#FFF4C2,#F2C230);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.rdg .xhd span{font-size:10.5px;color:#8C97B0}
+.rdg svg{display:block;width:100%;height:auto;max-height:340px}
+.rdg .rdlg{font:800 11px var(--f-body);letter-spacing:.04em}.rdg .rdwd{font:700 7.5px var(--f-body);letter-spacing:.08em}
+.rdg .rdpk{font:800 8.5px var(--f-num,monospace);fill:#F2C230;paint-order:stroke;stroke:#0A1020;stroke-width:2.2px}
+.rdg .rdax{font:600 7.5px var(--f-body);fill:#6C7790;letter-spacing:.06em}
+.rdg .rdgA{cursor:pointer}.rdg .xft{margin:4px 2px 0;font-size:9.5px;color:#6C7790;line-height:1.4}.rdg .xft i{font-style:normal;font-weight:800}
+@media (prefers-reduced-motion:no-preference){.rdg .rdgA.sw{animation:rdroll 3.2s cubic-bezier(.3,.1,.25,1) var(--d) both}}
+@keyframes rdroll{from{clip-path:inset(0 100% 0 0);opacity:.35}to{clip-path:inset(0 0 0 0);opacity:1}}
 </style>

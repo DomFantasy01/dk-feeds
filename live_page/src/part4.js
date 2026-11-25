@@ -1021,7 +1021,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { const g = xs.querySelector(".mgrid"), xc = xChart(); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = ridgeChart(); } catch(e){ console.error("ridgeChart", e); } try { xc += xChart(); } catch(e){ console.error("xChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -1062,6 +1062,47 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    (shorter = closer); ▲ = usually projects too high, ▼ = too low; the little line = his miss week by week (lower = better);
    chips = his job (✓1 decides lineups, Pillar 2, ✓ lineup check, P✓ pickups/playoffs check); right = when we last read him.
    Ratcliffe in his needle blue, Dr. Roto in his needle white. Dr. Roto and Draft Sharks are not on the weekly grade yet. */
+/* Nov 25 7:06 AM (Dom, voice: "a little mountain ... when I open up Dark Knight Live ... you'll see it rolling ... some meaningful
+   thing in front of that long line of experts"): the EXPERT RIDGE. One mountain per league on a 0-100% "chance to win this week"
+   line. Every expert adds a hill centered on his number; where the hills pile up tall, the experts agree - a tall narrow peak = they
+   agree, a low wide ridge = they're split. Ratcliffe's own hill is outlined in his needle blue, Dr. Roto's in white, Yahoo is the
+   gold diamond on the base line, and the gold peak line marks where most experts land (the top of the mountain, not an average).
+   The ridges roll in left to right, DK1 first, and replay every 15 minutes with the needles. Tap a league's ridge for its card. */
+function ridgeChart(){
+  const EX = [["r", "Ratcliffe"], ["o", "Dr. Roto"], ["d", "Draft Sharks"], ["c", "Clay"], ["v", "Vegas"], ["b", "RotoBaller"]];
+  const ok = (v) => v !== null && v !== undefined && !isNaN(v), W = 340, L0 = 70, R0 = 330, RH = 44, OV = 26, SG = 6.5;
+  const xp = (q) => L0 + (R0 - L0) * Math.max(0, Math.min(100, q)) / 100;
+  const rows = KEYS.map(k => { const L = lgS(k); if (!L) return null; const X = Object.fromEntries(EX.map(([s3]) => [s3, chance(L, s3)]));
+    const have = EX.filter(([s3]) => ok(X[s3])); if (have.length < 2) return null; return {k, X, have, y: chance(L, "y")}; }).filter(Boolean);
+  if (!rows.length) return "";
+  const TOP = 36, H = TOP + rows.length * RH + 22, anim = !window.__rdSwept;
+  if (anim && !window.__rdT) window.__rdT = setTimeout(() => { window.__rdSwept = true; window.__rdT = 0; }, 6500);
+  const hill = (c, q) => Math.exp(-((q - c) ** 2) / (2 * SG * SG));
+  let body = "";
+  rows.forEach((r, i) => { const base = TOP + (i + 1) * RH, tall = RH + OV - 6;
+    const dens = []; for (let q = 0; q <= 100; q += 1) dens.push(r.have.reduce((a, [s3]) => a + hill(r.X[s3], q), 0));
+    const mx = Math.max(...dens), sc = tall / Math.max(mx, 2.2), pk = dens.indexOf(mx);
+    const path = (vals, s) => `M${xp(0).toFixed(1)} ${base} ` + vals.map((v, q) => `L${xp(q).toFixed(1)} ${(base - v * s).toFixed(1)}`).join(" ") + ` L${xp(100).toFixed(1)} ${base} Z`;
+    const one = (s3) => { const c = r.X[s3], pts = []; for (let q = Math.max(0, Math.floor(c - 3 * SG)); q <= Math.min(100, Math.ceil(c + 3 * SG)); q++) pts.push(`${xp(q).toFixed(1)} ${(base - hill(c, q) * sc).toFixed(1)}`); return "M" + pts.join(" L"); };
+    const spread = Math.max(...r.have.map(([s3]) => r.X[s3])) - Math.min(...r.have.map(([s3]) => r.X[s3]));
+    const word = spread <= 8 ? "AGREE" : spread <= 16 ? "MIXED" : "SPLIT", wc = spread <= 8 ? "#3DDC84" : spread <= 16 ? "#F7B32B" : "#FF4D57";
+    const tip = `${DK[r.k]} - chance to win this week, by expert: ` + r.have.map(([s3, n]) => `${n} ${Math.round(r.X[s3])}%`).join(", ") + (ok(r.y) ? `, Yahoo ${Math.round(r.y)}%` : "") + `. Most experts land near ${pk}%. Spread ${Math.round(spread)} points (${word.toLowerCase()}).`;
+    const gid = "rdg" + SLUG[r.k], c = HEX[r.k];
+    body += `<g class="rdgA${anim ? " sw" : ""}" style="--d:${(i * .5).toFixed(2)}s" data-jump="${SLUG[r.k]}" role="button" tabindex="0"><title>${esc(tip)}</title>
+      <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset="1" stop-color="${c}" stop-opacity=".12"/></linearGradient>
+      <line x1="${L0}" x2="${R0}" y1="${base}" y2="${base}" stroke="rgba(255,255,255,.14)" stroke-width=".8"/>
+      <path d="${path(dens, sc)}" fill="url(#${gid})" stroke="${c}" stroke-width="1.2" stroke-linejoin="round"/>
+      ${ok(r.X.r) ? `<path d="${one("r")}" fill="none" stroke="#43B8FF" stroke-width="1.6" stroke-linejoin="round" filter="drop-shadow(0 0 2px #43B8FF)"/>` : ""}
+      ${ok(r.X.o) ? `<path d="${one("o")}" fill="none" stroke="#F4F6FA" stroke-width="1.2" stroke-dasharray="3 2" stroke-linejoin="round"/>` : ""}
+      <line x1="${xp(pk).toFixed(1)}" x2="${xp(pk).toFixed(1)}" y1="${(base - mx * sc - 4).toFixed(1)}" y2="${base}" stroke="#F2C230" stroke-width="1.4"/>
+      <text x="${xp(pk).toFixed(1)}" y="${(base - mx * sc - 6).toFixed(1)}" text-anchor="middle" class="rdpk">${pk}%</text>
+      ${ok(r.y) ? `<path d="M${xp(r.y).toFixed(1)} ${base - 4} l4 4 l-4 4 l-4 -4 Z" fill="#F2C230" stroke="#0A1020" stroke-width=".8"/>` : ""}
+      <text x="4" y="${base - 14}" class="rdlg" fill="${c}">${DK[r.k]}</text><text x="4" y="${base - 3}" class="rdwd" fill="${wc}">${word} ${Math.round(spread)}</text></g>`; });
+  const ticks = [0, 25, 50, 75, 100].map(q => `<line x1="${xp(q).toFixed(1)}" x2="${xp(q).toFixed(1)}" y1="20" y2="${H - 18}" data-y="${TOP}" stroke="rgba(255,255,255,${q === 50 ? .22 : .07})" stroke-width="${q === 50 ? 1 : .6}" stroke-dasharray="${q === 50 ? "none" : "2 3"}"/><text x="${xp(q).toFixed(1)}" y="${H - 6}" text-anchor="middle" class="rdax">${q === 50 ? "50% · COIN FLIP" : q + "%"}</text>`).join("");
+  return `<div class="rdg"><div class="xhd"><b>Expert Ridge</b><span>chance to win this week · every expert, every league</span></div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Expert ridge: how the experts' chances to win this week stack up in each league">${ticks}${body}</svg>
+    <p class="xft"><i style="color:#43B8FF">━</i> Ratcliffe · <i style="color:#F4F6FA">┅</i> Dr. Roto · <i style="color:#F2C230">◆</i> Yahoo · <i style="color:#F2C230">│</i> where most experts land · tall narrow peak = the experts agree, low wide ridge = they're split (AGREE within 8 points, MIXED 9-16, SPLIT 17+). Tap a ridge for that league.</p></div>`;
+}
 function xChart(){
   const Q = panelQ(), A = (M && M.acc) || {}; if (!Q) return "";
   const ID = {Ratcliffe: "ratcliffe", "Dr. Roto": "drroto", "Draft Sharks": "draftsharks", Clay: "clay", Vegas: "vegas", RotoBaller: "rotoballer", Yahoo: "yahoo", Gotham: "gotham"};
@@ -1075,7 +1116,7 @@ function xChart(){
     const j = po.indexOf(n); if (j >= 0) out.push(`<i class="xpo" title="${j === 0 ? "Pickups, drops and playoffs: his rest of season decides" : "Pickups and playoffs check: rest of season and Weeks 15-17"}">P&#10003;${j + 1}</i>`); return out.join(""); };
   const spark = (n) => { const wk = (A.src || {})[ID[n]] || {}, ws = Object.keys(wk).map(Number).filter(w => w >= 8).sort((a, b) => a - b); if (ws.length < 2) return `<svg class="xsp" viewBox="0 0 64 20"></svg>`;
     const vs = ws.map(w => wk[String(w)][0]), a = 5, b = 9, x = (i) => 4 + 56 * i / (ws.length - 1), y = (v) => 3 + 14 * (v - a) / (b - a);
-    const col = n === "Ratcliffe" ? NC.r : "#8FA0C4";
+    const col = n === "Ratcliffe" ? "#43B8FF" : "#8FA0C4";
     return `<svg class="xsp" viewBox="0 0 64 20" role="img" aria-label="${esc(n + " points missed by week: " + ws.map((w, i) => "Week " + w + " " + vs[i].toFixed(2)).join(", "))}"><title>${esc(ws.map((w, i) => "Wk " + w + ": " + vs[i].toFixed(2)).join(" · "))}</title><polyline points="${vs.map((v, i) => x(i).toFixed(1) + "," + Math.min(18, Math.max(2, y(v))).toFixed(1)).join(" ")}" fill="none" stroke="${col}" stroke-width="1.4" stroke-linejoin="round"/>${vs.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${Math.min(18, Math.max(2, y(v))).toFixed(1)}" r="1.7" fill="${col}"/>`).join("")}</svg>`; };
   const tm = (n) => { const r = reads[n]; const m = r && /(\w{3}) \w{3} \d+(?: \d{4})? (\d+:\d+ [AP]M)/.exec(r); return m ? `${m[1]} ${m[2]}` : (r ? esc(r) : "–"); };
   const row = (n, i) => { const v = Q.miss[n], bi = (Q.bias || {})[n], cls = n === "Ratcliffe" ? " xr" : n === "Dr. Roto" ? " xo" : "";
@@ -1857,7 +1898,7 @@ document.addEventListener("click", async (e) => {
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
 /* Nov 25 (Dom): replay the staggered needle sweep every 15 minutes; if the page is in the background, replay when it comes back. */
-window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN, .sgauge .sgF"); if (!ns.length) return;
+window.wgReplay = function(){ const ns = document.querySelectorAll(".wgd .wgN, .sgauge .sgF, .rdg .rdgA"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
 (() => { let due = false; setInterval(() => { if (document.hidden) due = true; else window.wgReplay(); }, 15 * 60 * 1000);
   document.addEventListener("visibilitychange", () => { if (!document.hidden && due){ due = false; window.wgReplay(); } }); })();
