@@ -1677,7 +1677,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wxd2 .wxd3{font:700 10px var(--f-num);paint-order:stroke;stroke:#070B16;stroke-width:2px}
 .wxd2 .wxs{font:600 7px var(--f-num);fill:#8C97B0}
 /* Nov 24 PM (Dom: "exactly the same size in those other six boxes"): the six expert boxes use the dial's number size - 40 of the dial's 216 units */
-.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .19)}.wpx .wxr{opacity:.82}.wpx .wxr .wxk b{text-shadow:none}
+.wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .19)}
 /* Nov 24 PM v3: the polished gauge, two needles, numbers under it */
 .wpx .wgd{display:block;width:100%;max-width:290px;margin:0 auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
 .wgd .wgs{font:600 7px var(--f-num);fill:#AEB8CE}
@@ -1692,7 +1692,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx .wgn{position:relative;overflow:hidden;padding:5px 0 6px;border-top:2px solid var(--nc,#fff)}.wpx .wgn-r{--nc:#43B8FF}.wpx .wgn-o{--nc:#F4F6FA}
 .wpx .wgn::before{content:"";position:absolute;inset:0 0 auto;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.09),transparent);pointer-events:none}
 .wpx .wgn::after{content:"";position:absolute;top:-2px;left:50%;width:40%;height:2px;transform:translateX(-50%);background:var(--nc);box-shadow:0 0 8px var(--nc);opacity:.9}
-.wgd .wgN{transform-box:view-box;transform-origin:100px 92px}
+.wgd .wgN{transform-box:view-box;transform-origin:100px 92px}.wgd4 .wgN{transform-origin:100px 94px}
 @media (prefers-reduced-motion:no-preference){.wgd .wgN.sw{animation:wgsw 1.25s cubic-bezier(.2,.85,.25,1.12) var(--d) both}@keyframes wgsw{from{transform:rotate(var(--r0))}to{transform:rotate(0deg)}}}.wpx .wxr .wxk b small{font-size:.36em;vertical-align:.9em}
 .wpx .wxt2{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px}
 .wpx .wxt2 b{font:700 8px/1 var(--f-body);letter-spacing:.16em;color:#9AA5BC}
@@ -1784,4 +1784,26 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .sgauge .gsw{font:800 3.4px var(--f-body);letter-spacing:.02em;pointer-events:none;fill:#0A1020}.sgauge .gsw.out{fill:#fff}.sgauge .gsw.bye{fill:#2A0A1E}
 .sgauge .gsw.trbl,.sgauge .gsw.trblon{fill:#0A1020;font-size:3.6px}
 .fmiss{font-size:11px;color:var(--mute,#8E98AE);margin-top:2px;font-weight:500}
+</style><style>
+/* Nov 24 PM v4: three-quarter gauge, key, six-box grid with a gold Yahoo box, expert sheet */
+.wpx4{position:relative;padding-top:0}
+.wpx4 .wgd{max-width:300px;margin-top:-2px}
+.wpx4 .wgtk{position:absolute;top:2px;right:2px;z-index:2}
+.wpx .wgk{display:flex;justify-content:center;gap:10px;margin:-4px 0 2px;font:600 calc(min(100cqw, 300px) * .036)/1 var(--f-body);color:#8C97B0;letter-spacing:.04em}
+.wpx .wgk span{display:inline-flex;align-items:center;gap:3px}
+.wpx .wgk .kd{display:inline-block;width:6px;height:6px;background:#F2C230;transform:rotate(45deg);border:1px solid #050912}
+.wpx .wgk .kt{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #fff}
+.wpx .wxr6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:0;overflow:hidden}
+.wpx .wxr6 .wxk{padding:4px 1px 5px;border:0;border-right:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.wpx .wxr6 .wxk:nth-child(3n){border-right:0}.wpx .wxr6 .wxk:nth-child(n+4){border-bottom:0}
+.wpx .wxr6 .wxk + .wxk{border-left:0}
+.wpx .wxr6 .wxy{background:linear-gradient(180deg,rgba(242,194,48,.22),rgba(242,194,48,.06));box-shadow:inset 0 2px 0 #F2C230}
+.wpx .wxr6 .wxy span{color:#F2C230}
+.xpt{display:flex;flex-direction:column;gap:2px}
+.xpr{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto;gap:6px;align-items:baseline;padding:4px 6px;border-radius:6px;background:rgba(255,255,255,.03);font-size:12.5px}
+.xpr.gap{background:rgba(247,179,43,.12);box-shadow:inset 3px 0 0 #F7B32B}
+.xpr .ps{font:700 10px/1 var(--f-body);color:#8C97B0}.xpr .pn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}.xpr .pn em{font-style:normal;color:#8C97B0;margin-left:5px;font-size:11px}
+.xpr b{font:600 14px/1 var(--f-num);color:#fff}.xpr .rc{font:600 11px/1 var(--f-num);color:#43B8FF;min-width:44px;text-align:right}
+.xpw{padding:5px 6px;border-top:1px solid rgba(255,255,255,.06);font-size:12.5px}.xpw .up{color:#3DDC84}.xpw .dn{color:#FF6B72}
+#gsheet .gnums b.z-win{color:#3DDC84}#gsheet .gnums b.z-mid{color:#F7B32B}#gsheet .gnums b.z-lose{color:#FF5A63}
 </style>

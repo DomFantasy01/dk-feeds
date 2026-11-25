@@ -567,70 +567,87 @@ function rankedOf(X, OCK){ const IDS = {ratcliffe: "r", drroto: "o", draftsharks
    Under the dial, ONE line: how far each pillar has moved since he first posted this week (Dom: "a point in time since posting" -
    never read-to-read, which can drift), e.g. "RATCLIFFE ▼4 · DR. ROTO ▲2 since Tue 4:22 AM". Then the other experts' chips. */
 function winDial(o){
-  /* Nov 24 PM v3 (Dom: "make them look really good ... shiny and super cool"; "use the needles"; "be careful, one of those boxes is the
-     color of my team" - DK3 is purple, so Dr. Roto's needle is WHITE; "the pluses and minuses ... take them off"). One polished gauge:
-     glass face, metal bezel, red-amber-green scale, Ratcliffe = blue needle (decides), Dr. Roto = white needle (pillar 2), metal hub.
-     Their two numbers sit under the gauge, name under each; tap either for that expert's alerts. TALK lights when they split by 8+. */
+  /* Nov 24 PM v4 (Dom, voice): no "Chance to win" title (the section header already says it), gauge moved up and made bigger and
+     deeper - a three-quarter sweep like the Scoreboard dials, thicker red-to-green band, bigger needles. Where each pillar started
+     the week = a small triangle just outside the rim in his color (blue Ratcliffe, white Dr. Roto) - no tick marks across the needles.
+     Yahoo stays on the gauge as a GOLD DIAMOND on the band (Dom: "Yahoo is really our main system"), tied to the gold-topped Yahoo box. */
   const {k, X, y, ZF, off, F, imp} = o;
   const NM = {r: "Ratcliffe", o: "Dr. Roto", d: "Draft Sharks", k: "Koerner", c: "Clay", v: "Vegas", b: "RotoBaller", y: "Yahoo", g: "Gotham"}, SH = {r: "RATCLIFFE", o: "DR. ROTO", d: "DRAFTSHRK", k: "KOERNER", c: "CLAY", v: "VEGAS", b: "ROTO", y: "YAHOO", g: "GOTHAM"};
   const XID = {r: "ratcliffe", o: "drroto", d: "draftsharks", k: "koerner", c: "clay", v: "vegas", b: "rotoballer", y: "yahoo", g: "gotham"};
   const ok = (v) => v !== null && v !== undefined && !isNaN(v), cl = (v) => Math.max(0, Math.min(100, +v));
-  const NC = {r: "#43B8FF", o: "#F4F6FA"};
+  const NC = {r: "#43B8FF", o: "#F4F6FA"}, GOLD = "#F2C230";
   const lead = ok(X.r) ? X.r : ok(X.o) ? X.o : y, z = ZF(lead), ZC = {win: "#3DDC84", mid: "#F7B32B", lose: "#FF4D57"}, g = "wg" + SLUG[k];
-  const cx = 100, cy = 92, R = 78, A = (q) => Math.PI * (1 - q / 100), P = (q, rr) => [cx + rr * Math.cos(A(q)), cy - rr * Math.sin(A(q))], f = (n) => n.toFixed(1);
-  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 0 1 ${f(x1)} ${f(y1)}`; };
-  /* the scale band: one smooth red-amber-green sweep, the part where the lead expert sits glowing */
-  const band = `<path d="${arc(0, 100, R)}" stroke="url(#${g}sc)" stroke-width="9" fill="none" opacity=".35"/>` +
-    (ok(lead) ? `<path d="${arc(0, Math.max(.6, cl(lead)), R)}" stroke="url(#${g}sc)" stroke-width="9" fill="none"/><path d="${arc(0, Math.max(.6, cl(lead)), R + 3.2)}" stroke="#fff" stroke-opacity=".35" stroke-width="1" fill="none"/>` : "");
-  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 5 === 0, [a0, b0] = P(t * 5, R - 7), [a1, b1] = P(t * 5, R - (maj ? 15 : 11));
-    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#DDE3EE" : "#56658A"}" stroke-width="${maj ? 1.6 : .9}" stroke-linecap="round"/>`; }
-  const scl = [0, 25, 50, 75, 100].map(q => { const [lx, ly] = P(q, R - 23); return `<text x="${f(lx)}" y="${f(q === 0 || q === 100 ? ly - 5 : ly + 3)}" text-anchor="middle" class="wgs">${q}</text>`; }).join("");
-  /* tapered needle with a drop shadow */
-  /* Nov 24 PM (Dom: "fatten up the needles at the bottom ... thin them out ... hard to tell which needle is which"): fat at the hub,
-     tapering to the tip, dark outline. Ratcliffe = LONG blue needle to a sharp point; Dr. Roto = SHORTER white needle ending in a round knob */
-  const needle = (q, len, fill, w, knob) => { const a = A(cl(q)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 10, cy - uy * 10], nk = [cx + ux * len * .55, cy + uy * len * .55];
-    const body = `M${f(tail[0] + px * w * .55)} ${f(tail[1] + py * w * .55)} L${f(cx + px * w)} ${f(cy + py * w)} L${f(nk[0] + px * w * .42)} ${f(nk[1] + py * w * .42)} L${f(tip[0] + px * (knob ? .9 : 0))} ${f(tip[1] + py * (knob ? .9 : 0))} L${f(tip[0] - px * (knob ? .9 : 0))} ${f(tip[1] - py * (knob ? .9 : 0))} L${f(nk[0] - px * w * .42)} ${f(nk[1] - py * w * .42)} L${f(cx - px * w)} ${f(cy - py * w)} L${f(tail[0] - px * w * .55)} ${f(tail[1] - py * w * .55)} Z`;
-    return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="4.4" fill="${fill}" stroke="#050912" stroke-width="1"/>` : ""); };
-  /* Nov 24 PM (Dom: "use your free liberty ... dazzle me"): a soft glow at each tip in the needle's color, and on the page's first paint
-     the needles sweep up from 0 into place like a gauge starting up (skipped for anyone who has reduced motion turned on) */
-  const anim = !window.__wgSwept; if (anim) setTimeout(() => { window.__wgSwept = true; }, 1600);
-  const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const a = A(cl(X[s3])), tx = cx + Math.cos(a) * len, ty = cy - Math.sin(a) * len;
-    return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 1.8).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 7 : 6}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
-  /* Nov 24 PM (Dom: "put a ticker line in the color of where they started at the top of the circumference"): where each pillar
-     started the week, a short tick across the rim in his needle color - needle away from his tick = his number moved that way */
-  const st = (s3) => { const v0 = weekStart(k, s3); if (!ok(v0)) return ""; const [a0, b0] = P(cl(v0), R - 6), [a1, b1] = P(cl(v0), R + 9);
-    return `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="#050912" stroke-width="4.4" stroke-linecap="round"/><line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${NC[s3]}" stroke-width="2.4" stroke-linecap="round"><title>${NM[s3]} started the week at ${Math.round(v0)}%</title></line>`; };
-  /* Yahoo: a small white pointer on the outer rim */
-  const yp = ok(y) ? (() => { const a = A(cl(y)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(cl(y), R + 13), [qx, qy] = P(cl(y), R + 6);
-    return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 3.8)} ${f(by + py * 3.8)} L${f(bx - px * 3.8)} ${f(by - py * 3.8)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width=".8"/>`; })() : "";
-  const svg = `<svg class="wgd" viewBox="0 0 200 104" aria-hidden="true"><defs>
+  const cx = 100, cy = 94, R = 76, BW = 13, TH = (q) => (225 - 2.7 * q) * Math.PI / 180, P = (q, rr) => [cx + rr * Math.cos(TH(q)), cy - rr * Math.sin(TH(q))], f = (n) => n.toFixed(1);
+  const arc = (p0, p1, rr) => { const [x0, y0] = P(p0, rr), [x1, y1] = P(p1, rr); return `M${f(x0)} ${f(y0)} A${rr} ${rr} 0 ${(p1 - p0) * 2.7 > 180 ? 1 : 0} 1 ${f(x1)} ${f(y1)}`; };
+  const band = `<path d="${arc(0, 100, R)}" stroke="#0A0F1C" stroke-width="${BW + 3}" fill="none" stroke-linecap="butt"/><path d="${arc(0, 100, R)}" stroke="url(#${g}sc)" stroke-width="${BW}" fill="none" opacity=".3"/>` +
+    (ok(lead) ? `<path d="${arc(0, Math.max(.8, cl(lead)), R)}" stroke="url(#${g}sc)" stroke-width="${BW}" fill="none"/><path d="${arc(0, Math.max(.8, cl(lead)), R + BW / 2 - 1.4)}" stroke="#fff" stroke-opacity=".38" stroke-width="1.1" fill="none"/>` : "");
+  let ticks = ""; for (let t = 0; t <= 20; t++){ const maj = t % 5 === 0, [a0, b0] = P(t * 5, R - BW / 2 - 2), [a1, b1] = P(t * 5, R - BW / 2 - (maj ? 10 : 6));
+    ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#DDE3EE" : "#56658A"}" stroke-width="${maj ? 1.7 : 1}" stroke-linecap="round"/>`; }
+  const scl = [0, 25, 50, 75, 100].map(q => { const [lx, ly] = P(q, R - 29); return `<text x="${f(lx)}" y="${f(ly + 3)}" text-anchor="middle" class="wgs">${q}</text>`; }).join("");
+  /* where each pillar started the week: a triangle just outside the rim, pointing in */
+  const tri = (q, c, rr, sz, tt) => { const t = TH(cl(q)), ux = Math.cos(t), uy = -Math.sin(t), px = -uy, py = ux, [bx, by] = P(cl(q), rr + sz), [qx, qy] = P(cl(q), rr);
+    return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * sz * .62)} ${f(by + py * sz * .62)} L${f(bx - px * sz * .62)} ${f(by - py * sz * .62)} Z" fill="${c}" stroke="#050912" stroke-width=".9" stroke-linejoin="round"><title>${esc(tt)}</title></path>`; };
+  const st = (s3) => { const v0 = weekStart(k, s3); return ok(v0) ? tri(v0, NC[s3], R + BW / 2 + 2.5, 7.5, `${NM[s3]} started the week at ${Math.round(v0)}%`) : ""; };
+  /* Yahoo: a gold diamond riding the band */
+  const yd = ok(y) ? (() => { const [qx, qy] = P(cl(y), R), s = 5.6; return `<path d="M${f(qx)} ${f(qy - s)} L${f(qx + s)} ${f(qy)} L${f(qx)} ${f(qy + s)} L${f(qx - s)} ${f(qy)} Z" fill="${GOLD}" stroke="#050912" stroke-width="1.1"><title>Yahoo: ${Math.round(y)}% chance to win this week</title></path>`; })() : "";
+  const needle = (q, len, fill, w, knob) => { const t = TH(cl(q)), ux = Math.cos(t), uy = -Math.sin(t), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 13, cy - uy * 13], nk = [cx + ux * len * .55, cy + uy * len * .55];
+    const body = `M${f(tail[0] + px * w * .55)} ${f(tail[1] + py * w * .55)} L${f(cx + px * w)} ${f(cy + py * w)} L${f(nk[0] + px * w * .42)} ${f(nk[1] + py * w * .42)} L${f(tip[0] + px * (knob ? 1.1 : 0))} ${f(tip[1] + py * (knob ? 1.1 : 0))} L${f(tip[0] - px * (knob ? 1.1 : 0))} ${f(tip[1] - py * (knob ? 1.1 : 0))} L${f(nk[0] - px * w * .42)} ${f(nk[1] - py * w * .42)} L${f(cx - px * w)} ${f(cy - py * w)} L${f(tail[0] - px * w * .55)} ${f(tail[1] - py * w * .55)} Z`;
+    return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1.1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="5.2" fill="${fill}" stroke="#050912" stroke-width="1.1"/>` : ""); };
+  const anim = !window.__wgSwept; if (anim) setTimeout(() => { window.__wgSwept = true; }, 1700);
+  const nd = (s3, len, w, knob) => { if (!ok(X[s3])) return ""; const t = TH(cl(X[s3])), tx = cx + Math.cos(t) * len, ty = cy - Math.sin(t) * len;
+    return `<g class="wgN${anim ? " sw" : ""}" style="--r0:${(-cl(X[s3]) * 2.7).toFixed(1)}deg;--d:${s3 === "r" ? ".15s" : "0s"}"><circle cx="${f(tx)}" cy="${f(ty)}" r="${knob ? 8 : 7}" fill="${NC[s3]}" opacity=".55" filter="url(#${g}gw)"/><g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g></g>`; };
+  const RF = R + BW / 2 + 12;   /* face + bezel radius */
+  const svg = `<svg class="wgd wgd4" viewBox="0 0 200 158" aria-hidden="true"><defs>
+    <clipPath id="${g}cp"><rect x="0" y="0" width="200" height="${cy + 52}"/></clipPath>
     <linearGradient id="${g}sc" gradientUnits="userSpaceOnUse" x1="${cx - R}" y1="0" x2="${cx + R}" y2="0"><stop offset="0" stop-color="#FF4D57"/><stop offset=".42" stop-color="#FF8A3D"/><stop offset=".5" stop-color="#F7B32B"/><stop offset=".58" stop-color="#B8D94A"/><stop offset="1" stop-color="#3DDC84"/></linearGradient>
-    <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".22"/><stop offset=".5" stop-color="#16223F"/><stop offset="1" stop-color="#0A1121"/></radialGradient>
-    <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".45" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-    <linearGradient id="${g}bz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4A5470"/><stop offset=".2" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#7C88A2"/><stop offset=".8" stop-color="#F4F6FA"/><stop offset="1" stop-color="#4A5470"/></linearGradient>
+    <radialGradient id="${g}face" cx="50%" cy="58%" r="60%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".24"/><stop offset=".55" stop-color="#16223F"/><stop offset="1" stop-color="#0A1121"/></radialGradient>
+    <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".15"/><stop offset=".42" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="${g}bz" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A5470"/><stop offset=".22" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#7C88A2"/><stop offset=".78" stop-color="#F4F6FA"/><stop offset="1" stop-color="#4A5470"/></linearGradient>
     <linearGradient id="${g}nr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD6FF"/><stop offset="1" stop-color="#1478D4"/></linearGradient>
     <linearGradient id="${g}no" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9C2D4"/></linearGradient>
     <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#2E3852"/></radialGradient>
-    <filter id="${g}gw" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.6"/></filter><filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#000" flood-opacity=".75"/></filter></defs>
-    <path d="M${cx - R - 9} ${cy} A${R + 9} ${R + 9} 0 0 1 ${cx + R + 9} ${cy} Z" fill="url(#${g}bz)"/>
-    <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}face)"/>
-    ${band}${ticks}${scl}
-    <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}gl)"/>
-    ${st("o")}${st("r")}${yp}${nd("o", R - 21, 5.2, true)}${nd("r", R - 1, 7.4)}
-    <circle cx="${cx}" cy="${cy}" r="12" fill="${ZC[z]}" opacity=".5" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="10" fill="none" stroke="${ZC[z]}" stroke-width="1.6"/><circle cx="${cx}" cy="${cy}" r="8.5" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#0A0F1C"/>
-    <rect x="${cx - R - 9}" y="${cy}" width="${2 * R + 18}" height="2.2" fill="url(#${g}bz)"/></svg>`;
+    <filter id="${g}gw" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.8"/></filter>
+    <filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#000" flood-opacity=".75"/></filter></defs>
+    <g clip-path="url(#${g}cp)"><circle cx="${cx}" cy="${cy}" r="${RF + 3}" fill="url(#${g}bz)"/><circle cx="${cx}" cy="${cy}" r="${RF}" fill="url(#${g}face)"/>
+    ${band}${ticks}${scl}<circle cx="${cx}" cy="${cy}" r="${RF}" fill="url(#${g}gl)"/></g>
+    ${st("o")}${st("r")}${yd}${nd("o", R - 30, 6.6, true)}${nd("r", R - 5, 9)}
+    <circle cx="${cx}" cy="${cy}" r="14" fill="${ZC[z]}" opacity=".45" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="11.5" fill="none" stroke="${ZC[z]}" stroke-width="1.8"/><circle cx="${cx}" cy="${cy}" r="10" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="3" fill="#0A0F1C"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
-  const head = `<div class="wxt2"><b>CHANCE TO WIN</b>${talk ? `<span class="wxtk" title="Ratcliffe and Dr. Roto split by ${Math.abs(split)} points - talk it through">TALK ${Math.abs(split)}</span>` : ""}</div>`;
-  /* the two numbers under the gauge, name under each, needle color beside the name */
-  const num = (s3) => { const has = ok(X[s3]), tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides, blue needle)" : " (pillar 2, white needle - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week. Tap for ${NM[s3]}'s alerts.` : `${NM[s3]}: this week's numbers not posted yet. Tap for ${NM[s3]}'s alerts.`;
+  const tag = talk ? `<span class="wxtk wgtk" title="Ratcliffe and Dr. Roto split by ${Math.abs(split)} points - talk it through">TALK ${Math.abs(split)}</span>` : "";
+  const key = `<div class="wgk"><span><i class="kd"></i>Yahoo</span><span><i class="kt" style="border-top-color:${NC.r}"></i><i class="kt" style="border-top-color:${NC.o}"></i>where each started</span></div>`;
+  const num = (s3) => { const has = ok(X[s3]), tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides, blue needle)" : " (pillar 2, white needle - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week. Tap for ${NM[s3]}'s numbers.` : `${NM[s3]}: this week's numbers not posted yet.`;
     return `<div class="wgn wgn-${s3}" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tip)}"><b class="z-${has ? ZF(X[s3]) : "mid"}">${has ? wp2(X[s3]) + "<small>%</small>" : "–"}</b><span><i style="background:${NC[s3]}"></i>${SH[s3]}</span></div>`; };
   const nums = `<div class="wgr">${num("r")}${num("o")}</div>`;
-  const chip = (s3, lab, tipT) => ok(X[s3]) ? `<div class="wxk" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tipT)} Tap for ${esc(NM[s3])}'s alerts."><span${s3 === "y" ? ' class="wy"' : ""}><i class="lf">${lab}</i><i class="ls">${({YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"})[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b></div>` : `<div class="wxk wxn" title="${esc(NM[s3] || lab)}: Week ${S ? S.week : ""} numbers not posted yet - left out until they are"><span><i class="lf">${lab}</i><i class="ls">${({VEGAS: "VEGAS", DRAFTSHRK: "DSHRK", ROTO: "ROTO", CLAY: "CLAY", KOERNER: "KOERN"})[lab] || lab}</i></span><b>–</b><em>NOT<br>POSTED</em></div>`;
+  const LAB = {YAHOO: "YAHOO", DRAFTSHRK: "DSHRK", KOERNER: "KOERN", RATCLIFFE: "RATCL", ROTO: "ROTO", VEGAS: "VEGAS", CLAY: "CLAY", GOTHAM: "GOTHM"};
+  const chip = (s3, lab, tipT) => ok(X[s3]) ? `<div class="wxk${s3 === "y" ? " wxy" : ""}" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tipT)} Tap for ${esc(NM[s3])}'s numbers."><span><i class="lf">${s3 === "y" ? "◆ " : ""}${lab}</i><i class="ls">${s3 === "y" ? "◆ " : ""}${LAB[lab] || lab}</i></span><b class="z-${ZF(X[s3])}">${wp2(X[s3])}<small>%</small></b></div>` : `<div class="wxk wxn" title="${esc(NM[s3] || lab)}: Week ${S ? S.week : ""} numbers not posted yet - left out until they are"><span><i class="lf">${lab}</i><i class="ls">${LAB[lab] || lab}</i></span><b>–</b><em>NOT<br>POSTED</em></div>`;
   const chk = ["d", "c", "b", "v", "k"].filter(s3 => X[s3] !== undefined);
-  const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (small white pointer on the rim)${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
+  const yTip = `Yahoo's chance to win this week: ${Math.round(y)}% (the gold diamond on the gauge)${off ? ` · CHECK: Yahoo's own projections (${f1(F.me)} vs ${f1(F.op)}) work out to about ${imp}%` : ""}.`;
   const chips = chip("y", "YAHOO", yTip) + chk.map(s3 => chip(s3, SH[s3], `${NM[s3]}: ${Math.round(X[s3])}% chance to win this week.`)).join("");
-  const say = `${ok(X.r) ? "Ratcliffe " + Math.round(X.r) + "%" : "Ratcliffe not posted"}, ${ok(X.o) ? "Dr. Roto " + Math.round(X.o) + "%" : "Dr. Roto not posted"} chance to win this week${talk ? " - they split by " + Math.abs(split) + " points: talk it through" : ""}`;
-  return `<div class="wpx z-${z}" title="${esc(say)}">${head}${svg}${nums}<div class="wxr">${chips}</div></div>`;
+  const say = `${ok(X.r) ? "Ratcliffe " + Math.round(X.r) + "%" : "Ratcliffe not posted"}, ${ok(X.o) ? "Dr. Roto " + Math.round(X.o) + "%" : "Dr. Roto not posted"}, Yahoo ${Math.round(y)}% chance to win this week${talk ? " - Ratcliffe and Dr. Roto split by " + Math.abs(split) + " points: talk it through" : ""}`;
+  return `<div class="wpx wpx4 z-${z}" title="${esc(say)}">${tag}${svg}${key}${nums}<div class="wxr wxr6">${chips}</div></div>`;
+}
+/* Nov 24 PM (Dom: "If I'm clicking on Dr. Roto, I want to see Dr. Roto's alerts ... I want to see his numbers"): tapping an expert's
+   number (or any of the six boxes) opens that expert's own sheet for the league - his chance to win and where he started, his alert
+   cards (tapping one marks it read, so it shows as opened in the main Alerts list too), his number for every starter on both sides
+   in this league's scoring beside Ratcliffe's (2+ apart = flagged), and his line on this league's top pickups. */
+const XLET = {ratcliffe: "r", drroto: "o", draftsharks: "d", clay: "c", vegas: "v", rotoballer: "b", koerner: "k", yahoo: "y", gotham: "g"};
+function openXpert(slug, xe){ const k = KEYOF[slug], L = lgS(k); if (!L) return; const s3 = XLET[xe] || "r", nm = XNMS[xe] || xe, pm = (M && M.pm && M.pm[L.key]) || {};
+  const ok = (v) => v !== null && v !== undefined && !isNaN(v), cv = chance(L, s3), v0 = s3 === "y" ? null : weekStart(k, s3);
+  const val = (p, s) => { if (s === "y") return +p.proj || 0; const a = pm[norm(p.name)]; const i = SRCI[s]; return a && i !== undefined && ok(a[i]) ? +a[i] : null; };
+  const rows = (list) => list.filter(isStarter).map(p => { const v = val(p, s3), r = s3 === "r" ? null : val(p, "r"), gap = ok(v) && ok(r) && Math.abs(v - r) >= 2;
+    return `<div class="xpr${gap ? " gap" : ""}"><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc(p.tm || "")}</em></span><b>${ok(v) ? f1(v) : "–"}</b>${s3 === "r" ? "" : `<span class="rc">${ok(r) ? "R " + f1(r) : ""}</span>`}</div>`; }).join("");
+  const al = aFor(k, aLive).filter(x => xMatch(x, xe));
+  const pk = (((PK || (M && M.pickups) || {}).leagues || {})[String(KEYS.indexOf(k) + 1)] || {}).top || [];
+  const wire = pk.map(c => { const ln = ((c.experts || {}).lines || []).find(l => l.ex === nm); return ln ? `<div class="xpw"><b>${esc(c.name)}</b> <span class="mute">${esc(c.pos || "")} · ${esc(c.team || "")}</span><br><span class="${ln.ok ? "up" : ln.ok === false ? "dn" : "mute"}">${esc(ln.txt)}</span></div>` : ""; }).filter(Boolean).join("");
+  const rd = ((M && M.status && M.status[xe]) || {}).last;
+  showSheet(`<div class="gsh"><b>${DK[k]}</b><span>${esc(nm)} <em>vs ${esc(L.opp)}</em></span><button type="button" class="gx" data-shclose aria-label="Close">✕</button></div>
+    <div class="gpl"><div class="gnums"><div><span>${esc(nm.toUpperCase())} · CHANCE TO WIN THIS WEEK</span><b class="z-${ok(cv) ? (cv >= 55 ? "win" : cv >= 45 ? "mid" : "lose") : "mid"}">${ok(cv) ? Math.round(cv) + "%" : "not posted"}</b></div>${ok(v0) ? `<div><span>STARTED THE WEEK</span><b>${Math.round(v0)}%</b></div>` : ""}</div>
+    <div class="gsec">${esc(nm.toUpperCase())}'S ALERTS · ${al.length}</div>${al.length ? `<div class="alist">${al.map(x => alertCard(x)).join("")}</div>` : `<div class="gwh mute">No open alerts from ${esc(nm)} in ${DK[k]} right now - his numbers are below.</div>`}
+    <div class="gsec">YOUR STARTERS · ${esc(nm.toUpperCase())}${s3 === "r" ? "" : " (R = RATCLIFFE)"}</div><div class="xpt">${rows(L.players)}</div>
+    <div class="gsec">${esc((L.opp || "HIS").toUpperCase())}'S STARTERS</div><div class="xpt">${rows(L.oppPlayers)}</div>
+    ${wire ? `<div class="gsec">ON THE WIRE · ${esc(nm.toUpperCase())} ON THIS LEAGUE'S TOP PICKUPS</div>${wire}` : ""}
+    <div class="gft">This week, in ${DK[k]}'s own scoring${s3 === "o" ? " (Dr. Roto converted from DraftKings scoring with Clay's stat lines - close, not exact)" : ""}${rd ? " · " + esc(nm) + " read " + esc(ptTime(rd)) : ""}${s3 === "r" ? "" : " · gold rows = 2+ points off Ratcliffe"}</div></div>
+    <div class="gbt"><button type="button" data-alerts="${slug}" data-shclose>All ${DK[k]} alerts</button><button type="button" data-jump="${slug}" data-shclose>Open ${DK[k]} card</button></div>`, HEX[k]);
 }
 function bigDial(v, col, mark, id, v0, v2){
   /* Nov 11 2:45 PM (Dom: "add more shine, more beauty to that gauge"): glass dial face lit in the league color, glowing gradient
@@ -1724,9 +1741,7 @@ document.addEventListener("click", async (e) => {
   const t = e.target.closest ? e.target : e.target.parentElement;
   if (t.closest("[data-shclose]") && (t.closest("[data-alerts]") || t.closest("[data-jump]"))) closeSheet();
   const ga = t.closest("[data-goal]"); if (ga){ e.preventDefault(); await goAlert(ga.dataset.goal); return; }
-  const xa = t.closest("[data-xal]"); if (xa){ e.preventDefault(); e.stopPropagation(); const sl = xa.dataset.xal, kk = KEYS.find(q => SLUG[q] === sl);
-    if (kk){ XF[kk] = xa.dataset.xe; renderAll(); const id = "al-" + sl; requestAnimationFrame(() => { const d = document.querySelector(`details[data-fold="${id}"]`);
-      if (d){ d.open = true; try { FOLDS[id] = true; } catch(_){} d.scrollIntoView({behavior: SMOOTH(), block: "start"}); } else jumpTo(sl); }); } return; }
+  const xa = t.closest("[data-xal]"); if (xa){ e.preventDefault(); e.stopPropagation(); openXpert(xa.dataset.xal, xa.dataset.xe); return; }
   const xc = t.closest("[data-xfclear]"); if (xc){ e.preventDefault(); e.stopPropagation(); XF[xc.dataset.xfclear] = null; renderAll(); return; }
   const ab = t.closest("[data-alerts]"); if (ab){ e.preventDefault(); e.stopPropagation(); { const kb = KEYS.find(q => SLUG[q] === ab.dataset.alerts); if (kb && XF[kb]){ XF[kb] = null; renderAll(); } } const id = "al-" + ab.dataset.alerts, d = document.querySelector(`details[data-fold="${id}"]`);
     if (d){ d.open = true; try { FOLDS[id] = true; } catch(_){} d.scrollIntoView({behavior: SMOOTH(), block: "start"}); } else jumpTo(ab.dataset.alerts); return; }
@@ -1773,6 +1788,7 @@ document.addEventListener("click", async (e) => {
       await writeMarks({[id]: Object.assign({}, mk(id), a === "del" ? {deleted: ts} : {cleared: ts, read: mk(id).read || ts})}); return; }
     if (t.closest(".b") && OPEN.has(id)) return;
     OPEN.has(id) ? OPEN.delete(id) : OPEN.add(id);
+    { const sc = document.querySelector(`#gsheet .al[data-aid="${CSS.escape(id)}"]`); if (sc){ sc.classList.toggle("open", OPEN.has(id)); sc.classList.add("read"); } }   /* the expert sheet's copy opens in place; the read mark reaches the main list */
     if (!mk(id).read) await writeMarks({[id]: Object.assign({}, mk(id), {read: new Date().toISOString()})}); else renderAlertsOnly(); return; }
 });
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
