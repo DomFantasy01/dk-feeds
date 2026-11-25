@@ -1,48 +1,48 @@
 {
  "week": 12,
- "built": "Wed Nov 25 11:13 AM PT",
- "built_utc": "2026-11-25T19:13:54.896413+00:00",
+ "built": "Wed Nov 25 11:56 AM PT",
+ "built_utc": "2026-11-25T19:56:29.208444+00:00",
  "sources": {
   "rotowire": {
    "label": "RotoWire news",
-   "pulled": "Wed Nov 25 11:06 AM PT",
-   "pulled_ago": "8 min ago",
-   "items": 3963,
-   "newest": "37 min ago",
+   "pulled": "Wed Nov 25 11:50 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 3965,
+   "newest": "36 min ago",
    "warn": null,
    "failed": null
   },
   "news_extra": {
    "label": "PFT + RotoBaller news",
-   "pulled": "Wed Nov 25 11:06 AM PT",
-   "pulled_ago": "8 min ago",
-   "items": 9699,
-   "newest": "9 min ago",
+   "pulled": "Wed Nov 25 11:50 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 9709,
+   "newest": "12 min ago",
    "warn": null,
    "failed": null
   },
   "espn_news": {
    "label": "ESPN news",
-   "pulled": "Wed Nov 25 11:06 AM PT",
-   "pulled_ago": "8 min ago",
-   "items": 2417,
-   "newest": "9 min ago",
+   "pulled": "Wed Nov 25 11:50 AM PT",
+   "pulled_ago": "6 min ago",
+   "items": 2419,
+   "newest": "17 min ago",
    "warn": null,
    "failed": null
   },
   "espn_inj": {
    "label": "ESPN injury report",
-   "pulled": "Wed Nov 25 11:06 AM PT",
-   "pulled_ago": "8 min ago",
+   "pulled": "Wed Nov 25 11:50 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 420,
-   "newest": "24 min ago",
+   "newest": "15 min ago",
    "warn": null,
    "failed": null
   },
   "sleeper_trend": {
    "label": "Sleeper trending adds",
-   "pulled": "Wed Nov 25 11:06 AM PT",
-   "pulled_ago": "8 min ago",
+   "pulled": "Wed Nov 25 11:50 AM PT",
+   "pulled_ago": "6 min ago",
    "items": 50,
    "newest": null,
    "warn": null,
@@ -50,8 +50,8 @@
   },
   "yahoo_rosters": {
    "label": "Yahoo rosters, all 48 teams",
-   "pulled": "Wed Nov 25 11:08 AM PT",
-   "pulled_ago": "5 min ago",
+   "pulled": "Wed Nov 25 11:52 AM PT",
+   "pulled_ago": "4 min ago",
    "items": 756,
    "newest": null,
    "warn": null,
@@ -59,7 +59,7 @@
   },
   "gotham": {
    "label": "Gotham engine",
-   "pulled": "Wed Nov 25 2026 11:08 AM PT",
+   "pulled": "Wed Nov 25 2026 11:53 AM PT",
    "pulled_ago": null,
    "items": 294,
    "newest": null,
@@ -68,8 +68,8 @@
   },
   "sleeper_proj": {
    "label": "Sleeper projections",
-   "pulled": "Wed Nov 25 7:40 AM PT",
-   "pulled_ago": "3.6 h ago",
+   "pulled": "Wed Nov 25 11:46 AM PT",
+   "pulled_ago": "10 min ago",
    "items": 422,
    "newest": null,
    "warn": null,
@@ -89,15 +89,21 @@
      "team": "MIN",
      "slot": "IR",
      "marker": {
-      "count": 3,
-      "recency": 2,
+      "count": 1,
+      "recency": 0,
       "color": "red",
       "grades": [
-       "bad",
-       "note"
+       "bad"
       ]
      },
      "news": [
+      {
+       "t": "Wed Nov 25 11:37 AM PT",
+       "src": "ESPN injury report",
+       "title": "Jordan Addison: Doubtful (Thumb)",
+       "text": "Head coach Kevin O'Connell said Addison will be listed as a non-participant on Wednesday's injury report, Ben Goessling of the Minnesota Star Tribune reports.",
+       "grade": "bad"
+      },
       {
        "t": "Mon Nov 23 12:54 PM PT",
        "src": "pft",
@@ -111,13 +117,6 @@
        "title": "Jordan Addison Unlikely to Play Against Falcons",
        "text": "Minnesota Vikings wide receiver Jordan Addison (thumb) is unlikely to play Sunday against the Atlanta Falcons, head coach Kevin O'Connell [&#8230;]",
        "grade": "bad"
-      },
-      {
-       "t": "Mon Nov 23 12:30 PM PT",
-       "src": "ESPN injury report",
-       "title": "Jordan Addison: Doubtful (Thumb)",
-       "text": "Vikings head coach Kevin O'Connell said Monday that Addison is \"progressing really well\" in his recovery from thumb surgery, though the wide receiver isn't expected to be available in Week 12 versus the Falcons, Ben Goessling of The Minnesota Star Tribune repo",
-       "grade": "bad"
       }
      ],
      "gotham": 2.2,
@@ -125,6 +124,49 @@
      "sleeper": null,
      "workload": "3/5/9/6/3/8/3",
      "trend": -0.11
+    },
+    {
+     "name": "Dalton Kincaid",
+     "pos": "TE",
+     "team": "BUF",
+     "slot": "BN",
+     "marker": {
+      "count": 2,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "caution",
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 25 10:53 AM PT",
+       "src": "ESPN injury report",
+       "title": "Dalton Kincaid: Questionable (Thumb)",
+       "text": "Kincaid (thumb/ankle) is listed as questionable for Thursday night's contest against the Chiefs.",
+       "grade": "caution"
+      },
+      {
+       "t": "Wed Nov 25 10:46 AM PT",
+       "src": "pft",
+       "title": "Dalton Kincaid, Christian Benford among five Bills listed as questionable",
+       "text": "The Bills could be getting tight end Dalton Kincaid and cornerback Christian Benford back in the lineup on Thursday night.",
+       "grade": "note"
+      },
+      {
+       "t": "Tue Nov 24 2:32 PM PT",
+       "src": "rotoballer",
+       "title": "Dalton Kincaid Says he's \"Most Likely Playing\" on Thursday",
+       "text": "Buffalo Bills tight end Dalton Kincaid (thumb) said that he is \"most likely playing\" in the Thanksgiving Day matchup against [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 10.0,
+     "gotham_ros": 9.6,
+     "sleeper": 8.0,
+     "workload": "6/9/3/2/2/11/7/3/4",
+     "trend": -0.35
     },
     {
      "name": "Jayden Daniels",
@@ -169,6 +211,48 @@
      "trend": 0.18
     },
     {
+     "name": "George Pickens",
+     "pos": "WR",
+     "team": "DAL",
+     "slot": "WR",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 25 10:30 AM PT",
+       "src": "rotoballer",
+       "title": "Week 12 Fantasy Football Projections (Half PPR): RB, WR, TE, QB, D/ST, K",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/George-Pickens-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Week 12 Fantasy Football Projections (Half PPR): RB,",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 5:21 AM PT",
+       "src": "ESPN news",
+       "title": "NFL players with most at stake over rest of 2026: Pickens, McCarthy, Cousins",
+       "text": "Big money on the line for George Pickens and Brian Branch? QB1 role at stake for J.J. McCarthy? Here are 11 players with something to prove over the next seven weeks.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 22 6:51 PM PT",
+       "src": "rotoballer",
+       "title": "George Pickens Continues to Roll in Win Over Titans",
+       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 23.0,
+     "gotham_ros": 20.8,
+     "sleeper": 14.6,
+     "workload": "6/9/12/3/14/12/7/4/19/12",
+     "trend": 0.55
+    },
+    {
      "name": "Drake London",
      "pos": "WR",
      "team": "ATL",
@@ -209,48 +293,6 @@
      "sleeper": 14.5,
      "workload": "4/5/10/6/11/11/11/6/5/13",
      "trend": 0.24
-    },
-    {
-     "name": "Dalton Kincaid",
-     "pos": "TE",
-     "team": "BUF",
-     "slot": "BN",
-     "marker": {
-      "count": 1,
-      "recency": 0,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Wed Nov 25 10:46 AM PT",
-       "src": "pft",
-       "title": "Dalton Kincaid, Christian Benford among five Bills listed as questionable",
-       "text": "The Bills could be getting tight end Dalton Kincaid and cornerback Christian Benford back in the lineup on Thursday night.",
-       "grade": "note"
-      },
-      {
-       "t": "Tue Nov 24 2:32 PM PT",
-       "src": "rotoballer",
-       "title": "Dalton Kincaid Says he's \"Most Likely Playing\" on Thursday",
-       "text": "Buffalo Bills tight end Dalton Kincaid (thumb) said that he is \"most likely playing\" in the Thanksgiving Day matchup against [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Tue Nov 24 2:25 PM PT",
-       "src": "ESPN injury report",
-       "title": "Dalton Kincaid: Questionable (Thumb)",
-       "text": "The Bills listed Kincaid (thumb/ankle) as a limited participant in Tuesday's practice.",
-       "grade": "caution"
-      }
-     ],
-     "gotham": 10.0,
-     "gotham_ros": 9.6,
-     "sleeper": 7.9,
-     "workload": "6/9/3/2/2/11/7/3/4",
-     "trend": -0.35
     },
     {
      "name": "Stefon Diggs",
@@ -337,48 +379,6 @@
      "trend": -0.32
     },
     {
-     "name": "George Pickens",
-     "pos": "WR",
-     "team": "DAL",
-     "slot": "WR",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 5:21 AM PT",
-       "src": "ESPN news",
-       "title": "NFL players with most at stake over rest of 2026: Pickens, McCarthy, Cousins",
-       "text": "Big money on the line for George Pickens and Brian Branch? QB1 role at stake for J.J. McCarthy? Here are 11 players with something to prove over the next seven weeks.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 22 6:51 PM PT",
-       "src": "rotoballer",
-       "title": "George Pickens Continues to Roll in Win Over Titans",
-       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 22 2:17 PM PT",
-       "src": "RotoWire news",
-       "title": "George Pickens: Another 100-yard effort Sunday",
-       "text": "Pickens secured seven of 10 targets for 102 yards and a touchdown in the Cowboys' 51-30 win over the Titans on Sunday.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 23.0,
-     "gotham_ros": 20.8,
-     "sleeper": 14.6,
-     "workload": "6/9/12/3/14/12/7/4/19/12",
-     "trend": 0.55
-    },
-    {
      "name": "Chris Rodriguez Jr.",
      "pos": "RB",
      "team": "JAX",
@@ -456,7 +456,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 8.2,
+     "gotham": 8.1,
      "gotham_ros": 7.8,
      "sleeper": 6.1,
      "workload": "16/9/8/9/6/12/21/11/15/8",
@@ -498,7 +498,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 26.8,
+     "gotham": 26.4,
      "gotham_ros": 25.7,
      "sleeper": 22.3,
      "workload": "27/24/28/29/19/43/23/30/24/22",
@@ -542,7 +542,7 @@
      ],
      "gotham": 20.6,
      "gotham_ros": 21.4,
-     "sleeper": 20.0,
+     "sleeper": 19.8,
      "workload": "63/50/44/52/25/39/43/53/46/47",
      "trend": 0.01
     },
@@ -624,9 +624,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 12.1,
+     "gotham": 12.2,
      "gotham_ros": 12.4,
-     "sleeper": 10.2,
+     "sleeper": 10.6,
      "workload": "5/12/3/4/6/8/7/7/8",
      "trend": 0.15
     }
@@ -637,7 +637,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #21 (131,232 in 24 h)"
+      "Sleeper adds #21 (130,824 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -662,7 +662,7 @@
       "gotham": 10.5
      },
      "beats_floor": true,
-     "gotham": 15.4,
+     "gotham": 15.5,
      "gotham_ros": 15.5,
      "sleeper": 10.9,
      "workload": "8/6/11",
@@ -675,7 +675,7 @@
      "pos": "QB",
      "team": "CLE",
      "why": [
-      "Sleeper adds #5 (451,376 in 24 h)"
+      "Sleeper adds #5 (454,360 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -786,7 +786,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #13 (289,962 in 24 h)"
+      "Sleeper adds #13 (284,052 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -840,13 +840,6 @@
        "title": "Roman Wilson Expected to Play Against Eagles",
        "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
        "grade": "good"
-      },
-      {
-       "t": "Sat Nov 21 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Activated from IR",
-       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
-       "grade": "good"
       }
      ],
      "floor": {
@@ -868,7 +861,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (312,258 in 24 h)"
+      "Sleeper adds #10 (307,158 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -905,7 +898,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #23 (124,960 in 24 h)"
+      "Sleeper adds #23 (122,520 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -926,7 +919,7 @@
      ],
      "floor": {
       "name": "Travis Kelce",
-      "gotham": 12.1
+      "gotham": 12.2
      },
      "beats_floor": false,
      "gotham": 5.8,
@@ -975,26 +968,63 @@
      "acq": "unverified"
     },
     {
-     "name": "Sterling Shepard",
+     "name": "Dawson Knox",
+     "pos": "TE",
+     "team": "BUF",
+     "why": [
+      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 7:52 AM PT",
+       "src": "rotoballer",
+       "title": "Dawson Knox Worth Some Deep-League Attention",
+       "text": "Buffalo tight end Dawson Knox has produced enough offensively of late to try in a few more deep fantasy leagues [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.2
+     },
+     "beats_floor": false,
+     "gotham": 4.6,
+     "gotham_ros": 4.4,
+     "sleeper": 2.8,
+     "workload": "1/3/1/3/4/1/2/6/3/4",
+     "trend": 0.35,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jalen McMillan",
      "pos": "WR",
-     "team": "NYJ",
+     "team": "TB",
      "why": [
       "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 0,
+      "color": "green",
       "grades": [
        "good"
       ]
      },
      "news": [
       {
-       "t": "Sat Nov 21 11:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Sterling Shepard: Elevated from practice squad",
-       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "t": "Wed Nov 25 8:05 AM PT",
+       "src": "pft",
+       "title": "Jalen McMillan to return to practice for the Buccaneers",
+       "text": "Wide receiver Jalen McMillan is on his way back to the Buccaneers lineup.",
        "grade": "good"
       }
      ],
@@ -1003,11 +1033,11 @@
       "gotham": 10.5
      },
      "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 4.7,
-     "sleeper": 0.9,
-     "workload": "1/2/3",
-     "trend": 0.99,
+     "gotham": 0.0,
+     "gotham_ros": 1.8,
+     "sleeper": 3.4,
+     "workload": "1",
+     "trend": null,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1045,43 +1075,6 @@
      "sleeper": 3.4,
      "workload": "7/5/4/0/3/3/0",
      "trend": -0.68,
-     "yahoo": null,
-     "acq": "unverified"
-    },
-    {
-     "name": "Raheim Sanders",
-     "pos": "RB",
-     "team": "CLE",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 1,
-      "color": "green",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Tue Nov 24 7:58 AM PT",
-       "src": "RotoWire news",
-       "title": "Raheim Sanders: Cleared to practice",
-       "text": "The Browns designated Sanders (hip) for return from injured reserve Tuesday.",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Jaylen Warren",
-      "gotham": 11.8
-     },
-     "beats_floor": false,
-     "gotham": 0.0,
-     "gotham_ros": 4.8,
-     "sleeper": 1.3,
-     "workload": "7/4/10/6/5",
-     "trend": -0.22,
      "yahoo": null,
      "acq": "unverified"
     }
@@ -1214,7 +1207,7 @@
        "grade": "caution"
       }
      ],
-     "gotham": 18.7,
+     "gotham": 18.6,
      "gotham_ros": 19.0,
      "sleeper": 18.2,
      "workload": "47/27/31/55/32/38",
@@ -1298,7 +1291,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.9,
+     "gotham": 9.8,
      "gotham_ros": 10.1,
      "sleeper": 8.6,
      "workload": "14/20/11/19/18/13",
@@ -1384,7 +1377,7 @@
      ],
      "gotham": 22.7,
      "gotham_ros": 20.6,
-     "sleeper": 20.0,
+     "sleeper": 19.8,
      "workload": "5/10/13/12/8/17/14/15/9",
      "trend": -0.03
     },
@@ -1468,7 +1461,7 @@
      ],
      "gotham": 24.1,
      "gotham_ros": 24.4,
-     "sleeper": 11.1,
+     "sleeper": 23.3,
      "workload": "13/6/6/2/11/6/10/8/40/37",
      "trend": 2.37
     },
@@ -1550,9 +1543,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 12.1,
+     "gotham": 12.2,
      "gotham_ros": 12.4,
-     "sleeper": 10.2,
+     "sleeper": 10.6,
      "workload": "5/12/3/4/6/8/7/7/8",
      "trend": 0.15
     }
@@ -1563,7 +1556,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #13 (289,962 in 24 h)"
+      "Sleeper adds #13 (284,052 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1600,7 +1593,7 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #1 (1,314,468 in 24 h)"
+      "Sleeper adds #1 (1,271,025 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1612,10 +1605,10 @@
      },
      "news": [
       {
-       "t": "Wed Nov 25 3:04 AM PT",
+       "t": "Wed Nov 25 11:44 AM PT",
        "src": "rotoballer",
-       "title": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Mid-Week Waiver Wire Rankings for Week 12 (2026): Fan",
+       "title": "Who Should I Start for Week 12? Quinshon Judkins, Dylan Sampson, Bucky Irving, Bam Knight, Alvin Kamara, Chris Rodriguez Jr., Kenny Gainwell, Tony Pollard, Rico Dowdle",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/Bucky-Irving-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer-1220x813.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Week 12? Quinshon Judk",
        "grade": "mention"
       }
      ],
@@ -1711,7 +1704,7 @@
      "pos": "RB",
      "team": "BAL",
      "why": [
-      "Sleeper adds #4 (486,531 in 24 h)"
+      "Sleeper adds #4 (474,696 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1765,13 +1758,6 @@
        "title": "Roman Wilson Expected to Play Against Eagles",
        "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
        "grade": "good"
-      },
-      {
-       "t": "Sat Nov 21 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Activated from IR",
-       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
-       "grade": "good"
       }
      ],
      "floor": {
@@ -1793,7 +1779,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (312,258 in 24 h)"
+      "Sleeper adds #10 (307,158 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -1830,7 +1816,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #23 (124,960 in 24 h)"
+      "Sleeper adds #23 (122,520 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -1851,7 +1837,7 @@
      ],
      "floor": {
       "name": "Travis Kelce",
-      "gotham": 12.1
+      "gotham": 12.2
      },
      "beats_floor": false,
      "gotham": 5.8,
@@ -1900,26 +1886,63 @@
      "acq": "unverified"
     },
     {
-     "name": "Sterling Shepard",
+     "name": "Dawson Knox",
+     "pos": "TE",
+     "team": "BUF",
+     "why": [
+      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
+     ],
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "gold",
+      "grades": [
+       "opening"
+      ]
+     },
+     "news": [
+      {
+       "t": "Tue Nov 24 7:52 AM PT",
+       "src": "rotoballer",
+       "title": "Dawson Knox Worth Some Deep-League Attention",
+       "text": "Buffalo tight end Dawson Knox has produced enough offensively of late to try in a few more deep fantasy leagues [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "floor": {
+      "name": "Travis Kelce",
+      "gotham": 12.2
+     },
+     "beats_floor": false,
+     "gotham": 4.6,
+     "gotham_ros": 4.4,
+     "sleeper": 2.8,
+     "workload": "1/3/1/3/4/1/2/6/3/4",
+     "trend": 0.35,
+     "yahoo": null,
+     "acq": "unverified"
+    },
+    {
+     "name": "Jalen McMillan",
      "pos": "WR",
-     "team": "NYJ",
+     "team": "TB",
      "why": [
       "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 0,
+      "color": "green",
       "grades": [
        "good"
       ]
      },
      "news": [
       {
-       "t": "Sat Nov 21 11:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Sterling Shepard: Elevated from practice squad",
-       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "t": "Wed Nov 25 8:05 AM PT",
+       "src": "pft",
+       "title": "Jalen McMillan to return to practice for the Buccaneers",
+       "text": "Wide receiver Jalen McMillan is on his way back to the Buccaneers lineup.",
        "grade": "good"
       }
      ],
@@ -1928,11 +1951,11 @@
       "gotham": 7.2
      },
      "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 4.7,
-     "sleeper": 0.9,
-     "workload": "1/2/3",
-     "trend": 0.99,
+     "gotham": 0.0,
+     "gotham_ros": 1.8,
+     "sleeper": 3.4,
+     "workload": "1",
+     "trend": null,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -1972,43 +1995,6 @@
      "trend": -0.68,
      "yahoo": null,
      "acq": "unverified"
-    },
-    {
-     "name": "Nicholas Singleton",
-     "pos": "RB",
-     "team": "TEN",
-     "why": [
-      "good news"
-     ],
-     "marker": {
-      "count": 1,
-      "recency": 4,
-      "color": "grey",
-      "grades": [
-       "good"
-      ]
-     },
-     "news": [
-      {
-       "t": "Sat Nov 21 12:08 PM PT",
-       "src": "rotoballer",
-       "title": "Nicholas Singleton Set for Expanded Role in Week 11",
-       "text": "Tennessee Titans rookie running back Nicholas Singleton could be in line for an increased workload in Week 11 after the [&#8230;]",
-       "grade": "good"
-      }
-     ],
-     "floor": {
-      "name": "Travis Etienne Jr.",
-      "gotham": 13.8
-     },
-     "beats_floor": false,
-     "gotham": 2.6,
-     "gotham_ros": 3.0,
-     "sleeper": 0.6,
-     "workload": "5/4",
-     "trend": -0.12,
-     "yahoo": null,
-     "acq": "unverified"
     }
    ],
    "opp": []
@@ -2024,15 +2010,21 @@
      "team": "MIN",
      "slot": "BN",
      "marker": {
-      "count": 3,
-      "recency": 2,
+      "count": 1,
+      "recency": 0,
       "color": "red",
       "grades": [
-       "bad",
-       "note"
+       "bad"
       ]
      },
      "news": [
+      {
+       "t": "Wed Nov 25 11:37 AM PT",
+       "src": "ESPN injury report",
+       "title": "Jordan Addison: Doubtful (Thumb)",
+       "text": "Head coach Kevin O'Connell said Addison will be listed as a non-participant on Wednesday's injury report, Ben Goessling of the Minnesota Star Tribune reports.",
+       "grade": "bad"
+      },
       {
        "t": "Mon Nov 23 12:54 PM PT",
        "src": "pft",
@@ -2045,13 +2037,6 @@
        "src": "rotoballer",
        "title": "Jordan Addison Unlikely to Play Against Falcons",
        "text": "Minnesota Vikings wide receiver Jordan Addison (thumb) is unlikely to play Sunday against the Atlanta Falcons, head coach Kevin O'Connell [&#8230;]",
-       "grade": "bad"
-      },
-      {
-       "t": "Mon Nov 23 12:30 PM PT",
-       "src": "ESPN injury report",
-       "title": "Jordan Addison: Doubtful (Thumb)",
-       "text": "Vikings head coach Kevin O'Connell said Monday that Addison is \"progressing really well\" in his recovery from thumb surgery, though the wide receiver isn't expected to be available in Week 12 versus the Falcons, Ben Goessling of The Minnesota Star Tribune repo",
        "grade": "bad"
       }
      ],
@@ -2146,6 +2131,48 @@
      "trend": 0.18
     },
     {
+     "name": "George Pickens",
+     "pos": "WR",
+     "team": "DAL",
+     "slot": "WR",
+     "marker": {
+      "count": 1,
+      "recency": 0,
+      "color": "grey",
+      "grades": [
+       "note"
+      ]
+     },
+     "news": [
+      {
+       "t": "Wed Nov 25 10:30 AM PT",
+       "src": "rotoballer",
+       "title": "Week 12 Fantasy Football Projections (Half PPR): RB, WR, TE, QB, D/ST, K",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2025/09/George-Pickens-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Week 12 Fantasy Football Projections (Half PPR): RB,",
+       "grade": "note"
+      },
+      {
+       "t": "Mon Nov 23 5:21 AM PT",
+       "src": "ESPN news",
+       "title": "NFL players with most at stake over rest of 2026: Pickens, McCarthy, Cousins",
+       "text": "Big money on the line for George Pickens and Brian Branch? QB1 role at stake for J.J. McCarthy? Here are 11 players with something to prove over the next seven weeks.",
+       "grade": "note"
+      },
+      {
+       "t": "Sun Nov 22 6:51 PM PT",
+       "src": "rotoballer",
+       "title": "George Pickens Continues to Roll in Win Over Titans",
+       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
+       "grade": "note"
+      }
+     ],
+     "gotham": 23.0,
+     "gotham_ros": 20.8,
+     "sleeper": 14.6,
+     "workload": "6/9/12/3/14/12/7/4/19/12",
+     "trend": 0.55
+    },
+    {
      "name": "David Montgomery",
      "pos": "RB",
      "team": "HOU",
@@ -2186,48 +2213,6 @@
      "sleeper": 13.5,
      "workload": "32/11/16/11/6/38",
      "trend": 0.66
-    },
-    {
-     "name": "George Pickens",
-     "pos": "WR",
-     "team": "DAL",
-     "slot": "WR",
-     "marker": {
-      "count": 1,
-      "recency": 2,
-      "color": "grey",
-      "grades": [
-       "note"
-      ]
-     },
-     "news": [
-      {
-       "t": "Mon Nov 23 5:21 AM PT",
-       "src": "ESPN news",
-       "title": "NFL players with most at stake over rest of 2026: Pickens, McCarthy, Cousins",
-       "text": "Big money on the line for George Pickens and Brian Branch? QB1 role at stake for J.J. McCarthy? Here are 11 players with something to prove over the next seven weeks.",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 22 6:51 PM PT",
-       "src": "rotoballer",
-       "title": "George Pickens Continues to Roll in Win Over Titans",
-       "text": "Dallas Cowboys wide receiver George Pickens continues his strong 2026 season, recording seven catches on 10 targets for 102 yards [&#8230;]",
-       "grade": "note"
-      },
-      {
-       "t": "Sun Nov 22 2:17 PM PT",
-       "src": "RotoWire news",
-       "title": "George Pickens: Another 100-yard effort Sunday",
-       "text": "Pickens secured seven of 10 targets for 102 yards and a touchdown in the Cowboys' 51-30 win over the Titans on Sunday.",
-       "grade": "note"
-      }
-     ],
-     "gotham": 23.0,
-     "gotham_ros": 20.8,
-     "sleeper": 14.6,
-     "workload": "6/9/12/3/14/12/7/4/19/12",
-     "trend": 0.55
     },
     {
      "name": "Caleb Douglas",
@@ -2404,7 +2389,7 @@
      "pos": "QB",
      "team": "LV",
      "why": [
-      "Sleeper adds #14 (259,736 in 24 h)"
+      "Sleeper adds #14 (256,928 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2515,7 +2500,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #13 (289,962 in 24 h)"
+      "Sleeper adds #13 (284,052 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2569,13 +2554,6 @@
        "title": "Roman Wilson Expected to Play Against Eagles",
        "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
        "grade": "good"
-      },
-      {
-       "t": "Sat Nov 21 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Activated from IR",
-       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
-       "grade": "good"
       }
      ],
      "floor": {
@@ -2597,7 +2575,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (312,258 in 24 h)"
+      "Sleeper adds #10 (307,158 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -2634,7 +2612,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #23 (124,960 in 24 h)"
+      "Sleeper adds #23 (122,520 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -2704,39 +2682,39 @@
      "acq": "unverified"
     },
     {
-     "name": "Sterling Shepard",
-     "pos": "WR",
-     "team": "NYJ",
+     "name": "Dawson Knox",
+     "pos": "TE",
+     "team": "BUF",
      "why": [
-      "good news"
+      "opening: Dalton Kincaid \u2014 questionable/limited (ESPN injury report)"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 0,
+      "color": "gold",
       "grades": [
-       "good"
+       "opening"
       ]
      },
      "news": [
       {
-       "t": "Sat Nov 21 11:36 AM PT",
-       "src": "RotoWire news",
-       "title": "Sterling Shepard: Elevated from practice squad",
-       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
-       "grade": "good"
+       "t": "Tue Nov 24 7:52 AM PT",
+       "src": "rotoballer",
+       "title": "Dawson Knox Worth Some Deep-League Attention",
+       "text": "Buffalo tight end Dawson Knox has produced enough offensively of late to try in a few more deep fantasy leagues [&#8230;]",
+       "grade": "note"
       }
      ],
      "floor": {
-      "name": "Caleb Douglas",
-      "gotham": 8.2
+      "name": "T.J. Hockenson",
+      "gotham": 11.5
      },
      "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 4.7,
-     "sleeper": 0.9,
-     "workload": "1/2/3",
-     "trend": 0.99,
+     "gotham": 4.6,
+     "gotham_ros": 4.4,
+     "sleeper": 2.8,
+     "workload": "1/3/1/3/4/1/2/6/3/4",
+     "trend": 0.35,
      "yahoo": null,
      "acq": "unverified"
     },
@@ -2897,7 +2875,7 @@
      ],
      "gotham": 17.8,
      "gotham_ros": 16.1,
-     "sleeper": 14.7,
+     "sleeper": 14.6,
      "workload": "30/34/38/28/26/39/36/48/19/22",
      "trend": -0.37
     },
@@ -3021,9 +2999,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 9.4,
+     "gotham": 9.5,
      "gotham_ros": 10.5,
-     "sleeper": 10.7,
+     "sleeper": 10.6,
      "workload": "6/3/9/9/6/9/7/7/3/5",
      "trend": -0.38
     },
@@ -3065,7 +3043,7 @@
      ],
      "gotham": 23.7,
      "gotham_ros": 21.8,
-     "sleeper": 23.5,
+     "sleeper": 23.6,
      "workload": "42/42/37/52/31/35/29/30/32/34",
      "trend": -0.08
     },
@@ -3147,7 +3125,7 @@
        "grade": "note"
       }
      ],
-     "gotham": 13.0,
+     "gotham": 13.1,
      "gotham_ros": 14.4,
      "sleeper": 16.3,
      "workload": "11/10/11/12/5/6/7/12",
@@ -3189,9 +3167,9 @@
        "grade": "note"
       }
      ],
-     "gotham": 12.1,
+     "gotham": 12.2,
      "gotham_ros": 12.3,
-     "sleeper": 10.2,
+     "sleeper": 10.6,
      "workload": "5/12/3/4/6/8/7/7/8",
      "trend": 0.15
     },
@@ -3233,7 +3211,7 @@
      ],
      "gotham": 10.2,
      "gotham_ros": 13.0,
-     "sleeper": 13.3,
+     "sleeper": 13.2,
      "workload": "30/18/32/41/26/25/35/19",
      "trend": -0.14
     },
@@ -3370,7 +3348,7 @@
      "pos": "WR",
      "team": "NYJ",
      "why": [
-      "Sleeper adds #21 (131,232 in 24 h)"
+      "Sleeper adds #21 (130,824 in 24 h)"
      ],
      "marker": {
       "count": 3,
@@ -3482,7 +3460,7 @@
      "pos": "RB",
      "team": "CIN",
      "why": [
-      "Sleeper adds #12 (304,032 in 24 h)"
+      "Sleeper adds #12 (304,404 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3519,7 +3497,7 @@
      "pos": "RB",
      "team": "CLE",
      "why": [
-      "Sleeper adds #18 (200,355 in 24 h)"
+      "Sleeper adds #18 (196,450 in 24 h)"
      ],
      "marker": {
       "count": 0,
@@ -3531,10 +3509,10 @@
      },
      "news": [
       {
-       "t": "Tue Nov 24 8:12 AM PT",
+       "t": "Wed Nov 25 11:44 AM PT",
        "src": "rotoballer",
-       "title": "Who Should I Pickup for Fantasy Football Week 12? Brandon Aiyuk, Tutu Atwell, Will Shipley, Roman Wilson, Antonio Williams, Mike Gesicki, Jack Bech, Dylan Sampson, Ted Hurst III",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Who Should I Pickup for Fantasy Football Week 12? Bra",
+       "title": "Who Should I Start for Week 12? Quinshon Judkins, Dylan Sampson, Bucky Irving, Bam Knight, Alvin Kamara, Chris Rodriguez Jr., Kenny Gainwell, Tony Pollard, Rico Dowdle",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/Bucky-Irving-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer-1220x813.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Week 12? Quinshon Judk",
        "grade": "mention"
       }
      ],
@@ -3556,7 +3534,7 @@
      "pos": "RB",
      "team": "JAX",
      "why": [
-      "Sleeper adds #1 (1,314,468 in 24 h)"
+      "Sleeper adds #1 (1,271,025 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3568,10 +3546,10 @@
      },
      "news": [
       {
-       "t": "Wed Nov 25 3:04 AM PT",
+       "t": "Wed Nov 25 11:44 AM PT",
        "src": "rotoballer",
-       "title": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more",
-       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2026/09/Ted-Hurst-III-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer.jpg\" class=\"wp-post-image\" alt=\"Mid-Week Waiver Wire Rankings for Week 12 (2026): Fan",
+       "title": "Who Should I Start for Week 12? Quinshon Judkins, Dylan Sampson, Bucky Irving, Bam Knight, Alvin Kamara, Chris Rodriguez Jr., Kenny Gainwell, Tony Pollard, Rico Dowdle",
+       "text": "<img width=\"135\" height=\"90\" src=\"https://www.rotoballer.com/wp-content/uploads/2024/12/Bucky-Irving-Fantasy-Football-Rankings-Draft-Sleepers-NFL-Injury-News-icon-rotoballer-1220x813.jpg\" class=\"wp-post-image\" alt=\"Who Should I Start for Week 12? Quinshon Judk",
        "grade": "mention"
       }
      ],
@@ -3593,7 +3571,7 @@
      "pos": "WR",
      "team": "MIN",
      "why": [
-      "Sleeper adds #13 (289,962 in 24 h)"
+      "Sleeper adds #13 (284,052 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3646,13 +3624,6 @@
        "src": "rotoballer",
        "title": "Roman Wilson Expected to Play Against Eagles",
        "text": "Pittsburgh Steelers wide receiver Roman Wilson (hand) is expected to play against the Philadelphia Eagles in Week 11, according to [&#8230;]",
-       "grade": "good"
-      },
-      {
-       "t": "Sat Nov 21 11:38 AM PT",
-       "src": "RotoWire news",
-       "title": "Roman Wilson: Activated from IR",
-       "text": "The Steelers activated Wilson (hand) from injured reserve Saturday, Ian Rapoport of NFL Network reports.",
        "grade": "good"
       }
      ],
@@ -3712,7 +3683,7 @@
      "team": "TB",
      "why": [
       "good news",
-      "Sleeper adds #11 (312,258 in 24 h)"
+      "Sleeper adds #10 (307,158 in 24 h)"
      ],
      "marker": {
       "count": 1,
@@ -3749,7 +3720,7 @@
      "pos": "TE",
      "team": "DEN",
      "why": [
-      "Sleeper adds #23 (124,960 in 24 h)"
+      "Sleeper adds #23 (122,520 in 24 h)"
      ],
      "marker": {
       "count": 2,
@@ -3770,7 +3741,7 @@
      ],
      "floor": {
       "name": "Travis Kelce",
-      "gotham": 12.1
+      "gotham": 12.2
      },
      "beats_floor": false,
      "gotham": 5.8,
@@ -3782,26 +3753,26 @@
      "acq": "unverified"
     },
     {
-     "name": "Sterling Shepard",
+     "name": "Michael Pittman Jr.",
      "pos": "WR",
-     "team": "NYJ",
+     "team": "PIT",
      "why": [
       "good news"
      ],
      "marker": {
       "count": 1,
-      "recency": 4,
-      "color": "grey",
+      "recency": 1,
+      "color": "green",
       "grades": [
        "good"
       ]
      },
      "news": [
       {
-       "t": "Sat Nov 21 11:36 AM PT",
+       "t": "Tue Nov 24 1:36 PM PT",
        "src": "RotoWire news",
-       "title": "Sterling Shepard: Elevated from practice squad",
-       "text": "The Jets elevated Shepard from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+       "title": "Michael Pittman: Logs another full practice Tuesday",
+       "text": "Pittman (foot) was listed as a full participant in Tuesday's walkthrough practice.",
        "grade": "good"
       }
      ],
@@ -3810,11 +3781,11 @@
       "gotham": 10.8
      },
      "beats_floor": false,
-     "gotham": 4.7,
-     "gotham_ros": 4.7,
-     "sleeper": 0.9,
-     "workload": "1/2/3",
-     "trend": 0.99,
+     "gotham": 0.0,
+     "gotham_ros": 6.2,
+     "sleeper": 3.6,
+     "workload": "3/5/4",
+     "trend": 0.1,
      "yahoo": null,
      "acq": "unverified"
     }
