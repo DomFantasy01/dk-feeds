@@ -1,9 +1,9 @@
 {
  "what": "Dark Knight state file - read this before answering anything about Dom's four teams",
- "built_utc": "2026-11-25T20:26:14+00:00",
- "built_pt": "Wed Nov 25, 12:26 PM PT",
+ "built_utc": "2026-11-25T20:35:22+00:00",
+ "built_pt": "Wed Nov 25, 12:35 PM PT",
  "week": 12,
- "dispatch_built_pt": "Wed Nov 25 2026 12:20 PM PT",
+ "dispatch_built_pt": "Wed Nov 25 2026 12:30 PM PT",
  "leagues": [
   {
    "dk": "DK I",
@@ -36,7 +36,7 @@
     ],
     "yahoo": [
      154.57,
-     144.97
+     144.99
     ],
     "ratcliffe": [
      157.94,
@@ -72,7 +72,7 @@
     "sleeper": 58,
     "ratcliffe": 59,
     "koerner": 57,
-    "yahoo": 58,
+    "yahoo": 57,
     "yahoo_best": true,
     "yahoo_posted": 58,
     "yahoo_from_spread": 58,
@@ -100,7 +100,69 @@
      "projected_margin": 10.4
     }
    },
-   "late_swap_risks": [],
+   "late_swap_risks": [
+    {
+     "starter": "Stefon Diggs",
+     "slot": "WR",
+     "why": "questionable",
+     "kickoff": "Sun Nov 29, 1:25 PM PT",
+     "inactives_list_at": "Sun Nov 29, 11:55 AM PT",
+     "proj": {
+      "yahoo": 13.8,
+      "gotham": 13.4,
+      "sleeper": 13.1
+     },
+     "bench_options": [
+      {
+       "name": "Chris Rodriguez Jr.",
+       "pos": "RB",
+       "nfl": "JAX",
+       "kickoff": "Sun Nov 29, 10:00 AM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 9.4,
+        "gotham": 8.4,
+        "sleeper": 10.8,
+        "yahoo_from": "Yahoo projections read Wed Nov 25, 12:12 PM PT"
+       },
+       "decide_by": "Sun Nov 29, 10:00 AM PT",
+       "via": "Drake London moves W/R/T -> WR, Chris Rodriguez Jr. takes W/R/T"
+      },
+      {
+       "name": "Dalton Kincaid",
+       "pos": "TE",
+       "nfl": "BUF",
+       "kickoff": "Thu Nov 26, 5:20 PM PT",
+       "status": "questionable",
+       "proj": {
+        "yahoo": 8.5,
+        "gotham": 10.1,
+        "sleeper": 8.0,
+        "yahoo_from": "Yahoo projections read Wed Nov 25, 12:12 PM PT"
+       },
+       "decide_by": "Thu Nov 26, 5:20 PM PT",
+       "via": "Drake London moves W/R/T -> WR, Dalton Kincaid takes W/R/T"
+      },
+      {
+       "name": "Kaelon Black",
+       "pos": "RB",
+       "nfl": "SF",
+       "kickoff": "Sun Nov 29, 1:25 PM PT",
+       "status": "healthy",
+       "proj": {
+        "yahoo": 6.5,
+        "gotham": 8.1,
+        "sleeper": 6.1,
+        "yahoo_from": "Yahoo projections read Wed Nov 25, 12:12 PM PT"
+       },
+       "decide_by": "Sun Nov 29, 1:25 PM PT",
+       "via": "Drake London moves W/R/T -> WR, Kaelon Black takes W/R/T"
+      }
+     ],
+     "free_agent_options": "not in this file - the roster read does not list free agents playing later in the week; ask Claude to read the wire",
+     "plan": "If Stefon Diggs is ruled out, start Chris Rodriguez Jr. (RB, JAX) (Drake London moves W/R/T -> WR, Chris Rodriguez Jr. takes W/R/T) - no drop needed. Yahoo gap if he sits: about 4.4 pts. Decision due when the inactives post, about 11:55 AM PT."
+    }
+   ],
    "still_to_play": {
     "me": [
      {
@@ -126,19 +188,19 @@
        "wk17": 23.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.7 hr ago"
+       "ESPN": "Active, posted 39.8 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 3:21 AM PT",
-        "age": "9.1 hr ago",
+        "age": "9.2 hr ago",
         "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 12:26 PM PT",
-        "age": "24.0 hr ago",
+        "age": "24.1 hr ago",
         "line": "Commanders' Quinn fine with Diggs' sideline rant"
        }
       ]
@@ -212,13 +274,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 7:33 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.0 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 10:11 AM PT",
-        "age": "26.3 hr ago",
+        "age": "26.4 hr ago",
         "line": "Why Mike Clay isn't worried about Jaylen Warren in fantasy"
        }
       ]
@@ -231,7 +293,7 @@
       "kickoff": "Sun Nov 29, 1:25 PM PT",
       "ko_utc": "2026-11-29T21:25:00+00:00",
       "game": "not started",
-      "status": "",
+      "status": "questionable",
       "actual": null,
       "proj": {
        "yahoo": 13.8,
@@ -246,20 +308,20 @@
        "wk17": 12.7
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.6 hr ago"
+       "ESPN": "Active (Personal), posted 39.7 hr ago"
       },
       "news": [
        {
-        "src": "ESPN",
-        "at": "Wed Nov 25, 3:21 AM PT",
-        "age": "9.1 hr ago",
-        "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
+        "src": "RotoWire",
+        "at": "Wed Nov 25, 4:25 AM PT",
+        "age": "8.2 hr ago",
+        "line": "Stefon Diggs: Excused absence Wednesday"
        },
        {
-        "src": "ProFootballTalk",
-        "at": "Tue Nov 24, 12:37 PM PT",
-        "age": "23.8 hr ago",
-        "line": "Dan Quinn on Stefon Diggs: I love his fire"
+        "src": "ESPN",
+        "at": "Wed Nov 25, 3:21 AM PT",
+        "age": "9.2 hr ago",
+        "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
        }
       ]
      },
@@ -290,16 +352,16 @@
       },
       "news": [
        {
-        "src": "rotoworld",
-        "at": "Mon Nov 23, 3:07 PM PT",
-        "age": "45.3 hr ago",
-        "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:18 PM PT",
+        "age": "17 min ago",
+        "line": "George Pickens Will Look To Continue Hot Streak Vs Eagles On Thursday"
        },
        {
         "src": "rotoworld",
-        "at": "Mon Nov 23, 1:59 PM PT",
-        "age": "46.4 hr ago",
-        "line": "Quinyon Mitchell (hamstring) did not practice on Monday."
+        "at": "Mon Nov 23, 3:07 PM PT",
+        "age": "45.5 hr ago",
+        "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
        }
       ]
      },
@@ -330,16 +392,16 @@
       },
       "news": [
        {
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:16 PM PT",
+        "age": "19 min ago",
+        "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+       },
+       {
         "src": "ESPN",
         "at": "Sun Nov 22, 5:00 PM PT",
         "age": "3 days ago",
         "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-       },
-       {
-        "src": "RotoBaller",
-        "at": "Sun Nov 22, 2:53 PM PT",
-        "age": "3 days ago",
-        "line": "Travis Kelce Reasserts His TE1 Value"
        }
       ]
      },
@@ -406,13 +468,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 7:33 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.0 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 7:31 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.1 hr ago",
         "line": "Drake London Trending Up With Renewed Target Volume"
        }
       ]
@@ -440,13 +502,13 @@
        "wk17": 7.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 43.7 hr ago"
+       "ESPN": "Active, posted 43.9 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 23, 4:44 PM PT",
-        "age": "43.7 hr ago",
+        "age": "43.8 hr ago",
         "line": "Will Reichard: Misses two long field goals in Week 11"
        }
       ]
@@ -477,13 +539,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 10:23 AM PT",
-        "age": "2.0 hr ago",
+        "age": "2.2 hr ago",
         "line": "NFL survivor power rankings: Why this is the week to use the Jaguars or Texans"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 9:19 AM PT",
-        "age": "3.1 hr ago",
+        "age": "3.3 hr ago",
         "line": "Abdul Carter wins first NFC defensive player of the week award"
        }
       ]
@@ -545,13 +607,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 8:49 AM PT",
-        "age": "3.6 hr ago",
+        "age": "3.8 hr ago",
         "line": "Has Bijan Robinson had a disappointing fantasy season so far?"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 10:17 AM PT",
-        "age": "26.1 hr ago",
+        "age": "26.3 hr ago",
         "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
        }
       ]
@@ -572,19 +634,19 @@
        "sleeper": 18.4
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 46.5 hr ago"
+       "ESPN": "Active, posted 46.6 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 2:26 AM PT",
-        "age": "10.0 hr ago",
+        "age": "10.2 hr ago",
         "line": "Kyren Williams a Glaring Touchdown Candidate for Week 12"
        },
        {
         "src": "ProFootballTalk",
         "at": "Tue Nov 24, 11:17 AM PT",
-        "age": "25.1 hr ago",
+        "age": "25.3 hr ago",
         "line": "Kyren Williams off injury report, set to play Wednesday vs. Packers"
        }
       ]
@@ -605,19 +667,19 @@
        "sleeper": 17.0
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.6 hr ago"
+       "ESPN": "Active, posted 39.8 hr ago"
       },
       "news": [
        {
         "src": "ProFootballTalk",
         "at": "Mon Nov 23, 6:45 PM PT",
-        "age": "41.7 hr ago",
+        "age": "41.8 hr ago",
         "line": "Tee Higgins touchdown highlights inconsistency of replay review"
        },
        {
         "src": "ESPN",
         "at": "Mon Nov 23, 4:12 PM PT",
-        "age": "44.2 hr ago",
+        "age": "44.4 hr ago",
         "line": "NFL Week 11 arrivals: Tee Higgins pays homage to Fiona the Hippo ahead of 'MNF'"
        }
       ]
@@ -657,19 +719,19 @@
        "sleeper": 10.6
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 21.2 hr ago"
+       "ESPN": "Active, posted 21.4 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 10:01 AM PT",
-        "age": "2.4 hr ago",
+        "age": "2.6 hr ago",
         "line": "Dallas Goedert Off the Injury Report for Thursday's Contest"
        },
        {
         "src": "RotoWire",
         "at": "Mon Nov 23, 7:13 PM PT",
-        "age": "41.2 hr ago",
+        "age": "41.4 hr ago",
         "line": "Dallas Goedert: In clear for Week 12"
        }
       ]
@@ -696,13 +758,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 3:04 AM PT",
-        "age": "9.4 hr ago",
+        "age": "9.5 hr ago",
         "line": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 2:45 AM PT",
-        "age": "9.7 hr ago",
+        "age": "9.8 hr ago",
         "line": "Tyler Higbee Remains a Modest Streamer for Battle with Green Bay"
        }
       ]
@@ -723,19 +785,20 @@
        "sleeper": 14.2
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 1.6 hr ago"
+       "ESPN": "Questionable (Foot), posted 17 min ago",
+       "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "rotoworld",
         "at": "Wed Nov 25, 12:06 PM PT",
-        "age": "19 min ago",
+        "age": "29 min ago",
         "line": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs."
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 10:50 AM PT",
-        "age": "1.6 hr ago",
+        "age": "1.8 hr ago",
         "line": "Tetairoa McMillan Not Seen at Practice Wednesday"
        }
       ]
@@ -785,15 +848,15 @@
       "news": [
        {
         "src": "ESPN",
-        "at": "Wed Nov 25, 12:14 PM PT",
-        "age": "12 min ago",
-        "line": "What Aaron Rodgers' benching means for Steelers, his future"
+        "at": "Wed Nov 25, 12:22 PM PT",
+        "age": "13 min ago",
+        "line": "Sources: Steelers cut Rodgers after QB rips McCarthy in scorched-earth interview"
        },
        {
-        "src": "ESPN",
-        "at": "Wed Nov 25, 12:11 PM PT",
-        "age": "15 min ago",
-        "line": "Sources: Steelers cut Rodgers after QB rips McCarthy in scorched-earth interview"
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:15 PM PT",
+        "age": "20 min ago",
+        "line": "Aaron Rodgers Headed for Waivers"
        }
       ]
      }
@@ -823,19 +886,19 @@
       "wk17": 23.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.7 hr ago"
+      "ESPN": "Active, posted 39.8 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 3:21 AM PT",
-       "age": "9.1 hr ago",
+       "age": "9.2 hr ago",
        "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 12:26 PM PT",
-       "age": "24.0 hr ago",
+       "age": "24.1 hr ago",
        "line": "Commanders' Quinn fine with Diggs' sideline rant"
       }
      ]
@@ -909,13 +972,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 7:33 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.0 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 10:11 AM PT",
-       "age": "26.3 hr ago",
+       "age": "26.4 hr ago",
        "line": "Why Mike Clay isn't worried about Jaylen Warren in fantasy"
       }
      ]
@@ -928,7 +991,7 @@
      "kickoff": "Sun Nov 29, 1:25 PM PT",
      "ko_utc": "2026-11-29T21:25:00+00:00",
      "game": "not started",
-     "status": "",
+     "status": "questionable",
      "actual": null,
      "proj": {
       "yahoo": 13.8,
@@ -943,20 +1006,20 @@
       "wk17": 12.7
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.6 hr ago"
+      "ESPN": "Active (Personal), posted 39.7 hr ago"
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Wed Nov 25, 3:21 AM PT",
-       "age": "9.1 hr ago",
-       "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
+       "src": "RotoWire",
+       "at": "Wed Nov 25, 4:25 AM PT",
+       "age": "8.2 hr ago",
+       "line": "Stefon Diggs: Excused absence Wednesday"
       },
       {
-       "src": "ProFootballTalk",
-       "at": "Tue Nov 24, 12:37 PM PT",
-       "age": "23.8 hr ago",
-       "line": "Dan Quinn on Stefon Diggs: I love his fire"
+       "src": "ESPN",
+       "at": "Wed Nov 25, 3:21 AM PT",
+       "age": "9.2 hr ago",
+       "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
       }
      ]
     },
@@ -987,16 +1050,16 @@
      },
      "news": [
       {
-       "src": "rotoworld",
-       "at": "Mon Nov 23, 3:07 PM PT",
-       "age": "45.3 hr ago",
-       "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:18 PM PT",
+       "age": "17 min ago",
+       "line": "George Pickens Will Look To Continue Hot Streak Vs Eagles On Thursday"
       },
       {
        "src": "rotoworld",
-       "at": "Mon Nov 23, 1:59 PM PT",
-       "age": "46.4 hr ago",
-       "line": "Quinyon Mitchell (hamstring) did not practice on Monday."
+       "at": "Mon Nov 23, 3:07 PM PT",
+       "age": "45.5 hr ago",
+       "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
       }
      ]
     },
@@ -1027,16 +1090,16 @@
      },
      "news": [
       {
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:16 PM PT",
+       "age": "19 min ago",
+       "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+      },
+      {
        "src": "ESPN",
        "at": "Sun Nov 22, 5:00 PM PT",
        "age": "3 days ago",
        "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-      },
-      {
-       "src": "RotoBaller",
-       "at": "Sun Nov 22, 2:53 PM PT",
-       "age": "3 days ago",
-       "line": "Travis Kelce Reasserts His TE1 Value"
       }
      ]
     },
@@ -1103,13 +1166,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 7:33 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.0 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 7:31 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.1 hr ago",
        "line": "Drake London Trending Up With Renewed Target Volume"
       }
      ]
@@ -1137,13 +1200,13 @@
       "wk17": 7.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 43.7 hr ago"
+      "ESPN": "Active, posted 43.9 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 23, 4:44 PM PT",
-       "age": "43.7 hr ago",
+       "age": "43.8 hr ago",
        "line": "Will Reichard: Misses two long field goals in Week 11"
       }
      ]
@@ -1174,13 +1237,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 10:23 AM PT",
-       "age": "2.0 hr ago",
+       "age": "2.2 hr ago",
        "line": "NFL survivor power rankings: Why this is the week to use the Jaguars or Texans"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 9:19 AM PT",
-       "age": "3.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Abdul Carter wins first NFC defensive player of the week award"
       }
      ]
@@ -1217,7 +1280,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 7:24 AM PT",
-       "age": "29.0 hr ago",
+       "age": "29.2 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 12? Jadarian Price, Jordyn Tyson, Omar Cooper Jr., Malachi Fields, Kaelon Black, Josh Cameron, Mike Washington Jr., Fernando Mendoza"
       },
       {
@@ -1252,20 +1315,20 @@
       "wk17": 10.1
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Thumb), posted 1.6 hr ago",
+      "ESPN": "Questionable (Thumb), posted 1.7 hr ago",
       "Sleeper": "Questionable (Thumb)"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 12:06 PM PT",
-       "age": "20 min ago",
+       "age": "29 min ago",
        "line": "Bills TE Kincaid, CB Benford among 5 starters who are questionable vs. Chiefs"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 11:21 AM PT",
-       "age": "65 min ago",
+       "age": "74 min ago",
        "line": "Dalton Kincaid Questionable vs. Chiefs on Thursday"
       }
      ]
@@ -1300,7 +1363,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 7:46 AM PT",
-       "age": "4.7 hr ago",
+       "age": "4.8 hr ago",
        "line": "Fantasy football matchup ranks: Tyler Shough, Ashton Jeanty with prime matchups"
       },
       {
@@ -1341,13 +1404,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 11:44 AM PT",
-       "age": "41 min ago",
+       "age": "50 min ago",
        "line": "Who Should I Start for Week 12? Quinshon Judkins, Dylan Sampson, Bucky Irving, Bam Knight, Alvin Kamara, Chris Rodriguez Jr., Kenny Gainwell, Tony Pollard, Rico Dowdle"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 3:04 AM PT",
-       "age": "9.4 hr ago",
+       "age": "9.5 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more"
       }
      ]
@@ -1376,20 +1439,20 @@
       "wk17": 9.4
      },
      "injury_feeds": {
-      "ESPN": "Doubtful (Thumb), posted 49 min ago",
+      "ESPN": "Doubtful (Thumb), posted 58 min ago",
       "Sleeper": "Doubtful (Thumb)"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 3:37 AM PT",
-       "age": "8.8 hr ago",
+       "age": "9.0 hr ago",
        "line": "Jordan Addison: Listed as DNP on Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 23, 12:54 PM PT",
-       "age": "47.5 hr ago",
+       "age": "47.7 hr ago",
        "line": "Vikings \"don't necessarily expect\" Jordan Addison back this week"
       }
      ]
@@ -1421,13 +1484,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:05 AM PT",
-       "age": "4.4 hr ago",
+       "age": "4.5 hr ago",
        "line": "Jalen McMillan to return to practice for the Buccaneers"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 7:55 AM PT",
-       "age": "4.5 hr ago",
+       "age": "4.7 hr ago",
        "line": "Jalen McMillan: Returning to practice in Week 12"
       }
      ]
@@ -1489,13 +1552,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 8:49 AM PT",
-       "age": "3.6 hr ago",
+       "age": "3.8 hr ago",
        "line": "Has Bijan Robinson had a disappointing fantasy season so far?"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 10:17 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.3 hr ago",
        "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
       }
      ]
@@ -1516,19 +1579,19 @@
       "sleeper": 18.4
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 46.5 hr ago"
+      "ESPN": "Active, posted 46.6 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:26 AM PT",
-       "age": "10.0 hr ago",
+       "age": "10.2 hr ago",
        "line": "Kyren Williams a Glaring Touchdown Candidate for Week 12"
       },
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 24, 11:17 AM PT",
-       "age": "25.1 hr ago",
+       "age": "25.3 hr ago",
        "line": "Kyren Williams off injury report, set to play Wednesday vs. Packers"
       }
      ]
@@ -1549,19 +1612,19 @@
       "sleeper": 17.0
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.6 hr ago"
+      "ESPN": "Active, posted 39.8 hr ago"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 23, 6:45 PM PT",
-       "age": "41.7 hr ago",
+       "age": "41.8 hr ago",
        "line": "Tee Higgins touchdown highlights inconsistency of replay review"
       },
       {
        "src": "ESPN",
        "at": "Mon Nov 23, 4:12 PM PT",
-       "age": "44.2 hr ago",
+       "age": "44.4 hr ago",
        "line": "NFL Week 11 arrivals: Tee Higgins pays homage to Fiona the Hippo ahead of 'MNF'"
       }
      ]
@@ -1601,19 +1664,19 @@
       "sleeper": 10.6
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 21.2 hr ago"
+      "ESPN": "Active, posted 21.4 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 10:01 AM PT",
-       "age": "2.4 hr ago",
+       "age": "2.6 hr ago",
        "line": "Dallas Goedert Off the Injury Report for Thursday's Contest"
       },
       {
        "src": "RotoWire",
        "at": "Mon Nov 23, 7:13 PM PT",
-       "age": "41.2 hr ago",
+       "age": "41.4 hr ago",
        "line": "Dallas Goedert: In clear for Week 12"
       }
      ]
@@ -1640,13 +1703,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 3:04 AM PT",
-       "age": "9.4 hr ago",
+       "age": "9.5 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:45 AM PT",
-       "age": "9.7 hr ago",
+       "age": "9.8 hr ago",
        "line": "Tyler Higbee Remains a Modest Streamer for Battle with Green Bay"
       }
      ]
@@ -1667,19 +1730,20 @@
       "sleeper": 14.2
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 1.6 hr ago"
+      "ESPN": "Questionable (Foot), posted 17 min ago",
+      "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "rotoworld",
        "at": "Wed Nov 25, 12:06 PM PT",
-       "age": "19 min ago",
+       "age": "29 min ago",
        "line": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs."
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 10:50 AM PT",
-       "age": "1.6 hr ago",
+       "age": "1.8 hr ago",
        "line": "Tetairoa McMillan Not Seen at Practice Wednesday"
       }
      ]
@@ -1729,20 +1793,26 @@
      "news": [
       {
        "src": "ESPN",
-       "at": "Wed Nov 25, 12:14 PM PT",
-       "age": "12 min ago",
-       "line": "What Aaron Rodgers' benching means for Steelers, his future"
+       "at": "Wed Nov 25, 12:22 PM PT",
+       "age": "13 min ago",
+       "line": "Sources: Steelers cut Rodgers after QB rips McCarthy in scorched-earth interview"
       },
       {
-       "src": "ESPN",
-       "at": "Wed Nov 25, 12:11 PM PT",
-       "age": "15 min ago",
-       "line": "Sources: Steelers cut Rodgers after QB rips McCarthy in scorched-earth interview"
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:15 PM PT",
+       "age": "20 min ago",
+       "line": "Aaron Rodgers Headed for Waivers"
       }
      ]
     }
    ],
-   "actions": [],
+   "actions": [
+    {
+     "what": "Stefon Diggs is questionable - latest (ESPN, Nov 24): Diggs brought in four of six targets for 45 yards in the Commanders' 22-20 win over the Bengals on Monday night. Check his status",
+     "by": "before his Sun 1:25 PM kickoff",
+     "kind": "check"
+    }
+   ],
    "alerts": [
     {
      "color": "gold",
@@ -1781,13 +1851,13 @@
     },
     {
      "color": "grey",
-     "title": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs.",
+     "title": "Tetairoa McMillan: Questionable (Foot)",
      "who": "Tetairoa McMillan",
      "kind": "feed",
      "src": "rotoworld (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Nov 25, 12:19 PM PT"
+   "roster_read_pt": "Wed Nov 25, 12:29 PM PT"
   },
   {
    "dk": "DK II",
@@ -1811,7 +1881,7 @@
    },
    "totals_projected": {
     "gotham": [
-     167.63,
+     167.6,
      170.42
     ],
     "sleeper": [
@@ -1820,7 +1890,7 @@
     ],
     "yahoo": [
      176.43,
-     163.68
+     163.65
     ],
     "ratcliffe": [
      172.46,
@@ -1910,19 +1980,19 @@
        "wk17": 23.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.7 hr ago"
+       "ESPN": "Active, posted 39.8 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 3:21 AM PT",
-        "age": "9.1 hr ago",
+        "age": "9.2 hr ago",
         "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 12:26 PM PT",
-        "age": "24.0 hr ago",
+        "age": "24.1 hr ago",
         "line": "Commanders' Quinn fine with Diggs' sideline rant"
        }
       ]
@@ -2018,19 +2088,19 @@
        "wk17": 21.3
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.8 hr ago"
+       "ESPN": "Active, posted 39.9 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 10:17 AM PT",
-        "age": "26.1 hr ago",
+        "age": "26.3 hr ago",
         "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
        },
        {
         "src": "ProFootballTalk",
         "at": "Tue Nov 24, 4:12 AM PT",
-        "age": "32.2 hr ago",
+        "age": "32.4 hr ago",
         "line": "Ja'Marr Chase: Losing when you know you're better is the worst"
        }
       ]
@@ -2064,13 +2134,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 7:33 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.0 hr ago",
         "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 7:31 AM PT",
-        "age": "4.9 hr ago",
+        "age": "5.1 hr ago",
         "line": "Drake London Trending Up With Renewed Target Volume"
        }
       ]
@@ -2136,16 +2206,16 @@
       },
       "news": [
        {
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:16 PM PT",
+        "age": "19 min ago",
+        "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+       },
+       {
         "src": "ESPN",
         "at": "Sun Nov 22, 5:00 PM PT",
         "age": "3 days ago",
         "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-       },
-       {
-        "src": "RotoBaller",
-        "at": "Sun Nov 22, 2:53 PM PT",
-        "age": "3 days ago",
-        "line": "Travis Kelce Reasserts His TE1 Value"
        }
       ]
      },
@@ -2172,19 +2242,19 @@
        "wk17": 10.0
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3.2 hr ago"
+       "ESPN": "Active, posted 3.3 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 12:07 PM PT",
-        "age": "19 min ago",
+        "age": "28 min ago",
         "line": "Emmett Johnson Poised For Massive Role On Thanksgiving"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 8:56 AM PT",
-        "age": "3.5 hr ago",
+        "age": "3.6 hr ago",
         "line": "Kenneth Walker ruled out for Thanksgiving night vs. Bills"
        }
       ]
@@ -2218,7 +2288,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 7:27 PM PT",
-        "age": "17.0 hr ago",
+        "age": "17.1 hr ago",
         "line": "J.J. McCarthy is a Desperation Streaming Play for Week 12"
        },
        {
@@ -2281,13 +2351,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 10:23 AM PT",
-        "age": "2.0 hr ago",
+        "age": "2.2 hr ago",
         "line": "NFL survivor power rankings: Why this is the week to use the Jaguars or Texans"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 9:19 AM PT",
-        "age": "3.1 hr ago",
+        "age": "3.3 hr ago",
         "line": "Abdul Carter wins first NFC defensive player of the week award"
        }
       ]
@@ -2310,19 +2380,19 @@
        "sleeper": 29.0
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.9 hr ago"
+       "ESPN": "Active, posted 40.0 hr ago"
       },
       "news": [
        {
         "src": "ProFootballTalk",
         "at": "Tue Nov 24, 7:40 AM PT",
-        "age": "28.8 hr ago",
+        "age": "28.9 hr ago",
         "line": "MVP race is currently down to Joe Burrow and Brock Purdy"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 6:58 AM PT",
-        "age": "29.5 hr ago",
+        "age": "29.6 hr ago",
         "line": "Joe Burrow Throws Two Touchdowns in Bengals' Loss"
        }
       ]
@@ -2362,19 +2432,19 @@
        "sleeper": 18.4
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 46.5 hr ago"
+       "ESPN": "Active, posted 46.6 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 2:26 AM PT",
-        "age": "10.0 hr ago",
+        "age": "10.2 hr ago",
         "line": "Kyren Williams a Glaring Touchdown Candidate for Week 12"
        },
        {
         "src": "ProFootballTalk",
         "at": "Tue Nov 24, 11:17 AM PT",
-        "age": "25.1 hr ago",
+        "age": "25.3 hr ago",
         "line": "Kyren Williams off injury report, set to play Wednesday vs. Packers"
        }
       ]
@@ -2401,7 +2471,7 @@
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 10:16 AM PT",
-        "age": "26.2 hr ago",
+        "age": "26.3 hr ago",
         "line": "Is Stefon Diggs or Jameson Williams a better fantasy play in Week 12?"
        },
        {
@@ -2434,7 +2504,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 9:18 AM PT",
-        "age": "3.1 hr ago",
+        "age": "3.3 hr ago",
         "line": "Caleb Douglas' Week 12 fantasy preview"
        },
        {
@@ -2467,13 +2537,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 6:03 AM PT",
-        "age": "6.4 hr ago",
+        "age": "6.5 hr ago",
         "line": "Wide Receiver Matchups to Target For Thanksgiving - CeeDee Lamb, DeVonta Smith, Cyrus Allen, More"
        },
        {
         "src": "rotoworld",
         "at": "Mon Nov 23, 1:57 PM PT",
-        "age": "46.5 hr ago",
+        "age": "46.6 hr ago",
         "line": "DeVonta Smith (hamstring) is practicing in full ahead of Philadelphia’s Thursday game against the Cowboys."
        }
       ]
@@ -2609,13 +2679,13 @@
        {
         "src": "rotoworld",
         "at": "Wed Nov 25, 11:36 AM PT",
-        "age": "50 min ago",
+        "age": "59 min ago",
         "line": "Brock Purdy (ankle) will not practice Wednesday."
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 9:07 AM PT",
-        "age": "3.3 hr ago",
+        "age": "3.5 hr ago",
         "line": "Brock Purdy wins fourth career NFC offensive player of the week award"
        }
       ]
@@ -2646,19 +2716,19 @@
       "wk17": 23.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.7 hr ago"
+      "ESPN": "Active, posted 39.8 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 3:21 AM PT",
-       "age": "9.1 hr ago",
+       "age": "9.2 hr ago",
        "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 12:26 PM PT",
-       "age": "24.0 hr ago",
+       "age": "24.1 hr ago",
        "line": "Commanders' Quinn fine with Diggs' sideline rant"
       }
      ]
@@ -2754,19 +2824,19 @@
       "wk17": 21.3
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.8 hr ago"
+      "ESPN": "Active, posted 39.9 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 10:17 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.3 hr ago",
        "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
       },
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 24, 4:12 AM PT",
-       "age": "32.2 hr ago",
+       "age": "32.4 hr ago",
        "line": "Ja'Marr Chase: Losing when you know you're better is the worst"
       }
      ]
@@ -2800,13 +2870,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 7:33 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.0 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 12? DK Metcalf, Chase Brown, Chris Olave, Chimere Dike, Drake London, Omarion Hampton, Aaron Jones, Jaylen Warren, Justice Hill"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 7:31 AM PT",
-       "age": "4.9 hr ago",
+       "age": "5.1 hr ago",
        "line": "Drake London Trending Up With Renewed Target Volume"
       }
      ]
@@ -2872,16 +2942,16 @@
      },
      "news": [
       {
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:16 PM PT",
+       "age": "19 min ago",
+       "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+      },
+      {
        "src": "ESPN",
        "at": "Sun Nov 22, 5:00 PM PT",
        "age": "3 days ago",
        "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-      },
-      {
-       "src": "RotoBaller",
-       "at": "Sun Nov 22, 2:53 PM PT",
-       "age": "3 days ago",
-       "line": "Travis Kelce Reasserts His TE1 Value"
       }
      ]
     },
@@ -2908,19 +2978,19 @@
       "wk17": 10.0
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3.2 hr ago"
+      "ESPN": "Active, posted 3.3 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 12:07 PM PT",
-       "age": "19 min ago",
+       "age": "28 min ago",
        "line": "Emmett Johnson Poised For Massive Role On Thanksgiving"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:56 AM PT",
-       "age": "3.5 hr ago",
+       "age": "3.6 hr ago",
        "line": "Kenneth Walker ruled out for Thanksgiving night vs. Bills"
       }
      ]
@@ -2954,7 +3024,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 7:27 PM PT",
-       "age": "17.0 hr ago",
+       "age": "17.1 hr ago",
        "line": "J.J. McCarthy is a Desperation Streaming Play for Week 12"
       },
       {
@@ -3017,13 +3087,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 10:23 AM PT",
-       "age": "2.0 hr ago",
+       "age": "2.2 hr ago",
        "line": "NFL survivor power rankings: Why this is the week to use the Jaguars or Texans"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 9:19 AM PT",
-       "age": "3.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Abdul Carter wins first NFC defensive player of the week award"
       }
      ]
@@ -3060,13 +3130,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 8:39 AM PT",
-       "age": "3.8 hr ago",
+       "age": "3.9 hr ago",
        "line": "Jadarian Price Is a Tougher Flex to Trust"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 7:24 AM PT",
-       "age": "29.0 hr ago",
+       "age": "29.2 hr ago",
        "line": "Who Should I Start for Fantasy Football Week 12? Jadarian Price, Jordyn Tyson, Omar Cooper Jr., Malachi Fields, Kaelon Black, Josh Cameron, Mike Washington Jr., Fernando Mendoza"
       }
      ]
@@ -3095,19 +3165,19 @@
       "wk17": 10.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.3 hr ago"
+      "ESPN": "Active, posted 39.5 hr ago"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 23, 3:50 PM PT",
-       "age": "44.6 hr ago",
+       "age": "44.8 hr ago",
        "line": "Rachaad White active for Commanders, Dax Hill active for Bengals"
       },
       {
        "src": "ESPN",
        "at": "Mon Nov 23, 3:48 PM PT",
-       "age": "44.6 hr ago",
+       "age": "44.8 hr ago",
        "line": "Commanders RB Jacory Croskey-Merritt activated from IR ahead of MNF"
       }
      ]
@@ -3136,20 +3206,20 @@
       "wk17": 18.0
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Quadriceps), posted 28.9 hr ago",
+      "ESPN": "Questionable (Quadriceps), posted 29.1 hr ago",
       "Sleeper": "Questionable (Quadriceps)"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 11:05 AM PT",
-       "age": "81 min ago",
+       "age": "1.5 hr ago",
        "line": "Sam Darnold Expected to Start Sunday"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 6:16 PM PT",
-       "age": "18.2 hr ago",
+       "age": "18.3 hr ago",
        "line": "Sam Darnold is an Intriguing Add with Return Looming"
       }
      ]
@@ -3184,13 +3254,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:40 AM PT",
-       "age": "9.8 hr ago",
+       "age": "9.9 hr ago",
        "line": "Konata Mumpfield a Solid Streamer with Potential for Significant Volume"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 2:02 PM PT",
-       "age": "22.4 hr ago",
+       "age": "22.5 hr ago",
        "line": "Week 12 Waiver Wire Pickups - Konata Mumpfield, CJ Daniels, Tyler Higbee"
       }
      ]
@@ -3222,13 +3292,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:05 AM PT",
-       "age": "4.4 hr ago",
+       "age": "4.5 hr ago",
        "line": "Jalen McMillan to return to practice for the Buccaneers"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 7:55 AM PT",
-       "age": "4.5 hr ago",
+       "age": "4.7 hr ago",
        "line": "Jalen McMillan: Returning to practice in Week 12"
       }
      ]
@@ -3251,19 +3321,19 @@
       "sleeper": 29.0
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.9 hr ago"
+      "ESPN": "Active, posted 40.0 hr ago"
      },
      "news": [
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 24, 7:40 AM PT",
-       "age": "28.8 hr ago",
+       "age": "28.9 hr ago",
        "line": "MVP race is currently down to Joe Burrow and Brock Purdy"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 6:58 AM PT",
-       "age": "29.5 hr ago",
+       "age": "29.6 hr ago",
        "line": "Joe Burrow Throws Two Touchdowns in Bengals' Loss"
       }
      ]
@@ -3303,19 +3373,19 @@
       "sleeper": 18.4
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 46.5 hr ago"
+      "ESPN": "Active, posted 46.6 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:26 AM PT",
-       "age": "10.0 hr ago",
+       "age": "10.2 hr ago",
        "line": "Kyren Williams a Glaring Touchdown Candidate for Week 12"
       },
       {
        "src": "ProFootballTalk",
        "at": "Tue Nov 24, 11:17 AM PT",
-       "age": "25.1 hr ago",
+       "age": "25.3 hr ago",
        "line": "Kyren Williams off injury report, set to play Wednesday vs. Packers"
       }
      ]
@@ -3342,7 +3412,7 @@
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 10:16 AM PT",
-       "age": "26.2 hr ago",
+       "age": "26.3 hr ago",
        "line": "Is Stefon Diggs or Jameson Williams a better fantasy play in Week 12?"
       },
       {
@@ -3375,7 +3445,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 9:18 AM PT",
-       "age": "3.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Caleb Douglas' Week 12 fantasy preview"
       },
       {
@@ -3408,13 +3478,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 6:03 AM PT",
-       "age": "6.4 hr ago",
+       "age": "6.5 hr ago",
        "line": "Wide Receiver Matchups to Target For Thanksgiving - CeeDee Lamb, DeVonta Smith, Cyrus Allen, More"
       },
       {
        "src": "rotoworld",
        "at": "Mon Nov 23, 1:57 PM PT",
-       "age": "46.5 hr ago",
+       "age": "46.6 hr ago",
        "line": "DeVonta Smith (hamstring) is practicing in full ahead of Philadelphia’s Thursday game against the Cowboys."
       }
      ]
@@ -3550,13 +3620,13 @@
       {
        "src": "rotoworld",
        "at": "Wed Nov 25, 11:36 AM PT",
-       "age": "50 min ago",
+       "age": "59 min ago",
        "line": "Brock Purdy (ankle) will not practice Wednesday."
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 9:07 AM PT",
-       "age": "3.3 hr ago",
+       "age": "3.5 hr ago",
        "line": "Brock Purdy wins fourth career NFC offensive player of the week award"
       }
      ]
@@ -3579,7 +3649,7 @@
      "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Nov 25, 12:19 PM PT"
+   "roster_read_pt": "Wed Nov 25, 12:29 PM PT"
   },
   {
    "dk": "DK III",
@@ -3611,7 +3681,7 @@
      157.96
     ],
     "yahoo": [
-     132.78,
+     132.85,
      155.27
     ],
     "ratcliffe": [
@@ -3702,19 +3772,19 @@
        "wk17": 23.5
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 39.7 hr ago"
+       "ESPN": "Active, posted 39.8 hr ago"
       },
       "news": [
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 3:21 AM PT",
-        "age": "9.1 hr ago",
+        "age": "9.2 hr ago",
         "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 12:26 PM PT",
-        "age": "24.0 hr ago",
+        "age": "24.1 hr ago",
         "line": "Commanders' Quinn fine with Diggs' sideline rant"
        }
       ]
@@ -3748,13 +3818,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 9:05 AM PT",
-        "age": "3.3 hr ago",
+        "age": "3.5 hr ago",
         "line": "Jonah Coleman is the AFC offensive player of the week"
        },
        {
         "src": "ESPN",
         "at": "Mon Nov 23, 1:24 PM PT",
-        "age": "47.0 hr ago",
+        "age": "47.2 hr ago",
         "line": "Fantasy buzz: Who got the ball Sunday? Usage trends and role changes"
        }
       ]
@@ -3822,7 +3892,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 9:18 AM PT",
-        "age": "3.1 hr ago",
+        "age": "3.3 hr ago",
         "line": "Caleb Douglas' Week 12 fantasy preview"
        },
        {
@@ -3860,16 +3930,16 @@
       },
       "news": [
        {
-        "src": "rotoworld",
-        "at": "Mon Nov 23, 3:07 PM PT",
-        "age": "45.3 hr ago",
-        "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:18 PM PT",
+        "age": "17 min ago",
+        "line": "George Pickens Will Look To Continue Hot Streak Vs Eagles On Thursday"
        },
        {
         "src": "rotoworld",
-        "at": "Mon Nov 23, 1:59 PM PT",
-        "age": "46.4 hr ago",
-        "line": "Quinyon Mitchell (hamstring) did not practice on Monday."
+        "at": "Mon Nov 23, 3:07 PM PT",
+        "age": "45.5 hr ago",
+        "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
        }
       ]
      },
@@ -3902,7 +3972,7 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 8:09 AM PT",
-        "age": "4.3 hr ago",
+        "age": "4.4 hr ago",
         "line": "T.J. Hockenson's Week 12 fantasy preview"
        },
        {
@@ -3991,13 +4061,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 11:07 AM PT",
-        "age": "79 min ago",
+        "age": "88 min ago",
         "line": "Commanders and WR Brandon Aiyuk: What to expect, his fit and fantasy impact"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 10:53 AM PT",
-        "age": "1.5 hr ago",
+        "age": "1.7 hr ago",
         "line": "Ian Rapoport gives details on Brandon Aiyuk joining Commanders' practice squad"
        }
       ]
@@ -4026,13 +4096,13 @@
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 12:53 PM PT",
-        "age": "23.6 hr ago",
+        "age": "23.7 hr ago",
         "line": "Why Dopp is encouraging fantasy managers to stay away from Jordan Love in Week 12"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 12:25 PM PT",
-        "age": "24.0 hr ago",
+        "age": "24.2 hr ago",
         "line": "Jordan Love Remains a QB1 Despite Tough Wednesday Matchup"
        }
       ]
@@ -4054,7 +4124,15 @@
       },
       "injury_feeds": {
        "ESPN": "Active, posted 3 days ago"
-      }
+      },
+      "news": [
+       {
+        "src": "rotoworld",
+        "at": "Wed Nov 25, 12:23 PM PT",
+        "age": "12 min ago",
+        "line": "Cowboys activated S Jalen Thompson (hamstring) from injured reserve."
+       }
+      ]
      },
      {
       "slot": "RB",
@@ -4072,19 +4150,19 @@
        "sleeper": 23.3
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3.2 hr ago"
+       "ESPN": "Active, posted 3.3 hr ago"
       },
       "news": [
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 12:07 PM PT",
-        "age": "19 min ago",
+        "age": "28 min ago",
         "line": "Emmett Johnson Poised For Massive Role On Thanksgiving"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 8:56 AM PT",
-        "age": "3.5 hr ago",
+        "age": "3.6 hr ago",
         "line": "Kenneth Walker ruled out for Thanksgiving night vs. Bills"
        }
       ]
@@ -4111,7 +4189,7 @@
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 12:37 PM PT",
-        "age": "23.8 hr ago",
+        "age": "24.0 hr ago",
         "line": "Matthew Golden's Volume Keeps Him in WR1 Range Against Los Angeles"
        }
       ]
@@ -4178,19 +4256,20 @@
        "sleeper": 14.2
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 1.6 hr ago"
+       "ESPN": "Questionable (Foot), posted 17 min ago",
+       "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "rotoworld",
         "at": "Wed Nov 25, 12:06 PM PT",
-        "age": "19 min ago",
+        "age": "29 min ago",
         "line": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs."
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 10:50 AM PT",
-        "age": "1.6 hr ago",
+        "age": "1.8 hr ago",
         "line": "Tetairoa McMillan Not Seen at Practice Wednesday"
        }
       ]
@@ -4211,20 +4290,20 @@
        "sleeper": 13.5
       },
       "injury_feeds": {
-       "ESPN": "Questionable (Achilles), posted 24 min ago",
+       "ESPN": "Questionable (Achilles), posted 28 min ago",
        "Sleeper": "Questionable"
       },
       "news": [
        {
         "src": "rotoworld",
         "at": "Wed Nov 25, 11:52 AM PT",
-        "age": "34 min ago",
+        "age": "43 min ago",
         "line": "Mike Evans (Achilles) did not practice on Wednesday."
        },
        {
         "src": "RotoWire",
         "at": "Wed Nov 25, 4:08 AM PT",
-        "age": "8.3 hr ago",
+        "age": "8.5 hr ago",
         "line": "Mike Evans: Not practicing Wednesday"
        }
       ]
@@ -4246,16 +4325,16 @@
       },
       "news": [
        {
-        "src": "RotoBaller",
-        "at": "Wed Nov 25, 7:18 AM PT",
-        "age": "5.1 hr ago",
-        "line": "Justin Herbert in Concussion Protocol Ahead of Week 12"
+        "src": "RotoWire",
+        "at": "Wed Nov 25, 12:26 PM PT",
+        "age": "9 min ago",
+        "line": "Justin Herbert: Not practicing Wednesday"
        },
        {
-        "src": "RotoBaller",
-        "at": "Tue Nov 24, 9:25 PM PT",
-        "age": "15.0 hr ago",
-        "line": "Justin Herbert Still Worth Targeting Amid Injury Concern"
+        "src": "rotoworld",
+        "at": "Wed Nov 25, 12:22 PM PT",
+        "age": "13 min ago",
+        "line": "Justin Herbert (concussion) did not practice on Wednesday."
        }
       ]
      }
@@ -4285,19 +4364,19 @@
       "wk17": 23.5
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 39.7 hr ago"
+      "ESPN": "Active, posted 39.8 hr ago"
      },
      "news": [
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 3:21 AM PT",
-       "age": "9.1 hr ago",
+       "age": "9.2 hr ago",
        "line": "Commanders coach Dan Quinn fine with Stefon Diggs' sideline rant"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 12:26 PM PT",
-       "age": "24.0 hr ago",
+       "age": "24.1 hr ago",
        "line": "Commanders' Quinn fine with Diggs' sideline rant"
       }
      ]
@@ -4331,13 +4410,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 9:05 AM PT",
-       "age": "3.3 hr ago",
+       "age": "3.5 hr ago",
        "line": "Jonah Coleman is the AFC offensive player of the week"
       },
       {
        "src": "ESPN",
        "at": "Mon Nov 23, 1:24 PM PT",
-       "age": "47.0 hr ago",
+       "age": "47.2 hr ago",
        "line": "Fantasy buzz: Who got the ball Sunday? Usage trends and role changes"
       }
      ]
@@ -4405,7 +4484,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 9:18 AM PT",
-       "age": "3.1 hr ago",
+       "age": "3.3 hr ago",
        "line": "Caleb Douglas' Week 12 fantasy preview"
       },
       {
@@ -4443,16 +4522,16 @@
      },
      "news": [
       {
-       "src": "rotoworld",
-       "at": "Mon Nov 23, 3:07 PM PT",
-       "age": "45.3 hr ago",
-       "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:18 PM PT",
+       "age": "17 min ago",
+       "line": "George Pickens Will Look To Continue Hot Streak Vs Eagles On Thursday"
       },
       {
        "src": "rotoworld",
-       "at": "Mon Nov 23, 1:59 PM PT",
-       "age": "46.4 hr ago",
-       "line": "Quinyon Mitchell (hamstring) did not practice on Monday."
+       "at": "Mon Nov 23, 3:07 PM PT",
+       "age": "45.5 hr ago",
+       "line": "Jake Ferguson was listed as a “DNP” on the estimated practice report Monday."
       }
      ]
     },
@@ -4485,7 +4564,7 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 8:09 AM PT",
-       "age": "4.3 hr ago",
+       "age": "4.4 hr ago",
        "line": "T.J. Hockenson's Week 12 fantasy preview"
       },
       {
@@ -4574,13 +4653,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 11:07 AM PT",
-       "age": "79 min ago",
+       "age": "88 min ago",
        "line": "Commanders and WR Brandon Aiyuk: What to expect, his fit and fantasy impact"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 10:53 AM PT",
-       "age": "1.5 hr ago",
+       "age": "1.7 hr ago",
        "line": "Ian Rapoport gives details on Brandon Aiyuk joining Commanders' practice squad"
       }
      ]
@@ -4617,7 +4696,7 @@
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 12:55 PM PT",
-       "age": "23.5 hr ago",
+       "age": "23.7 hr ago",
        "line": "Dopp out on Jaylen Waddle in Week 12 vs. Steelers"
       }
      ]
@@ -4652,7 +4731,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 7:27 PM PT",
-       "age": "17.0 hr ago",
+       "age": "17.1 hr ago",
        "line": "J.J. McCarthy is a Desperation Streaming Play for Week 12"
       },
       {
@@ -4690,13 +4769,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 11:07 AM PT",
-       "age": "79 min ago",
+       "age": "88 min ago",
        "line": "Commanders and WR Brandon Aiyuk: What to expect, his fit and fantasy impact"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 10:53 AM PT",
-       "age": "1.5 hr ago",
+       "age": "1.7 hr ago",
        "line": "Ian Rapoport gives details on Brandon Aiyuk joining Commanders' practice squad"
       }
      ]
@@ -4725,20 +4804,20 @@
       "wk17": 9.4
      },
      "injury_feeds": {
-      "ESPN": "Doubtful (Thumb), posted 49 min ago",
+      "ESPN": "Doubtful (Thumb), posted 58 min ago",
       "Sleeper": "Doubtful (Thumb)"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 3:37 AM PT",
-       "age": "8.8 hr ago",
+       "age": "9.0 hr ago",
        "line": "Jordan Addison: Listed as DNP on Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Mon Nov 23, 12:54 PM PT",
-       "age": "47.5 hr ago",
+       "age": "47.7 hr ago",
        "line": "Vikings \"don't necessarily expect\" Jordan Addison back this week"
       }
      ]
@@ -4770,13 +4849,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:05 AM PT",
-       "age": "4.4 hr ago",
+       "age": "4.5 hr ago",
        "line": "Jalen McMillan to return to practice for the Buccaneers"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 7:55 AM PT",
-       "age": "4.5 hr ago",
+       "age": "4.7 hr ago",
        "line": "Jalen McMillan: Returning to practice in Week 12"
       }
      ]
@@ -4805,13 +4884,13 @@
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 12:53 PM PT",
-       "age": "23.6 hr ago",
+       "age": "23.7 hr ago",
        "line": "Why Dopp is encouraging fantasy managers to stay away from Jordan Love in Week 12"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 12:25 PM PT",
-       "age": "24.0 hr ago",
+       "age": "24.2 hr ago",
        "line": "Jordan Love Remains a QB1 Despite Tough Wednesday Matchup"
       }
      ]
@@ -4833,7 +4912,15 @@
      },
      "injury_feeds": {
       "ESPN": "Active, posted 3 days ago"
-     }
+     },
+     "news": [
+      {
+       "src": "rotoworld",
+       "at": "Wed Nov 25, 12:23 PM PT",
+       "age": "12 min ago",
+       "line": "Cowboys activated S Jalen Thompson (hamstring) from injured reserve."
+      }
+     ]
     },
     {
      "slot": "RB",
@@ -4851,19 +4938,19 @@
       "sleeper": 23.3
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3.2 hr ago"
+      "ESPN": "Active, posted 3.3 hr ago"
      },
      "news": [
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 12:07 PM PT",
-       "age": "19 min ago",
+       "age": "28 min ago",
        "line": "Emmett Johnson Poised For Massive Role On Thanksgiving"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:56 AM PT",
-       "age": "3.5 hr ago",
+       "age": "3.6 hr ago",
        "line": "Kenneth Walker ruled out for Thanksgiving night vs. Bills"
       }
      ]
@@ -4890,7 +4977,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 12:37 PM PT",
-       "age": "23.8 hr ago",
+       "age": "24.0 hr ago",
        "line": "Matthew Golden's Volume Keeps Him in WR1 Range Against Los Angeles"
       }
      ]
@@ -4957,19 +5044,20 @@
       "sleeper": 14.2
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 1.6 hr ago"
+      "ESPN": "Questionable (Foot), posted 17 min ago",
+      "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "rotoworld",
        "at": "Wed Nov 25, 12:06 PM PT",
-       "age": "19 min ago",
+       "age": "29 min ago",
        "line": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs."
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 10:50 AM PT",
-       "age": "1.6 hr ago",
+       "age": "1.8 hr ago",
        "line": "Tetairoa McMillan Not Seen at Practice Wednesday"
       }
      ]
@@ -4990,20 +5078,20 @@
       "sleeper": 13.5
      },
      "injury_feeds": {
-      "ESPN": "Questionable (Achilles), posted 24 min ago",
+      "ESPN": "Questionable (Achilles), posted 28 min ago",
       "Sleeper": "Questionable"
      },
      "news": [
       {
        "src": "rotoworld",
        "at": "Wed Nov 25, 11:52 AM PT",
-       "age": "34 min ago",
+       "age": "43 min ago",
        "line": "Mike Evans (Achilles) did not practice on Wednesday."
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 4:08 AM PT",
-       "age": "8.3 hr ago",
+       "age": "8.5 hr ago",
        "line": "Mike Evans: Not practicing Wednesday"
       }
      ]
@@ -5025,16 +5113,16 @@
      },
      "news": [
       {
-       "src": "RotoBaller",
-       "at": "Wed Nov 25, 7:18 AM PT",
-       "age": "5.1 hr ago",
-       "line": "Justin Herbert in Concussion Protocol Ahead of Week 12"
+       "src": "RotoWire",
+       "at": "Wed Nov 25, 12:26 PM PT",
+       "age": "9 min ago",
+       "line": "Justin Herbert: Not practicing Wednesday"
       },
       {
-       "src": "RotoBaller",
-       "at": "Tue Nov 24, 9:25 PM PT",
-       "age": "15.0 hr ago",
-       "line": "Justin Herbert Still Worth Targeting Amid Injury Concern"
+       "src": "rotoworld",
+       "at": "Wed Nov 25, 12:22 PM PT",
+       "age": "13 min ago",
+       "line": "Justin Herbert (concussion) did not practice on Wednesday."
       }
      ]
     }
@@ -5085,13 +5173,20 @@
     },
     {
      "color": "grey",
+     "title": "Tetairoa McMillan: Questionable (Foot)",
+     "who": "Tetairoa McMillan",
+     "kind": "feed",
+     "src": "ESPN injury list (raw feed, pulled every 30 minutes)"
+    },
+    {
+     "color": "grey",
      "title": "Panthers coach Dave Canales said he is optimistic that Tetairoa McMillan (foot) will play in Week 12 against the Bucs.",
      "who": "Tetairoa McMillan",
      "kind": "feed",
      "src": "rotoworld (raw feed, pulled every 30 minutes)"
     }
    ],
-   "roster_read_pt": "Wed Nov 25, 12:19 PM PT"
+   "roster_read_pt": "Wed Nov 25, 12:29 PM PT"
   },
   {
    "dk": "DK IV",
@@ -5116,7 +5211,7 @@
    "totals_projected": {
     "gotham": [
      160.09,
-     155.38
+     155.45
     ],
     "sleeper": [
      167.66,
@@ -5124,7 +5219,7 @@
     ],
     "yahoo": [
      167.48,
-     168.01
+     167.79
     ],
     "ratcliffe": [
      173.89,
@@ -5218,16 +5313,16 @@
       },
       "news": [
        {
-        "src": "ESPN",
-        "at": "Tue Nov 24, 9:58 AM PT",
-        "age": "26.5 hr ago",
-        "line": "The reasons Dopp is picking Dak Prescott over Patrick Mahomes in Week 12"
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:23 PM PT",
+        "age": "12 min ago",
+        "line": "Dak Prescott Healthy, Poised To Continue Elite Production Vs Eagles"
        },
        {
-        "src": "RotoBaller",
-        "at": "Mon Nov 23, 3:08 PM PT",
-        "age": "45.3 hr ago",
-        "line": "Dak Prescott a Full Participant With Hand Injury"
+        "src": "ESPN",
+        "at": "Tue Nov 24, 9:58 AM PT",
+        "age": "26.6 hr ago",
+        "line": "The reasons Dopp is picking Dak Prescott over Patrick Mahomes in Week 12"
        }
       ]
      },
@@ -5260,13 +5355,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 4:56 AM PT",
-        "age": "7.5 hr ago",
+        "age": "7.6 hr ago",
         "line": "Ben Johnson: D'Andre Swift doesn't need to regain trust after fumble"
        },
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 3:21 AM PT",
-        "age": "9.1 hr ago",
+        "age": "9.2 hr ago",
         "line": "Bears' Johnson has no plan to stop using Swift in run game despite costly fumbles"
        }
       ]
@@ -5300,13 +5395,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 8:49 AM PT",
-        "age": "3.6 hr ago",
+        "age": "3.8 hr ago",
         "line": "Has Bijan Robinson had a disappointing fantasy season so far?"
        },
        {
         "src": "ESPN",
         "at": "Tue Nov 24, 10:17 AM PT",
-        "age": "26.1 hr ago",
+        "age": "26.3 hr ago",
         "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
        }
       ]
@@ -5414,13 +5509,13 @@
        "wk17": 10.1
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 3.4 hr ago"
+       "ESPN": "Active, posted 3.6 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Wed Nov 25, 1:02 AM PT",
-        "age": "11.4 hr ago",
+        "age": "11.6 hr ago",
         "line": "Jakobi Meyers: Working off to side Wednesday"
        }
       ]
@@ -5452,16 +5547,16 @@
       },
       "news": [
        {
+        "src": "RotoBaller",
+        "at": "Wed Nov 25, 12:16 PM PT",
+        "age": "19 min ago",
+        "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+       },
+       {
         "src": "ESPN",
         "at": "Sun Nov 22, 5:00 PM PT",
         "age": "3 days ago",
         "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-       },
-       {
-        "src": "RotoBaller",
-        "at": "Sun Nov 22, 2:53 PM PT",
-        "age": "3 days ago",
-        "line": "Travis Kelce Reasserts His TE1 Value"
        }
       ]
      },
@@ -5554,13 +5649,13 @@
        "wk17": 8.4
       },
       "injury_feeds": {
-       "ESPN": "Active, posted 43.7 hr ago"
+       "ESPN": "Active, posted 43.9 hr ago"
       },
       "news": [
        {
         "src": "RotoWire",
         "at": "Mon Nov 23, 4:44 PM PT",
-        "age": "43.7 hr ago",
+        "age": "43.8 hr ago",
         "line": "Will Reichard: Misses two long field goals in Week 11"
        }
       ]
@@ -5591,13 +5686,13 @@
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 8:05 AM PT",
-        "age": "4.4 hr ago",
+        "age": "4.5 hr ago",
         "line": "Jalen McMillan to return to practice for the Buccaneers"
        },
        {
         "src": "RotoWire",
         "at": "Wed Nov 25, 7:55 AM PT",
-        "age": "4.5 hr ago",
+        "age": "4.7 hr ago",
         "line": "Jalen McMillan: Returning to practice in Week 12"
        }
       ]
@@ -5626,7 +5721,7 @@
        {
         "src": "ESPN",
         "at": "Mon Nov 23, 3:48 PM PT",
-        "age": "44.6 hr ago",
+        "age": "44.8 hr ago",
         "line": "Why fantasy managers should still trust Trevor Lawrence"
        },
        {
@@ -5694,13 +5789,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 12:05 PM PT",
-        "age": "21 min ago",
+        "age": "30 min ago",
         "line": "CeeDee Lamb Ready To Dominate Eagles Defense In Week 12"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 6:03 AM PT",
-        "age": "6.4 hr ago",
+        "age": "6.5 hr ago",
         "line": "Wide Receiver Matchups to Target For Thanksgiving - CeeDee Lamb, DeVonta Smith, Cyrus Allen, More"
        }
       ]
@@ -5760,13 +5855,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 2:40 AM PT",
-        "age": "9.8 hr ago",
+        "age": "9.9 hr ago",
         "line": "Konata Mumpfield a Solid Streamer with Potential for Significant Volume"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 2:02 PM PT",
-        "age": "22.4 hr ago",
+        "age": "22.5 hr ago",
         "line": "Week 12 Waiver Wire Pickups - Konata Mumpfield, CJ Daniels, Tyler Higbee"
        }
       ]
@@ -5793,13 +5888,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 3:04 AM PT",
-        "age": "9.4 hr ago",
+        "age": "9.5 hr ago",
         "line": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more"
        },
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 2:45 AM PT",
-        "age": "9.7 hr ago",
+        "age": "9.8 hr ago",
         "line": "Tyler Higbee Remains a Modest Streamer for Battle with Green Bay"
        }
       ]
@@ -5845,13 +5940,13 @@
        {
         "src": "ESPN",
         "at": "Wed Nov 25, 8:59 AM PT",
-        "age": "3.5 hr ago",
+        "age": "3.6 hr ago",
         "line": "Why Mike Clay is high on Deshaun Watson as a streaming option in Week 12"
        },
        {
         "src": "RotoBaller",
         "at": "Tue Nov 24, 7:53 PM PT",
-        "age": "16.5 hr ago",
+        "age": "16.7 hr ago",
         "line": "Deshaun Watson is a Risky Streaming Play in Week 12"
        }
       ]
@@ -5902,13 +5997,13 @@
        {
         "src": "RotoBaller",
         "at": "Wed Nov 25, 12:11 PM PT",
-        "age": "15 min ago",
+        "age": "24 min ago",
         "line": "Marvin Harrison Jr. Back at Practice on Wednesday"
        },
        {
         "src": "ProFootballTalk",
         "at": "Wed Nov 25, 12:01 PM PT",
-        "age": "24 min ago",
+        "age": "33 min ago",
         "line": "Derrick Henry placed in concussion protocol, limited in Wednesday's practice"
        }
       ]
@@ -5943,16 +6038,16 @@
      },
      "news": [
       {
-       "src": "ESPN",
-       "at": "Tue Nov 24, 9:58 AM PT",
-       "age": "26.5 hr ago",
-       "line": "The reasons Dopp is picking Dak Prescott over Patrick Mahomes in Week 12"
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:23 PM PT",
+       "age": "12 min ago",
+       "line": "Dak Prescott Healthy, Poised To Continue Elite Production Vs Eagles"
       },
       {
-       "src": "RotoBaller",
-       "at": "Mon Nov 23, 3:08 PM PT",
-       "age": "45.3 hr ago",
-       "line": "Dak Prescott a Full Participant With Hand Injury"
+       "src": "ESPN",
+       "at": "Tue Nov 24, 9:58 AM PT",
+       "age": "26.6 hr ago",
+       "line": "The reasons Dopp is picking Dak Prescott over Patrick Mahomes in Week 12"
       }
      ]
     },
@@ -5985,13 +6080,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 4:56 AM PT",
-       "age": "7.5 hr ago",
+       "age": "7.6 hr ago",
        "line": "Ben Johnson: D'Andre Swift doesn't need to regain trust after fumble"
       },
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 3:21 AM PT",
-       "age": "9.1 hr ago",
+       "age": "9.2 hr ago",
        "line": "Bears' Johnson has no plan to stop using Swift in run game despite costly fumbles"
       }
      ]
@@ -6025,13 +6120,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 8:49 AM PT",
-       "age": "3.6 hr ago",
+       "age": "3.8 hr ago",
        "line": "Has Bijan Robinson had a disappointing fantasy season so far?"
       },
       {
        "src": "ESPN",
        "at": "Tue Nov 24, 10:17 AM PT",
-       "age": "26.1 hr ago",
+       "age": "26.3 hr ago",
        "line": "Prioritize Ja'Marr Chase, Bijan Robinson over Josh Allen in Knockout league pickups"
       }
      ]
@@ -6139,13 +6234,13 @@
       "wk17": 10.1
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 3.4 hr ago"
+      "ESPN": "Active, posted 3.6 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 1:02 AM PT",
-       "age": "11.4 hr ago",
+       "age": "11.6 hr ago",
        "line": "Jakobi Meyers: Working off to side Wednesday"
       }
      ]
@@ -6177,16 +6272,16 @@
      },
      "news": [
       {
+       "src": "RotoBaller",
+       "at": "Wed Nov 25, 12:16 PM PT",
+       "age": "19 min ago",
+       "line": "Travis Kelce Will Be Heavily Involved In AFC Showdown"
+      },
+      {
        "src": "ESPN",
        "at": "Sun Nov 22, 5:00 PM PT",
        "age": "3 days ago",
        "line": "Travis Kelce pads Hall of Fame résumé with two first-half TDs in Chiefs' win"
-      },
-      {
-       "src": "RotoBaller",
-       "at": "Sun Nov 22, 2:53 PM PT",
-       "age": "3 days ago",
-       "line": "Travis Kelce Reasserts His TE1 Value"
       }
      ]
     },
@@ -6279,13 +6374,13 @@
       "wk17": 8.4
      },
      "injury_feeds": {
-      "ESPN": "Active, posted 43.7 hr ago"
+      "ESPN": "Active, posted 43.9 hr ago"
      },
      "news": [
       {
        "src": "RotoWire",
        "at": "Mon Nov 23, 4:44 PM PT",
-       "age": "43.7 hr ago",
+       "age": "43.8 hr ago",
        "line": "Will Reichard: Misses two long field goals in Week 11"
       }
      ]
@@ -6316,13 +6411,13 @@
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 8:05 AM PT",
-       "age": "4.4 hr ago",
+       "age": "4.5 hr ago",
        "line": "Jalen McMillan to return to practice for the Buccaneers"
       },
       {
        "src": "RotoWire",
        "at": "Wed Nov 25, 7:55 AM PT",
-       "age": "4.5 hr ago",
+       "age": "4.7 hr ago",
        "line": "Jalen McMillan: Returning to practice in Week 12"
       }
      ]
@@ -6394,7 +6489,7 @@
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 12:46 PM PT",
-       "age": "23.7 hr ago",
+       "age": "23.8 hr ago",
        "line": "Tucker Kraft a Risky Starter Wednesday Against Rams"
       }
      ]
@@ -6542,13 +6637,13 @@
       {
        "src": "rotoworld",
        "at": "Wed Nov 25, 11:52 AM PT",
-       "age": "34 min ago",
+       "age": "43 min ago",
        "line": "Mike Evans (Achilles) did not practice on Wednesday."
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 11:05 AM PT",
-       "age": "81 min ago",
+       "age": "1.5 hr ago",
        "line": "Sam Darnold Expected to Start Sunday"
       }
      ]
@@ -6577,7 +6672,7 @@
       {
        "src": "ESPN",
        "at": "Mon Nov 23, 3:48 PM PT",
-       "age": "44.6 hr ago",
+       "age": "44.8 hr ago",
        "line": "Why fantasy managers should still trust Trevor Lawrence"
       },
       {
@@ -6645,13 +6740,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 12:05 PM PT",
-       "age": "21 min ago",
+       "age": "30 min ago",
        "line": "CeeDee Lamb Ready To Dominate Eagles Defense In Week 12"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 6:03 AM PT",
-       "age": "6.4 hr ago",
+       "age": "6.5 hr ago",
        "line": "Wide Receiver Matchups to Target For Thanksgiving - CeeDee Lamb, DeVonta Smith, Cyrus Allen, More"
       }
      ]
@@ -6711,13 +6806,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:40 AM PT",
-       "age": "9.8 hr ago",
+       "age": "9.9 hr ago",
        "line": "Konata Mumpfield a Solid Streamer with Potential for Significant Volume"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 2:02 PM PT",
-       "age": "22.4 hr ago",
+       "age": "22.5 hr ago",
        "line": "Week 12 Waiver Wire Pickups - Konata Mumpfield, CJ Daniels, Tyler Higbee"
       }
      ]
@@ -6744,13 +6839,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 3:04 AM PT",
-       "age": "9.4 hr ago",
+       "age": "9.5 hr ago",
        "line": "Mid-Week Waiver Wire Rankings for Week 12 (2026): Fantasy Football Pickups for Ted Hurst, Jack Bech, Tyler Higbee, Kaleb Johnson, Jonathon Brooks, Chris Rodriguez Jr., more"
       },
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 2:45 AM PT",
-       "age": "9.7 hr ago",
+       "age": "9.8 hr ago",
        "line": "Tyler Higbee Remains a Modest Streamer for Battle with Green Bay"
       }
      ]
@@ -6796,13 +6891,13 @@
       {
        "src": "ESPN",
        "at": "Wed Nov 25, 8:59 AM PT",
-       "age": "3.5 hr ago",
+       "age": "3.6 hr ago",
        "line": "Why Mike Clay is high on Deshaun Watson as a streaming option in Week 12"
       },
       {
        "src": "RotoBaller",
        "at": "Tue Nov 24, 7:53 PM PT",
-       "age": "16.5 hr ago",
+       "age": "16.7 hr ago",
        "line": "Deshaun Watson is a Risky Streaming Play in Week 12"
       }
      ]
@@ -6853,13 +6948,13 @@
       {
        "src": "RotoBaller",
        "at": "Wed Nov 25, 12:11 PM PT",
-       "age": "15 min ago",
+       "age": "24 min ago",
        "line": "Marvin Harrison Jr. Back at Practice on Wednesday"
       },
       {
        "src": "ProFootballTalk",
        "at": "Wed Nov 25, 12:01 PM PT",
-       "age": "24 min ago",
+       "age": "33 min ago",
        "line": "Derrick Henry placed in concussion protocol, limited in Wednesday's practice"
       }
      ]
@@ -6867,7 +6962,7 @@
    ],
    "actions": [],
    "alerts": [],
-   "roster_read_pt": "Wed Nov 25, 12:19 PM PT"
+   "roster_read_pt": "Wed Nov 25, 12:29 PM PT"
   }
  ],
  "health": [
@@ -6875,6 +6970,11 @@
    "level": "red",
    "piece": "rotoballer",
    "what": "build marked it TESTING: RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads"
+  },
+  {
+   "level": "gold",
+   "piece": "DK I",
+   "what": "Stefon Diggs (WR) questionable, kickoff Sun Nov 29, 1:25 PM PT - If Stefon Diggs is ruled out, start Chris Rodriguez Jr. (RB, JAX) (Drake London moves W/R/T -> WR, Chris Rodriguez Jr. takes W/R/T) - no drop needed. Yahoo gap if he sits: about 4.4 pts. Decision due when the inactives post, about 11:55 AM PT."
   },
   {
    "level": "grey",
@@ -6905,168 +7005,168 @@
  "sources": [
   {
    "source": "NFL schedule",
-   "as_of": "Wed Nov 25, 12:19 PM PT",
-   "age": "7 min ago",
+   "as_of": "Wed Nov 25, 12:30 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "week 12: 16 games"
   },
   {
    "source": "Yahoo matchups (scores, starters)",
-   "as_of": "Wed Nov 25, 12:19 PM PT",
-   "age": "7 min ago",
+   "as_of": "Wed Nov 25, 12:29 PM PT",
+   "age": "6 min ago",
    "level": "green",
    "note": "Dom's four matchup pages, both sides, Yahoo proj + points"
   },
   {
    "source": "Yahoo win % (all teams)",
-   "as_of": "Wed Nov 25, 12:19 PM PT",
-   "age": "7 min ago",
+   "as_of": "Wed Nov 25, 12:29 PM PT",
+   "age": "6 min ago",
    "level": "green",
    "note": "every team in all four leagues: Yahoo win %, record"
   },
   {
    "source": "Yahoo standings",
    "as_of": "Wed Nov 25, 9:27 AM PT",
-   "age": "3.0 hr ago",
+   "age": "3.1 hr ago",
    "level": "green",
    "note": "rank, division rank, points for"
   },
   {
    "source": "Gotham projections",
-   "as_of": "Wed Nov 25, 12:20 PM PT",
-   "age": "6 min ago",
+   "as_of": "Wed Nov 25, 12:30 PM PT",
+   "age": "5 min ago",
    "level": "green",
-   "note": "Gotham run Wed Nov 25 2026 12:20 PM PT for week 12"
+   "note": "Gotham run Wed Nov 25 2026 12:30 PM PT for week 12"
   },
   {
    "source": "ratcliffe",
    "as_of": "Wed Nov 25, 12:09 PM PT",
-   "age": "17 min ago",
+   "age": "26 min ago",
    "level": "green",
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
   {
    "source": "koerner",
    "as_of": "Wed Nov 25, 11:05 AM PT",
-   "age": "81 min ago",
+   "age": "1.5 hr ago",
    "level": "green",
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   {
    "source": "Sleeper projections",
    "as_of": "Wed Nov 25, 11:46 AM PT",
-   "age": "40 min ago",
+   "age": "49 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.6 h ago (saved 3118 rows)"
+   "note": "GitHub job checked 0.7 h ago (saved 3118 rows)"
   },
   {
    "source": "Sleeper K/DEF projections",
    "as_of": "Wed Nov 25, 11:46 AM PT",
-   "age": "40 min ago",
+   "age": "49 min ago",
    "level": "green",
-   "note": "GitHub job checked 0.6 h ago (saved 189 rows)"
+   "note": "GitHub job checked 0.7 h ago (saved 189 rows)"
   },
   {
    "source": "Yahoo rosters (all teams)",
-   "as_of": "Wed Nov 25, 12:19 PM PT",
-   "age": "7 min ago",
+   "as_of": "Wed Nov 25, 12:29 PM PT",
+   "age": "6 min ago",
    "level": "green",
    "note": "Dom's four rosters"
   },
   {
    "source": "clay",
-   "as_of": "Wed Nov 25, 12:20 PM PT",
-   "age": "6 min ago",
+   "as_of": "Wed Nov 25, 12:30 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "Mike Clay (ESPN) projections, full stat lines scored in each league's own rules; weeks ahead through Week 17"
   },
   {
    "source": "vegas",
-   "as_of": "Wed Nov 25, 12:20 PM PT",
-   "age": "6 min ago",
+   "as_of": "Wed Nov 25, 12:30 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "Vegas player props (First Down Studio), stat lines scored in each league's own rules; a check beside the experts - Ratcliffe leads"
   },
   {
    "source": "rotoballer",
-   "as_of": "Wed Nov 25, 12:20 PM PT",
-   "age": "6 min ago",
+   "as_of": "Wed Nov 25, 12:30 PM PT",
+   "age": "5 min ago",
    "level": "green",
    "note": "RotoBaller Staff projections (free), stat lines scored in each league's own rules; on trial since Nov 8 - Ratcliffe leads; build says TESTING"
   },
   {
    "source": "draftsharks",
    "as_of": "Wed Nov 25, 12:05 PM PT",
-   "age": "21 min ago",
+   "age": "30 min ago",
    "level": "green",
    "note": "Draft Sharks (Jared Smola) free PPR projection, converted to each league's scoring with Clay's volume; lineup check 2 since Nov 24 (replaced Koerner)"
   },
   {
    "source": "drroto",
    "as_of": "Wed Nov 25, 12:02 PM PT",
-   "age": "24 min ago",
+   "age": "33 min ago",
    "level": "green",
    "note": "Dr. Roto (NFL Dashboard, DraftKings scoring) converted to each league's scoring with Clay's volume - approximate; pillar 2 beside Ratcliffe since Nov 24"
   },
   {
    "source": "RotoWire news",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Sleeper injuries/trending",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "rotowire_pages",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "rotoworld",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "Game weather",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN news",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "PFT + RotoBaller news",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "ESPN injury report",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
   },
   {
    "source": "injury_overlay",
-   "as_of": "Wed Nov 25, 12:17 PM PT",
+   "as_of": "Wed Nov 25, 12:26 PM PT",
    "age": "9 min ago",
    "level": "green",
    "note": ""
