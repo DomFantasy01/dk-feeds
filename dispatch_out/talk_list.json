@@ -1,6 +1,6 @@
 {
  "week": 12,
- "built": "Wed Nov 25 2026 12:39 PM PT",
+ "built": "Wed Nov 25 2026 01:08 PM PT",
  "ratcliffe_read": "Wed Nov 25 2026 12:26 PM PT",
  "koerner_read": "Wed Nov 25 2026 12:05 PM PT",
  "leagues": {
@@ -146,6 +146,13 @@
        "note": "RotoBaller 6.3 vs the others' middle 10.7 this week"
       },
       {
+       "span": "this week",
+       "expert": "Vegas",
+       "his": 12.0,
+       "others": 8.9,
+       "note": "Vegas 12.0 vs the others' middle 8.9 this week"
+      },
+      {
        "span": "rest of season",
        "expert": "Ratcliffe",
        "his": 11.4,
@@ -159,14 +166,51 @@
    ]
   },
   "DK II": {
-   "talk": [],
+   "talk": [
+    {
+     "name": "Simi Fehoko",
+     "pos": "WR",
+     "team": "ARI",
+     "acq": "free agent",
+     "over": "Konata Mumpfield",
+     "rat_ros": 6.1,
+     "over_ros": 9.0,
+     "pct": -32,
+     "gain": -2.9,
+     "rat_wk": 5.2,
+     "koe_wk": null,
+     "clay_ros": 8.5,
+     "vegas_wk": null,
+     "flagged_by": [
+      "Clay"
+     ],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 13-17",
+       "his": 8.5,
+       "over": "Konata Mumpfield",
+       "over_v": 6.3,
+       "pct": 35,
+       "gain": 2.2
+      }
+     ],
+     "sharp_po": 60.0,
+     "sharp_rank": 27,
+     "rising": null,
+     "scout": false,
+     "note": "Flagged by Clay (rest of season, Weeks 13-17: 8.5 vs your Konata Mumpfield 6.3, +35%); Ratcliffe has him 6.1 a game vs 9.0; playoff offense #27 of 32 (Sharp betting totals, Weeks 15-17)",
+     "id": "talk:simifehoko",
+     "first_seen": "Wed Nov 25 2026 01:08 PM PT"
+    }
+   ],
    "watch": [
     {
      "name": "BUF DEF",
      "pos": "DEF",
      "team": "BUF",
      "acq": "Waivers, clears Nov 28",
-     "over": "Jacory Croskey-Merritt",
+     "over": "Konata Mumpfield",
      "pct": 50,
      "gain": 4.3,
      "note": "Scout pick (rest of season): This week vs your DEF Jaguars DEF: Ratcliffe 7.4 vs 10.0 \u00b7 Koerner 5.5 vs 9.6 \u00b7 Yahoo 5.4 vs 7.4 - WORSE this week",
@@ -179,7 +223,7 @@
      "pos": "K",
      "team": "TEN",
      "acq": "Free agent",
-     "over": "Jacory Croskey-Merritt",
+     "over": "Konata Mumpfield",
      "pct": 30,
      "gain": 5.9,
      "note": "Scout pick (rest of season): This week vs your K Ka'imi Fairbairn: Ratcliffe 9.6 vs 12.4 \u00b7 Koerner 5.9 vs 9.7 \u00b7 Yahoo 6.3 vs 9.2 - WORSE this week",
@@ -192,7 +236,7 @@
      "pos": "K",
      "team": "CLE",
      "acq": "Free agent",
-     "over": "Jacory Croskey-Merritt",
+     "over": "Konata Mumpfield",
      "pct": 27,
      "gain": 2.7,
      "note": "Scout pick (rest of season): This week vs your K Ka'imi Fairbairn: Ratcliffe 9.9 vs 12.4 \u00b7 Koerner 9.2 vs 9.7 \u00b7 Yahoo 7.9 vs 9.2 - WORSE this week",
@@ -213,7 +257,7 @@
      "rat_wk": 17.7,
      "koe_wk": 18.43,
      "clay_ros": 14.01,
-     "vegas_wk": 18.14,
+     "vegas_wk": 18.05,
      "flagged_by": [],
      "flags": [
       {
@@ -232,6 +276,39 @@
      "scout": false,
      "id": "watch:jacobybrissett",
      "first_seen": "Wed Nov 25 2026 09:10 AM PT"
+    },
+    {
+     "name": "Germie Bernard",
+     "pos": "WR",
+     "team": "PIT",
+     "acq": "free agent",
+     "over": "Konata Mumpfield",
+     "rat_ros": 9.5,
+     "over_ros": 9.0,
+     "pct": 6,
+     "gain": 0.5,
+     "rat_wk": 8.7,
+     "koe_wk": 10.13,
+     "clay_ros": 7.03,
+     "vegas_wk": null,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Draft Sharks",
+       "span": "this week",
+       "his": 10.1,
+       "over": "Konata Mumpfield",
+       "over_v": 9.1,
+       "pct": 11,
+       "gain": 1.0
+      }
+     ],
+     "sharp_po": 63.25,
+     "sharp_rank": 24,
+     "rising": null,
+     "scout": false,
+     "id": "watch:germiebernard",
+     "first_seen": "Wed Nov 25 2026 01:08 PM PT"
     },
     {
      "name": "Dominic Zvada",
@@ -265,53 +342,9 @@
      "scout": true,
      "id": "watch:dominiczvada",
      "first_seen": "Tue Nov 24 2026 12:12 PM PT"
-    },
-    {
-     "name": "Jason Sanders",
-     "pos": "K",
-     "team": "NYJ",
-     "acq": "free agent",
-     "over": "Ka'imi Fairbairn",
-     "rat_ros": 7.5,
-     "over_ros": 8.4,
-     "pct": -11,
-     "gain": -0.9,
-     "rat_wk": 10.3,
-     "koe_wk": null,
-     "clay_ros": 10.74,
-     "vegas_wk": 9.31,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Clay",
-       "span": "rest of season, Weeks 13-17",
-       "his": 10.7,
-       "over": "Ka'imi Fairbairn",
-       "over_v": 9.2,
-       "pct": 16,
-       "gain": 1.5
-      }
-     ],
-     "sharp_po": 55.25,
-     "sharp_rank": 30,
-     "rising": null,
-     "scout": false,
-     "id": "watch:jasonsanders",
-     "first_seen": "Wed Nov 25 2026 02:37 AM PT"
     }
    ],
    "cover": [
-    {
-     "title": "SUPERFLEX, Week 12 Fill",
-     "target": "Target 19.5 pts",
-     "mark": "red",
-     "why": "Full strength ~17.9 (Darnold). Wk 12 McCarthy ~19.5 (Darnold has a worse matchup).",
-     "picks": [
-      "Chris Rodriguez Jr. (Free agent)"
-     ],
-     "id": "cover:superflexweek12fill",
-     "first_seen": "Sun Nov 22 2026 02:23 PM PT"
-    },
     {
      "title": "FLEX, Week 14 Fill",
      "target": "Target 14.3 pts",
@@ -329,6 +362,24 @@
      "picks": [],
      "id": "cover:teweeks121315fill",
      "first_seen": "Wed Nov 25 2026 09:10 AM PT"
+    },
+    {
+     "title": "SUPERFLEX, Week 12 Fill",
+     "target": "Target 19.5 pts",
+     "mark": "gold",
+     "why": "Full strength ~17.9 (Darnold). Wk 12 McCarthy ~19.5 (Darnold has a worse matchup).",
+     "picks": [],
+     "id": "cover:superflexweek12fill",
+     "first_seen": "Sun Nov 22 2026 02:23 PM PT"
+    },
+    {
+     "title": "RB2, Week 12 Fill",
+     "target": "Target 15.1 pts",
+     "mark": "gold",
+     "why": "Full strength ~14.2 (Etienne). Wk 12 Rodriguez ~15.1 (Etienne moves up to FLEX, Rodriguez slides in).",
+     "picks": [],
+     "id": "cover:rb2week12fill",
+     "first_seen": "Wed Nov 25 2026 01:08 PM PT"
     }
    ],
    "block": [],
@@ -345,11 +396,28 @@
        "span": "this week",
        "expert": "RotoBaller",
        "his": 9.8,
-       "others": 13.8,
-       "note": "RotoBaller 9.8 vs the others' middle 13.8 this week"
+       "others": 14.0,
+       "note": "RotoBaller 9.8 vs the others' middle 14.0 this week"
       }
      ],
      "ros_rank": 43,
+     "ros_rank_at": "11/20"
+    },
+    {
+     "name": "Konata Mumpfield",
+     "pos": "WR",
+     "team": "Lar",
+     "slot": "WR",
+     "splits": [
+      {
+       "span": "rest of season",
+       "expert": "Ratcliffe",
+       "his": 9.0,
+       "others": 6.3,
+       "note": "Ratcliffe 9.0 a game vs Clay 6.3 for the rest of the season"
+      }
+     ],
+     "ros_rank": 58,
      "ros_rank_at": "11/20"
     },
     {
@@ -370,20 +438,72 @@
      "ros_rank_at": "11/20"
     },
     {
-     "name": "Konata Mumpfield",
-     "pos": "WR",
-     "team": "Lar",
+     "name": "Chris Rodriguez Jr.",
+     "pos": "RB",
+     "team": "Jax",
      "slot": "BN",
      "splits": [
       {
+       "span": "this week",
+       "expert": "Ratcliffe",
+       "his": 15.1,
+       "others": 8.9,
+       "note": "Ratcliffe 15.1 vs the others' middle 8.9 this week"
+      },
+      {
+       "span": "this week",
+       "expert": "RotoBaller",
+       "his": 6.3,
+       "others": 10.7,
+       "note": "RotoBaller 6.3 vs the others' middle 10.7 this week"
+      },
+      {
+       "span": "this week",
+       "expert": "Vegas",
+       "his": 12.0,
+       "others": 8.9,
+       "note": "Vegas 12.0 vs the others' middle 8.9 this week"
+      },
+      {
        "span": "rest of season",
        "expert": "Ratcliffe",
-       "his": 9.0,
-       "others": 6.3,
-       "note": "Ratcliffe 9.0 a game vs Clay 6.3 for the rest of the season"
+       "his": 11.4,
+       "others": 7.1,
+       "note": "Ratcliffe 11.4 a game vs Clay 7.1 for the rest of the season"
       }
      ],
-     "ros_rank": 58,
+     "ros_rank": 57,
+     "ros_rank_at": "11/20"
+    },
+    {
+     "name": "Simi Fehoko",
+     "pos": "WR",
+     "team": "ARI",
+     "slot": "free agent",
+     "splits": [
+      {
+       "span": "this week",
+       "expert": "Koerner",
+       "his": 4.6,
+       "others": 6.9,
+       "note": "Koerner 4.6 vs the others' middle 6.9 this week"
+      },
+      {
+       "span": "this week",
+       "expert": "Clay",
+       "his": 8.2,
+       "others": 5.2,
+       "note": "Clay 8.2 vs the others' middle 5.2 this week"
+      },
+      {
+       "span": "rest of season",
+       "expert": "Ratcliffe",
+       "his": 6.1,
+       "others": 8.5,
+       "note": "Ratcliffe 6.1 a game vs Clay 8.5 for the rest of the season"
+      }
+     ],
+     "ros_rank": 118,
      "ros_rank_at": "11/20"
     }
    ]
@@ -439,8 +559,8 @@
        "span": "this week",
        "expert": "RotoBaller",
        "his": 9.8,
-       "others": 13.8,
-       "note": "RotoBaller 9.8 vs the others' middle 13.8 this week"
+       "others": 14.0,
+       "note": "RotoBaller 9.8 vs the others' middle 14.0 this week"
       }
      ],
      "ros_rank": 43,
@@ -451,19 +571,6 @@
   "DK IV": {
    "talk": [],
    "watch": [
-    {
-     "name": "Keenan Allen",
-     "pos": "WR",
-     "team": "SF",
-     "acq": "Free agent",
-     "over": "Rhamondre Stevenson",
-     "pct": 25,
-     "gain": 6.5,
-     "note": "Scout pick (rest of season): This week vs your WR3 Jakobi Meyers: Ratcliffe 8.3 vs 11.3 \u00b7 Koerner 8.2 vs 11.2 \u00b7 Yahoo 6.5 vs 11.0 \u00b7 Gotham 7.4 vs 10.4 - WORSE this week",
-     "scout": true,
-     "id": "watch:keenanallen",
-     "first_seen": "Tue Nov 24 2026 12:35 PM PT"
-    },
     {
      "name": "Joey Slye",
      "pos": "K",
@@ -493,17 +600,6 @@
    ],
    "cover": [
     {
-     "title": "WR2, Week 13 Fill",
-     "target": "Target 10.2 pts",
-     "mark": "red",
-     "why": "Full strength ~13.8 (Jefferson). Wk 13 Meyers ~10.2 (Jefferson moves up to WR1, Meyers slides in).",
-     "picks": [
-      "Keenan Allen (Free agent)"
-     ],
-     "id": "cover:wr2week13fill",
-     "first_seen": "Mon Nov 23 2026 08:36 PM PT"
-    },
-    {
      "title": "QB, Week 12 Fill",
      "target": "Target 25.8 pts",
      "mark": "gold",
@@ -513,13 +609,13 @@
      "first_seen": "Wed Nov 25 2026 09:10 AM PT"
     },
     {
-     "title": "WR3, Week 13 Fill",
-     "target": "Target 8.8 pts",
+     "title": "WR2, Week 13 Fill",
+     "target": "Target 11.6 pts",
      "mark": "gold",
-     "why": "Full strength ~10.4 (Meyers). Wk 13 Douglas ~8.8 (Meyers moves up to WR2, Douglas slides in).",
+     "why": "Full strength ~13.8 (Jefferson). Wk 13 Allen ~11.6 (Jefferson moves up to WR1, Allen slides in).",
      "picks": [],
-     "id": "cover:wr3week13fill",
-     "first_seen": "Tue Nov 24 2026 02:36 AM PT"
+     "id": "cover:wr2week13fill",
+     "first_seen": "Mon Nov 23 2026 08:36 PM PT"
     },
     {
      "title": "TE, Week 12 Fill",
@@ -567,6 +663,23 @@
       }
      ],
      "ros_rank": 18,
+     "ros_rank_at": "11/20"
+    },
+    {
+     "name": "Keenan Allen",
+     "pos": "WR",
+     "team": "Sf",
+     "slot": "BN",
+     "splits": [
+      {
+       "span": "rest of season",
+       "expert": "Ratcliffe",
+       "his": 11.1,
+       "others": 7.2,
+       "note": "Ratcliffe 11.1 a game vs Clay 7.2 for the rest of the season"
+      }
+     ],
+     "ros_rank": 57,
      "ros_rank_at": "11/20"
     }
    ]
