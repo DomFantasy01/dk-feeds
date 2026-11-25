@@ -620,7 +620,7 @@ function winDial(o){
     ${(() => { const hw = Math.sqrt((RF + 5.5) ** 2 - 62 ** 2); return `<rect x="${f(cx - hw)}" y="${cy + 60}" width="${f(2 * hw)}" height="4.5" rx="2.2" fill="url(#${g}bz)"/>`; })()}
     <g class="wgkey"><path d="M${cx - 21} ${cy + 39.5} l3.6 -4.4 l3.6 4.4 l-3.6 4.4 Z" fill="${GOLD}" stroke="#050912" stroke-width=".7"/><text x="${cx - 13}" y="${cy + 42.6}">YAHOO</text>
       <path d="M${cx - 27} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.r}" stroke="#050912" stroke-width=".6"/><path d="M${cx - 19} ${cy + 47.5} l7 0 l-3.5 5.6 Z" fill="${NC.o}" stroke="#050912" stroke-width=".6"/><text x="${cx - 9}" y="${cy + 53.2}">STARTED</text></g>
-    ${talk ? `<g class="wgphb tap" data-xal="${SLUG[k]}" data-xe="${XID.o}" role="button" tabindex="0" aria-label="${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Talk it through.`)}"><title>${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Time to talk it through. Tap for both experts' numbers side by side.`)}</title><circle cx="177.7" cy="20.3" r="18.2" fill="#FF4D57" stroke="#0A1020" stroke-width="2.2"/><g transform="translate(167.2 9.8) scale(.875)"><path fill="#0A1020" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></g><circle cx="191.3" cy="8.4" r="7.9" fill="#0A1020" stroke="#FF4D57" stroke-width="1.9"/><text x="191.3" y="12.6" text-anchor="middle" class="wgphn">${Math.abs(split)}</text></g>` : ""}
+    ${talk ? `<g class="wgphb tap${(() => { /* Nov 25 (Dom): the phone pulses when the split is new or changed in the last 24 h */ try { const all0 = store.get("phsig", {}), sig = String(Math.abs(split)), cur = all0[k]; if (!cur || cur.sig !== sig){ all0[k] = {sig, at: Date.now()}; store.set("phsig", all0); return " phnew"; } return Date.now() - cur.at < 864e5 ? " phnew" : ""; } catch(_){ return ""; } })()}" data-xal="${SLUG[k]}" data-xe="${XID.o}" role="button" tabindex="0" aria-label="${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Talk it through.`)}"><title>${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Time to talk it through. Tap for both experts' numbers side by side.`)}</title><circle cx="177.7" cy="20.3" r="18.2" fill="#FF4D57" stroke="#0A1020" stroke-width="2.2"/><g transform="translate(167.2 9.8) scale(.875)"><path fill="#0A1020" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></g><circle cx="191.3" cy="8.4" r="7.9" fill="#0A1020" stroke="#FF4D57" stroke-width="1.9"/><text x="191.3" y="12.6" text-anchor="middle" class="wgphn">${Math.abs(split)}</text></g>` : ""}
     ${st("o")}${st("r")}${yd}${nd("o", R + 1, 8, true)}${nd("r", R + 1, 8)}
     <circle cx="${cx}" cy="${cy}" r="14" fill="${ZC[z]}" opacity=".45" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="11.5" fill="none" stroke="${ZC[z]}" stroke-width="1.8"/><circle cx="${cx}" cy="${cy}" r="10" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="3" fill="#0A0F1C"/></svg>`;
   /* Nov 25 3:45 AM (Dom: "I was trying to remove the Talk 9 ... do something cool ... a phone ... in red ... above the gauge"):
@@ -1015,7 +1015,7 @@ function meters(){
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>${(() => { /* Nov 25 (Dom: "move all three things in that one box"): FAAB/waiver is now the third cell. Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
-            ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b>${wb.wp ? `<i>#${wb.wp}</i>` : ""}</div>`
+            ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
             : (wb.wp ? `<div class="sgfa" title="No FAAB in this league - claims go by waiver order: #${wb.wp} of ${wb.n}${at}"><span>WAIVER</span><b>#${wb.wp}</b><i>/${wb.n}</i></div>` : ""); })()}</div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
@@ -1026,7 +1026,7 @@ function meters(){
   $("#meters").innerHTML = SEC("msScore", "Scoreboard", TNOW(S.stamp), "b") + SEC("msWin", "Win Probability", TNOW(S.stamp), "a");   /* Nov 9 11:00 AM (Dom): Scoreboard on top */
   fitNames();
   const ACCT = (() => { const g = ((M && M.acc) || {}).graded; const m = g && /(\d+:\d+ [AP]M)/.exec(g); const n = nextUpdate(); return (m ? m[1] : "–") + (n ? " · Next " + n.replace(/ (AM|PM)$/, "") : ""); })();
-  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = ridgeChart(); } catch(e){ console.error("ridgeChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
+  $("#meters2").innerHTML = SEC("msExp", "Experts &amp; Sources", esc(ACCT), "c"); { const xs = $("#msExp"); if (xs){ { let xc = ""; try { xc = battleChart(); } catch(e){ console.error("battleChart", e); } const g = xs.querySelector(".mgrid"); if (g && xc) g.insertAdjacentHTML("beforebegin", xc); } const NMX = {ratcliffe: "Ratcliffe", drroto: "Dr. Roto", draftsharks: "Draft Sharks", koerner: "Koerner", clay: "Clay", vegas: "Vegas", rotoballer: "RotoBaller", yahoo: "Yahoo", gotham: "Gotham"}, oc = ourCheck(), pc = ourCheckPO();
       /* Nov 12 4:10 PM (Dom: "put the check marks so I know which ones we're actually using"): the two lists, always in view */
       if (oc.length || pc.length) xs.insertAdjacentHTML("beforeend", `<div class="cklg">${oc.length ? `<p><i class="okb okn">&#10003;</i><b>Lineups:</b> ${NMX[oc[0]]} decides; ${oc.slice(1).map(id => NMX[id] || id).join(" and ")} check him.</p>` : ""}${pc.length ? `<p><i class="okb okp">P&#10003;</i><b>Pickups &amp; playoffs:</b> ${NMX[pc[0]]}'s rest of season decides; ${pc.slice(1).map(id => (NMX[id] || id) + "'s rest of season and Weeks 15-17").join(" and ")} check him. 2+ points apart = stop and talk. Talk list: anyone ONE expert likes (Ratcliffe, Clay, Draft Sharks or Vegas) goes on it, with who flagged him.</p>` : ""}${(() => { const x0 = Object.values(M && M.leagues || {}).map(l => l.xp || {}).find(x => x.ds_read || x.ranks_read) || {}; return `<p><i class="okb okp">+</i><b>Look-ahead &amp; flags:</b> Draft Sharks (free; lineup check 2 this week in Koerner's place, and Weeks ahead through 18 beside Clay) read ${esc(x0.ds_read || "not yet")} · Orginski (FTN ranks, flag when off Ratcliffe by 4+ at QB/TE, 6+ RB, 8+ WR) read ${esc(x0.ranks_read || "not yet")}.</p>`; })()}</div>`); }
     if (xs) xs.insertAdjacentHTML("beforeend", accTable().replace('<details class="fold accf"', `<details class="fold accf"${ACCSHOW ? "" : " hidden"}`)); fitNames(); }   /* Nov 8 (Dom): Win probability above Experts; section called just "Experts" */
@@ -1073,6 +1073,38 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    agree, a low wide ridge = they're split. Ratcliffe's own hill is outlined in his needle blue, Dr. Roto's in white, Yahoo is the
    gold diamond on the base line, and the gold peak line marks where most experts land (the top of the mountain, not an average).
    The ridges roll in left to right, DK1 first, and replay every 15 minutes with the needles. Tap a league's ridge for its card. */
+/* Nov 25 7:43 AM (Dom: "This Dark Knight Live is really supposed to help me understand where my team's at ... some sort of contraption
+   that looks like a chart ... high tech"): the BATTLE METER - one tug-of-war bar per league. Your projected final (Ratcliffe's numbers -
+   he decides - plus points already scored) pushes from the left in the league color, his from the right in steel; they meet at the
+   glowing seam, and the 50% line in the middle is a dead-even game. The bright inner strip = points already on the board. Under the
+   bar: everyone still to play, yours on the left, his on the right, each with Ratcliffe's projection; the two men most likely to swing
+   it (biggest projections left, either side) glow gold. Rebuilds with every sync; the bars sweep in on the page's motion tour and a
+   slow light runs along each seam. Tap a league to open it. */
+function battleChart(){
+  const ok = (v) => v !== null && v !== undefined && !isNaN(v);
+  const rows = KEYS.map(k => { const L = lgS(k); if (!L) return null; const pm = M && M.pm ? M.pm[L.key] : null;
+    const st = (list) => list.filter(isStarter);
+    const fin = (list) => st(list).reduce((a, p) => a + (manFinal(p, "r", pm) || 0), 0), now = (list) => st(list).reduce((a, p) => a + pts(p), 0);
+    const left = (list, mine) => st(list).filter(p => !isDone(p) && !isOut(p)).map(p => ({p, mine, v: Math.max(0, (manFinal(p, "r", pm) || 0) - pts(p))}));
+    const me = fin(L.players), op = fin(L.oppPlayers), mn = now(L.players), on = now(L.oppPlayers);
+    const lm = left(L.players, true), lo = left(L.oppPlayers, false);
+    const swing = [...lm, ...lo].sort((a, b) => b.v - a.v).slice(0, 2).map(x => x.p.name + "|" + x.mine);
+    return {k, L, me, op, mn, on, lm, lo, swing}; }).filter(Boolean);
+  if (!rows.length) return "";
+  const anim = !window.__btSwept; if (anim && !window.__btT) window.__btT = setTimeout(() => { window.__btSwept = true; window.__btT = 0; }, 6500);
+  const chip = (x, sw) => `<span class="btc${x.mine ? " me" : ""}${sw ? " sw" : ""}" title="${esc(`${x.mine ? "Yours" : "His"}: ${x.p.name} (${x.p.slot || ""}) - Ratcliffe has ${f1(x.v)} still to come${x.p.when ? " · " + x.p.when : ""}${sw ? " · one of the two most likely to swing this game" : ""}`)}"><i>${esc(POSAB(x.p.slot))}</i>${esc((x.p.name || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0])}<b>${Math.round(x.v)}</b></span>`;
+  const row = (r, i) => { const tot = Math.max(1, r.me + r.op), sh = Math.max(4, Math.min(96, 100 * r.me / tot)), mg = r.me - r.op;
+    const nowMe = Math.min(sh, 100 * r.mn / tot), nowOp = Math.min(100 - sh, 100 * r.on / tot), c = HEX[r.k];
+    const zc = Math.abs(mg) < 3 ? "#F7B32B" : mg > 0 ? "#3DDC84" : "#FF4D57";
+    const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(r.me)} to ${f1(r.op)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))}) · on the board ${f1(r.mn)} to ${f1(r.on)} · ${r.lm.length} of yours and ${r.lo.length} of his still to play`;
+    return `<div class="btr" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--zc:${zc};--d:${(i * .45).toFixed(2)}s">
+      <div class="bth"><b style="color:${c}">${DK[r.k]}</b><span class="btm" style="color:${zc}">${mg >= 0 ? "▲" : "▼"} ${f1(Math.abs(mg))}</span><span class="btn">${f1(r.me)} <em>vs</em> ${f1(r.op)}</span></div>
+      <div class="btbar"><div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${sh.toFixed(1)}%"><i style="width:${(100 * nowMe / sh).toFixed(1)}%"></i></span><span class="btop" style="width:${(100 - sh).toFixed(1)}%"><i style="width:${(100 * nowOp / (100 - sh)).toFixed(1)}%"></i></span></div>
+        <span class="btseam" style="left:${sh.toFixed(1)}%"></span><span class="btmid"></span></div>
+      <div class="btl"><div class="btsd">${r.lm.sort((a, b) => b.v - a.v).slice(0, 5).map(x => chip(x, r.swing.includes(x.p.name + "|true"))).join("")}${r.lm.length > 5 ? `<span class="btmore">+${r.lm.length - 5}</span>` : ""}${r.lm.length ? "" : `<span class="btdone">all yours have played</span>`}</div>
+        <div class="btsd op">${r.lo.length > 5 ? `<span class="btmore">+${r.lo.length - 5}</span>` : ""}${r.lo.sort((a, b) => b.v - a.v).slice(0, 5).map(x => chip(x, r.swing.includes(x.p.name + "|false"))).join("")}${r.lo.length ? "" : `<span class="btdone">all his have played</span>`}</div></div></div>`; };
+  return `<div class="btlw"><div class="xhd"><b>Battle Meter</b><span>projected final · Ratcliffe's numbers + points on the board · gold = the two most likely to swing it</span></div>${rows.map(row).join("")}</div>`;
+}
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
      mountain range - DK1 in front, DK4 at the back, each in its league color, standing on a floor marked 0-100% chance to win this
@@ -1920,9 +1952,9 @@ document.addEventListener("click", async (e) => {
    to the Scoreboard. Each area moves about every 75 seconds, so something is always alive without everything moving at once.
    Paused while the page is in the background. (The numbers themselves change when a new build syncs - about hourly, every 10-15
    minutes during games.) */
-window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .rdg .rdgA"); if (!ns.length) return;
+window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
-(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".rdg .rdgA"]; let i = 0;
+(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA"]; let i = 0;
   setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {
