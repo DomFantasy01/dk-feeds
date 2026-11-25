@@ -1789,6 +1789,13 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
 .wpx4{position:relative;padding-top:0}
 .wpx4 .wgd{max-width:262px;margin-top:8px}
 .wpx4 .wgtk{position:absolute;top:2px;right:2px;z-index:2}
+/* Nov 25: red phone badge replaces TALK n - centered above the gauge, steady glow (no animation) */
+.wpx4 .wgd{margin-top:22px}
+.wpx4 .wgph{position:absolute;top:-4px;left:50%;transform:translateX(-50%);z-index:3;width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:radial-gradient(circle at 35% 28%,#FF7A7A 0%,#E0222C 55%,#8E0A12 100%);border:1.5px solid #FFC2C2;
+  box-shadow:0 0 0 3px rgba(230,30,40,.22),0 0 12px 3px rgba(255,45,55,.7),inset 0 1px 1px rgba(255,255,255,.45)}
+.wpx4 .wgph svg{width:14px;height:14px;fill:#fff;filter:drop-shadow(0 0 2px rgba(255,255,255,.8))}
+.wpx4 .wgph:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .wpx .wgk{display:flex;justify-content:center;gap:10px;margin:-4px 0 2px;font:600 calc(min(100cqw, 300px) * .036)/1 var(--f-body);color:#8C97B0;letter-spacing:.04em}
 .wpx .wgk span{display:inline-flex;align-items:center;gap:3px}
 .wpx .wgk .kd{display:inline-block;width:6px;height:6px;background:#F2C230;transform:rotate(45deg);border:1px solid #050912}
@@ -2475,7 +2482,10 @@ function winDial(o){
     ${st("o")}${st("r")}${yd}${nd("o", R + 1, 8, true)}${nd("r", R + 1, 8)}
     <circle cx="${cx}" cy="${cy}" r="14" fill="${ZC[z]}" opacity=".45" filter="url(#${g}gw)"/><circle cx="${cx}" cy="${cy}" r="11.5" fill="none" stroke="${ZC[z]}" stroke-width="1.8"/><circle cx="${cx}" cy="${cy}" r="10" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="3" fill="#0A0F1C"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
-  const tag = talk ? `<span class="wxtk wgtk" title="Ratcliffe and Dr. Roto split by ${Math.abs(split)} points - talk it through">TALK ${Math.abs(split)}</span>` : "";
+  /* Nov 25 3:45 AM (Dom: "I was trying to remove the Talk 9 ... do something cool ... a phone ... in red ... above the gauge"):
+     no words - a red, lit phone badge centered above the gauge. Steady glow, no blinking (Dom, Nov 22: "stop everything from blinking").
+     Tapping it opens Dr. Roto's sheet: his number beside Ratcliffe's for every starter, so the split is right there. */
+  const tag = talk ? `<span class="wgph" data-xal="${SLUG[k]}" data-xe="${XID.o}" role="button" tabindex="0" title="${esc(`Ratcliffe ${Math.round(X.r)}% vs Dr. Roto ${Math.round(X.o)}% - ${Math.abs(split)} points apart. Time to talk it through. Tap for both experts' numbers side by side.`)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>` : "";
   const key = `<div class="wgk"><span><i class="kd"></i>Yahoo</span><span><i class="kt" style="border-top-color:${NC.r}"></i><i class="kt" style="border-top-color:${NC.o}"></i>where each started</span></div>`;
   const num = (s3) => { const has = ok(X[s3]), tip = has ? `${NM[s3]}${s3 === "r" ? " (check 1 - decides, blue needle)" : " (pillar 2, white needle - when he and Ratcliffe split, we talk)"}: ${Math.round(X[s3])}% chance to win this week. Tap for ${NM[s3]}'s numbers.` : `${NM[s3]}: this week's numbers not posted yet.`;
     return `<div class="wgn wgn-${s3}" data-xal="${SLUG[k]}" data-xe="${XID[s3]}" role="button" tabindex="0" title="${esc(tip)}"><b class="z-${has ? ZF(X[s3]) : "mid"}">${has ? wp2(X[s3]) + "<small>%</small>" : "–"}</b><span><i style="background:${NC[s3]}"></i>${SH[s3]}</span></div>`; };
