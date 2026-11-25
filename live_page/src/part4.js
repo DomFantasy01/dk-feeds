@@ -1970,7 +1970,7 @@ document.addEventListener("click", async (e) => {
    to the Scoreboard. Each area moves about every 75 seconds, so something is always alive without everything moving at once.
    Paused while the page is in the background. (The numbers themselves change when a new build syncs - about hourly, every 10-15
    minutes during games.) */
-window.wgReplay = function(sel){ const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA, .btlw .btG"); if (!ns.length) return;
+window.wgReplay = function(sel){ if (document.documentElement.classList.contains("calm")) return; const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA, .btlw .btG"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
 (() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG"]; let i = 0;
   setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
@@ -2099,3 +2099,10 @@ function openSheet(slug){ const k = KEYOF[slug], L = lgS(k); if (!L) return; con
 /* Nov 8 (Dom): the floating NEXT/TOP buttons covered Refresh on the first screen - show them only once he has scrolled past the controls */
 (function(){ const tb = document.getElementById("topBtns"); if (!tb) return; const f = () => { const c = document.getElementById("ctlTop") || document.getElementById("pickups"); const lim = c ? c.getBoundingClientRect().bottom + scrollY : 700; tb.classList.toggle("off", scrollY < lim - innerHeight + 40); };
   addEventListener("scroll", f, {passive: true}); addEventListener("resize", f); try { new ResizeObserver(f).observe(document.body); } catch (e) { setInterval(f, 2000); } f(); })();
+
+/* Nov 25 3:05 PM (Dom): Battery saver switch in Controls - stays the way he last set it on this device (store = localStorage, safe) */
+(function(){ const set = (on) => { document.documentElement.classList.toggle("calm", !!on); const b = document.getElementById("calmBtn");
+    if (b){ b.setAttribute("aria-pressed", on ? "true" : "false"); b.textContent = "Battery saver: " + (on ? "on" : "off"); } };
+  set(store.get("calm", false));
+  document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("#calmBtn"); if (!b) return; const on = !document.documentElement.classList.contains("calm"); store.set("calm", on); set(on); });
+})();
