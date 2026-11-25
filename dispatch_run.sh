@@ -137,6 +137,7 @@ else:
     if ch: print('week start added for', ch, m['built_pt'])
 PYWS
 cp "$ROOT/dksys/data/latest/ftn_scored.csv" "$ROOT/dksys/data/latest/koerner_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no scored expert files this build"   # Oct 29: the hourly alert pass reads Ratcliffe and Koerner from here
+cp "$ROOT/dksys/data/latest/gimino_scored.csv" "$REPO/dispatch_out/" 2>/dev/null || echo "no Gimino file this build"   # Nov 25 (Dom): Gimino QB/K check for the expert cards
 cp "$ROOT/dksys/data/latest/weather_wk$W.json" "$REPO/dispatch_out/" 2>/dev/null || echo "no weather file this build"   # game weather for Dark Knight Live (Oct 11)
 rm -f "$REPO"/dispatch_out/DK_League_Pages_Wk*_latest.pdf                     # the Oct 9 v2 test file: the Scout now lives inside the Dispatch
 mkdir -p "$REPO/dispatch_out/scout_state"                                       # the Scout's memory rides back to the repo with the pages

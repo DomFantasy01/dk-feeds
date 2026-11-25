@@ -36,6 +36,9 @@ for r in csv.DictReader(open(O(R, "dispatch_out/draftsharks_scored.csv"))) if os
     # Nov 18 (Dom): Draft Sharks - free look-ahead CHECK (PPR 3D converted with Clay's volume, approximate). d = this week, dr = weeks-ahead average
     fut = [float(v) for k, v in r.items() if re.fullmatch(r"w\d+", k or "") and v not in ("", None)]
     put(r["lg"], r["key"] if r["pos"] == "DEF" else nk(r["name"]), d=fnum(r.get("wk")), dr=round(sum(fut) / len(fut), 1) if fut else None)
+GM_READ = ""   # Nov 25 2026 (Dom): Chris Gimino (FantasyLabs) - QB and kicker CHECK only (FantasyPros 2026 #4 QB, #8 K); g = his number this week
+for r in csv.DictReader(open(O(R, "dispatch_out/gimino_scored.csv"))) if os.path.exists(O(R, "dispatch_out/gimino_scored.csv")) else []:
+    if r.get("pos") in ("QB", "K"): put(r["lg"], nk(r["name"]), g=fnum(r.get("wk"))); GM_READ = GM_READ or r.get("read_pt", "")
 DS_READ = ""
 try: DS_READ = next(csv.DictReader(open(O(R, "dispatch_out/draftsharks_scored.csv")))).get("read", "")
 except Exception: pass
@@ -100,9 +103,11 @@ for lab, L in (M.get("leagues") or {}).items():
         if not p and not r_: continue
         p = dict(p)
         if nk(name) in OUTL:   # Oct 31 (Dom): ruled out = zero this week for every expert, until their files catch up
-            p.update({x: 0.0 for x in ("r", "k", "c", "v", "d") if x in p or x not in ("v", "d")}); p["out"] = OUTL[nk(name)]
+            p.update({x: 0.0 for x in ("r", "k", "c", "v", "d", "g") if x in p or x not in ("v", "d", "g")}); p["out"] = OUTL[nk(name)]
+        if p.get("g") is not None and p.get("r") is not None and not p.get("out") and abs(p["g"] - p["r"]) >= 2:   # Nov 25 (Dom): 2+ points off Ratcliffe = talk it through
+            p["gfl"] = f"Gimino {p['g']:.1f} vs Ratcliffe {p['r']:.1f} ({'higher' if p['g'] > p['r'] else 'lower'} on him by {abs(p['g'] - p['r']):.1f})"
         out[name] = dict(pos=pos, why=meta["why"], **p, rk=r_, **({"ofl": ofl} if ofl else {}))
-    L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read, ds_read=DS_READ,
+    L["xp"] = dict(players=out, rankers=[[s, fp] for _, s, fp in RANKERS], ranks_read=rk_read, ds_read=DS_READ, gm_read=GM_READ,
                    points_note="Ratcliffe, Koerner, Clay: each expert's own projection in this league's scoring; Vegas: prop stat lines, same scoring (a check, not an expert); Draft Sharks: free PPR projection converted with Clay's volume (approximate, a look-ahead check)")
     n_all += len(out)
     for side in ("me", "op"):   # the meter's own copies too, so no page shows a stale number for a man who is out

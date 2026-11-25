@@ -210,6 +210,16 @@ try:
         if _ka is None or _ka > 36: alarms.append(f"koerner: STALE - FantasyLabs read {_kp or 'unknown'} ({_ka} h old, limit 36 h)")
     else: notes.append('koerner: no FantasyLabs read for this week yet (yahoo_drop/flabs/)'); sources['koerner'] = dict(status='MISSING', path=_kf)
 except Exception as _e: alarms.append(f'koerner: read failed ({_e})')
+# Nov 25 2026 (Dom): Chris Gimino (FantasyLabs) - a QB and kicker CHECK beside Ratcliffe; flabs.py above scores him too. Status only here.
+try:
+    _gf = ROOT + 'gimino_scored.csv'
+    if os.path.exists(_gf) and os.path.getsize(_gf) > 50:
+        _gd = pd.read_csv(_gf); _gp = str(_gd.read_pt.dropna().iloc[0]) if len(_gd) and _gd.read_pt.notna().any() else ''
+        try: _ga = round((NOW - dt.datetime.strptime(_gp.replace(' PT', ''), '%a %b %d %Y %I:%M %p').replace(tzinfo=PT)).total_seconds() / 3600, 1)
+        except Exception: _ga = None
+        sources['gimino'] = dict(status='OK' if _ga is not None and _ga <= 36 else 'STALE', path=_gf, pulled_pt=_gp, age_h=_ga, rows=len(_gd), note="Chris Gimino (FantasyLabs), QB and kicker check, scored in each league's rules")
+    else: sources['gimino'] = dict(status='MISSING', path=_gf, note='no Gimino read yet (comes with the FantasyLabs read)')
+except Exception as _e: notes.append(f'gimino: read failed ({_e})')
 def ko_of(k, name, pos, team):
     if pos == 'DEF': return KO.get((k, ('DEF', T(team))))
     if pos == 'K': return KO.get((k, ('K', norm(name))))

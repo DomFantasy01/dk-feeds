@@ -3,6 +3,7 @@ Reads yahoo_drop/flabs/koerner_weekly.txt (the Chrome read of Dom's FantasyLabs 
 scores every stat line in each league's own rules with the same scorer as Ratcliffe (gather/ftn.py score()) - never the site's
 own PPR points. Weekly only: FantasyLabs has no rest-of-season or future-week numbers.
 Writes /home/claude/dksys/data/latest/koerner_scored.csv: key|name|team|pos|lg|wk|read_pt|site_pts
+Nov 25: the same script also scores Chris Gimino (gimino_weekly.txt -> gimino_scored.csv), a QB/K check only.
 Koerner is a SECOND OPINION: Ratcliffe still leads every number that drives a decision; Koerner is shown beside him and his
 disagreements are flagged."""
 import os, re, sys, json
@@ -29,9 +30,10 @@ def read(fn="koerner_weekly.txt"):
         rows.append(d)
     return rows, (m.group(1) if m else ""), (int(w.group(1)) if w else None)
 
-def main():
-    rows, at, week = read()
-    if not rows: print("KOERNER: no FantasyLabs file - Koerner not available this build"); return
+def main(fn="koerner_weekly.txt", out_csv=None, who="KOERNER"):
+    out_csv = out_csv or OUT
+    rows, at, week = read(fn)
+    if not rows: print(f"{who}: no FantasyLabs file - {who.title()} not available this build"); return
     SC = json.load(open(L + "yahoo/scoring/scoring_audit_oct1.json"))
     g = pd.read_csv(L + "games.csv", low_memory=False); g = g[(g.season == 2026) & (g.game_type == "REG")]
     now = int(g[g.result.isna()].week.min())
@@ -45,10 +47,13 @@ def main():
                             read_week=week, site_pts=d.get("FPTS")))
     df = pd.DataFrame(out)
     if week is not None and week != now:
-        print(f"KOERNER: file is Week {week} but the current week is {now} - not used"); df = df.iloc[0:0]
-    df.to_csv(OUT, index=False)
-    print(f"KOERNER (FantasyLabs) scored: {len(df)} player-league rows, read {at}, week {week}")
+        print(f"{who}: file is Week {week} but the current week is {now} - not used"); df = df.iloc[0:0]
+    df.to_csv(out_csv, index=False)
+    print(f"{who} (FantasyLabs) scored: {len(df)} player-league rows, read {at}, week {week}")
     return df
 
 if __name__ == "__main__":
     main()
+    # Nov 25 2026 (Dom): Chris Gimino (FantasyLabs, FantasyPros 2026 #4 at QB, #8 at K) - a QB and kicker CHECK beside Ratcliffe, same scorer
+    try: main("gimino_weekly.txt", L + "gimino_scored.csv", "GIMINO")
+    except Exception as e: print("GIMINO: scoring failed -", e)
