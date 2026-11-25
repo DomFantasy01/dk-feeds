@@ -1991,7 +1991,16 @@ addEventListener("hashchange", () => { const h = location.hash.slice(1); if (/^d
 let wakeLock = null, HASHED = false;
 /* sticky scoreboard once the meters scroll away */
 try { new IntersectionObserver(([en]) => { $("#sticky").hidden = en.isIntersecting || !S; }, {threshold: 0}).observe($("#metersFrame")); } catch(_){}
-setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
+/* Nov 25 2:45 PM (Dom: "when I enlarge my screen ... it takes that whole block and flickers it or it goes black"): the once-a-minute
+   refresh rebuilt every gauge, the Battle Meter and the experts box from scratch even when nothing had changed - on a zoomed-in
+   screen that full redraw shows as the whole block blinking or going black. Now the big blocks are rebuilt only when the data
+   behind them changed (a new Yahoo read, build, alert or mark, or the "next update" time) or every 10 minutes for the clock-driven
+   bits; the small status line and the needs-you strip still update every minute. */
+let REDRAW_SIG = "", REDRAW_AT = 0;
+setInterval(() => { renderStatus(); if (!S) return;
+  let sig = ""; try { sig = [S.stamp, M && (M.built_pt || M.built), A && (A.generated || A.built || A.news_checked), Object.keys(MK || {}).length, JSON.stringify(MK || {}).length, typeof nextUpdate === "function" ? nextUpdate() : ""].join("|"); } catch(_){ sig = String(Date.now()); }
+  if (sig !== REDRAW_SIG || Date.now() - REDRAW_AT > 600000){ REDRAW_SIG = sig; REDRAW_AT = Date.now(); meters(); }
+  needs(); }, 60000);
 
 /* ---------- data ---------- */
 (async () => {

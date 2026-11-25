@@ -85,7 +85,7 @@ header.mh{display:flex;align-items:center;gap:10px;margin:12px 0 8px;padding:12p
 
 /* sticky scoreboard */
 .sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin:0 -4px;padding:6px 4px;background:rgba(11,18,34,.96);
-  backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  border-bottom:1px solid var(--line)}   /* Nov 25 (Dom: blocks going black when zoomed): the blur behind the sticky bar is gone - the bar is already 96% solid, and a blur over moving gauges is a known cause of black flashing tiles in Edge */
 .sticky[hidden]{display:none!important}
 .sch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
 .sc{min-width:0;border:0;background:var(--raise);border-top:3px solid var(--lc);border-radius:5px;padding:4px 3px;text-align:center;cursor:pointer;line-height:1.15}
@@ -1949,7 +1949,7 @@ html body .mh .wk{animation:none !important;background:none !important;-webkit-t
 @keyframes btin{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
 @keyframes btglow{0%,100%{box-shadow:0 0 5px 1px var(--zc)}50%{box-shadow:0 0 14px 4px var(--zc)}}
 @keyframes btrun{0%{background-position:-60% 0}100%{background-position:160% 0}}
-@keyframes btlivep{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45) drop-shadow(0 0 6px var(--lc))}}
+@keyframes btlivep{0%,100%{opacity:1}50%{opacity:.62}}   /* Nov 25 (Dom: flicker when zoomed): pulse with opacity only - no repainting filter glow */
 @media (max-width:560px){.btr{grid-template-columns:30px 1fr 64px}.btsw{grid-column:2/4;justify-content:flex-start}}
 
 .btmore{font:700 9px/1.6 var(--f-body);color:#7C88A3;padding:2px 3px}
@@ -4012,7 +4012,16 @@ addEventListener("hashchange", () => { const h = location.hash.slice(1); if (/^d
 let wakeLock = null, HASHED = false;
 /* sticky scoreboard once the meters scroll away */
 try { new IntersectionObserver(([en]) => { $("#sticky").hidden = en.isIntersecting || !S; }, {threshold: 0}).observe($("#metersFrame")); } catch(_){}
-setInterval(() => { renderStatus(); if (S){ meters(); needs(); } }, 60000);
+/* Nov 25 2:45 PM (Dom: "when I enlarge my screen ... it takes that whole block and flickers it or it goes black"): the once-a-minute
+   refresh rebuilt every gauge, the Battle Meter and the experts box from scratch even when nothing had changed - on a zoomed-in
+   screen that full redraw shows as the whole block blinking or going black. Now the big blocks are rebuilt only when the data
+   behind them changed (a new Yahoo read, build, alert or mark, or the "next update" time) or every 10 minutes for the clock-driven
+   bits; the small status line and the needs-you strip still update every minute. */
+let REDRAW_SIG = "", REDRAW_AT = 0;
+setInterval(() => { renderStatus(); if (!S) return;
+  let sig = ""; try { sig = [S.stamp, M && (M.built_pt || M.built), A && (A.generated || A.built || A.news_checked), Object.keys(MK || {}).length, JSON.stringify(MK || {}).length, typeof nextUpdate === "function" ? nextUpdate() : ""].join("|"); } catch(_){ sig = String(Date.now()); }
+  if (sig !== REDRAW_SIG || Date.now() - REDRAW_AT > 600000){ REDRAW_SIG = sig; REDRAW_AT = Date.now(); meters(); }
+  needs(); }, 60000);
 
 /* ---------- data ---------- */
 (async () => {
