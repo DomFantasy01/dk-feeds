@@ -1,22 +1,22 @@
 {
  "week": 12,
- "built_pt": "Tue Nov 24 2026 09:34 PM PT",
+ "built_pt": "Tue Nov 24 2026 09:55 PM PT",
  "alarms": [],
  "lineup": [],
  "notes": [
-  "DK I: Gotham 11.8 vs Yahoo 19.0 / Sleeper 17.7 on Jaylen Warren - check role/news",
-  "DK I: Gotham 23.0 vs Yahoo 16.0 / Sleeper 14.6 on George Pickens - check role/news",
-  "DK II: Gotham 24.5 vs Yahoo 15.0 / Sleeper 11.1 on Emmett Johnson - check role/news",
-  "DK II: experts split on your W/R/T Emmett Johnson - Ratcliffe 16.3 vs Koerner 23.7 (Yahoo 15.0)",
-  "DK II: Gotham 15.3 vs Yahoo 9.5 / Sleeper 8.6 on Kyle Monangai - check role/news",
-  "DK III: Gotham 23.0 vs Yahoo 16.0 / Sleeper 14.6 on George Pickens - check role/news",
-  "DK III: Gotham 24.5 vs Yahoo 15.0 / Sleeper 11.1 on Emmett Johnson - check role/news"
+  "DK I: Gotham 11.8 vs Yahoo 18.9 / Sleeper 17.2 on Jaylen Warren - check role/news",
+  "DK I: Gotham 23.0 vs Yahoo 16.3 / Sleeper 14.6 on George Pickens - check role/news",
+  "DK II: Gotham 24.5 vs Yahoo 16.3 / Sleeper 11.1 on Emmett Johnson - check role/news",
+  "DK II: experts split on your W/R/T Emmett Johnson - Ratcliffe 16.3 vs Koerner 23.7 (Yahoo 16.3)",
+  "DK II: Gotham 15.3 vs Yahoo 9.4 / Sleeper 8.6 on Kyle Monangai - check role/news",
+  "DK III: Gotham 23.0 vs Yahoo 16.3 / Sleeper 14.6 on George Pickens - check role/news",
+  "DK III: Gotham 24.5 vs Yahoo 16.2 / Sleeper 11.1 on Emmett Johnson - check role/news"
  ],
  "sources": {
   "nfl_schedule": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/games.csv",
-   "pulled_pt": "Tue Nov 24 09:34 PM PT",
+   "pulled_pt": "Tue Nov 24 09:54 PM PT",
    "age_h": 0.0,
    "rows": 16,
    "need": 16,
@@ -25,7 +25,7 @@
   "yahoo_matchups": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk12/dom_matchups_api.txt",
-   "pulled_pt": "Tue Nov 24 09:33 PM PT",
+   "pulled_pt": "Tue Nov 24 09:54 PM PT",
    "age_h": 0.0,
    "rows": 41,
    "need": 41,
@@ -34,7 +34,7 @@
   "yahoo_all_teams": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk12/league_windows_api.txt",
-   "pulled_pt": "Tue Nov 24 09:33 PM PT",
+   "pulled_pt": "Tue Nov 24 09:54 PM PT",
    "age_h": 0.0,
    "rows": 48,
    "need": 48,
@@ -42,9 +42,9 @@
   },
   "yahoo_standings": {
    "status": "OK",
-   "path": "/home/claude/dksys/data/latest/yahoo/wk12/standings_tue1827.txt",
-   "pulled_pt": "Tue Nov 24 06:27 PM PT",
-   "age_h": 3.1,
+   "path": "/home/claude/dksys/data/latest/yahoo/wk12/standings_tue2126.txt",
+   "pulled_pt": "Tue Nov 24 09:26 PM PT",
+   "age_h": 0.5,
    "rows": 48,
    "need": 48,
    "note": "rank, division rank, points for"
@@ -52,17 +52,17 @@
   "gotham": {
    "status": "OK",
    "path": "/home/claude/dksys/engine/gotham_status.json",
-   "pulled_pt": "Tue Nov 24 09:34 PM PT",
+   "pulled_pt": "Tue Nov 24 09:55 PM PT",
    "age_h": 0.0,
    "rows": 12,
    "need": 12,
-   "note": "Gotham run Tue Nov 24 2026 09:34 PM PT for week 12"
+   "note": "Gotham run Tue Nov 24 2026 09:55 PM PT for week 12"
   },
   "ratcliffe": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/ftn_scored.csv",
    "pulled_pt": "Tue Nov 24 2026 5:26 PM PT",
-   "age_h": 4.1,
+   "age_h": 4.5,
    "rows": 2088,
    "note": "Jeff Ratcliffe (FTN), scored in each league's rules"
   },
@@ -70,32 +70,32 @@
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/koerner_scored.csv",
    "pulled_pt": "Tue Nov 24 2026 6:04 PM PT",
-   "age_h": 3.5,
+   "age_h": 3.9,
    "rows": 2904,
    "note": "Sean Koerner (FantasyLabs), scored in each league's rules"
   },
   "sleeper_skill": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk12_2026-11-25T0454Z.csv",
-   "pulled_pt": "Tue Nov 24 08:54 PM PT",
-   "age_h": 0.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper/wk12_2026-11-25T0543Z.csv",
+   "pulled_pt": "Tue Nov 24 09:43 PM PT",
+   "age_h": 0.2,
    "rows": 3118,
    "need": 400,
-   "note": "GitHub job checked 0.7 h ago (saved 3118 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 3118 rows)"
   },
   "sleeper_kdef": {
    "status": "OK",
-   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk12_2026-11-25T0454Z.csv",
-   "pulled_pt": "Tue Nov 24 08:54 PM PT",
-   "age_h": 0.7,
+   "path": "/home/claude/domfantasy01/dk-feeds/feeds/proj/sleeper_kdef/wk12_2026-11-25T0543Z.csv",
+   "pulled_pt": "Tue Nov 24 09:43 PM PT",
+   "age_h": 0.2,
    "rows": 189,
    "need": 60,
-   "note": "GitHub job checked 0.7 h ago (saved 189 rows)"
+   "note": "GitHub job checked 0.2 h ago (saved 189 rows)"
   },
   "yahoo_rosters": {
    "status": "OK",
    "path": "/home/claude/dksys/data/latest/yahoo/wk12/dom_rosters.json",
-   "pulled_pt": "Tue Nov 24 09:33 PM PT",
+   "pulled_pt": "Tue Nov 24 09:54 PM PT",
    "age_h": 0.0,
    "rows": 64,
    "need": null,
