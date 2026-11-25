@@ -2415,9 +2415,12 @@ function winDial(o){
     ticks += `<line x1="${f(a0)}" y1="${f(b0)}" x2="${f(a1)}" y2="${f(b1)}" stroke="${maj ? "#DDE3EE" : "#56658A"}" stroke-width="${maj ? 1.6 : .9}" stroke-linecap="round"/>`; }
   const scl = [0, 25, 50, 75, 100].map(q => { const [lx, ly] = P(q, R - 23); return `<text x="${f(lx)}" y="${f(q === 0 || q === 100 ? ly - 5 : ly + 3)}" text-anchor="middle" class="wgs">${q}</text>`; }).join("");
   /* tapered needle with a drop shadow */
-  const needle = (q, len, fill, w) => { const a = A(cl(q)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 12, cy - uy * 12];
-    return `<path d="M${f(tail[0])} ${f(tail[1])} L${f(cx + px * w)} ${f(cy + py * w)} L${f(tip[0])} ${f(tip[1])} L${f(cx - px * w)} ${f(cy - py * w)} Z" fill="${fill}"/>`; };
-  const nd = (s3, len, w) => ok(X[s3]) ? `<g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w)}</g>` : "";
+  /* Nov 24 PM (Dom: "fatten up the needles at the bottom ... thin them out ... hard to tell which needle is which"): fat at the hub,
+     tapering to the tip, dark outline. Ratcliffe = LONG blue needle to a sharp point; Dr. Roto = SHORTER white needle ending in a round knob */
+  const needle = (q, len, fill, w, knob) => { const a = A(cl(q)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, tip = [cx + ux * len, cy + uy * len], tail = [cx - ux * 10, cy - uy * 10], nk = [cx + ux * len * .55, cy + uy * len * .55];
+    const body = `M${f(tail[0] + px * w * .55)} ${f(tail[1] + py * w * .55)} L${f(cx + px * w)} ${f(cy + py * w)} L${f(nk[0] + px * w * .42)} ${f(nk[1] + py * w * .42)} L${f(tip[0] + px * (knob ? .9 : 0))} ${f(tip[1] + py * (knob ? .9 : 0))} L${f(tip[0] - px * (knob ? .9 : 0))} ${f(tip[1] - py * (knob ? .9 : 0))} L${f(nk[0] - px * w * .42)} ${f(nk[1] - py * w * .42)} L${f(cx - px * w)} ${f(cy - py * w)} L${f(tail[0] - px * w * .55)} ${f(tail[1] - py * w * .55)} Z`;
+    return `<path d="${body}" fill="${fill}" stroke="#050912" stroke-width="1" stroke-linejoin="round"/>` + (knob ? `<circle cx="${f(tip[0])}" cy="${f(tip[1])}" r="3.6" fill="${fill}" stroke="#050912" stroke-width="1"/>` : ""); };
+  const nd = (s3, len, w, knob) => ok(X[s3]) ? `<g filter="url(#${g}sh)">${needle(X[s3], len, `url(#${g}n${s3})`, w, knob)}</g>` : "";
   /* Yahoo: a small white pointer on the outer rim */
   const yp = ok(y) ? (() => { const a = A(cl(y)), ux = Math.cos(a), uy = -Math.sin(a), px = -uy, py = ux, [bx, by] = P(cl(y), R + 13), [qx, qy] = P(cl(y), R + 6);
     return `<path d="M${f(qx)} ${f(qy)} L${f(bx + px * 3.8)} ${f(by + py * 3.8)} L${f(bx - px * 3.8)} ${f(by - py * 3.8)} Z" fill="#F4F6FA" stroke="#060A14" stroke-width=".8"/>`; })() : "";
@@ -2426,7 +2429,7 @@ function winDial(o){
     <radialGradient id="${g}face" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="${ZC[z]}" stop-opacity=".22"/><stop offset=".5" stop-color="#16223F"/><stop offset="1" stop-color="#0A1121"/></radialGradient>
     <linearGradient id="${g}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".45" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <linearGradient id="${g}bz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4A5470"/><stop offset=".2" stop-color="#E9EDF5"/><stop offset=".5" stop-color="#7C88A2"/><stop offset=".8" stop-color="#F4F6FA"/><stop offset="1" stop-color="#4A5470"/></linearGradient>
-    <linearGradient id="${g}nr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9BE0FF"/><stop offset="1" stop-color="#1E8FE0"/></linearGradient>
+    <linearGradient id="${g}nr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD6FF"/><stop offset="1" stop-color="#1478D4"/></linearGradient>
     <linearGradient id="${g}no" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9C2D4"/></linearGradient>
     <radialGradient id="${g}hub" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#9AA5BC"/><stop offset="1" stop-color="#2E3852"/></radialGradient>
     <filter id="${g}sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1" stdDeviation="1.1" flood-color="#000" flood-opacity=".75"/></filter></defs>
@@ -2434,7 +2437,7 @@ function winDial(o){
     <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}face)"/>
     ${band}${ticks}${scl}
     <path d="M${cx - R - 6.5} ${cy} A${R + 6.5} ${R + 6.5} 0 0 1 ${cx + R + 6.5} ${cy} Z" fill="url(#${g}gl)"/>
-    ${yp}${nd("o", R - 4, 2.6)}${nd("r", R - 1, 3.2)}
+    ${yp}${nd("o", R - 22, 4.2, true)}${nd("r", R - 2, 6)}
     <circle cx="${cx}" cy="${cy}" r="8.5" fill="url(#${g}hub)" stroke="#0A0F1C" stroke-width="1"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#0A0F1C"/>
     <rect x="${cx - R - 9}" y="${cy}" width="${2 * R + 18}" height="2.2" fill="url(#${g}bz)"/></svg>`;
   const split = ok(X.r) && ok(X.o) ? Math.round(X.o - X.r) : null, talk = split !== null && Math.abs(split) >= 8;
