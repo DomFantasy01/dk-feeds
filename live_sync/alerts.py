@@ -445,6 +445,12 @@ FEEDS = sys.argv[sys.argv.index("--feeds") + 1] if "--feeds" in sys.argv else No
 BAD = re.compile(r"\b(released|releases|release|waived|waives|cut by|move on from|moves on from|ruled out|out for|will not play|won't play|placed on (?:injured reserve|ir)|injured reserve|\bIR\b|season-ending|torn|tear(?!\s+(?:through|up|into|it up|apart|off))|fracture|broken(?!\s+(?:free|loose|up|off|out|open|through|tackles?|plays?|coverage|play))|surgery|concussion protocol|carted|suspended|expected to miss|will miss|out (?:multiple|several|indefinitely)|doubtful|high[- ]ankle)", re.I)
 CAUTION = re.compile(r"\b(questionable|limited|did not practice|DNP|game-time|day-to-day|week-to-week|uncertain|injur|hamstring|ankle|knee|groin|calf|shoulder|illness|back|quad|foot)\b", re.I)
 GOOD = re.compile(r"\b(bigger|heavier|larger|expanded|increased|more) (?:workload|role|work|snaps|touches|usage|opportunit\w*)|\b(lead role|lead back|starting role|in line for|line for more|step into|steps into|takes over|take over|promoted|elevated|activated|returns? to practice|cleared|full practice|no injury designation|expected to play|will start|set to start|draws start|starting job|workhorse|operating as|remains (?:the |his team's |\w+'s )?(?:RB1|WR1|TE1|QB1|starter|lead|top|featured|No\. 1))\b", re.I)
+# Nov 25 2026 (Dom: "action is red ... I need this fixed"): "Jonah Coleman is the AFC offensive player of the week" came out RED
+# "likely scores little or nothing" because the story's body said he moved up "since returning from injured reserve late last month".
+# Injury words describing something already over (back/returned/activated from IR, after missing time) are history, not news -
+# they are cut out before the bad/caution check. Honors are good news.
+PAST_INJ = re.compile(r"\b(?:since\s+)?(?:return(?:ed|ing|s)?|came back|coming back|back|activated|reinstated|comes? off|came off|healthy)\s+(?:from|off(?: of)?)\s+(?:the\s+)?(?:injured reserve|\bIR\b|(?:an?|his|the)\s+(?:\w+\s+){0,2}injury|injury)|\bafter (?:missing|sitting out) (?:\w+\s+){0,3}(?:games?|weeks?)\b", re.I)
+GOOD_HONOR = re.compile(r"\b(player of the (?:week|month)|biggest game|career[- ]high|season[- ]high|top of the (?:running back |receiver |)depth chart|breakout)\b", re.I)
 def _norm(s): return re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv)\b\.?", "", (s or "").lower())).strip()
 if FEEDS:
     import os
@@ -486,11 +492,12 @@ if FEEDS:
             if not nn or (" " + nn + " ") not in " " + _norm(n["title"]) + " ": continue   # the player must be in the headline
             if n.get("who") and _norm(n["who"]) != nn: continue
             if any(n["title"][:60] in s for s in seen_titles.get((lg, name), [])): continue
-            bad, caut = bool(BAD.search(blob)), bool(CAUTION.search(blob))
+            _bl = re.sub(r"\b(?:running|defensive|line|full|half|quarter)\s*backs?\b|\bback(?:s)? (?:to|in) (?:practice|the lineup|action)\b", " ", PAST_INJ.sub(' ', blob), flags=re.I)   # 'running back' is a position, not a back injury   # Nov 25 (Dom: 'action is red'): 'since returning from injured reserve' is history, not news
+            bad, caut = bool(BAD.search(_bl)), bool(CAUTION.search(_bl))
             # Oct 16 (Dom): "Swift: Bigger workload sans Monangai" came out red because the story says MONANGAI was
             # ruled out. The headline is written about its subject: when it carries opportunity language and no bad or
             # caution words of its own, the bad words belong to someone else and this is good news for our man.
-            good = bool(GOOD.search(n["title"])) and not BAD.search(n["title"]) and not CAUTION.search(n["title"])
+            good = bool(GOOD.search(n["title"]) or GOOD_HONOR.search(n["title"])) and not BAD.search(n["title"]) and not CAUTION.search(n["title"])
             if role != "opp" and resolved_news(n["title"]): good = True    # Nov 17: "Clears Concussion Protocol" is good news, not a red alert
             # Nov 19 (Dom's DK II/III): "David Montgomery has no injury designation for Thursday; Woody Marks ruled out"
             # came out RED on Montgomery - the "ruled out" belongs to Marks. When the headline has several clauses, judge
