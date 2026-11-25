@@ -1832,4 +1832,7 @@ html body .mgrid.g-a .mxd2 .wln2 .wo b.wpn{font-size:13.5px !important}
    and the six-box numbers "reduced a little bit" too) */
 html body .wpx .wgr .wgn b{font-size:calc(min(100cqw, 290px) * .205)}
 html body .wpx .wxr .wxk b{font-size:calc(min(100cqw, 290px) * .16)}
+/* Nov 25 3:56 AM (Dom: "soft blink"): six-box number 8+ points off Ratcliffe fades softly - never fully dark */
+html body .wpx .wxr6 .wxk.wxph b{animation:wxsb 2.2s ease-in-out infinite}
+@keyframes wxsb{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
