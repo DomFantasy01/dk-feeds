@@ -616,6 +616,22 @@ try:
     else: print("Scout: no Ratcliffe file - the engine's numbers stand alone")
 except Exception as _e: print("Scout: Ratcliffe skipped:", _e)
 def rc_has(p): return _ypk(p) in _RCW or _ypk(p) in _RCT
+# Nov 25 5 PM (Dom: "if an expert has no number for a player, he's left blank and not counted"): the Scout flagged the Bills
+# defense in DK I as +4.2 a week through Week 17 - but Ratcliffe gives defenses and kickers THIS week only, so Weeks 13-17 were
+# the engine's own guess. Later weeks for defenses and kickers now come from Mike Clay (an expert who projects them week by
+# week through 17, in this league's scoring). A defense or kicker with no expert number for a later week is marked, and the
+# Scout no longer flags him as a pickup on the engine's guess alone.
+_CLW = {}
+try:
+    _cf = "/home/claude/domfantasy01/dk-feeds/dispatch_out/clay_scored.csv"
+    if os.path.exists(_cf):
+        _cd = pd.read_csv(_cf); _cd = _cd[(_cd.lg == CF["n"]) & (_cd.pos.isin(["DST", "DEF", "K"]))]
+        for _r in _cd.itertuples():
+            _kk = ("DEF", tm(str(_r.team))) if _r.pos in ("DST", "DEF") else ("K", norm(_r.name))
+            _CLW[_kk] = {w: float(getattr(_r, f"w{w}")) for w in range(13, 18) if pd.notna(getattr(_r, f"w{w}", None))}
+        print(f"Scout: Clay sets later weeks for {len(_CLW)} defenses and kickers in {CF['lab']}")
+except Exception as _e: print("Scout: Clay defenses/kickers skipped:", _e)
+NOEXP = set()   # defenses/kickers whose later weeks had no expert number (engine guess only)
 _RCW_POS={}
 for _kk in _RCW: _RCW_POS[_kk[0]]=_RCW_POS.get(_kk[0],0)+1   # how many weekly lines Ratcliffe gave at each position
 # Oct 29 (Dom): SEAN KOERNER (FantasyLabs) beside Ratcliffe - this week only (FantasyLabs has no rest-of-season numbers).
@@ -660,6 +676,10 @@ def rc_weekly(p,x,ytag=""):
         return _RCT[k]*rw(x)/sum(rw(w) for w in W_)
     # Oct 28 (Dom, DK I defenses): he gives no rest-of-season line for defenses and kickers - his weekly number is ONE
     # matchup (Vikings @ Detroit), so it is never carried forward; later weeks fall to the engine's season-long rate x matchup
+    if p["pos"] in ("DEF", "K") and x > NOW:
+        cv = _CLW.get(k, {}).get(x)
+        if cv is not None: return cv          # Nov 25: Clay's own number for that week
+        NOEXP.add(k)
     return None
 def weekly(p,x,ytag=""):
     r=rc_weekly(p,x,ytag)
@@ -1275,7 +1295,7 @@ _nst=int((~_me.slot.isin(["BN","IR"])).sum())
 BOARD["open"]=dict(start=max(0,len(SLOTS)-_nst),bench=max(0,_CAP[0]-int((_me.slot=="BN").sum())),ir=max(0,_CAP[1]-int((_me.slot=="IR").sum())))
 BOARD["adds"]=[dict(guard=guard(e),rivals=rivals(e),drop=e.get("drop"),name=e["p"]["name"].replace(" defense"," DEF"),team=e["p"]["team"],pos=e["p"]["pos"],acq=e["acq"].replace("free agent","Free agent").replace("waivers,","Waivers,"),
                     gain=_gn(e),pgain=_pgn(e),now=thisweek(e["p"]),rc=rc_tag(e["p"])[0],rc_why=rc_tag(e["p"])[1],ko=ko_note(e["p"]) or None,bar_pct=e.get("bar_pct"))
-               for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"])],key=lambda e:-_gn(e))[:6]]
+               for e in sorted([e for e in G2 if e["act"] and not killed(e["p"]["name"]) and _ypk(e["p"]) not in NOEXP],key=lambda e:-_gn(e))[:6]]   # Nov 25: no pickup flag on the engine's guess alone
 _named={p["name"] for it in BOARD["gate1"] for p in it["picks"]}|{it["pick"]["name"] for it in BOARD["gate2"]}
 _chk=[]
 for _k,_d in DOORS.items():

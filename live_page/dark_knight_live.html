@@ -3054,7 +3054,7 @@ function meters(){
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
             ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
-            : ""; /* Nov 25 2:12 PM (Dom): DK4's "WAIVER #5/10" cell taken off the front - no FAAB there, the box keeps just MARGIN and PLAYOFFS */ })()}</div>`),
+            : wb.wp ? `<div class="sgfa" title="No FAAB in this league - it runs on waiver order: #${wb.wp} of ${wb.n}${at}"><span>DRAFT SPOT</span><b>#${wb.wp}</b></div>` : ""; /* Nov 25 5:05 PM (Dom): DK4 has no FAAB - its third cell reads "DRAFT SPOT" with his waiver order */ })()}</div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
@@ -3158,7 +3158,7 @@ function battleChart(){
      same "time · Next time" stamp as every other section; a small how-to-read note under the bars */
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow"><b>How to read it:</b> a tug of war in points, one line per league. Your side fills from the left in your league color, his from the right in grey; the dashed gold line is dead even - past it, you're ahead. <b>Before kickoff</b> the bar and its two numbers are Ratcliffe's projected final. <b>Once games start</b> the bright bar is the actual score and the faded ghost behind it is the projected final (points already scored plus Ratcliffe's numbers for players still to play). Left box = your player with the most points still to come; right box = his. Far right = the margin. Your side pulses while your players are on the field. Updates when a Yahoo read lands (every 10-15 min on game days), not play-by-play. The win dials above are the odds; this is the scoreboard.</div>`;
+  const how = `<div class="bthow"><b>How to read it:</b> one tug-of-war line per league - you fill from the left in your color, him from the right in grey; past the dashed gold line, you're ahead. Before kickoff it shows Ratcliffe's projected final; once games start, the bright bar is the real score and the faded bar the projected final. Side boxes = each team's player with the most points still to come; far right = the margin. Updates with each Yahoo read.</div>`;
   return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${sub}</span><div class="btlw">${rows.map(row).join("")}</div>${how}</section>`;
 }
 function ridgeChart(){
