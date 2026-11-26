@@ -1139,35 +1139,62 @@ function battleChart(){
      3D mountain range - DK1 at the back, DK4 in front, each ridge rising out of its own band and overlapping the one behind it.
      One shared weekend timeline along the bottom, one NOW line through all four. Your ridge = solid league color; his = the thin grey
      ridge in the same band. Each band's right edge: your projected final, his, and the margin. Tap a band to open that league. */
-  const NB = rows.length, PL = 46, PR = 500, BH = 58, LIFT = 66, TOP = 30, W2 = 600, FLOOR = (i) => TOP + LIFT + i * BH, H2 = FLOOR(NB - 1) + 34;
+  /* Nov 26 1:39 PM (Dom: "occupy all the space ... move it more to the right so there's centering"; "make those battle mountains really
+     aggressive ... the $100 million winner ... utilize the 3D"): edge-to-edge range (league tags ride inside each band, finals on the
+     right), a night sky with stars and a league-colored aurora, a perspective floor grid running to the horizon, every mountain
+     extruded with a dark side face for depth, GREEN glow where your ridge stands over his and RED where his stands over yours,
+     snow-capped ridges with a light that races along them, glowing summit beacons at the finals, and a light-beam NOW line. */
+  const NB = rows.length, PL = 12, PR = 528, BH = 66, LIFT = 70, TOP = 30, W2 = 600, FLOOR = (i) => TOP + LIFT + i * BH, H2 = FLOOR(NB - 1) + 40;
   const X2 = (i) => PL + (PR - PL) * (N === 1 ? 1 : (i + 1) / N);
   const now2 = (() => { if (nowT < KOS[0]) return PL; let i = KOS.findIndex(t => t > nowT); if (i < 0) return PR + 10;
     const a = i === 0 ? PL : X2(i - 1), b = X2(i), ta = i === 0 ? KOS[0] - 36e5 : KOS[i - 1]; return a + (b - a) * Math.min(1, Math.max(0, (nowT - ta) / (KOS[i] - ta))); })();
   const TOPV = Math.max(1, ...rows.flatMap(r => [series(r.me).pop(), series(r.op).pop()]));
+  const ED = 6, EU = -5;   /* extrusion: the side face of each mountain */
   const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), Y = (v) => fl - LIFT * v / TOPV;
-    const sm = series(r.me), so = series(r.op), P = (sr) => sr.map((v, i) => [i === 0 ? PL - 6 : X2(i - 1), Y(v)]).concat([[PR + 8, Y(sr[sr.length - 1])]]);
+    const sm = series(r.me), so = series(r.op), P = (sr) => sr.map((v, i) => [i === 0 ? PL - 12 : X2(i - 1), Y(v)]).concat([[PR + 6, Y(sr[sr.length - 1])]]);
     const pm = P(sm), po = P(so), fm = sm[sm.length - 1], fo = so[so.length - 1], mg = fm - fo;
-    const area = (pp) => smooth(pp) + ` L${PR + 8} ${fl} L${PL - 6} ${fl} Z`;
+    const area = (pp) => smooth(pp) + ` L${PR + 6} ${fl} L${PL - 12} ${fl} Z`;
+    const above = (pp) => smooth(pp) + ` L${PR + 6} ${fl - LIFT - 30} L${PL - 12} ${fl - LIFT - 30} Z`;
     const nm = r.me.reduce((a, x) => a + x.now, 0), no = r.op.reduce((a, x) => a + x.now, 0), started = nm + no > 0;
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
+    const ym = Y(fm), yo = Y(fo), sw = anim ? " bmsw" : "";
     return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .3).toFixed(2)}s"><title>${esc(tip)}</title>
-      <defs><linearGradient id="${g}m" x1="0" y1="${(fl - LIFT).toFixed(0)}" x2="0" y2="${fl}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity=".98"/><stop offset=".6" stop-color="${c}" stop-opacity=".5"/><stop offset="1" stop-color="#070B16" stop-opacity=".96"/></linearGradient></defs>
-      <rect x="0" y="${fl - LIFT - 6}" width="${W2}" height="${LIFT + 10}" fill="transparent"/>
-      <path d="${area(pm)}" fill="#03060D" opacity=".7" transform="translate(4 -3)"/>
-      <path class="${anim ? "bmsw" : ""}" d="${area(pm)}" fill="url(#${g}m)" stroke="none"/>
-      <path class="${anim ? "bmsw" : ""}" d="${smooth(po)}" fill="none" stroke="#DDE4F2" stroke-opacity=".85" stroke-width="1.6" stroke-dasharray="4 2.5"/>
-      <path class="bmrm${anim ? " bmsw" : ""}" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs${anim ? " bmsw" : ""}" d="${smooth(pm)}"/>
-      <line x1="${PL - 6}" y1="${fl}" x2="${PR + 8}" y2="${fl}" stroke="${c}" stroke-opacity=".35" stroke-width="1"/>
-      <text x="6" y="${fl - 6}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
-      <text x="${PR + 16}" y="${(fl - 37).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
-      <text x="${PR + 16}" y="${(fl - 19).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
-      <text x="${PR + 16}" y="${fl - 1}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
-      ${started ? `<text x="6" y="${fl + 9}" class="bmnow2">now ${f1(nm)}-${f1(no)}</text>` : ""}</g>`; };
-  const ticks = KOS.map((t, i) => `<line x1="${X2(i).toFixed(1)}" y1="${TOP - 4}" x2="${X2(i).toFixed(1)}" y2="${FLOOR(NB - 1)}" class="bmgl"/><text x="${X2(i).toFixed(1)}" y="${H2 - 8}" class="bmtl">${lab(t)}</text>`).join("");
-  const nowLine = now2 > PL && now2 < PR + 8 ? `<line x1="${now2.toFixed(1)}" y1="${TOP - 10}" x2="${now2.toFixed(1)}" y2="${FLOOR(NB - 1) + 2}" class="bmnow"/><text x="${now2.toFixed(1)}" y="${TOP - 13}" class="bmnt">NOW</text>` : "";
-  const svg = `<svg class="bmall" viewBox="0 0 ${W2} ${H2}" aria-hidden="false" role="img" aria-label="Battle Mountains - all four leagues"><defs><linearGradient id="bmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1430"/><stop offset="1" stop-color="#05080F"/></linearGradient></defs>
-    <rect x="0" y="0" width="${W2}" height="${H2}" rx="10" fill="url(#bmsky)"/>${ticks}${rows.map(band).join("")}${nowLine}
-    <text x="${PR + 16}" y="${TOP - 13}" class="bmhd">YOU / HIM</text></svg>`;
+      <defs><linearGradient id="${g}m" x1="0" y1="${(fl - LIFT).toFixed(0)}" x2="0" y2="${fl}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset=".45" stop-color="${c}" stop-opacity=".62"/><stop offset="1" stop-color="#060A14" stop-opacity=".97"/></linearGradient>
+        <linearGradient id="${g}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".0"/><stop offset="1" stop-color="#000" stop-opacity=".75"/></linearGradient>
+        <clipPath id="${g}ah"><path d="${above(po)}"/></clipPath><clipPath id="${g}am"><path d="${above(pm)}"/></clipPath></defs>
+      <rect x="0" y="${fl - LIFT - 8}" width="${W2}" height="${LIFT + 12}" fill="transparent"/>
+      <g class="${sw.trim()}">
+        <path d="${area(pm)}" fill="${c}" opacity=".28" transform="translate(${ED} ${EU})"/><path d="${area(pm)}" fill="url(#${g}s)" transform="translate(${ED} ${EU})"/>
+        <path d="${area(pm)}" fill="url(#${g}m)"/>
+        <path d="${area(pm)}" class="bmlead" clip-path="url(#${g}ah)"/>
+        <path d="${area(po)}" class="bmtrail" clip-path="url(#${g}am)"/>
+        <path d="${smooth(po)}" fill="none" stroke="#E6ECF8" stroke-opacity=".9" stroke-width="1.7" stroke-dasharray="5 3"/>
+        <path class="bmrm" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs" d="${smooth(pm)}"/>
+        <path class="bmrun" d="${smooth(pm)}" pathLength="100"/>
+      </g>
+      <line x1="${PL - 12}" y1="${fl}" x2="${PR + 6}" y2="${fl}" stroke="${c}" stroke-opacity=".45" stroke-width="1.2"/>
+      <text x="${PL + 2}" y="${fl - 7}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
+      ${started ? `<text x="${PL + 42}" y="${fl - 8}" class="bmnow2">now ${f1(nm)}–${f1(no)}</text>` : ""}
+      <circle cx="${PR + 6}" cy="${yo.toFixed(1)}" r="2.6" fill="#E6ECF8" opacity=".9"/>
+      <circle cx="${PR + 6}" cy="${ym.toFixed(1)}" r="7" fill="${c}" opacity=".35" class="bmbeac"/><circle cx="${PR + 6}" cy="${ym.toFixed(1)}" r="3.4" fill="#fff" stroke="${c}" stroke-width="1.6"/>
+      <text x="${PR + 15}" y="${(fl - 39).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
+      <text x="${PR + 15}" y="${(fl - 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
+      <text x="${PR + 15}" y="${fl - 2}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; };
+  /* perspective floor: lines run from the bottom edge to a vanishing point above the range */
+  const VPX = (PL + PR) / 2, VPY = TOP - 60, FB = FLOOR(NB - 1) + 22;
+  const floor = Array.from({length: 17}, (_, i) => { const x = PL - 40 + (PR - PL + 80) * i / 16; return `<line x1="${x.toFixed(1)}" y1="${FB}" x2="${(VPX + (x - VPX) * .18).toFixed(1)}" y2="${VPY}" class="bmfl"/>`; }).join("")
+    + [0, .22, .42, .6, .76, .9].map(t => { const y = FB - (FB - TOP + 10) * t * t; return `<line x1="0" y1="${y.toFixed(1)}" x2="${W2}" y2="${y.toFixed(1)}" class="bmfl h" style="opacity:${(.55 - t * .5).toFixed(2)}"/>`; }).join("");
+  let sd = 7; const rnd = () => (sd = (sd * 9301 + 49297) % 233280) / 233280;
+  const stars = Array.from({length: 46}, () => `<circle cx="${(rnd() * W2).toFixed(1)}" cy="${(rnd() * (TOP + 40)).toFixed(1)}" r="${(rnd() * .9 + .3).toFixed(2)}" class="bmst" style="animation-delay:${(rnd() * 4).toFixed(2)}s"/>`).join("");
+  const aur = rows.map((r, i) => `<ellipse cx="${(PL + (PR - PL) * (i + .5) / NB).toFixed(0)}" cy="${TOP + 6}" rx="${(PR - PL) / NB * .9}" ry="26" fill="${HEX[r.k]}" opacity=".10" filter="url(#bmblur)"/>`).join("");
+  const ticks = KOS.map((t, i) => `<line x1="${X2(i).toFixed(1)}" y1="${TOP - 2}" x2="${X2(i).toFixed(1)}" y2="${FLOOR(NB - 1)}" class="bmgl"/><text x="${X2(i).toFixed(1)}" y="${H2 - 8}" class="bmtl">${lab(t)}</text>`).join("");
+  const nowLine = now2 > PL && now2 < PR + 6 ? `<rect x="${(now2 - 5).toFixed(1)}" y="${TOP - 10}" width="10" height="${FLOOR(NB - 1) - TOP + 12}" fill="url(#bmbeam)" class="bmbeam"/><line x1="${now2.toFixed(1)}" y1="${TOP - 10}" x2="${now2.toFixed(1)}" y2="${FLOOR(NB - 1) + 2}" class="bmnow"/><text x="${now2.toFixed(1)}" y="${TOP - 14}" class="bmnt">NOW</text>` : "";
+  const svg = `<svg class="bmall" viewBox="0 0 ${W2} ${H2}" aria-hidden="false" role="img" aria-label="Battle Mountains - all four leagues"><defs>
+      <linearGradient id="bmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1330"/><stop offset=".55" stop-color="#070C1C"/><stop offset="1" stop-color="#03050B"/></linearGradient>
+      <linearGradient id="bmbeam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter></defs>
+    <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${aur}${stars}${floor}${ticks}${rows.map(band).join("")}${nowLine}
+    <text x="${PR + 15}" y="${TOP - 14}" class="bmhd">YOU / HIM</text></svg>`;
   const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();

@@ -2042,4 +2042,25 @@ html body .wpx .wxr6 .wxk{filter:brightness(.9)}
 .bmswg b{font:400 14px/1 var(--f-disp);letter-spacing:.04em;margin-right:3px}.bmswg em{font-style:normal;font-weight:700;color:#E8ECF4}.bmswg i{font-style:normal;color:#5F6A82;margin:0 2px}
 @media (min-width:561px){.bmswg{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (prefers-reduced-motion:no-preference){.bmall .bmb.live .bmrm{animation:bmlv 2.4s ease-in-out infinite}}
+/* Nov 26 1:39 PM: Battle Mountains, aggressive edition */
+.bmw1{background:#03050B}
+.bmall .bmfl{stroke:#2A4A8A;stroke-opacity:.22;stroke-width:.8}.bmall .bmfl.h{stroke:#3A64B8}
+.bmall .bmst{fill:#fff;opacity:.55}
+.bmall .bmlead{fill:#3DDC84;opacity:.38;filter:drop-shadow(0 0 6px #3DDC84)}
+.bmall .bmtrail{fill:#FF4D57;opacity:.34}
+.bmall .bmrm{fill:none;stroke-width:3.2;filter:drop-shadow(0 0 5px var(--lc))}
+.bmall .bmrs{fill:none;stroke:#fff;stroke-opacity:.75;stroke-width:1.1;transform:translateY(-1.2px)}
+.bmall .bmrun{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-dasharray:4 96;stroke-dashoffset:100;opacity:0;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px var(--lc))}
+.bmall .bmbeam{mix-blend-mode:screen}
+.bmdk{font:400 22px var(--f-disp);letter-spacing:.05em;paint-order:stroke;stroke:#03050B;stroke-width:3px}
+.bmnow2{font:700 10px var(--f-body);fill:#E6ECF8;paint-order:stroke;stroke:#03050B;stroke-width:3px}
+@media (prefers-reduced-motion:no-preference){
+  .bmall .bmrun{animation:bmrun 5.5s linear infinite;animation-delay:var(--d,0s)}
+  @keyframes bmrun{0%{stroke-dashoffset:100;opacity:0}6%{opacity:1}88%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+  .bmall .bmst{animation:bmtw 3.6s ease-in-out infinite}@keyframes bmtw{50%{opacity:.12}}
+  .bmall .bmbeac{animation:bmbc 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes bmbc{50%{transform:scale(1.7);opacity:.08}}
+  .bmall .bmbeam{animation:bmbm 2.6s ease-in-out infinite}@keyframes bmbm{50%{opacity:.35}}
+  .bmall .bmsw{animation:bmrise 1.4s cubic-bezier(.2,.9,.25,1) both;animation-delay:var(--d,0s);transform-box:view-box;transform-origin:50% 100%}
+  @keyframes bmrise{from{transform:scaleY(.05);opacity:0}to{transform:scaleY(1);opacity:1}}}
+html.calm .bmall *{animation:none !important}
 </style>
