@@ -1144,7 +1144,7 @@ function battleChart(){
      right), a night sky with stars and a league-colored aurora, a perspective floor grid running to the horizon, every mountain
      extruded with a dark side face for depth, GREEN glow where your ridge stands over his and RED where his stands over yours,
      snow-capped ridges with a light that races along them, glowing summit beacons at the finals, and a light-beam NOW line. */
-  const NB = rows.length, PL = 12, PR = 528, BH = 66, LIFT = 70, TOP = 30, W2 = 600, FLOOR = (i) => TOP + LIFT + i * BH, H2 = FLOOR(NB - 1) + 40;
+  const NB = rows.length, PL = 12, PR = 528, BH = 80, LIFT = 60, TOP = 30, W2 = 600, FLOOR = (i) => TOP + LIFT + i * BH, H2 = FLOOR(NB - 1) + 40;
   const X2 = (i) => PL + (PR - PL) * (N === 1 ? 1 : (i + 1) / N);
   const now2 = (() => { if (nowT < KOS[0]) return PL; let i = KOS.findIndex(t => t > nowT); if (i < 0) return PR + 10;
     const a = i === 0 ? PL : X2(i - 1), b = X2(i), ta = i === 0 ? KOS[0] - 36e5 : KOS[i - 1]; return a + (b - a) * Math.min(1, Math.max(0, (nowT - ta) / (KOS[i] - ta))); })();
@@ -1164,11 +1164,10 @@ function battleChart(){
         <clipPath id="${g}ah"><path d="${above(po)}"/></clipPath><clipPath id="${g}am"><path d="${above(pm)}"/></clipPath></defs>
       <rect x="0" y="${fl - LIFT - 8}" width="${W2}" height="${LIFT + 12}" fill="transparent"/>
       <g class="${sw.trim()}">
-        <path d="${area(po)}" class="bmopf" transform="translate(${ED} ${EU})"/><path d="${area(po)}" fill="url(#bmtex2)" transform="translate(${ED} ${EU})"/>
-        <path d="${area(pm)}" fill="${c}" opacity=".28" transform="translate(${ED} ${EU})"/><path d="${area(pm)}" fill="url(#${g}s)" transform="translate(${ED} ${EU})"/>
+        <path d="${area(po)}" class="bmopf"/><path d="${area(po)}" fill="url(#bmtex2)"/>
         <path d="${area(pm)}" fill="url(#${g}m)"/>
-        <path d="${area(pm)}" class="bmlead" clip-path="url(#${g}ah)"/>
-        <path d="${area(pm)}" fill="url(#bmtex)" opacity=".55"/><path d="${area(pm)}" fill="url(#bmshim)" class="bmshim"/>
+        
+        <path d="${area(pm)}" fill="url(#bmtex)" opacity=".4"/>
         <path d="${area(po)}" class="bmopp" clip-path="url(#${g}am)"/>
         <path d="${smooth(po)}" fill="none" stroke="#E9E4D8" stroke-opacity=".95" stroke-width="1.8"/>
         <path class="bmrm" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs" d="${smooth(pm)}"/>
@@ -1199,13 +1198,13 @@ function battleChart(){
       <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
         <animate attributeName="x1" values="-1;1" dur="14s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="14s" repeatCount="indefinite"/></linearGradient></defs>
-    <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${aur}${stars}${floor}${ticks}${rows.map(band).join("")}${nowLine}
+    <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${ticks}${rows.map(band).join("")}${nowLine}
     <text x="${PR + 15}" y="${TOP - 14}" class="bmhd">YOU / HIM</text></svg>`;
   const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Color = you · grey = him · green = where you lead · right = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Color = you · grey = him · right = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
