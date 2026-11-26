@@ -2073,4 +2073,17 @@ html.calm .bmall *{animation:none !important}
 .bmall .bmrun{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #EFD23E)}
 html.calm .bmall .bmshim{display:none}
 @media (prefers-reduced-motion:reduce){.bmall .bmshim{display:none}}
+/* Nov 26 2:38 PM (Dom: opponent "in gray or like an off faint white"; "too many other lines and things going around. Clean that up";
+   the light along the ridge "make it a fuse ... don't make it a longer line"): floor grid, kickoff grid lines, the white highlight
+   under the gold ridge and the band baselines are gone; his side is a faint grey line + faint fill; the racing light is now a burning
+   fuse spark - a small hot point that flickers as it travels along your gold ridge */
+.bmall .bmfl,.bmall .bmgl,.bmall .bmrs{display:none}
+.bmall .bmb > line{display:none}
+.bmall path[stroke="#E9E4D8"]{stroke:#B9BFCB !important;stroke-opacity:.55 !important;stroke-width:1.4 !important}
+.bmall .bmopp{fill:#B9BFCB !important;opacity:.12 !important}
+.bmall .bmrun{stroke:#FFF8E0 !important;stroke-width:4.2 !important;stroke-linecap:round;stroke-dasharray:.01 99.99 !important;
+  filter:drop-shadow(0 0 2px #FFE38A) drop-shadow(0 0 5px #FF9A1F) drop-shadow(0 0 10px #FF6A00) !important}
+@media (prefers-reduced-motion:no-preference){
+  .bmall .bmrun{animation:bmrun 5.5s linear infinite,bmfuse .14s steps(2) infinite !important;animation-delay:var(--d,0s),0s !important}
+  @keyframes bmfuse{0%{stroke-width:3.4}50%{stroke-width:5.6}}}
 </style>

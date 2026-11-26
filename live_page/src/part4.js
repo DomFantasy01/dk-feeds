@@ -1203,7 +1203,7 @@ function battleChart(){
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Color with gold ridge = you · off-white = him · green = where you lead · right side = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Gold ridge = you · faint grey = him · green = where you lead · right = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
