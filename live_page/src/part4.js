@@ -1174,7 +1174,7 @@ function battleChart(){
       </g>
       <line x1="${PL - 12}" y1="${mid}" x2="${PR + 6}" y2="${mid}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
-      <text x="${PL + 2}" y="${(mid + HALF - 2).toFixed(1)}" class="bmyh">${started ? `now ${f1(nm)}–${f1(no)}` : ""}</text>
+      ${started ? `<text x="${PL + 2}" y="${(mid - HALF + 28).toFixed(1)}" class="bmyh">NOW <tspan style="fill:${c}">${f1(nm)}</tspan><tspan class="bmyv">–</tspan>${f1(no)}</text>` : ""}
       <text x="${PR + 15}" y="${(mid - 9).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
       <text x="${PR + 15}" y="${(mid + 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
       <text x="${PR + 15}" y="${(mid + 6).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; };
