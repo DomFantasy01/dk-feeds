@@ -3266,7 +3266,7 @@ function battleChart(){
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow"><b>How to read it:</b> all four leagues in one mountain range - DK1 at the back, DK4 in front. Left to right is the weekend, kickoff by kickoff (Thursday to Monday night). Your mountain (solid, your league color) climbs as your starters play; his is the dashed grey ridge in the same band. Where your color is above his dashes, you're ahead at that point of the weekend. Height = points piled up by Ratcliffe's numbers, or the real score once a man has played. The NOW line splits what's happened from what's still to come. Right edge: your projected final, his, and the margin. Underneath: each side's biggest player still to come. Tap a league's mountain to open its card.</div>`;
+  const how = `<div class="bthow">Solid = you · dashed = him · right side = projected finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
