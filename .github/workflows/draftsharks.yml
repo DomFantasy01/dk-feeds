@@ -11,8 +11,10 @@ permissions:
   actions: write
 env:
   GH_TOKEN: ${{ github.token }}
+# Nov 26 2026: own queue - in the shared dk-feeds queue a waiting run is cancelled whenever a newer job (a build every few
+# minutes on game days) joins, so the scoring never ran. It only commits one CSV and retries its push, so it is safe alone.
 concurrency:
-  group: dk-feeds
+  group: dk-feeds-draftsharks
   cancel-in-progress: false
 jobs:
   score:
