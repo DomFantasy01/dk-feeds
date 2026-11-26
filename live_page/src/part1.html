@@ -1977,4 +1977,9 @@ html body .mh .wk{animation:none !important;background:none !important;-webkit-t
 .btsw{display:none}
 @media (max-width:560px){.btr{grid-template-columns:30px 1fr 1fr 54px !important;row-gap:4px}.btbar{grid-column:1/5;grid-row:2}.btr>.btc.me{grid-column:2}.btr>.btc.op{grid-column:3}.btv{grid-column:4;grid-row:1}}
 .bthow{margin:8px 4px 2px;padding-top:7px;border-top:1px solid rgba(255,255,255,.06);font:500 10px/1.45 var(--f-body);color:#7C88A3}.bthow b{color:#AEB6C8;font-weight:700}
+/* Nov 25 5:41 PM (Dom: the score meters' bottom labels "are outside of the margins"): on a phone the three cells are ~24px wide -
+   labels shortened (MARGIN / FINAL, PLAYOFFS, FAAB / DRAFT) and set a size smaller so every word fits inside its cell */
+@media (max-width:560px){html body .mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:8px !important;letter-spacing:0 !important;overflow:visible !important;justify-content:center !important}}
+@media (max-width:400px){html body .mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:7px !important}}
+html.gameon .sgauge .seg .gwxf,html.gameon .sgauge.sgauge .seg.seg.seg .gwxf.gwxf.gwxf{visibility:hidden!important;animation:none!important}   /* Nov 25 5:39 PM: no weather flip while a game is on */
 </style>

@@ -971,6 +971,10 @@ function fitNames(){ setTimeout(fitArcs, 0); if (document.fonts && document.font
   both(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(both); if (!fitNames.rz){ fitNames.rz = 1; addEventListener("resize", () => requestAnimationFrame(() => { go(); go2(); })); } }
 function meters(){
   if (!S || !S.leagues){ return; }
+  /* Nov 25 5:39 PM (Dom: "where there's bad weather games ... it flips back and forth from the tile to the umbrella. But when the games
+     start, that's supposed to turn off"): while ANY game is being played, no tile flips - every box holds still on its normal look
+     (the small steady umbrella stays). The flip comes back between game windows for the men still to play. */
+  try { document.documentElement.classList.toggle("gameon", S.leagues.some(LL => [...(LL.players || []), ...(LL.oppPlayers || [])].some(isLive))); } catch(_){}
   const prev = prevEntry(), ORK = ourRanks(), OMISS = ourMiss(), OCK = ourCheck(), PCK = ourCheckPO(), OBIAS = ourBias(), OPCT = ourPct();
   /* Nov 9 9:56 AM (Dom): every league's Experts box lists the sources in accuracy order - #1 on top down to #7 - with a green check on the
      top three and nothing under the names; tap the box for the detail (How far off they were) */
@@ -1020,12 +1024,12 @@ function meters(){
           Win Probability now). Before kickoff = Yahoo's projected margin; once games start = the live margin; final = the final margin */
           const mz = Math.abs(mg) < 3 ? "mid" : mg > 0 ? "win" : "lose", mt = Math.round(mg), lab2 = done ? "FINAL" : goNow ? "LIVE" : "PROJ";
           const tip = done ? `Final margin: ${f1(me)} to ${f1(op)}` : goNow ? `Live margin: ${f1(me)} to ${f1(op)} · you have ${meL} left to play, he has ${opL}` : `Projected margin (Yahoo's projections): ${f1(F.me)} to ${f1(F.op)}`;
-          return `<div title="${esc(tip)}"><span>${goNow && !done ? "LIVE MARGIN" : done ? "FINAL MARGIN" : "MARGIN"}</span><b class="z-${mz}">${mt > 0 ? "+" : mt < 0 ? "−" : ""}${Math.abs(mt)}</b></div>`; })()}
+          return `<div title="${esc(tip)}"><span>${done ? "FINAL" : "MARGIN"}</span><b class="z-${mz}">${mt > 0 ? "+" : mt < 0 ? "−" : ""}${Math.abs(mt)}</b></div>`; })()}
           <div title="Playoff odds for the season (championship simulator)"><span>PLAYOFFS</span><b class="z-${PZ}">${pcs(po)}</b></div>${(() => { /* Nov 25 (Dom: "move all three things in that one box"): FAAB/waiver is now the third cell. Nov 11 3 PM (Dom): FAAB left on the front page; DK IV has no FAAB - it runs on waiver order */
           const wb = m.wire; if (!wb) return ""; const at = wb.read ? " · Yahoo read " + esc(wb.read) : "";
           return wb.faab !== null && wb.faab !== undefined
             ? `<div class="sgfa" title="FAAB budget left${wb.wp ? " · waiver order #" + wb.wp + " of " + wb.n : ""}${at}"><span>FAAB</span><b>$${wb.faab}</b></div>`
-            : wb.wp ? `<div class="sgfa" title="No FAAB in this league - it runs on waiver order: #${wb.wp} of ${wb.n}${at}"><span>DRAFT SPOT</span><b>#${wb.wp}</b></div>` : ""; /* Nov 25 5:05 PM (Dom): DK4 has no FAAB - its third cell reads "DRAFT SPOT" with his waiver order */ })()}</div>`),
+            : wb.wp ? `<div class="sgfa" title="No FAAB in this league - it runs on waiver order: #${wb.wp} of ${wb.n}${at}"><span>DRAFT</span><b>#${wb.wp}</b></div>` : ""; /* Nov 25 5:05 PM (Dom): DK4 has no FAAB - its third cell reads "DRAFT SPOT" with his waiver order */ })()}</div>`),
           c: T("c", `<div class="mxh wph" data-accgo="1"><div class="r1"><b>${DK[k]}</b></div><span class="nm" title="${esc(LGFULL[k])}">${esc(k === "MOST" ? "Most Important" : k === "HERS&HIS" ? "Hers and His" : LGFULL[k])}</span></div><div class="mxe"><div class="xg">${ORBS.map(orb).join("")}</div></div>`)}; }).filter(Boolean);
   /* Nov 8 9:40 PM (Dom): expert order Ratcliffe (two stars, the one we check against), Koerner, Clay, Vegas; FantasyPros 2026 in-season accuracy rank beside each name */
   const SEC = (id, lab, sub, key) => `<section class="frame msec" id="${id}"><span class="lab">${lab}</span>${sub ? `<span class="lsub">${sub}</span>` : ""}<div class="mgrid g-${key}">${TILES.map(t => t[key]).join("")}</div></section>`;
