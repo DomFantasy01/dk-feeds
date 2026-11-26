@@ -1902,7 +1902,7 @@ html body .mh h1{background:linear-gradient(100deg,#8A6A12 0%,#D4A62A 22%,#F2C23
 /* Nov 25 7:32 AM (Dom: "I don't want you to put the circle around it ... don't need to make it bigger or smaller ... glow and come back
    to normal ... every so often"; "blue-white ... like the Bat-Signal"): no ring, no size change - every 24 s a cool blue-white glow
    swells around the bat and fades back to normal */
-html body .mh img{box-shadow:none !important;transform:none !important}
+html body .mh img{box-shadow:none !important}
 @media (prefers-reduced-motion:no-preference){html body .mh img{animation:dkbat 24s ease-in-out infinite}}
 @keyframes dkbat{0%,78%,100%{filter:drop-shadow(0 0 0 rgba(190,225,255,0))}86%{filter:drop-shadow(0 0 6px rgba(225,242,255,.95)) drop-shadow(0 0 16px rgba(120,190,255,.75)) brightness(1.18)}}
 html body .mh img{position:relative;z-index:2}
@@ -1982,4 +1982,14 @@ html body .mh .wk{animation:none !important;background:none !important;-webkit-t
 @media (max-width:560px){html body .mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:8px !important;letter-spacing:0 !important;overflow:visible !important;justify-content:center !important}}
 @media (max-width:400px){html body .mgrid.g-b .sgx > div:not(.sgbel) > span{font-size:7px !important}}
 html.gameon .sgauge .seg .gwxf,html.gameon .sgauge.sgauge .seg.seg.seg .gwxf.gwxf.gwxf{visibility:hidden!important;animation:none!important}   /* Nov 25 5:39 PM: no weather flip while a game is on */
+/* Nov 26 10:06 AM (Dom: the bat "lights up and there's a light behind it. I also want to enlarge it ... and then decrease it ... maybe not
+   50% ... make it look good"): every 12 s the bat rises to 1.3x while the blue-white Bat-Signal glow swells behind it, holds a beat, then
+   settles back to normal size and fades. Battery saver still stops it. */
+html body .mh{overflow:visible}
+html body .mh img{animation:dkbat2 12s cubic-bezier(.45,0,.25,1) infinite !important;transform-origin:50% 50%;will-change:transform}
+@keyframes dkbat2{
+  0%,62%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(190,225,255,0)) brightness(1)}
+  72%{transform:scale(1.3);filter:drop-shadow(0 0 7px rgba(225,242,255,.95)) drop-shadow(0 0 20px rgba(120,190,255,.8)) brightness(1.2)}
+  80%{transform:scale(1.3);filter:drop-shadow(0 0 9px rgba(225,242,255,1)) drop-shadow(0 0 26px rgba(120,190,255,.85)) brightness(1.22)}
+  92%{transform:scale(1);filter:drop-shadow(0 0 3px rgba(190,225,255,.35)) brightness(1.05)}}
 </style>
