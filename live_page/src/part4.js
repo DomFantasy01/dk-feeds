@@ -1162,8 +1162,8 @@ function battleChart(){
     const area = (pp) => smooth(pp) + ` L${PR + 6} ${base} L${PL - 12} ${base} Z`;
     const nm = r.me.reduce((a, x) => a + x.now, 0), no = r.op.reduce((a, x) => a + x.now, 0), started = nm + no > 0;
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
-    const sw = anim ? " bmsw" : "";
-    return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .3).toFixed(2)}s"><title>${esc(tip)}</title>
+    const sw = anim ? " bmg sw" : " bmg";   /* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league's mountains draw in left to right, DK1 first; replays on the motion tour */
+    return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .45).toFixed(2)}s"><title>${esc(tip)}</title>
       <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity=".35"/></linearGradient>
         <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
@@ -1177,9 +1177,9 @@ function battleChart(){
       <line x1="${PL - 12}" y1="${base}" x2="${PR + 6}" y2="${base}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
       ${started ? `<text x="${PL + 2}" y="${(mid - HALF + 28).toFixed(1)}" class="bmyh">NOW <tspan style="fill:${c}">${f1(nm)}</tspan><tspan class="bmyv">–</tspan>${f1(no)}</text>` : ""}
-      <text x="${PR + 15}" y="${(base - 38).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
+      <g class="bmfin${anim ? " sw" : ""}"><text x="${PR + 15}" y="${(base - 38).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
       <text x="${PR + 15}" y="${(base - 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
-      <text x="${PR + 15}" y="${(base - 3).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; };
+      <text x="${PR + 15}" y="${(base - 3).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g></g>`; };
   /* perspective floor: lines run from the bottom edge to a vanishing point above the range */
   const VPX = (PL + PR) / 2, VPY = TOP - 60, FB = FLOOR(NB - 1) + 22;
   const floor = Array.from({length: 17}, (_, i) => { const x = PL - 40 + (PR - PL + 80) * i / 16; return `<line x1="${x.toFixed(1)}" y1="${FB}" x2="${(VPX + (x - VPX) * .18).toFixed(1)}" y2="${VPY}" class="bmfl"/>`; }).join("")
@@ -2061,7 +2061,7 @@ document.addEventListener("click", async (e) => {
    minutes during games.) */
 window.wgReplay = function(sel){ if (document.documentElement.classList.contains("calm")) return; const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA, .btlw .btG"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
-(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG"]; let i = 0;
+(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG", ".bmall .bmg, .bmall .bmfin"]; let i = 0;
   setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {

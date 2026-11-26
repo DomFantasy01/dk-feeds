@@ -2124,4 +2124,14 @@ html.calm .bmall .bmshim{display:none}
 /* Nov 26 3:13 PM (Dom: "add some texture so they really look like mountains"): a rock texture (fractal noise lit from the upper left)
    over every mountain - yours and his - and a light snow cap along the top of yours. Shape, colors and numbers unchanged. */
 .bmall .bmrockf{mix-blend-mode:overlay}
+/* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league row's mountains draw
+   in from the left edge to the right like a line being drawn across the weekend - DK1 first, each next league a beat later. The
+   finals on the right fade in as the drawing reaches them. Plays on first paint and replays on the motion tour. */
+.bmall .bmg{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:no-preference){
+  .bmall .bmg.sw{animation:bmwipe 2.2s cubic-bezier(.45,.05,.35,1) both;animation-delay:var(--d,0s)}
+  @keyframes bmwipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  .bmall .bmfin.sw{animation:bmfin .6s ease-out both;animation-delay:calc(var(--d,0s) + 1.9s)}
+  @keyframes bmfin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}}
+html.calm .bmall .bmg.sw,html.calm .bmall .bmfin.sw{animation:none !important}
 </style>
