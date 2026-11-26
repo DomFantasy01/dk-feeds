@@ -1164,13 +1164,14 @@ function battleChart(){
         <clipPath id="${g}ah"><path d="${above(po)}"/></clipPath><clipPath id="${g}am"><path d="${above(pm)}"/></clipPath></defs>
       <rect x="0" y="${fl - LIFT - 8}" width="${W2}" height="${LIFT + 12}" fill="transparent"/>
       <g class="${sw.trim()}">
+        <path d="${area(po)}" class="bmopf" transform="translate(${ED} ${EU})"/>
         <path d="${area(pm)}" fill="${c}" opacity=".28" transform="translate(${ED} ${EU})"/><path d="${area(pm)}" fill="url(#${g}s)" transform="translate(${ED} ${EU})"/>
         <path d="${area(pm)}" fill="url(#${g}m)"/>
         <path d="${area(pm)}" class="bmlead" clip-path="url(#${g}ah)"/>
         <path d="${area(pm)}" fill="url(#bmtex)" opacity=".55"/><path d="${area(pm)}" fill="url(#bmshim)" class="bmshim"/>
         <path d="${area(po)}" class="bmopp" clip-path="url(#${g}am)"/>
         <path d="${smooth(po)}" fill="none" stroke="#E9E4D8" stroke-opacity=".95" stroke-width="1.8"/>
-        <path class="bmrm" d="${smooth(pm)}"/><path class="bmrs" d="${smooth(pm)}"/>
+        <path class="bmrm" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs" d="${smooth(pm)}"/>
         <path class="bmrun" d="${smooth(pm)}" pathLength="100"/>
       </g>
       <line x1="${PL - 12}" y1="${fl}" x2="${PR + 6}" y2="${fl}" stroke="${c}" stroke-opacity=".45" stroke-width="1.2"/>
@@ -1203,7 +1204,7 @@ function battleChart(){
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Gold ridge = you · faint grey = him · green = where you lead · right = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Color = you · grey = him · green = where you lead · right = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
