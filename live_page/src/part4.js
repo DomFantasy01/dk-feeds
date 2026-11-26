@@ -1098,47 +1098,82 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    it (biggest projections left, either side) glow gold. Rebuilds with every sync; the bars sweep in on the page's motion tour and a
    slow light runs along each seam. Tap a league to open it. */
 function battleChart(){
-  /* Nov 25 7:51 AM (Dom: "everything on one screen"; "would it make sense that we actually have the battle meter being actual";
-     "pulse when there's actually any of our players playing ... so we know it's active"): one thin line per league. SOLID bar = the
-     actual score (you from the left in your league color, him from the right in steel; they meet at the glowing seam). Faded GHOST
-     behind it = where Ratcliffe's projections say it ends up (points scored + what's left). Before kickoff only the ghost shows. The
-     dashed gold line = dead even. Your side softly pulses while any of your starters is in a live game. The two men most likely to
-     swing it sit at the end of the line in gold. Not play-by-play: it moves when a build lands (hourly, every 10-15 min on game days). */
+  /* Nov 26 1:14 PM (Dom: "take the battle meter and turn it into ... a mountain chart or something that's in 3D ... utilizes all the
+     space ... make it look super cool and work"): BATTLE MOUNTAINS - one 3D ridge per league across the whole weekend. Left to right
+     = every kickoff window of the week (Thu -> Mon night). Each mountain climbs as that side's starters play: height = points piled up
+     by that window (Ratcliffe's projection - he decides - or the real score once a man has played). Yours rises in front in your league
+     color; his rises behind in steel. Where your ridge is above his, you're ahead at that point of the weekend. The white NOW line
+     shows where we are; to its left is real, to its right is still to come. Right edge = projected finals and the margin.
+     Tap a league to open its card. Rebuilds with every sync. */
+  const DOW = {Wed: 0, Thu: 1, Fri: 2, Sat: 3, Sun: 4, Mon: 5, Tue: 6};
+  const koOf = (p) => { const t = teamKo(p.tm); if (t) return t;
+    const m = /^(Wed|Thu|Fri|Sat|Sun|Mon|Tue)\w*\s+(\d+):(\d+)\s*(am|pm)/i.exec((p.when || "").trim()); if (!m) return null;
+    const d = DOW[m[1].slice(0, 1).toUpperCase() + m[1].slice(1, 3).toLowerCase()]; let h = +m[2] % 12 + (/pm/i.test(m[4]) ? 12 : 0);
+    return 1e12 + ((d * 24 + h) * 60 + +m[3]) * 6e4; };   /* relative key only - used for ordering when no kickoff is on file */
   const rows = KEYS.map(k => { const L = lgS(k); if (!L) return null; const pm = M && M.pm ? M.pm[L.key] : null;
-    const st = (list) => list.filter(isStarter);
-    const fin = (list) => st(list).reduce((a, p) => a + (manFinal(p, "r", pm) || 0), 0), now = (list) => st(list).reduce((a, p) => a + pts(p), 0);
-    const left = (list, mine) => st(list).filter(p => !isDone(p) && !isOut(p)).map(p => ({p, mine, v: Math.max(0, (manFinal(p, "r", pm) || 0) - pts(p))}));
-    const me = fin(L.players), op = fin(L.oppPlayers), mn = now(L.players), on = now(L.oppPlayers), lm = left(L.players, true), lo = left(L.oppPlayers, false);
-    return {k, me, op, mn, on, lm, lo, live: st(L.players).some(isLive), swing: [...lm, ...lo].sort((a, b) => b.v - a.v).slice(0, 2)}; }).filter(Boolean);
+    const st = (list) => list.filter(isStarter).map(p => ({p, ko: koOf(p), fin: manFinal(p, "r", pm) || 0, now: pts(p)}));
+    return {k, me: st(L.players), op: st(L.oppPlayers), live: L.players.filter(isStarter).some(isLive)}; }).filter(Boolean);
   if (!rows.length) return "";
+  /* one shared timeline: every kickoff window of the week across all four leagues */
+  const KOS = [...new Set(rows.flatMap(r => [...r.me, ...r.op].map(x => x.ko).filter(Boolean)))].sort((a, b) => a - b);
+  if (!KOS.length) return "";
+  const lab = (t) => { if (t > 1e12 + 1e9 && t < 2e12 && t < 1.5e12) {} const d = new Date(t);
+    if (t >= 1e12 && t < 1.6e12) return ""; /* relative keys get no clock label */
+    const wd = d.toLocaleDateString("en-US", {weekday: "short", timeZone: "America/Los_Angeles"}).toUpperCase();
+    const hm = d.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles"}).replace(":00", "").replace(" AM", "A").replace(" PM", "P");
+    return wd + " " + hm; };
+  const nowT = Date.now(), N = KOS.length, W = 600, H = 132, X0 = 8, X1 = 512, YB = 112, YT = 16, DX = 7, DY = -6;
+  const X = (i) => X0 + (X1 - X0) * (N === 1 ? 1 : (i + 1) / N);
+  const nowX = (() => { if (nowT < KOS[0]) return X0; let i = KOS.findIndex(t => t > nowT); if (i < 0) return X(N - 1) + 14;
+    const a = i === 0 ? X0 : X(i - 1), b = X(i), ta = i === 0 ? KOS[0] - 36e5 : KOS[i - 1]; return a + (b - a) * Math.min(1, Math.max(0, (nowT - ta) / (KOS[i] - ta))); })();
+  const series = (list) => { const out = [0]; for (const t of KOS) out.push(list.filter(x => x.ko && x.ko <= t).reduce((a, x) => a + x.fin, 0)); return out; };
+  const smooth = (pts) => { /* monotone-ish curve through the window points: a soft ramp into each window */
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for (let i = 1; i < pts.length; i++){ const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = x0 + (x1 - x0) * .55;
+      d += ` C${mx.toFixed(1)} ${y0.toFixed(1)} ${(x0 + (x1 - x0) * .7).toFixed(1)} ${y1.toFixed(1)} ${x1.toFixed(1)} ${y1.toFixed(1)}`; }
+    return d; };
   const anim = !window.__btSwept; if (anim && !window.__btT) window.__btT = setTimeout(() => { window.__btSwept = true; window.__btT = 0; }, 6500);
   const LN = (n) => (n || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0];
-  /* Nov 25 8:00 AM (Dom: "no color or nothing in it ... before games"; "they look like his players"): before kickoff the
-     projection IS the bright bar, with both projected scores printed on it; once games start the actual score takes the bright bar
-     and the projection drops back to a ghost. Your biggest still-to-come player sits on your end in your league color, his on his
-     end in grey - never mixed. */
-  const row = (r, i) => { const sh = (a, b) => Math.max(3, Math.min(97, 100 * a / Math.max(1, a + b)));
-    const gS = sh(r.me, r.op), started = r.mn + r.on > 0, aS = started ? sh(r.mn, r.on) : gS, c = HEX[r.k], pmg = r.me - r.op;
-    const zc = (v) => Math.abs(v) < 3 ? "#F7B32B" : v > 0 ? "#3DDC84" : "#FF4D57";
-    const tip = `${DK[r.k]}: ${started ? `actual score ${f1(r.mn)} to ${f1(r.on)} · ` : "not started · "}Ratcliffe's projected final ${f1(r.me)} to ${f1(r.op)} (${pmg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(pmg))}) · ${r.lm.length} of yours and ${r.lo.length} of his still to play${r.live ? " · YOUR PLAYERS ARE ON THE FIELD NOW" : ""} · tap for the league`;
-    const top = (list) => list.slice().sort((a, b) => b.v - a.v)[0];
-    const chip = (x, mine) => x ? `<span class="btc${mine ? " me" : " op"}" title="${esc(`${mine ? "Your" : "His"} biggest still to come: ${x.p.name} - Ratcliffe has ${f1(x.v)} more points`)}">${esc(LN(x.p.name))}<b>${Math.round(x.v)}</b></span>` : `<span class="btc nil">${mine ? "you're done" : "he's done"}</span>`;
-    const L1 = started ? f1(r.mn) : f1(r.me), R1 = started ? f1(r.on) : f1(r.op);
-    return `<div class="btr${r.live ? " live" : ""}${started ? "" : " pre"}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(i * .45).toFixed(2)}s">
-      <b class="btk" style="color:${c}">${DK[r.k]}</b>
-      ${chip(top(r.lm), true)}
-      <div class="btbar">${started ? `<div class="btG${anim ? " sw" : ""}"><span class="btme" style="width:${gS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - gS).toFixed(1)}%"></span></div><span class="btgseam" style="left:${gS.toFixed(1)}%"></span>` : ""}
-        <div class="btA${anim ? " sw" : ""}"><span class="btme" style="width:${aS.toFixed(1)}%"></span><span class="btop" style="width:${(100 - aS).toFixed(1)}%"></span></div>
-        <span class="btseam" style="left:${aS.toFixed(1)}%;--zc:${zc(started ? r.mn - r.on : pmg)}"></span><span class="btmid"></span>
-        <span class="btn l">${L1}</span><span class="btn r">${R1}</span></div>
-      ${chip(top(r.lo), false)}
-      <span class="btv"><b style="color:${zc(started ? r.mn - r.on : pmg)}">${started ? ((r.mn - r.on) >= 0 ? "▲" : "▼") + f1(Math.abs(r.mn - r.on)) : (pmg >= 0 ? "▲" : "▼") + f1(Math.abs(pmg))}</b><em>${started ? `proj ${pmg >= 0 ? "▲" : "▼"}${f1(Math.abs(pmg))}` : "projected"}</em></span></div>`; };
-  /* Nov 25 8:11 AM (Dom: "it should say 7:19 and next one it's going to read" + "the explanation can go underneath it"):
-     same "time · Next time" stamp as every other section; a small how-to-read note under the bars */
+  const zc = (v) => Math.abs(v) < 3 ? "#F7B32B" : v > 0 ? "#3DDC84" : "#FF4D57";
+  const row = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k];
+    const sm = series(r.me), so = series(r.op), top = Math.max(1, ...sm, ...so), Y = (v) => YB - (YB - YT) * v / top;
+    const P = (sr) => sr.map((v, i) => [i === 0 ? X0 : X(i - 1), Y(v)]).concat([[X1 + 22, Y(sr[sr.length - 1])]]);
+    const pm = P(sm), po = P(so), fm = sm[sm.length - 1], fo = so[so.length - 1], mg = fm - fo;
+    const area = (pp, dx = 0, dy = 0) => smooth(pp.map(([x, y]) => [x + dx, y + dy])) + ` L${(X1 + 22 + dx).toFixed(1)} ${(YB + dy).toFixed(1)} L${(X0 + dx).toFixed(1)} ${(YB + dy).toFixed(1)} Z`;
+    const ridge = (pp, dx = 0, dy = 0) => smooth(pp.map(([x, y]) => [x + dx, y + dy]));
+    const nm = r.me.filter(x => x.now > 0 || isDone(x.p) || isLive(x.p)).reduce((a, x) => a + x.now, 0), no = r.op.filter(x => x.now > 0 || isDone(x.p) || isLive(x.p)).reduce((a, x) => a + x.now, 0), started = nm + no > 0;
+    const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
+    const bm = big(r.me), bo = big(r.op);
+    /* the windows that matter most to each side: label every window under the floor once (top row only) */
+    const grid = KOS.map((t, i) => `<line x1="${X(i).toFixed(1)}" y1="${YT - 4}" x2="${X(i).toFixed(1)}" y2="${YB}" class="bmgl"/>`).join("");
+    const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
+    return `<div class="bmr${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(ri * .35).toFixed(2)}s">
+      <div class="bmh"><b style="color:${c}">${DK[r.k]}</b><span class="bmk"><i style="background:${c}"></i>You ${f1(fm)}</span><span class="bmk op"><i></i>Him ${f1(fo)}</span>${started ? `<span class="bmk now">Now ${f1(nm)}–${f1(no)}</span>` : ""}<em style="color:${zc(mg)}">${mg >= 0 ? "▲" : "▼"} ${f1(Math.abs(mg))}</em></div>
+      <svg class="bmsvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><defs>
+        <linearGradient id="${g}m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset=".55" stop-color="${c}" stop-opacity=".55"/><stop offset="1" stop-color="${c}" stop-opacity=".12"/></linearGradient>
+        <linearGradient id="${g}o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D3E6" stop-opacity=".55"/><stop offset="1" stop-color="#5A6680" stop-opacity=".08"/></linearGradient>
+        <linearGradient id="${g}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E1830"/><stop offset="1" stop-color="#060A14"/></linearGradient>
+        <clipPath id="${g}c"><rect class="${anim ? "bmsw" : ""}" x="0" y="0" width="${W}" height="${H}"/></clipPath>
+        <clipPath id="${g}past"><rect x="0" y="0" width="${Math.max(0, nowX).toFixed(1)}" height="${H}"/></clipPath></defs>
+      <path d="M${X0} ${YB} L${X1 + 22} ${YB} L${X1 + 22 + DX} ${YB + DY} L${X0 + DX} ${YB + DY} Z" fill="url(#${g}f)" opacity=".9"/>
+      ${grid}
+      <g clip-path="url(#${g}c)">
+        <path d="${area(po, DX, DY)}" fill="#1A2236" opacity=".85"/><path d="${area(po, DX, DY)}" fill="url(#${g}o)"/><path d="${ridge(po, DX, DY)}" class="bmro"/>
+        <path d="${area(pm, 0, 0)}" fill="#050912" opacity=".55" transform="translate(3 3)"/>
+        <path d="${area(pm)}" fill="url(#${g}m)"/>
+        <path d="${area(pm)}" fill="url(#${g}m)" opacity=".55" clip-path="url(#${g}past)"/>
+        <path d="${ridge(pm)}" class="bmrm" style="stroke:${c}"/><path d="${ridge(pm)}" class="bmrs"/>
+      </g>
+      ${nowX > X0 && nowX < W ? `<line x1="${nowX.toFixed(1)}" y1="${YT - 10}" x2="${nowX.toFixed(1)}" y2="${YB + 2}" class="bmnow"/><text x="${nowX.toFixed(1)}" y="${YT - 12}" class="bmnt">NOW</text>` : ""}
+      <text x="${X1 + 30}" y="${(Math.min(Y(fm), Y(fo) - 2) + 4).toFixed(1)}" class="bmf" style="fill:${c}">${f1(fm)}</text>
+      <text x="${X1 + 30 + DX}" y="${(Math.max(Y(fo) + DY, Y(fm) + 13) + 4).toFixed(1)}" class="bmf op">${f1(fo)}</text>
+      ${ri === rows.length - 1 ? KOS.map((t, i) => `<text x="${X(i).toFixed(1)}" y="${H - 4}" class="bmtl">${lab(t)}</text>`).join("") : ""}
+      </svg>
+      <div class="bmsw2"><span>${bm ? `Your biggest still to come: <b style="color:${c}">${esc(LN(bm.p.name))} ${Math.round(bm.fin - bm.now)}</b>` : "You're done"}</span><span>${bo ? `His: <b>${esc(LN(bo.p.name))} ${Math.round(bo.fin - bo.now)}</b>` : "He's done"}</span></div></div>`; };
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow"><b>How to read it:</b> one tug-of-war line per league - you fill from the left in your color, him from the right in grey; past the dashed gold line, you're ahead. Before kickoff it shows Ratcliffe's projected final; once games start, the bright bar is the real score and the faded bar the projected final. Side boxes = each team's player with the most points still to come; far right = the margin. Updates with each Yahoo read.</div>`;
-  return `<section class="frame msec btsec" id="msBtl"><span class="lab">Battle Meter</span><span class="lsub">${sub}</span><div class="btlw">${rows.map(row).join("")}</div>${how}</section>`;
+  const how = `<div class="bthow"><b>How to read it:</b> each league is a 3D mountain across the weekend, left to right through every kickoff (Thursday to Monday night). Your mountain (your color, in front) climbs as your starters play; his (grey, behind) climbs as his do. Height = points piled up so far by Ratcliffe's numbers, or the real score once a man has played. Where yours stands taller, you're ahead at that point of the weekend. The NOW line splits what's happened (brighter) from what's still to come. Numbers at the right = projected finals; ▲/▼ = the margin.</div>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw">${rows.map(row).join("")}</div>${how}</section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
