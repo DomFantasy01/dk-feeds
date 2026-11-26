@@ -3340,6 +3340,29 @@ function battleChart(){
      row has a center line; YOUR mountain rises UP from it in your league color, HIS hangs DOWN from it in grey. They can never overlap,
      so there's no mixing the two up. Bigger peak = more points by that point of the weekend. Right side: your final (top), his (bottom),
      margin between. */
+  /* Nov 26 3:17 PM (Dom: the texture "looks like concrete. Not mountains. Get some mountains. And there's got to be some separation so I
+     can tell what's what"): real mountain ridges - the ridge line is a chain of sharp peaks that follows the score curve, every peak
+     has a lit left face and a shadowed right face, the tall peaks of YOUR range carry snow caps. HIS range stands behind yours as a dark
+     slate silhouette with no color and no snow, so the two can't be mixed up. */
+  const MT = (pp, base, TALL, seed, mine, c, g) => {
+    let sd2 = seed * 7919 % 233280 || 1; const rr = () => (sd2 = (sd2 * 9301 + 49297) % 233280) / 233280;
+    const yAt = (x) => { for (let i = 1; i < pp.length; i++){ const [x0, y0] = pp[i - 1], [x1, y1] = pp[i]; if (x <= x1){ const t = Math.max(0, Math.min(1, (x - x0) / Math.max(1e-6, x1 - x0))); const e = t * t * (3 - 2 * t); return y0 + (y1 - y0) * e; } } return pp[pp.length - 1][1]; };
+    const x0 = pp[0][0], x1 = pp[pp.length - 1][0], pts = [];
+    let x = x0, up = true; while (x < x1){ const y = yAt(x), h = base - y, j = (mine ? 11 : 9) * (0.45 + rr() * .55) * Math.min(1, .2 + h / TALL);
+      pts.push([x, up ? Math.max(base - TALL - 8, y - j) : Math.min(base, y + j * .55)]); up = !up; x += 13 + rr() * 15; }
+    pts.push([x1, yAt(x1)]);
+    const ridge = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L");
+    const body = ridge + ` L${x1} ${base} L${x0} ${base} Z`;
+    let faces = "", snow = "";
+    for (let i = 1; i < pts.length - 1; i++){ const [px, py] = pts[i], [qx, qy] = pts[i + 1], [ox, oy] = pts[i - 1];
+      if (py < oy && py < qy){   /* a peak: shade its right face down toward the base */
+        faces += `M${px.toFixed(1)} ${py.toFixed(1)} L${qx.toFixed(1)} ${qy.toFixed(1)} L${qx.toFixed(1)} ${base} L${px.toFixed(1)} ${base} Z`;
+        if (mine && base - py > TALL * .55){ const sx = (qx - px) * .32, sy = (qy - py) * .32, lx = (ox - px) * .32, ly = (oy - py) * .32;
+          snow += `M${px.toFixed(1)} ${py.toFixed(1)} L${(px + sx).toFixed(1)} ${(py + sy).toFixed(1)} L${(px + sx * .4).toFixed(1)} ${(py + Math.max(sy, ly) * .75).toFixed(1)} L${(px + lx * .5).toFixed(1)} ${(py + ly * .9).toFixed(1)} L${(px + lx).toFixed(1)} ${(py + ly).toFixed(1)} Z`; } } }
+    return mine
+      ? `<path d="${body}" fill="url(#${g}m)"/><path d="${faces}" fill="url(#bmface)" opacity=".55"/><path d="${snow}" fill="#F4F8FF" opacity=".92"/><path d="${ridge}" fill="none" stroke="${c}" stroke-width="1.6" stroke-linejoin="round"/>`
+      : `<path d="${body}" fill="#2A303D"/><path d="${faces}" fill="url(#bmface)" opacity=".5"/><path d="${ridge}" fill="none" stroke="#8C94A5" stroke-width="1.2" stroke-linejoin="round" opacity=".9"/>`;
+  };
   const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), mid = fl - BH / 2 + 6, HALF = BH / 2 - 9;
     const base = mid + HALF, TALL = HALF * 2;   /* Nov 26 2:59 PM (Dom: "they should be on a baseline rather than go on its own line"): both mountains stand on one baseline */
     const sm = series(r.me), so = series(r.op), xs = (sr) => sr.map((v, i) => i === 0 ? PL - 12 : X2(i - 1)).concat([PR + 6]);
@@ -3350,15 +3373,12 @@ function battleChart(){
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
     const sw = anim ? " bmg sw" : " bmg";   /* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league's mountains draw in left to right, DK1 first; replays on the motion tour */
     return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .45).toFixed(2)}s"><title>${esc(tip)}</title>
-      <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity=".35"/></linearGradient>
+      <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset=".55" stop-color="color-mix(in srgb, ${c} 70%, #0A0F1C)"/><stop offset="1" stop-color="color-mix(in srgb, ${c} 35%, #070B16)"/></linearGradient>
         <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
       <g class="${sw.trim()}">
-        <path d="${area(po)}" fill="#3A4050" opacity=".55"/><path d="${area(po)}" fill="#9AA0AC" filter="url(#bmrock)" opacity=".35"/>
-        <path d="${area(pm)}" fill="url(#${g}m)"/><path d="${area(pm)}" fill="#fff" filter="url(#bmrock)" opacity=".42" class="bmrockf"/>
-        <path d="${area(pm)}" fill="url(#bmsnow)" opacity=".5"/>
-        <path d="${smooth(pm)}" class="bmrm" style="stroke:${c}"/>
-        <path d="${smooth(po)}" class="bmro2"/>
+        ${MT(po, base, TALL, 3 + ri * 7, false, c)}
+        ${MT(pm, base, TALL, 11 + ri * 13, true, c, g)}
       </g>
       <line x1="${PL - 12}" y1="${base}" x2="${PR + 6}" y2="${base}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
@@ -3385,6 +3405,7 @@ function battleChart(){
         <feComponentTransfer in="l" result="lc"><feFuncA type="table" tableValues="0 .9"/><feFuncR type="linear" slope="1.1"/><feFuncG type="linear" slope="1.1"/><feFuncB type="linear" slope="1.15"/></feComponentTransfer>
         <feComposite in="lc" in2="SourceGraphic" operator="in" result="t"/><feBlend in="t" in2="SourceGraphic" mode="multiply"/></filter>
       <linearGradient id="bmsnow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".12" stop-color="#fff" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="bmface" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02040A" stop-opacity=".85"/><stop offset="1" stop-color="#02040A" stop-opacity=".15"/></linearGradient>
       <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
         <animate attributeName="x1" values="-1;1" dur="14s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="14s" repeatCount="indefinite"/></linearGradient></defs>
@@ -3394,7 +3415,7 @@ function battleChart(){
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Color mountain = you · grey line = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Colored range with snow = you · dark grey range behind = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
