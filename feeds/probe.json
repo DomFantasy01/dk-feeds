@@ -1,5 +1,5 @@
 {
- "pulled_utc": "2026-11-26T19:05:25+00:00",
+ "pulled_utc": "2026-11-26T19:09:26+00:00",
  "probes": {
   "espn_injuries_team1": {
    "answered": true,
@@ -45,8 +45,11 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   "google_news_nfl_injury": {
-   "answered": false,
-   "error": "HTTPError: HTTP Error 503: Service Unavailable"
+   "answered": true,
+   "kind": "rss",
+   "items": 74,
+   "newest_utc": "2026-11-26T16:55+00:00",
+   "bytes": 91132
   },
   "rotowire_mirror": {
    "answered": false,
