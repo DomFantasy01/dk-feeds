@@ -1155,29 +1155,30 @@ function battleChart(){
      so there's no mixing the two up. Bigger peak = more points by that point of the weekend. Right side: your final (top), his (bottom),
      margin between. */
   const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), mid = fl - BH / 2 + 6, HALF = BH / 2 - 9;
+    const base = mid + HALF, TALL = HALF * 2;   /* Nov 26 2:59 PM (Dom: "they should be on a baseline rather than go on its own line"): both mountains stand on one baseline */
     const sm = series(r.me), so = series(r.op), xs = (sr) => sr.map((v, i) => i === 0 ? PL - 12 : X2(i - 1)).concat([PR + 6]);
-    const P = (sr, dir) => { const xx = xs(sr), vv = sr.concat([sr[sr.length - 1]]); return vv.map((v, i) => [xx[i], mid + dir * HALF * v / TOPV]); };
-    const pm = P(sm, -1), po = P(so, 1), fm = sm[sm.length - 1], fo = so[so.length - 1], mg = fm - fo;
-    const area = (pp) => smooth(pp) + ` L${PR + 6} ${mid} L${PL - 12} ${mid} Z`;
+    const P = (sr) => { const xx = xs(sr), vv = sr.concat([sr[sr.length - 1]]); return vv.map((v, i) => [xx[i], base - TALL * v / TOPV]); };
+    const pm = P(sm), po = P(so), fm = sm[sm.length - 1], fo = so[so.length - 1], mg = fm - fo;
+    const area = (pp) => smooth(pp) + ` L${PR + 6} ${base} L${PL - 12} ${base} Z`;
     const nm = r.me.reduce((a, x) => a + x.now, 0), no = r.op.reduce((a, x) => a + x.now, 0), started = nm + no > 0;
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
     const sw = anim ? " bmsw" : "";
     return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .3).toFixed(2)}s"><title>${esc(tip)}</title>
-      <defs><linearGradient id="${g}m" x1="0" y1="${(mid - HALF).toFixed(0)}" x2="0" y2="${mid}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity=".35"/></linearGradient>
+      <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity=".35"/></linearGradient>
         <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
       <g class="${sw.trim()}">
+        <path d="${area(po)}" fill="#3A4050" opacity=".55"/><path d="${area(po)}" fill="url(#bmtex2)"/>
         <path d="${area(pm)}" fill="url(#${g}m)"/>
         <path d="${smooth(pm)}" class="bmrm" style="stroke:${c}"/>
-        <path d="${area(po)}" fill="url(#${g}o)"/><path d="${area(po)}" fill="url(#bmtex2)"/>
         <path d="${smooth(po)}" class="bmro2"/>
       </g>
-      <line x1="${PL - 12}" y1="${mid}" x2="${PR + 6}" y2="${mid}" class="bmmid"/>
+      <line x1="${PL - 12}" y1="${base}" x2="${PR + 6}" y2="${base}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
       ${started ? `<text x="${PL + 2}" y="${(mid - HALF + 28).toFixed(1)}" class="bmyh">NOW <tspan style="fill:${c}">${f1(nm)}</tspan><tspan class="bmyv">–</tspan>${f1(no)}</text>` : ""}
-      <text x="${PR + 15}" y="${(mid - 9).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
-      <text x="${PR + 15}" y="${(mid + 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
-      <text x="${PR + 15}" y="${(mid + 6).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; };
+      <text x="${PR + 15}" y="${(base - 38).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
+      <text x="${PR + 15}" y="${(base - 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
+      <text x="${PR + 15}" y="${(base - 3).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; };
   /* perspective floor: lines run from the bottom edge to a vanishing point above the range */
   const VPX = (PL + PR) / 2, VPY = TOP - 60, FB = FLOOR(NB - 1) + 22;
   const floor = Array.from({length: 17}, (_, i) => { const x = PL - 40 + (PR - PL + 80) * i / 16; return `<line x1="${x.toFixed(1)}" y1="${FB}" x2="${(VPX + (x - VPX) * .18).toFixed(1)}" y2="${VPY}" class="bmfl"/>`; }).join("")
@@ -1201,7 +1202,7 @@ function battleChart(){
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Up in color = you · down in grey = him · right = your final, margin, his final.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Color mountain = you · grey line = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
