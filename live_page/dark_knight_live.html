@@ -3318,7 +3318,7 @@ function battleChart(){
         <clipPath id="${g}ah"><path d="${above(po)}"/></clipPath><clipPath id="${g}am"><path d="${above(pm)}"/></clipPath></defs>
       <rect x="0" y="${fl - LIFT - 8}" width="${W2}" height="${LIFT + 12}" fill="transparent"/>
       <g class="${sw.trim()}">
-        <path d="${area(po)}" class="bmopf" transform="translate(${ED} ${EU})"/>
+        <path d="${area(po)}" class="bmopf" transform="translate(${ED} ${EU})"/><path d="${area(po)}" fill="url(#bmtex2)" transform="translate(${ED} ${EU})"/>
         <path d="${area(pm)}" fill="${c}" opacity=".28" transform="translate(${ED} ${EU})"/><path d="${area(pm)}" fill="url(#${g}s)" transform="translate(${ED} ${EU})"/>
         <path d="${area(pm)}" fill="url(#${g}m)"/>
         <path d="${area(pm)}" class="bmlead" clip-path="url(#${g}ah)"/>
@@ -3350,6 +3350,7 @@ function battleChart(){
       <linearGradient id="bmbeam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
       <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
       <pattern id="bmtex" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="6" height="6" fill="none"/><line x1="0" y1="0" x2="0" y2="6" stroke="#fff" stroke-opacity=".10" stroke-width="1.2"/></pattern>
+      <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
         <animate attributeName="x1" values="-1;1" dur="14s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="14s" repeatCount="indefinite"/></linearGradient></defs>
     <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${aur}${stars}${floor}${ticks}${rows.map(band).join("")}${nowLine}
