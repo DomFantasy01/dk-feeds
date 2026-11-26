@@ -2923,6 +2923,10 @@ function scoreGlobe(L, k, o){
     /* Nov 25 (Dom: "have them blink if anything's been updated on them in the last 24 hours"): this browser remembers each league's
        weather picture; when it changes, the umbrella softly pulses for 24 hours, then sits still until it changes again */
     const wxNew = (() => { try { const all0 = store.get("wxsig", {}), sig = tip.replace(/ · early forecast/, ""), cur = all0[k];
+      /* Nov 26 9:52 AM (Dom: "reset if there's any umbrellas ... reset them all"): one-time reset - each league's umbrella takes today's
+         9:42 AM weather as its starting picture and sits still; it pulses again only when that weather changes */
+      const RS = store.get("wxreset", {}); if (RS.id !== "2026-11-26a"){ RS.id = "2026-11-26a"; RS.done = []; }
+      if (!RS.done.includes(k)){ all0[k] = {sig, at: Date.now(), seen: true}; store.set("wxsig", all0); RS.done.push(k); store.set("wxreset", RS); return false; }
       if (!cur || cur.sig !== sig){ all0[k] = {sig, at: Date.now()}; store.set("wxsig", all0); return true; } return !cur.seen; }   /* Nov 25 4:40 PM (Dom): blinks until he opens it, then still until the weather changes */ catch(_){ return false; } })();
     return `<g class="gwx tap${wxNew ? " wxnew" : ""}" data-wxl="${SLUG[k]}" role="button" aria-label="${esc(tip)}"><title>${esc(tip)}</title><circle cx="110.5" cy="13" r="11.4" fill="${WXC[lv]}" stroke="#0A1020" stroke-width="1.4"/>
       <text x="110.5" y="17.6" text-anchor="middle" class="gwxu">☂</text>${nb ? `<circle cx="119" cy="5.4" r="5" fill="#0A1020" stroke="${WXC[lv]}" stroke-width="1.2"/><text x="119" y="8.1" text-anchor="middle" class="gwxn" style="fill:${WXC[lv]}">${nb}</text>` : ""}</g>`; })();
