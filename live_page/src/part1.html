@@ -2092,4 +2092,14 @@ html.calm .bmall .bmshim{display:none}
 .bmall .bmrm{stroke-width:2.6 !important;filter:drop-shadow(0 0 4px var(--lc)) !important}
 .bmall .bmopp{display:none}
 .bmall path[stroke="#E9E4D8"]{stroke:#D9DCE2 !important;stroke-opacity:.7 !important;stroke-width:1.3 !important}
+/* Nov 26 2:44 PM (Dom: "Drop the fuse. Slow down the machine. And my competitor ... lines are still too bright ... you can't delineate
+   me from my opponent ... They got to be gray"): fuse gone; shimmer, beacons, stars and the NOW beam all run at a third of the speed;
+   his ridge is a dim grey hairline and his mountain a muted grey, so your colored mountain is the only bright thing in each row */
+.bmall .bmrun{display:none !important}
+.bmall path[stroke="#E9E4D8"]{stroke:#7E8594 !important;stroke-opacity:.6 !important;stroke-width:1.1 !important}
+.bmall .bmopf{fill:#7E8594 !important;opacity:.28 !important}
+.bmall circle[fill="#E6ECF8"]{fill:#7E8594 !important}
+@media (prefers-reduced-motion:no-preference){
+  .bmall .bmbeac{animation-duration:6s !important}.bmall .bmst{animation-duration:10s !important}.bmall .bmbeam{animation-duration:7s !important}
+  .bmall .bmb.live .bmrm{animation-duration:6s !important}.bmall .bmsw{animation-duration:2.4s !important}}
 </style>

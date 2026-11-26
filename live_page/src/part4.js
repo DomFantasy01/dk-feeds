@@ -1197,7 +1197,7 @@ function battleChart(){
       <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
       <pattern id="bmtex" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="6" height="6" fill="none"/><line x1="0" y1="0" x2="0" y2="6" stroke="#fff" stroke-opacity=".10" stroke-width="1.2"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-        <animate attributeName="x1" values="-1;1" dur="4.5s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="4.5s" repeatCount="indefinite"/></linearGradient></defs>
+        <animate attributeName="x1" values="-1;1" dur="14s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="14s" repeatCount="indefinite"/></linearGradient></defs>
     <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${aur}${stars}${floor}${ticks}${rows.map(band).join("")}${nowLine}
     <text x="${PR + 15}" y="${TOP - 14}" class="bmhd">YOU / HIM</text></svg>`;
   const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
