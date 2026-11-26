@@ -1097,6 +1097,15 @@ const SRCID = {r: "ratcliffe", o: "drroto", k: "koerner", c: "clay", v: "vegas",
    bar: everyone still to play, yours on the left, his on the right, each with Ratcliffe's projection; the two men most likely to swing
    it (biggest projections left, either side) glow gold. Rebuilds with every sync; the bars sweep in on the page's motion tour and a
    slow light runs along each seam. Tap a league to open it. */
+/* Nov 26 3:50 PM (Dom: "at the beginning of the animation ... some flickering dots before it goes ... just build each mountain across
+   nice and slow ... redo that every five minutes or something ... or stagger them"): the mountains start hidden (no flash of the finished
+   chart), then each league builds left to right over 4 s, one league after another (DK1, then DK2 ...), and the whole range rebuilds
+   the same way every 5 minutes. Re-renders from data syncs no longer restart the animation, which is what made it flicker. */
+window.bmPlay = function(){ if (document.documentElement.classList.contains("calm")) { document.querySelectorAll(".bmall .pre").forEach(el => el.classList.remove("pre")); window.__bmPlayed = true; return; }
+  const els = document.querySelectorAll(".bmall .bmg, .bmall .bmfin"); if (!els.length) return;
+  els.forEach(el => { el.classList.remove("sw"); el.classList.remove("pre"); el.classList.add("pre"); }); void document.body.offsetWidth;
+  els.forEach(el => { el.classList.remove("pre"); el.classList.add("sw"); }); window.__bmPlayed = true; };
+if (!window.__bmTimer){ window.__bmTimer = setInterval(() => { if (!document.hidden) window.bmPlay(); }, 300000); setTimeout(() => window.bmPlay(), 1200); }
 function battleChart(){
   /* Nov 26 1:14 PM (Dom: "take the battle meter and turn it into ... a mountain chart or something that's in 3D ... utilizes all the
      space ... make it look super cool and work"): BATTLE MOUNTAINS - one 3D ridge per league across the whole weekend. Left to right
@@ -1185,8 +1194,8 @@ function battleChart(){
     const area = (pp) => smooth(pp) + ` L${PR + 6} ${base} L${PL - 12} ${base} Z`;
     const nm = r.me.reduce((a, x) => a + x.now, 0), no = r.op.reduce((a, x) => a + x.now, 0), started = nm + no > 0;
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
-    const sw = anim ? " bmg sw" : " bmg";   /* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league's mountains draw in left to right, DK1 first; replays on the motion tour */
-    return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .45).toFixed(2)}s"><title>${esc(tip)}</title>
+    const sw = window.__bmPlayed ? " bmg" : " bmg pre";   /* Nov 26 3:50 PM (Dom): no class-driven restart on every re-render - bmPlay() runs the build */   /* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league's mountains draw in left to right, DK1 first; replays on the motion tour */
+    return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * 4)}s"><title>${esc(tip)}</title>
       <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset=".55" stop-color="color-mix(in srgb, ${c} 70%, #0A0F1C)"/><stop offset="1" stop-color="color-mix(in srgb, ${c} 35%, #070B16)"/></linearGradient>
         <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
@@ -1197,7 +1206,7 @@ function battleChart(){
       <line x1="${PL - 12}" y1="${base}" x2="${PR + 6}" y2="${base}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
       ${started ? `<text x="${PL + 2}" y="${(mid - HALF + 28).toFixed(1)}" class="bmyh">NOW <tspan style="fill:${c}">${f1(nm)}</tspan><tspan class="bmyv">–</tspan>${f1(no)}</text>` : ""}
-      <g class="bmfin${anim ? " sw" : ""}"><text x="${PR + 15}" y="${(base - 38).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
+      <g class="bmfin${window.__bmPlayed ? "" : " pre"}"><text x="${PR + 15}" y="${(base - 38).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
       <text x="${PR + 15}" y="${(base - 21).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
       <text x="${PR + 15}" y="${(base - 3).toFixed(1)}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g></g>`; };
   /* perspective floor: lines run from the bottom edge to a vanishing point above the range */
@@ -2082,7 +2091,7 @@ document.addEventListener("click", async (e) => {
    minutes during games.) */
 window.wgReplay = function(sel){ if (document.documentElement.classList.contains("calm")) return; const ns = document.querySelectorAll(sel || ".wgd .wgN, .sgauge .sgF, .btlw .btA, .btlw .btG"); if (!ns.length) return;
   ns.forEach(el => el.classList.remove("sw")); void document.body.offsetWidth; ns.forEach(el => el.classList.add("sw")); };
-(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG", ".bmall .bmg, .bmall .bmfin"]; let i = 0;
+(() => { const STOPS = [".sgauge .sgF", ".wgd .wgN", ".btlw .btA, .btlw .btG"]; let i = 0;
   setInterval(() => { if (document.hidden) return; window.wgReplay(STOPS[i % STOPS.length]); i++; }, 30000); })();
 document.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".al,.mtr,[data-xal]")){ e.preventDefault(); e.target.click(); } });
 document.addEventListener("keydown", (e) => {

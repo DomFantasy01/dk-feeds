@@ -2134,4 +2134,10 @@ html.calm .bmall .bmshim{display:none}
   .bmall .bmfin.sw{animation:bmfin .6s ease-out both;animation-delay:calc(var(--d,0s) + 1.9s)}
   @keyframes bmfin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}}
 html.calm .bmall .bmg.sw,html.calm .bmall .bmfin.sw{animation:none !important}
+/* Nov 26 3:50 PM: slow one-league-at-a-time build, every 5 minutes, no flicker */
+.bmall .bmg.pre{clip-path:inset(0 100% 0 0)}.bmall .bmfin.pre{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .bmall .bmg.sw{animation:bmwipe 4s cubic-bezier(.4,0,.3,1) both !important;animation-delay:var(--d,0s) !important}
+  .bmall .bmfin.sw{animation:bmfin .9s ease-out both !important;animation-delay:calc(var(--d,0s) + 3.6s) !important}}
+@media (prefers-reduced-motion:reduce){.bmall .bmg.pre{clip-path:none}.bmall .bmfin.pre{opacity:1}}
 </style>
