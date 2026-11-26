@@ -1167,9 +1167,10 @@ function battleChart(){
         <path d="${area(pm)}" fill="${c}" opacity=".28" transform="translate(${ED} ${EU})"/><path d="${area(pm)}" fill="url(#${g}s)" transform="translate(${ED} ${EU})"/>
         <path d="${area(pm)}" fill="url(#${g}m)"/>
         <path d="${area(pm)}" class="bmlead" clip-path="url(#${g}ah)"/>
-        <path d="${area(po)}" class="bmtrail" clip-path="url(#${g}am)"/>
-        <path d="${smooth(po)}" fill="none" stroke="#E6ECF8" stroke-opacity=".9" stroke-width="1.7" stroke-dasharray="5 3"/>
-        <path class="bmrm" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs" d="${smooth(pm)}"/>
+        <path d="${area(pm)}" fill="url(#bmtex)" opacity=".55"/><path d="${area(pm)}" fill="url(#bmshim)" class="bmshim"/>
+        <path d="${area(po)}" class="bmopp" clip-path="url(#${g}am)"/>
+        <path d="${smooth(po)}" fill="none" stroke="#E9E4D8" stroke-opacity=".95" stroke-width="1.8"/>
+        <path class="bmrm" d="${smooth(pm)}"/><path class="bmrs" d="${smooth(pm)}"/>
         <path class="bmrun" d="${smooth(pm)}" pathLength="100"/>
       </g>
       <line x1="${PL - 12}" y1="${fl}" x2="${PR + 6}" y2="${fl}" stroke="${c}" stroke-opacity=".45" stroke-width="1.2"/>
@@ -1192,14 +1193,17 @@ function battleChart(){
   const svg = `<svg class="bmall" viewBox="0 0 ${W2} ${H2}" aria-hidden="false" role="img" aria-label="Battle Mountains - all four leagues"><defs>
       <linearGradient id="bmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1330"/><stop offset=".55" stop-color="#070C1C"/><stop offset="1" stop-color="#03050B"/></linearGradient>
       <linearGradient id="bmbeam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-      <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter></defs>
+      <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+      <pattern id="bmtex" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="6" height="6" fill="none"/><line x1="0" y1="0" x2="0" y2="6" stroke="#fff" stroke-opacity=".10" stroke-width="1.2"/></pattern>
+      <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        <animate attributeName="x1" values="-1;1" dur="4.5s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="4.5s" repeatCount="indefinite"/></linearGradient></defs>
     <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${aur}${stars}${floor}${ticks}${rows.map(band).join("")}${nowLine}
     <text x="${PR + 15}" y="${TOP - 14}" class="bmhd">YOU / HIM</text></svg>`;
   const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
   const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow">Solid = you · dashed = him · right side = projected finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
+  const how = `<div class="bthow">Color with gold ridge = you · off-white = him · green = where you lead · right side = finals and margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
   return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){

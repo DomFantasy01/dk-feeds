@@ -2063,4 +2063,14 @@ html body .wpx .wxr6 .wxk{filter:brightness(.9)}
   .bmall .bmsw{animation:bmrise 1.4s cubic-bezier(.2,.9,.25,1) both;animation-delay:var(--d,0s);transform-box:view-box;transform-origin:50% 100%}
   @keyframes bmrise{from{transform:scaleY(.05);opacity:0}to{transform:scaleY(1);opacity:1}}}
 html.calm .bmall *{animation:none !important}
+/* Nov 26 2:35 PM (Dom: "the lines above the Battle Mountain in gold ... shimmer the mountains ... texture"; opponent "a gray or off white
+   ... on all of the ones that are not me ... can't confuse it with me"): your ridge lines are gold, your mountains carry a fine diagonal
+   texture with a shimmer sweeping across them; his side is off-white only (ridge line + a light off-white fill where he's ahead) - no red */
+.bmall .bmrm{stroke:#EFD23E !important;stroke-width:3.2;filter:drop-shadow(0 0 4px rgba(239,210,62,.9)) drop-shadow(0 0 9px rgba(239,210,62,.45)) !important}
+.bmall .bmrs{stroke:#FFF6C8;stroke-opacity:.8}
+.bmall .bmopp{fill:#E9E4D8;opacity:.22}
+.bmall .bmtrail{display:none}
+.bmall .bmrun{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #EFD23E)}
+html.calm .bmall .bmshim{display:none}
+@media (prefers-reduced-motion:reduce){.bmall .bmshim{display:none}}
 </style>
