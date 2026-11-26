@@ -1168,8 +1168,9 @@ function battleChart(){
         <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
       <g class="${sw.trim()}">
-        <path d="${area(po)}" fill="#3A4050" opacity=".55"/><path d="${area(po)}" fill="url(#bmtex2)"/>
-        <path d="${area(pm)}" fill="url(#${g}m)"/>
+        <path d="${area(po)}" fill="#3A4050" opacity=".55"/><path d="${area(po)}" fill="#9AA0AC" filter="url(#bmrock)" opacity=".35"/>
+        <path d="${area(pm)}" fill="url(#${g}m)"/><path d="${area(pm)}" fill="#fff" filter="url(#bmrock)" opacity=".42" class="bmrockf"/>
+        <path d="${area(pm)}" fill="url(#bmsnow)" opacity=".5"/>
         <path d="${smooth(pm)}" class="bmrm" style="stroke:${c}"/>
         <path d="${smooth(po)}" class="bmro2"/>
       </g>
@@ -1193,6 +1194,11 @@ function battleChart(){
       <linearGradient id="bmbeam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
       <filter id="bmblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
       <pattern id="bmtex" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="6" height="6" fill="none"/><line x1="0" y1="0" x2="0" y2="6" stroke="#fff" stroke-opacity=".10" stroke-width="1.2"/></pattern>
+      <filter id="bmrock" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".055 .11" numOctaves="4" seed="11" result="n"/>
+        <feDiffuseLighting in="n" surfaceScale="2.6" lighting-color="#fff" result="l"><feDistantLight azimuth="235" elevation="38"/></feDiffuseLighting>
+        <feComponentTransfer in="l" result="lc"><feFuncA type="table" tableValues="0 .9"/><feFuncR type="linear" slope="1.1"/><feFuncG type="linear" slope="1.1"/><feFuncB type="linear" slope="1.15"/></feComponentTransfer>
+        <feComposite in="lc" in2="SourceGraphic" operator="in" result="t"/><feBlend in="t" in2="SourceGraphic" mode="multiply"/></filter>
+      <linearGradient id="bmsnow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".12" stop-color="#fff" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity="0"/></linearGradient>
       <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
         <animate attributeName="x1" values="-1;1" dur="14s" repeatCount="indefinite"/><animate attributeName="x2" values="0;2" dur="14s" repeatCount="indefinite"/></linearGradient></defs>
