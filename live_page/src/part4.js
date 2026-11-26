@@ -1135,45 +1135,45 @@ function battleChart(){
   const anim = !window.__btSwept; if (anim && !window.__btT) window.__btT = setTimeout(() => { window.__btSwept = true; window.__btT = 0; }, 6500);
   const LN = (n) => (n || "").replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, "").split(" ").slice(-1)[0];
   const zc = (v) => Math.abs(v) < 3 ? "#F7B32B" : v > 0 ? "#3DDC84" : "#FF4D57";
-  const row = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k];
-    const sm = series(r.me), so = series(r.op), top = Math.max(1, ...sm, ...so), Y = (v) => YB - (YB - YT) * v / top;
-    const P = (sr) => sr.map((v, i) => [i === 0 ? X0 : X(i - 1), Y(v)]).concat([[X1 + 22, Y(sr[sr.length - 1])]]);
+  /* Nov 26 1:17 PM (Dom: "combine the charts that I can get everything on one page. Make it look real good"): all four leagues in ONE
+     3D mountain range - DK1 at the back, DK4 in front, each ridge rising out of its own band and overlapping the one behind it.
+     One shared weekend timeline along the bottom, one NOW line through all four. Your ridge = solid league color; his = the thin grey
+     ridge in the same band. Each band's right edge: your projected final, his, and the margin. Tap a band to open that league. */
+  const NB = rows.length, PL = 46, PR = 500, BH = 58, LIFT = 66, TOP = 30, W2 = 600, FLOOR = (i) => TOP + LIFT + i * BH, H2 = FLOOR(NB - 1) + 34;
+  const X2 = (i) => PL + (PR - PL) * (N === 1 ? 1 : (i + 1) / N);
+  const now2 = (() => { if (nowT < KOS[0]) return PL; let i = KOS.findIndex(t => t > nowT); if (i < 0) return PR + 10;
+    const a = i === 0 ? PL : X2(i - 1), b = X2(i), ta = i === 0 ? KOS[0] - 36e5 : KOS[i - 1]; return a + (b - a) * Math.min(1, Math.max(0, (nowT - ta) / (KOS[i] - ta))); })();
+  const TOPV = Math.max(1, ...rows.flatMap(r => [series(r.me).pop(), series(r.op).pop()]));
+  const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), Y = (v) => fl - LIFT * v / TOPV;
+    const sm = series(r.me), so = series(r.op), P = (sr) => sr.map((v, i) => [i === 0 ? PL - 6 : X2(i - 1), Y(v)]).concat([[PR + 8, Y(sr[sr.length - 1])]]);
     const pm = P(sm), po = P(so), fm = sm[sm.length - 1], fo = so[so.length - 1], mg = fm - fo;
-    const area = (pp, dx = 0, dy = 0) => smooth(pp.map(([x, y]) => [x + dx, y + dy])) + ` L${(X1 + 22 + dx).toFixed(1)} ${(YB + dy).toFixed(1)} L${(X0 + dx).toFixed(1)} ${(YB + dy).toFixed(1)} Z`;
-    const ridge = (pp, dx = 0, dy = 0) => smooth(pp.map(([x, y]) => [x + dx, y + dy]));
-    const nm = r.me.filter(x => x.now > 0 || isDone(x.p) || isLive(x.p)).reduce((a, x) => a + x.now, 0), no = r.op.filter(x => x.now > 0 || isDone(x.p) || isLive(x.p)).reduce((a, x) => a + x.now, 0), started = nm + no > 0;
-    const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
-    const bm = big(r.me), bo = big(r.op);
-    /* the windows that matter most to each side: label every window under the floor once (top row only) */
-    const grid = KOS.map((t, i) => `<line x1="${X(i).toFixed(1)}" y1="${YT - 4}" x2="${X(i).toFixed(1)}" y2="${YB}" class="bmgl"/>`).join("");
+    const area = (pp) => smooth(pp) + ` L${PR + 8} ${fl} L${PL - 6} ${fl} Z`;
+    const nm = r.me.reduce((a, x) => a + x.now, 0), no = r.op.reduce((a, x) => a + x.now, 0), started = nm + no > 0;
     const tip = `${DK[r.k]}: Ratcliffe's projected final ${f1(fm)} to ${f1(fo)} (${mg >= 0 ? "ahead by " : "behind by "}${f1(Math.abs(mg))})${started ? ` · real score so far ${f1(nm)} to ${f1(no)}` : ""} · tap for the league`;
-    return `<div class="bmr${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" title="${esc(tip)}" style="--lc:${c};--d:${(ri * .35).toFixed(2)}s">
-      <div class="bmh"><b style="color:${c}">${DK[r.k]}</b><span class="bmk"><i style="background:${c}"></i>You ${f1(fm)}</span><span class="bmk op"><i></i>Him ${f1(fo)}</span>${started ? `<span class="bmk now">Now ${f1(nm)}–${f1(no)}</span>` : ""}<em style="color:${zc(mg)}">${mg >= 0 ? "▲" : "▼"} ${f1(Math.abs(mg))}</em></div>
-      <svg class="bmsvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><defs>
-        <linearGradient id="${g}m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset=".55" stop-color="${c}" stop-opacity=".55"/><stop offset="1" stop-color="${c}" stop-opacity=".12"/></linearGradient>
-        <linearGradient id="${g}o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D3E6" stop-opacity=".55"/><stop offset="1" stop-color="#5A6680" stop-opacity=".08"/></linearGradient>
-        <linearGradient id="${g}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E1830"/><stop offset="1" stop-color="#060A14"/></linearGradient>
-        <clipPath id="${g}c"><rect class="${anim ? "bmsw" : ""}" x="0" y="0" width="${W}" height="${H}"/></clipPath>
-        <clipPath id="${g}past"><rect x="0" y="0" width="${Math.max(0, nowX).toFixed(1)}" height="${H}"/></clipPath></defs>
-      <path d="M${X0} ${YB} L${X1 + 22} ${YB} L${X1 + 22 + DX} ${YB + DY} L${X0 + DX} ${YB + DY} Z" fill="url(#${g}f)" opacity=".9"/>
-      ${grid}
-      <g clip-path="url(#${g}c)">
-        <path d="${area(po, DX, DY)}" fill="#1A2236" opacity=".85"/><path d="${area(po, DX, DY)}" fill="url(#${g}o)"/><path d="${ridge(po, DX, DY)}" class="bmro"/>
-        <path d="${area(pm, 0, 0)}" fill="#050912" opacity=".55" transform="translate(3 3)"/>
-        <path d="${area(pm)}" fill="url(#${g}m)"/>
-        <path d="${area(pm)}" fill="url(#${g}m)" opacity=".55" clip-path="url(#${g}past)"/>
-        <path d="${ridge(pm)}" class="bmrm" style="stroke:${c}"/><path d="${ridge(pm)}" class="bmrs"/>
-      </g>
-      ${nowX > X0 && nowX < W ? `<line x1="${nowX.toFixed(1)}" y1="${YT - 10}" x2="${nowX.toFixed(1)}" y2="${YB + 2}" class="bmnow"/><text x="${nowX.toFixed(1)}" y="${YT - 12}" class="bmnt">NOW</text>` : ""}
-      <text x="${X1 + 30}" y="${(Math.min(Y(fm), Y(fo) - 2) + 4).toFixed(1)}" class="bmf" style="fill:${c}">${f1(fm)}</text>
-      <text x="${X1 + 30 + DX}" y="${(Math.max(Y(fo) + DY, Y(fm) + 13) + 4).toFixed(1)}" class="bmf op">${f1(fo)}</text>
-      ${ri === rows.length - 1 ? KOS.map((t, i) => `<text x="${X(i).toFixed(1)}" y="${H - 4}" class="bmtl">${lab(t)}</text>`).join("") : ""}
-      </svg>
-      <div class="bmsw2"><span>${bm ? `Your biggest still to come: <b style="color:${c}">${esc(LN(bm.p.name))} ${Math.round(bm.fin - bm.now)}</b>` : "You're done"}</span><span>${bo ? `His: <b>${esc(LN(bo.p.name))} ${Math.round(bo.fin - bo.now)}</b>` : "He's done"}</span></div></div>`; };
+    return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * .3).toFixed(2)}s"><title>${esc(tip)}</title>
+      <defs><linearGradient id="${g}m" x1="0" y1="${(fl - LIFT).toFixed(0)}" x2="0" y2="${fl}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity=".98"/><stop offset=".6" stop-color="${c}" stop-opacity=".5"/><stop offset="1" stop-color="#070B16" stop-opacity=".96"/></linearGradient></defs>
+      <rect x="0" y="${fl - LIFT - 6}" width="${W2}" height="${LIFT + 10}" fill="transparent"/>
+      <path d="${area(pm)}" fill="#03060D" opacity=".7" transform="translate(4 -3)"/>
+      <path class="${anim ? "bmsw" : ""}" d="${area(pm)}" fill="url(#${g}m)" stroke="none"/>
+      <path class="${anim ? "bmsw" : ""}" d="${smooth(po)}" fill="none" stroke="#DDE4F2" stroke-opacity=".85" stroke-width="1.6" stroke-dasharray="4 2.5"/>
+      <path class="bmrm${anim ? " bmsw" : ""}" d="${smooth(pm)}" style="stroke:${c}"/><path class="bmrs${anim ? " bmsw" : ""}" d="${smooth(pm)}"/>
+      <line x1="${PL - 6}" y1="${fl}" x2="${PR + 8}" y2="${fl}" stroke="${c}" stroke-opacity=".35" stroke-width="1"/>
+      <text x="6" y="${fl - 6}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
+      <text x="${PR + 16}" y="${(fl - 37).toFixed(1)}" class="bmf2" style="fill:${c}">${f1(fm)}</text>
+      <text x="${PR + 16}" y="${(fl - 19).toFixed(1)}" class="bmf2 op">${f1(fo)}</text>
+      <text x="${PR + 16}" y="${fl - 1}" class="bmm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+      ${started ? `<text x="6" y="${fl + 9}" class="bmnow2">now ${f1(nm)}-${f1(no)}</text>` : ""}</g>`; };
+  const ticks = KOS.map((t, i) => `<line x1="${X2(i).toFixed(1)}" y1="${TOP - 4}" x2="${X2(i).toFixed(1)}" y2="${FLOOR(NB - 1)}" class="bmgl"/><text x="${X2(i).toFixed(1)}" y="${H2 - 8}" class="bmtl">${lab(t)}</text>`).join("");
+  const nowLine = now2 > PL && now2 < PR + 8 ? `<line x1="${now2.toFixed(1)}" y1="${TOP - 10}" x2="${now2.toFixed(1)}" y2="${FLOOR(NB - 1) + 2}" class="bmnow"/><text x="${now2.toFixed(1)}" y="${TOP - 13}" class="bmnt">NOW</text>` : "";
+  const svg = `<svg class="bmall" viewBox="0 0 ${W2} ${H2}" aria-hidden="false" role="img" aria-label="Battle Mountains - all four leagues"><defs><linearGradient id="bmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1430"/><stop offset="1" stop-color="#05080F"/></linearGradient></defs>
+    <rect x="0" y="0" width="${W2}" height="${H2}" rx="10" fill="url(#bmsky)"/>${ticks}${rows.map(band).join("")}${nowLine}
+    <text x="${PR + 16}" y="${TOP - 13}" class="bmhd">YOU / HIM</text></svg>`;
+  const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
+  const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
-  const how = `<div class="bthow"><b>How to read it:</b> each league is a 3D mountain across the weekend, left to right through every kickoff (Thursday to Monday night). Your mountain (your color, in front) climbs as your starters play; his (grey, behind) climbs as his do. Height = points piled up so far by Ratcliffe's numbers, or the real score once a man has played. Where yours stands taller, you're ahead at that point of the weekend. The NOW line splits what's happened (brighter) from what's still to come. Numbers at the right = projected finals; ▲/▼ = the margin.</div>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw">${rows.map(row).join("")}</div>${how}</section>`;
+  const how = `<div class="bthow"><b>How to read it:</b> all four leagues in one mountain range - DK1 at the back, DK4 in front. Left to right is the weekend, kickoff by kickoff (Thursday to Monday night). Your mountain (solid, your league color) climbs as your starters play; his is the dashed grey ridge in the same band. Where your color is above his dashes, you're ahead at that point of the weekend. Height = points piled up by Ratcliffe's numbers, or the real score once a man has played. The NOW line splits what's happened from what's still to come. Right edge: your projected final, his, and the margin. Underneath: each side's biggest player still to come. Tap a league's mountain to open its card.</div>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
