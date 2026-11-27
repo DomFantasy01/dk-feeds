@@ -1410,31 +1410,46 @@ function battleChart(){
      projected final, shown as a dashed level in the bottom glass. Gold line = the other side's projected final. Sand trickles through
      the neck while starters are left; once a minute the bottom piles up again. */
   const HMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, HVW = 600, HVH = 330, HTOP = 58, HNECK = 150, HBOT = 242, HW = 25, HNW = 2.6;
-  const hglass = (cx, fin, now, other, col, idh, me, live) => { const bh = HBOT - HNECK - 4, th = HNECK - HTOP - 4;
+  /* Nov 27 10:56 AM (Dom: "Make it look like real sand and actually make those more useful"): real sand - golden for your team,
+     ash grey for the opponent, grainy texture, a lit top to each pile; the league color is on the frame. More useful: the points
+     scored so far are written on the bottom pile, the points still to come (Ratcliffe) on the top sand; sand only POURS while that side
+     has a player on the field right now, so a moving glass = your guys are playing; notches on the frame every 50 points. */
+  const hglass = (cx, fin, now, other, sand, frame, idh, me, pour) => { const bh = HBOT - HNECK - 4, th = HNECK - HTOP - 4, rest = Math.max(0, fin - now);
     const top = `M${cx - HW} ${HTOP} C${cx - HW} ${HTOP + th * .62} ${cx - HNW - 4} ${HNECK - 14} ${cx - HNW} ${HNECK} L${cx + HNW} ${HNECK} C${cx + HNW + 4} ${HNECK - 14} ${cx + HW} ${HTOP + th * .62} ${cx + HW} ${HTOP} Z`;
     const bot = `M${cx - HNW} ${HNECK} C${cx - HNW - 4} ${HNECK + 14} ${cx - HW} ${HBOT - bh * .62} ${cx - HW} ${HBOT} L${cx + HW} ${HBOT} C${cx + HW} ${HBOT - bh * .62} ${cx + HNW + 4} ${HNECK + 14} ${cx + HNW} ${HNECK} Z`;
-    const hb = bh * Math.min(1, now / HMAX), hf = bh * Math.min(1, fin / HMAX), ht = th * Math.min(1, Math.max(0, fin - now) / HMAX), go = bh * Math.min(1, other / HMAX);
+    const hb = Math.max(2, bh * Math.min(1, now / HMAX)), hf = bh * Math.min(1, fin / HMAX), ht = th * Math.min(1, rest / HMAX), go = bh * Math.min(1, other / HMAX);
     const ys = HBOT - hb, yf = HBOT - hf, yg = HBOT - go, yt = HNECK - 2 - ht;
-    return `<g class="hgg${me ? " me" : ""}" style="--lc:${col}"><defs><clipPath id="${idh}t"><path d="${top}"/></clipPath><clipPath id="${idh}b"><path d="${bot}"/></clipPath></defs>
+    const notch = [50, 100, 150, 200, 250].filter(v => v < HMAX).map(v => { const y = (HBOT - bh * v / HMAX).toFixed(1); return `<line x1="${cx - HW - 7}" y1="${y}" x2="${cx - HW - 1.5}" y2="${y}" class="hgnt"/>`; }).join("");
+    const grains = pour ? [0, 1, 2, 3, 4, 5].map(n => `<circle cx="${(cx + (n % 3 - 1) * .7).toFixed(1)}" cy="${HNECK}" r="${n % 2 ? .9 : 1.15}" class="hggr" fill="${sand}" style="--d:${(ys - HNECK).toFixed(1)}px;--g:${(n * .18).toFixed(2)}s"/>`).join("") : "";
+    return `<g class="hgg${me ? " me" : ""}${pour ? " pour" : ""}" style="--lc:${frame}"><defs><clipPath id="${idh}t"><path d="${top}"/></clipPath><clipPath id="${idh}b"><path d="${bot}"/></clipPath>
+        <linearGradient id="${idh}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sand}" stop-opacity="1"/><stop offset="1" stop-color="${sand}" stop-opacity=".78"/></linearGradient></defs>
       <path d="${top}" class="hgglass"/><path d="${bot}" class="hgglass"/>
-      <g clip-path="url(#${idh}t)"><path d="M${cx - HW - 2} ${HNECK} V${(yt + 5).toFixed(1)} Q${cx} ${(yt - 3).toFixed(1)} ${cx + HW + 2} ${(yt + 5).toFixed(1)} V${HNECK} Z" class="hgsand" fill="${col}"/></g>
-      ${live && ht > .5 ? `<line x1="${cx}" y1="${HNECK - 2}" x2="${cx}" y2="${ys.toFixed(1)}" class="hgstream" stroke="${col}"/>` : ""}
-      <g clip-path="url(#${idh}b)"><g class="hgpile"><path d="M${cx - HW - 2} ${HBOT} V${(ys + 4).toFixed(1)} Q${cx} ${(ys - 6).toFixed(1)} ${cx + HW + 2} ${(ys + 4).toFixed(1)} V${HBOT} Z" class="hgsand" fill="${col}"/></g>
-        <line x1="${cx - HW}" y1="${yf.toFixed(1)}" x2="${cx + HW}" y2="${yf.toFixed(1)}" class="hgfin" stroke="${col}"/></g>
-      <line x1="${cx - HW - 6}" y1="${yg.toFixed(1)}" x2="${cx + HW + 6}" y2="${yg.toFixed(1)}" class="hggold"/>
+      <g clip-path="url(#${idh}t)">${ht > .5 ? `<path d="M${cx - HW - 2} ${HNECK + 2} V${(yt + 5).toFixed(1)} Q${cx} ${(yt + 13).toFixed(1)} ${cx + HW + 2} ${(yt + 5).toFixed(1)} V${HNECK + 2} Z" fill="url(#${idh}s)" filter="url(#hgGrain)"/>
+        <path d="M${cx - HW - 2} ${(yt + 5).toFixed(1)} Q${cx} ${(yt + 13).toFixed(1)} ${cx + HW + 2} ${(yt + 5).toFixed(1)}" class="hglip"/>` : ""}</g>
+      ${pour ? `<line x1="${cx}" y1="${HNECK - 1}" x2="${cx}" y2="${ys.toFixed(1)}" class="hgstream" stroke="${sand}"/>${grains}` : ""}
+      <g clip-path="url(#${idh}b)"><g class="hgpile"><path d="M${cx - HW - 2} ${HBOT} V${(ys + 5).toFixed(1)} Q${cx} ${(ys - 7).toFixed(1)} ${cx + HW + 2} ${(ys + 5).toFixed(1)} V${HBOT} Z" fill="url(#${idh}s)" filter="url(#hgGrain)"/>
+        <path d="M${cx - HW - 2} ${(ys + 5).toFixed(1)} Q${cx} ${(ys - 7).toFixed(1)} ${cx + HW + 2} ${(ys + 5).toFixed(1)}" class="hglip"/></g>
+        <line x1="${cx - HW}" y1="${yf.toFixed(1)}" x2="${cx + HW}" y2="${yf.toFixed(1)}" class="hgfin"/></g>
+      <line x1="${cx - HW - 6}" y1="${yg.toFixed(1)}" x2="${cx + HW + 6}" y2="${yg.toFixed(1)}" class="hggoldh"/><line x1="${cx - HW - 6}" y1="${yg.toFixed(1)}" x2="${cx + HW + 6}" y2="${yg.toFixed(1)}" class="hggold"/>
       <path d="${top}" class="hgsheen"/><path d="${bot}" class="hgsheen"/>
+      ${rest >= .5 ? `<text x="${cx}" y="${HTOP + 16}" class="hgtx up" text-anchor="middle">+${Math.round(rest)}</text>` : ""}
+      <text x="${cx}" y="${HBOT - 6}" class="hgtx dn" text-anchor="middle">${f1(now)}</text>
       <rect x="${cx - HW - 7}" y="${HTOP - 9}" width="${HW * 2 + 14}" height="9" rx="2.5" class="hgcap"/><rect x="${cx - HW - 7}" y="${HBOT}" width="${HW * 2 + 14}" height="9" rx="2.5" class="hgcap"/>
-      <rect x="${cx - HW - 5}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/><rect x="${cx + HW + 2.4}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/></g>`; };
+      <rect x="${cx - HW - 5}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/><rect x="${cx + HW + 2.4}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/>${notch}</g>`; };
   const hsvg = `<svg class="tball hgall" viewBox="0 0 ${HVW} ${HVH}" role="img" aria-label="Battle Hourglasses - all four leagues"><rect width="${HVW}" height="${HVH}" fill="#05080F"/>
-    ${TB.map((x, i) => { const cx = HVW / TB.length * (i + .5), a = cx - 34, b = cx + 34, mg = x.fm - x.fo, L = lgS(x.r.k), ml = L ? leftOf(L.players).length : 0, ol = L ? leftOf(L.oppPlayers).length : 0, lt = (n) => n ? n + " left" : "done";
+    <defs><filter id="hgGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/>
+      <feComponentTransfer in="g" result="gs"><feFuncR type="linear" slope=".7" intercept=".55"/><feFuncG type="linear" slope=".7" intercept=".55"/><feFuncB type="linear" slope=".7" intercept=".55"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="gs" mode="multiply" result="b"/><feComposite in="b" in2="SourceGraphic" operator="in"/></filter></defs>
+    ${TB.map((x, i) => { const cx = HVW / TB.length * (i + .5), a = cx - 34, b = cx + 34, mg = x.fm - x.fo, L = lgS(x.r.k), lm = L ? leftOf(L.players) : [], lo = L ? leftOf(L.oppPlayers) : [];
+      const pm = lm.filter(isLive).length, po = lo.filter(isLive).length, lt = (l, n) => !l.length ? "done" : n ? `${n} playing · ${l.length} left` : `${l.length} left`;
       return `<g class="hgr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--i:${i}"><title>${esc(`${DK[x.r.k]}: your team ${f1(x.fm)} vs the opponent ${f1(x.fo)} projected (Ratcliffe) · scored so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
         <text x="${a}" y="16" class="hgl" text-anchor="middle">TEAM</text><text x="${b}" y="16" class="hgl" text-anchor="middle">OPPONENT</text>
         <text x="${a}" y="39" class="hgv" text-anchor="middle" style="fill:${x.c}">${f1(x.fm)}</text><text x="${b}" y="39" class="hgv op" text-anchor="middle">${f1(x.fo)}</text>
-        ${hglass(a, x.fm, x.nm, x.fo, x.c, "hg" + i + "m", true, ml > 0)}${hglass(b, x.fo, x.no, x.fm, "#A9AFBB", "hg" + i + "o", false, ol > 0)}
-        <text x="${a}" y="${HBOT + 22}" class="hgn" text-anchor="middle">${f1(x.nm)} · ${lt(ml)}</text><text x="${b}" y="${HBOT + 22}" class="hgn" text-anchor="middle">${f1(x.no)} · ${lt(ol)}</text>
+        ${hglass(a, x.fm, x.nm, x.fo, "#E0B865", x.c, "hg" + i + "m", true, pm > 0)}${hglass(b, x.fo, x.no, x.fm, "#A8A49B", "#6B7489", "hg" + i + "o", false, po > 0)}
+        <text x="${a}" y="${HBOT + 22}" class="hgn${pm ? " on" : ""}" text-anchor="middle">${lt(lm, pm)}</text><text x="${b}" y="${HBOT + 22}" class="hgn${po ? " on" : ""}" text-anchor="middle">${lt(lo, po)}</text>
         <text x="${cx}" y="${HBOT + 50}" class="hgk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
         <text x="${cx}" y="${HBOT + 72}" class="hgm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Hourglasses</span><span class="lsub">${sub}</span><div class="bmw1">${hsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left hourglass = your team · right = the opponent · sand in the bottom = points scored so far · sand still on top = points still projected (Ratcliffe) · dashed level = projected final (number on top) · gold line = the other side's projected final · under each glass: scored so far · starters left.</div></section>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Hourglasses</span><span class="lsub">${sub}</span><div class="bmw1">${hsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left glass = your team (gold sand) · right = the opponent (grey sand) · number on the bottom pile = points scored so far · +number on top = points still to come (Ratcliffe) · number above the glass = projected final, dashed level inside · gold line = the other side's projected final · sand pours only while that side has a player on the field right now · notches every 50 points.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
