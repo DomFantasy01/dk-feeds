@@ -1316,9 +1316,14 @@ function battleChart(){
      tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
      on top of each tube, the DK tag and the margin underneath. */
   const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 300, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
-  const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(TWD, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
-    return `<g class="tbt${me ? " me" : ""}"><rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}" class="tbglass"/>
-      <defs><clipPath id="${id}c"><rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}"/></clipPath></defs>
+  const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(10, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
+    /* Nov 26 6:41 PM (Dom: "Make them beakers"): lab beakers - straight glass sides, flat rounded bottom, a flared lip with a pouring
+       spout on top, and white measuring marks up the side */
+    const inner = `M${x} ${TY0 + 6} V${TY1 - 7} Q${x} ${TY1} ${x + 7} ${TY1} H${x + TWD - 7} Q${x + TWD} ${TY1} ${x + TWD} ${TY1 - 7} V${TY0 + 6} Z`;
+    const outline = `M${x - 4} ${TY0 - 2} Q${x} ${TY0 - 1} ${x} ${TY0 + 6} V${TY1 - 7} Q${x} ${TY1} ${x + 7} ${TY1} H${x + TWD - 7} Q${x + TWD} ${TY1} ${x + TWD} ${TY1 - 7} V${TY0 + 6} Q${x + TWD} ${TY0 - 1} ${x + TWD + 7} ${TY0 - 5}`;
+    const marks = [.2, .4, .6, .8].map(f => { const yy = TY1 - THT * f; return `<line x1="${x + TWD - 12}" y1="${yy.toFixed(1)}" x2="${x + TWD - 3}" y2="${yy.toFixed(1)}" class="bkmk"/><line x1="${x + TWD - 8}" y1="${(yy + THT * .1).toFixed(1)}" x2="${x + TWD - 3}" y2="${(yy + THT * .1).toFixed(1)}" class="bkmk s"/>`; }).join("");
+    return `<g class="tbt${me ? " me" : ""}"><path d="${inner}" class="tbglass"/>
+      <defs><clipPath id="${id}c"><path d="${inner}"/></clipPath></defs>
       <g clip-path="url(#${id}c)"><g class="tbliq v"><rect x="${x}" y="${(TY1 - H).toFixed(1)}" width="${TWD}" height="${H.toFixed(1)}" fill="${fill}" class="tbproj"/>
       ${N > 0 ? `<rect x="${x}" y="${(TY1 - N).toFixed(1)}" width="${TWD}" height="${N.toFixed(1)}" fill="${fill}" class="tbnow"/>` : ""}
       ${(() => { /* Nov 26 6:37 PM (Dom: "a fluid in there that moves around"): a rolling wave on the liquid's surface and bubbles rising through it */
@@ -1326,8 +1331,8 @@ function battleChart(){
         const bub = Array.from({length: 4}, (_, k) => { const bx = x + 8 + ((k * 37 + (me ? 11 : 23)) % (TWD - 16)), r = 1.4 + (k % 3) * .9;
           return `<circle cx="${bx}" cy="${TY1 - 4}" r="${r}" class="tbbub" style="--h:${Math.max(0, H - 10).toFixed(0)}px;--bd:${(3.6 + k * 1.3).toFixed(1)}s;--bl:${(k * 1.1 + (me ? 0 : .6)).toFixed(1)}s"/>`; }).join("");
         return `<path d="M${x - wl} ${ty.toFixed(1)} ${d} V${(ty + 8).toFixed(1)} H${x - wl} Z" fill="${fill}" class="tbwave"/><path d="M${x - wl} ${(ty + .8).toFixed(1)} ${d}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" class="tbwave"/>${bub}`; })()}</g></g>
-      <rect x="${x + 4}" y="${TY0 + 8}" width="${TWD * .22}" height="${THT - 16}" rx="${TWD * .11}" class="tbhi"/>
-      <rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}" class="tbrim"/></g>`; };
+      <rect x="${x + 4}" y="${TY0 + 10}" width="${TWD * .16}" height="${THT - 22}" rx="${TWD * .08}" class="tbhi"/>${marks}
+      <path d="${outline}" class="tbrim bkrim"/></g>`; };
   const tsvg = `<svg class="tball" viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Battle Tubes - all four leagues"><rect width="${VW}" height="${VH}" fill="#05080F"/>
     ${TB.map((x, i) => { const cx = VW / TB.length * (i + .5), mg = x.fm - x.fo, id = "tb" + SLUG[x.r.k], a = cx - (TWD + TGP) / 2, b = cx + (TWD + TGP) / 2;
       return `<g class="tbr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(`${DK[x.r.k]}: you ${f1(x.fm)} vs him ${f1(x.fo)} projected (Ratcliffe) · real so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
@@ -1336,7 +1341,7 @@ function battleChart(){
         <text x="${cx}" y="${TY1 + 26}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
         <text x="${cx}" y="${TY1 + 50}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
         <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">YOU</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">HIM</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Tubes</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left tube = you · grey tube = him · taller liquid is winning · solid = scored so far, lighter = still to come.</div></section>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = you · grey beaker = him · taller liquid is winning · solid = scored so far, lighter = still to come.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
