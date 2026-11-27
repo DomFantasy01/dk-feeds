@@ -1,5 +1,5 @@
 {
- "built": "Fri Nov 27 2026 2:36 PM PT",
+ "built": "Fri Nov 27 2026 2:55 PM PT",
  "weeks": [
   12,
   13
@@ -7,7 +7,19 @@
  "source": "nflverse schedule betting lines (free) - implied team points = total/2 +- spread/2",
  "note": "History starts Nov 27 2026; a team's 'first' is the first line this system saw that week, not the opening line.",
  "flag_rule": "implied team total moved 2+ points since first seen",
- "moves": [],
+ "moves": [
+  {
+   "team": "SF",
+   "wk": 12,
+   "opp": "vs SEA",
+   "first": 23.2,
+   "now": 20.5,
+   "move": -2.7,
+   "first_at": "Fri Nov 27 8:21 AM PT",
+   "total_first": 43.5,
+   "total_now": 42.5
+  }
+ ],
  "teams": {
   "LAR:12": {
    "team": "LAR",
@@ -256,22 +268,22 @@
    "wk": 12,
    "opp": "vs NE",
    "first": 16.5,
-   "now": 16.5,
-   "move": 0.0,
+   "now": 16.0,
+   "move": -0.5,
    "first_at": "Fri Nov 27 8:21 AM PT",
    "total_first": 35.5,
-   "total_now": 35.5
+   "total_now": 34.5
   },
   "NE:12": {
    "team": "NE",
    "wk": 12,
    "opp": "@ LAC",
    "first": 19.0,
-   "now": 19.0,
-   "move": 0.0,
+   "now": 18.5,
+   "move": -0.5,
    "first_at": "Fri Nov 27 8:21 AM PT",
    "total_first": 35.5,
-   "total_now": 35.5
+   "total_now": 34.5
   },
   "ARI:12": {
    "team": "ARI",
@@ -300,22 +312,22 @@
    "wk": 12,
    "opp": "vs SEA",
    "first": 23.2,
-   "now": 23.0,
-   "move": -0.2,
+   "now": 20.5,
+   "move": -2.7,
    "first_at": "Fri Nov 27 8:21 AM PT",
    "total_first": 43.5,
-   "total_now": 43.5
+   "total_now": 42.5
   },
   "SEA:12": {
    "team": "SEA",
    "wk": 12,
    "opp": "@ SF",
    "first": 20.2,
-   "now": 20.5,
-   "move": 0.3,
+   "now": 22.0,
+   "move": 1.8,
    "first_at": "Fri Nov 27 8:21 AM PT",
    "total_first": 43.5,
-   "total_now": 43.5
+   "total_now": 42.5
   },
   "CLE:12": {
    "team": "CLE",
