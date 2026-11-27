@@ -1167,7 +1167,7 @@ function battleChart(){
      can tell what's what"): real mountain ridges - the ridge line is a chain of sharp peaks that follows the score curve, every peak
      has a lit left face and a shadowed right face, the tall peaks of YOUR range carry snow caps. HIS range stands behind yours as a dark
      slate silhouette with no color and no snow, so the two can't be mixed up. */
-  const MT = (pp, base, TALL, seed, mine, c, g) => {
+  const MT = (pp, base, TALL, seed, mine, c, g, flag) => {
     /* Nov 26 5:17 PM (Dom: "Make the mountains like the Alps. Not buildings."): alpine ridges - big peaks spaced unevenly along the
        score curve, each broken up by fractal detail (crags and notches), shaded as triangular rock faces running down from each summit
        (not vertical columns), and white snow on every crag tip that rises above the line, heavier on the high ground. */
@@ -1197,10 +1197,19 @@ function battleChart(){
     let snowLine = "", xs = x0; const sp = []; while (xs <= x1){ sp.push([xs, Math.min(base, sl(xs) + (rr() - .5) * 2.5)]); xs += 4; } sp.push([x1, sl(x1)]);
     snowLine = "M" + sp.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L") + ` L${x1} ${top - 20} L${x0} ${top - 20} Z`;
     const cid = (g || "bmo" + seed) + "sn" + seed;
+    /* Nov 26 4:45 PM (Dom: "Dress up the mountains", from another chat, kept): whoever is projected to win plants a summit flag on his highest peak (gold = you, grey = him) */
+    let top2 = null; for (const p of pts) if (!top2 || p[1] < top2[1]) top2 = p;
+    const fl = flag && top2 ? `<g class="bmflag"><line x1="${top2[0].toFixed(1)}" y1="${top2[1].toFixed(1)}" x2="${top2[0].toFixed(1)}" y2="${(top2[1] - 10).toFixed(1)}" stroke="#E8ECF4" stroke-width=".9"/><path class="bmpen" d="M${top2[0].toFixed(1)} ${(top2[1] - 10).toFixed(1)} l8 2.6 l-8 2.6 Z" fill="${flag}"/></g>` : "";
     return mine
-      ? `<defs><clipPath id="${cid}"><path d="${snowLine}"/></clipPath><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="url(#${g}m)"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".62"/><path d="${body}" fill="url(#bmsnow2)" clip-path="url(#${cid})"/></g><path d="${ridge}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".9" stroke-linejoin="round"/>`
-      : `<defs><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="#2A303D"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".55"/></g><path d="${ridge}" fill="none" stroke="#8C94A5" stroke-width="1" stroke-linejoin="round" opacity=".85"/>`;
+      ? `<defs><clipPath id="${cid}"><path d="${snowLine}"/></clipPath><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="url(#${g}m)"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".62"/><path d="${body}" fill="url(#bmsnow2)" clip-path="url(#${cid})"/></g><path d="${ridge}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".9" stroke-linejoin="round"/>${fl}`
+      : `<defs><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="#2A303D"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".55"/></g><path d="${ridge}" fill="none" stroke="#8C94A5" stroke-width="1" stroke-linejoin="round" opacity=".85"/>${fl}`;
   };
+  const pines = (base, seed, pp) => { let s = seed * 4271 % 233280 || 1; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; let d = "", x = PL - 10;
+    const hAt = (x) => { for (let i = 1; i < pp.length; i++) if (x <= pp[i][0]){ const t = (x - pp[i - 1][0]) / Math.max(1e-6, pp[i][0] - pp[i - 1][0]); return base - (pp[i - 1][1] + (pp[i][1] - pp[i - 1][1]) * t); } return 0; };
+    while (x < PR + 4){ if (r() > .3 && hAt(x) > 22){ const h = 3.5 + r() * 4.5, w = h * .34;   /* trees only at the foot of real mountain, never on the flat valley line */
+        d += `M${x.toFixed(1)} ${(base - h).toFixed(1)} L${(x + w).toFixed(1)} ${(base - h * .5).toFixed(1)} L${(x + w * .5).toFixed(1)} ${(base - h * .5).toFixed(1)} L${(x + w * 1.3).toFixed(1)} ${base} L${(x - w * 1.3).toFixed(1)} ${base} L${(x - w * .5).toFixed(1)} ${(base - h * .5).toFixed(1)} L${(x - w).toFixed(1)} ${(base - h * .5).toFixed(1)} Z`; }
+      x += 3.5 + r() * 6; }
+    return `<path d="${d}" fill="#03060D" opacity=".92"/>`; };
   const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), mid = fl - BH / 2 + 6, HALF = BH / 2 - 9;
     const base = mid + HALF, TALL = HALF * 2;   /* Nov 26 2:59 PM (Dom: "they should be on a baseline rather than go on its own line"): both mountains stand on one baseline */
     const sm = series(r.me), so = series(r.op), xs = (sr) => sr.map((v, i) => i === 0 ? PL - 12 : X2(i - 1)).concat([PR + 6]);
@@ -1212,11 +1221,15 @@ function battleChart(){
     const sw = window.__bmPlayed ? " bmg" : " bmg pre";   /* Nov 26 3:50 PM (Dom): no class-driven restart on every re-render - bmPlay() runs the build */   /* Nov 26 3:05 PM (Dom: "build the mountains ... in animation going from the left to the right"): each league's mountains draw in left to right, DK1 first; replays on the motion tour */
     return `<g class="bmb${r.live ? " live" : ""}" data-jump="${SLUG[r.k]}" role="button" tabindex="0" style="--lc:${c};--d:${(ri * 4)}s"><title>${esc(tip)}</title>
       <defs><linearGradient id="${g}m" x1="0" y1="${(base - TALL).toFixed(0)}" x2="0" y2="${base}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset=".55" stop-color="color-mix(in srgb, ${c} 70%, #0A0F1C)"/><stop offset="1" stop-color="color-mix(in srgb, ${c} 35%, #070B16)"/></linearGradient>
-        <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient></defs>
+        <linearGradient id="${g}o" x1="0" y1="${mid}" x2="0" y2="${(mid + HALF).toFixed(0)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5E6575" stop-opacity=".25"/><stop offset="1" stop-color="#8A90A0" stop-opacity=".55"/></linearGradient>
+        <radialGradient id="${g}gl" cx="${((PL + PR) / 2).toFixed(0)}" cy="${base}" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(${((PL + PR) / 2).toFixed(0)} ${base}) scale(${((PR - PL) * .62).toFixed(0)} ${(TALL * 1.05).toFixed(0)}) translate(-${((PL + PR) / 2).toFixed(0)} -${base})"><stop offset="0" stop-color="${c}" stop-opacity=".32"/><stop offset=".6" stop-color="${c}" stop-opacity=".1"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs>
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
       <g class="${sw.trim()}">
-        ${MT(po, base, TALL, 3 + ri * 7, false, c)}
-        ${MT(pm, base, TALL, 11 + ri * 13, true, c, g)}
+        <rect x="${PL - 12}" y="${(base - TALL - 8).toFixed(1)}" width="${PR - PL + 18}" height="${(TALL + 8).toFixed(1)}" fill="url(#${g}gl)"/>
+        ${MT(po, base, TALL, 3 + ri * 7, false, c, null, mg < 0 ? "#AEB4C0" : null)}
+        ${MT(pm, base, TALL, 11 + ri * 13, true, c, g, mg > 0 ? "#EFD23E" : null)}
+        <rect x="${PL - 12}" y="${base - 15}" width="${PR - PL + 18}" height="15" fill="url(#bmmist)"/>
+        ${pines(base, 5 + ri * 17, pm)}
       </g>
       <line x1="${PL - 12}" y1="${base}" x2="${PR + 6}" y2="${base}" class="bmmid"/>
       <text x="${PL + 2}" y="${(mid - HALF + 12).toFixed(1)}" class="bmdk" style="fill:${c}">${DK[r.k]}</text>
@@ -1244,6 +1257,8 @@ function battleChart(){
         <feComposite in="lc" in2="SourceGraphic" operator="in" result="t"/><feBlend in="t" in2="SourceGraphic" mode="multiply"/></filter>
       <linearGradient id="bmsnow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".12" stop-color="#fff" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity="0"/></linearGradient>
       <linearGradient id="bmsnow2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE6F5"/></linearGradient>
+      <linearGradient id="bmlit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4DC" stop-opacity=".2"/><stop offset=".6" stop-color="#FFF4DC" stop-opacity=".05"/><stop offset="1" stop-color="#FFF4DC" stop-opacity="0"/></linearGradient>
+      <linearGradient id="bmmist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9B8D6" stop-opacity="0"/><stop offset="1" stop-color="#A9B8D6" stop-opacity=".16"/></linearGradient>
       <linearGradient id="bmface" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02040A" stop-opacity=".85"/><stop offset="1" stop-color="#02040A" stop-opacity=".15"/></linearGradient>
       <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>

@@ -2140,4 +2140,8 @@ html.calm .bmall .bmg.sw,html.calm .bmall .bmfin.sw{animation:none !important}
   .bmall .bmg.sw{animation:bmwipe 4s cubic-bezier(.4,0,.3,1) both !important;animation-delay:var(--d,0s) !important}
   .bmall .bmfin.sw{animation:bmfin .9s ease-out both !important;animation-delay:calc(var(--d,0s) + 3.6s) !important}}
 @media (prefers-reduced-motion:reduce){.bmall .bmg.pre{clip-path:none}.bmall .bmfin.pre{opacity:1}}
+/* Nov 26 4:45 PM (Dom: "Dress up the mountains"): the summit pennant ripples slowly in the wind */
+@media (prefers-reduced-motion:no-preference){.bmall .bmpen{transform-box:fill-box;transform-origin:0 50%;animation:bmwave 3.2s ease-in-out infinite}
+  @keyframes bmwave{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.82) skewY(6deg)}}}
+html.calm .bmall .bmpen{animation:none !important}
 </style>
