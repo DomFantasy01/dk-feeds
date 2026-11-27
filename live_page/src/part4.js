@@ -1274,8 +1274,9 @@ function battleChart(){
   /* Nov 27 7:45 AM (Dom: "the breakers ... make them better"): GAME BREAKERS - each side's two biggest starters still to play, with
      the points they're projected to add (Ratcliffe) and when they kick off */
   const top2 = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now)).slice(0, 2);
-  const gbn = (x) => `${esc(LN(x.p.name))} <em>${Math.round(x.fin - x.now)}</em>${x.p.when ? `<u>${esc(String(x.p.when).replace(/^(\w{3})\w*\s+([\d:]+)\s*(am|pm)$/i, (m, d, t, ap) => d + " " + t.replace(/:00$/, "") + ap[0].toLowerCase()))}</u>` : ""}`;
-  const swing = `<span class="gbh">GAME BREAKERS · biggest still to play</span>` + rows.map(r => { const bm = top2(r.me), bo = top2(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm.length ? bm.map(gbn).join(" · ") : "done"}<br><i>vs</i> ${bo.length ? bo.map(gbn).join(" · ") : "done"}</span>`; }).join("");
+  const gbn = (x) => `${esc(LN(x.p.name))} <em>${Math.round(x.fin - x.now)}</em>`;
+  /* Nov 27 8:25 AM (Dom: "clean up ... everything looks to be a mess"): one TEAM line and one OPPONENT line per league, no kickoff times */
+  const swing = `<span class="gbh">GAME BREAKERS · biggest still to play (projected points)</span>` + rows.map(r => { const bm = top2(r.me), bo = top2(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b><small>TEAM</small> ${bm.length ? bm.map(gbn).join(" · ") : "done"}<br><small>OPP</small> ${bo.length ? bo.map(gbn).join(" · ") : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
   const how = `<div class="bthow">Colored range with snow = you · dark grey range behind = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
@@ -1326,8 +1327,12 @@ function battleChart(){
   /* Nov 26 6:14 PM (Dom: "Tubes vertical vs horizontal"): the tubes stand up - each league gets its own column with two upright glass
      tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
      on top of each tube, the DK tag and the margin underneath. */
-  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 316, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
-  const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(10, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
+  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 326, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
+  /* Nov 27 8:25 AM (Dom: "everything on mine should be me, everything on him should be him ... I need the final on my side and he
+     should have the final on his side" / "is that where the liquid is? Where it is right now?"): the liquid is ONLY the points scored so
+     far (it rises as players score); each beaker's own gold dashed line marks that side's projected final, and the number on top is that
+     final. No cross lines, no second shade. */
+  const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, N = Math.max(0, THT * Math.min(1, nfrac)), H = Math.max(N > 0 ? 6 : 0, N);
     /* Nov 26 6:41 PM (Dom: "Make them beakers"): lab beakers - straight glass sides, flat rounded bottom, a flared lip with a pouring
        spout on top, and white measuring marks up the side */
     const inner = `M${x} ${TY0 + 6} V${TY1 - 7} Q${x} ${TY1} ${x + 7} ${TY1} H${x + TWD - 7} Q${x + TWD} ${TY1} ${x + TWD} ${TY1 - 7} V${TY0 + 6} Z`;
@@ -1335,8 +1340,7 @@ function battleChart(){
     const marks = [.2, .4, .6, .8].map(f => { const yy = TY1 - THT * f; return `<line x1="${x + TWD - 12}" y1="${yy.toFixed(1)}" x2="${x + TWD - 3}" y2="${yy.toFixed(1)}" class="bkmk"/><line x1="${x + TWD - 8}" y1="${(yy + THT * .1).toFixed(1)}" x2="${x + TWD - 3}" y2="${(yy + THT * .1).toFixed(1)}" class="bkmk s"/>`; }).join("");
     return `<g class="tbt${me ? " me" : ""}"><path d="${inner}" class="tbglass"/>
       <defs><clipPath id="${id}c"><path d="${inner}"/></clipPath></defs>
-      <g clip-path="url(#${id}c)"><g class="tbliq v"><rect x="${x}" y="${(TY1 - H).toFixed(1)}" width="${TWD}" height="${H.toFixed(1)}" fill="${fill}" class="tbproj"/>
-      ${N > 0 ? `<rect x="${x}" y="${(TY1 - N).toFixed(1)}" width="${TWD}" height="${N.toFixed(1)}" fill="${fill}" class="tbnow"/>` : ""}
+      <g clip-path="url(#${id}c)"><g class="tbliq v">${H > 0 ? `<rect x="${x}" y="${(TY1 - H).toFixed(1)}" width="${TWD}" height="${H.toFixed(1)}" fill="${fill}" class="tbnow"/>` : ""}
       ${(() => { /* Nov 26 6:37 PM (Dom: "a fluid in there that moves around"): a rolling wave on the liquid's surface and bubbles rising through it */
         const ty = TY1 - H, wl = TWD, d = Array.from({length: 4}, (_, k) => `q${wl / 4} ${-4} ${wl / 2} 0 t${wl / 2} 0`).join(" ");
         const bub = Array.from({length: 4}, (_, k) => { const bx = x + 8 + ((k * 37 + (me ? 11 : 23)) % (TWD - 16)), r = 1.4 + (k % 3) * .9;
@@ -1358,22 +1362,15 @@ function battleChart(){
           const ptxt = fin ? (won ? "WON" : "LOST") : pc0 === null ? "–" : Math.round(pc0) + "%";
           const ml = leftOf(L.players).length, ol = leftOf(L.oppPlayers).length, lt = (n) => n ? n + " left" : "done";
           /* Nov 27 8:16 AM (Dom: "the win probability is already there. I don't need that"): the % on the beaker is gone */
-          return `<text x="${a}" y="${TY1 + 14}" class="tbleft${ml ? "" : " z"}" text-anchor="middle">${lt(ml)}</text><text x="${b}" y="${TY1 + 14}" class="tbleft${ol ? "" : " z"}" text-anchor="middle">${lt(ol)}</text>`; })()}
-        ${(() => { /* Nov 27 7:45 AM (Dom: "the beakers ... can you make them better or do something different?"): (1) a dashed LINE TO BEAT
-           across your beaker at his projected final - your liquid has to rise past it; (2) under your beaker, the points you still NEED
-           (his final minus what you've scored) against what your remaining starters are PROJECTED to add (Ratcliffe) - red when short */
-          /* Nov 27 8:16 AM (Dom: "the gold ... should be on my opponents too, so I can see where they're going"; "get rid of ... need 106
-             projected 123"): a gold dashed line on BOTH beakers - on your team's, the opponent's projected final; on the opponent's, your
-             team's projected final. The need / proj text is gone. */
-          const yb = TY1 - THT * Math.min(1, x.fo / TMAX), ym = TY1 - THT * Math.min(1, x.fm / TMAX), xl = a - TWD / 2 - 5, xr = a + TWD / 2 + 3, ol = b - TWD / 2 - 3, or2 = b + TWD / 2 + 5;
-          return `<g class="tbbeat"><title>${esc(`${DK[x.r.k]}: gold line on your team's beaker = the opponent's projected final ${f1(x.fo)}`)}</title>
-            <line x1="${xl}" y1="${yb.toFixed(1)}" x2="${xr}" y2="${yb.toFixed(1)}" class="tbbl"/><path d="M${xl - 5} ${(yb - 3.5).toFixed(1)} l5 3.5 l-5 3.5 Z" class="tbba"/></g>
-            <g class="tbbeat"><title>${esc(`${DK[x.r.k]}: gold line on the opponent's beaker = your team's projected final ${f1(x.fm)}`)}</title>
-            <line x1="${ol}" y1="${ym.toFixed(1)}" x2="${or2}" y2="${ym.toFixed(1)}" class="tbbl"/><path d="M${or2 + 5} ${(ym - 3.5).toFixed(1)} l-5 3.5 l5 3.5 Z" class="tbba"/></g>`; })()}
-        <text x="${cx}" y="${TY1 + 36}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
-        <text x="${cx}" y="${TY1 + 60}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+          return `<text x="${a}" y="${TY1 + 16}" class="tbnowv" text-anchor="middle" style="fill:${x.c}">${f1(x.nm)}</text><text x="${b}" y="${TY1 + 16}" class="tbnowv op" text-anchor="middle">${f1(x.no)}</text>
+            <text x="${a}" y="${TY1 + 28}" class="tbleft${ml ? "" : " z"}" text-anchor="middle">${lt(ml)}</text><text x="${b}" y="${TY1 + 28}" class="tbleft${ol ? "" : " z"}" text-anchor="middle">${lt(ol)}</text>`; })()}
+        ${(() => { const ym = TY1 - THT * Math.min(1, x.fm / TMAX), yo = TY1 - THT * Math.min(1, x.fo / TMAX), ml = a - TWD / 2 - 6, mr = a + TWD / 2 + 4, ol = b - TWD / 2 - 4, or2 = b + TWD / 2 + 6;
+          return `<g class="tbbeat"><title>${esc(`${DK[x.r.k]}: your team's projected final ${f1(x.fm)} (Ratcliffe)`)}</title><line x1="${ml}" y1="${ym.toFixed(1)}" x2="${mr}" y2="${ym.toFixed(1)}" class="tbbl"/><path d="M${ml - 5} ${(ym - 3.5).toFixed(1)} l5 3.5 l-5 3.5 Z" class="tbba"/></g>
+            <g class="tbbeat"><title>${esc(`${DK[x.r.k]}: the opponent's projected final ${f1(x.fo)} (Ratcliffe)`)}</title><line x1="${ol}" y1="${yo.toFixed(1)}" x2="${or2}" y2="${yo.toFixed(1)}" class="tbbl"/><path d="M${or2 + 5} ${(yo - 3.5).toFixed(1)} l-5 3.5 l5 3.5 Z" class="tbba"/></g>`; })()}
+                <text x="${cx}" y="${TY1 + 52}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${TY1 + 75}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
         <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">TEAM</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">OPPONENT</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = your team · grey beaker = the opponent · taller liquid is winning · solid = scored so far, lighter = still to come · gold dashed line = the other side\'s projected final · "left" = starters still to play.</div></section>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Top number = projected final (Ratcliffe), marked by the gold line · liquid = points scored so far · number under the beaker = points so far · "left" = starters still to play.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
