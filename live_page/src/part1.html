@@ -2256,4 +2256,20 @@ html.calm .tball .tbwave,html.calm .tball .tbbub{animation:none !important}.html
 .bmswg small{display:inline-block;width:34px;font:700 8px var(--f-body);letter-spacing:.12em;color:#7F8AA3}
 .bmsec .bmswg{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:8px 18px}
 .bmswg span>b{display:block;margin-bottom:1px}
+
+/* Nov 27 8:27 AM (Dom: "Make the logo ... animation go more often, it looks good with the lightning"): the bat strike every 10 s
+   (was 30 s); the strike itself keeps the same speed and flicker */
+html body .mh .batw img{animation:batlit10 10s linear infinite !important}
+html body .mh .bolt{animation:boltfl10 10s linear infinite}
+html body .mh .bolt polyline{animation:boltdraw10 10s linear infinite}
+@keyframes batlit10{0%,69.7%,100%{transform:scale(1);filter:brightness(1) drop-shadow(0 0 0 rgba(150,205,255,0))}
+  70.6%{transform:scale(1.12);filter:brightness(1.7) drop-shadow(0 0 8px rgba(230,244,255,1)) drop-shadow(0 0 22px rgba(110,180,255,.9))}
+  72.4%{transform:scale(1.1);filter:brightness(1.05) drop-shadow(0 0 4px rgba(150,205,255,.5))}
+  73.9%{transform:scale(1.12);filter:brightness(1.55) drop-shadow(0 0 9px rgba(230,244,255,1)) drop-shadow(0 0 26px rgba(110,180,255,.95))}
+  79%{transform:scale(1.06);filter:brightness(1.15) drop-shadow(0 0 6px rgba(150,205,255,.6))}
+  86.5%{transform:scale(1);filter:brightness(1) drop-shadow(0 0 0 rgba(150,205,255,0))}}
+@keyframes boltfl10{0%,69.7%,100%{opacity:0}70%{opacity:1}71.8%{opacity:.15}72.4%{opacity:0}73.6%{opacity:1}75.7%{opacity:.6}77.8%{opacity:0}}
+@keyframes boltdraw10{0%,69.7%{stroke-dashoffset:70}71.2%,100%{stroke-dashoffset:0}}
+html.calm body .mh .batw img,html.calm body .mh .bolt,html.calm body .mh .bolt polyline{animation:none !important}
+@media (prefers-reduced-motion:reduce){html body .mh .batw img,html body .mh .bolt,html body .mh .bolt polyline{animation:none !important}}
 </style>
