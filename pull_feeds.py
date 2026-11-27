@@ -111,6 +111,7 @@ def rw_blocks(page, player=None):
                     'date': _strip(day.group(1)) if day else None, 'text': _strip(txt.group(1)) if txt else '',
                     'injury': _strip(inj.group(1)) if inj else None, 'link': RW + h.group(1)})
     return out
+_RW_ALIAS = {'hollywood brown': 'marquise brown'}
 def _watch_list():
     """Dom's four rosters + this week's opponent starters + the Scout's targets -> {name: rotowire_id}"""
     R = os.path.dirname(MAIN); names, why = [], {}
@@ -154,7 +155,7 @@ def _watch_list():
         if isinstance(v, dict) and v.get('rotowire_id'): ids.setdefault(key(v.get('name', '')), v['rotowire_id'])
     out, missing = {}, []
     for nm in dict.fromkeys(names):
-        rid = ids.get(key(nm))
+        rid = ids.get(key(nm)) or ids.get(_RW_ALIAS.get(key(nm), ''))   # Nov 27: Yahoo nicknames vs Sleeper legal names
         if rid: out[nm] = (rid, why[nm])
         elif why[nm] in ('mine', 'opponent') or ' ' in nm: missing.append(nm)   # one-word wire names are defenses
     return out, missing
