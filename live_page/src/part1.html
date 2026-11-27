@@ -2397,4 +2397,34 @@ html.calm .clall *{animation:none !important}
 @media (prefers-reduced-motion:no-preference){
   .clall .clwave{animation:clwave 2.2s ease-out infinite}.clall .clwave.w2{animation-delay:1.1s}}
 @keyframes clwave{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(3.4)}}
+
+/* Nov 27 11:58 AM (Dom: "Make it flames or something. Make it cool"): BATTLE FLAMES */
+.fmall{width:100%;height:auto;display:block}
+.fmall .fmr{cursor:pointer}
+.fmall .fmsc{stroke:#2A2F3E;stroke-width:.7;stroke-dasharray:2 5}
+.fmall .fmscl{font:600 7.5px var(--f-body);fill:#4C5670}
+.fmall .fmbn{fill:#1A1D26;stroke-width:1.4}
+.fmall .fmg{stroke:#FFD84A;stroke-width:2.2;stroke-dasharray:5 3;stroke-linecap:round}
+.fmall .fmgh{stroke:#05080F;stroke-width:4.6;stroke-opacity:.8}
+.fmall .fml{font:700 8.5px var(--f-body);fill:#8C96AE;letter-spacing:.12em}
+.fmall .fmv{font:400 22px var(--f-disp,"Bebas Neue");letter-spacing:.03em}
+.fmall .fmv.op{fill:#9CC8FF}
+.fmall .fmn{font:500 8.5px var(--f-body);fill:#8C96AE}
+.fmall .fmnb{font-weight:700;fill:#E8ECF4}
+.fmall .fmn.on{fill:#7CF0A8;font-weight:700}
+.fmall .fmk{font:400 19px var(--f-disp,"Bebas Neue");letter-spacing:.06em}
+.fmall .fmm{font:600 13px var(--f-body)}
+.fmall .fmem{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .fmall .fmfl{animation:fmlick 1.7s ease-in-out infinite;animation-delay:calc(var(--i) * -.4s)}
+  .fmall .fmf:not(.me) .fmfl{animation-duration:2.1s}
+  .fmall .fmcore{animation:fmglow 1.2s ease-in-out infinite}
+  .fmall .fmem{animation:fmember 2.6s ease-out infinite;animation-delay:var(--ed)}
+  .fmall.fill .fmfl{animation:fmign 2.2s cubic-bezier(.3,.1,.2,1) both,fmlick 1.7s ease-in-out 2.2s infinite;animation-delay:calc(var(--i) * .3s),calc(var(--i) * .3s + 2.2s)}}
+@keyframes fmlick{0%,100%{transform:scale(1,1)}25%{transform:scale(1.04,.97)}50%{transform:scale(.97,1.03)}75%{transform:scale(1.02,.99)}}
+@keyframes fmglow{0%,100%{opacity:.85}50%{opacity:1}}
+@keyframes fmember{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--ex),var(--ey))}}
+@keyframes fmign{0%{transform:scale(.3,0)}60%{transform:scale(1.06,1.08)}100%{transform:scale(1,1)}}
+html.calm .fmall *{animation:none !important}
+html.calm .fmall animate{display:none}
 </style>

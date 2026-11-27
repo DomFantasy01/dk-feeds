@@ -1488,7 +1488,45 @@ function battleChart(){
         <text x="${CX1 + 24}" y="${y - 8}" class="clo">OPP</text><text x="${CX1 + 24}" y="${y + 13}" class="clv op">${f1(x.fo)}</text>
         <text x="${CX0 - 24}" y="${y + 26}" class="cln" text-anchor="end">${f1(x.nm)} so far</text><text x="${CX1 + 24}" y="${y + 26}" class="cln">${f1(x.no)} so far</text></g>`; }).join("")}
     <text x="${CMID}" y="${CVH - 2}" class="clmidl" text-anchor="middle">EVEN</text></svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">The Clash</span><span class="lsub">${sub}</span><div class="bmw1">${csvg}</div><div class="bmswg">${swing}</div><div class="bthow">Your team fires from the left, the opponent from the right · the beams meet where the projected points (Ratcliffe) push them · clash right of the EVEN line = you're winning, the further from EVEN the bigger the lead, and the margin rides above it · small ring = the same split on points scored so far · numbers at each end = projected finals.</div></section>`;
+  /* Nov 27 11:58 AM (Dom: "fix the clash and make that a lot better ... Make it flames or something. Make it cool. It's a graph, it's
+     animation ... be creative"): BATTLE FLAMES - each league is two burners. Your team burns real fire (red-orange-gold) on a burner in
+     the league color; the opponent burns blue gas fire. Flame height = projected final (Ratcliffe) on the same scale for all eight, so
+     the taller fire is winning; the white-hot core = points scored so far. Gold line = the other side's projected final - your fire has
+     to clear it. Embers fly while that side has a player on the field right now. The flames lick and flicker, and once a minute they
+     all re-ignite. */
+  const FMX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.05, FVW = 600, FVH = 352, FBASE = 262, FHT = 196, FW = 44;
+  const flame = (cx, H, w) => `M${(cx - w / 2).toFixed(1)} ${FBASE + 10} C${(cx - w / 2).toFixed(1)} ${(FBASE - H * .42).toFixed(1)} ${(cx - w * .12).toFixed(1)} ${(FBASE - H * .66).toFixed(1)} ${cx.toFixed(1)} ${(FBASE - H).toFixed(1)} C${(cx + w * .1).toFixed(1)} ${(FBASE - H * .62).toFixed(1)} ${(cx + w / 2).toFixed(1)} ${(FBASE - H * .4).toFixed(1)} ${(cx + w / 2).toFixed(1)} ${FBASE + 10} Z`;
+  const fire = (cx, val, now, other, burner, me, live, i) => { const H = Math.max(14, FHT * Math.min(1, val / FMX)), Hn = FHT * Math.min(1, now / FMX), yg = FBASE - FHT * Math.min(1, other / FMX);
+    const C = me ? ["#C8261B", "#FF6A1A", "#FFB31F", "#FFF1B8"] : ["#1B3FC8", "#2F7BFF", "#7FC4FF", "#EAF6FF"];
+    const emb = live ? Array.from({length: 7}, (_, n) => `<circle cx="${(cx + (n - 3) * 4).toFixed(1)}" cy="${(FBASE - H * .55).toFixed(1)}" r="${(1 + (n % 3) * .45).toFixed(2)}" fill="${C[2]}" class="fmem" style="--ex:${((n - 3) * 5).toFixed(0)}px;--ey:${(-(H * .5 + 30)).toFixed(0)}px;--ed:${(n * .37).toFixed(2)}s"/>`).join("") : "";
+    return `<g class="fmf${me ? " me" : ""}" style="--i:${i}">
+      <ellipse cx="${cx}" cy="${FBASE - 4}" rx="${FW * .9}" ry="10" fill="${C[1]}" opacity=".35" filter="url(#fmBlur)"/>
+      <g class="fmfl" style="transform-origin:${cx}px ${FBASE}px"><g filter="url(#fmFire)">
+        <path d="${flame(cx, H, FW)}" fill="${C[0]}" opacity=".85"/><path d="${flame(cx, H * .84, FW * .78)}" fill="${C[1]}"/>
+        <path d="${flame(cx, H * .62, FW * .55)}" fill="${C[2]}"/>${Hn > 3 ? `<path d="${flame(cx, Math.min(H * .95, Hn), FW * .34)}" fill="${C[3]}" class="fmcore"/>` : ""}</g>
+        <path d="${flame(cx, H, FW)}" fill="${C[1]}" opacity=".35" filter="url(#fmBlur)"/></g>
+      ${emb}
+      <line x1="${cx - FW / 2 - 8}" y1="${yg.toFixed(1)}" x2="${cx + FW / 2 + 8}" y2="${yg.toFixed(1)}" class="fmgh"/><line x1="${cx - FW / 2 - 8}" y1="${yg.toFixed(1)}" x2="${cx + FW / 2 + 8}" y2="${yg.toFixed(1)}" class="fmg"/>
+      <path d="M${cx - FW / 2 - 6} ${FBASE} h${FW + 12} l-5 13 h-${FW + 2} Z" class="fmbn" style="stroke:${burner}"/><rect x="${cx - FW / 2 - 8}" y="${FBASE - 2}" width="${FW + 16}" height="4" rx="2" fill="${burner}"/></g>`; };
+  const fsvg = `<svg class="tball fmall" viewBox="0 0 ${FVW} ${FVH}" role="img" aria-label="Battle Flames - all four leagues"><defs>
+      <filter id="fmFire" x="-60%" y="-40%" width="220%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".028 .085" numOctaves="2" seed="4" result="n"/>
+        <feOffset in="n" dy="0" result="no"><animate attributeName="dy" from="0" to="-180" dur="2.6s" repeatCount="indefinite"/></feOffset>
+        <feDisplacementMap in="SourceGraphic" in2="no" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter>
+      <filter id="fmBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
+      <linearGradient id="fmSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04060B"/><stop offset=".75" stop-color="#0A0B12"/><stop offset="1" stop-color="#1A0E08"/></linearGradient></defs>
+    <rect width="${FVW}" height="${FVH}" fill="url(#fmSky)"/>
+    ${[50, 100, 150, 200, 250].filter(v => v < FMX).map(v => { const y = (FBASE - FHT * v / FMX).toFixed(1); return `<line x1="6" y1="${y}" x2="${FVW - 6}" y2="${y}" class="fmsc"/><text x="8" y="${(+y - 3).toFixed(1)}" class="fmscl">${v}</text>`; }).join("")}
+    ${TB.map((x, i) => { const cx = FVW / TB.length * (i + .5) + 6, a = cx - 31, b = cx + 31, mg = x.fm - x.fo, L = lgS(x.r.k), lm = L ? leftOf(L.players) : [], lo = L ? leftOf(L.oppPlayers) : [];
+      const pm = lm.filter(isLive).length, po = lo.filter(isLive).length, lt = (l, n) => !l.length ? "done" : n ? `${n} on field · ${l.length} left` : `${l.length} left`;
+      return `<g class="fmr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0"><title>${esc(`${DK[x.r.k]}: your team ${f1(x.fm)} vs the opponent ${f1(x.fo)} projected (Ratcliffe) · scored so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
+        <text x="${a}" y="15" class="fml" text-anchor="middle">TEAM</text><text x="${b}" y="15" class="fml" text-anchor="middle">OPPONENT</text>
+        <text x="${a}" y="38" class="fmv" text-anchor="middle" style="fill:${x.c}">${f1(x.fm)}</text><text x="${b}" y="38" class="fmv op" text-anchor="middle">${f1(x.fo)}</text>
+        ${fire(a, x.fm, x.nm, x.fo, x.c, true, pm > 0, i)}${fire(b, x.fo, x.no, x.fm, "#5E6B86", false, po > 0, i)}
+        <text x="${a}" y="${FBASE + 28}" class="fmn" text-anchor="middle"><tspan class="fmnb">${f1(x.nm)}</tspan> so far</text><text x="${b}" y="${FBASE + 28}" class="fmn" text-anchor="middle"><tspan class="fmnb">${f1(x.no)}</tspan> so far</text>
+        <text x="${a}" y="${FBASE + 40}" class="fmn${pm ? " on" : ""}" text-anchor="middle">${lt(lm, pm)}</text><text x="${b}" y="${FBASE + 40}" class="fmn${po ? " on" : ""}" text-anchor="middle">${lt(lo, po)}</text>
+        <text x="${cx}" y="${FBASE + 64}" class="fmk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${FBASE + 84}" class="fmm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; }).join("")}</svg>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Flames</span><span class="lsub">${sub}</span><div class="bmw1">${fsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left fire = your team · blue fire = the opponent · flame height = projected final (Ratcliffe, number on top), same scale for every league - taller fire is winning · white-hot core = points scored so far · gold line = the other side's projected final · embers fly while that side has a player on the field · faint lines every 50 points.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
