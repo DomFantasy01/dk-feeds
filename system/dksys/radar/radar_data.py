@@ -187,6 +187,11 @@ def nums(k, key):
 
 # ------------------------------------------------------------------ per league
 CANDS = {}
+try: SW = json.load(open(f'{ROOT}/domfantasy01/dk-feeds/dispatch_out/snap_watch.json'))    # Nov 27: the snap watch (built just before the Radar)
+except Exception: SW = {}
+def snapline(name):
+    x = (SW.get('lines') or {}).get(re.sub(r"[^a-z ]", "", re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", str(name or "").lower().replace("-", " ").replace(".", ""))).strip().replace("  ", " "))
+    return x.get('s') if x else None
 OUT = dict(week=WEEK, built=ptxt(NOW), built_utc=NOW.isoformat(), sources=sources, alarms=alarms, leagues={})
 for k, L in LG.items():
     lab = L['lab']; ML = METER['leagues'][lab]
@@ -232,6 +237,14 @@ for k, L in LG.items():
         if free(key) and r['rank'] <= 25:
             c = cand.setdefault(key, dict(why=[], news=list(NEWS.get(key, [])[:1]), marker=marker(NEWS.get(key, []), False) or dict(count=0, recency=None, color='gold', grades=['trend'])))
             c['why'].append(f"Sleeper adds #{r['rank']} ({r['count']:,} in 24 h)")
+    # Nov 27 (Dom: "players that are taking over for other players ... growth, not just points"): the SNAP WATCH's risers -
+    # snap share or target share climbing, or an injury opening (he played 70%+ when the man ahead of him went down)
+    for f in SW.get('flags', {}).get(lab, []):
+        if f.get('kind') != 'riser': continue
+        key = norm(f['name'])
+        if not free(key): continue
+        c = cand.setdefault(key, dict(why=[], news=list(NEWS.get(key, [])[:1]), marker=marker(NEWS.get(key, []), False) or dict(count=0, recency=0, color='gold', grades=['snaps'])))
+        c['why'].append(('snaps: ' + '; '.join(f.get('why') or [])) + (f" - taking work from {f['took']}" if f.get('took') else ''))
     VF = sorted(glob.glob(DATA + f'yahoo/wk{WEEK}/radar_verify_*.json'), key=os.path.getmtime)
     VER = json.load(open(VF[-1])).get(lab, {}) if VF else {}
     for key, c in cand.items():
@@ -243,6 +256,7 @@ for k, L in LG.items():
         rows['in'].append(dict(name=name, pos=pos, team=team, why=c['why'], marker=c['marker'], news=c['news'],
                                floor=dict(name=fl[0], gotham=fl[1]) if fl else None,
                                beats_floor=bool(fl and best is not None and best >= fl[1]), **nm))
+    for r_ in rows['own'] + rows['in'] + rows['opp']: r_['snaps'] = snapline(r_['name'])
     rank = {'red': 0, 'gold': 1, 'green': 2, 'grey': 3}
     rows['own'].sort(key=lambda r: (rank[r['marker']['color']], r['marker']['recency'], -(r['gotham'] or 0)))
     rows['opp'].sort(key=lambda r: (rank[r['marker']['color']], -(r['gotham'] or 0)))

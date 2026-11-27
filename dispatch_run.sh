@@ -143,6 +143,9 @@ rm -f "$REPO"/dispatch_out/DK_League_Pages_Wk*_latest.pdf                     # 
 mkdir -p "$REPO/dispatch_out/scout_state"                                       # the Scout's memory rides back to the repo with the pages
 cp "$ROOT"/dksys/scout/scout_state_DK*.json "$ROOT"/dksys/scout/scout_archive_DK*.jsonl "$ROOT"/dksys/scout/scout_board_DK*.json "$REPO/dispatch_out/scout_state/"
 if [ -f "$ROOT/cand/scoreboard.py" ]; then python3 "$ROOT/cand/scoreboard.py" "$REPO" || echo "!! SCOREBOARD FAILED - the Dispatch above still saved"; fi   # the checks-and-balances engine (Dom, Oct 11)
+echo "== 6b SNAP WATCH (Nov 27, Dom: growth, players taking over for other players) - snap share + target share, free nflverse"
+python3 "$REPO/live_sync/snap_watch.py" "$REPO" "$ROOT/dksys/gate/fresh/snap_counts_2026.csv" "$ROOT/dksys/gate/fresh/stats_player_week_2026.csv" > "$ROOT/snap_watch.log" 2>&1 && head -1 "$ROOT/snap_watch.log" || { echo "!! SNAP WATCH skipped - the Radar runs without it"; tail -3 "$ROOT/snap_watch.log"; }
+python3 "$REPO/live_sync/line_moves.py" "$REPO" "$ROOT/dksys/data/latest/games.csv" > "$ROOT/line_moves.log" 2>&1 && head -1 "$ROOT/line_moves.log" || { echo "!! LINE MOVES skipped"; tail -3 "$ROOT/line_moves.log"; }
 echo "== 7 the Radar (live news, per league)"
 if (cd "$ROOT/dksys/radar" && python3 radar_data.py && python3 radar_pages.py "$REPO/dispatch_out/DK_Radar_Wk${W}_latest.pdf"); then
   cp "$ROOT/dksys/data/latest/radar/radar_wk$W.json" "$REPO/dispatch_out/"; rm -f "$REPO/dispatch_out/RADAR_FAILED.txt"

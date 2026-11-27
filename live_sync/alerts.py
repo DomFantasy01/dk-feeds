@@ -895,6 +895,87 @@ try:
 except Exception as e:
     RISE_NOTE = f"rising check skipped: {type(e).__name__}: {e}"
 
+# Nov 27 (Dom: "Points aren't everything ... I'm looking at growth. Players that are taking over for other players ... do it all"):
+# SNAP WATCH cards. From dispatch_out/snap_watch.json (built each Dispatch from free nflverse snap counts + target share):
+#  - RISER (free agent / waiver man): snap share or target share jumping, or an injury opening (70%+ of snaps the game the man
+#    ahead of him went down). Gold when an expert has him at 8+ a game (Ratcliffe rest of season or Clay's Weeks 15-17), else grey.
+#    At most 4 per league, the newest injury openings first.
+#  - FALLER (one of Dom's men): his snap share dropping 15+ points while he still plays - the role shrinking before the points do.
+# Each card says what moved, who he's taking work from, Ratcliffe's and Clay's numbers in that league's scoring, and Yahoo status.
+SNAP_NOTE = ""
+try:
+    _sw = None
+    for _d in (_o2.path.join(_HERE, "dispatch_out"), _ROOT + "/domfantasy01/dk-feeds/dispatch_out"):
+        if _o2.path.exists(_o2.path.join(_d, "snap_watch.json")): _sw = json.load(open(_o2.path.join(_d, "snap_watch.json"))); break
+    if _sw is None:
+        _t = _rawtxt("dispatch_out/snap_watch.json"); _sw = json.loads(_t) if _t else {}
+    _seen3 = {(x["lg"], _nm(x["who"]), x.get("kind")) for x in ITEMS}; _nsr = _nsf = 0
+    for lg, fl in (_sw.get("flags") or {}).items():
+        _nr = 0
+        for f in fl:
+            name = f["name"]
+            if f["kind"] == "riser":
+                if _nr >= 4 or (lg, _nm(name), "snaps") in _seen3: continue
+                o_ = ownership(lg, name)
+                if o_ and o_[0] == "taken": continue
+                rr, cp = f.get("ratcliffe_ros"), [x for x in (f.get("clay_po") or []) if isinstance(x, (int, float))]
+                cpa = sum(cp) / len(cp) if cp else None
+                strong = (isinstance(rr, (int, float)) and rr >= 8) or (cpa is not None and cpa >= 8)
+                why = f.get("why") or []
+                add(id=slug("snap", W, lg, name), color="gold" if strong else "grey", lg=lg, who=name, kind="snaps",
+                    title=f"Role growing: {name} ({f['pos']}, {f['tm']}) - " + (why[0] if why else "snaps up") + (f", taking work from {f['took'].split(' (')[0]}" if f.get("took") else ""),
+                    what="; ".join(why[1:]) or (f"Taking work from {f['took']}" if f.get("took") else ""),
+                    tie=("An injury opening - the role just changed hands; it lasts as long as the man ahead of him is out." if f.get("opening")
+                         else "His role is growing before his points show it - the time to look is now, while he's cheap."),
+                    fix="Nothing to do yet: talk it through (role first, then the experts) - never a pickup on snaps alone.",
+                    ba=None, receipts=[f"Snaps: {f.get('snaps')}", f"Target share: {f.get('tshare')}",
+                                       f"Ratcliffe: this week {f1(f.get('ratcliffe_wk'))}, rest of season {f1(rr)} a game" + (f" · Clay Weeks 15-17: {', '.join(f'{x:.1f}' for x in cp)}" if cp else " · Clay: no numbers"),
+                                       ("Yahoo: " + o_[2]) if o_ else f"Yahoo: {f.get('avail')}"],
+                    by=None, src=f"the snap watch (nflverse snap counts + target share through Week {_sw.get('through_week')}, built {_sw.get('built')})")
+                _nr += 1; _nsr += 1
+            elif f["kind"] == "faller":
+                add(id=slug("snapdn", W, lg, name), color="gold" if f.get("slot") not in ("BN", "IR") else "grey", lg=lg, who=name, kind="snaps",
+                    title=f"Role shrinking: your {name} ({f['pos']}, {f['tm']}) - snap share down {abs(f.get('d_s') or 0)} points, {f.get('last')}% last game",
+                    what=f"Snaps: {f.get('snaps')} · target share: {f.get('tshare')}",
+                    tie=("He's in your lineup - a shrinking role shows up in the snaps before the points." if f.get("slot") not in ("BN", "IR") else "A bench man losing his role."),
+                    fix="Nothing to do yet: watch next game's snaps; if it holds, line up his replacement.",
+                    ba=None, receipts=[f"Snaps: {f.get('snaps')}", f"Target share: {f.get('tshare')}", f"Ratcliffe rest of season: {f1(f.get('ratcliffe_ros'))} a game"],
+                    by=None, src=f"the snap watch (through Week {_sw.get('through_week')}, built {_sw.get('built')})")
+                _nsf += 1
+    SNAP_NOTE = f"snaps: {_nsr} risers, {_nsf} fallers (through Week {_sw.get('through_week')})" if _sw else "snaps: no snap watch file"
+except Exception as e:
+    SNAP_NOTE = f"snap check skipped: {type(e).__name__}: {e}"
+# Nov 27 (Dom: track how the Vegas numbers move during the week): LINE MOVE cards - one of Dom's starters (or this week's
+# opponent's) plays for a team whose implied points moved 2+ since the line was first seen this week (line_moves.py).
+LINE_NOTE = ""
+try:
+    _lmv = None
+    for _d in (_o2.path.join(_HERE, "dispatch_out"), _ROOT + "/domfantasy01/dk-feeds/dispatch_out"):
+        if _o2.path.exists(_o2.path.join(_d, "line_moves.json")): _lmv = json.load(open(_o2.path.join(_d, "line_moves.json"))); break
+    if _lmv is None:
+        _t = _rawtxt("dispatch_out/line_moves.json"); _lmv = json.loads(_t) if _t else {}
+    _TFIX = {"LA": "LAR", "WSH": "WAS", "JAC": "JAX"}
+    _mv = {(m["team"], m["wk"]): m for m in (_lmv.get("moves") or []) if m["wk"] == W}
+    _nl = 0
+    for lg, L in (M.get("leagues") or {}).items():
+        for side, who_ in (("me", "your"), ("op", "his")):
+            for st in L["starters"].get(side, []):
+                if st.get("pos") in ("DEF", "K"): continue
+                tm = _TFIX.get(str(st.get("team") or st.get("tm") or "").upper(), str(st.get("team") or st.get("tm") or "").upper())
+                m = _mv.get((tm, W))
+                if not m: continue
+                up = m["move"] > 0; good = up == (side == "me")
+                add(id=slug("line", W, lg, st["player"], m["now"]), color="grey", lg=lg, who=st["player"], kind="lines",
+                    title=f"Vegas: {who_} {st['player']} - {tm}'s implied points {'up' if up else 'down'} {abs(m['move']):.1f} ({m['first']} -> {m['now']}, {m['opp']})",
+                    what=("Good for you" if good else "Bad for you") + f": the betting market {'likes' if up else 'has cooled on'} {tm}'s offense since {m['first_at']}.",
+                    tie="A tag beside the experts - never a decider.", fix="Nothing to do - note it for start/sit.", ba=None,
+                    receipts=[f"Implied team points: {m['first']} (first seen {m['first_at']}) -> {m['now']}", "Source: " + str(_lmv.get("source"))],
+                    by=None, src=f"line moves (built {_lmv.get('built')})")
+                _nl += 1
+    LINE_NOTE = f"line moves: {len(_mv)} teams moved 2+, {_nl} cards"
+except Exception as e:
+    LINE_NOTE = f"line moves skipped: {type(e).__name__}: {e}"
+
 # Oct 31 (Dom: "send an alert the minute a questionable starter shows up as inactive, so you'd still have time to swap") -
 # THE INACTIVE ALERT. One of Dom's starters on the official inactives list (ESPN's feed, saved every 5 minutes by the
 # inactives watch) or tagged Out, while his game hasn't started: red, with the backups from the Pickups panel - his own
@@ -1117,4 +1198,4 @@ json.dump(doc, open(out_f, "w"), separators=(",", ":"))
 SIZE_NOTE = f"size {_sz(doc):,} bytes" + (f", {_dropped} oldest archived cards dropped to fit" if _dropped else "") + (f", {_trimmed} grey cards shortened" if _trimmed else "") + (f", {_gdrop} oldest grey cards dropped" if _gdrop else "") + (" - STILL OVER THE LIMIT" if _sz(doc) > 262144 else "")
 act = [x for x in out if x.get("active")]
 print("ALERTS", len(act), "active:", {c: sum(1 for x in act if x["color"] == c) for c in RANK},
-      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", RESET_NOTE, "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)
+      "| resolved now:", sum(1 for x in out if x.get("resolved_at") == NOW), "|", RESET_NOTE, "|", ONLINE_NOTE, "|", PREKICK_NOTE, "|", RADAR_NOTE, "|", FTN_NOTE, "|", RISE_NOTE, "|", SNAP_NOTE, "|", LINE_NOTE, "|", INACT_NOTE, "|", SPLIT_NOTE, "|", SIZE_NOTE)

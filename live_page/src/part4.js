@@ -2291,7 +2291,9 @@ function showSheet(html, lc){ const sh = sheetHost(); sh.innerHTML = `<div class
 function closeSheet(){ const sh = $("#gsheet"), b = $("#gback"); if (!sh) return; sh.classList.remove("up"); b.classList.remove("up"); setTimeout(() => { sh.hidden = true; b.hidden = true; }, 220); }
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
 function plRow(p, k){ const s = ringState(p, k), f = manFinal(p, "y");
-  return `<div class="gpr ${s}"><i></i><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc([p.tm, p.status].filter(Boolean).join(" · "))}</em></span><span class="pp">${f1(pts(p))}<em>${started(p) && !isDone(p) ? "→ " + f1(f) : isDone(p) ? "final" : "proj " + f1(f)}</em></span></div>`; }
+  /* Nov 27 (Dom: "growth ... players taking over for other players"): his snap share and target share, last four games */
+  const sn = (((M || {}).snaps || {}).p || {})[norm(p.name)];
+  return `<div class="gpr ${s}"><i></i><span class="ps">${esc(POSAB(p.slot))}</span><span class="pn">${esc(p.name)}<em>${esc([p.tm, p.status].filter(Boolean).join(" · "))}</em>${sn ? `<em class="gsn">Snaps ${esc(sn[0].replace(/W\d+ /g, ""))} · Targets ${esc(sn[1].replace(/W\d+ /g, ""))}</em>` : ""}</span><span class="pp">${f1(pts(p))}<em>${started(p) && !isDone(p) ? "→ " + f1(f) : isDone(p) ? "final" : "proj " + f1(f)}</em></span></div>`; }
 /* Nov 22 8:53 AM (Dom: "when I clicked into it, there's nothing there that told me anything about the weather"):
    the player sheet spells out his game's weather - game, rain, temperature, wind/gusts, and what it does to him */
 function plWx(L, p){ const w = wxOf(p.tm); if (!w) return "";

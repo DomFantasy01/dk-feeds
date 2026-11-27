@@ -401,6 +401,34 @@ try:
                 if _p9.get('proj') is not None: _g9.setdefault(_p9['name'], round(float(_p9['proj']), 2))
         print('pj0: morning projections from', _o9.get('t'), '-', sum(len(v) for v in _o9['lg'].values()), 'players')
 except Exception as _e9: print('pj0 skipped:', str(_e9)[:120])
+# Nov 27 (Dom: "growth ... players taking over for other players" / "do it all"): the SNAP WATCH line for every man in Dom's four
+# matchups (both sides) plus the flagged risers, and the week's Vegas LINE MOVES (implied team totals that moved 2+ points), so
+# the page's player sheet shows the role trend under the points. Read next to the meter, else from GitHub.
+def _rider(fn):
+    import os as _os9, urllib.request as _u9, time as _t9
+    _pth = _os9.path.join(_os9.path.dirname(_os9.path.abspath(sys.argv[2])), fn)
+    try:
+        if _os9.path.exists(_pth): return json.load(open(_pth))
+        return json.loads(_u9.urlopen(f"https://raw.githubusercontent.com/DomFantasy01/dk-feeds/main/dispatch_out/{fn}?t={int(_t9.time())}", timeout=30).read())
+    except Exception as _e: print(fn, 'not read:', str(_e)[:80]); return None
+try:
+    _sw = _rider('snap_watch.json')
+    if _sw:
+        import re as _re9
+        _nn = lambda n: _re9.sub(r"[^a-z ]", "", _re9.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", "", str(n or "").lower().replace("-", " ").replace(".", ""))).strip().replace("  ", " ")
+        _want = set()
+        try:
+            _ls9 = json.load(open(sys.argv[5])) if len(sys.argv) > 5 else {}
+            for _L9 in _ls9.get('leagues', []):
+                for _p9 in (_L9.get('players') or []) + (_L9.get('oppPlayers') or []): _want.add(_nn(_p9.get('name')))
+        except Exception: pass
+        for _v9 in (_sw.get('flags') or {}).values(): _want.update(_nn(x['name']) for x in _v9)
+        _ln = _sw.get('lines') or {}
+        cur['snaps'] = {'built': _sw.get('built'), 'thru': _sw.get('through_week'), 'p': {k: [v['s'], v['t']] for k, v in _ln.items() if k in _want}}
+        print('snaps on Live:', len(cur['snaps']['p']), 'players through week', _sw.get('through_week'))
+    _lm = _rider('line_moves.json')
+    if _lm: cur['lines'] = {'built': _lm.get('built'), 'moves': [{k: m[k] for k in ('team', 'wk', 'opp', 'first', 'now', 'move', 'first_at')} for m in (_lm.get('moves') or [])[:16]]}
+except Exception as _e9: print('snaps/lines skipped:', str(_e9)[:120])
 # Nov 10 10:05 AM (Dom: "Fix" - the 8:55 AM chain failed: live/models came to 276,313 bytes, the database caps a document at 262,144).
 # Size guard: keep the document under 250,000 bytes by shedding the least-needed riders first (the page falls back to live/pickups).
 def _size(o): return len(json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
