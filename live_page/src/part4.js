@@ -1271,7 +1271,11 @@ function battleChart(){
     <rect x="0" y="0" width="${W2}" height="${H2}" fill="url(#bmsky)"/>${ticks}${rows.map(band).join("")}${nowLine}
     <text x="${PR + 15}" y="${TOP - 14}" class="bmhd">YOU / HIM</text></svg>`;
   const big = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now))[0];
-  const swing = rows.map(r => { const bm = big(r.me), bo = big(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm ? `${esc(LN(bm.p.name))} <em>${Math.round(bm.fin - bm.now)}</em>` : "done"} <i>vs</i> ${bo ? `${esc(LN(bo.p.name))} <em>${Math.round(bo.fin - bo.now)}</em>` : "done"}</span>`; }).join("");
+  /* Nov 27 7:45 AM (Dom: "the breakers ... make them better"): GAME BREAKERS - each side's two biggest starters still to play, with
+     the points they're projected to add (Ratcliffe) and when they kick off */
+  const top2 = (list) => list.filter(x => !isDone(x.p) && !isOut(x.p)).sort((a, b) => (b.fin - b.now) - (a.fin - a.now)).slice(0, 2);
+  const gbn = (x) => `${esc(LN(x.p.name))} <em>${Math.round(x.fin - x.now)}</em>${x.p.when ? `<u>${esc(String(x.p.when).replace(/^(\w{3})\w*\s+([\d:]+)\s*(am|pm)$/i, (m, d, t, ap) => d + " " + t.replace(/:00$/, "") + ap[0].toLowerCase()))}</u>` : ""}`;
+  const swing = `<span class="gbh">GAME BREAKERS · biggest still to play</span>` + rows.map(r => { const bm = top2(r.me), bo = top2(r.op); return `<span><b style="color:${HEX[r.k]}">${DK[r.k]}</b> ${bm.length ? bm.map(gbn).join(" · ") : "done"}<br><i>vs</i> ${bo.length ? bo.map(gbn).join(" · ") : "done"}</span>`; }).join("");
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
   const how = `<div class="bthow">Colored range with snow = you · dark grey range behind = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
@@ -1322,7 +1326,7 @@ function battleChart(){
   /* Nov 26 6:14 PM (Dom: "Tubes vertical vs horizontal"): the tubes stand up - each league gets its own column with two upright glass
      tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
      on top of each tube, the DK tag and the margin underneath. */
-  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 318, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
+  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 326, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
   const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(10, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
     /* Nov 26 6:41 PM (Dom: "Make them beakers"): lab beakers - straight glass sides, flat rounded bottom, a flared lip with a pouring
        spout on top, and white measuring marks up the side */
@@ -1356,10 +1360,17 @@ function battleChart(){
           return `<g class="tbpcg"><title>${esc(fin ? `${DK[x.r.k]}: final - you ${won ? "won" : "lost"}` : pc0 === null ? `${DK[x.r.k]}: no chance to win posted yet` : `${DK[x.r.k]}: ${Math.round(pc0)}% chance to win this week (${who})`)}</title>
             <text x="${a}" y="${TY0 + 26}" class="tbpc" text-anchor="middle" style="fill:${zc2}">${ptxt}</text>${fin ? "" : `<text x="${a}" y="${TY0 + 37}" class="tbpcl" text-anchor="middle">TO WIN</text>`}</g>
             <text x="${a}" y="${TY1 + 14}" class="tbleft${ml ? "" : " z"}" text-anchor="middle">${lt(ml)}</text><text x="${b}" y="${TY1 + 14}" class="tbleft${ol ? "" : " z"}" text-anchor="middle">${lt(ol)}</text>`; })()}
-        <text x="${cx}" y="${TY1 + 42}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
-        <text x="${cx}" y="${TY1 + 68}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+        ${(() => { /* Nov 27 7:45 AM (Dom: "the beakers ... can you make them better or do something different?"): (1) a dashed LINE TO BEAT
+           across your beaker at his projected final - your liquid has to rise past it; (2) under your beaker, the points you still NEED
+           (his final minus what you've scored) against what your remaining starters are PROJECTED to add (Ratcliffe) - red when short */
+          const yb = TY1 - THT * Math.min(1, x.fo / TMAX), xl = a - TWD / 2 - 5, xr = a + TWD / 2 + 3, need = Math.max(0, x.fo - x.nm), proj = Math.max(0, x.fm - x.nm), ok = proj >= need;
+          return `<g class="tbbeat"><title>${esc(`${DK[x.r.k]}: you need ${f1(need)} more to pass his projected ${f1(x.fo)} - your players still to play are projected for ${f1(proj)}`)}</title>
+            <line x1="${xl}" y1="${yb.toFixed(1)}" x2="${xr}" y2="${yb.toFixed(1)}" class="tbbl"/><path d="M${xl - 5} ${(yb - 3.5).toFixed(1)} l5 3.5 l-5 3.5 Z" class="tbba"/></g>
+            <text x="${a}" y="${TY1 + 27}" class="tbneed${ok ? "" : " short"}" text-anchor="middle">need ${Math.round(need)} / proj ${Math.round(proj)}</text>`; })()}
+        <text x="${cx}" y="${TY1 + 47}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${TY1 + 71}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
         <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">YOU</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">HIM</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = you · grey beaker = him · taller liquid is winning · solid = scored so far, lighter = still to come · % on your beaker = chance to win this week (Ratcliffe) · "left" = starters still to play.</div></section>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = you · grey beaker = him · taller liquid is winning · solid = scored so far, lighter = still to come · % on your beaker = chance to win this week (Ratcliffe) · dashed line = his projected final, your liquid has to pass it · need / proj = points you still need vs what your players left are projected for · "left" = starters still to play.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
