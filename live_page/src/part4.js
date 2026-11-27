@@ -1404,7 +1404,37 @@ function battleChart(){
         <rect x="${et[0] - 2}" y="${et[1] - 10}" width="7" height="20" rx="2" class="ppcap"/><rect x="${eo[0] - 2}" y="${eo[1] - 10}" width="7" height="20" rx="2" class="ppcap"/>
         <text x="${et[0] + 12}" y="${et[1] + 3}" class="ppf" style="fill:${x.c}">${f1(x.fm)}</text><text x="${et[0] + 12}" y="${et[1] + 15}" class="ppn">${f1(x.nm)} · ${lt(ml)}</text>
         <text x="${eo[0] + 12}" y="${eo[1] + 3}" class="ppf op">${f1(x.fo)}</text><text x="${eo[0] + 12}" y="${eo[1] + 15}" class="ppn">${f1(x.no)} · ${lt(ol)}</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Pipes</span><span class="lsub">${sub}</span><div class="bmw1">${ppsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Top pipe = your team · bottom pipe = the opponent · same route, so the longer flow is winning · solid = points scored so far, lighter = still projected (Ratcliffe), its end = projected final · gold tick = the other side's projected final · tap a league to jump to it.</div></section>`;
+  /* Nov 27 10:53 AM (Dom: "they still look like shit. How about hourglasses with sand in them ... something unique"): BATTLE
+     HOURGLASSES - per league your team's hourglass (league-color sand) beside the opponent's (grey sand). Sand that has fallen into the
+     bottom = points scored so far; sand still in the top = points still projected to come (Ratcliffe); all the sand together = the
+     projected final, shown as a dashed level in the bottom glass. Gold line = the other side's projected final. Sand trickles through
+     the neck while starters are left; once a minute the bottom piles up again. */
+  const HMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, HVW = 600, HVH = 330, HTOP = 58, HNECK = 150, HBOT = 242, HW = 25, HNW = 2.6;
+  const hglass = (cx, fin, now, other, col, idh, me, live) => { const bh = HBOT - HNECK - 4, th = HNECK - HTOP - 4;
+    const top = `M${cx - HW} ${HTOP} C${cx - HW} ${HTOP + th * .62} ${cx - HNW - 4} ${HNECK - 14} ${cx - HNW} ${HNECK} L${cx + HNW} ${HNECK} C${cx + HNW + 4} ${HNECK - 14} ${cx + HW} ${HTOP + th * .62} ${cx + HW} ${HTOP} Z`;
+    const bot = `M${cx - HNW} ${HNECK} C${cx - HNW - 4} ${HNECK + 14} ${cx - HW} ${HBOT - bh * .62} ${cx - HW} ${HBOT} L${cx + HW} ${HBOT} C${cx + HW} ${HBOT - bh * .62} ${cx + HNW + 4} ${HNECK + 14} ${cx + HNW} ${HNECK} Z`;
+    const hb = bh * Math.min(1, now / HMAX), hf = bh * Math.min(1, fin / HMAX), ht = th * Math.min(1, Math.max(0, fin - now) / HMAX), go = bh * Math.min(1, other / HMAX);
+    const ys = HBOT - hb, yf = HBOT - hf, yg = HBOT - go, yt = HNECK - 2 - ht;
+    return `<g class="hgg${me ? " me" : ""}" style="--lc:${col}"><defs><clipPath id="${idh}t"><path d="${top}"/></clipPath><clipPath id="${idh}b"><path d="${bot}"/></clipPath></defs>
+      <path d="${top}" class="hgglass"/><path d="${bot}" class="hgglass"/>
+      <g clip-path="url(#${idh}t)"><path d="M${cx - HW - 2} ${HNECK} V${(yt + 5).toFixed(1)} Q${cx} ${(yt - 3).toFixed(1)} ${cx + HW + 2} ${(yt + 5).toFixed(1)} V${HNECK} Z" class="hgsand" fill="${col}"/></g>
+      ${live && ht > .5 ? `<line x1="${cx}" y1="${HNECK - 2}" x2="${cx}" y2="${ys.toFixed(1)}" class="hgstream" stroke="${col}"/>` : ""}
+      <g clip-path="url(#${idh}b)"><g class="hgpile"><path d="M${cx - HW - 2} ${HBOT} V${(ys + 4).toFixed(1)} Q${cx} ${(ys - 6).toFixed(1)} ${cx + HW + 2} ${(ys + 4).toFixed(1)} V${HBOT} Z" class="hgsand" fill="${col}"/></g>
+        <line x1="${cx - HW}" y1="${yf.toFixed(1)}" x2="${cx + HW}" y2="${yf.toFixed(1)}" class="hgfin" stroke="${col}"/></g>
+      <line x1="${cx - HW - 6}" y1="${yg.toFixed(1)}" x2="${cx + HW + 6}" y2="${yg.toFixed(1)}" class="hggold"/>
+      <path d="${top}" class="hgsheen"/><path d="${bot}" class="hgsheen"/>
+      <rect x="${cx - HW - 7}" y="${HTOP - 9}" width="${HW * 2 + 14}" height="9" rx="2.5" class="hgcap"/><rect x="${cx - HW - 7}" y="${HBOT}" width="${HW * 2 + 14}" height="9" rx="2.5" class="hgcap"/>
+      <rect x="${cx - HW - 5}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/><rect x="${cx + HW + 2.4}" y="${HTOP}" width="2.6" height="${HBOT - HTOP}" class="hgpost"/></g>`; };
+  const hsvg = `<svg class="tball hgall" viewBox="0 0 ${HVW} ${HVH}" role="img" aria-label="Battle Hourglasses - all four leagues"><rect width="${HVW}" height="${HVH}" fill="#05080F"/>
+    ${TB.map((x, i) => { const cx = HVW / TB.length * (i + .5), a = cx - 34, b = cx + 34, mg = x.fm - x.fo, L = lgS(x.r.k), ml = L ? leftOf(L.players).length : 0, ol = L ? leftOf(L.oppPlayers).length : 0, lt = (n) => n ? n + " left" : "done";
+      return `<g class="hgr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--i:${i}"><title>${esc(`${DK[x.r.k]}: your team ${f1(x.fm)} vs the opponent ${f1(x.fo)} projected (Ratcliffe) · scored so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
+        <text x="${a}" y="16" class="hgl" text-anchor="middle">TEAM</text><text x="${b}" y="16" class="hgl" text-anchor="middle">OPPONENT</text>
+        <text x="${a}" y="39" class="hgv" text-anchor="middle" style="fill:${x.c}">${f1(x.fm)}</text><text x="${b}" y="39" class="hgv op" text-anchor="middle">${f1(x.fo)}</text>
+        ${hglass(a, x.fm, x.nm, x.fo, x.c, "hg" + i + "m", true, ml > 0)}${hglass(b, x.fo, x.no, x.fm, "#A9AFBB", "hg" + i + "o", false, ol > 0)}
+        <text x="${a}" y="${HBOT + 22}" class="hgn" text-anchor="middle">${f1(x.nm)} · ${lt(ml)}</text><text x="${b}" y="${HBOT + 22}" class="hgn" text-anchor="middle">${f1(x.no)} · ${lt(ol)}</text>
+        <text x="${cx}" y="${HBOT + 50}" class="hgk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${HBOT + 72}" class="hgm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; }).join("")}</svg>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Hourglasses</span><span class="lsub">${sub}</span><div class="bmw1">${hsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left hourglass = your team · right = the opponent · sand in the bottom = points scored so far · sand still on top = points still projected (Ratcliffe) · dashed level = projected final (number on top) · gold line = the other side's projected final · under each glass: scored so far · starters left.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
