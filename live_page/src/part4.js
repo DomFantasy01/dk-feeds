@@ -1315,7 +1315,7 @@ function battleChart(){
   /* Nov 26 6:14 PM (Dom: "Tubes vertical vs horizontal"): the tubes stand up - each league gets its own column with two upright glass
      tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
      on top of each tube, the DK tag and the margin underneath. */
-  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 300, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
+  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 318, TY0 = 50, TY1 = 238, THT = TY1 - TY0, TWD = 54, TGP = 10;   /* Nov 26 6:37 PM (Dom: "make them ... wider or occupy the space a little better"): 54 wide (was 30) */
   const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(10, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
     /* Nov 26 6:41 PM (Dom: "Make them beakers"): lab beakers - straight glass sides, flat rounded bottom, a flared lip with a pouring
        spout on top, and white measuring marks up the side */
@@ -1338,10 +1338,21 @@ function battleChart(){
       return `<g class="tbr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(`${DK[x.r.k]}: you ${f1(x.fm)} vs him ${f1(x.fo)} projected (Ratcliffe) · real so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
         <text x="${a}" y="${TY0 - 10}" class="tbv" text-anchor="middle" style="fill:${x.c}">${f1(x.fm)}</text><text x="${b}" y="${TY0 - 10}" class="tbv op" text-anchor="middle">${f1(x.fo)}</text>
         ${vtube(a, x.fm / TMAX, x.nm / TMAX, x.c, id + "m", true)}${vtube(b, x.fo / TMAX, x.no / TMAX, "#9AA1AE", id + "o", false)}
-        <text x="${cx}" y="${TY1 + 26}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
-        <text x="${cx}" y="${TY1 + 50}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+        ${(() => { /* Nov 26 6:50 PM (Dom: "1, 2"): (1) the chance to win this week etched on your beaker - Ratcliffe's (he decides), the
+           ranked average if he hasn't posted; green 55%+, amber 45-55, red under 45; WON/LOST once the week is final. (2) how many starters
+           each side still has to play, under each beaker */
+          const L = lgS(x.r.k); if (!L) return ""; const fin = settled(L), r0 = chance(L, "r"), rk = (() => { try { return rankedOf({v: chance(L, "v"), r: r0, o: chance(L, "o"), d: chance(L, "d"), c: chance(L, "c"), b: chance(L, "b"), g: chance(L, "g"), y: chance(L, "y"), k: chance(L, "k")}, ourCheck()); } catch(_){ return null; } })();
+          const pc0 = r0 !== null && r0 !== undefined && !isNaN(r0) ? r0 : rk ? rk.v : null, who = r0 !== null && r0 !== undefined && !isNaN(r0) ? "Ratcliffe" : "ranked average";
+          const won = fin && score(L.players) >= score(L.oppPlayers), zc2 = fin ? (won ? "#3DDC84" : "#FF5A5A") : pc0 === null ? "#9AA1AE" : pc0 >= 55 ? "#3DDC84" : pc0 >= 45 ? "#F5B83D" : "#FF5A5A";
+          const ptxt = fin ? (won ? "WON" : "LOST") : pc0 === null ? "–" : Math.round(pc0) + "%";
+          const ml = leftOf(L.players).length, ol = leftOf(L.oppPlayers).length, lt = (n) => n ? n + " left" : "done";
+          return `<g class="tbpcg"><title>${esc(fin ? `${DK[x.r.k]}: final - you ${won ? "won" : "lost"}` : pc0 === null ? `${DK[x.r.k]}: no chance to win posted yet` : `${DK[x.r.k]}: ${Math.round(pc0)}% chance to win this week (${who})`)}</title>
+            <text x="${a}" y="${TY0 + 26}" class="tbpc" text-anchor="middle" style="fill:${zc2}">${ptxt}</text>${fin ? "" : `<text x="${a}" y="${TY0 + 37}" class="tbpcl" text-anchor="middle">TO WIN</text>`}</g>
+            <text x="${a}" y="${TY1 + 14}" class="tbleft${ml ? "" : " z"}" text-anchor="middle">${lt(ml)}</text><text x="${b}" y="${TY1 + 14}" class="tbleft${ol ? "" : " z"}" text-anchor="middle">${lt(ol)}</text>`; })()}
+        <text x="${cx}" y="${TY1 + 42}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${TY1 + 68}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
         <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">YOU</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">HIM</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = you · grey beaker = him · taller liquid is winning · solid = scored so far, lighter = still to come.</div></section>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left beaker = you · grey beaker = him · taller liquid is winning · solid = scored so far, lighter = still to come · % on your beaker = chance to win this week (Ratcliffe) · "left" = starters still to play.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
