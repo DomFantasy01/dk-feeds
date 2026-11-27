@@ -3608,7 +3608,10 @@ function battleChart(){
      a man has played) on one shared scale, so the longer liquid is winning. The bright, solid liquid is points already scored; the
      lighter liquid ahead of it is what's still to come. Right side: the finals and the margin. The tubes fill slowly, one league at a
      time. The spiked mountains, windows and rings stay in the code, switched off. */
-  const TB = rows.map(r => { const sm = series(r.me), so = series(r.op); return {r, c: HEX[r.k], fm: sm[sm.length - 1], fo: so[so.length - 1],
+  /* Nov 26 8:55 PM (Dom: "DK2 ... the numbers aren't right ... Yahoo's completely different"): the finals were the last point of the
+     kickoff timeline, which skipped every starter with no kickoff on file - Thursday's finished games among them, so his 136 real
+     points went missing. The finals now add up every starter: real points once played, Ratcliffe's projection for the rest. */
+  const TB = rows.map(r => { const tot = (l) => l.reduce((a, x) => a + (isDone(x.p) ? x.now : Math.max(x.fin, x.now)), 0); return {r, c: HEX[r.k], fm: tot(r.me), fo: tot(r.op),
     nm: r.me.reduce((a, x) => a + x.now, 0), no: r.op.reduce((a, x) => a + x.now, 0)}; });
   /* Nov 26 6:14 PM (Dom: "Tubes vertical vs horizontal"): the tubes stand up - each league gets its own column with two upright glass
      tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
