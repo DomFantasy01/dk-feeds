@@ -2219,4 +2219,13 @@ html.calm .tball *{animation:none !important}
 @media (prefers-reduced-motion:no-preference){
   .tball .tbliq.v{transform-box:view-box;transform-origin:0 236px;animation:tbrise 3.2s cubic-bezier(.35,.1,.25,1) both;animation-delay:calc(var(--i,0) * 3.2s + .6s)}
   @keyframes tbrise{from{transform:scaleY(0)}to{transform:scaleY(1)}}}
+/* Nov 26 6:37 PM: wider tubes, moving fluid */
+.tball .tbwave{animation:tbwave 3.4s linear infinite}
+@keyframes tbwave{from{transform:translateX(0)}to{transform:translateX(27px)}}
+.tball .tbt:not(.me) .tbwave{animation-duration:4.2s;animation-direction:reverse}
+.tball .tbbub{fill:#fff;opacity:0;animation:tbbub var(--bd,4s) ease-in infinite;animation-delay:var(--bl,0s)}
+@keyframes tbbub{0%{transform:translateY(0);opacity:0}12%{opacity:.55}85%{opacity:.35}100%{transform:translateY(calc(-1 * var(--h,100px)));opacity:0}}
+.tball .tbhi{opacity:.28}
+html.calm .tball .tbwave,html.calm .tball .tbbub{animation:none !important}.html.calm .tball .tbbub{display:none}
+@media (prefers-reduced-motion:reduce){.tball .tbwave,.tball .tbbub{animation:none}.tball .tbbub{display:none}}
 </style>
