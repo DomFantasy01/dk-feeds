@@ -1168,23 +1168,38 @@ function battleChart(){
      has a lit left face and a shadowed right face, the tall peaks of YOUR range carry snow caps. HIS range stands behind yours as a dark
      slate silhouette with no color and no snow, so the two can't be mixed up. */
   const MT = (pp, base, TALL, seed, mine, c, g) => {
+    /* Nov 26 5:17 PM (Dom: "Make the mountains like the Alps. Not buildings."): alpine ridges - big peaks spaced unevenly along the
+       score curve, each broken up by fractal detail (crags and notches), shaded as triangular rock faces running down from each summit
+       (not vertical columns), and white snow on every crag tip that rises above the line, heavier on the high ground. */
     let sd2 = seed * 7919 % 233280 || 1; const rr = () => (sd2 = (sd2 * 9301 + 49297) % 233280) / 233280;
     const yAt = (x) => { for (let i = 1; i < pp.length; i++){ const [x0, y0] = pp[i - 1], [x1, y1] = pp[i]; if (x <= x1){ const t = Math.max(0, Math.min(1, (x - x0) / Math.max(1e-6, x1 - x0))); const e = t * t * (3 - 2 * t); return y0 + (y1 - y0) * e; } } return pp[pp.length - 1][1]; };
-    const x0 = pp[0][0], x1 = pp[pp.length - 1][0], pts = [];
-    let x = x0, up = true; while (x < x1){ const y = yAt(x), h = base - y, j = (mine ? 11 : 9) * (0.45 + rr() * .55) * Math.min(1, .2 + h / TALL);
-      pts.push([x, up ? Math.max(base - TALL - 8, y - j) : Math.min(base, y + j * .55)]); up = !up; x += 13 + rr() * 15; }
-    pts.push([x1, yAt(x1)]);
+    const x0 = pp[0][0], x1 = pp[pp.length - 1][0], top = base - TALL - 10;
+    const clampY = (y) => Math.max(top, Math.min(base, y));
+    /* major summits and saddles */
+    const maj = []; let x = x0, pk = rr() < .5;
+    while (x < x1){ const y = yAt(x), h = (base - y) / TALL, A = (mine ? 16 : 13) * (.35 + .65 * Math.min(1, h + .15));
+      maj.push([x, clampY(pk ? y - A * (.55 + rr() * .45) : y + A * (.25 + rr() * .3)), pk]); pk = !pk; x += 26 + rr() * 34; }
+    maj.push([x1, clampY(yAt(x1)), false]);
+    /* fractal crags between them */
+    let pts = maj.map(p => [p[0], p[1]]);
+    for (let lev = 0; lev < 3; lev++){ const nx = [pts[0]];
+      for (let i = 1; i < pts.length; i++){ const [ax, ay] = pts[i - 1], [bx, by] = pts[i], len = Math.hypot(bx - ax, by - ay);
+        nx.push([(ax + bx) / 2 + (rr() - .5) * len * .08, clampY((ay + by) / 2 + (rr() - .5) * len * (.32 / (lev + 1)))], [bx, by]); }
+      pts = nx; }
     const ridge = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L");
     const body = ridge + ` L${x1} ${base} L${x0} ${base} Z`;
-    let faces = "", snow = "";
-    for (let i = 1; i < pts.length - 1; i++){ const [px, py] = pts[i], [qx, qy] = pts[i + 1], [ox, oy] = pts[i - 1];
-      if (py < oy && py < qy){   /* a peak: shade its right face down toward the base */
-        faces += `M${px.toFixed(1)} ${py.toFixed(1)} L${qx.toFixed(1)} ${qy.toFixed(1)} L${qx.toFixed(1)} ${base} L${px.toFixed(1)} ${base} Z`;
-        if (mine && base - py > TALL * .55){ const sx = (qx - px) * .32, sy = (qy - py) * .32, lx = (ox - px) * .32, ly = (oy - py) * .32;
-          snow += `M${px.toFixed(1)} ${py.toFixed(1)} L${(px + sx).toFixed(1)} ${(py + sy).toFixed(1)} L${(px + sx * .4).toFixed(1)} ${(py + Math.max(sy, ly) * .75).toFixed(1)} L${(px + lx * .5).toFixed(1)} ${(py + ly * .9).toFixed(1)} L${(px + lx).toFixed(1)} ${(py + ly).toFixed(1)} Z`; } } }
+    /* rock faces: from each summit, the shadow side runs down to the next saddle and fans to the foot of the mountain */
+    let faces = "";
+    for (let i = 0; i < maj.length - 1; i++){ if (!maj[i][2]) continue; const [px, py] = maj[i], [qx, qy] = maj[i + 1];
+      const fx = px + (qx - px) * (.35 + rr() * .2), fy = Math.min(base, qy + (base - qy) * .9); faces += `M${px.toFixed(1)} ${py.toFixed(1)} L${qx.toFixed(1)} ${qy.toFixed(1)} L${fx.toFixed(1)} ${fy.toFixed(1)} Z`; }
+    /* snow: everything of the ridge that pokes above a line a little under the curve, more on high ground */
+    const sl = (xx) => { const y = yAt(xx), h = (base - y) / TALL; return y + (mine ? 1 : -2) - (h > .45 ? -4 * (h - .45) * 2 : 3); };
+    let snowLine = "", xs = x0; const sp = []; while (xs <= x1){ sp.push([xs, Math.min(base, sl(xs) + (rr() - .5) * 2.5)]); xs += 4; } sp.push([x1, sl(x1)]);
+    snowLine = "M" + sp.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L") + ` L${x1} ${top - 20} L${x0} ${top - 20} Z`;
+    const cid = (g || "bmo" + seed) + "sn" + seed;
     return mine
-      ? `<path d="${body}" fill="url(#${g}m)"/><path d="${faces}" fill="url(#bmface)" opacity=".55"/><path d="${snow}" fill="#F4F8FF" opacity=".92"/><path d="${ridge}" fill="none" stroke="${c}" stroke-width="1.6" stroke-linejoin="round"/>`
-      : `<path d="${body}" fill="#2A303D"/><path d="${faces}" fill="url(#bmface)" opacity=".5"/><path d="${ridge}" fill="none" stroke="#8C94A5" stroke-width="1.2" stroke-linejoin="round" opacity=".9"/>`;
+      ? `<defs><clipPath id="${cid}"><path d="${snowLine}"/></clipPath><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="url(#${g}m)"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".62"/><path d="${body}" fill="url(#bmsnow2)" clip-path="url(#${cid})"/></g><path d="${ridge}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".9" stroke-linejoin="round"/>`
+      : `<defs><clipPath id="${cid}b"><path d="${body}"/></clipPath></defs><path d="${body}" fill="#2A303D"/><g clip-path="url(#${cid}b)"><path d="${faces}" fill="url(#bmface)" opacity=".55"/></g><path d="${ridge}" fill="none" stroke="#8C94A5" stroke-width="1" stroke-linejoin="round" opacity=".85"/>`;
   };
   const band = (r, ri) => { const c = HEX[r.k], g = "bm" + SLUG[r.k], fl = FLOOR(ri), mid = fl - BH / 2 + 6, HALF = BH / 2 - 9;
     const base = mid + HALF, TALL = HALF * 2;   /* Nov 26 2:59 PM (Dom: "they should be on a baseline rather than go on its own line"): both mountains stand on one baseline */
@@ -1228,6 +1243,7 @@ function battleChart(){
         <feComponentTransfer in="l" result="lc"><feFuncA type="table" tableValues="0 .9"/><feFuncR type="linear" slope="1.1"/><feFuncG type="linear" slope="1.1"/><feFuncB type="linear" slope="1.15"/></feComponentTransfer>
         <feComposite in="lc" in2="SourceGraphic" operator="in" result="t"/><feBlend in="t" in2="SourceGraphic" mode="multiply"/></filter>
       <linearGradient id="bmsnow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".12" stop-color="#fff" stop-opacity=".25"/><stop offset=".25" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="bmsnow2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE6F5"/></linearGradient>
       <linearGradient id="bmface" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02040A" stop-opacity=".85"/><stop offset="1" stop-color="#02040A" stop-opacity=".15"/></linearGradient>
       <pattern id="bmtex2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#AEB4C0" stroke-opacity=".28" stroke-width="1"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#AEB4C0" stroke-opacity=".14" stroke-width=".8"/></pattern>
       <linearGradient id="bmshim" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#FFF6D8" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6D8" stop-opacity=".32"/><stop offset=".55" stop-color="#FFF6D8" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
