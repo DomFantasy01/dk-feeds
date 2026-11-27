@@ -1177,12 +1177,12 @@ function battleChart(){
     const clampY = (y) => Math.max(top, Math.min(base, y));
     /* major summits and saddles */
     const maj = []; let x = x0, pk = rr() < .5;
-    while (x < x1){ const y = yAt(x), h = (base - y) / TALL, A = (mine ? 16 : 13) * (.35 + .65 * Math.min(1, h + .15));
-      maj.push([x, clampY(pk ? y - A * (.55 + rr() * .45) : y + A * (.25 + rr() * .3)), pk]); pk = !pk; x += 26 + rr() * 34; }
+    while (x < x1){ const y = yAt(x), h = (base - y) / TALL, A = (mine ? 26 : 22) * (.3 + .7 * Math.min(1, h + .1));   /* Nov 26 5:58 PM (Dom: "spiked mountain ranges 3d"): taller, sharper, closer-set spikes */
+      maj.push([x, clampY(pk ? y - A * (.6 + rr() * .4) : y + A * (.35 + rr() * .3)), pk]); pk = !pk; x += 14 + rr() * 16; }
     maj.push([x1, clampY(yAt(x1)), false]);
     /* fractal crags between them */
     let pts = maj.map(p => [p[0], p[1]]);
-    for (let lev = 0; lev < 3; lev++){ const nx = [pts[0]];
+    for (let lev = 0; lev < 2; lev++){ const nx = [pts[0]];
       for (let i = 1; i < pts.length; i++){ const [ax, ay] = pts[i - 1], [bx, by] = pts[i], len = Math.hypot(bx - ax, by - ay);
         nx.push([(ax + bx) / 2 + (rr() - .5) * len * .08, clampY((ay + by) / 2 + (rr() - .5) * len * (.32 / (lev + 1)))], [bx, by]); }
       pts = nx; }
@@ -1226,7 +1226,8 @@ function battleChart(){
       <rect x="0" y="${mid - HALF - 8}" width="${W2}" height="${HALF * 2 + 16}" fill="transparent"/>
       <g class="${sw.trim()}">
         <rect x="${PL - 12}" y="${(base - TALL - 8).toFixed(1)}" width="${PR - PL + 18}" height="${(TALL + 8).toFixed(1)}" fill="url(#${g}gl)"/>
-        ${MT(po, base, TALL, 3 + ri * 7, false, c, null, mg < 0 ? "#AEB4C0" : null)}
+        <g class="bmback" transform="translate(12 -13)">${MT(po, base, TALL, 3 + ri * 7, false, c, null, mg < 0 ? "#AEB4C0" : null)}</g>
+        <g class="bmx" transform="translate(6 -5)">${MT(pm, base, TALL, 11 + ri * 13, true, c, g + "x")}</g>
         ${MT(pm, base, TALL, 11 + ri * 13, true, c, g, mg > 0 ? "#EFD23E" : null)}
         <rect x="${PL - 12}" y="${base - 15}" width="${PR - PL + 18}" height="15" fill="url(#bmmist)"/>
         ${/* Nov 26 5:42 PM (Dom: "Get rid of the people") - the pine tree line read as little people; removed */ ""}
@@ -1304,7 +1305,8 @@ function battleChart(){
       <linearGradient id="wwsheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
     <rect width="600" height="${WH2}" fill="#05080F"/>${heads}${wrows}<text x="597" y="15" class="wwh" style="text-anchor:end">MARGIN</text></svg>`;
   const whow = `<div class="bthow">Each glass pane = one kickoff window · left light = you, right grey = him · green frame = you win that window · gold = being played now · frosted = still to come.</div>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Weekend Windows</span><span class="lsub">${sub}</span><div class="bmw1">${wsvg}</div><div class="bmswg">${swing}</div>${whow}</section>`;
+  /* Nov 26 5:58 PM (Dom: "Maybe spiked mountain ranges 3d"): back to the mountains - Weekend Windows and Battle Rings stay in the code, not shown */
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div><div class="bthow">Colored spikes in front = you · grey range set back behind = him · right = your final, his final, margin.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
