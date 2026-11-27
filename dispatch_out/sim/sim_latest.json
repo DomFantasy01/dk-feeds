@@ -1,5 +1,5 @@
 {
- "run": "Fri Nov 27, 12:52 PM PT",
+ "run": "Fri Nov 27, 1:10 PM PT",
  "sims": 10000,
  "noise": {
   "QB": {
@@ -28,37 +28,47 @@
    "league": "DK I",
    "week": 12,
    "standings_read": "Fri Nov 27 9:27 AM PT",
-   "week_win": 0.4478,
-   "playoff": 0.6812,
-   "wins": 7.7817,
+   "week_win": 0.5101,
+   "playoff": 0.7052,
+   "wins": 7.8371,
    "first": 0.0011,
    "opp": "Coin Toss Mike",
    "scores": {
     "me": [
-     121.51186386897805,
-     148.9480361529457,
-     178.73601454733654
+     121.70212528605475,
+     149.04272274605987,
+     178.5926005611477
     ],
     "opp": [
-     122.94344119493671,
-     153.43831917902483,
-     185.3277839655189
+     118.53016343941722,
+     148.3197331657353,
+     180.52444939607778
     ]
    },
    "weeks": {
-    "12": 0.4478,
-    "13": 0.7449,
-    "14": 0.589
+    "12": 0.5101,
+    "13": 0.7354,
+    "14": 0.5916
    },
    "swaps": [],
    "tests": [
+    {
+     "add": "PHI defense",
+     "pos": "DEF",
+     "nfl": "PHI",
+     "acq": "Waivers, clears Dec 2",
+     "drop": "Jaguars",
+     "playoff": 0.7059,
+     "d_playoff": 0.0006999999999999229,
+     "d_week": 0.0017000000000000348
+    },
     {
      "add": "Cam Ward",
      "pos": "QB",
      "nfl": "TEN",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -68,7 +78,7 @@
      "nfl": "NYG",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -78,7 +88,7 @@
      "nfl": "ATL",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -88,7 +98,7 @@
      "nfl": "LAC",
      "acq": "Waivers, clears Nov 28",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -98,7 +108,7 @@
      "nfl": "TB",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -108,7 +118,7 @@
      "nfl": "SEA",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -118,7 +128,7 @@
      "nfl": "PHI",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -128,7 +138,7 @@
      "nfl": "BAL",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -138,7 +148,7 @@
      "nfl": "MIA",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -148,19 +158,9 @@
      "nfl": "IND",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tyler Shough",
-     "playoff": 0.6812,
+     "playoff": 0.7052,
      "d_playoff": 0.0,
      "d_week": 0.0
-    },
-    {
-     "add": "PHI defense",
-     "pos": "DEF",
-     "nfl": "PHI",
-     "acq": "Waivers, clears Dec 2",
-     "drop": "Jaguars",
-     "playoff": 0.6788,
-     "d_playoff": -0.0024000000000000687,
-     "d_week": 0.00020000000000003348
     },
     {
      "add": "BUF defense",
@@ -168,82 +168,82 @@
      "nfl": "BUF",
      "acq": "Waivers, clears Dec 2",
      "drop": "Jaguars",
-     "playoff": 0.6709,
-     "d_playoff": -0.010299999999999976,
-     "d_week": 0.00020000000000003348
+     "playoff": 0.6987,
+     "d_playoff": -0.006500000000000061,
+     "d_week": 0.0017000000000000348
     }
    ],
    "table": [
     {
      "name": "DIKFORE",
      "playoff": 1.0,
-     "wins": 10.0842,
-     "first": 0.7984
+     "wins": 10.0721,
+     "first": 0.7863
     },
     {
      "name": "Punching Bag",
-     "playoff": 0.9991,
-     "wins": 9.2627,
-     "first": 0.1334
+     "playoff": 0.9996,
+     "wins": 9.3106,
+     "first": 0.1498
     },
     {
      "name": "JD",
-     "playoff": 0.956,
-     "wins": 8.9858,
-     "first": 0.0502
+     "playoff": 0.9622,
+     "wins": 8.9886,
+     "first": 0.047
     },
     {
      "name": "Remember the Tutens",
-     "playoff": 0.8577,
-     "wins": 8.2169,
-     "first": 0.0087
+     "playoff": 0.8556,
+     "wins": 8.2056,
+     "first": 0.007
     },
     {
      "name": "Mr. Rodgers\u2019 Neighborhood",
-     "playoff": 0.7414,
-     "wins": 7.4799,
-     "first": 0.0082
+     "playoff": 0.7371,
+     "wins": 7.454,
+     "first": 0.0088
     },
     {
      "name": "Dark Knight I",
-     "playoff": 0.6812,
-     "wins": 7.7817,
+     "playoff": 0.7052,
+     "wins": 7.8371,
      "first": 0.0011
     },
     {
      "name": "World Of Pain",
-     "playoff": 0.482,
-     "wins": 7.1224,
+     "playoff": 0.4755,
+     "wins": 7.126,
      "first": 0.0
     },
     {
      "name": "Coin Toss Mike",
-     "playoff": 0.2095,
-     "wins": 6.5305,
+     "playoff": 0.1915,
+     "wins": 6.488,
      "first": 0.0
     },
     {
      "name": "Rolling With Romo",
-     "playoff": 0.053,
-     "wins": 6.4225,
+     "playoff": 0.0558,
+     "wins": 6.4324,
      "first": 0.0
     },
     {
      "name": "Kraft Beer & TDs",
-     "playoff": 0.0201,
-     "wins": 5.7505,
+     "playoff": 0.0175,
+     "wins": 5.7412,
      "first": 0.0
     },
     {
      "name": "Raider nation",
      "playoff": 0.0,
-     "wins": 1.9574,
+     "wins": 1.945,
      "first": 0.0
     },
     {
      "name": "RoadDogg",
      "playoff": 0.0,
-     "wins": 4.4055,
+     "wins": 4.3994,
      "first": 0.0
     }
    ]
@@ -252,16 +252,16 @@
    "league": "DK II",
    "week": 12,
    "standings_read": "Fri Nov 27 9:27 AM PT",
-   "week_win": 0.0889,
-   "playoff": 0.1535,
-   "wins": 6.1697,
+   "week_win": 0.088,
+   "playoff": 0.1452,
+   "wins": 6.1542,
    "first": 0.0,
    "opp": "Daejon Love",
    "scores": {
     "me": [
-     143.82655046867862,
-     174.99543904183963,
-     208.07383029410107
+     143.95415726829248,
+     174.3985178246699,
+     207.53367120603988
     ],
     "opp": [
      194.17800045579574,
@@ -270,50 +270,30 @@
     ]
    },
    "weeks": {
-    "12": 0.0889,
-    "13": 0.7407,
-    "14": 0.3401
+    "12": 0.088,
+    "13": 0.7398,
+    "14": 0.3264
    },
    "swaps": [],
    "tests": [
-    {
-     "add": "Andre Szmyt",
-     "pos": "K",
-     "nfl": "CLE",
-     "acq": "Free agent",
-     "drop": "Konata Mumpfield",
-     "playoff": 0.1611,
-     "d_playoff": 0.007599999999999996,
-     "d_week": 0.0
-    },
     {
      "add": "Dominic Zvada",
      "pos": "K",
      "nfl": "NYG",
      "acq": "Free agent",
      "drop": "Konata Mumpfield",
-     "playoff": 0.1608,
-     "d_playoff": 0.007300000000000001,
+     "playoff": 0.1537,
+     "d_playoff": 0.008500000000000008,
      "d_week": 0.0
     },
     {
-     "add": "Drew Stevens",
+     "add": "Andre Szmyt",
      "pos": "K",
-     "nfl": "WAS",
+     "nfl": "CLE",
      "acq": "Free agent",
      "drop": "Konata Mumpfield",
-     "playoff": 0.1602,
-     "d_playoff": 0.0067000000000000115,
-     "d_week": 0.0
-    },
-    {
-     "add": "Cameron Dicker",
-     "pos": "K",
-     "nfl": "LAC",
-     "acq": "Free agent",
-     "drop": "Konata Mumpfield",
-     "playoff": 0.1563,
-     "d_playoff": 0.002799999999999997,
+     "playoff": 0.1531,
+     "d_playoff": 0.007900000000000018,
      "d_week": 0.0
     },
     {
@@ -322,8 +302,28 @@
      "nfl": "ATL",
      "acq": "Free agent",
      "drop": "Sam Darnold",
-     "playoff": 0.1559,
-     "d_playoff": 0.0024000000000000132,
+     "playoff": 0.1516,
+     "d_playoff": 0.006400000000000017,
+     "d_week": 0.0
+    },
+    {
+     "add": "Drew Stevens",
+     "pos": "K",
+     "nfl": "WAS",
+     "acq": "Free agent",
+     "drop": "Konata Mumpfield",
+     "playoff": 0.1516,
+     "d_playoff": 0.006400000000000017,
+     "d_week": 0.0
+    },
+    {
+     "add": "Cameron Dicker",
+     "pos": "K",
+     "nfl": "LAC",
+     "acq": "Free agent",
+     "drop": "Konata Mumpfield",
+     "playoff": 0.15,
+     "d_playoff": 0.004799999999999999,
      "d_week": 0.0
     },
     {
@@ -332,8 +332,18 @@
      "nfl": "TB",
      "acq": "Free agent",
      "drop": "Konata Mumpfield",
-     "playoff": 0.1557,
+     "playoff": 0.1474,
      "d_playoff": 0.0022000000000000075,
+     "d_week": 0.0
+    },
+    {
+     "add": "Anthony Richardson",
+     "pos": "QB",
+     "nfl": "IND",
+     "acq": "Free agent",
+     "drop": "Sam Darnold",
+     "playoff": 0.147,
+     "d_playoff": 0.001799999999999996,
      "d_week": 0.0
     },
     {
@@ -342,7 +352,7 @@
      "nfl": "MIA",
      "acq": "Free agent",
      "drop": "Sam Darnold",
-     "playoff": 0.1535,
+     "playoff": 0.1452,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -352,7 +362,7 @@
      "nfl": "SF",
      "acq": "Free agent",
      "drop": "Jacory Croskey-Merritt",
-     "playoff": 0.1535,
+     "playoff": 0.1452,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -362,7 +372,7 @@
      "nfl": "TB",
      "acq": "Free agent",
      "drop": "Jacory Croskey-Merritt",
-     "playoff": 0.1535,
+     "playoff": 0.1452,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -372,18 +382,8 @@
      "nfl": "NO",
      "acq": "Free agent",
      "drop": "Jacory Croskey-Merritt",
-     "playoff": 0.1535,
+     "playoff": 0.1452,
      "d_playoff": 0.0,
-     "d_week": 0.0
-    },
-    {
-     "add": "Anthony Richardson",
-     "pos": "QB",
-     "nfl": "IND",
-     "acq": "Free agent",
-     "drop": "Sam Darnold",
-     "playoff": 0.1527,
-     "d_playoff": -0.0007999999999999952,
      "d_week": 0.0
     },
     {
@@ -392,82 +392,82 @@
      "nfl": "WAS",
      "acq": "Free agent",
      "drop": "Travis Kelce",
-     "playoff": 0.1262,
-     "d_playoff": -0.02729999999999999,
-     "d_week": 0.008499999999999994
+     "playoff": 0.1201,
+     "d_playoff": -0.025099999999999997,
+     "d_week": 0.0068000000000000005
     }
    ],
    "table": [
     {
      "name": "Daejon Love",
      "playoff": 1.0,
-     "wins": 12.3044,
-     "first": 0.9767
+     "wins": 12.301,
+     "first": 0.9765
     },
     {
      "name": "Trophy Hunter \ud83c\udfc6",
      "playoff": 1.0,
-     "wins": 10.1116,
-     "first": 0.0231
+     "wins": 10.19,
+     "first": 0.0232
     },
     {
      "name": "RAIDER FAN \u2620\ufe0f",
-     "playoff": 0.9988,
-     "wins": 9.3931,
-     "first": 0.0002
+     "playoff": 0.9984,
+     "wins": 9.4043,
+     "first": 0.0003
     },
     {
      "name": "RFFR",
-     "playoff": 0.9464,
-     "wins": 7.5397,
+     "playoff": 0.9509,
+     "wins": 7.5534,
      "first": 0.0
     },
     {
      "name": "Rated PG-18",
-     "playoff": 0.745,
-     "wins": 7.076,
+     "playoff": 0.7579,
+     "wins": 7.0921,
      "first": 0.0
     },
     {
      "name": "Diddys Booty Butter",
-     "playoff": 0.5464,
-     "wins": 7.2502,
+     "playoff": 0.5494,
+     "wins": 7.2543,
      "first": 0.0
     },
     {
      "name": "How \u2018Bout Them Points",
-     "playoff": 0.262,
-     "wins": 6.651,
+     "playoff": 0.2658,
+     "wins": 6.6706,
      "first": 0.0
     },
     {
      "name": "Hector Football",
-     "playoff": 0.1893,
-     "wins": 6.8576,
+     "playoff": 0.18,
+     "wins": 6.8313,
      "first": 0.0
     },
     {
      "name": "FUCKING COWBOYS",
-     "playoff": 0.1586,
-     "wins": 6.2299,
+     "playoff": 0.1524,
+     "wins": 6.2182,
      "first": 0.0
     },
     {
      "name": "Dark Knight II",
-     "playoff": 0.1535,
-     "wins": 6.1697,
+     "playoff": 0.1452,
+     "wins": 6.1542,
      "first": 0.0
     },
     {
      "name": "Rams house",
      "playoff": 0.0,
-     "wins": 2.0141,
+     "wins": 1.9991,
      "first": 0.0
     },
     {
      "name": "Ground Game evan",
      "playoff": 0.0,
-     "wins": 2.4027,
+     "wins": 2.3315,
      "first": 0.0
     }
    ]
@@ -476,27 +476,27 @@
    "league": "DK III",
    "week": 12,
    "standings_read": "Fri Nov 27 9:27 AM PT",
-   "week_win": 0.4869,
-   "playoff": 0.1485,
-   "wins": 6.3165,
+   "week_win": 0.4637,
+   "playoff": 0.1468,
+   "wins": 6.3089,
    "first": 0.0,
    "opp": "The Deer Hunter Part Deux",
    "scores": {
     "me": [
-     114.81492224573144,
-     141.40586860822833,
-     170.12523596899365
+     115.43817938438474,
+     141.62821872252084,
+     170.20729126764664
     ],
     "opp": [
-     117.62151131209033,
-     142.73978308908767,
-     169.77048649635304
+     120.06679915469986,
+     144.1624052903543,
+     170.738931417835
     ]
    },
    "weeks": {
-    "12": 0.4869,
-    "13": 0.5717,
-    "14": 0.2579
+    "12": 0.4637,
+    "13": 0.5768,
+    "14": 0.2684
    },
    "swaps": [],
    "tests": [
@@ -506,29 +506,9 @@
      "nfl": "PHI",
      "acq": "Waivers, clears Dec 2",
      "drop": "Commanders",
-     "playoff": 0.152,
-     "d_playoff": 0.003500000000000003,
-     "d_week": 0.0005999999999999894
-    },
-    {
-     "add": "DET defense",
-     "pos": "DEF",
-     "nfl": "DET",
-     "acq": "Waivers, clears Dec 2",
-     "drop": "Commanders",
-     "playoff": 0.149,
-     "d_playoff": 0.0005000000000000004,
-     "d_week": 0.0005999999999999894
-    },
-    {
-     "add": "NE defense",
-     "pos": "DEF",
-     "nfl": "NE",
-     "acq": "Free agent",
-     "drop": "Commanders",
-     "playoff": 0.1487,
-     "d_playoff": 0.00020000000000000573,
-     "d_week": -0.0008000000000000229
+     "playoff": 0.1526,
+     "d_playoff": 0.0058,
+     "d_week": -0.0014000000000000123
     },
     {
      "add": "Michael Penix Jr.",
@@ -536,7 +516,7 @@
      "nfl": "ATL",
      "acq": "Free agent",
      "drop": "Fernando Mendoza",
-     "playoff": 0.1485,
+     "playoff": 0.1468,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -546,7 +526,7 @@
      "nfl": "PHI",
      "acq": "Waivers, clears Dec 2",
      "drop": "Fernando Mendoza",
-     "playoff": 0.1485,
+     "playoff": 0.1468,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -556,7 +536,7 @@
      "nfl": "MIA",
      "acq": "Free agent",
      "drop": "Fernando Mendoza",
-     "playoff": 0.1485,
+     "playoff": 0.1468,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -566,9 +546,29 @@
      "nfl": "NE",
      "acq": "Free agent",
      "drop": "Fernando Mendoza",
-     "playoff": 0.1485,
+     "playoff": 0.1468,
      "d_playoff": 0.0,
      "d_week": 0.0
+    },
+    {
+     "add": "DET defense",
+     "pos": "DEF",
+     "nfl": "DET",
+     "acq": "Waivers, clears Dec 2",
+     "drop": "Commanders",
+     "playoff": 0.1464,
+     "d_playoff": -0.00040000000000001146,
+     "d_week": -0.0014000000000000123
+    },
+    {
+     "add": "NE defense",
+     "pos": "DEF",
+     "nfl": "NE",
+     "acq": "Free agent",
+     "drop": "Commanders",
+     "playoff": 0.1463,
+     "d_playoff": -0.0005000000000000004,
+     "d_week": -0.0013000000000000234
     },
     {
      "add": "Germie Bernard",
@@ -576,9 +576,9 @@
      "nfl": "PIT",
      "acq": "Waivers, clears Dec 2",
      "drop": "George Pickens",
-     "playoff": 0.1326,
-     "d_playoff": -0.015899999999999997,
-     "d_week": -0.0013000000000000234
+     "playoff": 0.1346,
+     "d_playoff": -0.012200000000000016,
+     "d_week": 0.0015999999999999903
     },
     {
      "add": "Tre Harris",
@@ -586,9 +586,9 @@
      "nfl": "LAC",
      "acq": "Free agent",
      "drop": "George Pickens",
-     "playoff": 0.1326,
-     "d_playoff": -0.015899999999999997,
-     "d_week": -0.0013000000000000234
+     "playoff": 0.1346,
+     "d_playoff": -0.012200000000000016,
+     "d_week": 0.0015999999999999903
     },
     {
      "add": "Ted Hurst III",
@@ -596,9 +596,9 @@
      "nfl": "TB",
      "acq": "Free agent",
      "drop": "George Pickens",
-     "playoff": 0.1326,
-     "d_playoff": -0.015899999999999997,
-     "d_week": -0.0013000000000000234
+     "playoff": 0.1346,
+     "d_playoff": -0.012200000000000016,
+     "d_week": 0.0015999999999999903
     },
     {
      "add": "Pat Bryant",
@@ -606,9 +606,9 @@
      "nfl": "DEN",
      "acq": "Waivers, clears Dec 2",
      "drop": "George Pickens",
-     "playoff": 0.1326,
-     "d_playoff": -0.015899999999999997,
-     "d_week": -0.0013000000000000234
+     "playoff": 0.1346,
+     "d_playoff": -0.012200000000000016,
+     "d_week": 0.0015999999999999903
     },
     {
      "add": "Corey Kiner",
@@ -616,94 +616,94 @@
      "nfl": "NE",
      "acq": "Free agent",
      "drop": "David Montgomery",
-     "playoff": 0.101,
-     "d_playoff": -0.04749999999999999,
-     "d_week": 0.0021999999999999797
+     "playoff": 0.0971,
+     "d_playoff": -0.04970000000000001,
+     "d_week": 9.999999999998899e-05
     }
    ],
    "table": [
     {
      "name": "The Deer Hunter Part Deux",
      "playoff": 1.0,
-     "wins": 10.5923,
-     "first": 0.3793
+     "wins": 10.6355,
+     "first": 0.3885
     },
     {
      "name": "Dominique by 6",
      "playoff": 1.0,
-     "wins": 11.4388,
-     "first": 0.6075
+     "wins": 11.4524,
+     "first": 0.5996
     },
     {
      "name": "Derek\u2019s Better Half",
      "playoff": 0.9966,
-     "wins": 8.5084,
-     "first": 0.0132
+     "wins": 8.5068,
+     "first": 0.0119
     },
     {
      "name": "Maly\u2019s Better Half",
-     "playoff": 0.8455,
-     "wins": 7.6362,
+     "playoff": 0.8512,
+     "wins": 7.6382,
      "first": 0.0
     },
     {
      "name": "Mr. Bobo",
-     "playoff": 0.7874,
-     "wins": 7.4444,
+     "playoff": 0.7829,
+     "wins": 7.421,
      "first": 0.0
     },
     {
      "name": "Rushin Roulette \ud83c\udfc8",
-     "playoff": 0.7421,
-     "wins": 7.0533,
+     "playoff": 0.7341,
+     "wins": 7.041,
      "first": 0.0
     },
     {
      "name": "Mrs. Bobo",
-     "playoff": 0.2234,
-     "wins": 6.8163,
+     "playoff": 0.2325,
+     "wins": 6.8236,
      "first": 0.0
     },
     {
      "name": "Dark Knight III",
-     "playoff": 0.1485,
-     "wins": 6.3165,
+     "playoff": 0.1468,
+     "wins": 6.3089,
      "first": 0.0
     },
     {
      "name": "And A Goedert To You Sir",
-     "playoff": 0.1458,
-     "wins": 6.3707,
+     "playoff": 0.1439,
+     "wins": 6.3352,
      "first": 0.0
     },
     {
      "name": "Dawg Pound Eric",
-     "playoff": 0.0746,
-     "wins": 5.7991,
+     "playoff": 0.0776,
+     "wins": 5.7849,
      "first": 0.0
     },
     {
      "name": "Beachmom's Bench",
-     "playoff": 0.0175,
-     "wins": 5.2244,
+     "playoff": 0.019,
+     "wins": 5.2636,
      "first": 0.0
     },
     {
      "name": "Bad and Bougie 2.0",
-     "playoff": 0.0102,
-     "wins": 5.7025,
+     "playoff": 0.0094,
+     "wins": 5.6983,
      "first": 0.0
     },
     {
      "name": "Benchdad's Beach",
-     "playoff": 0.0084,
-     "wins": 4.8041,
+     "playoff": 0.006,
+     "wins": 4.7952,
      "first": 0.0
     },
     {
      "name": "Press Coverage steph",
      "playoff": 0.0,
-     "wins": 4.293,
+     "wins": 4.2954,
      "first": 0.0
     }
    ]
@@ -712,27 +712,27 @@
    "league": "DK IV",
    "week": 12,
    "standings_read": "Fri Nov 27 9:27 AM PT",
-   "week_win": 0.9592,
-   "playoff": 0.9924,
-   "wins": 16.7797,
-   "first": 0.0052,
+   "week_win": 0.9616,
+   "playoff": 0.9926,
+   "wins": 16.7666,
+   "first": 0.0048,
    "opp": "Bad and Boujee",
    "scores": {
     "me": [
-     161.4273392051913,
-     190.5729793998733,
-     222.23655478693598
+     163.03914653688534,
+     192.24008798764686,
+     222.91273965321426
     ],
     "opp": [
-     117.53713170298195,
-     140.54499178973384,
-     165.71561963935548
+     117.98636491152939,
+     141.33953467171838,
+     165.70366873873047
     ]
    },
    "weeks": {
-    "12": 0.9592,
-    "13": 0.6771,
-    "14": 0.6866
+    "12": 0.9616,
+    "13": 0.6627,
+    "14": 0.6864
    },
    "swaps": [],
    "tests": [
@@ -742,7 +742,7 @@
      "nfl": "JAX",
      "acq": "Waivers, clears Dec 2",
      "drop": "Rhamondre Stevenson",
-     "playoff": 0.9924,
+     "playoff": 0.9926,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -752,7 +752,7 @@
      "nfl": "TB",
      "acq": "Waivers, clears Dec 2",
      "drop": "Rhamondre Stevenson",
-     "playoff": 0.9924,
+     "playoff": 0.9926,
      "d_playoff": 0.0,
      "d_week": 0.0
     },
@@ -762,8 +762,18 @@
      "nfl": "ATL",
      "acq": "Waivers, clears Dec 2",
      "drop": "Tucker Kraft",
-     "playoff": 0.9918,
-     "d_playoff": -0.0005999999999999339,
+     "playoff": 0.9925,
+     "d_playoff": -9.999999999998899e-05,
+     "d_week": 0.0
+    },
+    {
+     "add": "Jake Bates",
+     "pos": "K",
+     "nfl": "DET",
+     "acq": "Waivers, clears Dec 2",
+     "drop": "Seahawks",
+     "playoff": 0.9921,
+     "d_playoff": -0.000500000000000056,
      "d_week": 0.0
     },
     {
@@ -773,7 +783,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -783,7 +793,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -793,7 +803,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -803,7 +813,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -813,7 +823,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -823,17 +833,7 @@
      "acq": "Waivers, clears Dec 2",
      "drop": "Seahawks",
      "playoff": 0.9916,
-     "d_playoff": -0.0007999999999999119,
-     "d_week": 0.0
-    },
-    {
-     "add": "Jake Bates",
-     "pos": "K",
-     "nfl": "DET",
-     "acq": "Waivers, clears Dec 2",
-     "drop": "Seahawks",
-     "playoff": 0.9915,
-     "d_playoff": -0.0008999999999999009,
+     "d_playoff": -0.0010000000000000009,
      "d_week": 0.0
     },
     {
@@ -842,8 +842,8 @@
      "nfl": "MIA",
      "acq": "Waivers, clears Nov 29",
      "drop": "Keenan Allen",
-     "playoff": 0.9915,
-     "d_playoff": -0.0008999999999999009,
+     "playoff": 0.9914,
+     "d_playoff": -0.0012000000000000899,
      "d_week": 0.0
     },
     {
@@ -852,70 +852,70 @@
      "nfl": "MIA",
      "acq": "Waivers, clears Dec 2",
      "drop": "Dak Prescott",
-     "playoff": 0.9882,
-     "d_playoff": -0.0041999999999999815,
-     "d_week": -0.0012000000000000899
+     "playoff": 0.9886,
+     "d_playoff": -0.0040000000000000036,
+     "d_week": 0.0011999999999999789
     }
    ],
    "table": [
     {
      "name": "Brad's Ballers",
      "playoff": 1.0,
-     "wins": 19.9461,
+     "wins": 19.9179,
      "first": 0.8512
     },
     {
      "name": "Dream Killers",
-     "playoff": 0.9981,
-     "wins": 17.6198,
-     "first": 0.1164
+     "playoff": 0.9975,
+     "wins": 17.6868,
+     "first": 0.1144
     },
     {
      "name": "Mr. Irrelevant",
-     "playoff": 0.9948,
-     "wins": 16.6928,
-     "first": 0.0252
+     "playoff": 0.9938,
+     "wins": 16.6854,
+     "first": 0.0271
     },
     {
      "name": "Dark Knight IV",
-     "playoff": 0.9924,
-     "wins": 16.7797,
-     "first": 0.0052
+     "playoff": 0.9926,
+     "wins": 16.7666,
+     "first": 0.0048
     },
     {
      "name": "Team Other",
-     "playoff": 0.8799,
-     "wins": 15.3329,
-     "first": 0.0018
+     "playoff": 0.8688,
+     "wins": 15.2524,
+     "first": 0.002
     },
     {
      "name": "Alan's Team",
-     "playoff": 0.8299,
-     "wins": 14.6798,
-     "first": 0.0002
+     "playoff": 0.8309,
+     "wins": 14.6941,
+     "first": 0.0005
     },
     {
      "name": "Killer Ko-Gees",
-     "playoff": 0.1916,
-     "wins": 12.3904,
+     "playoff": 0.1986,
+     "wins": 12.3928,
      "first": 0.0
     },
     {
      "name": "Fly Eagles Fly",
-     "playoff": 0.1133,
-     "wins": 12.0564,
+     "playoff": 0.1178,
+     "wins": 12.0792,
      "first": 0.0
     },
     {
      "name": "Lin's Team \ud83c\udfc8",
      "playoff": 0.0,
-     "wins": 7.9608,
+     "wins": 7.9868,
      "first": 0.0
     },
     {
      "name": "Bad and Boujee",
      "playoff": 0.0,
-     "wins": 6.5413,
+     "wins": 6.538,
      "first": 0.0
     }
    ]
