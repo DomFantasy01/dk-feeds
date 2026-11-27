@@ -2353,4 +2353,48 @@ html.calm .hgall *{animation:none !important}
 @media (prefers-reduced-motion:no-preference){
   .hgall .hgg.pour .hggr{animation:hgfall .9s linear infinite;animation-delay:var(--g)}}
 @keyframes hgfall{0%{opacity:0;transform:translateY(0)}10%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateY(var(--d))}}
+
+/* Nov 27 11:00 AM (Dom: "a masterpiece ... animation that looks fantastic"): THE CLASH - beam duel per league */
+.clall{width:100%;height:auto;display:block}
+.clall .clr{cursor:pointer}
+.clall .clmid{stroke:#F5C842;stroke-opacity:.28;stroke-width:1;stroke-dasharray:2 4}
+.clall .clmidl{font:700 7.5px var(--f-body);fill:#F5C842;fill-opacity:.55;letter-spacing:.2em}
+.clall .cllane{stroke:#16233B;stroke-width:12;stroke-linecap:round}
+.clall .clhalo{stroke-width:13;stroke-opacity:.75;stroke-linecap:round}
+.clall .clbeam.op .clhalo{stroke-opacity:.4}
+.clall .clmain{stroke-width:5;stroke-linecap:round}
+.clall .clarc{fill:none;stroke-width:1.4;stroke-linejoin:round;stroke-opacity:.95;filter:drop-shadow(0 0 2px #fff)}
+.clall .clcore{stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-opacity:.9}
+.clall .clnow{fill:none;stroke:#fff;stroke-width:1.4;stroke-opacity:.75;stroke-dasharray:2 2}
+.clall .clcorep{fill:#fff}
+.clall .clsp{fill:#FFE7A6;opacity:0}
+.clall .clemr{fill:#05080F;stroke-width:2.5}
+.clall .clk{font:400 18px var(--f-disp,"Bebas Neue");letter-spacing:.06em}
+.clall .clo{font:700 8px var(--f-body);fill:#8C96AE;letter-spacing:.16em}
+.clall .clv{font:400 20px var(--f-disp,"Bebas Neue");letter-spacing:.03em}
+.clall .clv.op{fill:#C9D3E3}
+.clall .cln{font:500 8.5px var(--f-body);fill:#7F8AA3}
+.clall .clmg{font:700 12px var(--f-body);paint-order:stroke;stroke:#04070D;stroke-width:3px}
+.clall .clfl,.clall .clemc{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+  .clall .clfl{animation:clpulse 1.6s ease-in-out infinite}
+  .clall .clemc{animation:clpulse 2.4s ease-in-out infinite}
+  .clall .clsp{animation:clspark var(--sl) ease-out infinite;animation-delay:var(--sd)}
+  .clall.fill .clbeam.me{animation:clfireL 1.3s cubic-bezier(.3,.1,.2,1) both;animation-delay:calc(var(--i) * .3s)}
+  .clall.fill .clbeam.op{animation:clfireR 1.3s cubic-bezier(.3,.1,.2,1) both;animation-delay:calc(var(--i) * .3s)}
+  .clall.fill .clhit{animation:clslam 1.9s ease-out both;animation-delay:calc(var(--i) * .3s)}}
+.clall .clbeam.me{clip-path:inset(0 0 0 0)}
+@keyframes clpulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.18);opacity:1}}
+@keyframes clspark{0%{opacity:0;transform:translate(0,0)}12%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty))}}
+@keyframes clfireL{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes clfireR{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes clslam{0%,55%{opacity:0;transform-origin:center}68%{opacity:1}100%{opacity:1}}
+html.calm .clall *{animation:none !important}
+
+.clall .clhalo{stroke-width:16}
+.clall .clmain{stroke-width:6}
+.clall .clwave{fill:none;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+  .clall .clwave{animation:clwave 2.2s ease-out infinite}.clall .clwave.w2{animation-delay:1.1s}}
+@keyframes clwave{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(3.4)}}
 </style>

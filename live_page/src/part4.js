@@ -1449,7 +1449,46 @@ function battleChart(){
         <text x="${a}" y="${HBOT + 22}" class="hgn${pm ? " on" : ""}" text-anchor="middle">${lt(lm, pm)}</text><text x="${b}" y="${HBOT + 22}" class="hgn${po ? " on" : ""}" text-anchor="middle">${lt(lo, po)}</text>
         <text x="${cx}" y="${HBOT + 50}" class="hgk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
         <text x="${cx}" y="${HBOT + 72}" class="hgm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Hourglasses</span><span class="lsub">${sub}</span><div class="bmw1">${hsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left glass = your team (gold sand) · right = the opponent (grey sand) · number on the bottom pile = points scored so far · +number on top = points still to come (Ratcliffe) · number above the glass = projected final, dashed level inside · gold line = the other side's projected final · sand pours only while that side has a player on the field right now · notches every 50 points.</div></section>`;
+  /* Nov 27 11:00 AM (Dom: "be creative and put a masterpiece together that looks super cool ... a chart or diagram with animation that
+     looks fantastic"): THE CLASH - each league is a beam duel. Your team fires a plasma beam in the league color from the left, the
+     opponent fires a silver beam from the right; they meet at the clash point. Where they meet is the read: the clash sits at your share
+     of the projected points (Ratcliffe), stretched 2.4x from EVEN so the gaps read, so the further right it is, the harder you're pushing him back - past the center line = you're
+     winning. The beams crackle like the bat's lightning, sparks fly off the clash, the margin rides above it. The small ring marks the
+     same split on points scored so far. Once a minute both sides re-fire and slam together. */
+  const CVW = 600, CLH = 82, CVH = TB.length * CLH + 14, CX0 = 74, CX1 = 526, CMID = (CX0 + CX1) / 2;
+  const crng = (seed) => { let v = seed * 9301 + 49297; return () => { v = (v * 9301 + 49297) % 233280; return v / 233280; }; };
+  const bolt = (xa, xb, y, seed, amp) => { const r = crng(seed), n = Math.max(2, Math.round(Math.abs(xb - xa) / 13)), pts = [];
+    for (let q = 0; q <= n; q++){ const x = xa + (xb - xa) * q / n, off = q === 0 || q === n ? 0 : (r() - .5) * 2 * amp; pts.push(x.toFixed(1) + " " + (y + off).toFixed(1)); } return "M" + pts.join(" L"); };
+  const csvg = `<svg class="tball clall" viewBox="0 0 ${CVW} ${CVH}" role="img" aria-label="The Clash - all four leagues"><defs>
+      <filter id="clGlow" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="4.5"/></filter>
+      <filter id="clGlow2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+      <radialGradient id="clFlare"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".25" stop-color="#FFF6D8" stop-opacity=".95"/><stop offset=".6" stop-color="#FFC44D" stop-opacity=".35"/><stop offset="1" stop-color="#FF9A2E" stop-opacity="0"/></radialGradient>
+      <pattern id="clGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#12203A" stroke-width=".6"/></pattern></defs>
+    <rect width="${CVW}" height="${CVH}" fill="#04070D"/><rect width="${CVW}" height="${CVH}" fill="url(#clGrid)" opacity=".7"/>
+    <line x1="${CMID}" y1="6" x2="${CMID}" y2="${CVH - 6}" class="clmid"/>
+    ${TB.map((x, i) => { const y = i * CLH + 14 + 34, tot = Math.max(1, x.fm + x.fo), amp = (sh) => Math.max(CX0 + 40, Math.min(CX1 - 40, CMID + (sh - .5) * 2.4 * (CX1 - CX0))), cx = amp(x.fm / tot), nt = x.nm + x.no, nx = nt > 0 ? amp(x.nm / nt) : null, mg = x.fm - x.fo, OC = "#C9D3E3";
+      const mine = [1, 2, 3].map(n => bolt(CX0 + 18, cx, y, i * 31 + n, 3.2)), his = [1, 2, 3].map(n => bolt(cx, CX1 - 18, y, i * 57 + n * 7, 3.2));
+      const anim = (ds) => `<animate attributeName="d" dur=".7s" repeatCount="indefinite" calcMode="discrete" values="${ds.join(";")};${ds[0]}"/>`;
+      const sparks = Array.from({length: 12}, (_, n) => { const r = crng(i * 101 + n), ang = (n / 12) * Math.PI * 2 + r() * .5, d = 16 + r() * 22; return `<circle r="${(1 + r() * 1.3).toFixed(1)}" class="clsp" style="--tx:${(Math.cos(ang) * d).toFixed(1)}px;--ty:${(Math.sin(ang) * d * .8).toFixed(1)}px;--sd:${(r() * 1.6).toFixed(2)}s;--sl:${(1 + r() * .8).toFixed(2)}s"/>`; }).join("");
+      return `<g class="clr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(`${DK[x.r.k]}: your team ${f1(x.fm)} vs the opponent ${f1(x.fo)} projected (Ratcliffe) · scored so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
+        <line x1="${CX0}" y1="${y}" x2="${CX1}" y2="${y}" class="cllane"/>
+        <g class="clbeam me"><line x1="${CX0 + 14}" y1="${y}" x2="${cx.toFixed(1)}" y2="${y}" stroke="${x.c}" class="clhalo" filter="url(#clGlow)"/>
+          <line x1="${CX0 + 14}" y1="${y}" x2="${cx.toFixed(1)}" y2="${y}" stroke="${x.c}" class="clmain"/><path d="${mine[0]}" stroke="${x.c}" class="clarc">${anim(mine)}</path>
+          <line x1="${CX0 + 14}" y1="${y}" x2="${cx.toFixed(1)}" y2="${y}" class="clcore"/></g>
+        <g class="clbeam op"><line x1="${cx.toFixed(1)}" y1="${y}" x2="${CX1 - 14}" y2="${y}" stroke="${OC}" class="clhalo" filter="url(#clGlow)"/>
+          <line x1="${cx.toFixed(1)}" y1="${y}" x2="${CX1 - 14}" y2="${y}" stroke="${OC}" class="clmain"/><path d="${his[0]}" stroke="${OC}" class="clarc">${anim(his)}</path>
+          <line x1="${cx.toFixed(1)}" y1="${y}" x2="${CX1 - 14}" y2="${y}" class="clcore"/></g>
+        ${nx !== null ? `<circle cx="${nx.toFixed(1)}" cy="${y}" r="6.5" class="clnow"/>` : ""}
+        <g class="clhit" transform="translate(${cx.toFixed(1)} ${y})"><circle r="9" class="clwave" stroke="${x.c}"/><circle r="9" class="clwave w2" stroke="${OC}"/><circle r="30" fill="url(#clFlare)" class="clfl"/><circle r="5.5" class="clcorep"/>${sparks}</g>
+        <text x="${cx.toFixed(1)}" y="${y - 20}" class="clmg" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+        <g class="clem me" transform="translate(${CX0} ${y})"><circle r="19" fill="${x.c}" filter="url(#clGlow2)" opacity=".55"/><circle r="13" class="clemr" stroke="${x.c}"/><circle r="6" fill="${x.c}" class="clemc"/></g>
+        <g class="clem op" transform="translate(${CX1} ${y})"><circle r="19" fill="${OC}" filter="url(#clGlow2)" opacity=".35"/><circle r="13" class="clemr" stroke="${OC}"/><circle r="6" fill="${OC}" class="clemc"/></g>
+        <text x="${CX0 - 24}" y="${y - 8}" class="clk" text-anchor="end" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${CX0 - 24}" y="${y + 13}" class="clv" text-anchor="end" style="fill:${x.c}">${f1(x.fm)}</text>
+        <text x="${CX1 + 24}" y="${y - 8}" class="clo">OPP</text><text x="${CX1 + 24}" y="${y + 13}" class="clv op">${f1(x.fo)}</text>
+        <text x="${CX0 - 24}" y="${y + 26}" class="cln" text-anchor="end">${f1(x.nm)} so far</text><text x="${CX1 + 24}" y="${y + 26}" class="cln">${f1(x.no)} so far</text></g>`; }).join("")}
+    <text x="${CMID}" y="${CVH - 2}" class="clmidl" text-anchor="middle">EVEN</text></svg>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">The Clash</span><span class="lsub">${sub}</span><div class="bmw1">${csvg}</div><div class="bmswg">${swing}</div><div class="bthow">Your team fires from the left, the opponent from the right · the beams meet where the projected points (Ratcliffe) push them · clash right of the EVEN line = you're winning, the further from EVEN the bigger the lead, and the margin rides above it · small ring = the same split on points scored so far · numbers at each end = projected finals.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
