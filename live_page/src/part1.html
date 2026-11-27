@@ -2162,4 +2162,29 @@ html.calm .bmall .bmpen{animation:none !important}
   .brall .brsw{stroke-dasharray:1 1;stroke-dashoffset:1;animation:brsweep 3.5s cubic-bezier(.4,0,.25,1) forwards;animation-delay:calc(var(--i,0) * 3.5s + .6s)}
   @keyframes brsweep{to{stroke-dashoffset:0}}}
 html.calm .brall .brsw{animation:none !important;stroke-dashoffset:0 !important}
+/* Nov 26 5:54 PM: Weekend Windows - glass panes */
+.wwall{display:block;width:100%;height:auto}
+.wwall .wwr{cursor:pointer}
+.wwall .wwg{fill:url(#wwglass);stroke:none}
+.wwall .wwf{fill:none;stroke:#3A4B74;stroke-opacity:.55;stroke-width:1}
+.wwall .wwp.w .wwf{stroke:#3DDC84;stroke-opacity:.8;stroke-width:1.4;filter:drop-shadow(0 0 3px rgba(61,220,132,.6))}
+.wwall .wwp.l .wwf{stroke:#FF4D57;stroke-opacity:.5}
+.wwall .wwp.now .wwf{stroke:#EFD23E;stroke-opacity:1;stroke-width:1.8;filter:drop-shadow(0 0 5px rgba(239,210,62,.8))}
+.wwall .wwsh{fill:url(#wwsheen);pointer-events:none}
+.wwall .wwm{filter:drop-shadow(0 0 3px currentColor)}
+.wwall .wwo{fill:#9AA1AE}
+.wwall .wwp:not(.done):not(.now) .wwm,.wwall .wwp:not(.done):not(.now) .wwo{opacity:.55}
+.wwall .wwp.done .wwg{fill:#0E1628}
+.wwk{font:400 18px var(--f-disp);letter-spacing:.04em}
+.wwn{font:400 12px var(--f-disp);text-anchor:middle;letter-spacing:.02em}.wwn .wwnh{fill:#AEB4C0}.wwn .wwd{fill:#5F6A82}
+.wwz{font:600 11px var(--f-body);fill:#3A4560;text-anchor:middle}
+.wwh{font:700 8px var(--f-body);fill:#6F7A92;text-anchor:middle;letter-spacing:.04em}.wwh.now{fill:#EFD23E}
+.wwt{font:400 18px var(--f-disp);text-anchor:end;letter-spacing:.02em}
+.wwts{font:600 9px var(--f-body);fill:#8A93A6;text-anchor:end}
+@media (prefers-reduced-motion:no-preference){
+  .wwall .wwm,.wwall .wwo{transform-box:fill-box;transform-origin:50% 100%;animation:wwrise 2.6s cubic-bezier(.3,.6,.2,1) both;animation-delay:calc(var(--i,0) * 2.6s + .5s)}
+  @keyframes wwrise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .wwall .wwp.now .wwf{animation:wwnow 3s ease-in-out infinite}@keyframes wwnow{50%{stroke-opacity:.45}}}
+html.calm .wwall *{animation:none !important}
+.wwall .wwsh{opacity:.55}.wwall .wwtop{stroke:#fff;stroke-opacity:.22;stroke-width:1}
 </style>

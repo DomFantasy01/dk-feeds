@@ -1270,39 +1270,41 @@ function battleChart(){
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
   const how = `<div class="bthow">Colored range with snow = you · dark grey range behind = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
-  /* Nov 26 5:50 PM (Dom: "be creative. Put a chart together with something that's very creative"): BATTLE RINGS replace the mountains.
-     Four rings, one per league, nested like a target - DK1 outside, DK4 in the middle. Each league is a pair of tracks: YOUR thick ring
-     in your league color and HIS thin grey ring just inside it. Each ring sweeps clockwise from 12 o'clock as far as that side's
-     projected final (Ratcliffe; real score once a man has played) - the longer sweep is winning. The bright part of each ring is
-     points already scored, the soft part is still to come. The center counts how many of the four you're projected to win. On the
-     right, one line per league: the tag, your final vs his, and the margin. The rings sweep in one league at a time, slowly. */
-  const RS = rows.map(r => { const sm = series(r.me), so = series(r.op); return {r, c: HEX[r.k], fm: sm[sm.length - 1], fo: so[so.length - 1],
-    nm: r.me.reduce((a, x) => a + x.now, 0), no: r.op.reduce((a, x) => a + x.now, 0)}; });
-  const RMAX = Math.max(1, ...RS.flatMap(x => [x.fm, x.fo])) * 1.08, CX = 150, CY = 150, R0 = 128, STEP = 31, SW = 12, SWO = 5;
-  const arc = (rad, frac) => { const f = Math.max(0.0005, Math.min(.9999, frac)), a = f * 2 * Math.PI, x = CX + rad * Math.sin(a), y = CY - rad * Math.cos(a);
-    return `M${CX} ${CY - rad} A${rad} ${rad} 0 ${f > .5 ? 1 : 0} 1 ${x.toFixed(2)} ${y.toFixed(2)}`; };
-  const wins = RS.filter(x => x.fm > x.fo).length;
-  const ringsSvg = RS.map((x, i) => { const R = R0 - i * STEP, Ro = R - SW / 2 - SWO / 2 - 2, cm = 2 * Math.PI * R, co = 2 * Math.PI * Ro;
-    const tip = `${DK[x.r.k]}: you ${f1(x.fm)} vs him ${f1(x.fo)} projected (Ratcliffe) · real so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`;
-    return `<g class="brg" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(tip)}</title>
-      <circle cx="${CX}" cy="${CY}" r="${R}" class="brtrk" style="stroke-width:${SW}"/><circle cx="${CX}" cy="${CY}" r="${Ro}" class="brtrk" style="stroke-width:${SWO}"/>
-      <path d="${arc(Ro, x.fo / RMAX)}" class="bro brsw" pathLength="1" style="stroke-width:${SWO}"/>
-      <path d="${arc(Ro, x.no / RMAX)}" class="bro now brsw" pathLength="1" style="stroke-width:${SWO}"/>
-      <path d="${arc(R, x.fm / RMAX)}" class="brm brsw" pathLength="1" style="stroke:${x.c};stroke-width:${SW}"/>
-      <path d="${arc(R, x.nm / RMAX)}" class="brm now brsw" pathLength="1" style="stroke:${x.c};stroke-width:${SW}"/>
-      <text x="${CX - 6}" y="${(CY - R + 4).toFixed(1)}" class="brtag" text-anchor="end" style="fill:${x.c}">${DK[x.r.k]}</text></g>`; }).join("");
-  const center = `<text x="${CX}" y="${CY + 2}" class="brc1" text-anchor="middle">${wins}<tspan class="brc2">/${RS.length}</tspan></text><text x="${CX}" y="${CY + 17}" class="brc3" text-anchor="middle">PROJECTED WINS</text>`;
-  const legend = RS.map((x, i) => { const mg = x.fm - x.fo, y = 46 + i * 62;
-    return `<g class="brl" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0"><text x="310" y="${y}" class="brlt" style="fill:${x.c}">${DK[x.r.k]}</text>
-      <text x="370" y="${y}" class="brlv" style="fill:${x.c}">${f1(x.fm)}</text><text x="436" y="${y}" class="brlvs">vs</text><text x="453" y="${y}" class="brlv op">${f1(x.fo)}</text>
-      <text x="597" y="${y}" class="brlm" text-anchor="end" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
-      <text x="310" y="${y + 19}" class="brln">${x.nm + x.no > 0 ? `now ${f1(x.nm)} – ${f1(x.no)}` : "not started"}</text>
-      <line x1="310" y1="${y + 30}" x2="597" y2="${y + 30}" class="brls"/></g>`; }).join("");
-  const rsvg = `<svg class="brall" viewBox="0 0 600 300" role="img" aria-label="Battle Rings - all four leagues"><defs><radialGradient id="brbg" cx="150" cy="150" r="160" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#13204A"/><stop offset="1" stop-color="#05080F"/></radialGradient></defs>
-    <rect width="600" height="300" fill="#05080F"/><circle cx="${CX}" cy="${CY}" r="146" fill="url(#brbg)"/>${ringsSvg}${center}
-    <text x="370" y="18" class="brhd">YOU</text><text x="453" y="18" class="brhd">HIM</text><text x="597" y="18" class="brhd" text-anchor="end">MARGIN</text>${legend}</svg>`;
-  const rhow = `<div class="bthow">Thick ring = you · thin grey ring = him · longer sweep is winning · bright = scored so far.</div>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Rings</span><span class="lsub">${sub}</span><div class="bmw1">${rsvg}</div><div class="bmswg">${swing}</div>${rhow}</section>`;
+  /* Nov 26 5:54 PM (Dom: "I need something to complement that [page] ... a chart that works. That looks super advanced ... maybe it's made
+     out of glass windows or something unique ... super cool, but yet serves a full purpose"): WEEKEND WINDOWS. The rest of the page
+     already shows totals and chances; this shows WHERE the points come from. A wall of glass panes - one row per league, one pane per
+     kickoff window of the week (Thu 10 AM ... Mon night). Inside each pane two columns of light rise: yours in your league color (left),
+     his in grey (right), as tall as the points each side gets in that window (Ratcliffe's projection, or the real score once played).
+     A pane you win has a green frame, one he wins a dim red frame; finished windows are solid, windows still to come are frosted glass,
+     the window being played now glows gold. Far right: the total margin. The panes fill in one league at a time, slowly. */
+  const WN = KOS.length, WL = 50, WR = 538, WGAP = 4, PW = (WR - WL - WGAP * (WN - 1)) / WN, RH = 70, RTOP = 24, WH2 = RTOP + NB * RH + 20;
+  const winPts = (list, t) => list.filter(x => x.ko === t).reduce((a, x) => a + (isDone(x.p) || isLive(x.p) ? x.now : x.fin), 0);
+  const CELLS = rows.map(r => KOS.map(t => ({t, me: winPts(r.me, t), op: winPts(r.op, t)})));
+  const WMAX = Math.max(1, ...CELLS.flat().flatMap(x => [x.me, x.op]));
+  const liveT = KOS.filter(t => t <= nowT && nowT < t + 3.6 * 36e5).pop();
+  const pane = (x, ri, i, c) => { const px = WL + i * (PW + WGAP), py = RTOP + ri * RH + 4, ph = RH - 10, inner = ph - 18, bw = (PW - 10) / 2;
+    const done = x.t + 3.6 * 36e5 < nowT, now = x.t === liveT, hm = inner * x.me / WMAX, ho = inner * x.op / WMAX, empty = x.me + x.op < .05;
+    const st = empty ? "e" : x.me > x.op + .05 ? "w" : x.op > x.me + .05 ? "l" : "t";
+    return `<g class="wwp ${st}${done ? " done" : ""}${now ? " now" : ""}" style="--i:${ri}">
+      <rect x="${px.toFixed(1)}" y="${py}" width="${PW.toFixed(1)}" height="${ph}" rx="5" class="wwg"/>
+      ${empty ? "" : `<rect x="${(px + 4).toFixed(1)}" y="${(py + 4 + inner - hm).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(.6, hm).toFixed(1)}" rx="2" fill="${c}" class="wwm"/>
+      <rect x="${(px + 6 + bw).toFixed(1)}" y="${(py + 4 + inner - ho).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(.6, ho).toFixed(1)}" rx="2" class="wwo"/>`}
+      <path d="M${(px + PW * .18).toFixed(1)} ${py + 1.5} l${(PW * .16).toFixed(1)} 0 l${(-PW * .3).toFixed(1)} ${(ph * .38).toFixed(1)} l${(-PW * .0).toFixed(1)} ${(-ph * .12).toFixed(1)} Z" class="wwsh"/><line x1="${(px + 3).toFixed(1)}" y1="${py + 1.2}" x2="${(px + PW - 3).toFixed(1)}" y2="${py + 1.2}" class="wwtop"/>
+      <rect x="${px.toFixed(1)}" y="${py}" width="${PW.toFixed(1)}" height="${ph}" rx="5" class="wwf"/>
+      ${empty ? `<text x="${(px + PW / 2).toFixed(1)}" y="${(py + ph / 2 + 3).toFixed(1)}" class="wwz">–</text>` : `<text x="${(px + PW / 2).toFixed(1)}" y="${(py + ph - 4).toFixed(1)}" class="wwn"><tspan style="fill:${c}">${Math.round(x.me)}</tspan><tspan class="wwd">·</tspan><tspan class="wwnh">${Math.round(x.op)}</tspan></text>`}</g>`; };
+  const wrows = rows.map((r, ri) => { const c = HEX[r.k], cl = CELLS[ri], fm = series(r.me).pop(), fo = series(r.op).pop(), mg = fm - fo, y = RTOP + ri * RH + RH / 2;
+    return `<g class="wwr" data-jump="${SLUG[r.k]}" role="button" tabindex="0"><title>${esc(`${DK[r.k]}: points by kickoff window - you ${f1(fm)} vs him ${f1(fo)} projected · tap for the league`)}</title>
+      <text x="6" y="${(y + 2).toFixed(1)}" class="wwk" style="fill:${c}">${DK[r.k]}</text>
+      ${cl.map((x, i) => pane(x, ri, i, c)).join("")}
+      <text x="597" y="${(y - 6).toFixed(1)}" class="wwt" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+      <text x="597" y="${(y + 10).toFixed(1)}" class="wwts">${f1(fm)}–${f1(fo)}</text></g>`; }).join("");
+  const heads = KOS.map((t, i) => { const px = WL + i * (PW + WGAP) + PW / 2; return `<text x="${px.toFixed(1)}" y="15" class="wwh${t === liveT ? " now" : ""}">${lab(t)}</text>`; }).join("");
+  const wsvg = `<svg class="wwall" viewBox="0 0 600 ${WH2}" role="img" aria-label="Weekend Windows - points by kickoff window, all four leagues"><defs>
+      <linearGradient id="wwglass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FB6E8" stop-opacity=".16"/><stop offset="1" stop-color="#9FB6E8" stop-opacity=".04"/></linearGradient>
+      <linearGradient id="wwsheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <rect width="600" height="${WH2}" fill="#05080F"/>${heads}${wrows}<text x="597" y="15" class="wwh" style="text-anchor:end">MARGIN</text></svg>`;
+  const whow = `<div class="bthow">Each glass pane = one kickoff window · left light = you, right grey = him · green frame = you win that window · gold = being played now · frosted = still to come.</div>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Weekend Windows</span><span class="lsub">${sub}</span><div class="bmw1">${wsvg}</div><div class="bmswg">${swing}</div>${whow}</section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
