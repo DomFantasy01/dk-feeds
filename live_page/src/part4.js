@@ -1105,6 +1105,10 @@ window.bmPlay = function(){ if (document.documentElement.classList.contains("cal
   const els = document.querySelectorAll(".bmall .bmg, .bmall .bmfin"); if (!els.length) return;
   els.forEach(el => { el.classList.remove("sw"); el.classList.remove("pre"); el.classList.add("pre"); }); void document.body.offsetWidth;
   els.forEach(el => { el.classList.remove("pre"); el.classList.add("sw"); }); window.__bmPlayed = true; };
+/* Nov 26 6:52 PM (Dom: "too much animation ... keep the bubbles going ... refill the beakers every minute or so"): the beakers sit still
+   (no rolling surface, no refill on every re-render); once a minute they drain and refill together, gently */
+window.tbPlay = function(){ if (document.documentElement.classList.contains("calm")) return; document.querySelectorAll("svg.tball").forEach(el => { el.classList.remove("fill"); void el.getBoundingClientRect(); el.classList.add("fill"); }); };
+if (!window.__tbTimer){ window.__tbTimer = setInterval(() => { if (!document.hidden) window.tbPlay(); }, 60000); setTimeout(() => window.tbPlay(), 1500); }
 if (!window.__bmTimer){ window.__bmTimer = setInterval(() => { if (!document.hidden) window.bmPlay(); }, 300000); setTimeout(() => window.bmPlay(), 1200); }
 function battleChart(){
   /* Nov 26 1:14 PM (Dom: "take the battle meter and turn it into ... a mountain chart or something that's in 3D ... utilizes all the

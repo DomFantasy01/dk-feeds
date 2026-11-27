@@ -2237,4 +2237,9 @@ html.calm .tball .tbwave,html.calm .tball .tbbub{animation:none !important}.html
 .tball .tbpcl{font:700 7px var(--f-body);fill:#fff;fill-opacity:.85;letter-spacing:.14em;paint-order:stroke;stroke:#05080F;stroke-width:2.5px}
 .tball .tbleft{font:600 10px var(--f-body);fill:#C9D1E3;letter-spacing:.04em}
 .tball .tbleft.z{fill:#5E6880}
+
+/* Nov 26 6:52 PM (Dom: "too much animation"): still surface, bubbles stay, refill once a minute (JS adds .fill) */
+.tball .tbwave{animation:none !important}
+.tball .tbliq.v{animation:none}
+@media (prefers-reduced-motion:no-preference){.tball.fill .tbliq.v{animation:tbrise 2.4s cubic-bezier(.35,.1,.25,1) both;animation-delay:calc(var(--i,0) * .35s)}}
 </style>
