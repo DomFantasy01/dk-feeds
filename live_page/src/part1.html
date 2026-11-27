@@ -2272,4 +2272,37 @@ html body .mh .bolt polyline{animation:boltdraw10 10s linear infinite}
 @keyframes boltdraw10{0%,69.7%{stroke-dashoffset:70}71.2%,100%{stroke-dashoffset:0}}
 html.calm body .mh .batw img,html.calm body .mh .bolt,html.calm body .mh .bolt polyline{animation:none !important}
 @media (prefers-reduced-motion:reduce){html body .mh .batw img,html body .mh .bolt,html body .mh .bolt polyline{animation:none !important}}
+
+/* Nov 27 10:47 AM (Dom: "plumber's pipes that go on different angles ... fill up ... something unique"): Battle Pipes */
+.ppall{width:100%;height:auto;display:block}
+.ppall .ppr{cursor:pointer}
+.ppall .ppdiv{stroke:#1A2233;stroke-width:1}
+.ppall .ppo{fill:none;stroke:#2A3346;stroke-width:15;stroke-linejoin:round;stroke-linecap:butt}
+.ppall .ppj{fill:#3A4459;stroke:#5A6680;stroke-width:1.2}
+.ppall .ppin{fill:none;stroke:#0A0F1A;stroke-width:10;stroke-linejoin:round}
+.ppall .ppl{fill:none;stroke-width:9;stroke-linejoin:round;stroke-linecap:butt}
+.ppall .ppl.pr{stroke-opacity:.5}
+.ppall .ppp.me .ppl.nw{filter:drop-shadow(0 0 3px var(--lc))}
+.ppall .ppsh{fill:none;stroke:#fff;stroke-opacity:.13;stroke-width:2;stroke-linejoin:round;transform:translateY(-3px)}
+.ppall .ppb{fill:#fff;fill-opacity:.6}
+.ppall .ppg{stroke:#F5C842;stroke-width:2.4;stroke-dasharray:3 2;stroke-linecap:round}
+.ppall .ppcap{fill:#4A556E;stroke:#6B7792;stroke-width:1}
+.ppall .ppfeed{fill:none;stroke:#3A4459;stroke-width:5;stroke-opacity:.9}
+.ppall .ppv .ppvw{fill:none;stroke:var(--lc);stroke-width:3}
+.ppall .ppv line{stroke:var(--lc);stroke-width:2;stroke-opacity:.8}
+.ppall .ppv .ppvh{fill:var(--lc)}
+.ppall .ppk{font:400 15px var(--f-disp,"Bebas Neue");letter-spacing:.06em}
+.ppall .ppm{font:600 11px var(--f-body)}
+.ppall .ppt{font:700 8px var(--f-body);fill:#8C96AE;letter-spacing:.14em}
+.ppall .ppf{font:400 19px var(--f-disp,"Bebas Neue");letter-spacing:.03em}
+.ppall .ppf.op{fill:#B7BECB}
+.ppall .ppn{font:500 8.5px var(--f-body);fill:#8C96AE}
+@media (prefers-reduced-motion:no-preference){
+  .ppall.fill .ppl{animation:ppfill 3s cubic-bezier(.35,.1,.25,1) both;animation-delay:calc(var(--i,0) * .35s)}
+  .ppall.fill .ppv{animation:ppspin 3s ease-in-out both;animation-delay:calc(var(--i,0) * .35s)}}
+@keyframes ppfill{from{stroke-dashoffset:var(--L)}to{stroke-dashoffset:0}}
+@keyframes ppspin{from{rotate:-200deg}to{rotate:0deg}}
+.ppall .ppv{transform-box:fill-box;transform-origin:center}
+html.calm .ppall .ppb{display:none}html.calm .ppall *{animation:none !important}
+@media (prefers-reduced-motion:reduce){.ppall .ppb{display:none}}
 </style>

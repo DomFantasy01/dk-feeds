@@ -1370,7 +1370,41 @@ function battleChart(){
                 <text x="${cx}" y="${TY1 + 52}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
         <text x="${cx}" y="${TY1 + 75}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
         <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">TEAM</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">OPPONENT</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Beakers</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Top number = projected final (Ratcliffe), marked by the gold line · liquid = points scored so far · number under the beaker = points so far · "left" = starters still to play.</div></section>`;
+  /* Nov 27 10:47 AM (Dom: "I don't like it ... make it like plumber's pipes that go on different angles ... and fill up ... Try something
+     unique"): BATTLE PIPES - each league is a run of steel pipe with angled elbows; your team's pipe on top (league color), the
+     opponent's under it (grey), same route so the lengths compare straight across. The liquid flows in from the valve: solid = points
+     scored so far, lighter = what's still projected (Ratcliffe) - its end is the projected final. A gold tick on each pipe marks the
+     other side's projected final. Bubbles ride the flow; the pipes drain and refill once a minute. */
+  const PMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.03, PPW = 600, PRH = 98, PPH = TB.length * PRH + 8, PX0 = 122, PX1 = 520;
+  const proute = (y) => { const d = 15, u = (PX1 - PX0) / 10;
+    return [[PX0, y], [PX0 + u * 1.2, y], [PX0 + u * 1.2 + d, y - d], [PX0 + u * 3.2, y - d], [PX0 + u * 3.2 + d, y], [PX0 + u * 5, y], [PX0 + u * 5 + d, y + d * .7],
+      [PX0 + u * 7, y + d * .7], [PX0 + u * 7 + d, y], [PX0 + u * 8.6, y], [PX0 + u * 8.6 + d * .8, y - d * .8], [PX1, y - d * .8]]; };
+  const pplen = (pts) => { let L = 0; const cum = [0]; for (let k = 1; k < pts.length; k++){ L += Math.hypot(pts[k][0] - pts[k-1][0], pts[k][1] - pts[k-1][1]); cum.push(L); } return {L, cum}; };
+  const ppat = (pts, cum, l) => { for (let k = 1; k < pts.length; k++) if (l <= cum[k] || k === pts.length - 1){ const t = Math.max(0, Math.min(1, (l - cum[k-1]) / ((cum[k] - cum[k-1]) || 1))), dx = pts[k][0] - pts[k-1][0], dy = pts[k][1] - pts[k-1][1], m = Math.hypot(dx, dy) || 1;
+    return {x: pts[k-1][0] + dx * t, y: pts[k-1][1] + dy * t, nx: -dy / m, ny: dx / m}; } return {x: pts[0][0], y: pts[0][1], nx: 0, ny: 1}; };
+  const ppipe = (pts, val, now, other, col, me, idp, i) => { const {L, cum} = pplen(pts), D = "M" + pts.map(q => q[0].toFixed(1) + " " + q[1].toFixed(1)).join(" L"), lf = L * Math.min(1, val / PMAX), ln = L * Math.min(1, now / PMAX);
+    const g = ppat(pts, cum, L * Math.min(1, other / PMAX)), gl = 13, joints = pts.slice(1, -1).map(q => `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="9.2" class="ppj"/>`).join("");
+    const bub = lf > 30 ? [0, 1, 2].map(n => `<circle r="${(1.3 + n * .4).toFixed(1)}" class="ppb"><animateMotion dur="${(5.5 + n * 1.3).toFixed(1)}s" begin="${(n * 1.9 + i * .7).toFixed(1)}s" repeatCount="indefinite" path="${D}" keyPoints="0;${(lf / L * .97).toFixed(3)}" keyTimes="0;1" calcMode="linear"/></circle>`).join("") : "";
+    return `<g class="ppp${me ? " me" : ""}" style="--lc:${col};--L:${lf.toFixed(1)};--i:${i}">
+      <path d="${D}" class="ppo"/>${joints}<path d="${D}" class="ppin"/>
+      <path d="${D}" class="ppl pr" stroke="${col}" stroke-dasharray="${lf.toFixed(1)} 9999"/><path d="${D}" class="ppl nw" stroke="${col}" stroke-dasharray="${ln.toFixed(1)} 9999"/>
+      ${bub}<path d="${D}" class="ppsh"/>
+      <line x1="${(g.x - g.nx * gl).toFixed(1)}" y1="${(g.y - g.ny * gl).toFixed(1)}" x2="${(g.x + g.nx * gl).toFixed(1)}" y2="${(g.y + g.ny * gl).toFixed(1)}" class="ppg"/></g>`; };
+  const ppsvg = `<svg class="tball ppall" viewBox="0 0 ${PPW} ${PPH}" role="img" aria-label="Battle Pipes - all four leagues"><rect width="${PPW}" height="${PPH}" fill="#05080F"/>
+    ${TB.map((x, i) => { const y0 = i * PRH + 8, yt = y0 + 30, yo = y0 + 74, mg = x.fm - x.fo, L = lgS(x.r.k), ml = L ? leftOf(L.players).length : 0, ol = L ? leftOf(L.oppPlayers).length : 0, lt = (n) => n ? n + " left" : "done";
+      const rt = proute(yt), ro = proute(yo), et = rt[rt.length - 1], eo = ro[ro.length - 1], spokes = [0, 45, 90, 135].map(a => `<line x1="-11" y1="0" x2="11" y2="0" transform="rotate(${a})"/>`).join("");
+      return `<g class="ppr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0"><title>${esc(`${DK[x.r.k]}: your team ${f1(x.fm)} vs the opponent ${f1(x.fo)} projected (Ratcliffe) · scored so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
+        ${i ? `<line x1="8" y1="${y0 - 4}" x2="${PPW - 8}" y2="${y0 - 4}" class="ppdiv"/>` : ""}
+        <g class="ppv" transform="translate(30 ${y0 + 30})" style="--lc:${x.c}"><circle r="13" class="ppvw"/>${spokes}<circle r="3.4" class="ppvh"/></g>
+        <text x="30" y="${y0 + 66}" class="ppk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="30" y="${y0 + 82}" class="ppm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+        <path d="M43 ${y0 + 30} H${PX0}" class="ppfeed" style="stroke:${x.c}"/><path d="M43 ${y0 + 30} Q${PX0 - 30} ${y0 + 30} ${PX0 - 22} ${yo} H${PX0}" class="ppfeed"/>
+        <text x="${PX0 + 2}" y="${yt - 13}" class="ppt">TEAM</text><text x="${PX0 + 2}" y="${yo + 20}" class="ppt">OPPONENT</text>
+        ${ppipe(rt, x.fm, x.nm, x.fo, x.c, true, "pt" + i, i)}${ppipe(ro, x.fo, x.no, x.fm, "#9AA1AE", false, "po" + i, i)}
+        <rect x="${et[0] - 2}" y="${et[1] - 10}" width="7" height="20" rx="2" class="ppcap"/><rect x="${eo[0] - 2}" y="${eo[1] - 10}" width="7" height="20" rx="2" class="ppcap"/>
+        <text x="${et[0] + 12}" y="${et[1] + 3}" class="ppf" style="fill:${x.c}">${f1(x.fm)}</text><text x="${et[0] + 12}" y="${et[1] + 15}" class="ppn">${f1(x.nm)} · ${lt(ml)}</text>
+        <text x="${eo[0] + 12}" y="${eo[1] + 3}" class="ppf op">${f1(x.fo)}</text><text x="${eo[0] + 12}" y="${eo[1] + 15}" class="ppn">${f1(x.no)} · ${lt(ol)}</text></g>`; }).join("")}</svg>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Pipes</span><span class="lsub">${sub}</span><div class="bmw1">${ppsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Top pipe = your team · bottom pipe = the opponent · same route, so the longer flow is winning · solid = points scored so far, lighter = still projected (Ratcliffe), its end = projected final · gold tick = the other side's projected final · tap a league to jump to it.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one
