@@ -1270,7 +1270,39 @@ function battleChart(){
   const stamp = S && S.stamp ? PT(S.stamp, {hour: "numeric", minute: "2-digit"}) : "–", nx = (() => { try { return nextUpdate(); } catch(_){ return ""; } })();
   const sub = esc(stamp) + (nx ? " · Next " + esc(nx.replace(/ (AM|PM)$/, "")) : "");
   const how = `<div class="bthow">Colored range with snow = you · dark grey range behind = him · right = your final, his final, margin.</div>`; /* Nov 26 1:20 PM (Dom: "reduce all the writing") */
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Mountains</span><span class="lsub">${sub}</span><div class="bmw1">${svg}</div><div class="bmswg">${swing}</div>${how}</section>`;
+  /* Nov 26 5:50 PM (Dom: "be creative. Put a chart together with something that's very creative"): BATTLE RINGS replace the mountains.
+     Four rings, one per league, nested like a target - DK1 outside, DK4 in the middle. Each league is a pair of tracks: YOUR thick ring
+     in your league color and HIS thin grey ring just inside it. Each ring sweeps clockwise from 12 o'clock as far as that side's
+     projected final (Ratcliffe; real score once a man has played) - the longer sweep is winning. The bright part of each ring is
+     points already scored, the soft part is still to come. The center counts how many of the four you're projected to win. On the
+     right, one line per league: the tag, your final vs his, and the margin. The rings sweep in one league at a time, slowly. */
+  const RS = rows.map(r => { const sm = series(r.me), so = series(r.op); return {r, c: HEX[r.k], fm: sm[sm.length - 1], fo: so[so.length - 1],
+    nm: r.me.reduce((a, x) => a + x.now, 0), no: r.op.reduce((a, x) => a + x.now, 0)}; });
+  const RMAX = Math.max(1, ...RS.flatMap(x => [x.fm, x.fo])) * 1.08, CX = 150, CY = 150, R0 = 128, STEP = 31, SW = 12, SWO = 5;
+  const arc = (rad, frac) => { const f = Math.max(0.0005, Math.min(.9999, frac)), a = f * 2 * Math.PI, x = CX + rad * Math.sin(a), y = CY - rad * Math.cos(a);
+    return `M${CX} ${CY - rad} A${rad} ${rad} 0 ${f > .5 ? 1 : 0} 1 ${x.toFixed(2)} ${y.toFixed(2)}`; };
+  const wins = RS.filter(x => x.fm > x.fo).length;
+  const ringsSvg = RS.map((x, i) => { const R = R0 - i * STEP, Ro = R - SW / 2 - SWO / 2 - 2, cm = 2 * Math.PI * R, co = 2 * Math.PI * Ro;
+    const tip = `${DK[x.r.k]}: you ${f1(x.fm)} vs him ${f1(x.fo)} projected (Ratcliffe) · real so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`;
+    return `<g class="brg" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(tip)}</title>
+      <circle cx="${CX}" cy="${CY}" r="${R}" class="brtrk" style="stroke-width:${SW}"/><circle cx="${CX}" cy="${CY}" r="${Ro}" class="brtrk" style="stroke-width:${SWO}"/>
+      <path d="${arc(Ro, x.fo / RMAX)}" class="bro brsw" pathLength="1" style="stroke-width:${SWO}"/>
+      <path d="${arc(Ro, x.no / RMAX)}" class="bro now brsw" pathLength="1" style="stroke-width:${SWO}"/>
+      <path d="${arc(R, x.fm / RMAX)}" class="brm brsw" pathLength="1" style="stroke:${x.c};stroke-width:${SW}"/>
+      <path d="${arc(R, x.nm / RMAX)}" class="brm now brsw" pathLength="1" style="stroke:${x.c};stroke-width:${SW}"/>
+      <text x="${CX - 6}" y="${(CY - R + 4).toFixed(1)}" class="brtag" text-anchor="end" style="fill:${x.c}">${DK[x.r.k]}</text></g>`; }).join("");
+  const center = `<text x="${CX}" y="${CY + 2}" class="brc1" text-anchor="middle">${wins}<tspan class="brc2">/${RS.length}</tspan></text><text x="${CX}" y="${CY + 17}" class="brc3" text-anchor="middle">PROJECTED WINS</text>`;
+  const legend = RS.map((x, i) => { const mg = x.fm - x.fo, y = 46 + i * 62;
+    return `<g class="brl" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0"><text x="310" y="${y}" class="brlt" style="fill:${x.c}">${DK[x.r.k]}</text>
+      <text x="370" y="${y}" class="brlv" style="fill:${x.c}">${f1(x.fm)}</text><text x="436" y="${y}" class="brlvs">vs</text><text x="453" y="${y}" class="brlv op">${f1(x.fo)}</text>
+      <text x="597" y="${y}" class="brlm" text-anchor="end" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+      <text x="310" y="${y + 19}" class="brln">${x.nm + x.no > 0 ? `now ${f1(x.nm)} – ${f1(x.no)}` : "not started"}</text>
+      <line x1="310" y1="${y + 30}" x2="597" y2="${y + 30}" class="brls"/></g>`; }).join("");
+  const rsvg = `<svg class="brall" viewBox="0 0 600 300" role="img" aria-label="Battle Rings - all four leagues"><defs><radialGradient id="brbg" cx="150" cy="150" r="160" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#13204A"/><stop offset="1" stop-color="#05080F"/></radialGradient></defs>
+    <rect width="600" height="300" fill="#05080F"/><circle cx="${CX}" cy="${CY}" r="146" fill="url(#brbg)"/>${ringsSvg}${center}
+    <text x="370" y="18" class="brhd">YOU</text><text x="453" y="18" class="brhd">HIM</text><text x="597" y="18" class="brhd" text-anchor="end">MARGIN</text>${legend}</svg>`;
+  const rhow = `<div class="bthow">Thick ring = you · thin grey ring = him · longer sweep is winning · bright = scored so far.</div>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Rings</span><span class="lsub">${sub}</span><div class="bmw1">${rsvg}</div><div class="bmswg">${swing}</div>${rhow}</section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one

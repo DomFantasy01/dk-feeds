@@ -2144,4 +2144,22 @@ html.calm .bmall .bmg.sw,html.calm .bmall .bmfin.sw{animation:none !important}
 @media (prefers-reduced-motion:no-preference){.bmall .bmpen{transform-box:fill-box;transform-origin:0 50%;animation:bmwave 3.2s ease-in-out infinite}
   @keyframes bmwave{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.82) skewY(6deg)}}}
 html.calm .bmall .bmpen{animation:none !important}
+/* Nov 26 5:50 PM: Battle Rings */
+.brall{display:block;width:100%;height:auto}
+.brall .brtrk{fill:none;stroke:#1A2440;stroke-opacity:.9}
+.brall .brm{fill:none;stroke-linecap:round;opacity:.42}.brall .brm.now{opacity:1;filter:drop-shadow(0 0 5px var(--lc))}
+.brall .bro{fill:none;stroke:#8C94A5;stroke-linecap:round;opacity:.45}.brall .bro.now{stroke:#D5D9E1;opacity:.95}
+.brall .brg,.brall .brl{cursor:pointer}
+.brtag{font:400 15px var(--f-disp);letter-spacing:.05em;paint-order:stroke;stroke:#05080F;stroke-width:3px}
+.brc1{font:400 34px var(--f-disp);fill:#fff}.brc2{font-size:20px;fill:#8A93A6}.brc3{font:700 8px var(--f-body);fill:#8A93A6;letter-spacing:.12em}
+.brhd{font:700 11px var(--f-body);fill:#6F7A92;letter-spacing:.14em}
+.brlt{font:400 28px var(--f-disp);letter-spacing:.04em}
+.brlv{font:400 26px var(--f-disp);letter-spacing:.02em}.brlv.op{fill:#AEB4C0}.brlvs{font:600 13px var(--f-body);fill:#5F6A82}
+.brlm{font:400 25px var(--f-disp);letter-spacing:.02em}
+.brln{font:600 14px var(--f-body);fill:#8A93A6}
+.brls{stroke:#1F2A46;stroke-width:1}
+@media (prefers-reduced-motion:no-preference){
+  .brall .brsw{stroke-dasharray:1 1;stroke-dashoffset:1;animation:brsweep 3.5s cubic-bezier(.4,0,.25,1) forwards;animation-delay:calc(var(--i,0) * 3.5s + .6s)}
+  @keyframes brsweep{to{stroke-dashoffset:0}}}
+html.calm .brall .brsw{animation:none !important;stroke-dashoffset:0 !important}
 </style>
