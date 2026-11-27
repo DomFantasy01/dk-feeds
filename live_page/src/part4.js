@@ -1312,24 +1312,27 @@ function battleChart(){
      time. The spiked mountains, windows and rings stay in the code, switched off. */
   const TB = rows.map(r => { const sm = series(r.me), so = series(r.op); return {r, c: HEX[r.k], fm: sm[sm.length - 1], fo: so[so.length - 1],
     nm: r.me.reduce((a, x) => a + x.now, 0), no: r.op.reduce((a, x) => a + x.now, 0)}; });
-  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, TX0 = 58, TX1 = 492, TW = TX1 - TX0, TH = 20, TGAP = 7, TROW = 84, TTOP = 14, THH = TTOP + TB.length * TROW + 4;
-  const tube = (y, frac, nfrac, fill, id, me) => { const L = Math.max(TH, TW * Math.min(1, frac)), N = Math.max(0, Math.min(L, TW * Math.min(1, nfrac)));
-    return `<g class="tbt${me ? " me" : ""}"><rect x="${TX0}" y="${y}" width="${TW}" height="${TH}" rx="${TH / 2}" class="tbglass"/>
-      <g clip-path="url(#${id}c)"><g class="tbliq"><rect x="${TX0}" y="${y}" width="${L.toFixed(1)}" height="${TH}" rx="${TH / 2}" fill="${fill}" class="tbproj"/>
-      ${N > 0 ? `<rect x="${TX0}" y="${y}" width="${N.toFixed(1)}" height="${TH}" fill="${fill}" class="tbnow"/>` : ""}
-      <rect x="${(TX0 + L - 3).toFixed(1)}" y="${y + 1}" width="3" height="${TH - 2}" rx="1.5" fill="#fff" class="tbmen"/></g></g>
-      <defs><clipPath id="${id}c"><rect x="${TX0}" y="${y}" width="${TW}" height="${TH}" rx="${TH / 2}"/></clipPath></defs>
-      <rect x="${TX0 + 6}" y="${y + 2.2}" width="${TW - 12}" height="${TH * .26}" rx="${TH * .13}" class="tbhi"/>
-      <rect x="${TX0}" y="${y}" width="${TW}" height="${TH}" rx="${TH / 2}" class="tbrim"/></g>`; };
-  const tsvg = `<svg class="tball" viewBox="0 0 600 ${THH}" role="img" aria-label="Battle Tubes - all four leagues"><rect width="600" height="${THH}" fill="#05080F"/>
-    ${TB.map((x, i) => { const y = TTOP + i * TROW, mg = x.fm - x.fo, id = "tb" + SLUG[x.r.k];
+  /* Nov 26 6:14 PM (Dom: "Tubes vertical vs horizontal"): the tubes stand up - each league gets its own column with two upright glass
+     tubes side by side, yours (league color) on the left and his (grey) on the right, the liquid rising from the bottom. Finals sit
+     on top of each tube, the DK tag and the margin underneath. */
+  const TMAX = Math.max(1, ...TB.flatMap(x => [x.fm, x.fo])) * 1.04, VW = 600, VH = 300, TY0 = 54, TY1 = 236, THT = TY1 - TY0, TWD = 30, TGP = 12;
+  const vtube = (cx, frac, nfrac, fill, id, me) => { const x = cx - TWD / 2, H = Math.max(TWD, THT * Math.min(1, frac)), N = Math.max(0, Math.min(H, THT * Math.min(1, nfrac)));
+    return `<g class="tbt${me ? " me" : ""}"><rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}" class="tbglass"/>
+      <defs><clipPath id="${id}c"><rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}"/></clipPath></defs>
+      <g clip-path="url(#${id}c)"><g class="tbliq v"><rect x="${x}" y="${(TY1 - H).toFixed(1)}" width="${TWD}" height="${H.toFixed(1)}" fill="${fill}" class="tbproj"/>
+      ${N > 0 ? `<rect x="${x}" y="${(TY1 - N).toFixed(1)}" width="${TWD}" height="${N.toFixed(1)}" fill="${fill}" class="tbnow"/>` : ""}
+      <rect x="${x + 1}" y="${(TY1 - H).toFixed(1)}" width="${TWD - 2}" height="3" rx="1.5" fill="#fff" class="tbmen"/></g></g>
+      <rect x="${x + 4}" y="${TY0 + 8}" width="${TWD * .22}" height="${THT - 16}" rx="${TWD * .11}" class="tbhi"/>
+      <rect x="${x}" y="${TY0}" width="${TWD}" height="${THT}" rx="${TWD / 2}" class="tbrim"/></g>`; };
+  const tsvg = `<svg class="tball" viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Battle Tubes - all four leagues"><rect width="${VW}" height="${VH}" fill="#05080F"/>
+    ${TB.map((x, i) => { const cx = VW / TB.length * (i + .5), mg = x.fm - x.fo, id = "tb" + SLUG[x.r.k], a = cx - (TWD + TGP) / 2, b = cx + (TWD + TGP) / 2;
       return `<g class="tbr" data-jump="${SLUG[x.r.k]}" role="button" tabindex="0" style="--lc:${x.c};--i:${i}"><title>${esc(`${DK[x.r.k]}: you ${f1(x.fm)} vs him ${f1(x.fo)} projected (Ratcliffe) · real so far ${f1(x.nm)} to ${f1(x.no)} · tap for the league`)}</title>
-        <text x="4" y="${y + TH + 6}" class="tbk" style="fill:${x.c}">${DK[x.r.k]}</text>
-        ${tube(y, x.fm / TMAX, x.nm / TMAX, x.c, id + "m", true)}${tube(y + TH + TGAP, x.fo / TMAX, x.no / TMAX, "#9AA1AE", id + "o", false)}
-        <text x="500" y="${y + TH - 3}" class="tbv" style="fill:${x.c}">${f1(x.fm)}</text><text x="500" y="${y + TH * 2 + TGAP - 3}" class="tbv op">${f1(x.fo)}</text>
-        <text x="597" y="${y + TH + 8}" class="tbm" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
-        <text x="${TX0 + 2}" y="${y + TH * 2 + TGAP + 14}" class="tbn">${x.nm + x.no > 0 ? `scored so far ${f1(x.nm)} – ${f1(x.no)}` : "no points scored yet"}</text></g>`; }).join("")}</svg>`;
-  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Tubes</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Top tube = you · grey tube = him · longer liquid is winning · solid = scored so far, lighter = still to come.</div></section>`;
+        <text x="${a}" y="${TY0 - 10}" class="tbv" text-anchor="middle" style="fill:${x.c}">${f1(x.fm)}</text><text x="${b}" y="${TY0 - 10}" class="tbv op" text-anchor="middle">${f1(x.fo)}</text>
+        ${vtube(a, x.fm / TMAX, x.nm / TMAX, x.c, id + "m", true)}${vtube(b, x.fo / TMAX, x.no / TMAX, "#9AA1AE", id + "o", false)}
+        <text x="${cx}" y="${TY1 + 26}" class="tbk" text-anchor="middle" style="fill:${x.c}">${DK[x.r.k]}</text>
+        <text x="${cx}" y="${TY1 + 50}" class="tbm" text-anchor="middle" style="fill:${zc(mg)}">${mg >= 0 ? "▲" : "▼"}${f1(Math.abs(mg))}</text>
+        <text x="${a}" y="${TY0 - 30}" class="tbl" text-anchor="middle">YOU</text><text x="${b}" y="${TY0 - 30}" class="tbl" text-anchor="middle">HIM</text></g>`; }).join("")}</svg>`;
+  return `<section class="frame msec btsec bmsec" id="msBtl"><span class="lab">Battle Tubes</span><span class="lsub">${sub}</span><div class="bmw1">${tsvg}</div><div class="bmswg">${swing}</div><div class="bthow">Left tube = you · grey tube = him · taller liquid is winning · solid = scored so far, lighter = still to come.</div></section>`;
 }
 function ridgeChart(){
   /* Nov 25 7:15 AM (Dom: "combine all them into one chart ... from a 3D look, slightly turned sideways ... super, super cool"): one

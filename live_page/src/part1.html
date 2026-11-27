@@ -2213,4 +2213,10 @@ html.calm .wwall *{animation:none !important}
 html.calm .tball *{animation:none !important}
 .tball .tbproj{opacity:.5}.tball .tbhi{opacity:.32}
 .tball .tbglass{fill:#0A1224;filter:drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+/* Nov 26 6:14 PM: vertical tubes */
+.tball .tbl{font:700 10px var(--f-body);fill:#6F7A92;letter-spacing:.12em}
+.tball .tbm{text-anchor:middle !important;font-size:24px}.tball .tbk{font-size:26px}.tball .tbv{font-size:20px}
+@media (prefers-reduced-motion:no-preference){
+  .tball .tbliq.v{transform-box:view-box;transform-origin:0 236px;animation:tbrise 3.2s cubic-bezier(.35,.1,.25,1) both;animation-delay:calc(var(--i,0) * 3.2s + .6s)}
+  @keyframes tbrise{from{transform:scaleY(0)}to{transform:scaleY(1)}}}
 </style>
