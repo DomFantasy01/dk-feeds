@@ -1,6 +1,6 @@
 {
  "week": 12,
- "built": "Sat Nov 28 2026 12:30 AM PT",
+ "built": "Sat Nov 28 2026 01:29 AM PT",
  "ratcliffe_read": "Fri Nov 27 2026 2:27 AM PT",
  "koerner_read": "Fri Nov 27 2026 5:43 AM PT",
  "leagues": {
@@ -209,39 +209,6 @@
      "first_seen": "Wed Nov 25 2026 05:12 PM PT"
     },
     {
-     "name": "Jacoby Brissett",
-     "pos": "QB",
-     "team": "BAL",
-     "acq": "waivers until Nov 28",
-     "over": "J.J. McCarthy",
-     "rat_ros": 22.6,
-     "over_ros": 19.9,
-     "pct": 13,
-     "gain": 2.7,
-     "rat_wk": 17.9,
-     "koe_wk": 18.43,
-     "clay_ros": 14.01,
-     "vegas_wk": 16.7,
-     "flagged_by": [],
-     "flags": [
-      {
-       "src": "Ratcliffe",
-       "span": "rest of season",
-       "his": 22.6,
-       "over": "J.J. McCarthy",
-       "over_v": 19.9,
-       "pct": 13,
-       "gain": 2.7
-      }
-     ],
-     "sharp_po": 73.0,
-     "sharp_rank": 8,
-     "rising": null,
-     "scout": false,
-     "id": "watch:jacobybrissett",
-     "first_seen": "Wed Nov 25 2026 09:10 AM PT"
-    },
-    {
      "name": "Dominic Zvada",
      "pos": "K",
      "team": "NYG",
@@ -278,7 +245,7 @@
      "name": "Jadarian Price",
      "pos": "RB",
      "team": "SEA",
-     "acq": "waivers until Nov 28",
+     "acq": "free agent",
      "over": "Emmett Johnson",
      "rat_ros": 13.6,
      "over_ros": 14.5,
@@ -306,6 +273,39 @@
      "scout": false,
      "id": "watch:jadarianprice",
      "first_seen": "Wed Nov 25 2026 04:32 PM PT"
+    },
+    {
+     "name": "Jason Sanders",
+     "pos": "K",
+     "team": "NYJ",
+     "acq": "free agent",
+     "over": "Ka'imi Fairbairn",
+     "rat_ros": 7.4,
+     "over_ros": 8.2,
+     "pct": -10,
+     "gain": -0.8,
+     "rat_wk": 10.3,
+     "koe_wk": 8.2,
+     "clay_ros": 10.74,
+     "vegas_wk": 9.49,
+     "flagged_by": [],
+     "flags": [
+      {
+       "src": "Clay",
+       "span": "rest of season, Weeks 13-17",
+       "his": 10.7,
+       "over": "Ka'imi Fairbairn",
+       "over_v": 9.2,
+       "pct": 16,
+       "gain": 1.5
+      }
+     ],
+     "sharp_po": 55.25,
+     "sharp_rank": 30,
+     "rising": null,
+     "scout": true,
+     "id": "watch:jasonsanders",
+     "first_seen": "Sat Nov 28 2026 01:29 AM PT"
     }
    ],
    "cover": [
@@ -626,6 +626,13 @@
      "team": "Sf",
      "slot": "BN",
      "splits": [
+      {
+       "span": "this week",
+       "expert": "Ratcliffe",
+       "his": 8.2,
+       "others": 6.1,
+       "note": "Ratcliffe 8.2 vs the others' middle 6.1 this week"
+      },
       {
        "span": "this week",
        "expert": "Clay",
